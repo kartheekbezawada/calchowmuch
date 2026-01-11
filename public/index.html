@@ -2,6 +2,251 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title>Calculators | calchowmuch.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Simple, fast calculators on calchowmuch.com" />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background: #f6f7fb;
+        color: #1f2937;
+      }
+
+      header {
+        padding: 24px 32px;
+        background: #111827;
+        color: #f9fafb;
+      }
+
+      header h1 {
+        margin: 0 0 4px;
+        font-size: 24px;
+      }
+
+      header p {
+        margin: 0;
+        color: #d1d5db;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: 24px;
+        padding: 32px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      aside {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+        height: fit-content;
+      }
+
+      aside h2 {
+        margin-top: 0;
+        font-size: 18px;
+      }
+
+      details {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+        background: #f9fafb;
+      }
+
+      details details {
+        margin-top: 10px;
+        background: #ffffff;
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      summary span {
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .calculator-panel {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .calculator-panel h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+
+      .calc-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+        max-width: 420px;
+      }
+
+      label {
+        font-size: 14px;
+        color: #6b7280;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-size: 16px;
+      }
+
+      .button-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+        max-width: 420px;
+      }
+
+      button {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: #ffffff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: #e5e7eb;
+        color: #111827;
+      }
+
+      .result {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      .helper {
+        margin: 0;
+        color: #6b7280;
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+
+        aside {
+          order: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Calculators</h1>
+      <p>Pick a calculator on the left, then solve it in the center.</p>
+    </header>
+
+    <main>
+      <aside>
+        <h2>Filter calculators</h2>
+        <details open>
+          <summary>Calculate how much <span>(expanded)</span></summary>
+          <details open>
+            <summary>Math calculators</summary>
+            <details open>
+              <summary>Simple calculator</summary>
+              <ul>
+                <li><a href="#simple-calculator">Open simple calculator</a></li>
+              </ul>
+            </details>
+          </details>
+        </details>
+      </aside>
+
+      <section id="simple-calculator" class="calculator-panel">
+        <h2>Simple Calculator</h2>
+        <p class="helper">Enter two values and pick an operation.</p>
+
+        <div class="calc-grid">
+          <div>
+            <label for="value-a">First number</label>
+            <input id="value-a" type="number" value="12" />
+          </div>
+          <div>
+            <label for="value-b">Second number</label>
+            <input id="value-b" type="number" value="8" />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="button" data-operation="add">+</button>
+          <button type="button" data-operation="subtract">-</button>
+          <button type="button" data-operation="multiply">×</button>
+          <button type="button" data-operation="divide">÷</button>
+        </div>
+
+        <button type="button" class="secondary" id="reset">Reset</button>
+
+        <div class="result" id="result">Result: 20</div>
+      </section>
+    </main>
+
+    <script>
+      const valueA = document.querySelector("#value-a");
+      const valueB = document.querySelector("#value-b");
+      const result = document.querySelector("#result");
+      const buttons = document.querySelectorAll("[data-operation]");
+      const resetButton = document.querySelector("#reset");
+
+      const operations = {
+        add: (a, b) => a + b,
+        subtract: (a, b) => a - b,
+        multiply: (a, b) => a * b,
+        divide: (a, b) => (b === 0 ? "∞" : a / b),
+      };
+
+      const updateResult = (operation) => {
+        const a = Number(valueA.value || 0);
+        const b = Number(valueB.value || 0);
+        const output = operations[operation](a, b);
+        result.textContent = `Result: ${output}`;
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          updateResult(button.dataset.operation);
+        });
+      });
+
+      resetButton.addEventListener("click", () => {
+        valueA.value = 0;
+        valueB.value = 0;
+        updateResult("add");
+      });
+
+      updateResult("add");
+    </script>
     <meta http-equiv="refresh" content="0; url=/calculators/" />
     <title>Calculators | calchowmuch.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
