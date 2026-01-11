@@ -1,28 +1,23 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Hello Calculator</title>
+    <title>Calculators | calchowmuch.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Simple, fast calculators on calchowmuch.com" />
   </head>
   <body>
-    <h1>Hello Calculator</h1>
-    <p>If you can see this, routing + deploy works.</p>
+    <h1>Calculators</h1>
 
-    <label>
-      Enter a number:
-      <input id="x" type="number" />
-    </label>
+    <ul>
+      <li>
+        <a href="/calculators/hello.html">Hello Calculator</a>
+        – deployment sanity check
+      </li>
+    </ul>
 
-    <button onclick="run()">Calculate</button>
-
-    <p id="out"></p>
-
-    <script>
-      function run() {
-        const v = Number(document.getElementById("x").value);
-        document.getElementById("out").textContent =
-          "Double is: " + (v * 2);
-      }
-    </script>
+    <p>
+      More calculators coming soon.
+    </p>
   </body>
 </html>
