@@ -221,6 +221,60 @@
         background: #1d4ed8;
       }
 
+      /* Loading skeleton styles */
+      .skeleton-loader {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .skeleton-item {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 8px;
+      }
+
+      .skeleton-title {
+        width: 200px;
+        height: 28px;
+        margin-bottom: 10px;
+      }
+
+      .skeleton-text {
+        width: 300px;
+        height: 20px;
+        margin-bottom: 20px;
+      }
+
+      .skeleton-input {
+        width: 100%;
+        max-width: 420px;
+        height: 80px;
+        margin-bottom: 10px;
+      }
+
+      .skeleton-button {
+        width: 100%;
+        max-width: 420px;
+        height: 40px;
+      }
+
+      @keyframes loading {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
       @media (max-width: 860px) {
         main {
           grid-template-columns: 1fr;
@@ -241,156 +295,124 @@
     <main>
       <aside>
         <h2>Calculate How Much</h2>
-        <div class="category">
-          <h3>Maths</h3>
-          <div class="calculator-list">
-            <label class="calculator-option">
-              <input type="radio" name="calculator" value="simple-calculator" checked />
-              <span>Simple Calculator</span>
-            </label>
-            <label class="calculator-option">
-              <input type="radio" name="calculator" value="percentage-calculator" />
-              <span>Percentage Calculator</span>
-            </label>
-          </div>
+        <div id="categories-container">
+          <!-- Categories and calculators will be dynamically loaded here -->
         </div>
       </aside>
 
-      <section id="simple-calculator" class="calculator-panel">
-        <h2>Simple Calculator</h2>
-        <p class="helper">Enter two values and pick an operation.</p>
-
-        <div class="calc-grid">
-          <div>
-            <label for="value-a">First number</label>
-            <input id="value-a" type="number" value="12" />
-          </div>
-          <div>
-            <label for="value-b">Second number</label>
-            <input id="value-b" type="number" value="8" />
-          </div>
+      <div id="calculator-container">
+        <!-- Loading skeleton -->
+        <div class="skeleton-loader">
+          <div class="skeleton-item skeleton-title"></div>
+          <div class="skeleton-item skeleton-text"></div>
+          <div class="skeleton-item skeleton-input"></div>
+          <div class="skeleton-item skeleton-button"></div>
         </div>
-
-        <div class="button-row">
-          <button type="button" data-operation="add">+</button>
-          <button type="button" data-operation="subtract">-</button>
-          <button type="button" data-operation="multiply">×</button>
-          <button type="button" data-operation="divide">÷</button>
-        </div>
-
-        <button type="button" class="secondary" id="reset">Reset</button>
-
-        <div class="result" id="result">Result: 20</div>
-      </section>
-
-      <section id="percentage-calculator" class="calculator-panel" style="display: none;">
-        <h2>Percentage Calculator</h2>
-        <p class="helper">Percentage Calculator is a free online tool to calculate percentages.</p>
-
-        <!-- Calculation 1: What is X% of Y? -->
-        <div class="percentage-section">
-          <h3 class="calc-title">What is <input type="number" id="percent1" class="inline-input" value="10" /> % of <input type="number" id="value1" class="inline-input" value="100" />?</h3>
-          <button type="button" class="calc-button" onclick="calculatePercentOf()">Calculate</button>
-          <div class="result" id="result1">Result: 10</div>
-        </div>
-
-        <!-- Calculation 2: X is what percent of Y? -->
-        <div class="percentage-section">
-          <h3 class="calc-title"><input type="number" id="value2a" class="inline-input" value="10" /> is what percent of <input type="number" id="value2b" class="inline-input" value="100" />?</h3>
-          <button type="button" class="calc-button" onclick="calculateWhatPercent()">Calculate</button>
-          <div class="result" id="result2">Result: 10 %</div>
-        </div>
-
-        <!-- Calculation 3: Percentage increase/decrease -->
-        <div class="percentage-section">
-          <h3 class="calc-title">What is the percentage increase/decrease from <input type="number" id="value3a" class="inline-input" value="100" /> to <input type="number" id="value3b" class="inline-input" value="110" />?</h3>
-          <button type="button" class="calc-button" onclick="calculatePercentChange()">Calculate</button>
-          <div class="result" id="result3">Result: 10 %</div>
-        </div>
-      </section>
+      </div>
     </main>
 
+    <!-- Load configuration -->
+    <script src="calculators-config.js"></script>
+
     <script>
-      // Calculator switching logic
-      const radioButtons = document.querySelectorAll('input[name="calculator"]');
-      const calculatorPanels = document.querySelectorAll('.calculator-panel');
+      // State to track loaded calculators
+      const loadedCalculators = {};
+      let currentCalculatorId = null;
 
-      radioButtons.forEach((radio) => {
-        radio.addEventListener('change', () => {
-          // Hide all calculators
-          calculatorPanels.forEach((panel) => {
-            panel.style.display = 'none';
+      // Function to load a calculator HTML file
+      async function loadCalculator(calculatorId, fileName) {
+        // Check if calculator is already loaded
+        if (loadedCalculators[calculatorId]) {
+          showCalculator(calculatorId);
+          return;
+        }
+
+        try {
+          const response = await fetch(fileName);
+          const html = await response.text();
+
+          // Create a temporary container to parse the HTML
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = html;
+
+          // Store the calculator content
+          loadedCalculators[calculatorId] = tempDiv.innerHTML;
+
+          // Show the calculator
+          showCalculator(calculatorId);
+        } catch (error) {
+          console.error(`Error loading calculator ${calculatorId}:`, error);
+          document.getElementById('calculator-container').innerHTML =
+            '<div class="calculator-panel"><h2>Error loading calculator</h2></div>';
+        }
+      }
+
+      // Function to show a specific calculator
+      function showCalculator(calculatorId) {
+        currentCalculatorId = calculatorId;
+        const container = document.getElementById('calculator-container');
+        container.innerHTML = loadedCalculators[calculatorId];
+
+        // Execute any scripts in the loaded calculator
+        const scripts = container.querySelectorAll('script');
+        scripts.forEach(script => {
+          const newScript = document.createElement('script');
+          newScript.textContent = script.textContent;
+          script.parentNode.replaceChild(newScript, script);
+        });
+      }
+
+      // Function to generate sidebar from config
+      function generateSidebar() {
+        const container = document.getElementById('categories-container');
+        let isFirst = true;
+
+        calculatorsConfig.categories.forEach(category => {
+          const categoryDiv = document.createElement('div');
+          categoryDiv.className = 'category';
+
+          const categoryTitle = document.createElement('h3');
+          categoryTitle.textContent = category.name;
+          categoryDiv.appendChild(categoryTitle);
+
+          const calculatorList = document.createElement('div');
+          calculatorList.className = 'calculator-list';
+
+          category.calculators.forEach(calc => {
+            const label = document.createElement('label');
+            label.className = 'calculator-option';
+
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'calculator';
+            radio.value = calc.id;
+            radio.checked = isFirst;
+
+            radio.addEventListener('change', () => {
+              loadCalculator(calc.id, calc.file);
+            });
+
+            const span = document.createElement('span');
+            span.textContent = calc.name;
+
+            label.appendChild(radio);
+            label.appendChild(span);
+            calculatorList.appendChild(label);
+
+            // Load the first calculator by default
+            if (isFirst) {
+              loadCalculator(calc.id, calc.file);
+              isFirst = false;
+            }
           });
-          // Show selected calculator
-          const selectedCalculator = document.getElementById(radio.value);
-          if (selectedCalculator) {
-            selectedCalculator.style.display = 'flex';
-          }
+
+          categoryDiv.appendChild(calculatorList);
+          container.appendChild(categoryDiv);
         });
-      });
-
-      // Simple Calculator logic
-      const valueA = document.querySelector("#value-a");
-      const valueB = document.querySelector("#value-b");
-      const result = document.querySelector("#result");
-      const buttons = document.querySelectorAll("[data-operation]");
-      const resetButton = document.querySelector("#reset");
-
-      const operations = {
-        add: (a, b) => a + b,
-        subtract: (a, b) => a - b,
-        multiply: (a, b) => a * b,
-        divide: (a, b) => (b === 0 ? "∞" : a / b),
-      };
-
-      const updateResult = (operation) => {
-        const a = Number(valueA.value || 0);
-        const b = Number(valueB.value || 0);
-        const output = operations[operation](a, b);
-        result.textContent = `Result: ${output}`;
-      };
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          updateResult(button.dataset.operation);
-        });
-      });
-
-      resetButton.addEventListener("click", () => {
-        valueA.value = 0;
-        valueB.value = 0;
-        updateResult("add");
-      });
-
-      updateResult("add");
-
-      // Percentage Calculator functions
-      function calculatePercentOf() {
-        const percent = Number(document.getElementById("percent1").value || 0);
-        const value = Number(document.getElementById("value1").value || 0);
-        const result = (percent / 100) * value;
-        document.getElementById("result1").textContent = `Result: ${result}`;
       }
 
-      function calculateWhatPercent() {
-        const valueA = Number(document.getElementById("value2a").value || 0);
-        const valueB = Number(document.getElementById("value2b").value || 0);
-        const result = valueB === 0 ? 0 : (valueA / valueB) * 100;
-        document.getElementById("result2").textContent = `Result: ${result.toFixed(2)} %`;
-      }
-
-      function calculatePercentChange() {
-        const fromValue = Number(document.getElementById("value3a").value || 0);
-        const toValue = Number(document.getElementById("value3b").value || 0);
-        const result = fromValue === 0 ? 0 : ((toValue - fromValue) / fromValue) * 100;
-        const sign = result >= 0 ? "+" : "";
-        document.getElementById("result3").textContent = `Result: ${sign}${result.toFixed(2)} %`;
-      }
-
-      // Initialize percentage calculator results
-      calculatePercentOf();
-      calculateWhatPercent();
-      calculatePercentChange();
+      // Initialize the sidebar when page loads
+      document.addEventListener('DOMContentLoaded', generateSidebar);
     </script>
   </body>
 </html>

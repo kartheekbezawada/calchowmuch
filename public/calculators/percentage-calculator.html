@@ -1,0 +1,55 @@
+<section id="percentage-calculator" class="calculator-panel">
+  <h2>Percentage Calculator</h2>
+  <p class="helper">Percentage Calculator is a free online tool to calculate percentages.</p>
+
+  <!-- Calculation 1: What is X% of Y? -->
+  <div class="percentage-section">
+    <h3 class="calc-title">What is <input type="number" id="percent1" class="inline-input" value="10" /> % of <input type="number" id="value1" class="inline-input" value="100" />?</h3>
+    <button type="button" class="calc-button" onclick="calculatePercentOf()">Calculate</button>
+    <div class="result" id="result1">Result: 10</div>
+  </div>
+
+  <!-- Calculation 2: X is what percent of Y? -->
+  <div class="percentage-section">
+    <h3 class="calc-title"><input type="number" id="value2a" class="inline-input" value="10" /> is what percent of <input type="number" id="value2b" class="inline-input" value="100" />?</h3>
+    <button type="button" class="calc-button" onclick="calculateWhatPercent()">Calculate</button>
+    <div class="result" id="result2">Result: 10 %</div>
+  </div>
+
+  <!-- Calculation 3: Percentage increase/decrease -->
+  <div class="percentage-section">
+    <h3 class="calc-title">What is the percentage increase/decrease from <input type="number" id="value3a" class="inline-input" value="100" /> to <input type="number" id="value3b" class="inline-input" value="110" />?</h3>
+    <button type="button" class="calc-button" onclick="calculatePercentChange()">Calculate</button>
+    <div class="result" id="result3">Result: 10 %</div>
+  </div>
+</section>
+
+<script>
+  // Percentage Calculator functions
+  function calculatePercentOf() {
+    const percent = Number(document.getElementById("percent1").value || 0);
+    const value = Number(document.getElementById("value1").value || 0);
+    const result = (percent / 100) * value;
+    document.getElementById("result1").textContent = `Result: ${result}`;
+  }
+
+  function calculateWhatPercent() {
+    const valueA = Number(document.getElementById("value2a").value || 0);
+    const valueB = Number(document.getElementById("value2b").value || 0);
+    const result = valueB === 0 ? 0 : (valueA / valueB) * 100;
+    document.getElementById("result2").textContent = `Result: ${result.toFixed(2)} %`;
+  }
+
+  function calculatePercentChange() {
+    const fromValue = Number(document.getElementById("value3a").value || 0);
+    const toValue = Number(document.getElementById("value3b").value || 0);
+    const result = fromValue === 0 ? 0 : ((toValue - fromValue) / fromValue) * 100;
+    const sign = result >= 0 ? "+" : "";
+    document.getElementById("result3").textContent = `Result: ${sign}${result.toFixed(2)} %`;
+  }
+
+  // Initialize percentage calculator results
+  calculatePercentOf();
+  calculateWhatPercent();
+  calculatePercentChange();
+</script>

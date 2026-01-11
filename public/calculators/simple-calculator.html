@@ -1,0 +1,63 @@
+<section id="simple-calculator" class="calculator-panel">
+  <h2>Simple Calculator</h2>
+  <p class="helper">Enter two values and pick an operation.</p>
+
+  <div class="calc-grid">
+    <div>
+      <label for="value-a">First number</label>
+      <input id="value-a" type="number" value="12" />
+    </div>
+    <div>
+      <label for="value-b">Second number</label>
+      <input id="value-b" type="number" value="8" />
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button type="button" data-operation="add">+</button>
+    <button type="button" data-operation="subtract">-</button>
+    <button type="button" data-operation="multiply">×</button>
+    <button type="button" data-operation="divide">÷</button>
+  </div>
+
+  <button type="button" class="secondary" id="reset">Reset</button>
+
+  <div class="result" id="result">Result: 20</div>
+</section>
+
+<script>
+  // Simple Calculator logic
+  const valueA = document.querySelector("#value-a");
+  const valueB = document.querySelector("#value-b");
+  const result = document.querySelector("#result");
+  const buttons = document.querySelectorAll("[data-operation]");
+  const resetButton = document.querySelector("#reset");
+
+  const operations = {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b,
+    multiply: (a, b) => a * b,
+    divide: (a, b) => (b === 0 ? "∞" : a / b),
+  };
+
+  const updateResult = (operation) => {
+    const a = Number(valueA.value || 0);
+    const b = Number(valueB.value || 0);
+    const output = operations[operation](a, b);
+    result.textContent = `Result: ${output}`;
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      updateResult(button.dataset.operation);
+    });
+  });
+
+  resetButton.addEventListener("click", () => {
+    valueA.value = 0;
+    valueB.value = 0;
+    updateResult("add");
+  });
+
+  updateResult("add");
+</script>
