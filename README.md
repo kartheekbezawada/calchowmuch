@@ -1,11 +1,22 @@
-# calchowmuch# calchowmuch.com
+# Calculators Directory Contract
 
-Minimal static site for calchowmuch.com.
+Each calculator is a **single, self-contained HTML file**.
 
-## Branches & Deployments
+## Rules
 
-- `devv` → Cloudflare Pages **preview/dev** environment
-- `main` → Cloudflare Pages **production** (calchowmuch.com)
+- One calculator = one `.html` file
+- No build step required
+- No server-side logic
+- JavaScript must be embedded or locally referenced
+- Calculators must not depend on secrets
 
-## Local Development
-## ignore for now
+## Naming
+
+- Use lowercase, hyphen-separated filenames
+  - `sleep-cycle.html`
+  - `SleepCalculator.html`
+
+## Routing
+
+A file placed at:
+
