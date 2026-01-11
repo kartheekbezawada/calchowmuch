@@ -52,29 +52,53 @@
 
       aside h2 {
         margin-top: 0;
-        font-size: 18px;
+        margin-bottom: 24px;
+        font-size: 20px;
+        color: #111827;
       }
 
-      details {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 12px 14px;
-        margin-bottom: 12px;
-        background: #f9fafb;
+      .category {
+        margin-bottom: 20px;
       }
 
-      details details {
-        margin-top: 10px;
-        background: #ffffff;
-      }
-
-      summary {
+      .category h3 {
+        margin: 0 0 12px 0;
+        font-size: 15px;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         font-weight: 600;
+      }
+
+      .calculator-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-option {
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .calculator-option:hover {
+        background: #f3f4f6;
+      }
+
+      .calculator-option input[type="radio"] {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
         cursor: pointer;
       }
 
-      summary span {
-        color: #6b7280;
+      .calculator-option span {
+        font-size: 15px;
+        color: #374151;
         font-weight: 500;
       }
 
@@ -150,6 +174,53 @@
         text-align: center;
       }
 
+      .percentage-section {
+        width: 100%;
+        max-width: 520px;
+        padding: 24px;
+        background: #f9fafb;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .calc-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: #374151;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .inline-input {
+        width: 80px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+        margin: 0 4px;
+      }
+
+      .calc-button {
+        padding: 10px 24px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: #ffffff;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      .calc-button:hover {
+        background: #1d4ed8;
+      }
+
       @media (max-width: 860px) {
         main {
           grid-template-columns: 1fr;
@@ -163,25 +234,26 @@
   </head>
   <body>
     <header>
-      <h1>Calculators</h1>
-      <p>Pick a calculator on the left, then solve it in the center.</p>
+      <h1>Calculate How Much</h1>
+      <p>Select a calculator from the left sidebar and start calculating.</p>
     </header>
 
     <main>
       <aside>
-        <h2>Filter calculators</h2>
-        <details open>
-          <summary>Calculate how much <span>(expanded)</span></summary>
-          <details open>
-            <summary>Math calculators</summary>
-            <details open>
-              <summary>Simple calculator</summary>
-              <ul>
-                <li><a href="#simple-calculator">Open simple calculator</a></li>
-              </ul>
-            </details>
-          </details>
-        </details>
+        <h2>Calculate How Much</h2>
+        <div class="category">
+          <h3>Maths</h3>
+          <div class="calculator-list">
+            <label class="calculator-option">
+              <input type="radio" name="calculator" value="simple-calculator" checked />
+              <span>Simple Calculator</span>
+            </label>
+            <label class="calculator-option">
+              <input type="radio" name="calculator" value="percentage-calculator" />
+              <span>Percentage Calculator</span>
+            </label>
+          </div>
+        </div>
       </aside>
 
       <section id="simple-calculator" class="calculator-panel">
@@ -210,9 +282,54 @@
 
         <div class="result" id="result">Result: 20</div>
       </section>
+
+      <section id="percentage-calculator" class="calculator-panel" style="display: none;">
+        <h2>Percentage Calculator</h2>
+        <p class="helper">Percentage Calculator is a free online tool to calculate percentages.</p>
+
+        <!-- Calculation 1: What is X% of Y? -->
+        <div class="percentage-section">
+          <h3 class="calc-title">What is <input type="number" id="percent1" class="inline-input" value="10" /> % of <input type="number" id="value1" class="inline-input" value="100" />?</h3>
+          <button type="button" class="calc-button" onclick="calculatePercentOf()">Calculate</button>
+          <div class="result" id="result1">Result: 10</div>
+        </div>
+
+        <!-- Calculation 2: X is what percent of Y? -->
+        <div class="percentage-section">
+          <h3 class="calc-title"><input type="number" id="value2a" class="inline-input" value="10" /> is what percent of <input type="number" id="value2b" class="inline-input" value="100" />?</h3>
+          <button type="button" class="calc-button" onclick="calculateWhatPercent()">Calculate</button>
+          <div class="result" id="result2">Result: 10 %</div>
+        </div>
+
+        <!-- Calculation 3: Percentage increase/decrease -->
+        <div class="percentage-section">
+          <h3 class="calc-title">What is the percentage increase/decrease from <input type="number" id="value3a" class="inline-input" value="100" /> to <input type="number" id="value3b" class="inline-input" value="110" />?</h3>
+          <button type="button" class="calc-button" onclick="calculatePercentChange()">Calculate</button>
+          <div class="result" id="result3">Result: 10 %</div>
+        </div>
+      </section>
     </main>
 
     <script>
+      // Calculator switching logic
+      const radioButtons = document.querySelectorAll('input[name="calculator"]');
+      const calculatorPanels = document.querySelectorAll('.calculator-panel');
+
+      radioButtons.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          // Hide all calculators
+          calculatorPanels.forEach((panel) => {
+            panel.style.display = 'none';
+          });
+          // Show selected calculator
+          const selectedCalculator = document.getElementById(radio.value);
+          if (selectedCalculator) {
+            selectedCalculator.style.display = 'flex';
+          }
+        });
+      });
+
+      // Simple Calculator logic
       const valueA = document.querySelector("#value-a");
       const valueB = document.querySelector("#value-b");
       const result = document.querySelector("#result");
@@ -246,6 +363,34 @@
       });
 
       updateResult("add");
+
+      // Percentage Calculator functions
+      function calculatePercentOf() {
+        const percent = Number(document.getElementById("percent1").value || 0);
+        const value = Number(document.getElementById("value1").value || 0);
+        const result = (percent / 100) * value;
+        document.getElementById("result1").textContent = `Result: ${result}`;
+      }
+
+      function calculateWhatPercent() {
+        const valueA = Number(document.getElementById("value2a").value || 0);
+        const valueB = Number(document.getElementById("value2b").value || 0);
+        const result = valueB === 0 ? 0 : (valueA / valueB) * 100;
+        document.getElementById("result2").textContent = `Result: ${result.toFixed(2)} %`;
+      }
+
+      function calculatePercentChange() {
+        const fromValue = Number(document.getElementById("value3a").value || 0);
+        const toValue = Number(document.getElementById("value3b").value || 0);
+        const result = fromValue === 0 ? 0 : ((toValue - fromValue) / fromValue) * 100;
+        const sign = result >= 0 ? "+" : "";
+        document.getElementById("result3").textContent = `Result: ${sign}${result.toFixed(2)} %`;
+      }
+
+      // Initialize percentage calculator results
+      calculatePercentOf();
+      calculateWhatPercent();
+      calculatePercentChange();
     </script>
   </body>
 </html>
