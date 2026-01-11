@@ -22,10 +22,35 @@
     <button type="button" class="calc-button" onclick="calculatePercentChange()">Calculate</button>
     <div class="result" id="result3">Result: 10 %</div>
   </div>
+
+  <div class="explanation-section" aria-live="polite">
+    <h3>Explanation</h3>
+    <div id="percentage-explanation-content" class="explanation-content">
+      <p>Loading explanation...</p>
+    </div>
+  </div>
 </section>
 
 <script>
   // Percentage Calculator functions
+  async function loadPercentageExplanation() {
+    const container = document.getElementById("percentage-explanation-content");
+    if (!container) {
+      return;
+    }
+
+    try {
+      const response = await fetch("explanation/percentage_calculator_explanation.html");
+      if (!response.ok) {
+        throw new Error(`Failed to load explanation: ${response.status}`);
+      }
+      container.innerHTML = await response.text();
+    } catch (error) {
+      console.error("Error loading explanation content:", error);
+      container.textContent = "Explanation content is unavailable right now.";
+    }
+  }
+
   function calculatePercentOf() {
     const percent = Number(document.getElementById("percent1").value || 0);
     const value = Number(document.getElementById("value1").value || 0);
@@ -52,4 +77,5 @@
   calculatePercentOf();
   calculateWhatPercent();
   calculatePercentChange();
+  loadPercentageExplanation();
 </script>
