@@ -17,22 +17,6 @@
         color: #1f2937;
       }
 
-      header {
-        padding: 24px 32px;
-        background: #111827;
-        color: #f9fafb;
-      }
-
-      header h1 {
-        margin: 0 0 4px;
-        font-size: 24px;
-      }
-
-      header p {
-        margin: 0;
-        color: #d1d5db;
-      }
-
       main {
         display: grid;
         grid-template-columns: 260px minmax(0, 1fr);
@@ -186,9 +170,19 @@
         align-items: center;
       }
 
+      .content-panels {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .content-panels > div {
+        min-width: 0;
+      }
+
       .explanation-section {
         width: 100%;
-        max-width: 520px;
+        max-width: 100%;
         padding: 24px;
         background: #ffffff;
         border-radius: 12px;
@@ -318,30 +312,35 @@
         aside {
           order: 2;
         }
+
+        .content-panels {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Calculate How Much</h1>
-      <p>Select a calculator from the left sidebar and start calculating.</p>
-    </header>
-
     <main>
       <aside>
-        <h2>Calculate How Much</h2>
         <div id="categories-container">
           <!-- Categories and calculators will be dynamically loaded here -->
         </div>
       </aside>
 
-      <div id="calculator-container">
-        <!-- Loading skeleton -->
-        <div class="skeleton-loader">
-          <div class="skeleton-item skeleton-title"></div>
-          <div class="skeleton-item skeleton-text"></div>
-          <div class="skeleton-item skeleton-input"></div>
-          <div class="skeleton-item skeleton-button"></div>
+      <div class="content-panels">
+        <div id="calculator-container">
+          <!-- Loading skeleton -->
+          <div class="skeleton-loader">
+            <div class="skeleton-item skeleton-title"></div>
+            <div class="skeleton-item skeleton-text"></div>
+            <div class="skeleton-item skeleton-input"></div>
+            <div class="skeleton-item skeleton-button"></div>
+          </div>
+        </div>
+
+        <div id="explanation-container" class="explanation-section" aria-live="polite">
+          <h3>Explanation</h3>
+          <div id="explanation-content" class="explanation-content"></div>
         </div>
       </div>
     </main>
@@ -370,8 +369,24 @@
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = html;
 
+          const explanationSection = tempDiv.querySelector(".explanation-section");
+          let explanationHTML = "";
+          if (explanationSection) {
+            const explanationTitle = explanationSection.querySelector("h3");
+            if (explanationTitle) {
+              explanationTitle.remove();
+            }
+            explanationHTML = explanationSection.innerHTML;
+          }
+          if (explanationSection) {
+            explanationSection.remove();
+          }
+
           // Store the calculator content
-          loadedCalculators[calculatorId] = tempDiv.innerHTML;
+          loadedCalculators[calculatorId] = {
+            calculatorHTML: tempDiv.innerHTML,
+            explanationHTML,
+          };
 
           // Show the calculator
           showCalculator(calculatorId);
@@ -386,7 +401,11 @@
       function showCalculator(calculatorId) {
         currentCalculatorId = calculatorId;
         const container = document.getElementById('calculator-container');
-        container.innerHTML = loadedCalculators[calculatorId];
+        const explanationContainer = document.getElementById('explanation-content');
+        const calculatorData = loadedCalculators[calculatorId];
+
+        container.innerHTML = calculatorData.calculatorHTML;
+        explanationContainer.innerHTML = calculatorData.explanationHTML;
 
         // Execute any scripts in the loaded calculator
         const scripts = container.querySelectorAll('script');
