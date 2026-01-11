@@ -16,7 +16,7 @@ Each calculator is a **single, self-contained HTML file**.
   - `sleep-cycle.html`
   - `SleepCalculator.html`
 
-## Routing ###
+## Routing
 
 A file placed at:
 
