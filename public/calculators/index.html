@@ -221,6 +221,60 @@
         background: #1d4ed8;
       }
 
+      /* Loading skeleton styles */
+      .skeleton-loader {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .skeleton-item {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+        border-radius: 8px;
+      }
+
+      .skeleton-title {
+        width: 200px;
+        height: 28px;
+        margin-bottom: 10px;
+      }
+
+      .skeleton-text {
+        width: 300px;
+        height: 20px;
+        margin-bottom: 20px;
+      }
+
+      .skeleton-input {
+        width: 100%;
+        max-width: 420px;
+        height: 80px;
+        margin-bottom: 10px;
+      }
+
+      .skeleton-button {
+        width: 100%;
+        max-width: 420px;
+        height: 40px;
+      }
+
+      @keyframes loading {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
       @media (max-width: 860px) {
         main {
           grid-template-columns: 1fr;
@@ -247,7 +301,13 @@
       </aside>
 
       <div id="calculator-container">
-        <!-- Selected calculator will be loaded here -->
+        <!-- Loading skeleton -->
+        <div class="skeleton-loader">
+          <div class="skeleton-item skeleton-title"></div>
+          <div class="skeleton-item skeleton-text"></div>
+          <div class="skeleton-item skeleton-input"></div>
+          <div class="skeleton-item skeleton-button"></div>
+        </div>
       </div>
     </main>
 
