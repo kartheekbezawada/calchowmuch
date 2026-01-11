@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello Calculator</title>
+  </head>
+  <body>
+    <h1>Hello Calculator</h1>
+    <p>If you can see this, routing + deploy works.</p>
+
+    <label>
+      Enter a number:
+      <input id="x" type="number" />
+    </label>
+
+    <button onclick="run()">Calculate</button>
+
+    <p id="out"></p>
+
+    <script>
+      function run() {
+        const v = Number(document.getElementById("x").value);
+        document.getElementById("out").textContent =
+          "Double is: " + (v * 2);
+      }
+    </script>
+  </body>
+</html>
