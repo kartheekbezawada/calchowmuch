@@ -1,0 +1,196 @@
+<section class="calculator-panel" data-calculator-panel data-calculator="fraction-calculator">
+  <h2>Fraction Calculator</h2>
+  <p class="helper-text">Add, subtract, multiply, divide, simplify, or convert fractions.</p>
+  <div class="calc-tabs" role="tablist" aria-label="Fraction calculator modes">
+    <button class="calc-tab is-active" type="button" data-mode="add">Add</button>
+    <button class="calc-tab" type="button" data-mode="subtract">Subtract</button>
+    <button class="calc-tab" type="button" data-mode="multiply">Multiply</button>
+    <button class="calc-tab" type="button" data-mode="divide">Divide</button>
+    <button class="calc-tab" type="button" data-mode="simplify">Simplify</button>
+    <button class="calc-tab" type="button" data-mode="convert">Convert</button>
+  </div>
+
+  <div class="mode-panel is-active" data-mode-panel="add">
+    <h3>Add Fractions</h3>
+    <div class="input-row">
+      <label>
+        First fraction
+        <span class="inline-frac">
+          <input type="number" value="1" data-field="add-a-num" />
+          <span>/</span>
+          <input type="number" value="3" data-field="add-a-den" />
+        </span>
+      </label>
+      <label>
+        Second fraction
+        <span class="inline-frac">
+          <input type="number" value="1" data-field="add-b-num" />
+          <span>/</span>
+          <input type="number" value="6" data-field="add-b-den" />
+        </span>
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="add">Add fractions</button>
+    </div>
+    <div class="result-text" data-result="add">Result: 1/2</div>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="subtract">
+    <h3>Subtract Fractions</h3>
+    <div class="input-row">
+      <label>
+        First fraction
+        <span class="inline-frac">
+          <input type="number" value="3" data-field="subtract-a-num" />
+          <span>/</span>
+          <input type="number" value="4" data-field="subtract-a-den" />
+        </span>
+      </label>
+      <label>
+        Second fraction
+        <span class="inline-frac">
+          <input type="number" value="1" data-field="subtract-b-num" />
+          <span>/</span>
+          <input type="number" value="8" data-field="subtract-b-den" />
+        </span>
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="subtract">Subtract fractions</button>
+    </div>
+    <div class="result-text" data-result="subtract">Result: 5/8</div>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="multiply">
+    <h3>Multiply Fractions</h3>
+    <div class="input-row">
+      <label>
+        First fraction
+        <span class="inline-frac">
+          <input type="number" value="2" data-field="multiply-a-num" />
+          <span>/</span>
+          <input type="number" value="5" data-field="multiply-a-den" />
+        </span>
+      </label>
+      <label>
+        Second fraction
+        <span class="inline-frac">
+          <input type="number" value="3" data-field="multiply-b-num" />
+          <span>/</span>
+          <input type="number" value="7" data-field="multiply-b-den" />
+        </span>
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="multiply">Multiply fractions</button>
+    </div>
+    <div class="result-text" data-result="multiply">Result: 6/35</div>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="divide">
+    <h3>Divide Fractions</h3>
+    <div class="input-row">
+      <label>
+        Dividend
+        <span class="inline-frac">
+          <input type="number" value="3" data-field="divide-a-num" />
+          <span>/</span>
+          <input type="number" value="5" data-field="divide-a-den" />
+        </span>
+      </label>
+      <label>
+        Divisor
+        <span class="inline-frac">
+          <input type="number" value="2" data-field="divide-b-num" />
+          <span>/</span>
+          <input type="number" value="7" data-field="divide-b-den" />
+        </span>
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="divide">Divide fractions</button>
+    </div>
+    <div class="result-text" data-result="divide">Result: 21/10</div>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="simplify">
+    <h3>Simplify a Fraction</h3>
+    <div class="input-row">
+      <label>
+        Fraction
+        <span class="inline-frac">
+          <input type="number" value="24" data-field="simplify-num" />
+          <span>/</span>
+          <input type="number" value="36" data-field="simplify-den" />
+        </span>
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="simplify">Simplify fraction</button>
+    </div>
+    <div class="result-text" data-result="simplify">Result: 2/3</div>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="convert">
+    <h3>Convert Improper ↔ Mixed Number</h3>
+    <div class="convert-toggle" role="tablist" aria-label="Conversion direction">
+      <button class="is-active" type="button" data-convert="improper">Improper → Mixed</button>
+      <button type="button" data-convert="mixed">Mixed → Improper</button>
+    </div>
+    <div data-convert-panel="improper" class="mode-panel is-active">
+      <div class="input-row">
+        <label>
+          Improper fraction
+          <span class="inline-frac">
+            <input type="number" value="7" data-field="improper-num" />
+            <span>/</span>
+            <input type="number" value="3" data-field="improper-den" />
+          </span>
+        </label>
+      </div>
+      <div class="mode-actions">
+        <button type="button" data-action="improper">Convert to mixed</button>
+      </div>
+      <div class="result-text" data-result="improper">Result: 2 1/3</div>
+    </div>
+    <div data-convert-panel="mixed" class="mode-panel">
+      <div class="input-row">
+        <label>
+          Whole number
+          <input type="number" value="2" data-field="mixed-whole" />
+        </label>
+        <label>
+          Fraction
+          <span class="inline-frac">
+            <input type="number" value="1" data-field="mixed-num" />
+            <span>/</span>
+            <input type="number" value="3" data-field="mixed-den" />
+          </span>
+        </label>
+      </div>
+      <div class="mode-actions">
+        <button type="button" data-action="mixed">Convert to improper</button>
+      </div>
+      <div class="result-text" data-result="mixed">Result: 7/3</div>
+    </div>
+  </div>
+</section>
+
+<section class="calculator-panel" data-explanation-panel>
+  <h2>Explanation</h2>
+  <p class="helper-text">
+    Fractions represent parts of a whole. Use the tabs to choose the operation you
+    need, and the calculator will reduce results to their simplest form.
+  </p>
+  <ul>
+    <li><strong>Add/Subtract:</strong> Find a common denominator and combine numerators.</li>
+    <li><strong>Multiply:</strong> Multiply numerators and denominators.</li>
+    <li><strong>Divide:</strong> Multiply by the reciprocal of the second fraction.</li>
+    <li><strong>Simplify:</strong> Divide numerator and denominator by their greatest common divisor.</li>
+    <li><strong>Convert:</strong> Turn improper fractions into mixed numbers and back.</li>
+  </ul>
+  <p class="helper-text">
+    Example: 1/3 + 1/6 = 1/2 because 1/3 = 2/6 and 2/6 + 1/6 = 3/6 = 1/2.
+  </p>
+</section>

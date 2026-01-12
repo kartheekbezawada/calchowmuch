@@ -1,81 +1,103 @@
-<section id="percentage-calculator" class="calculator-panel">
+<section class="calculator-panel" data-calculator-panel data-calculator="percentage-calculator">
   <h2>Percentage Calculator</h2>
-  <p class="helper">Percentage Calculator is a free online tool to calculate percentages.</p>
-
-  <!-- Calculation 1: What is X% of Y? -->
-  <div class="percentage-section">
-    <h3 class="calc-title">What is <input type="number" id="percent1" class="inline-input" value="10" /> % of <input type="number" id="value1" class="inline-input" value="100" />?</h3>
-    <button type="button" class="calc-button" onclick="calculatePercentOf()">Calculate</button>
-    <div class="result" id="result1">Result: 10</div>
+  <p class="helper-text">Choose a mode to calculate increases, decreases, or percent-of values.</p>
+  <div class="calc-tabs" role="tablist" aria-label="Percentage calculator modes">
+    <button class="calc-tab is-active" type="button" data-mode="increase">Percentage Increase</button>
+    <button class="calc-tab" type="button" data-mode="decrease">Percentage Decrease</button>
+    <button class="calc-tab" type="button" data-mode="percent-of">What % of what</button>
+    <button class="calc-tab" type="button" data-mode="x-percent-of-y">What is X% of Y</button>
   </div>
 
-  <!-- Calculation 2: X is what percent of Y? -->
-  <div class="percentage-section">
-    <h3 class="calc-title"><input type="number" id="value2a" class="inline-input" value="10" /> is what percent of <input type="number" id="value2b" class="inline-input" value="100" />?</h3>
-    <button type="button" class="calc-button" onclick="calculateWhatPercent()">Calculate</button>
-    <div class="result" id="result2">Result: 10 %</div>
-  </div>
-
-  <!-- Calculation 3: Percentage increase/decrease -->
-  <div class="percentage-section">
-    <h3 class="calc-title">What is the percentage increase/decrease from <input type="number" id="value3a" class="inline-input" value="100" /> to <input type="number" id="value3b" class="inline-input" value="110" />?</h3>
-    <button type="button" class="calc-button" onclick="calculatePercentChange()">Calculate</button>
-    <div class="result" id="result3">Result: 10 %</div>
-  </div>
-
-  <div class="explanation-section" aria-live="polite">
-    <h3>Explanation</h3>
-    <div id="percentage-explanation-content" class="explanation-content">
-      <p>Loading explanation...</p>
+  <div class="mode-panel is-active" data-mode-panel="increase">
+    <h3>Percentage Increase</h3>
+    <div class="input-row">
+      <label>
+        Starting value
+        <input type="number" value="200" data-field="increase-start" />
+      </label>
+      <label>
+        Ending value
+        <input type="number" value="260" data-field="increase-end" />
+      </label>
     </div>
+    <div class="mode-actions">
+      <button type="button" data-action="increase">Calculate increase</button>
+    </div>
+    <div class="result-text" data-result="increase">Result: +30%</div>
+    <p class="helper-text" data-detail="increase">That is an increase of 60.</p>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="decrease">
+    <h3>Percentage Decrease</h3>
+    <div class="input-row">
+      <label>
+        Starting value
+        <input type="number" value="260" data-field="decrease-start" />
+      </label>
+      <label>
+        Ending value
+        <input type="number" value="200" data-field="decrease-end" />
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="decrease">Calculate decrease</button>
+    </div>
+    <div class="result-text" data-result="decrease">Result: 23.08%</div>
+    <p class="helper-text" data-detail="decrease">That is a decrease of 60.</p>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="percent-of">
+    <h3>What % of what</h3>
+    <div class="input-row">
+      <label>
+        Part value
+        <input type="number" value="45" data-field="part-value" />
+      </label>
+      <label>
+        Whole value
+        <input type="number" value="120" data-field="whole-value" />
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="percent-of">Calculate percent</button>
+    </div>
+    <div class="result-text" data-result="percent-of">Result: 37.5%</div>
+    <p class="helper-text" data-detail="percent-of">45 is 37.5% of 120.</p>
+  </div>
+
+  <div class="mode-panel" data-mode-panel="x-percent-of-y">
+    <h3>What is X% of Y</h3>
+    <div class="input-row">
+      <label>
+        Percentage
+        <input type="number" value="18" data-field="percent-value" />
+      </label>
+      <label>
+        Number
+        <input type="number" value="260" data-field="number-value" />
+      </label>
+    </div>
+    <div class="mode-actions">
+      <button type="button" data-action="x-percent-of-y">Calculate value</button>
+    </div>
+    <div class="result-text" data-result="x-percent-of-y">Result: 46.8</div>
+    <p class="helper-text" data-detail="x-percent-of-y">18% of 260 is 46.8.</p>
   </div>
 </section>
 
-<script>
-  // Percentage Calculator functions
-  async function loadPercentageExplanation() {
-    const container = document.getElementById("percentage-explanation-content");
-    if (!container) {
-      return;
-    }
-
-    try {
-      const response = await fetch("explanation/percentage_calculator_explanation.html");
-      if (!response.ok) {
-        throw new Error(`Failed to load explanation: ${response.status}`);
-      }
-      container.innerHTML = await response.text();
-    } catch (error) {
-      console.error("Error loading explanation content:", error);
-      container.textContent = "Explanation content is unavailable right now.";
-    }
-  }
-
-  function calculatePercentOf() {
-    const percent = Number(document.getElementById("percent1").value || 0);
-    const value = Number(document.getElementById("value1").value || 0);
-    const result = (percent / 100) * value;
-    document.getElementById("result1").textContent = `Result: ${result}`;
-  }
-
-  function calculateWhatPercent() {
-    const valueA = Number(document.getElementById("value2a").value || 0);
-    const valueB = Number(document.getElementById("value2b").value || 0);
-    const result = valueB === 0 ? 0 : (valueA / valueB) * 100;
-    document.getElementById("result2").textContent = `Result: ${result.toFixed(2)} %`;
-  }
-
-  function calculatePercentChange() {
-    const fromValue = Number(document.getElementById("value3a").value || 0);
-    const toValue = Number(document.getElementById("value3b").value || 0);
-    const result = fromValue === 0 ? 0 : ((toValue - fromValue) / fromValue) * 100;
-    const sign = result >= 0 ? "+" : "";
-    document.getElementById("result3").textContent = `Result: ${sign}${result.toFixed(2)} %`;
-  }
-
-  // Initialize percentage calculator results
-  calculatePercentOf();
-  calculateWhatPercent();
-  calculatePercentChange();
-  loadPercentageExplanation();
-</script>
+<section class="calculator-panel" data-explanation-panel>
+  <h2>Explanation</h2>
+  <p class="helper-text">
+    Percentages compare a part to a whole. Use the mode tabs to switch between
+    increase, decrease, and percent-of calculations without reloading the page.
+  </p>
+  <ul>
+    <li><strong>Increase:</strong> (Ending − Starting) ÷ Starting × 100.</li>
+    <li><strong>Decrease:</strong> (Starting − Ending) ÷ Starting × 100.</li>
+    <li><strong>What % of what:</strong> Part ÷ Whole × 100.</li>
+    <li><strong>What is X% of Y:</strong> X ÷ 100 × Y.</li>
+  </ul>
+  <p class="helper-text">
+    Example: Moving from 200 to 260 is a 30% increase because (60 ÷ 200) × 100 = 30%.
+  </p>
+</section>

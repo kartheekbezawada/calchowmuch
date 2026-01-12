@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Calculator | calchowmuch.com</title>
+    <meta
+      name="description"
+      content="Handle add, subtract, multiply, and divide with a simple basic calculator."
+    />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/math/basic-calculator/"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/calculators.css" />
+    <link rel="stylesheet" href="/assets/css/ads.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result immediately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second number is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    </script>
+    <style>
+      .calculator-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: #2563eb;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="calculator-page">
+      <section class="card" aria-labelledby="calculator-title">
+        <a class="back-link" href="/calculators/index.html">← All calculators</a>
+        <h1 id="calculator-title">Basic Calculator</h1>
+        <div data-calculator-panel data-calculator="basic-calculator" class="calculator-panel">
+          <p class="helper-text">Quickly add, subtract, multiply, or divide two numbers.</p>
+          <div class="input-row">
+            <label>
+              First number
+              <input type="number" value="12" data-field="value-a" />
+            </label>
+            <label>
+              Second number
+              <input type="number" value="8" data-field="value-b" />
+            </label>
+          </div>
+          <div class="mode-actions" role="group" aria-label="Basic operations">
+            <button type="button" data-operation="add">Add</button>
+            <button type="button" data-operation="subtract">Subtract</button>
+            <button type="button" data-operation="multiply">Multiply</button>
+            <button type="button" data-operation="divide">Divide</button>
+            <button type="button" class="secondary" data-operation="reset">Reset</button>
+          </div>
+          <div class="result-text" data-result>Result: 20</div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="explanation-title">
+        <h2 id="explanation-title">Explanation</h2>
+        <div class="calculator-panel">
+          <p class="helper-text">
+            The basic calculator combines two numbers using the four core arithmetic
+            operations. Pick an operation and the result updates immediately.
+          </p>
+          <ul>
+            <li><strong>Add:</strong> Combine two values (12 + 8 = 20).</li>
+            <li><strong>Subtract:</strong> Find the difference (12 − 8 = 4).</li>
+            <li><strong>Multiply:</strong> Scale one value by another (12 × 8 = 96).</li>
+            <li><strong>Divide:</strong> Split evenly (12 ÷ 8 = 1.5).</li>
+          </ul>
+          <p class="helper-text">
+            If you enter 0 as the second number for division, the calculator will warn
+            you because dividing by zero is undefined.
+          </p>
+        </div>
+      </section>
+
+      <aside class="card ad-card" aria-label="Sponsored content">
+        <div class="ad-slot" data-ad-slot="basic-calculator-sidebar">Loading ad…</div>
+      </aside>
+    </main>
+
+    <script type="module">
+      import { initCalculator } from "/assets/js/calculators/basic-calculator.js";
+
+      initCalculator(document);
+    </script>
+    <script async src="/assets/js/ads/loader.js"></script>
+  </body>
+</html>

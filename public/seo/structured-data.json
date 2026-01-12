@@ -27,6 +27,32 @@
       }
     },
     {
+      "id": "basic-calculator",
+      "url": "https://calchowmuch.com/calculators/math/basic-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result immediately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second number is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    },
+    {
       "id": "percentage-increase",
       "url": "https://calchowmuch.com/calculators/math/percentage-increase/",
       "structuredData": {
@@ -46,6 +72,56 @@
           {
             "@type": "HowToStep",
             "text": "Multiply by 100 to convert the change into a percentage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentage-calculator",
+      "url": "https://calchowmuch.com/calculators/math/percentage-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate percentages",
+        "description": "Use percentage increase, decrease, and percent-of formulas.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Choose a percentage mode: increase, decrease, percent-of, or X% of Y."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Enter the required values and click calculate."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Review the percentage result and supporting details."
+          }
+        ]
+      }
+    },
+    {
+      "id": "fraction-calculator",
+      "url": "https://calchowmuch.com/calculators/math/fraction-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I add or subtract fractions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Find a common denominator, convert both fractions, and then combine the numerators."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does simplify mean for fractions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simplify reduces a fraction by dividing the numerator and denominator by their greatest common divisor."
+            }
           }
         ]
       }
