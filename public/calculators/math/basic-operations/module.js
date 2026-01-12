@@ -7,7 +7,6 @@ const inputB = document.querySelector("#basic-value-b");
 const result = document.querySelector("#basic-result");
 const buttons = document.querySelectorAll("[data-operation]");
 const resetButton = document.querySelector("#basic-reset");
-const explanationContainer = document.querySelector("#basic-explanation");
 
 const operations = {
   add: {
@@ -60,23 +59,6 @@ function bindReset() {
   });
 }
 
-async function loadExplanation() {
-  if (!explanationContainer) {
-    return;
-  }
-
-  try {
-    const response = await fetch("./explanation.html");
-    explanationContainer.innerHTML = response.ok
-      ? await response.text()
-      : "Explanation content is unavailable right now.";
-  } catch (error) {
-    console.error("Unable to load explanation", error);
-    explanationContainer.textContent = "Explanation content is unavailable right now.";
-  }
-}
-
 bindButtons();
 bindReset();
 updateResult("add");
-loadExplanation();

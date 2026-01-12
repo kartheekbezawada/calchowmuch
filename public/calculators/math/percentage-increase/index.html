@@ -7,8 +7,35 @@
       name="description"
       content="Calculate the percentage increase or decrease between two numbers."
     />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/math/percentage-increase/"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/ads.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate a percentage increase or decrease",
+        "description": "Use starting and ending values to determine percent change.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Subtract the starting value from the ending value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Divide the difference by the starting value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Multiply by 100 to convert the change into a percentage."
+          }
+        ]
+      }
+    </script>
     <style>
       .calculator-page {
         max-width: 960px;
@@ -102,10 +129,31 @@
 
       <section class="card" aria-labelledby="explanation-title">
         <h2 id="explanation-title">Explanation</h2>
-        <div id="percent-explanation"></div>
+        <div id="percent-explanation">
+          <p>
+            Percentage change compares how much a value grows or shrinks relative to
+            where it started. It is commonly used for price changes, growth rates,
+            or performance deltas.
+          </p>
+          <ol>
+            <li>Subtract the starting value from the ending value.</li>
+            <li>Divide the difference by the starting value.</li>
+            <li>Multiply by 100 to turn the result into a percentage.</li>
+          </ol>
+          <p>
+            Positive results mean an increase, and negative results mean a decrease.
+          </p>
+        </div>
       </section>
+
+      <aside class="card ad-card" aria-label="Sponsored content">
+        <div class="ad-slot" data-ad-slot="percentage-increase-sidebar">
+          Loading ad…
+        </div>
+      </aside>
     </main>
 
     <script type="module" src="./module.js"></script>
+    <script async src="/assets/js/ads/loader.js"></script>
   </body>
 </html>
