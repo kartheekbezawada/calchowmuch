@@ -30,6 +30,12 @@
   padding: 8px 14px;
   border-radius: 999px;
   font-size: 14px;
+  cursor: pointer;
+}
+
+.top-nav button.is-active {
+  background: #f8fafc;
+  color: #111827;
 }
 
 .layout-main {
@@ -54,13 +60,30 @@
   font-size: 16px;
 }
 
+.left-nav .subcategory-title {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #94a3b8;
+}
+
 .left-nav .nav-item {
+  width: 100%;
+  text-align: left;
   background: #f1f5f9;
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 14px;
   color: var(--muted-text);
   margin-bottom: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.left-nav .nav-item.is-active {
+  background: #2563eb;
+  color: #f8fafc;
 }
 
 .center-column {
