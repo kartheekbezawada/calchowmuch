@@ -1,0 +1,156 @@
+{
+  "calculators": [
+    {
+      "id": "basic-operations",
+      "url": "https://calchowmuch.com/calculators/math/basic-operations/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic operations calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result instantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second value is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "basic-calculator",
+      "url": "https://calchowmuch.com/calculators/math/basic-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result immediately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second number is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentage-increase",
+      "url": "https://calchowmuch.com/calculators/math/percentage-increase/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate a percentage increase or decrease",
+        "description": "Use starting and ending values to determine percent change.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Subtract the starting value from the ending value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Divide the difference by the starting value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Multiply by 100 to convert the change into a percentage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentage-calculator",
+      "url": "https://calchowmuch.com/calculators/math/percentage-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate percentages",
+        "description": "Use percentage increase, decrease, and percent-of formulas.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Choose a percentage mode: increase, decrease, percent-of, or X% of Y."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Enter the required values and click calculate."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Review the percentage result and supporting details."
+          }
+        ]
+      }
+    },
+    {
+      "id": "fraction-calculator",
+      "url": "https://calchowmuch.com/calculators/math/fraction-calculator/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I add or subtract fractions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Find a common denominator, convert both fractions, and then combine the numerators."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does simplify mean for fractions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simplify reduces a fraction by dividing the numerator and denominator by their greatest common divisor."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "credit-card-payoff",
+      "url": "https://calchowmuch.com/calculators/finance/credit-card-payoff/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is the payoff timeline calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The estimate adds monthly interest to the current balance and subtracts your fixed payment until the balance reaches zero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if my payment is too low?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the payment does not cover monthly interest, the calculator warns you because the balance would never decrease."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

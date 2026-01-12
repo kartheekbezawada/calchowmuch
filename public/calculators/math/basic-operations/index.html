@@ -7,8 +7,37 @@
       name="description"
       content="Add, subtract, multiply, or divide two numbers instantly."
     />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/math/basic-operations/"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/ads.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic operations calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result instantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second value is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    </script>
     <style>
       .calculator-page {
         max-width: 960px;
@@ -121,10 +150,30 @@
 
       <section class="card" aria-labelledby="explanation-title">
         <h2 id="explanation-title">Explanation</h2>
-        <div id="basic-explanation"></div>
+        <div id="basic-explanation">
+          <p>
+            This calculator applies the four fundamental operations to two numbers.
+            Add and subtract show the total or difference, while multiply and divide
+            show the product or quotient. Use the Reset button to return to a clean
+            starting point.
+          </p>
+          <ul>
+            <li><strong>Add:</strong> Combine the two values.</li>
+            <li><strong>Subtract:</strong> Find how much the first value exceeds the second.</li>
+            <li><strong>Multiply:</strong> Scale the first value by the second.</li>
+            <li><strong>Divide:</strong> Split the first value evenly by the second.</li>
+          </ul>
+        </div>
       </section>
+
+      <aside class="card ad-card" aria-label="Sponsored content">
+        <div class="ad-slot" data-ad-slot="basic-operations-sidebar">
+          Loading ad…
+        </div>
+      </aside>
     </main>
 
     <script type="module" src="./module.js"></script>
+    <script async src="/assets/js/ads/loader.js"></script>
   </body>
 </html>
