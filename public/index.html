@@ -7,7 +7,6 @@
     <meta name="description" content="Layout shell for calchowmuch.com" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/calculators.css" />
   </head>
   <body>
     <div class="page">
@@ -26,17 +25,15 @@
         <section class="center-column">
           <div class="panel">
             <h3 id="calculator-title">Main Calculation Pane</h3>
-            <div class="placeholder" id="calculator-placeholder">
+            <p class="placeholder" id="calculator-placeholder">
               Select a calculator from the navigation list.
-            </div>
-            <div id="calculator-content"></div>
+            </p>
           </div>
           <div class="panel">
             <h3>Explanation Pane</h3>
-            <div class="placeholder" id="explanation-placeholder">
+            <p class="placeholder" id="explanation-placeholder">
               Explanation content will appear here once you choose a calculator.
-            </div>
-            <div id="explanation-content"></div>
+            </p>
           </div>
         </section>
 
@@ -58,21 +55,6 @@
         activeCategoryId: null,
         activeCalculatorId: null,
       };
-      const calculatorRegistry = {
-        "basic-calculator": {
-          fragment: "/calculators/basic-calculator.html",
-          module: "/assets/js/calculators/basic-calculator.js",
-        },
-        "percentage-calculator": {
-          fragment: "/calculators/percentage-calculator.html",
-          module: "/assets/js/calculators/percentage-calculator.js",
-        },
-        "fraction-calculator": {
-          fragment: "/calculators/fraction-calculator.html",
-          module: "/assets/js/calculators/fraction-calculator.js",
-        },
-      };
-      let renderToken = 0;
 
       function findCalculatorById(id) {
         if (!state.navigation) {
@@ -133,68 +115,18 @@
         const title = document.getElementById("calculator-title");
         const calculatorPlaceholder = document.getElementById("calculator-placeholder");
         const explanationPlaceholder = document.getElementById("explanation-placeholder");
-        const calculatorContent = document.getElementById("calculator-content");
-        const explanationContent = document.getElementById("explanation-content");
 
         if (!calculator) {
           title.textContent = "Main Calculation Pane";
           calculatorPlaceholder.textContent = "Select a calculator from the navigation list.";
           explanationPlaceholder.textContent =
             "Explanation content will appear here once you choose a calculator.";
-          calculatorContent.innerHTML = "";
-          explanationContent.innerHTML = "";
           return;
         }
 
         title.textContent = `${calculator.name} Calculator`;
-        calculatorPlaceholder.textContent = "";
-        explanationPlaceholder.textContent = "";
-        renderCalculatorContent(calculator);
-      }
-
-      async function renderCalculatorContent(calculator) {
-        const calculatorContent = document.getElementById("calculator-content");
-        const explanationContent = document.getElementById("explanation-content");
-        const config = calculatorRegistry[calculator.id];
-        const currentToken = (renderToken += 1);
-
-        if (!config) {
-          calculatorContent.textContent = `Placeholder content for ${calculator.name}.`;
-          explanationContent.textContent = `Explanation placeholder for ${calculator.name}.`;
-          return;
-        }
-
-        try {
-          const response = await fetch(config.fragment);
-          const html = response.ok ? await response.text() : "";
-          if (currentToken !== renderToken) {
-            return;
-          }
-          const parsed = new DOMParser().parseFromString(html, "text/html");
-          const calculatorPanel = parsed.querySelector("[data-calculator-panel]");
-          const explanationPanel = parsed.querySelector("[data-explanation-panel]");
-
-          calculatorContent.innerHTML = calculatorPanel
-            ? calculatorPanel.outerHTML
-            : "Calculator content is unavailable right now.";
-          explanationContent.innerHTML = explanationPanel
-            ? explanationPanel.outerHTML
-            : "Explanation content is unavailable right now.";
-
-          if (config.module) {
-            const module = await import(config.module);
-            if (currentToken !== renderToken) {
-              return;
-            }
-            if (module?.initCalculator) {
-              module.initCalculator(calculatorContent);
-            }
-          }
-        } catch (error) {
-          console.error("Unable to load calculator content", error);
-          calculatorContent.textContent = "Calculator content is unavailable right now.";
-          explanationContent.textContent = "Explanation content is unavailable right now.";
-        }
+        calculatorPlaceholder.textContent = `Placeholder content for ${calculator.name}.`;
+        explanationPlaceholder.textContent = `Explanation placeholder for ${calculator.name}.`;
       }
 
       function updateUrl(calculator) {

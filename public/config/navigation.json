@@ -9,9 +9,6 @@
           "name": "Simple",
           "calculators": [
             {
-              "id": "basic-calculator",
-              "name": "Basic",
-              "url": "#/calculators/basic-calculator"
               "id": "basic",
               "name": "Basic",
               "url": "#/calculators/basic"
