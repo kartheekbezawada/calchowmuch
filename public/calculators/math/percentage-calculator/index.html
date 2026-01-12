@@ -6,6 +6,7 @@
     <meta
       name="description"
       content="Calculate percentage increases, decreases, and percent-of values quickly."
+      content="Calculate percentage increase, decrease, and more with multiple percentage operations in one tool."
     />
     <link
       rel="canonical"
@@ -33,6 +34,23 @@
           {
             "@type": "HowToStep",
             "text": "Review the percentage result and supporting details." 
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I calculate percentage increase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter the original value and new value. The calculator shows the increase amount and percentage increase relative to the original."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when the whole value is zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Division by zero is undefined, so the calculator will show a warning when the whole value is zero in 'What % of what' mode."
+            }
           }
         ]
       }
@@ -53,6 +71,107 @@
         padding: 24px;
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+      }
+
+      .mode-selector {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .mode-button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: var(--panel-bg);
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .mode-button:hover {
+        background: #f1f5f9;
+      }
+
+      .mode-button.active {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+      }
+
+      .input-section {
+        display: none;
+        animation: fadeIn 0.3s;
+      }
+
+      .input-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .input-stack {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 16px;
+        min-height: 160px;
+      }
+
+      button.calculate {
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .result {
+        margin-top: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .helper {
+        color: var(--muted-text);
+        margin-bottom: 16px;
+        font-size: 14px;
       }
 
       .back-link {
@@ -152,6 +271,84 @@
             <p class="helper-text" data-detail="x-percent-of-y">18% of 260 is 46.8.</p>
           </div>
         </div>
+        <p class="helper">Select a mode to perform different percentage calculations.</p>
+
+        <div class="mode-selector" role="tablist" aria-label="Calculation modes">
+          <button class="mode-button active" data-mode="increase" role="tab" aria-selected="true">
+            Percentage Increase
+          </button>
+          <button class="mode-button" data-mode="decrease" role="tab" aria-selected="false">
+            Percentage Decrease
+          </button>
+          <button class="mode-button" data-mode="what-percent" role="tab" aria-selected="false">
+            What % of what
+          </button>
+          <button class="mode-button" data-mode="percent-of" role="tab" aria-selected="false">
+            What is X% of Y
+          </button>
+        </div>
+
+        <!-- Percentage Increase -->
+        <div class="input-section active" data-mode="increase" role="tabpanel">
+          <div class="input-stack">
+            <div>
+              <label for="increase-original">Original value</label>
+              <input id="increase-original" type="number" value="80" step="any" />
+            </div>
+            <div>
+              <label for="increase-new">New value</label>
+              <input id="increase-new" type="number" value="100" step="any" />
+            </div>
+          </div>
+          <button type="button" class="calculate" data-calculate="increase">Calculate</button>
+        </div>
+
+        <!-- Percentage Decrease -->
+        <div class="input-section" data-mode="decrease" role="tabpanel">
+          <div class="input-stack">
+            <div>
+              <label for="decrease-original">Original value</label>
+              <input id="decrease-original" type="number" value="100" step="any" />
+            </div>
+            <div>
+              <label for="decrease-new">New value</label>
+              <input id="decrease-new" type="number" value="75" step="any" />
+            </div>
+          </div>
+          <button type="button" class="calculate" data-calculate="decrease">Calculate</button>
+        </div>
+
+        <!-- What % of what -->
+        <div class="input-section" data-mode="what-percent" role="tabpanel">
+          <div class="input-stack">
+            <div>
+              <label for="what-percent-part">Part value</label>
+              <input id="what-percent-part" type="number" value="25" step="any" />
+            </div>
+            <div>
+              <label for="what-percent-whole">Whole value</label>
+              <input id="what-percent-whole" type="number" value="200" step="any" />
+            </div>
+          </div>
+          <button type="button" class="calculate" data-calculate="what-percent">Calculate</button>
+        </div>
+
+        <!-- What is X% of Y -->
+        <div class="input-section" data-mode="percent-of" role="tabpanel">
+          <div class="input-stack">
+            <div>
+              <label for="percent-of-percent">Percentage (%)</label>
+              <input id="percent-of-percent" type="number" value="15" step="any" />
+            </div>
+            <div>
+              <label for="percent-of-base">Base value</label>
+              <input id="percent-of-base" type="number" value="80" step="any" />
+            </div>
+          </div>
+          <button type="button" class="calculate" data-calculate="percent-of">Calculate</button>
+        </div>
+
+        <div class="result" id="percentage-result" aria-live="polite"></div>
       </section>
 
       <section class="card" aria-labelledby="explanation-title">
@@ -170,6 +367,52 @@
           <p class="helper-text">
             Example: Moving from 200 to 260 is a 30% increase because (60 ÷ 200) × 100 = 30%.
           </p>
+        <div id="percentage-explanation">
+          <h3>Percentage Increase</h3>
+          <p>
+            Percentage increase shows how much a value has grown relative to its original amount.
+            It's calculated by finding the difference between new and original, dividing by the original,
+            and multiplying by 100.
+          </p>
+          <p><strong>Example:</strong> 80 → 100</p>
+          <ul>
+            <li>Increase amount: 100 - 80 = 20</li>
+            <li>Percentage increase: (20 ÷ 80) × 100 = 25%</li>
+          </ul>
+
+          <h3>Percentage Decrease</h3>
+          <p>
+            Percentage decrease measures how much a value has fallen relative to where it started.
+            The calculation is the same as increase, but the result is negative (or shown as a decrease).
+          </p>
+          <p><strong>Example:</strong> 100 → 75</p>
+          <ul>
+            <li>Decrease amount: 100 - 75 = 25</li>
+            <li>Percentage decrease: (25 ÷ 100) × 100 = 25%</li>
+          </ul>
+
+          <h3>What % of what</h3>
+          <p>
+            This mode finds what percentage one number (the part) is of another number (the whole).
+            Divide the part by the whole and multiply by 100.
+          </p>
+          <p><strong>Example:</strong> 25 is what % of 200?</p>
+          <ul>
+            <li>Calculation: (25 ÷ 200) × 100 = 12.5%</li>
+          </ul>
+          <p class="helper">
+            <strong>Note:</strong> If the whole value is 0, the calculation is undefined (cannot divide by zero).
+          </p>
+
+          <h3>What is X% of Y</h3>
+          <p>
+            This mode calculates a specific percentage of a given value. Multiply the base value
+            by the percentage and divide by 100.
+          </p>
+          <p><strong>Example:</strong> What is 15% of 80?</p>
+          <ul>
+            <li>Calculation: (15 ÷ 100) × 80 = 12</li>
+          </ul>
         </div>
       </section>
 
@@ -183,6 +426,13 @@
 
       initCalculator(document);
     </script>
+        <div class="ad-slot" data-ad-slot="percentage-calculator-sidebar">
+          Loading ad…
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="./module.js"></script>
     <script async src="/assets/js/ads/loader.js"></script>
   </body>
 </html>
