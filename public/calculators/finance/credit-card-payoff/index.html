@@ -7,8 +7,37 @@
       name="description"
       content="Estimate how long it will take to pay off a credit card balance."
     />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/finance/credit-card-payoff/"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/ads.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is the payoff timeline calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The estimate adds monthly interest to the current balance and subtracts your fixed payment until the balance reaches zero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if my payment is too low?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the payment does not cover monthly interest, the calculator warns you because the balance would never decrease."
+            }
+          }
+        ]
+      }
+    </script>
     <style>
       .calculator-page {
         max-width: 960px;
@@ -127,10 +156,38 @@
 
       <section class="card" aria-labelledby="explanation-title">
         <h2 id="explanation-title">Explanation</h2>
-        <div id="payoff-explanation"></div>
+        <div id="payoff-explanation">
+          <p>
+            This estimate assumes a fixed monthly payment applied to your balance at
+            the current APR. Each month, interest is added first, and then your
+            payment reduces the remaining balance.
+          </p>
+          <ul>
+            <li><strong>Monthly rate:</strong> APR divided by 12.</li>
+            <li>
+              <strong>Payoff time:</strong> How many months it takes for the balance
+              to reach zero.
+            </li>
+            <li>
+              <strong>Total interest:</strong> The amount paid above the original
+              balance.
+            </li>
+          </ul>
+          <p>
+            Increase the monthly payment to shorten the payoff timeline and reduce
+            interest.
+          </p>
+        </div>
       </section>
+
+      <aside class="card ad-card" aria-label="Sponsored content">
+        <div class="ad-slot" data-ad-slot="credit-card-payoff-sidebar">
+          Loading ad…
+        </div>
+      </aside>
     </main>
 
     <script type="module" src="./module.js"></script>
+    <script async src="/assets/js/ads/loader.js"></script>
   </body>
 </html>

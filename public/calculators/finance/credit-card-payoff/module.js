@@ -7,7 +7,6 @@ const paymentInput = document.querySelector("#payment");
 const result = document.querySelector("#payoff-result");
 const details = document.querySelector("#payoff-details");
 const button = document.querySelector("#payoff-calc");
-const explanationContainer = document.querySelector("#payoff-explanation");
 const chartCanvas = document.querySelector("#payoff-chart");
 const chartSummary = document.querySelector("#payoff-chart-summary");
 
@@ -128,22 +127,6 @@ function renderResult({ shouldLoadChart } = {}) {
   }
 }
 
-async function loadExplanation() {
-  if (!explanationContainer) {
-    return;
-  }
-
-  try {
-    const response = await fetch("./explanation.html");
-    explanationContainer.innerHTML = response.ok
-      ? await response.text()
-      : "Explanation content is unavailable right now.";
-  } catch (error) {
-    console.error("Unable to load explanation", error);
-    explanationContainer.textContent = "Explanation content is unavailable right now.";
-  }
-}
-
 button.addEventListener("click", () => renderResult({ shouldLoadChart: true }));
 
 [balanceInput, aprInput, paymentInput].forEach(input => {
@@ -157,4 +140,3 @@ button.addEventListener("click", () => renderResult({ shouldLoadChart: true }));
 });
 
 renderResult({ shouldLoadChart: false });
-loadExplanation();

@@ -7,7 +7,6 @@ const endInput = document.querySelector("#percent-end");
 const result = document.querySelector("#percent-result");
 const details = document.querySelector("#percent-details");
 const button = document.querySelector("#percent-calc");
-const explanationContainer = document.querySelector("#percent-explanation");
 
 function renderResult() {
   const startValue = toNumber(startInput.value);
@@ -32,22 +31,5 @@ function renderResult() {
   })} from the starting value.`;
 }
 
-async function loadExplanation() {
-  if (!explanationContainer) {
-    return;
-  }
-
-  try {
-    const response = await fetch("./explanation.html");
-    explanationContainer.innerHTML = response.ok
-      ? await response.text()
-      : "Explanation content is unavailable right now.";
-  } catch (error) {
-    console.error("Unable to load explanation", error);
-    explanationContainer.textContent = "Explanation content is unavailable right now.";
-  }
-}
-
 button.addEventListener("click", renderResult);
 renderResult();
-loadExplanation();
