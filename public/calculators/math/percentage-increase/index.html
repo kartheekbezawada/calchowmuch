@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Percentage Increase / Decrease Calculator | calchowmuch.com</title>
+    <meta
+      name="description"
+      content="Calculate the percentage increase or decrease between two numbers."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <style>
+      .calculator-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+      }
+
+      .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      button {
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .result {
+        margin-top: 18px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .helper {
+        color: var(--muted-text);
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: #2563eb;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="calculator-page">
+      <section class="card" aria-labelledby="calculator-title">
+        <a class="back-link" href="/calculators/index.html">← All calculators</a>
+        <h1 id="calculator-title">Percentage Increase / Decrease</h1>
+        <p class="helper">
+          Enter the starting and ending values to see the percentage change.
+        </p>
+        <div class="input-grid">
+          <div>
+            <label for="percent-start">Starting value</label>
+            <input id="percent-start" type="number" value="200" />
+          </div>
+          <div>
+            <label for="percent-end">Ending value</label>
+            <input id="percent-end" type="number" value="260" />
+          </div>
+        </div>
+        <button type="button" id="percent-calc">Calculate change</button>
+        <div class="result" id="percent-result" aria-live="polite"></div>
+        <p class="helper" id="percent-details"></p>
+      </section>
+
+      <section class="card" aria-labelledby="explanation-title">
+        <h2 id="explanation-title">Explanation</h2>
+        <div id="percent-explanation"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./module.js"></script>
+  </body>
+</html>

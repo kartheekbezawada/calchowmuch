@@ -4,469 +4,96 @@
     <meta charset="utf-8" />
     <title>Calculators | calchowmuch.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Simple, fast calculators on calchowmuch.com" />
+    <meta name="description" content="Browse calculators on calchowmuch.com" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
     <style>
-      :root {
-        color-scheme: light;
-        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-      }
-
-      body {
-        margin: 0;
-        background: #f6f7fb;
-        color: #1f2937;
-      }
-
-      main {
-        display: grid;
-        grid-template-columns: 260px minmax(0, 1fr);
-        gap: 24px;
-        padding: 32px;
-        max-width: 1100px;
+      .page {
+        max-width: 1080px;
         margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        gap: 32px;
       }
 
-      aside {
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
-        height: fit-content;
-      }
-
-      aside h2 {
-        margin-top: 0;
-        margin-bottom: 24px;
-        font-size: 20px;
-        color: #111827;
-      }
-
-      .category {
-        margin-bottom: 20px;
-      }
-
-      .category h3 {
-        margin: 0 0 12px 0;
-        font-size: 15px;
-        color: #6b7280;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-weight: 600;
-      }
-
-      .calculator-list {
-        display: flex;
-        flex-direction: column;
+      header {
+        display: grid;
         gap: 8px;
       }
 
-      .calculator-option {
-        display: flex;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-
-      .calculator-option:hover {
-        background: #f3f4f6;
-      }
-
-      .calculator-option input[type="radio"] {
-        margin-right: 10px;
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-      }
-
-      .calculator-option span {
-        font-size: 15px;
-        color: #374151;
-        font-weight: 500;
-      }
-
-      .calculator-panel {
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 28px;
-        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-      }
-
-      .calculator-panel h2 {
-        margin: 0;
-        font-size: 22px;
-      }
-
-      .calc-grid {
+      .category {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
-        width: 100%;
-        max-width: 420px;
       }
 
-      label {
-        font-size: 14px;
-        color: #6b7280;
-      }
-
-      input[type="number"] {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid #d1d5db;
-        font-size: 16px;
-      }
-
-      .button-row {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
-        width: 100%;
-        max-width: 420px;
-      }
-
-      button {
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        background: #2563eb;
-        color: #ffffff;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      button.secondary {
-        background: #e5e7eb;
-        color: #111827;
-      }
-
-      .result {
+      .category h2 {
+        margin: 0;
         font-size: 20px;
-        font-weight: 600;
-        color: #111827;
       }
 
-      .helper {
-        margin: 0;
-        color: #6b7280;
-        text-align: center;
-      }
-
-      .percentage-section {
-        width: 100%;
-        max-width: 520px;
-        padding: 24px;
-        background: #f9fafb;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
-      }
-
-      .content-panels {
+      .calculator-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
       }
 
-      .content-panels > div {
-        min-width: 0;
+      .calculator-card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 18px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--panel-shadow);
+        display: grid;
+        gap: 8px;
       }
 
-      .explanation-section {
-        width: 100%;
-        max-width: 100%;
-        padding: 24px;
-        background: #ffffff;
-        border-radius: 12px;
-        border: 1px solid #e5e7eb;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-
-      .explanation-section h3 {
-        margin: 0;
-        font-size: 18px;
+      .calculator-card a {
         font-weight: 600;
-        color: #111827;
+        color: #2563eb;
       }
 
-      .explanation-content {
-        font-size: 15px;
-        color: #374151;
-        line-height: 1.7;
-      }
-
-      .explanation-content ol {
-        padding-left: 20px;
+      .calculator-card p {
         margin: 0;
-      }
-
-      .explanation-content li {
-        margin-bottom: 10px;
-      }
-
-      .calc-title {
-        margin: 0;
-        font-size: 18px;
-        font-weight: 500;
-        color: #374151;
-        line-height: 1.6;
-        text-align: center;
-      }
-
-      .inline-input {
-        width: 80px;
-        padding: 6px 10px;
-        border-radius: 8px;
-        border: 1px solid #d1d5db;
-        font-size: 16px;
-        text-align: center;
-        display: inline-block;
-        margin: 0 4px;
-      }
-
-      .calc-button {
-        padding: 10px 24px;
-        border-radius: 10px;
-        border: none;
-        background: #2563eb;
-        color: #ffffff;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 15px;
-      }
-
-      .calc-button:hover {
-        background: #1d4ed8;
-      }
-
-      /* Loading skeleton styles */
-      .skeleton-loader {
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 28px;
-        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-        min-height: 400px;
-      }
-
-      .skeleton-item {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-        border-radius: 8px;
-      }
-
-      .skeleton-title {
-        width: 200px;
-        height: 28px;
-        margin-bottom: 10px;
-      }
-
-      .skeleton-text {
-        width: 300px;
-        height: 20px;
-        margin-bottom: 20px;
-      }
-
-      .skeleton-input {
-        width: 100%;
-        max-width: 420px;
-        height: 80px;
-        margin-bottom: 10px;
-      }
-
-      .skeleton-button {
-        width: 100%;
-        max-width: 420px;
-        height: 40px;
-      }
-
-      @keyframes loading {
-        0% {
-          background-position: 200% 0;
-        }
-        100% {
-          background-position: -200% 0;
-        }
-      }
-
-      @media (max-width: 860px) {
-        main {
-          grid-template-columns: 1fr;
-        }
-
-        aside {
-          order: 2;
-        }
-
-        .content-panels {
-          grid-template-columns: 1fr;
-        }
+        color: var(--muted-text);
+        font-size: 14px;
       }
     </style>
   </head>
   <body>
-    <main>
-      <aside>
-        <div id="categories-container">
-          <!-- Categories and calculators will be dynamically loaded here -->
-        </div>
-      </aside>
+    <main class="page">
+      <header>
+        <h1>Calculators</h1>
+        <p>Choose a calculator category to get started.</p>
+      </header>
 
-      <div class="content-panels">
-        <div id="calculator-container">
-          <!-- Loading skeleton -->
-          <div class="skeleton-loader">
-            <div class="skeleton-item skeleton-title"></div>
-            <div class="skeleton-item skeleton-text"></div>
-            <div class="skeleton-item skeleton-input"></div>
-            <div class="skeleton-item skeleton-button"></div>
+      <section class="category" aria-labelledby="math-title">
+        <h2 id="math-title">Math</h2>
+        <div class="calculator-grid">
+          <div class="calculator-card">
+            <a href="/calculators/math/basic-operations/index.html">
+              Basic Operations
+            </a>
+            <p>Add, subtract, multiply, or divide two numbers.</p>
+          </div>
+          <div class="calculator-card">
+            <a href="/calculators/math/percentage-increase/index.html">
+              Percentage Increase / Decrease
+            </a>
+            <p>Measure the percent change between two values.</p>
           </div>
         </div>
+      </section>
 
-        <div id="explanation-container" class="explanation-section" aria-live="polite">
-          <h3>Explanation</h3>
-          <div id="explanation-content" class="explanation-content"></div>
+      <section class="category" aria-labelledby="finance-title">
+        <h2 id="finance-title">Finance</h2>
+        <div class="calculator-grid">
+          <div class="calculator-card">
+            <a href="/calculators/finance/credit-card-payoff/index.html">
+              Credit Card Payoff
+            </a>
+            <p>Estimate how many months it takes to clear a balance.</p>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
-
-    <!-- Load configuration -->
-    <script src="calculators-config.js"></script>
-
-    <script>
-      // State to track loaded calculators
-      const loadedCalculators = {};
-      let currentCalculatorId = null;
-
-      // Function to load a calculator HTML file
-      async function loadCalculator(calculatorId, fileName) {
-        // Check if calculator is already loaded
-        if (loadedCalculators[calculatorId]) {
-          showCalculator(calculatorId);
-          return;
-        }
-
-        try {
-          const response = await fetch(fileName);
-          const html = await response.text();
-
-          // Create a temporary container to parse the HTML
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = html;
-
-          const explanationSection = tempDiv.querySelector(".explanation-section");
-          let explanationHTML = "";
-          if (explanationSection) {
-            const explanationTitle = explanationSection.querySelector("h3");
-            if (explanationTitle) {
-              explanationTitle.remove();
-            }
-            explanationHTML = explanationSection.innerHTML;
-          }
-          if (explanationSection) {
-            explanationSection.remove();
-          }
-
-          // Store the calculator content
-          loadedCalculators[calculatorId] = {
-            calculatorHTML: tempDiv.innerHTML,
-            explanationHTML,
-          };
-
-          // Show the calculator
-          showCalculator(calculatorId);
-        } catch (error) {
-          console.error(`Error loading calculator ${calculatorId}:`, error);
-          document.getElementById('calculator-container').innerHTML =
-            '<div class="calculator-panel"><h2>Error loading calculator</h2></div>';
-        }
-      }
-
-      // Function to show a specific calculator
-      function showCalculator(calculatorId) {
-        currentCalculatorId = calculatorId;
-        const container = document.getElementById('calculator-container');
-        const explanationContainer = document.getElementById('explanation-content');
-        const calculatorData = loadedCalculators[calculatorId];
-
-        container.innerHTML = calculatorData.calculatorHTML;
-        explanationContainer.innerHTML = calculatorData.explanationHTML;
-
-        // Execute any scripts in the loaded calculator
-        const scripts = container.querySelectorAll('script');
-        scripts.forEach(script => {
-          const newScript = document.createElement('script');
-          newScript.textContent = script.textContent;
-          script.parentNode.replaceChild(newScript, script);
-        });
-      }
-
-      // Function to generate sidebar from config
-      function generateSidebar() {
-        const container = document.getElementById('categories-container');
-        let isFirst = true;
-
-        calculatorsConfig.categories.forEach(category => {
-          const categoryDiv = document.createElement('div');
-          categoryDiv.className = 'category';
-
-          const categoryTitle = document.createElement('h3');
-          categoryTitle.textContent = category.name;
-          categoryDiv.appendChild(categoryTitle);
-
-          const calculatorList = document.createElement('div');
-          calculatorList.className = 'calculator-list';
-
-          category.calculators.forEach(calc => {
-            const label = document.createElement('label');
-            label.className = 'calculator-option';
-
-            const radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = 'calculator';
-            radio.value = calc.id;
-            radio.checked = isFirst;
-
-            radio.addEventListener('change', () => {
-              loadCalculator(calc.id, calc.file);
-            });
-
-            const span = document.createElement('span');
-            span.textContent = calc.name;
-
-            label.appendChild(radio);
-            label.appendChild(span);
-            calculatorList.appendChild(label);
-
-            // Load the first calculator by default
-            if (isFirst) {
-              loadCalculator(calc.id, calc.file);
-              isFirst = false;
-            }
-          });
-
-          categoryDiv.appendChild(calculatorList);
-          container.appendChild(categoryDiv);
-        });
-      }
-
-      // Initialize the sidebar when page loads
-      document.addEventListener('DOMContentLoaded', generateSidebar);
-    </script>
   </body>
 </html>
