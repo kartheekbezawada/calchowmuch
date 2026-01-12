@@ -1,6 +1,33 @@
 {
   "categories": [
     {
+      "id": "math",
+      "name": "Math",
+      "subcategories": [
+        {
+          "id": "simple",
+          "name": "Simple",
+          "calculators": [
+            {
+              "id": "basic",
+              "name": "Basic",
+              "url": "#/calculators/basic"
+            },
+            {
+              "id": "percentage-calculator",
+              "name": "Percentage Calculator",
+              "url": "#/calculators/percentage-calculator"
+            },
+            {
+              "id": "fraction-calculator",
+              "name": "Fraction Calculator",
+              "url": "#/calculators/fraction-calculator"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "finance",
       "name": "Finance",
       "subcategories": [
