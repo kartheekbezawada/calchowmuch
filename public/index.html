@@ -14,35 +14,26 @@
         <span>Calculate How Much</span>
       </header>
 
-      <nav class="top-nav" aria-label="Category navigation">
-        <button type="button">Category A</button>
-        <button type="button">Category B</button>
-        <button type="button">Category C</button>
-        <button type="button">Category D</button>
-      </nav>
+      <nav class="top-nav" aria-label="Category navigation" id="top-nav"></nav>
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
           <h2>Navigation</h2>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
-          <div class="nav-item">Left nav item</div>
+          <div id="left-nav-content"></div>
         </aside>
 
         <section class="center-column">
           <div class="panel">
-            <h3>Main Calculation Pane</h3>
-            <p class="placeholder">Placeholder for calculator content.</p>
+            <h3 id="calculator-title">Main Calculation Pane</h3>
+            <p class="placeholder" id="calculator-placeholder">
+              Select a calculator from the navigation list.
+            </p>
           </div>
           <div class="panel">
             <h3>Explanation Pane</h3>
-            <p class="placeholder">Placeholder for explanation content.</p>
+            <p class="placeholder" id="explanation-placeholder">
+              Explanation content will appear here once you choose a calculator.
+            </p>
           </div>
         </section>
 
@@ -58,5 +49,218 @@
         <a href="#">Contact</a>
       </footer>
     </div>
+    <script>
+      const state = {
+        navigation: null,
+        activeCategoryId: null,
+        activeCalculatorId: null,
+      };
+
+      function findCalculatorById(id) {
+        if (!state.navigation) {
+          return null;
+        }
+
+        for (const category of state.navigation.categories) {
+          for (const subcategory of category.subcategories) {
+            const calculator = subcategory.calculators.find(calc => calc.id === id);
+            if (calculator) {
+              return { category, subcategory, calculator };
+            }
+          }
+        }
+
+        return null;
+      }
+
+      function findCalculatorByUrl(path) {
+        if (!state.navigation) {
+          return null;
+        }
+
+        for (const category of state.navigation.categories) {
+          for (const subcategory of category.subcategories) {
+            const calculator = subcategory.calculators.find(calc => calc.url === path);
+            if (calculator) {
+              return { category, subcategory, calculator };
+            }
+          }
+        }
+
+        return null;
+      }
+
+      function getCalculatorFromLocation() {
+        const hashPath = window.location.hash || "";
+        if (hashPath) {
+          const match = findCalculatorByUrl(hashPath);
+          if (match) {
+            return match;
+          }
+        }
+
+        const queryParams = new URLSearchParams(window.location.search);
+        const calculatorId = queryParams.get("calculator");
+        if (calculatorId) {
+          const match = findCalculatorById(calculatorId);
+          if (match) {
+            return match;
+          }
+        }
+
+        return null;
+      }
+
+      function updatePlaceholderContent(calculator) {
+        const title = document.getElementById("calculator-title");
+        const calculatorPlaceholder = document.getElementById("calculator-placeholder");
+        const explanationPlaceholder = document.getElementById("explanation-placeholder");
+
+        if (!calculator) {
+          title.textContent = "Main Calculation Pane";
+          calculatorPlaceholder.textContent = "Select a calculator from the navigation list.";
+          explanationPlaceholder.textContent =
+            "Explanation content will appear here once you choose a calculator.";
+          return;
+        }
+
+        title.textContent = `${calculator.name} Calculator`;
+        calculatorPlaceholder.textContent = `Placeholder content for ${calculator.name}.`;
+        explanationPlaceholder.textContent = `Explanation placeholder for ${calculator.name}.`;
+      }
+
+      function updateUrl(calculator) {
+        if (!calculator || !calculator.url) {
+          return;
+        }
+
+        if (calculator.url.startsWith("#")) {
+          window.location.hash = calculator.url;
+          return;
+        }
+
+        const nextUrl = new URL(window.location.href);
+        nextUrl.searchParams.set("calculator", calculator.id);
+        history.pushState({ calculatorId: calculator.id }, "", nextUrl);
+      }
+
+      function setActiveCalculator(calculator, options = {}) {
+        state.activeCalculatorId = calculator?.id ?? null;
+        updatePlaceholderContent(calculator);
+        highlightActiveCalculator();
+
+        if (!options.skipUrlUpdate && calculator) {
+          updateUrl(calculator);
+        }
+      }
+
+      function highlightActiveCalculator() {
+        const items = document.querySelectorAll(".nav-item");
+        items.forEach(item => {
+          item.classList.toggle("is-active", item.dataset.id === state.activeCalculatorId);
+        });
+      }
+
+      function renderTopNav() {
+        const topNav = document.getElementById("top-nav");
+        topNav.innerHTML = "";
+
+        state.navigation.categories.forEach(category => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = category.name;
+          button.classList.toggle("is-active", category.id === state.activeCategoryId);
+          button.addEventListener("click", () => {
+            if (state.activeCategoryId === category.id) {
+              return;
+            }
+            state.activeCategoryId = category.id;
+            renderTopNav();
+            renderLeftNav();
+          });
+          topNav.appendChild(button);
+        });
+      }
+
+      function renderLeftNav() {
+        const container = document.getElementById("left-nav-content");
+        container.innerHTML = "";
+
+        const category = state.navigation.categories.find(
+          item => item.id === state.activeCategoryId
+        );
+        if (!category) {
+          return;
+        }
+
+        category.subcategories.forEach(subcategory => {
+          const subcategoryTitle = document.createElement("h3");
+          subcategoryTitle.textContent = subcategory.name;
+          subcategoryTitle.className = "subcategory-title";
+          container.appendChild(subcategoryTitle);
+
+          subcategory.calculators.forEach(calculator => {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className = "nav-item";
+            item.textContent = calculator.name;
+            item.dataset.id = calculator.id;
+            item.addEventListener("click", () => {
+              setActiveCalculator(calculator);
+            });
+            container.appendChild(item);
+          });
+        });
+
+        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
+        if (!selectedCalculator || selectedCalculator.category.id !== category.id) {
+          const firstCalculator =
+            category.subcategories[0]?.calculators[0] ?? null;
+          if (firstCalculator) {
+            setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
+          }
+        }
+
+        highlightActiveCalculator();
+      }
+
+      function handleNavigationChange() {
+        const match = getCalculatorFromLocation();
+        if (match) {
+          state.activeCategoryId = match.category.id;
+          renderTopNav();
+          renderLeftNav();
+          setActiveCalculator(match.calculator, { skipUrlUpdate: true });
+        }
+      }
+
+      async function initializeNavigation() {
+        try {
+          const response = await fetch("config/navigation.json");
+          state.navigation = await response.json();
+
+          const initialMatch = getCalculatorFromLocation();
+          if (initialMatch) {
+            state.activeCategoryId = initialMatch.category.id;
+            state.activeCalculatorId = initialMatch.calculator.id;
+          } else {
+            state.activeCategoryId = state.navigation.categories[0]?.id ?? null;
+          }
+
+          renderTopNav();
+          renderLeftNav();
+
+          if (initialMatch) {
+            setActiveCalculator(initialMatch.calculator, { skipUrlUpdate: true });
+          }
+        } catch (error) {
+          console.error("Unable to load navigation.json", error);
+        }
+      }
+
+      window.addEventListener("popstate", handleNavigationChange);
+      window.addEventListener("hashchange", handleNavigationChange);
+      document.addEventListener("DOMContentLoaded", initializeNavigation);
+    </script>
   </body>
 </html>
