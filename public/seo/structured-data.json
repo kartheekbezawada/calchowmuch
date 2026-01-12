@@ -1,0 +1,80 @@
+{
+  "calculators": [
+    {
+      "id": "basic-operations",
+      "url": "https://calchowmuch.com/calculators/math/basic-operations/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic operations calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result instantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second value is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "percentage-increase",
+      "url": "https://calchowmuch.com/calculators/math/percentage-increase/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate a percentage increase or decrease",
+        "description": "Use starting and ending values to determine percent change.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Subtract the starting value from the ending value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Divide the difference by the starting value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Multiply by 100 to convert the change into a percentage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "credit-card-payoff",
+      "url": "https://calchowmuch.com/calculators/finance/credit-card-payoff/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is the payoff timeline calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The estimate adds monthly interest to the current balance and subtracts your fixed payment until the balance reaches zero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if my payment is too low?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the payment does not cover monthly interest, the calculator warns you because the balance would never decrease."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
