@@ -1,0 +1,37 @@
+{
+  "name": "calchowmuch",
+  "version": "1.0.0",
+  "description": "Fast, SEO-friendly calculator platform for math, finance, and health calculations",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint public/assets/js --ext .js",
+    "lint:fix": "eslint public/assets/js --ext .js --fix",
+    "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
+    "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
+    "serve": "python3 -m http.server 8000 --directory public",
+    "validate": "npm run lint && npm run test && npm run format:check"
+  },
+  "keywords": [
+    "calculator",
+    "math",
+    "finance",
+    "health",
+    "static",
+    "seo"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "jsdom": "^23.2.0",
+    "prettier": "^3.2.4",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
