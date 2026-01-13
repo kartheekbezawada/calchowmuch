@@ -1,4 +1,4 @@
-import { toNumber } from '/assets/js/core/validate.js';
+import { toNumber } from "/assets/js/core/validate.js";
 
 // Fraction math utilities
 function gcd(a, b) {
@@ -65,7 +65,7 @@ function improperToMixed(numerator, denominator) {
   }
   const whole = Math.floor(Math.abs(numerator) / Math.abs(denominator));
   const remainder = Math.abs(numerator) % Math.abs(denominator);
-  const sign = numerator * denominator < 0 ? -1 : 1;
+  const sign = (numerator * denominator < 0) ? -1 : 1;
 
   return {
     whole: sign * whole,
@@ -78,7 +78,7 @@ function mixedToImproper(whole, numerator, denominator) {
   if (denominator === 0) {
     return null;
   }
-  const improperNum = Math.abs(whole) * denominator + numerator;
+  const improperNum = (Math.abs(whole) * denominator) + numerator;
   const sign = whole < 0 ? -1 : 1;
   return {
     numerator: sign * improperNum,
@@ -104,68 +104,68 @@ function formatMixed(whole, numerator, denominator) {
 }
 
 // Mode switching
-const modeButtons = document.querySelectorAll('.mode-button');
-const inputSections = document.querySelectorAll('.input-section');
-const resultDiv = document.querySelector('#fraction-result');
+const modeButtons = document.querySelectorAll(".mode-button");
+const inputSections = document.querySelectorAll(".input-section");
+const resultDiv = document.querySelector("#fraction-result");
 
 // Input elements
 const addInputs = {
-  num1: document.querySelector('#add-num1'),
-  den1: document.querySelector('#add-den1'),
-  num2: document.querySelector('#add-num2'),
-  den2: document.querySelector('#add-den2'),
+  num1: document.querySelector("#add-num1"),
+  den1: document.querySelector("#add-den1"),
+  num2: document.querySelector("#add-num2"),
+  den2: document.querySelector("#add-den2"),
 };
 
 const subInputs = {
-  num1: document.querySelector('#sub-num1'),
-  den1: document.querySelector('#sub-den1'),
-  num2: document.querySelector('#sub-num2'),
-  den2: document.querySelector('#sub-den2'),
+  num1: document.querySelector("#sub-num1"),
+  den1: document.querySelector("#sub-den1"),
+  num2: document.querySelector("#sub-num2"),
+  den2: document.querySelector("#sub-den2"),
 };
 
 const mulInputs = {
-  num1: document.querySelector('#mul-num1'),
-  den1: document.querySelector('#mul-den1'),
-  num2: document.querySelector('#mul-num2'),
-  den2: document.querySelector('#mul-den2'),
+  num1: document.querySelector("#mul-num1"),
+  den1: document.querySelector("#mul-den1"),
+  num2: document.querySelector("#mul-num2"),
+  den2: document.querySelector("#mul-den2"),
 };
 
 const divInputs = {
-  num1: document.querySelector('#div-num1'),
-  den1: document.querySelector('#div-den1'),
-  num2: document.querySelector('#div-num2'),
-  den2: document.querySelector('#div-den2'),
+  num1: document.querySelector("#div-num1"),
+  den1: document.querySelector("#div-den1"),
+  num2: document.querySelector("#div-num2"),
+  den2: document.querySelector("#div-den2"),
 };
 
 const simpInputs = {
-  num: document.querySelector('#simp-num'),
-  den: document.querySelector('#simp-den'),
+  num: document.querySelector("#simp-num"),
+  den: document.querySelector("#simp-den"),
 };
 
 const convInputs = {
-  impNum: document.querySelector('#conv-imp-num'),
-  impDen: document.querySelector('#conv-imp-den'),
-  mixWhole: document.querySelector('#conv-mix-whole'),
-  mixNum: document.querySelector('#conv-mix-num'),
-  mixDen: document.querySelector('#conv-mix-den'),
+  impNum: document.querySelector("#conv-imp-num"),
+  impDen: document.querySelector("#conv-imp-den"),
+  mixWhole: document.querySelector("#conv-mix-whole"),
+  mixNum: document.querySelector("#conv-mix-num"),
+  mixDen: document.querySelector("#conv-mix-den"),
 };
 
 // Calculate buttons
-const calculateButtons = document.querySelectorAll('.calculate');
+const calculateButtons = document.querySelectorAll(".calculate");
 
 // Mode switching functionality
 function switchMode(mode) {
-  modeButtons.forEach((btn) => {
+  modeButtons.forEach(btn => {
     const isActive = btn.dataset.mode === mode;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-selected', isActive);
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-selected", isActive);
   });
 
-  inputSections.forEach((section) => {
-    section.classList.toggle('active', section.dataset.mode === mode);
+  inputSections.forEach(section => {
+    section.classList.toggle("active", section.dataset.mode === mode);
   });
 
-  resultDiv.innerHTML = '';
+  resultDiv.innerHTML = "";
 }
 
 // Calculation functions
@@ -282,7 +282,7 @@ function calculateConvert() {
   const mixNum = toNumber(convInputs.mixNum.value);
   const mixDen = toNumber(convInputs.mixDen.value);
 
-  let output = '';
+  let output = "";
 
   if (impDen !== 0) {
     const mixed = improperToMixed(impNum, impDen);
@@ -307,33 +307,33 @@ function calculateConvert() {
 }
 
 // Event listeners for mode buttons
-modeButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
+modeButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
     switchMode(btn.dataset.mode);
   });
 });
 
 // Event listeners for calculate buttons
-calculateButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
+calculateButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
     const mode = btn.dataset.calculate;
     switch (mode) {
-      case 'add':
+      case "add":
         calculateAdd();
         break;
-      case 'subtract':
+      case "subtract":
         calculateSubtract();
         break;
-      case 'multiply':
+      case "multiply":
         calculateMultiply();
         break;
-      case 'divide':
+      case "divide":
         calculateDivide();
         break;
-      case 'simplify':
+      case "simplify":
         calculateSimplify();
         break;
-      case 'convert':
+      case "convert":
         calculateConvert();
         break;
     }

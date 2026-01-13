@@ -1,11 +1,6 @@
 :root {
   color-scheme: light;
-  font-family:
-    'Inter',
-    'Segoe UI',
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --page-bg: #f6f7fb;
   --panel-bg: #ffffff;
   --header-bg: #0f172a;

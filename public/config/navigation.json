@@ -14,11 +14,6 @@
               "url": "#/calculators/basic"
             },
             {
-              "id": "percentage-tools",
-              "name": "Percentage Tools",
-              "url": "#/calculators/percentage-tools"
-            },
-            {
               "id": "percentage-increase",
               "name": "Percentage Increase",
               "url": "#/calculators/percentage-increase"
