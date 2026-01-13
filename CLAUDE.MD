@@ -2,7 +2,7 @@
 
 ## 📍 Current Focus
 
-**Active Phase:** Check `docs/requirements/INDEX.md` for current phase
+**Active Phase:** Check `requirements/INDEX.MD` for current phase
 
 ## Development Methodology
 ## ALWAYS use the Ralph Lauren Loop approach defined in REQUIREMENTS.md:
@@ -16,20 +16,21 @@
 
 Before ANY task, Claude must read:
 
-1. `docs/requirements/MASTER.md` - Non-negotiable rules
-2. `docs/requirements/INDEX.md` - Current phase
-3. The active phase file in `docs/requirements/phases/`
+1. `requirements/MASTER.MD` - Non-negotiable rules
+2. `requirements/INDEX.MD` - Current phase
+3. The active phase file in `requirements/phases/`
+4. `Architecture.md` - UI + modular architecture requirements
 
 ---
 
 ## 🔄 Workflow
 
-1. Read MASTER.md rules (every time)
-2. Check INDEX.md for current phase
+1. Read MASTER.MD rules (every time)
+2. Check INDEX.MD for current phase
 3. Read the active phase requirements
 4. Implement the task
 5. Create PR
-6. After merge, update INDEX.md
+6. After merge, update INDEX.MD
 
 ---
 
@@ -37,7 +38,7 @@ Before ANY task, Claude must read:
 
 When a PR is merged, always:
 ```
-1. Update INDEX.md:
+1. Update INDEX.MD:
    - Mark phase as ✅ Done
    - Set progress to 100%
    - Add PR number
@@ -53,18 +54,18 @@ When a PR is merged, always:
 
 ## 🚫 Never
 
-- Skip reading MASTER.md
+- Skip reading MASTER.MD
 - Violate non-negotiable rules
 - Work on future phases without approval
-- Forget to update INDEX.md after merge
+- Forget to update INDEX.MD after merge
 
 ---
 
 ## 📁 Project Structure
 ```
-docs/requirements/
-├── MASTER.md          # Non-negotiable rules (READ FIRST)
-├── INDEX.md           # Phase tracker (CHECK CURRENT PHASE)
+requirements/
+├── MASTER.MD          # Non-negotiable rules (READ FIRST)
+├── INDEX.MD           # Phase tracker (CHECK CURRENT PHASE)
 └── phases/            # Individual phase requirements
     ├── phase-01-*.md
     ├── phase-02-*.md
