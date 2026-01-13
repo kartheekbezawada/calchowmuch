@@ -6,11 +6,24 @@
 
 ## Development Methodology
 ## ALWAYS use the Ralph Lauren Loop approach defined in REQUIREMENTS.md:
-1. Implement
-2. Self-review against checklist
-3. Fix issues
-4. Re-test
-5. Iterate until perfect
+
+META: Development Approach
+===============================
+
+Use the Ralph Lauren Loop methodology:
+
+1. Create initial implementation
+2. Critically evaluate against requirements
+3. Identify gaps and issues
+4. Fix issues
+5. Re-evaluate
+6. Repeat steps 3-5 until perfect
+
+Do not ask permission to iterate - keep improving until
+all requirements are met and all tests pass.
+
+Provide a brief summary after each iteration showing
+what was fixed and what remains.
 
 ## 📚 Required Reading
 
