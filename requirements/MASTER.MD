@@ -7,7 +7,7 @@ Description: A modular, high-performance, SEO-friendly calculator platform focus
 Tech Stack: Static HTML, CSS, JavaScript, CDN-hosted
 
 
-What is This Project is for ?
+What This Project Is For
 =======================================
 This project exists to provide clear, fast, and trustworthy calculators that help users answer practical questions such as:
     How much time will it take to pay off debt?
