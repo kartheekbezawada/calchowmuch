@@ -1,0 +1,1 @@
+#  Phase 7 Codex needs to understand the project
