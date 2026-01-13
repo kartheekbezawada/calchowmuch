@@ -1,176 +1,88 @@
-<p class="helper">Select a mode to perform different percentage calculations.</p>
+<div class="calculator-ui">
+  <p class="helper">Select a mode to perform different percentage calculations.</p>
 
-<div class="mode-selector" role="tablist" aria-label="Calculation modes">
-  <button class="mode-button active" data-mode="increase" role="tab" aria-selected="true">
-    Percentage Increase
-  </button>
-  <button class="mode-button" data-mode="decrease" role="tab" aria-selected="false">
-    Percentage Decrease
-  </button>
-  <button class="mode-button" data-mode="what-percent" role="tab" aria-selected="false">
-    What % of what
-  </button>
-  <button class="mode-button" data-mode="percent-of" role="tab" aria-selected="false">
-    What is X% of Y
-  </button>
-</div>
-
-<!-- Percentage Increase -->
-<div class="input-section active" data-mode="increase" role="tabpanel">
-  <div class="input-stack">
-    <div>
-      <label for="increase-original">Original value</label>
-      <input id="increase-original" type="number" value="80" step="any" />
-    </div>
-    <div>
-      <label for="increase-new">New value</label>
-      <input id="increase-new" type="number" value="100" step="any" />
-    </div>
+  <div class="mode-selector" role="tablist" aria-label="Calculation modes">
+    <button class="mode-button active" data-mode="increase" role="tab" aria-selected="true">
+      Percentage Increase
+    </button>
+    <button class="mode-button" data-mode="decrease" role="tab" aria-selected="false">
+      Percentage Decrease
+    </button>
+    <button class="mode-button" data-mode="what-percent" role="tab" aria-selected="false">
+      What % of what
+    </button>
+    <button class="mode-button" data-mode="percent-of" role="tab" aria-selected="false">
+      What is X% of Y
+    </button>
   </div>
-  <button type="button" class="calculate" data-calculate="increase">Calculate</button>
-</div>
 
-<!-- Percentage Decrease -->
-<div class="input-section" data-mode="decrease" role="tabpanel">
-  <div class="input-stack">
-    <div>
-      <label for="decrease-original">Original value</label>
-      <input id="decrease-original" type="number" value="100" step="any" />
+  <!-- Percentage Increase -->
+  <div class="input-section active" data-mode="increase" role="tabpanel">
+    <div class="input-stack">
+      <div>
+        <label for="increase-original">Original value</label>
+        <input id="increase-original" type="number" value="80" step="any" />
+      </div>
+      <div>
+        <label for="increase-new">New value</label>
+        <input id="increase-new" type="number" value="100" step="any" />
+      </div>
     </div>
-    <div>
-      <label for="decrease-new">New value</label>
-      <input id="decrease-new" type="number" value="75" step="any" />
-    </div>
+    <button type="button" class="calculate calculator-button" data-calculate="increase">
+      Calculate
+    </button>
   </div>
-  <button type="button" class="calculate" data-calculate="decrease">Calculate</button>
-</div>
 
-<!-- What % of what -->
-<div class="input-section" data-mode="what-percent" role="tabpanel">
-  <div class="input-stack">
-    <div>
-      <label for="what-percent-part">Part value</label>
-      <input id="what-percent-part" type="number" value="25" step="any" />
+  <!-- Percentage Decrease -->
+  <div class="input-section" data-mode="decrease" role="tabpanel">
+    <div class="input-stack">
+      <div>
+        <label for="decrease-original">Original value</label>
+        <input id="decrease-original" type="number" value="100" step="any" />
+      </div>
+      <div>
+        <label for="decrease-new">New value</label>
+        <input id="decrease-new" type="number" value="75" step="any" />
+      </div>
     </div>
-    <div>
-      <label for="what-percent-whole">Whole value</label>
-      <input id="what-percent-whole" type="number" value="200" step="any" />
-    </div>
+    <button type="button" class="calculate calculator-button" data-calculate="decrease">
+      Calculate
+    </button>
   </div>
-  <button type="button" class="calculate" data-calculate="what-percent">Calculate</button>
-</div>
 
-<!-- What is X% of Y -->
-<div class="input-section" data-mode="percent-of" role="tabpanel">
-  <div class="input-stack">
-    <div>
-      <label for="percent-of-percent">Percentage (%)</label>
-      <input id="percent-of-percent" type="number" value="15" step="any" />
+  <!-- What % of what -->
+  <div class="input-section" data-mode="what-percent" role="tabpanel">
+    <div class="input-stack">
+      <div>
+        <label for="what-percent-part">Part value</label>
+        <input id="what-percent-part" type="number" value="25" step="any" />
+      </div>
+      <div>
+        <label for="what-percent-whole">Whole value</label>
+        <input id="what-percent-whole" type="number" value="200" step="any" />
+      </div>
     </div>
-    <div>
-      <label for="percent-of-base">Base value</label>
-      <input id="percent-of-base" type="number" value="80" step="any" />
-    </div>
+    <button type="button" class="calculate calculator-button" data-calculate="what-percent">
+      Calculate
+    </button>
   </div>
-  <button type="button" class="calculate" data-calculate="percent-of">Calculate</button>
+
+  <!-- What is X% of Y -->
+  <div class="input-section" data-mode="percent-of" role="tabpanel">
+    <div class="input-stack">
+      <div>
+        <label for="percent-of-percent">Percentage (%)</label>
+        <input id="percent-of-percent" type="number" value="15" step="any" />
+      </div>
+      <div>
+        <label for="percent-of-base">Base value</label>
+        <input id="percent-of-base" type="number" value="80" step="any" />
+      </div>
+    </div>
+    <button type="button" class="calculate calculator-button" data-calculate="percent-of">
+      Calculate
+    </button>
+  </div>
+
+  <div class="result" id="percentage-result" aria-live="polite"></div>
 </div>
-
-<div class="result" id="percentage-result" aria-live="polite"></div>
-
-<style>
-  label {
-    font-size: 14px;
-    color: var(--muted-text);
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  input[type="number"] {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    font-size: 16px;
-  }
-
-  .mode-selector {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-
-  .mode-button {
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    background: var(--panel-bg);
-    color: #1f2937;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .mode-button:hover {
-    background: #f1f5f9;
-  }
-
-  .mode-button.active {
-    background: #2563eb;
-    color: #fff;
-    border-color: #2563eb;
-  }
-
-  .input-section {
-    display: none;
-    animation: fadeIn 0.3s;
-  }
-
-  .input-section.active {
-    display: block;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .input-stack {
-    display: grid;
-    gap: 16px;
-    margin-bottom: 16px;
-    min-height: 160px;
-  }
-
-  button.calculate {
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: none;
-    background: #2563eb;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  .result {
-    margin-top: 18px;
-    font-size: 18px;
-    font-weight: 600;
-    min-height: 60px;
-  }
-
-  .result-detail {
-    font-size: 14px;
-    color: var(--muted-text);
-    margin-top: 8px;
-    font-weight: 400;
-  }
-
-  .helper {
-    color: var(--muted-text);
-    margin-bottom: 16px;
-    font-size: 14px;
-  }
-</style>

@@ -30,6 +30,7 @@ Coding Standards (Corrected for HTML/CSS/JS) NON-NEGOTIABLE
     Calculator UI styling belongs in shared calculator stylesheet(s).
     Avoid inline styles in calculator HTML.
     Do not duplicate CSS rules across calculator folders.
+    Default calculator input and button sizing must be defined in shared calculator styles and reused across calculators.
 
     Testing Standards (MUST FOLLOW)
     =================================
