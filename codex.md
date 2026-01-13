@@ -4,9 +4,10 @@
 
 Before reviewing ANY PR, Codex must check:
 
-1. `docs/requirements/MASTER.md` - Non-negotiable rules
-2. `docs/requirements/INDEX.md` - Current phase context
+1. `requirements/MASTER.MD` - Non-negotiable rules
+2. `requirements/INDEX.MD` - Current phase context
 3. The relevant phase file for this PR
+4. `Architecture.md` - UI + modular architecture requirements
 
 ---
 
@@ -66,7 +67,7 @@ For every PR, verify:
 
 After approving a PR, remind the developer:
 
-> "Don't forget to update `docs/requirements/INDEX.md` with this PR number and mark the phase progress."
+> "Don't forget to update `requirements/INDEX.MD` with this PR number and mark the phase progress."
 ```
 
 ---
@@ -76,15 +77,15 @@ After approving a PR, remind the developer:
 your-repo/
 ├── CLAUDE.md                          # Claude config
 ├── AGENTS.md                          # Codex config  
-├── docs/
-│   └── requirements/
-│       ├── MASTER.md                  # Non-negotiable rules
-│       ├── INDEX.md                   # Phase tracker
-│       └── phases/
-│           ├── phase-01-core.md
-│           ├── phase-02-auth.md
-│           ├── phase-03-payments.md
-│           └── ... (all your phases)
+├── Architecture.md                    # UI + modular architecture requirements
+├── requirements/
+│   ├── MASTER.MD                      # Non-negotiable rules
+│   ├── INDEX.MD                       # Phase tracker
+│   └── phases/
+│       ├── phase-01.md
+│       ├── phase-02.md
+│       ├── phase-03.md
+│       └── ... (all your phases)
 ```
 
 ---
@@ -102,6 +103,7 @@ your-repo/
 │  2. MASTER.md → knows the rules                             │
 │  3. INDEX.md → confirms phase 7 is active                   │
 │  4. phase-07-reporting.md → gets specific requirements      │
+│  5. Architecture.md → UI + modular architecture rules       │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
@@ -121,3 +123,4 @@ your-repo/
 ┌─────────────────────────────────────────────────────────────┐
 │  PR Merged → Claude updates INDEX.md                        │
 └─────────────────────────────────────────────────────────────┘
+```

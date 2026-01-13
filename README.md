@@ -20,3 +20,9 @@ Each calculator is a **single, self-contained HTML file**.
 
 A file placed at:
 
+## Project Architecture & Requirements
+
+- `Architecture.md` defines the UI + modular architecture contract.
+- `requirements/MASTER.MD` contains non-negotiable rules.
+- `requirements/INDEX.MD` tracks the current phase and progress.
+- `requirements/phases/` contains phase-specific requirements.
