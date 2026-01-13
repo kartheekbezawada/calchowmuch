@@ -7,7 +7,7 @@ Description: A modular, high-performance, SEO-friendly calculator platform focus
 Tech Stack: Static HTML, CSS, JavaScript, CDN-hosted
 
 
-What is This Project is for ?
+What This Project Is For
 =======================================
 This project exists to provide clear, fast, and trustworthy calculators that help users answer practical questions such as:
     How much time will it take to pay off debt?
@@ -59,7 +59,7 @@ Naming & Documentation Consistency (Important)
 
 
 Must Follow
-    - Must follow requirements/INVENTORY.MD file and needs to create if not exists and update a Inventory Table 
+    - Must follow requirements/INVENTORY.MD; if it does not exist, create it and update the inventory table 
     - Must follow requirements/CODING_STANDARDS.MD
     - Must follow requirements/FOLDER_STRUCTURE.MD
     - Must follow ARCHITECTURE.MD

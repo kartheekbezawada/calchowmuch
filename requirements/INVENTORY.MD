@@ -7,8 +7,9 @@ basic-operations
 percentage-increase
 
 These calculators are currently:
-    ❓ Not active in navigation.json
-    ❓ May represent legacy, work-in-progress, or deprecated code
+    - Not active in navigation.json
+    - Present in the repository but not wired into the live UI
+    - Classified for documentation purposes as **Work-in-progress / unverified** and **not for production use** until explicitly reclassified by maintainers
 
 Requirement:
     Documentation must explicitly state the status of such calculators:

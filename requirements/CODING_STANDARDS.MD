@@ -1,5 +1,5 @@
 
-Coding Standards (Corrected for HTML/CSS/JS) NON nEGIOTABLE 
+Coding Standards (Corrected for HTML/CSS/JS) NON-NEGOTIABLE 
 ===================================================
     
     JavaScript Standards (MUST FOLLOW)
