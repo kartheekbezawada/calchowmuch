@@ -54,6 +54,7 @@
         navigation: null,
         activeCategoryId: null,
         activeCalculatorId: null,
+        loadedModuleScript: null, // Track loaded module script for cleanup
       };
 
       function findCalculatorById(id) {
@@ -111,22 +112,102 @@
         return null;
       }
 
-      function updatePlaceholderContent(calculator) {
+      function cleanupPreviousCalculator() {
+        // Remove previous module script if it exists
+        if (state.loadedModuleScript) {
+          state.loadedModuleScript.remove();
+          state.loadedModuleScript = null;
+        }
+
+        // Remove any dynamically added calculator styles
+        const existingStyles = document.querySelectorAll('style[data-calculator-style]');
+        existingStyles.forEach(style => style.remove());
+      }
+
+      function getCalculatorPath(calculatorId, categoryId) {
+        // Map calculator IDs to their folder paths
+        // Assuming calculators are in /calculators/{category}/{calculator-id}/
+        return `calculators/${categoryId}/${calculatorId}`;
+      }
+
+      async function loadCalculator(calculator, category) {
         const title = document.getElementById("calculator-title");
         const calculatorPlaceholder = document.getElementById("calculator-placeholder");
         const explanationPlaceholder = document.getElementById("explanation-placeholder");
 
         if (!calculator) {
+          cleanupPreviousCalculator();
           title.textContent = "Main Calculation Pane";
-          calculatorPlaceholder.textContent = "Select a calculator from the navigation list.";
-          explanationPlaceholder.textContent =
-            "Explanation content will appear here once you choose a calculator.";
+          calculatorPlaceholder.innerHTML = "<p class='placeholder'>Select a calculator from the navigation list.</p>";
+          explanationPlaceholder.innerHTML = "<p class='placeholder'>Explanation content will appear here once you choose a calculator.</p>";
           return;
         }
 
-        title.textContent = `${calculator.name} Calculator`;
-        calculatorPlaceholder.textContent = `Placeholder content for ${calculator.name}.`;
-        explanationPlaceholder.textContent = `Explanation placeholder for ${calculator.name}.`;
+        // Clean up previous calculator
+        cleanupPreviousCalculator();
+
+        // Update title
+        title.textContent = calculator.name;
+
+        // Get calculator path
+        const basePath = getCalculatorPath(calculator.id, category.id);
+
+        try {
+          // Load calculator HTML fragment
+          const calculatorResponse = await fetch(`${basePath}/index.html`);
+          if (!calculatorResponse.ok) {
+            throw new Error(`Failed to load calculator: ${calculatorResponse.status}`);
+          }
+          const calculatorHtml = await calculatorResponse.text();
+
+          // Parse the HTML to extract styles and content separately
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(calculatorHtml, 'text/html');
+
+          // Extract and inject styles
+          const styleElements = doc.querySelectorAll('style');
+          styleElements.forEach(styleEl => {
+            const newStyle = document.createElement('style');
+            newStyle.textContent = styleEl.textContent;
+            newStyle.setAttribute('data-calculator-style', 'true');
+            document.head.appendChild(newStyle);
+          });
+
+          // Extract all non-style content from body
+          const contentDiv = document.createElement('div');
+          Array.from(doc.body.childNodes).forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'style') {
+              return; // Skip style tags
+            }
+            contentDiv.appendChild(node.cloneNode(true));
+          });
+
+          // Inject calculator content
+          calculatorPlaceholder.innerHTML = contentDiv.innerHTML;
+
+          // Load explanation HTML
+          const explanationResponse = await fetch(`${basePath}/explanation.html`);
+          if (!explanationResponse.ok) {
+            throw new Error(`Failed to load explanation: ${explanationResponse.status}`);
+          }
+          const explanationHtml = await explanationResponse.text();
+          explanationPlaceholder.innerHTML = explanationHtml;
+
+          // Load module script
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = `${basePath}/module.js`;
+          script.onerror = () => {
+            console.error(`Failed to load module: ${basePath}/module.js`);
+          };
+          document.body.appendChild(script);
+          state.loadedModuleScript = script;
+
+        } catch (error) {
+          console.error('Error loading calculator:', error);
+          calculatorPlaceholder.innerHTML = `<p style="color: #dc2626;">Error loading calculator: ${error.message}</p>`;
+          explanationPlaceholder.innerHTML = `<p style="color: #dc2626;">Error loading explanation.</p>`;
+        }
       }
 
       function updateUrl(calculator) {
@@ -144,9 +225,14 @@
         history.pushState({ calculatorId: calculator.id }, "", nextUrl);
       }
 
-      function setActiveCalculator(calculator, options = {}) {
+      async function setActiveCalculator(calculator, options = {}) {
         state.activeCalculatorId = calculator?.id ?? null;
-        updatePlaceholderContent(calculator);
+
+        // Find the category for this calculator
+        const match = calculator ? findCalculatorById(calculator.id) : null;
+        const category = match ? match.category : null;
+
+        await loadCalculator(calculator, category);
         highlightActiveCalculator();
 
         if (!options.skipUrlUpdate && calculator) {
