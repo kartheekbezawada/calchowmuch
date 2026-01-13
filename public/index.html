@@ -7,6 +7,7 @@
     <meta name="description" content="Layout shell for calchowmuch.com" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/calculator.css" />
   </head>
   <body>
     <div class="page">
@@ -111,22 +112,90 @@
         return null;
       }
 
-      function updatePlaceholderContent(calculator) {
-        const title = document.getElementById("calculator-title");
-        const calculatorPlaceholder = document.getElementById("calculator-placeholder");
-        const explanationPlaceholder = document.getElementById("explanation-placeholder");
+      // Track current module script for cleanup
+      let currentModuleScript = null;
+
+      function getCalculatorPath(calculatorId) {
+        // Map calculator IDs to folder paths
+        const pathMap = {
+          'basic': '/calculators/math/basic',
+          'percentage-calculator': '/calculators/math/percentage-calculator',
+          'percentage-increase': '/calculators/math/percentage-increase',
+          'fraction-calculator': '/calculators/math/fraction-calculator',
+          'credit-card-payoff': '/calculators/finance/credit-card-payoff',
+        };
+        return pathMap[calculatorId] || null;
+      }
+
+      async function loadCalculatorContent(calculator) {
+        const calculatorPane = document.querySelector(".center-column .panel:first-child");
+        const explanationPane = document.querySelector(".center-column .panel:last-child");
 
         if (!calculator) {
-          title.textContent = "Main Calculation Pane";
-          calculatorPlaceholder.textContent = "Select a calculator from the navigation list.";
-          explanationPlaceholder.textContent =
-            "Explanation content will appear here once you choose a calculator.";
+          calculatorPane.innerHTML = `
+            <h3 id="calculator-title">Main Calculation Pane</h3>
+            <p class="placeholder" id="calculator-placeholder">
+              Select a calculator from the navigation list.
+            </p>
+          `;
+          explanationPane.innerHTML = `
+            <h3>Explanation Pane</h3>
+            <p class="placeholder" id="explanation-placeholder">
+              Explanation content will appear here once you choose a calculator.
+            </p>
+          `;
           return;
         }
 
-        title.textContent = `${calculator.name} Calculator`;
-        calculatorPlaceholder.textContent = `Placeholder content for ${calculator.name}.`;
-        explanationPlaceholder.textContent = `Explanation placeholder for ${calculator.name}.`;
+        const basePath = getCalculatorPath(calculator.id);
+        if (!basePath) {
+          calculatorPane.innerHTML = `
+            <h3 id="calculator-title">Error</h3>
+            <p style="color: #dc2626;">Calculator not found. Please try another calculator.</p>
+          `;
+          return;
+        }
+
+        try {
+          // Cleanup previous module script
+          if (currentModuleScript) {
+            currentModuleScript.remove();
+            currentModuleScript = null;
+          }
+
+          // Load calculator HTML fragment
+          const calculatorResponse = await fetch(`${basePath}/index.html`);
+          if (!calculatorResponse.ok) {
+            throw new Error(`Failed to load calculator: ${calculatorResponse.status}`);
+          }
+          const calculatorHTML = await calculatorResponse.text();
+
+          // Load explanation HTML fragment
+          const explanationResponse = await fetch(`${basePath}/explanation.html`);
+          if (!explanationResponse.ok) {
+            throw new Error(`Failed to load explanation: ${explanationResponse.status}`);
+          }
+          const explanationHTML = await explanationResponse.text();
+
+          // Update title and inject calculator HTML
+          calculatorPane.innerHTML = `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
+
+          // Inject explanation HTML
+          explanationPane.innerHTML = `<h3>Explanation</h3>` + explanationHTML;
+
+          // Load and execute module.js
+          const moduleScript = document.createElement("script");
+          moduleScript.type = "module";
+          moduleScript.src = `${basePath}/module.js?t=${Date.now()}`; // Cache bust
+          document.body.appendChild(moduleScript);
+          currentModuleScript = moduleScript;
+
+        } catch (error) {
+          calculatorPane.innerHTML = `
+            <h3 id="calculator-title">Error</h3>
+            <p style="color: #dc2626;">Failed to load calculator. Please try again.</p>
+          `;
+        }
       }
 
       function updateUrl(calculator) {
@@ -144,9 +213,9 @@
         history.pushState({ calculatorId: calculator.id }, "", nextUrl);
       }
 
-      function setActiveCalculator(calculator, options = {}) {
+      async function setActiveCalculator(calculator, options = {}) {
         state.activeCalculatorId = calculator?.id ?? null;
-        updatePlaceholderContent(calculator);
+        await loadCalculatorContent(calculator);
         highlightActiveCalculator();
 
         if (!options.skipUrlUpdate && calculator) {

@@ -1,0 +1,140 @@
+:root {
+  --calculator-input-padding: 10px 12px;
+  --calculator-input-radius: 10px;
+  --calculator-button-padding: 10px 12px;
+  --calculator-button-radius: 10px;
+}
+
+.calculator-ui label {
+  font-size: 14px;
+  color: var(--muted-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.calculator-ui input[type="number"] {
+  width: 100%;
+  padding: var(--calculator-input-padding);
+  border-radius: var(--calculator-input-radius);
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+}
+
+.calculator-ui .helper {
+  color: var(--muted-text);
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.calculator-ui .input-stack {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.calculator-ui .calculator-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calculator-ui .toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calculator-ui .button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.calculator-ui .calculator-button {
+  padding: var(--calculator-button-padding);
+  border-radius: var(--calculator-button-radius);
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.calculator-ui .calculator-button.secondary {
+  background: #e2e8f0;
+  color: #1f2937;
+}
+
+.calculator-ui .calculator-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.calculator-ui .result {
+  margin-top: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 60px;
+}
+
+.calculator-ui .result-detail {
+  font-size: 14px;
+  color: var(--muted-text);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.calculator-ui .mode-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.calculator-ui .mode-button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-bg);
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calculator-ui .mode-button:hover {
+  background: #f1f5f9;
+}
+
+.calculator-ui .mode-button.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.calculator-ui .input-section {
+  display: none;
+  animation: calculatorFadeIn 0.3s;
+}
+
+.calculator-ui .input-section.active {
+  display: block;
+}
+
+@keyframes calculatorFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.calculator-ui .calculate {
+  width: 100%;
+}

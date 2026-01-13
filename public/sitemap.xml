@@ -19,8 +19,15 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Math Calculators -->
   <url>
-    <loc>https://calchowmuch.com/calculators/math/basic-operations/</loc>
+    <loc>https://calchowmuch.com/calculators/math/basic/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/percentage-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -31,6 +38,13 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/fraction-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Finance Calculators -->
   <url>
     <loc>https://calchowmuch.com/calculators/finance/credit-card-payoff/</loc>
     <changefreq>monthly</changefreq>
