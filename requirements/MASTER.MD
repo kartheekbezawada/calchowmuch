@@ -59,7 +59,7 @@ Naming & Documentation Consistency (Important)
 
 
 Must Follow
-    - Must follow requirements/INVENTORY.MD file and needs to create if not exists and update a Inventory Table 
+    - Must follow requirements/INVENTORY.MD; if it does not exist, create it and update the inventory table
     - Must follow requirements/CODING_STANDARDS.MD
     - Must follow requirements/FOLDER_STRUCTURE.MD
     - Must follow ARCHITECTURE.MD
