@@ -10,13 +10,18 @@
           "calculators": [
             {
               "id": "basic",
-              "name": "Basic",
+              "name": "Basic Calculator",
               "url": "#/calculators/basic"
             },
             {
               "id": "percentage-calculator",
               "name": "Percentage Calculator",
               "url": "#/calculators/percentage-calculator"
+            },
+            {
+              "id": "percentage-increase",
+              "name": "Percentage Increase",
+              "url": "#/calculators/percentage-increase"
             },
             {
               "id": "fraction-calculator",
@@ -32,72 +37,13 @@
       "name": "Finance",
       "subcategories": [
         {
-          "id": "budgeting",
-          "name": "Budgeting",
+          "id": "debt",
+          "name": "Debt Management",
           "calculators": [
             {
-              "id": "savings-goal",
-              "name": "Savings Goal",
-              "url": "#/calculators/savings-goal"
-            },
-            {
-              "id": "monthly-spend",
-              "name": "Monthly Spend",
-              "url": "#/calculators/monthly-spend"
-            }
-          ]
-        },
-        {
-          "id": "borrowing",
-          "name": "Borrowing",
-          "calculators": [
-            {
-              "id": "loan-payment",
-              "name": "Loan Payment",
-              "url": "#/calculators/loan-payment"
-            },
-            {
-              "id": "credit-payoff",
-              "name": "Credit Payoff",
-              "url": "#/calculators/credit-payoff"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "health",
-      "name": "Health",
-      "subcategories": [
-        {
-          "id": "fitness",
-          "name": "Fitness",
-          "calculators": [
-            {
-              "id": "bmi-check",
-              "name": "BMI Check",
-              "url": "#/calculators/bmi-check"
-            },
-            {
-              "id": "calorie-needs",
-              "name": "Daily Calories",
-              "url": "#/calculators/calorie-needs"
-            }
-          ]
-        },
-        {
-          "id": "wellness",
-          "name": "Wellness",
-          "calculators": [
-            {
-              "id": "sleep-cycle",
-              "name": "Sleep Cycle",
-              "url": "#/calculators/sleep-cycle"
-            },
-            {
-              "id": "hydration",
-              "name": "Hydration",
-              "url": "#/calculators/hydration"
+              "id": "credit-card-payoff",
+              "name": "Credit Card Payoff",
+              "url": "#/calculators/credit-card-payoff"
             }
           ]
         }

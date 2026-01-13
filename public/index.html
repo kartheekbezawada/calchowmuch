@@ -146,7 +146,10 @@
 
         const basePath = getCalculatorPath(calculator.id);
         if (!basePath) {
-          console.error(`No path mapping found for calculator: ${calculator.id}`);
+          calculatorPane.innerHTML = `
+            <h3 id="calculator-title">Error</h3>
+            <p style="color: #dc2626;">Calculator not found. Please try another calculator.</p>
+          `;
           return;
         }
 
@@ -185,7 +188,6 @@
           currentModuleScript = moduleScript;
 
         } catch (error) {
-          console.error("Error loading calculator:", error);
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Error</h3>
             <p style="color: #dc2626;">Failed to load calculator. Please try again.</p>
