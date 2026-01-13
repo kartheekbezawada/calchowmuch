@@ -1,8 +1,8 @@
 {
   "calculators": [
     {
-      "id": "basic-operations",
-      "url": "https://calchowmuch.com/calculators/math/basic-operations/",
+      "id": "basic",
+      "url": "https://calchowmuch.com/calculators/math/basic/",
       "structuredData": {
         "@context": "https://schema.org",
         "@type": "FAQPage",
