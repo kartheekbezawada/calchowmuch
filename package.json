@@ -7,8 +7,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint public/assets/js --ext .js",
-    "lint:fix": "eslint public/assets/js --ext .js --fix",
+    "lint": "eslint public/assets/js",
+    "lint:fix": "eslint public/assets/js --fix",
     "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
     "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
     "serve": "python3 -m http.server 8000 --directory public",
@@ -25,8 +25,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@vitest/coverage-v8": "^1.2.0",
     "eslint": "^8.56.0",
+    "globals": "^17.0.0",
     "jsdom": "^23.2.0",
     "prettier": "^3.2.4",
     "vitest": "^1.2.0"

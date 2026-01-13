@@ -12,7 +12,7 @@
   margin-bottom: 6px;
 }
 
-.calculator-ui input[type="number"] {
+.calculator-ui input[type='number'] {
   width: 100%;
   padding: var(--calculator-input-padding);
   border-radius: var(--calculator-input-radius);

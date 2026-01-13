@@ -64,7 +64,7 @@
 
         for (const category of state.navigation.categories) {
           for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find(calc => calc.id === id);
+            const calculator = subcategory.calculators.find((calc) => calc.id === id);
             if (calculator) {
               return { category, subcategory, calculator };
             }
@@ -81,7 +81,7 @@
 
         for (const category of state.navigation.categories) {
           for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find(calc => calc.url === path);
+            const calculator = subcategory.calculators.find((calc) => calc.url === path);
             if (calculator) {
               return { category, subcategory, calculator };
             }
@@ -92,7 +92,7 @@
       }
 
       function getCalculatorFromLocation() {
-        const hashPath = window.location.hash || "";
+        const hashPath = window.location.hash || '';
         if (hashPath) {
           const match = findCalculatorByUrl(hashPath);
           if (match) {
@@ -101,7 +101,7 @@
         }
 
         const queryParams = new URLSearchParams(window.location.search);
-        const calculatorId = queryParams.get("calculator");
+        const calculatorId = queryParams.get('calculator');
         if (calculatorId) {
           const match = findCalculatorById(calculatorId);
           if (match) {
@@ -118,7 +118,7 @@
       function getCalculatorPath(calculatorId) {
         // Map calculator IDs to folder paths
         const pathMap = {
-          'basic': '/calculators/math/basic',
+          basic: '/calculators/math/basic',
           'percentage-calculator': '/calculators/math/percentage-calculator',
           'percentage-increase': '/calculators/math/percentage-increase',
           'fraction-calculator': '/calculators/math/fraction-calculator',
@@ -128,8 +128,8 @@
       }
 
       async function loadCalculatorContent(calculator) {
-        const calculatorPane = document.querySelector(".center-column .panel:first-child");
-        const explanationPane = document.querySelector(".center-column .panel:last-child");
+        const calculatorPane = document.querySelector('.center-column .panel:first-child');
+        const explanationPane = document.querySelector('.center-column .panel:last-child');
 
         if (!calculator) {
           calculatorPane.innerHTML = `
@@ -178,18 +178,18 @@
           const explanationHTML = await explanationResponse.text();
 
           // Update title and inject calculator HTML
-          calculatorPane.innerHTML = `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
+          calculatorPane.innerHTML =
+            `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
 
           // Inject explanation HTML
           explanationPane.innerHTML = `<h3>Explanation</h3>` + explanationHTML;
 
           // Load and execute module.js
-          const moduleScript = document.createElement("script");
-          moduleScript.type = "module";
+          const moduleScript = document.createElement('script');
+          moduleScript.type = 'module';
           moduleScript.src = `${basePath}/module.js?t=${Date.now()}`; // Cache bust
           document.body.appendChild(moduleScript);
           currentModuleScript = moduleScript;
-
         } catch (error) {
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Error</h3>
@@ -203,14 +203,14 @@
           return;
         }
 
-        if (calculator.url.startsWith("#")) {
+        if (calculator.url.startsWith('#')) {
           window.location.hash = calculator.url;
           return;
         }
 
         const nextUrl = new URL(window.location.href);
-        nextUrl.searchParams.set("calculator", calculator.id);
-        history.pushState({ calculatorId: calculator.id }, "", nextUrl);
+        nextUrl.searchParams.set('calculator', calculator.id);
+        history.pushState({ calculatorId: calculator.id }, '', nextUrl);
       }
 
       async function setActiveCalculator(calculator, options = {}) {
@@ -224,22 +224,22 @@
       }
 
       function highlightActiveCalculator() {
-        const items = document.querySelectorAll(".nav-item");
-        items.forEach(item => {
-          item.classList.toggle("is-active", item.dataset.id === state.activeCalculatorId);
+        const items = document.querySelectorAll('.nav-item');
+        items.forEach((item) => {
+          item.classList.toggle('is-active', item.dataset.id === state.activeCalculatorId);
         });
       }
 
       function renderTopNav() {
-        const topNav = document.getElementById("top-nav");
-        topNav.innerHTML = "";
+        const topNav = document.getElementById('top-nav');
+        topNav.innerHTML = '';
 
-        state.navigation.categories.forEach(category => {
-          const button = document.createElement("button");
-          button.type = "button";
+        state.navigation.categories.forEach((category) => {
+          const button = document.createElement('button');
+          button.type = 'button';
           button.textContent = category.name;
-          button.classList.toggle("is-active", category.id === state.activeCategoryId);
-          button.addEventListener("click", () => {
+          button.classList.toggle('is-active', category.id === state.activeCategoryId);
+          button.addEventListener('click', () => {
             if (state.activeCategoryId === category.id) {
               return;
             }
@@ -252,29 +252,29 @@
       }
 
       function renderLeftNav() {
-        const container = document.getElementById("left-nav-content");
-        container.innerHTML = "";
+        const container = document.getElementById('left-nav-content');
+        container.innerHTML = '';
 
         const category = state.navigation.categories.find(
-          item => item.id === state.activeCategoryId
+          (item) => item.id === state.activeCategoryId
         );
         if (!category) {
           return;
         }
 
-        category.subcategories.forEach(subcategory => {
-          const subcategoryTitle = document.createElement("h3");
+        category.subcategories.forEach((subcategory) => {
+          const subcategoryTitle = document.createElement('h3');
           subcategoryTitle.textContent = subcategory.name;
-          subcategoryTitle.className = "subcategory-title";
+          subcategoryTitle.className = 'subcategory-title';
           container.appendChild(subcategoryTitle);
 
-          subcategory.calculators.forEach(calculator => {
-            const item = document.createElement("button");
-            item.type = "button";
-            item.className = "nav-item";
+          subcategory.calculators.forEach((calculator) => {
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'nav-item';
             item.textContent = calculator.name;
             item.dataset.id = calculator.id;
-            item.addEventListener("click", () => {
+            item.addEventListener('click', () => {
               setActiveCalculator(calculator);
             });
             container.appendChild(item);
@@ -283,8 +283,7 @@
 
         const selectedCalculator = findCalculatorById(state.activeCalculatorId);
         if (!selectedCalculator || selectedCalculator.category.id !== category.id) {
-          const firstCalculator =
-            category.subcategories[0]?.calculators[0] ?? null;
+          const firstCalculator = category.subcategories[0]?.calculators[0] ?? null;
           if (firstCalculator) {
             setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
           }
@@ -305,7 +304,7 @@
 
       async function initializeNavigation() {
         try {
-          const response = await fetch("config/navigation.json");
+          const response = await fetch('config/navigation.json');
           state.navigation = await response.json();
 
           const initialMatch = getCalculatorFromLocation();
@@ -323,13 +322,13 @@
             setActiveCalculator(initialMatch.calculator, { skipUrlUpdate: true });
           }
         } catch (error) {
-          console.error("Unable to load navigation.json", error);
+          console.error('Unable to load navigation.json', error);
         }
       }
 
-      window.addEventListener("popstate", handleNavigationChange);
-      window.addEventListener("hashchange", handleNavigationChange);
-      document.addEventListener("DOMContentLoaded", initializeNavigation);
+      window.addEventListener('popstate', handleNavigationChange);
+      window.addEventListener('hashchange', handleNavigationChange);
+      document.addEventListener('DOMContentLoaded', initializeNavigation);
     </script>
   </body>
 </html>
