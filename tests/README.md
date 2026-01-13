@@ -28,7 +28,7 @@ tests/
 
 ## Coverage Requirements
 
-Per CODING_STANDARDS.MD, we maintain a minimum of **80% code coverage** for:
+Per CODING_STANDARDS.md, we maintain a minimum of **80% code coverage** for:
 - Lines
 - Functions
 - Branches
