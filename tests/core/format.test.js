@@ -142,8 +142,11 @@ describe('format utilities', () => {
     });
 
     it('should handle very small percentages', () => {
+      // Values that round to 0 with maximumFractionDigits=2 should display as "0%" (no trailing zeros)
       const result = formatPercent(0.001);
       expect(result).toBe('0%');
+      // Values >= 0.005 should show decimal places
+      expect(formatPercent(0.005)).toMatch(/0\.0[0-9]%/);
     });
 
     it('should handle large percentages', () => {
