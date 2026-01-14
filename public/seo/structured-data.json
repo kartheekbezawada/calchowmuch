@@ -49,32 +49,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "credit-card-payoff",
-      "url": "https://calchowmuch.com/calculators/finance/credit-card-payoff/",
-      "structuredData": {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How is the payoff timeline calculated?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The estimate adds monthly interest to the current balance and subtracts your fixed payment until the balance reaches zero."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What happens if my payment is too low?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "If the payment does not cover monthly interest, the calculator warns you because the balance would never decrease."
-            }
-          }
-        ]
-      }
     }
   ]
 }

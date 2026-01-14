@@ -1,29 +1,122 @@
-<div class="calculator-ui">
-  <p class="helper">Pick an operation to see the result instantly.</p>
-  <div class="calculator-toolbar">
-    <button class="calculator-button secondary" type="button" id="basic-reset">Reset</button>
-    <div class="toolbar-actions">
-      <button class="calculator-button secondary" type="button" id="basic-add-input">Add number</button>
-      <button class="calculator-button secondary" type="button" id="basic-remove-input">
-        Remove number
-      </button>
-    </div>
-  </div>
-  <div class="input-stack" id="basic-inputs">
-    <div class="input-row">
-      <label for="basic-value-1">Number 1</label>
-      <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
-    </div>
-    <div class="input-row">
-      <label for="basic-value-2">Number 2</label>
-      <input id="basic-value-2" type="number" value="8" data-basic-input="true" />
-    </div>
-  </div>
-  <div class="button-row" role="group" aria-label="Operations">
-    <button class="calculator-button" type="button" data-operation="add">Add</button>
-    <button class="calculator-button" type="button" data-operation="subtract">Subtract</button>
-    <button class="calculator-button" type="button" data-operation="multiply">Multiply</button>
-    <button class="calculator-button" type="button" data-operation="divide">Divide</button>
-  </div>
-  <div class="result" id="basic-result" aria-live="polite"></div>
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Calculator | calchowmuch.com</title>
+    <meta
+      name="description"
+      content="Add, subtract, multiply, or divide two numbers instantly."
+    />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/math/basic/"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/ads.css" />
+    <link rel="stylesheet" href="./calculator.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the basic calculator do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It adds, subtracts, multiplies, or divides two numbers and shows the result instantly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I divide by zero?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The calculator warns you when the second value is zero because division by zero is undefined."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main class="calculator-page" id="calc-basic">
+      <section class="card" aria-labelledby="calculator-title">
+        <a class="back-link" href="/calculators/index.html">All calculators</a>
+        <h1 id="calculator-title">Basic Calculator</h1>
+        <div class="calculator-ui">
+          <p class="helper">Pick an operation to see the result instantly.</p>
+          <div class="calculator-toolbar">
+            <button class="calculator-button secondary" type="button" id="basic-reset">
+              Reset
+            </button>
+            <div class="toolbar-actions">
+              <button class="calculator-button secondary" type="button" id="basic-add-input">
+                Add Number
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                id="basic-remove-input"
+              >
+                Remove Number
+              </button>
+            </div>
+          </div>
+          <div class="input-stack" id="basic-inputs">
+            <div class="input-row">
+              <label for="basic-value-1">Number 1</label>
+              <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
+            </div>
+            <div class="input-row">
+              <label for="basic-value-2">Number 2</label>
+              <input id="basic-value-2" type="number" value="20" data-basic-input="true" />
+            </div>
+          </div>
+          <div class="button-row" role="group" aria-label="Operations">
+            <button class="calculator-button" type="button" data-operation="add">Add</button>
+            <button class="calculator-button" type="button" data-operation="subtract">
+              Subtract
+            </button>
+            <button class="calculator-button" type="button" data-operation="multiply">
+              Multiply
+            </button>
+            <button class="calculator-button" type="button" data-operation="divide">
+              Divide
+            </button>
+          </div>
+          <div class="result" id="basic-result" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="explanation-title">
+        <h2 id="explanation-title">Explanation</h2>
+        <div id="basic-explanation">
+          <p>
+            This calculator applies the four fundamental operations to two numbers.
+            Add and subtract show the total or difference, while multiply and divide
+            show the product or quotient. Use the Reset button to return to a clean
+            starting point.
+          </p>
+          <ul>
+            <li><strong>Add:</strong> Combine the two values.</li>
+            <li><strong>Subtract:</strong> Find how much the first value exceeds the second.</li>
+            <li><strong>Multiply:</strong> Scale the first value by the second.</li>
+            <li><strong>Divide:</strong> Split the first value evenly by the second.</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="card ad-card" aria-label="Sponsored content">
+        <div class="ad-slot" data-ad-slot="basic-sidebar">
+          Loading ad
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="./module.js"></script>
+    <script async src="/assets/js/ads/loader.js"></script>
+  </body>
+</html>

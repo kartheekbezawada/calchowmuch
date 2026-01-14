@@ -13,7 +13,9 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
     <link rel="stylesheet" href="/assets/css/ads.css" />
+    <link rel="stylesheet" href="./calculator.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -38,114 +40,55 @@
         ]
       }
     </script>
-    <style>
-      .calculator-page {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 32px 20px 48px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-      }
-
-      .card {
-        background: var(--panel-bg);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: var(--panel-shadow);
-        border: 1px solid var(--border-color);
-      }
-
-      .card h1,
-      .card h2 {
-        margin-top: 0;
-      }
-
-      .input-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 16px;
-      }
-
-      label {
-        font-size: 14px;
-        color: var(--muted-text);
-        display: block;
-        margin-bottom: 6px;
-      }
-
-      input[type="number"] {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--border-color);
-        font-size: 16px;
-      }
-
-      .button-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 16px;
-      }
-
-      button {
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: none;
-        background: #2563eb;
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      button.secondary {
-        background: #e2e8f0;
-        color: #1f2937;
-      }
-
-      .result {
-        margin-top: 18px;
-        font-size: 20px;
-        font-weight: 600;
-      }
-
-      .helper {
-        color: var(--muted-text);
-        margin-bottom: 16px;
-      }
-
-      .back-link {
-        display: inline-flex;
-        margin-bottom: 16px;
-        color: #2563eb;
-      }
-    </style>
   </head>
   <body>
-    <main class="calculator-page">
+    <main class="calculator-page" id="calc-basic">
       <section class="card" aria-labelledby="calculator-title">
-        <a class="back-link" href="/calculators/index.html">← All calculators</a>
+        <a class="back-link" href="/calculators/index.html">All calculators</a>
         <h1 id="calculator-title">Basic Calculator</h1>
-        <p class="helper">Pick an operation to see the result instantly.</p>
-        <div class="input-grid">
-          <div>
-            <label for="basic-value-a">First number</label>
-            <input id="basic-value-a" type="number" value="12" />
+        <div class="calculator-ui">
+          <p class="helper">Pick an operation to see the result instantly.</p>
+          <div class="calculator-toolbar">
+            <button class="calculator-button secondary" type="button" id="basic-reset">
+              Reset
+            </button>
+            <div class="toolbar-actions">
+              <button class="calculator-button secondary" type="button" id="basic-add-input">
+                Add Number
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                id="basic-remove-input"
+              >
+                Remove Number
+              </button>
+            </div>
           </div>
-          <div>
-            <label for="basic-value-b">Second number</label>
-            <input id="basic-value-b" type="number" value="8" />
+          <div class="input-stack" id="basic-inputs">
+            <div class="input-row">
+              <label for="basic-value-1">Number 1</label>
+              <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
+            </div>
+            <div class="input-row">
+              <label for="basic-value-2">Number 2</label>
+              <input id="basic-value-2" type="number" value="20" data-basic-input="true" />
+            </div>
           </div>
+          <div class="button-row" role="group" aria-label="Operations">
+            <button class="calculator-button" type="button" data-operation="add">Add</button>
+            <button class="calculator-button" type="button" data-operation="subtract">
+              Subtract
+            </button>
+            <button class="calculator-button" type="button" data-operation="multiply">
+              Multiply
+            </button>
+            <button class="calculator-button" type="button" data-operation="divide">
+              Divide
+            </button>
+          </div>
+          <div class="result" id="basic-result" aria-live="polite"></div>
         </div>
-        <div class="button-row" role="group" aria-label="Operations">
-          <button type="button" data-operation="add">Add</button>
-          <button type="button" data-operation="subtract">Subtract</button>
-          <button type="button" data-operation="multiply">Multiply</button>
-          <button type="button" data-operation="divide">Divide</button>
-        </div>
-        <button class="secondary" type="button" id="basic-reset">Reset</button>
-        <div class="result" id="basic-result" aria-live="polite"></div>
       </section>
 
       <section class="card" aria-labelledby="explanation-title">
@@ -168,7 +111,7 @@
 
       <aside class="card ad-card" aria-label="Sponsored content">
         <div class="ad-slot" data-ad-slot="basic-sidebar">
-          Loading ad…
+          Loading ad
         </div>
       </aside>
     </main>

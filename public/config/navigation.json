@@ -15,30 +15,13 @@
             },
             {
               "id": "percentage-increase",
-              "name": "Percentage Increase",
+              "name": "Percentage Calculator",
               "url": "#/calculators/percentage-increase"
             },
             {
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
               "url": "#/calculators/fraction-calculator"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "finance",
-      "name": "Finance",
-      "subcategories": [
-        {
-          "id": "debt",
-          "name": "Debt Management",
-          "calculators": [
-            {
-              "id": "credit-card-payoff",
-              "name": "Credit Card Payoff",
-              "url": "#/calculators/credit-card-payoff"
             }
           ]
         }

@@ -44,11 +44,4 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Finance Calculators -->
-  <url>
-    <loc>https://calchowmuch.com/calculators/finance/credit-card-payoff/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
 </urlset>
