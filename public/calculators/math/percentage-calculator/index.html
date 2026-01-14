@@ -20,37 +20,45 @@
     <main class="percentage-tools-page calculator-ui">
       <div class="tool-tabs" role="tablist" aria-label="Percentage tools">
         <button
+          id="tab-percent-change"
           class="tool-tab is-active"
           type="button"
           role="tab"
           aria-selected="true"
+          aria-controls="tabpanel-percent-change"
           data-tool="percent-change"
         >
           Percent Change
         </button>
         <button
+          id="tab-percentage-of"
           class="tool-tab"
           type="button"
           role="tab"
           aria-selected="false"
+          aria-controls="tabpanel-percentage-of"
           data-tool="percentage-of"
         >
           Percentage Of
         </button>
         <button
+          id="tab-what-percent"
           class="tool-tab"
           type="button"
           role="tab"
           aria-selected="false"
+          aria-controls="tabpanel-what-percent"
           data-tool="what-percent"
         >
           X Is What Percent
         </button>
         <button
+          id="tab-add-subtract"
           class="tool-tab"
           type="button"
           role="tab"
           aria-selected="false"
+          aria-controls="tabpanel-add-subtract"
           data-tool="add-subtract"
         >
           Add/Subtract %
@@ -61,7 +69,13 @@
 
       <div class="percentage-tools-grid">
         <div class="percentage-calculator-column">
-          <section class="percentage-card calculator-card" data-tool="percent-change">
+          <section
+            id="tabpanel-percent-change"
+            class="percentage-card calculator-card"
+            role="tabpanel"
+            aria-labelledby="tab-percent-change"
+            data-tool="percent-change"
+          >
             <h2>Percent Change</h2>
             <p class="helper">
               Compare starting and ending values to measure the percentage increase
@@ -97,7 +111,10 @@
           </section>
 
           <section
+            id="tabpanel-percentage-of"
             class="percentage-card calculator-card"
+            role="tabpanel"
+            aria-labelledby="tab-percentage-of"
             data-tool="percentage-of"
             hidden
           >
@@ -135,7 +152,10 @@
           </section>
 
           <section
+            id="tabpanel-what-percent"
             class="percentage-card calculator-card"
+            role="tabpanel"
+            aria-labelledby="tab-what-percent"
             data-tool="what-percent"
             hidden
           >
@@ -173,7 +193,10 @@
           </section>
 
           <section
+            id="tabpanel-add-subtract"
             class="percentage-card calculator-card"
+            role="tabpanel"
+            aria-labelledby="tab-add-subtract"
             data-tool="add-subtract"
             hidden
           >
