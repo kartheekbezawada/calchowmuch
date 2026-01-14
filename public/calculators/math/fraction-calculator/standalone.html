@@ -40,7 +40,7 @@
     </script>
     <style>
       .calculator-page {
-        max-width: 960px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 32px 20px 48px;
         display: grid;
@@ -78,14 +78,14 @@
 
       .mode-selector {
         display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 24px;
         flex-wrap: wrap;
       }
 
       .mode-button {
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: 9px 16px;
+        border-radius: 10px;
         border: 1px solid var(--border-color);
         background: var(--panel-bg);
         color: var(--text-color);
@@ -100,9 +100,9 @@
       }
 
       .mode-button.active {
-        background: #2563eb;
+        background: var(--accent);
         color: #fff;
-        border-color: #2563eb;
+        border-color: var(--accent-strong);
       }
 
       .input-section {
@@ -121,9 +121,9 @@
 
       .fraction-inputs {
         display: grid;
-        gap: 16px;
-        margin-bottom: 16px;
-        min-height: 180px;
+        gap: 18px;
+        margin-bottom: 20px;
+        min-height: 200px;
       }
 
       .fraction-row {
@@ -155,7 +155,7 @@
         padding: 10px 12px;
         border-radius: 10px;
         border: none;
-        background: #2563eb;
+        background: var(--accent);
         color: #fff;
         font-weight: 600;
         cursor: pointer;
@@ -185,7 +185,7 @@
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
-        color: #2563eb;
+        color: var(--accent);
       }
     </style>
   </head>
@@ -215,6 +215,7 @@
           <button class="mode-button" data-mode="convert" role="tab" aria-selected="false">
             Convert
           </button>
+          </section>
         </div>
 
         <!-- Add Fractions -->
@@ -355,8 +356,9 @@
 
       <section class="card" aria-labelledby="explanation-title">
         <h2 id="explanation-title">Explanation</h2>
-        <div id="fraction-explanation">
-          <h3>Add Fractions</h3>
+        <div id="fraction-explanation" data-fraction-explanation>
+          <section data-mode="add">
+            <h3>Add Fractions</h3>
           <p>
             To add fractions, find a common denominator (typically the least common multiple),
             convert both fractions, add the numerators, and simplify.
@@ -367,8 +369,10 @@
             <li>Convert: 1/4 = 2/8</li>
             <li>Add: 2/8 + 1/8 = 3/8</li>
           </ul>
+          </section>
 
-          <h3>Subtract Fractions</h3>
+          <section data-mode="subtract" hidden>
+            <h3>Subtract Fractions</h3>
           <p>
             Subtraction works the same as addition, but you subtract the numerators instead.
           </p>
@@ -378,8 +382,10 @@
             <li>Convert: 3/4 = 9/12, 1/6 = 2/12</li>
             <li>Subtract: 9/12 − 2/12 = 7/12</li>
           </ul>
+          </section>
 
-          <h3>Multiply Fractions</h3>
+          <section data-mode="multiply" hidden>
+            <h3>Multiply Fractions</h3>
           <p>
             Multiply the numerators together and the denominators together, then simplify.
           </p>
@@ -389,8 +395,10 @@
             <li>Multiply denominators: 3 × 5 = 15</li>
             <li>Result: 6/15 = 2/5 (simplified)</li>
           </ul>
+          </section>
 
-          <h3>Divide Fractions</h3>
+          <section data-mode="divide" hidden>
+            <h3>Divide Fractions</h3>
           <p>
             To divide fractions, multiply the first fraction by the reciprocal (flipped version) of the second.
           </p>
@@ -399,8 +407,10 @@
             <li>Reciprocal of 4/5: 5/4</li>
             <li>Multiply: 2/3 × 5/4 = 10/12 = 5/6 (simplified)</li>
           </ul>
+          </section>
 
-          <h3>Simplify Fraction</h3>
+          <section data-mode="simplify" hidden>
+            <h3>Simplify Fraction</h3>
           <p>
             Simplifying a fraction means dividing both numerator and denominator by their greatest common divisor (GCD).
           </p>
@@ -410,6 +420,9 @@
             <li>Divide both: 6÷2 = 3, 8÷2 = 4</li>
             <li>Simplified: 3/4</li>
           </ul>
+          </section>
+
+          <section data-mode="convert" hidden>
 
           <h3>Convert Improper ↔ Mixed Number</h3>
           <p>
@@ -425,6 +438,7 @@
             <li>Convert: (1 × 5) + 2 = 7</li>
             <li>Improper: 7/5</li>
           </ul>
+          </section>
         </div>
       </section>
 

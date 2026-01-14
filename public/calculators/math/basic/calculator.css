@@ -3,9 +3,12 @@
   --calculator-input-radius: 10px;
   --calculator-button-padding: 10px 12px;
   --calculator-button-radius: 10px;
-  max-width: 960px;
+}
+
+.calculator-page#calc-basic {
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 20px 20px 20px;
+  padding: 32px 20px 48px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
@@ -27,7 +30,7 @@
 #calc-basic .back-link {
   display: inline-flex;
   margin-bottom: 16px;
-  color: #2563eb;
+  color: var(--accent);
 }
 
 #calc-basic .calculator-ui label {
@@ -47,14 +50,18 @@
 
 #calc-basic .calculator-ui .helper {
   color: var(--muted-text);
-  margin-bottom: 16px;
+  margin: 0;
   font-size: 14px;
 }
 
 #calc-basic .calculator-ui .input-stack {
   display: grid;
   gap: 16px;
-  margin-bottom: 16px;
+}
+
+#calc-basic .calculator-ui {
+  display: grid;
+  gap: 18px;
 }
 
 #calc-basic .calculator-ui .calculator-toolbar {
@@ -62,7 +69,6 @@
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 #calc-basic .calculator-ui .toolbar-actions {
@@ -75,14 +81,13 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 16px;
 }
 
 #calc-basic .calculator-ui .calculator-button {
   padding: var(--calculator-button-padding);
   border-radius: var(--calculator-button-radius);
   border: none;
-  background: #2563eb;
+  background: var(--accent);
   color: #fff;
   font-weight: 600;
   cursor: pointer;
@@ -99,7 +104,7 @@
 }
 
 #calc-basic .calculator-ui .result {
-  margin-top: 18px;
+  margin: 0;
   font-size: 18px;
   font-weight: 600;
   min-height: 60px;

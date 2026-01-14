@@ -40,6 +40,7 @@ Architecture — NON-NEGOTIABLE (Must Follow)
     One calculator per folder
     One calculator per entry HTML page
     Keep layout, navigation, and calculator logic separated
+    Explanation panes must be modular: show only the active-mode explanation for multi-mode calculators
     No circular dependencies
     Components must remain modular and reusable
     Shared logic must live in shared utilities (no duplication)

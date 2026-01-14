@@ -107,6 +107,10 @@ function formatMixed(whole, numerator, denominator) {
 const modeButtons = document.querySelectorAll(".mode-button");
 const inputSections = document.querySelectorAll(".input-section");
 const resultDiv = document.querySelector("#fraction-result");
+const explanationContainer = document.querySelector("[data-fraction-explanation]");
+const explanationSections = explanationContainer
+  ? Array.from(explanationContainer.querySelectorAll("[data-mode]"))
+  : [];
 
 // Input elements
 const addInputs = {
@@ -166,6 +170,17 @@ function switchMode(mode) {
   });
 
   resultDiv.innerHTML = "";
+  updateExplanation(mode);
+}
+
+function updateExplanation(mode) {
+  if (!explanationContainer || explanationSections.length === 0) {
+    return;
+  }
+
+  explanationSections.forEach(section => {
+    section.hidden = section.dataset.mode !== mode;
+  });
 }
 
 // Calculation functions
@@ -339,6 +354,9 @@ calculateButtons.forEach(btn => {
     }
   });
 });
+
+const initialMode = document.querySelector(".mode-button.active")?.dataset.mode || "add";
+updateExplanation(initialMode);
 
 // Initialize with first calculation
 calculateAdd();

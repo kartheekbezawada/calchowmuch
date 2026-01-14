@@ -1,16 +1,25 @@
 :root {
   color-scheme: light;
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --page-bg: #f6f7fb;
+  --font-body: "Trebuchet MS", "Gill Sans", "Candara", "Segoe UI", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-family: var(--font-body);
+  --page-bg: #ffffff;
+  --page-bg-accent: #ffffff;
+  --shell-bg: #ffffff;
   --panel-bg: #ffffff;
-  --header-bg: #0f172a;
-  --header-text: #f8fafc;
+  --header-bg: #ffffff;
+  --header-text: #111827;
   --muted-text: #6b7280;
-  --border-color: #e2e8f0;
-  --panel-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
-  --header-height: 72px;
-  --nav-height: 56px;
-  --footer-height: 64px;
+  --border-color: #e5e7eb;
+  --shell-border: #e5e7eb;
+  --panel-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --pill-bg: #f3f4f6;
+  --pill-border: #e5e7eb;
+  --header-height: 80px;
+  --nav-height: 64px;
+  --footer-height: 72px;
 }
 
 * {
@@ -19,8 +28,9 @@
 
 body {
   margin: 0;
-  background: var(--page-bg);
-  color: #0f172a;
+  color: var(--header-text);
+  background-color: var(--page-bg);
+  background-image: none;
 }
 
 a {
