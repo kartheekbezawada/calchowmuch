@@ -1,0 +1,118 @@
+#calc-basic {
+  --calculator-input-padding: 10px 12px;
+  --calculator-input-radius: 10px;
+  --calculator-button-padding: 10px 12px;
+  --calculator-button-radius: 10px;
+}
+
+.calculator-page#calc-basic {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+#calc-basic .card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--panel-shadow);
+  border: 1px solid var(--border-color);
+}
+
+#calc-basic .card h1,
+#calc-basic .card h2 {
+  margin-top: 0;
+}
+
+#calc-basic .back-link {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+#calc-basic .calculator-ui label {
+  font-size: 14px;
+  color: var(--muted-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+#calc-basic .calculator-ui input[type="number"] {
+  width: 100%;
+  padding: var(--calculator-input-padding);
+  border-radius: var(--calculator-input-radius);
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+}
+
+#calc-basic .calculator-ui .helper {
+  color: var(--muted-text);
+  margin: 0;
+  font-size: 14px;
+}
+
+#calc-basic .calculator-ui .input-stack {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-basic .calculator-ui {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-basic .calculator-ui .calculator-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+#calc-basic .calculator-ui .toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#calc-basic .calculator-ui .button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-basic .calculator-ui .calculator-button {
+  padding: var(--calculator-button-padding);
+  border-radius: var(--calculator-button-radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#calc-basic .calculator-ui .calculator-button.secondary {
+  background: #e2e8f0;
+  color: #1f2937;
+}
+
+#calc-basic .calculator-ui .calculator-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#calc-basic .calculator-ui .result {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 60px;
+}
+
+#calc-basic .calculator-ui .result-detail {
+  font-size: 14px;
+  color: var(--muted-text);
+  margin-top: 8px;
+  font-weight: 400;
+}

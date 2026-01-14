@@ -7,7 +7,6 @@
     <meta name="description" content="Layout shell for calchowmuch.com" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/calculator.css" />
   </head>
   <body>
     <div class="page">
@@ -30,7 +29,7 @@
               Select a calculator from the navigation list.
             </p>
           </div>
-          <div class="panel">
+          <div class="panel panel-scroll">
             <h3>Explanation Pane</h3>
             <p class="placeholder" id="explanation-placeholder">
               Explanation content will appear here once you choose a calculator.
@@ -39,7 +38,6 @@
         </section>
 
         <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">Ad Pane</div>
           <div class="ad-panel">Ad Pane</div>
         </section>
       </main>
@@ -122,7 +120,6 @@
           'percentage-calculator': '/calculators/math/percentage-calculator',
           'percentage-increase': '/calculators/math/percentage-increase',
           'fraction-calculator': '/calculators/math/fraction-calculator',
-          'credit-card-payoff': '/calculators/finance/credit-card-payoff',
         };
         return pathMap[calculatorId] || null;
       }
@@ -164,14 +161,17 @@
           }
 
           // Load calculator HTML fragment
-          const calculatorResponse = await fetch(`${basePath}/index.html`);
+          const cacheBuster = `t=${Date.now()}`;
+          const calculatorResponse = await fetch(`${basePath}/index.html?${cacheBuster}`);
           if (!calculatorResponse.ok) {
             throw new Error(`Failed to load calculator: ${calculatorResponse.status}`);
           }
           const calculatorHTML = await calculatorResponse.text();
 
           // Load explanation HTML fragment
-          const explanationResponse = await fetch(`${basePath}/explanation.html`);
+          const explanationResponse = await fetch(
+            `${basePath}/explanation.html?${cacheBuster}`,
+          );
           if (!explanationResponse.ok) {
             throw new Error(`Failed to load explanation: ${explanationResponse.status}`);
           }
@@ -333,3 +333,4 @@
     </script>
   </body>
 </html>
+

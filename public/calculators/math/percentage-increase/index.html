@@ -1,158 +1,98 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Percentage Increase / Decrease Calculator | calchowmuch.com</title>
-    <meta
-      name="description"
-      content="Calculate the percentage increase or decrease between two numbers."
-    />
-    <link
-      rel="canonical"
-      href="https://calchowmuch.com/calculators/math/percentage-increase/"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/assets/css/base.css" />
-    <link rel="stylesheet" href="/assets/css/ads.css" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "Calculate a percentage increase or decrease",
-        "description": "Use starting and ending values to determine percent change.",
-        "step": [
-          {
-            "@type": "HowToStep",
-            "text": "Subtract the starting value from the ending value."
-          },
-          {
-            "@type": "HowToStep",
-            "text": "Divide the difference by the starting value."
-          },
-          {
-            "@type": "HowToStep",
-            "text": "Multiply by 100 to convert the change into a percentage."
-          }
-        ]
-      }
-    </script>
-    <style>
-      .calculator-page {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 32px 20px 48px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-      }
+<div id="calc-percentage-increase">
+  <p class="helper">Choose a calculation type and enter your values.</p>
 
-      .card {
-        background: var(--panel-bg);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: var(--panel-shadow);
-        border: 1px solid var(--border-color);
-      }
+  <div class="mode-selector" role="tablist" aria-label="Percentage calculation types">
+    <button class="mode-button active" data-mode="change" role="tab" aria-selected="true">
+      Percent Change
+    </button>
+    <button class="mode-button" data-mode="percent-of" role="tab" aria-selected="false">
+      Percent Of
+    </button>
+    <button class="mode-button" data-mode="increase" role="tab" aria-selected="false">
+      Increase By
+    </button>
+    <button class="mode-button" data-mode="decrease" role="tab" aria-selected="false">
+      Decrease By
+    </button>
+    <button class="mode-button" data-mode="what-percent" role="tab" aria-selected="false">
+      What Percent
+    </button>
+  </div>
 
-      label {
-        font-size: 14px;
-        color: var(--muted-text);
-        display: block;
-        margin-bottom: 6px;
-      }
+  <div class="input-section active" data-mode="change" role="tabpanel">
+    <div class="input-grid">
+      <div>
+        <label for="percent-change-start">Starting value</label>
+        <input id="percent-change-start" type="number" value="200" />
+      </div>
+      <div>
+        <label for="percent-change-end">Ending value</label>
+        <input id="percent-change-end" type="number" value="260" />
+      </div>
+    </div>
+    <button type="button" data-calc="change">Calculate change</button>
+  </div>
 
-      input[type="number"] {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--border-color);
-        font-size: 16px;
-      }
+  <div class="input-section" data-mode="percent-of" role="tabpanel">
+    <div class="input-grid">
+      <div>
+        <label for="percent-of-rate">Percent (%)</label>
+        <input id="percent-of-rate" type="number" value="15" />
+      </div>
+      <div>
+        <label for="percent-of-value">Value</label>
+        <input id="percent-of-value" type="number" value="400" />
+      </div>
+    </div>
+    <button type="button" data-calc="percent-of">Calculate percent of</button>
+  </div>
 
-      .input-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 16px;
-        margin-bottom: 16px;
-      }
+  <div class="input-section" data-mode="increase" role="tabpanel">
+    <div class="input-grid">
+      <div>
+        <label for="percent-increase-base">Original value</label>
+        <input id="percent-increase-base" type="number" value="150" />
+      </div>
+      <div>
+        <label for="percent-increase-rate">Increase (%)</label>
+        <input id="percent-increase-rate" type="number" value="20" />
+      </div>
+    </div>
+    <button type="button" data-calc="increase">Calculate increase</button>
+  </div>
 
-      button {
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: none;
-        background: #2563eb;
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-      }
+  <div class="input-section" data-mode="decrease" role="tabpanel">
+    <div class="input-grid">
+      <div>
+        <label for="percent-decrease-base">Original value</label>
+        <input id="percent-decrease-base" type="number" value="150" />
+      </div>
+      <div>
+        <label for="percent-decrease-rate">Decrease (%)</label>
+        <input id="percent-decrease-rate" type="number" value="20" />
+      </div>
+    </div>
+    <button type="button" data-calc="decrease">Calculate decrease</button>
+  </div>
 
-      .result {
-        margin-top: 18px;
-        font-size: 20px;
-        font-weight: 600;
-      }
+  <div class="input-section" data-mode="what-percent" role="tabpanel">
+    <div class="input-grid">
+      <div>
+        <label for="percent-what-part">Part value</label>
+        <input id="percent-what-part" type="number" value="45" />
+      </div>
+      <div>
+        <label for="percent-what-total">Total value</label>
+        <input id="percent-what-total" type="number" value="180" />
+      </div>
+    </div>
+    <button type="button" data-calc="what-percent">Calculate percent</button>
+  </div>
 
-      .helper {
-        color: var(--muted-text);
-      }
+  <div class="result" id="percent-result" aria-live="polite"></div>
+  <p class="helper" id="percent-details"></p>
+</div>
 
-      .back-link {
-        display: inline-flex;
-        margin-bottom: 16px;
-        color: #2563eb;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="calculator-page">
-      <section class="card" aria-labelledby="calculator-title">
-        <h1 id="calculator-title">Percentage Increase / Decrease</h1>
-        <p class="helper">
-          Enter the starting and ending values to see the percentage change.
-        </p>
-        <div class="input-grid">
-          <div>
-            <label for="percent-start">Starting value</label>
-            <input id="percent-start" type="number" value="200" />
-          </div>
-          <div>
-            <label for="percent-end">Ending value</label>
-            <input id="percent-end" type="number" value="260" />
-          </div>
-        </div>
-        <button type="button" id="percent-calc">Calculate change</button>
-        <div class="result" id="percent-result" aria-live="polite"></div>
-        <p class="helper" id="percent-details"></p>
-      </section>
-
-      <section class="card" aria-labelledby="explanation-title">
-        <h2 id="explanation-title">Explanation</h2>
-        <div id="percent-explanation">
-          <p>
-            Percentage change compares how much a value grows or shrinks relative to
-            where it started. It is commonly used for price changes, growth rates,
-            or performance deltas.
-          </p>
-          <ol>
-            <li>Subtract the starting value from the ending value.</li>
-            <li>Divide the difference by the starting value.</li>
-            <li>Multiply by 100 to turn the result into a percentage.</li>
-          </ol>
-          <p>
-            Positive results mean an increase, and negative results mean a decrease.
-          </p>
-        </div>
-      </section>
-
-      <aside class="card ad-card" aria-label="Sponsored content">
-        <div class="ad-slot" data-ad-slot="percentage-increase-sidebar">
-          Loading ad…
-        </div>
-      </aside>
-    </main>
-
-    <script type="module" src="./module.js"></script>
-    <script async src="/assets/js/ads/loader.js"></script>
-  </body>
-</html>
+<style>
+  @import url("/calculators/math/percentage-increase/calculator.css");
+</style>

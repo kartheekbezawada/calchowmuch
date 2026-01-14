@@ -1,0 +1,106 @@
+#calc-percentage-increase {
+  display: grid;
+  gap: 18px;
+}
+
+.calculator-page#calc-percentage-increase {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+#calc-percentage-increase .card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--panel-shadow);
+  border: 1px solid var(--border-color);
+}
+
+#calc-percentage-increase label {
+  font-size: 14px;
+  color: var(--muted-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+#calc-percentage-increase input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+}
+
+#calc-percentage-increase .input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+#calc-percentage-increase .mode-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-percentage-increase .mode-button {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-bg);
+  color: var(--header-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+#calc-percentage-increase .mode-button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent-strong);
+  box-shadow: 0 8px 14px rgba(37, 99, 235, 0.24);
+}
+
+#calc-percentage-increase .input-section {
+  display: none;
+  gap: 16px;
+}
+
+#calc-percentage-increase .input-section.active {
+  display: grid;
+}
+
+#calc-percentage-increase [data-calc] {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+#calc-percentage-increase .result {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  min-height: 60px;
+}
+
+#calc-percentage-increase .helper {
+  color: var(--muted-text);
+  margin: 0;
+  font-size: 14px;
+}
+
+#calc-percentage-increase .back-link {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: var(--accent);
+}

@@ -1,29 +1,49 @@
-<div class="calculator-ui">
-  <p class="helper">Pick an operation to see the result instantly.</p>
-  <div class="calculator-toolbar">
-    <button class="calculator-button secondary" type="button" id="basic-reset">Reset</button>
-    <div class="toolbar-actions">
-      <button class="calculator-button secondary" type="button" id="basic-add-input">Add number</button>
-      <button class="calculator-button secondary" type="button" id="basic-remove-input">
-        Remove number
+<div id="calc-basic">
+  <div class="calculator-ui">
+    <p class="helper">Pick an operation to see the result instantly.</p>
+    <div class="calculator-toolbar">
+      <button class="calculator-button secondary" type="button" id="basic-reset">
+        Reset
+      </button>
+      <div class="toolbar-actions">
+        <button class="calculator-button secondary" type="button" id="basic-add-input">
+          Add Number
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          id="basic-remove-input"
+        >
+          Remove Number
+        </button>
+      </div>
+    </div>
+    <div class="input-stack" id="basic-inputs">
+      <div class="input-row">
+        <label for="basic-value-1">Number 1</label>
+        <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
+      </div>
+      <div class="input-row">
+        <label for="basic-value-2">Number 2</label>
+        <input id="basic-value-2" type="number" value="20" data-basic-input="true" />
+      </div>
+    </div>
+    <div class="button-row" role="group" aria-label="Operations">
+      <button class="calculator-button" type="button" data-operation="add">Add</button>
+      <button class="calculator-button" type="button" data-operation="subtract">
+        Subtract
+      </button>
+      <button class="calculator-button" type="button" data-operation="multiply">
+        Multiply
+      </button>
+      <button class="calculator-button" type="button" data-operation="divide">
+        Divide
       </button>
     </div>
+    <div class="result" id="basic-result" aria-live="polite"></div>
   </div>
-  <div class="input-stack" id="basic-inputs">
-    <div class="input-row">
-      <label for="basic-value-1">Number 1</label>
-      <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
-    </div>
-    <div class="input-row">
-      <label for="basic-value-2">Number 2</label>
-      <input id="basic-value-2" type="number" value="8" data-basic-input="true" />
-    </div>
-  </div>
-  <div class="button-row" role="group" aria-label="Operations">
-    <button class="calculator-button" type="button" data-operation="add">Add</button>
-    <button class="calculator-button" type="button" data-operation="subtract">Subtract</button>
-    <button class="calculator-button" type="button" data-operation="multiply">Multiply</button>
-    <button class="calculator-button" type="button" data-operation="divide">Divide</button>
-  </div>
-  <div class="result" id="basic-result" aria-live="polite"></div>
 </div>
+
+<style>
+  @import url("/calculators/math/basic/calculator.css");
+</style>
