@@ -97,7 +97,15 @@ function handlePercentChange(card) {
     return;
   }
 
-  const direction = outcome.value > 0 ? "increase" : outcome.value < 0 ? "decrease" : "no change";
+  let direction;
+  if (outcome.value > 0) {
+    direction = "increase";
+  } else if (outcome.value < 0) {
+    direction = "decrease";
+  } else {
+    direction = "no change";
+  }
+  
   const formattedChange =
     outcome.value > 0
       ? `+${formatPercent(outcome.value)}`
@@ -290,11 +298,9 @@ toolTabs.forEach(button => {
     let newIndex = null;
     switch (event.key) {
       case "ArrowRight":
-      case "Right":
         newIndex = (currentIndex + 1) % tabs.length;
         break;
       case "ArrowLeft":
-      case "Left":
         newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
         break;
       case "Home":
