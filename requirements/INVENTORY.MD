@@ -1,15 +1,19 @@
 Calculator Inventory & Status Disclosure
 ================================================
 This documentation must acknowledge all calculator folders, even if they are not active in navigation.
+
 Math Calculators (Current & Legacy)
 The following folders exist under public/calculators/math/:
-basic-operations
-percentage-increase
 
-These calculators are currently:
-    - Not active in navigation.json
-    - Present in the repository but not wired into the live UI
-    - Classified for documentation purposes as **Work-in-progress / unverified** and **not for production use** until explicitly reclassified by maintainers
+- basic
+- fraction-calculator
+- percentage-calculator
+- percentage-increase
+
+Status:
+    - Active in navigation.json: basic, fraction-calculator, percentage-increase
+    - Present in the repository but not wired into the live UI:
+        - percentage-calculator (Work-in-progress / standalone)
 
 Requirement:
     Documentation must explicitly state the status of such calculators:

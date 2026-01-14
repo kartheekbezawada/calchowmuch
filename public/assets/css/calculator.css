@@ -116,6 +116,62 @@
   border-color: #2563eb;
 }
 
+.calculator-ui .tool-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calculator-ui .tool-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-bg);
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.calculator-ui .tool-tab.is-active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.calculator-ui .percentage-card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--panel-shadow);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculator-ui .percentage-card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.calculator-ui .tool-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.calculator-ui .tool-details {
+  color: var(--muted-text);
+  margin: 0;
+  min-height: 48px;
+  font-size: 14px;
+}
+
+.calculator-ui .tool-details.is-error {
+  color: #dc2626;
+}
+
 .calculator-ui .input-section {
   display: none;
   animation: calculatorFadeIn 0.3s;

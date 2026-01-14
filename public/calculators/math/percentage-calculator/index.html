@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Percentage Calculators | calchowmuch.com</title>
+    <meta
+      name="description"
+      content="Use button-driven percentage tools to calculate percent change, percentages of values, and add or subtract percentages."
+    />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/calculators/math/percentage-calculator/"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/calculator.css" />
+  </head>
+  <body>
+    <main class="percentage-tools-page calculator-ui">
+      <div class="tool-tabs" role="tablist" aria-label="Percentage tools">
+        <button
+          class="tool-tab is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-tool="percent-change"
+        >
+          Percent Change
+        </button>
+        <button
+          class="tool-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tool="percentage-of"
+        >
+          Percentage Of
+        </button>
+        <button
+          class="tool-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tool="what-percent"
+        >
+          X Is What Percent
+        </button>
+        <button
+          class="tool-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-tool="add-subtract"
+        >
+          Add/Subtract %
+        </button>
+      </div>
+
+      <h1 class="sr-only">Percentage Calculators</h1>
+
+      <div class="percentage-tools-grid">
+        <div class="percentage-calculator-column">
+          <section class="percentage-card calculator-card" data-tool="percent-change">
+            <h2>Percent Change</h2>
+            <p class="helper">
+              Compare starting and ending values to measure the percentage increase
+              or decrease.
+            </p>
+            <div class="tool-inputs">
+              <div class="input-field">
+                <label for="percent-change-start">Starting value</label>
+                <input
+                  id="percent-change-start"
+                  data-field="start"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 200"
+                />
+              </div>
+              <div class="input-field">
+                <label for="percent-change-end">Ending value</label>
+                <input
+                  id="percent-change-end"
+                  data-field="end"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 260"
+                />
+              </div>
+            </div>
+            <button type="button" class="calculator-button calculate" data-action="calculate">
+              Calculate
+            </button>
+            <div class="result" data-result aria-live="polite"></div>
+            <p class="tool-details" data-details></p>
+          </section>
+
+          <section
+            class="percentage-card calculator-card"
+            data-tool="percentage-of"
+            hidden
+          >
+            <h2>Percentage Of</h2>
+            <p class="helper">
+              Find out what a percentage of a value equals in plain numbers.
+            </p>
+            <div class="tool-inputs">
+              <div class="input-field">
+                <label for="percentage-of-percent">Percentage</label>
+                <input
+                  id="percentage-of-percent"
+                  data-field="percent"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 25"
+                />
+              </div>
+              <div class="input-field">
+                <label for="percentage-of-value">Value</label>
+                <input
+                  id="percentage-of-value"
+                  data-field="value"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 400"
+                />
+              </div>
+            </div>
+            <button type="button" class="calculator-button calculate" data-action="calculate">
+              Calculate
+            </button>
+            <div class="result" data-result aria-live="polite"></div>
+            <p class="tool-details" data-details></p>
+          </section>
+
+          <section
+            class="percentage-card calculator-card"
+            data-tool="what-percent"
+            hidden
+          >
+            <h2>X Is What Percent Of Y</h2>
+            <p class="helper">
+              Determine what percent a part represents of the whole.
+            </p>
+            <div class="tool-inputs">
+              <div class="input-field">
+                <label for="what-percent-part">Part (X)</label>
+                <input
+                  id="what-percent-part"
+                  data-field="part"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 45"
+                />
+              </div>
+              <div class="input-field">
+                <label for="what-percent-whole">Whole (Y)</label>
+                <input
+                  id="what-percent-whole"
+                  data-field="whole"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 180"
+                />
+              </div>
+            </div>
+            <button type="button" class="calculator-button calculate" data-action="calculate">
+              Calculate
+            </button>
+            <div class="result" data-result aria-live="polite"></div>
+            <p class="tool-details" data-details></p>
+          </section>
+
+          <section
+            class="percentage-card calculator-card"
+            data-tool="add-subtract"
+            hidden
+          >
+            <h2>Add/Subtract Percentage</h2>
+            <p class="helper">
+              Adjust a value up or down by a percentage in one step.
+            </p>
+            <div class="tool-inputs">
+              <div class="input-field">
+                <label for="add-subtract-value">Starting value</label>
+                <input
+                  id="add-subtract-value"
+                  data-field="value"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 250"
+                />
+              </div>
+              <div class="input-field">
+                <label for="add-subtract-percent">Percentage</label>
+                <input
+                  id="add-subtract-percent"
+                  data-field="percent"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="e.g. 10"
+                />
+              </div>
+            </div>
+            <button type="button" class="calculator-button calculate" data-action="calculate">
+              Calculate
+            </button>
+            <div class="result" data-result aria-live="polite"></div>
+            <p class="tool-details" data-details></p>
+          </section>
+        </div>
+
+        <aside
+          class="percentage-card explanation-card"
+          aria-labelledby="percentage-explanation-title"
+        >
+          <h2 id="percentage-explanation-title">Explanation</h2>
+
+          <div class="explanation-block" data-tool="percent-change">
+            <p>
+              Percent change compares how much a value grows or shrinks relative to
+              its starting point.
+            </p>
+            <ol>
+              <li>Subtract the starting value from the ending value.</li>
+              <li>Divide that difference by the starting value.</li>
+              <li>Multiply by 100 to turn it into a percentage.</li>
+            </ol>
+            <p>
+              <strong>Example:</strong> From 200 to 260 → (260 − 200) ÷ 200 × 100 =
+              30% increase.
+            </p>
+          </div>
+
+          <div class="explanation-block" data-tool="percentage-of" hidden>
+            <p>
+              Percentage of a value answers, “How much is X% of Y?”
+            </p>
+            <ol>
+              <li>Convert the percent to a decimal by dividing by 100.</li>
+              <li>Multiply the decimal by the value.</li>
+              <li>Interpret the result in the original units.</li>
+            </ol>
+            <p>
+              <strong>Example:</strong> 25% of 400 → 0.25 × 400 = 100.
+            </p>
+          </div>
+
+          <div class="explanation-block" data-tool="what-percent" hidden>
+            <p>
+              This tool finds what percent the part is of the whole.
+            </p>
+            <ol>
+              <li>Divide the part by the whole.</li>
+              <li>Multiply the result by 100.</li>
+              <li>Round to a useful number of decimals.</li>
+            </ol>
+            <p>
+              <strong>Example:</strong> 45 out of 180 → (45 ÷ 180) × 100 = 25%.
+            </p>
+          </div>
+
+          <div class="explanation-block" data-tool="add-subtract" hidden>
+            <p>
+              Add or subtract a percentage by scaling the starting value.
+            </p>
+            <ol>
+              <li>Convert the percent to a decimal.</li>
+              <li>Multiply the starting value by 1 + percent for an increase.</li>
+              <li>Multiply the starting value by 1 − percent for a decrease.</li>
+            </ol>
+            <p>
+              <strong>Example:</strong> 250 ± 10% → 250 × 1.10 = 275 and 250 × 0.90 =
+              225.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script type="module" src="./module.js"></script>
+  </body>
+</html>

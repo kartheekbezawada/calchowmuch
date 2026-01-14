@@ -155,6 +155,21 @@
   color: var(--muted-text);
 }
 
+.percentage-tools-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.percentage-tools-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
 @media (max-width: 1024px) {
   .layout-main {
     grid-template-columns: 200px minmax(0, 1fr) 200px;
@@ -173,5 +188,9 @@
 
   .ads-column {
     grid-template-rows: minmax(180px, 1fr) minmax(180px, 1fr);
+  }
+
+  .percentage-tools-grid {
+    grid-template-columns: 1fr;
   }
 }
