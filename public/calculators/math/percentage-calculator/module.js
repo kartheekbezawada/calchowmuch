@@ -97,7 +97,7 @@ function handlePercentChange(card) {
     return;
   }
 
-  const direction = outcome.value >= 0 ? "increase" : "decrease";
+  const direction = outcome.value > 0 ? "increase" : outcome.value < 0 ? "decrease" : "no change";
   const formattedChange =
     outcome.value > 0
       ? `+${formatPercent(outcome.value)}`
