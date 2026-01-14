@@ -97,7 +97,15 @@ function handlePercentChange(card) {
     return;
   }
 
-  const direction = outcome.value >= 0 ? "increase" : "decrease";
+  let direction;
+  if (outcome.value > 0) {
+    direction = "increase";
+  } else if (outcome.value < 0) {
+    direction = "decrease";
+  } else {
+    direction = "no change";
+  }
+  
   const formattedChange =
     outcome.value > 0
       ? `+${formatPercent(outcome.value)}`
@@ -262,11 +270,55 @@ calculatorCards.forEach(card => {
   button.addEventListener("click", () => {
     handler(card);
   });
+
+  // Allow pressing Enter in inputs to trigger the calculation for better keyboard accessibility
+  const inputElements = card.querySelectorAll("input, select, textarea");
+  inputElements.forEach(input => {
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        handler(card);
+      }
+    });
+  });
 });
 
 toolTabs.forEach(button => {
   button.addEventListener("click", () => {
     setActiveTool(button.dataset.tool, { updateHash: true });
+  });
+
+  button.addEventListener("keydown", event => {
+    const tabs = Array.from(toolTabs);
+    const currentIndex = tabs.indexOf(event.currentTarget);
+    if (currentIndex === -1) {
+      return;
+    }
+
+    let newIndex = null;
+    switch (event.key) {
+      case "ArrowRight":
+        newIndex = (currentIndex + 1) % tabs.length;
+        break;
+      case "ArrowLeft":
+        newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        break;
+      case "Home":
+        newIndex = 0;
+        break;
+      case "End":
+        newIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    const newTab = tabs[newIndex];
+    if (newTab) {
+      newTab.focus();
+      setActiveTool(newTab.dataset.tool, { updateHash: true });
+    }
   });
 });
 

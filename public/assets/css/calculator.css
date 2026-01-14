@@ -133,6 +133,20 @@
   cursor: pointer;
 }
 
+.calculator-ui .tool-tab:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.calculator-ui .tool-tab:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.calculator-ui .tool-tab:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 .calculator-ui .tool-tab.is-active {
   background: #2563eb;
   color: #fff;
