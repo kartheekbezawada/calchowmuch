@@ -1,0 +1,9 @@
+#calc-standard-deviation .stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#calc-standard-deviation .stats-grid span {
+  flex: 1 1 150px;
+}

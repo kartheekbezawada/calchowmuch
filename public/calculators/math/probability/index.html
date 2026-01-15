@@ -1,0 +1,51 @@
+<div id="calc-probability">
+  <div class="calculator-ui">
+    <p class="helper">Calculate basic probability operations for independent events.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label id="prob-mode-label">Operation</label>
+        <div class="button-group" role="group" aria-labelledby="prob-mode-label" data-button-group="prob-mode">
+          <button class="calculator-button secondary" type="button" data-value="single" aria-pressed="false">
+            Single Event P(A)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="complement" aria-pressed="false">
+            Complement 1 - P(A)
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="and"
+            aria-pressed="true"
+          >
+            AND (Independent): P(A) × P(B)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="or" aria-pressed="false">
+            OR (Independent): P(A) + P(B) - P(A)×P(B)
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="prob-a">P(A) Probability (%)</label>
+        <input id="prob-a" type="number" value="30" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="prob-b-row">
+        <label for="prob-b">P(B) Probability (%)</label>
+        <input id="prob-b" type="number" value="50" min="0" max="100" step="0.1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="prob-calculate">
+      Calculate Probability
+    </button>
+
+    <div class="result" id="prob-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="prob-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/probability/calculator.css");
+</style>

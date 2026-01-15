@@ -1,0 +1,45 @@
+<div id="calc-permutation-combination">
+  <div class="calculator-ui">
+    <p class="helper">Calculate permutations (nPr) and combinations (nCr).</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label id="pc-mode-label">Calculation Type</label>
+        <div class="button-group" role="group" aria-labelledby="pc-mode-label" data-button-group="pc-mode">
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="permutation"
+            aria-pressed="true"
+          >
+            Permutation (nPr)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="combination" aria-pressed="false">
+            Combination (nCr)
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="pc-n">n (total items)</label>
+        <input id="pc-n" type="number" value="10" min="0" max="170" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="pc-r">r (items to select)</label>
+        <input id="pc-r" type="number" value="3" min="0" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pc-calculate">
+      Calculate
+    </button>
+
+    <div class="result" id="pc-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="pc-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/permutation-combination/calculator.css");
+</style>

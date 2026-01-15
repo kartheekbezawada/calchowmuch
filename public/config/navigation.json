@@ -22,6 +22,51 @@
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
               "url": "#/calculators/fraction-calculator"
+            },
+            {
+              "id": "standard-deviation",
+              "name": "Standard Deviation Calculator",
+              "url": "#/calculators/standard-deviation"
+            },
+            {
+              "id": "number-sequence",
+              "name": "Number Sequence Calculator",
+              "url": "#/calculators/number-sequence"
+            },
+            {
+              "id": "sample-size",
+              "name": "Sample Size Calculator",
+              "url": "#/calculators/sample-size"
+            },
+            {
+              "id": "probability",
+              "name": "Probability Calculator",
+              "url": "#/calculators/probability"
+            },
+            {
+              "id": "statistics",
+              "name": "Statistics Calculator",
+              "url": "#/calculators/statistics"
+            },
+            {
+              "id": "mean-median-mode-range",
+              "name": "Mean, Median, Mode, Range Calculator",
+              "url": "#/calculators/mean-median-mode-range"
+            },
+            {
+              "id": "permutation-combination",
+              "name": "Permutation and Combination Calculator",
+              "url": "#/calculators/permutation-combination"
+            },
+            {
+              "id": "z-score",
+              "name": "Z-score Calculator",
+              "url": "#/calculators/z-score"
+            },
+            {
+              "id": "confidence-interval",
+              "name": "Confidence Interval Calculator",
+              "url": "#/calculators/confidence-interval"
             }
           ]
         }

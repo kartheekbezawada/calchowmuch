@@ -1,0 +1,80 @@
+<section>
+  <h3>What is a Number Sequence?</h3>
+  <p>
+    A number sequence is an ordered list of numbers following a specific pattern.
+    This calculator supports two common types: arithmetic and geometric sequences.
+  </p>
+</section>
+
+<section>
+  <h3>When to Use This Calculator</h3>
+  <ul>
+    <li>Finding the nth term of a predictable pattern</li>
+    <li>Calculating compound growth scenarios (geometric)</li>
+    <li>Solving math problems involving sequences and series</li>
+    <li>Predicting future values based on a constant rate of change</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Input Definitions</h3>
+  <ul>
+    <li><strong>Sequence Type:</strong> Choose Arithmetic (constant difference) or Geometric (constant ratio).</li>
+    <li><strong>First Term (a1):</strong> The starting value of the sequence.</li>
+    <li><strong>Common Difference (d):</strong> For arithmetic sequences, the constant added to each term.</li>
+    <li><strong>Common Ratio (r):</strong> For geometric sequences, the constant multiplied to each term.</li>
+    <li><strong>Term Index (n):</strong> Which term to calculate (must be at least 1).</li>
+    <li><strong>Preview Length (k):</strong> How many terms to display (1-50).</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Formulas</h3>
+  <p><strong>Arithmetic Sequence:</strong></p>
+  <p style="margin-left: 1rem;">a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</p>
+
+  <p><strong>Geometric Sequence:</strong></p>
+  <p style="margin-left: 1rem;">a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></p>
+</section>
+
+<section>
+  <h3>Worked Example (Arithmetic)</h3>
+  <p>Using the defaults: a1 = 2, d = 3, n = 10</p>
+  <ol>
+    <li>Formula: a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</li>
+    <li>Substitute: a<sub>10</sub> = 2 + (10 - 1) * 3</li>
+    <li>Calculate: a<sub>10</sub> = 2 + 9 * 3 = 2 + 27 = 29</li>
+  </ol>
+  <p>First 10 terms: 2, 5, 8, 11, 14, 17, 20, 23, 26, 29</p>
+</section>
+
+<section>
+  <h3>Worked Example (Geometric)</h3>
+  <p>Using: a1 = 2, r = 2, n = 10</p>
+  <ol>
+    <li>Formula: a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></li>
+    <li>Substitute: a<sub>10</sub> = 2 * 2<sup>9</sup></li>
+    <li>Calculate: a<sub>10</sub> = 2 * 512 = 1024</li>
+  </ol>
+  <p>First 10 terms: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024</p>
+</section>
+
+<section>
+  <h3>Special Cases</h3>
+  <ul>
+    <li><strong>Negative d or r:</strong> Both negative differences and ratios are allowed, creating alternating or decreasing sequences.</li>
+    <li><strong>r = 1:</strong> A geometric sequence with ratio 1 produces constant terms.</li>
+    <li><strong>r = 0:</strong> All terms after the first will be 0.</li>
+    <li><strong>Large n with r > 1:</strong> Results grow very quickly and may exceed JavaScript number limits.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Edge Cases and Validation</h3>
+  <ul>
+    <li>n must be a positive integer (at least 1).</li>
+    <li>Preview length k is clamped to a maximum of 50.</li>
+    <li>Very large results will show an error message.</li>
+    <li>Results are formatted to 4 decimal places.</li>
+  </ul>
+</section>

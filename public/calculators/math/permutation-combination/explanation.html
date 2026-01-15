@@ -1,0 +1,90 @@
+<section>
+  <h3>What Are Permutations and Combinations?</h3>
+  <p>
+    Both permutations and combinations count ways to select items from a set.
+    The key difference is whether the order of selection matters.
+  </p>
+  <ul>
+    <li><strong>Permutation:</strong> Order matters (ABC is different from BAC)</li>
+    <li><strong>Combination:</strong> Order doesn't matter (ABC is the same as BAC)</li>
+  </ul>
+</section>
+
+<section>
+  <h3>When to Use Each</h3>
+  <ul>
+    <li><strong>Permutations:</strong> Ranking, arranging, passwords, seating arrangements, race placements</li>
+    <li><strong>Combinations:</strong> Selecting committees, lottery numbers, choosing items from a menu</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Input Definitions</h3>
+  <ul>
+    <li><strong>n:</strong> The total number of items in the set (must be 0-170).</li>
+    <li><strong>r:</strong> The number of items to select or arrange (must be 0 to n).</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Formulas</h3>
+  <p><strong>Permutation (nPr):</strong></p>
+  <p style="margin-left: 1rem;">nPr = n! / (n-r)!</p>
+
+  <p><strong>Combination (nCr):</strong></p>
+  <p style="margin-left: 1rem;">nCr = n! / (r! × (n-r)!)</p>
+
+  <p>Where n! (factorial) = n × (n-1) × (n-2) × ... × 2 × 1</p>
+</section>
+
+<section>
+  <h3>Worked Example (Permutation)</h3>
+  <p>Using defaults: n = 10, r = 3</p>
+  <ol>
+    <li>Formula: 10P3 = 10! / (10-3)! = 10! / 7!</li>
+    <li>Simplify: 10 × 9 × 8 = 720</li>
+    <li>Result: There are 720 ways to arrange 3 items from 10.</li>
+  </ol>
+  <p>Example: Selecting 1st, 2nd, and 3rd place from 10 contestants.</p>
+</section>
+
+<section>
+  <h3>Worked Example (Combination)</h3>
+  <p>Using: n = 10, r = 3</p>
+  <ol>
+    <li>Formula: 10C3 = 10! / (3! × 7!)</li>
+    <li>Simplify: (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120</li>
+    <li>Result: There are 120 ways to choose 3 items from 10.</li>
+  </ol>
+  <p>Example: Selecting a committee of 3 people from 10 candidates.</p>
+</section>
+
+<section>
+  <h3>Key Relationships</h3>
+  <ul>
+    <li>nPr is always greater than or equal to nCr (since order creates more arrangements)</li>
+    <li>nPr = nCr × r! (permutation counts each combination r! times)</li>
+    <li>nC0 = nCn = 1 (one way to choose nothing or everything)</li>
+    <li>nCr = nC(n-r) (symmetric property)</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Special Cases</h3>
+  <ul>
+    <li><strong>0! = 1:</strong> By definition, zero factorial equals one.</li>
+    <li><strong>nP0 = 1:</strong> One way to arrange zero items (do nothing).</li>
+    <li><strong>nPn = n!:</strong> Arranging all items.</li>
+    <li><strong>nC1 = n:</strong> n ways to choose 1 item.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Edge Cases and Validation</h3>
+  <ul>
+    <li>n must be between 0 and 170 (larger values cause overflow).</li>
+    <li>r must be between 0 and n.</li>
+    <li>Results are displayed as exact integers (no rounding).</li>
+    <li>Large results are shown without commas.</li>
+  </ul>
+</section>

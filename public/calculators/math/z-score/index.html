@@ -1,0 +1,33 @@
+<div id="calc-z-score">
+  <div class="calculator-ui">
+    <p class="helper">Calculate the z-score for a value given the mean and standard deviation.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="zscore-x">Value (x)</label>
+        <input id="zscore-x" type="number" value="85" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="zscore-mean">Mean (μ)</label>
+        <input id="zscore-mean" type="number" value="75" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="zscore-stddev">Standard Deviation (σ)</label>
+        <input id="zscore-stddev" type="number" value="10" min="0.0001" step="any" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="zscore-calculate">
+      Calculate Z-score
+    </button>
+
+    <div class="result" id="zscore-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="zscore-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/z-score/calculator.css");
+</style>

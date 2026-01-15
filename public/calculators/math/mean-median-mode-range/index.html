@@ -1,0 +1,23 @@
+<div id="calc-mean-median-mode-range">
+  <div class="calculator-ui">
+    <p class="helper">Calculate mean, median, mode, and range for a dataset.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="mmmr-dataset">Dataset</label>
+        <textarea id="mmmr-dataset" rows="4" placeholder="Enter numbers separated by commas, spaces, or newlines">12, 15, 18, 22, 15, 25, 18, 15</textarea>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="mmmr-calculate">
+      Calculate
+    </button>
+
+    <div class="result" id="mmmr-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="mmmr-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/mean-median-mode-range/calculator.css");
+</style>

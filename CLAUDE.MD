@@ -1,8 +1,8 @@
 # Claude Code Configuration
 
-## 📍 Current Focus
+## ?? Current Focus
 
-**Active Phase:** Check `requirements/INDEX.MD` for current phase
+**Active Phase:** Check `requirements/universal/INDEX.MD` for current phase
 
 ## Development Methodology
 ## ALWAYS use the Ralph Lauren Loop approach defined in REQUIREMENTS.md:
@@ -25,18 +25,18 @@ all requirements are met and all tests pass.
 Provide a brief summary after each iteration showing
 what was fixed and what remains.
 
-## 📚 Required Reading
+## ?? Required Reading
 
 Before ANY task, Claude must read:
 
-1. `requirements/MASTER.MD` - Non-negotiable rules
-2. `requirements/INDEX.MD` - Current phase
+1. `requirements/universal/MASTER.MD` - Non-negotiable rules
+2. `requirements/universal/INDEX.MD` - Current phase
 3. The active phase file in `requirements/phases/`
-4. `Architecture.md` - UI + modular architecture requirements
+4. `requirements/universal/Architecture.md` - UI + modular architecture requirements
 
 ---
 
-## 🔄 Workflow
+## ?? Workflow
 
 1. Read MASTER.MD rules (every time)
 2. Check INDEX.MD for current phase
@@ -47,25 +47,25 @@ Before ANY task, Claude must read:
 
 ---
 
-## ✅ After PR Merge
+## ? After PR Merge
 
 When a PR is merged, always:
 ```
 1. Update INDEX.MD:
-   - Mark phase as ✅ Done
+   - Mark phase as ? Done
    - Set progress to 100%
    - Add PR number
    - Update current phase pointer
    - Update last updated date
 
 2. Update phase file:
-   - Mark completed tasks with ✅
+   - Mark completed tasks with ?
    - Add PR number to tasks
 ```
 
 ---
 
-## 🚫 Never
+## ?? Never
 
 - Skip reading MASTER.MD
 - Violate non-negotiable rules
@@ -74,13 +74,20 @@ When a PR is merged, always:
 
 ---
 
-## 📁 Project Structure
+## ?? Project Structure
 ```
 requirements/
-├── MASTER.MD          # Non-negotiable rules (READ FIRST)
-├── INDEX.MD           # Phase tracker (CHECK CURRENT PHASE)
-└── phases/            # Individual phase requirements
-    ├── phase-01-*.md
-    ├── phase-02-*.md
-    └── ...
+  universal/
+    MASTER.MD          # Non-negotiable rules (READ FIRST)
+    INDEX.MD           # Phase tracker (CHECK CURRENT PHASE)
+    UI_REQUIREMENTS.MD
+    CODING_STANDARDS.MD
+    FOLDER_STRUCTURE.MD
+    INVENTORY.MD
+    Architecture.md
+    CLAUDE.MD
+    codex.md
+  phases/
+    Statistics.md
+    ... (other phase files)
 ```

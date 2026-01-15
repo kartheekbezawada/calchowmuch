@@ -1,0 +1,99 @@
+<section>
+  <h3>What is Probability?</h3>
+  <p>
+    Probability measures the likelihood of an event occurring, expressed as a
+    number between 0 (impossible) and 1 (certain), or equivalently 0% to 100%.
+  </p>
+</section>
+
+<section>
+  <h3>When to Use This Calculator</h3>
+  <ul>
+    <li>Calculating odds of combined events</li>
+    <li>Risk assessment and decision making</li>
+    <li>Game theory and gambling odds</li>
+    <li>Quality control probability calculations</li>
+    <li>Understanding basic probability rules</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Operations Available</h3>
+  <ul>
+    <li><strong>Single Event P(A):</strong> The basic probability of event A.</li>
+    <li><strong>Complement:</strong> The probability of A NOT happening, equal to 1 - P(A).</li>
+    <li><strong>AND (Independent):</strong> The probability of both A and B occurring when they are independent.</li>
+    <li><strong>OR (Independent):</strong> The probability of at least one of A or B occurring when they are independent.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Input Definitions</h3>
+  <ul>
+    <li><strong>P(A):</strong> The probability of event A occurring, as a percentage (0-100%).</li>
+    <li><strong>P(B):</strong> The probability of event B occurring, as a percentage (0-100%). Only needed for AND/OR operations.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Formulas</h3>
+  <p><strong>Single Event:</strong> P(A) = probability as decimal</p>
+  <p><strong>Complement:</strong> P(not A) = 1 - P(A)</p>
+  <p><strong>AND (Independent):</strong> P(A and B) = P(A) × P(B)</p>
+  <p><strong>OR (Independent):</strong> P(A or B) = P(A) + P(B) - P(A) × P(B)</p>
+</section>
+
+<section>
+  <h3>Worked Example (AND)</h3>
+  <p>Using defaults: P(A) = 30%, P(B) = 50%</p>
+  <ol>
+    <li>Convert to decimals: P(A) = 0.30, P(B) = 0.50</li>
+    <li>Apply formula: P(A and B) = P(A) × P(B)</li>
+    <li>Calculate: 0.30 × 0.50 = 0.15</li>
+    <li>Result: 0.15 or 15%</li>
+  </ol>
+  <p>There is a 15% chance that both events occur.</p>
+</section>
+
+<section>
+  <h3>Worked Example (OR)</h3>
+  <p>Using: P(A) = 30%, P(B) = 50%</p>
+  <ol>
+    <li>Convert to decimals: P(A) = 0.30, P(B) = 0.50</li>
+    <li>Apply formula: P(A or B) = P(A) + P(B) - P(A) × P(B)</li>
+    <li>Calculate: 0.30 + 0.50 - (0.30 × 0.50) = 0.80 - 0.15 = 0.65</li>
+    <li>Result: 0.65 or 65%</li>
+  </ol>
+  <p>There is a 65% chance that at least one event occurs.</p>
+</section>
+
+<section>
+  <h3>Worked Example (Complement)</h3>
+  <p>Using: P(A) = 30%</p>
+  <ol>
+    <li>Convert to decimal: P(A) = 0.30</li>
+    <li>Apply formula: P(not A) = 1 - P(A)</li>
+    <li>Calculate: 1 - 0.30 = 0.70</li>
+    <li>Result: 0.70 or 70%</li>
+  </ol>
+  <p>There is a 70% chance that event A does NOT occur.</p>
+</section>
+
+<section>
+  <h3>Important Notes</h3>
+  <ul>
+    <li><strong>Independence:</strong> These formulas assume events are independent (one event doesn't affect the other).</li>
+    <li>For dependent events, you need conditional probability formulas not covered here.</li>
+    <li>The OR formula accounts for the overlap - we subtract P(A)×P(B) to avoid counting it twice.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Edge Cases and Validation</h3>
+  <ul>
+    <li>All probabilities must be between 0% and 100%.</li>
+    <li>P(A) = 0% means the event never occurs.</li>
+    <li>P(A) = 100% means the event always occurs.</li>
+    <li>Results are shown as both decimal and percentage.</li>
+  </ul>
+</section>
