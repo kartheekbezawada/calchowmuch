@@ -1,6 +1,6 @@
 # Claude Code Configuration
 
-## ?? Current Focus
+## 📍 Current Focus
 
 **Active Phase:** Check `requirements/universal/INDEX.MD` for current phase
 
@@ -25,7 +25,7 @@ all requirements are met and all tests pass.
 Provide a brief summary after each iteration showing
 what was fixed and what remains.
 
-## ?? Required Reading
+## 📚 Required Reading
 
 Before ANY task, Claude must read:
 
@@ -36,7 +36,7 @@ Before ANY task, Claude must read:
 
 ---
 
-## ?? Workflow
+## 🔄 Workflow
 
 1. Read MASTER.MD rules (every time)
 2. Check INDEX.MD for current phase
@@ -47,25 +47,25 @@ Before ANY task, Claude must read:
 
 ---
 
-## ? After PR Merge
+## ✅ After PR Merge
 
 When a PR is merged, always:
 ```
 1. Update INDEX.MD:
-   - Mark phase as ? Done
+   - Mark phase as ✅ Done
    - Set progress to 100%
    - Add PR number
    - Update current phase pointer
    - Update last updated date
 
 2. Update phase file:
-   - Mark completed tasks with ?
+   - Mark completed tasks with ✅
    - Add PR number to tasks
 ```
 
 ---
 
-## ?? Never
+## 🚫 Never
 
 - Skip reading MASTER.MD
 - Violate non-negotiable rules
@@ -74,7 +74,7 @@ When a PR is merged, always:
 
 ---
 
-## ?? Project Structure
+## ?Y"? Project Structure
 ```
 requirements/
   universal/
@@ -91,3 +91,4 @@ requirements/
     Statistics.md
     ... (other phase files)
 ```
+

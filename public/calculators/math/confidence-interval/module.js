@@ -1,8 +1,22 @@
 import { formatNumber, formatPercent } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
-const modeSelect = document.querySelector("#ci-mode");
-const confidenceSelect = document.querySelector("#ci-confidence");
+const modeGroup = document.querySelector('[data-button-group="ci-mode"]');
+const confidenceGroup = document.querySelector('[data-button-group="ci-confidence"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "proportion",
+  onChange: () => {
+    updateVisibility();
+    calculate();
+  },
+});
+const confidenceButtons = setupButtonGroup(confidenceGroup, {
+  defaultValue: "1.96",
+  onChange: () => {
+    calculate();
+  },
+});
 const phatInput = document.querySelector("#ci-phat");
 const xbarInput = document.querySelector("#ci-xbar");
 const sigmaInput = document.querySelector("#ci-sigma");
@@ -15,7 +29,7 @@ const resultDiv = document.querySelector("#ci-result");
 const detailDiv = document.querySelector("#ci-detail");
 
 function updateVisibility() {
-  const isProportion = modeSelect.value === "proportion";
+  const isProportion = (modeButtons?.getValue() ?? "proportion") === "proportion";
   phatRow.style.display = isProportion ? "" : "none";
   xbarRow.style.display = isProportion ? "none" : "";
   sigmaRow.style.display = isProportion ? "none" : "";
@@ -25,8 +39,9 @@ function calculate() {
   resultDiv.textContent = "";
   detailDiv.textContent = "";
 
-  const mode = modeSelect.value;
-  const z = toNumber(confidenceSelect.value, 1.96);
+  const mode = modeButtons?.getValue() ?? "proportion";
+  const confidenceValue = confidenceButtons?.getValue() ?? "1.96";
+  const z = toNumber(confidenceValue, 1.96);
   const n = Math.floor(toNumber(nInput.value, 0));
 
   // Validation
@@ -40,7 +55,7 @@ function calculate() {
     "1.96": "95%",
     "2.576": "99%",
   };
-  const confidenceLabel = confidenceLabels[confidenceSelect.value] || "Custom";
+  const confidenceLabel = confidenceLabels[confidenceValue] || "Custom";
   const opts = { maximumFractionDigits: 4 };
 
   if (mode === "proportion") {
@@ -109,11 +124,6 @@ function calculate() {
     `;
   }
 }
-
-modeSelect.addEventListener("change", () => {
-  updateVisibility();
-  calculate();
-});
 
 calculateButton.addEventListener("click", calculate);
 

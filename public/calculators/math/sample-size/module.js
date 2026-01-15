@@ -1,7 +1,14 @@
 import { formatNumber } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
-const confidenceSelect = document.querySelector("#ss-confidence");
+const confidenceGroup = document.querySelector('[data-button-group="ss-confidence"]');
+const confidenceButtons = setupButtonGroup(confidenceGroup, {
+  defaultValue: "1.96",
+  onChange: () => {
+    calculate();
+  },
+});
 const marginInput = document.querySelector("#ss-margin");
 const proportionInput = document.querySelector("#ss-proportion");
 const populationInput = document.querySelector("#ss-population");
@@ -13,7 +20,8 @@ function calculate() {
   resultDiv.textContent = "";
   detailDiv.textContent = "";
 
-  const z = toNumber(confidenceSelect.value, 1.96);
+  const confidenceValue = confidenceButtons?.getValue() ?? "1.96";
+  const z = toNumber(confidenceValue, 1.96);
   const marginPercent = toNumber(marginInput.value, 0);
   const proportionPercent = toNumber(proportionInput.value, 50);
   const populationStr = populationInput.value.trim();
@@ -61,7 +69,7 @@ function calculate() {
     "1.96": "95%",
     "2.576": "99%",
   };
-  const confidenceLabel = confidenceLabels[confidenceSelect.value] || "Custom";
+  const confidenceLabel = confidenceLabels[confidenceValue] || "Custom";
 
   resultDiv.innerHTML = `<strong>Required Sample Size:</strong> ${formatNumber(sampleSize, { maximumFractionDigits: 0 })}`;
 

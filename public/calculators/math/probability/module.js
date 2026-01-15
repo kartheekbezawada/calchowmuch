@@ -1,7 +1,15 @@
 import { formatNumber, formatPercent } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
-const modeSelect = document.querySelector("#prob-mode");
+const modeGroup = document.querySelector('[data-button-group="prob-mode"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "and",
+  onChange: () => {
+    updateVisibility();
+    calculate();
+  },
+});
 const probAInput = document.querySelector("#prob-a");
 const probBInput = document.querySelector("#prob-b");
 const probBRow = document.querySelector("#prob-b-row");
@@ -10,7 +18,7 @@ const resultDiv = document.querySelector("#prob-result");
 const detailDiv = document.querySelector("#prob-detail");
 
 function updateVisibility() {
-  const mode = modeSelect.value;
+  const mode = modeButtons?.getValue() ?? "and";
   const needsB = mode === "and" || mode === "or";
   probBRow.style.display = needsB ? "" : "none";
 }
@@ -19,7 +27,7 @@ function calculate() {
   resultDiv.textContent = "";
   detailDiv.textContent = "";
 
-  const mode = modeSelect.value;
+  const mode = modeButtons?.getValue() ?? "and";
   const pAPercent = toNumber(probAInput.value, 0);
 
   // Validate P(A)
@@ -72,11 +80,6 @@ function calculate() {
     <p><strong>Explanation:</strong> ${description}</p>
   `;
 }
-
-modeSelect.addEventListener("change", () => {
-  updateVisibility();
-  calculate();
-});
 
 calculateButton.addEventListener("click", calculate);
 

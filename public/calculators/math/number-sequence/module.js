@@ -1,7 +1,15 @@
 import { formatNumber } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber, clamp } from "/assets/js/core/validate.js";
 
-const typeSelect = document.querySelector("#seq-type");
+const typeGroup = document.querySelector('[data-button-group="seq-type"]');
+const typeButtons = setupButtonGroup(typeGroup, {
+  defaultValue: "arithmetic",
+  onChange: () => {
+    updateVisibility();
+    calculate();
+  },
+});
 const a1Input = document.querySelector("#seq-a1");
 const dInput = document.querySelector("#seq-d");
 const rInput = document.querySelector("#seq-r");
@@ -14,7 +22,7 @@ const resultDiv = document.querySelector("#seq-result");
 const detailDiv = document.querySelector("#seq-detail");
 
 function updateVisibility() {
-  const isArithmetic = typeSelect.value === "arithmetic";
+  const isArithmetic = (typeButtons?.getValue() ?? "arithmetic") === "arithmetic";
   dRow.style.display = isArithmetic ? "" : "none";
   rRow.style.display = isArithmetic ? "none" : "";
 }
@@ -44,7 +52,7 @@ function calculate() {
   resultDiv.textContent = "";
   detailDiv.textContent = "";
 
-  const isArithmetic = typeSelect.value === "arithmetic";
+  const isArithmetic = (typeButtons?.getValue() ?? "arithmetic") === "arithmetic";
   const a1 = toNumber(a1Input.value, 0);
   const d = toNumber(dInput.value, 0);
   const r = toNumber(rInput.value, 1);
@@ -94,11 +102,6 @@ function calculate() {
     <p style="word-break: break-word;">${previewStr}${validPreview.length < k ? "..." : ""}</p>
   `;
 }
-
-typeSelect.addEventListener("change", () => {
-  updateVisibility();
-  calculate();
-});
 
 calculateButton.addEventListener("click", calculate);
 

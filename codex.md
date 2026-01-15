@@ -1,17 +1,17 @@
 # Codex Review Configuration
 
-## 📚 Required Context
+## ?? Required Context
 
 Before reviewing ANY PR, Codex must check:
 
-1. `requirements/MASTER.MD` - Non-negotiable rules
-2. `requirements/INDEX.MD` - Current phase context
+1. `requirements/universal/MASTER.MD` - Non-negotiable rules
+2. `requirements/universal/INDEX.MD` - Current phase context
 3. The relevant phase file for this PR
-4. `Architecture.md` - UI + modular architecture requirements
+4. `requirements/universal/Architecture.md` - UI + modular architecture requirements
 
 ---
 
-## 🔍 Review Priority
+## ?? Review Priority
 
 ### P0 - Critical (Block PR)
 
@@ -38,7 +38,7 @@ Before reviewing ANY PR, Codex must check:
 
 ---
 
-## ✅ Review Checklist
+## ? Review Checklist
 
 For every PR, verify:
 
@@ -52,7 +52,7 @@ For every PR, verify:
 
 ---
 
-## 🚫 Always Flag
+## ?? Always Flag
 
 - Any `any` type in TypeScript
 - Console.log statements (use logger)
@@ -63,11 +63,11 @@ For every PR, verify:
 
 ---
 
-## 📝 Post-Merge Reminder
+## ?? Post-Merge Reminder
 
 After approving a PR, remind the developer:
 
-> "Don't forget to update `requirements/INDEX.MD` with this PR number and mark the phase progress."
+> "Don't forget to update `requirements/universal/INDEX.MD` with this PR number and mark the phase progress."
 ```
 
 ---
@@ -75,52 +75,58 @@ After approving a PR, remind the developer:
 ## Complete Folder Structure
 ```
 your-repo/
-├── CLAUDE.md                          # Claude config
-├── AGENTS.md                          # Codex config  
-├── Architecture.md                    # UI + modular architecture requirements
-├── requirements/
-│   ├── MASTER.MD                      # Non-negotiable rules
-│   ├── INDEX.MD                       # Phase tracker
-│   └── phases/
-│       ├── phase-01.md
-│       ├── phase-02.md
-│       ├── phase-03.md
-│       └── ... (all your phases)
+  CLAUDE.md                          # Claude config
+  AGENTS.md                          # Codex config
+  Architecture.md                    # UI + modular architecture requirements
+  requirements/
+    universal/
+      MASTER.MD                      # Non-negotiable rules
+      INDEX.MD                       # Phase tracker
+      UI_REQUIREMENTS.MD
+      CODING_STANDARDS.MD
+      FOLDER_STRUCTURE.MD
+      INVENTORY.MD
+      Architecture.md
+      CLAUDE.MD
+      codex.md
+    phases/
+      Statistics.md
+      ... (other phase files)
 ```
 
 ---
 
 ## How It All Works Together
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  You: "@claude implement PDF export from phase 7"           │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│  Claude reads:                                              │
-│  1. CLAUDE.md → knows the workflow                          │
-│  2. MASTER.md → knows the rules                             │
-│  3. INDEX.md → confirms phase 7 is active                   │
-│  4. phase-07-reporting.md → gets specific requirements      │
-│  5. Architecture.md → UI + modular architecture rules       │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│  Claude creates PR                                          │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│  Codex reviews (reads same files):                          │
-│  - Checks against MASTER.md rules                           │
-│  - Verifies phase-07 requirements met                       │
-│  - Flags any issues                                         │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│  PR Merged → Claude updates INDEX.md                        │
-└─────────────────────────────────────────────────────────────┘
++-------------------------------------------------------------+
+�  You: "@claude implement PDF export from phase 7"           �
++-------------------------------------------------------------+
+                            �
+                            ?
++-------------------------------------------------------------+
+�  Claude reads:                                              �
+�  1. CLAUDE.md ? knows the workflow                          �
+�  2. MASTER.md ? knows the rules                             �
+�  3. INDEX.md ? confirms phase 7 is active                   �
+�  4. phase-07-reporting.md ? gets specific requirements      �
+�  5. requirements/universal/Architecture.md ? UI + modular architecture rules       �
++-------------------------------------------------------------+
+                            �
+                            ?
++-------------------------------------------------------------+
+�  Claude creates PR                                          �
++-------------------------------------------------------------+
+                            �
+                            ?
++-------------------------------------------------------------+
+�  Codex reviews (reads same files):                          �
+�  - Checks against MASTER.md rules                           �
+�  - Verifies phase-07 requirements met                       �
+�  - Flags any issues                                         �
++-------------------------------------------------------------+
+                            �
+                            ?
++-------------------------------------------------------------+
+�  PR Merged ? Claude updates INDEX.md                        �
++-------------------------------------------------------------+
 ```

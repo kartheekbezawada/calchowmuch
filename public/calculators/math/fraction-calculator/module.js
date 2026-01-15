@@ -1,3 +1,4 @@
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
 // Fraction math utilities
@@ -104,7 +105,13 @@ function formatMixed(whole, numerator, denominator) {
 }
 
 // Mode switching
-const modeButtons = document.querySelectorAll(".mode-button");
+const modeGroup = document.querySelector('[data-button-group="fraction-mode"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "add",
+  onChange: mode => {
+    switchMode(mode);
+  },
+});
 const inputSections = document.querySelectorAll(".input-section");
 const resultDiv = document.querySelector("#fraction-result");
 const explanationContainer = document.querySelector("[data-fraction-explanation]");
@@ -155,16 +162,10 @@ const convInputs = {
 };
 
 // Calculate buttons
-const calculateButtons = document.querySelectorAll(".calculate");
+const calculateButtons = document.querySelectorAll("[data-calculate]");
 
 // Mode switching functionality
 function switchMode(mode) {
-  modeButtons.forEach(btn => {
-    const isActive = btn.dataset.mode === mode;
-    btn.classList.toggle("active", isActive);
-    btn.setAttribute("aria-selected", isActive);
-  });
-
   inputSections.forEach(section => {
     section.classList.toggle("active", section.dataset.mode === mode);
   });
@@ -321,13 +322,6 @@ function calculateConvert() {
   resultDiv.innerHTML = output;
 }
 
-// Event listeners for mode buttons
-modeButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    switchMode(btn.dataset.mode);
-  });
-});
-
 // Event listeners for calculate buttons
 calculateButtons.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -355,7 +349,7 @@ calculateButtons.forEach(btn => {
   });
 });
 
-const initialMode = document.querySelector(".mode-button.active")?.dataset.mode || "add";
+const initialMode = modeButtons?.getValue() ?? "add";
 updateExplanation(initialMode);
 
 // Initialize with first calculation

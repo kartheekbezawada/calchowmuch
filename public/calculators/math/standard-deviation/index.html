@@ -9,15 +9,19 @@
       </div>
 
       <div class="input-row">
-        <label for="std-mode">Mode</label>
-        <select id="std-mode">
-          <option value="sample" selected>Sample (n-1)</option>
-          <option value="population">Population (n)</option>
-        </select>
+        <label id="std-mode-label">Mode</label>
+        <div class="button-group" role="group" aria-labelledby="std-mode-label" data-button-group="std-mode">
+          <button class="calculator-button secondary is-active" type="button" data-value="sample" aria-pressed="true">
+            Sample (n-1)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="population" aria-pressed="false">
+            Population (n)
+          </button>
+        </div>
       </div>
     </div>
 
-    <button class="calculator-button primary full-width" type="button" id="std-calculate">
+    <button class="calculator-button full-width" type="button" id="std-calculate">
       Calculate Standard Deviation
     </button>
 

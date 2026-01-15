@@ -1,5 +1,6 @@
 .page {
-  min-height: calc(100vh - 48px);
+  height: calc(100vh - 48px);
+  max-height: calc(100vh - 48px);
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   gap: 16px;

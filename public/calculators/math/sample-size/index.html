@@ -4,12 +4,28 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label for="ss-confidence">Confidence Level</label>
-        <select id="ss-confidence">
-          <option value="1.645">90%</option>
-          <option value="1.96" selected>95%</option>
-          <option value="2.576">99%</option>
-        </select>
+        <label id="ss-confidence-label">Confidence Level</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ss-confidence-label"
+          data-button-group="ss-confidence"
+        >
+          <button class="calculator-button secondary" type="button" data-value="1.645" aria-pressed="false">
+            90%
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="1.96"
+            aria-pressed="true"
+          >
+            95%
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="2.576" aria-pressed="false">
+            99%
+          </button>
+        </div>
       </div>
 
       <div class="input-row">
@@ -28,7 +44,7 @@
       </div>
     </div>
 
-    <button class="calculator-button primary full-width" type="button" id="ss-calculate">
+    <button class="calculator-button full-width" type="button" id="ss-calculate">
       Calculate Sample Size
     </button>
 

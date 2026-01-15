@@ -4,11 +4,20 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label for="pc-mode">Calculation Type</label>
-        <select id="pc-mode">
-          <option value="permutation" selected>Permutation (nPr)</option>
-          <option value="combination">Combination (nCr)</option>
-        </select>
+        <label id="pc-mode-label">Calculation Type</label>
+        <div class="button-group" role="group" aria-labelledby="pc-mode-label" data-button-group="pc-mode">
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="permutation"
+            aria-pressed="true"
+          >
+            Permutation (nPr)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="combination" aria-pressed="false">
+            Combination (nCr)
+          </button>
+        </div>
       </div>
 
       <div class="input-row">
@@ -22,7 +31,7 @@
       </div>
     </div>
 
-    <button class="calculator-button primary full-width" type="button" id="pc-calculate">
+    <button class="calculator-button full-width" type="button" id="pc-calculate">
       Calculate
     </button>
 
