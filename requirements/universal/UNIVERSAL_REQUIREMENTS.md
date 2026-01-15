@@ -130,10 +130,22 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 ### 3.4 Scrollbar styling (global and consistent)
 
 **[UI-4.1] Scrollbar theme**
-- Thumb: `#2563eb`
-- Track: `#f3f4f6`
-- Thin width where supported.
+- Thumb: `#94a3b8` (slate-400, subtle gray)
+- Thumb hover: `#64748b` (slate-500, darker on hover)
+- Track: `#f1f5f9` (slate-100, very light gray)
+- Width: 8px (thin but usable)
 - Must apply consistently across all scrollable panes.
+- Scrollbar must be visible at all times (use `overflow-y: scroll`).
+
+**[UI-4.2] Scrollbar always visible**
+- Navigation pane, Calculation pane, and Explanation pane must always show scrollbar.
+- Use `overflow-y: scroll` (not `auto`) to ensure scrollbar track is always visible.
+- Use `scrollbar-gutter: stable` to prevent layout shifts when scrollbar appears/disappears.
+
+**[UI-4.3] Scrollbar styling implementation**
+- WebKit browsers: Use `::-webkit-scrollbar`, `::-webkit-scrollbar-track`, `::-webkit-scrollbar-thumb`.
+- Firefox: Use `scrollbar-width: thin` and `scrollbar-color`.
+- Scrollbar thumb should have subtle rounded corners (`border-radius: 4px`).
 
 ### 3.5 Toggle Components (Universal)
 
