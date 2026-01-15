@@ -1,0 +1,23 @@
+<div id="calc-statistics">
+  <div class="calculator-ui">
+    <p class="helper">Get a complete descriptive statistics summary for any dataset.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="stats-dataset">Dataset</label>
+        <textarea id="stats-dataset" rows="4" placeholder="Enter numbers separated by commas, spaces, or newlines">5, 10, 15, 20, 25, 20, 15, 10, 5</textarea>
+      </div>
+    </div>
+
+    <button class="calculator-button primary full-width" type="button" id="stats-calculate">
+      Calculate Statistics
+    </button>
+
+    <div class="result" id="stats-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="stats-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/statistics/calculator.css");
+</style>

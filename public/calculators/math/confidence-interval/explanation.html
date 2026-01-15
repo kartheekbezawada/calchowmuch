@@ -1,0 +1,100 @@
+<section>
+  <h3>What is a Confidence Interval?</h3>
+  <p>
+    A confidence interval is a range of values that likely contains the true
+    population parameter. For example, a 95% confidence interval means that if
+    we repeated the sampling process many times, 95% of the intervals would
+    contain the true value.
+  </p>
+</section>
+
+<section>
+  <h3>When to Use This Calculator</h3>
+  <ul>
+    <li>Estimating population proportions from survey data</li>
+    <li>Estimating population means when σ is known</li>
+    <li>Reporting margins of error in research</li>
+    <li>Quality control and process monitoring</li>
+    <li>Political polling and market research</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Input Definitions</h3>
+  <ul>
+    <li><strong>Calculation Type:</strong> Choose Proportion for percentages or Mean for continuous values.</li>
+    <li><strong>Confidence Level:</strong> How confident you want to be (90%, 95%, or 99%).</li>
+    <li><strong>Sample Proportion (p-hat):</strong> The proportion observed in your sample (as %).</li>
+    <li><strong>Sample Mean (x-bar):</strong> The average observed in your sample.</li>
+    <li><strong>Population Std Dev (σ):</strong> The known population standard deviation (for mean CI).</li>
+    <li><strong>Sample Size (n):</strong> The number of observations in your sample.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Formulas</h3>
+  <p><strong>Confidence Interval for Proportion:</strong></p>
+  <p style="margin-left: 1rem;">CI = p-hat ± z × √(p(1-p)/n)</p>
+
+  <p><strong>Confidence Interval for Mean (σ known):</strong></p>
+  <p style="margin-left: 1rem;">CI = x-bar ± z × σ/√n</p>
+
+  <p><strong>Z-values:</strong></p>
+  <ul>
+    <li>90% confidence: z = 1.645</li>
+    <li>95% confidence: z = 1.96</li>
+    <li>99% confidence: z = 2.576</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Worked Example (Proportion)</h3>
+  <p>Using defaults: p-hat = 60%, n = 100, 95% confidence</p>
+  <ol>
+    <li>Convert to decimal: p = 0.60</li>
+    <li>Standard error: SE = √(0.60 × 0.40 / 100) = √0.0024 = 0.049</li>
+    <li>Margin of error: ME = 1.96 × 0.049 = 0.096</li>
+    <li>CI: 0.60 ± 0.096 = (0.504, 0.696)</li>
+    <li>Result: 50.4% to 69.6%</li>
+  </ol>
+</section>
+
+<section>
+  <h3>Worked Example (Mean)</h3>
+  <p>Using: x-bar = 50, σ = 10, n = 100, 95% confidence</p>
+  <ol>
+    <li>Standard error: SE = 10 / √100 = 10 / 10 = 1</li>
+    <li>Margin of error: ME = 1.96 × 1 = 1.96</li>
+    <li>CI: 50 ± 1.96 = (48.04, 51.96)</li>
+  </ol>
+</section>
+
+<section>
+  <h3>Interpreting Results</h3>
+  <ul>
+    <li>A <strong>narrower interval</strong> indicates more precise estimation.</li>
+    <li>Larger sample sizes produce narrower intervals.</li>
+    <li>Higher confidence levels produce wider intervals.</li>
+    <li>The margin of error is half the width of the interval.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Common Misconceptions</h3>
+  <ul>
+    <li>A 95% CI does NOT mean there's a 95% chance the true value is in this specific interval.</li>
+    <li>It means 95% of similarly constructed intervals would contain the true value.</li>
+    <li>The interval refers to the procedure's reliability, not this particular result.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Edge Cases and Validation</h3>
+  <ul>
+    <li>Sample size must be at least 1.</li>
+    <li>Proportion must be between 0% and 100%.</li>
+    <li>Population standard deviation must be greater than 0.</li>
+    <li>Proportion bounds are clamped to [0, 1].</li>
+    <li>Results are formatted to 4 decimal places.</li>
+  </ul>
+</section>

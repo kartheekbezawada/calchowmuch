@@ -1,0 +1,88 @@
+<section>
+  <h3>What is Sample Size Calculation?</h3>
+  <p>
+    Sample size calculation determines how many observations you need to collect
+    to estimate a population proportion with a specified level of confidence and
+    precision (margin of error).
+  </p>
+</section>
+
+<section>
+  <h3>When to Use This Calculator</h3>
+  <ul>
+    <li>Planning surveys or polls</li>
+    <li>Designing experiments or studies</li>
+    <li>Quality control sampling</li>
+    <li>Market research planning</li>
+    <li>A/B testing sample size estimation</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Input Definitions</h3>
+  <ul>
+    <li><strong>Confidence Level:</strong> The probability that the true proportion falls within your margin of error. Common choices: 90%, 95%, 99%.</li>
+    <li><strong>Margin of Error (E):</strong> The maximum acceptable difference between the sample proportion and the true population proportion.</li>
+    <li><strong>Estimated Proportion (p):</strong> Your best guess of the population proportion. Use 50% if unknown (gives largest sample size).</li>
+    <li><strong>Population Size (N):</strong> The total population size. Leave blank for very large or infinite populations.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Formulas</h3>
+  <p><strong>Base formula (infinite population):</strong></p>
+  <p style="margin-left: 1rem;">n₀ = (z² × p × (1 - p)) / E²</p>
+
+  <p><strong>Finite population correction:</strong></p>
+  <p style="margin-left: 1rem;">n = n₀ / (1 + (n₀ - 1) / N)</p>
+
+  <p><strong>Z-values:</strong></p>
+  <ul>
+    <li>90% confidence: z = 1.645</li>
+    <li>95% confidence: z = 1.96</li>
+    <li>99% confidence: z = 2.576</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Worked Example</h3>
+  <p>Using the defaults: 95% confidence, 5% margin of error, 50% proportion</p>
+  <ol>
+    <li>Convert to decimals: E = 0.05, p = 0.50</li>
+    <li>Look up z-value: z = 1.96</li>
+    <li>Calculate: n₀ = (1.96² × 0.50 × 0.50) / 0.05²</li>
+    <li>n₀ = (3.8416 × 0.25) / 0.0025 = 0.9604 / 0.0025 = 384.16</li>
+    <li>Round up: n = 385</li>
+  </ol>
+</section>
+
+<section>
+  <h3>With Finite Population</h3>
+  <p>If population N = 1000:</p>
+  <ol>
+    <li>Base sample: n₀ = 384.16</li>
+    <li>Apply correction: n = 384.16 / (1 + (384.16 - 1) / 1000)</li>
+    <li>n = 384.16 / (1 + 0.38316) = 384.16 / 1.38316 = 277.7</li>
+    <li>Round up: n = 278</li>
+  </ol>
+</section>
+
+<section>
+  <h3>Tips for Best Results</h3>
+  <ul>
+    <li>Use p = 50% when uncertain - it gives the most conservative (largest) estimate.</li>
+    <li>Higher confidence levels require larger samples.</li>
+    <li>Smaller margins of error require larger samples.</li>
+    <li>The finite population correction significantly reduces required sample size when the population is small.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Edge Cases and Validation</h3>
+  <ul>
+    <li>Margin of error must be greater than 0%.</li>
+    <li>Proportion must be between 0% and 100%.</li>
+    <li>Population size (if provided) must be at least 1.</li>
+    <li>Results are always rounded up to ensure adequate coverage.</li>
+  </ul>
+</section>

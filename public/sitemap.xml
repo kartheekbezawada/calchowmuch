@@ -44,4 +44,59 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Statistics Calculators -->
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/standard-deviation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/number-sequence/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/sample-size/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/probability/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/statistics/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/mean-median-mode-range/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/permutation-combination/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/z-score/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/confidence-interval/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

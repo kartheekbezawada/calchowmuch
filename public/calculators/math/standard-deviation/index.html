@@ -1,0 +1,31 @@
+<div id="calc-standard-deviation">
+  <div class="calculator-ui">
+    <p class="helper">Enter a dataset to compute mean, variance, and standard deviation.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="std-dataset">Dataset</label>
+        <textarea id="std-dataset" rows="4" placeholder="Enter numbers separated by commas, spaces, or newlines">10, 12, 23, 23, 16, 23, 21, 16</textarea>
+      </div>
+
+      <div class="input-row">
+        <label for="std-mode">Mode</label>
+        <select id="std-mode">
+          <option value="sample" selected>Sample (n-1)</option>
+          <option value="population">Population (n)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calculator-button primary full-width" type="button" id="std-calculate">
+      Calculate Standard Deviation
+    </button>
+
+    <div class="result" id="std-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="std-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/standard-deviation/calculator.css");
+</style>
