@@ -7,19 +7,26 @@
 
 ## Table of Contents
 
-0. [Document Control](#0-document-control)  
-1. [Product Intent](#1-product-intent)  
-2. [Authority and Precedence](#2-authority-and-precedence)  
-3. [Universal UI Contract](#3-universal-ui-contract)  
-4. [Universal Layout and Architecture Boundaries](#4-universal-layout-and-architecture-boundaries)  
-5. [Folder Structure Contract](#5-folder-structure-contract)  
-6. [Coding Standards](#6-coding-standards)  
-7. [Testing Standards](#7-testing-standards)  
-8. [SEO and URL Rules](#8-seo-and-url-rules)  
-9. [Inventory and Documentation Accuracy](#9-inventory-and-documentation-accuracy)  
-10. [PR and Phase Workflow](#10-pr-and-phase-workflow)  
-11. [Hard “Never Do” Rules](#11-hard-never-do-rules)  
-12. [Definition of Done](#12-definition-of-done)  
+0. [Document Control](#0-document-control)
+1. [Product Intent](#1-product-intent)
+2. [Authority and Precedence](#2-authority-and-precedence)
+3. [Universal UI Contract](#3-universal-ui-contract)
+   - 3.1 Theme Tokens
+   - 3.2 Components
+   - 3.3 Layout Contract
+   - 3.4 Scrollbar Styling
+   - 3.5 Toggle Components
+   - 3.6 Tables (Universal)
+   - 3.7 Graphs and Visualizations
+4. [Universal Layout and Architecture Boundaries](#4-universal-layout-and-architecture-boundaries)
+5. [Folder Structure Contract](#5-folder-structure-contract)
+6. [Coding Standards](#6-coding-standards)
+7. [Testing Standards](#7-testing-standards)
+8. [SEO and URL Rules](#8-seo-and-url-rules)
+9. [Inventory and Documentation Accuracy](#9-inventory-and-documentation-accuracy)
+10. [PR and Phase Workflow](#10-pr-and-phase-workflow)
+11. [Hard "Never Do" Rules](#11-hard-never-do-rules)
+12. [Definition of Done](#12-definition-of-done)
 13. [How to Report Violations](#13-how-to-report-violations)
 
 ---
@@ -142,7 +149,28 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 **[UITGL-4] Update dependent UI**
 - Toggle interaction must update all dependent UI elements (tables, graphs, summaries).
 
-### 3.6 Graphs and Visualizations (Universal)
+### 3.6 Tables (Universal)
+
+**[UITBL-1] Horizontal scrolling allowed**
+- Tables may scroll horizontally within their container.
+- Use `overflow-x: auto` on table wrapper to enable horizontal scrolling when content exceeds container width.
+
+**[UITBL-2] Table font sizing**
+- Table body text: `14px` minimum, `15px` recommended for readability.
+- Table headers: `13px` uppercase or `14px` normal weight.
+- Ensure sufficient contrast and legibility.
+
+**[UITBL-3] No currency symbols in table cells**
+- Do not display currency symbols ($, ₹, €, etc.) in table cell values.
+- Currency context should be established in column headers or table caption if needed.
+- Display numeric values only for cleaner presentation.
+
+**[UITBL-4] Table cell formatting**
+- Right-align numeric columns.
+- Use consistent decimal precision within columns.
+- Add appropriate padding for readability (`8px 12px` minimum).
+
+### 3.7 Graphs and Visualizations (Universal)
 
 **[UIGRAPH-1] Fixed-height container**
 - Graphs must live inside a fixed-height container.
@@ -153,8 +181,25 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 **[UIGRAPH-3] Reactive to state**
 - Graphs must respond to state changes (inputs, toggles).
 
-**[UIGRAPH-4] Internal scroll if needed**
-- Graphs must scroll internally if needed and never push layout height.
+**[UIGRAPH-4] Horizontal scrolling allowed**
+- Graphs may scroll horizontally within their container when data exceeds available width.
+- Use `overflow-x: auto` on graph container to enable horizontal scrolling.
+- This is preferred over truncating or hiding data points.
+
+**[UIGRAPH-5] Axis labels required**
+- Graphs must display X-axis and Y-axis labels.
+- X-axis: label describing the horizontal dimension (e.g., "Month", "Year", "Time").
+- Y-axis: label describing the vertical dimension (e.g., "Balance", "Amount", "Value").
+
+**[UIGRAPH-6] Axis value display**
+- X-axis should display value markers or ranges.
+- For many data points, use range notation (e.g., "1-12", "Jan-Dec") instead of individual labels.
+- Y-axis should display scale markers at meaningful intervals.
+
+**[UIGRAPH-7] Legend required**
+- Graphs with multiple data series must include a legend.
+- Legend must clearly identify each data series with color/pattern and label.
+- Position legend where it doesn't obscure data (top, bottom, or side of graph).
 
 ---
 
