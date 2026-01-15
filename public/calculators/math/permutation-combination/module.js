@@ -13,10 +13,20 @@ function calculate() {
   detailDiv.textContent = "";
 
   const mode = modeSelect.value;
-  const n = Math.floor(toNumber(nInput.value, 0));
-  const r = Math.floor(toNumber(rInput.value, 0));
+  const n = toNumber(nInput.value, 0);
+  const r = toNumber(rInput.value, 0);
 
-  // Validation
+  // Validation - check for integer inputs
+  if (!Number.isInteger(n)) {
+    resultDiv.textContent = "n must be an integer.";
+    return;
+  }
+
+  if (!Number.isInteger(r)) {
+    resultDiv.textContent = "r must be an integer.";
+    return;
+  }
+
   if (n < 0) {
     resultDiv.textContent = "n must be a non-negative integer.";
     return;
