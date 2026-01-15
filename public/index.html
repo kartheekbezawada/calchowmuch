@@ -19,7 +19,7 @@
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <h2>Navigation</h2>
+          <h2 class="left-nav-title">Navigation</h2>
           <div id="left-nav-content"></div>
         </aside>
 
@@ -55,6 +55,8 @@
         navigation: null,
         activeCategoryId: null,
         activeCalculatorId: null,
+        navSearchQuery: {},
+        navCollapsed: {},
       };
 
       function findCalculatorById(id) {
@@ -112,6 +114,58 @@
         return null;
       }
 
+      function normalizeSearch(value) {
+        return (value ?? "").trim().toLowerCase();
+      }
+
+      function getSearchText(calculator) {
+        if (!calculator) {
+          return "";
+        }
+        const name = calculator.name ?? "";
+        const keywords = Array.isArray(calculator.keywords)
+          ? calculator.keywords.join(" ")
+          : calculator.keywords ?? "";
+        return `${name} ${keywords}`.trim().toLowerCase();
+      }
+
+      function getCollapsedMap(categoryId) {
+        if (!state.navCollapsed[categoryId]) {
+          state.navCollapsed[categoryId] = {};
+        }
+        return state.navCollapsed[categoryId];
+      }
+
+      function applySearchFilter(container, query) {
+        const normalizedQuery = normalizeSearch(query);
+        const hasQuery = normalizedQuery.length > 0;
+        container.classList.toggle("is-searching", hasQuery);
+
+        const categories = Array.from(container.querySelectorAll(".nav-category"));
+        categories.forEach(category => {
+          const items = Array.from(category.querySelectorAll(".nav-item"));
+          let matches = 0;
+
+          items.forEach(item => {
+            const text = item.dataset.search ?? "";
+            const isMatch = !hasQuery || text.includes(normalizedQuery);
+            item.hidden = hasQuery && !isMatch;
+            if (isMatch) {
+              matches += 1;
+            }
+          });
+
+          if (!hasQuery) {
+            category.hidden = false;
+            category.classList.remove("is-search-open");
+            return;
+          }
+
+          category.hidden = matches === 0;
+          category.classList.toggle("is-search-open", matches > 0);
+        });
+      }
+
       // Track current module script for cleanup
       let currentModuleScript = null;
 
@@ -131,6 +185,7 @@
           'permutation-combination': '/calculators/math/permutation-combination',
           'z-score': '/calculators/math/z-score',
           'confidence-interval': '/calculators/math/confidence-interval',
+          'loan-emi': '/calculators/loans/loan-emi',
         };
         return pathMap[calculatorId] || null;
       }
@@ -263,6 +318,8 @@
       }
 
       function renderLeftNav() {
+        const leftNav = document.querySelector(".left-nav");
+        const title = document.querySelector(".left-nav-title");
         const container = document.getElementById("left-nav-content");
         container.innerHTML = "";
 
@@ -273,11 +330,68 @@
           return;
         }
 
+        const isLoans = category.id === "loans";
+        leftNav.classList.toggle("is-loans", isLoans);
+        if (title) {
+          title.hidden = isLoans;
+        }
+        if (!isLoans) {
+          container.classList.remove("is-searching");
+        }
+
+        let searchInput = null;
+        if (isLoans) {
+          const searchWrap = document.createElement("div");
+          searchWrap.className = "nav-search";
+
+          searchInput = document.createElement("input");
+          searchInput.type = "search";
+          searchInput.className = "nav-search-input";
+          searchInput.placeholder = "Search loans...";
+          searchInput.setAttribute("aria-label", "Search loan calculators");
+          searchInput.value = state.navSearchQuery[category.id] ?? "";
+          searchWrap.appendChild(searchInput);
+          container.appendChild(searchWrap);
+        }
+
+        const collapsedMap = getCollapsedMap(category.id);
+        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
+        if (selectedCalculator && selectedCalculator.category.id === category.id) {
+          collapsedMap[selectedCalculator.subcategory.id] = false;
+        }
+
         category.subcategories.forEach(subcategory => {
-          const subcategoryTitle = document.createElement("h3");
-          subcategoryTitle.textContent = subcategory.name;
-          subcategoryTitle.className = "subcategory-title";
-          container.appendChild(subcategoryTitle);
+          const categoryWrap = document.createElement("div");
+          categoryWrap.className = "nav-category";
+          categoryWrap.dataset.id = subcategory.id;
+
+          const isCollapsed = collapsedMap[subcategory.id] === true;
+          categoryWrap.classList.toggle("is-collapsed", isCollapsed);
+
+          const toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.className = "nav-category-toggle";
+          toggle.setAttribute("aria-expanded", String(!isCollapsed));
+
+          const label = document.createElement("span");
+          label.className = "nav-category-label";
+          label.textContent = subcategory.name;
+
+          const indicator = document.createElement("span");
+          indicator.className = "nav-category-indicator";
+          indicator.textContent = isCollapsed ? "+" : "-";
+
+          toggle.append(label, indicator);
+          toggle.addEventListener("click", () => {
+            const nextCollapsed = !categoryWrap.classList.contains("is-collapsed");
+            categoryWrap.classList.toggle("is-collapsed", nextCollapsed);
+            collapsedMap[subcategory.id] = nextCollapsed;
+            indicator.textContent = nextCollapsed ? "+" : "-";
+            toggle.setAttribute("aria-expanded", String(!nextCollapsed));
+          });
+
+          const items = document.createElement("div");
+          items.className = "nav-category-items";
 
           subcategory.calculators.forEach(calculator => {
             const item = document.createElement("button");
@@ -285,23 +399,47 @@
             item.className = "nav-item";
             item.textContent = calculator.name;
             item.dataset.id = calculator.id;
+
+            const searchText = getSearchText(calculator);
+            if (searchText) {
+              item.dataset.search = searchText;
+            }
+
             item.addEventListener("click", () => {
               setActiveCalculator(calculator);
             });
-            container.appendChild(item);
+            items.appendChild(item);
           });
+
+          categoryWrap.append(toggle, items);
+          container.appendChild(categoryWrap);
         });
 
-        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
-        if (!selectedCalculator || selectedCalculator.category.id !== category.id) {
-          const firstCalculator =
-            category.subcategories[0]?.calculators[0] ?? null;
+        const selected = findCalculatorById(state.activeCalculatorId);
+        if (!selected || selected.category.id !== category.id) {
+          const firstCalculator = category.subcategories
+            .map(subcategory => subcategory.calculators[0])
+            .find(Boolean);
+
           if (firstCalculator) {
             setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
+          } else {
+            setActiveCalculator(null, { skipUrlUpdate: true });
           }
         }
 
         highlightActiveCalculator();
+
+        if (isLoans && searchInput) {
+          searchInput.addEventListener("input", () => {
+            const query = searchInput.value;
+            state.navSearchQuery[category.id] = query;
+            applySearchFilter(container, query);
+          });
+          applySearchFilter(container, searchInput.value);
+        }
+
+        leftNav.scrollTop = 0;
       }
 
       function handleNavigationChange() {

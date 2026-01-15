@@ -71,6 +71,49 @@
           ]
         }
       ]
+    },
+    {
+      "id": "loans",
+      "name": "Loans",
+      "subcategories": [
+        {
+          "id": "home-loans",
+          "name": "Home Loans",
+          "calculators": []
+        },
+        {
+          "id": "personal-loans",
+          "name": "Personal Loans",
+          "calculators": []
+        },
+        {
+          "id": "credit-cards",
+          "name": "Credit Cards",
+          "calculators": []
+        },
+        {
+          "id": "auto-loans",
+          "name": "Auto Loans",
+          "calculators": []
+        },
+        {
+          "id": "education-loans",
+          "name": "Education Loans",
+          "calculators": []
+        },
+        {
+          "id": "general-loan-tools",
+          "name": "General Loan Tools",
+          "calculators": [
+            {
+              "id": "loan-emi",
+              "name": "Loan EMI Calculator",
+              "url": "#/calculators/loan-emi",
+              "keywords": ["emi", "mortgage", "interest", "amortization", "loan payment", "repayment"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
