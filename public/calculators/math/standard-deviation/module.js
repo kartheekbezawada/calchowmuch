@@ -1,8 +1,15 @@
 import { mean, variance, standardDeviation, parseDataset } from "/assets/js/core/stats.js";
 import { formatNumber } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 
 const datasetInput = document.querySelector("#std-dataset");
-const modeSelect = document.querySelector("#std-mode");
+const modeGroup = document.querySelector('[data-button-group="std-mode"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "sample",
+  onChange: () => {
+    calculate();
+  },
+});
 const calculateButton = document.querySelector("#std-calculate");
 const resultDiv = document.querySelector("#std-result");
 const detailDiv = document.querySelector("#std-detail");
@@ -12,7 +19,7 @@ function calculate() {
   detailDiv.textContent = "";
 
   const { data, errors } = parseDataset(datasetInput.value);
-  const isSample = modeSelect.value === "sample";
+  const isSample = (modeButtons?.getValue() ?? "sample") === "sample";
   const modeLabel = isSample ? "Sample" : "Population";
 
   if (errors.length > 0) {

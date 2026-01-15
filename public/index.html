@@ -7,6 +7,7 @@
     <meta name="description" content="Layout shell for calchowmuch.com" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/calculator.css" />
   </head>
   <body>
     <div class="page">
@@ -23,7 +24,7 @@
         </aside>
 
         <section class="center-column">
-          <div class="panel">
+          <div class="panel panel-scroll">
             <h3 id="calculator-title">Main Calculation Pane</h3>
             <p class="placeholder" id="calculator-placeholder">
               Select a calculator from the navigation list.
@@ -48,6 +49,7 @@
         <a href="#">Contact</a>
       </footer>
     </div>
+    <script type="module" src="assets/js/core/ui.js"></script>
     <script>
       const state = {
         navigation: null,

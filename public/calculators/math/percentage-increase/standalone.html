@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/calculator.css" />
     <link rel="stylesheet" href="/assets/css/ads.css" />
     <link rel="stylesheet" href="./calculator.css" />
     <script type="application/ld+json">
@@ -53,25 +54,36 @@
     <main class="calculator-page" id="calc-percentage-increase">
       <section class="card" aria-labelledby="calculator-title">
         <h1 id="calculator-title">Percentage Calculator</h1>
-        <p class="helper">Choose a calculation type and enter your values.</p>
+        <div class="calculator-ui">
+          <p class="helper">Choose a calculation type and enter your values.</p>
 
-        <div class="mode-selector" role="tablist" aria-label="Percentage calculation types">
-          <button class="mode-button active" data-mode="change" role="tab" aria-selected="true">
-            Percent Change
-          </button>
-          <button class="mode-button" data-mode="percent-of" role="tab" aria-selected="false">
-            Percent Of
-          </button>
-          <button class="mode-button" data-mode="increase" role="tab" aria-selected="false">
-            Increase By
-          </button>
-          <button class="mode-button" data-mode="decrease" role="tab" aria-selected="false">
-            Decrease By
-          </button>
-          <button class="mode-button" data-mode="what-percent" role="tab" aria-selected="false">
-            What Percent
-          </button>
-        </div>
+          <div
+            class="button-group"
+            role="tablist"
+            aria-label="Percentage calculation types"
+            data-button-group="percent-mode"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              data-mode="change"
+              role="tab"
+              aria-selected="true"
+            >
+              Percent Change
+            </button>
+            <button class="calculator-button secondary" data-mode="percent-of" role="tab" aria-selected="false">
+              Percent Of
+            </button>
+            <button class="calculator-button secondary" data-mode="increase" role="tab" aria-selected="false">
+              Increase By
+            </button>
+            <button class="calculator-button secondary" data-mode="decrease" role="tab" aria-selected="false">
+              Decrease By
+            </button>
+            <button class="calculator-button secondary" data-mode="what-percent" role="tab" aria-selected="false">
+              What Percent
+            </button>
+          </div>
 
         <div class="input-section active" data-mode="change" role="tabpanel">
           <div class="input-grid">
@@ -84,7 +96,7 @@
               <input id="percent-change-end" type="number" value="260" />
             </div>
           </div>
-          <button type="button" data-calc="change">Calculate change</button>
+          <button class="calculator-button full-width" type="button" data-calc="change">Calculate change</button>
         </div>
 
         <div class="input-section" data-mode="percent-of" role="tabpanel">
@@ -98,7 +110,9 @@
               <input id="percent-of-value" type="number" value="400" />
             </div>
           </div>
-          <button type="button" data-calc="percent-of">Calculate percent of</button>
+          <button class="calculator-button full-width" type="button" data-calc="percent-of">
+            Calculate percent of
+          </button>
         </div>
 
         <div class="input-section" data-mode="increase" role="tabpanel">
@@ -112,7 +126,9 @@
               <input id="percent-increase-rate" type="number" value="20" />
             </div>
           </div>
-          <button type="button" data-calc="increase">Calculate increase</button>
+          <button class="calculator-button full-width" type="button" data-calc="increase">
+            Calculate increase
+          </button>
         </div>
 
         <div class="input-section" data-mode="decrease" role="tabpanel">
@@ -126,7 +142,9 @@
               <input id="percent-decrease-rate" type="number" value="20" />
             </div>
           </div>
-          <button type="button" data-calc="decrease">Calculate decrease</button>
+          <button class="calculator-button full-width" type="button" data-calc="decrease">
+            Calculate decrease
+          </button>
         </div>
 
         <div class="input-section" data-mode="what-percent" role="tabpanel">
@@ -140,11 +158,14 @@
               <input id="percent-what-total" type="number" value="180" />
             </div>
           </div>
-          <button type="button" data-calc="what-percent">Calculate percent</button>
+          <button class="calculator-button full-width" type="button" data-calc="what-percent">
+            Calculate percent
+          </button>
         </div>
 
         <div class="result" id="percent-result" aria-live="polite"></div>
         <p class="helper" id="percent-details"></p>
+      </div>
       </section>
 
       <section class="card" aria-labelledby="explanation-title">
@@ -296,7 +317,9 @@
       </aside>
     </main>
 
+    <script type="module" src="/assets/js/core/ui.js"></script>
     <script type="module" src="./module.js"></script>
     <script async src="/assets/js/ads/loader.js"></script>
   </body>
 </html>
+

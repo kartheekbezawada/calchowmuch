@@ -1,7 +1,11 @@
 import { permutation, combination } from "/assets/js/core/stats.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
-const modeSelect = document.querySelector("#pc-mode");
+const modeGroup = document.querySelector('[data-button-group="pc-mode"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "permutation",
+});
 const nInput = document.querySelector("#pc-n");
 const rInput = document.querySelector("#pc-r");
 const calculateButton = document.querySelector("#pc-calculate");
@@ -12,7 +16,7 @@ function calculate() {
   resultDiv.textContent = "";
   detailDiv.textContent = "";
 
-  const mode = modeSelect.value;
+  const mode = modeButtons?.getValue() ?? "permutation";
   const n = toNumber(nInput.value, 0);
   const r = toNumber(rInput.value, 0);
 

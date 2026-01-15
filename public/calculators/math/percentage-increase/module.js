@@ -1,8 +1,16 @@
 import { percentOf, percentageChange } from "/assets/js/core/math.js";
 import { formatNumber, formatPercent } from "/assets/js/core/format.js";
+import { setupButtonGroup } from "/assets/js/core/ui.js";
 import { toNumber } from "/assets/js/core/validate.js";
 
-const modeButtons = document.querySelectorAll(".mode-button");
+const modeGroup = document.querySelector('[data-button-group="percent-mode"]');
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: "change",
+  onChange: mode => {
+    switchMode(mode);
+    runCalculation(mode);
+  },
+});
 const inputSections = document.querySelectorAll(".input-section");
 const calcButtons = document.querySelectorAll("[data-calc]");
 const result = document.querySelector("#percent-result");
@@ -86,12 +94,6 @@ function updateExplanationFields(mode, fields) {
 }
 
 function switchMode(mode) {
-  modeButtons.forEach(btn => {
-    const isActive = btn.dataset.mode === mode;
-    btn.classList.toggle("active", isActive);
-    btn.setAttribute("aria-selected", isActive);
-  });
-
   inputSections.forEach(section => {
     section.classList.toggle("active", section.dataset.mode === mode);
   });
@@ -233,14 +235,6 @@ function runCalculation(mode) {
   }
 }
 
-modeButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const mode = button.dataset.mode;
-    switchMode(mode);
-    runCalculation(mode);
-  });
-});
-
 calcButtons.forEach(button => {
   button.addEventListener("click", () => {
     const mode = button.dataset.calc;
@@ -248,6 +242,6 @@ calcButtons.forEach(button => {
   });
 });
 
-const initialMode = document.querySelector(".mode-button.active")?.dataset.mode || "change";
+const initialMode = modeButtons?.getValue() ?? "change";
 switchMode(initialMode);
 runCalculation(initialMode);

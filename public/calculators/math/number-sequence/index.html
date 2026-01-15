@@ -4,11 +4,20 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label for="seq-type">Sequence Type</label>
-        <select id="seq-type">
-          <option value="arithmetic" selected>Arithmetic</option>
-          <option value="geometric">Geometric</option>
-        </select>
+        <label id="seq-type-label">Sequence Type</label>
+        <div class="button-group" role="group" aria-labelledby="seq-type-label" data-button-group="seq-type">
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="arithmetic"
+            aria-pressed="true"
+          >
+            Arithmetic
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="geometric" aria-pressed="false">
+            Geometric
+          </button>
+        </div>
       </div>
 
       <div class="input-row">
@@ -37,7 +46,7 @@
       </div>
     </div>
 
-    <button class="calculator-button primary full-width" type="button" id="seq-calculate">
+    <button class="calculator-button full-width" type="button" id="seq-calculate">
       Calculate Sequence
     </button>
 

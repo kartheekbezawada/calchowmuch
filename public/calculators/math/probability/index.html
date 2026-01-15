@@ -4,13 +4,26 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label for="prob-mode">Operation</label>
-        <select id="prob-mode">
-          <option value="single">Single Event P(A)</option>
-          <option value="complement">Complement 1 - P(A)</option>
-          <option value="and" selected>AND (Independent): P(A) × P(B)</option>
-          <option value="or">OR (Independent): P(A) + P(B) - P(A)×P(B)</option>
-        </select>
+        <label id="prob-mode-label">Operation</label>
+        <div class="button-group" role="group" aria-labelledby="prob-mode-label" data-button-group="prob-mode">
+          <button class="calculator-button secondary" type="button" data-value="single" aria-pressed="false">
+            Single Event P(A)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="complement" aria-pressed="false">
+            Complement 1 - P(A)
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="and"
+            aria-pressed="true"
+          >
+            AND (Independent): P(A) × P(B)
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="or" aria-pressed="false">
+            OR (Independent): P(A) + P(B) - P(A)×P(B)
+          </button>
+        </div>
       </div>
 
       <div class="input-row">
@@ -24,7 +37,7 @@
       </div>
     </div>
 
-    <button class="calculator-button primary full-width" type="button" id="prob-calculate">
+    <button class="calculator-button full-width" type="button" id="prob-calculate">
       Calculate Probability
     </button>
 
