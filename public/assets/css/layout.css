@@ -162,9 +162,17 @@
   border-radius: 8px;
 }
 
+.nav-category-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .nav-category-indicator {
   font-weight: 600;
   color: var(--header-text);
+  flex-shrink: 0;
 }
 
 .nav-category-items {
@@ -201,6 +209,8 @@
   border: 1px solid var(--pill-border);
   cursor: pointer;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 

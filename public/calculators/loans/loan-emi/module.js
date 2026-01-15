@@ -30,6 +30,11 @@ const yearlySummaryBlock = explanationRoot?.querySelector('[data-emi-view="yearl
 const graphTitle = explanationRoot?.querySelector("#emi-graph-title");
 const graphNote = explanationRoot?.querySelector("#emi-graph-note");
 const graphBars = explanationRoot?.querySelector("#emi-graph-bars");
+const graphYMax = explanationRoot?.querySelector("#emi-y-max");
+const graphYMid = explanationRoot?.querySelector("#emi-y-mid");
+const graphXStart = explanationRoot?.querySelector("#emi-x-start");
+const graphXEnd = explanationRoot?.querySelector("#emi-x-end");
+const graphXLabel = explanationRoot?.querySelector("#emi-x-label");
 
 const extraButtons = setupButtonGroup(extraGroup, {
   defaultValue: "monthly",
@@ -163,6 +168,10 @@ function sampleValues(values, maxPoints) {
   return sampled;
 }
 
+function formatTableNumber(value) {
+  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
 function renderComparison(base, over) {
   if (!comparisonBody) {
     return;
@@ -174,13 +183,13 @@ function renderComparison(base, over) {
   const rows = [
     {
       label: "Total payment",
-      base: formatCurrency(base.totalPayment),
-      over: formatCurrency(over.totalPayment),
+      base: formatTableNumber(base.totalPayment),
+      over: formatTableNumber(over.totalPayment),
     },
     {
       label: "Total interest",
-      base: formatCurrency(base.totalInterest),
-      over: formatCurrency(over.totalInterest),
+      base: formatTableNumber(base.totalInterest),
+      over: formatTableNumber(over.totalInterest),
     },
     {
       label: "Payoff time",
@@ -190,7 +199,7 @@ function renderComparison(base, over) {
     {
       label: "Interest saved",
       base: "-",
-      over: formatCurrency(interestSaved),
+      over: formatTableNumber(interestSaved),
     },
     {
       label: "Time saved",
@@ -216,11 +225,11 @@ function renderMonthlyTable(schedule) {
       entry =>
         `<tr>
           <td>${entry.month}</td>
-          <td>${formatCurrency(entry.payment)}</td>
-          <td>${formatCurrency(entry.principal)}</td>
-          <td>${formatCurrency(entry.interest)}</td>
-          <td>${formatCurrency(entry.extra)}</td>
-          <td>${formatCurrency(entry.balance)}</td>
+          <td>${formatTableNumber(entry.payment)}</td>
+          <td>${formatTableNumber(entry.principal)}</td>
+          <td>${formatTableNumber(entry.interest)}</td>
+          <td>${formatTableNumber(entry.extra)}</td>
+          <td>${formatTableNumber(entry.balance)}</td>
         </tr>`,
     )
     .join("");
@@ -235,11 +244,11 @@ function renderYearlyTable(yearly) {
       entry =>
         `<tr>
           <td>${entry.year}</td>
-          <td>${formatCurrency(entry.payment)}</td>
-          <td>${formatCurrency(entry.principal)}</td>
-          <td>${formatCurrency(entry.interest)}</td>
-          <td>${formatCurrency(entry.extra)}</td>
-          <td>${formatCurrency(entry.balance)}</td>
+          <td>${formatTableNumber(entry.payment)}</td>
+          <td>${formatTableNumber(entry.principal)}</td>
+          <td>${formatTableNumber(entry.interest)}</td>
+          <td>${formatTableNumber(entry.extra)}</td>
+          <td>${formatTableNumber(entry.balance)}</td>
         </tr>`,
     )
     .join("");
@@ -294,16 +303,25 @@ function updateExplanation(data, view) {
   }
 }
 
+function formatAxisValue(value) {
+  if (value >= 1000000) {
+    return `${(value / 1000000).toFixed(1)}M`;
+  }
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(0)}K`;
+  }
+  return formatNumber(value, { maximumFractionDigits: 0 });
+}
+
 function updateGraph(data, view) {
   if (!graphBars || !graphTitle) {
     return;
   }
 
   const maxBalance = data.principal;
-  const balances =
-    view === "monthly"
-      ? data.overpayment.schedule.map(entry => entry.balance)
-      : data.yearlyOver.map(entry => entry.balance);
+  const isMonthly = view === "monthly";
+  const sourceData = isMonthly ? data.overpayment.schedule : data.yearlyOver;
+  const balances = sourceData.map(entry => entry.balance);
 
   if (balances[0] !== maxBalance) {
     balances.unshift(maxBalance);
@@ -314,21 +332,38 @@ function updateGraph(data, view) {
 
   sampled.forEach((balance, index) => {
     const bar = document.createElement("div");
-    bar.className = "graph-bar";
+    bar.className = "graph-bar balance";
     const height = maxBalance > 0 ? (balance / maxBalance) * 100 : 0;
     bar.style.height = `${Math.max(2, Math.min(100, height))}%`;
-    bar.title = `Period ${index + 1}: ${formatCurrency(balance)}`;
+    bar.title = `${isMonthly ? "Month" : "Year"} ${index + 1}: ${formatTableNumber(balance)}`;
     graphBars.appendChild(bar);
   });
 
   graphTitle.textContent =
-    view === "monthly" ? "Remaining Balance (Monthly)" : "Remaining Balance (Yearly)";
+    isMonthly ? "Remaining Balance (Monthly)" : "Remaining Balance (Yearly)";
 
   if (graphNote) {
-    graphNote.textContent =
-      view === "monthly"
-        ? `Points: ${sampled.length}`
-        : `Years: ${sampled.length}`;
+    graphNote.textContent = isMonthly
+      ? `${sampled.length} points`
+      : `${sampled.length} years`;
+  }
+
+  if (graphYMax) {
+    graphYMax.textContent = formatAxisValue(maxBalance);
+  }
+  if (graphYMid) {
+    graphYMid.textContent = formatAxisValue(maxBalance / 2);
+  }
+
+  if (graphXStart) {
+    graphXStart.textContent = "1";
+  }
+  if (graphXEnd) {
+    const totalPeriods = isMonthly ? data.overpayment.months : data.yearlyOver.length;
+    graphXEnd.textContent = String(totalPeriods);
+  }
+  if (graphXLabel) {
+    graphXLabel.textContent = isMonthly ? "Month" : "Year";
   }
 }
 
