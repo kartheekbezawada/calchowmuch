@@ -243,6 +243,8 @@
 .panel-scroll {
   overflow-y: scroll;
   scrollbar-gutter: stable;
+  flex: 1;
+  min-height: 0;
 }
 
 .center-column .panel {
