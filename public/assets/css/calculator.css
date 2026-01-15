@@ -177,3 +177,211 @@
 .calculator-ui .result-detail p {
   margin: 0.25rem 0;
 }
+
+.calculator-ui .result-scroll {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calculator-ui .result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calculator-ui .result-section h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.calculator-ui .table-scroll {
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.calculator-ui .calculator-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 400px;
+}
+
+.calculator-ui .calculator-table th,
+.calculator-ui .calculator-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.calculator-ui .calculator-table th:first-child,
+.calculator-ui .calculator-table td:first-child {
+  text-align: left;
+}
+
+.calculator-ui .calculator-table thead th {
+  color: var(--muted-text);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calculator-ui .calculator-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.graph-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  height: 260px;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.graph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted-text);
+  flex-shrink: 0;
+}
+
+.graph-title {
+  color: var(--header-text);
+  font-weight: 600;
+}
+
+.graph-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.graph-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.graph-legend-color.principal {
+  background: var(--accent);
+}
+
+.graph-legend-color.interest {
+  background: #f59e0b;
+}
+
+.graph-legend-color.balance {
+  background: #10b981;
+}
+
+.graph-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 8px;
+}
+
+.graph-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: right;
+  padding: 4px 0;
+  flex-shrink: 0;
+  min-width: 50px;
+}
+
+.graph-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.graph-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.graph-bars-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 0;
+}
+
+.graph-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 100%;
+  min-height: 100px;
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+.graph-bar {
+  width: 8px;
+  min-width: 8px;
+  background: var(--accent);
+  border-radius: 4px 4px 2px 2px;
+  flex: 0 0 auto;
+}
+
+.graph-bar.interest {
+  background: #f59e0b;
+}
+
+.graph-bar.balance {
+  background: #10b981;
+}
+
+.graph-x-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted-text);
+  padding-top: 4px;
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.graph-x-label {
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: center;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
