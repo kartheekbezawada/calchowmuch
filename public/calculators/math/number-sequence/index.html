@@ -1,0 +1,51 @@
+<div id="calc-number-sequence">
+  <div class="calculator-ui">
+    <p class="helper">Compute the nth term and preview of an arithmetic or geometric sequence.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="seq-type">Sequence Type</label>
+        <select id="seq-type">
+          <option value="arithmetic" selected>Arithmetic</option>
+          <option value="geometric">Geometric</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label for="seq-a1">First Term (a1)</label>
+        <input id="seq-a1" type="number" value="2" step="any" />
+      </div>
+
+      <div class="input-row" id="seq-d-row">
+        <label for="seq-d">Common Difference (d)</label>
+        <input id="seq-d" type="number" value="3" step="any" />
+      </div>
+
+      <div class="input-row" id="seq-r-row" style="display: none;">
+        <label for="seq-r">Common Ratio (r)</label>
+        <input id="seq-r" type="number" value="2" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="seq-n">Term Index (n)</label>
+        <input id="seq-n" type="number" value="10" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="seq-k">Preview Length (k)</label>
+        <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button primary full-width" type="button" id="seq-calculate">
+      Calculate Sequence
+    </button>
+
+    <div class="result" id="seq-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="seq-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/number-sequence/calculator.css");
+</style>

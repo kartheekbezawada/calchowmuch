@@ -1,0 +1,55 @@
+<div id="calc-confidence-interval">
+  <div class="calculator-ui">
+    <p class="helper">Calculate confidence intervals for population proportions or means.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ci-mode">Calculation Type</label>
+        <select id="ci-mode">
+          <option value="proportion" selected>Proportion (p-hat)</option>
+          <option value="mean">Mean (x-bar) with known σ</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label for="ci-confidence">Confidence Level</label>
+        <select id="ci-confidence">
+          <option value="1.645">90%</option>
+          <option value="1.96" selected>95%</option>
+          <option value="2.576">99%</option>
+        </select>
+      </div>
+
+      <div class="input-row" id="ci-phat-row">
+        <label for="ci-phat">Sample Proportion p-hat (%)</label>
+        <input id="ci-phat" type="number" value="60" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="ci-xbar-row" style="display: none;">
+        <label for="ci-xbar">Sample Mean (x-bar)</label>
+        <input id="ci-xbar" type="number" value="50" step="any" />
+      </div>
+
+      <div class="input-row" id="ci-sigma-row" style="display: none;">
+        <label for="ci-sigma">Population Std Dev (σ)</label>
+        <input id="ci-sigma" type="number" value="10" min="0.0001" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="ci-n">Sample Size (n)</label>
+        <input id="ci-n" type="number" value="100" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button primary full-width" type="button" id="ci-calculate">
+      Calculate Confidence Interval
+    </button>
+
+    <div class="result" id="ci-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="ci-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/confidence-interval/calculator.css");
+</style>

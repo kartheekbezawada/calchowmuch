@@ -1,0 +1,38 @@
+<div id="calc-probability">
+  <div class="calculator-ui">
+    <p class="helper">Calculate basic probability operations for independent events.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="prob-mode">Operation</label>
+        <select id="prob-mode">
+          <option value="single">Single Event P(A)</option>
+          <option value="complement">Complement 1 - P(A)</option>
+          <option value="and" selected>AND (Independent): P(A) × P(B)</option>
+          <option value="or">OR (Independent): P(A) + P(B) - P(A)×P(B)</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label for="prob-a">P(A) Probability (%)</label>
+        <input id="prob-a" type="number" value="30" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="prob-b-row">
+        <label for="prob-b">P(B) Probability (%)</label>
+        <input id="prob-b" type="number" value="50" min="0" max="100" step="0.1" />
+      </div>
+    </div>
+
+    <button class="calculator-button primary full-width" type="button" id="prob-calculate">
+      Calculate Probability
+    </button>
+
+    <div class="result" id="prob-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result-detail" id="prob-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/math/probability/calculator.css");
+</style>
