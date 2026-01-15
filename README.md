@@ -22,7 +22,5 @@ A file placed at:
 
 ## Project Architecture & Requirements
 
-- `requirements/universal/Architecture.md` defines the UI + modular architecture contract.
-- `requirements/universal/MASTER.MD` contains non-negotiable rules.
-- `requirements/universal/INDEX.MD` tracks the current phase and progress.
+- `requirements/universal/UNIVERSAL_REQUIREMENTS.md` defines the UI + modular architecture contract.
 - `requirements/phases/` contains phase-specific requirements.
