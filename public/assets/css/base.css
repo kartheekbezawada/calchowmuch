@@ -24,6 +24,8 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
 }
 
 body {
@@ -61,10 +63,4 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
-}
-
-/* Firefox scrollbar styling */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #94a3b8 #f1f5f9;
 }
