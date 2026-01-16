@@ -1,0 +1,117 @@
+<div id="calc-how-much-can-borrow">
+  <div class="calculator-ui">
+    <p class="helper">Estimate a maximum affordable loan using income multiples or payment caps.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="bor-gross-income">Gross Annual Income</label>
+        <input id="bor-gross-income" type="number" value="90000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-net-income">Net Monthly Income (optional)</label>
+        <input id="bor-net-income" type="number" value="5000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="bor-income-basis-label">Income Basis</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="bor-income-basis-label"
+          data-button-group="bor-income-basis"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="gross"
+            aria-pressed="true"
+          >
+            Gross
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="net"
+            aria-pressed="false"
+          >
+            Net
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="bor-expenses">Monthly Expenses</label>
+        <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-debts">Monthly Debt Payments</label>
+        <input id="bor-debts" type="number" value="300" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-rate">Interest Rate (APR %)</label>
+        <input id="bor-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-term">Loan Term (years)</label>
+        <input id="bor-term" type="number" value="25" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label id="bor-method-label">Affordability Method</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="bor-method-label"
+          data-button-group="bor-method"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="income"
+            aria-pressed="true"
+          >
+            Income Multiple
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="payment"
+            aria-pressed="false"
+          >
+            Payment Cap
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="bor-multiple-row">
+        <label for="bor-multiple">Income Multiple (e.g., 4-5.5x)</label>
+        <input id="bor-multiple" type="number" value="4.5" min="0" step="0.1" />
+      </div>
+
+      <div class="input-row is-hidden" id="bor-cap-row">
+        <label for="bor-cap">Payment Cap (% of income)</label>
+        <input id="bor-cap" type="number" value="35" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-deposit">Deposit (optional)</label>
+        <input id="bor-deposit" type="number" value="20000" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="bor-calculate">
+      Calculate Borrowing Power
+    </button>
+
+    <div class="result" id="bor-result" aria-live="polite"></div>
+    <div class="result-detail" id="bor-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/how-much-can-borrow/calculator.css');
+</style>

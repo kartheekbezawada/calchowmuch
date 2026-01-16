@@ -1,0 +1,72 @@
+<div id="calc-interest-rate-change">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compare monthly payments and total interest before and after a rate change.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="rate-balance">Loan Balance</label>
+        <input id="rate-balance" type="number" value="250000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-current">Current Rate (APR %)</label>
+        <input id="rate-current" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-new">New Rate (APR %)</label>
+        <input id="rate-new" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-term">Remaining Term (years)</label>
+        <input id="rate-term" type="number" value="25" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label id="rate-change-label">Rate Change Timing</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="rate-change-label"
+          data-button-group="rate-change-timing"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="immediate"
+            aria-pressed="true"
+          >
+            Apply Immediately
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="after"
+            aria-pressed="false"
+          >
+            After X Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row is-hidden" id="rate-change-months-row">
+        <label for="rate-change-months">Change After (months)</label>
+        <input id="rate-change-months" type="number" value="12" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="rate-calculate">
+      Calculate Rate Impact
+    </button>
+
+    <div class="result" id="rate-result" aria-live="polite"></div>
+    <div class="result-detail" id="rate-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/interest-rate-change-calculator/calculator.css');
+</style>

@@ -1,0 +1,108 @@
+<div id="loan-ltv-explanation">
+  <h4>LTV Summary</h4>
+  <p>
+    With a property value of <span data-ltv="property"></span> and a loan amount of
+    <span data-ltv="loan"></span>, the deposit is <span data-ltv="deposit"></span> (<span
+      data-ltv="deposit-percent"
+    ></span
+    >). The loan-to-value (LTV) is <span data-ltv="ltv"></span>.
+  </p>
+  <p>
+    LTV measures the portion of the property financed by debt. Higher LTVs typically face tighter
+    availability or higher rates.
+  </p>
+  <p>This is informational, not financial advice.</p>
+
+  <div class="result-section">
+    <h4>LTV Thresholds</h4>
+    <div class="table-scroll" id="ltv-table-wrap" tabindex="0">
+      <table class="calculator-table" id="ltv-table">
+        <thead>
+          <tr>
+            <th scope="col">LTV Band</th>
+            <th scope="col">Availability Note</th>
+            <th scope="col">Risk Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>60% or lower</td>
+            <td>Best availability</td>
+            <td>Lowest risk</td>
+          </tr>
+          <tr>
+            <td>Up to 75%</td>
+            <td>Strong availability</td>
+            <td>Low risk</td>
+          </tr>
+          <tr>
+            <td>Up to 80%</td>
+            <td>Common range</td>
+            <td>Moderate risk</td>
+          </tr>
+          <tr>
+            <td>Up to 85%</td>
+            <td>More limited</td>
+            <td>Elevated risk</td>
+          </tr>
+          <tr>
+            <td>Up to 90%</td>
+            <td>Limited options</td>
+            <td>High risk</td>
+          </tr>
+          <tr>
+            <td>Up to 95%</td>
+            <td>Restricted</td>
+            <td>Very high risk</td>
+          </tr>
+          <tr>
+            <td>Above 95%</td>
+            <td>Rare availability</td>
+            <td>Highest risk</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>LTV vs Deposit %</h4>
+    <div class="graph-panel" id="ltv-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="ltv-graph-title">LTV Curve</span>
+        <span class="graph-note" id="ltv-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="ltv-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>LTV</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="ltv-y-label">LTV (%)</span>
+        <div class="graph-y-axis" id="ltv-y-axis">
+          <span id="ltv-y-max"></span>
+          <span id="ltv-y-mid"></span>
+          <span id="ltv-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="ltv-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="ltv-x-axis">
+            <span id="ltv-x-start"></span>
+            <span id="ltv-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="ltv-x-label">Deposit (%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

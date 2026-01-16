@@ -66,7 +66,7 @@
 
         for (const category of state.navigation.categories) {
           for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find(calc => calc.id === id);
+            const calculator = subcategory.calculators.find((calc) => calc.id === id);
             if (calculator) {
               return { category, subcategory, calculator };
             }
@@ -83,7 +83,7 @@
 
         for (const category of state.navigation.categories) {
           for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find(calc => calc.url === path);
+            const calculator = subcategory.calculators.find((calc) => calc.url === path);
             if (calculator) {
               return { category, subcategory, calculator };
             }
@@ -94,7 +94,7 @@
       }
 
       function getCalculatorFromLocation() {
-        const hashPath = window.location.hash || "";
+        const hashPath = window.location.hash || '';
         if (hashPath) {
           const match = findCalculatorByUrl(hashPath);
           if (match) {
@@ -103,7 +103,7 @@
         }
 
         const queryParams = new URLSearchParams(window.location.search);
-        const calculatorId = queryParams.get("calculator");
+        const calculatorId = queryParams.get('calculator');
         if (calculatorId) {
           const match = findCalculatorById(calculatorId);
           if (match) {
@@ -115,17 +115,17 @@
       }
 
       function normalizeSearch(value) {
-        return (value ?? "").trim().toLowerCase();
+        return (value ?? '').trim().toLowerCase();
       }
 
       function getSearchText(calculator) {
         if (!calculator) {
-          return "";
+          return '';
         }
-        const name = calculator.name ?? "";
+        const name = calculator.name ?? '';
         const keywords = Array.isArray(calculator.keywords)
-          ? calculator.keywords.join(" ")
-          : calculator.keywords ?? "";
+          ? calculator.keywords.join(' ')
+          : (calculator.keywords ?? '');
         return `${name} ${keywords}`.trim().toLowerCase();
       }
 
@@ -139,15 +139,15 @@
       function applySearchFilter(container, query) {
         const normalizedQuery = normalizeSearch(query);
         const hasQuery = normalizedQuery.length > 0;
-        container.classList.toggle("is-searching", hasQuery);
+        container.classList.toggle('is-searching', hasQuery);
 
-        const categories = Array.from(container.querySelectorAll(".nav-category"));
-        categories.forEach(category => {
-          const items = Array.from(category.querySelectorAll(".nav-item"));
+        const categories = Array.from(container.querySelectorAll('.nav-category'));
+        categories.forEach((category) => {
+          const items = Array.from(category.querySelectorAll('.nav-item'));
           let matches = 0;
 
-          items.forEach(item => {
-            const text = item.dataset.search ?? "";
+          items.forEach((item) => {
+            const text = item.dataset.search ?? '';
             const isMatch = !hasQuery || text.includes(normalizedQuery);
             item.hidden = hasQuery && !isMatch;
             if (isMatch) {
@@ -157,12 +157,12 @@
 
           if (!hasQuery) {
             category.hidden = false;
-            category.classList.remove("is-search-open");
+            category.classList.remove('is-search-open');
             return;
           }
 
           category.hidden = matches === 0;
-          category.classList.toggle("is-search-open", matches > 0);
+          category.classList.toggle('is-search-open', matches > 0);
         });
       }
 
@@ -172,15 +172,15 @@
       function getCalculatorPath(calculatorId) {
         // Map calculator IDs to folder paths
         const pathMap = {
-          'basic': '/calculators/math/basic',
+          basic: '/calculators/math/basic',
           'percentage-calculator': '/calculators/math/percentage-calculator',
           'percentage-increase': '/calculators/math/percentage-increase',
           'fraction-calculator': '/calculators/math/fraction-calculator',
           'standard-deviation': '/calculators/math/standard-deviation',
           'number-sequence': '/calculators/math/number-sequence',
           'sample-size': '/calculators/math/sample-size',
-          'probability': '/calculators/math/probability',
-          'statistics': '/calculators/math/statistics',
+          probability: '/calculators/math/probability',
+          statistics: '/calculators/math/statistics',
           'mean-median-mode-range': '/calculators/math/mean-median-mode-range',
           'permutation-combination': '/calculators/math/permutation-combination',
           'z-score': '/calculators/math/z-score',
@@ -196,7 +196,8 @@
           'loan-to-value': '/calculators/loans/loan-to-value',
           'credit-card-repayment-payoff': '/calculators/loans/credit-card-repayment-payoff',
           'credit-card-minimum-payment': '/calculators/loans/credit-card-minimum-payment',
-          'balance-transfer-installment-plan': '/calculators/loans/balance-transfer-installment-plan',
+          'balance-transfer-installment-plan':
+            '/calculators/loans/balance-transfer-installment-plan',
           'credit-card-consolidation': '/calculators/loans/credit-card-consolidation',
           'car-loan': '/calculators/loans/car-loan',
           'multiple-car-loan': '/calculators/loans/multiple-car-loan',
@@ -205,8 +206,8 @@
       }
 
       async function loadCalculatorContent(calculator) {
-        const calculatorPane = document.querySelector(".center-column .panel:first-child");
-        const explanationPane = document.querySelector(".center-column .panel:last-child");
+        const calculatorPane = document.querySelector('.center-column .panel:first-child');
+        const explanationPane = document.querySelector('.center-column .panel:last-child');
 
         if (!calculator) {
           calculatorPane.innerHTML = `
@@ -249,27 +250,25 @@
           const calculatorHTML = await calculatorResponse.text();
 
           // Load explanation HTML fragment
-          const explanationResponse = await fetch(
-            `${basePath}/explanation.html?${cacheBuster}`,
-          );
+          const explanationResponse = await fetch(`${basePath}/explanation.html?${cacheBuster}`);
           if (!explanationResponse.ok) {
             throw new Error(`Failed to load explanation: ${explanationResponse.status}`);
           }
           const explanationHTML = await explanationResponse.text();
 
           // Update title and inject calculator HTML
-          calculatorPane.innerHTML = `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
+          calculatorPane.innerHTML =
+            `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
 
           // Inject explanation HTML
           explanationPane.innerHTML = `<h3>Explanation</h3>` + explanationHTML;
 
           // Load and execute module.js
-          const moduleScript = document.createElement("script");
-          moduleScript.type = "module";
+          const moduleScript = document.createElement('script');
+          moduleScript.type = 'module';
           moduleScript.src = `${basePath}/module.js?t=${Date.now()}`; // Cache bust
           document.body.appendChild(moduleScript);
           currentModuleScript = moduleScript;
-
         } catch (error) {
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Error</h3>
@@ -283,14 +282,14 @@
           return;
         }
 
-        if (calculator.url.startsWith("#")) {
+        if (calculator.url.startsWith('#')) {
           window.location.hash = calculator.url;
           return;
         }
 
         const nextUrl = new URL(window.location.href);
-        nextUrl.searchParams.set("calculator", calculator.id);
-        history.pushState({ calculatorId: calculator.id }, "", nextUrl);
+        nextUrl.searchParams.set('calculator', calculator.id);
+        history.pushState({ calculatorId: calculator.id }, '', nextUrl);
       }
 
       async function setActiveCalculator(calculator, options = {}) {
@@ -304,22 +303,22 @@
       }
 
       function highlightActiveCalculator() {
-        const items = document.querySelectorAll(".nav-item");
-        items.forEach(item => {
-          item.classList.toggle("is-active", item.dataset.id === state.activeCalculatorId);
+        const items = document.querySelectorAll('.nav-item');
+        items.forEach((item) => {
+          item.classList.toggle('is-active', item.dataset.id === state.activeCalculatorId);
         });
       }
 
       function renderTopNav() {
-        const topNav = document.getElementById("top-nav");
-        topNav.innerHTML = "";
+        const topNav = document.getElementById('top-nav');
+        topNav.innerHTML = '';
 
-        state.navigation.categories.forEach(category => {
-          const button = document.createElement("button");
-          button.type = "button";
+        state.navigation.categories.forEach((category) => {
+          const button = document.createElement('button');
+          button.type = 'button';
           button.textContent = category.name;
-          button.classList.toggle("is-active", category.id === state.activeCategoryId);
-          button.addEventListener("click", () => {
+          button.classList.toggle('is-active', category.id === state.activeCategoryId);
+          button.addEventListener('click', () => {
             if (state.activeCategoryId === category.id) {
               return;
             }
@@ -332,38 +331,38 @@
       }
 
       function renderLeftNav() {
-        const leftNav = document.querySelector(".left-nav");
-        const title = document.querySelector(".left-nav-title");
-        const container = document.getElementById("left-nav-content");
-        container.innerHTML = "";
+        const leftNav = document.querySelector('.left-nav');
+        const title = document.querySelector('.left-nav-title');
+        const container = document.getElementById('left-nav-content');
+        container.innerHTML = '';
 
         const category = state.navigation.categories.find(
-          item => item.id === state.activeCategoryId
+          (item) => item.id === state.activeCategoryId
         );
         if (!category) {
           return;
         }
 
-        const isLoans = category.id === "loans";
-        leftNav.classList.toggle("is-loans", isLoans);
+        const isLoans = category.id === 'loans';
+        leftNav.classList.toggle('is-loans', isLoans);
         if (title) {
           title.hidden = isLoans;
         }
         if (!isLoans) {
-          container.classList.remove("is-searching");
+          container.classList.remove('is-searching');
         }
 
         let searchInput = null;
         if (isLoans) {
-          const searchWrap = document.createElement("div");
-          searchWrap.className = "nav-search";
+          const searchWrap = document.createElement('div');
+          searchWrap.className = 'nav-search';
 
-          searchInput = document.createElement("input");
-          searchInput.type = "search";
-          searchInput.className = "nav-search-input";
-          searchInput.placeholder = "Search loans...";
-          searchInput.setAttribute("aria-label", "Search loan calculators");
-          searchInput.value = state.navSearchQuery[category.id] ?? "";
+          searchInput = document.createElement('input');
+          searchInput.type = 'search';
+          searchInput.className = 'nav-search-input';
+          searchInput.placeholder = 'Search loans...';
+          searchInput.setAttribute('aria-label', 'Search loan calculators');
+          searchInput.value = state.navSearchQuery[category.id] ?? '';
           searchWrap.appendChild(searchInput);
           container.appendChild(searchWrap);
         }
@@ -374,43 +373,43 @@
           collapsedMap[selectedCalculator.subcategory.id] = false;
         }
 
-        category.subcategories.forEach(subcategory => {
-          const categoryWrap = document.createElement("div");
-          categoryWrap.className = "nav-category";
+        category.subcategories.forEach((subcategory) => {
+          const categoryWrap = document.createElement('div');
+          categoryWrap.className = 'nav-category';
           categoryWrap.dataset.id = subcategory.id;
 
           const isCollapsed = collapsedMap[subcategory.id] === true;
-          categoryWrap.classList.toggle("is-collapsed", isCollapsed);
+          categoryWrap.classList.toggle('is-collapsed', isCollapsed);
 
-          const toggle = document.createElement("button");
-          toggle.type = "button";
-          toggle.className = "nav-category-toggle";
-          toggle.setAttribute("aria-expanded", String(!isCollapsed));
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'nav-category-toggle';
+          toggle.setAttribute('aria-expanded', String(!isCollapsed));
 
-          const label = document.createElement("span");
-          label.className = "nav-category-label";
+          const label = document.createElement('span');
+          label.className = 'nav-category-label';
           label.textContent = subcategory.name;
 
-          const indicator = document.createElement("span");
-          indicator.className = "nav-category-indicator";
-          indicator.textContent = isCollapsed ? "+" : "-";
+          const indicator = document.createElement('span');
+          indicator.className = 'nav-category-indicator';
+          indicator.textContent = isCollapsed ? '+' : '-';
 
           toggle.append(label, indicator);
-          toggle.addEventListener("click", () => {
-            const nextCollapsed = !categoryWrap.classList.contains("is-collapsed");
-            categoryWrap.classList.toggle("is-collapsed", nextCollapsed);
+          toggle.addEventListener('click', () => {
+            const nextCollapsed = !categoryWrap.classList.contains('is-collapsed');
+            categoryWrap.classList.toggle('is-collapsed', nextCollapsed);
             collapsedMap[subcategory.id] = nextCollapsed;
-            indicator.textContent = nextCollapsed ? "+" : "-";
-            toggle.setAttribute("aria-expanded", String(!nextCollapsed));
+            indicator.textContent = nextCollapsed ? '+' : '-';
+            toggle.setAttribute('aria-expanded', String(!nextCollapsed));
           });
 
-          const items = document.createElement("div");
-          items.className = "nav-category-items";
+          const items = document.createElement('div');
+          items.className = 'nav-category-items';
 
-          subcategory.calculators.forEach(calculator => {
-            const item = document.createElement("button");
-            item.type = "button";
-            item.className = "nav-item";
+          subcategory.calculators.forEach((calculator) => {
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'nav-item';
             item.textContent = calculator.name;
             item.dataset.id = calculator.id;
 
@@ -419,7 +418,7 @@
               item.dataset.search = searchText;
             }
 
-            item.addEventListener("click", () => {
+            item.addEventListener('click', () => {
               setActiveCalculator(calculator);
             });
             items.appendChild(item);
@@ -432,7 +431,7 @@
         const selected = findCalculatorById(state.activeCalculatorId);
         if (!selected || selected.category.id !== category.id) {
           const firstCalculator = category.subcategories
-            .map(subcategory => subcategory.calculators[0])
+            .map((subcategory) => subcategory.calculators[0])
             .find(Boolean);
 
           if (firstCalculator) {
@@ -445,7 +444,7 @@
         highlightActiveCalculator();
 
         if (isLoans && searchInput) {
-          searchInput.addEventListener("input", () => {
+          searchInput.addEventListener('input', () => {
             const query = searchInput.value;
             state.navSearchQuery[category.id] = query;
             applySearchFilter(container, query);
@@ -468,7 +467,7 @@
 
       async function initializeNavigation() {
         try {
-          const response = await fetch("config/navigation.json");
+          const response = await fetch('config/navigation.json');
           state.navigation = await response.json();
 
           const initialMatch = getCalculatorFromLocation();
@@ -486,14 +485,13 @@
             setActiveCalculator(initialMatch.calculator, { skipUrlUpdate: true });
           }
         } catch (error) {
-          console.error("Unable to load navigation.json", error);
+          console.error('Unable to load navigation.json', error);
         }
       }
 
-      window.addEventListener("popstate", handleNavigationChange);
-      window.addEventListener("hashchange", handleNavigationChange);
-      document.addEventListener("DOMContentLoaded", initializeNavigation);
+      window.addEventListener('popstate', handleNavigationChange);
+      window.addEventListener('hashchange', handleNavigationChange);
+      document.addEventListener('DOMContentLoaded', initializeNavigation);
     </script>
   </body>
 </html>
-

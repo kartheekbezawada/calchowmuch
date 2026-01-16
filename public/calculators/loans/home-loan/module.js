@@ -1,27 +1,27 @@
-import { formatCurrency, formatNumber, formatPercent } from "/assets/js/core/format.js";
-import { setupButtonGroup } from "/assets/js/core/ui.js";
+import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
 
-const priceInput = document.querySelector("#mtg-price");
-const downAmountInput = document.querySelector("#mtg-down-amount");
-const downPercentInput = document.querySelector("#mtg-down-percent");
-const downAmountRow = document.querySelector("#mtg-down-amount-row");
-const downPercentRow = document.querySelector("#mtg-down-percent-row");
-const termInput = document.querySelector("#mtg-term");
-const rateInput = document.querySelector("#mtg-rate");
-const taxInput = document.querySelector("#mtg-tax");
-const insuranceInput = document.querySelector("#mtg-insurance");
-const startInput = document.querySelector("#mtg-start");
-const extraInput = document.querySelector("#mtg-extra");
-const lumpInput = document.querySelector("#mtg-lump");
-const lumpMonthInput = document.querySelector("#mtg-lump-month");
-const calculateButton = document.querySelector("#mtg-calculate");
-const resultDiv = document.querySelector("#mtg-result");
-const summaryDiv = document.querySelector("#mtg-summary");
+const priceInput = document.querySelector('#mtg-price');
+const downAmountInput = document.querySelector('#mtg-down-amount');
+const downPercentInput = document.querySelector('#mtg-down-percent');
+const downAmountRow = document.querySelector('#mtg-down-amount-row');
+const downPercentRow = document.querySelector('#mtg-down-percent-row');
+const termInput = document.querySelector('#mtg-term');
+const rateInput = document.querySelector('#mtg-rate');
+const taxInput = document.querySelector('#mtg-tax');
+const insuranceInput = document.querySelector('#mtg-insurance');
+const startInput = document.querySelector('#mtg-start');
+const extraInput = document.querySelector('#mtg-extra');
+const lumpInput = document.querySelector('#mtg-lump');
+const lumpMonthInput = document.querySelector('#mtg-lump-month');
+const calculateButton = document.querySelector('#mtg-calculate');
+const resultDiv = document.querySelector('#mtg-result');
+const summaryDiv = document.querySelector('#mtg-summary');
 
 const downTypeGroup = document.querySelector('[data-button-group="mtg-down-type"]');
 const viewGroup = document.querySelector('[data-button-group="mtg-view"]');
 
-const explanationRoot = document.querySelector("#loan-mtg-explanation");
+const explanationRoot = document.querySelector('#loan-mtg-explanation');
 const priceValue = explanationRoot?.querySelector('[data-mtg="price"]');
 const downPaymentValue = explanationRoot?.querySelector('[data-mtg="down-payment"]');
 const downPercentValue = explanationRoot?.querySelector('[data-mtg="down-percent"]');
@@ -38,47 +38,47 @@ const lifetimeSummary = explanationRoot?.querySelector('[data-mtg="lifetime-summ
 const monthlySummaryBlock = explanationRoot?.querySelector('[data-mtg-view="monthly"]');
 const yearlySummaryBlock = explanationRoot?.querySelector('[data-mtg-view="yearly"]');
 
-const lineBaseline = explanationRoot?.querySelector("#mtg-line-base");
-const lineOver = explanationRoot?.querySelector("#mtg-line-over");
-const graphTitle = explanationRoot?.querySelector("#mtg-graph-title");
-const graphNote = explanationRoot?.querySelector("#mtg-graph-note");
-const graphYMax = explanationRoot?.querySelector("#mtg-y-max");
-const graphYMid = explanationRoot?.querySelector("#mtg-y-mid");
-const graphXStart = explanationRoot?.querySelector("#mtg-x-start");
-const graphXEnd = explanationRoot?.querySelector("#mtg-x-end");
-const graphXLabel = explanationRoot?.querySelector("#mtg-x-label");
+const lineBaseline = explanationRoot?.querySelector('#mtg-line-base');
+const lineOver = explanationRoot?.querySelector('#mtg-line-over');
+const graphTitle = explanationRoot?.querySelector('#mtg-graph-title');
+const graphNote = explanationRoot?.querySelector('#mtg-graph-note');
+const graphYMax = explanationRoot?.querySelector('#mtg-y-max');
+const graphYMid = explanationRoot?.querySelector('#mtg-y-mid');
+const graphXStart = explanationRoot?.querySelector('#mtg-x-start');
+const graphXEnd = explanationRoot?.querySelector('#mtg-x-end');
+const graphXLabel = explanationRoot?.querySelector('#mtg-x-label');
 
-const tableTitle = explanationRoot?.querySelector("#mtg-table-title");
-const monthlyTableBody = explanationRoot?.querySelector("#mtg-table-monthly-body");
-const yearlyTableBody = explanationRoot?.querySelector("#mtg-table-yearly-body");
-const monthlyTableWrap = explanationRoot?.querySelector("#mtg-table-monthly-wrap");
-const yearlyTableWrap = explanationRoot?.querySelector("#mtg-table-yearly-wrap");
+const tableTitle = explanationRoot?.querySelector('#mtg-table-title');
+const monthlyTableBody = explanationRoot?.querySelector('#mtg-table-monthly-body');
+const yearlyTableBody = explanationRoot?.querySelector('#mtg-table-yearly-body');
+const monthlyTableWrap = explanationRoot?.querySelector('#mtg-table-monthly-wrap');
+const yearlyTableWrap = explanationRoot?.querySelector('#mtg-table-yearly-wrap');
 
 const MONTH_NAMES = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 const downTypeButtons = setupButtonGroup(downTypeGroup, {
-  defaultValue: "amount",
-  onChange: value => {
+  defaultValue: 'amount',
+  onChange: (value) => {
     setDownPaymentVisibility(value);
     calculate();
   },
 });
 
 const viewButtons = setupButtonGroup(viewGroup, {
-  defaultValue: "monthly",
+  defaultValue: 'monthly',
   onChange: () => updateView(),
 });
 
@@ -86,10 +86,10 @@ let currentData = null;
 
 function setDownPaymentVisibility(type) {
   if (downAmountRow) {
-    downAmountRow.classList.toggle("is-hidden", type !== "amount");
+    downAmountRow.classList.toggle('is-hidden', type !== 'amount');
   }
   if (downPercentRow) {
-    downPercentRow.classList.toggle("is-hidden", type !== "percent");
+    downPercentRow.classList.toggle('is-hidden', type !== 'percent');
   }
 }
 
@@ -97,7 +97,7 @@ function parseStartDate(value) {
   if (!value) {
     return null;
   }
-  const [yearPart, monthPart] = value.split("-");
+  const [yearPart, monthPart] = value.split('-');
   const year = Number(yearPart);
   const month = Number(monthPart);
   if (!Number.isFinite(year) || !Number.isFinite(month)) {
@@ -209,7 +209,7 @@ function aggregateYearly(schedule, startDate) {
   const yearlyMap = new Map();
   const order = [];
 
-  schedule.forEach(entry => {
+  schedule.forEach((entry) => {
     const yearKey = startDate
       ? addMonths(startDate, entry.month - 1).getFullYear()
       : Math.ceil(entry.month / 12);
@@ -272,7 +272,7 @@ function formatAxisValue(value) {
 function buildMonthlySeries(schedule, principal, totalMonths) {
   const series = new Array(totalMonths + 1).fill(0);
   series[0] = principal;
-  schedule.forEach(entry => {
+  schedule.forEach((entry) => {
     if (entry.month <= totalMonths) {
       series[entry.month] = entry.balance;
     }
@@ -283,7 +283,7 @@ function buildMonthlySeries(schedule, principal, totalMonths) {
 function buildYearlySeries(yearly, principal, totalYears) {
   const series = new Array(totalYears + 1).fill(0);
   series[0] = principal;
-  yearly.forEach(entry => {
+  yearly.forEach((entry) => {
     if (entry.year <= totalYears) {
       series[entry.year] = entry.balance;
     }
@@ -293,7 +293,7 @@ function buildYearlySeries(yearly, principal, totalYears) {
 
 function buildPolyline(values, maxBalance) {
   if (!values.length || maxBalance <= 0) {
-    return "";
+    return '';
   }
   if (values.length === 1) {
     return `0,${100 - (values[0] / maxBalance) * 100}`;
@@ -305,7 +305,7 @@ function buildPolyline(values, maxBalance) {
       const clampedY = Math.min(100, Math.max(0, y));
       return `${x.toFixed(2)},${clampedY.toFixed(2)}`;
     })
-    .join(" ");
+    .join(' ');
 }
 
 function getMonthLabel(month, startDate) {
@@ -322,7 +322,7 @@ function renderMonthlyTable(schedule, startDate) {
   }
   monthlyTableBody.innerHTML = schedule
     .map(
-      entry =>
+      (entry) =>
         `<tr>
           <td>${getMonthLabel(entry.month, startDate)}</td>
           <td>${formatTableNumber(entry.payment)}</td>
@@ -330,9 +330,9 @@ function renderMonthlyTable(schedule, startDate) {
           <td>${formatTableNumber(entry.interest)}</td>
           <td>${formatTableNumber(entry.extra)}</td>
           <td>${formatTableNumber(entry.balance)}</td>
-        </tr>`,
+        </tr>`
     )
-    .join("");
+    .join('');
 }
 
 function renderYearlyTable(yearly) {
@@ -341,7 +341,7 @@ function renderYearlyTable(yearly) {
   }
   yearlyTableBody.innerHTML = yearly
     .map(
-      entry =>
+      (entry) =>
         `<tr>
           <td>${entry.label}</td>
           <td>${formatTableNumber(entry.payment)}</td>
@@ -349,9 +349,9 @@ function renderYearlyTable(yearly) {
           <td>${formatTableNumber(entry.interest)}</td>
           <td>${formatTableNumber(entry.extra)}</td>
           <td>${formatTableNumber(entry.balance)}</td>
-        </tr>`,
+        </tr>`
     )
-    .join("");
+    .join('');
 }
 
 function updateExplanation(data) {
@@ -381,7 +381,7 @@ function updateExplanation(data) {
   }
   if (extraMonthlyValue) {
     extraMonthlyValue.textContent =
-      data.extraMonthly > 0 ? `${formatCurrency(data.extraMonthly)} per month` : "None";
+      data.extraMonthly > 0 ? `${formatCurrency(data.extraMonthly)} per month` : 'None';
   }
   if (lumpSumValue) {
     if (data.lumpSum > 0 && data.lumpSumMonth) {
@@ -389,14 +389,12 @@ function updateExplanation(data) {
     } else if (data.lumpSum > 0) {
       lumpSumValue.textContent = formatCurrency(data.lumpSum);
     } else {
-      lumpSumValue.textContent = "None";
+      lumpSumValue.textContent = 'None';
     }
   }
   if (escrowValue) {
     escrowValue.textContent =
-      data.escrowMonthly > 0
-        ? `${formatCurrency(data.escrowMonthly)} per month`
-        : "None";
+      data.escrowMonthly > 0 ? `${formatCurrency(data.escrowMonthly)} per month` : 'None';
   }
 
   const interestSaved = Math.max(0, data.baseline.totalInterest - data.overpayment.totalInterest);
@@ -406,11 +404,10 @@ function updateExplanation(data) {
     : null;
 
   if (monthlySummary) {
-    let text =
-      `Monthly payment (principal + interest) is ${formatCurrency(data.payment)}.`;
+    let text = `Monthly payment (principal + interest) is ${formatCurrency(data.payment)}.`;
     if (data.escrowMonthly > 0) {
       text += ` Total monthly payment with taxes and insurance is ${formatCurrency(
-        data.payment + data.escrowMonthly,
+        data.payment + data.escrowMonthly
       )}.`;
     }
     text += ` Payoff takes ${payoffText}`;
@@ -428,7 +425,7 @@ function updateExplanation(data) {
         `First payment: ${formatCurrency(first.principal)} principal + ` +
         `${formatCurrency(first.interest)} interest.`;
     } else {
-      monthlyBreakdown.textContent = "";
+      monthlyBreakdown.textContent = '';
     }
   }
 
@@ -453,7 +450,7 @@ function updateGraph(data, view) {
     return;
   }
 
-  const isMonthly = view === "monthly";
+  const isMonthly = view === 'monthly';
   const timeline = isMonthly
     ? Math.max(data.baseline.months, data.overpayment.months)
     : Math.max(data.yearlyBase.length, data.yearlyOver.length);
@@ -467,13 +464,13 @@ function updateGraph(data, view) {
   const sampledBase = sampleValues(baseSeries, 60);
   const sampledOver = sampleValues(overSeries, 60);
 
-  lineBaseline.setAttribute("points", buildPolyline(sampledBase, data.principal));
-  lineOver.setAttribute("points", buildPolyline(sampledOver, data.principal));
+  lineBaseline.setAttribute('points', buildPolyline(sampledBase, data.principal));
+  lineOver.setAttribute('points', buildPolyline(sampledOver, data.principal));
 
   if (graphTitle) {
     graphTitle.textContent = isMonthly
-      ? "Remaining Balance (Monthly)"
-      : "Remaining Balance (Yearly)";
+      ? 'Remaining Balance (Monthly)'
+      : 'Remaining Balance (Yearly)';
   }
   if (graphNote) {
     graphNote.textContent = isMonthly ? `${timeline} months` : `${timeline} years`;
@@ -485,13 +482,13 @@ function updateGraph(data, view) {
     graphYMid.textContent = formatAxisValue(data.principal / 2);
   }
   if (graphXStart) {
-    graphXStart.textContent = "1";
+    graphXStart.textContent = '1';
   }
   if (graphXEnd) {
     graphXEnd.textContent = String(timeline);
   }
   if (graphXLabel) {
-    graphXLabel.textContent = isMonthly ? "Month" : "Year";
+    graphXLabel.textContent = isMonthly ? 'Month' : 'Year';
   }
 }
 
@@ -499,7 +496,7 @@ function applyView(view) {
   if (!currentData) {
     return;
   }
-  const isMonthly = view === "monthly";
+  const isMonthly = view === 'monthly';
   if (monthlySummaryBlock) {
     monthlySummaryBlock.hidden = !isMonthly;
   }
@@ -514,8 +511,8 @@ function applyView(view) {
   }
   if (tableTitle) {
     tableTitle.textContent = isMonthly
-      ? "Amortization Table (Monthly)"
-      : "Amortization Table (Yearly)";
+      ? 'Amortization Table (Monthly)'
+      : 'Amortization Table (Yearly)';
   }
 
   updateExplanation(currentData);
@@ -523,7 +520,7 @@ function applyView(view) {
 }
 
 function updateView() {
-  const view = viewButtons?.getValue() ?? "monthly";
+  const view = viewButtons?.getValue() ?? 'monthly';
   if (!currentData) {
     calculate();
     return;
@@ -533,16 +530,16 @@ function updateView() {
 
 function clearOutputs() {
   if (monthlyTableBody) {
-    monthlyTableBody.innerHTML = "";
+    monthlyTableBody.innerHTML = '';
   }
   if (yearlyTableBody) {
-    yearlyTableBody.innerHTML = "";
+    yearlyTableBody.innerHTML = '';
   }
   if (lineBaseline) {
-    lineBaseline.setAttribute("points", "");
+    lineBaseline.setAttribute('points', '');
   }
   if (lineOver) {
-    lineOver.setAttribute("points", "");
+    lineOver.setAttribute('points', '');
   }
 }
 
@@ -551,7 +548,7 @@ function setError(message) {
     resultDiv.textContent = message;
   }
   if (summaryDiv) {
-    summaryDiv.textContent = "";
+    summaryDiv.textContent = '';
   }
   clearOutputs();
   currentData = null;
@@ -562,98 +559,98 @@ function calculate() {
     return;
   }
 
-  resultDiv.textContent = "";
-  summaryDiv.textContent = "";
+  resultDiv.textContent = '';
+  summaryDiv.textContent = '';
   clearOutputs();
 
   const price = Number(priceInput?.value);
   if (!Number.isFinite(price) || price <= 0) {
-    setError("Please enter a valid home price greater than 0.");
+    setError('Please enter a valid home price greater than 0.');
     return;
   }
 
-  const downType = downTypeButtons?.getValue() ?? "amount";
+  const downType = downTypeButtons?.getValue() ?? 'amount';
   const downAmountRaw = Number(downAmountInput?.value);
   const downPercentRaw = Number(downPercentInput?.value);
 
   let downAmount = downAmountRaw;
   let downPercent = downPercentRaw;
 
-  if (downType === "percent") {
+  if (downType === 'percent') {
     if (!Number.isFinite(downPercent) || downPercent < 0 || downPercent >= 100) {
-      setError("Down payment percent must be between 0 and 100.");
+      setError('Down payment percent must be between 0 and 100.');
       return;
     }
     downAmount = (price * downPercent) / 100;
   } else {
     if (!Number.isFinite(downAmount) || downAmount < 0) {
-      setError("Down payment amount must be 0 or more.");
+      setError('Down payment amount must be 0 or more.');
       return;
     }
     downPercent = price > 0 ? (downAmount / price) * 100 : 0;
     if (downPercent >= 100) {
-      setError("Down payment must be less than the home price.");
+      setError('Down payment must be less than the home price.');
       return;
     }
   }
 
   if (downAmount >= price) {
-    setError("Down payment must be less than the home price.");
+    setError('Down payment must be less than the home price.');
     return;
   }
 
-  if (downType === "percent" && downAmountInput) {
+  if (downType === 'percent' && downAmountInput) {
     downAmountInput.value = downAmount.toFixed(2);
   }
-  if (downType === "amount" && downPercentInput) {
+  if (downType === 'amount' && downPercentInput) {
     downPercentInput.value = downPercent.toFixed(2);
   }
 
   const principal = price - downAmount;
   if (principal <= 0) {
-    setError("Loan amount must be greater than 0.");
+    setError('Loan amount must be greater than 0.');
     return;
   }
 
   const years = Number(termInput?.value);
   if (!Number.isFinite(years) || years < 1) {
-    setError("Loan term must be at least 1 year.");
+    setError('Loan term must be at least 1 year.');
     return;
   }
 
   const annualRate = Number(rateInput?.value);
   if (!Number.isFinite(annualRate) || annualRate < 0) {
-    setError("Interest rate must be 0 or more.");
+    setError('Interest rate must be 0 or more.');
     return;
   }
 
   const taxAnnual = Number(taxInput?.value);
   if (!Number.isFinite(taxAnnual) || taxAnnual < 0) {
-    setError("Property tax must be 0 or more.");
+    setError('Property tax must be 0 or more.');
     return;
   }
 
   const insuranceAnnual = Number(insuranceInput?.value);
   if (!Number.isFinite(insuranceAnnual) || insuranceAnnual < 0) {
-    setError("Home insurance must be 0 or more.");
+    setError('Home insurance must be 0 or more.');
     return;
   }
 
   const extraMonthly = Number(extraInput?.value);
   if (!Number.isFinite(extraMonthly) || extraMonthly < 0) {
-    setError("Extra monthly payment must be 0 or more.");
+    setError('Extra monthly payment must be 0 or more.');
     return;
   }
 
   const lumpSum = Number(lumpInput?.value);
   if (!Number.isFinite(lumpSum) || lumpSum < 0) {
-    setError("Lump sum payment must be 0 or more.");
+    setError('Lump sum payment must be 0 or more.');
     return;
   }
 
   const months = Math.round(years * 12);
   if (!Number.isFinite(months) || months < 1) {
-    setError("Loan term must be at least 1 year.");
+    setError('Loan term must be at least 1 year.');
     return;
   }
 
@@ -661,11 +658,11 @@ function calculate() {
   if (lumpSum > 0) {
     const lumpMonthValue = Number(lumpMonthInput?.value);
     if (!Number.isFinite(lumpMonthValue) || lumpMonthValue < 1) {
-      setError("Lump sum month must be at least 1.");
+      setError('Lump sum month must be at least 1.');
       return;
     }
     if (lumpMonthValue > months) {
-      setError("Lump sum month must be within the loan term.");
+      setError('Lump sum month must be within the loan term.');
       return;
     }
     lumpSumMonth = Math.round(lumpMonthValue);
@@ -674,7 +671,7 @@ function calculate() {
   const monthlyRate = annualRate / 100 / 12;
   const payment = computeMonthlyPayment(principal, monthlyRate, months);
   if (!Number.isFinite(payment) || payment <= 0) {
-    setError("Unable to compute payment with the current inputs.");
+    setError('Unable to compute payment with the current inputs.');
     return;
   }
 
@@ -723,8 +720,7 @@ function calculate() {
     yearlyOver,
   };
 
-  resultDiv.innerHTML =
-    `<strong>Monthly Payment (Principal + Interest):</strong> ${formatCurrency(payment)}`;
+  resultDiv.innerHTML = `<strong>Monthly Payment (Principal + Interest):</strong> ${formatCurrency(payment)}`;
 
   const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
   const timeSaved = Math.max(0, baseline.months - overpayment.months);
@@ -736,28 +732,27 @@ function calculate() {
     escrowMonthly > 0
       ? `Total monthly payment (PITI): ${formatCurrency(payment + escrowMonthly)} ` +
         `(taxes + insurance ${formatCurrency(escrowMonthly)}/mo).`
-      : "";
+      : '';
   const extraLine =
     extraMonthly > 0 || lumpSum > 0
-      ? `Extra payments save ${formatCurrency(interestSaved)} ` +
-        `and ${formatTerm(timeSaved)}.`
-      : "No extra payment applied.";
+      ? `Extra payments save ${formatCurrency(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
+      : 'No extra payment applied.';
   const payoffLine = payoffDate ? `${payoffText} (ending ${payoffDate})` : payoffText;
 
   summaryDiv.innerHTML =
     `<p><strong>Payoff with extras:</strong> ${payoffLine}.</p>` +
-    (escrowLine ? `<p>${escrowLine}</p>` : "") +
+    (escrowLine ? `<p>${escrowLine}</p>` : '') +
     `<p>${extraLine}</p>`;
 
   renderMonthlyTable(overpayment.schedule, startDate);
   renderYearlyTable(yearlyOver);
 
-  const view = viewButtons?.getValue() ?? "monthly";
+  const view = viewButtons?.getValue() ?? 'monthly';
   applyView(view);
 }
 
-setDownPaymentVisibility(downTypeButtons?.getValue() ?? "amount");
+setDownPaymentVisibility(downTypeButtons?.getValue() ?? 'amount');
 
-calculateButton?.addEventListener("click", calculate);
+calculateButton?.addEventListener('click', calculate);
 
 calculate();

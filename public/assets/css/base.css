@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
-  --font-body: "Trebuchet MS", "Gill Sans", "Candara", "Segoe UI", sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-body: 'Trebuchet MS', 'Gill Sans', 'Candara', 'Segoe UI', sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
   font-family: var(--font-body);
   --page-bg: #ffffff;
   --page-bg-accent: #ffffff;
