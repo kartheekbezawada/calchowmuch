@@ -247,10 +247,6 @@
   min-height: 0;
 }
 
-.center-column .panel {
-  min-height: 520px;
-}
-
 .panel h3 {
   margin: 0;
   font-size: 16px;
