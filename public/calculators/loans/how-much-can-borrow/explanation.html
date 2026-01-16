@@ -1,0 +1,70 @@
+<div id="loan-borrow-explanation">
+  <h4>Borrowing Summary</h4>
+  <p>
+    Using the <span data-bor="basis"></span> monthly income of <span data-bor="income"></span>, the
+    calculator allows up to <span data-bor="max-payment"></span> per month for a mortgage payment.
+    This implies a maximum loan of <span data-bor="max-borrow"></span> at
+    <span data-bor="rate"></span>% over <span data-bor="term"></span> years.
+  </p>
+  <p>
+    Example: with monthly income of <span data-bor="income-example"></span> and total outgoings of
+    <span data-bor="outgoings"></span>, the usable payment is <span data-bor="max-payment"></span>,
+    which maps to <span data-bor="max-borrow"></span> of borrowing.
+  </p>
+
+  <div class="result-section">
+    <h4>Scenario Summary</h4>
+    <div class="table-scroll" id="bor-table-wrap" tabindex="0">
+      <table class="calculator-table" id="bor-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody id="bor-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Borrow Amount vs Interest Rate</h4>
+    <div class="graph-panel" id="bor-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="bor-graph-title">Max Borrow by Rate</span>
+        <span class="graph-note" id="bor-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="bor-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Max borrow</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="bor-y-label">Borrow</span>
+        <div class="graph-y-axis" id="bor-y-axis">
+          <span id="bor-y-max"></span>
+          <span id="bor-y-mid"></span>
+          <span id="bor-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="bor-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="bor-x-axis">
+            <span id="bor-x-start"></span>
+            <span id="bor-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="bor-x-label">Rate (%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

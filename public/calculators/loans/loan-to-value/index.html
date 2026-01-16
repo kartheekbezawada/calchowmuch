@@ -1,0 +1,94 @@
+<div id="calc-loan-to-value">
+  <div class="calculator-ui">
+    <p class="helper">
+      Calculate loan-to-value (LTV), deposit, and risk bands for mortgage eligibility.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ltv-property">Property Value</label>
+        <input id="ltv-property" type="number" value="300000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="ltv-mode-label">Input Mode</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ltv-mode-label"
+          data-button-group="ltv-mode"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="loan"
+            aria-pressed="true"
+          >
+            Loan Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="deposit"
+            aria-pressed="false"
+          >
+            Deposit
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="ltv-loan-row">
+        <label for="ltv-loan">Loan Amount</label>
+        <input id="ltv-loan" type="number" value="240000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-type-row">
+        <label id="ltv-deposit-type-label">Deposit Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ltv-deposit-type-label"
+          data-button-group="ltv-deposit-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-amount-row">
+        <label for="ltv-deposit-amount">Deposit Amount</label>
+        <input id="ltv-deposit-amount" type="number" value="60000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-percent-row">
+        <label for="ltv-deposit-percent">Deposit Percent (%)</label>
+        <input id="ltv-deposit-percent" type="number" value="20" min="0" max="99.99" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ltv-calculate">
+      Calculate LTV
+    </button>
+
+    <div class="result" id="ltv-result" aria-live="polite"></div>
+    <div class="result-detail" id="ltv-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/loan-to-value/calculator.css');
+</style>

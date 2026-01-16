@@ -1,19 +1,21 @@
 <div id="loan-mtg-explanation">
   <h2>Mortgage Payment Overview</h2>
   <p>
-    A mortgage payment repays the home loan balance plus interest over time. Early payments
-    are interest-heavy because interest is calculated on the larger starting balance. As the
-    balance falls, more of each payment goes toward principal.
+    A mortgage payment repays the home loan balance plus interest over time. Early payments are
+    interest-heavy because interest is calculated on the larger starting balance. As the balance
+    falls, more of each payment goes toward principal.
   </p>
   <p>
-    Extra payments reduce the outstanding balance faster, which shortens the payoff timeline
-    and lowers total interest paid.
+    Extra payments reduce the outstanding balance faster, which shortens the payoff timeline and
+    lowers total interest paid.
   </p>
 
   <h3>Current Inputs</h3>
   <ul>
     <li>Home price: <span data-mtg="price"></span></li>
-    <li>Down payment: <span data-mtg="down-payment"></span> (<span data-mtg="down-percent"></span>)</li>
+    <li>
+      Down payment: <span data-mtg="down-payment"></span> (<span data-mtg="down-percent"></span>)
+    </li>
     <li>Loan amount: <span data-mtg="loan-amount"></span></li>
     <li>Interest rate: <span data-mtg="rate"></span></li>
     <li>Loan term: <span data-mtg="term"></span></li>
@@ -29,10 +31,20 @@
     aria-labelledby="mtg-view-label"
     data-button-group="mtg-view"
   >
-    <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+    <button
+      class="calculator-button secondary is-active"
+      type="button"
+      data-value="monthly"
+      aria-pressed="true"
+    >
       Monthly
     </button>
-    <button class="calculator-button secondary" type="button" data-value="yearly" aria-pressed="false">
+    <button
+      class="calculator-button secondary"
+      type="button"
+      data-value="yearly"
+      aria-pressed="false"
+    >
       Yearly
     </button>
   </div>

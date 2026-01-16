@@ -1,0 +1,31 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-buy-to-let .is-hidden {
+  display: none;
+}
+
+#calc-buy-to-let .graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#calc-buy-to-let .graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#calc-buy-to-let .graph-line .line-primary {
+  stroke: var(--accent);
+}
+
+#calc-buy-to-let .graph-line .line-secondary {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+#calc-buy-to-let .graph-legend-color.secondary {
+  background: #94a3b8;
+}

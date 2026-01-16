@@ -39,18 +39,18 @@
   margin-bottom: 6px;
 }
 
-.calculator-ui input[type="number"],
-.calculator-ui input[type="text"],
-.calculator-ui input[type="email"],
-.calculator-ui input[type="password"],
-.calculator-ui input[type="search"],
-.calculator-ui input[type="tel"],
-.calculator-ui input[type="url"],
-.calculator-ui input[type="date"],
-.calculator-ui input[type="time"],
-.calculator-ui input[type="datetime-local"],
-.calculator-ui input[type="month"],
-.calculator-ui input[type="week"],
+.calculator-ui input[type='number'],
+.calculator-ui input[type='text'],
+.calculator-ui input[type='email'],
+.calculator-ui input[type='password'],
+.calculator-ui input[type='search'],
+.calculator-ui input[type='tel'],
+.calculator-ui input[type='url'],
+.calculator-ui input[type='date'],
+.calculator-ui input[type='time'],
+.calculator-ui input[type='datetime-local'],
+.calculator-ui input[type='month'],
+.calculator-ui input[type='week'],
 .calculator-ui textarea {
   width: 100%;
   padding: var(--calculator-input-padding);
@@ -140,13 +140,13 @@
 }
 
 .calculator-button.is-active,
-.calculator-button[aria-pressed="true"] {
+.calculator-button[aria-pressed='true'] {
   background: var(--accent);
   color: #fff;
 }
 
 .calculator-button.secondary.is-active,
-.calculator-button.secondary[aria-pressed="true"] {
+.calculator-button.secondary[aria-pressed='true'] {
   background: var(--accent);
   color: #fff;
 }

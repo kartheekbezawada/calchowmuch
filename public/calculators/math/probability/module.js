@@ -1,38 +1,38 @@
-import { formatNumber, formatPercent } from "/assets/js/core/format.js";
-import { setupButtonGroup } from "/assets/js/core/ui.js";
-import { toNumber } from "/assets/js/core/validate.js";
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { toNumber } from '/assets/js/core/validate.js';
 
 const modeGroup = document.querySelector('[data-button-group="prob-mode"]');
 const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: "and",
+  defaultValue: 'and',
   onChange: () => {
     updateVisibility();
     calculate();
   },
 });
-const probAInput = document.querySelector("#prob-a");
-const probBInput = document.querySelector("#prob-b");
-const probBRow = document.querySelector("#prob-b-row");
-const calculateButton = document.querySelector("#prob-calculate");
-const resultDiv = document.querySelector("#prob-result");
-const detailDiv = document.querySelector("#prob-detail");
+const probAInput = document.querySelector('#prob-a');
+const probBInput = document.querySelector('#prob-b');
+const probBRow = document.querySelector('#prob-b-row');
+const calculateButton = document.querySelector('#prob-calculate');
+const resultDiv = document.querySelector('#prob-result');
+const detailDiv = document.querySelector('#prob-detail');
 
 function updateVisibility() {
-  const mode = modeButtons?.getValue() ?? "and";
-  const needsB = mode === "and" || mode === "or";
-  probBRow.style.display = needsB ? "" : "none";
+  const mode = modeButtons?.getValue() ?? 'and';
+  const needsB = mode === 'and' || mode === 'or';
+  probBRow.style.display = needsB ? '' : 'none';
 }
 
 function calculate() {
-  resultDiv.textContent = "";
-  detailDiv.textContent = "";
+  resultDiv.textContent = '';
+  detailDiv.textContent = '';
 
-  const mode = modeButtons?.getValue() ?? "and";
+  const mode = modeButtons?.getValue() ?? 'and';
   const pAPercent = toNumber(probAInput.value, 0);
 
   // Validate P(A)
   if (pAPercent < 0 || pAPercent > 100) {
-    resultDiv.textContent = "P(A) must be between 0% and 100%.";
+    resultDiv.textContent = 'P(A) must be between 0% and 100%.';
     return;
   }
 
@@ -41,33 +41,33 @@ function calculate() {
   let formula;
   let description;
 
-  if (mode === "single") {
+  if (mode === 'single') {
     result = pA;
-    formula = "P(A)";
-    description = "The probability of event A occurring.";
-  } else if (mode === "complement") {
+    formula = 'P(A)';
+    description = 'The probability of event A occurring.';
+  } else if (mode === 'complement') {
     result = 1 - pA;
-    formula = "1 - P(A)";
-    description = "The probability of event A NOT occurring.";
+    formula = '1 - P(A)';
+    description = 'The probability of event A NOT occurring.';
   } else {
     // Need P(B) for AND and OR
     const pBPercent = toNumber(probBInput.value, 0);
 
     if (pBPercent < 0 || pBPercent > 100) {
-      resultDiv.textContent = "P(B) must be between 0% and 100%.";
+      resultDiv.textContent = 'P(B) must be between 0% and 100%.';
       return;
     }
 
     const pB = pBPercent / 100;
 
-    if (mode === "and") {
+    if (mode === 'and') {
       result = pA * pB;
-      formula = "P(A) × P(B)";
-      description = "The probability of both A AND B occurring (independent events).";
-    } else if (mode === "or") {
+      formula = 'P(A) × P(B)';
+      description = 'The probability of both A AND B occurring (independent events).';
+    } else if (mode === 'or') {
       result = pA + pB - pA * pB;
-      formula = "P(A) + P(B) - P(A) × P(B)";
-      description = "The probability of A OR B (or both) occurring (independent events).";
+      formula = 'P(A) + P(B) - P(A) × P(B)';
+      description = 'The probability of A OR B (or both) occurring (independent events).';
     }
   }
 
@@ -81,7 +81,7 @@ function calculate() {
   `;
 }
 
-calculateButton.addEventListener("click", calculate);
+calculateButton.addEventListener('click', calculate);
 
 // Initialize
 updateVisibility();

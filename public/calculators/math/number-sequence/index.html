@@ -5,7 +5,12 @@
     <div class="input-stack">
       <div class="input-row">
         <label id="seq-type-label">Sequence Type</label>
-        <div class="button-group" role="group" aria-labelledby="seq-type-label" data-button-group="seq-type">
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="seq-type-label"
+          data-button-group="seq-type"
+        >
           <button
             class="calculator-button secondary is-active"
             type="button"
@@ -14,7 +19,12 @@
           >
             Arithmetic
           </button>
-          <button class="calculator-button secondary" type="button" data-value="geometric" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="geometric"
+            aria-pressed="false"
+          >
             Geometric
           </button>
         </div>
@@ -30,7 +40,7 @@
         <input id="seq-d" type="number" value="3" step="any" />
       </div>
 
-      <div class="input-row" id="seq-r-row" style="display: none;">
+      <div class="input-row" id="seq-r-row" style="display: none">
         <label for="seq-r">Common Ratio (r)</label>
         <input id="seq-r" type="number" value="2" step="any" />
       </div>
@@ -50,11 +60,11 @@
       Calculate Sequence
     </button>
 
-    <div class="result" id="seq-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result" id="seq-result" aria-live="polite" style="min-height: 60px"></div>
     <div class="result-detail" id="seq-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
-  @import url("/calculators/math/number-sequence/calculator.css");
+  @import url('/calculators/math/number-sequence/calculator.css');
 </style>

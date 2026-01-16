@@ -1,24 +1,24 @@
-import { mean, median, mode, min, max, range, parseDataset } from "/assets/js/core/stats.js";
-import { formatNumber } from "/assets/js/core/format.js";
+import { mean, median, mode, min, max, range, parseDataset } from '/assets/js/core/stats.js';
+import { formatNumber } from '/assets/js/core/format.js';
 
-const datasetInput = document.querySelector("#mmmr-dataset");
-const calculateButton = document.querySelector("#mmmr-calculate");
-const resultDiv = document.querySelector("#mmmr-result");
-const detailDiv = document.querySelector("#mmmr-detail");
+const datasetInput = document.querySelector('#mmmr-dataset');
+const calculateButton = document.querySelector('#mmmr-calculate');
+const resultDiv = document.querySelector('#mmmr-result');
+const detailDiv = document.querySelector('#mmmr-detail');
 
 function calculate() {
-  resultDiv.textContent = "";
-  detailDiv.textContent = "";
+  resultDiv.textContent = '';
+  detailDiv.textContent = '';
 
   const { data, errors } = parseDataset(datasetInput.value);
 
   if (errors.length > 0) {
-    resultDiv.textContent = `Invalid values: ${errors.join(", ")}. Please enter valid numbers only.`;
+    resultDiv.textContent = `Invalid values: ${errors.join(', ')}. Please enter valid numbers only.`;
     return;
   }
 
   if (data.length === 0) {
-    resultDiv.textContent = "Please enter at least one number.";
+    resultDiv.textContent = 'Please enter at least one number.';
     return;
   }
 
@@ -34,9 +34,9 @@ function calculate() {
   // Format mode
   let modeStr;
   if (dataMode === null) {
-    modeStr = "no mode";
+    modeStr = 'no mode';
   } else {
-    modeStr = dataMode.map(m => formatNumber(m, opts)).join(", ");
+    modeStr = dataMode.map((m) => formatNumber(m, opts)).join(', ');
   }
 
   resultDiv.innerHTML = `<strong>Results</strong> (n = ${n})`;
@@ -71,7 +71,7 @@ function calculate() {
   `;
 }
 
-calculateButton.addEventListener("click", calculate);
+calculateButton.addEventListener('click', calculate);
 
 // Calculate on load with default values
 calculate();

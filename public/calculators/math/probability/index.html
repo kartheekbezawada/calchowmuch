@@ -5,11 +5,26 @@
     <div class="input-stack">
       <div class="input-row">
         <label id="prob-mode-label">Operation</label>
-        <div class="button-group" role="group" aria-labelledby="prob-mode-label" data-button-group="prob-mode">
-          <button class="calculator-button secondary" type="button" data-value="single" aria-pressed="false">
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="prob-mode-label"
+          data-button-group="prob-mode"
+        >
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="single"
+            aria-pressed="false"
+          >
             Single Event P(A)
           </button>
-          <button class="calculator-button secondary" type="button" data-value="complement" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="complement"
+            aria-pressed="false"
+          >
             Complement 1 - P(A)
           </button>
           <button
@@ -20,7 +35,12 @@
           >
             AND (Independent): P(A) × P(B)
           </button>
-          <button class="calculator-button secondary" type="button" data-value="or" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="or"
+            aria-pressed="false"
+          >
             OR (Independent): P(A) + P(B) - P(A)×P(B)
           </button>
         </div>
@@ -41,11 +61,11 @@
       Calculate Probability
     </button>
 
-    <div class="result" id="prob-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result" id="prob-result" aria-live="polite" style="min-height: 60px"></div>
     <div class="result-detail" id="prob-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
-  @import url("/calculators/math/probability/calculator.css");
+  @import url('/calculators/math/probability/calculator.css');
 </style>

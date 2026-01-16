@@ -1,0 +1,100 @@
+<div id="calc-remortgage-switching">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compare your current mortgage with a new deal, including fees and break-even timing.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="remo-balance">Current Balance</label>
+        <input id="remo-balance" type="number" value="220000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-current-rate">Current Rate (APR %)</label>
+        <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-term">Remaining Term (years)</label>
+        <input id="remo-term" type="number" value="20" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-current-payment">Current Monthly Payment (optional)</label>
+        <input id="remo-current-payment" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-new-rate">New Rate (APR %)</label>
+        <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-new-term">New Term (years)</label>
+        <input id="remo-new-term" type="number" value="20" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-new-fees">New Deal Fees</label>
+        <input id="remo-new-fees" type="number" value="1500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-exit-fees">Exit Fees / ERC</label>
+        <input id="remo-exit-fees" type="number" value="1000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="remo-legal-fees">Legal / Valuation Fees</label>
+        <input id="remo-legal-fees" type="number" value="500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="remo-horizon-label">Comparison Horizon</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="remo-horizon-label"
+          data-button-group="remo-horizon"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="2"
+            aria-pressed="true"
+          >
+            2 Years
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="3"
+            aria-pressed="false"
+          >
+            3 Years
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="5"
+            aria-pressed="false"
+          >
+            5 Years
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="remo-calculate">
+      Compare Deals
+    </button>
+
+    <div class="result" id="remo-result" aria-live="polite"></div>
+    <div class="result-detail" id="remo-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/remortgage-switching/calculator.css');
+</style>

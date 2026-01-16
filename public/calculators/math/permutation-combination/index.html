@@ -5,7 +5,12 @@
     <div class="input-stack">
       <div class="input-row">
         <label id="pc-mode-label">Calculation Type</label>
-        <div class="button-group" role="group" aria-labelledby="pc-mode-label" data-button-group="pc-mode">
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pc-mode-label"
+          data-button-group="pc-mode"
+        >
           <button
             class="calculator-button secondary is-active"
             type="button"
@@ -14,7 +19,12 @@
           >
             Permutation (nPr)
           </button>
-          <button class="calculator-button secondary" type="button" data-value="combination" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="combination"
+            aria-pressed="false"
+          >
             Combination (nCr)
           </button>
         </div>
@@ -31,15 +41,13 @@
       </div>
     </div>
 
-    <button class="calculator-button full-width" type="button" id="pc-calculate">
-      Calculate
-    </button>
+    <button class="calculator-button full-width" type="button" id="pc-calculate">Calculate</button>
 
-    <div class="result" id="pc-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result" id="pc-result" aria-live="polite" style="min-height: 60px"></div>
     <div class="result-detail" id="pc-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
-  @import url("/calculators/math/permutation-combination/calculator.css");
+  @import url('/calculators/math/permutation-combination/calculator.css');
 </style>
