@@ -22,53 +22,33 @@
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
               "url": "#/calculators/fraction-calculator"
-            },
-            {
-              "id": "standard-deviation",
-              "name": "Standard Deviation Calculator",
-              "url": "#/calculators/standard-deviation"
-            },
-            {
-              "id": "number-sequence",
-              "name": "Number Sequence Calculator",
-              "url": "#/calculators/number-sequence"
-            },
-            {
-              "id": "sample-size",
-              "name": "Sample Size Calculator",
-              "url": "#/calculators/sample-size"
-            },
-            {
-              "id": "probability",
-              "name": "Probability Calculator",
-              "url": "#/calculators/probability"
-            },
-            {
-              "id": "statistics",
-              "name": "Statistics Calculator",
-              "url": "#/calculators/statistics"
-            },
-            {
-              "id": "mean-median-mode-range",
-              "name": "Mean, Median, Mode, Range Calculator",
-              "url": "#/calculators/mean-median-mode-range"
-            },
-            {
-              "id": "permutation-combination",
-              "name": "Permutation and Combination Calculator",
-              "url": "#/calculators/permutation-combination"
-            },
-            {
-              "id": "z-score",
-              "name": "Z-score Calculator",
-              "url": "#/calculators/z-score"
-            },
-            {
-              "id": "confidence-interval",
-              "name": "Confidence Interval Calculator",
-              "url": "#/calculators/confidence-interval"
             }
           ]
+        },
+        {
+          "id": "algebra",
+          "name": "Algebra",
+          "calculators": []
+        },
+        {
+          "id": "trigonometry",
+          "name": "Trigonometry",
+          "calculators": []
+        },
+        {
+          "id": "calculus",
+          "name": "Calculus",
+          "calculators": []
+        },
+        {
+          "id": "log",
+          "name": "Log",
+          "calculators": []
+        },
+        {
+          "id": "statistics",
+          "name": "Statistics",
+          "calculators": []
         }
       ]
     },
@@ -77,46 +57,91 @@
       "name": "Loans",
       "subcategories": [
         {
-          "id": "home-loans",
-          "name": "Home Loans",
+          "id": "home",
+          "name": "Home",
           "calculators": [
             {
               "id": "home-loan",
-              "name": "Home Loan Calculator",
+              "name": "Home Loan",
               "url": "#/calculators/home-loan",
               "keywords": ["mortgage", "home loan", "amortization", "principal", "interest", "piti"]
+            },
+            {
+              "id": "how-much-can-i-borrow",
+              "name": "How Much I Can Borrow",
+              "url": "#/calculators/how-much-can-i-borrow"
+            },
+            {
+              "id": "remortgage-switching",
+              "name": "Remortgage / Switching",
+              "url": "#/calculators/remortgage-switching"
+            },
+            {
+              "id": "buy-to-let",
+              "name": "Buy-to-Let Calculator",
+              "url": "#/calculators/buy-to-let"
+            },
+            {
+              "id": "overpayment-additional-payment",
+              "name": "Overpayment / Additional Payment",
+              "url": "#/calculators/overpayment-additional-payment"
+            },
+            {
+              "id": "offset-calculator",
+              "name": "Offset Calculator",
+              "url": "#/calculators/offset-calculator"
+            },
+            {
+              "id": "interest-rate-change-calculator",
+              "name": "Interest Rate Change Calculator",
+              "url": "#/calculators/interest-rate-change-calculator"
+            },
+            {
+              "id": "loan-to-value",
+              "name": "Loan-to-Value (LTV) Calculator",
+              "url": "#/calculators/loan-to-value"
             }
           ]
         },
         {
-          "id": "personal-loans",
-          "name": "Personal Loans",
-          "calculators": []
-        },
-        {
           "id": "credit-cards",
           "name": "Credit Cards",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "credit-card-repayment-payoff",
+              "name": "Repayment / Payoff Calculator",
+              "url": "#/calculators/credit-card-repayment-payoff"
+            },
+            {
+              "id": "credit-card-minimum-payment",
+              "name": "Minimum Payment Calculator",
+              "url": "#/calculators/credit-card-minimum-payment"
+            },
+            {
+              "id": "balance-transfer-installment-plan",
+              "name": "Balance Transfer / Installment Plan Calculator",
+              "url": "#/calculators/balance-transfer-installment-plan"
+            },
+            {
+              "id": "credit-card-consolidation",
+              "name": "Credit Card Consolidation Calculator",
+              "url": "#/calculators/credit-card-consolidation"
+            }
+          ]
         },
         {
           "id": "auto-loans",
           "name": "Auto Loans",
-          "calculators": []
-        },
-        {
-          "id": "education-loans",
-          "name": "Education Loans",
-          "calculators": []
-        },
-        {
-          "id": "general-loan-tools",
-          "name": "General Loan Tools",
           "calculators": [
             {
-              "id": "loan-emi",
-              "name": "Loan EMI Calculator",
-              "url": "#/calculators/loan-emi",
-              "keywords": ["emi", "mortgage", "interest", "amortization", "loan payment", "repayment"]
+              "id": "car-loan",
+              "name": "Car Loan Calculator",
+              "url": "#/calculators/car-loan"
+            },
+            {
+              "id": "multiple-car-loan",
+              "name": "Multiple Car Loan Calculator",
+              "url": "#/calculators/multiple-car-loan"
             }
           ]
         }
