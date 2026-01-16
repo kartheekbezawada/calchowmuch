@@ -67,9 +67,9 @@
               "keywords": ["mortgage", "home loan", "amortization", "principal", "interest", "piti"]
             },
             {
-              "id": "how-much-can-i-borrow",
-              "name": "How Much I Can Borrow",
-              "url": "#/calculators/how-much-can-i-borrow"
+              "id": "how-much-can-borrow",
+              "name": "How Much Can I Borrow",
+              "url": "#/calculators/how-much-can-borrow"
             },
             {
               "id": "remortgage-switching",

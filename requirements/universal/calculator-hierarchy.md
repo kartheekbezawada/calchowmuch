@@ -38,7 +38,7 @@ When user clicks **Loans** in the top navigation bar, the left navigation pane M
 Loans
 - Home
   - Home Loan
-  - How Much I Can Borrow
+  - How Much Can I Borrow
   - Remortgage / Switching
   - Buy-to-Let Calculator
   - Overpayment / Additional Payment
