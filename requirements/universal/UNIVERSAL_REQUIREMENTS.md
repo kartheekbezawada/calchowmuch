@@ -425,6 +425,12 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 **[UNAV-ROOT-4] No cross-domain leakage**
 - Domain switching must not leak navigation items from other domains.
 
+**[UNAV-HIER-1] Hierarchy source of truth**
+- Navigation structure, section order, and calculator display names must match `requirements/universal/calculator-hierarchy.md`.
+
+**[UNAV-HIER-2] Empty sections still render**
+- Sections listed in the hierarchy must appear as headings even when they contain no calculators (unless a requirement explicitly removes them).
+
 ### 4.6 Navigation Scalability Constraints
 
 **[UNAV-SCALE-1] Flat list limit**
