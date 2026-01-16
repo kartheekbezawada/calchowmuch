@@ -1,0 +1,31 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-home-loan .is-hidden {
+  display: none;
+}
+
+#calc-home-loan .graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#calc-home-loan .graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#calc-home-loan .graph-line .line-over {
+  stroke: var(--accent);
+}
+
+#calc-home-loan .graph-line .line-baseline {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+#calc-home-loan .graph-legend-color.baseline {
+  background: #94a3b8;
+}

@@ -1,0 +1,131 @@
+<div id="loan-mtg-explanation">
+  <h2>Mortgage Payment Overview</h2>
+  <p>
+    A mortgage payment repays the home loan balance plus interest over time. Early payments
+    are interest-heavy because interest is calculated on the larger starting balance. As the
+    balance falls, more of each payment goes toward principal.
+  </p>
+  <p>
+    Extra payments reduce the outstanding balance faster, which shortens the payoff timeline
+    and lowers total interest paid.
+  </p>
+
+  <h3>Current Inputs</h3>
+  <ul>
+    <li>Home price: <span data-mtg="price"></span></li>
+    <li>Down payment: <span data-mtg="down-payment"></span> (<span data-mtg="down-percent"></span>)</li>
+    <li>Loan amount: <span data-mtg="loan-amount"></span></li>
+    <li>Interest rate: <span data-mtg="rate"></span></li>
+    <li>Loan term: <span data-mtg="term"></span></li>
+    <li>Extra monthly payment: <span data-mtg="extra-monthly"></span></li>
+    <li>Lump sum payment: <span data-mtg="lump-sum"></span></li>
+    <li>Taxes + insurance: <span data-mtg="escrow"></span></li>
+  </ul>
+
+  <h3 id="mtg-view-label">Schedule View</h3>
+  <div
+    class="button-group"
+    role="group"
+    aria-labelledby="mtg-view-label"
+    data-button-group="mtg-view"
+  >
+    <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+      Monthly
+    </button>
+    <button class="calculator-button secondary" type="button" data-value="yearly" aria-pressed="false">
+      Yearly
+    </button>
+  </div>
+
+  <h3>Monthly Summary</h3>
+  <div class="mtg-summary" data-mtg-view="monthly">
+    <p data-mtg="monthly-summary"></p>
+    <p data-mtg="monthly-breakdown"></p>
+  </div>
+
+  <h3>Yearly Summary</h3>
+  <div class="mtg-summary" data-mtg-view="yearly">
+    <p data-mtg="yearly-summary"></p>
+  </div>
+
+  <h3>Lifetime Totals</h3>
+  <p data-mtg="lifetime-summary"></p>
+
+  <h3>Balance Chart</h3>
+  <div class="graph-panel" id="mtg-graph">
+    <div class="graph-header">
+      <span class="graph-title" id="mtg-graph-title">Remaining Balance</span>
+      <span class="graph-note" id="mtg-graph-note"></span>
+    </div>
+    <div class="graph-legend" id="mtg-graph-legend">
+      <div class="graph-legend-item">
+        <span class="graph-legend-color balance"></span>
+        <span>With extras</span>
+      </div>
+      <div class="graph-legend-item">
+        <span class="graph-legend-color baseline"></span>
+        <span>Baseline</span>
+      </div>
+    </div>
+    <div class="graph-container">
+      <span class="graph-y-label" id="mtg-y-label">Balance</span>
+      <div class="graph-y-axis" id="mtg-y-axis">
+        <span id="mtg-y-max"></span>
+        <span id="mtg-y-mid"></span>
+        <span id="mtg-y-min">0</span>
+      </div>
+      <div class="graph-main">
+        <div class="graph-bars-wrapper">
+          <svg
+            class="graph-line"
+            id="mtg-graph-line"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <polyline id="mtg-line-base" class="line-baseline" points=""></polyline>
+            <polyline id="mtg-line-over" class="line-over" points=""></polyline>
+          </svg>
+        </div>
+        <div class="graph-x-axis" id="mtg-x-axis">
+          <span id="mtg-x-start">1</span>
+          <span id="mtg-x-end"></span>
+        </div>
+        <span class="graph-x-label" id="mtg-x-label">Month</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 id="mtg-table-title">Amortization Table (Monthly)</h3>
+  <div class="table-scroll" id="mtg-table-monthly-wrap">
+    <table class="calculator-table" id="mtg-table-monthly">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Payment</th>
+          <th>Principal</th>
+          <th>Interest</th>
+          <th>Extra</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody id="mtg-table-monthly-body"></tbody>
+    </table>
+  </div>
+
+  <div class="table-scroll" id="mtg-table-yearly-wrap" hidden>
+    <table class="calculator-table" id="mtg-table-yearly">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Total Paid</th>
+          <th>Total Principal</th>
+          <th>Total Interest</th>
+          <th>Total Extra</th>
+          <th>Ending Balance</th>
+        </tr>
+      </thead>
+      <tbody id="mtg-table-yearly-body"></tbody>
+    </table>
+  </div>
+</div>

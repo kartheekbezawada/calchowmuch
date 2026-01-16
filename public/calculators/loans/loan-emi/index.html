@@ -1,0 +1,113 @@
+<div id="calc-loan-emi">
+  <div class="calculator-ui">
+    <p class="helper">Estimate EMI, compare overpayment savings, and review amortization tables.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="emi-amount">Loan Amount</label>
+        <input id="emi-amount" type="number" value="250000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="emi-rate">Annual Interest Rate (%)</label>
+        <input id="emi-rate" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="emi-years">Loan Tenure (years)</label>
+        <input id="emi-years" type="number" value="30" min="1" step="0.1" />
+      </div>
+
+      <div class="input-row">
+        <label for="emi-extra">Extra Payment Amount</label>
+        <input id="emi-extra" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="emi-extra-label">Extra Payment Frequency</label>
+        <div class="button-group" role="group" aria-labelledby="emi-extra-label" data-button-group="emi-extra-type">
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+            Monthly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="yearly" aria-pressed="false">
+            Yearly
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="emi-view-label">Schedule View</label>
+        <div class="button-group" role="group" aria-labelledby="emi-view-label" data-button-group="emi-view">
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+            Monthly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="yearly" aria-pressed="false">
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="emi-calculate">
+      Calculate EMI
+    </button>
+
+    <div class="result" id="emi-result" aria-live="polite"></div>
+    <div class="result-detail" id="emi-summary" aria-live="polite"></div>
+
+    <div class="result-scroll" id="emi-detail" aria-live="polite">
+      <div class="result-section">
+        <h4>Baseline vs Overpayment</h4>
+        <div class="table-scroll">
+          <table class="calculator-table" id="emi-comparison-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Baseline</th>
+                <th>With Overpayment</th>
+              </tr>
+            </thead>
+            <tbody id="emi-comparison-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h4 id="emi-table-title">Amortization Table (Monthly)</h4>
+        <div class="table-scroll">
+          <table class="calculator-table" id="emi-table-monthly">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Extra</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="emi-table-monthly-body"></tbody>
+          </table>
+
+          <table class="calculator-table" id="emi-table-yearly" hidden>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Extra</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="emi-table-yearly-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url("/calculators/loans/loan-emi/calculator.css");
+</style>
