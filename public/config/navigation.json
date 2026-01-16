@@ -79,7 +79,14 @@
         {
           "id": "home-loans",
           "name": "Home Loans",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "home-loan",
+              "name": "Home Loan Calculator",
+              "url": "#/calculators/home-loan",
+              "keywords": ["mortgage", "home loan", "amortization", "principal", "interest", "piti"]
+            }
+          ]
         },
         {
           "id": "personal-loans",

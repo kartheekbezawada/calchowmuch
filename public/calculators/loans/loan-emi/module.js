@@ -16,6 +16,8 @@ const monthlyTableBody = document.querySelector("#emi-table-monthly-body");
 const yearlyTableBody = document.querySelector("#emi-table-yearly-body");
 const monthlyTable = document.querySelector("#emi-table-monthly");
 const yearlyTable = document.querySelector("#emi-table-yearly");
+const monthlyTableWrap = document.querySelector("#emi-table-monthly-wrap");
+const yearlyTableWrap = document.querySelector("#emi-table-yearly-wrap");
 const tableTitle = document.querySelector("#emi-table-title");
 
 const explanationRoot = document.querySelector("#loan-emi-explanation");
@@ -373,10 +375,14 @@ function applyView(view) {
   }
 
   const isMonthly = view === "monthly";
-  if (monthlyTable) {
+  if (monthlyTableWrap) {
+    monthlyTableWrap.hidden = !isMonthly;
+  } else if (monthlyTable) {
     monthlyTable.hidden = !isMonthly;
   }
-  if (yearlyTable) {
+  if (yearlyTableWrap) {
+    yearlyTableWrap.hidden = isMonthly;
+  } else if (yearlyTable) {
     yearlyTable.hidden = isMonthly;
   }
   if (tableTitle) {
