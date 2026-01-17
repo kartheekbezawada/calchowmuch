@@ -1,39 +1,39 @@
-import { add, subtract, multiply, divide } from "/assets/js/core/math.js";
-import { formatNumber } from "/assets/js/core/format.js";
-import { toNumber } from "/assets/js/core/validate.js";
+import { add, subtract, multiply, divide } from '/assets/js/core/math.js';
+import { formatNumber } from '/assets/js/core/format.js';
+import { toNumber } from '/assets/js/core/validate.js';
 
-const inputContainer = document.querySelector("#basic-inputs");
-const result = document.querySelector("#basic-result");
-const buttons = document.querySelectorAll("[data-operation]");
-const resetButton = document.querySelector("#basic-reset");
-const addInputButton = document.querySelector("#basic-add-input");
-const removeInputButton = document.querySelector("#basic-remove-input");
+const inputContainer = document.querySelector('#basic-inputs');
+const result = document.querySelector('#basic-result');
+const buttons = document.querySelectorAll('[data-operation]');
+const resetButton = document.querySelector('#basic-reset');
+const addInputButton = document.querySelector('#basic-add-input');
+const removeInputButton = document.querySelector('#basic-remove-input');
 
 const defaultValues = [12, 8];
-let activeOperation = "add";
+let activeOperation = 'add';
 
 const operations = {
   add: {
-    label: "Sum",
+    label: 'Sum',
     fn: add,
   },
   subtract: {
-    label: "Difference",
+    label: 'Difference',
     fn: subtract,
   },
   multiply: {
-    label: "Product",
+    label: 'Product',
     fn: multiply,
   },
   divide: {
-    label: "Quotient",
+    label: 'Quotient',
     fn: divide,
   },
 };
 
 function getInputValues() {
-  return Array.from(inputContainer.querySelectorAll("[data-basic-input]")).map(input =>
-    toNumber(input.value),
+  return Array.from(inputContainer.querySelectorAll('[data-basic-input]')).map((input) =>
+    toNumber(input.value)
   );
 }
 
@@ -42,11 +42,11 @@ function calculateMultiple(operationKey, values) {
     return 0;
   }
 
-  if (operationKey === "add") {
+  if (operationKey === 'add') {
     return values.reduce((total, value) => add(total, value), 0);
   }
 
-  if (operationKey === "multiply") {
+  if (operationKey === 'multiply') {
     return values.reduce((total, value) => multiply(total, value), 1);
   }
 
@@ -82,8 +82,8 @@ function updateResult(operationKey) {
 }
 
 function bindButtons() {
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
       activeOperation = button.dataset.operation;
       updateResult(activeOperation);
     });
@@ -91,41 +91,41 @@ function bindButtons() {
 }
 
 function bindReset() {
-  resetButton.addEventListener("click", () => {
-    const inputs = Array.from(inputContainer.querySelectorAll("[data-basic-input]"));
-    inputs.slice(2).forEach(input => input.closest(".input-row")?.remove());
+  resetButton.addEventListener('click', () => {
+    const inputs = Array.from(inputContainer.querySelectorAll('[data-basic-input]'));
+    inputs.slice(2).forEach((input) => input.closest('.input-row')?.remove());
 
-    const remainingInputs = Array.from(inputContainer.querySelectorAll("[data-basic-input]"));
+    const remainingInputs = Array.from(inputContainer.querySelectorAll('[data-basic-input]'));
     remainingInputs.forEach((input, index) => {
       input.value = defaultValues[index] ?? 0;
     });
 
     updateRemoveButtonState();
-    activeOperation = "add";
+    activeOperation = 'add';
     updateResult(activeOperation);
   });
 }
 
 function updateRemoveButtonState() {
-  const inputCount = inputContainer.querySelectorAll("[data-basic-input]").length;
+  const inputCount = inputContainer.querySelectorAll('[data-basic-input]').length;
   removeInputButton.disabled = inputCount <= 2;
 }
 
 function addInputRow() {
-  const inputCount = inputContainer.querySelectorAll("[data-basic-input]").length;
+  const inputCount = inputContainer.querySelectorAll('[data-basic-input]').length;
   const nextIndex = inputCount + 1;
-  const wrapper = document.createElement("div");
-  wrapper.className = "input-row";
+  const wrapper = document.createElement('div');
+  wrapper.className = 'input-row';
 
-  const label = document.createElement("label");
+  const label = document.createElement('label');
   label.htmlFor = `basic-value-${nextIndex}`;
   label.textContent = `Number ${nextIndex}`;
 
-  const input = document.createElement("input");
-  input.type = "number";
+  const input = document.createElement('input');
+  input.type = 'number';
   input.id = `basic-value-${nextIndex}`;
-  input.value = "";
-  input.dataset.basicInput = "true";
+  input.value = '';
+  input.dataset.basicInput = 'true';
 
   wrapper.append(label, input);
   inputContainer.append(wrapper);
@@ -134,7 +134,7 @@ function addInputRow() {
 }
 
 function removeInputRow() {
-  const rows = Array.from(inputContainer.querySelectorAll(".input-row"));
+  const rows = Array.from(inputContainer.querySelectorAll('.input-row'));
   if (rows.length <= 2) {
     updateRemoveButtonState();
     return;
@@ -147,8 +147,8 @@ function removeInputRow() {
 }
 
 function bindInputControls() {
-  addInputButton.addEventListener("click", addInputRow);
-  removeInputButton.addEventListener("click", removeInputRow);
+  addInputButton.addEventListener('click', addInputRow);
+  removeInputButton.addEventListener('click', removeInputRow);
   updateRemoveButtonState();
 }
 

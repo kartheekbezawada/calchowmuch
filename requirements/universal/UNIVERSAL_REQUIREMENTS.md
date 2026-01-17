@@ -163,24 +163,150 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 ### 3.6 Tables (Universal)
 
-**[UITBL-1] Horizontal scrolling allowed**
-- Tables may scroll horizontally within their container.
-- Use `overflow-x: auto` on table wrapper to enable horizontal scrolling when content exceeds container width.
+**Scope**
+Applies to ALL tables rendered anywhere in the application:
+- Calculation panes
+- Explanation panes
+- Amortization tables
+- Comparison tables
+- Summary tables
+No exceptions.
 
-**[UITBL-2] Table font sizing**
+**UTBL-STRUCT - Table Structure (Non-Negotiable)**
+
+**[UTBL-STRUCT-1] Semantic tables required**
+- All tables MUST be rendered as semantic HTML tables: `<table>`, `<thead>`, `<tbody>`, `<tfoot>` (when totals or summaries exist).
+
+**[UTBL-STRUCT-2] Header row required**
+- Tables MUST have a clearly defined header row inside `<thead>`.
+
+**[UTBL-STRUCT-3] Totals belong in tfoot**
+- If totals, summaries, or rollups exist, they MUST be rendered in `<tfoot>`, not as body rows.
+
+**UTBL-BORDER - Excel-Style Grid Requirement**
+
+**[UTBL-BORDER-1] Full outer border**
+- Tables MUST display visible borders on all four outer sides.
+
+**[UTBL-BORDER-2] Full grid lines**
+- Tables MUST display visible vertical and horizontal grid lines between all columns and all rows.
+
+**[UTBL-BORDER-3] Consistent grid**
+- Grid lines must be visually consistent across the table (no missing separators).
+
+**[UTBL-BORDER-4] Excel-style layout**
+- Border styling must resemble an Excel-style grid, not a "card" or "list" layout.
+
+**UTBL-SCROLL - Scroll Behavior (Mandatory)**
+
+**[UTBL-SCROLL-1] Dedicated container**
+- Every table MUST be wrapped in a dedicated table container.
+
+**[UTBL-SCROLL-2] Always-visible scrollbars**
+- The table container MUST have vertical and horizontal scrollbars enabled by default.
+
+**[UTBL-SCROLL-3] Scrollbar visibility**
+- Scrollbars must appear even if content currently fits, to signal scrollability.
+
+**[UTBL-SCROLL-4] No page growth**
+- Tables must never expand the page height or parent pane height.
+
+**UTBL-SIZE - Layout & Containment**
+
+**[UTBL-SIZE-1] No layout control**
+- Tables MUST NOT control page layout.
+
+**[UTBL-SIZE-2] Constrained height**
+- Table height must be constrained by the parent pane (Explanation / Calculation).
+
+**[UTBL-SIZE-3] Overflow behavior**
+- Overflow behavior must be: `overflow-x: scroll`, `overflow-y: scroll`.
+
+**[UTBL-SIZE-4] Readability**
+- Tables must remain readable at standard desktop widths without breaking layout.
+
+**UTBL-HEADER - Header & Footer Behavior**
+
+**[UTBL-HEADER-1] Distinct headers**
+- Table headers MUST be visually distinct from body rows.
+
+**[UTBL-HEADER-2] Column alignment**
+- Headers MUST remain aligned with columns during horizontal scrolling.
+
+**[UTBL-HEADER-3] Sticky optional**
+- Sticky headers are allowed but not required; if implemented, they must not overlap content.
+
+**[UTBL-FOOTER-1] Distinct footers**
+- Footer rows (totals, summaries) must be visually distinct from body rows.
+
+**UTBL-TEXT - Content Formatting**
+
+**[UTBL-TEXT-1] No wrapping**
+- Cell content must never wrap by default (`white-space: nowrap`).
+
+**[UTBL-TEXT-2] Numeric alignment**
+- Numeric columns must be consistently aligned (e.g., right-aligned).
+
+**[UTBL-TEXT-3] Concise headers**
+- Column headers must be concise and unambiguous.
+
+**[UTBL-TEXT-4] Table font sizing**
 - Table body text: `14px` minimum, `15px` recommended for readability.
 - Table headers: `13px` uppercase or `14px` normal weight.
 - Ensure sufficient contrast and legibility.
 
-**[UITBL-3] No currency symbols in table cells**
-- Do not display currency symbols ($, ₹, €, etc.) in table cell values.
+**[UTBL-TEXT-5] No currency symbols in table cells**
+- Do not display currency symbols ($, EUR, INR, etc.) in table cell values.
 - Currency context should be established in column headers or table caption if needed.
 - Display numeric values only for cleaner presentation.
 
-**[UITBL-4] Table cell formatting**
-- Right-align numeric columns.
+**[UTBL-TEXT-6] Padding and precision**
 - Use consistent decimal precision within columns.
 - Add appropriate padding for readability (`8px 12px` minimum).
+
+**UTBL-STYLE - Visual Consistency**
+
+**[UTBL-STYLE-1] Shared base styling**
+- All tables must use the same base table styling across the application.
+
+**[UTBL-STYLE-2] No custom borders**
+- No table may introduce custom border styles, spacing, or colors outside the universal table theme.
+
+**[UTBL-STYLE-3] Match other components**
+- Tables must visually match other structured data components (cards, graphs) without blending into them.
+
+**UTBL-FORBIDDEN - Explicitly Disallowed**
+
+**[UTBL-FORBID-1] No list-style tables**
+- No "list-style" tables (rows without borders).
+
+**[UTBL-FORBID-2] No plain text tables**
+- No tables rendered as plain text blocks.
+
+**[UTBL-FORBID-3] No page scrolling**
+- No tables that rely on page scrolling instead of internal scrolling.
+
+**[UTBL-FORBID-4] No borderless tables**
+- No borderless tables for data outputs.
+
+**UTBL-ACCESS - Accessibility & Usability**
+
+**[UTBL-ACCESS-1] Keyboard scroll**
+- Tables must be keyboard-scrollable.
+
+**[UTBL-ACCESS-2] Header semantics**
+- Screen readers must be able to identify headers and data cells correctly.
+
+**UTBL-ACCEPTANCE - Pass / Fail Criteria**
+
+A table implementation FAILS if:
+- Borders are missing on any side
+- Grid lines are missing between rows or columns
+- Scrollbars are not visible by default
+- Table expands page height
+- Headers or totals are mixed into body rows
+
+A table implementation PASSES only if all UTBL-* rules pass.
 
 ### 3.7 Graphs and Visualizations (Universal)
 
@@ -298,6 +424,12 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 
 **[UNAV-ROOT-4] No cross-domain leakage**
 - Domain switching must not leak navigation items from other domains.
+
+**[UNAV-HIER-1] Hierarchy source of truth**
+- Navigation structure, section order, and calculator display names must match `requirements/universal/calculator-hierarchy.md`.
+
+**[UNAV-HIER-2] Empty sections still render**
+- Sections listed in the hierarchy must appear as headings even when they contain no calculators (unless a requirement explicitly removes them).
 
 ### 4.6 Navigation Scalability Constraints
 
@@ -438,6 +570,11 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 
 **[TEST-1.2] Coverage**
 - Minimum **80% coverage** for new compute logic.
+
+**[TEST-1.3] ISS-001 regression check**
+- Verify navigation between calculators does not introduce layout shifts or "bouncing" UI elements.
+- Confirm scrollbars remain visible and space is reserved during navigation.
+- Verify switching calculators within the same category does not reset or reflow navigation layout (no ping-pong/jump).
 
 ---
 

@@ -1,0 +1,112 @@
+<div id="calc-car-loan">
+  <div class="calculator-ui">
+    <p class="helper">Estimate monthly car loan payments after down payment, trade-in, and fees.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="car-price">Vehicle Price</label>
+        <input id="car-price" type="number" value="28000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="car-down-label">Down Payment Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="car-down-label"
+          data-button-group="car-down-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="car-down-amount-row">
+        <label for="car-down-amount">Down Payment</label>
+        <input id="car-down-amount" type="number" value="3000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="car-down-percent-row">
+        <label for="car-down-percent">Down Payment (%)</label>
+        <input id="car-down-percent" type="number" value="10" min="0" max="99.99" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-trade">Trade-in Value</label>
+        <input id="car-trade" type="number" value="1500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-fees">Dealer Fees</label>
+        <input id="car-fees" type="number" value="600" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-tax">Sales Tax (%)</label>
+        <input id="car-tax" type="number" value="7" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-apr">APR (%)</label>
+        <input id="car-apr" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-term">Loan Term (years)</label>
+        <input id="car-term" type="number" value="5" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="car-calc">
+      Calculate Car Loan
+    </button>
+
+    <div class="result" id="car-result" aria-live="polite"></div>
+    <div class="result-detail" id="car-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="car-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="car-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="car-y-max"></span>
+          <span id="car-y-mid"></span>
+          <span id="car-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="car-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="car-x-start"></span>
+            <span id="car-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/car-loan/calculator.css');
+</style>

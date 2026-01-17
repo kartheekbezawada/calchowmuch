@@ -1,0 +1,31 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-interest-rate-change .is-hidden {
+  display: none;
+}
+
+#calc-interest-rate-change .graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#calc-interest-rate-change .graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#calc-interest-rate-change .graph-line .line-primary {
+  stroke: var(--accent);
+}
+
+#calc-interest-rate-change .graph-line .line-secondary {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+#calc-interest-rate-change .graph-legend-color.secondary {
+  background: #94a3b8;
+}

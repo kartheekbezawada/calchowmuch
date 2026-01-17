@@ -11,7 +11,12 @@
           aria-labelledby="ss-confidence-label"
           data-button-group="ss-confidence"
         >
-          <button class="calculator-button secondary" type="button" data-value="1.645" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="1.645"
+            aria-pressed="false"
+          >
             90%
           </button>
           <button
@@ -22,7 +27,12 @@
           >
             95%
           </button>
-          <button class="calculator-button secondary" type="button" data-value="2.576" aria-pressed="false">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="2.576"
+            aria-pressed="false"
+          >
             99%
           </button>
         </div>
@@ -40,7 +50,14 @@
 
       <div class="input-row">
         <label for="ss-population">Population Size (optional)</label>
-        <input id="ss-population" type="number" value="" min="1" step="1" placeholder="Leave blank for infinite" />
+        <input
+          id="ss-population"
+          type="number"
+          value=""
+          min="1"
+          step="1"
+          placeholder="Leave blank for infinite"
+        />
       </div>
     </div>
 
@@ -48,11 +65,11 @@
       Calculate Sample Size
     </button>
 
-    <div class="result" id="ss-result" aria-live="polite" style="min-height: 60px;"></div>
+    <div class="result" id="ss-result" aria-live="polite" style="min-height: 60px"></div>
     <div class="result-detail" id="ss-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
-  @import url("/calculators/math/sample-size/calculator.css");
+  @import url('/calculators/math/sample-size/calculator.css');
 </style>

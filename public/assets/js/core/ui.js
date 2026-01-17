@@ -13,10 +13,10 @@ const INPUT_SELECTOR = [
   'input[type="datetime-local"]',
   'input[type="month"]',
   'input[type="week"]',
-].join(",");
+].join(',');
 
 export function initInputLengthLimiter(maxLength = 12) {
-  if (inputLimiterInitialized || typeof document === "undefined") {
+  if (inputLimiterInitialized || typeof document === 'undefined') {
     return;
   }
   inputLimiterInitialized = true;
@@ -25,10 +25,10 @@ export function initInputLengthLimiter(maxLength = 12) {
     if (input.dataset.maxlengthApplied) {
       return;
     }
-    if (input.type !== "number") {
-      input.setAttribute("maxlength", String(maxLength));
+    if (input.type !== 'number') {
+      input.setAttribute('maxlength', String(maxLength));
     }
-    input.dataset.maxlengthApplied = "true";
+    input.dataset.maxlengthApplied = 'true';
   }
 
   function enforceLimit(input) {
@@ -39,14 +39,14 @@ export function initInputLengthLimiter(maxLength = 12) {
 
   document.querySelectorAll(INPUT_SELECTOR).forEach(applyMaxLength);
 
-  document.addEventListener("focusin", event => {
+  document.addEventListener('focusin', (event) => {
     const target = event.target;
     if (target instanceof HTMLInputElement && target.matches(INPUT_SELECTOR)) {
       applyMaxLength(target);
     }
   });
 
-  document.addEventListener("input", event => {
+  document.addEventListener('input', (event) => {
     const target = event.target;
     if (target instanceof HTMLInputElement && target.matches(INPUT_SELECTOR)) {
       applyMaxLength(target);
@@ -60,7 +60,7 @@ export function setupButtonGroup(group, options = {}) {
     return null;
   }
 
-  const buttons = Array.from(group.querySelectorAll("button[data-value]"));
+  const buttons = Array.from(group.querySelectorAll('button[data-value]'));
   if (!buttons.length) {
     return null;
   }
@@ -69,16 +69,16 @@ export function setupButtonGroup(group, options = {}) {
   const onChange = options.onChange;
   const activeAttribute =
     options.ariaAttribute ??
-    (group.getAttribute("role") === "tablist" ? "aria-selected" : "aria-pressed");
+    (group.getAttribute('role') === 'tablist' ? 'aria-selected' : 'aria-pressed');
 
   function setActive(value) {
     let activeValue = value;
     let hasMatch = false;
 
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       const isActive = button.dataset.value === value;
-      button.classList.toggle("is-active", isActive);
-      button.setAttribute(activeAttribute, isActive ? "true" : "false");
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute(activeAttribute, isActive ? 'true' : 'false');
       if (isActive) {
         hasMatch = true;
       }
@@ -86,10 +86,10 @@ export function setupButtonGroup(group, options = {}) {
 
     if (!hasMatch && defaultValue) {
       activeValue = defaultValue;
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         const isActive = button.dataset.value === activeValue;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute(activeAttribute, isActive ? "true" : "false");
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute(activeAttribute, isActive ? 'true' : 'false');
       });
     }
 
@@ -98,9 +98,8 @@ export function setupButtonGroup(group, options = {}) {
 
   function getValue() {
     const active = buttons.find(
-      button =>
-        button.classList.contains("is-active") ||
-        button.getAttribute(activeAttribute) === "true",
+      (button) =>
+        button.classList.contains('is-active') || button.getAttribute(activeAttribute) === 'true'
     );
     return active?.dataset.value ?? defaultValue ?? null;
   }
@@ -110,8 +109,8 @@ export function setupButtonGroup(group, options = {}) {
     setActive(initialValue);
   }
 
-  group.addEventListener("click", event => {
-    const button = event.target.closest("button[data-value]");
+  group.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-value]');
     if (!button || !group.contains(button)) {
       return;
     }

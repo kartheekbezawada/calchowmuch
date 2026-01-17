@@ -1,24 +1,26 @@
-import { formatCurrency, formatNumber, formatPercent } from "/assets/js/core/format.js";
-import { setupButtonGroup } from "/assets/js/core/ui.js";
+import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
 
-const amountInput = document.querySelector("#emi-amount");
-const rateInput = document.querySelector("#emi-rate");
-const yearsInput = document.querySelector("#emi-years");
-const extraInput = document.querySelector("#emi-extra");
+const amountInput = document.querySelector('#emi-amount');
+const rateInput = document.querySelector('#emi-rate');
+const yearsInput = document.querySelector('#emi-years');
+const extraInput = document.querySelector('#emi-extra');
 const extraGroup = document.querySelector('[data-button-group="emi-extra-type"]');
 const viewGroup = document.querySelector('[data-button-group="emi-view"]');
-const calculateButton = document.querySelector("#emi-calculate");
-const resultDiv = document.querySelector("#emi-result");
-const summaryDiv = document.querySelector("#emi-summary");
-const detailDiv = document.querySelector("#emi-detail");
-const comparisonBody = document.querySelector("#emi-comparison-body");
-const monthlyTableBody = document.querySelector("#emi-table-monthly-body");
-const yearlyTableBody = document.querySelector("#emi-table-yearly-body");
-const monthlyTable = document.querySelector("#emi-table-monthly");
-const yearlyTable = document.querySelector("#emi-table-yearly");
-const tableTitle = document.querySelector("#emi-table-title");
+const calculateButton = document.querySelector('#emi-calculate');
+const resultDiv = document.querySelector('#emi-result');
+const summaryDiv = document.querySelector('#emi-summary');
+const detailDiv = document.querySelector('#emi-detail');
+const comparisonBody = document.querySelector('#emi-comparison-body');
+const monthlyTableBody = document.querySelector('#emi-table-monthly-body');
+const yearlyTableBody = document.querySelector('#emi-table-yearly-body');
+const monthlyTable = document.querySelector('#emi-table-monthly');
+const yearlyTable = document.querySelector('#emi-table-yearly');
+const monthlyTableWrap = document.querySelector('#emi-table-monthly-wrap');
+const yearlyTableWrap = document.querySelector('#emi-table-yearly-wrap');
+const tableTitle = document.querySelector('#emi-table-title');
 
-const explanationRoot = document.querySelector("#loan-emi-explanation");
+const explanationRoot = document.querySelector('#loan-emi-explanation');
 const amountValue = explanationRoot?.querySelector('[data-emi="amount"]');
 const rateValue = explanationRoot?.querySelector('[data-emi="rate"]');
 const yearsValue = explanationRoot?.querySelector('[data-emi="years"]');
@@ -27,22 +29,22 @@ const monthlySummary = explanationRoot?.querySelector('[data-emi="monthly-summar
 const yearlySummary = explanationRoot?.querySelector('[data-emi="yearly-summary"]');
 const monthlySummaryBlock = explanationRoot?.querySelector('[data-emi-view="monthly"]');
 const yearlySummaryBlock = explanationRoot?.querySelector('[data-emi-view="yearly"]');
-const graphTitle = explanationRoot?.querySelector("#emi-graph-title");
-const graphNote = explanationRoot?.querySelector("#emi-graph-note");
-const graphBars = explanationRoot?.querySelector("#emi-graph-bars");
-const graphYMax = explanationRoot?.querySelector("#emi-y-max");
-const graphYMid = explanationRoot?.querySelector("#emi-y-mid");
-const graphXStart = explanationRoot?.querySelector("#emi-x-start");
-const graphXEnd = explanationRoot?.querySelector("#emi-x-end");
-const graphXLabel = explanationRoot?.querySelector("#emi-x-label");
+const graphTitle = explanationRoot?.querySelector('#emi-graph-title');
+const graphNote = explanationRoot?.querySelector('#emi-graph-note');
+const graphBars = explanationRoot?.querySelector('#emi-graph-bars');
+const graphYMax = explanationRoot?.querySelector('#emi-y-max');
+const graphYMid = explanationRoot?.querySelector('#emi-y-mid');
+const graphXStart = explanationRoot?.querySelector('#emi-x-start');
+const graphXEnd = explanationRoot?.querySelector('#emi-x-end');
+const graphXLabel = explanationRoot?.querySelector('#emi-x-label');
 
 const extraButtons = setupButtonGroup(extraGroup, {
-  defaultValue: "monthly",
+  defaultValue: 'monthly',
   onChange: () => calculate(),
 });
 
 const viewButtons = setupButtonGroup(viewGroup, {
-  defaultValue: "monthly",
+  defaultValue: 'monthly',
   onChange: () => updateView(),
 });
 
@@ -79,8 +81,8 @@ function buildSchedule(principal, monthlyRate, months, emi, extra, extraFrequenc
   let totalExtra = 0;
   let month = 0;
   const maxMonths = months + 1200;
-  const isMonthlyExtra = extraFrequency === "monthly";
-  const isYearlyExtra = extraFrequency === "yearly";
+  const isMonthlyExtra = extraFrequency === 'monthly';
+  const isYearlyExtra = extraFrequency === 'yearly';
 
   while (balance > 0 && month < maxMonths) {
     month += 1;
@@ -131,7 +133,7 @@ function buildSchedule(principal, monthlyRate, months, emi, extra, extraFrequenc
 
 function aggregateYearly(schedule) {
   const yearly = [];
-  schedule.forEach(entry => {
+  schedule.forEach((entry) => {
     const yearIndex = Math.ceil(entry.month / 12) - 1;
     if (!yearly[yearIndex]) {
       yearly[yearIndex] = {
@@ -182,38 +184,35 @@ function renderComparison(base, over) {
 
   const rows = [
     {
-      label: "Total payment",
+      label: 'Total payment',
       base: formatTableNumber(base.totalPayment),
       over: formatTableNumber(over.totalPayment),
     },
     {
-      label: "Total interest",
+      label: 'Total interest',
       base: formatTableNumber(base.totalInterest),
       over: formatTableNumber(over.totalInterest),
     },
     {
-      label: "Payoff time",
+      label: 'Payoff time',
       base: formatTerm(base.months),
       over: formatTerm(over.months),
     },
     {
-      label: "Interest saved",
-      base: "-",
+      label: 'Interest saved',
+      base: '-',
       over: formatTableNumber(interestSaved),
     },
     {
-      label: "Time saved",
-      base: "-",
+      label: 'Time saved',
+      base: '-',
       over: formatTerm(monthsSaved),
     },
   ];
 
   comparisonBody.innerHTML = rows
-    .map(
-      row =>
-        `<tr><td>${row.label}</td><td>${row.base}</td><td>${row.over}</td></tr>`,
-    )
-    .join("");
+    .map((row) => `<tr><td>${row.label}</td><td>${row.base}</td><td>${row.over}</td></tr>`)
+    .join('');
 }
 
 function renderMonthlyTable(schedule) {
@@ -222,7 +221,7 @@ function renderMonthlyTable(schedule) {
   }
   monthlyTableBody.innerHTML = schedule
     .map(
-      entry =>
+      (entry) =>
         `<tr>
           <td>${entry.month}</td>
           <td>${formatTableNumber(entry.payment)}</td>
@@ -230,9 +229,9 @@ function renderMonthlyTable(schedule) {
           <td>${formatTableNumber(entry.interest)}</td>
           <td>${formatTableNumber(entry.extra)}</td>
           <td>${formatTableNumber(entry.balance)}</td>
-        </tr>`,
+        </tr>`
     )
-    .join("");
+    .join('');
 }
 
 function renderYearlyTable(yearly) {
@@ -241,7 +240,7 @@ function renderYearlyTable(yearly) {
   }
   yearlyTableBody.innerHTML = yearly
     .map(
-      entry =>
+      (entry) =>
         `<tr>
           <td>${entry.year}</td>
           <td>${formatTableNumber(entry.payment)}</td>
@@ -249,9 +248,9 @@ function renderYearlyTable(yearly) {
           <td>${formatTableNumber(entry.interest)}</td>
           <td>${formatTableNumber(entry.extra)}</td>
           <td>${formatTableNumber(entry.balance)}</td>
-        </tr>`,
+        </tr>`
     )
-    .join("");
+    .join('');
 }
 
 function updateExplanation(data, view) {
@@ -270,10 +269,10 @@ function updateExplanation(data, view) {
   }
   if (extraValue) {
     if (data.extra > 0) {
-      const cadence = data.extraFrequency === "monthly" ? "per month" : "per year";
+      const cadence = data.extraFrequency === 'monthly' ? 'per month' : 'per year';
       extraValue.textContent = `${formatCurrency(data.extra)} ${cadence}`;
     } else {
-      extraValue.textContent = "None";
+      extraValue.textContent = 'None';
     }
   }
 
@@ -296,10 +295,10 @@ function updateExplanation(data, view) {
   }
 
   if (monthlySummaryBlock) {
-    monthlySummaryBlock.hidden = view !== "monthly";
+    monthlySummaryBlock.hidden = view !== 'monthly';
   }
   if (yearlySummaryBlock) {
-    yearlySummaryBlock.hidden = view !== "yearly";
+    yearlySummaryBlock.hidden = view !== 'yearly';
   }
 }
 
@@ -319,33 +318,30 @@ function updateGraph(data, view) {
   }
 
   const maxBalance = data.principal;
-  const isMonthly = view === "monthly";
+  const isMonthly = view === 'monthly';
   const sourceData = isMonthly ? data.overpayment.schedule : data.yearlyOver;
-  const balances = sourceData.map(entry => entry.balance);
+  const balances = sourceData.map((entry) => entry.balance);
 
   if (balances[0] !== maxBalance) {
     balances.unshift(maxBalance);
   }
 
   const sampled = sampleValues(balances, 60);
-  graphBars.innerHTML = "";
+  graphBars.innerHTML = '';
 
   sampled.forEach((balance, index) => {
-    const bar = document.createElement("div");
-    bar.className = "graph-bar balance";
+    const bar = document.createElement('div');
+    bar.className = 'graph-bar balance';
     const height = maxBalance > 0 ? (balance / maxBalance) * 100 : 0;
     bar.style.height = `${Math.max(2, Math.min(100, height))}%`;
-    bar.title = `${isMonthly ? "Month" : "Year"} ${index + 1}: ${formatTableNumber(balance)}`;
+    bar.title = `${isMonthly ? 'Month' : 'Year'} ${index + 1}: ${formatTableNumber(balance)}`;
     graphBars.appendChild(bar);
   });
 
-  graphTitle.textContent =
-    isMonthly ? "Remaining Balance (Monthly)" : "Remaining Balance (Yearly)";
+  graphTitle.textContent = isMonthly ? 'Remaining Balance (Monthly)' : 'Remaining Balance (Yearly)';
 
   if (graphNote) {
-    graphNote.textContent = isMonthly
-      ? `${sampled.length} points`
-      : `${sampled.length} years`;
+    graphNote.textContent = isMonthly ? `${sampled.length} points` : `${sampled.length} years`;
   }
 
   if (graphYMax) {
@@ -356,14 +352,14 @@ function updateGraph(data, view) {
   }
 
   if (graphXStart) {
-    graphXStart.textContent = "1";
+    graphXStart.textContent = '1';
   }
   if (graphXEnd) {
     const totalPeriods = isMonthly ? data.overpayment.months : data.yearlyOver.length;
     graphXEnd.textContent = String(totalPeriods);
   }
   if (graphXLabel) {
-    graphXLabel.textContent = isMonthly ? "Month" : "Year";
+    graphXLabel.textContent = isMonthly ? 'Month' : 'Year';
   }
 }
 
@@ -372,17 +368,21 @@ function applyView(view) {
     return;
   }
 
-  const isMonthly = view === "monthly";
-  if (monthlyTable) {
+  const isMonthly = view === 'monthly';
+  if (monthlyTableWrap) {
+    monthlyTableWrap.hidden = !isMonthly;
+  } else if (monthlyTable) {
     monthlyTable.hidden = !isMonthly;
   }
-  if (yearlyTable) {
+  if (yearlyTableWrap) {
+    yearlyTableWrap.hidden = isMonthly;
+  } else if (yearlyTable) {
     yearlyTable.hidden = isMonthly;
   }
   if (tableTitle) {
     tableTitle.textContent = isMonthly
-      ? "Amortization Table (Monthly)"
-      : "Amortization Table (Yearly)";
+      ? 'Amortization Table (Monthly)'
+      : 'Amortization Table (Yearly)';
   }
 
   updateExplanation(currentData, view);
@@ -390,7 +390,7 @@ function applyView(view) {
 }
 
 function updateView() {
-  const view = viewButtons?.getValue() ?? "monthly";
+  const view = viewButtons?.getValue() ?? 'monthly';
   if (!currentData) {
     calculate();
     return;
@@ -400,16 +400,16 @@ function updateView() {
 
 function clearOutputs() {
   if (comparisonBody) {
-    comparisonBody.innerHTML = "";
+    comparisonBody.innerHTML = '';
   }
   if (monthlyTableBody) {
-    monthlyTableBody.innerHTML = "";
+    monthlyTableBody.innerHTML = '';
   }
   if (yearlyTableBody) {
-    yearlyTableBody.innerHTML = "";
+    yearlyTableBody.innerHTML = '';
   }
   if (graphBars) {
-    graphBars.innerHTML = "";
+    graphBars.innerHTML = '';
   }
 }
 
@@ -418,8 +418,8 @@ function calculate() {
     return;
   }
 
-  resultDiv.textContent = "";
-  summaryDiv.textContent = "";
+  resultDiv.textContent = '';
+  summaryDiv.textContent = '';
   clearOutputs();
 
   const principal = Number(amountInput?.value);
@@ -428,25 +428,25 @@ function calculate() {
   const extra = Number(extraInput?.value);
 
   if (!Number.isFinite(principal) || principal <= 0) {
-    resultDiv.textContent = "Please enter a valid loan amount greater than 0.";
+    resultDiv.textContent = 'Please enter a valid loan amount greater than 0.';
     currentData = null;
     return;
   }
 
   if (!Number.isFinite(annualRate) || annualRate < 0) {
-    resultDiv.textContent = "Please enter a valid interest rate of 0 or more.";
+    resultDiv.textContent = 'Please enter a valid interest rate of 0 or more.';
     currentData = null;
     return;
   }
 
   if (!Number.isFinite(years) || years < 1) {
-    resultDiv.textContent = "Please enter a loan tenure of at least 1 year.";
+    resultDiv.textContent = 'Please enter a loan tenure of at least 1 year.';
     currentData = null;
     return;
   }
 
   if (!Number.isFinite(extra) || extra < 0) {
-    resultDiv.textContent = "Extra payment must be 0 or more.";
+    resultDiv.textContent = 'Extra payment must be 0 or more.';
     currentData = null;
     return;
   }
@@ -456,13 +456,13 @@ function calculate() {
   const emi = computeMonthlyPayment(principal, monthlyRate, months);
 
   if (!Number.isFinite(emi) || emi <= 0) {
-    resultDiv.textContent = "Unable to compute EMI with the current inputs.";
+    resultDiv.textContent = 'Unable to compute EMI with the current inputs.';
     currentData = null;
     return;
   }
 
-  const extraFrequency = extraButtons?.getValue() ?? "monthly";
-  const baseline = buildSchedule(principal, monthlyRate, months, emi, 0, "monthly");
+  const extraFrequency = extraButtons?.getValue() ?? 'monthly';
+  const baseline = buildSchedule(principal, monthlyRate, months, emi, 0, 'monthly');
   const overpayment = buildSchedule(principal, monthlyRate, months, emi, extra, extraFrequency);
   const yearlyOver = aggregateYearly(overpayment.schedule);
 
@@ -484,10 +484,10 @@ function calculate() {
   const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
   const extraLabel =
     extra > 0
-      ? extraFrequency === "monthly"
+      ? extraFrequency === 'monthly'
         ? `Extra monthly payment: ${formatCurrency(extra)}`
         : `Extra yearly payment: ${formatCurrency(extra)}`
-      : "No extra payment applied.";
+      : 'No extra payment applied.';
 
   summaryDiv.innerHTML =
     `<p><strong>${extraLabel}</strong></p>` +
@@ -498,10 +498,10 @@ function calculate() {
   renderMonthlyTable(overpayment.schedule);
   renderYearlyTable(yearlyOver);
 
-  const view = viewButtons?.getValue() ?? "monthly";
+  const view = viewButtons?.getValue() ?? 'monthly';
   applyView(view);
 }
 
-calculateButton?.addEventListener("click", calculate);
+calculateButton?.addEventListener('click', calculate);
 
 calculate();

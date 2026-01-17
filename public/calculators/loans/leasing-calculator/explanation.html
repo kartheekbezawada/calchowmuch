@@ -1,0 +1,30 @@
+<div id="lease-explanation">
+  <h4>Lease Summary</h4>
+  <p>
+    With a vehicle price of <span data-lease="price"></span> and residual value of
+    <span data-lease="residual"></span>, the monthly lease payment is
+    <span data-lease="payment"></span>.
+  </p>
+  <p>
+    The total lease cost over <span data-lease="months"></span> months is
+    <span data-lease="total"></span>, including the upfront payment.
+  </p>
+  <p>Residual value lowers monthly depreciation but leaves a higher end-of-term value.</p>
+
+  <div class="result-section">
+    <h4>Yearly Cost Snapshot</h4>
+    <div class="table-scroll" id="lease-table-wrap" tabindex="0">
+      <table class="calculator-table" id="lease-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="lease-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

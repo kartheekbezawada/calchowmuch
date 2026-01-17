@@ -56,7 +56,9 @@
   flex-shrink: 0;
   min-height: 34px;
   line-height: 1.4;
-  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .top-nav button.is-active {
@@ -69,9 +71,11 @@
 .layout-main {
   display: grid;
   grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
+  grid-template-rows: minmax(0, 1fr);
   gap: 16px;
   padding: 4px;
   min-height: 0;
+  height: 100%;
 }
 
 .layout-main > * {
@@ -98,16 +102,13 @@
   padding: 16px;
   overflow-y: scroll;
   scrollbar-gutter: stable;
+  height: 100%;
 }
 
 .left-nav-title {
   margin: 0 0 14px;
   font-size: 15px;
   font-weight: 600;
-}
-
-.left-nav.is-loans .left-nav-title {
-  display: none;
 }
 
 #left-nav-content {
@@ -211,7 +212,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .left-nav .nav-item.is-active {
@@ -224,8 +227,10 @@
 .center-column {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
   gap: 16px;
   min-height: 0;
+  height: 100%;
 }
 
 .panel {
@@ -238,6 +243,7 @@
   flex-direction: column;
   gap: 12px;
   min-height: 0;
+  height: 100%;
 }
 
 .panel-scroll {
@@ -267,6 +273,7 @@
   border: 2px solid var(--shell-border);
   border-radius: 28px;
   padding: 12px;
+  height: 100%;
 }
 
 .ad-panel {

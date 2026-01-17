@@ -1,0 +1,65 @@
+<div id="calc-cc-min">
+  <div class="calculator-ui">
+    <p class="helper">Estimate payoff time when only the minimum payment is made each month.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="cc-min-balance">Card Balance</label>
+        <input id="cc-min-balance" type="number" value="3200" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-apr">APR (%)</label>
+        <input id="cc-min-apr" type="number" value="21.9" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-rate">Minimum Payment Rate (%)</label>
+        <input id="cc-min-rate" type="number" value="2.5" min="0" step="0.1" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-floor">Minimum Payment Floor</label>
+        <input id="cc-min-floor" type="number" value="25" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="cc-min-calc">
+      Calculate Minimum Payment
+    </button>
+
+    <div class="result" id="cc-min-result" aria-live="polite"></div>
+    <div class="result-detail" id="cc-min-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="cc-min-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="cc-min-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="cc-min-y-max"></span>
+          <span id="cc-min-y-mid"></span>
+          <span id="cc-min-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="cc-min-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="cc-min-x-start"></span>
+            <span id="cc-min-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/credit-card-minimum-payment/calculator.css');
+</style>

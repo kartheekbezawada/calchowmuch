@@ -68,12 +68,9 @@ Clearing search restores full Loans navigation.
 
 **LN-NAV-CAT-1**  
 Loan calculators must be grouped into logical categories, e.g.:
-- Home Loans
-- Personal Loans
+- Home
 - Credit Cards
 - Auto Loans
-- Education Loans
-- General Loan Tools
 
 **LN-NAV-CAT-2**  
 Each category:
@@ -86,6 +83,9 @@ Collapsing or expanding a category must not:
 - Affect page layout height
 - Affect other categories
 - Change active calculator
+
+**LN-NAV-CAT-4**  
+Loan category names and ordering must match `requirements/universal/calculator-hierarchy.md`.
 
 ---
 

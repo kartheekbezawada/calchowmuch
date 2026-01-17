@@ -135,7 +135,7 @@ export function variance(data, sample = true) {
   }
 
   const dataMean = mean(data);
-  const squaredDiffs = data.map(val => Math.pow(val - dataMean, 2));
+  const squaredDiffs = data.map((val) => Math.pow(val - dataMean, 2));
   const sumSquaredDiffs = sum(squaredDiffs);
 
   const divisor = sample ? data.length - 1 : data.length;
@@ -162,15 +162,15 @@ export function standardDeviation(data, sample = true) {
  * @returns {{ data: number[], errors: string[] }} Parsed data and any invalid tokens
  */
 export function parseDataset(input) {
-  if (!input || typeof input !== "string") {
+  if (!input || typeof input !== 'string') {
     return { data: [], errors: [] };
   }
 
   // Split by comma, space, or newline and filter empty tokens
   const tokens = input
     .split(/[,\s\n]+/)
-    .map(token => token.trim())
-    .filter(token => token !== "");
+    .map((token) => token.trim())
+    .filter((token) => token !== '');
 
   const data = [];
   const errors = [];
@@ -258,7 +258,7 @@ export function combination(n, r) {
  * @returns {number|null} Z-score or null if invalid input
  */
 export function zScore(x, mu, sigma) {
-  if (typeof x !== "number" || typeof mu !== "number" || typeof sigma !== "number") {
+  if (typeof x !== 'number' || typeof mu !== 'number' || typeof sigma !== 'number') {
     return null;
   }
   if (sigma <= 0) {

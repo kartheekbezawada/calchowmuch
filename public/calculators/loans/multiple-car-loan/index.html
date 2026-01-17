@@ -1,0 +1,69 @@
+<div id="calc-multi-car-loan">
+  <div class="calculator-ui">
+    <p class="helper">Compare two car loans and see the combined monthly payment and interest.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="multi-loan-a-amount">Loan A Amount</label>
+        <input id="multi-loan-a-amount" type="number" value="18000" min="0" step="0.01" />
+      </div>
+      <div class="input-row">
+        <label for="multi-loan-a-apr">Loan A APR (%)</label>
+        <input id="multi-loan-a-apr" type="number" value="5.8" min="0" step="0.01" />
+      </div>
+      <div class="input-row">
+        <label for="multi-loan-a-term">Loan A Term (years)</label>
+        <input id="multi-loan-a-term" type="number" value="4" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="multi-loan-b-amount">Loan B Amount</label>
+        <input id="multi-loan-b-amount" type="number" value="12000" min="0" step="0.01" />
+      </div>
+      <div class="input-row">
+        <label for="multi-loan-b-apr">Loan B APR (%)</label>
+        <input id="multi-loan-b-apr" type="number" value="7.1" min="0" step="0.01" />
+      </div>
+      <div class="input-row">
+        <label for="multi-loan-b-term">Loan B Term (years)</label>
+        <input id="multi-loan-b-term" type="number" value="5" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="multi-loan-calc">
+      Compare Loans
+    </button>
+
+    <div class="result" id="multi-loan-result" aria-live="polite"></div>
+    <div class="result-detail" id="multi-loan-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="multi-loan-graph">
+      <div class="graph-header">
+        <span class="graph-title">Monthly Payment Comparison</span>
+        <span class="graph-note" id="multi-loan-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Payment</span>
+        <div class="graph-y-axis">
+          <span id="multi-loan-y-max"></span>
+          <span id="multi-loan-y-mid"></span>
+          <span id="multi-loan-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <div class="graph-bars" id="multi-loan-bars"></div>
+          </div>
+          <div class="graph-x-axis">
+            <span id="multi-loan-x-a">Loan A</span>
+            <span id="multi-loan-x-b">Loan B</span>
+          </div>
+          <span class="graph-x-label">Loan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/multiple-car-loan/calculator.css');
+</style>

@@ -1,9 +1,8 @@
 <section>
   <h3>What is Sample Size Calculation?</h3>
   <p>
-    Sample size calculation determines how many observations you need to collect
-    to estimate a population proportion with a specified level of confidence and
-    precision (margin of error).
+    Sample size calculation determines how many observations you need to collect to estimate a
+    population proportion with a specified level of confidence and precision (margin of error).
   </p>
 </section>
 
@@ -21,20 +20,32 @@
 <section>
   <h3>Input Definitions</h3>
   <ul>
-    <li><strong>Confidence Level:</strong> The probability that the true proportion falls within your margin of error. Common choices: 90%, 95%, 99%.</li>
-    <li><strong>Margin of Error (E):</strong> The maximum acceptable difference between the sample proportion and the true population proportion.</li>
-    <li><strong>Estimated Proportion (p):</strong> Your best guess of the population proportion. Use 50% if unknown (gives largest sample size).</li>
-    <li><strong>Population Size (N):</strong> The total population size. Leave blank for very large or infinite populations.</li>
+    <li>
+      <strong>Confidence Level:</strong> The probability that the true proportion falls within your
+      margin of error. Common choices: 90%, 95%, 99%.
+    </li>
+    <li>
+      <strong>Margin of Error (E):</strong> The maximum acceptable difference between the sample
+      proportion and the true population proportion.
+    </li>
+    <li>
+      <strong>Estimated Proportion (p):</strong> Your best guess of the population proportion. Use
+      50% if unknown (gives largest sample size).
+    </li>
+    <li>
+      <strong>Population Size (N):</strong> The total population size. Leave blank for very large or
+      infinite populations.
+    </li>
   </ul>
 </section>
 
 <section>
   <h3>Formulas</h3>
   <p><strong>Base formula (infinite population):</strong></p>
-  <p style="margin-left: 1rem;">n₀ = (z² × p × (1 - p)) / E²</p>
+  <p style="margin-left: 1rem">n₀ = (z² × p × (1 - p)) / E²</p>
 
   <p><strong>Finite population correction:</strong></p>
-  <p style="margin-left: 1rem;">n = n₀ / (1 + (n₀ - 1) / N)</p>
+  <p style="margin-left: 1rem">n = n₀ / (1 + (n₀ - 1) / N)</p>
 
   <p><strong>Z-values:</strong></p>
   <ul>
@@ -73,7 +84,10 @@
     <li>Use p = 50% when uncertain - it gives the most conservative (largest) estimate.</li>
     <li>Higher confidence levels require larger samples.</li>
     <li>Smaller margins of error require larger samples.</li>
-    <li>The finite population correction significantly reduces required sample size when the population is small.</li>
+    <li>
+      The finite population correction significantly reduces required sample size when the
+      population is small.
+    </li>
   </ul>
 </section>
 

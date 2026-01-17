@@ -1,0 +1,123 @@
+<div id="loan-btl-explanation">
+  <h4>Buy-to-Let Summary</h4>
+  <p>
+    With a property price of <span data-btl="price"></span> and a deposit of
+    <span data-btl="deposit"></span> (<span data-btl="deposit-percent"></span>), the loan amount is
+    <span data-btl="loan"></span>.
+  </p>
+  <p>
+    Effective rent after vacancy is <span data-btl="effective-rent"></span> per month. The mortgage
+    payment is <span data-btl="mortgage-payment"></span>, leaving net cashflow of
+    <span data-btl="net-monthly"></span> per month or <span data-btl="net-annual"></span> per year.
+  </p>
+  <p>
+    Gross yield is <span data-btl="gross-yield"></span> and net yield is
+    <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
+    <span data-btl="stress-coverage"></span>.
+  </p>
+  <p>
+    Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
+    increase equity faster but reduce monthly cashflow.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Projection</h4>
+    <div class="table-scroll" id="btl-table-wrap" tabindex="0">
+      <table class="calculator-table" id="btl-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Rent Income</th>
+            <th scope="col">Costs</th>
+            <th scope="col">Mortgage Cost</th>
+            <th scope="col">Net Cashflow</th>
+            <th scope="col">Cumulative</th>
+          </tr>
+        </thead>
+        <tbody id="btl-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Net Cashflow Over Time</h4>
+    <div class="graph-panel" id="btl-cashflow-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="btl-cashflow-title">Annual Net Cashflow</span>
+        <span class="graph-note" id="btl-cashflow-note"></span>
+      </div>
+      <div class="graph-legend" id="btl-cashflow-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Net cashflow</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="btl-cashflow-y-label">Cashflow</span>
+        <div class="graph-y-axis" id="btl-cashflow-y-axis">
+          <span id="btl-cashflow-y-max"></span>
+          <span id="btl-cashflow-y-mid"></span>
+          <span id="btl-cashflow-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="btl-cashflow-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="btl-cashflow-x-axis">
+            <span id="btl-cashflow-x-start"></span>
+            <span id="btl-cashflow-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="btl-cashflow-x-label">Year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Cashflow Sensitivity vs Interest Rate</h4>
+    <div class="graph-panel" id="btl-sensitivity-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="btl-sensitivity-title">Net Cashflow by Rate</span>
+        <span class="graph-note" id="btl-sensitivity-note"></span>
+      </div>
+      <div class="graph-legend" id="btl-sensitivity-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Net monthly cashflow</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="btl-sensitivity-y-label">Cashflow</span>
+        <div class="graph-y-axis" id="btl-sensitivity-y-axis">
+          <span id="btl-sensitivity-y-max"></span>
+          <span id="btl-sensitivity-y-mid"></span>
+          <span id="btl-sensitivity-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="btl-sensitivity-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="btl-sensitivity-x-axis">
+            <span id="btl-sensitivity-x-start"></span>
+            <span id="btl-sensitivity-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="btl-sensitivity-x-label">Rate (%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

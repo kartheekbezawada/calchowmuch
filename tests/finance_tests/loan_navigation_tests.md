@@ -23,10 +23,10 @@ This document defines **behavioral test cases** for Copilot, Playwright, or LLM 
 ## TEST-LN-NAV-2 — Search Filtering
 
 **Action**
-- Type "emi" into Loans search box
+- Type "mortgage" into Loans search box
 
 **Expected**
-- Only EMI-related calculators visible
+- Only mortgage-related calculators visible
 - No auto-navigation
 
 **Rules Covered**
@@ -53,12 +53,12 @@ This document defines **behavioral test cases** for Copilot, Playwright, or LLM 
 ## TEST-LN-NAV-4 — Deep Link Load
 
 **Action**
-- Open URL directly to Loan EMI Calculator
+- Open URL directly to Home Loan
 
 **Expected**
 - Loans tab active
 - Correct category expanded
-- EMI highlighted
+- Home Loan highlighted
 
 **Rules Covered**
 - LN-NAV-ITEM-3

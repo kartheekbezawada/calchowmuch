@@ -1,0 +1,26 @@
+<div id="multi-loan-explanation">
+  <h4>Multiple Loan Summary</h4>
+  <p>
+    Loan A payment is <span data-multi="payment-a"></span> and Loan B payment is
+    <span data-multi="payment-b"></span>, resulting in a combined payment of
+    <span data-multi="payment-total"></span>.
+  </p>
+  <p>Total interest paid across both loans is <span data-multi="interest-total"></span>.</p>
+
+  <div class="result-section">
+    <h4>Loan Comparison</h4>
+    <div class="table-scroll" id="multi-loan-table-wrap" tabindex="0">
+      <table class="calculator-table" id="multi-loan-table">
+        <thead>
+          <tr>
+            <th scope="col">Loan</th>
+            <th scope="col">Monthly Payment</th>
+            <th scope="col">Total Interest</th>
+            <th scope="col">Total Paid</th>
+          </tr>
+        </thead>
+        <tbody id="multi-loan-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -3,18 +3,18 @@ export function drawLineChart(canvas, points, options = {}) {
     return;
   }
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   if (!ctx) {
     return;
   }
 
   const {
     padding = 28,
-    lineColor = "#2563eb",
-    gridColor = "#e2e8f0",
-    textColor = "#475569",
-    backgroundColor = "#ffffff",
-    labelFormatter = value => value.toString(),
+    lineColor = '#2563eb',
+    gridColor = '#e2e8f0',
+    textColor = '#475569',
+    backgroundColor = '#ffffff',
+    labelFormatter = (value) => value.toString(),
   } = options;
 
   const rect = canvas.getBoundingClientRect();
@@ -69,11 +69,11 @@ export function drawLineChart(canvas, points, options = {}) {
   ctx.stroke();
 
   ctx.fillStyle = textColor;
-  ctx.font = "12px system-ui, sans-serif";
-  ctx.textAlign = "left";
-  ctx.textBaseline = "bottom";
+  ctx.font = '12px system-ui, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'bottom';
   ctx.fillText(labelFormatter(maxValue), padding, padding - 6);
 
-  ctx.textBaseline = "top";
+  ctx.textBaseline = 'top';
   ctx.fillText(labelFormatter(minValue), padding, height - padding + 6);
 }

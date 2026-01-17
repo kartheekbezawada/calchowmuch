@@ -1,0 +1,36 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-remortgage-switching .graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#calc-remortgage-switching .graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#calc-remortgage-switching .graph-line .line-primary {
+  stroke: var(--accent);
+}
+
+#calc-remortgage-switching .graph-line .line-secondary {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+#calc-remortgage-switching .graph-legend-color.secondary {
+  background: #94a3b8;
+}
+
+#calc-remortgage-switching .graph-marker line {
+  stroke: #f59e0b;
+  stroke-width: 1.5;
+}
+
+#calc-remortgage-switching .graph-marker circle {
+  fill: #f59e0b;
+}

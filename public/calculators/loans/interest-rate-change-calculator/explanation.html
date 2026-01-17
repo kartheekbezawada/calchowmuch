@@ -1,0 +1,79 @@
+<div id="loan-rate-change-explanation">
+  <h4>Rate Change Summary</h4>
+  <p>
+    Current monthly payment is <span data-rate="current-payment"></span>. After the rate change, the
+    payment becomes <span data-rate="new-payment"></span>, a monthly difference of
+    <span data-rate="monthly-diff"></span> (about <span data-rate="annual-diff"></span> per year).
+  </p>
+  <p>
+    Over the remaining term, total interest changes from <span data-rate="interest-base"></span> to
+    <span data-rate="interest-new"></span>. Rate changes affect amortization because the interest
+    portion of each payment is recalculated on the remaining balance.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Comparison</h4>
+    <div class="table-scroll" id="rate-table-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Interest Base</th>
+            <th scope="col">Interest New</th>
+            <th scope="col">Payment Base</th>
+            <th scope="col">Payment New</th>
+            <th scope="col">Balance Base</th>
+            <th scope="col">Balance New</th>
+          </tr>
+        </thead>
+        <tbody id="rate-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Payment Timeline</h4>
+    <div class="graph-panel" id="rate-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="rate-graph-title">Monthly Payment Over Time</span>
+        <span class="graph-note" id="rate-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="rate-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>New rate</span>
+        </div>
+        <div class="graph-legend-item">
+          <span class="graph-legend-color secondary"></span>
+          <span>Baseline</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="rate-y-label">Payment</span>
+        <div class="graph-y-axis" id="rate-y-axis">
+          <span id="rate-y-max"></span>
+          <span id="rate-y-mid"></span>
+          <span id="rate-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="rate-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline id="rate-line-new" class="line-primary" points=""></polyline>
+              <polyline id="rate-line-base" class="line-secondary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="rate-x-axis">
+            <span id="rate-x-start"></span>
+            <span id="rate-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="rate-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

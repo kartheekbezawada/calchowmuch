@@ -8,163 +8,205 @@
       aria-label="Calculation modes"
       data-button-group="fraction-mode"
     >
-      <button class="calculator-button secondary is-active" data-mode="add" role="tab" aria-selected="true">
+      <button
+        class="calculator-button secondary is-active"
+        data-mode="add"
+        role="tab"
+        aria-selected="true"
+      >
         Add
       </button>
-      <button class="calculator-button secondary" data-mode="subtract" role="tab" aria-selected="false">
+      <button
+        class="calculator-button secondary"
+        data-mode="subtract"
+        role="tab"
+        aria-selected="false"
+      >
         Subtract
       </button>
-      <button class="calculator-button secondary" data-mode="multiply" role="tab" aria-selected="false">
+      <button
+        class="calculator-button secondary"
+        data-mode="multiply"
+        role="tab"
+        aria-selected="false"
+      >
         Multiply
       </button>
-      <button class="calculator-button secondary" data-mode="divide" role="tab" aria-selected="false">
+      <button
+        class="calculator-button secondary"
+        data-mode="divide"
+        role="tab"
+        aria-selected="false"
+      >
         Divide
       </button>
-      <button class="calculator-button secondary" data-mode="simplify" role="tab" aria-selected="false">
+      <button
+        class="calculator-button secondary"
+        data-mode="simplify"
+        role="tab"
+        aria-selected="false"
+      >
         Simplify
       </button>
-      <button class="calculator-button secondary" data-mode="convert" role="tab" aria-selected="false">
+      <button
+        class="calculator-button secondary"
+        data-mode="convert"
+        role="tab"
+        aria-selected="false"
+      >
         Convert
       </button>
     </div>
 
-<!-- Add Fractions -->
-<div class="input-section active" data-mode="add" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">First fraction</div>
-      <div class="fraction-row">
-        <input id="add-num1" type="number" value="1" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="add-den1" type="number" value="4" placeholder="Denominator" />
-      </div>
-    </div>
-    <div>
-      <div class="fraction-label">Second fraction</div>
-      <div class="fraction-row">
-        <input id="add-num2" type="number" value="1" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="add-den2" type="number" value="8" placeholder="Denominator" />
-      </div>
-    </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="add">Calculate</button>
-</div>
-
-<!-- Subtract Fractions -->
-<div class="input-section" data-mode="subtract" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">First fraction</div>
-      <div class="fraction-row">
-        <input id="sub-num1" type="number" value="3" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="sub-den1" type="number" value="4" placeholder="Denominator" />
-      </div>
-    </div>
-    <div>
-      <div class="fraction-label">Second fraction</div>
-      <div class="fraction-row">
-        <input id="sub-num2" type="number" value="1" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="sub-den2" type="number" value="6" placeholder="Denominator" />
-      </div>
-    </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="subtract">Calculate</button>
-</div>
-
-<!-- Multiply Fractions -->
-<div class="input-section" data-mode="multiply" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">First fraction</div>
-      <div class="fraction-row">
-        <input id="mul-num1" type="number" value="2" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="mul-den1" type="number" value="3" placeholder="Denominator" />
-      </div>
-    </div>
-    <div>
-      <div class="fraction-label">Second fraction</div>
-      <div class="fraction-row">
-        <input id="mul-num2" type="number" value="3" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="mul-den2" type="number" value="5" placeholder="Denominator" />
-      </div>
-    </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="multiply">Calculate</button>
-</div>
-
-<!-- Divide Fractions -->
-<div class="input-section" data-mode="divide" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">First fraction</div>
-      <div class="fraction-row">
-        <input id="div-num1" type="number" value="2" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="div-den1" type="number" value="3" placeholder="Denominator" />
-      </div>
-    </div>
-    <div>
-      <div class="fraction-label">Second fraction</div>
-      <div class="fraction-row">
-        <input id="div-num2" type="number" value="4" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="div-den2" type="number" value="5" placeholder="Denominator" />
-      </div>
-    </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="divide">Calculate</button>
-</div>
-
-<!-- Simplify Fraction -->
-<div class="input-section" data-mode="simplify" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">Fraction to simplify</div>
-      <div class="fraction-row">
-        <input id="simp-num" type="number" value="6" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="simp-den" type="number" value="8" placeholder="Denominator" />
-      </div>
-    </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="simplify">Simplify</button>
-</div>
-
-<!-- Convert Improper/Mixed -->
-<div class="input-section" data-mode="convert" role="tabpanel">
-  <div class="fraction-inputs">
-    <div>
-      <div class="fraction-label">Improper fraction → Mixed number</div>
-      <div class="fraction-row">
-        <input id="conv-imp-num" type="number" value="7" placeholder="Numerator" />
-        <div class="fraction-divider">/</div>
-        <input id="conv-imp-den" type="number" value="3" placeholder="Denominator" />
-      </div>
-    </div>
-    <div>
-      <div class="fraction-label">Mixed number → Improper fraction</div>
-      <div class="mixed-number-row">
-        <input id="conv-mix-whole" type="number" value="1" placeholder="Whole" />
-        <div class="fraction-row">
-          <input id="conv-mix-num" type="number" value="2" placeholder="Numerator" />
-          <div class="fraction-divider">/</div>
-          <input id="conv-mix-den" type="number" value="5" placeholder="Denominator" />
+    <!-- Add Fractions -->
+    <div class="input-section active" data-mode="add" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">First fraction</div>
+          <div class="fraction-row">
+            <input id="add-num1" type="number" value="1" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="add-den1" type="number" value="4" placeholder="Denominator" />
+          </div>
+        </div>
+        <div>
+          <div class="fraction-label">Second fraction</div>
+          <div class="fraction-row">
+            <input id="add-num2" type="number" value="1" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="add-den2" type="number" value="8" placeholder="Denominator" />
+          </div>
         </div>
       </div>
+      <button type="button" class="calculator-button full-width" data-calculate="add">
+        Calculate
+      </button>
     </div>
-  </div>
-  <button type="button" class="calculator-button full-width" data-calculate="convert">Convert Both</button>
-</div>
+
+    <!-- Subtract Fractions -->
+    <div class="input-section" data-mode="subtract" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">First fraction</div>
+          <div class="fraction-row">
+            <input id="sub-num1" type="number" value="3" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="sub-den1" type="number" value="4" placeholder="Denominator" />
+          </div>
+        </div>
+        <div>
+          <div class="fraction-label">Second fraction</div>
+          <div class="fraction-row">
+            <input id="sub-num2" type="number" value="1" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="sub-den2" type="number" value="6" placeholder="Denominator" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="subtract">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Multiply Fractions -->
+    <div class="input-section" data-mode="multiply" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">First fraction</div>
+          <div class="fraction-row">
+            <input id="mul-num1" type="number" value="2" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="mul-den1" type="number" value="3" placeholder="Denominator" />
+          </div>
+        </div>
+        <div>
+          <div class="fraction-label">Second fraction</div>
+          <div class="fraction-row">
+            <input id="mul-num2" type="number" value="3" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="mul-den2" type="number" value="5" placeholder="Denominator" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="multiply">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Divide Fractions -->
+    <div class="input-section" data-mode="divide" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">First fraction</div>
+          <div class="fraction-row">
+            <input id="div-num1" type="number" value="2" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="div-den1" type="number" value="3" placeholder="Denominator" />
+          </div>
+        </div>
+        <div>
+          <div class="fraction-label">Second fraction</div>
+          <div class="fraction-row">
+            <input id="div-num2" type="number" value="4" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="div-den2" type="number" value="5" placeholder="Denominator" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="divide">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Simplify Fraction -->
+    <div class="input-section" data-mode="simplify" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">Fraction to simplify</div>
+          <div class="fraction-row">
+            <input id="simp-num" type="number" value="6" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="simp-den" type="number" value="8" placeholder="Denominator" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="simplify">
+        Simplify
+      </button>
+    </div>
+
+    <!-- Convert Improper/Mixed -->
+    <div class="input-section" data-mode="convert" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <div class="fraction-label">Improper fraction → Mixed number</div>
+          <div class="fraction-row">
+            <input id="conv-imp-num" type="number" value="7" placeholder="Numerator" />
+            <div class="fraction-divider">/</div>
+            <input id="conv-imp-den" type="number" value="3" placeholder="Denominator" />
+          </div>
+        </div>
+        <div>
+          <div class="fraction-label">Mixed number → Improper fraction</div>
+          <div class="mixed-number-row">
+            <input id="conv-mix-whole" type="number" value="1" placeholder="Whole" />
+            <div class="fraction-row">
+              <input id="conv-mix-num" type="number" value="2" placeholder="Numerator" />
+              <div class="fraction-divider">/</div>
+              <input id="conv-mix-den" type="number" value="5" placeholder="Denominator" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="convert">
+        Convert Both
+      </button>
+    </div>
 
     <div class="result" id="fraction-result" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
-  @import url("/calculators/math/fraction-calculator/calculator.css");
+  @import url('/calculators/math/fraction-calculator/calculator.css');
 </style>

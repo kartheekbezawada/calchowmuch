@@ -1,0 +1,34 @@
+<div id="cc-con-explanation">
+  <h4>Consolidation Summary</h4>
+  <p>
+    Paying <span data-cc-con="current-payment"></span> on a balance of
+    <span data-cc-con="balance"></span> at <span data-cc-con="current-apr"></span> APR clears the
+    cards in <span data-cc-con="current-months"></span> months.
+  </p>
+  <p>
+    A consolidation loan at <span data-cc-con="new-apr"></span> APR for
+    <span data-cc-con="new-term"></span> months results in a payment of
+    <span data-cc-con="new-payment"></span>.
+  </p>
+  <p>
+    Interest savings are <span data-cc-con="interest-diff"></span> and total cost difference is
+    <span data-cc-con="total-diff"></span>.
+  </p>
+
+  <div class="result-section">
+    <h4>Cost Comparison</h4>
+    <div class="table-scroll" id="cc-con-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-con-table">
+        <thead>
+          <tr>
+            <th scope="col">Scenario</th>
+            <th scope="col">Months</th>
+            <th scope="col">Total Interest</th>
+            <th scope="col">Total Paid</th>
+          </tr>
+        </thead>
+        <tbody id="cc-con-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
