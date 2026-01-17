@@ -127,6 +127,8 @@
   gap: 8px;
   line-height: 1.2;
   white-space: nowrap;
+  /* ISS-001: Consistent button height to prevent bouncing */
+  min-height: 40px;
 }
 
 .calculator-button.primary {

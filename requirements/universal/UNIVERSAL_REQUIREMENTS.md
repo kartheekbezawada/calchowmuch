@@ -575,6 +575,48 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 - Verify navigation between calculators does not introduce layout shifts or "bouncing" UI elements.
 - Confirm scrollbars remain visible and space is reserved during navigation.
 
+### 7.1 ISS-001 E2E Tests (Playwright)
+
+**[TEST-2.1] E2E test framework**
+- Playwright is the E2E test framework for visual regression testing.
+- E2E tests live in `/e2e/` directory.
+- Run with `npm run test:e2e`.
+
+**[TEST-2.2] ISS-001 regression test suite**
+The following tests MUST pass for ISS-001 compliance (see `e2e/iss-001-bouncing.spec.js`):
+
+| Test ID | Description | Pass Criteria |
+|---------|-------------|---------------|
+| ISS-001-01 | Layout shell maintains fixed dimensions | Page height/width unchanged during navigation |
+| ISS-001-02 | Center column panels maintain height | Panel heights stable (±3px) during calculator switch |
+| ISS-001-03 | Left nav position remains stable | Y position unchanged (±2px) during navigation |
+| ISS-001-04 | Ads column position remains stable | X/width unchanged (±2px) during navigation |
+| ISS-001-05 | Top nav buttons do not bounce | Y/height unchanged (±2px) when switching categories |
+| ISS-001-06 | No Cumulative Layout Shift (CLS) | Total CLS < 0.1 during navigation |
+| ISS-001-07 | Scrollbars visible in left nav | `overflow-y: scroll`, `scrollbar-gutter: stable` |
+| ISS-001-08 | Scrollbars visible in panels | `overflow-y: scroll`, `scrollbar-gutter: stable` |
+| ISS-001-09 | Loans calculators stable | No bouncing when switching loan calculators |
+| ISS-001-10 | Button groups stable | No position shift after calculator loads |
+| ISS-001-11 | Result sections stable | Min-height ≥50px maintained |
+| ISS-001-12 | All elements position tracking | All major elements stable (±3px) during full navigation cycle |
+
+**[TEST-2.3] ISS-001 CSS requirements**
+To pass ISS-001 tests, the following CSS rules MUST be applied:
+- `.page` grid must use fixed row heights: `grid-template-rows: 64px 54px 1fr 48px`
+- `.site-header` must have `height: 64px; min-height: 64px; max-height: 64px`
+- `.top-nav` must have `height: 54px; min-height: 54px; max-height: 54px; flex-wrap: nowrap`
+- `.site-footer` must have `height: 48px; min-height: 48px; max-height: 48px`
+- All scrollable areas must use `overflow-y: scroll` (not `auto`) and `scrollbar-gutter: stable`
+
+**[TEST-2.4] Running ISS-001 tests**
+```bash
+# Run all E2E tests
+npm run test:e2e
+
+# Run ISS-001 specific tests
+npx playwright test e2e/iss-001-bouncing.spec.js
+```
+
 ---
 
 ## 8) SEO and URL Rules

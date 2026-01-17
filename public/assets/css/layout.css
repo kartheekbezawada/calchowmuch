@@ -2,7 +2,8 @@
   height: calc(100vh - 48px);
   max-height: calc(100vh - 48px);
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  /* Fixed heights for header (64px), top-nav (54px), flex main, footer (48px) */
+  grid-template-rows: 64px 54px 1fr 48px;
   gap: 16px;
   max-width: none;
   width: min(1920px, calc(100vw - 48px));
@@ -29,6 +30,10 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   animation: headerSlide 0.5s ease-out both;
+  /* ISS-001: Lock header height to prevent bouncing */
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
 }
 
 .top-nav {
@@ -36,11 +41,18 @@
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-gutter: stable;
   background: var(--panel-bg);
   border: 2px solid var(--shell-border);
   border-radius: 20px;
   animation: headerSlide 0.55s ease-out both;
+  /* ISS-001: Lock top-nav height to prevent bouncing */
+  height: 54px;
+  min-height: 54px;
+  max-height: 54px;
 }
 
 .top-nav button {
@@ -306,7 +318,12 @@
   gap: 18px;
   color: var(--muted-text);
   font-size: 14px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  /* ISS-001: Lock footer height to prevent bouncing */
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
 }
 
 .site-footer a {
