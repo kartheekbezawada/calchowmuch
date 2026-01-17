@@ -112,10 +112,6 @@
   font-weight: 600;
 }
 
-.left-nav.is-loans .left-nav-title {
-  display: none;
-}
-
 #left-nav-content {
   display: flex;
   flex-direction: column;

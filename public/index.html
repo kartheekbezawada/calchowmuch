@@ -283,7 +283,9 @@
         }
 
         if (calculator.url.startsWith('#')) {
-          window.location.hash = calculator.url;
+          const nextUrl = new URL(window.location.href);
+          nextUrl.hash = calculator.url;
+          history.pushState({ calculatorId: calculator.id }, '', nextUrl);
           return;
         }
 
@@ -343,29 +345,23 @@
           return;
         }
 
-        const isLoans = category.id === 'loans';
-        leftNav.classList.toggle('is-loans', isLoans);
         if (title) {
-          title.hidden = isLoans;
+          title.hidden = false;
         }
-        if (!isLoans) {
-          container.classList.remove('is-searching');
-        }
+        container.classList.remove('is-searching');
 
-        let searchInput = null;
-        if (isLoans) {
-          const searchWrap = document.createElement('div');
-          searchWrap.className = 'nav-search';
+        const searchWrap = document.createElement('div');
+        searchWrap.className = 'nav-search';
 
-          searchInput = document.createElement('input');
-          searchInput.type = 'search';
-          searchInput.className = 'nav-search-input';
-          searchInput.placeholder = 'Search loans...';
-          searchInput.setAttribute('aria-label', 'Search loan calculators');
-          searchInput.value = state.navSearchQuery[category.id] ?? '';
-          searchWrap.appendChild(searchInput);
-          container.appendChild(searchWrap);
-        }
+        const categoryName = category.name ?? 'calculators';
+        const searchInput = document.createElement('input');
+        searchInput.type = 'search';
+        searchInput.className = 'nav-search-input';
+        searchInput.placeholder = `Search ${categoryName.toLowerCase()}...`;
+        searchInput.setAttribute('aria-label', `Search ${categoryName} calculators`);
+        searchInput.value = state.navSearchQuery[category.id] ?? '';
+        searchWrap.appendChild(searchInput);
+        container.appendChild(searchWrap);
 
         const collapsedMap = getCollapsedMap(category.id);
         const selectedCalculator = findCalculatorById(state.activeCalculatorId);
@@ -443,26 +439,40 @@
 
         highlightActiveCalculator();
 
-        if (isLoans && searchInput) {
-          searchInput.addEventListener('input', () => {
-            const query = searchInput.value;
-            state.navSearchQuery[category.id] = query;
-            applySearchFilter(container, query);
-          });
-          applySearchFilter(container, searchInput.value);
-        }
+        searchInput.addEventListener('input', () => {
+          const query = searchInput.value;
+          state.navSearchQuery[category.id] = query;
+          applySearchFilter(container, query);
+        });
+        applySearchFilter(container, searchInput.value);
 
         leftNav.scrollTop = 0;
       }
 
       function handleNavigationChange() {
         const match = getCalculatorFromLocation();
-        if (match) {
-          state.activeCategoryId = match.category.id;
+        if (!match) {
+          return;
+        }
+
+        const nextCategoryId = match.category.id;
+        const nextCalculatorId = match.calculator.id;
+        const categoryChanged = nextCategoryId !== state.activeCategoryId;
+        const calculatorChanged = nextCalculatorId !== state.activeCalculatorId;
+
+        if (!categoryChanged && !calculatorChanged) {
+          return;
+        }
+
+        state.activeCategoryId = nextCategoryId;
+        state.activeCalculatorId = nextCalculatorId;
+
+        if (categoryChanged) {
           renderTopNav();
           renderLeftNav();
-          setActiveCalculator(match.calculator, { skipUrlUpdate: true });
         }
+
+        setActiveCalculator(match.calculator, { skipUrlUpdate: true });
       }
 
       async function initializeNavigation() {
