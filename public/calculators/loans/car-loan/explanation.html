@@ -1,0 +1,32 @@
+<div id="car-explanation">
+  <h4>Car Loan Summary</h4>
+  <p>
+    The amount financed is <span data-car="financed"></span> after a down payment of
+    <span data-car="down"></span>, trade-in of <span data-car="trade"></span>, and taxes/fees.
+  </p>
+  <p>
+    At <span data-car="apr"></span> APR for <span data-car="term"></span> years, the monthly payment
+    is <span data-car="payment"></span>.
+  </p>
+  <p>
+    Total interest paid is <span data-car="interest"></span>, and total payments are
+    <span data-car="total"></span>.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="car-table-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

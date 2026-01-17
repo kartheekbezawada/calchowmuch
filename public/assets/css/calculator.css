@@ -364,6 +364,32 @@
   padding-bottom: 4px;
 }
 
+.graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-line .line-primary {
+  stroke: var(--accent);
+}
+
+.graph-line .line-secondary {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+.graph-legend-color.secondary {
+  background: #94a3b8;
+}
+
 .graph-bar {
   width: 8px;
   min-width: 8px;

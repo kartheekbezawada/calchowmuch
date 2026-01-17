@@ -1,0 +1,30 @@
+<div id="pcp-explanation">
+  <h4>PCP Summary</h4>
+  <p>
+    Financing <span data-pcp="financed"></span> with a deposit of
+    <span data-pcp="deposit"></span> at <span data-pcp="apr"></span> APR results in a monthly
+    payment of <span data-pcp="payment"></span>.
+  </p>
+  <p>
+    The final payment is <span data-pcp="balloon"></span> (GFV + option fee). Total interest is
+    <span data-pcp="interest"></span> and total payable is <span data-pcp="total"></span>.
+  </p>
+  <p>PCP keeps monthly payments lower by deferring a portion of the balance to the end.</p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="pcp-table-wrap" tabindex="0">
+      <table class="calculator-table" id="pcp-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -142,6 +142,21 @@
               "id": "multiple-car-loan",
               "name": "Multiple Car Loan Calculator",
               "url": "#/calculators/multiple-car-loan"
+            },
+            {
+              "id": "hire-purchase",
+              "name": "Hire Purchase Calculator",
+              "url": "#/calculators/hire-purchase"
+            },
+            {
+              "id": "pcp-calculator",
+              "name": "PCP Calculator",
+              "url": "#/calculators/pcp-calculator"
+            },
+            {
+              "id": "leasing-calculator",
+              "name": "Leasing Calculator",
+              "url": "#/calculators/leasing-calculator"
             }
           ]
         }

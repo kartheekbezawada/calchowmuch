@@ -1,0 +1,73 @@
+<div id="calc-pcp">
+  <div class="calculator-ui">
+    <p class="helper">Estimate PCP payments with a guaranteed future value (GFV) and option fee.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pcp-price">Vehicle Price</label>
+        <input id="pcp-price" type="number" value="32000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-deposit">Deposit</label>
+        <input id="pcp-deposit" type="number" value="3000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-apr">APR (%)</label>
+        <input id="pcp-apr" type="number" value="5.9" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-term">Term (months)</label>
+        <input id="pcp-term" type="number" value="36" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-gfv">GFV / Balloon</label>
+        <input id="pcp-gfv" type="number" value="15000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-option-fee">Option Fee</label>
+        <input id="pcp-option-fee" type="number" value="100" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pcp-calc">Calculate PCP</button>
+
+    <div class="result" id="pcp-result" aria-live="polite"></div>
+    <div class="result-detail" id="pcp-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="pcp-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="pcp-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="pcp-y-max"></span>
+          <span id="pcp-y-mid"></span>
+          <span id="pcp-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="pcp-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="pcp-x-start"></span>
+            <span id="pcp-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/pcp-calculator/calculator.css');
+</style>

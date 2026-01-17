@@ -1,0 +1,29 @@
+<div id="hp-explanation">
+  <h4>Hire Purchase Summary</h4>
+  <p>
+    Financing <span data-hp="financed"></span> after a deposit of <span data-hp="deposit"></span> at
+    <span data-hp="apr"></span> APR results in a monthly payment of <span data-hp="payment"></span>.
+  </p>
+  <p>
+    The final balloon payment is <span data-hp="balloon"></span>, with total interest of
+    <span data-hp="interest"></span> and total payable of <span data-hp="total"></span>.
+  </p>
+  <p>Balloon payments reduce monthly costs but leave a larger final balance.</p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="hp-table-wrap" tabindex="0">
+      <table class="calculator-table" id="hp-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="hp-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

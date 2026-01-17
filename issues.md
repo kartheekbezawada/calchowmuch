@@ -1,4 +1,4 @@
-# Issues Log — calchowmuch
+# Issues Log - calchowmuch
 
 This document tracks issues, bugs, and regressions found during development. Each issue is catalogued with a unique ID for reference.
 
@@ -12,6 +12,7 @@ This document tracks issues, bugs, and regressions found during development. Eac
 | ISS-002 | UI/Scrollbar | Resolved | P2 | Scrollbar not always visible on Navigation, Calculation, and Explanation panes | Missing CSS scrollbar styling. Panes used `overflow-y: auto` which hides scrollbar when content doesn't overflow. | Changed to `overflow-y: scroll` and added custom scrollbar styles with always-visible thumb and track. | 2026-01-15 | 2026-01-15 |
 | ISS-003 | UI/Scrollbar | Resolved | P2 | Scrollbar color (blue accent) not visually appealing on white background | Original requirement used accent color `#2563eb` for scrollbar thumb which was too bright/prominent. | Updated scrollbar thumb color to subtle gray `#94a3b8` (slate-400) and track to `#f1f5f9` (slate-100). Updated universal requirements. | 2026-01-15 | 2026-01-15 |
 | ISS-004 | UI/Layout | Resolved | P1 | Calculation and Explanation panes oversized relative to the universal UI contract | Fixed min-height on `.center-column .panel` forced the panes taller than available shell height when header/nav rows grew. | Removed the forced min-height so the panes flex within the fixed-height shell. | 2026-01-16 | 2026-01-16 |
+| ISS-005 | Navigation/UI | Resolved | P1 | Navigation items bounce when switching between Loan and Math calculators | Left-nav header changed height (search bar + hidden title toggling), forcing navigation list to reflow and shift. | Always render search input for all categories and keep the left-nav title visible to stabilize header height. Retested via Playwright: CLS 0.0000. | 2026-01-17 | 2026-01-17 |
 
 ---
 
