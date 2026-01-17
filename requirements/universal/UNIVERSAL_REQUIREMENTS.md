@@ -574,6 +574,7 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 **[TEST-1.3] ISS-001 regression check**
 - Verify navigation between calculators does not introduce layout shifts or "bouncing" UI elements.
 - Confirm scrollbars remain visible and space is reserved during navigation.
+- Verify switching calculators within the same category does not reset or reflow navigation layout (no ping-pong/jump).
 
 ---
 
