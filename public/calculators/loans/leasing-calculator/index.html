@@ -1,0 +1,109 @@
+<div id="calc-lease">
+  <div class="calculator-ui">
+    <p class="helper">Estimate leasing payments using residual value and money factor.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="lease-price">Vehicle Price</label>
+        <input id="lease-price" type="number" value="30000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="lease-residual-label">Residual Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="lease-residual-label"
+          data-button-group="lease-residual-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="lease-residual-amount-row">
+        <label for="lease-residual-amount">Residual Value</label>
+        <input id="lease-residual-amount" type="number" value="15000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="lease-residual-percent-row">
+        <label for="lease-residual-percent">Residual (%)</label>
+        <input
+          id="lease-residual-percent"
+          type="number"
+          value="50"
+          min="0"
+          max="99.99"
+          step="0.01"
+        />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-term">Lease Term (months)</label>
+        <input id="lease-term" type="number" value="36" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-factor">Money Factor</label>
+        <input id="lease-factor" type="number" value="0.0022" min="0" step="0.0001" />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-upfront">Upfront Payment</label>
+        <input id="lease-upfront" type="number" value="1500" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="lease-calc">
+      Calculate Lease
+    </button>
+
+    <div class="result" id="lease-result" aria-live="polite"></div>
+    <div class="result-detail" id="lease-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="lease-graph">
+      <div class="graph-header">
+        <span class="graph-title">Total Cost Over Time</span>
+        <span class="graph-note" id="lease-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Cost</span>
+        <div class="graph-y-axis">
+          <span id="lease-y-max"></span>
+          <span id="lease-y-mid"></span>
+          <span id="lease-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="lease-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="lease-x-start"></span>
+            <span id="lease-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/leasing-calculator/calculator.css');
+</style>

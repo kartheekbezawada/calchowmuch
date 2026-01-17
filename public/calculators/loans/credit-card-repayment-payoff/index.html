@@ -1,0 +1,67 @@
+<div id="calc-cc-payoff">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate how long it will take to pay off a credit card balance with a fixed monthly payment.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="cc-payoff-balance">Card Balance</label>
+        <input id="cc-payoff-balance" type="number" value="8500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-payoff-apr">APR (%)</label>
+        <input id="cc-payoff-apr" type="number" value="18.9" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-payoff-payment">Monthly Payment</label>
+        <input id="cc-payoff-payment" type="number" value="250" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-payoff-extra">Extra Payment (optional)</label>
+        <input id="cc-payoff-extra" type="number" value="0" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="cc-payoff-calc">
+      Calculate Payoff
+    </button>
+
+    <div class="result" id="cc-payoff-result" aria-live="polite"></div>
+    <div class="result-detail" id="cc-payoff-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="cc-payoff-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="cc-payoff-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="cc-payoff-y-max"></span>
+          <span id="cc-payoff-y-mid"></span>
+          <span id="cc-payoff-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="cc-payoff-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="cc-payoff-x-start"></span>
+            <span id="cc-payoff-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/credit-card-repayment-payoff/calculator.css');
+</style>

@@ -1,0 +1,70 @@
+<div id="calc-hire-purchase">
+  <div class="calculator-ui">
+    <p class="helper">Estimate hire purchase payments with an optional final balloon payment.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="hp-price">Vehicle Price</label>
+        <input id="hp-price" type="number" value="24000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-deposit">Deposit</label>
+        <input id="hp-deposit" type="number" value="2000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-apr">APR (%)</label>
+        <input id="hp-apr" type="number" value="6.2" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-term">Term (months)</label>
+        <input id="hp-term" type="number" value="48" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-balloon">Final Balloon (optional)</label>
+        <input id="hp-balloon" type="number" value="0" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="hp-calc">
+      Calculate Hire Purchase
+    </button>
+
+    <div class="result" id="hp-result" aria-live="polite"></div>
+    <div class="result-detail" id="hp-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="hp-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="hp-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="hp-y-max"></span>
+          <span id="hp-y-mid"></span>
+          <span id="hp-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="hp-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="hp-x-start"></span>
+            <span id="hp-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/hire-purchase/calculator.css');
+</style>

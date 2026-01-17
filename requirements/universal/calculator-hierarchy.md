@@ -53,6 +53,9 @@ Loans
 - Auto Loans
   - Car Loan Calculator
   - Multiple Car Loan Calculator
+  - Hire Purchase Calculator
+  - PCP Calculator
+  - Leasing Calculator
 
 ---
 

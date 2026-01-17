@@ -1,0 +1,33 @@
+<div id="cc-min-explanation">
+  <h4>Minimum Payment Summary</h4>
+  <p>
+    With a balance of <span data-cc-min="balance"></span> at <span data-cc-min="apr"></span> APR,
+    the minimum payment starts at <span data-cc-min="first-payment"></span> and finishes in
+    <span data-cc-min="months"></span> months.
+  </p>
+  <p>
+    Total interest paid is <span data-cc-min="interest"></span>, resulting in total payments of
+    <span data-cc-min="total"></span>.
+  </p>
+  <p>
+    Minimum payments decline as the balance drops, which extends payoff time and increases interest
+    paid.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Payoff Snapshot</h4>
+    <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-min-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="cc-min-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
