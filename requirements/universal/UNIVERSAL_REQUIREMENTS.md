@@ -571,6 +571,10 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 **[TEST-1.2] Coverage**
 - Minimum **80% coverage** for new compute logic.
 
+**[TEST-1.3] ISS-001 regression check**
+- Verify navigation between calculators does not introduce layout shifts or "bouncing" UI elements.
+- Confirm scrollbars remain visible and space is reserved during navigation.
+
 ---
 
 ## 8) SEO and URL Rules
@@ -682,4 +686,3 @@ When reporting issues (human or LLM), use this exact format:
 ---
 
 **End of document**
-
