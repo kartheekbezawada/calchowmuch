@@ -48,7 +48,7 @@ Coverage is automatically checked when running `npm run test:coverage`.
 
 ```javascript
 import { describe, it, expect } from 'vitest';
-import { myFunction } from '../../public/assets/js/core/myModule.js';
+import { myFunction } from '../../../public/assets/js/core/myModule.js';
 
 describe('myFunction', () => {
   it('should handle normal case', () => {

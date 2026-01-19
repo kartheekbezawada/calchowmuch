@@ -6,12 +6,24 @@ This is the master compliance verification matrix showing complete traceability 
 
 ## Workflow Chain Reference
 ```
-Requirements Tracker → Build Tracker → Testing Tracker → SEO Tests Tracker → Universal Requirements → Compliance Report
+requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirements.md -> compliance-report.md
 ```
 
 ---
 
-## Master Compliance Table
+## FSM Compliance Table (Authoritative)
+
+| Requirement ID | Requirement Status | Build ID | Build Status | Test Run ID | Test Status | SEO ID | SEO Status | Universal Requirements Followed | Overall Compliance | Evidence/Notes |
+|---------------|-------------------|----------|--------------|------------|------------|--------|------------|-------------------------------|-------------------|----------------|
+| REQ-20260119-001 | VERIFIED | BUILD-20260119-140637 | SUCCESS | TEST-20260119-153426 | PASS | SEO-PENDING-REQ-20260119-001 | PASS | In Progress | In Progress | Lint + buy-to-let utils tests passed |
+
+Notes:
+- Auto-advance: Codex updates this table during S2-S13 without manual EVT commands.
+- Legacy backlog remains in the table below until migrated.
+
+---
+
+## Legacy Compliance Table (pre-FSM)
 
 | Requirement ID | Requirement Status | Build ID | Build Status | Testing Tracker ID | Testing Status | SEO Test ID | SEO Status | Universal Requirements Followed | Overall Compliance |
 |---------------|-------------------|----------|--------------|-------------------|---------------|-------------|------------|-------------------------------|-------------------|
@@ -51,7 +63,7 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 - **TS-7.x**: Testing standards violations
 - **SEO-8.x**: SEO compliance violations
 
-### SEO Compliance Checklist (per seo-tracker.md)
+### SEO Compliance Checklist (per seo_requirements.md)
 - ✅ SEO-GEN-1 to SEO-GEN-5: Meta tags
 - ✅ SEO-URL-1 to SEO-URL-3: URL structure
 - ✅ SEO-SD-1 to SEO-SD-3: Structured data
@@ -61,6 +73,8 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 ---
 
 ## Overall Project Compliance Status
+
+Note: Summary metrics currently reflect legacy backlog data unless the FSM table is populated.
 
 ### Summary Dashboard
 
@@ -117,9 +131,9 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 
 ## Notes
 - This report is generated based on data from all trackers:
-  - [requirements-tracker.md](requirements-tracker.md)
-  - [build-tracker.md](build-tracker.md)
-  - [testing-tracker.md](testing-tracker.md)
-  - [seo-tracker.md](seo-tracker.md)
+  - [requirement_tracker.md](requirement_tracker.md)
+  - [build_tracker.md](build_tracker.md)
+  - [testing_tracker.md](testing_tracker.md)
+  - [seo_requirements.md](seo_requirements.md)
 - All violations must reference specific rule IDs per DC-0.3
 - See [WORKFLOW.md](WORKFLOW.md) for complete workflow documentation

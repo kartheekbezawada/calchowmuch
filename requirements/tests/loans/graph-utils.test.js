@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '../../public/assets/js/core/graph-utils.js';
+import { sampleValues, getPaddedMinMax, buildPolyline } from '../../../public/assets/js/core/graph-utils.js';
 
 describe('graph utils', () => {
   it('samples values down to max points', () => {

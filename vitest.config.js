@@ -4,7 +4,11 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    exclude: ['**/node_modules/**', '**/tests/e2e/**'],
+    exclude: [
+      '**/node_modules/**',
+      '**/tests/e2e/**',
+      '**/requirements/tests/calculators/**'
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add, subtract, multiply, divide, percentageChange, percentOf } from '../../public/assets/js/core/math.js';
+import { add, subtract, multiply, divide, percentageChange, percentOf } from '../../../public/assets/js/core/math.js';
 
 describe('math utilities', () => {
   describe('add', () => {

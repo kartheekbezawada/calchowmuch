@@ -9,7 +9,7 @@ import {
   calculateRemortgage,
   calculateOffset,
   calculateBorrow,
-} from '../../public/assets/js/core/loan-utils.js';
+} from '../../../public/assets/js/core/loan-utils.js';
 
 describe('loan utility calculations', () => {
   it('computes monthly payment for zero interest', () => {

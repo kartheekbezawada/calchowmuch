@@ -9,6 +9,8 @@
  */
 
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const CALCULATOR_URL = '/calculators/loans/how-much-can-borrow/';
 
@@ -448,9 +450,6 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
 
 // Utility test for screenshot directory setup
 test.beforeAll(async () => {
-  const fs = require('fs');
-  const path = require('path');
-  
   const screenshotDir = path.join(
     process.cwd(),
     'tests',

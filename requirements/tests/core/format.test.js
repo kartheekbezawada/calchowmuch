@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatNumber, formatCurrency, formatPercent } from '../../public/assets/js/core/format.js';
+import { formatNumber, formatCurrency, formatPercent } from '../../../public/assets/js/core/format.js';
 
 describe('format utilities', () => {
   describe('formatNumber', () => {

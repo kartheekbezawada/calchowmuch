@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { toNumber, clamp, hasMaxDigits } from '../../public/assets/js/core/validate.js';
+import { toNumber, clamp, hasMaxDigits } from '../../../public/assets/js/core/validate.js';
 
 describe('validation utilities', () => {
   describe('toNumber', () => {
