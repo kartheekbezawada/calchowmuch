@@ -225,3 +225,330 @@ When you say:
   - Codex starts at S2_PREFLIGHT.
   - Codex follows transitions until S13 or S14.
   - Codex updates trackers only when allowed by state.
+
+---
+
+## Copilot (Claude) Workflow Summary
+
+### Copilot Role
+Copilot is responsible for **requirement authoring and ID assignment only**.
+
+### Copilot Workflow Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         COPILOT (CLAUDE) WORKFLOW                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────┐
+    │   S0_IDLE    │◄────────────────────────────────────────────────────┐
+    │  (Waiting)   │                                                     │
+    └──────┬───────┘                                                     │
+           │                                                             │
+           │ User: "Copilot: create requirement for [X]"                 │
+           ▼                                                             │
+    ┌──────────────────────────────────────────────────────────┐         │
+    │              S1_REQUIREMENT_DRAFTED                       │         │
+    │                                                          │         │
+    │  1. Generate REQ-YYYYMMDD-###                            │         │
+    │  2. Add to requirement_tracker.md (Status: NEW)          │         │
+    │  3. Check SEO Impact:                                    │         │
+    │     ├─ YES/UNKNOWN → Add SEO-PENDING-REQ-XXXX            │         │
+    │     └─ NO → Skip SEO entry                               │         │
+    │  4. Confirm to user: "Requirement registered"            │         │
+    └──────────────────────────────────────────────────────────┘         │
+           │                                                             │
+           │ EVT_REQUIREMENT_REGISTERED                                  │
+           ▼                                                             │
+    ┌──────────────────────────────────────────────────────────┐         │
+    │              HANDOFF TO CODEX                            │         │
+    │                                                          │         │
+    │  User: "Codex: process REQ-YYYYMMDD-###"                 │         │
+    │  Copilot: STOP (Codex takes over from S2)                │         │
+    └──────────────────────────────────────────────────────────┘         │
+           │                                                             │
+           │ ... Codex completes workflow ...                            │
+           │                                                             │
+           └─────────────────────────────────────────────────────────────┘
+                              (Back to S0_IDLE)
+```
+
+### Copilot Allowed Actions
+
+| State | Allowed Actions |
+|-------|-----------------|
+| S0_IDLE | Receive requirement requests |
+| S1_REQUIREMENT_DRAFTED | Create REQ entry, add SEO placeholder |
+| S2-S14 | ❌ NOT ALLOWED (Codex territory) |
+
+### Copilot File Access
+
+| File | Access Level |
+|------|--------------|
+| `requirement_tracker.md` | ✅ Add NEW entries |
+| `seo_requirements.md` | ✅ Add PENDING entries |
+| `build_tracker.md` | ❌ Read only |
+| `testing_tracker.md` | ❌ Read only |
+| `issue_tracker.md` | ❌ Read only |
+| `compliance-report.md` | ❌ Read only |
+
+### Copilot Commands
+
+| User Command | Copilot Response |
+|--------------|------------------|
+| "Copilot: create requirement for [X]" | Generate REQ ID, add to tracker, confirm |
+| "Check for new requirement" | List pending requirements |
+| "Assign [REQ-ID] to codex" | Confirm REQ is ready, provide handoff |
+
+---
+
+## Codex Workflow Summary
+
+### Codex Role
+Codex is responsible for **implementation, build/test orchestration, and tracker updates**.
+
+### Codex Workflow Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            CODEX WORKFLOW                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    User: "Codex: process REQ-YYYYMMDD-###"
+                    │
+                    ▼
+    ┌───────────────────────────────────────┐
+    │           S2_PREFLIGHT                │
+    │  • Verify REQ exists (NEW/UNVERIFIED) │
+    │  • Check all tracker files exist      │
+    │  • Create missing templates           │
+    │  • No blocking issues from this run   │
+    └───────────────┬───────────────────────┘
+                    │ EVT_PREFLIGHT_OK
+                    ▼
+    ┌───────────────────────────────────────┐
+    │         S3_READY_TO_BUILD             │
+    │  • All prerequisites satisfied        │
+    └───────────────┬───────────────────────┘
+                    │ EVT_START_BUILD
+                    ▼
+    ┌───────────────────────────────────────┐         ┌─────────────────────┐
+    │          S4_BUILD_RUNNING             │         │  S6_BUILD_ABORTED   │
+    │  • Create BUILD-YYYYMMDD-HHMMSS       │         │  • Status: AUTO_ABORT│
+    │  • Update build_tracker.md            │         │  • Create issue     │
+    │  • Human runs build commands          │         │  • Escalate         │
+    └───────────────┬───────────────────────┘         └──────────┬──────────┘
+                    │                                            │
+         ┌──────────┴──────────┐                                 │
+         │                     │                                 ▼
+    EVT_BUILD_PASS        EVT_BUILD_FAIL                 ┌───────────────┐
+         │                     │                         │ S14_ESCALATED │
+         │                     ▼                         │ • Log issue   │
+         │         ┌───────────────────────┐             │ • Wait fix    │
+         │         │ S5_BUILD_FAILED_RETRY │             └───────┬───────┘
+         │         │ • Attempt < 10?       │                     │
+         │         │ • Log attempt         │                     │
+         │         └───────────┬───────────┘                     │
+         │                     │                                 │
+         │         ┌───────────┴───────────┐                     │
+         │    Retry (< 10)          Exhausted (≥ 10)             │
+         │         │                       │                     │
+         │         └──────┐                └─────────────────────┤
+         │                │                                      │
+         │                ▼                                      │
+         │    ┌───────────────────────┐                          │
+         │    │   (Back to S4)        │                          │
+         │    └───────────────────────┘                          │
+         │                                                       │
+         ▼                                                       │
+    ┌───────────────────────────────────────┐                    │
+    │          S7_BUILD_PASSED              │                    │
+    │  • Status: PASSED                     │                    │
+    │  • Record artifacts                   │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │ EVT_START_TEST                             │
+                    ▼                                            │
+    ┌───────────────────────────────────────┐                    │
+    │          S8_TEST_RUNNING              │                    │
+    │  • Create TEST-YYYYMMDD-HHMMSS        │                    │
+    │  • Update testing_tracker.md          │                    │
+    │  • Human runs test suite              │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │                                            │
+         ┌──────────┴──────────┐                                 │
+         │                     │                                 │
+    EVT_TEST_PASS         EVT_TEST_FAIL                          │
+         │                     │                                 │
+         │                     ▼                                 │
+         │         ┌───────────────────────┐                     │
+         │         │ S9_TEST_FAILED_RETRY  │─────────────────────┤
+         │         │ • Create issue        │   (if exhausted)    │
+         │         │ • Retry → S4          │                     │
+         │         └───────────────────────┘                     │
+         │                                                       │
+         ▼                                                       │
+    ┌───────────────────────────────────────┐                    │
+    │          S10_TEST_PASSED              │                    │
+    │  • Status: PASS                       │                    │
+    │  • Record evidence                    │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │ EVT_UPDATE_TRACKERS                        │
+                    ▼                                            │
+    ┌───────────────────────────────────────┐                    │
+    │        S11_TRACKERS_UPDATED           │                    │
+    │  • build_tracker: SUCCESS             │                    │
+    │  • requirement_tracker: VERIFIED      │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │ EVT_RUN_SEO_CHECK                          │
+                    ▼                                            │
+    ┌───────────────────────────────────────┐                    │
+    │          S12_SEO_CHECK                │                    │
+    │  • Validate SEO items                 │                    │
+    │  • Missing? Add placeholder + issue   │                    │
+    │  • SEO FAIL → issue (no block)        │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │ EVT_SEO_DONE                               │
+                    ▼                                            │
+    ┌───────────────────────────────────────┐                    │
+    │         S13_RELEASE_READY             │                    │
+    │  • All checks complete                │                    │
+    │  • Human can merge/release            │                    │
+    └───────────────┬───────────────────────┘                    │
+                    │ EVT_CLOSE                                  │
+                    ▼                                            │
+    ┌───────────────────────────────────────┐                    │
+    │           S0_IDLE                     │◄───────────────────┘
+    │  (Cycle complete, ready for next)     │     EVT_FIX_AVAILABLE
+    └───────────────────────────────────────┘     (restart from S2)
+```
+
+### Codex Allowed Actions
+
+| State | Allowed Actions |
+|-------|-----------------|
+| S0_IDLE | ❌ NOT ALLOWED (Copilot territory) |
+| S1_REQUIREMENT_DRAFTED | ❌ NOT ALLOWED (Copilot territory) |
+| S2_PREFLIGHT | Verify REQ, check files, create templates |
+| S3_READY_TO_BUILD | Confirm prerequisites |
+| S4_BUILD_RUNNING | Create Build ID, update build_tracker, run build |
+| S5_BUILD_FAILED_RETRYABLE | Log attempt, retry or escalate |
+| S6_BUILD_ABORTED | Update status, create issue, escalate |
+| S7_BUILD_PASSED | Update status, record artifacts |
+| S8_TEST_RUNNING | Create Test ID, update testing_tracker, run tests |
+| S9_TEST_FAILED_RETRYABLE | Create issue, retry or escalate |
+| S10_TEST_PASSED | Update status, record evidence |
+| S11_TRACKERS_UPDATED | Update all trackers to SUCCESS/VERIFIED |
+| S12_SEO_CHECK | Validate SEO, add placeholders if needed |
+| S13_RELEASE_READY | Confirm release readiness |
+| S14_ESCALATED | Log issue, wait for fix |
+
+### Codex File Access
+
+| File | Access Level |
+|------|--------------|
+| `requirement_tracker.md` | ✅ Update status (VERIFIED) in S11 |
+| `seo_requirements.md` | ✅ Update status (PASS/FAIL) in S12 |
+| `build_tracker.md` | ✅ Full access (create, update) |
+| `testing_tracker.md` | ✅ Full access (create, update) |
+| `issue_tracker.md` | ✅ Create issues in S6, S9, S12, S14 |
+| `compliance-report.md` | ✅ Update after S13 |
+
+### Codex Retry Logic
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    RETRY BUDGET: 10                     │
+├─────────────────────────────────────────────────────────┤
+│  Attempt 1  │ Build/Test fails → Retry                  │
+│  Attempt 2  │ Build/Test fails → Retry                  │
+│  ...        │ ...                                       │
+│  Attempt 10 │ Build/Test fails → AUTO_ABORT → ESCALATE  │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Codex Commands
+
+| User Command | Codex Response |
+|--------------|----------------|
+| "Codex: process REQ-YYYYMMDD-###" | Start S2_PREFLIGHT, follow FSM |
+| "Codex: retry build" | Resume from S4_BUILD_RUNNING |
+| "Codex: check status" | Report current FSM state |
+| "Codex: abort" | Move to S14_ESCALATED |
+
+---
+
+## Combined Workflow Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     COMPLETE FSM WORKFLOW OVERVIEW                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  COPILOT TERRITORY                    CODEX TERRITORY
+  ─────────────────                    ────────────────
+
+  ┌─────────────┐                      
+  │  S0_IDLE    │                      
+  └──────┬──────┘                      
+         │                             
+         ▼                             
+  ┌─────────────┐                      
+  │ S1_DRAFTED  │──────────────────────┬───────────────────────────────────┐
+  └─────────────┘                      │                                   │
+                                       ▼                                   │
+                                ┌─────────────┐                            │
+                                │ S2_PREFLIGHT│                            │
+                                └──────┬──────┘                            │
+                                       │                                   │
+                                       ▼                                   │
+                                ┌─────────────┐                            │
+                                │ S3_READY    │                            │
+                                └──────┬──────┘                            │
+                                       │                                   │
+                         ┌─────────────┴─────────────┐                     │
+                         ▼                           ▼                     │
+                  ┌─────────────┐             ┌─────────────┐              │
+                  │ S4_BUILD   │◄────────────│ S5_RETRY    │              │
+                  └──────┬──────┘             └──────┬──────┘              │
+                         │                           │                     │
+                         │                           ▼                     │
+                         │                    ┌─────────────┐              │
+                         │                    │ S6_ABORT    │──────┐       │
+                         │                    └─────────────┘      │       │
+                         ▼                                         │       │
+                  ┌─────────────┐                                  │       │
+                  │ S7_PASSED   │                                  │       │
+                  └──────┬──────┘                                  │       │
+                         │                                         │       │
+                         ▼                                         │       │
+                  ┌─────────────┐             ┌─────────────┐      │       │
+                  │ S8_TEST    │◄────────────│ S9_RETRY    │──────┤       │
+                  └──────┬──────┘             └─────────────┘      │       │
+                         │                                         │       │
+                         ▼                                         │       │
+                  ┌─────────────┐                                  │       │
+                  │ S10_PASSED  │                                  │       │
+                  └──────┬──────┘                                  │       │
+                         │                                         │       │
+                         ▼                                         │       │
+                  ┌─────────────┐                                  │       │
+                  │ S11_UPDATE  │                                  │       │
+                  └──────┬──────┘                                  │       │
+                         │                                         │       │
+                         ▼                                         │       │
+                  ┌─────────────┐                                  │       │
+                  │ S12_SEO     │                                  │       │
+                  └──────┬──────┘                                  │       │
+                         │                                         │       │
+                         ▼                                         ▼       │
+                  ┌─────────────┐             ┌─────────────┐              │
+                  │ S13_READY   │             │S14_ESCALATE │──────────────┘
+                  └──────┬──────┘             └─────────────┘
+                         │                           ▲
+                         │                           │ EVT_FIX_AVAILABLE
+                         │                           │ (restart from S2)
+                         ▼                           │
+                  ┌─────────────┐                    │
+                  │  S0_IDLE    │────────────────────┘
+                  └─────────────┘
+```
