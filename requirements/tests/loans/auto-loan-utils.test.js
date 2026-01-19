@@ -6,7 +6,7 @@ import {
   calculateHirePurchase,
   calculatePcp,
   calculateLease,
-} from '../../public/assets/js/core/auto-loan-utils.js';
+} from '../../../public/assets/js/core/auto-loan-utils.js';
 
 describe('auto loan utility calculations', () => {
   it('calculates car loan amount financed with percent down', () => {

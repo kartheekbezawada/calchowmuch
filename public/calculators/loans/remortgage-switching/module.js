@@ -1,5 +1,6 @@
 import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateRemortgage } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 
@@ -17,6 +18,8 @@ const resultDiv = document.querySelector('#remo-result');
 const summaryDiv = document.querySelector('#remo-summary');
 
 const horizonGroup = document.querySelector('[data-button-group="remo-horizon"]');
+const feesToggleGroup = document.querySelector('[data-button-group="remo-fees-toggle"]');
+const feesOptions = document.querySelector('#remo-fees-options');
 
 const explanationRoot = document.querySelector('#loan-remortgage-explanation');
 const currentPaymentValue = explanationRoot?.querySelector('[data-remo="current-payment"]');
@@ -44,6 +47,15 @@ const horizonButtons = setupButtonGroup(horizonGroup, {
   defaultValue: '2',
   onChange: () => calculate(),
 });
+
+const feesToggleButtons = setupButtonGroup(feesToggleGroup, {
+  defaultValue: 'expanded',
+  onChange: (value) => setFeesVisibility(value === 'expanded'),
+});
+
+function setFeesVisibility(isExpanded) {
+  feesOptions?.classList.toggle('is-hidden', !isExpanded);
+}
 
 function formatTableNumber(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -158,6 +170,25 @@ function calculate() {
   summaryDiv.textContent = '';
   clearOutputs();
 
+  // Validate input maxlength per REMO-UI-3
+  const inputsToValidate = [
+    balanceInput,
+    currentRateInput,
+    termInput,
+    currentPaymentInput,
+    newRateInput,
+    newTermInput,
+    newFeesInput,
+    exitFeesInput,
+    legalFeesInput,
+  ].filter(Boolean);
+
+  const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
+  if (invalidLength) {
+    setError('Inputs must be 10 digits or fewer.');
+    return;
+  }
+
   const balance = Number(balanceInput?.value);
   if (!Number.isFinite(balance) || balance <= 0) {
     setError('Current balance must be greater than 0.');
@@ -243,5 +274,8 @@ function calculate() {
 }
 
 calculateButton?.addEventListener('click', calculate);
+
+// Initialize fees visibility per REMO-UI-5
+setFeesVisibility(feesToggleButtons?.getValue() === 'expanded');
 
 calculate();

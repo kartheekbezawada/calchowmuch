@@ -109,6 +109,7 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 - Input values limited to **12 characters**.
   - For `type="text"`: use `maxlength="12"`.
   - For `type="number"`: enforce via JS since maxlength doesn’t apply.
+- Calculators may enforce a stricter limit by setting a smaller `maxlength`; the input limiter must honor per-input overrides.
 
 **[UI-2.5] No dropdowns**
 - `select` elements are not allowed in calculators.
@@ -118,7 +119,9 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 **[UI-3.1] Fixed-height shell**
 - Layout must not exceed the Basic Calculator baseline.
-- Constrain shell height to viewport (e.g., `height/max-height: calc(100vh - 48px)` or equivalent).
+- Constrain shell height to viewport (use `height/max-height: 100vh`).
+- Allow only minimal overflow from outer margins; total page scroll should be limited to the shell margin/padding (<= 16px).
+- Keep shell vertical spacing compact to prioritize pane height (gap ~10-12px, padding <= 14px).
 
 **[UI-3.2] Internal scrolling**
 - Left navigation, calculation pane, explanation pane must scroll internally.
@@ -126,6 +129,15 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 **[UI-3.3] No horizontal scroll**
 - Common desktop widths must not introduce horizontal scroll.
+
+**[UI-3.4] Frameless header + primary nav**
+- Header and primary category navigation must be frameless (no bordered panel or background card).
+- Use tight vertical padding to keep domain buttons closer to the top.
+
+**[UI-3.5] Minimal footer links**
+- Footer must be link-only (no bordered panel).
+- Increase link size slightly (15px) and keep underline.
+- Keep footer padding minimal so it does not steal pane height.
 
 ### 3.4 Scrollbar styling (global and consistent)
 

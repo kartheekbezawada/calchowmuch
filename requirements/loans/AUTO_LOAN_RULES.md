@@ -11,6 +11,18 @@ Calculators covered:
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-AUTO-001 | Car Loan Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-CAR-1 to AUTO-CAR-5 | 2026-01-19 |
+| REQ-AUTO-002 | Multiple Car Loan Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-MULTI-1 to AUTO-MULTI-4 | 2026-01-19 |
+| REQ-AUTO-003 | Hire Purchase Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-HP-1 to AUTO-HP-4 | 2026-01-19 |
+| REQ-AUTO-004 | PCP Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-PCP-1 to AUTO-PCP-4 | 2026-01-19 |
+| REQ-AUTO-005 | Leasing Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-LEASE-1 to AUTO-LEASE-3 | 2026-01-19 |
+
+---
+
 ## AUTO-NAV
 
 **AUTO-NAV-1**  

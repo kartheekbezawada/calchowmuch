@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { toNumber, clamp } from '../../public/assets/js/core/validate.js';
+import { toNumber, clamp, hasMaxDigits } from '../../public/assets/js/core/validate.js';
 
 describe('validation utilities', () => {
   describe('toNumber', () => {
@@ -97,6 +97,25 @@ describe('validation utilities', () => {
       expect(clamp(-5, 0, 0)).toBe(0);
       expect(clamp(5, 0, 0)).toBe(0);
       expect(clamp(0, 0, 0)).toBe(0);
+    });
+  });
+
+  describe('hasMaxDigits', () => {
+    it('accepts values within the digit limit', () => {
+      expect(hasMaxDigits('1234567890', 10)).toBe(true);
+      expect(hasMaxDigits(12345, 10)).toBe(true);
+      expect(hasMaxDigits('12,345.67', 10)).toBe(true);
+    });
+
+    it('rejects values that exceed the digit limit', () => {
+      expect(hasMaxDigits('12345678901', 10)).toBe(false);
+      expect(hasMaxDigits('1234567890.12', 10)).toBe(false);
+    });
+
+    it('treats empty or null values as valid', () => {
+      expect(hasMaxDigits('', 10)).toBe(true);
+      expect(hasMaxDigits(null, 10)).toBe(true);
+      expect(hasMaxDigits(undefined, 10)).toBe(true);
     });
   });
 });

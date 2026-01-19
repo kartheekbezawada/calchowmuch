@@ -5,12 +5,12 @@
     <div class="input-stack">
       <div class="input-row">
         <label for="bor-gross-income">Gross Annual Income</label>
-        <input id="bor-gross-income" type="number" value="90000" min="0" step="0.01" />
+        <input id="bor-gross-income" type="number" value="90000" min="0" step="0.01" maxlength="10" />
       </div>
 
       <div class="input-row">
         <label for="bor-net-income">Net Monthly Income (optional)</label>
-        <input id="bor-net-income" type="number" value="5000" min="0" step="0.01" />
+        <input id="bor-net-income" type="number" value="5000" min="0" step="0.01" maxlength="10" />
       </div>
 
       <div class="input-row">
@@ -42,22 +42,22 @@
 
       <div class="input-row">
         <label for="bor-expenses">Monthly Expenses</label>
-        <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" />
+        <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" maxlength="10" />
       </div>
 
       <div class="input-row">
         <label for="bor-debts">Monthly Debt Payments</label>
-        <input id="bor-debts" type="number" value="300" min="0" step="0.01" />
+        <input id="bor-debts" type="number" value="300" min="0" step="0.01" maxlength="10" />
       </div>
 
       <div class="input-row">
         <label for="bor-rate">Interest Rate (APR %)</label>
-        <input id="bor-rate" type="number" value="5" min="0" step="0.01" />
+        <input id="bor-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
       </div>
 
       <div class="input-row">
         <label for="bor-term">Loan Term (years)</label>
-        <input id="bor-term" type="number" value="25" min="1" step="1" />
+        <input id="bor-term" type="number" value="25" min="1" step="1" maxlength="10" />
       </div>
 
       <div class="input-row">
@@ -89,17 +89,17 @@
 
       <div class="input-row" id="bor-multiple-row">
         <label for="bor-multiple">Income Multiple (e.g., 4-5.5x)</label>
-        <input id="bor-multiple" type="number" value="4.5" min="0" step="0.1" />
+        <input id="bor-multiple" type="number" value="4.5" min="0" step="0.1" maxlength="10" />
       </div>
 
       <div class="input-row is-hidden" id="bor-cap-row">
         <label for="bor-cap">Payment Cap (% of income)</label>
-        <input id="bor-cap" type="number" value="35" min="0" max="100" step="0.1" />
+        <input id="bor-cap" type="number" value="35" min="0" max="100" step="0.1" maxlength="10" />
       </div>
 
       <div class="input-row">
         <label for="bor-deposit">Deposit (optional)</label>
-        <input id="bor-deposit" type="number" value="20000" min="0" step="0.01" />
+        <input id="bor-deposit" type="number" value="20000" min="0" step="0.01" maxlength="10" />
       </div>
     </div>
 

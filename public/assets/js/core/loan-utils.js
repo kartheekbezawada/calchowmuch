@@ -221,6 +221,50 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
+export function buildRentIncreaseSchedule({
+  monthlyRent,
+  years,
+  rentIncreaseEnabled = false,
+  rentIncreaseType = 'percent',
+  rentIncreaseValue = 0,
+  rentIncreaseInterval = 1,
+}) {
+  const totalYears = Math.max(1, Math.round(years || 1));
+  const baseRent = Number.isFinite(monthlyRent) ? monthlyRent : 0;
+  const interval = Math.max(1, Math.round(rentIncreaseInterval || 1));
+  const increaseValue = Math.max(0, rentIncreaseValue);
+  const isPercent = rentIncreaseType === 'percent';
+  const hasIncrease = rentIncreaseEnabled && increaseValue > 0;
+  const schedule = [];
+  let previousRent = baseRent;
+
+  for (let year = 1; year <= totalYears; year += 1) {
+    const steps = hasIncrease ? Math.floor((year - 1) / interval) : 0;
+    let adjustedRent = baseRent;
+
+    if (hasIncrease && steps > 0) {
+      adjustedRent = isPercent
+        ? baseRent * Math.pow(1 + increaseValue / 100, steps)
+        : baseRent + increaseValue * steps;
+    }
+
+    const increaseApplied = hasIncrease && year > 1 && (year - 1) % interval === 0;
+    const increaseAmount = increaseApplied ? adjustedRent - previousRent : 0;
+
+    schedule.push({
+      year,
+      monthlyRent: adjustedRent,
+      increaseApplied,
+      increaseAmount,
+      increaseSteps: steps,
+    });
+
+    previousRent = adjustedRent;
+  }
+
+  return schedule;
+}
+
 export function calculateBuyToLet({
   propertyPrice,
   depositType,
@@ -236,6 +280,10 @@ export function calculateBuyToLet({
   agentFeePercent,
   maintenanceMonthly,
   otherCostsMonthly,
+  rentIncreaseEnabled = false,
+  rentIncreaseType = 'percent',
+  rentIncreaseValue = 0,
+  rentIncreaseInterval = 1,
 }) {
   const price = propertyPrice;
   let depositValue = depositAmount;
@@ -263,55 +311,79 @@ export function calculateBuyToLet({
       ? clamp((vacancyMonths / 12) * 100, 0, 100)
       : clamp(vacancyPercent, 0, 100);
 
-  const effectiveRent = monthlyRent * (1 - vacancyPct / 100);
-  const agentFee = effectiveRent * (agentFeePercent / 100);
-  const monthlyCosts = maintenanceMonthly + otherCostsMonthly + agentFee;
+  const baseRentSchedule = buildRentIncreaseSchedule({
+    monthlyRent,
+    years: termYears,
+    rentIncreaseEnabled: false,
+  });
+  const rentSchedule = buildRentIncreaseSchedule({
+    monthlyRent,
+    years: termYears,
+    rentIncreaseEnabled,
+    rentIncreaseType,
+    rentIncreaseValue,
+    rentIncreaseInterval,
+  });
+
+  const baseMonthlyRent = baseRentSchedule[0]?.monthlyRent ?? monthlyRent;
+  const effectiveRent = baseMonthlyRent * (1 - vacancyPct / 100);
+  const baseAgentFee = effectiveRent * (agentFeePercent / 100);
+  const monthlyCosts = maintenanceMonthly + otherCostsMonthly + baseAgentFee;
   const netMonthlyCashflow = effectiveRent - monthlyCosts - monthlyMortgage;
   const annualCashflow = netMonthlyCashflow * 12;
   const grossYield = price > 0 ? ((monthlyRent * 12) / price) * 100 : 0;
   const netYield = price > 0 ? (annualCashflow / price) * 100 : 0;
   const interestOnlyPayment = loanAmount * monthlyRate;
   const stressCoverage = interestOnlyPayment > 0 ? effectiveRent / interestOnlyPayment : 0;
+  const scenarioRate = annualRate + 2;
+  const scenarioMonthlyRate = scenarioRate / 100 / 12;
+  const scenarioMonthlyMortgage =
+    mortgageType === 'repayment'
+      ? computeMonthlyPayment(loanAmount, scenarioRate, months)
+      : loanAmount * scenarioMonthlyRate;
+  const scenarioNetMonthly = effectiveRent - monthlyCosts - scenarioMonthlyMortgage;
 
-  let cumulative = 0;
-  const projection = Array.from({ length: Math.max(1, Math.round(termYears)) }, (_, index) => {
-    const year = index + 1;
-    const rentIncome = effectiveRent * 12;
-    const costs = monthlyCosts * 12;
-    const mortgageCost = monthlyMortgage * 12;
-    const netCashflow = netMonthlyCashflow * 12;
-    cumulative += netCashflow;
-    return {
-      year,
-      rentIncome,
-      costs,
-      mortgageCost,
-      netCashflow,
-      cumulativeCashflow: cumulative,
-    };
-  });
+  function buildProjection(schedule) {
+    let cumulative = 0;
+
+    return schedule.map((entry) => {
+      const effectiveMonthlyRent = entry.monthlyRent * (1 - vacancyPct / 100);
+      const agentFee = effectiveMonthlyRent * (agentFeePercent / 100);
+      const monthlyCostsForYear = maintenanceMonthly + otherCostsMonthly + agentFee;
+      const rentIncome = effectiveMonthlyRent * 12;
+      const costs = monthlyCostsForYear * 12;
+      const mortgageCost = monthlyMortgage * 12;
+      const netCashflow = rentIncome - costs - mortgageCost;
+      cumulative += netCashflow;
+      return {
+        year: entry.year,
+        rentIncome,
+        costs,
+        mortgageCost,
+        netCashflow,
+        cumulativeCashflow: cumulative,
+        rentIncreaseApplied: entry.increaseApplied,
+        rentIncreaseAmount: entry.increaseAmount,
+        rentMonthly: entry.monthlyRent,
+      };
+    });
+  }
+
+  const baselineProjection = buildProjection(baseRentSchedule);
+  const projection = rentIncreaseEnabled ? buildProjection(rentSchedule) : baselineProjection;
 
   const cashflowSeries = projection.map((entry) => ({
     year: entry.year,
     value: entry.netCashflow,
   }));
 
-  const minRate = Math.max(0, annualRate - 2);
-  const maxRate = annualRate + 2;
-  const sensitivityRates = [];
-  for (let rate = minRate; rate <= maxRate + 0.001; rate += 0.5) {
-    sensitivityRates.push(Number(rate.toFixed(2)));
-  }
-
-  const sensitivitySeries = sensitivityRates.map((rate) => {
-    const rateMonthly = rate / 100 / 12;
-    const payment =
-      mortgageType === 'repayment'
-        ? computeMonthlyPayment(loanAmount, rate, months)
-        : loanAmount * rateMonthly;
-    const netMonthly = effectiveRent - monthlyCosts - payment;
-    return { rate, value: netMonthly };
-  });
+  const cashflowSeriesBaseline = baselineProjection.map((entry) => ({
+    year: entry.year,
+    value: entry.netCashflow,
+  }));
+  const cashflowSeriesWithIncrease = rentIncreaseEnabled
+    ? cashflowSeries
+    : cashflowSeriesBaseline;
 
   return {
     price,
@@ -335,8 +407,21 @@ export function calculateBuyToLet({
     netYield,
     stressCoverage,
     projection,
+    baselineProjection,
     cashflowSeries,
-    sensitivitySeries,
+    cashflowSeriesBaseline,
+    cashflowSeriesWithIncrease,
+    rentIncreaseEnabled,
+    rentIncreaseType,
+    rentIncreaseValue,
+    rentIncreaseInterval,
+    rentIncreaseSchedule: rentSchedule,
+    rateScenario: {
+      currentRate: annualRate,
+      currentNetMonthly: netMonthlyCashflow,
+      higherRate: scenarioRate,
+      higherNetMonthly: scenarioNetMonthly,
+    },
   };
 }
 

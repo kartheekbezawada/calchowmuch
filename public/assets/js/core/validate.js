@@ -12,3 +12,18 @@ export function clamp(value, min, max) {
   }
   return Math.min(Math.max(value, min), max);
 }
+
+export function hasMaxDigits(value, maxDigits) {
+  if (!Number.isFinite(maxDigits) || maxDigits <= 0) {
+    return true;
+  }
+  if (value === null || value === undefined) {
+    return true;
+  }
+  const raw = String(value).trim();
+  if (!raw) {
+    return true;
+  }
+  const digitsOnly = raw.replace(/\D/g, '');
+  return digitsOnly.length <= maxDigits;
+}

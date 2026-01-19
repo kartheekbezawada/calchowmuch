@@ -3,6 +3,24 @@
 ## Objective
 Extend the Math -> Simple category with nine statistics calculators. Each calculator must be deep-linkable, load its own UI in the Calculation pane, and show its own explanation content in the Explanation pane.
 
+---
+
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-STAT-001 | Standard Deviation Calculator | STAT-SD-1 to STAT-SD-5 | 2026-01-19 |
+| REQ-STAT-002 | Number Sequence Calculator | STAT-NS-1 to STAT-NS-4 | 2026-01-19 |
+| REQ-STAT-003 | Sample Size Calculator | STAT-SS-1 to STAT-SS-4 | 2026-01-19 |
+| REQ-STAT-004 | Probability Calculator | STAT-PROB-1 to STAT-PROB-4 | 2026-01-19 |
+| REQ-STAT-005 | Statistics Calculator | STAT-CALC-1 to STAT-CALC-5 | 2026-01-19 |
+| REQ-STAT-006 | Mean, Median, Mode, Range Calculator | STAT-MMM-1 to STAT-MMM-5 | 2026-01-19 |
+| REQ-STAT-007 | Permutation and Combination Calculator | STAT-PC-1 to STAT-PC-4 | 2026-01-19 |
+| REQ-STAT-008 | Z-score Calculator | STAT-Z-1 to STAT-Z-4 | 2026-01-19 |
+| REQ-STAT-009 | Confidence Interval Calculator | STAT-CI-1 to STAT-CI-4 | 2026-01-19 |
+
+---
+
 ## Scope (this phase)
 - Add navigation entries (order + IDs) and routing support.
 - Add calculator folders and files for the nine calculators.
