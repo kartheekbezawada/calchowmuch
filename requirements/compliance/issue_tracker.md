@@ -11,6 +11,7 @@ This document is the system of record for issues created during FSM runs. Existi
 | ISSUE-20260119-002 | REQ-20260119-002 | TEST-20260119-184219 | Playwright deps missing in WSL (libnspr4.so) | Release Owner | HIGH | OPEN | `npm run test:e2e` failed; chromium_headless_shell cannot load libnspr4.so | 2026-01-19 18:45:10 |
 | ISSUE-20260119-003 | REQ-20260119-003 | TEST-20260119-200506 | Playwright e2e failures across BOR/REMO/BTL/ISS-001 suites | Release Owner | HIGH | OPEN | See `test-results/` (e.g., BOR currency symbol, Trebuchet font, REMO graph markers) | 2026-01-19 20:06:26 |
 | ISSUE-20260119-004 | REQ-20260119-003 | TEST-20260119-201551 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | OPEN | See `test-results/` (e.g., BOR font/currency, BTL tooltip/labels, ISS-001 screenshot diff) | 2026-01-19 20:16:50 |
+| ISSUE-20260119-005 | REQ-20260119-003 | TEST-20260119-203815 | ISS-001 layout snapshot diff persists after shell adjustments | Release Owner | HIGH | OPEN | See `test-results/e2e-iss-001-layout-stabili-52f2e-ion---page-layout-stability-chromium/` | 2026-01-19 20:39:44 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.
@@ -18,11 +19,23 @@ Notes:
 
 ---
 
-## Legacy Issue Log (pre-FSM)
+## Issue Resolution Summary
 
-| Issue ID | Related Req ID | Related Test ID | Category | Status | Severity | Compliance Impact | Resolution Status |
-|----------|---------------|----------------|----------|--------|----------|------------------|-------------------|
-| ISS-001 | REQ-003 | TEST-004 | UI/Layout | Resolved | P1 | Universal Requirements UI-3.x | ✅ Resolved with regression test |
+| Status | Count | Percentage |
+|--------|-------|------------|
+| OPEN | 4 | 100% |
+| RESOLVED | 0 | 0% |
+| CLOSED | 0 | 0% |
+
+---
+
+## Issue Categories
+
+| Category | Count | Priority Breakdown |
+|----------|-------|-----------------------|
+| Test Failures | 4 | HIGH: 4, MEDIUM: 0, LOW: 0 |
+| Configuration | 0 | HIGH: 0, MEDIUM: 0, LOW: 0 |
+| Performance | 0 | HIGH: 0, MEDIUM: 0, LOW: 0 |
 | ISS-002 | REQ-003 | TEST-004 | UI/Scrollbar | Resolved | P2 | Universal Requirements UI-3.4 | ✅ Resolved with styling update |
 | ISS-003 | REQ-003 | TEST-004 | UI/Scrollbar | Resolved | P2 | Universal Requirements UI-3.4 | ✅ Resolved with color update |
 | ISS-004 | REQ-003 | TEST-004 | UI/Layout | Resolved | P1 | Universal Requirements UI-3.3 | ✅ Resolved with layout fix |

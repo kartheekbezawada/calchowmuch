@@ -25,6 +25,9 @@ This document is the system of record for FSM test runs.
 | TEST-20260119-200506 | BUILD-20260119-200425 | 2026-01-19 20:06:26 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (19 tests) across BOR/REMO/BTL/ISS-001 suites |
 | TEST-20260119-201551 | BUILD-20260119-201520 | 2026-01-19 20:15:54 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
 | TEST-20260119-201551 | BUILD-20260119-201520 | 2026-01-19 20:16:50 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
+| TEST-20260119-203415 | BUILD-20260119-203342 | 2026-01-19 20:34:19 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
+| TEST-20260119-203815 | BUILD-20260119-203733 | 2026-01-19 20:38:19 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
+| TEST-20260119-203815 | BUILD-20260119-203733 | 2026-01-19 20:39:44 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
@@ -32,35 +35,24 @@ Notes:
 
 ---
 
-## Legacy Backlog (pre-FSM)
+## Current Test Summary
 
-| Requirement ID | Testing Tracker ID | Test ID | Test Type | Component | Test Description | Status | Test Created Date | Test Executed Date | Pass/Fail | Notes |
-|---------------|-------------------|---------|-----------|-----------|------------------|--------|-------------------|-------------------|-----------|-------|
-| REQ-AUTO-001 | TTRK-AUTO-001 | TEST-AUTO-001 | Unit | Car Loan Calculator | Test car loan EMI calculation | Not Started | 2026-01-19 | - | - | auto-loan-utils.test.js |
-| REQ-AUTO-001 | TTRK-AUTO-002 | TEST-AUTO-002 | E2E | Car Loan Calculator | Test car loan UI flow | Not Started | 2026-01-19 | - | - | car-loan.spec.js |
-| REQ-AUTO-002 | TTRK-AUTO-003 | TEST-AUTO-003 | Unit | Multi-Car Loan | Test multi-loan comparison | Not Started | 2026-01-19 | - | - | auto-loan-utils.test.js |
-| REQ-BTL-001 | TTRK-BTL-001 | TEST-BTL-001 | Unit | Buy-to-Let | Test BTL profitability calculation | Not Started | 2026-01-19 | - | - | buy-to-let-utils.test.js |
-| REQ-BTL-001 | TTRK-BTL-002 | TEST-BTL-002 | E2E | Buy-to-Let | Test BTL UI flow | Not Started | 2026-01-19 | - | - | buy-to-let.spec.js |
-| REQ-CC-001 | TTRK-CC-001 | TEST-CC-001 | Unit | CC Payoff | Test payoff calculation | Not Started | 2026-01-19 | - | - | credit-card-utils.test.js |
-| REQ-CC-001 | TTRK-CC-002 | TEST-CC-002 | E2E | CC Payoff | Test payoff UI flow | Not Started | 2026-01-19 | - | - | credit-card.spec.js |
-| REQ-CC-002 | TTRK-CC-003 | TEST-CC-003 | Unit | Minimum Payment | Test minimum payment logic | Not Started | 2026-01-19 | - | - | credit-card-utils.test.js |
-| REQ-MTG-001 | TTRK-MTG-001 | TEST-MTG-001 | Unit | Mortgage | Test mortgage amortization | Not Started | 2026-01-19 | - | - | loan-utils.test.js |
-| REQ-MTG-001 | TTRK-MTG-002 | TEST-MTG-002 | E2E | Mortgage | Test mortgage UI flow | Not Started | 2026-01-19 | - | - | mortgage.spec.js |
-| REQ-BOR-001 | TTRK-BOR-001 | TEST-BOR-001 | Unit | Borrow Calculator | Test affordability calculation | Not Started | 2026-01-19 | - | - | borrow-utils.test.js |
-| REQ-BOR-001 | TTRK-BOR-002 | TEST-BOR-002 | E2E | Borrow Calculator | Test borrow UI flow | Not Started | 2026-01-19 | - | - | how-much-can-borrow.spec.js |
-| REQ-EMI-001 | TTRK-EMI-001 | TEST-EMI-001 | Unit | Loan EMI | Test EMI calculation | Not Started | 2026-01-19 | - | - | loan-utils.test.js |
-| REQ-EMI-001 | TTRK-EMI-002 | TEST-EMI-002 | E2E | Loan EMI | Test EMI UI flow | Not Started | 2026-01-19 | - | - | loan-emi.spec.js |
-| REQ-STAT-001 | TTRK-STAT-001 | TEST-STAT-001 | Unit | Standard Deviation | Test std dev calculation | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-002 | TTRK-STAT-002 | TEST-STAT-002 | Unit | Number Sequence | Test sequence detection | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-003 | TTRK-STAT-003 | TEST-STAT-003 | Unit | Sample Size | Test sample size calc | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-004 | TTRK-STAT-004 | TEST-STAT-004 | Unit | Probability | Test probability calc | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-005 | TTRK-STAT-005 | TEST-STAT-005 | Unit | Statistics | Test general stats | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-006 | TTRK-STAT-006 | TEST-STAT-006 | Unit | Mean Median Mode Range | Test MMMR calculation | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-007 | TTRK-STAT-007 | TEST-STAT-007 | Unit | Permutation Combination | Test nPr/nCr calculation | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-008 | TTRK-STAT-008 | TEST-STAT-008 | Unit | Z-Score | Test z-score calculation | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-STAT-009 | TTRK-STAT-009 | TEST-STAT-009 | Unit | Confidence Interval | Test CI calculation | Not Started | 2026-01-19 | - | - | stats.test.js |
-| REQ-NAV-001 | TTRK-NAV-001 | TEST-NAV-001 | E2E | Navigation | Test nav hierarchy | Not Started | 2026-01-19 | - | - | navigation.spec.js |
-| REQ-NAV-001 | TTRK-NAV-002 | TEST-NAV-002 | Regression | Layout Stability | Test CLS prevention | Not Started | 2026-01-19 | - | - | iss-001-layout-stability.spec.js |
+| Metric | Count | Percentage |
+|--------|-------|------------|
+| Total FSM Test Runs | 12 | 100% |
+| Passed | 3 | 25% |
+| Failed | 9 | 75% |
+| Running | 0 | 0% |
+
+---
+
+## Test Category Breakdown
+
+| Category | Unit Tests | E2E Tests | Status |
+|----------|------------|-----------|----------|
+| Buy-to-Let | ✅ PASS | ❌ FAIL | Partial |
+| Math/Percentage | ❌ Not Started | ❌ Not Started | Blocked |
+| Core/Utils | ✅ PASS | N/A | Complete |
 
 ---
 

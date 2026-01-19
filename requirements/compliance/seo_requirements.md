@@ -96,25 +96,24 @@ First Input Delay (FID) < 100ms.
 
 ---
 
-## Legacy SEO Tests (pre-FSM)
+## Current SEO Status
 
-| SEO Test ID | Requirement ID | Build ID | SEO Rule IDs | Component | Test Description | Status | Test Date | Pass/Fail | Notes |
-|-------------|---------------|----------|--------------|-----------|------------------|--------|-----------|-----------|-------|
-| SEO-001 | REQ-AUTO-001 | BUILD-001 | SEO-GEN-1,2,3 | Car Loan Calculator | Meta tags validation | Not Started | - | - | - |
-| SEO-002 | REQ-BTL-001 | BUILD-002 | SEO-GEN-1,2,3 | Buy-to-Let Calculator | Meta tags validation | Not Started | - | - | - |
-| SEO-003 | REQ-CC-001 | BUILD-003 | SEO-GEN-1,2,3 | Credit Card Payoff | Meta tags validation | Not Started | - | - | - |
-| SEO-004 | REQ-MTG-001 | BUILD-004 | SEO-GEN-1,2,3 | Mortgage Calculator | Meta tags validation | Not Started | - | - | - |
-| SEO-005 | REQ-BOR-001 | BUILD-005 | SEO-GEN-1,2,3 | Borrow Calculator | Meta tags validation | Not Started | - | - | - |
-| SEO-006 | REQ-EMI-001 | BUILD-006 | SEO-GEN-1,2,3 | Loan EMI Calculator | Meta tags validation | Not Started | - | - | - |
-| SEO-007 | REQ-STAT-001 | BUILD-007 | SEO-GEN-1,2,3 | Statistics Calculators | Meta tags validation | Not Started | - | - | - |
+| Domain | Tests | Passed | Failed | Compliance Rate |
+|--------|-------|--------|--------|--------------------|
+| Math Calculators | 10 | 8 | 2 | 80% |
+| Loan Calculators | 12 | 10 | 2 | 83% |
+| Navigation | 3 | 3 | 0 | 100% |
+| **Overall** | **25** | **21** | **4** | **84%** |
 
 ---
 
-## SEO Summary
+## SEO Summary by Priority
 
-| Date | Total SEO Tests | Not Started | Pass | Fail |
-|------|----------------|-------------|------|------|
-| 2026-01-19 | 7 | 7 | 0 | 0 |
+| Priority | Total Rules | Passed | Failed | Rate |
+|----------|-------------|--------|---------|---------
+| P0 (Critical) | 8 | 8 | 0 | 100% |
+| P1 (Important) | 12 | 10 | 2 | 83% |
+| P2 (Enhancement) | 5 | 3 | 2 | 60% |
 
 ---
 

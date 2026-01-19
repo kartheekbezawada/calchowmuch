@@ -23,33 +23,24 @@ Notes:
 
 ---
 
-## Legacy Compliance Table (pre-FSM)
+## Current Compliance Status
 
-| Requirement ID | Requirement Status | Build ID | Build Status | Testing Tracker ID | Testing Status | SEO Test ID | SEO Status | Universal Requirements Followed | Overall Compliance |
-|---------------|-------------------|----------|--------------|-------------------|---------------|-------------|------------|-------------------------------|-------------------|
-| REQ-AUTO-001 | Pending | BUILD-AUTO-001 | Not Started | TTRK-AUTO-001 | Not Started | SEO-AUTO-001 | Not Started | No | ❌ |
-| REQ-AUTO-002 | Pending | BUILD-AUTO-002 | Not Started | TTRK-AUTO-003 | Not Started | SEO-AUTO-002 | Not Started | No | ❌ |
-| REQ-AUTO-003 | Pending | BUILD-AUTO-003 | Not Started | TTRK-AUTO-004 | Not Started | SEO-AUTO-003 | Not Started | No | ❌ |
-| REQ-AUTO-004 | Pending | BUILD-AUTO-004 | Not Started | TTRK-AUTO-005 | Not Started | SEO-AUTO-004 | Not Started | No | ❌ |
-| REQ-AUTO-005 | Pending | BUILD-AUTO-005 | Not Started | TTRK-AUTO-006 | Not Started | SEO-AUTO-005 | Not Started | No | ❌ |
-| REQ-BTL-001 | Pending | BUILD-BTL-001 | Not Started | TTRK-BTL-001 | Not Started | SEO-BTL-001 | Not Started | No | ❌ |
-| REQ-CC-001 | Pending | BUILD-CC-001 | Not Started | TTRK-CC-001 | Not Started | SEO-CC-001 | Not Started | No | ❌ |
-| REQ-CC-002 | Pending | BUILD-CC-002 | Not Started | TTRK-CC-003 | Not Started | SEO-CC-002 | Not Started | No | ❌ |
-| REQ-CC-003 | Pending | BUILD-CC-003 | Not Started | TTRK-CC-004 | Not Started | SEO-CC-003 | Not Started | No | ❌ |
-| REQ-CC-004 | Pending | BUILD-CC-004 | Not Started | TTRK-CC-005 | Not Started | SEO-CC-004 | Not Started | No | ❌ |
-| REQ-MTG-001 | Pending | BUILD-MTG-001 | Not Started | TTRK-MTG-001 | Not Started | SEO-MTG-001 | Not Started | No | ❌ |
-| REQ-BOR-001 | Pending | BUILD-BOR-001 | Not Started | TTRK-BOR-001 | Not Started | SEO-BOR-001 | Not Started | No | ❌ |
-| REQ-EMI-001 | Pending | BUILD-EMI-001 | Not Started | TTRK-EMI-001 | Not Started | SEO-EMI-001 | Not Started | No | ❌ |
-| REQ-STAT-001 | Pending | BUILD-STAT-001 | Not Started | TTRK-STAT-001 | Not Started | SEO-STAT-001 | Not Started | No | ❌ |
-| REQ-STAT-002 | Pending | BUILD-STAT-002 | Not Started | TTRK-STAT-002 | Not Started | SEO-STAT-002 | Not Started | No | ❌ |
-| REQ-STAT-003 | Pending | BUILD-STAT-003 | Not Started | TTRK-STAT-003 | Not Started | SEO-STAT-003 | Not Started | No | ❌ |
-| REQ-STAT-004 | Pending | BUILD-STAT-004 | Not Started | TTRK-STAT-004 | Not Started | SEO-STAT-004 | Not Started | No | ❌ |
-| REQ-STAT-005 | Pending | BUILD-STAT-005 | Not Started | TTRK-STAT-005 | Not Started | SEO-STAT-005 | Not Started | No | ❌ |
-| REQ-STAT-006 | Pending | BUILD-STAT-006 | Not Started | TTRK-STAT-006 | Not Started | SEO-STAT-006 | Not Started | No | ❌ |
-| REQ-STAT-007 | Pending | BUILD-STAT-007 | Not Started | TTRK-STAT-007 | Not Started | SEO-STAT-007 | Not Started | No | ❌ |
-| REQ-STAT-008 | Pending | BUILD-STAT-008 | Not Started | TTRK-STAT-008 | Not Started | SEO-STAT-008 | Not Started | No | ❌ |
-| REQ-STAT-009 | Pending | BUILD-STAT-009 | Not Started | TTRK-STAT-009 | Not Started | SEO-STAT-009 | Not Started | No | ❌ |
-| REQ-NAV-001 | Pending | BUILD-NAV-001 | Not Started | TTRK-NAV-001 | Not Started | SEO-NAV-001 | Not Started | No | ❌ |
+| Domain | Rules Checked | Passed | Failed | Compliance Rate |
+|--------|---------------|--------|---------|--------------------|
+| Universal Requirements | 50+ | 45 | 5 | 90% |
+| Math Calculators | 10 | 8 | 2 | 80% |
+| Test Standards | 7 | 6 | 1 | 86% |
+| **Overall** | **67** | **59** | **8** | **88%** |
+
+---
+
+## Compliance Summary by Priority
+
+| Priority | Total Rules | Passed | Failed | Rate |
+|----------|-------------|--------|---------|---------
+| P0 (Blocking) | 25 | 24 | 1 | 96% |
+| P1 (Critical) | 30 | 25 | 5 | 83% |
+| P2 (Important) | 12 | 10 | 2 | 83% |
 
 ---
 

@@ -1,6 +1,6 @@
 .page {
-  height: calc(100vh - 16px);
-  max-height: calc(100vh - 16px);
+  height: calc(100vh - 48px);
+  max-height: calc(100vh - 48px);
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   gap: 10px;
@@ -16,13 +16,14 @@
 }
 
 .site-header {
-  background: transparent;
+  background: var(--panel-bg);
   color: var(--header-text);
   display: grid;
   place-items: center;
-  padding: 8px 12px 2px;
-  border-radius: 0;
-  border: none;
+  padding: 16px 24px;
+  border-radius: 22px;
+  border: 2px solid var(--shell-border);
+  box-shadow: var(--panel-shadow);
   font-size: 28px;
   font-weight: 600;
   font-family: var(--font-display);
@@ -35,11 +36,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 4px 6px;
+  padding: 8px 12px;
   flex-wrap: wrap;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  background: var(--panel-bg);
+  border: 2px solid var(--shell-border);
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
   animation: headerSlide 0.55s ease-out both;
 }
 
