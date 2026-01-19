@@ -19,6 +19,8 @@ This document is the system of record for FSM build runs.
 | BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 14:06:43 | FAILED | 1 | `npm run lint` -> npm not found (bash + PowerShell) | Auto-advance build start |
 | BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 15:31:28 | PASSED | 2 | `npm run lint` ok | Retry after Node install |
 | BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 15:33:55 | SUCCESS | 3 | `npm run lint` ok | Verified 2026-01-19 15:35:14 after tests |
+| BUILD-20260119-171813 | REQ-20260119-002 | Codex | 2026-01-19 17:18:23 | RUNNING | 1 | Pending Windows PowerShell build run | Auto-advance build start |
+| BUILD-20260119-171813 | REQ-20260119-002 | Codex | 2026-01-19 17:19:06 | FAILED | 1 | `powershell.exe` not executable here; run `npm run lint` in Windows PowerShell | Build blocked in non-Windows environment |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

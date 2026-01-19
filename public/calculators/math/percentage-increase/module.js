@@ -1,5 +1,5 @@
 import { percentOf, percentageChange } from '/assets/js/core/math.js';
-import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { toNumber } from '/assets/js/core/validate.js';
 
@@ -45,18 +45,24 @@ const inputs = {
 };
 
 function safeFormatNumber(value, maximumFractionDigits = 2) {
-  if (value === null || value === undefined || Number.isNaN(value)) {
+  if (value === null || value === undefined || Number.isNaN(value) || !Number.isFinite(value)) {
     return 'N/A';
   }
   return formatNumber(value, { maximumFractionDigits });
 }
 
-function safeFormatPercent(value, maximumFractionDigits = 2, withSign = false) {
-  if (value === null || value === undefined || Number.isNaN(value)) {
+function safeFormatPercent(
+  value,
+  maximumFractionDigits = 2,
+  withSign = false,
+  minimumFractionDigits = 2
+) {
+  if (value === null || value === undefined || Number.isNaN(value) || !Number.isFinite(value)) {
     return 'N/A';
   }
   const sign = withSign && value > 0 ? '+' : '';
-  return `${sign}${formatPercent(value, { maximumFractionDigits })}`;
+  const formatted = formatNumber(value, { maximumFractionDigits, minimumFractionDigits });
+  return `${sign}${formatted}%`;
 }
 
 function setResult(text, detailText = '') {
@@ -102,21 +108,36 @@ function switchMode(mode) {
 }
 
 function calculateChange() {
-  const startValue = toNumber(inputs.change.start?.value);
-  const endValue = toNumber(inputs.change.end?.value);
-  const diff = endValue - startValue;
-  const ratio = startValue === 0 ? null : diff / startValue;
-  const changePercent = percentageChange(startValue, endValue);
+  const startValue = toNumber(inputs.change.start?.value, null);
+  const endValue = toNumber(inputs.change.end?.value, null);
+  let diff = null;
+  let ratio = null;
+  let changePercent = null;
 
-  if (changePercent === null) {
-    setResult('Result: Enter a starting value above 0.', '');
+  if (!Number.isFinite(startValue)) {
+    setResult('Result: Enter a valid starting value.', '');
+  } else if (!Number.isFinite(endValue)) {
+    setResult('Result: Enter a valid ending value.', '');
+  } else if (startValue === 0) {
+    diff = endValue - startValue;
+    setResult('Result: Starting value must be above 0.', '');
   } else {
+    diff = endValue - startValue;
+    ratio = diff / startValue;
+    changePercent = percentageChange(startValue, endValue);
     const signedPercent = safeFormatPercent(changePercent, 2, true);
-    const direction = changePercent >= 0 ? 'increase' : 'decrease';
-    setResult(
-      `Result: ${signedPercent}`,
-      `That is a ${direction} of ${safeFormatNumber(diff)} from the starting value.`
-    );
+    const direction =
+      changePercent === 0 ? 'no change' : changePercent > 0 ? 'increase' : 'decrease';
+    const formula = `Formula: (${safeFormatNumber(endValue)} - ${safeFormatNumber(
+      startValue
+    )}) / ${safeFormatNumber(startValue)} x 100 = ${signedPercent}.`;
+    const detail =
+      direction === 'no change'
+        ? `No change from the starting value. ${formula}`
+        : `That is a ${direction} of ${safeFormatNumber(
+            diff
+          )} from the starting value. ${formula}`;
+    setResult(`Result: ${signedPercent}`, detail);
   }
 
   updateExplanationFields('change', {
@@ -129,33 +150,56 @@ function calculateChange() {
 }
 
 function calculatePercentOf() {
-  const rate = toNumber(inputs['percent-of'].rate?.value);
-  const value = toNumber(inputs['percent-of'].value?.value);
-  const output = percentOf(rate, value);
+  const rate = toNumber(inputs['percent-of'].rate?.value, null);
+  const value = toNumber(inputs['percent-of'].value?.value, null);
+  let output = null;
 
-  setResult(
-    `Result: ${safeFormatNumber(output)}`,
-    `${safeFormatPercent(rate)} of ${safeFormatNumber(value)} is ${safeFormatNumber(output)}.`
-  );
+  if (!Number.isFinite(rate)) {
+    setResult('Result: Enter a valid percentage.', '');
+  } else if (!Number.isFinite(value)) {
+    setResult('Result: Enter a valid value.', '');
+  } else {
+    output = percentOf(rate, value);
+    const formula = `Formula: ${safeFormatNumber(rate)} / 100 x ${safeFormatNumber(
+      value
+    )} = ${safeFormatNumber(output)}.`;
+    setResult(
+      `Result: ${safeFormatNumber(output)}`,
+      `${safeFormatPercent(rate)} of ${safeFormatNumber(value)} is ${safeFormatNumber(
+        output
+      )}. ${formula}`
+    );
+  }
 
   updateExplanationFields('percent-of', {
     'of-rate': safeFormatPercent(rate),
-    'of-decimal': safeFormatNumber(rate / 100, 4),
+    'of-decimal': safeFormatNumber(Number.isFinite(rate) ? rate / 100 : null, 4),
     'of-value': safeFormatNumber(value),
     'of-result': safeFormatNumber(output),
   });
 }
 
 function calculateIncrease() {
-  const base = toNumber(inputs.increase.base?.value);
-  const rate = toNumber(inputs.increase.rate?.value);
-  const increaseAmount = percentOf(rate, base);
-  const output = base + increaseAmount;
+  const base = toNumber(inputs.increase.base?.value, null);
+  const rate = toNumber(inputs.increase.rate?.value, null);
+  let increaseAmount = null;
+  let output = null;
 
-  setResult(
-    `Result: ${safeFormatNumber(output)}`,
-    `Increase amount: ${safeFormatNumber(increaseAmount)}.`
-  );
+  if (!Number.isFinite(base)) {
+    setResult('Result: Enter a valid original value.', '');
+  } else if (!Number.isFinite(rate)) {
+    setResult('Result: Enter a valid percentage.', '');
+  } else {
+    increaseAmount = percentOf(rate, base);
+    output = base + increaseAmount;
+    const formula = `Formula: ${safeFormatNumber(base)} x (1 + ${safeFormatNumber(
+      rate
+    )} / 100) = ${safeFormatNumber(output)}.`;
+    setResult(
+      `Result: ${safeFormatNumber(output)}`,
+      `Increase amount: ${safeFormatNumber(increaseAmount)}. ${formula}`
+    );
+  }
 
   updateExplanationFields('increase', {
     'inc-base': safeFormatNumber(base),
@@ -166,15 +210,26 @@ function calculateIncrease() {
 }
 
 function calculateDecrease() {
-  const base = toNumber(inputs.decrease.base?.value);
-  const rate = toNumber(inputs.decrease.rate?.value);
-  const decreaseAmount = percentOf(rate, base);
-  const output = base - decreaseAmount;
+  const base = toNumber(inputs.decrease.base?.value, null);
+  const rate = toNumber(inputs.decrease.rate?.value, null);
+  let decreaseAmount = null;
+  let output = null;
 
-  setResult(
-    `Result: ${safeFormatNumber(output)}`,
-    `Decrease amount: ${safeFormatNumber(decreaseAmount)}.`
-  );
+  if (!Number.isFinite(base)) {
+    setResult('Result: Enter a valid original value.', '');
+  } else if (!Number.isFinite(rate)) {
+    setResult('Result: Enter a valid percentage.', '');
+  } else {
+    decreaseAmount = percentOf(rate, base);
+    output = base - decreaseAmount;
+    const formula = `Formula: ${safeFormatNumber(base)} x (1 - ${safeFormatNumber(
+      rate
+    )} / 100) = ${safeFormatNumber(output)}.`;
+    setResult(
+      `Result: ${safeFormatNumber(output)}`,
+      `Decrease amount: ${safeFormatNumber(decreaseAmount)}. ${formula}`
+    );
+  }
 
   updateExplanationFields('decrease', {
     'dec-base': safeFormatNumber(base),
@@ -185,27 +240,30 @@ function calculateDecrease() {
 }
 
 function calculateWhatPercent() {
-  const part = toNumber(inputs['what-percent'].part?.value);
-  const total = toNumber(inputs['what-percent'].total?.value);
+  const part = toNumber(inputs['what-percent'].part?.value, null);
+  const total = toNumber(inputs['what-percent'].total?.value, null);
+  let ratio = null;
+  let percent = null;
 
-  if (total === 0) {
-    setResult('Result: Enter a total value above 0.', '');
-    updateExplanationFields('what-percent', {
-      'what-part': safeFormatNumber(part),
-      'what-total': safeFormatNumber(total),
-      'what-ratio': 'N/A',
-      'what-percent': 'N/A',
-    });
-    return;
+  if (!Number.isFinite(part)) {
+    setResult('Result: Enter a valid part value.', '');
+  } else if (!Number.isFinite(total)) {
+    setResult('Result: Enter a valid total value.', '');
+  } else if (total === 0) {
+    setResult('Result: Total value must be above 0.', '');
+  } else {
+    ratio = part / total;
+    percent = ratio * 100;
+    const formula = `Formula: ${safeFormatNumber(part)} / ${safeFormatNumber(
+      total
+    )} x 100 = ${safeFormatPercent(percent)}.`;
+    setResult(
+      `Result: ${safeFormatPercent(percent)}`,
+      `${safeFormatNumber(part)} is ${safeFormatPercent(percent)} of ${safeFormatNumber(
+        total
+      )}. ${formula}`
+    );
   }
-
-  const ratio = part / total;
-  const percent = ratio * 100;
-
-  setResult(
-    `Result: ${safeFormatPercent(percent)}`,
-    `${safeFormatNumber(part)} is ${safeFormatPercent(percent)} of ${safeFormatNumber(total)}.`
-  );
 
   updateExplanationFields('what-percent', {
     'what-part': safeFormatNumber(part),

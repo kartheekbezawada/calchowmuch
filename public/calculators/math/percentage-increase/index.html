@@ -10,6 +10,7 @@
     >
       <button
         class="calculator-button secondary is-active"
+        data-value="change"
         data-mode="change"
         role="tab"
         aria-selected="true"
@@ -18,6 +19,7 @@
       </button>
       <button
         class="calculator-button secondary"
+        data-value="percent-of"
         data-mode="percent-of"
         role="tab"
         aria-selected="false"
@@ -26,6 +28,7 @@
       </button>
       <button
         class="calculator-button secondary"
+        data-value="increase"
         data-mode="increase"
         role="tab"
         aria-selected="false"
@@ -34,6 +37,7 @@
       </button>
       <button
         class="calculator-button secondary"
+        data-value="decrease"
         data-mode="decrease"
         role="tab"
         aria-selected="false"
@@ -42,6 +46,7 @@
       </button>
       <button
         class="calculator-button secondary"
+        data-value="what-percent"
         data-mode="what-percent"
         role="tab"
         aria-selected="false"
@@ -54,11 +59,11 @@
       <div class="input-grid">
         <div>
           <label for="percent-change-start">Starting value</label>
-          <input id="percent-change-start" type="number" value="200" />
+          <input id="percent-change-start" type="number" value="200" step="any" maxlength="15" />
         </div>
         <div>
           <label for="percent-change-end">Ending value</label>
-          <input id="percent-change-end" type="number" value="260" />
+          <input id="percent-change-end" type="number" value="260" step="any" maxlength="15" />
         </div>
       </div>
       <button class="calculator-button full-width" type="button" data-calc="change">
@@ -70,11 +75,11 @@
       <div class="input-grid">
         <div>
           <label for="percent-of-rate">Percent (%)</label>
-          <input id="percent-of-rate" type="number" value="15" />
+          <input id="percent-of-rate" type="number" value="15" step="any" maxlength="15" />
         </div>
         <div>
           <label for="percent-of-value">Value</label>
-          <input id="percent-of-value" type="number" value="400" />
+          <input id="percent-of-value" type="number" value="400" step="any" maxlength="15" />
         </div>
       </div>
       <button class="calculator-button full-width" type="button" data-calc="percent-of">
@@ -86,11 +91,11 @@
       <div class="input-grid">
         <div>
           <label for="percent-increase-base">Original value</label>
-          <input id="percent-increase-base" type="number" value="150" />
+          <input id="percent-increase-base" type="number" value="150" step="any" maxlength="15" />
         </div>
         <div>
           <label for="percent-increase-rate">Increase (%)</label>
-          <input id="percent-increase-rate" type="number" value="20" />
+          <input id="percent-increase-rate" type="number" value="20" step="any" maxlength="15" />
         </div>
       </div>
       <button class="calculator-button full-width" type="button" data-calc="increase">
@@ -102,11 +107,11 @@
       <div class="input-grid">
         <div>
           <label for="percent-decrease-base">Original value</label>
-          <input id="percent-decrease-base" type="number" value="150" />
+          <input id="percent-decrease-base" type="number" value="150" step="any" maxlength="15" />
         </div>
         <div>
           <label for="percent-decrease-rate">Decrease (%)</label>
-          <input id="percent-decrease-rate" type="number" value="20" />
+          <input id="percent-decrease-rate" type="number" value="20" step="any" maxlength="15" />
         </div>
       </div>
       <button class="calculator-button full-width" type="button" data-calc="decrease">
@@ -118,11 +123,11 @@
       <div class="input-grid">
         <div>
           <label for="percent-what-part">Part value</label>
-          <input id="percent-what-part" type="number" value="45" />
+          <input id="percent-what-part" type="number" value="45" step="any" maxlength="15" />
         </div>
         <div>
           <label for="percent-what-total">Total value</label>
-          <input id="percent-what-total" type="number" value="180" />
+          <input id="percent-what-total" type="number" value="180" step="any" maxlength="15" />
         </div>
       </div>
       <button class="calculator-button full-width" type="button" data-calc="what-percent">
