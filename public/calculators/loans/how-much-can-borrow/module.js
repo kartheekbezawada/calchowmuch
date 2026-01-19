@@ -43,6 +43,20 @@ const graphXStart = document.querySelector('#bor-x-start');
 const graphXEnd = document.querySelector('#bor-x-end');
 const graphNote = document.querySelector('#bor-graph-note');
 
+const MAX_INPUT_LENGTH = 10;
+
+function enforceMaxLength(input) {
+  if (!input) {
+    return;
+  }
+  input.addEventListener('input', () => {
+    const { value } = input;
+    if (value.length > MAX_INPUT_LENGTH) {
+      input.value = value.slice(0, MAX_INPUT_LENGTH);
+    }
+  });
+}
+
 const incomeBasisButtons = setupButtonGroup(incomeBasisGroup, {
   defaultValue: 'gross',
   onChange: () => calculate(),
@@ -55,6 +69,18 @@ const methodButtons = setupButtonGroup(methodGroup, {
     calculate();
   },
 });
+
+[
+  grossIncomeInput,
+  netIncomeInput,
+  expensesInput,
+  debtsInput,
+  rateInput,
+  termInput,
+  multipleInput,
+  capInput,
+  depositInput,
+].forEach(enforceMaxLength);
 
 function toggleMethodFields(method) {
   multipleRow?.classList.toggle('is-hidden', method !== 'income');

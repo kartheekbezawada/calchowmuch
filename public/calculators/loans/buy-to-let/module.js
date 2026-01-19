@@ -79,6 +79,20 @@ const cashflowTooltipBaseline = document.querySelector('#btl-cashflow-tooltip-ba
 const cashflowTooltipIncrease = document.querySelector('#btl-cashflow-tooltip-increase');
 const cashflowTooltipApplied = document.querySelector('#btl-cashflow-tooltip-applied');
 
+const MAX_INPUT_LENGTH = 10;
+
+function enforceMaxLength(input) {
+  if (!input) {
+    return;
+  }
+  input.addEventListener('input', () => {
+    const { value } = input;
+    if (value.length > MAX_INPUT_LENGTH) {
+      input.value = value.slice(0, MAX_INPUT_LENGTH);
+    }
+  });
+}
+
 const depositButtons = setupButtonGroup(depositGroup, {
   defaultValue: 'amount',
   onChange: (value) => {
@@ -123,6 +137,23 @@ const rentIncreaseFrequencyButtons = setupButtonGroup(rentIncreaseFrequencyGroup
     calculate();
   },
 });
+
+[
+  priceInput,
+  depositAmountInput,
+  depositPercentInput,
+  rateInput,
+  termInput,
+  rentInput,
+  rentIncreasePercentInput,
+  rentIncreaseAmountInput,
+  rentIncreaseCustomInput,
+  vacancyPercentInput,
+  vacancyMonthsInput,
+  agentFeeInput,
+  maintenanceInput,
+  otherCostsInput,
+].forEach(enforceMaxLength);
 
 let cashflowTooltipData = null;
 

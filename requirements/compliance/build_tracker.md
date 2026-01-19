@@ -27,6 +27,8 @@ This document is the system of record for FSM build runs.
 | BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:36:04 | FAILED | 2 | `npm run lint` -> /bin/bash: npm: command not found | Node/NPM missing in WSL; retry blocked |
 | BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:41:50 | RUNNING | 3 | Pending `npm run lint` (Linux) | Retry build after Node install |
 | BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:42:08 | PASSED | 3 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260119-192208 | REQ-20260119-003 | Codex | 2026-01-19 19:22:13 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
+| BUILD-20260119-192208 | REQ-20260119-003 | Codex | 2026-01-19 19:22:31 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

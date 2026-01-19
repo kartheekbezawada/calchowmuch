@@ -43,6 +43,20 @@ const breakMarker = document.querySelector('#remo-break-marker');
 const breakLine = document.querySelector('#remo-break-line');
 const breakDot = document.querySelector('#remo-break-dot');
 
+const MAX_INPUT_LENGTH = 10;
+
+function enforceMaxLength(input) {
+  if (!input) {
+    return;
+  }
+  input.addEventListener('input', () => {
+    const { value } = input;
+    if (value.length > MAX_INPUT_LENGTH) {
+      input.value = value.slice(0, MAX_INPUT_LENGTH);
+    }
+  });
+}
+
 const horizonButtons = setupButtonGroup(horizonGroup, {
   defaultValue: '2',
   onChange: () => calculate(),
@@ -52,6 +66,18 @@ const feesToggleButtons = setupButtonGroup(feesToggleGroup, {
   defaultValue: 'expanded',
   onChange: (value) => setFeesVisibility(value === 'expanded'),
 });
+
+[
+  balanceInput,
+  currentRateInput,
+  termInput,
+  currentPaymentInput,
+  newRateInput,
+  newTermInput,
+  newFeesInput,
+  exitFeesInput,
+  legalFeesInput,
+].forEach(enforceMaxLength);
 
 function setFeesVisibility(isExpanded) {
   feesOptions?.classList.toggle('is-hidden', !isExpanded);

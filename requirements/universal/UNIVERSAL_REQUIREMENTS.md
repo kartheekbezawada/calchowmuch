@@ -528,4 +528,53 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 
 ---
 
+## 14) Agent Diagnostic Command Requirements
+
+### 14.1 Approved Diagnostic Commands
+
+| Rule ID | Requirement | Commands Allowed |
+|---------|-------------|------------------|
+| DIAG-1.1 | **Read-only diagnostic commands only** | `rg`, `ls`, `cat`, `sed -n` |
+| DIAG-1.2 | **No destructive operations** | Agent must request explicit approval for any write/modify operations |
+| DIAG-1.3 | **Limited scope inspection** | Restrict to approved paths only (see DIAG-1.4) |
+
+### 14.2 Approved Inspection Paths
+
+| Rule ID | Path Category | Allowed Paths |
+|---------|---------------|---------------|
+| DIAG-1.4 | Configuration Files | `playwright.config.js`, `package.json`, `vitest.config.js` |
+| DIAG-1.4 | Test Directories | `tests/e2e/**`, `tests/calculators/**`, `tests/core/**` |
+| DIAG-1.4 | Documentation | `README.md` |
+| DIAG-1.4 | Compliance Files | `requirements/compliance/**` (all .md files) |
+| DIAG-1.4 | Requirements | `requirements/universal/UNIVERSAL_REQUIREMENTS.md` |
+| DIAG-1.4 | Build Rules | `requirements/build_rules/**/*.md` |
+
+### 14.3 Command Usage Guidelines
+
+| Rule ID | Requirement | Usage |
+|---------|-------------|--------|
+| DIAG-2.1 | **File location** | Use `rg` to locate configuration files and tests |
+| DIAG-2.2 | **Path confirmation** | Use `ls` to confirm directory structures and file existence |
+| DIAG-2.3 | **File inspection** | Use `cat` or `sed -n` to read specific files for analysis |
+| DIAG-2.4 | **Scope limitation** | Agent must not access paths outside approved list without explicit permission |
+
+### 14.4 Test Failure Diagnosis Process
+
+| Step | Action | Command Pattern |
+|------|--------|-----------------|
+| 1 | Locate test files | `rg "test\|spec" --type js --type ts` |
+| 2 | Check configuration | `cat playwright.config.js vitest.config.js` |
+| 3 | Inspect failing tests | `cat tests/e2e/[specific-test].spec.js` |
+| 4 | Review requirements | `cat requirements/compliance/requirement_tracker.md` |
+
+### 14.5 Permission Request Format
+
+| Rule ID | When Required | Format |
+|---------|---------------|--------|
+| DIAG-3.1 | **Additional commands needed** | Agent must explicitly request: "I need permission to use [command] to [specific purpose]" |
+| DIAG-3.2 | **Path expansion needed** | Agent must request: "I need access to [specific path] to [diagnostic reason]" |
+| DIAG-3.3 | **Write operations** | Agent must request: "I need write permission to [file] to [specific fix]" |
+
+---
+
 **End of document**
