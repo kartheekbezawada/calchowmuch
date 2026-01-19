@@ -9,8 +9,6 @@
  */
 
 import { test, expect } from '@playwright/test';
-import fs from 'node:fs';
-import path from 'node:path';
 
 const CALCULATOR_URL = '/calculators/loans/how-much-can-borrow/';
 
@@ -70,7 +68,7 @@ async function fillStandardInputs(page, data = TEST_DATA.standard) {
 }
 
 async function selectMethod(page, method) {
-  const selector = method === 'income' 
+  const selector = method === 'income'
     ? '[data-button-group="bor-method"] [data-value="income"]'
     : '[data-button-group="bor-method"] [data-value="payment"]';
   await page.click(selector);
@@ -95,103 +93,79 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
   // BOR-TEST-E2E-1: Compact Input Layout
   test('BOR-TEST-E2E-1: compact input layout desktop and mobile', async ({ page }) => {
     console.log('[E2E-1] Testing compact input layout responsiveness');
-    
+
     // Desktop layout test
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.waitForTimeout(500); // Allow layout to settle
-    
+
     const grossIncomeBox = await page.locator('#bor-gross-income').boundingBox();
     const expensesBox = await page.locator('#bor-expenses').boundingBox();
     const debtsBox = await page.locator('#bor-debts').boundingBox();
-    
+
     expect(grossIncomeBox).toBeTruthy();
     expect(expensesBox).toBeTruthy();
     expect(debtsBox).toBeTruthy();
-    
-    // Take desktop screenshot
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/layout-desktop.png',
-      fullPage: true 
-    });
-    
+
     // Mobile layout test
     await page.setViewportSize({ width: 375, height: 667 });
     await page.waitForTimeout(500); // Allow layout to settle
-    
-    // Take mobile screenshot
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/layout-mobile.png',
-      fullPage: true 
-    });
-    
-    console.log('[E2E-1] ✓ Layout screenshots captured');
+
+    console.log('[E2E-1] ✓ Layout tested');
   });
 
   // BOR-TEST-E2E-2: Input Maxlength Restriction
   test('BOR-TEST-E2E-2: input maxlength restriction', async ({ page }) => {
     console.log('[E2E-2] Testing input maxlength validation');
-    
+
     // Try to input 15 digits (should be limited to 10)
     const longValue = '123456789012345';
     await page.fill('#bor-gross-income', longValue);
-    
+
     const actualValue = await page.inputValue('#bor-gross-income');
     expect(actualValue.length).toBeLessThanOrEqual(10);
-    
+
     // Test with other inputs
     await page.fill('#bor-expenses', longValue);
     const expensesValue = await page.inputValue('#bor-expenses');
     expect(expensesValue.length).toBeLessThanOrEqual(10);
-    
-    // Take screenshot showing restriction
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/input-maxlength.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-2] ✓ Input maxlength restriction verified');
   });
 
   // BOR-TEST-E2E-3: Affordability Method Toggle
   test('BOR-TEST-E2E-3: affordability method toggle', async ({ page }) => {
     console.log('[E2E-3] Testing affordability method switching');
-    
+
     // Initially Income Multiple should be selected
     const incomeMultipleField = page.locator('#bor-multiple-row');
     const paymentCapField = page.locator('#bor-cap-row');
-    
+
     await expect(incomeMultipleField).toBeVisible();
     await expect(paymentCapField).toHaveClass(/is-hidden/);
-    
+
     // Switch to Payment Cap method
     await selectMethod(page, 'payment');
     await page.waitForTimeout(300); // Allow UI to update
-    
+
     await expect(incomeMultipleField).toHaveClass(/is-hidden/);
     await expect(paymentCapField).toBeVisible();
-    
-    // Take screenshot of toggle states
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/method-toggle.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-3] ✓ Method toggle functionality verified');
   });
 
   // BOR-TEST-E2E-4: Graph Interactivity
   test('BOR-TEST-E2E-4: graph hover tooltip functionality', async ({ page }) => {
     console.log('[E2E-4] Testing graph interactivity');
-    
+
     // Fill inputs and calculate to generate graph
     await fillStandardInputs(page);
     await page.click('#bor-calculate');
     await waitForCalculation(page);
-    
+
     // Find the graph element
     const graph = page.locator('#bor-graph-line');
     await expect(graph).toBeVisible();
-    
+
     // Hover over graph (simulate hover on middle of graph area)
     const graphBox = await graph.boundingBox();
     if (graphBox) {
@@ -199,183 +173,153 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
         graphBox.x + graphBox.width / 2,
         graphBox.y + graphBox.height / 2
       );
-      
+
       // Wait for potential tooltip (if implemented)
       await page.waitForTimeout(500);
-      
-      // Take screenshot with potential tooltip
-      await page.screenshot({ 
-        path: 'tests/calculator_results/how-much-can-borrow/screenshots/graph-hover-tooltip.png',
-        fullPage: true 
-      });
     }
-    
+
     console.log('[E2E-4] ✓ Graph interaction tested');
   });
 
   // BOR-TEST-E2E-5: Full User Journey
   test('BOR-TEST-E2E-5: complete user workflow', async ({ page }) => {
     console.log('[E2E-5] Testing complete user journey');
-    
+
     const testData = TEST_DATA.standard;
-    
+
     // Step 1: Enter gross income
     await page.fill('#bor-gross-income', String(testData.grossIncome));
-    
+
     // Step 2: Enter monthly expenses
     await page.fill('#bor-expenses', String(testData.expenses));
-    
+
     // Step 3: Enter monthly debts
     await page.fill('#bor-debts', String(testData.debts));
-    
+
     // Step 4: Select Payment Cap method
     await selectMethod(page, 'payment');
-    
+
     // Step 5: Enter payment cap
     await page.fill('#bor-cap', String(testData.paymentCap));
-    
+
     // Step 6: Enter interest rate
     await page.fill('#bor-rate', String(testData.rate));
-    
+
     // Step 7: Enter term
     await page.fill('#bor-term', String(testData.term));
-    
+
     // Step 8: Click calculate
     await page.click('#bor-calculate');
-    
+
     // Step 9: Wait for and verify results
     await waitForCalculation(page);
-    
+
     const resultText = await page.textContent('#bor-result');
     expect(resultText).toBeTruthy();
     expect(resultText).toContain('£'); // Should contain currency
-    
+
     // Verify summary is populated
     const summaryText = await page.textContent('#bor-summary');
     expect(summaryText).toBeTruthy();
-    
-    // Take final screenshot
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/full-journey-result.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-5] ✓ Full user journey completed successfully');
   });
 
   // BOR-TEST-E2E-6: Error Handling
   test('BOR-TEST-E2E-6: error state handling', async ({ page }) => {
     console.log('[E2E-6] Testing error conditions');
-    
+
     // Test 1: Zero income
     await page.fill('#bor-gross-income', '0');
     await page.click('#bor-calculate');
-    
+
     await page.waitForTimeout(500);
     const errorText = await page.textContent('#bor-result');
     expect(errorText).toContain('greater than 0');
-    
+
     // Test 2: Expenses > income (not affordable)
     await page.fill('#bor-gross-income', '30000'); // £30k annual = £2.5k monthly
     await page.fill('#bor-expenses', '2000');
     await page.fill('#bor-debts', '800'); // Total outgoings > income
     await page.click('#bor-calculate');
-    
+
     await page.waitForTimeout(500);
     const notAffordableText = await page.textContent('#bor-result');
     expect(notAffordableText).toContain('Not affordable');
-    
+
     // Test 3: Negative rate
     await page.fill('#bor-gross-income', '50000');
     await page.fill('#bor-expenses', '1000');
     await page.fill('#bor-debts', '200');
     await page.fill('#bor-rate', '-1');
     await page.click('#bor-calculate');
-    
+
     await page.waitForTimeout(500);
     const negativeRateText = await page.textContent('#bor-result');
     expect(negativeRateText).toContain('0 or more');
-    
-    // Take screenshot of error states
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/error-states.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-6] ✓ Error handling verified');
   });
 
   // BOR-TEST-E2E-7: Accessibility
   test('BOR-TEST-E2E-7: accessibility compliance', async ({ page }) => {
     console.log('[E2E-7] Testing accessibility features');
-    
+
     // Check for proper labels
     const grossIncomeLabel = page.locator('label[for="bor-gross-income"]');
     await expect(grossIncomeLabel).toBeVisible();
-    
+
     // Check button group ARIA attributes
     const methodGroup = page.locator('[data-button-group="bor-method"]');
     await expect(methodGroup).toHaveAttribute('role', 'group');
-    
+
     // Test keyboard navigation
     await page.keyboard.press('Tab'); // Should focus first input
     const focusedElement = await page.evaluate(() => document.activeElement?.id);
     expect(focusedElement).toBe('bor-gross-income');
-    
+
     // Test ARIA pressed states
     const activeButton = page.locator('[data-button-group="bor-method"] .is-active');
     await expect(activeButton).toHaveAttribute('aria-pressed', 'true');
-    
-    // Take accessibility screenshot
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/accessibility-check.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-7] ✓ Accessibility features verified');
   });
 
   // BOR-TEST-E2E-8: Layout Stability
   test('BOR-TEST-E2E-8: layout stability', async ({ page }) => {
     console.log('[E2E-8] Testing layout stability');
-    
+
     // Get initial layout measurements
     const initialBox = await page.locator('#calc-how-much-can-borrow').boundingBox();
-    
+
     // Enter values and calculate
     await fillStandardInputs(page);
     await page.click('#bor-calculate');
     await waitForCalculation(page);
-    
+
     // Check layout hasn't shifted
     const afterCalcBox = await page.locator('#calc-how-much-can-borrow').boundingBox();
     expect(afterCalcBox?.width).toBe(initialBox?.width);
-    
+
     // Toggle method and check stability
     await selectMethod(page, 'payment');
     await page.waitForTimeout(300);
-    
+
     const afterToggleBox = await page.locator('#calc-how-much-can-borrow').boundingBox();
     expect(afterToggleBox?.width).toBe(initialBox?.width);
-    
-    // Take layout stability screenshot
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/layout-stability.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-8] ✓ Layout stability verified');
   });
 
   // BOR-TEST-E2E-9: Visual Regression
   test('BOR-TEST-E2E-9: visual regression check', async ({ page }) => {
     console.log('[E2E-9] Testing visual consistency');
-    
+
     // Fill form to get full state
     await fillStandardInputs(page);
     await page.click('#bor-calculate');
     await waitForCalculation(page);
-    
+
     // Check color scheme elements
     const primaryButton = page.locator('#bor-calculate');
     const buttonStyles = await primaryButton.evaluate((el) => {
@@ -386,78 +330,58 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
         fontFamily: styles.fontFamily,
       };
     });
-    
+
     // Verify theme tokens are applied (basic check)
     expect(buttonStyles.fontFamily).toContain('Trebuchet MS');
-    
-    // Take visual regression baseline
-    await page.screenshot({ 
-      path: 'tests/calculator_results/how-much-can-borrow/screenshots/visual-regression.png',
-      fullPage: true 
-    });
-    
+
     console.log('[E2E-9] ✓ Visual regression baseline captured');
   });
 
   // Performance test
   test('performance: calculator load and calculation speed', async ({ page }) => {
     console.log('[PERF] Testing performance metrics');
-    
+
     const startTime = Date.now();
-    
+
     // Test calculation speed
     await fillStandardInputs(page);
     const calcStartTime = Date.now();
     await page.click('#bor-calculate');
     await waitForCalculation(page);
     const calcEndTime = Date.now();
-    
+
     const calculationTime = calcEndTime - calcStartTime;
     expect(calculationTime).toBeLessThan(1000); // Should calculate in under 1 second
-    
+
     console.log(`[PERF] Calculation completed in ${calculationTime}ms`);
   });
 
   // Integration test: Method switching affects results
   test('integration: method switching produces different results', async ({ page }) => {
     console.log('[INT] Testing method switching integration');
-    
+
     // Fill standard inputs
     await fillStandardInputs(page);
     await page.fill('#bor-multiple', String(TEST_DATA.standard.multiple));
-    
+
     // Calculate with income multiple method
     await selectMethod(page, 'income');
     await page.click('#bor-calculate');
     await waitForCalculation(page);
-    
+
     const incomeMethodResult = await page.textContent('#bor-result');
-    
+
     // Switch to payment cap method
     await selectMethod(page, 'payment');
     await page.fill('#bor-cap', String(TEST_DATA.standard.paymentCap));
     await page.click('#bor-calculate');
     await waitForCalculation(page);
-    
+
     const paymentMethodResult = await page.textContent('#bor-result');
-    
+
     // Results should be different
     expect(incomeMethodResult).not.toBe(paymentMethodResult);
-    
+
     console.log('[INT] ✓ Method switching produces different results');
   });
-});
-
-// Utility test for screenshot directory setup
-test.beforeAll(async () => {
-  const screenshotDir = path.join(
-    process.cwd(),
-    'tests',
-    'calculator_results',
-    'how-much-can-borrow',
-    'screenshots'
-  );
-  
-  fs.mkdirSync(screenshotDir, { recursive: true });
-  console.log(`Screenshot directory prepared: ${screenshotDir}`);
 });
