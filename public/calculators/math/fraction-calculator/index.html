@@ -4,55 +4,49 @@
 
     <div
       class="button-group"
-      role="tablist"
+      role="group"
       aria-label="Calculation modes"
       data-button-group="fraction-mode"
     >
       <button
         class="calculator-button secondary is-active"
-        data-mode="add"
-        role="tab"
-        aria-selected="true"
+        data-value="add"
+        aria-pressed="true"
       >
         Add
       </button>
       <button
         class="calculator-button secondary"
-        data-mode="subtract"
-        role="tab"
-        aria-selected="false"
+        data-value="subtract"
+        aria-pressed="false"
       >
         Subtract
       </button>
       <button
         class="calculator-button secondary"
-        data-mode="multiply"
-        role="tab"
-        aria-selected="false"
+        data-value="multiply"
+        aria-pressed="false"
       >
         Multiply
       </button>
       <button
         class="calculator-button secondary"
-        data-mode="divide"
-        role="tab"
-        aria-selected="false"
+        data-value="divide"
+        aria-pressed="false"
       >
         Divide
       </button>
       <button
         class="calculator-button secondary"
-        data-mode="simplify"
-        role="tab"
-        aria-selected="false"
+        data-value="simplify"
+        aria-pressed="false"
       >
         Simplify
       </button>
       <button
         class="calculator-button secondary"
-        data-mode="convert"
-        role="tab"
-        aria-selected="false"
+        data-value="convert"
+        aria-pressed="false"
       >
         Convert
       </button>
@@ -62,19 +56,21 @@
     <div class="input-section active" data-mode="add" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">First fraction</div>
+          <label class="fraction-label" for="add-num1">First fraction</label>
           <div class="fraction-row">
-            <input id="add-num1" type="number" value="1" placeholder="Numerator" />
+            <input id="add-num1" type="number" value="1" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="add-den1" type="number" value="4" placeholder="Denominator" />
+            <label for="add-den1" class="visually-hidden">First denominator</label>
+            <input id="add-den1" type="number" value="4" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
         <div>
-          <div class="fraction-label">Second fraction</div>
+          <label class="fraction-label" for="add-num2">Second fraction</label>
           <div class="fraction-row">
-            <input id="add-num2" type="number" value="1" placeholder="Numerator" />
+            <input id="add-num2" type="number" value="1" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="add-den2" type="number" value="8" placeholder="Denominator" />
+            <label for="add-den2" class="visually-hidden">Second denominator</label>
+            <input id="add-den2" type="number" value="8" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
       </div>
@@ -87,19 +83,21 @@
     <div class="input-section" data-mode="subtract" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">First fraction</div>
+          <label class="fraction-label" for="sub-num1">First fraction</label>
           <div class="fraction-row">
-            <input id="sub-num1" type="number" value="3" placeholder="Numerator" />
+            <input id="sub-num1" type="number" value="3" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="sub-den1" type="number" value="4" placeholder="Denominator" />
+            <label for="sub-den1" class="visually-hidden">First denominator</label>
+            <input id="sub-den1" type="number" value="4" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
         <div>
-          <div class="fraction-label">Second fraction</div>
+          <label class="fraction-label" for="sub-num2">Second fraction</label>
           <div class="fraction-row">
-            <input id="sub-num2" type="number" value="1" placeholder="Numerator" />
+            <input id="sub-num2" type="number" value="1" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="sub-den2" type="number" value="6" placeholder="Denominator" />
+            <label for="sub-den2" class="visually-hidden">Second denominator</label>
+            <input id="sub-den2" type="number" value="6" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
       </div>
@@ -112,19 +110,21 @@
     <div class="input-section" data-mode="multiply" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">First fraction</div>
+          <label class="fraction-label" for="mul-num1">First fraction</label>
           <div class="fraction-row">
-            <input id="mul-num1" type="number" value="2" placeholder="Numerator" />
+            <input id="mul-num1" type="number" value="2" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="mul-den1" type="number" value="3" placeholder="Denominator" />
+            <label for="mul-den1" class="visually-hidden">First denominator</label>
+            <input id="mul-den1" type="number" value="3" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
         <div>
-          <div class="fraction-label">Second fraction</div>
+          <label class="fraction-label" for="mul-num2">Second fraction</label>
           <div class="fraction-row">
-            <input id="mul-num2" type="number" value="3" placeholder="Numerator" />
+            <input id="mul-num2" type="number" value="3" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="mul-den2" type="number" value="5" placeholder="Denominator" />
+            <label for="mul-den2" class="visually-hidden">Second denominator</label>
+            <input id="mul-den2" type="number" value="5" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
       </div>
@@ -137,19 +137,21 @@
     <div class="input-section" data-mode="divide" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">First fraction</div>
+          <label class="fraction-label" for="div-num1">First fraction</label>
           <div class="fraction-row">
-            <input id="div-num1" type="number" value="2" placeholder="Numerator" />
+            <input id="div-num1" type="number" value="2" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="div-den1" type="number" value="3" placeholder="Denominator" />
+            <label for="div-den1" class="visually-hidden">First denominator</label>
+            <input id="div-den1" type="number" value="3" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
         <div>
-          <div class="fraction-label">Second fraction</div>
+          <label class="fraction-label" for="div-num2">Second fraction</label>
           <div class="fraction-row">
-            <input id="div-num2" type="number" value="4" placeholder="Numerator" />
+            <input id="div-num2" type="number" value="4" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="div-den2" type="number" value="5" placeholder="Denominator" />
+            <label for="div-den2" class="visually-hidden">Second denominator</label>
+            <input id="div-den2" type="number" value="5" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
       </div>
@@ -162,11 +164,12 @@
     <div class="input-section" data-mode="simplify" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">Fraction to simplify</div>
+          <label class="fraction-label" for="simp-num">Fraction to simplify</label>
           <div class="fraction-row">
-            <input id="simp-num" type="number" value="6" placeholder="Numerator" />
+            <input id="simp-num" type="number" value="6" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="simp-den" type="number" value="8" placeholder="Denominator" />
+            <label for="simp-den" class="visually-hidden">Denominator</label>
+            <input id="simp-den" type="number" value="8" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
       </div>
@@ -179,21 +182,24 @@
     <div class="input-section" data-mode="convert" role="tabpanel">
       <div class="fraction-inputs">
         <div>
-          <div class="fraction-label">Improper fraction → Mixed number</div>
+          <label class="fraction-label" for="conv-imp-num">Improper fraction → Mixed number</label>
           <div class="fraction-row">
-            <input id="conv-imp-num" type="number" value="7" placeholder="Numerator" />
+            <input id="conv-imp-num" type="number" value="7" placeholder="Numerator" maxlength="10" />
             <div class="fraction-divider">/</div>
-            <input id="conv-imp-den" type="number" value="3" placeholder="Denominator" />
+            <label for="conv-imp-den" class="visually-hidden">Improper denominator</label>
+            <input id="conv-imp-den" type="number" value="3" placeholder="Denominator" maxlength="10" />
           </div>
         </div>
         <div>
-          <div class="fraction-label">Mixed number → Improper fraction</div>
+          <label class="fraction-label" for="conv-mix-whole">Mixed number → Improper fraction</label>
           <div class="mixed-number-row">
-            <input id="conv-mix-whole" type="number" value="1" placeholder="Whole" />
+            <input id="conv-mix-whole" type="number" value="1" placeholder="Whole" maxlength="10" />
             <div class="fraction-row">
-              <input id="conv-mix-num" type="number" value="2" placeholder="Numerator" />
+              <label for="conv-mix-num" class="visually-hidden">Mixed numerator</label>
+              <input id="conv-mix-num" type="number" value="2" placeholder="Numerator" maxlength="10" />
               <div class="fraction-divider">/</div>
-              <input id="conv-mix-den" type="number" value="5" placeholder="Denominator" />
+              <label for="conv-mix-den" class="visually-hidden">Mixed denominator</label>
+              <input id="conv-mix-den" type="number" value="5" placeholder="Denominator" maxlength="10" />
             </div>
           </div>
         </div>

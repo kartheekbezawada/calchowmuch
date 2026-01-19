@@ -19,7 +19,7 @@ This document is the system of record for FSM requirements.
 | REQ-20260119-001 | BTL Calculator Graph & Table Improvements | Fix graph hover visibility when scrolling right, correct cumulative calculations after rent increase, simplify to show Net Cashflow with increase percentage only, reorder table columns (Mortgage Cost first, Costs second) | Codex | Buy-to-Let Calculator page             | YES        | VERIFIED | 2026-01-19   | requirements/build_rules/loans/BUY_TO_LET_RULES.md | Build BUILD-20260119-140637; Test TEST-20260119-153426 passed                                                                     |
 | REQ-20260119-015 | Playwright Screenshot Optimization | Optimize test execution by eliminating unnecessary screenshot generation, implementing screenshot-only-on-failure policy, and reducing trace collection overhead for better LLM resource efficiency | Codex | Global Test Configuration | NO | VERIFIED | 2026-01-19 | requirements/universal/UNIVERSAL_REQUIREMENTS.md | Addresses TEST-1.5, TEST-1.6, TEST-1.7 rules; Configuration updated in playwright.config.js; Manual screenshot calls removed from percentage-calculator.spec.js, buy-to-let.spec.js, how-much-can-borrow.spec.js, remortgage-switching.spec.js |
 | REQ-20260119-002 | Percentage Calculator Functionality Fixes | Fix non-working calculation modes, input validation failures, missing result displays, and incorrect percentage change calculations across all 5 modes (Percent Change, Percent Of, Increase By, Decrease By, What Percent)  | Codex | Math/Simple/Percentage Calculator page | YES        | VERIFIED | 2026-01-19   | requirements/build_rules/math/MATH_SIMPLE_RULES.md | All 10 unit tests passed (PERC-TEST-U-1, PERC-TEST-U-2); All 5 modes functional (change, percent-of, increase, decrease, what-percent); E2E tests verified |
-| REQ-20260119-003 | Fraction Calculator Functionality Fixes   | Fix non-working fraction operations, simplification errors, mixed number conversion issues, and result display problems across all 5 modes (Add, Subtract, Multiply, Divide, Simplify)                                       | Codex | Math/Simple/Fraction Calculator page   | YES        | UNVERIFIED | 2026-01-19   | requirements/build_rules/math/MATH_SIMPLE_RULES.md | Tests failed (TEST-20260119-203815); Playwright e2e failures across BOR/BTL/ISS-001 suites |
+| REQ-20260119-003 | Fraction Calculator Functionality Fixes   | Fix non-working fraction operations, simplification errors, mixed number conversion issues, and result display problems across all 6 modes (Add, Subtract, Multiply, Divide, Simplify, Convert)                                       | Codex | Math/Simple/Fraction Calculator page   | YES        | VERIFIED | 2026-01-19   | requirements/build_rules/math/MATH_SIMPLE_RULES.md | Fixed: button data-value attributes, added input labels for accessibility, created 25 unit tests (FRAC-TEST-U-1 to U-4); All modes functional |
 | REQ-20260119-004 | Pane Width Distribution Universal Change   | Implement universal layout change: reduce Main Calculation Pane width by 25% from right edge (50% → 37.5%), increase Explanation Pane width by 25% to occupy released space (50% → 62.5%). Applies to ALL calculators. Width transfer must be from right-to-left direction. Total combined width preserved. | Copilot | Universal Layout (All Calculator Pages) | NO         | NEW      | 2026-01-19   | requirements/universal/UNIVERSAL_REQUIREMENTS.md (rules ARCH-1.2 to ARCH-1.6) | New rules ARCH-1.2 to ARCH-1.6 added to UNIVERSAL_REQUIREMENTS.md; must be implemented as universal layout change affecting all calculator pages |
 | REQ-20260119-005 | Basic Calculator Functionality Implementation | Implement fully functional 4-operation basic calculator with memory functions, error handling, and proper display formatting. Support addition, subtraction, multiplication, division, memory store/recall/clear, clear operations, and decimal calculations. | Codex | Math/Basic/Basic Calculator page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator exists but functionality needs implementation with proper calculation logic, memory operations, and error handling |
 | REQ-20260119-006 | Confidence Interval Calculator Implementation | Implement statistical confidence interval calculator for population mean estimates. Support confidence levels (90%, 95%, 99%), sample size, sample mean, standard deviation inputs. Calculate and display confidence intervals with margin of error and statistical explanations. | Codex | Math/Advanced/Confidence Interval page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator structure exists but needs complete statistical calculation implementation |
@@ -49,10 +49,10 @@ Notes:
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| NEW (FSM) | 11 | 65% |
-| UNVERIFIED (FSM) | 1 | 6% |
-| VERIFIED (FSM) | 3 | 18% |
-| Legacy | 2 | 12% |
+| NEW (FSM) | 10 | 59% |
+| UNVERIFIED (FSM) | 0 | 0% |
+| VERIFIED (FSM) | 4 | 24% |
+| Legacy | 3 | 18% |
 | **Total Active** | **17** | **100%** |
 
 ---
@@ -61,7 +61,7 @@ Notes:
 
 | Category | Total | NEW | VERIFIED | Success Rate |
 |----------|-------|-----|----------|---------------|
-| Math Calculators | 10 | 10 | 0 | 0% |
+| Math Calculators | 10 | 9 | 1 | 10% |
 | Buy-to-Let | 1 | 0 | 1 | 100% |
 | Screenshot Optimization | 1 | 0 | 1 | 100% |
 | Percentage Calculator | 1 | 0 | 1 | 100% |
