@@ -7,6 +7,7 @@ This document is the system of record for issues created during FSM runs. Existi
 | Issue ID | Requirement ID | Build/Test ID | Summary | Owner | Priority | Status | Evidence/Notes | Created |
 |----------|----------------|---------------|---------|-------|----------|--------|----------------|---------|
 | ISSUE-20260119-001 | REQ-20260119-001 | TEST-20260119-153209 | Fix buy-to-let utils test import paths | Codex | MEDIUM | RESOLVED | Updated test imports to ../../../public/... | 2026-01-19 15:33:37 |
+| ISSUE-20260119-002 | REQ-20260119-002 | TEST-20260119-184219 | Playwright deps missing in WSL (libnspr4.so) | Release Owner | HIGH | OPEN | `npm run test:e2e` failed; chromium_headless_shell cannot load libnspr4.so | 2026-01-19 18:45:10 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.

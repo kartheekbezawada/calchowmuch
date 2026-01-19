@@ -21,6 +21,12 @@ This document is the system of record for FSM build runs.
 | BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 15:33:55 | SUCCESS | 3 | `npm run lint` ok | Verified 2026-01-19 15:35:14 after tests |
 | BUILD-20260119-171813 | REQ-20260119-002 | Codex | 2026-01-19 17:18:23 | RUNNING | 1 | Pending Windows PowerShell build run | Auto-advance build start |
 | BUILD-20260119-171813 | REQ-20260119-002 | Codex | 2026-01-19 17:19:06 | FAILED | 1 | `powershell.exe` not executable here; run `npm run lint` in Windows PowerShell | Build blocked in non-Windows environment |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:27:34 | RUNNING | 1 | Pending `npm run lint` (Linux) | Auto-advance build start |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:27:51 | FAILED | 1 | `npm run lint` -> /bin/bash: npm: command not found | Node/NPM missing in WSL; build blocked |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:33:56 | RUNNING | 2 | Pending `npm run lint` (Linux) | Retry build |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:36:04 | FAILED | 2 | `npm run lint` -> /bin/bash: npm: command not found | Node/NPM missing in WSL; retry blocked |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:41:50 | RUNNING | 3 | Pending `npm run lint` (Linux) | Retry build after Node install |
+| BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:42:08 | PASSED | 3 | `npm run lint` ok | Lint-only build step |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

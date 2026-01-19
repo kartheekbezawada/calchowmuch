@@ -14,12 +14,89 @@ Define an unskippable, deterministic workflow where:
 - COPILOT: Requirement authoring and ID assignment.
 - CODEX: Implementation, local build/test orchestration, and tracker updates.
 
-## Test Environment (Windows-Only)
+## Test Environment (Linux / WSL)
 
-- All build/test commands MUST run in Windows-native PowerShell.
-- Do NOT run npm/npx/vitest/playwright in WSL.
-- Node.js must be available on Windows (e.g., `winget install OpenJS.NodeJS.LTS`).
-- Playwright must use Windows browser binaries; do not reuse WSL/ Linux installs.
+This checklist ensures the codebase is fully compatible with Linux and WSL2 environments for development, testing, and CI/CD pipelines.
+
+### Environment
+
+- [ ] `uname -a` reports Linux (microsoft-standard-WSL2)
+- [ ] `node -v` = 18.x
+- [ ] `npm -v` = 10.x
+
+### Playwright
+
+- [ ] `@playwright/test` is present in `package.json` dependencies or devDependencies
+- [ ] `npx playwright install chromium` completes without download attempts on rerun
+- [ ] Playwright browsers exist at:
+  ```
+  ~/.cache/ms-playwright/
+  ```
+- [ ] `PLAYWRIGHT_BROWSERS_PATH` is set to:
+  ```
+  $HOME/.cache/ms-playwright
+  ```
+
+### Tests
+
+- [ ] `npm run test` executes all Vitest unit tests successfully in Linux
+- [ ] `npm run test:e2e` executes Playwright tests in Linux without Windows-specific paths
+- [ ] No test references `powershell`, `.ps1`, or Windows-only commands
+- [ ] No test assumes `C:\` paths or backslashes
+
+### Repository
+
+- [ ] Repo runs correctly from WSL filesystem (`/home/...`) or `/mnt/c` without path errors
+- [ ] No scripts in `package.json` invoke Windows shell commands
+- [ ] No hardcoded OS-specific environment variables
+
+### CI Readiness
+
+- [ ] CI config (if present) uses Linux runner
+- [ ] CI installs Playwright via `npx playwright install --with-deps chromium`
+- [ ] CI runs `npm run test:e2e`
+
+### Cache & Performance
+
+- [ ] Playwright browser cache is reused across runs (no repeated downloads)
+- [ ] Agent does not delete `~/.cache/ms-playwright`
+
+### FSM / Build State (Code-Related Only)
+
+- [ ] Build scripts no longer depend on Windows PowerShell
+- [ ] Linux execution is sufficient to complete full test pipeline
+
+### Validation Commands (WSL2)
+
+Run these commands in WSL2 to verify compliance:
+
+```bash
+# Environment checks
+uname -a
+node -v
+npm -v
+
+# Playwright verification
+cat package.json | grep playwright
+ls ~/.cache/ms-playwright/
+echo $PLAYWRIGHT_BROWSERS_PATH
+
+# Test execution
+npm run test
+npm run test:e2e
+
+# Check for Windows-specific references
+grep -r "powershell\|\.ps1\|C:\\\\" tests/ --include="*.js" --include="*.ts"
+grep -r "powershell\|\.ps1" package.json
+```
+
+### Notes
+
+- All paths should use forward slashes (`/`) for cross-platform compatibility
+- Environment variables should be set in `.bashrc` or `.zshrc` for persistence
+- When running from `/mnt/c`, be aware of potential performance implications compared to native WSL filesystem
+
+---
 
 ## System of Record (State Storage)
 
