@@ -1,17 +1,29 @@
 # Build Tracker
 
-This document tracks all build/implementation work from requirements to deployment.
+This document is the system of record for FSM build runs.
 
-## Build Status Definitions
-- **Not Started**: Build not yet begun
-- **In Progress**: Implementation in progress
-- **Complete**: Implementation finished
-- **Deployed**: Deployed to production
-- **Failed**: Build failed, requires attention
+## FSM Build Status Definitions
+- **RUNNING**: Build in progress (S4_BUILD_RUNNING).
+- **FAILED**: Build failed (S5_BUILD_FAILED_RETRYABLE).
+- **PASSED**: Build completed and artifacts recorded (S7_BUILD_PASSED).
+- **AUTO_ABORT**: Build aborted after retry budget (S6_BUILD_ABORTED).
+- **SUCCESS**: Final verification complete (S11_TRACKERS_UPDATED).
+- Legacy statuses (Not Started/In Progress/Complete/Deployed) apply only to the legacy backlog below.
 
 ---
 
-## Build Tracking Table
+## FSM Build Runs (Authoritative)
+
+| Build ID | Requirement ID | Initiator | Start Time | Status | Attempt | Evidence/Artifacts | Notes |
+|----------|----------------|-----------|------------|--------|---------|--------------------|-------|
+
+Notes:
+- Attempt starts at 1 and increments on each retry.
+- Final Status: SUCCESS is recorded in S11 after tests pass and trackers are updated.
+
+---
+
+## Legacy Backlog (pre-FSM)
 
 | Build ID | Requirement ID | Associated Rule IDs | Component | Description | Status | Assigned To | Build Started | Build Completed | Deployed Date | Notes |
 |----------|---------------|-------------------|-----------|-------------|--------|-------------|---------------|-----------------|---------------|-------|
@@ -41,7 +53,7 @@ This document tracks all build/implementation work from requirements to deployme
 
 ---
 
-## Build Dependencies
+## Legacy Build Dependencies (pre-FSM)
 
 | Build ID | Depends On | Blocking |
 |----------|-----------|----------|
@@ -51,7 +63,7 @@ This document tracks all build/implementation work from requirements to deployme
 
 ---
 
-## Build Summary
+## Legacy Build Summary (pre-FSM)
 
 | Date | Total Builds | Not Started | In Progress | Complete | Deployed | Failed |
 |------|-------------|-------------|-------------|----------|----------|--------|
@@ -59,7 +71,7 @@ This document tracks all build/implementation work from requirements to deployme
 
 ---
 
-## Build by Category
+## Legacy Build by Category (pre-FSM)
 
 | Category | Total | Not Started | In Progress | Complete | Deployed |
 |----------|-------|-------------|-------------|----------|----------|
@@ -75,8 +87,8 @@ This document tracks all build/implementation work from requirements to deployme
 
 ---
 
-## Template for New Builds
+## Template for New FSM Builds
 
 ```markdown
-| BUILD-[CAT]-XXX | REQ-[CAT]-XXX | [Rule IDs] | [Component] | [Description] | Not Started | Codex | - | - | - | Per [RULES].md |
+| BUILD-YYYYMMDD-HHMMSS | REQ-YYYYMMDD-### | [Human] | YYYY-MM-DD HH:MM:SS | RUNNING | 1 | [Artifacts/Logs] | [Notes] |
 ```

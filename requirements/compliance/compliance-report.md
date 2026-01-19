@@ -6,7 +6,7 @@ This is the master compliance verification matrix showing complete traceability 
 
 ## Workflow Chain Reference
 ```
-Requirements Tracker → Build Tracker → Testing Tracker → SEO Tests Tracker → Universal Requirements → Compliance Report
+requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirements.md -> compliance-report.md
 ```
 
 ---
@@ -51,7 +51,7 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 - **TS-7.x**: Testing standards violations
 - **SEO-8.x**: SEO compliance violations
 
-### SEO Compliance Checklist (per seo-tracker.md)
+### SEO Compliance Checklist (per seo_requirements.md)
 - ✅ SEO-GEN-1 to SEO-GEN-5: Meta tags
 - ✅ SEO-URL-1 to SEO-URL-3: URL structure
 - ✅ SEO-SD-1 to SEO-SD-3: Structured data
@@ -117,9 +117,9 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 
 ## Notes
 - This report is generated based on data from all trackers:
-  - [requirements-tracker.md](requirements-tracker.md)
-  - [build-tracker.md](build-tracker.md)
-  - [testing-tracker.md](testing-tracker.md)
-  - [seo-tracker.md](seo-tracker.md)
+  - [requirement_tracker.md](requirement_tracker.md)
+  - [build_tracker.md](build_tracker.md)
+  - [testing_tracker.md](testing_tracker.md)
+  - [seo_requirements.md](seo_requirements.md)
 - All violations must reference specific rule IDs per DC-0.3
 - See [WORKFLOW.md](WORKFLOW.md) for complete workflow documentation

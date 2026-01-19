@@ -1,8 +1,19 @@
-# Issue Tracker (Compliance Integration)
+# Issue Tracker (FSM Runs)
 
-This document extends the main [issues.md](../../issues.md) with compliance tracking integration, linking issues to requirements and tests.
+This document is the system of record for issues created during FSM runs. Existing issues outside the current run are not in scope.
 
-## Issue-Requirement-Test Traceability
+## FSM Issues (Authoritative)
+
+| Issue ID | Requirement ID | Build/Test ID | Summary | Owner | Priority | Status | Evidence/Notes | Created |
+|----------|----------------|---------------|---------|-------|----------|--------|----------------|---------|
+
+Notes:
+- Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.
+- Only issues created during the active FSM run count as active blockers.
+
+---
+
+## Legacy Issue Log (pre-FSM)
 
 | Issue ID | Related Req ID | Related Test ID | Category | Status | Severity | Compliance Impact | Resolution Status |
 |----------|---------------|----------------|----------|--------|----------|------------------|-------------------|
@@ -33,14 +44,14 @@ This document extends the main [issues.md](../../issues.md) with compliance trac
 |----------|----------|-------------------|---------------|-------------|
 | - | - | - | - | - |
 
-## Issue Creation Template
+## Issue Creation Template (FSM)
 
 When creating new issues, MUST include:
 
 ```markdown
-**Issue ID**: ISS-XXX
-**Related Requirements**: REQ-XXX (specify which rule violated)
-**Related Tests**: TEST-XXX (prevention test needed)
+**Issue ID**: ISSUE-YYYYMMDD-###
+**Related Requirements**: REQ-YYYYMMDD-### (specify which rule violated)
+**Related Builds/Tests**: BUILD-YYYYMMDD-HHMMSS / TEST-YYYYMMDD-HHMMSS
 **Compliance Impact**: [Universal Requirements rule ID]
 **Severity**: P0/P1/P2/P3
 **Category**: UI/Navigation/Calculator/etc.

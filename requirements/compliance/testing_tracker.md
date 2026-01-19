@@ -1,17 +1,27 @@
 # Testing Tracker
 
-This document tracks all test execution and results, linked to requirements.
+This document is the system of record for FSM test runs.
 
-## Test Status Definitions
-- **Not Started**: Test not yet executed
-- **Running**: Test execution in progress
-- **Pass**: Test passed successfully
-- **Fail**: Test failed, requires attention
-- **Skip**: Test skipped (with reason)
+## FSM Test Status Definitions
+- **RUNNING**: Test execution in progress (S8_TEST_RUNNING).
+- **PASS**: Tests passed (S10_TEST_PASSED).
+- **FAIL**: Tests failed (S9_TEST_FAILED_RETRYABLE).
+- Legacy statuses (Not Started/Skip) apply only to the legacy backlog below.
 
 ---
 
-## Testing Requirements Table
+## FSM Test Runs (Authoritative)
+
+| Test Run ID | Build ID | Start Time | Status | Evidence/Notes |
+|-------------|----------|------------|--------|----------------|
+
+Notes:
+- Use TEST-YYYYMMDD-HHMMSS for each run.
+- Evidence should link to test logs/artifacts; include REQ link if helpful.
+
+---
+
+## Legacy Backlog (pre-FSM)
 
 | Requirement ID | Testing Tracker ID | Test ID | Test Type | Component | Test Description | Status | Test Created Date | Test Executed Date | Pass/Fail | Notes |
 |---------------|-------------------|---------|-----------|-----------|------------------|--------|-------------------|-------------------|-----------|-------|
@@ -68,10 +78,10 @@ This document tracks all test execution and results, linked to requirements.
 
 ---
 
-## Template for New Tests
+## Template for New FSM Test Runs
 
 ```markdown
-| REQ-XXX | TTRK-[CAT]-XXX | TEST-[CAT]-XXX | [Type] | [Component] | [Description] | Not Started | 2026-01-19 | - | - | [test-file] |
+| TEST-YYYYMMDD-HHMMSS | BUILD-YYYYMMDD-HHMMSS | YYYY-MM-DD HH:MM:SS | RUNNING | [Evidence/Notes] |
 ```
 
 ---
@@ -80,6 +90,8 @@ This document tracks all test execution and results, linked to requirements.
 
 | ID Type | Format | Example |
 |---------|--------|---------|
-| Testing Tracker ID | TTRK-[CATEGORY]-NNN | TTRK-AUTO-001 |
-| Test ID | TEST-[CATEGORY]-NNN | TEST-AUTO-001 |
-| Requirement ID (linked) | REQ-[CATEGORY]-NNN | REQ-AUTO-001 |
+| Test Run ID | TEST-YYYYMMDD-HHMMSS | TEST-20260119-152233 |
+| Build ID (linked) | BUILD-YYYYMMDD-HHMMSS | BUILD-20260119-152233 |
+| Requirement ID (linked) | REQ-YYYYMMDD-### | REQ-20260119-001 |
+
+Legacy testing IDs (TTRK-*, TEST-[CAT]-*) apply only to the legacy backlog above.

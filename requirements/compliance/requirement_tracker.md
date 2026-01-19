@@ -1,16 +1,27 @@
-# Requirements Tracker
+# Requirement Tracker
 
-This document tracks all requirements from specification to completion.
+This document is the system of record for FSM requirements.
 
-## Status Definitions
-- **Pending**: Requirement identified, not started
-- **In Progress**: Implementation in progress
-- **Complete**: Implementation finished
-- **Verified**: Implementation tested and verified
+## FSM Status Definitions
+- **NEW**: Requirement registered by Copilot in S1_REQUIREMENT_DRAFTED.
+- **UNVERIFIED**: Implementation started but not fully verified.
+- **VERIFIED**: Tests passed and evidence recorded in S11_TRACKERS_UPDATED.
+- Legacy statuses (Pending/In Progress/Complete) apply only to the legacy backlog below.
 
 ---
 
-## Requirements Tracking Table
+## FSM Requirements Table (Authoritative)
+
+| Requirement ID | Title | Description | Owner | Scope/Pages | SEO Impact | Status | Date Created | Evidence/Notes |
+|----------------|-------|-------------|-------|-------------|-----------|--------|--------------|----------------|
+
+Notes:
+- If SEO Impact is YES/UNKNOWN, ensure seo_requirements.md has an entry with Status: PENDING.
+- Copilot creates entries in S1; Codex updates Status to VERIFIED in S11 only.
+
+---
+
+## Legacy Backlog (pre-FSM)
 
 | Requirement ID | Category | Component | Associated Rule IDs | Description | Status | Date Created | Date Completed | Notes |
 |----------------|----------|-----------|-------------------|-------------|--------|--------------|----------------|-------|
@@ -48,15 +59,15 @@ This document tracks all requirements from specification to completion.
 
 ---
 
-## Template for New Requirements
+## Template for New FSM Requirements
 
 ```markdown
-| REQ-[CATEGORY]-XXX | [Category] | [Component] | [Rule IDs] | [Description] | Pending | 2026-01-19 | - | Per [RULES_FILE].md |
+| REQ-YYYYMMDD-### | [Title] | [Description] | [Owner] | [Scope/Pages] | YES/NO/UNKNOWN | NEW | YYYY-MM-DD | [Notes/Evidence] |
 ```
 
 ---
 
-## Category Codes
+## Legacy Category Codes (pre-FSM)
 - **AUTO**: Auto Loans (AUTO_LOAN_RULES.md)
 - **BTL**: Buy-to-Let (BUY_TO_LET_RULES.md)
 - **CC**: Credit Cards (CREDIT_CARD_RULES.md)
@@ -75,7 +86,7 @@ This document tracks all requirements from specification to completion.
 
 ---
 
-## Summary
+## Legacy Summary (pre-FSM)
 
 | Category | Total Requirements | Pending | In Progress | Complete | Verified |
 |----------|-------------------|---------|-------------|----------|----------|

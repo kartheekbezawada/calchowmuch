@@ -1,6 +1,22 @@
-# SEO Requirements & Tests Tracker
+# SEO Requirements and Tracker
 
-This document defines SEO requirements and tracks SEO compliance testing for all calculators.
+This document defines SEO requirements and tracks SEO compliance for FSM runs.
+
+## FSM SEO Status Definitions
+- **PENDING**: SEO entry created but not yet validated.
+- **PASS**: SEO validated (or placeholder used per missing SEO rule).
+- **FAIL**: SEO validation failed (issue must be created, but release can still proceed).
+
+---
+
+## FSM SEO Tracker (Authoritative)
+
+| SEO ID | Requirement ID | Page/Scope | Status | Evidence/Notes |
+|--------|----------------|------------|--------|----------------|
+
+Notes:
+- Use SEO-... when known; otherwise use SEO-PENDING-REQ-XXXX or SEO-N/A.
+- If SEO items are missing for changed pages, add a placeholder entry and create a follow-up issue.
 
 ---
 
@@ -77,7 +93,7 @@ First Input Delay (FID) < 100ms.
 
 ---
 
-## SEO Tests Tracking Table
+## Legacy SEO Tests (pre-FSM)
 
 | SEO Test ID | Requirement ID | Build ID | SEO Rule IDs | Component | Test Description | Status | Test Date | Pass/Fail | Notes |
 |-------------|---------------|----------|--------------|-----------|------------------|--------|-----------|-----------|-------|
@@ -99,10 +115,10 @@ First Input Delay (FID) < 100ms.
 
 ---
 
-## Template for New SEO Tests
+## Template for New FSM SEO Entries
 
 ```markdown
-| SEO-XXX | REQ-XXX | BUILD-XXX | [SEO Rule IDs] | [Component] | [Description] | Not Started | - | - | - |
+| SEO-... | REQ-YYYYMMDD-### | [Page/Scope] | PENDING/PASS/FAIL | [Evidence/Notes] |
 ```
 
 ---
