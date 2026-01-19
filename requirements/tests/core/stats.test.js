@@ -14,7 +14,7 @@ import {
   permutation,
   combination,
   zScore,
-} from "../../public/assets/js/core/stats.js";
+} from "../../../public/assets/js/core/stats.js";
 
 describe("stats utilities", () => {
   describe("sum", () => {

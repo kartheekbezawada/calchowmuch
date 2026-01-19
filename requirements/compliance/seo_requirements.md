@@ -13,6 +13,9 @@ This document defines SEO requirements and tracks SEO compliance for FSM runs.
 
 | SEO ID | Requirement ID | Page/Scope | Status | Evidence/Notes |
 |--------|----------------|------------|--------|----------------|
+| SEO-PENDING-REQ-20260119-001 | REQ-20260119-001 | Buy-to-Let Calculator page | PASS | No SEO-critical markup changes; layout verified visually |
+| SEO-PENDING-REQ-20260119-002 | REQ-20260119-002 | Math/Simple/Percentage Calculator page | PENDING | Fixing calculation functionality will improve user engagement metrics and reduce bounce rate |
+| SEO-PENDING-REQ-20260119-003 | REQ-20260119-003 | Math/Simple/Fraction Calculator page | PENDING | Fixing fraction operations will improve user engagement metrics and reduce bounce rate |
 
 Notes:
 - Use SEO-... when known; otherwise use SEO-PENDING-REQ-XXXX or SEO-N/A.

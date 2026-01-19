@@ -16,6 +16,9 @@ This document is the system of record for FSM build runs.
 
 | Build ID | Requirement ID | Initiator | Start Time | Status | Attempt | Evidence/Artifacts | Notes |
 |----------|----------------|-----------|------------|--------|---------|--------------------|-------|
+| BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 14:06:43 | FAILED | 1 | `npm run lint` -> npm not found (bash + PowerShell) | Auto-advance build start |
+| BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 15:31:28 | PASSED | 2 | `npm run lint` ok | Retry after Node install |
+| BUILD-20260119-140637 | REQ-20260119-001 | Codex | 2026-01-19 15:33:55 | SUCCESS | 3 | `npm run lint` ok | Verified 2026-01-19 15:35:14 after tests |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

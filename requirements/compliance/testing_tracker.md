@@ -14,6 +14,8 @@ This document is the system of record for FSM test runs.
 
 | Test Run ID | Build ID | Start Time | Status | Evidence/Notes |
 |-------------|----------|------------|--------|----------------|
+| TEST-20260119-153209 | BUILD-20260119-140637 | 2026-01-19 15:32:14 | FAIL | Import path resolution failed in buy-to-let-utils.test.js |
+| TEST-20260119-153426 | BUILD-20260119-140637 | 2026-01-19 15:34:33 | PASS | `npm run test -- buy-to-let-utils` (5 tests passed) |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.

@@ -14,10 +14,18 @@ This document is the system of record for FSM requirements.
 
 | Requirement ID | Title | Description | Owner | Scope/Pages | SEO Impact | Status | Date Created | Evidence/Notes |
 |----------------|-------|-------------|-------|-------------|-----------|--------|--------------|----------------|
+| REQ-20260119-001 | BTL Calculator Graph & Table Improvements | Fix graph hover visibility when scrolling right, correct cumulative calculations after rent increase, simplify to show Net Cashflow with increase percentage only, reorder table columns (Mortgage Cost first, Costs second) | Codex | Buy-to-Let Calculator page | YES | VERIFIED | 2026-01-19 | Build BUILD-20260119-140637; Test TEST-20260119-153426 passed |
+| REQ-20260119-002 | Percentage Calculator Functionality Fixes | Fix non-working calculation modes, input validation failures, missing result displays, and incorrect percentage change calculations across all 5 modes (Percent Change, Percent Of, Increase By, Decrease By, What Percent) | Codex | Math/Simple/Percentage Calculator page | YES | NEW | 2026-01-19 | Calculator appears to load but calculation functions not working; results not displaying correctly; input validation issues |
+| REQ-20260119-003 | Fraction Calculator Functionality Fixes | Fix non-working fraction operations, simplification errors, mixed number conversion issues, and result display problems across all 5 modes (Add, Subtract, Multiply, Divide, Simplify) | Codex | Math/Simple/Fraction Calculator page | YES | NEW | 2026-01-19 | Calculator interface loads but fraction operations not calculating correctly; simplification and mixed number conversions failing |
 
 Notes:
 - If SEO Impact is YES/UNKNOWN, ensure seo_requirements.md has an entry with Status: PENDING.
 - Copilot creates entries in S1; Codex updates Status to VERIFIED in S11 only.
+- **Build Rules Location**: `requirements/build_rules/loans/` and `requirements/build_rules/math/`
+- Each requirement MUST have corresponding entry in the appropriate build rules file with:
+  - 5-column Requirement ID Mapping table (with bullet list format for Rule IDs and Test IDs)
+  - Detailed rule definitions
+  - Detailed test definitions
 
 ---
 

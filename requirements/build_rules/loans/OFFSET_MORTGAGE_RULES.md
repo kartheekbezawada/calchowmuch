@@ -7,9 +7,9 @@ Purpose: Show how an offset savings balance reduces mortgage interest and payoff
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-OFFSET-001 | Offset Mortgage Calculator | OFF-NAV-1, OFF-IN-1 to OFF-IN-5, OFF-OUT-1 to OFF-OUT-4 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-OFFSET-001 | Offset Mortgage Calculator | • OFF-NAV-1<br>• OFF-IN-1<br>• OFF-IN-2<br>• OFF-IN-3<br>• OFF-IN-4<br>• OFF-IN-5<br>• OFF-OUT-1<br>• OFF-OUT-2<br>• OFF-OUT-3<br>• OFF-OUT-4 | • OFF-TEST-U-1<br>• OFF-TEST-E2E-1 | 2026-01-19 |
 
 ---
 

@@ -7,9 +7,9 @@ Purpose: Estimate affordable borrowing amount and/or affordable monthly payment 
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-BOR-001 | How Much Can I Borrow | BOR-NAV-1, BOR-IN-1 to BOR-IN-8, BOR-OUT-1 to BOR-OUT-4, BOR-VAL-1, BOR-VAL-2, BOR-EXP-1, BOR-EXP-2 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-BOR-001 | How Much Can I Borrow | • BOR-NAV-1<br>• BOR-IN-1<br>• BOR-IN-2<br>• BOR-IN-3<br>• BOR-IN-4<br>• BOR-IN-5<br>• BOR-IN-6<br>• BOR-IN-7<br>• BOR-IN-8<br>• BOR-OUT-1<br>• BOR-OUT-2<br>• BOR-OUT-3<br>• BOR-OUT-4<br>• BOR-VAL-1<br>• BOR-VAL-2<br>• BOR-EXP-1<br>• BOR-EXP-2 | • BOR-TEST-U-1<br>• BOR-TEST-U-2<br>• BOR-TEST-E2E-1 | 2026-01-19 |
 
 ---
 

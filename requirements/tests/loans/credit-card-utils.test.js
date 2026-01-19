@@ -4,7 +4,7 @@ import {
   calculateMinimumPayment,
   calculateBalanceTransfer,
   calculateConsolidation,
-} from '../../public/assets/js/core/credit-card-utils.js';
+} from '../../../public/assets/js/core/credit-card-utils.js';
 
 describe('credit card utility calculations', () => {
   it('calculates credit card payoff with fixed payment', () => {

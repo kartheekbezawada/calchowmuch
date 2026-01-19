@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { calculateBuyToLet, buildRentIncreaseSchedule } from '../../public/assets/js/core/loan-utils.js';
-import { hasMaxDigits } from '../../public/assets/js/core/validate.js';
+import { calculateBuyToLet, buildRentIncreaseSchedule } from '../../../public/assets/js/core/loan-utils.js';
+import { hasMaxDigits } from '../../../public/assets/js/core/validate.js';
 
 describe('buy-to-let rent increase calculations', () => {
   it('applies percentage-based rent increases annually', () => {

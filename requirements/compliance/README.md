@@ -29,11 +29,11 @@ See [WORKFLOW.md](WORKFLOW.md) for the full finite-state machine and allowed tra
 
 ---
 
-## Workflow Integration (Human-Triggered)
+## Workflow Integration (Auto-Advance)
 
 - Human requests Copilot to draft requirements (S0 -> S1).
 - Human requests Codex to process a specific REQ (S2 -> S13 or S14).
-- Codex updates trackers only in the FSM state that allows it.
+- Codex auto-advances through the FSM after S2_PREFLIGHT and updates trackers only in allowed states.
 
 ---
 

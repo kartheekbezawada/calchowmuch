@@ -6,6 +6,7 @@ This document is the system of record for issues created during FSM runs. Existi
 
 | Issue ID | Requirement ID | Build/Test ID | Summary | Owner | Priority | Status | Evidence/Notes | Created |
 |----------|----------------|---------------|---------|-------|----------|--------|----------------|---------|
+| ISSUE-20260119-001 | REQ-20260119-001 | TEST-20260119-153209 | Fix buy-to-let utils test import paths | Codex | MEDIUM | RESOLVED | Updated test imports to ../../../public/... | 2026-01-19 15:33:37 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.

@@ -11,7 +11,19 @@ requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirem
 
 ---
 
-## Master Compliance Table
+## FSM Compliance Table (Authoritative)
+
+| Requirement ID | Requirement Status | Build ID | Build Status | Test Run ID | Test Status | SEO ID | SEO Status | Universal Requirements Followed | Overall Compliance | Evidence/Notes |
+|---------------|-------------------|----------|--------------|------------|------------|--------|------------|-------------------------------|-------------------|----------------|
+| REQ-20260119-001 | VERIFIED | BUILD-20260119-140637 | SUCCESS | TEST-20260119-153426 | PASS | SEO-PENDING-REQ-20260119-001 | PASS | In Progress | In Progress | Lint + buy-to-let utils tests passed |
+
+Notes:
+- Auto-advance: Codex updates this table during S2-S13 without manual EVT commands.
+- Legacy backlog remains in the table below until migrated.
+
+---
+
+## Legacy Compliance Table (pre-FSM)
 
 | Requirement ID | Requirement Status | Build ID | Build Status | Testing Tracker ID | Testing Status | SEO Test ID | SEO Status | Universal Requirements Followed | Overall Compliance |
 |---------------|-------------------|----------|--------------|-------------------|---------------|-------------|------------|-------------------------------|-------------------|
@@ -61,6 +73,8 @@ Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](.
 ---
 
 ## Overall Project Compliance Status
+
+Note: Summary metrics currently reflect legacy backlog data unless the FSM table is populated.
 
 ### Summary Dashboard
 

@@ -13,13 +13,13 @@ Calculators covered:
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-AUTO-001 | Car Loan Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-CAR-1 to AUTO-CAR-5 | 2026-01-19 |
-| REQ-AUTO-002 | Multiple Car Loan Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-MULTI-1 to AUTO-MULTI-4 | 2026-01-19 |
-| REQ-AUTO-003 | Hire Purchase Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-HP-1 to AUTO-HP-4 | 2026-01-19 |
-| REQ-AUTO-004 | PCP Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-PCP-1 to AUTO-PCP-4 | 2026-01-19 |
-| REQ-AUTO-005 | Leasing Calculator | AUTO-NAV-1, AUTO-NAV-2, AUTO-IN-1 to AUTO-IN-4, AUTO-LEASE-1 to AUTO-LEASE-3 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-AUTO-001 | Car Loan Calculator | • AUTO-NAV-1<br>• AUTO-NAV-2<br>• AUTO-IN-1<br>• AUTO-IN-2<br>• AUTO-IN-3<br>• AUTO-IN-4<br>• AUTO-CAR-1<br>• AUTO-CAR-2<br>• AUTO-CAR-3<br>• AUTO-CAR-4<br>• AUTO-CAR-5 | • AUTO-TEST-U-1<br>• AUTO-TEST-E2E-1 | 2026-01-19 |
+| REQ-AUTO-002 | Multiple Car Loan Calculator | • AUTO-NAV-1<br>• AUTO-NAV-2<br>• AUTO-IN-1<br>• AUTO-IN-2<br>• AUTO-IN-3<br>• AUTO-IN-4<br>• AUTO-MULTI-1<br>• AUTO-MULTI-2<br>• AUTO-MULTI-3<br>• AUTO-MULTI-4 | • AUTO-TEST-U-2<br>• AUTO-TEST-E2E-2 | 2026-01-19 |
+| REQ-AUTO-003 | Hire Purchase Calculator | • AUTO-NAV-1<br>• AUTO-NAV-2<br>• AUTO-IN-1<br>• AUTO-IN-2<br>• AUTO-IN-3<br>• AUTO-IN-4<br>• AUTO-HP-1<br>• AUTO-HP-2<br>• AUTO-HP-3<br>• AUTO-HP-4 | • AUTO-TEST-U-3<br>• AUTO-TEST-E2E-3 | 2026-01-19 |
+| REQ-AUTO-004 | PCP Calculator | • AUTO-NAV-1<br>• AUTO-NAV-2<br>• AUTO-IN-1<br>• AUTO-IN-2<br>• AUTO-IN-3<br>• AUTO-IN-4<br>• AUTO-PCP-1<br>• AUTO-PCP-2<br>• AUTO-PCP-3<br>• AUTO-PCP-4 | • AUTO-TEST-U-4<br>• AUTO-TEST-E2E-4 | 2026-01-19 |
+| REQ-AUTO-005 | Leasing Calculator | • AUTO-NAV-1<br>• AUTO-NAV-2<br>• AUTO-IN-1<br>• AUTO-IN-2<br>• AUTO-IN-3<br>• AUTO-IN-4<br>• AUTO-LEASE-1<br>• AUTO-LEASE-2<br>• AUTO-LEASE-3 | • AUTO-TEST-U-5<br>• AUTO-TEST-E2E-5 | 2026-01-19 |
 
 ---
 

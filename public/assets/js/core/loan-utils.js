@@ -343,6 +343,8 @@ export function calculateBuyToLet({
       : loanAmount * scenarioMonthlyRate;
   const scenarioNetMonthly = effectiveRent - monthlyCosts - scenarioMonthlyMortgage;
 
+  const roundCurrency = (value) => Math.round((value + Number.EPSILON) * 100) / 100;
+
   function buildProjection(schedule) {
     let cumulative = 0;
 
@@ -353,8 +355,8 @@ export function calculateBuyToLet({
       const rentIncome = effectiveMonthlyRent * 12;
       const costs = monthlyCostsForYear * 12;
       const mortgageCost = monthlyMortgage * 12;
-      const netCashflow = rentIncome - costs - mortgageCost;
-      cumulative += netCashflow;
+      const netCashflow = roundCurrency(rentIncome - costs - mortgageCost);
+      cumulative = roundCurrency(cumulative + netCashflow);
       return {
         year: entry.year,
         rentIncome,

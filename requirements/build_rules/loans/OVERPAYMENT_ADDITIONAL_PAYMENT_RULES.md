@@ -7,9 +7,9 @@ Purpose: Show how extra payments reduce payoff time and interest on an existing 
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-OPAY-001 | Overpayment Calculator | OPAY-NAV-1, OPAY-IN-1 to OPAY-IN-5, OPAY-OUT-1 to OPAY-OUT-5 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-OPAY-001 | Overpayment Calculator | • OPAY-NAV-1<br>• OPAY-IN-1<br>• OPAY-IN-2<br>• OPAY-IN-3<br>• OPAY-IN-4<br>• OPAY-IN-5<br>• OPAY-OUT-1<br>• OPAY-OUT-2<br>• OPAY-OUT-3<br>• OPAY-OUT-4<br>• OPAY-OUT-5 | • OPAY-TEST-U-1<br>• OPAY-TEST-E2E-1 | 2026-01-19 |
 
 ---
 

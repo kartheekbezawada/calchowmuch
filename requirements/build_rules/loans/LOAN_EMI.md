@@ -6,9 +6,9 @@ Calculator ID: LOAN-EMI
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-EMI-001 | Loan EMI Calculator | EMI-IN-1 to EMI-IN-3, EMI-OP-1 to EMI-OP-3, EMI-OUT-1 to EMI-OUT-4, EMI-TBL-M-1, EMI-TBL-Y-1, EMI-GRAPH-1 to EMI-GRAPH-3, EMI-EXP-1, EMI-EXP-2 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-EMI-001 | Loan EMI Calculator | • EMI-IN-1<br>• EMI-IN-2<br>• EMI-IN-3<br>• EMI-OP-1<br>• EMI-OP-2<br>• EMI-OP-3<br>• EMI-OUT-1<br>• EMI-OUT-2<br>• EMI-OUT-3<br>• EMI-OUT-4<br>• EMI-TBL-M-1<br>• EMI-TBL-Y-1<br>• EMI-GRAPH-1<br>• EMI-GRAPH-2<br>• EMI-GRAPH-3<br>• EMI-EXP-1<br>• EMI-EXP-2 | • EMI-TEST-U-1<br>• EMI-TEST-U-2<br>• EMI-TEST-E2E-1 | 2026-01-19 |
 
 ---
 

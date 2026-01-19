@@ -8,11 +8,11 @@ This document is authoritative for LLM review and CI checks.
 
 ## Requirement ID Mapping
 
-| Requirement ID | Component | Associated Rule IDs | Date Created |
-|----------------|-----------|---------------------|---------------|
-| REQ-LNAV-001 | Loans Top Navigation | LN-NAV-ROOT-1 to LN-NAV-ROOT-4 | 2026-01-19 |
-| REQ-LNAV-002 | Loans Left Navigation | LN-NAV-LEFT-1 to LN-NAV-LEFT-5 | 2026-01-19 |
-| REQ-LNAV-003 | Loans Deep Linking | LN-NAV-DEEP-1 to LN-NAV-DEEP-4 | 2026-01-19 |
+| Requirement ID | Component | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|-----------|---------------------|---------------------|---------------|
+| REQ-LNAV-001 | Loans Top Navigation | • LN-NAV-ROOT-1<br>• LN-NAV-ROOT-2<br>• LN-NAV-ROOT-3<br>• LN-NAV-ROOT-4 | • LNAV-TEST-U-1<br>• LNAV-TEST-E2E-1 | 2026-01-19 |
+| REQ-LNAV-002 | Loans Left Navigation | • LN-NAV-LEFT-1<br>• LN-NAV-LEFT-2<br>• LN-NAV-LEFT-3<br>• LN-NAV-LEFT-4<br>• LN-NAV-LEFT-5 | • LNAV-TEST-U-2<br>• LNAV-TEST-E2E-2 | 2026-01-19 |
+| REQ-LNAV-003 | Loans Deep Linking | • LN-NAV-DEEP-1<br>• LN-NAV-DEEP-2<br>• LN-NAV-DEEP-3<br>• LN-NAV-DEEP-4 | • LNAV-TEST-U-3<br>• LNAV-TEST-E2E-3 | 2026-01-19 |
 
 ---
 

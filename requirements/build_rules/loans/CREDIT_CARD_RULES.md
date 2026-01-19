@@ -12,12 +12,12 @@ Calculators covered:
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-CC-001 | Repayment / Payoff Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-PAYOFF-1 to CC-PAYOFF-5 | 2026-01-19 |
-| REQ-CC-002 | Minimum Payment Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-MIN-1 to CC-MIN-6 | 2026-01-19 |
-| REQ-CC-003 | Balance Transfer Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-BT-1 to CC-BT-4 | 2026-01-19 |
-| REQ-CC-004 | CC Consolidation Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-CONSOL-1 to CC-CONSOL-3 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-CC-001 | Repayment / Payoff Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-PAYOFF-1<br>• CC-PAYOFF-2<br>• CC-PAYOFF-3<br>• CC-PAYOFF-4<br>• CC-PAYOFF-5 | • CC-TEST-U-1<br>• CC-TEST-E2E-1 | 2026-01-19 |
+| REQ-CC-002 | Minimum Payment Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-MIN-1<br>• CC-MIN-2<br>• CC-MIN-3<br>• CC-MIN-4<br>• CC-MIN-5<br>• CC-MIN-6 | • CC-TEST-U-2<br>• CC-TEST-E2E-2 | 2026-01-19 |
+| REQ-CC-003 | Balance Transfer Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-BT-1<br>• CC-BT-2<br>• CC-BT-3<br>• CC-BT-4 | • CC-TEST-U-3<br>• CC-TEST-E2E-3 | 2026-01-19 |
+| REQ-CC-004 | CC Consolidation Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-CONSOL-1<br>• CC-CONSOL-2<br>• CC-CONSOL-3 | • CC-TEST-U-4<br>• CC-TEST-E2E-4 | 2026-01-19 |
 
 ---
 

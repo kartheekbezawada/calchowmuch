@@ -7,9 +7,10 @@ Purpose: Estimate buy-to-let profitability: mortgage costs, rental income, net c
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-BTL-001 | Buy-to-Let Calculator | BTL-NAV-1, BTL-IN-1 to BTL-IN-5, BTL-IN-R-1 to BTL-IN-C-3, BTL-IN-RENT-1 to BTL-IN-RENT-4, BTL-OUT-1 to BTL-OUT-9, BTL-GRAPH-1 to BTL-GRAPH-3, BTL-TBL-1 to BTL-TBL-3, BTL-EXP-1 to BTL-EXP-3 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-BTL-001 | Buy-to-Let Calculator | • BTL-NAV-1<br>• BTL-IN-1<br>• BTL-IN-2<br>• BTL-IN-3<br>• BTL-IN-4<br>• BTL-IN-5<br>• BTL-IN-R-1<br>• BTL-IN-R-2<br>• BTL-IN-C-1<br>• BTL-IN-C-2<br>• BTL-IN-C-3<br>• BTL-IN-RENT-1<br>• BTL-IN-RENT-2<br>• BTL-IN-RENT-3<br>• BTL-IN-RENT-4<br>• BTL-OUT-1<br>• BTL-OUT-2<br>• BTL-OUT-3<br>• BTL-OUT-4<br>• BTL-OUT-5<br>• BTL-GRAPH-1<br>• BTL-GRAPH-2<br>• BTL-GRAPH-3<br>• BTL-TBL-1<br>• BTL-TBL-2<br>• BTL-TBL-3<br>• BTL-EXP-1<br>• BTL-EXP-2<br>• BTL-EXP-3 | • BTL-TEST-E2E-LOAD<br>• BTL-TEST-E2E-NAV<br>• BTL-TEST-E2E-WORKFLOW<br>• BTL-TEST-E2E-MOBILE<br>• BTL-TEST-E2E-A11Y<br>• BTL-TEST-U-1<br>• BTL-TEST-U-2<br>• BTL-TEST-U-3<br>• BTL-TEST-U-4<br>• BTL-TEST-U-5<br>• BTL-TEST-I-1<br>• BTL-TEST-I-2<br>• BTL-TEST-I-3 | 2026-01-19 |
+| REQ-20260119-001 | Buy-to-Let Calculator | • BTL-GRAPH-4<br>• BTL-TBL-4<br>• BTL-TBL-5<br>• BTL-CALC-1 | • BTL-TEST-E2E-LOAD<br>• BTL-TEST-E2E-NAV<br>• BTL-TEST-E2E-WORKFLOW<br>• BTL-TEST-E2E-MOBILE<br>• BTL-TEST-E2E-A11Y<br>• BTL-TEST-FIX-1<br>• BTL-TEST-FIX-2<br>• BTL-TEST-FIX-3 | 2026-01-19 |
 
 ---
 
@@ -257,6 +258,72 @@ All BTL-* rules must pass + Universal compliance.
 
 ### Implementation Checklist:
 - [ ] Input boxes limited to 10 digits (maxlength)
+
+---
+
+## NEW RULES for REQ-20260119-001 (Buy-to-Let Calculator Graph & Table Improvements)
+
+**BTL-GRAPH-4**  
+Fix graph hover visibility and interaction issues:
+- Ensure hover tooltips are clearly visible with proper contrast
+- Fix z-index issues where tooltips may be hidden behind other elements
+- Improve hover area detection for better user experience
+- Tooltips must display formatted currency values and year information
+
+**BTL-TBL-4**  
+Fix table column ordering and structure:
+- Reorder columns for better logical flow: Year → Rent Income → Costs → Mortgage Cost → Net Cashflow → Cumulative
+- Ensure proper column alignment (numbers right-aligned, text left-aligned)
+- Fix any responsive table issues on mobile devices
+
+**BTL-TBL-5**  
+Fix cumulative calculation display issues:
+- Ensure cumulative cashflow column calculates correctly across all years
+- Fix any rounding errors in cumulative totals
+- Ensure negative cumulative values are properly displayed with appropriate styling
+
+**BTL-CALC-1**
+Validate rent increase logic implementation:
+- When rent increase is enabled, verify calculations are applied at correct intervals
+- Ensure percentage increases compound properly year-over-year
+- Verify fixed amount increases are applied consistently
+- Test edge cases with custom increase frequencies
+
+---
+
+## BTL-TEST-FIX — Test Requirements for REQ-20260119-001
+
+**BTL-TEST-FIX-1**  
+Test graph hover visibility fix:
+- Scroll graph right to year 10+
+- Hover over data points → verify tooltip appears visible (not clipped or hidden)
+- Verify tooltip z-index is above all other elements
+- Test on different viewport sizes
+
+**BTL-TEST-FIX-2**  
+Test cumulative calculation accuracy:
+- Enable rent increase at 5% annually
+- Verify cumulative cashflow sums correctly across all years
+- Check for rounding consistency (max 2 decimal places)
+- Verify negative cumulative values display with proper formatting
+
+**BTL-TEST-FIX-3**  
+Test table column reordering:
+- Verify columns are in order: Year → Rent Income → Costs → Mortgage Cost → Net Cashflow → Cumulative
+- Test column alignment (numbers right-aligned)
+- Verify table remains responsive on mobile
+
+---
+
+### Implementation Checklist for REQ-20260119-001:
+- [ ] Graph hover tooltip visibility fixed
+- [ ] Cumulative calculations correct after rent increase
+- [ ] Table columns reordered properly
+- [ ] All BTL-TEST-FIX tests passing
+
+---
+
+### Implementation Checklist for REQ-BTL-001:
 - [ ] Deposit, Interest Rate, Loan Term in horizontal row layout
 - [ ] Rent increase by percentage option
 - [ ] Rent increase by amount option

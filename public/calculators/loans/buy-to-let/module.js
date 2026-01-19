@@ -162,13 +162,11 @@ function formatIncreaseIndicator(row, data) {
     return '—';
   }
 
-  if (data.rentIncreaseType === 'percent') {
-    const percent = formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 });
-    return `Yes (+${percent}%)`;
+  const percent = getRentIncreasePercent(row, data);
+  if (percent === null) {
+    return 'Yes';
   }
-
-  const amount = formatCurrency(data.rentIncreaseValue);
-  return `Yes (+${amount})`;
+  return `Yes (+${formatNumber(percent, { maximumFractionDigits: 2 })}%)`;
 }
 
 function formatIncreaseAppliedText(data, row) {
@@ -178,12 +176,25 @@ function formatIncreaseAppliedText(data, row) {
   if (!row?.rentIncreaseApplied) {
     return 'Increase applied: No';
   }
-  if (data.rentIncreaseType === 'percent') {
-    const percent = formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 });
-    return `Increase applied: +${percent}%`;
+  const percent = getRentIncreasePercent(row, data);
+  if (percent === null) {
+    return 'Increase applied: Yes';
   }
-  const amount = formatCurrency(data.rentIncreaseValue);
-  return `Increase applied: +${amount}`;
+  return `Increase applied: +${formatNumber(percent, { maximumFractionDigits: 2 })}%`;
+}
+
+function getRentIncreasePercent(row, data) {
+  if (!row?.rentIncreaseApplied) {
+    return null;
+  }
+  if (data.rentIncreaseType === 'percent') {
+    return data.rentIncreaseValue;
+  }
+  const previousRent = row.rentMonthly - row.rentIncreaseAmount;
+  if (!Number.isFinite(previousRent) || previousRent <= 0) {
+    return null;
+  }
+  return (row.rentIncreaseAmount / previousRent) * 100;
 }
 
 function clearOutputs() {
@@ -319,10 +330,12 @@ function updateTable(data) {
       <tr>
         <td>${row.year}</td>
         <td>${formatTableNumber(row.rentIncome)}</td>
-        <td>${formatTableNumber(row.costs)}</td>
         <td>${formatTableNumber(row.mortgageCost)}</td>
+        <td>${formatTableNumber(row.costs)}</td>
         <td>${formatTableNumber(row.netCashflow)}</td>
-        <td>${formatTableNumber(row.cumulativeCashflow)}</td>
+        <td class="${row.cumulativeCashflow < 0 ? 'btl-negative' : ''}">
+          ${formatTableNumber(row.cumulativeCashflow)}
+        </td>
         <td>${formatIncreaseIndicator(row, data)}</td>
       </tr>`
     )
@@ -391,12 +404,18 @@ function showCashflowTooltip(event) {
   }
 
   const bounds = cashflowHoverLayer.getBoundingClientRect();
+  const scrollContainer = cashflowHoverLayer.closest('.graph-bars-wrapper');
+  const scrollLeft = scrollContainer ? scrollContainer.scrollLeft : 0;
+  const totalWidth = scrollContainer
+    ? Math.max(scrollContainer.scrollWidth, bounds.width)
+    : bounds.width;
   const x = event.clientX - bounds.left;
   const y = event.clientY - bounds.top;
   const clampedX = Math.min(Math.max(x, 0), bounds.width);
+  const relativeX = Math.min(Math.max(clampedX + scrollLeft, 0), totalWidth);
   const index = Math.min(
     baseline.length - 1,
-    Math.max(0, Math.round((clampedX / bounds.width) * (baseline.length - 1)))
+    Math.max(0, Math.round((relativeX / totalWidth) * (baseline.length - 1)))
   );
 
   const baselineRow = baseline[index];
@@ -422,7 +441,7 @@ function showCashflowTooltip(event) {
     }
   }
 
-  cashflowTooltip.style.left = `${clampedX}px`;
+  cashflowTooltip.style.left = `${relativeX}px`;
   cashflowTooltip.style.top = `${y}px`;
   cashflowTooltip.classList.remove('is-hidden');
   cashflowTooltip.setAttribute('aria-hidden', 'false');

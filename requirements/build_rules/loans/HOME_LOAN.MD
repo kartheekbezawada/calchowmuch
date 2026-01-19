@@ -7,9 +7,9 @@ Purpose: Compute mortgage monthly payment, interest vs principal split, and payo
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-MTG-001 | Mortgage Calculator | MTG-NAV-1, MTG-NAV-2, MTG-IN-1 to MTG-IN-6, MTG-OP-1 to MTG-OP-4, MTG-OUT-1 to MTG-OUT-5, MTG-TBL-1 to MTG-TBL-3, MTG-GRAPH-1 to MTG-GRAPH-3, MTG-EXP-1 to MTG-EXP-3 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-MTG-001 | Mortgage Calculator | • MTG-NAV-1<br>• MTG-NAV-2<br>• MTG-IN-1<br>• MTG-IN-2<br>• MTG-IN-3<br>• MTG-IN-4<br>• MTG-IN-5<br>• MTG-IN-6<br>• MTG-OP-1<br>• MTG-OP-2<br>• MTG-OP-3<br>• MTG-OP-4<br>• MTG-OUT-1<br>• MTG-OUT-2<br>• MTG-OUT-3<br>• MTG-OUT-4<br>• MTG-OUT-5<br>• MTG-TBL-1<br>• MTG-TBL-2<br>• MTG-TBL-3<br>• MTG-GRAPH-1<br>• MTG-GRAPH-2<br>• MTG-GRAPH-3<br>• MTG-EXP-1<br>• MTG-EXP-2<br>• MTG-EXP-3 | • MTG-TEST-U-1<br>• MTG-TEST-U-2<br>• MTG-TEST-E2E-1<br>• MTG-TEST-E2E-2 | 2026-01-19 |
 
 ---
 

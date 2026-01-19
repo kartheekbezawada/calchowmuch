@@ -5,12 +5,12 @@
 Define an unskippable, deterministic workflow where:
 - Copilot only creates/updates requirement definitions.
 - Codex only implements, validates, and updates trackers.
-- Humans manually trigger steps (no CI).
+- Human triggers the flow once; Codex auto-advances through allowed states (no CI).
 - The FSM prevents invalid transitions and out-of-order tracker writes.
 
 ## Actors
 
-- HUMAN_TRIGGER: Starts transitions by requesting Copilot or Codex actions and runs local commands when instructed.
+- HUMAN_TRIGGER: Initiates Copilot or Codex actions; runs commands only if Codex requests manual execution.
 - COPILOT: Requirement authoring and ID assignment.
 - CODEX: Implementation, local build/test orchestration, and tracker updates.
 
@@ -44,6 +44,10 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
   "INVALID TRANSITION: current_state -> requested_state; required_state: X"
   and stop.
 
+## Auto-Advance Mode (Default)
+
+After S2_PREFLIGHT, Codex automatically emits the next allowed EVT_* transition and proceeds unless blocked. The human does not need to type EVT_* commands unless they want to pause, override, or manually run a command.
+
 ## Finite-State Machine
 
 ### S0_IDLE
@@ -59,11 +63,31 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
   - If SEO Impact is YES/UNKNOWN, ensure seo_requirements.md has an entry:
     - SEO ID (real if known, else placeholder)
     - Status: PENDING
-- Transition: On EVT_REQUIREMENT_REGISTERED -> S2_PREFLIGHT
+  - Update calculator-specific rules file in `requirements/build_rules/` (MANDATORY):
+    - Add new REQ ID to the "Requirement ID Mapping" table using the **5-column format**:
+      - Column 1: Requirement ID
+      - Column 2: Calculator (or Component)
+      - Column 3: Associated Rule IDs (bullet list with `<br>` separators)
+      - Column 4: Associated Test IDs (bullet list with `<br>` separators)
+      - Column 5: Date Created
+    - Use bullet format: `• RULE-ID-1<br>• RULE-ID-2<br>• RULE-ID-3` (NOT comma-separated)
+    - Add detailed rule definitions at end of file with rule IDs referenced in mapping table
+    - Add test requirement definitions with test IDs referenced in mapping table
+    - Location: `requirements/build_rules/loans/` or `requirements/build_rules/math/`
+  - **MANDATORY DEFAULT TESTS** (MUST be included for ALL requirements):
+    - `{PREFIX}-TEST-E2E-LOAD`: Playwright test - Calculator page loads correctly
+    - `{PREFIX}-TEST-E2E-NAV`: Playwright test - Navigation and deep-linking works
+    - `{PREFIX}-TEST-E2E-WORKFLOW`: Playwright test - Complete user workflow end-to-end
+    - `{PREFIX}-TEST-E2E-MOBILE`: Playwright test - Mobile responsiveness
+    - `{PREFIX}-TEST-E2E-A11Y`: Playwright test - Accessibility compliance
+    - Additional requirement-specific tests as needed
+- Copilot confirms: "REQ-YYYYMMDD-### created. Ready for EVT_START_BUILD."
+- Transition: On **EVT_START_BUILD REQ-YYYYMMDD-###** -> S2_PREFLIGHT
 
 ### S2_PREFLIGHT
 - Owner: CODEX
-- Guard: Human explicitly requests Codex to process a specific REQ ID.
+- Guard: Human explicitly triggers with **"EVT_START_BUILD REQ-YYYYMMDD-###"** command.
+- This is the permission gate - Codex MUST NOT proceed without this trigger.
 - Mandatory actions:
   - Confirm required files exist; if missing, create templates:
     - requirement_tracker.md (hard required; if missing and cannot be created -> stop)
@@ -72,6 +96,7 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
     - seo_requirements.md
     - issue_tracker.md
   - Verify the REQ exists and is NEW or UNVERIFIED.
+  - Read build rules from `requirements/build_rules/` (loans/ or math/)
 - Issue tracker rule (no-CI mode):
   - Existing issues are not in scope.
   - Only issues created during this FSM run count as active.
@@ -82,14 +107,15 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
 - Owner: CODEX
 - Meaning: All prerequisites satisfied; build can start.
 - Transition: On EVT_START_BUILD -> S4_BUILD_RUNNING
+- Default: Codex triggers EVT_START_BUILD immediately after S2_PREFLIGHT.
 
 ### S4_BUILD_RUNNING
-- Owner: CODEX (human runs commands)
+- Owner: CODEX (runs commands by default)
 - Entry actions:
   - Create Build ID.
   - Append to build_tracker.md:
-    - Build ID, REQ ID, initiator (human), start time, Status: RUNNING, Attempt: 1
-  - Instruct human to run build commands (project-defined).
+    - Build ID, REQ ID, initiator (human or Codex), start time, Status: RUNNING, Attempt: 1
+  - Run build commands (project-defined) or request manual execution if needed.
   - Record logs/artifacts link/paths.
 - Transitions:
   - On EVT_BUILD_PASS -> S7_BUILD_PASSED
@@ -104,7 +130,7 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
   - If transient failure suspected -> retry.
   - If attempts == 10 -> transition to abort.
 - Transitions:
-  - If attempts < 10 and human agrees to rerun build -> S4_BUILD_RUNNING
+  - If attempts < 10 and retry is appropriate -> S4_BUILD_RUNNING
   - If attempts >= 10 -> S6_BUILD_ABORTED
 
 ### S6_BUILD_ABORTED
@@ -120,14 +146,15 @@ If a required file is missing, Codex creates it using templates during S2_PREFLI
 - Entry actions:
   - Update build_tracker.md: Status: PASSED + artifact links.
 - Transition: On EVT_START_TEST -> S8_TEST_RUNNING
+- Default: Codex triggers EVT_START_TEST immediately after S7_BUILD_PASSED.
 
 ### S8_TEST_RUNNING
-- Owner: CODEX (human runs commands)
+- Owner: CODEX (runs commands by default)
 - Entry actions:
   - Create Test Run ID.
   - Append to testing_tracker.md:
     - Test Run ID, Build ID, start timestamp, Status: RUNNING
-  - Instruct human to run full test suite.
+  - Run full test suite or request manual execution if needed.
   - Capture evidence.
 - Transitions:
   - On EVT_TEST_PASS -> S10_TEST_PASSED
@@ -278,7 +305,7 @@ Copilot is responsible for **requirement authoring and ID assignment only**.
 | State | Allowed Actions |
 |-------|-----------------|
 | S0_IDLE | Receive requirement requests |
-| S1_REQUIREMENT_DRAFTED | Create REQ entry, add SEO placeholder |
+| S1_REQUIREMENT_DRAFTED | Create REQ entry, add SEO placeholder, update calculator rules files |
 | S2-S14 | ❌ NOT ALLOWED (Codex territory) |
 
 ### Copilot File Access
@@ -287,18 +314,40 @@ Copilot is responsible for **requirement authoring and ID assignment only**.
 |------|--------------|
 | `requirement_tracker.md` | ✅ Add NEW entries |
 | `seo_requirements.md` | ✅ Add PENDING entries |
+| Calculator rules files in `requirements/build_rules/` | ✅ Update requirement mapping tables and add rule/test definitions |
 | `build_tracker.md` | ❌ Read only |
 | `testing_tracker.md` | ❌ Read only |
 | `issue_tracker.md` | ❌ Read only |
 | `compliance-report.md` | ❌ Read only |
 
+### Requirement ID Mapping Table Template (MANDATORY FORMAT)
+
+When Copilot creates/updates requirement mapping tables in build_rules files, ALWAYS use this exact 5-column format with bullet lists:
+
+```markdown
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-YYYYMMDD-### | Calculator Name | • RULE-1<br>• RULE-2<br>• RULE-3 | • TEST-U-1<br>• TEST-E2E-1 | YYYY-MM-DD |
+```
+
+**Format Rules:**
+- Column 3 (Rule IDs): Use bullet format `• RULE-ID<br>` for each rule, NOT comma-separated
+- Column 4 (Test IDs): Use bullet format `• TEST-ID<br>` for each test, NOT comma-separated
+- Every requirement MUST have associated test IDs defined
+- `<br>` creates line breaks within the table cell for readability
+
 ### Copilot Commands
 
 | User Command | Copilot Response |
 |--------------|------------------|
-| "Copilot: create requirement for [X]" | Generate REQ ID, add to tracker, confirm |
-| "Check for new requirement" | List pending requirements |
-| "Assign [REQ-ID] to codex" | Confirm REQ is ready, provide handoff |
+| "Copilot: create requirement for [X]" | Generate REQ ID, update trackers and build_rules, confirm with "Ready for EVT_START_BUILD" |
+| "Check requirements status" | List pending NEW requirements |
+
+### Codex Trigger Command
+
+| User Command | Codex Action |
+|--------------|--------------|
+| **"EVT_START_BUILD REQ-YYYYMMDD-###"** | Validate REQ exists, enter S2_PREFLIGHT, auto-advance through build/test/release |
 
 ---
 

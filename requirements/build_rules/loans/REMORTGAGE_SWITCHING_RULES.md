@@ -11,9 +11,9 @@ Purpose: Compare current mortgage vs new deal, including fees, rate, payment cha
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-REMO-001 | Remortgage Calculator | REMO-NAV-1, REMO-IN-C-1 to REMO-IN-C-4, REMO-IN-N-1 to REMO-IN-N-6, REMO-OUT-1 to REMO-OUT-6, REMO-TBL-1 to REMO-TBL-3, REMO-GRAPH-1 to REMO-GRAPH-3, REMO-EXP-1 to REMO-EXP-3 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-REMO-001 | Remortgage Calculator | • REMO-NAV-1<br>• REMO-IN-C-1<br>• REMO-IN-C-2<br>• REMO-IN-C-3<br>• REMO-IN-C-4<br>• REMO-IN-N-1<br>• REMO-IN-N-2<br>• REMO-IN-N-3<br>• REMO-IN-N-4<br>• REMO-IN-N-5<br>• REMO-IN-N-6<br>• REMO-OUT-1<br>• REMO-OUT-2<br>• REMO-OUT-3<br>• REMO-OUT-4<br>• REMO-OUT-5<br>• REMO-OUT-6<br>• REMO-TBL-1<br>• REMO-TBL-2<br>• REMO-TBL-3<br>• REMO-GRAPH-1<br>• REMO-GRAPH-2<br>• REMO-GRAPH-3<br>• REMO-EXP-1<br>• REMO-EXP-2<br>• REMO-EXP-3 | • REMO-TEST-U-1<br>• REMO-TEST-U-2<br>• REMO-TEST-E2E-1<br>• REMO-TEST-E2E-2 | 2026-01-19 |
 
 ---
 

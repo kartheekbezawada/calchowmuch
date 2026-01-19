@@ -7,17 +7,17 @@ Extend the Math -> Simple category with nine statistics calculators. Each calcul
 
 ## Requirement ID Mapping
 
-| Requirement ID | Calculator | Associated Rule IDs | Date Created |
-|----------------|------------|---------------------|---------------|
-| REQ-STAT-001 | Standard Deviation Calculator | STAT-SD-1 to STAT-SD-5 | 2026-01-19 |
-| REQ-STAT-002 | Number Sequence Calculator | STAT-NS-1 to STAT-NS-4 | 2026-01-19 |
-| REQ-STAT-003 | Sample Size Calculator | STAT-SS-1 to STAT-SS-4 | 2026-01-19 |
-| REQ-STAT-004 | Probability Calculator | STAT-PROB-1 to STAT-PROB-4 | 2026-01-19 |
-| REQ-STAT-005 | Statistics Calculator | STAT-CALC-1 to STAT-CALC-5 | 2026-01-19 |
-| REQ-STAT-006 | Mean, Median, Mode, Range Calculator | STAT-MMM-1 to STAT-MMM-5 | 2026-01-19 |
-| REQ-STAT-007 | Permutation and Combination Calculator | STAT-PC-1 to STAT-PC-4 | 2026-01-19 |
-| REQ-STAT-008 | Z-score Calculator | STAT-Z-1 to STAT-Z-4 | 2026-01-19 |
-| REQ-STAT-009 | Confidence Interval Calculator | STAT-CI-1 to STAT-CI-4 | 2026-01-19 |
+| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
+|----------------|------------|---------------------|---------------------|---------------|
+| REQ-STAT-001 | Standard Deviation Calculator | • STAT-SD-1<br>• STAT-SD-2<br>• STAT-SD-3<br>• STAT-SD-4<br>• STAT-SD-5 | • STAT-TEST-SD-1<br>• STAT-TEST-SD-E2E | 2026-01-19 |
+| REQ-STAT-002 | Number Sequence Calculator | • STAT-NS-1<br>• STAT-NS-2<br>• STAT-NS-3<br>• STAT-NS-4 | • STAT-TEST-NS-1<br>• STAT-TEST-NS-E2E | 2026-01-19 |
+| REQ-STAT-003 | Sample Size Calculator | • STAT-SS-1<br>• STAT-SS-2<br>• STAT-SS-3<br>• STAT-SS-4 | • STAT-TEST-SS-1<br>• STAT-TEST-SS-E2E | 2026-01-19 |
+| REQ-STAT-004 | Probability Calculator | • STAT-PROB-1<br>• STAT-PROB-2<br>• STAT-PROB-3<br>• STAT-PROB-4 | • STAT-TEST-PROB-1<br>• STAT-TEST-PROB-E2E | 2026-01-19 |
+| REQ-STAT-005 | Statistics Calculator | • STAT-CALC-1<br>• STAT-CALC-2<br>• STAT-CALC-3<br>• STAT-CALC-4<br>• STAT-CALC-5 | • STAT-TEST-CALC-1<br>• STAT-TEST-CALC-E2E | 2026-01-19 |
+| REQ-STAT-006 | Mean, Median, Mode, Range Calculator | • STAT-MMM-1<br>• STAT-MMM-2<br>• STAT-MMM-3<br>• STAT-MMM-4<br>• STAT-MMM-5 | • STAT-TEST-MMM-1<br>• STAT-TEST-MMM-E2E | 2026-01-19 |
+| REQ-STAT-007 | Permutation and Combination Calculator | • STAT-PC-1<br>• STAT-PC-2<br>• STAT-PC-3<br>• STAT-PC-4 | • STAT-TEST-PC-1<br>• STAT-TEST-PC-E2E | 2026-01-19 |
+| REQ-STAT-008 | Z-score Calculator | • STAT-Z-1<br>• STAT-Z-2<br>• STAT-Z-3<br>• STAT-Z-4 | • STAT-TEST-Z-1<br>• STAT-TEST-Z-E2E | 2026-01-19 |
+| REQ-STAT-009 | Confidence Interval Calculator | • STAT-CI-1<br>• STAT-CI-2<br>• STAT-CI-3<br>• STAT-CI-4 | • STAT-TEST-CI-1<br>• STAT-TEST-CI-E2E | 2026-01-19 |
 
 ---
 
