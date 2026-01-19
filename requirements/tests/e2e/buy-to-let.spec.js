@@ -1,21 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import { test, expect } from '@playwright/test';
-
-const SCREENSHOT_DIR = path.join(
-  process.cwd(),
-  'tests',
-  'calculator_results',
-  'buy-to-let',
-  'screenshots'
-);
 
 function parseNumber(text) {
   return Number(String(text || '').replace(/,/g, '').trim());
-}
-
-async function capture(page, name) {
-  await page.screenshot({ path: path.join(SCREENSHOT_DIR, name), fullPage: true });
 }
 
 async function setBaseInputs(page) {
@@ -32,10 +18,6 @@ async function setBaseInputs(page) {
 }
 
 test.describe('Buy-to-Let calculator requirements', () => {
-  test.beforeAll(() => {
-    fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
-  });
-
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/calculators/buy-to-let');
     await page.waitForSelector('#btl-calculate');
@@ -54,8 +36,6 @@ test.describe('Buy-to-Let calculator requirements', () => {
     expect(Math.abs(depositBox.y - rateBox.y)).toBeLessThan(6);
     expect(Math.abs(rateBox.y - termBox.y)).toBeLessThan(6);
 
-    await capture(page, 'btl-e2e-1-desktop.png');
-
     await page.setViewportSize({ width: 375, height: 812 });
     await page.reload();
     await page.waitForSelector('#btl-deposit-amount');
@@ -68,15 +48,12 @@ test.describe('Buy-to-Let calculator requirements', () => {
     }
 
     expect(rateMobile.y).toBeGreaterThan(depositMobile.y + 8);
-
-    await capture(page, 'btl-e2e-1-mobile.png');
   });
 
   test('BTL-TEST-E2E-2: input maxlength restriction', async ({ page }) => {
     await page.fill('#btl-price', '123456789012345');
     const value = await page.inputValue('#btl-price');
     expect(value.length).toBeLessThanOrEqual(10);
-    await capture(page, 'btl-e2e-2-maxlength.png');
   });
 
   test('BTL-TEST-I-1: table updates when rent increase toggles', async ({ page }) => {
@@ -110,8 +87,6 @@ test.describe('Buy-to-Let calculator requirements', () => {
     const revertedText = await baselineCell.textContent();
     const revertedRent = parseNumber(revertedText);
     expect(revertedRent).toBeCloseTo(baselineRent, 2);
-
-    await capture(page, 'btl-i-1-table-toggle.png');
   });
 
   test('BTL-TEST-I-2: graph shows baseline and increase lines', async ({ page }) => {
@@ -125,8 +100,6 @@ test.describe('Buy-to-Let calculator requirements', () => {
 
     const legend = page.locator('#btl-cashflow-legend-increase');
     await expect(legend).not.toHaveClass(/is-hidden/);
-
-    await capture(page, 'btl-i-2-graph-lines.png');
   });
 
   test('BTL-TEST-I-3 / E2E-3: graph tooltip on hover', async ({ page }) => {
@@ -146,8 +119,6 @@ test.describe('Buy-to-Let calculator requirements', () => {
     await expect(tooltip).not.toHaveClass(/is-hidden/);
     await expect(tooltip).toContainText('Baseline');
     await expect(tooltip).toContainText('With increase');
-
-    await capture(page, 'btl-i-3-tooltip.png');
 
     await page.mouse.move(box.x + box.width + 50, box.y + box.height + 50);
     await expect(tooltip).toHaveClass(/is-hidden/);
@@ -180,8 +151,6 @@ test.describe('Buy-to-Let calculator requirements', () => {
 
     const tooltipTitle = page.locator('#btl-cashflow-tooltip-title');
     await expect(tooltipTitle).toContainText('Year 5');
-
-    await capture(page, 'btl-e2e-4-journey.png');
   });
 
   test('BTL-TEST-E2E-5: all inputs have labels', async ({ page }) => {
@@ -195,6 +164,5 @@ test.describe('Buy-to-Let calculator requirements', () => {
     );
 
     expect(allLabeled).toBe(true);
-    await capture(page, 'btl-e2e-5-labels.png');
   });
 });
