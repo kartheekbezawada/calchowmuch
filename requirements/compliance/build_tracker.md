@@ -29,10 +29,15 @@ This document is the system of record for FSM build runs.
 | BUILD-20260119-182726 | REQ-20260119-002 | Codex | 2026-01-19 18:42:08 | PASSED | 3 | `npm run lint` ok | Lint-only build step |
 | BUILD-20260119-192208 | REQ-20260119-003 | Codex | 2026-01-19 19:22:13 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
 | BUILD-20260119-192208 | REQ-20260119-003 | Codex | 2026-01-19 19:22:31 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260119-200425 | REQ-20260119-003 | Codex | 2026-01-19 20:04:31 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
+| BUILD-20260119-200425 | REQ-20260119-003 | Codex | 2026-01-19 20:04:54 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260119-201520 | REQ-20260119-003 | Codex | 2026-01-19 20:15:23 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
+| BUILD-20260119-201520 | REQ-20260119-003 | Codex | 2026-01-19 20:15:43 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.
 - Final Status: SUCCESS is recorded in S11 after tests pass and trackers are updated.
+- Install frequency: do not rerun `pnpm install` or `npx playwright install chromium` before every test run unless dependencies or cache changed.
 
 ---
 

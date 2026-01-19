@@ -60,3 +60,7 @@
 #calc-remortgage-switching .graph-marker circle {
   fill: #f59e0b;
 }
+
+.page #calc-remortgage-switching .standalone-explanation {
+  display: none;
+}

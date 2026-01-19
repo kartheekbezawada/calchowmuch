@@ -21,6 +21,10 @@ This document is the system of record for FSM test runs.
 | TEST-20260119-184219 | BUILD-20260119-182726 | 2026-01-19 18:42:22 | RUNNING | `npm run test` + `npm run test:e2e` (Linux/WSL) |
 | TEST-20260119-184219 | BUILD-20260119-182726 | 2026-01-19 18:45:10 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed: missing `libnspr4.so` (Playwright deps), 86 tests failed |
 | TEST-20260119-192244 | BUILD-20260119-192208 | 2026-01-19 19:24:34 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (49 tests) across BOR/PERC/REMO/BTL/ISS-001 suites |
+| TEST-20260119-200506 | BUILD-20260119-200425 | 2026-01-19 20:05:09 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
+| TEST-20260119-200506 | BUILD-20260119-200425 | 2026-01-19 20:06:26 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (19 tests) across BOR/REMO/BTL/ISS-001 suites |
+| TEST-20260119-201551 | BUILD-20260119-201520 | 2026-01-19 20:15:54 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
+| TEST-20260119-201551 | BUILD-20260119-201520 | 2026-01-19 20:16:50 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
