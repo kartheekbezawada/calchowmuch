@@ -427,6 +427,10 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | TEST-1.1 | All new calculator compute logic must have unit tests | P0 |
 | TEST-1.2 | Minimum **80% coverage** for new compute logic | P1 |
 | TEST-1.3 | **ISS-001 regression check** — Verify no layout shifts, scrollbars visible, no navigation ping-pong | P1 |
+| TEST-1.4 | Dependency/browser installs are one-time per environment; do not rerun `pnpm install` or `npx playwright install chromium` before every test run unless dependencies or cache changed | P1 |
+| TEST-1.5 | **Screenshot optimization** — Screenshots only on failure (`screenshot: 'only-on-failure'`). No routine visual regression screenshots in development. | P1 |
+| TEST-1.6 | **Trace optimization** — Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests. | P1 |
+| TEST-1.7 | **Resource efficiency** — Test execution should prioritize functional validation over visual artifact generation | P1 |
 
 ---
 

@@ -133,6 +133,92 @@
   </div>
 </div>
 
+<div class="standalone-explanation">
+  <div id="loan-remortgage-explanation">
+    <h4>Remortgage Summary</h4>
+    <p>
+      Current payment is <span data-remo="current-payment"></span> versus
+      <span data-remo="new-payment"></span> on the new deal. The monthly difference is
+      <span data-remo="monthly-diff"></span> (about <span data-remo="annual-diff"></span> per year).
+    </p>
+    <p>
+      Fees of <span data-remo="fees"></span> are added to the new deal cost. Break-even occurs at
+      <span data-remo="break-even"></span>, when cumulative savings exceed these fees.
+    </p>
+
+    <div class="result-section">
+      <h4>Cost Comparison Table</h4>
+      <div class="table-scroll" id="remo-table-wrap" tabindex="0">
+        <table class="calculator-table" id="remo-table">
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">Current Cost</th>
+              <th scope="col">New Cost</th>
+              <th scope="col">Net Savings</th>
+            </tr>
+          </thead>
+          <tbody id="remo-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <h4>Cumulative Cost Over Time</h4>
+      <div class="graph-panel" id="remo-graph">
+        <div class="graph-header">
+          <span class="graph-title" id="remo-graph-title">Cumulative Cost</span>
+          <span class="graph-note" id="remo-graph-note"></span>
+        </div>
+        <div class="graph-legend" id="remo-graph-legend">
+          <div class="graph-legend-item">
+            <span class="graph-legend-color principal"></span>
+            <span>New deal</span>
+          </div>
+          <div class="graph-legend-item">
+            <span class="graph-legend-color secondary"></span>
+            <span>Current deal</span>
+          </div>
+          <div class="graph-legend-item">
+            <span class="graph-legend-color interest"></span>
+            <span>Break-even</span>
+          </div>
+        </div>
+        <div class="graph-container">
+          <span class="graph-y-label" id="remo-y-label">Cost</span>
+          <div class="graph-y-axis" id="remo-y-axis">
+            <span id="remo-y-max"></span>
+            <span id="remo-y-mid"></span>
+            <span id="remo-y-min"></span>
+          </div>
+          <div class="graph-main">
+            <div class="graph-bars-wrapper">
+              <svg
+                class="graph-line"
+                id="remo-graph-line"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <polyline id="remo-line-new" class="line-primary" points=""></polyline>
+                <polyline id="remo-line-current" class="line-secondary" points=""></polyline>
+                <g class="graph-marker" id="remo-break-marker">
+                  <line id="remo-break-line" x1="0" y1="0" x2="0" y2="100"></line>
+                  <circle id="remo-break-dot" cx="0" cy="0" r="2"></circle>
+                </g>
+              </svg>
+            </div>
+            <div class="graph-x-axis" id="remo-x-axis">
+              <span id="remo-x-start"></span>
+              <span id="remo-x-end"></span>
+            </div>
+            <span class="graph-x-label" id="remo-x-label">Month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   @import url('/calculators/loans/remortgage-switching/calculator.css');
 </style>
