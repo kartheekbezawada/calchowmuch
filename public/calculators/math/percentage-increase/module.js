@@ -303,3 +303,5 @@ calcButtons.forEach((button) => {
 const initialMode = modeButtons?.getValue() ?? 'change';
 switchMode(initialMode);
 runCalculation(initialMode);
+
+inputs.change.start?.focus();

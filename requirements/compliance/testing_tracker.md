@@ -18,6 +18,9 @@ This document is the system of record for FSM test runs.
 | TEST-20260119-153426 | BUILD-20260119-140637 | 2026-01-19 15:34:33 | PASS | `npm run test -- buy-to-let-utils` (5 tests passed) |
 | TEST-20260119-165247 | BUILD-20260119-140637 | 2026-01-19 16:52:41 | PASS | Windows `npm run test` (Vitest: 225 tests passed) |
 | TEST-20260119-165247-E2E | BUILD-20260119-140637 | 2026-01-19 16:52:41 | FAIL | Windows `npm run test:e2e` failed (46 tests) across BOR/REMO/BTL suites; logs in `test-results/` |
+| TEST-20260119-184219 | BUILD-20260119-182726 | 2026-01-19 18:42:22 | RUNNING | `npm run test` + `npm run test:e2e` (Linux/WSL) |
+| TEST-20260119-184219 | BUILD-20260119-182726 | 2026-01-19 18:45:10 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed: missing `libnspr4.so` (Playwright deps), 86 tests failed |
+| TEST-20260119-192244 | BUILD-20260119-192208 | 2026-01-19 19:24:34 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (49 tests) across BOR/PERC/REMO/BTL/ISS-001 suites |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
