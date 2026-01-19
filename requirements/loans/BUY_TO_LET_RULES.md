@@ -5,6 +5,14 @@ Purpose: Estimate buy-to-let profitability: mortgage costs, rental income, net c
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-BTL-001 | Buy-to-Let Calculator | BTL-NAV-1, BTL-IN-1 to BTL-IN-5, BTL-IN-R-1 to BTL-IN-C-3, BTL-IN-RENT-1 to BTL-IN-RENT-4, BTL-OUT-1 to BTL-OUT-9, BTL-GRAPH-1 to BTL-GRAPH-3, BTL-TBL-1 to BTL-TBL-3, BTL-EXP-1 to BTL-EXP-3 | 2026-01-19 |
+
+---
+
 ## BTL-NAV
 
 **BTL-NAV-1**  

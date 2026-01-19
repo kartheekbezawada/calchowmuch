@@ -4,6 +4,14 @@ Calculator ID: LOAN-EMI
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-EMI-001 | Loan EMI Calculator | EMI-IN-1 to EMI-IN-3, EMI-OP-1 to EMI-OP-3, EMI-OUT-1 to EMI-OUT-4, EMI-TBL-M-1, EMI-TBL-Y-1, EMI-GRAPH-1 to EMI-GRAPH-3, EMI-EXP-1, EMI-EXP-2 | 2026-01-19 |
+
+---
+
 ## EMI-IN — Inputs
 
 **EMI-IN-1**  

@@ -10,6 +10,17 @@ Calculators covered:
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-CC-001 | Repayment / Payoff Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-PAYOFF-1 to CC-PAYOFF-5 | 2026-01-19 |
+| REQ-CC-002 | Minimum Payment Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-MIN-1 to CC-MIN-6 | 2026-01-19 |
+| REQ-CC-003 | Balance Transfer Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-BT-1 to CC-BT-4 | 2026-01-19 |
+| REQ-CC-004 | CC Consolidation Calculator | CC-NAV-1, CC-NAV-2, CC-IN-1 to CC-IN-4, CC-CONSOL-1 to CC-CONSOL-3 | 2026-01-19 |
+
+---
+
 ## CC-NAV
 
 **CC-NAV-1**  

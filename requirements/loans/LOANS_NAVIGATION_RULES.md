@@ -6,6 +6,16 @@ This document is authoritative for LLM review and CI checks.
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Component | Associated Rule IDs | Date Created |
+|----------------|-----------|---------------------|---------------|
+| REQ-LNAV-001 | Loans Top Navigation | LN-NAV-ROOT-1 to LN-NAV-ROOT-4 | 2026-01-19 |
+| REQ-LNAV-002 | Loans Left Navigation | LN-NAV-LEFT-1 to LN-NAV-LEFT-5 | 2026-01-19 |
+| REQ-LNAV-003 | Loans Deep Linking | LN-NAV-DEEP-1 to LN-NAV-DEEP-4 | 2026-01-19 |
+
+---
+
 ## LN-NAV-ROOT — Top-Level Rules
 
 **LN-NAV-ROOT-1**  

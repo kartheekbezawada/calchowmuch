@@ -5,6 +5,14 @@ Purpose: Compute mortgage monthly payment, interest vs principal split, and payo
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-MTG-001 | Mortgage Calculator | MTG-NAV-1, MTG-NAV-2, MTG-IN-1 to MTG-IN-6, MTG-OP-1 to MTG-OP-4, MTG-OUT-1 to MTG-OUT-5, MTG-TBL-1 to MTG-TBL-3, MTG-GRAPH-1 to MTG-GRAPH-3, MTG-EXP-1 to MTG-EXP-3 | 2026-01-19 |
+
+---
+
 ## MTG-NAV — Navigation & Deep Linking
 
 **MTG-NAV-1**  

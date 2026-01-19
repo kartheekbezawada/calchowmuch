@@ -5,6 +5,14 @@ Purpose: Show impact of interest rate changes on monthly payment, total interest
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-RATE-001 | Interest Rate Change Calculator | RATE-NAV-1, RATE-IN-1 to RATE-IN-5, RATE-OUT-1 to RATE-OUT-4 | 2026-01-19 |
+
+---
+
 ## RATE-NAV
 
 **RATE-NAV-1**  

@@ -9,6 +9,14 @@ Purpose: Compare current mortgage vs new deal, including fees, rate, payment cha
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-REMO-001 | Remortgage Calculator | REMO-NAV-1, REMO-IN-C-1 to REMO-IN-C-4, REMO-IN-N-1 to REMO-IN-N-6, REMO-OUT-1 to REMO-OUT-6, REMO-TBL-1 to REMO-TBL-3, REMO-GRAPH-1 to REMO-GRAPH-3, REMO-EXP-1 to REMO-EXP-3 | 2026-01-19 |
+
+---
+
 ## REMO-NAV
 
 **REMO-NAV-1**  

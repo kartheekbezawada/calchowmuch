@@ -5,6 +5,14 @@ Purpose: Calculate LTV and show thresholds that affect mortgage eligibility and 
 
 ---
 
+## Requirement ID Mapping
+
+| Requirement ID | Calculator | Associated Rule IDs | Date Created |
+|----------------|------------|---------------------|---------------|
+| REQ-LTV-001 | LTV Calculator | LTV-NAV-1, LTV-IN-1 to LTV-IN-3, LTV-OUT-1 to LTV-OUT-4 | 2026-01-19 |
+
+---
+
 ## LTV-NAV
 
 **LTV-NAV-1**  
