@@ -14,6 +14,13 @@ Define an unskippable, deterministic workflow where:
 - COPILOT: Requirement authoring and ID assignment.
 - CODEX: Implementation, local build/test orchestration, and tracker updates.
 
+## Test Environment (Windows-Only)
+
+- All build/test commands MUST run in Windows-native PowerShell.
+- Do NOT run npm/npx/vitest/playwright in WSL.
+- Node.js must be available on Windows (e.g., `winget install OpenJS.NodeJS.LTS`).
+- Playwright must use Windows browser binaries; do not reuse WSL/ Linux installs.
+
 ## System of Record (State Storage)
 
 State is stored in Markdown trackers only (no hidden state). Required files in this folder:

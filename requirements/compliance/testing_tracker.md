@@ -16,6 +16,8 @@ This document is the system of record for FSM test runs.
 |-------------|----------|------------|--------|----------------|
 | TEST-20260119-153209 | BUILD-20260119-140637 | 2026-01-19 15:32:14 | FAIL | Import path resolution failed in buy-to-let-utils.test.js |
 | TEST-20260119-153426 | BUILD-20260119-140637 | 2026-01-19 15:34:33 | PASS | `npm run test -- buy-to-let-utils` (5 tests passed) |
+| TEST-20260119-165247 | BUILD-20260119-140637 | 2026-01-19 16:52:41 | PASS | Windows `npm run test` (Vitest: 225 tests passed) |
+| TEST-20260119-165247-E2E | BUILD-20260119-140637 | 2026-01-19 16:52:41 | FAIL | Windows `npm run test:e2e` failed (46 tests) across BOR/REMO/BTL suites; logs in `test-results/` |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
