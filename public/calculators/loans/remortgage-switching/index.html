@@ -5,49 +5,87 @@
     </p>
 
     <div class="input-stack">
-      <div class="input-row">
-        <label for="remo-balance">Current Balance</label>
-        <input id="remo-balance" type="number" value="220000" min="0" step="0.01" />
-      </div>
+      <!-- Current Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
+      <div class="input-grid remo-compact-grid">
+        <div class="input-row">
+          <label for="remo-balance">Current Balance</label>
+          <input id="remo-balance" type="number" value="220000" min="0" step="0.01" maxlength="10" />
+        </div>
 
-      <div class="input-row">
-        <label for="remo-current-rate">Current Rate (APR %)</label>
-        <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" />
-      </div>
+        <div class="input-row">
+          <label for="remo-current-rate">Current Rate (APR %)</label>
+          <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" maxlength="10" />
+        </div>
 
-      <div class="input-row">
-        <label for="remo-term">Remaining Term (years)</label>
-        <input id="remo-term" type="number" value="20" min="1" step="1" />
+        <div class="input-row">
+          <label for="remo-term">Remaining Term (years)</label>
+          <input id="remo-term" type="number" value="20" min="1" step="1" maxlength="10" />
+        </div>
       </div>
 
       <div class="input-row">
         <label for="remo-current-payment">Current Monthly Payment (optional)</label>
-        <input id="remo-current-payment" type="number" value="0" min="0" step="0.01" />
+        <input id="remo-current-payment" type="number" value="0" min="0" step="0.01" maxlength="10" />
       </div>
 
-      <div class="input-row">
-        <label for="remo-new-rate">New Rate (APR %)</label>
-        <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" />
+      <!-- New Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
+      <div class="input-grid remo-compact-grid">
+        <div class="input-row">
+          <label for="remo-new-rate">New Rate (APR %)</label>
+          <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-new-term">New Term (years)</label>
+          <input id="remo-new-term" type="number" value="20" min="1" step="1" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-new-fees">New Deal Fees</label>
+          <input id="remo-new-fees" type="number" value="1500" min="0" step="0.01" maxlength="10" />
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="remo-new-term">New Term (years)</label>
-        <input id="remo-new-term" type="number" value="20" min="1" step="1" />
-      </div>
+      <!-- Additional Fees Section per REMO-UI-5 -->
+      <div class="remo-fees-section">
+        <div class="input-row">
+          <label id="remo-fees-label">Additional Fees</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="remo-fees-label"
+            data-button-group="remo-fees-toggle"
+          >
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="collapsed"
+              aria-pressed="true"
+            >
+              Hide
+            </button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="expanded"
+              aria-pressed="false"
+            >
+              Show
+            </button>
+          </div>
+        </div>
 
-      <div class="input-row">
-        <label for="remo-new-fees">New Deal Fees</label>
-        <input id="remo-new-fees" type="number" value="1500" min="0" step="0.01" />
-      </div>
+        <div class="remo-fees-options" id="remo-fees-options">
+          <div class="input-row">
+            <label for="remo-exit-fees">Exit Fees / ERC</label>
+            <input id="remo-exit-fees" type="number" value="1000" min="0" step="0.01" maxlength="10" />
+          </div>
 
-      <div class="input-row">
-        <label for="remo-exit-fees">Exit Fees / ERC</label>
-        <input id="remo-exit-fees" type="number" value="1000" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="remo-legal-fees">Legal / Valuation Fees</label>
-        <input id="remo-legal-fees" type="number" value="500" min="0" step="0.01" />
+          <div class="input-row">
+            <label for="remo-legal-fees">Legal / Valuation Fees</label>
+            <input id="remo-legal-fees" type="number" value="500" min="0" step="0.01" maxlength="10" />
+          </div>
+        </div>
       </div>
 
       <div class="input-row">

@@ -1,5 +1,6 @@
 import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBorrow } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 
@@ -167,6 +168,25 @@ function calculate() {
   resultDiv.textContent = '';
   summaryDiv.textContent = '';
   clearOutputs();
+
+  // Validate input maxlength per universal requirements
+  const inputsToValidate = [
+    grossIncomeInput,
+    netIncomeInput,
+    expensesInput,
+    debtsInput,
+    rateInput,
+    termInput,
+    multipleInput,
+    capInput,
+    depositInput,
+  ].filter(Boolean);
+
+  const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
+  if (invalidLength) {
+    setError('Inputs must be 10 digits or fewer.');
+    return;
+  }
 
   const grossIncomeAnnual = Number(grossIncomeInput?.value);
   if (!Number.isFinite(grossIncomeAnnual) || grossIncomeAnnual <= 0) {

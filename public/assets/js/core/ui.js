@@ -21,19 +21,30 @@ export function initInputLengthLimiter(maxLength = 12) {
   }
   inputLimiterInitialized = true;
 
+  function resolveMaxLength(input) {
+    const attrValue = input.getAttribute('maxlength') ?? input.dataset.maxlength;
+    const parsed = Number(attrValue);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+    return maxLength;
+  }
+
   function applyMaxLength(input) {
     if (input.dataset.maxlengthApplied) {
       return;
     }
-    if (input.type !== 'number') {
-      input.setAttribute('maxlength', String(maxLength));
+    const resolved = resolveMaxLength(input);
+    if (input.type !== 'number' && !input.hasAttribute('maxlength')) {
+      input.setAttribute('maxlength', String(resolved));
     }
     input.dataset.maxlengthApplied = 'true';
   }
 
   function enforceLimit(input) {
-    if (input.value.length > maxLength) {
-      input.value = input.value.slice(0, maxLength);
+    const resolved = resolveMaxLength(input);
+    if (input.value.length > resolved) {
+      input.value = input.value.slice(0, resolved);
     }
   }
 

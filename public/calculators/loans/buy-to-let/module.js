@@ -1,5 +1,6 @@
 import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBuyToLet } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax, sampleValues } from '/assets/js/core/graph-utils.js';
 
@@ -11,6 +12,13 @@ const depositPercentRow = document.querySelector('#btl-deposit-percent-row');
 const rateInput = document.querySelector('#btl-rate');
 const termInput = document.querySelector('#btl-term');
 const rentInput = document.querySelector('#btl-rent');
+const rentIncreaseOptions = document.querySelector('#btl-rent-increase-options');
+const rentIncreasePercentRow = document.querySelector('#btl-rent-increase-percent-row');
+const rentIncreaseAmountRow = document.querySelector('#btl-rent-increase-amount-row');
+const rentIncreasePercentInput = document.querySelector('#btl-rent-increase-percent');
+const rentIncreaseAmountInput = document.querySelector('#btl-rent-increase-amount');
+const rentIncreaseCustomRow = document.querySelector('#btl-rent-increase-custom-row');
+const rentIncreaseCustomInput = document.querySelector('#btl-rent-increase-custom');
 const vacancyPercentInput = document.querySelector('#btl-vacancy-percent');
 const vacancyMonthsInput = document.querySelector('#btl-vacancy-months');
 const vacancyPercentRow = document.querySelector('#btl-vacancy-percent-row');
@@ -25,6 +33,11 @@ const summaryDiv = document.querySelector('#btl-summary');
 const depositGroup = document.querySelector('[data-button-group="btl-deposit-type"]');
 const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-type"]');
 const vacancyGroup = document.querySelector('[data-button-group="btl-vacancy-type"]');
+const rentIncreaseGroup = document.querySelector('[data-button-group="btl-rent-increase"]');
+const rentIncreaseTypeGroup = document.querySelector('[data-button-group="btl-rent-increase-type"]');
+const rentIncreaseFrequencyGroup = document.querySelector(
+  '[data-button-group="btl-rent-increase-frequency"]'
+);
 
 const explanationRoot = document.querySelector('#loan-btl-explanation');
 const priceValue = explanationRoot?.querySelector('[data-btl="price"]');
@@ -38,24 +51,33 @@ const netAnnualValue = explanationRoot?.querySelector('[data-btl="net-annual"]')
 const grossYieldValue = explanationRoot?.querySelector('[data-btl="gross-yield"]');
 const netYieldValue = explanationRoot?.querySelector('[data-btl="net-yield"]');
 const stressCoverageValue = explanationRoot?.querySelector('[data-btl="stress-coverage"]');
+const rentIncreaseExplainer = explanationRoot?.querySelector('#btl-rent-increase-explainer');
+const rentIncreaseDescValue = explanationRoot?.querySelector('[data-btl="rent-increase-desc"]');
+const rentIncreaseStartValue = explanationRoot?.querySelector('[data-btl="rent-increase-start"]');
+const rentIncreaseEndValue = explanationRoot?.querySelector('[data-btl="rent-increase-end"]');
+const rentIncreaseYearsValue = explanationRoot?.querySelector('[data-btl="rent-increase-years"]');
+const rateCurrentValue = explanationRoot?.querySelector('[data-btl="rate-current"]');
+const cashflowCurrentValue = explanationRoot?.querySelector('[data-btl="cashflow-current"]');
+const rateHigherValue = explanationRoot?.querySelector('[data-btl="rate-higher"]');
+const cashflowHigherValue = explanationRoot?.querySelector('[data-btl="cashflow-higher"]');
 
 const tableBody = document.querySelector('#btl-table-body');
 
-const cashflowLine = document.querySelector('#btl-cashflow-line polyline');
+const cashflowLine = document.querySelector('#btl-cashflow-line .line-primary');
+const cashflowIncreaseLine = document.querySelector('#btl-cashflow-line .line-rent-increase');
 const cashflowYMax = document.querySelector('#btl-cashflow-y-max');
 const cashflowYMid = document.querySelector('#btl-cashflow-y-mid');
 const cashflowYMin = document.querySelector('#btl-cashflow-y-min');
 const cashflowXStart = document.querySelector('#btl-cashflow-x-start');
 const cashflowXEnd = document.querySelector('#btl-cashflow-x-end');
 const cashflowNote = document.querySelector('#btl-cashflow-note');
-
-const sensitivityLine = document.querySelector('#btl-sensitivity-line polyline');
-const sensitivityYMax = document.querySelector('#btl-sensitivity-y-max');
-const sensitivityYMid = document.querySelector('#btl-sensitivity-y-mid');
-const sensitivityYMin = document.querySelector('#btl-sensitivity-y-min');
-const sensitivityXStart = document.querySelector('#btl-sensitivity-x-start');
-const sensitivityXEnd = document.querySelector('#btl-sensitivity-x-end');
-const sensitivityNote = document.querySelector('#btl-sensitivity-note');
+const cashflowLegendIncrease = document.querySelector('#btl-cashflow-legend-increase');
+const cashflowHoverLayer = document.querySelector('#btl-cashflow-hover');
+const cashflowTooltip = document.querySelector('#btl-cashflow-tooltip');
+const cashflowTooltipTitle = document.querySelector('#btl-cashflow-tooltip-title');
+const cashflowTooltipBaseline = document.querySelector('#btl-cashflow-tooltip-baseline');
+const cashflowTooltipIncrease = document.querySelector('#btl-cashflow-tooltip-increase');
+const cashflowTooltipApplied = document.querySelector('#btl-cashflow-tooltip-applied');
 
 const depositButtons = setupButtonGroup(depositGroup, {
   defaultValue: 'amount',
@@ -78,6 +100,32 @@ const vacancyButtons = setupButtonGroup(vacancyGroup, {
   },
 });
 
+const rentIncreaseButtons = setupButtonGroup(rentIncreaseGroup, {
+  defaultValue: 'off',
+  onChange: (value) => {
+    setRentIncreaseVisibility(value === 'on');
+    calculate();
+  },
+});
+
+const rentIncreaseTypeButtons = setupButtonGroup(rentIncreaseTypeGroup, {
+  defaultValue: 'percent',
+  onChange: (value) => {
+    setRentIncreaseTypeVisibility(value);
+    calculate();
+  },
+});
+
+const rentIncreaseFrequencyButtons = setupButtonGroup(rentIncreaseFrequencyGroup, {
+  defaultValue: '1',
+  onChange: (value) => {
+    setRentIncreaseFrequencyVisibility(value);
+    calculate();
+  },
+});
+
+let cashflowTooltipData = null;
+
 function setDepositVisibility(type) {
   depositAmountRow?.classList.toggle('is-hidden', type !== 'amount');
   depositPercentRow?.classList.toggle('is-hidden', type !== 'percent');
@@ -88,12 +136,54 @@ function setVacancyVisibility(type) {
   vacancyMonthsRow?.classList.toggle('is-hidden', type !== 'months');
 }
 
+function setRentIncreaseVisibility(isEnabled) {
+  rentIncreaseOptions?.classList.toggle('is-hidden', !isEnabled);
+}
+
+function setRentIncreaseTypeVisibility(type) {
+  rentIncreasePercentRow?.classList.toggle('is-hidden', type !== 'percent');
+  rentIncreaseAmountRow?.classList.toggle('is-hidden', type !== 'amount');
+}
+
+function setRentIncreaseFrequencyVisibility(value) {
+  rentIncreaseCustomRow?.classList.toggle('is-hidden', value !== 'custom');
+}
+
 function formatTableNumber(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function formatAxisValue(value) {
   return formatNumber(value, { maximumFractionDigits: 0 });
+}
+
+function formatIncreaseIndicator(row, data) {
+  if (!data?.rentIncreaseEnabled || !row?.rentIncreaseApplied) {
+    return '—';
+  }
+
+  if (data.rentIncreaseType === 'percent') {
+    const percent = formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 });
+    return `Yes (+${percent}%)`;
+  }
+
+  const amount = formatCurrency(data.rentIncreaseValue);
+  return `Yes (+${amount})`;
+}
+
+function formatIncreaseAppliedText(data, row) {
+  if (!data?.rentIncreaseEnabled) {
+    return '';
+  }
+  if (!row?.rentIncreaseApplied) {
+    return 'Increase applied: No';
+  }
+  if (data.rentIncreaseType === 'percent') {
+    const percent = formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 });
+    return `Increase applied: +${percent}%`;
+  }
+  const amount = formatCurrency(data.rentIncreaseValue);
+  return `Increase applied: +${amount}`;
 }
 
 function clearOutputs() {
@@ -103,9 +193,14 @@ function clearOutputs() {
   if (cashflowLine) {
     cashflowLine.setAttribute('points', '');
   }
-  if (sensitivityLine) {
-    sensitivityLine.setAttribute('points', '');
+  if (cashflowIncreaseLine) {
+    cashflowIncreaseLine.setAttribute('points', '');
   }
+  if (cashflowTooltip) {
+    cashflowTooltip.classList.add('is-hidden');
+    cashflowTooltip.setAttribute('aria-hidden', 'true');
+  }
+  cashflowTooltipData = null;
 }
 
 function setError(message) {
@@ -158,6 +253,59 @@ function updateExplanation(data) {
       maximumFractionDigits: 2,
     });
   }
+
+  if (rentIncreaseExplainer) {
+    rentIncreaseExplainer.classList.toggle('is-hidden', !data.rentIncreaseEnabled);
+  }
+  if (data.rentIncreaseEnabled) {
+    if (rentIncreaseDescValue) {
+      const intervalLabel =
+        data.rentIncreaseInterval === 1
+          ? 'every year'
+          : `every ${data.rentIncreaseInterval} years`;
+      const valueLabel =
+        data.rentIncreaseType === 'percent'
+          ? `${formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 })}%`
+          : `${formatCurrency(data.rentIncreaseValue)} per year`;
+      rentIncreaseDescValue.textContent = `${valueLabel} ${intervalLabel}`;
+    }
+    if (rentIncreaseStartValue) {
+      rentIncreaseStartValue.textContent = formatCurrency(
+        data.projection[0]?.netCashflow ?? 0
+      );
+    }
+    if (rentIncreaseEndValue) {
+      rentIncreaseEndValue.textContent = formatCurrency(
+        data.projection[data.projection.length - 1]?.netCashflow ?? 0
+      );
+    }
+    if (rentIncreaseYearsValue) {
+      rentIncreaseYearsValue.textContent = String(data.projection.length);
+    }
+  }
+
+  if (data.rateScenario) {
+    if (rateCurrentValue) {
+      rateCurrentValue.textContent = `${formatNumber(data.rateScenario.currentRate, {
+        maximumFractionDigits: 2,
+      })}%`;
+    }
+    if (cashflowCurrentValue) {
+      cashflowCurrentValue.textContent = `${formatCurrency(
+        data.rateScenario.currentNetMonthly
+      )} / month`;
+    }
+    if (rateHigherValue) {
+      rateHigherValue.textContent = `${formatNumber(data.rateScenario.higherRate, {
+        maximumFractionDigits: 2,
+      })}%`;
+    }
+    if (cashflowHigherValue) {
+      cashflowHigherValue.textContent = `${formatCurrency(
+        data.rateScenario.higherNetMonthly
+      )} / month`;
+    }
+  }
 }
 
 function updateTable(data) {
@@ -175,6 +323,7 @@ function updateTable(data) {
         <td>${formatTableNumber(row.mortgageCost)}</td>
         <td>${formatTableNumber(row.netCashflow)}</td>
         <td>${formatTableNumber(row.cumulativeCashflow)}</td>
+        <td>${formatIncreaseIndicator(row, data)}</td>
       </tr>`
     )
     .join('');
@@ -184,45 +333,107 @@ function updateCashflowGraph(data) {
   if (!cashflowLine) {
     return;
   }
-  const values = data.cashflowSeries.map((entry) => entry.value);
-  const sampled = sampleValues(values, 30);
-  const { min, max } = getPaddedMinMax(sampled, 0.15);
+  const baselineValues = data.cashflowSeriesBaseline.map((entry) => entry.value);
+  const increaseValues = data.rentIncreaseEnabled
+    ? data.cashflowSeriesWithIncrease.map((entry) => entry.value)
+    : [];
+  const sampledBaseline = sampleValues(baselineValues, 30);
+  const sampledIncrease = data.rentIncreaseEnabled ? sampleValues(increaseValues, 30) : [];
+  const combinedValues = sampledBaseline.concat(sampledIncrease);
+  const { min, max } = getPaddedMinMax(combinedValues, 0.15);
   const mid = (min + max) / 2;
 
-  cashflowLine.setAttribute('points', buildPolyline(sampled, min, max));
+  cashflowLine.setAttribute('points', buildPolyline(sampledBaseline, min, max));
+  if (cashflowIncreaseLine) {
+    cashflowIncreaseLine.setAttribute(
+      'points',
+      data.rentIncreaseEnabled ? buildPolyline(sampledIncrease, min, max) : ''
+    );
+  }
+  if (cashflowLegendIncrease) {
+    cashflowLegendIncrease.classList.toggle('is-hidden', !data.rentIncreaseEnabled);
+  }
   cashflowYMax.textContent = formatAxisValue(max);
   cashflowYMid.textContent = formatAxisValue(mid);
   cashflowYMin.textContent = formatAxisValue(min);
   cashflowXStart.textContent = '1';
-  cashflowXEnd.textContent = String(data.cashflowSeries.length);
+  cashflowXEnd.textContent = String(data.baselineProjection.length);
   if (cashflowNote) {
-    cashflowNote.textContent = `${data.cashflowSeries.length} years`;
+    cashflowNote.textContent = data.rentIncreaseEnabled
+      ? `${data.baselineProjection.length} years (rent increase on)`
+      : `${data.baselineProjection.length} years`;
   }
+
+  cashflowTooltipData = {
+    baseline: data.baselineProjection,
+    projection: data.projection,
+    rentIncreaseEnabled: data.rentIncreaseEnabled,
+    rentIncreaseType: data.rentIncreaseType,
+    rentIncreaseValue: data.rentIncreaseValue,
+    rentIncreaseInterval: data.rentIncreaseInterval,
+  };
 }
 
-function updateSensitivityGraph(data) {
-  if (!sensitivityLine) {
+function showCashflowTooltip(event) {
+  if (
+    !cashflowHoverLayer ||
+    !cashflowTooltip ||
+    !cashflowTooltipTitle ||
+    !cashflowTooltipBaseline ||
+    !cashflowTooltipData
+  ) {
     return;
   }
-  const values = data.sensitivitySeries.map((entry) => entry.value);
-  const sampled = sampleValues(values, 20);
-  const { min, max } = getPaddedMinMax(sampled, 0.15);
-  const mid = (min + max) / 2;
 
-  sensitivityLine.setAttribute('points', buildPolyline(sampled, min, max));
-  sensitivityYMax.textContent = formatAxisValue(max);
-  sensitivityYMid.textContent = formatAxisValue(mid);
-  sensitivityYMin.textContent = formatAxisValue(min);
-  sensitivityXStart.textContent = formatNumber(data.sensitivitySeries[0]?.rate ?? 0, {
-    maximumFractionDigits: 1,
-  });
-  sensitivityXEnd.textContent = formatNumber(
-    data.sensitivitySeries[data.sensitivitySeries.length - 1]?.rate ?? 0,
-    { maximumFractionDigits: 1 }
-  );
-  if (sensitivityNote) {
-    sensitivityNote.textContent = 'Monthly cashflow';
+  const { baseline, projection } = cashflowTooltipData;
+  if (!baseline?.length) {
+    return;
   }
+
+  const bounds = cashflowHoverLayer.getBoundingClientRect();
+  const x = event.clientX - bounds.left;
+  const y = event.clientY - bounds.top;
+  const clampedX = Math.min(Math.max(x, 0), bounds.width);
+  const index = Math.min(
+    baseline.length - 1,
+    Math.max(0, Math.round((clampedX / bounds.width) * (baseline.length - 1)))
+  );
+
+  const baselineRow = baseline[index];
+  const projectionRow = projection[index] ?? baselineRow;
+
+  cashflowTooltipTitle.textContent = `Year ${baselineRow.year}`;
+  cashflowTooltipBaseline.textContent = `Baseline: ${formatCurrency(baselineRow.netCashflow)}`;
+
+  if (cashflowTooltipIncrease && cashflowTooltipApplied) {
+    if (cashflowTooltipData.rentIncreaseEnabled) {
+      cashflowTooltipIncrease.classList.remove('is-hidden');
+      cashflowTooltipIncrease.textContent = `With increase: ${formatCurrency(
+        projectionRow.netCashflow
+      )}`;
+      cashflowTooltipApplied.classList.remove('is-hidden');
+      cashflowTooltipApplied.textContent = formatIncreaseAppliedText(
+        cashflowTooltipData,
+        projectionRow
+      );
+    } else {
+      cashflowTooltipIncrease.classList.add('is-hidden');
+      cashflowTooltipApplied.classList.add('is-hidden');
+    }
+  }
+
+  cashflowTooltip.style.left = `${clampedX}px`;
+  cashflowTooltip.style.top = `${y}px`;
+  cashflowTooltip.classList.remove('is-hidden');
+  cashflowTooltip.setAttribute('aria-hidden', 'false');
+}
+
+function hideCashflowTooltip() {
+  if (!cashflowTooltip) {
+    return;
+  }
+  cashflowTooltip.classList.add('is-hidden');
+  cashflowTooltip.setAttribute('aria-hidden', 'true');
 }
 
 function calculate() {
@@ -233,6 +444,29 @@ function calculate() {
   resultDiv.textContent = '';
   summaryDiv.textContent = '';
   clearOutputs();
+
+  const inputsToValidate = [
+    priceInput,
+    depositAmountInput,
+    depositPercentInput,
+    rateInput,
+    termInput,
+    rentInput,
+    rentIncreasePercentInput,
+    rentIncreaseAmountInput,
+    rentIncreaseCustomInput,
+    vacancyPercentInput,
+    vacancyMonthsInput,
+    agentFeeInput,
+    maintenanceInput,
+    otherCostsInput,
+  ].filter(Boolean);
+
+  const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
+  if (invalidLength) {
+    setError('Inputs must be 10 digits or fewer.');
+    return;
+  }
 
   const price = Number(priceInput?.value);
   if (!Number.isFinite(price) || price <= 0) {
@@ -272,6 +506,28 @@ function calculate() {
   if (!Number.isFinite(monthlyRent) || monthlyRent <= 0) {
     setError('Monthly rent must be greater than 0.');
     return;
+  }
+
+  const rentIncreaseEnabled = rentIncreaseButtons?.getValue() === 'on';
+  const rentIncreaseType = rentIncreaseTypeButtons?.getValue() ?? 'percent';
+  const rentIncreaseValue = Number(
+    rentIncreaseType === 'amount' ? rentIncreaseAmountInput?.value : rentIncreasePercentInput?.value
+  );
+  const rentIncreaseFrequency = rentIncreaseFrequencyButtons?.getValue() ?? '1';
+  const rentIncreaseInterval =
+    rentIncreaseFrequency === 'custom'
+      ? Number(rentIncreaseCustomInput?.value)
+      : Number(rentIncreaseFrequency);
+
+  if (rentIncreaseEnabled) {
+    if (!Number.isFinite(rentIncreaseValue) || rentIncreaseValue < 0) {
+      setError('Rent increase must be 0 or more.');
+      return;
+    }
+    if (!Number.isFinite(rentIncreaseInterval) || rentIncreaseInterval < 1) {
+      setError('Rent increase interval must be at least 1 year.');
+      return;
+    }
   }
 
   const vacancyType = vacancyButtons?.getValue() ?? 'percent';
@@ -325,6 +581,10 @@ function calculate() {
     agentFeePercent,
     maintenanceMonthly,
     otherCostsMonthly,
+    rentIncreaseEnabled,
+    rentIncreaseType,
+    rentIncreaseValue: rentIncreaseEnabled ? rentIncreaseValue : 0,
+    rentIncreaseInterval: rentIncreaseEnabled ? rentIncreaseInterval : 1,
   });
 
   if (depositType === 'percent' && depositAmountInput) {
@@ -346,12 +606,16 @@ function calculate() {
   updateExplanation(data);
   updateTable(data);
   updateCashflowGraph(data);
-  updateSensitivityGraph(data);
 }
 
 setDepositVisibility(depositButtons?.getValue() ?? 'amount');
 setVacancyVisibility(vacancyButtons?.getValue() ?? 'percent');
+setRentIncreaseVisibility(rentIncreaseButtons?.getValue() === 'on');
+setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
+setRentIncreaseFrequencyVisibility(rentIncreaseFrequencyButtons?.getValue() ?? '1');
 
 calculateButton?.addEventListener('click', calculate);
+cashflowHoverLayer?.addEventListener('mousemove', showCashflowTooltip);
+cashflowHoverLayer?.addEventListener('mouseleave', hideCashflowTooltip);
 
 calculate();

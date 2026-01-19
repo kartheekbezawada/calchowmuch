@@ -15,6 +15,11 @@
     <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
     <span data-btl="stress-coverage"></span>.
   </p>
+  <p class="is-hidden" id="btl-rent-increase-explainer">
+    With rent increases <span data-btl="rent-increase-desc"></span>, projected annual cashflow grows
+    from <span data-btl="rent-increase-start"></span> in year 1 to
+    <span data-btl="rent-increase-end"></span> by year <span data-btl="rent-increase-years"></span>.
+  </p>
   <p>
     Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
     increase equity faster but reduce monthly cashflow.
@@ -32,6 +37,7 @@
             <th scope="col">Mortgage Cost</th>
             <th scope="col">Net Cashflow</th>
             <th scope="col">Cumulative</th>
+            <th scope="col">Increase Applied</th>
           </tr>
         </thead>
         <tbody id="btl-table-body"></tbody>
@@ -49,7 +55,11 @@
       <div class="graph-legend" id="btl-cashflow-legend">
         <div class="graph-legend-item">
           <span class="graph-legend-color principal"></span>
-          <span>Net cashflow</span>
+          <span>Net cashflow (baseline)</span>
+        </div>
+        <div class="graph-legend-item is-hidden" id="btl-cashflow-legend-increase">
+          <span class="graph-legend-color btl-rent-increase"></span>
+          <span>With rent increase</span>
         </div>
       </div>
       <div class="graph-container">
@@ -68,7 +78,26 @@
               preserveAspectRatio="none"
             >
               <polyline class="line-primary" points=""></polyline>
+              <polyline class="line-rent-increase" points=""></polyline>
             </svg>
+            <div class="graph-hover-layer" id="btl-cashflow-hover" aria-hidden="true"></div>
+            <div
+              class="graph-tooltip is-hidden"
+              id="btl-cashflow-tooltip"
+              role="tooltip"
+              aria-hidden="true"
+            >
+              <div class="graph-tooltip-title" id="btl-cashflow-tooltip-title"></div>
+              <div class="graph-tooltip-row" id="btl-cashflow-tooltip-baseline"></div>
+              <div
+                class="graph-tooltip-row is-hidden"
+                id="btl-cashflow-tooltip-increase"
+              ></div>
+              <div
+                class="graph-tooltip-row is-hidden"
+                id="btl-cashflow-tooltip-applied"
+              ></div>
+            </div>
           </div>
           <div class="graph-x-axis" id="btl-cashflow-x-axis">
             <span id="btl-cashflow-x-start"></span>
@@ -81,42 +110,18 @@
   </div>
 
   <div class="result-section">
-    <h4>Cashflow Sensitivity vs Interest Rate</h4>
-    <div class="graph-panel" id="btl-sensitivity-graph">
-      <div class="graph-header">
-        <span class="graph-title" id="btl-sensitivity-title">Net Cashflow by Rate</span>
-        <span class="graph-note" id="btl-sensitivity-note"></span>
+    <h4>Rate Scenarios</h4>
+    <div class="btl-scenario-grid" id="btl-rate-scenarios">
+      <div class="btl-scenario-card">
+        <span class="btl-scenario-label">Your rate</span>
+        <span class="btl-scenario-value" data-btl="rate-current"></span>
+        <span class="btl-scenario-detail" data-btl="cashflow-current"></span>
       </div>
-      <div class="graph-legend" id="btl-sensitivity-legend">
-        <div class="graph-legend-item">
-          <span class="graph-legend-color principal"></span>
-          <span>Net monthly cashflow</span>
-        </div>
-      </div>
-      <div class="graph-container">
-        <span class="graph-y-label" id="btl-sensitivity-y-label">Cashflow</span>
-        <div class="graph-y-axis" id="btl-sensitivity-y-axis">
-          <span id="btl-sensitivity-y-max"></span>
-          <span id="btl-sensitivity-y-mid"></span>
-          <span id="btl-sensitivity-y-min"></span>
-        </div>
-        <div class="graph-main">
-          <div class="graph-bars-wrapper">
-            <svg
-              class="graph-line"
-              id="btl-sensitivity-line"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <polyline class="line-primary" points=""></polyline>
-            </svg>
-          </div>
-          <div class="graph-x-axis" id="btl-sensitivity-x-axis">
-            <span id="btl-sensitivity-x-start"></span>
-            <span id="btl-sensitivity-x-end"></span>
-          </div>
-          <span class="graph-x-label" id="btl-sensitivity-x-label">Rate (%)</span>
-        </div>
+      <div class="btl-scenario-card">
+        <span class="btl-scenario-label"
+          >If rates rise to <span data-btl="rate-higher"></span
+        ></span>
+        <span class="btl-scenario-detail" data-btl="cashflow-higher"></span>
       </div>
     </div>
   </div>
