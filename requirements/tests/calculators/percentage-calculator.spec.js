@@ -1,14 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { test, expect } from '@playwright/test';
 
-const SCREENSHOT_DIR = path.join(
-  process.cwd(),
-  'tests',
-  'calculator_results',
-  'percentage-calculator',
-  'screenshots'
-);
 const HASH_URL = '/#/calculators/percentage-increase';
 const DIRECT_URL = '/calculators/math/percentage-increase/';
 
@@ -25,10 +16,6 @@ function trackConsoleErrors(page) {
   return errors;
 }
 
-async function capture(page, name) {
-  await page.screenshot({ path: path.join(SCREENSHOT_DIR, name), fullPage: true });
-}
-
 async function selectMode(page, mode) {
   await page.click(`[data-button-group="percent-mode"] [data-value="${mode}"]`);
   await expect(page.locator(`.input-section[data-mode="${mode}"]`)).toHaveClass(/active/);
@@ -39,10 +26,6 @@ async function calculateMode(page, mode) {
 }
 
 test.describe('Percentage Calculator Requirements', () => {
-  test.beforeAll(() => {
-    fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
-  });
-
   test('PERC-TEST-E2E-LOAD: calculator loads without console errors', async ({ page }) => {
     const errors = trackConsoleErrors(page);
     await page.goto(DIRECT_URL);
@@ -50,7 +33,6 @@ test.describe('Percentage Calculator Requirements', () => {
     await expect(page.locator('[data-button-group="percent-mode"]')).toBeVisible();
     await expect(page.locator('#percent-result')).toBeVisible();
     expect(errors).toEqual([]);
-    await capture(page, 'perc-e2e-load.png');
   });
 
   test('PERC-TEST-E2E-NAV: navigation and deep-linking', async ({ page }) => {
@@ -117,8 +99,6 @@ test.describe('Percentage Calculator Requirements', () => {
     await page.fill('#percent-what-total', '100');
     await calculateMode(page, 'what-percent');
     await expect(page.locator('#percent-result')).toContainText('25.00%');
-
-    await capture(page, 'perc-e2e-workflow.png');
   });
 
   test('PERC-TEST-E2E-MOBILE: mobile responsiveness', async ({ page }) => {
@@ -131,8 +111,6 @@ test.describe('Percentage Calculator Requirements', () => {
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth
     );
     expect(hasHorizontalScroll).toBe(false);
-
-    await capture(page, 'perc-e2e-mobile.png');
   });
 
   test('PERC-TEST-E2E-A11Y: labels, aria-live, and keyboard access', async ({ page }) => {
@@ -161,7 +139,5 @@ test.describe('Percentage Calculator Requirements', () => {
     await page.keyboard.press('Tab');
     const focusedId = await page.evaluate(() => document.activeElement?.id || '');
     expect(focusedId).not.toBe('');
-
-    await capture(page, 'perc-e2e-a11y.png');
   });
 });
