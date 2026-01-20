@@ -29,9 +29,9 @@ This document is the system of record for FSM requirements.
 | REQ-20260119-009 | Permutation Combination Calculator Implementation | Implement combinatorial mathematics calculator for permutations and combinations. Calculate nPr (permutations), nCr (combinations), factorial operations, and provide mathematical explanations. Include input validation for non-negative integers and proper error handling. | Codex | Math/Advanced/Permutation Combination page | YES | VERIFIED | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Build BUILD-20260120-132411; Test TEST-20260120-132413 passed |
 | REQ-20260119-010 | Probability Calculator Implementation | Implement probability calculation tools for basic probability scenarios. Calculate single event probability, multiple event probability (AND/OR), conditional probability, and Bayes' theorem applications. Support probability distributions and statistical explanations. | Codex | Math/Advanced/Probability Calculator page | YES | VERIFIED | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Build BUILD-20260120-132418; Test TEST-20260120-132423 passed |
 | REQ-20260119-011 | Sample Size Calculator Implementation | Implement statistical sample size determination calculator for research applications. Calculate required sample size based on confidence level, margin of error, population size, and expected response rate. Support both known and unknown population variance scenarios. | Codex | Math/Statistics/Sample Size page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator exists but sample size determination logic not implemented |
-| REQ-20260119-012 | Standard Deviation Calculator Implementation | Implement complete standard deviation and variance calculator for data sets. Calculate population and sample standard deviation, variance, mean, and provide step-by-step calculations. Accept comma-separated data input with proper validation and formatting. | Codex | Math/Statistics/Standard Deviation page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator interface present but statistical calculations not working |
-| REQ-20260119-013 | Statistics Calculator Implementation | Implement comprehensive statistics calculator for descriptive and basic inferential statistics. Calculate mean, median, mode, range, standard deviation, variance, percentiles, and quartiles. Support large data sets and provide detailed statistical analysis. | Codex | Math/Statistics/Statistics Calculator page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator exists but comprehensive statistical analysis not implemented |
-| REQ-20260119-014 | Z-Score Calculator Implementation | Implement Z-score standardization calculator for statistical analysis. Calculate Z-scores from raw scores, find probabilities from Z-scores, and determine raw scores from Z-scores. Include standard normal distribution table integration and statistical explanations. | Codex | Math/Statistics/Z-Score Calculator page | YES | NEW | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Calculator structure exists but Z-score calculations and normal distribution lookups not functional |
+| REQ-20260119-012 | Standard Deviation Calculator Implementation | Implement complete standard deviation and variance calculator for data sets. Calculate population and sample standard deviation, variance, mean, and provide step-by-step calculations. Accept comma-separated data input with proper validation and formatting. | Codex | Math/Statistics/Standard Deviation page | YES | VERIFIED | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Test SD-TEST-U-1, SD-TEST-U-2 passed (26 tests); Calculator fully functional with population/sample modes |
+| REQ-20260119-013 | Statistics Calculator Implementation | Implement comprehensive statistics calculator for descriptive and basic inferential statistics. Calculate mean, median, mode, range, standard deviation, variance, percentiles, and quartiles. Support large data sets and provide detailed statistical analysis. | Codex | Math/Statistics/Statistics Calculator page | YES | VERIFIED | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Test STATS-TEST-U-1, STATS-TEST-U-2 passed (34 tests); Comprehensive statistics fully implemented |
+| REQ-20260119-014 | Z-Score Calculator Implementation | Implement Z-score standardization calculator for statistical analysis. Calculate Z-scores from raw scores, find probabilities from Z-scores, and determine raw scores from Z-scores. Include standard normal distribution table integration and statistical explanations. | Codex | Math/Statistics/Z-Score Calculator page | YES | VERIFIED | 2026-01-19 | requirements/build_rules/math/MATH_ADVANCED_RULES.md | Test ZSCORE-TEST-U-1, ZSCORE-TEST-U-2 passed (49 tests); Z-score calculations fully functional |
 
 Notes:
 
@@ -50,9 +50,9 @@ Notes:
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| NEW (FSM) | 6 | 35% |
+| NEW (FSM) | 3 | 18% |
 | UNVERIFIED (FSM) | 0 | 0% |
-| VERIFIED (FSM) | 8 | 47% |
+| VERIFIED (FSM) | 11 | 65% |
 | Legacy | 3 | 18% |
 | **Total Active** | **17** | **100%** |
 
@@ -62,7 +62,7 @@ Notes:
 
 | Category | Total | NEW | VERIFIED | Success Rate |
 |----------|-------|-----|----------|---------------|
-| Math Calculators | 10 | 6 | 4 | 40% |
+| Math Calculators | 10 | 3 | 7 | 70% |
 | Buy-to-Let | 1 | 0 | 1 | 100% |
 | Screenshot Optimization | 1 | 0 | 1 | 100% |
 | Percentage Calculator | 1 | 0 | 1 | 100% |
