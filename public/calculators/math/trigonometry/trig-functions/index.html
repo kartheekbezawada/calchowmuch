@@ -1,0 +1,71 @@
+<div id="calc-trig-functions">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compute all six trigonometric functions, see exact values, and visualize graphs.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="trig-angle">Angle Value</label>
+        <input id="trig-angle" type="number" value="30" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label id="trig-angle-unit">Angle Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="trig-angle-unit"
+          data-button-group="trig-angle-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="deg">
+            Degrees
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="rad">
+            Radians
+          </button>
+        </div>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="trig-graph-function">Graph Function</label>
+          <select id="trig-graph-function">
+            <option value="sin">sin(x)</option>
+            <option value="cos">cos(x)</option>
+            <option value="tan">tan(x)</option>
+            <option value="sec">sec(x)</option>
+            <option value="csc">csc(x)</option>
+            <option value="cot">cot(x)</option>
+          </select>
+        </div>
+        <div class="input-row">
+          <label for="trig-amplitude">Amplitude</label>
+          <input id="trig-amplitude" type="number" value="1" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="trig-period">Period</label>
+          <input id="trig-period" type="number" value="6.283" step="any" />
+        </div>
+      </div>
+      <span class="inline-note">Period uses radians for the graph scale (2*pi ~ 6.283).</span>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="trig-calc">
+      Calculate Functions
+    </button>
+
+    <div class="trig-panel">
+      <h3>Function Graph</h3>
+      <canvas id="trig-graph" class="graph-canvas" width="360" height="240"></canvas>
+    </div>
+
+    <div class="result" id="trig-result" aria-live="polite"></div>
+    <div class="result-detail" id="trig-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css');
+  @import url('/calculators/math/trigonometry/trig-functions/calculator.css');
+</style>

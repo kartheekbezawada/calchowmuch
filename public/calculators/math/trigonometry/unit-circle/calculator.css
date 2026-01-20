@@ -1,0 +1,12 @@
+#calc-unit-circle .result-grid {
+  margin-top: 12px;
+}
+
+#calc-unit-circle .result-card strong {
+  color: #1f2937;
+}
+
+#unit-circle-legend {
+  text-align: center;
+  margin-top: 8px;
+}

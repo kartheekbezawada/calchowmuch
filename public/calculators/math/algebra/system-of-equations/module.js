@@ -1,6 +1,7 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
-import { toNumber } from '/assets/js/core/validate.js';
+import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
+import { solveSystem2x2, solveSystem3x3 } from '/assets/js/core/algebra.js';
 
 const systemSizeGroup = setupButtonGroup(document.querySelector('[data-button-group="system-size"]'), {
   defaultValue: '2x2',
@@ -22,6 +23,16 @@ const detailDiv = document.querySelector('#system-detail');
 const graphContainer = document.querySelector('#system-graph-container');
 const graphCanvas = document.querySelector('#system-graph');
 const graphInfo = document.querySelector('#system-graph-info');
+
+function validateInputs(ids) {
+  const inputs = ids.map((id) => document.querySelector(id));
+  const invalid = inputs.find((input) => !hasMaxDigits(input.value, 12));
+  if (invalid) {
+    resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    return false;
+  }
+  return true;
+}
 
 function toggleSystemSize(size) {
   const system2x2 = document.querySelector('#system-2x2');
@@ -45,8 +56,14 @@ function solveSystem() {
   const method = solutionMethodGroup.getValue();
   
   if (systemSize === '2x2') {
+    if (!validateInputs(['#a11', '#a12', '#b1', '#a21', '#a22', '#b2'])) {
+      return;
+    }
     solve2x2System(method);
   } else {
+    if (!validateInputs(['#a11-3x3', '#a12-3x3', '#a13-3x3', '#b1-3x3', '#a21-3x3', '#a22-3x3', '#a23-3x3', '#b2-3x3', '#a31-3x3', '#a32-3x3', '#a33-3x3', '#b3-3x3'])) {
+      return;
+    }
     solve3x3System(method);
   }
 }
@@ -60,8 +77,8 @@ function solve2x2System(method) {
   const a22 = toNumber(document.querySelector('#a22').value, 4);
   const b2 = toNumber(document.querySelector('#b2').value, 11);
   
-  // Calculate determinant
-  const det = a11 * a22 - a12 * a21;
+  const solution = solveSystem2x2(a11, a12, b1, a21, a22, b2);
+  const det = solution.determinant;
   
   let solutionHTML = '';
   let detailHTML = '';
@@ -73,13 +90,8 @@ function solve2x2System(method) {
   detailHTML += `${formatNumber(a21)}x + ${formatNumber(a22)}y = ${formatNumber(b2)}`;
   detailHTML += `</div>`;
   
-  if (Math.abs(det) < 1e-10) {
-    // Check if system is inconsistent or dependent
-    const ratio1 = Math.abs(a21) > 1e-10 ? a11 / a21 : (Math.abs(a11) > 1e-10 ? Infinity : 0);
-    const ratio2 = Math.abs(a22) > 1e-10 ? a12 / a22 : (Math.abs(a12) > 1e-10 ? Infinity : 0);
-    const ratio3 = Math.abs(b2) > 1e-10 ? b1 / b2 : (Math.abs(b1) > 1e-10 ? Infinity : 0);
-    
-    if (Math.abs(ratio1 - ratio2) < 1e-10 && Math.abs(ratio1 - ratio3) < 1e-10) {
+  if (solution.type !== 'unique') {
+    if (solution.type === 'infinite') {
       solutionHTML = '<strong>Infinite Solutions:</strong><br>The system is dependent (same line).';
       detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = 0 and ratios are equal. The equations represent the same line.</div>`;
     } else {
@@ -87,9 +99,8 @@ function solve2x2System(method) {
       detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = 0 but ratios are not equal. The equations represent parallel lines.</div>`;
     }
   } else {
-    // Unique solution using Cramer's rule
-    const x = (b1 * a22 - b2 * a12) / det;
-    const y = (a11 * b2 - a21 * b1) / det;
+    const x = solution.solution.x;
+    const y = solution.solution.y;
     
     solutionHTML = `<strong>Unique Solution:</strong><br>`;
     solutionHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}<br>`;
@@ -194,8 +205,8 @@ function solve3x3System(method) {
   const a33 = toNumber(document.querySelector('#a33-3x3').value, 9);
   const b3 = toNumber(document.querySelector('#b3-3x3').value, 50);
   
-  // Calculate determinant of coefficient matrix
-  const det = a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
+  const solution = solveSystem3x3(a11, a12, a13, b1, a21, a22, a23, b2, a31, a32, a33, b3);
+  const det = solution.determinant;
   
   let solutionHTML = '';
   let detailHTML = '';
@@ -208,18 +219,20 @@ function solve3x3System(method) {
   detailHTML += `${formatNumber(a31)}x + ${formatNumber(a32)}y + ${formatNumber(a33)}z = ${formatNumber(b3)}`;
   detailHTML += `</div>`;
   
-  if (Math.abs(det) < 1e-10) {
+  if (solution.type !== 'unique') {
     solutionHTML = '<strong>No Unique Solution:</strong><br>The system is either inconsistent or has infinite solutions.';
     detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = ${formatNumber(det, { maximumFractionDigits: 10 })} ≈ 0. The system does not have a unique solution.</div>`;
   } else {
-    // Solve using Cramer's rule
-    const detX = b1 * (a22 * a33 - a23 * a32) - a12 * (b2 * a33 - a23 * b3) + a13 * (b2 * a32 - a22 * b3);
-    const detY = a11 * (b2 * a33 - a23 * b3) - b1 * (a21 * a33 - a23 * a31) + a13 * (a21 * b3 - b2 * a31);
-    const detZ = a11 * (a22 * b3 - b2 * a32) - a12 * (a21 * b3 - b2 * a31) + b1 * (a21 * a32 - a22 * a31);
-    
-    const x = detX / det;
-    const y = detY / det;
-    const z = detZ / det;
+    const { x, y, z } = solution.solution;
+    const detX = b1 * (a22 * a33 - a23 * a32)
+      - a12 * (b2 * a33 - a23 * b3)
+      + a13 * (b2 * a32 - a22 * b3);
+    const detY = a11 * (b2 * a33 - a23 * b3)
+      - b1 * (a21 * a33 - a23 * a31)
+      + a13 * (a21 * b3 - b2 * a31);
+    const detZ = a11 * (a22 * b3 - b2 * a32)
+      - a12 * (a21 * b3 - b2 * a31)
+      + b1 * (a21 * a32 - a22 * a31);
     
     solutionHTML = `<strong>Unique Solution:</strong><br>`;
     solutionHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}<br>`;

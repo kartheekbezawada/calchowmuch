@@ -1,5 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
-import { toNumber } from '/assets/js/core/validate.js';
+import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
+import { solveQuadratic } from '/assets/js/core/algebra.js';
 
 const aInput = document.querySelector('#quad-a');
 const bInput = document.querySelector('#quad-b');
@@ -50,19 +51,23 @@ function solveQuadratic() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
   graphContainer.style.display = 'none';
+
+  const invalidLength = [aInput, bInput, cInput].find((input) => !hasMaxDigits(input.value, 12));
+  if (invalidLength) {
+    resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    return;
+  }
   
   const a = toNumber(aInput.value, 1);
   const b = toNumber(bInput.value, 0);
   const c = toNumber(cInput.value, 0);
   
-  // Validation
-  if (a === 0) {
-    resultDiv.textContent = 'Error: Coefficient "a" cannot be zero in a quadratic equation.';
+  const solution = solveQuadratic(a, b, c);
+  if (solution.error) {
+    resultDiv.textContent = `Error: ${solution.error}`;
     return;
   }
-  
-  // Calculate discriminant
-  const discriminant = b * b - 4 * a * c;
+  const discriminant = solution.discriminant;
   
   let solutionsHTML = '';
   let detailHTML = '';
@@ -82,11 +87,9 @@ function solveQuadratic() {
   detailHTML += `<div class="discriminant-info">`;
   detailHTML += `<strong>Discriminant Analysis (Δ = ${formatNumber(discriminant)}):</strong><br>`;
   
-  if (discriminant > 0) {
-    // Two real solutions
-    const sqrtDiscriminant = Math.sqrt(discriminant);
-    const x1 = (-b + sqrtDiscriminant) / (2 * a);
-    const x2 = (-b - sqrtDiscriminant) / (2 * a);
+  if (solution.type === 'two-real') {
+    const x1 = solution.roots[0];
+    const x2 = solution.roots[1];
     
     solutionsHTML = `<strong>Two Real Solutions:</strong><br>`;
     solutionsHTML += `x₁ = ${formatNumber(x1, { maximumFractionDigits: 6 })}<br>`;
@@ -97,10 +100,8 @@ function solveQuadratic() {
     detailHTML += `x₂ = (-${formatNumber(b)} - √${formatNumber(discriminant)}) / (2 × ${formatNumber(a)}) = ${formatNumber(x2, { maximumFractionDigits: 6 })}`;
     
     drawGraph(a, b, c, [x1, x2], 'two-real');
-    
-  } else if (discriminant === 0) {
-    // One real solution (repeated root)
-    const x = -b / (2 * a);
+  } else if (solution.type === 'one-real') {
+    const x = solution.roots[0];
     
     solutionsHTML = `<strong>One Real Solution (Repeated Root):</strong><br>`;
     solutionsHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}`;
@@ -109,11 +110,9 @@ function solveQuadratic() {
     detailHTML += `x = -${formatNumber(b)} / (2 × ${formatNumber(a)}) = ${formatNumber(x, { maximumFractionDigits: 6 })}`;
     
     drawGraph(a, b, c, [x], 'one-real');
-    
   } else {
-    // Complex solutions
-    const realPart = -b / (2 * a);
-    const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+    const realPart = solution.roots[0].real;
+    const imaginaryPart = Math.abs(solution.roots[0].imaginary);
     
     solutionsHTML = `<strong>Two Complex Solutions:</strong><br>`;
     solutionsHTML += `x₁ = ${formatNumber(realPart, { maximumFractionDigits: 6 })} + ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i<br>`;

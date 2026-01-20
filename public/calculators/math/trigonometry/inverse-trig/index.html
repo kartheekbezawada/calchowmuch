@@ -1,0 +1,64 @@
+<div id="calc-inverse-trig">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compute arcsin, arccos, or arctan values, plus all solutions in a custom interval.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="inv-value">Input Value</label>
+        <input id="inv-value" type="number" value="0.5" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="inv-function">Inverse Function</label>
+        <select id="inv-function">
+          <option value="arcsin">arcsin(x)</option>
+          <option value="arccos">arccos(x)</option>
+          <option value="arctan">arctan(x)</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label id="inv-output-unit">Output Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="inv-output-unit"
+          data-button-group="inv-output-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="deg">
+            Degrees
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="rad">
+            Radians
+          </button>
+        </div>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="inv-interval-start">Interval Start</label>
+          <input id="inv-interval-start" type="number" value="-360" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="inv-interval-end">Interval End</label>
+          <input id="inv-interval-end" type="number" value="360" step="any" />
+        </div>
+      </div>
+      <span class="inline-note">Intervals follow the same unit as the output.</span>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="inv-calc">
+      Calculate Inverse Trig
+    </button>
+
+    <div class="result" id="inv-result" aria-live="polite"></div>
+    <div class="result-detail" id="inv-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css');
+  @import url('/calculators/math/trigonometry/inverse-trig/calculator.css');
+</style>

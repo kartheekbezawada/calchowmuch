@@ -19,6 +19,11 @@ Purpose: Advanced mathematical and statistical calculation tools including seque
 | REQ-20260119-012 | Standard Deviation Calculator | • SD-UI-1<br>• SD-UI-2<br>• SD-UI-3<br>• SD-CALC-1<br>• SD-CALC-2<br>• SD-CALC-3<br>• SD-VAL-1<br>• SD-VAL-2<br>• SD-OUT-1<br>• SD-OUT-2 | • SD-TEST-E2E-LOAD<br>• SD-TEST-E2E-NAV<br>• SD-TEST-E2E-WORKFLOW<br>• SD-TEST-E2E-MOBILE<br>• SD-TEST-E2E-A11Y<br>• SD-TEST-U-1<br>• SD-TEST-U-2 | 2026-01-19 |
 | REQ-20260119-013 | Statistics Calculator | • STATS-UI-1<br>• STATS-UI-2<br>• STATS-UI-3<br>• STATS-CALC-1<br>• STATS-CALC-2<br>• STATS-CALC-3<br>• STATS-CALC-4<br>• STATS-VAL-1<br>• STATS-VAL-2<br>• STATS-OUT-1<br>• STATS-OUT-2 | • STATS-TEST-E2E-LOAD<br>• STATS-TEST-E2E-NAV<br>• STATS-TEST-E2E-WORKFLOW<br>• STATS-TEST-E2E-MOBILE<br>• STATS-TEST-E2E-A11Y<br>• STATS-TEST-U-1<br>• STATS-TEST-U-2 | 2026-01-19 |
 | REQ-20260119-014 | Z-Score Calculator | • ZSCORE-UI-1<br>• ZSCORE-UI-2<br>• ZSCORE-UI-3<br>• ZSCORE-CALC-1<br>• ZSCORE-CALC-2<br>• ZSCORE-CALC-3<br>• ZSCORE-VAL-1<br>• ZSCORE-VAL-2<br>• ZSCORE-OUT-1<br>• ZSCORE-OUT-2 | • ZSCORE-TEST-E2E-LOAD<br>• ZSCORE-TEST-E2E-NAV<br>• ZSCORE-TEST-E2E-WORKFLOW<br>• ZSCORE-TEST-E2E-MOBILE<br>• ZSCORE-TEST-E2E-A11Y<br>• ZSCORE-TEST-U-1<br>• ZSCORE-TEST-U-2 | 2026-01-19 |
+| REQ-20260120-017 | Algebra Calculator Suite | • ALG-UI-1<br>• ALG-UI-2<br>• ALG-UI-3<br>• ALG-CALC-1<br>• ALG-CALC-2<br>• ALG-CALC-3<br>• ALG-CALC-4<br>• ALG-CALC-5<br>• ALG-VAL-1<br>• ALG-VAL-2<br>• ALG-OUT-1<br>• ALG-OUT-2<br>• ALG-EXPL-1<br>• ALG-GRAPH-1 | • ALG-TEST-E2E-LOAD<br>• ALG-TEST-E2E-NAV<br>• ALG-TEST-E2E-WORKFLOW<br>• ALG-TEST-E2E-MOBILE<br>• ALG-TEST-E2E-A11Y<br>• ALG-TEST-U-1<br>• ALG-TEST-U-2<br>• ALG-TEST-U-3<br>• ALG-TEST-U-4<br>• ALG-TEST-U-5 | 2026-01-20 |
+| REQ-20260120-018 | Trigonometry Calculator Suite | • TRIG-UI-1<br>• TRIG-UI-2<br>• TRIG-UI-3<br>• TRIG-CALC-1<br>• TRIG-CALC-2<br>• TRIG-CALC-3<br>• TRIG-CALC-4<br>• TRIG-CALC-5<br>• TRIG-VAL-1<br>• TRIG-VAL-2<br>• TRIG-OUT-1<br>• TRIG-OUT-2<br>• TRIG-EXPL-1<br>• TRIG-GRAPH-1 | • TRIG-TEST-E2E-LOAD<br>• TRIG-TEST-E2E-NAV<br>• TRIG-TEST-E2E-WORKFLOW<br>• TRIG-TEST-E2E-MOBILE<br>• TRIG-TEST-E2E-A11Y<br>• TRIG-TEST-U-1<br>• TRIG-TEST-U-2<br>• TRIG-TEST-U-3<br>• TRIG-TEST-U-4<br>• TRIG-TEST-U-5 | 2026-01-20 |
+| REQ-20260120-019 | Calculus Calculator Suite | • CALC-UI-1<br>• CALC-UI-2<br>• CALC-UI-3<br>• CALC-CALC-1<br>• CALC-CALC-2<br>• CALC-CALC-3<br>• CALC-CALC-4<br>• CALC-CALC-5<br>• CALC-VAL-1<br>• CALC-VAL-2<br>• CALC-OUT-1<br>• CALC-OUT-2<br>• CALC-EXPL-1<br>• CALC-GRAPH-1 | • CALC-TEST-E2E-LOAD<br>• CALC-TEST-E2E-NAV<br>• CALC-TEST-E2E-WORKFLOW<br>• CALC-TEST-E2E-MOBILE<br>• CALC-TEST-E2E-A11Y<br>• CALC-TEST-U-1<br>• CALC-TEST-U-2<br>• CALC-TEST-U-3<br>• CALC-TEST-U-4<br>• CALC-TEST-U-5 | 2026-01-20 |
+| REQ-20260120-020 | Logarithm Calculator Suite | • LOG-UI-1<br>• LOG-UI-2<br>• LOG-UI-3<br>• LOG-CALC-1<br>• LOG-CALC-2<br>• LOG-CALC-3<br>• LOG-CALC-4<br>• LOG-CALC-5<br>• LOG-VAL-1<br>• LOG-VAL-2<br>• LOG-OUT-1<br>• LOG-OUT-2<br>• LOG-EXPL-1<br>• LOG-GRAPH-1 | • LOG-TEST-E2E-LOAD<br>• LOG-TEST-E2E-NAV<br>• LOG-TEST-E2E-WORKFLOW<br>• LOG-TEST-E2E-MOBILE<br>• LOG-TEST-E2E-A11Y<br>• LOG-TEST-U-1<br>• LOG-TEST-U-2<br>• LOG-TEST-U-3<br>• LOG-TEST-U-4<br>• LOG-TEST-U-5 | 2026-01-20 |
+| REQ-20260120-021 | Advanced Statistics Suite | • ADVSTATS-UI-1<br>• ADVSTATS-UI-2<br>• ADVSTATS-UI-3<br>• ADVSTATS-CALC-1<br>• ADVSTATS-CALC-2<br>• ADVSTATS-CALC-3<br>• ADVSTATS-CALC-4<br>• ADVSTATS-CALC-5<br>• ADVSTATS-VAL-1<br>• ADVSTATS-VAL-2<br>• ADVSTATS-OUT-1<br>• ADVSTATS-OUT-2<br>• ADVSTATS-EXPL-1<br>• ADVSTATS-TABLE-1 | • ADVSTATS-TEST-E2E-LOAD<br>• ADVSTATS-TEST-E2E-NAV<br>• ADVSTATS-TEST-E2E-WORKFLOW<br>• ADVSTATS-TEST-E2E-MOBILE<br>• ADVSTATS-TEST-E2E-A11Y<br>• ADVSTATS-TEST-U-1<br>• ADVSTATS-TEST-U-2<br>• ADVSTATS-TEST-U-3<br>• ADVSTATS-TEST-U-4<br>• ADVSTATS-TEST-U-5 | 2026-01-20 |
 
 ---
 
@@ -1125,6 +1130,506 @@ All math calculators must satisfy:
 ### Quality Requirements
 - [ ] Code follows shared patterns and utilities
 - [ ] No duplicate logic across calculators
+
+---
+
+## ALGEBRA CALCULATOR SUITE RULES (REQ-20260120-017)
+
+### ALG-UI — User Interface Rules
+
+**ALG-UI-1**  
+All algebra calculators must provide clear input fields for coefficients and variables with proper labeling and validation.
+
+**ALG-UI-2**  
+Must display the mathematical equation/expression being solved in formatted display (e.g., "ax² + bx + c = 0").
+
+**ALG-UI-3**  
+Must include interactive graph visualization using HTML5 Canvas for applicable calculators (quadratic, linear systems, slope).
+
+### ALG-CALC — Calculation Rules
+
+**ALG-CALC-1: Quadratic Equation Solver**
+- Solve ax² + bx + c = 0 using quadratic formula: x = (-b ± √(b² - 4ac)) / (2a)
+- Calculate and display discriminant (Δ = b² - 4ac)
+- Handle three cases: two real roots (Δ > 0), one repeated root (Δ = 0), complex roots (Δ < 0)
+- Display step-by-step solution process
+- Graph parabola with vertex, axis of symmetry, and x-intercepts marked
+
+**ALG-CALC-2: System of Linear Equations**
+- Solve 2×2 systems using elimination, substitution, and matrix (Cramer's rule) methods
+- Solve 3×3 systems using Cramer's rule
+- Identify: unique solutions, no solution (inconsistent), infinite solutions (dependent)
+- Show step-by-step solution for each method
+- Graph 2×2 systems showing intersection point
+
+**ALG-CALC-3: Polynomial Operations**
+- Support addition, subtraction, multiplication, and division of polynomials
+- Parse polynomial input in standard form (e.g., "2x^3 + 3x^2 - x + 5")
+- Display polynomial division with quotient and remainder
+- Show step-by-step operations
+
+**ALG-CALC-4: Factoring Calculator**
+- Factor quadratic expressions (ax² + bx + c)
+- Recognize and factor: difference of squares (a² - b²), perfect square trinomials
+- Factor sum/difference of cubes (a³ ± b³)
+- Factor by grouping for 4-term polynomials
+- Extract greatest common factor (GCF)
+- Show step-by-step factoring process
+
+**ALG-CALC-5: Slope & Distance Calculator**
+- Calculate slope: m = (y₂ - y₁) / (x₂ - x₁)
+- Calculate distance: d = √((x₂ - x₁)² + (y₂ - y₁)²)
+- Calculate midpoint: ((x₁ + x₂)/2, (y₁ + y₂)/2)
+- Generate line equation in slope-intercept (y = mx + b), point-slope, and standard form
+- Find parallel and perpendicular line equations
+- Graph line with points marked
+
+### ALG-VAL — Validation Rules
+
+**ALG-VAL-1**  
+Validate coefficient 'a' is non-zero for quadratic equations; provide clear error message.
+
+**ALG-VAL-2**  
+Handle edge cases: vertical lines (undefined slope), division by zero, complex numbers.
+
+### ALG-OUT — Output Rules
+
+**ALG-OUT-1**  
+Display results with appropriate precision (6 decimal places for irrational numbers).
+
+**ALG-OUT-2**  
+Format complex numbers as "a + bi" with proper formatting.
+
+### ALG-EXPL — Explanation Rules
+
+**ALG-EXPL-1**  
+Provide textbook-level explanations including:
+- Mathematical formulas and derivations
+- Step-by-step solution process
+- Visual representations (graphs, diagrams)
+- Real-world application examples
+- Related concepts and further learning
+
+### ALG-GRAPH — Graphing Rules
+
+**ALG-GRAPH-1**  
+Interactive graphs must include:
+- Coordinate grid with labeled axes
+- Dynamic scaling based on solution range
+- Marked critical points (roots, vertex, intersection)
+- Color-coded elements with legend
+- Pan and zoom capability (optional)
+
+### ALG-TEST — Test Requirements
+
+**ALG-TEST-E2E-LOAD**: Verify all 5 algebra calculator pages load correctly  
+**ALG-TEST-E2E-NAV**: Verify navigation between algebra calculators works  
+**ALG-TEST-E2E-WORKFLOW**: Test complete calculation workflows for each calculator  
+**ALG-TEST-E2E-MOBILE**: Verify mobile responsiveness for all calculators  
+**ALG-TEST-E2E-A11Y**: Verify accessibility compliance  
+**ALG-TEST-U-1**: Quadratic solver unit tests (all discriminant cases, edge cases)  
+**ALG-TEST-U-2**: System of equations unit tests (2×2, 3×3, special cases)  
+**ALG-TEST-U-3**: Polynomial operations unit tests  
+**ALG-TEST-U-4**: Factoring calculator unit tests  
+**ALG-TEST-U-5**: Slope & distance unit tests
+
+---
+
+## TRIGONOMETRY CALCULATOR SUITE RULES (REQ-20260120-018)
+
+### TRIG-UI — User Interface Rules
+
+**TRIG-UI-1**  
+Provide angle input with degree/radian toggle for all trigonometry calculators.
+
+**TRIG-UI-2**  
+Include interactive unit circle visualization with clickable angle positions.
+
+**TRIG-UI-3**  
+Display triangle diagrams with labeled sides and angles for triangle-related calculators.
+
+### TRIG-CALC — Calculation Rules
+
+**TRIG-CALC-1: Unit Circle Calculator**
+- Display interactive unit circle with standard angle positions (0°, 30°, 45°, 60°, 90°, etc.)
+- Calculate sin, cos, tan for any angle input
+- Show reference angle calculation
+- Display exact values for special angles (√2/2, √3/2, 1/2, etc.)
+- Highlight quadrant and sign of each function
+
+**TRIG-CALC-2: Triangle Solver**
+- Solve triangles given: SSS, SAS, ASA, AAS, SSA configurations
+- Calculate all angles and sides
+- Determine which trigonometric laws to apply
+- Handle ambiguous case (SSA) with possible two solutions
+- Display triangle diagram with calculated values
+
+**TRIG-CALC-3: Trigonometric Functions**
+- Calculate all 6 trig functions: sin, cos, tan, sec, csc, cot
+- Support degree and radian input
+- Display exact values for special angles
+- Graph each function with adjustable period and amplitude
+- Show function relationships and identities
+
+**TRIG-CALC-4: Inverse Trig Functions**
+- Calculate arcsin, arccos, arctan with proper domain restrictions
+- Show principal value and explain range limitations
+- Provide all solutions within specified interval
+- Display on unit circle for visualization
+
+**TRIG-CALC-5: Law of Sines/Cosines Calculator**
+- Apply Law of Sines: a/sin(A) = b/sin(B) = c/sin(C)
+- Apply Law of Cosines: c² = a² + b² - 2ab·cos(C)
+- Determine which law is appropriate for given inputs
+- Show step-by-step solution process
+- Calculate area using various formulas (Heron's formula, ½ab·sin(C))
+
+### TRIG-VAL — Validation Rules
+
+**TRIG-VAL-1**  
+Validate angle inputs are within appropriate ranges; handle undefined values (tan 90°).
+
+**TRIG-VAL-2**  
+Validate triangle inequality theorem for triangle inputs.
+
+### TRIG-OUT — Output Rules
+
+**TRIG-OUT-1**  
+Display angles in both degrees and radians.
+
+**TRIG-OUT-2**  
+Show exact values (fractions, square roots) for special angles alongside decimal approximations.
+
+### TRIG-EXPL — Explanation Rules
+
+**TRIG-EXPL-1**  
+Include comprehensive explanations with:
+- Unit circle fundamentals
+- Trigonometric identities
+- Triangle solving methodology
+- SOHCAHTOA reference
+- Real-world applications (navigation, physics, engineering)
+
+### TRIG-GRAPH — Graphing Rules
+
+**TRIG-GRAPH-1**  
+- Interactive unit circle with angle visualization
+- Triangle diagram generator with accurate proportions
+- Trigonometric function graphs with adjustable parameters
+
+### TRIG-TEST — Test Requirements
+
+**TRIG-TEST-E2E-LOAD**: Verify all 5 trig calculator pages load correctly  
+**TRIG-TEST-E2E-NAV**: Verify navigation between trig calculators works  
+**TRIG-TEST-E2E-WORKFLOW**: Test complete calculation workflows  
+**TRIG-TEST-E2E-MOBILE**: Verify mobile responsiveness  
+**TRIG-TEST-E2E-A11Y**: Verify accessibility compliance  
+**TRIG-TEST-U-1**: Unit circle calculator tests  
+**TRIG-TEST-U-2**: Triangle solver tests (all configurations)  
+**TRIG-TEST-U-3**: Trig functions tests  
+**TRIG-TEST-U-4**: Inverse trig tests  
+**TRIG-TEST-U-5**: Law of sines/cosines tests
+
+---
+
+## CALCULUS CALCULATOR SUITE RULES (REQ-20260120-019)
+
+### CALC-UI — User Interface Rules
+
+**CALC-UI-1**  
+Provide function input field with support for common mathematical notation.
+
+**CALC-UI-2**  
+Include variable specification and evaluation point inputs.
+
+**CALC-UI-3**  
+Display formatted mathematical expressions using proper notation (integrals, limits, summations).
+
+### CALC-CALC — Calculation Rules
+
+**CALC-CALC-1: Derivative Calculator**
+- Calculate derivatives using: power rule, product rule, quotient rule, chain rule
+- Support common functions: polynomials, trig, exponential, logarithmic
+- Show step-by-step differentiation process
+- Calculate higher-order derivatives (f'', f''', etc.)
+- Graph function and derivative simultaneously
+
+**CALC-CALC-2: Integral Calculator**
+- Calculate indefinite integrals (antiderivatives)
+- Calculate definite integrals with numerical and analytical methods
+- Show integration techniques: substitution, parts, partial fractions
+- Display area under curve visualization
+- Always include constant of integration (+C) for indefinite integrals
+
+**CALC-CALC-3: Limit Calculator**
+- Calculate one-sided limits (left and right)
+- Calculate two-sided limits
+- Handle indeterminate forms (0/0, ∞/∞) using L'Hôpital's rule
+- Determine if limit exists, is infinite, or does not exist
+- Show algebraic manipulation steps
+
+**CALC-CALC-4: Series Convergence**
+- Test convergence using: ratio test, root test, integral test, comparison test
+- Calculate partial sums for convergent series
+- Determine radius and interval of convergence for power series
+- Graph partial sums approaching limit
+
+**CALC-CALC-5: Critical Points Finder**
+- Find critical points (f'(x) = 0 or undefined)
+- Classify using first derivative test (local max/min)
+- Classify using second derivative test (concavity)
+- Find inflection points (f''(x) = 0)
+- Identify global extrema on closed intervals
+- Graph function with all critical points marked
+
+### CALC-VAL — Validation Rules
+
+**CALC-VAL-1**  
+Parse and validate mathematical expressions correctly.
+
+**CALC-VAL-2**  
+Handle undefined points (division by zero, log of negative, etc.).
+
+### CALC-OUT — Output Rules
+
+**CALC-OUT-1**  
+Display derivatives and integrals in proper mathematical notation.
+
+**CALC-OUT-2**  
+Format step-by-step solutions with rule names and applications.
+
+### CALC-EXPL — Explanation Rules
+
+**CALC-EXPL-1**  
+Comprehensive explanations including:
+- Differentiation and integration rules with derivations
+- When to apply each technique
+- Conceptual understanding (rate of change, accumulated area)
+- Physical interpretations (velocity, acceleration, work)
+
+### CALC-GRAPH — Graphing Rules
+
+**CALC-GRAPH-1**  
+- Plot original function and derivative/integral together
+- Mark critical points, inflection points, extrema
+- Shade area under curve for definite integrals
+- Show tangent lines at specified points
+
+### CALC-TEST — Test Requirements
+
+**CALC-TEST-E2E-LOAD**: Verify all 5 calculus calculator pages load correctly  
+**CALC-TEST-E2E-NAV**: Verify navigation between calculus calculators works  
+**CALC-TEST-E2E-WORKFLOW**: Test complete calculation workflows  
+**CALC-TEST-E2E-MOBILE**: Verify mobile responsiveness  
+**CALC-TEST-E2E-A11Y**: Verify accessibility compliance  
+**CALC-TEST-U-1**: Derivative calculator tests (all rules)  
+**CALC-TEST-U-2**: Integral calculator tests  
+**CALC-TEST-U-3**: Limit calculator tests  
+**CALC-TEST-U-4**: Series convergence tests  
+**CALC-TEST-U-5**: Critical points finder tests
+
+---
+
+## LOGARITHM CALCULATOR SUITE RULES (REQ-20260120-020)
+
+### LOG-UI — User Interface Rules
+
+**LOG-UI-1**  
+Provide clear input for base and argument with proper labeling.
+
+**LOG-UI-2**  
+Include base selector with common options (e, 10, 2, custom).
+
+**LOG-UI-3**  
+Display logarithmic and exponential forms side by side.
+
+### LOG-CALC — Calculation Rules
+
+**LOG-CALC-1: Natural Log Calculator**
+- Calculate ln(x) with high precision
+- Show relationship: if y = ln(x) then e^y = x
+- Handle domain restrictions (x > 0)
+- Graph ln(x) with key points marked (1, e, e²)
+
+**LOG-CALC-2: Common Log Calculator**
+- Calculate log₁₀(x) for any positive x
+- Support arbitrary base logarithms: log_b(x)
+- Apply change of base formula: log_b(x) = ln(x)/ln(b)
+- Show scientific notation applications (orders of magnitude)
+
+**LOG-CALC-3: Logarithm Properties**
+- Demonstrate product rule: log(ab) = log(a) + log(b)
+- Demonstrate quotient rule: log(a/b) = log(a) - log(b)
+- Demonstrate power rule: log(a^n) = n·log(a)
+- Expand and condense logarithmic expressions
+- Show step-by-step simplification
+
+**LOG-CALC-4: Exponential Equations Solver**
+- Solve equations of form a^x = b using logarithms
+- Solve compound equations (e.g., 2^(x+1) = 3^(x-1))
+- Handle natural exponential equations (e^x = k)
+- Show algebraic steps with logarithm application
+
+**LOG-CALC-5: Log Scale Converter**
+- Convert between linear and logarithmic scales
+- Calculate decibels (dB) for sound/signal applications
+- Calculate pH from hydrogen ion concentration
+- Calculate earthquake magnitude (Richter scale)
+- Interactive scale comparison visualization
+
+### LOG-VAL — Validation Rules
+
+**LOG-VAL-1**  
+Validate logarithm argument is positive; provide clear error for invalid inputs.
+
+**LOG-VAL-2**  
+Validate base is positive and not equal to 1.
+
+### LOG-OUT — Output Rules
+
+**LOG-OUT-1**  
+Display results with appropriate precision and scientific notation options.
+
+**LOG-OUT-2**  
+Show both exact (symbolic) and decimal representations where applicable.
+
+### LOG-EXPL — Explanation Rules
+
+**LOG-EXPL-1**  
+Comprehensive explanations including:
+- Definition of logarithm as inverse of exponentiation
+- All logarithm properties with proofs
+- Change of base formula derivation
+- Real-world applications (pH, sound, earthquakes, compound interest)
+
+### LOG-GRAPH — Graphing Rules
+
+**LOG-GRAPH-1**  
+- Graph logarithmic functions with asymptote visualization
+- Compare different bases on same axes
+- Show exponential/logarithm inverse relationship
+
+### LOG-TEST — Test Requirements
+
+**LOG-TEST-E2E-LOAD**: Verify all 5 log calculator pages load correctly  
+**LOG-TEST-E2E-NAV**: Verify navigation between log calculators works  
+**LOG-TEST-E2E-WORKFLOW**: Test complete calculation workflows  
+**LOG-TEST-E2E-MOBILE**: Verify mobile responsiveness  
+**LOG-TEST-E2E-A11Y**: Verify accessibility compliance  
+**LOG-TEST-U-1**: Natural log tests  
+**LOG-TEST-U-2**: Common log tests  
+**LOG-TEST-U-3**: Log properties tests  
+**LOG-TEST-U-4**: Exponential equations tests  
+**LOG-TEST-U-5**: Log scale converter tests
+
+---
+
+## ADVANCED STATISTICS CALCULATOR SUITE RULES (REQ-20260120-021)
+
+### ADVSTATS-UI — User Interface Rules
+
+**ADVSTATS-UI-1**  
+Provide data input area for datasets (comma-separated, spreadsheet-like input).
+
+**ADVSTATS-UI-2**  
+Include significance level selector (α = 0.01, 0.05, 0.10) for hypothesis testing.
+
+**ADVSTATS-UI-3**  
+Display statistical tables (t-distribution, chi-square, F-distribution) where applicable.
+
+### ADVSTATS-CALC — Calculation Rules
+
+**ADVSTATS-CALC-1: Regression Analysis**
+- Perform linear regression (y = ax + b) with least squares method
+- Perform polynomial regression (quadratic, cubic)
+- Perform exponential and logarithmic regression
+- Calculate R² (coefficient of determination) and correlation coefficient
+- Display residual plots and analysis
+- Calculate prediction intervals and confidence intervals
+
+**ADVSTATS-CALC-2: ANOVA Calculator**
+- Perform one-way ANOVA for comparing group means
+- Perform two-way ANOVA for factorial designs
+- Calculate F-statistic and p-value
+- Generate complete ANOVA table (SS, df, MS, F, p)
+- Perform post-hoc tests (Tukey HSD, Bonferroni)
+- Provide interpretation guidelines
+
+**ADVSTATS-CALC-3: Hypothesis Testing**
+- One-sample t-test for means
+- Two-sample t-test (independent and paired)
+- Z-test for proportions
+- Chi-square test for independence
+- Display complete hypothesis testing protocol:
+  - State null and alternative hypotheses
+  - Calculate test statistic
+  - Determine critical value and p-value
+  - Make decision and interpret results
+
+**ADVSTATS-CALC-4: Correlation Calculator**
+- Calculate Pearson correlation coefficient (r)
+- Calculate Spearman rank correlation (ρ)
+- Calculate Kendall's tau (τ)
+- Test significance of correlation
+- Generate scatter plot with trend line
+- Display correlation matrix for multiple variables
+
+**ADVSTATS-CALC-5: Distribution Calculator**
+- Normal distribution: probabilities, percentiles, Z-scores
+- Student's t-distribution: critical values, probabilities
+- Chi-square distribution: critical values, probabilities
+- F-distribution: critical values for ANOVA
+- Display interactive distribution curves
+- Shade probability regions
+
+### ADVSTATS-VAL — Validation Rules
+
+**ADVSTATS-VAL-1**  
+Validate dataset has sufficient observations for statistical tests.
+
+**ADVSTATS-VAL-2**  
+Check assumptions for each test (normality, homogeneity of variance, independence).
+
+### ADVSTATS-OUT — Output Rules
+
+**ADVSTATS-OUT-1**  
+Display test statistics, degrees of freedom, p-values, and confidence intervals.
+
+**ADVSTATS-OUT-2**  
+Provide clear interpretation of statistical significance.
+
+### ADVSTATS-EXPL — Explanation Rules
+
+**ADVSTATS-EXPL-1**  
+Comprehensive explanations including:
+- When to use each statistical test
+- Assumptions and how to verify them
+- Interpretation of results in plain language
+- Common pitfalls and misconceptions
+- Effect size calculations and interpretation
+
+### ADVSTATS-TABLE — Table Rules
+
+**ADVSTATS-TABLE-1**  
+Include statistical lookup tables:
+- Standard normal (Z) table
+- Student's t critical values
+- Chi-square critical values
+- F-distribution critical values
+- Correlation significance tables
+
+### ADVSTATS-TEST — Test Requirements
+
+**ADVSTATS-TEST-E2E-LOAD**: Verify all 5 statistics calculator pages load correctly  
+**ADVSTATS-TEST-E2E-NAV**: Verify navigation between statistics calculators works  
+**ADVSTATS-TEST-E2E-WORKFLOW**: Test complete calculation workflows  
+**ADVSTATS-TEST-E2E-MOBILE**: Verify mobile responsiveness  
+**ADVSTATS-TEST-E2E-A11Y**: Verify accessibility compliance  
+**ADVSTATS-TEST-U-1**: Regression analysis tests  
+**ADVSTATS-TEST-U-2**: ANOVA tests  
+**ADVSTATS-TEST-U-3**: Hypothesis testing tests  
+**ADVSTATS-TEST-U-4**: Correlation tests  
+**ADVSTATS-TEST-U-5**: Distribution calculator tests
 - [ ] Error handling graceful and user-friendly
 - [ ] Mathematical notation accurate and consistent
 - [ ] Educational value appropriate for target users

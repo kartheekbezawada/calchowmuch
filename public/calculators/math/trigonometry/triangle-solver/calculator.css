@@ -1,0 +1,17 @@
+#calc-triangle-solver .input-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+#triangle-diagram-note {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.solution-summary {
+  margin-top: 12px;
+}
+
+.solution-summary h4 {
+  margin-bottom: 6px;
+  color: #1e40af;
+}

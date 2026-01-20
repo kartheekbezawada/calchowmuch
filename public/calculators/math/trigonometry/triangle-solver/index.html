@@ -1,0 +1,83 @@
+<div id="calc-triangle-solver">
+  <div class="calculator-ui">
+    <p class="helper">
+      Solve triangles using SSS, SAS, ASA, AAS, or SSA inputs with diagram support.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="triangle-type">Triangle Configuration</label>
+        <select id="triangle-type">
+          <option value="SSS">SSS (three sides)</option>
+          <option value="SAS">SAS (sides a, b and included angle C)</option>
+          <option value="ASA">ASA (angles A, B and side c)</option>
+          <option value="AAS">AAS (angles A, B and side a)</option>
+          <option value="SSA">SSA (sides a, b and angle A)</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label id="triangle-angle-unit">Angle Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="triangle-angle-unit"
+          data-button-group="triangle-angle-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="deg">
+            Degrees
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="rad">
+            Radians
+          </button>
+        </div>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-row" data-field="a">
+          <label for="triangle-a">Side a</label>
+          <input id="triangle-a" type="number" value="7" step="any" />
+        </div>
+        <div class="input-row" data-field="b">
+          <label for="triangle-b">Side b</label>
+          <input id="triangle-b" type="number" value="9" step="any" />
+        </div>
+        <div class="input-row" data-field="c">
+          <label for="triangle-c">Side c</label>
+          <input id="triangle-c" type="number" value="12" step="any" />
+        </div>
+        <div class="input-row" data-field="A">
+          <label for="triangle-A">Angle A</label>
+          <input id="triangle-A" type="number" value="35" step="any" />
+        </div>
+        <div class="input-row" data-field="B">
+          <label for="triangle-B">Angle B</label>
+          <input id="triangle-B" type="number" value="60" step="any" />
+        </div>
+        <div class="input-row" data-field="C">
+          <label for="triangle-C">Angle C</label>
+          <input id="triangle-C" type="number" value="85" step="any" />
+        </div>
+      </div>
+      <span class="inline-note" id="triangle-hint"></span>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="triangle-solve">
+      Solve Triangle
+    </button>
+
+    <div class="trig-panel">
+      <h3>Triangle Diagram</h3>
+      <canvas id="triangle-canvas" class="diagram-canvas" width="340" height="260"></canvas>
+      <p class="inline-note" id="triangle-diagram-note"></p>
+    </div>
+
+    <div class="result" id="triangle-result" aria-live="polite"></div>
+    <div class="result-detail" id="triangle-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css');
+  @import url('/calculators/math/trigonometry/triangle-solver/calculator.css');
+</style>
