@@ -1,0 +1,39 @@
+<div id="calc-factoring">
+  <div class="calculator-ui">
+    <p class="helper">Factor polynomials including quadratics, difference of squares, and higher-degree polynomials</p>
+
+    <div class="input-stack">
+      <div class="polynomial-input">
+        <label for="factor-poly">Polynomial to Factor (e.g., x^2 + 5x + 6, x^3 - 8, x^4 - 16)</label>
+        <input id="factor-poly" type="text" value="x^2 + 5x + 6" placeholder="Enter polynomial to factor..." />
+      </div>
+    </div>
+
+    <div class="factoring-methods">
+      <label>Factoring Methods to Try:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="method-gcf" checked> Greatest Common Factor</label>
+        <label><input type="checkbox" id="method-quadratic" checked> Quadratic Factoring</label>
+        <label><input type="checkbox" id="method-difference" checked> Difference of Squares</label>
+        <label><input type="checkbox" id="method-sum-difference" checked> Sum/Difference of Cubes</label>
+        <label><input type="checkbox" id="method-grouping" checked> Factor by Grouping</label>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="factor-calculate">
+      Factor Polynomial
+    </button>
+
+    <div class="result" id="factor-result" aria-live="polite"></div>
+    <div class="result-detail" id="factor-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="factor-graph-container" style="display: none;">
+      <h3>Polynomial and Factors Graph</h3>
+      <canvas id="factor-graph" width="400" height="300"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/factoring/calculator.css');
+</style>

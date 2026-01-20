@@ -1,0 +1,43 @@
+<div id="calc-polynomial">
+  <div class="calculator-ui">
+    <p class="helper">Perform operations on polynomials: addition, subtraction, multiplication, division</p>
+
+    <div class="operation-selector">
+      <label>Operation:</label>
+      <div class="button-group" role="group" data-button-group="poly-operation">
+        <button class="calculator-button secondary is-active" type="button" data-value="add" aria-pressed="true">Add</button>
+        <button class="calculator-button secondary" type="button" data-value="subtract" aria-pressed="false">Subtract</button>
+        <button class="calculator-button secondary" type="button" data-value="multiply" aria-pressed="false">Multiply</button>
+        <button class="calculator-button secondary" type="button" data-value="divide" aria-pressed="false">Divide</button>
+      </div>
+    </div>
+
+    <div class="input-stack">
+      <div class="polynomial-input">
+        <label for="poly1">Polynomial 1 (e.g., 2x^3 + 3x^2 - x + 5)</label>
+        <input id="poly1" type="text" value="2x^2 + 3x - 1" placeholder="Enter polynomial..." />
+      </div>
+      
+      <div class="polynomial-input">
+        <label for="poly2">Polynomial 2 (e.g., x^2 - 2x + 4)</label>
+        <input id="poly2" type="text" value="x^2 - x + 2" placeholder="Enter polynomial..." />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="calculate-poly">
+      Calculate
+    </button>
+
+    <div class="result" id="poly-result" aria-live="polite"></div>
+    <div class="result-detail" id="poly-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="poly-graph-container" style="display: none;">
+      <h3>Polynomial Graphs</h3>
+      <canvas id="poly-graph" width="400" height="300"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/polynomial-operations/calculator.css');
+</style>

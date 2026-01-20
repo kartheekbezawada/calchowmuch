@@ -1,0 +1,43 @@
+<div id="calc-slope-distance">
+  <div class="calculator-ui">
+    <p class="helper">Calculate slope, distance, midpoint, and line equations between two points</p>
+
+    <div class="input-stack">
+      <h3>Point 1</h3>
+      <div class="input-row">
+        <label for="x1">x₁</label>
+        <input id="x1" type="number" value="1" step="any" />
+      </div>
+      <div class="input-row">
+        <label for="y1">y₁</label>
+        <input id="y1" type="number" value="2" step="any" />
+      </div>
+      
+      <h3>Point 2</h3>
+      <div class="input-row">
+        <label for="x2">x₂</label>
+        <input id="x2" type="number" value="4" step="any" />
+      </div>
+      <div class="input-row">
+        <label for="y2">y₂</label>
+        <input id="y2" type="number" value="8" step="any" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="calculate-slope">
+      Calculate All Properties
+    </button>
+
+    <div class="result" id="slope-result" aria-live="polite"></div>
+    <div class="result-detail" id="slope-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="slope-graph-container" style="display: none;">
+      <h3>Line Graph</h3>
+      <canvas id="slope-graph" width="400" height="400"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/slope-distance/calculator.css');
+</style>

@@ -28,7 +28,33 @@
         {
           "id": "algebra",
           "name": "Algebra",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "quadratic-equation",
+              "name": "Quadratic Equation Solver",
+              "url": "#/calculators/quadratic-equation"
+            },
+            {
+              "id": "system-of-equations",
+              "name": "System of Linear Equations",
+              "url": "#/calculators/system-of-equations"
+            },
+            {
+              "id": "polynomial-operations",
+              "name": "Polynomial Operations",
+              "url": "#/calculators/polynomial-operations"
+            },
+            {
+              "id": "factoring",
+              "name": "Factoring Calculator",
+              "url": "#/calculators/factoring"
+            },
+            {
+              "id": "slope-distance",
+              "name": "Slope & Distance Calculator",
+              "url": "#/calculators/slope-distance"
+            }
+          ]
         },
         {
           "id": "trigonometry",

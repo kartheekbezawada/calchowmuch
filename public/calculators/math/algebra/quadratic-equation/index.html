@@ -1,0 +1,43 @@
+<div id="calc-quadratic">
+  <div class="calculator-ui">
+    <p class="helper">Solve quadratic equations of the form ax² + bx + c = 0</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="quad-a">Coefficient a (x²)</label>
+        <input id="quad-a" type="number" value="1" step="any" />
+      </div>
+      
+      <div class="input-row">
+        <label for="quad-b">Coefficient b (x)</label>
+        <input id="quad-b" type="number" value="0" step="any" />
+      </div>
+      
+      <div class="input-row">
+        <label for="quad-c">Coefficient c (constant)</label>
+        <input id="quad-c" type="number" value="0" step="any" />
+      </div>
+    </div>
+
+    <div class="equation-display" id="quad-equation">
+      <strong>Equation: </strong><span id="equation-text">x² + 0x + 0 = 0</span>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="quad-solve">
+      Solve Equation
+    </button>
+
+    <div class="result" id="quad-result" aria-live="polite"></div>
+    <div class="result-detail" id="quad-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="quad-graph-container" style="display: none;">
+      <h3>Parabola Graph</h3>
+      <canvas id="quad-graph" width="400" height="300"></canvas>
+      <div class="graph-info" id="quad-graph-info"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/quadratic-equation/calculator.css');
+</style>
