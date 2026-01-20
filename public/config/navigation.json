@@ -55,9 +55,29 @@
               "url": "#/calculators/mean-median-mode-range"
             },
             {
+              "id": "standard-deviation",
+              "name": "Standard Deviation Calculator",
+              "url": "#/calculators/standard-deviation"
+            },
+            {
+              "id": "statistics",
+              "name": "Statistics Calculator",
+              "url": "#/calculators/statistics"
+            },
+            {
               "id": "confidence-interval",
               "name": "Confidence Interval Calculator",
               "url": "#/calculators/confidence-interval"
+            },
+            {
+              "id": "z-score",
+              "name": "Z-Score Calculator",
+              "url": "#/calculators/z-score"
+            },
+            {
+              "id": "sample-size",
+              "name": "Sample Size Calculator",
+              "url": "#/calculators/sample-size"
             },
             {
               "id": "number-sequence",
