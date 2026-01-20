@@ -50,6 +50,16 @@
           "name": "Statistics",
           "calculators": [
             {
+              "id": "mean-median-mode-range",
+              "name": "Mean Median Mode Range Calculator",
+              "url": "#/calculators/mean-median-mode-range"
+            },
+            {
+              "id": "confidence-interval",
+              "name": "Confidence Interval Calculator",
+              "url": "#/calculators/confidence-interval"
+            },
+            {
               "id": "number-sequence",
               "name": "Number Sequence Calculator",
               "url": "#/calculators/number-sequence"
