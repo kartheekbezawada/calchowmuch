@@ -1,0 +1,92 @@
+<div id="calc-system-equations">
+  <div class="calculator-ui">
+    <p class="helper">Solve systems of linear equations using elimination, substitution, or matrix methods</p>
+
+    <div class="system-type-selector">
+      <label>System Size:</label>
+      <div class="button-group" role="group" data-button-group="system-size">
+        <button class="calculator-button secondary is-active" type="button" data-value="2x2" aria-pressed="true">2×2 System</button>
+        <button class="calculator-button secondary" type="button" data-value="3x3" aria-pressed="false">3×3 System</button>
+      </div>
+    </div>
+
+    <div id="equations-input">
+      <!-- 2x2 System -->
+      <div class="system-2x2" id="system-2x2">
+        <h3>Enter coefficients for the system:</h3>
+        <div class="equation-row">
+          <input type="number" id="a11" value="1" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a12" value="2" step="any" class="coeff-input">
+          <span>y =</span>
+          <input type="number" id="b1" value="5" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a21" value="3" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a22" value="4" step="any" class="coeff-input">
+          <span>y =</span>
+          <input type="number" id="b2" value="11" step="any" class="coeff-input">
+        </div>
+      </div>
+
+      <!-- 3x3 System (hidden by default) -->
+      <div class="system-3x3" id="system-3x3" style="display: none;">
+        <h3>Enter coefficients for the system:</h3>
+        <div class="equation-row">
+          <input type="number" id="a11-3x3" value="1" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a12-3x3" value="2" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a13-3x3" value="3" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b1-3x3" value="14" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a21-3x3" value="4" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a22-3x3" value="5" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a23-3x3" value="6" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b2-3x3" value="32" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a31-3x3" value="7" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a32-3x3" value="8" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a33-3x3" value="9" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b3-3x3" value="50" step="any" class="coeff-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-method-selector">
+      <label>Solution Method:</label>
+      <div class="button-group" role="group" data-button-group="solution-method">
+        <button class="calculator-button secondary is-active" type="button" data-value="elimination" aria-pressed="true">Elimination</button>
+        <button class="calculator-button secondary" type="button" data-value="substitution" aria-pressed="false">Substitution</button>
+        <button class="calculator-button secondary" type="button" data-value="matrix" aria-pressed="false">Matrix</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="solve-system">
+      Solve System
+    </button>
+
+    <div class="result" id="system-result" aria-live="polite"></div>
+    <div class="result-detail" id="system-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="system-graph-container" style="display: none;">
+      <h3>Graphical Solution (2×2 systems only)</h3>
+      <canvas id="system-graph" width="400" height="400"></canvas>
+      <div class="graph-info" id="system-graph-info"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/system-of-equations/calculator.css');
+</style>

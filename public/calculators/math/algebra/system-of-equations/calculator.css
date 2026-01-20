@@ -1,0 +1,132 @@
+/* System of Linear Equations Calculator Specific Styles */
+
+.system-type-selector, .solution-method-selector {
+  margin: 16px 0;
+}
+
+.system-type-selector label, .solution-method-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.equation-row {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.coeff-input {
+  width: 60px;
+  margin: 0 8px;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.coeff-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.equation-row span {
+  color: #1e40af;
+  margin: 0 4px;
+}
+
+.system-2x2 h3, .system-3x3 h3 {
+  margin: 0 0 16px 0;
+  color: #1e40af;
+  text-align: center;
+}
+
+.solution-steps {
+  background: #fefce8;
+  border: 1px solid #fbbf24;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.solution-steps h4 {
+  margin: 0 0 12px 0;
+  color: #92400e;
+}
+
+.solution-steps ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.solution-steps li {
+  margin: 8px 0;
+  font-family: 'Courier New', monospace;
+  line-height: 1.5;
+}
+
+.matrix-display {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 12px 0;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+
+.matrix-display table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.matrix-display td {
+  padding: 4px 8px;
+  text-align: center;
+  border: 1px solid #cbd5e1;
+}
+
+.graph-container {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.graph-container h3 {
+  margin: 0 0 12px 0;
+  color: #1e40af;
+  text-align: center;
+}
+
+#system-graph {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: white;
+}
+
+.graph-info {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.system-type {
+  background: #ecfccb;
+  border: 1px solid #84cc16;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.system-type strong {
+  color: #365314;
+}
