@@ -1,1 +1,35 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
+
+/* Memory section styles */
+.memory-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #e2e8f0);
+}
+
+.memory-indicator {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: var(--accent-color, #3b82f6);
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.memory-buttons {
+  gap: 0.5rem;
+}
+
+.memory-buttons .calculator-button {
+  min-width: 50px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.memory-value {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted, #64748b);
+}
