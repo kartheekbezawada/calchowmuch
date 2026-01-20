@@ -1,34 +1,9 @@
 import { describe, it, expect } from 'vitest';
-
-/**
- * Confidence Interval calculation functions (matching module.js logic)
- */
-
-// Calculate confidence interval for proportion
-function calculateProportionCI(phatPercent, n, z) {
-  const phat = phatPercent / 100;
-  const se = Math.sqrt((phat * (1 - phat)) / n);
-  const me = z * se;
-  const lower = Math.max(0, phat - me);
-  const upper = Math.min(1, phat + me);
-  return { lower, upper, se, me };
-}
-
-// Calculate confidence interval for mean with known sigma
-function calculateMeanCI(xbar, sigma, n, z) {
-  const se = sigma / Math.sqrt(n);
-  const me = z * se;
-  const lower = xbar - me;
-  const upper = xbar + me;
-  return { lower, upper, se, me };
-}
-
-// Z-values for different confidence levels
-const Z_VALUES = {
-  '90%': 1.645,
-  '95%': 1.96,
-  '99%': 2.576,
-};
+import {
+  calculateProportionCI,
+  calculateMeanCI,
+  Z_VALUES,
+} from '../../public/assets/js/core/stats.js';
 
 /**
  * CI-TEST-U-1 - Confidence Interval Unit Tests

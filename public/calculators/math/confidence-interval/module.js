@@ -1,6 +1,7 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { toNumber } from '/assets/js/core/validate.js';
+import { calculateProportionCI, calculateMeanCI, Z_VALUES } from '/assets/js/core/stats.js';
 
 const modeGroup = document.querySelector('[data-button-group="ci-mode"]');
 const confidenceGroup = document.querySelector('[data-button-group="ci-confidence"]');
@@ -66,17 +67,7 @@ function calculate() {
       return;
     }
 
-    const phat = phatPercent / 100;
-
-    // Standard error: sqrt(p * (1 - p) / n)
-    const se = Math.sqrt((phat * (1 - phat)) / n);
-
-    // Margin of error: z * se
-    const me = z * se;
-
-    // Confidence interval
-    const lower = Math.max(0, phat - me);
-    const upper = Math.min(1, phat + me);
+    const { lower, upper, se, me } = calculateProportionCI(phatPercent, n, z);
 
     resultDiv.innerHTML = `<strong>${confidenceLabel} Confidence Interval:</strong> ${formatPercent(lower * 100, opts)} to ${formatPercent(upper * 100, opts)}`;
 
@@ -102,15 +93,7 @@ function calculate() {
       return;
     }
 
-    // Standard error: sigma / sqrt(n)
-    const se = sigma / Math.sqrt(n);
-
-    // Margin of error: z * se
-    const me = z * se;
-
-    // Confidence interval
-    const lower = xbar - me;
-    const upper = xbar + me;
+    const { lower, upper, se, me } = calculateMeanCI(xbar, sigma, n, z);
 
     resultDiv.innerHTML = `<strong>${confidenceLabel} Confidence Interval:</strong> ${formatNumber(lower, opts)} to ${formatNumber(upper, opts)}`;
 

@@ -266,3 +266,45 @@ export function zScore(x, mu, sigma) {
   }
   return (x - mu) / sigma;
 }
+
+/**
+ * Z-values for common confidence levels.
+ * @type {Object.<string, number>}
+ */
+export const Z_VALUES = {
+  '90%': 1.645,
+  '95%': 1.96,
+  '99%': 2.576,
+};
+
+/**
+ * Calculate confidence interval for a population proportion.
+ * @param {number} phatPercent - Sample proportion as a percentage (0-100)
+ * @param {number} n - Sample size
+ * @param {number} z - Z-value for confidence level
+ * @returns {{ lower: number, upper: number, se: number, me: number }} Confidence interval bounds, standard error, and margin of error
+ */
+export function calculateProportionCI(phatPercent, n, z) {
+  const phat = phatPercent / 100;
+  const se = Math.sqrt((phat * (1 - phat)) / n);
+  const me = z * se;
+  const lower = Math.max(0, phat - me);
+  const upper = Math.min(1, phat + me);
+  return { lower, upper, se, me };
+}
+
+/**
+ * Calculate confidence interval for a population mean with known standard deviation.
+ * @param {number} xbar - Sample mean
+ * @param {number} sigma - Population standard deviation
+ * @param {number} n - Sample size
+ * @param {number} z - Z-value for confidence level
+ * @returns {{ lower: number, upper: number, se: number, me: number }} Confidence interval bounds, standard error, and margin of error
+ */
+export function calculateMeanCI(xbar, sigma, n, z) {
+  const se = sigma / Math.sqrt(n);
+  const me = z * se;
+  const lower = xbar - me;
+  const upper = xbar + me;
+  return { lower, upper, se, me };
+}
