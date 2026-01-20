@@ -320,3 +320,185 @@ export function calculateMeanCI(xbar, sigma, n, z) {
   const upper = xbar + me;
   return { lower, upper, se, me };
 }
+
+const SEQ_EPSILON = 1e-9;
+
+function nearlyEqual(a, b, epsilon = SEQ_EPSILON) {
+  return Math.abs(a - b) <= epsilon;
+}
+
+export function detectArithmeticSequence(terms) {
+  if (!Array.isArray(terms) || terms.length < 2) {
+    return null;
+  }
+  const d = terms[1] - terms[0];
+  for (let i = 2; i < terms.length; i++) {
+    if (!nearlyEqual(terms[i] - terms[i - 1], d)) {
+      return null;
+    }
+  }
+  return d;
+}
+
+export function detectGeometricSequence(terms) {
+  if (!Array.isArray(terms) || terms.length < 2) {
+    return null;
+  }
+  if (terms.every((value) => nearlyEqual(value, terms[0]))) {
+    return 1;
+  }
+  if (nearlyEqual(terms[0], 0)) {
+    return null;
+  }
+  const r = terms[1] / terms[0];
+  for (let i = 2; i < terms.length; i++) {
+    if (nearlyEqual(terms[i - 1], 0)) {
+      return null;
+    }
+    if (!nearlyEqual(terms[i] / terms[i - 1], r)) {
+      return null;
+    }
+  }
+  return r;
+}
+
+export function analyzeSequence(terms) {
+  if (!Array.isArray(terms) || terms.length < 3) {
+    return { type: 'invalid' };
+  }
+  if (terms.every((value) => nearlyEqual(value, terms[0]))) {
+    return { type: 'constant', firstTerm: terms[0], difference: 0, ratio: 1 };
+  }
+  const difference = detectArithmeticSequence(terms);
+  if (difference !== null) {
+    return { type: 'arithmetic', firstTerm: terms[0], difference };
+  }
+  const ratio = detectGeometricSequence(terms);
+  if (ratio !== null) {
+    return { type: 'geometric', firstTerm: terms[0], ratio };
+  }
+  return { type: 'neither' };
+}
+
+export function nthTermArithmetic(a1, d, n) {
+  return a1 + (n - 1) * d;
+}
+
+export function nthTermGeometric(a1, r, n) {
+  return a1 * Math.pow(r, n - 1);
+}
+
+export function sumArithmetic(a1, d, n) {
+  return (n / 2) * (2 * a1 + (n - 1) * d);
+}
+
+export function sumGeometric(a1, r, n) {
+  if (nearlyEqual(r, 1)) {
+    return a1 * n;
+  }
+  return a1 * (1 - Math.pow(r, n)) / (1 - r);
+}
+
+export function generateSequenceTerms(a1, param, count, type) {
+  const terms = [];
+  for (let i = 1; i <= count; i++) {
+    const term = type === 'geometric'
+      ? nthTermGeometric(a1, param, i)
+      : nthTermArithmetic(a1, param, i);
+    terms.push(term);
+  }
+  return terms;
+}
+
+export function probabilityFromOutcomes(favorable, total) {
+  if (!Number.isFinite(favorable) || !Number.isFinite(total) || total <= 0 || favorable < 0 || favorable > total) {
+    return null;
+  }
+  return favorable / total;
+}
+
+export function probabilityAndIndependent(pA, pB) {
+  if (!Number.isFinite(pA) || !Number.isFinite(pB)) {
+    return null;
+  }
+  return pA * pB;
+}
+
+export function probabilityOrIndependent(pA, pB) {
+  if (!Number.isFinite(pA) || !Number.isFinite(pB)) {
+    return null;
+  }
+  return pA + pB - pA * pB;
+}
+
+export function probabilityComplement(pA) {
+  if (!Number.isFinite(pA)) {
+    return null;
+  }
+  return 1 - pA;
+}
+
+export function conditionalProbability(joint, pB) {
+  if (!Number.isFinite(joint) || !Number.isFinite(pB) || pB <= 0) {
+    return null;
+  }
+  return joint / pB;
+}
+
+export function bayesProbability(pA, pBgivenA, pB) {
+  if (!Number.isFinite(pA) || !Number.isFinite(pBgivenA) || !Number.isFinite(pB) || pB <= 0) {
+    return null;
+  }
+  return (pBgivenA * pA) / pB;
+}
+
+export function binomialProbability(n, k, p) {
+  if (!Number.isInteger(n) || !Number.isInteger(k) || n < 0 || k < 0 || k > n) {
+    return null;
+  }
+  if (!Number.isFinite(p) || p < 0 || p > 1) {
+    return null;
+  }
+  const kEff = Math.min(k, n - k);
+  let coeff = 1;
+  for (let i = 1; i <= kEff; i++) {
+    coeff *= (n - kEff + i) / i;
+  }
+  return coeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
+}
+
+function erf(x) {
+  const sign = x >= 0 ? 1 : -1;
+  const absX = Math.abs(x);
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
+  const t = 1 / (1 + p * absX);
+  const y = 1 - (((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t) * Math.exp(-absX * absX);
+  return sign * y;
+}
+
+export function normalCdf(x) {
+  return 0.5 * (1 + erf(x / Math.SQRT2));
+}
+
+export function normalApproxBinomialProbability(n, k, p) {
+  if (!Number.isInteger(n) || !Number.isInteger(k) || n < 0 || k < 0 || k > n) {
+    return null;
+  }
+  if (!Number.isFinite(p) || p < 0 || p > 1) {
+    return null;
+  }
+  const mean = n * p;
+  const variance = n * p * (1 - p);
+  if (variance === 0) {
+    return null;
+  }
+  const sd = Math.sqrt(variance);
+  const lower = (k - 0.5 - mean) / sd;
+  const upper = (k + 0.5 - mean) / sd;
+  return normalCdf(upper) - normalCdf(lower);
+}

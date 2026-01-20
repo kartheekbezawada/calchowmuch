@@ -4,6 +4,17 @@
 
     <div class="input-stack">
       <div class="input-row">
+        <label for="seq-terms">Sequence Terms</label>
+        <textarea
+          id="seq-terms"
+          rows="3"
+          placeholder="Enter at least 3 terms (e.g., 2, 4, 6, 8, 10)"
+        >
+2, 4, 6, 8, 10</textarea
+        >
+      </div>
+
+      <div class="input-row">
         <label id="seq-type-label">Sequence Type</label>
         <div
           class="button-group"
@@ -14,8 +25,16 @@
           <button
             class="calculator-button secondary is-active"
             type="button"
-            data-value="arithmetic"
+            data-value="auto"
             aria-pressed="true"
+          >
+            Auto Detect
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="arithmetic"
+            aria-pressed="false"
           >
             Arithmetic
           </button>
@@ -28,21 +47,6 @@
             Geometric
           </button>
         </div>
-      </div>
-
-      <div class="input-row">
-        <label for="seq-a1">First Term (a1)</label>
-        <input id="seq-a1" type="number" value="2" step="any" />
-      </div>
-
-      <div class="input-row" id="seq-d-row">
-        <label for="seq-d">Common Difference (d)</label>
-        <input id="seq-d" type="number" value="3" step="any" />
-      </div>
-
-      <div class="input-row" id="seq-r-row" style="display: none">
-        <label for="seq-r">Common Ratio (r)</label>
-        <input id="seq-r" type="number" value="2" step="any" />
       </div>
 
       <div class="input-row">

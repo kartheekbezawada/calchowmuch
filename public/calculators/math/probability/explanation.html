@@ -21,35 +21,43 @@
   <h3>Operations Available</h3>
   <ul>
     <li><strong>Single Event P(A):</strong> The basic probability of event A.</li>
-    <li><strong>Complement:</strong> The probability of A NOT happening, equal to 1 - P(A).</li>
     <li>
       <strong>AND (Independent):</strong> The probability of both A and B occurring when they are
       independent.
     </li>
     <li>
-      <strong>OR (Independent):</strong> The probability of at least one of A or B occurring when
-      they are independent.
+      <strong>OR (Combined Events):</strong> The probability of at least one of A or B occurring,
+      with optional overlap input.
     </li>
+    <li><strong>Conditional:</strong> P(A|B) and P(B|A) from overlap and base rates.</li>
+    <li><strong>Bayes:</strong> Update P(A|B) using P(B|A), P(A), and P(B).</li>
+    <li><strong>Distribution:</strong> Binomial probability and normal approximation.</li>
   </ul>
 </section>
 
 <section>
   <h3>Input Definitions</h3>
   <ul>
+    <li><strong>Favorable / Total:</strong> Used for single-event probability.</li>
     <li><strong>P(A):</strong> The probability of event A occurring, as a percentage (0-100%).</li>
     <li>
       <strong>P(B):</strong> The probability of event B occurring, as a percentage (0-100%). Only
-      needed for AND/OR operations.
+      needed for AND/OR/Conditional/Bayes operations.
     </li>
+    <li><strong>P(A and B):</strong> The overlap between events (used for OR and Conditional).</li>
+    <li><strong>P(B|A):</strong> The probability of B given A (Bayes mode).</li>
+    <li><strong>n, k, p:</strong> Binomial trials, successes, and success probability.</li>
   </ul>
 </section>
 
 <section>
   <h3>Formulas</h3>
-  <p><strong>Single Event:</strong> P(A) = probability as decimal</p>
-  <p><strong>Complement:</strong> P(not A) = 1 - P(A)</p>
+  <p><strong>Single Event:</strong> P(E) = favorable / total</p>
   <p><strong>AND (Independent):</strong> P(A and B) = P(A) × P(B)</p>
-  <p><strong>OR (Independent):</strong> P(A or B) = P(A) + P(B) - P(A) × P(B)</p>
+  <p><strong>OR (Combined):</strong> P(A or B) = P(A) + P(B) - P(A and B)</p>
+  <p><strong>Conditional:</strong> P(A|B) = P(A and B) / P(B)</p>
+  <p><strong>Bayes:</strong> P(A|B) = P(B|A) × P(A) / P(B)</p>
+  <p><strong>Binomial:</strong> P(X = k) = C(n, k) × p^k × (1-p)^(n-k)</p>
 </section>
 
 <section>
@@ -77,28 +85,14 @@
 </section>
 
 <section>
-  <h3>Worked Example (Complement)</h3>
-  <p>Using: P(A) = 30%</p>
-  <ol>
-    <li>Convert to decimal: P(A) = 0.30</li>
-    <li>Apply formula: P(not A) = 1 - P(A)</li>
-    <li>Calculate: 1 - 0.30 = 0.70</li>
-    <li>Result: 0.70 or 70%</li>
-  </ol>
-  <p>There is a 70% chance that event A does NOT occur.</p>
-</section>
-
-<section>
   <h3>Important Notes</h3>
   <ul>
     <li>
       <strong>Independence:</strong> These formulas assume events are independent (one event doesn't
       affect the other).
     </li>
-    <li>For dependent events, you need conditional probability formulas not covered here.</li>
-    <li>
-      The OR formula accounts for the overlap - we subtract P(A)×P(B) to avoid counting it twice.
-    </li>
+    <li>Conditional and Bayes modes cover dependent event relationships.</li>
+    <li>The OR formula subtracts overlap to avoid double-counting.</li>
   </ul>
 </section>
 
