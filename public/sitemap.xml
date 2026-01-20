@@ -44,6 +44,36 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/algebra/quadratic-equation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/algebra/system-of-equations/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/algebra/polynomial-operations/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/algebra/factoring/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/algebra/slope-distance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Statistics Calculators -->
   <url>
     <loc>https://calchowmuch.com/calculators/math/standard-deviation/</loc>

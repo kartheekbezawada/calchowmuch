@@ -19,6 +19,7 @@ This document defines SEO requirements and tracks SEO compliance for FSM runs.
 | SEO-PENDING-REQ-20260119-008 | REQ-20260119-008 | Math/Advanced/Number Sequence page | PASS | Calculator logic/UI updates only; no SEO markup changes |
 | SEO-PENDING-REQ-20260119-009 | REQ-20260119-009 | Math/Advanced/Permutation Combination page | PASS | Calculator logic/UI updates only; no SEO markup changes |
 | SEO-PENDING-REQ-20260119-010 | REQ-20260119-010 | Math/Advanced/Probability Calculator page | PASS | Calculator logic/UI updates only; no SEO markup changes |
+| SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra calculator suite | PASS | New calculator pages listed in navigation, index, and sitemap |
 | SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra/* (5 calculator pages) | PENDING | New Algebra Calculator Suite: Quadratic, System of Equations, Polynomial, Factoring, Slope & Distance. Requires meta tags, structured data, and sitemaps for 5 new pages. |
 | SEO-PENDING-REQ-20260120-018 | REQ-20260120-018 | Math/Trigonometry/* (5 calculator pages) | PENDING | New Trigonometry Calculator Suite: Unit Circle, Triangle Solver, Trig Functions, Inverse Trig, Law of Sines/Cosines. Requires meta tags, structured data, and sitemaps for 5 new pages. |
 | SEO-PENDING-REQ-20260120-019 | REQ-20260120-019 | Math/Calculus/* (5 calculator pages) | PENDING | New Calculus Calculator Suite: Derivative, Integral, Limit, Series, Critical Points. Requires meta tags, structured data, and sitemaps for 5 new pages. |
