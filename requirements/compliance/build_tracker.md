@@ -1,5 +1,17 @@
 # Build Tracker
 
+## Tracker Contract (No Duplicates)
+
+**Uniqueness rule:** Each `BUILD-...` ID MUST appear **exactly once** in the table.  
+**Lifecycle rule:** When a build finishes, **edit the existing RUNNING row** (fill End Time + final Status). **Do not add a second row** for the same Build ID.  
+**No-orphans rule:** A requirement cannot be marked VERIFIED unless there are **zero** RUNNING rows for that requirement (close them as ABORTED if needed).
+
+**Allowed Status values:** RUNNING, PASS, FAIL, ABORTED  
+**Build ID format:** `BUILD-YYYYMMDD-HHMMSS` (UTC) — generate a **new** Build ID for every retry/run.
+
+---
+
+
 This document is the system of record for FSM build runs.
 
 ## FSM Build Status Definitions
@@ -105,3 +117,11 @@ Notes:
 ```markdown
 | BUILD-YYYYMMDD-HHMMSS | REQ-YYYYMMDD-### | [Human] | YYYY-MM-DD HH:MM:SS | RUNNING | 1 | [Artifacts/Logs] | [Notes] |
 ```
+
+## Template (New Build Row)
+
+```markdown
+| BUILD-YYYYMMDD-HHMMSS | REQ-YYYYMMDD-### | [Owner/Agent] | [Start UTC] | [End UTC] | RUNNING/PASS/FAIL/ABORTED | [Command(s)] | [Artifacts / logs path] | [Notes] |
+```
+
+**Close the row:** replace `RUNNING` with final status and fill `End UTC` when done.

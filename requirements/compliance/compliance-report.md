@@ -1,5 +1,22 @@
 # Final Compliance Report
 
+## Tracker Contract (Must Be Filled)
+
+**This file is the release gate.** If a requirement does not have a row here, it is treated as **NOT VERIFIED**.
+
+**Uniqueness rule:** **One row per Requirement ID.** Update the existing row as the requirement moves through build/test/SEO.  
+**No-orphans rule:** No `RUNNING` entries are allowed in Build/Test trackers when `Overall Compliance = PASS`.
+
+**Overall Compliance = PASS** only if:
+- Requirement Status = VERIFIED
+- Build Status = PASS
+- Test Status = PASS (or SKIPPED only when the workflow allows)
+- SEO Status = PASS (or N/A)
+- Universal Requirements Followed = PASS (with rule IDs referenced)
+
+---
+
+
 This is the master compliance verification matrix showing complete traceability from requirements through build, testing, SEO, and universal requirements validation.
 
 ---
@@ -129,3 +146,9 @@ Note: Summary metrics currently reflect legacy backlog data unless the FSM table
   - [seo_requirements.md](seo_requirements.md)
 - All violations must reference specific rule IDs per DC-0.3
 - See [WORKFLOW.md](WORKFLOW.md) for complete workflow documentation
+
+## Template (New Compliance Row)
+
+```markdown
+| REQ-YYYYMMDD-### | NEW/UNVERIFIED/VERIFIED | BUILD-... | RUNNING/PASS/FAIL/ABORTED | TEST-... | RUNNING/PASS/FAIL/SKIPPED/ABORTED | SEO-REQ-... / SEO-N/A | PENDING/PASS/FAIL | PASS/FAIL (list rule IDs) | PASS/FAIL | [Evidence/Notes] |
+```
