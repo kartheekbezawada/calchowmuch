@@ -8,9 +8,14 @@ const buttons = document.querySelectorAll('[data-operation]');
 const resetButton = document.querySelector('#basic-reset');
 const addInputButton = document.querySelector('#basic-add-input');
 const removeInputButton = document.querySelector('#basic-remove-input');
+const memoryButtons = document.querySelectorAll('[data-memory]');
+const memoryIndicator = document.querySelector('#basic-memory-indicator');
+const memoryValueDisplay = document.querySelector('#basic-memory-value');
 
 const defaultValues = [12, 8];
 let activeOperation = 'add';
+let memoryValue = 0;
+let lastResult = 0;
 
 const operations = {
   add: {
@@ -73,12 +78,81 @@ function updateResult(operationKey) {
 
   if (output === null) {
     result.textContent = "Result: Division by zero isn't possible.";
+    lastResult = 0;
     return;
   }
 
+  lastResult = output;
   result.textContent = `Result (${operation.label}): ${formatNumber(output, {
     maximumFractionDigits: 4,
   })}`;
+}
+
+// Memory functions
+function updateMemoryIndicator() {
+  if (memoryIndicator) {
+    memoryIndicator.style.visibility = memoryValue !== 0 ? 'visible' : 'hidden';
+  }
+  if (memoryValueDisplay) {
+    memoryValueDisplay.textContent =
+      memoryValue !== 0
+        ? `Memory: ${formatNumber(memoryValue, { maximumFractionDigits: 4 })}`
+        : '';
+  }
+}
+
+function memoryClear() {
+  memoryValue = 0;
+  updateMemoryIndicator();
+}
+
+function memoryRecall() {
+  // Insert memory value into first input
+  const firstInput = inputContainer.querySelector('[data-basic-input]');
+  if (firstInput) {
+    firstInput.value = memoryValue;
+    updateResult(activeOperation);
+  }
+}
+
+function memoryStore() {
+  memoryValue = lastResult;
+  updateMemoryIndicator();
+}
+
+function memoryAdd() {
+  memoryValue = add(memoryValue, lastResult);
+  updateMemoryIndicator();
+}
+
+function memorySubtract() {
+  memoryValue = subtract(memoryValue, lastResult);
+  updateMemoryIndicator();
+}
+
+function bindMemoryButtons() {
+  memoryButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const memoryOp = button.dataset.memory;
+      switch (memoryOp) {
+        case 'mc':
+          memoryClear();
+          break;
+        case 'mr':
+          memoryRecall();
+          break;
+        case 'ms':
+          memoryStore();
+          break;
+        case 'm-plus':
+          memoryAdd();
+          break;
+        case 'm-minus':
+          memorySubtract();
+          break;
+      }
+    });
+  });
 }
 
 function bindButtons() {
@@ -103,6 +177,8 @@ function bindReset() {
     updateRemoveButtonState();
     activeOperation = 'add';
     updateResult(activeOperation);
+    // Also reset memory on full reset
+    memoryClear();
   });
 }
 
@@ -155,4 +231,6 @@ function bindInputControls() {
 bindButtons();
 bindReset();
 bindInputControls();
+bindMemoryButtons();
+updateMemoryIndicator();
 updateResult(activeOperation);
