@@ -50,9 +50,9 @@ Notes:
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| NEW (FSM) | 9 | 53% |
+| NEW (FSM) | 6 | 35% |
 | UNVERIFIED (FSM) | 0 | 0% |
-| VERIFIED (FSM) | 5 | 29% |
+| VERIFIED (FSM) | 8 | 47% |
 | Legacy | 3 | 18% |
 | **Total Active** | **17** | **100%** |
 
