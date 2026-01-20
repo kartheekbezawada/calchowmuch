@@ -280,11 +280,17 @@ export const Z_VALUES = {
 /**
  * Calculate confidence interval for a population proportion.
  * @param {number} phatPercent - Sample proportion as a percentage (0-100)
- * @param {number} n - Sample size
- * @param {number} z - Z-value for confidence level
- * @returns {{ lower: number, upper: number, se: number, me: number }} Confidence interval bounds, standard error, and margin of error
+ * @param {number} n - Sample size (must be positive)
+ * @param {number} z - Z-value for confidence level (must be positive)
+ * @returns {{ lower: number, upper: number, se: number, me: number }|null} Confidence interval bounds, standard error, and margin of error, or null if invalid input
  */
 export function calculateProportionCI(phatPercent, n, z) {
+  if (typeof phatPercent !== 'number' || typeof n !== 'number' || typeof z !== 'number') {
+    return null;
+  }
+  if (n <= 0 || z <= 0 || phatPercent < 0 || phatPercent > 100) {
+    return null;
+  }
   const phat = phatPercent / 100;
   const se = Math.sqrt((phat * (1 - phat)) / n);
   const me = z * se;
@@ -296,12 +302,18 @@ export function calculateProportionCI(phatPercent, n, z) {
 /**
  * Calculate confidence interval for a population mean with known standard deviation.
  * @param {number} xbar - Sample mean
- * @param {number} sigma - Population standard deviation
- * @param {number} n - Sample size
- * @param {number} z - Z-value for confidence level
- * @returns {{ lower: number, upper: number, se: number, me: number }} Confidence interval bounds, standard error, and margin of error
+ * @param {number} sigma - Population standard deviation (must be positive)
+ * @param {number} n - Sample size (must be positive)
+ * @param {number} z - Z-value for confidence level (must be positive)
+ * @returns {{ lower: number, upper: number, se: number, me: number }|null} Confidence interval bounds, standard error, and margin of error, or null if invalid input
  */
 export function calculateMeanCI(xbar, sigma, n, z) {
+  if (typeof xbar !== 'number' || typeof sigma !== 'number' || typeof n !== 'number' || typeof z !== 'number') {
+    return null;
+  }
+  if (!Number.isFinite(xbar) || sigma <= 0 || n <= 0 || z <= 0) {
+    return null;
+  }
   const se = sigma / Math.sqrt(n);
   const me = z * se;
   const lower = xbar - me;

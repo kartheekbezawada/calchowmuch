@@ -158,9 +158,8 @@ describe('Confidence Interval Calculator - CI-TEST-U-2: Edge Cases', () => {
     });
   });
 
-  describe('Zero standard deviation', () => {
-    it('should produce zero-width interval when sigma=0.0001 (near zero)', () => {
-      // In practice, sigma should be > 0, but test with very small value
+  describe('Very small standard deviation', () => {
+    it('should produce very narrow interval when sigma is very small', () => {
       const result = calculateMeanCI(50, 0.0001, 100, Z_VALUES['95%']);
 
       expect(result.se).toBeCloseTo(0.00001, 6);
@@ -257,6 +256,51 @@ describe('Confidence Interval Calculator - CI-TEST-U-2: Edge Cases', () => {
 
       const result = calculateMeanCI(50, sigma, n, Z_VALUES['95%']);
       expect(result.se).toBeCloseTo(expectedSE, 6);
+    });
+  });
+
+  describe('Input validation', () => {
+    it('should return null for invalid proportion CI inputs', () => {
+      // Invalid phatPercent
+      expect(calculateProportionCI(-5, 100, 1.96)).toBe(null);
+      expect(calculateProportionCI(105, 100, 1.96)).toBe(null);
+
+      // Invalid n
+      expect(calculateProportionCI(50, 0, 1.96)).toBe(null);
+      expect(calculateProportionCI(50, -10, 1.96)).toBe(null);
+
+      // Invalid z
+      expect(calculateProportionCI(50, 100, 0)).toBe(null);
+      expect(calculateProportionCI(50, 100, -1.96)).toBe(null);
+
+      // Non-numeric inputs
+      expect(calculateProportionCI('50', 100, 1.96)).toBe(null);
+      expect(calculateProportionCI(50, '100', 1.96)).toBe(null);
+      expect(calculateProportionCI(50, 100, '1.96')).toBe(null);
+    });
+
+    it('should return null for invalid mean CI inputs', () => {
+      // Invalid sigma
+      expect(calculateMeanCI(50, 0, 100, 1.96)).toBe(null);
+      expect(calculateMeanCI(50, -10, 100, 1.96)).toBe(null);
+
+      // Invalid n
+      expect(calculateMeanCI(50, 10, 0, 1.96)).toBe(null);
+      expect(calculateMeanCI(50, 10, -5, 1.96)).toBe(null);
+
+      // Invalid z
+      expect(calculateMeanCI(50, 10, 100, 0)).toBe(null);
+      expect(calculateMeanCI(50, 10, 100, -1.96)).toBe(null);
+
+      // Invalid xbar
+      expect(calculateMeanCI(NaN, 10, 100, 1.96)).toBe(null);
+      expect(calculateMeanCI(Infinity, 10, 100, 1.96)).toBe(null);
+
+      // Non-numeric inputs
+      expect(calculateMeanCI('50', 10, 100, 1.96)).toBe(null);
+      expect(calculateMeanCI(50, '10', 100, 1.96)).toBe(null);
+      expect(calculateMeanCI(50, 10, '100', 1.96)).toBe(null);
+      expect(calculateMeanCI(50, 10, 100, '1.96')).toBe(null);
     });
   });
 });

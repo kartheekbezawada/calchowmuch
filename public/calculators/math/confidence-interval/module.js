@@ -67,7 +67,13 @@ function calculate() {
       return;
     }
 
-    const { lower, upper, se, me } = calculateProportionCI(phatPercent, n, z);
+    const result = calculateProportionCI(phatPercent, n, z);
+    if (!result) {
+      resultDiv.textContent = 'Unable to calculate confidence interval. Please check your inputs.';
+      return;
+    }
+
+    const { lower, upper, se, me } = result;
 
     resultDiv.innerHTML = `<strong>${confidenceLabel} Confidence Interval:</strong> ${formatPercent(lower * 100, opts)} to ${formatPercent(upper * 100, opts)}`;
 
@@ -93,7 +99,13 @@ function calculate() {
       return;
     }
 
-    const { lower, upper, se, me } = calculateMeanCI(xbar, sigma, n, z);
+    const result = calculateMeanCI(xbar, sigma, n, z);
+    if (!result) {
+      resultDiv.textContent = 'Unable to calculate confidence interval. Please check your inputs.';
+      return;
+    }
+
+    const { lower, upper, se, me } = result;
 
     resultDiv.innerHTML = `<strong>${confidenceLabel} Confidence Interval:</strong> ${formatNumber(lower, opts)} to ${formatNumber(upper, opts)}`;
 
