@@ -1,6 +1,6 @@
 <div id="calc-probability">
   <div class="calculator-ui">
-    <p class="helper">Calculate basic probability operations for independent events.</p>
+    <p class="helper">Calculate probability for single events, combined events, and distributions.</p>
 
     <div class="input-stack">
       <div class="input-row">
@@ -22,31 +22,57 @@
           <button
             class="calculator-button secondary"
             type="button"
-            data-value="complement"
-            aria-pressed="false"
-          >
-            Complement 1 - P(A)
-          </button>
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
             data-value="and"
-            aria-pressed="true"
+            aria-pressed="false"
           >
             AND (Independent): P(A) × P(B)
           </button>
           <button
-            class="calculator-button secondary"
+            class="calculator-button secondary is-active"
             type="button"
             data-value="or"
+            aria-pressed="true"
+          >
+            OR (Combined Events)
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="conditional"
             aria-pressed="false"
           >
-            OR (Independent): P(A) + P(B) - P(A)×P(B)
+            Conditional P(A|B)
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="bayes"
+            aria-pressed="false"
+          >
+            Bayes: P(A|B)
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="distribution"
+            aria-pressed="false"
+          >
+            Distribution (Binomial)
           </button>
         </div>
       </div>
 
-      <div class="input-row">
+      <div class="input-row" id="prob-favorable-row">
+        <label for="prob-favorable">Favorable Outcomes</label>
+        <input id="prob-favorable" type="number" value="3" min="0" step="1" />
+      </div>
+
+      <div class="input-row" id="prob-total-row">
+        <label for="prob-total">Total Outcomes</label>
+        <input id="prob-total" type="number" value="10" min="1" step="1" />
+      </div>
+
+      <div class="input-row" id="prob-a-row">
         <label for="prob-a">P(A) Probability (%)</label>
         <input id="prob-a" type="number" value="30" min="0" max="100" step="0.1" />
       </div>
@@ -54,6 +80,58 @@
       <div class="input-row" id="prob-b-row">
         <label for="prob-b">P(B) Probability (%)</label>
         <input id="prob-b" type="number" value="50" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="prob-or-type-row">
+        <label id="prob-or-type-label">OR Mode</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="prob-or-type-label"
+          data-button-group="prob-or-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="independent"
+            aria-pressed="true"
+          >
+            Independent
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="inclusive"
+            aria-pressed="false"
+          >
+            Include P(A and B)
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="prob-joint-row">
+        <label for="prob-joint">P(A and B) Probability (%)</label>
+        <input id="prob-joint" type="number" value="15" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="prob-bgivena-row">
+        <label for="prob-bgivena">P(B|A) Probability (%)</label>
+        <input id="prob-bgivena" type="number" value="50" min="0" max="100" step="0.1" />
+      </div>
+
+      <div class="input-row" id="prob-n-row">
+        <label for="prob-n">n (number of trials)</label>
+        <input id="prob-n" type="number" value="10" min="1" step="1" />
+      </div>
+
+      <div class="input-row" id="prob-k-row">
+        <label for="prob-k">k (successes)</label>
+        <input id="prob-k" type="number" value="3" min="0" step="1" />
+      </div>
+
+      <div class="input-row" id="prob-p-row">
+        <label for="prob-p">Success Probability p (%)</label>
+        <input id="prob-p" type="number" value="40" min="0" max="100" step="0.1" />
       </div>
     </div>
 

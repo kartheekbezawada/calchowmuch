@@ -31,6 +31,12 @@ This document is the system of record for FSM test runs.
 | TEST-20260120-022752 | BUILD-20260120-022657 | 2026-01-20 02:27:59 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
 | TEST-20260120-022752 | BUILD-20260120-022657 | 2026-01-20 02:29:40 | FAIL | `npm run test` ok (260 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
 | TEST-20260120-100053 | BUILD-20260120-022657 | 2026-01-20 10:00:53 | PASS | `npx playwright test` (86 tests passed) |
+| TEST-20260120-132343 | BUILD-20260120-132341 | 2026-01-20 13:23:53 | RUNNING | `npm run test` (unit tests) |
+| TEST-20260120-132343 | BUILD-20260120-132341 | 2026-01-20 13:24:06 | PASS | `npm run test` (391 tests passed); shared run for REQ-008/009/010 |
+| TEST-20260120-132413 | BUILD-20260120-132411 | 2026-01-20 13:24:13 | RUNNING | `npm run test` (unit tests) |
+| TEST-20260120-132413 | BUILD-20260120-132411 | 2026-01-20 13:24:16 | PASS | `npm run test` (391 tests passed); shared run for REQ-008/009/010 |
+| TEST-20260120-132423 | BUILD-20260120-132418 | 2026-01-20 13:24:23 | RUNNING | `npm run test` (unit tests) |
+| TEST-20260120-132423 | BUILD-20260120-132418 | 2026-01-20 13:24:28 | PASS | `npm run test` (391 tests passed); shared run for REQ-008/009/010 |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.

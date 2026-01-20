@@ -20,19 +20,17 @@
   <h3>Input Definitions</h3>
   <ul>
     <li>
-      <strong>Sequence Type:</strong> Choose Arithmetic (constant difference) or Geometric (constant
-      ratio).
-    </li>
-    <li><strong>First Term (a1):</strong> The starting value of the sequence.</li>
-    <li>
-      <strong>Common Difference (d):</strong> For arithmetic sequences, the constant added to each
-      term.
+      <strong>Sequence Terms:</strong> Enter at least three terms separated by commas, spaces, or
+      newlines.
     </li>
     <li>
-      <strong>Common Ratio (r):</strong> For geometric sequences, the constant multiplied to each
-      term.
+      <strong>Sequence Type:</strong> Auto-detect uses your terms to identify the pattern, or you
+      can force Arithmetic or Geometric.
     </li>
-    <li><strong>Term Index (n):</strong> Which term to calculate (must be at least 1).</li>
+    <li>
+      <strong>Term Index (n):</strong> Which term to calculate (must be at least 1). The calculator
+      also shows the sum of the first n terms.
+    </li>
     <li><strong>Preview Length (k):</strong> How many terms to display (1-50).</li>
   </ul>
 </section>
@@ -41,9 +39,11 @@
   <h3>Formulas</h3>
   <p><strong>Arithmetic Sequence:</strong></p>
   <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</p>
+  <p style="margin-left: 1rem">S<sub>n</sub> = n/2 × (2a<sub>1</sub> + (n - 1)d)</p>
 
   <p><strong>Geometric Sequence:</strong></p>
   <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></p>
+  <p style="margin-left: 1rem">S<sub>n</sub> = a<sub>1</sub> × (1 - r<sup>n</sup>) / (1 - r)</p>
 </section>
 
 <section>
