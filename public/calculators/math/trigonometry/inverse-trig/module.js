@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   degToRad,
   formatAnglePair,
@@ -17,6 +17,37 @@ const endInput = document.querySelector('#inv-interval-end');
 const calcButton = document.querySelector('#inv-calc');
 const resultDiv = document.querySelector('#inv-result');
 const detailDiv = document.querySelector('#inv-detail');
+
+const inverseTrigMetadata = {
+  title: 'Inverse Trig Functions Calculator | Calculate How Much',
+  description:
+    'Find arcsin, arccos, or arctan principal values plus every solution within a custom interval.',
+  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/inverse-trig/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What inputs are valid for arcsin or arccos?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Values between -1 and 1 only. The calculator validates the input and warns if the value is outside the domain.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I list all solutions in an interval?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Set the custom interval boundaries and the calculator lists every solution using periodic extensions of the principal value.',
+        },
+      },
+    ],
+  },
+};
+
+setPageMetadata(inverseTrigMetadata);
 
 function toRadians(value) {
   const unit = unitButtons?.getValue() ?? 'deg';

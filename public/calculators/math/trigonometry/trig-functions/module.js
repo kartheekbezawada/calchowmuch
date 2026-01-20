@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   computeTrigValues,
   degToRad,
@@ -20,6 +20,35 @@ const resultDiv = document.querySelector('#trig-result');
 const detailDiv = document.querySelector('#trig-detail');
 const canvas = document.querySelector('#trig-graph');
 const ctx = canvas.getContext('2d');
+
+const trigFunctionsMetadata = {
+  title: 'Trigonometric Functions Calculator | Calculate How Much',
+  description:
+    'Compute sin, cos, tan, sec, csc, and cot values and graph each function with custom amplitude and period.',
+  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/trig-functions/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Graph trigonometric functions',
+    description: 'Enter an angle, adjust amplitude and period, and analyze sin/cos/tan/sec/csc/cot outputs.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        text: 'Enter an angle in degrees or radians to compute the six functions.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Adjust the amplitude and period sliders to reshape the graph.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Use the graph to inspect periodic behavior and undefined regions.',
+      },
+    ],
+  },
+};
+
+setPageMetadata(trigFunctionsMetadata);
 
 function getAngleDegrees() {
   const unit = angleUnitButtons?.getValue() ?? 'deg';

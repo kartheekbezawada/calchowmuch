@@ -13,7 +13,7 @@ This document is the system of record for issues created during FSM runs. Existi
 | ISSUE-20260119-004 | REQ-20260119-003 | TEST-20260119-201551 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | OPEN | See `test-results/` (e.g., BOR font/currency, BTL tooltip/labels, ISS-001 screenshot diff) | 2026-01-19 20:16:50 |
 | ISSUE-20260119-005 | REQ-20260119-003 | TEST-20260119-203815 | ISS-001 layout snapshot diff persists after shell adjustments | Release Owner | HIGH | OPEN | See `test-results/e2e-iss-001-layout-stabili-52f2e-ion---page-layout-stability-chromium/` | 2026-01-19 20:39:44 |
 | ISSUE-20260120-001 | REQ-20260120-016 | TEST-20260120-100053 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | RESOLVED | `npx playwright test` passed (86 tests) | 2026-01-20 02:29:40 |
-| ISSUE-20260120-002 | REQ-20260120-018 | BUILD-20260120-211539 | SEO metadata and sitemap updates missing for trigonometry suite pages | SEO Owner | MEDIUM | OPEN | seo_requirements.md marked FAIL; meta tags, structured data, and sitemap entries still needed | 2026-01-20 21:16:10 |
+| ISSUE-20260120-002 | REQ-20260120-018 | BUILD-20260120-214145 | SEO metadata, structured data, and sitemap updates implemented for the trigonometry suite | SEO Owner | MEDIUM | RESOLVED | setPageMetadata helper + structured-data.json + sitemap updates added for all five trigonometry pages; resolved 2026-01-20 21:42:40 | 2026-01-20 21:16:10 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.

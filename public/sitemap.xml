@@ -74,6 +74,37 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Trigonometry Calculators -->
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/trigonometry/unit-circle/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/trigonometry/triangle-solver/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/trigonometry/trig-functions/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/trigonometry/inverse-trig/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/trigonometry/law-of-sines-cosines/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Statistics Calculators -->
   <url>
     <loc>https://calchowmuch.com/calculators/math/standard-deviation/</loc>

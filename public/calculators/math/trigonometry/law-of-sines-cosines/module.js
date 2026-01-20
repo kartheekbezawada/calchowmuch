@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   detectTriangleType,
   formatAnglePair,
@@ -16,6 +16,35 @@ const detailDiv = document.querySelector('#law-detail');
 const hint = document.querySelector('#law-hint');
 const canvas = document.querySelector('#law-triangle');
 const diagramNote = document.querySelector('#law-diagram-note');
+
+const lawTrigMetadata = {
+  title: 'Law of Sines and Cosines Calculator | Calculate How Much',
+  description:
+    'Auto-detect and apply the Law of Sines or Cosines to solve triangles, compute unknown sides, and show area with a diagram.',
+  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/law-of-sines-cosines/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Use the Law of Sines and Cosines',
+    description: 'Provide known sides or angles and apply the appropriate trig law to find the rest.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        text: 'Enter three valid values, including at least one side.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Let auto detection choose the Law of Sines or Cosines, or override the method.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Review the solved sides, angles, area, and the diagram.',
+      },
+    ],
+  },
+};
+
+setPageMetadata(lawTrigMetadata);
 
 const inputs = {
   a: document.querySelector('#law-a'),
