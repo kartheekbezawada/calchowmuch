@@ -1,5 +1,16 @@
 # Issue Tracker (FSM Runs)
 
+## Tracker Contract (No Duplicates)
+
+**Uniqueness rule:** Each Issue ID MUST appear **exactly once** in the table.  
+**Issue ID format (recommended):** `ISSUE-YYYYMMDD-HHMMSS` (UTC) — timestamp IDs eliminate reuse.  
+**If legacy sequence IDs are used:** you MUST allocate the next unused `ISSUE-YYYYMMDD-###` number for that date.
+
+**Allowed Status values:** OPEN, IN_PROGRESS, RESOLVED, CLOSED
+
+---
+
+
 This document is the system of record for issues created during FSM runs. Existing issues outside the current run are not in scope.
 
 ## FSM Issues (Authoritative)
@@ -87,3 +98,9 @@ When creating new issues, MUST include:
 - All issues MUST be linked to requirements and tests for full traceability
 - Resolved issues remain tracked for compliance audit trail
 - Prevention tests are mandatory for P0/P1 issues
+
+## Template (New Issue)
+
+```markdown
+| ISSUE-YYYYMMDD-HHMMSS | REQ-YYYYMMDD-### | BUILD-... / TEST-... | [Summary] | [Owner] | P0/P1/P2/P3 | OPEN/IN_PROGRESS/RESOLVED/CLOSED | [Evidence/Notes] | [Created UTC] |
+```

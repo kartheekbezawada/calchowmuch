@@ -1,5 +1,17 @@
 # Testing Tracker
 
+## Tracker Contract (No Duplicates)
+
+**Uniqueness rule:** Each `TEST-...` Run ID MUST appear **exactly once** in the table.  
+**Lifecycle rule:** When tests finish, **edit the existing RUNNING row** (fill End Time + final Status). **Do not add a second row** for the same Test Run ID.  
+**No-orphans rule:** A requirement cannot be marked VERIFIED unless there are **zero** RUNNING rows for that requirement.
+
+**Allowed Status values:** RUNNING, PASS, FAIL, SKIPPED, ABORTED  
+**Test Run ID format:** `TEST-YYYYMMDD-HHMMSS` (UTC) — generate a **new** Test Run ID for every retry/run.
+
+---
+
+
 This document is the system of record for FSM test runs.
 
 ## FSM Test Status Definitions
@@ -115,3 +127,11 @@ Notes:
 | Requirement ID (linked) | REQ-YYYYMMDD-### | REQ-20260119-001 |
 
 Legacy testing IDs (TTRK-*, TEST-[CAT]-*) apply only to the legacy backlog above.
+
+## Template (New Test Row)
+
+```markdown
+| TEST-YYYYMMDD-HHMMSS | BUILD-YYYYMMDD-HHMMSS | REQ-YYYYMMDD-### | [Suite(s)] | [Start UTC] | [End UTC] | RUNNING/PASS/FAIL/SKIPPED/ABORTED | [Command(s)] | [Evidence / report path] | [Notes] |
+```
+
+**Close the row:** replace `RUNNING` with final status and fill `End UTC` when done.
