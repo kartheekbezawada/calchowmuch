@@ -10,41 +10,6 @@
     payment is <span data-btl="mortgage-payment"></span>, leaving net cashflow of
     <span data-btl="net-monthly"></span> per month or <span data-btl="net-annual"></span> per year.
   </p>
-  <p>
-    Gross yield is <span data-btl="gross-yield"></span> and net yield is
-    <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
-    <span data-btl="stress-coverage"></span>.
-  </p>
-  <p class="is-hidden" id="btl-rent-increase-explainer">
-    With rent increases <span data-btl="rent-increase-desc"></span>, projected annual cashflow grows
-    from <span data-btl="rent-increase-start"></span> in year 1 to
-    <span data-btl="rent-increase-end"></span> by year <span data-btl="rent-increase-years"></span>.
-  </p>
-  <p>
-    Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
-    increase equity faster but reduce monthly cashflow.
-  </p>
-
-  <div class="result-section">
-    <h4>Yearly Projection</h4>
-    <div class="table-scroll" id="btl-table-wrap" tabindex="0">
-      <table class="calculator-table" id="btl-table">
-        <thead>
-          <tr>
-            <th scope="col">Year</th>
-            <th scope="col">Rent Income</th>
-            <th scope="col">Mortgage Cost</th>
-            <th scope="col">Costs</th>
-            <th scope="col">Net Cashflow</th>
-            <th scope="col">Cumulative</th>
-            <th scope="col">Increase Applied</th>
-          </tr>
-        </thead>
-        <tbody id="btl-table-body"></tbody>
-      </table>
-    </div>
-  </div>
-
   <div class="result-section">
     <h4>Net Cashflow Over Time</h4>
     <div class="graph-panel" id="btl-cashflow-graph">
@@ -106,6 +71,40 @@
           <span class="graph-x-label" id="btl-cashflow-x-label">Year</span>
         </div>
       </div>
+    </div>
+  </div>
+  <p>
+    Gross yield is <span data-btl="gross-yield"></span> and net yield is
+    <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
+    <span data-btl="stress-coverage"></span>.
+  </p>
+  <p class="is-hidden" id="btl-rent-increase-explainer">
+    With rent increases <span data-btl="rent-increase-desc"></span>, projected annual cashflow grows
+    from <span data-btl="rent-increase-start"></span> in year 1 to
+    <span data-btl="rent-increase-end"></span> by year <span data-btl="rent-increase-years"></span>.
+  </p>
+  <p>
+    Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
+    increase equity faster but reduce monthly cashflow.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Projection</h4>
+    <div class="table-scroll" id="btl-table-wrap" tabindex="0">
+      <table class="calculator-table" id="btl-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Rent Income</th>
+            <th scope="col">Mortgage Cost</th>
+            <th scope="col">Costs</th>
+            <th scope="col">Net Cashflow</th>
+            <th scope="col">Cumulative</th>
+            <th scope="col">Increase Applied</th>
+          </tr>
+        </thead>
+        <tbody id="btl-table-body"></tbody>
+      </table>
     </div>
   </div>
 

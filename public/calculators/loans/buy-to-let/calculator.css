@@ -1,14 +1,18 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
 
-.btl-compact-grid {
+#calc-buy-to-let .btl-compact-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  align-items: start;
 }
 
 .btl-deposit-slot {
-  display: grid;
-  gap: 12px;
+  display: contents;
+}
+
+.btl-compact-grid .input-row label {
+  min-height: 48px;
 }
 
 .btl-rent-increase-options {
@@ -23,13 +27,20 @@
 #btl-cashflow-graph .graph-bars-wrapper {
   position: relative;
   overflow-y: visible;
+  min-height: 140px;
 }
 
 .graph-hover-layer {
   position: absolute;
   inset: 0;
+  background: transparent;
   cursor: crosshair;
+  pointer-events: auto;
   z-index: 1;
+}
+
+#btl-cashflow-graph .graph-line {
+  pointer-events: none;
 }
 
 .graph-tooltip {
@@ -101,7 +112,7 @@
 }
 
 @media (max-width: 720px) {
-  .btl-compact-grid {
+  #calc-buy-to-let .btl-compact-grid {
     grid-template-columns: 1fr;
   }
 }

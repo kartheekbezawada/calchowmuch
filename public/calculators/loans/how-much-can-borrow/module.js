@@ -16,6 +16,7 @@ const depositInput = document.querySelector('#bor-deposit');
 const calculateButton = document.querySelector('#bor-calculate');
 const resultDiv = document.querySelector('#bor-result');
 const summaryDiv = document.querySelector('#bor-summary');
+const formatBorrowCurrency = (value) => formatCurrency(value, 'GBP');
 
 const incomeBasisGroup = document.querySelector('[data-button-group="bor-income-basis"]');
 const methodGroup = document.querySelector('[data-button-group="bor-method"]');
@@ -23,27 +24,78 @@ const methodGroup = document.querySelector('[data-button-group="bor-method"]');
 const multipleRow = document.querySelector('#bor-multiple-row');
 const capRow = document.querySelector('#bor-cap-row');
 
-const explanationRoot = document.querySelector('#loan-borrow-explanation');
-const basisValue = explanationRoot?.querySelector('[data-bor="basis"]');
-const incomeValue = explanationRoot?.querySelector('[data-bor="income"]');
-const rateValue = explanationRoot?.querySelector('[data-bor="rate"]');
-const termValue = explanationRoot?.querySelector('[data-bor="term"]');
-const maxPaymentValue = explanationRoot?.querySelector('[data-bor="max-payment"]');
-const maxBorrowValue = explanationRoot?.querySelector('[data-bor="max-borrow"]');
-const incomeExampleValue = explanationRoot?.querySelector('[data-bor="income-example"]');
-const outgoingsValue = explanationRoot?.querySelector('[data-bor="outgoings"]');
-
-const tableBody = document.querySelector('#bor-table-body');
-
-const graphLine = document.querySelector('#bor-graph-line polyline');
-const graphYMax = document.querySelector('#bor-y-max');
-const graphYMid = document.querySelector('#bor-y-mid');
-const graphYMin = document.querySelector('#bor-y-min');
-const graphXStart = document.querySelector('#bor-x-start');
-const graphXEnd = document.querySelector('#bor-x-end');
-const graphNote = document.querySelector('#bor-graph-note');
+let explanationRoot = null;
+let basisValue = null;
+let incomeValue = null;
+let rateValue = null;
+let termValue = null;
+let maxPaymentValue = null;
+let maxBorrowValue = null;
+let incomeExampleValue = null;
+let outgoingsValue = null;
+let tableBody = null;
+let graphLine = null;
+let graphYMax = null;
+let graphYMid = null;
+let graphYMin = null;
+let graphXStart = null;
+let graphXEnd = null;
+let graphNote = null;
 
 const MAX_INPUT_LENGTH = 10;
+
+function resolveExplanationRoot() {
+  return (
+    document.querySelector('.center-column .panel:last-child #loan-borrow-explanation') ||
+    document.querySelector('#loan-borrow-explanation')
+  );
+}
+
+function cacheExplanationElements() {
+  explanationRoot = resolveExplanationRoot();
+  basisValue = explanationRoot?.querySelector('[data-bor="basis"]') ?? null;
+  incomeValue = explanationRoot?.querySelector('[data-bor="income"]') ?? null;
+  rateValue = explanationRoot?.querySelector('[data-bor="rate"]') ?? null;
+  termValue = explanationRoot?.querySelector('[data-bor="term"]') ?? null;
+  maxPaymentValue = explanationRoot?.querySelector('[data-bor="max-payment"]') ?? null;
+  maxBorrowValue = explanationRoot?.querySelector('[data-bor="max-borrow"]') ?? null;
+  incomeExampleValue = explanationRoot?.querySelector('[data-bor="income-example"]') ?? null;
+  outgoingsValue = explanationRoot?.querySelector('[data-bor="outgoings"]') ?? null;
+  tableBody = explanationRoot?.querySelector('#bor-table-body') ?? null;
+  graphLine = explanationRoot?.querySelector('#bor-graph-line polyline') ?? null;
+  graphYMax = explanationRoot?.querySelector('#bor-y-max') ?? null;
+  graphYMid = explanationRoot?.querySelector('#bor-y-mid') ?? null;
+  graphYMin = explanationRoot?.querySelector('#bor-y-min') ?? null;
+  graphXStart = explanationRoot?.querySelector('#bor-x-start') ?? null;
+  graphXEnd = explanationRoot?.querySelector('#bor-x-end') ?? null;
+  graphNote = explanationRoot?.querySelector('#bor-graph-note') ?? null;
+}
+
+cacheExplanationElements();
+
+async function ensureExplanation() {
+  if (resolveExplanationRoot()) {
+    cacheExplanationElements();
+    return;
+  }
+
+  const container = document.querySelector('#calc-how-much-can-borrow');
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch('/calculators/loans/how-much-can-borrow/explanation.html');
+    if (!response.ok) {
+      return;
+    }
+    const explanationHTML = await response.text();
+    container.insertAdjacentHTML('beforeend', explanationHTML);
+    cacheExplanationElements();
+  } catch {
+    return;
+  }
+}
 
 function enforceMaxLength(input) {
   if (!input) {
@@ -119,14 +171,30 @@ function updateExplanation(data) {
 
   const basisLabel = data.incomeBasis === 'net' ? 'net' : 'gross';
 
-  basisValue.textContent = basisLabel;
-  incomeValue.textContent = formatCurrency(data.monthlyIncome);
-  rateValue.textContent = formatNumber(data.interestRate, { maximumFractionDigits: 2 });
-  termValue.textContent = formatNumber(data.termYears, { maximumFractionDigits: 0 });
-  maxPaymentValue.textContent = formatCurrency(data.maxPayment);
-  maxBorrowValue.textContent = formatCurrency(data.maxBorrow);
-  incomeExampleValue.textContent = formatCurrency(data.monthlyIncome);
-  outgoingsValue.textContent = formatCurrency(data.totalOutgoings);
+  if (basisValue) {
+    basisValue.textContent = basisLabel;
+  }
+  if (incomeValue) {
+    incomeValue.textContent = formatBorrowCurrency(data.monthlyIncome);
+  }
+  if (rateValue) {
+    rateValue.textContent = formatNumber(data.interestRate, { maximumFractionDigits: 2 });
+  }
+  if (termValue) {
+    termValue.textContent = formatNumber(data.termYears, { maximumFractionDigits: 0 });
+  }
+  if (maxPaymentValue) {
+    maxPaymentValue.textContent = formatBorrowCurrency(data.maxPayment);
+  }
+  if (maxBorrowValue) {
+    maxBorrowValue.textContent = formatBorrowCurrency(data.maxBorrow);
+  }
+  if (incomeExampleValue) {
+    incomeExampleValue.textContent = formatBorrowCurrency(data.monthlyIncome);
+  }
+  if (outgoingsValue) {
+    outgoingsValue.textContent = formatBorrowCurrency(data.totalOutgoings);
+  }
 }
 
 function updateTable(data) {
@@ -172,15 +240,25 @@ function updateGraph(data) {
   const mid = (min + max) / 2;
 
   graphLine.setAttribute('points', buildPolyline(values, min, max));
-  graphYMax.textContent = formatAxisValue(max);
-  graphYMid.textContent = formatAxisValue(mid);
-  graphYMin.textContent = formatAxisValue(min);
-  graphXStart.textContent = formatNumber(data.rateSeries[0]?.rate ?? 0, {
-    maximumFractionDigits: 1,
-  });
-  graphXEnd.textContent = formatNumber(data.rateSeries[data.rateSeries.length - 1]?.rate ?? 0, {
-    maximumFractionDigits: 1,
-  });
+  if (graphYMax) {
+    graphYMax.textContent = formatAxisValue(max);
+  }
+  if (graphYMid) {
+    graphYMid.textContent = formatAxisValue(mid);
+  }
+  if (graphYMin) {
+    graphYMin.textContent = formatAxisValue(min);
+  }
+  if (graphXStart) {
+    graphXStart.textContent = formatNumber(data.rateSeries[0]?.rate ?? 0, {
+      maximumFractionDigits: 1,
+    });
+  }
+  if (graphXEnd) {
+    graphXEnd.textContent = formatNumber(data.rateSeries[data.rateSeries.length - 1]?.rate ?? 0, {
+      maximumFractionDigits: 1,
+    });
+  }
   if (graphNote) {
     graphNote.textContent = 'Payment held constant';
   }
@@ -298,14 +376,14 @@ function calculate() {
     return;
   }
 
-  resultDiv.innerHTML = `<strong>Maximum Borrow:</strong> ${formatCurrency(data.maxBorrow)}`;
+  resultDiv.innerHTML = `<strong>Maximum Borrow:</strong> ${formatBorrowCurrency(data.maxBorrow)}`;
 
   const propertyLine = data.maxPropertyPrice
-    ? `<p><strong>Max property price:</strong> ${formatCurrency(data.maxPropertyPrice)}</p>`
+    ? `<p><strong>Max property price:</strong> ${formatBorrowCurrency(data.maxPropertyPrice)}</p>`
     : '';
 
   summaryDiv.innerHTML =
-    `<p><strong>Estimated payment:</strong> ${formatCurrency(data.monthlyPayment)}</p>` +
+    `<p><strong>Estimated payment:</strong> ${formatBorrowCurrency(data.monthlyPayment)}</p>` +
     `<p><strong>Constraint:</strong> ` +
     `${
       method === 'income'
@@ -319,8 +397,15 @@ function calculate() {
   updateGraph(data);
 }
 
-toggleMethodFields(methodButtons?.getValue() ?? 'income');
+calculateButton?.addEventListener('click', async () => {
+  await ensureExplanation();
+  calculate();
+});
 
-calculateButton?.addEventListener('click', calculate);
+async function initialize() {
+  await ensureExplanation();
+  toggleMethodFields(methodButtons?.getValue() ?? 'income');
+  calculate();
+}
 
-calculate();
+initialize();

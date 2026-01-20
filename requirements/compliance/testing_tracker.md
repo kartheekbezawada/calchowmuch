@@ -28,6 +28,9 @@ This document is the system of record for FSM test runs.
 | TEST-20260119-203415 | BUILD-20260119-203342 | 2026-01-19 20:34:19 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
 | TEST-20260119-203815 | BUILD-20260119-203733 | 2026-01-19 20:38:19 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
 | TEST-20260119-203815 | BUILD-20260119-203733 | 2026-01-19 20:39:44 | FAIL | `npm run test` ok (235 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
+| TEST-20260120-022752 | BUILD-20260120-022657 | 2026-01-20 02:27:59 | RUNNING | `npm run test` + `npm run test:e2e` (WSL) |
+| TEST-20260120-022752 | BUILD-20260120-022657 | 2026-01-20 02:29:40 | FAIL | `npm run test` ok (260 tests); `npm run test:e2e` failed (8 tests) across BOR/BTL/ISS-001 suites |
+| TEST-20260120-100053 | BUILD-20260120-022657 | 2026-01-20 10:00:53 | PASS | `npx playwright test` (86 tests passed) |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
@@ -39,9 +42,9 @@ Notes:
 
 | Metric | Count | Percentage |
 |--------|-------|------------|
-| Total FSM Test Runs | 12 | 100% |
-| Passed | 3 | 25% |
-| Failed | 9 | 75% |
+| Total FSM Test Runs | 13 | 100% |
+| Passed | 4 | 31% |
+| Failed | 9 | 69% |
 | Running | 0 | 0% |
 
 ---

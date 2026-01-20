@@ -126,6 +126,7 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UI-3.3 | **No horizontal scroll** — Common desktop widths must not introduce horizontal scroll. | P1 |
 | UI-3.4 | **Frameless header + primary nav** — No bordered panel or background card. | P1 |
 | UI-3.5 | **Minimal footer links** — Link-only, 15px size, underline, minimal padding. | P2 |
+| UI-3.6 | **Clean navigation hierarchy** — Navigation elements without visual containers, button-only styling for optimal space utilization | P1 |
 
 ### 3.4 Scrollbar Styling
 
@@ -280,6 +281,9 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | ARCH-1.4 | **Width transfer direction** — Width reduction must occur from Calculation Pane's right edge toward left; Explanation Pane grows leftward | P0 |
 | ARCH-1.5 | **Total width preserved** — Combined width of Calculation Pane + Explanation Pane must remain unchanged; only the split ratio changes | P0 |
 | ARCH-1.6 | **Responsive behavior** — Width ratios must be maintained across all supported viewport widths | P1 |
+| ARCH-1.7 | **Navigation elements styling** — Math/Loans buttons and header text must not have border/box styling (clean button-only appearance) | P0 |
+| ARCH-1.8 | **Footer positioning** — Footer links (Privacy, Terms, Contact) must be positioned to maximize vertical content space | P1 |
+| ARCH-1.9 | **Horizontal layout preservation** — No horizontal spacing or sizing changes during vertical optimizations | P0 |
 
 #### Pane Width Specification
 

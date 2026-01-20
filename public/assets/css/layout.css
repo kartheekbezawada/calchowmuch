@@ -16,14 +16,14 @@
 }
 
 .site-header {
-  background: var(--panel-bg);
+  background: transparent;
   color: var(--header-text);
   display: grid;
   place-items: center;
-  padding: 16px 24px;
-  border-radius: 22px;
-  border: 2px solid var(--shell-border);
-  box-shadow: var(--panel-shadow);
+  padding: 4px 24px 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
   font-size: 28px;
   font-weight: 600;
   font-family: var(--font-display);
@@ -36,21 +36,21 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 12px;
+  padding: 2px 12px 0;
   flex-wrap: wrap;
-  background: var(--panel-bg);
-  border: 2px solid var(--shell-border);
-  border-radius: 20px;
-  box-shadow: var(--panel-shadow);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   animation: headerSlide 0.55s ease-out both;
 }
 
 .top-nav button {
-  background: var(--pill-bg);
-  border: 1px solid var(--pill-border);
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--header-text);
-  padding: 8px 18px;
-  border-radius: 999px;
+  padding: 6px 18px;
+  border-radius: 0;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -59,15 +59,18 @@
   min-height: 34px;
   line-height: 1.4;
   transition:
-    background 0.15s ease,
-    box-shadow 0.15s ease;
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
 }
 
 .top-nav button.is-active {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent-strong);
-  box-shadow: 0 8px 14px rgba(37, 99, 235, 0.24);
+  background: transparent;
+  color: var(--accent);
+  border-color: transparent;
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 .layout-main {
@@ -297,7 +300,7 @@
   border: none;
   background: transparent;
   border-radius: 0;
-  padding: 6px 4px 0;
+  padding: 6px 4px 4px;
   display: flex;
   align-items: center;
   justify-content: center;
