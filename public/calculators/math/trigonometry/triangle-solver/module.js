@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatAnglePair, solveTriangle } from '/assets/js/core/trigonometry.js';
 
 const typeSelect = document.querySelector('#triangle-type');
@@ -46,6 +46,37 @@ const typeConfig = {
     hint: 'Provide sides a, b and angle A opposite side a (ambiguous case possible).',
   },
 };
+
+const triangleSolverMetadata = {
+  title: 'Triangle Solver | Calculate How Much',
+  description:
+    'Solve SSS, SAS, ASA, AAS, or SSA triangles, handle ambiguous SSA cases, and view the diagram.',
+  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/triangle-solver/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How do I solve a triangle when all three sides are known?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Enter sides a, b, and c. The calculator applies the Law of Cosines and Law of Sines to compute the angles.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What happens if SSA creates two possible triangles?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The calculator reports both solutions, including the ambiguous SSA case, and renders the primary diagram.',
+        },
+      },
+    ],
+  },
+};
+
+setPageMetadata(triangleSolverMetadata);
 
 function parseValue(input) {
   const raw = input.value.trim();

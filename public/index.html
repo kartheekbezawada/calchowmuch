@@ -50,7 +50,8 @@
       </footer>
     </div>
     <script type="module" src="assets/js/core/ui.js"></script>
-    <script>
+    <script type="module">
+      import { resetPageMetadata } from './assets/js/core/ui.js';
       const state = {
         navigation: null,
         activeCategoryId: null,
@@ -223,6 +224,7 @@
         const explanationPane = document.querySelector('.center-column .panel:last-child');
 
         if (!calculator) {
+          resetPageMetadata();
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Main Calculation Pane</h3>
             <p class="placeholder" id="calculator-placeholder">
@@ -238,8 +240,10 @@
           return;
         }
 
+        resetPageMetadata();
         const basePath = getCalculatorPath(calculator.id);
         if (!basePath) {
+          resetPageMetadata();
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Error</h3>
             <p style="color: #dc2626;">Calculator not found. Please try another calculator.</p>
@@ -283,6 +287,7 @@
           document.body.appendChild(moduleScript);
           currentModuleScript = moduleScript;
         } catch (error) {
+          resetPageMetadata();
           calculatorPane.innerHTML = `
             <h3 id="calculator-title">Error</h3>
             <p style="color: #dc2626;">Failed to load calculator. Please try again.</p>

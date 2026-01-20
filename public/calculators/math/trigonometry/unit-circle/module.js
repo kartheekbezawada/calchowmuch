@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   SPECIAL_ANGLES,
   computeTrigValues,
@@ -31,6 +31,35 @@ const center = { x: canvas.width / 2, y: canvas.height / 2 };
 const radius = Math.min(canvas.width, canvas.height) / 2 - 24;
 
 const standardAngles = SPECIAL_ANGLES.filter((angle) => angle !== 360);
+
+const unitCircleMetadata = {
+  title: 'Unit Circle Calculator | Calculate How Much',
+  description:
+    'Explore unit circle angles, quadrants, and exact trig values with interactive diagrams.',
+  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/unit-circle/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Explore unit circle values',
+    description: 'Map angles to sin, cos, and tan values using the interactive unit circle.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        text: 'Enter an angle in degrees or radians.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Snap to a special angle on the circle to reveal exact values.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Read the quadrant, reference angle, and trig outputs.',
+      },
+    ],
+  },
+};
+
+setPageMetadata(unitCircleMetadata);
 
 function getAngleInDegrees() {
   const unit = angleUnitButtons?.getValue() ?? 'deg';

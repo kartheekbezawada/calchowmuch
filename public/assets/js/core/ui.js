@@ -134,4 +134,81 @@ export function setupButtonGroup(group, options = {}) {
   return { getValue, setValue: setActive };
 }
 
+const INITIAL_METADATA = (() => {
+  if (typeof document === 'undefined') {
+    return { title: '', description: '', canonical: '' };
+  }
+  const head = document.head;
+  if (!head) {
+    return { title: document.title ?? '', description: '', canonical: '' };
+  }
+  const descriptionMeta = head.querySelector('meta[name="description"]');
+  const canonicalLink = head.querySelector('link[rel="canonical"]');
+  return {
+    title: document.title ?? '',
+    description: descriptionMeta?.getAttribute('content') ?? '',
+    canonical: canonicalLink?.getAttribute('href') ?? '',
+  };
+})();
+
+export function setPageMetadata(metadata = {}) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  const head = document.head;
+  if (!head) {
+    return;
+  }
+
+  if ('title' in metadata && metadata.title !== undefined) {
+    document.title = metadata.title ?? '';
+  }
+
+  if ('description' in metadata) {
+    let descriptionMeta = head.querySelector('meta[name="description"]');
+    if (!descriptionMeta) {
+      descriptionMeta = document.createElement('meta');
+      descriptionMeta.setAttribute('name', 'description');
+      head.appendChild(descriptionMeta);
+    }
+    descriptionMeta.setAttribute('content', metadata.description ?? '');
+  }
+
+  if ('canonical' in metadata) {
+    let canonicalLink = head.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', metadata.canonical ?? '');
+  }
+
+  if (Object.prototype.hasOwnProperty.call(metadata, 'structuredData')) {
+    const scriptSelector = 'script[data-calculator-ld]';
+    const existingScript = head.querySelector(scriptSelector);
+    if (metadata.structuredData) {
+      let script = existingScript;
+      if (!script) {
+        script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.dataset.calculatorLd = 'true';
+        head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(metadata.structuredData);
+    } else if (existingScript) {
+      existingScript.remove();
+    }
+  }
+}
+
+export function resetPageMetadata() {
+  setPageMetadata({
+    title: INITIAL_METADATA.title,
+    description: INITIAL_METADATA.description,
+    canonical: INITIAL_METADATA.canonical,
+    structuredData: null,
+  });
+}
+
 initInputLengthLimiter();

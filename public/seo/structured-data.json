@@ -49,6 +49,130 @@
           }
         ]
       }
+    },
+    {
+      "id": "unit-circle",
+      "url": "https://calchowmuch.com/calculators/math/trigonometry/unit-circle/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Explore unit circle values",
+        "description": "Map angles to sine, cosine, and tangent values using the interactive unit circle.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter an angle in degrees or radians."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Snap to a special angle on the circle to reveal exact values."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Read the quadrant, reference angle, and trig outputs."
+          }
+        ]
+      }
+    },
+    {
+      "id": "triangle-solver",
+      "url": "https://calchowmuch.com/calculators/math/trigonometry/triangle-solver/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I solve a triangle when all three sides are known?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter sides a, b, and c. The calculator applies the Law of Cosines and Law of Sines to compute the angles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if SSA creates two possible triangles?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator reports both solutions, including the ambiguous SSA case, and renders the primary diagram."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "trig-functions",
+      "url": "https://calchowmuch.com/calculators/math/trigonometry/trig-functions/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Graph trigonometric functions",
+        "description": "Enter an angle, adjust amplitude and period, and analyze sin, cos, tan, sec, csc, and cot outputs.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Calculate all six trigonometric values from the selected angle."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Adjust the amplitude and period controls to reshape the wave."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Inspect the graph to observe periodicity and asymptotes."
+          }
+        ]
+      }
+    },
+    {
+      "id": "inverse-trig",
+      "url": "https://calchowmuch.com/calculators/math/trigonometry/inverse-trig/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What inputs are valid for arcsin or arccos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Values between -1 and 1 only. The calculator validates the input and prevents invalid entries."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I list all solutions in an interval?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Set custom interval boundaries and the calculator lists every solution using periodic extensions of the principal value."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "law-of-sines-cosines",
+      "url": "https://calchowmuch.com/calculators/math/trigonometry/law-of-sines-cosines/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Use the Law of Sines and Cosines",
+        "description": "Provide known sides or angles, apply the appropriate trig law, and compute the remaining triangle values.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter at least three consistent values that include one side."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Let auto detection choose the Law of Sines or Cosines, or override the method."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Review the solved sides, angles, area, and diagram."
+          }
+        ]
+      }
     }
   ]
 }
