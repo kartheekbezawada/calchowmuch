@@ -12,6 +12,7 @@ This document is the system of record for issues created during FSM runs. Existi
 | ISSUE-20260119-003 | REQ-20260119-003 | TEST-20260119-200506 | Playwright e2e failures across BOR/REMO/BTL/ISS-001 suites | Release Owner | HIGH | OPEN | See `test-results/` (e.g., BOR currency symbol, Trebuchet font, REMO graph markers) | 2026-01-19 20:06:26 |
 | ISSUE-20260119-004 | REQ-20260119-003 | TEST-20260119-201551 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | OPEN | See `test-results/` (e.g., BOR font/currency, BTL tooltip/labels, ISS-001 screenshot diff) | 2026-01-19 20:16:50 |
 | ISSUE-20260119-005 | REQ-20260119-003 | TEST-20260119-203815 | ISS-001 layout snapshot diff persists after shell adjustments | Release Owner | HIGH | OPEN | See `test-results/e2e-iss-001-layout-stabili-52f2e-ion---page-layout-stability-chromium/` | 2026-01-19 20:39:44 |
+| ISSUE-20260120-001 | REQ-20260120-016 | TEST-20260120-100053 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | RESOLVED | `npx playwright test` passed (86 tests) | 2026-01-20 02:29:40 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.
@@ -23,8 +24,8 @@ Notes:
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| OPEN | 4 | 100% |
-| RESOLVED | 0 | 0% |
+| OPEN | 6 | 86% |
+| RESOLVED | 1 | 14% |
 | CLOSED | 0 | 0% |
 
 ---

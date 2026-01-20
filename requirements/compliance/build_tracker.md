@@ -37,6 +37,9 @@ This document is the system of record for FSM build runs.
 | BUILD-20260119-203342 | REQ-20260119-003 | Codex | 2026-01-19 20:34:06 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
 | BUILD-20260119-203733 | REQ-20260119-003 | Codex | 2026-01-19 20:37:37 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
 | BUILD-20260119-203733 | REQ-20260119-003 | Codex | 2026-01-19 20:38:00 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260120-022657 | REQ-20260120-016 | Codex | 2026-01-20 02:27:03 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
+| BUILD-20260120-022657 | REQ-20260120-016 | Codex | 2026-01-20 02:27:37 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260120-022657 | REQ-20260120-016 | Codex | 2026-01-20 10:01:27 | SUCCESS | 2 | `npx playwright test` ok | Verified after E2E pass |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

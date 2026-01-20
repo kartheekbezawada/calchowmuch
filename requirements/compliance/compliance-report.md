@@ -16,6 +16,7 @@ requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirem
 | Requirement ID | Requirement Status | Build ID | Build Status | Test Run ID | Test Status | SEO ID | SEO Status | Universal Requirements Followed | Overall Compliance | Evidence/Notes |
 |---------------|-------------------|----------|--------------|------------|------------|--------|------------|-------------------------------|-------------------|----------------|
 | REQ-20260119-001 | VERIFIED | BUILD-20260119-140637 | SUCCESS | TEST-20260119-153426 | PASS | SEO-PENDING-REQ-20260119-001 | PASS | In Progress | In Progress | Lint + buy-to-let utils tests passed |
+| REQ-20260120-016 | VERIFIED | BUILD-20260120-022657 | SUCCESS | TEST-20260120-100053 | PASS | SEO-N/A | PASS | PASS | PASS | `npx playwright test` (86 tests) |
 
 Notes:
 - Auto-advance: Codex updates this table during S2-S13 without manual EVT commands.

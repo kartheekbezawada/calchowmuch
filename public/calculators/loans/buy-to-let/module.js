@@ -29,6 +29,7 @@ const otherCostsInput = document.querySelector('#btl-other-costs');
 const calculateButton = document.querySelector('#btl-calculate');
 const resultDiv = document.querySelector('#btl-result');
 const summaryDiv = document.querySelector('#btl-summary');
+const formatLoanCurrency = (value) => formatCurrency(value, 'GBP');
 
 const depositGroup = document.querySelector('[data-button-group="btl-deposit-type"]');
 const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-type"]');
@@ -61,25 +62,57 @@ const cashflowCurrentValue = explanationRoot?.querySelector('[data-btl="cashflow
 const rateHigherValue = explanationRoot?.querySelector('[data-btl="rate-higher"]');
 const cashflowHigherValue = explanationRoot?.querySelector('[data-btl="cashflow-higher"]');
 
-const tableBody = document.querySelector('#btl-table-body');
+let tableBody = document.querySelector('#btl-table-body');
 
-const cashflowLine = document.querySelector('#btl-cashflow-line .line-primary');
-const cashflowIncreaseLine = document.querySelector('#btl-cashflow-line .line-rent-increase');
-const cashflowYMax = document.querySelector('#btl-cashflow-y-max');
-const cashflowYMid = document.querySelector('#btl-cashflow-y-mid');
-const cashflowYMin = document.querySelector('#btl-cashflow-y-min');
-const cashflowXStart = document.querySelector('#btl-cashflow-x-start');
-const cashflowXEnd = document.querySelector('#btl-cashflow-x-end');
-const cashflowNote = document.querySelector('#btl-cashflow-note');
-const cashflowLegendIncrease = document.querySelector('#btl-cashflow-legend-increase');
-const cashflowHoverLayer = document.querySelector('#btl-cashflow-hover');
-const cashflowTooltip = document.querySelector('#btl-cashflow-tooltip');
-const cashflowTooltipTitle = document.querySelector('#btl-cashflow-tooltip-title');
-const cashflowTooltipBaseline = document.querySelector('#btl-cashflow-tooltip-baseline');
-const cashflowTooltipIncrease = document.querySelector('#btl-cashflow-tooltip-increase');
-const cashflowTooltipApplied = document.querySelector('#btl-cashflow-tooltip-applied');
+let cashflowLine = document.querySelector('#btl-cashflow-line .line-primary');
+let cashflowIncreaseLine = document.querySelector('#btl-cashflow-line .line-rent-increase');
+let cashflowYMax = document.querySelector('#btl-cashflow-y-max');
+let cashflowYMid = document.querySelector('#btl-cashflow-y-mid');
+let cashflowYMin = document.querySelector('#btl-cashflow-y-min');
+let cashflowXStart = document.querySelector('#btl-cashflow-x-start');
+let cashflowXEnd = document.querySelector('#btl-cashflow-x-end');
+let cashflowNote = document.querySelector('#btl-cashflow-note');
+let cashflowLegendIncrease = document.querySelector('#btl-cashflow-legend-increase');
+let cashflowHoverLayer = document.querySelector('#btl-cashflow-hover');
+let cashflowGraphPanel = document.querySelector('#btl-cashflow-graph');
+let cashflowGraphWrapper =
+  cashflowHoverLayer?.closest('.graph-bars-wrapper') ??
+  document.querySelector('#btl-cashflow-graph .graph-bars-wrapper');
+let cashflowTooltip = document.querySelector('#btl-cashflow-tooltip');
+let cashflowTooltipTitle = document.querySelector('#btl-cashflow-tooltip-title');
+let cashflowTooltipBaseline = document.querySelector('#btl-cashflow-tooltip-baseline');
+let cashflowTooltipIncrease = document.querySelector('#btl-cashflow-tooltip-increase');
+let cashflowTooltipApplied = document.querySelector('#btl-cashflow-tooltip-applied');
+let cashflowTooltipBound = false;
+let cashflowTooltipTargets = new Set();
+let documentTooltipBound = false;
 
 const MAX_INPUT_LENGTH = 10;
+
+function cacheCashflowElements() {
+  tableBody = document.querySelector('#btl-table-body');
+  cashflowLine = document.querySelector('#btl-cashflow-line .line-primary');
+  cashflowIncreaseLine = document.querySelector('#btl-cashflow-line .line-rent-increase');
+  cashflowYMax = document.querySelector('#btl-cashflow-y-max');
+  cashflowYMid = document.querySelector('#btl-cashflow-y-mid');
+  cashflowYMin = document.querySelector('#btl-cashflow-y-min');
+  cashflowXStart = document.querySelector('#btl-cashflow-x-start');
+  cashflowXEnd = document.querySelector('#btl-cashflow-x-end');
+  cashflowNote = document.querySelector('#btl-cashflow-note');
+  cashflowLegendIncrease = document.querySelector('#btl-cashflow-legend-increase');
+  cashflowHoverLayer = document.querySelector('#btl-cashflow-hover');
+  cashflowGraphPanel = document.querySelector('#btl-cashflow-graph');
+  cashflowGraphWrapper =
+    cashflowHoverLayer?.closest('.graph-bars-wrapper') ??
+    document.querySelector('#btl-cashflow-graph .graph-bars-wrapper');
+  cashflowTooltip = document.querySelector('#btl-cashflow-tooltip');
+  cashflowTooltipTitle = document.querySelector('#btl-cashflow-tooltip-title');
+  cashflowTooltipBaseline = document.querySelector('#btl-cashflow-tooltip-baseline');
+  cashflowTooltipIncrease = document.querySelector('#btl-cashflow-tooltip-increase');
+  cashflowTooltipApplied = document.querySelector('#btl-cashflow-tooltip-applied');
+}
+
+cacheCashflowElements();
 
 function enforceMaxLength(input) {
   if (!input) {
@@ -261,28 +294,28 @@ function updateExplanation(data) {
   }
 
   if (priceValue) {
-    priceValue.textContent = formatCurrency(data.price);
+    priceValue.textContent = formatLoanCurrency(data.price);
   }
   if (depositValue) {
-    depositValue.textContent = formatCurrency(data.depositAmount);
+    depositValue.textContent = formatLoanCurrency(data.depositAmount);
   }
   if (depositPercentValue) {
     depositPercentValue.textContent = formatPercent(data.depositPercent);
   }
   if (loanValue) {
-    loanValue.textContent = formatCurrency(data.loanAmount);
+    loanValue.textContent = formatLoanCurrency(data.loanAmount);
   }
   if (effectiveRentValue) {
-    effectiveRentValue.textContent = formatCurrency(data.effectiveRent);
+    effectiveRentValue.textContent = formatLoanCurrency(data.effectiveRent);
   }
   if (mortgagePaymentValue) {
-    mortgagePaymentValue.textContent = formatCurrency(data.monthlyMortgage);
+    mortgagePaymentValue.textContent = formatLoanCurrency(data.monthlyMortgage);
   }
   if (netMonthlyValue) {
-    netMonthlyValue.textContent = formatCurrency(data.netMonthlyCashflow);
+    netMonthlyValue.textContent = formatLoanCurrency(data.netMonthlyCashflow);
   }
   if (netAnnualValue) {
-    netAnnualValue.textContent = formatCurrency(data.annualCashflow);
+    netAnnualValue.textContent = formatLoanCurrency(data.annualCashflow);
   }
   if (grossYieldValue) {
     grossYieldValue.textContent = formatPercent(data.grossYield);
@@ -308,16 +341,16 @@ function updateExplanation(data) {
       const valueLabel =
         data.rentIncreaseType === 'percent'
           ? `${formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 })}%`
-          : `${formatCurrency(data.rentIncreaseValue)} per year`;
+          : `${formatLoanCurrency(data.rentIncreaseValue)} per year`;
       rentIncreaseDescValue.textContent = `${valueLabel} ${intervalLabel}`;
     }
     if (rentIncreaseStartValue) {
-      rentIncreaseStartValue.textContent = formatCurrency(
+      rentIncreaseStartValue.textContent = formatLoanCurrency(
         data.projection[0]?.netCashflow ?? 0
       );
     }
     if (rentIncreaseEndValue) {
-      rentIncreaseEndValue.textContent = formatCurrency(
+      rentIncreaseEndValue.textContent = formatLoanCurrency(
         data.projection[data.projection.length - 1]?.netCashflow ?? 0
       );
     }
@@ -333,7 +366,7 @@ function updateExplanation(data) {
       })}%`;
     }
     if (cashflowCurrentValue) {
-      cashflowCurrentValue.textContent = `${formatCurrency(
+      cashflowCurrentValue.textContent = `${formatLoanCurrency(
         data.rateScenario.currentNetMonthly
       )} / month`;
     }
@@ -343,7 +376,7 @@ function updateExplanation(data) {
       })}%`;
     }
     if (cashflowHigherValue) {
-      cashflowHigherValue.textContent = `${formatCurrency(
+      cashflowHigherValue.textContent = `${formatLoanCurrency(
         data.rateScenario.higherNetMonthly
       )} / month`;
     }
@@ -374,9 +407,8 @@ function updateTable(data) {
 }
 
 function updateCashflowGraph(data) {
-  if (!cashflowLine) {
-    return;
-  }
+  cacheCashflowElements();
+
   const baselineValues = data.cashflowSeriesBaseline.map((entry) => entry.value);
   const increaseValues = data.rentIncreaseEnabled
     ? data.cashflowSeriesWithIncrease.map((entry) => entry.value)
@@ -387,7 +419,9 @@ function updateCashflowGraph(data) {
   const { min, max } = getPaddedMinMax(combinedValues, 0.15);
   const mid = (min + max) / 2;
 
-  cashflowLine.setAttribute('points', buildPolyline(sampledBaseline, min, max));
+  if (cashflowLine) {
+    cashflowLine.setAttribute('points', buildPolyline(sampledBaseline, min, max));
+  }
   if (cashflowIncreaseLine) {
     cashflowIncreaseLine.setAttribute(
       'points',
@@ -397,11 +431,21 @@ function updateCashflowGraph(data) {
   if (cashflowLegendIncrease) {
     cashflowLegendIncrease.classList.toggle('is-hidden', !data.rentIncreaseEnabled);
   }
-  cashflowYMax.textContent = formatAxisValue(max);
-  cashflowYMid.textContent = formatAxisValue(mid);
-  cashflowYMin.textContent = formatAxisValue(min);
-  cashflowXStart.textContent = '1';
-  cashflowXEnd.textContent = String(data.baselineProjection.length);
+  if (cashflowYMax) {
+    cashflowYMax.textContent = formatAxisValue(max);
+  }
+  if (cashflowYMid) {
+    cashflowYMid.textContent = formatAxisValue(mid);
+  }
+  if (cashflowYMin) {
+    cashflowYMin.textContent = formatAxisValue(min);
+  }
+  if (cashflowXStart) {
+    cashflowXStart.textContent = '1';
+  }
+  if (cashflowXEnd) {
+    cashflowXEnd.textContent = String(data.baselineProjection.length);
+  }
   if (cashflowNote) {
     cashflowNote.textContent = data.rentIncreaseEnabled
       ? `${data.baselineProjection.length} years (rent increase on)`
@@ -416,11 +460,78 @@ function updateCashflowGraph(data) {
     rentIncreaseValue: data.rentIncreaseValue,
     rentIncreaseInterval: data.rentIncreaseInterval,
   };
+
+  ensureCashflowTooltipBindings();
+}
+
+function ensureCashflowTooltipBindings() {
+  cacheCashflowElements();
+  const targets = [cashflowHoverLayer, cashflowGraphWrapper, cashflowGraphPanel].filter(Boolean);
+  if (!targets.length) {
+    return;
+  }
+
+  const nextTargets = new Set(targets);
+  cashflowTooltipTargets.forEach((target) => {
+    if (!nextTargets.has(target)) {
+      target.removeEventListener('mousemove', showCashflowTooltip);
+      target.removeEventListener('mouseleave', hideCashflowTooltip);
+    }
+  });
+
+  targets.forEach((target) => {
+    if (!cashflowTooltipTargets.has(target)) {
+      target.addEventListener('mousemove', showCashflowTooltip);
+      target.addEventListener('mouseleave', hideCashflowTooltip);
+    }
+  });
+
+  cashflowTooltipTargets = nextTargets;
+  cashflowTooltipBound = true;
+
+  if (!documentTooltipBound) {
+    document.addEventListener('mousemove', handleDocumentTooltip);
+    documentTooltipBound = true;
+  }
+}
+
+function handleDocumentTooltip(event) {
+  if (!cashflowTooltipData) {
+    return;
+  }
+
+  const graphPanel = cashflowGraphPanel ?? document.querySelector('#btl-cashflow-graph');
+  if (!graphPanel) {
+    return;
+  }
+
+  const bounds = graphPanel.getBoundingClientRect();
+  const inside =
+    event.clientX >= bounds.left &&
+    event.clientX <= bounds.right &&
+    event.clientY >= bounds.top &&
+    event.clientY <= bounds.bottom;
+
+  if (!inside) {
+    hideCashflowTooltip();
+    return;
+  }
+
+  showCashflowTooltip(event);
 }
 
 function showCashflowTooltip(event) {
+  if (!cashflowTooltip || !cashflowTooltipTitle || !cashflowTooltipBaseline) {
+    cacheCashflowElements();
+  }
+
+  const hoverTarget =
+    cashflowGraphPanel ||
+    cashflowGraphWrapper ||
+    cashflowHoverLayer ||
+    event.currentTarget;
   if (
-    !cashflowHoverLayer ||
+    !hoverTarget ||
     !cashflowTooltip ||
     !cashflowTooltipTitle ||
     !cashflowTooltipBaseline ||
@@ -434,31 +545,43 @@ function showCashflowTooltip(event) {
     return;
   }
 
-  const bounds = cashflowHoverLayer.getBoundingClientRect();
-  const scrollContainer = cashflowHoverLayer.closest('.graph-bars-wrapper');
-  const scrollLeft = scrollContainer ? scrollContainer.scrollLeft : 0;
-  const totalWidth = scrollContainer
-    ? Math.max(scrollContainer.scrollWidth, bounds.width)
-    : bounds.width;
-  const x = event.clientX - bounds.left;
-  const y = event.clientY - bounds.top;
-  const clampedX = Math.min(Math.max(x, 0), bounds.width);
-  const relativeX = Math.min(Math.max(clampedX + scrollLeft, 0), totalWidth);
+  const panelBounds = cashflowGraphPanel?.getBoundingClientRect();
+  const wrapperBounds = cashflowGraphWrapper?.getBoundingClientRect();
+  const hoverBounds = hoverTarget.getBoundingClientRect();
+  const effectiveBounds =
+    panelBounds && panelBounds.width > 0 && panelBounds.height > 0
+      ? panelBounds
+      : wrapperBounds && wrapperBounds.width > 0 && wrapperBounds.height > 0
+        ? wrapperBounds
+        : hoverBounds;
+  if (!effectiveBounds || effectiveBounds.width <= 0 || effectiveBounds.height <= 0) {
+    return;
+  }
+
+  const totalWidth = effectiveBounds.width;
+  const x = event.clientX - effectiveBounds.left;
+  const y = event.clientY - effectiveBounds.top;
+  const clampedX = Math.min(Math.max(x, 0), effectiveBounds.width);
+  const clampedY = Math.min(Math.max(y, 0), effectiveBounds.height);
+  const relativeX = Math.min(Math.max(clampedX, 0), totalWidth);
   const index = Math.min(
     baseline.length - 1,
-    Math.max(0, Math.round((relativeX / totalWidth) * (baseline.length - 1)))
+    Math.max(0, Math.floor((relativeX / totalWidth) * (baseline.length - 1)))
   );
 
   const baselineRow = baseline[index];
+  if (!baselineRow) {
+    return;
+  }
   const projectionRow = projection[index] ?? baselineRow;
 
   cashflowTooltipTitle.textContent = `Year ${baselineRow.year}`;
-  cashflowTooltipBaseline.textContent = `Baseline: ${formatCurrency(baselineRow.netCashflow)}`;
+  cashflowTooltipBaseline.textContent = `Baseline: ${formatLoanCurrency(baselineRow.netCashflow)}`;
 
   if (cashflowTooltipIncrease && cashflowTooltipApplied) {
     if (cashflowTooltipData.rentIncreaseEnabled) {
       cashflowTooltipIncrease.classList.remove('is-hidden');
-      cashflowTooltipIncrease.textContent = `With increase: ${formatCurrency(
+      cashflowTooltipIncrease.textContent = `With increase: ${formatLoanCurrency(
         projectionRow.netCashflow
       )}`;
       cashflowTooltipApplied.classList.remove('is-hidden');
@@ -473,7 +596,7 @@ function showCashflowTooltip(event) {
   }
 
   cashflowTooltip.style.left = `${relativeX}px`;
-  cashflowTooltip.style.top = `${y}px`;
+  cashflowTooltip.style.top = `${clampedY}px`;
   cashflowTooltip.classList.remove('is-hidden');
   cashflowTooltip.setAttribute('aria-hidden', 'false');
 }
@@ -490,6 +613,8 @@ function calculate() {
   if (!resultDiv || !summaryDiv) {
     return;
   }
+
+  cacheCashflowElements();
 
   resultDiv.textContent = '';
   summaryDiv.textContent = '';
@@ -644,11 +769,13 @@ function calculate() {
     depositPercentInput.value = data.depositPercent.toFixed(2);
   }
 
-  resultDiv.innerHTML = `<strong>Net Monthly Cashflow:</strong> ${formatCurrency(data.netMonthlyCashflow)}`;
+  resultDiv.innerHTML = `<strong>Net Monthly Cashflow:</strong> ${formatLoanCurrency(
+    data.netMonthlyCashflow
+  )}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Monthly mortgage payment:</strong> ${formatCurrency(data.monthlyMortgage)}</p>` +
-    `<p><strong>Annual cashflow:</strong> ${formatCurrency(data.annualCashflow)}</p>` +
+    `<p><strong>Monthly mortgage payment:</strong> ${formatLoanCurrency(data.monthlyMortgage)}</p>` +
+    `<p><strong>Annual cashflow:</strong> ${formatLoanCurrency(data.annualCashflow)}</p>` +
     `<p><strong>Gross yield:</strong> ${formatPercent(data.grossYield)} | ` +
     `<strong>Net yield:</strong> ${formatPercent(data.netYield)}</p>` +
     `<p><strong>Stress coverage:</strong> ${formatNumber(data.stressCoverage, { maximumFractionDigits: 2 })}</p>`;
@@ -665,7 +792,5 @@ setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
 setRentIncreaseFrequencyVisibility(rentIncreaseFrequencyButtons?.getValue() ?? '1');
 
 calculateButton?.addEventListener('click', calculate);
-cashflowHoverLayer?.addEventListener('mousemove', showCashflowTooltip);
-cashflowHoverLayer?.addEventListener('mouseleave', hideCashflowTooltip);
 
 calculate();

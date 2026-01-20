@@ -358,12 +358,18 @@
 
         const categoryName = category.name ?? 'calculators';
         const searchInput = document.createElement('input');
+        const searchId = `nav-search-${category.id}`;
         searchInput.type = 'search';
         searchInput.className = 'nav-search-input';
+        searchInput.id = searchId;
         searchInput.placeholder = `Search ${categoryName.toLowerCase()}...`;
         searchInput.setAttribute('aria-label', `Search ${categoryName} calculators`);
         searchInput.value = state.navSearchQuery[category.id] ?? '';
-        searchWrap.appendChild(searchInput);
+        const searchLabel = document.createElement('label');
+        searchLabel.className = 'sr-only';
+        searchLabel.setAttribute('for', searchId);
+        searchLabel.textContent = `Search ${categoryName} calculators`;
+        searchWrap.append(searchLabel, searchInput);
         container.appendChild(searchWrap);
 
         const collapsedMap = getCollapsedMap(category.id);
