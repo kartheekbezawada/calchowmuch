@@ -7,7 +7,7 @@ import {
   max,
   range,
   parseDataset,
-} from '../../../public/assets/js/core/stats.js';
+} from '../../public/assets/js/core/stats.js';
 
 /**
  * MMMR-TEST-U-1 - Mean Median Mode Range Unit Tests

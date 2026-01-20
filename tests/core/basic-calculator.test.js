@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add, subtract, multiply, divide } from '../../../public/assets/js/core/math.js';
+import { add, subtract, multiply, divide } from '../../public/assets/js/core/math.js';
 
 /**
  * BASIC-TEST-U-1 - Basic Calculator Unit Tests
@@ -189,6 +189,7 @@ describe('Basic Calculator - BASIC-TEST-U-2: Edge Cases', () => {
 
     it('should support MC pattern (memory clear)', () => {
       let memory = 50;
+      expect(memory).toBe(50);
       memory = 0; // MC
       expect(memory).toBe(0);
     });
