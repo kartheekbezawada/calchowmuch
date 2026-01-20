@@ -1,0 +1,83 @@
+<div id="calc-law-trig">
+  <div class="calculator-ui">
+    <p class="helper">
+      Solve triangles with the Law of Sines or Law of Cosines and see a scaled diagram.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="law-method">Method</label>
+        <select id="law-method">
+          <option value="auto">Auto Detect</option>
+          <option value="sine">Law of Sines</option>
+          <option value="cosine">Law of Cosines</option>
+        </select>
+      </div>
+
+      <div class="input-row">
+        <label id="law-angle-unit">Angle Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="law-angle-unit"
+          data-button-group="law-angle-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="deg">
+            Degrees
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="rad">
+            Radians
+          </button>
+        </div>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="law-a">Side a</label>
+          <input id="law-a" type="number" value="8" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="law-b">Side b</label>
+          <input id="law-b" type="number" value="10" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="law-c">Side c</label>
+          <input id="law-c" type="number" value="12" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="law-A">Angle A</label>
+          <input id="law-A" type="number" value="35" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="law-B">Angle B</label>
+          <input id="law-B" type="number" value="45" step="any" />
+        </div>
+        <div class="input-row">
+          <label for="law-C">Angle C</label>
+          <input id="law-C" type="number" value="100" step="any" />
+        </div>
+      </div>
+      <span class="inline-note" id="law-hint">
+        Enter any consistent combination of sides/angles. Auto mode picks the best law.
+      </span>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="law-calc">
+      Solve with Trig Laws
+    </button>
+
+    <div class="trig-panel">
+      <h3>Triangle Diagram</h3>
+      <canvas id="law-triangle" class="diagram-canvas" width="340" height="260"></canvas>
+      <p class="inline-note" id="law-diagram-note"></p>
+    </div>
+
+    <div class="result" id="law-result" aria-live="polite"></div>
+    <div class="result-detail" id="law-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css');
+  @import url('/calculators/math/trigonometry/law-of-sines-cosines/calculator.css');
+</style>

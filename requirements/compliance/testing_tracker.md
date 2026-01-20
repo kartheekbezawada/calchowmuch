@@ -39,6 +39,10 @@ This document is the system of record for FSM test runs.
 | TEST-20260120-132423 | BUILD-20260120-132418 | 2026-01-20 13:24:28 | PASS | `npm run test` (391 tests passed); shared run for REQ-008/009/010 |
 | TEST-20260120-172550 | BUILD-20260120-172541 | 2026-01-20 17:25:56 | RUNNING | `npm run test` (unit tests) |
 | TEST-20260120-172550 | BUILD-20260120-172541 | 2026-01-20 17:26:20 | PASS | `npm run test` (513 tests passed) |
+| TEST-20260120-211544 | BUILD-20260120-211539 | 2026-01-20 21:15:44 | RUNNING | `npm run test -- tests/core/trigonometry-calculators.test.js` |
+| TEST-20260120-211544 | BUILD-20260120-211539 | 2026-01-20 21:15:53 | PASS | `npm run test -- tests/core/trigonometry-calculators.test.js` (8 tests passed) |
+| TEST-20260120-211820 | BUILD-20260120-211807 | 2026-01-20 21:18:20 | RUNNING | `npm run test -- tests/core/trigonometry-calculators.test.js` |
+| TEST-20260120-211820 | BUILD-20260120-211807 | 2026-01-20 21:18:29 | PASS | `npm run test -- tests/core/trigonometry-calculators.test.js` (8 tests passed) |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.

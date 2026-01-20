@@ -59,7 +59,38 @@
         {
           "id": "trigonometry",
           "name": "Trigonometry",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "unit-circle",
+              "name": "Unit Circle Calculator",
+              "url": "#/calculators/unit-circle",
+              "keywords": ["unit circle", "reference angle", "quadrant", "sin", "cos", "tan"]
+            },
+            {
+              "id": "triangle-solver",
+              "name": "Triangle Solver",
+              "url": "#/calculators/triangle-solver",
+              "keywords": ["SSS", "SAS", "ASA", "AAS", "SSA", "triangle"]
+            },
+            {
+              "id": "trig-functions",
+              "name": "Trigonometric Functions",
+              "url": "#/calculators/trig-functions",
+              "keywords": ["sin", "cos", "tan", "sec", "csc", "cot", "graph"]
+            },
+            {
+              "id": "inverse-trig",
+              "name": "Inverse Trig Functions",
+              "url": "#/calculators/inverse-trig",
+              "keywords": ["arcsin", "arccos", "arctan", "inverse trig"]
+            },
+            {
+              "id": "law-of-sines-cosines",
+              "name": "Law of Sines/Cosines Calculator",
+              "url": "#/calculators/law-of-sines-cosines",
+              "keywords": ["law of sines", "law of cosines", "triangle"]
+            }
+          ]
         },
         {
           "id": "calculus",

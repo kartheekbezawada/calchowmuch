@@ -1,0 +1,56 @@
+<div id="calc-unit-circle">
+  <div class="calculator-ui">
+    <p class="helper">
+      Explore angle measures, quadrant signs, and exact trig values on the unit circle.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="unit-angle">Angle Value</label>
+        <input id="unit-angle" type="number" value="45" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label id="unit-angle-unit">Angle Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="unit-angle-unit"
+          data-button-group="unit-angle-unit"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="deg"
+            aria-pressed="true"
+          >
+            Degrees
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="rad"
+            aria-pressed="false"
+          >
+            Radians
+          </button>
+        </div>
+        <span class="inline-note">Click a point on the circle to snap to a standard angle.</span>
+      </div>
+    </div>
+
+    <div class="trig-panel">
+      <h3>Interactive Unit Circle</h3>
+      <canvas id="unit-circle-canvas" class="diagram-canvas" width="320" height="320"></canvas>
+      <p class="inline-note" id="unit-circle-legend"></p>
+    </div>
+
+    <div class="result" id="unit-circle-result" aria-live="polite"></div>
+    <div class="result-detail" id="unit-circle-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css');
+  @import url('/calculators/math/trigonometry/unit-circle/calculator.css');
+</style>
