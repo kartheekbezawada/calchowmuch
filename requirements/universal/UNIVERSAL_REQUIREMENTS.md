@@ -436,6 +436,21 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | TEST-1.6 | **Trace optimization** — Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests. | P1 |
 | TEST-1.7 | **Resource efficiency** — Test execution should prioritize functional validation over visual artifact generation | P1 |
 
+### Minimal Required Tests by Change Type
+
+| Change Type | Required Tests (per TEST-1.*) | Optional/Deferred Tests |
+|------------|--------------------------------|--------------------------|
+| Any change scope (general rule) | Run E2E only for calculators you changed; untouched calculators do not need E2E unless it is a full release sweep | Full-sweep E2E is limited to 1 calculator per category |
+| Calculator compute logic change | Unit tests for compute logic (`{PREFIX}-TEST-U-*`) per `TEST-1.1`; meet `TEST-1.2` 80% coverage | E2E only if UI/flow also changed |
+| Calculator UI/flow change | `*-TEST-E2E-LOAD`, `*-TEST-E2E-WORKFLOW` for affected calculators | `*-TEST-E2E-NAV`, `*-TEST-E2E-MOBILE`, `*-TEST-E2E-A11Y` |
+| Graph/table change (calculator-scoped only) | Unit/integration test validating data mapping; DOM structure check for table semantics (thead/tbody/tfoot) or graph container presence | `*-TEST-E2E-WORKFLOW` only if user interaction changed |
+| Layout/CSS/shared shell change | `ISS-001` regression E2E check (no layout shifts, scrollbars visible, no nav ping-pong) | Full E2E suite |
+| Navigation/config change | `*-TEST-E2E-NAV` for affected domain + `ISS-001` | Full E2E suite |
+| Accessibility-only change | `*-TEST-E2E-A11Y` for affected calculators | Full E2E suite |
+| No UI changes (pure logic) | Unit tests only (`TEST-1.1`, `TEST-1.2`) | E2E skip |
+
+Note: Full release sweep = run the full unit test suite plus E2E for only 1 representative calculator per category (not every calculator).
+
 ---
 
 ## 8) SEO and URL Rules
