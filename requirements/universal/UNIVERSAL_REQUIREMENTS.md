@@ -336,6 +336,7 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | UNAV-ROOT-4 | No cross-domain navigation leakage | P1 |
 | UNAV-HIER-1 | Navigation matches `requirements/universal/calculator-hierarchy.md` | P0 |
 | UNAV-HIER-2 | Empty sections still render as headings | P2 |
+| UNAV-HIER-3 | Active calculators must be present in `public/config/navigation.json` to be visible in navigation | P0 |
 
 ### 4.6 Navigation Scalability
 
@@ -460,6 +461,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 | SEO-1.1 | Each calculator directly accessible via URL | P0 |
 | SEO-1.2 | Changing calculator selection updates title/description/canonical | P0 |
 | SEO-1.3 | Explanation pane contains long-form content (examples, assumptions, edge cases). Calculation pane stays compact. | P1 |
+| SEO-1.4 | Live calculators must be listed in `public/calculators/index.html` for crawlable discovery | P1 |
 
 ---
 
@@ -470,6 +472,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 | DOC-1.1 | Documentation must list all calculator folders under `/public/calculators/` | P0 |
 | DOC-1.2 | Every calculator labeled: Active, Work-in-progress, or Deprecated | P1 |
 | DOC-1.3 | No silent omission — unlisted folders must be acknowledged with status | P1 |
+| DOC-1.4 | Calculators are considered **live/visible** only when added to `public/config/navigation.json` and `public/calculators/index.html` | P0 |
 
 ---
 
