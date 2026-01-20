@@ -48,7 +48,23 @@
         {
           "id": "statistics",
           "name": "Statistics",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "number-sequence",
+              "name": "Number Sequence Calculator",
+              "url": "#/calculators/number-sequence"
+            },
+            {
+              "id": "permutation-combination",
+              "name": "Permutation & Combination Calculator",
+              "url": "#/calculators/permutation-combination"
+            },
+            {
+              "id": "probability",
+              "name": "Probability Calculator",
+              "url": "#/calculators/probability"
+            }
+          ]
         }
       ]
     },
