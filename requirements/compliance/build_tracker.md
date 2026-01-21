@@ -73,6 +73,8 @@ This document is the system of record for FSM build runs.
 | BUILD-20260120-214145 | REQ-20260120-018 | Codex | 2026-01-20 21:41:41 | RUNNING | 1 | Pending `npm run lint` | Auto-advance build start |
 | BUILD-20260120-214145 | REQ-20260120-018 | Codex | 2026-01-20 21:42:10 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
 | BUILD-20260120-214145 | REQ-20260120-018 | Codex | 2026-01-20 21:42:40 | SUCCESS | 2 | `npm run test -- tests/core/trigonometry-calculators.test.js` ok | Verified after unit tests |
+| BUILD-20260121-004607 | REQ-20260120-019 | Claude | 2026-01-21 00:28:00 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
+| BUILD-20260121-004607 | REQ-20260120-019 | Claude | 2026-01-21 00:43:00 | SUCCESS | 2 | `npm run test -- tests/core/calculus.test.js` ok (26/26 tests passed); All 547 tests passing | Calculus Calculator Suite: 5 calculators (Derivative, Integral, Limit, Series Convergence, Critical Points) |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.
@@ -125,4 +127,3 @@ Notes:
 ```
 
 **Close the row:** replace `RUNNING` with final status and fill `End UTC` when done.
-| BUILD-20260121-004607 | REQ-20260120-019 | Claude | 2026-01-21 00:28:00 | SUCCESS | 1 | All 5 calculus calculators implemented, unit tests passed (26/26), E2E tests created | Calculus Calculator Suite: Derivative, Integral, Limit, Series Convergence, Critical Points |
