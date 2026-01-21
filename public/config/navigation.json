@@ -95,7 +95,38 @@
         {
           "id": "calculus",
           "name": "Calculus",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "derivative",
+              "name": "Derivative Calculator",
+              "url": "#/calculators/derivative",
+              "keywords": ["derivative", "differentiation", "power rule", "product rule", "quotient rule", "chain rule"]
+            },
+            {
+              "id": "integral",
+              "name": "Integral Calculator",
+              "url": "#/calculators/integral",
+              "keywords": ["integral", "integration", "antiderivative", "definite", "indefinite", "area under curve"]
+            },
+            {
+              "id": "limit",
+              "name": "Limit Calculator",
+              "url": "#/calculators/limit",
+              "keywords": ["limit", "lhopital", "indeterminate", "infinity", "continuity"]
+            },
+            {
+              "id": "series-convergence",
+              "name": "Series Convergence Calculator",
+              "url": "#/calculators/series-convergence",
+              "keywords": ["series", "convergence", "ratio test", "root test", "integral test", "comparison"]
+            },
+            {
+              "id": "critical-points",
+              "name": "Critical Points Finder",
+              "url": "#/calculators/critical-points",
+              "keywords": ["critical points", "extrema", "inflection", "maximum", "minimum", "concavity"]
+            }
+          ]
         },
         {
           "id": "log",

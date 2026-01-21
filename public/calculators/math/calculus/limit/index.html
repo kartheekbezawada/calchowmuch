@@ -1,0 +1,44 @@
+<div id="calc-limit">
+  <div class="calculator-ui">
+    <p class="helper">Calculate limits including indeterminate forms</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="limit-function">Function f(x)</label>
+        <input id="limit-function" type="text" value="(x^2-1)/(x-1)" placeholder="e.g., (x^2-1)/(x-1)" />
+      </div>
+
+      <div class="input-row">
+        <label for="limit-variable">Variable</label>
+        <input id="limit-variable" type="text" value="x" placeholder="x" />
+      </div>
+
+      <div class="input-row">
+        <label for="limit-approaches">Limit as x approaches</label>
+        <input id="limit-approaches" type="text" value="1" placeholder="Enter number or 'inf' for infinity" />
+      </div>
+
+      <div class="button-group">
+        <button class="direction-button active" data-direction="both">Two-Sided</button>
+        <button class="direction-button" data-direction="left">Left (−)</button>
+        <button class="direction-button" data-direction="right">Right (+)</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="limit-calculate">
+      Calculate Limit
+    </button>
+
+    <div class="result" id="limit-result" aria-live="polite"></div>
+    <div class="result-detail" id="limit-steps" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/calculus/limit/calculator.css');
+</style>
+
+<script type="module">
+  import { initLimitCalculator } from '/calculators/math/calculus/limit/module.js';
+  initLimitCalculator();
+</script>
