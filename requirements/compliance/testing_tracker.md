@@ -61,7 +61,9 @@ This document is the system of record for FSM test runs.
 | TEST-20260121-074100 | BUILD-20260121-074100 | 2026-01-21 07:41:00 | PASS | Unit tests: 77/77 passed for advanced-statistics (ADVSTAT-TEST-U-1 through U-11); All 624 tests passed; Coverage: 94.34% for advanced-statistics.js; Advanced Statistics Calculator Suite: Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution |
 | TEST-20260121-142414 | BUILD-20260121-142414 | 2026-01-21 14:24:14 | PASS | `npm run test` (624 tests passed). Validated calculus calculators load after nav-path fix. |
 | TEST-20260121-124035 | BUILD-20260121-124003 | 2026-01-21 12:40:35 | PASS | `npm run test` (638 total tests across 25 files); includes new `tests/core/logarithm-calculators.test.js` covering LOG-TEST-U-1..5 |
-| TEST-20260121-124430 | BUILD-20260121-124003 | 2026-01-21 12:44:30 | PASS | `npx playwright test` (86 tests). Runs `tests/e2e/logarithm-calculators.spec.js` for LOG-TEST-E2E-LOAD/NAV/WORKFLOW/MOBILE/A11Y; `requirements/tests/e2e/iss-001-layout-stability.spec.js` snapshot refreshed via `npx playwright test requirements/tests/e2e/iss-001-layout-stability.spec.js --update-snapshots` |
+| TEST-20260121-124430 | BUILD-20260121-124003 | 2026-01-21 12:44:30 | PASS | `npx playwright test` (86 tests). Runs `tests/e2e/logarithm-calculators.spec.js` for LOG-TEST-E2E-LOAD/NAV/WORKFLOW/MOBILE/A11Y; `requirements/specs/e2e/iss-001-layout-stability.spec.js` snapshot refreshed via `npx playwright test requirements/specs/e2e/iss-001-layout-stability.spec.js --update-snapshots` |
+| TEST-20260121-161837 | BUILD-20260121-161813 | 2026-01-21 16:18:37 | PASS | `npm run test` (25 files, 638 tests across `tests/` and `requirements/specs/`); verifies REQ-20260121-022 documentation rename. |
+| TEST-20260121-161928 | BUILD-20260121-161813 | 2026-01-21 16:19:28 | PASS | `npm run test:e2e` (86 tests); confirms calculators load/search after spec/docs rename. |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
@@ -73,9 +75,9 @@ Notes:
 
 | Metric | Count | Percentage |
 |--------|-------|------------|
-| Total FSM Test Runs | 15 | 100% |
-| Passed | 6 | 40% |
-| Failed | 9 | 60% |
+| Total FSM Test Runs | 17 | 100% |
+| Passed | 8 | 47% |
+| Failed | 9 | 53% |
 | Running | 0 | 0% |
 
 ---

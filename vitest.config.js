@@ -7,7 +7,8 @@ export default defineConfig({
     exclude: [
       '**/node_modules/**',
       '**/tests/e2e/**',
-      '**/requirements/tests/calculators/**'
+      '**/requirements/specs/calculators/**',
+      '**/requirements/specs/e2e/**'
     ],
     coverage: {
       provider: 'v8',
