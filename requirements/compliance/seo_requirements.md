@@ -1,136 +1,53 @@
-# SEO Requirements and Tracker
 
-This document defines SEO requirements and tracks SEO compliance for FSM runs.
 
-## FSM SEO Status Definitions
-- **PENDING**: SEO entry created but not yet validated.
-- **PASS**: SEO validated (or placeholder used per missing SEO rule).
-- **FAIL**: SEO validation failed (issue must be created, but release can still proceed).
+## SEO Requirements 
 
----
+| Heading              | Subheading            | Description                                                       | Priority | Checkable     |
+| -------------------- | --------------------- | ----------------------------------------------------------------- | -------- | ------------- |
+| Indexing & Canonical | Crawlable & Indexable | Page must not be blocked by `robots.txt` or unintended `noindex`. | P1       | Auto + Manual |
+| Indexing & Canonical | Canonical Present     | Page must define exactly one canonical URL.                       | P1       | Auto          |
+| Indexing & Canonical | Canonical Accuracy    | Canonical path must match the actual page path.                   | P1       | Auto          |
+| Indexing & Canonical | HTTPS Enforcement     | Page must load over HTTPS with no mixed content.                  | P1       | Auto          |
+| URL Structure        | URL Format            | URLs must be lowercase and hyphen-separated.                      | P1       | Auto          |
+| URL Structure        | URL Pattern           | URLs must follow `/calculators/{category}/{calculator-name}`.     | P1       | Auto          |
+| URL Structure        | No Query Params       | Static calculator pages must not use query parameters or hashes.  | P1       | Auto          |
+| URL Structure        | No Orphan Pages       | Page must be reachable via internal links.                        | P1       | Manual        |
+| Titles & Meta        | Title Tag             | Unique, descriptive `<title>` with primary keyword.               | P1       | Auto          |
+| Titles & Meta        | Meta Description      | Unique `<meta name="description">` (~150–160 chars).              | P1       | Auto          |
+| Titles & Meta        | Single H1             | Exactly one `<h1>` aligned with page topic.                       | P1       | Auto          |
+| Sitemap              | Sitemap Inclusion     | Page must be listed in `sitemap.xml`.                             | P1       | Auto          |
+| Sitemap              | Sitemap Updated       | Sitemap must be updated when calculators are added.               | P1       | Auto          |
+| Structured Data      | JSON-LD Present       | Calculator page must include JSON-LD structured data.             | P1       | Auto          |
+| Structured Data      | Required Fields       | JSON-LD must include `@type`, `name`, `description`, `url`.       | P1       | Auto          |
+| Structured Data      | Schema Validity       | Structured data must validate in Rich Results Test.               | P1       | Auto          |
+| Content Quality      | Intent Intro          | Page must clearly state the user problem at the top.              | P2       | Auto          |
+| Content Quality      | Usage Instructions    | Page must explain how to use the calculator and inputs.           | P2       | Auto          |
+| Content Quality      | Result Explanation    | Page must explain what the result means.                          | P2       | Auto          |
+| Content Quality      | Example Scenario      | Page must include a worked example.                               | P2       | Auto          |
+| Content Quality      | FAQ / Q&A             | FAQ or Q&A should be present where applicable.                    | P2       | Auto          |
+| Content Structure    | Heading Hierarchy     | Content must use logical H2/H3 structure.                         | P2       | Auto          |
+| Internal Linking     | Related Links         | Page must link to relevant calculators/content.                   | P2       | Auto          |
+| Internal Linking     | Anchor Text           | Internal links must use descriptive anchors.                      | P2       | Manual        |
+| Taxonomy             | Category Grouping     | Calculators must belong to a clear category.                      | P3       | Manual        |
+| Taxonomy             | Breadcrumbs           | Breadcrumb navigation should be implemented if applicable.        | P3       | Auto + Manual |
+| Programmatic SEO     | Template Consistency  | Pages should be generated from consistent templates.              | P3       | Manual        |
+| Programmatic SEO     | Content Uniqueness    | Programmatic pages must not reuse identical content blocks.       | P3       | Manual        |
+| Mobile UX            | Mobile Usability      | Page must be usable on mobile (no broken layout).                 | P4       | Manual        |
+| Mobile UX            | No Intrusive Overlays | No pop-ups blocking content, especially on mobile.                | P4       | Manual        |
+| Performance          | LCP Target            | LCP target < 2.5s.                                                | P5       | Manual        |
+| Performance          | CLS Target            | CLS target < 0.1.                                                 | P5       | Manual        |
+| Performance          | Interaction Metric    | FID/INP should meet Google thresholds.                            | P5       | Manual        |
 
-## FSM SEO Tracker (Authoritative)
 
-| SEO ID | Requirement ID | Page/Scope | Status | Evidence/Notes |
-|--------|----------------|------------|--------|----------------|
-| SEO-PENDING-REQ-20260119-001 | REQ-20260119-001 | Buy-to-Let Calculator page | PASS | No SEO-critical markup changes; layout verified visually |
-| SEO-PENDING-REQ-20260119-002 | REQ-20260119-002 | Math/Simple/Percentage Calculator page | PENDING | Fixing calculation functionality will improve user engagement metrics and reduce bounce rate |
-| SEO-PENDING-REQ-20260119-003 | REQ-20260119-003 | Math/Simple/Fraction Calculator page | PENDING | Fixing fraction operations will improve user engagement metrics and reduce bounce rate |
-| SEO-PENDING-REQ-20260119-008 | REQ-20260119-008 | Math/Advanced/Number Sequence page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260119-009 | REQ-20260119-009 | Math/Advanced/Permutation Combination page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260119-010 | REQ-20260119-010 | Math/Advanced/Probability Calculator page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra calculator suite | PASS | New calculator pages listed in navigation, index, and sitemap |
-| SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra/* (5 calculator pages) | PENDING | New Algebra Calculator Suite: Quadratic, System of Equations, Polynomial, Factoring, Slope & Distance. Requires meta tags, structured data, and sitemaps for 5 new pages. |
-| SEO-PENDING-REQ-20260120-018 | REQ-20260120-018 | Math/Trigonometry/* (5 calculator pages) | PASS | SEO metadata, structured data, and sitemap entries added for the trigonometry suite (setPageMetadata helper + updated structured-data.json and sitemap). |
-| SEO-PENDING-REQ-20260120-019 | REQ-20260120-019 | Math/Calculus/* (5 calculator pages) | PASS | Calculus Calculator Suite SEO metadata added: structured data in structured-data.json for all 5 calculators (Derivative, Integral, Limit, Series Convergence, Critical Points). Navigation entries added to navigation.json. |
-| SEO-PENDING-REQ-20260120-020 | REQ-20260120-020 | Math/Logarithm/* (5 calculator pages) | PASS | Navigation already lists the five log calculators; structured-data.json now contains entries for each page and sitemap.xml includes all log URLs; setPageMetadata called per module with unique titles/descriptions; ISSUE-20260121-152000 resolved once metadata/nav were added. |
-| SEO-PENDING-REQ-20260120-021 | REQ-20260120-021 | Math/Statistics/* (5 calculator pages) | PASS | Advanced Statistics Suite implemented: Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution. Navigation entries added to navigation.json with keywords for discoverability. Explanation.html files added for each calculator. |
+##### How to use this table operationally #####
 
-Notes:
-- Use SEO-... when known; otherwise use SEO-PENDING-REQ-XXXX or SEO-N/A.
-- If SEO items are missing for changed pages, add a placeholder entry and create a follow-up issue.
+    P1 → must pass for release (most are auto-checkable via Playwright SEO tests)
+    P2 → required for strong rankings (manual content validation)
+    P3 → scaling hygiene (checked when adding categories/templates)
+    P4 → baseline usability (desktop-first allowed)
+    P5 → tracked and optimized later (non-blocking unless explicitly required
 
----
 
-## SEO Requirements (To Be Defined)
-
-### General SEO Rules
-
-**SEO-GEN-1**  
-Each calculator page must have unique, descriptive `<title>` tag.
-
-**SEO-GEN-2**  
-Each calculator page must have unique `<meta name="description">` tag (150-160 characters).
-
-**SEO-GEN-3**  
-All pages must have canonical URL defined.
-
-**SEO-GEN-4**  
-All images must have descriptive `alt` attributes.
-
-**SEO-GEN-5**  
-Page must be mobile-friendly and pass Core Web Vitals.
-
----
-
-### URL Structure Rules
-
-**SEO-URL-1**  
-URLs must be lowercase and hyphen-separated.
-
-**SEO-URL-2**  
-URLs must follow the pattern: `/calculators/{category}/{calculator-name}`
-
-**SEO-URL-3**  
-No query parameters for static content.
-
----
-
-### Structured Data Rules
-
-**SEO-SD-1**  
-Each calculator must have JSON-LD structured data.
-
-**SEO-SD-2**  
-Structured data must include: `@type`, `name`, `description`, `url`.
-
-**SEO-SD-3**  
-Structured data must be valid (test with Google Rich Results Test).
-
----
-
-### Sitemap Rules
-
-**SEO-SITEMAP-1**  
-All calculator pages must be included in sitemap.xml.
-
-**SEO-SITEMAP-2**  
-Sitemap must be updated when new calculators are added.
-
-**SEO-SITEMAP-3**  
-Sitemap must include `<lastmod>`, `<changefreq>`, `<priority>`.
-
----
-
-### Performance Rules
-
-**SEO-PERF-1**  
-Largest Contentful Paint (LCP) < 2.5 seconds.
-
-**SEO-PERF-2**  
-Cumulative Layout Shift (CLS) < 0.1.
-
-**SEO-PERF-3**  
-First Input Delay (FID) < 100ms.
-
----
-
-## Current SEO Status
-
-| Domain | Tests | Passed | Failed | Compliance Rate |
-|--------|-------|--------|--------|--------------------|
-| Math Calculators | 10 | 8 | 2 | 80% |
-| Loan Calculators | 12 | 10 | 2 | 83% |
-| Navigation | 3 | 3 | 0 | 100% |
-| **Overall** | **25** | **21** | **4** | **84%** |
-
----
-
-## SEO Summary by Priority
-
-| Priority | Total Rules | Passed | Failed | Rate |
-|----------|-------------|--------|---------|---------
-| P0 (Critical) | 8 | 8 | 0 | 100% |
-| P1 (Important) | 12 | 10 | 2 | 83% |
-| P2 (Enhancement) | 5 | 3 | 2 | 60% |
-
----
-
-## Template for New FSM SEO Entries
-
-```markdown
-| SEO-... | REQ-YYYYMMDD-### | [Page/Scope] | PENDING/PASS/FAIL | [Evidence/Notes] |
-```
 
 ---
 
