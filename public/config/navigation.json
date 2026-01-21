@@ -16,7 +16,7 @@
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "#/calculators/math/simple/percentage-increase"
+              "url": "#/calculators/percentage-increase"
             },
             {
               "id": "fraction-calculator",
@@ -131,7 +131,38 @@
         {
           "id": "log",
           "name": "Log",
-          "calculators": []
+          "calculators": [
+            {
+              "id": "natural-log",
+              "name": "Natural Log Calculator",
+              "url": "#/calculators/math/log/natural-log",
+              "keywords": ["ln", "natural log", "e", "logarithm"]
+            },
+            {
+              "id": "common-log",
+              "name": "Common Log Calculator",
+              "url": "#/calculators/math/log/common-log",
+              "keywords": ["log", "base 10", "logarithm", "change of base"]
+            },
+            {
+              "id": "log-properties",
+              "name": "Logarithm Properties",
+              "url": "#/calculators/math/log/log-properties",
+              "keywords": ["product rule", "quotient rule", "power rule", "expansion"]
+            },
+            {
+              "id": "exponential-equations",
+              "name": "Exponential Equations Solver",
+              "url": "#/calculators/math/log/exponential-equations",
+              "keywords": ["a^x", "logarithmic solution", "exponential"]
+            },
+            {
+              "id": "log-scale",
+              "name": "Log Scale Converter",
+              "url": "#/calculators/math/log/log-scale",
+              "keywords": ["decibel", "pH", "Richter", "logarithmic scale"]
+            }
+          ]
         },
         {
           "id": "statistics",

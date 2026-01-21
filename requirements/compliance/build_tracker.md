@@ -78,6 +78,7 @@ This document is the system of record for FSM build runs.
 | BUILD-20260121-074100 | REQ-20260120-021 | Claude | 2026-01-21 07:41:00 | PASSED | 1 | `npm run lint` ok (ESLINT_USE_FLAT_CONFIG=false) | Lint passed after auto-fix |
 | BUILD-20260121-074100 | REQ-20260120-021 | Claude | 2026-01-21 07:41:30 | SUCCESS | 2 | `npm run test` ok (624/624 tests passed); `npm run test:coverage` advanced-statistics.js 94.34% coverage | Advanced Statistics Calculator Suite: 5 calculators (Regression, ANOVA, Hypothesis Testing, Correlation, Distribution); 77 new unit tests |
 | BUILD-20260121-142414 | REQ-20260120-019 | Codex | 2026-01-21 14:24:14 | PASS | 1 | `npm run test` (624 tests passed) | Re-validated calculus suite navigation fix |
+| BUILD-20260121-124003 | REQ-20260120-020 | Codex | 2026-01-21 12:40:03 | PASSED | 1 | `npm run lint` (new log assets + navigation metadata) | Logarithm calculator modules, shared helper, and SEO metadata linted successfully |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.
@@ -100,10 +101,10 @@ Notes:
 
 | Metric | Count | Percentage |
 |--------|-------|------------|
-| Total FSM Builds | 8 | 100% |
-| Success | 4 | 50% |
-| Failed | 3 | 37.5% |
-| Blocked | 1 | 12.5% |
+| Total FSM Builds | 9 | 100% |
+| Success | 5 | 55.6% |
+| Failed | 3 | 33.3% |
+| Blocked | 1 | 11.1% |
 
 ---
 
@@ -112,7 +113,7 @@ Notes:
 | Category | Builds | Success | Failed | In Progress |
 |----------|--------|---------|--------|--------------|
 | Buy-to-Let | 1 | ✅ 1 | 0 | 0 |
-| Math Calculators | 0 | 0 | 0 | 0 |
+| Math Calculators | 1 | ✅ 1 | 0 | 0 |
 | Infrastructure | 7 | ✅ 3 | ❌ 3 | 🔄 1 |
 
 ---

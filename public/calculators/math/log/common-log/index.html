@@ -1,0 +1,38 @@
+<div class="log-calculator" id="common-log-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compute common logarithms, arbitrary bases, and see how change-of-base converts between bases.
+    </p>
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="log-value">Argument (x)</label>
+        <input id="log-value" type="number" step="any" min="0.01" value="100" />
+      </div>
+      <div class="input-row">
+        <label for="log-base">Base</label>
+        <select id="log-base">
+          <option value="10">Base 10</option>
+          <option value="2">Base 2</option>
+          <option value="Math.E">Base e</option>
+          <option value="custom">Custom base</option>
+        </select>
+      </div>
+      <div class="input-row" id="log-custom-row" hidden>
+        <label for="log-custom-base">Custom Base</label>
+        <input id="log-custom-base" type="number" step="any" min="0.1" value="5" />
+      </div>
+    </div>
+    <button id="log-calculate" class="calculator-button primary" type="button">Calculate log</button>
+    <div class="result" id="log-result" aria-live="polite"></div>
+    <div class="result-detail" id="log-detail"></div>
+    <div class="result-detail" id="log-change"></div>
+    <div class="log-graph">
+      <canvas id="log-graph" width="360" height="200" role="img" aria-label="Logarithm curves"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/calculator.css?v=20260116');
+  @import url('/calculators/math/log/shared.css');
+</style>

@@ -1,0 +1,36 @@
+<div class="log-calculator" id="exponential-equations-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Solve equations of the form base^(m·x + c) = target using logarithms and visualize the associated exponential curve.
+    </p>
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="exp-base">Base</label>
+        <input id="exp-base" type="number" step="any" min="0.1" value="2" />
+      </div>
+      <div class="input-row">
+        <label for="exp-target">Target value (RHS)</label>
+        <input id="exp-target" type="number" step="any" min="0.01" value="16" />
+      </div>
+      <div class="input-row">
+        <label for="exp-mult">Multiplier (m)</label>
+        <input id="exp-mult" type="number" step="any" value="1" />
+      </div>
+      <div class="input-row">
+        <label for="exp-shift">Shift (c)</label>
+        <input id="exp-shift" type="number" step="any" value="0" />
+      </div>
+    </div>
+    <button id="exp-calculate" class="calculator-button primary" type="button">Solve for x</button>
+    <div class="result" id="exp-result" aria-live="polite"></div>
+    <div class="result-detail" id="exp-detail"></div>
+    <div class="log-graph">
+      <canvas id="exp-graph" width="360" height="200" role="img" aria-label="Exponential curve"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/calculator.css?v=20260116');
+  @import url('/calculators/math/log/shared.css');
+</style>

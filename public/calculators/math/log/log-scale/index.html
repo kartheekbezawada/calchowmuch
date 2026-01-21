@@ -1,0 +1,43 @@
+<div class="log-calculator" id="log-scale-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Convert values between linear measurements and logarithmic scales such as decibels, pH, and the Richter scale.
+    </p>
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="scale-type">Scale</label>
+        <select id="scale-type">
+          <option value="decibel">Decibel (dB)</option>
+          <option value="ph">pH</option>
+          <option value="richter">Richter magnitude</option>
+        </select>
+      </div>
+      <div class="scale-sections">
+        <div class="input-row" data-scale="decibel">
+          <label for="scale-amplitude">Amplitude ratio</label>
+          <input id="scale-amplitude" type="number" step="any" min="0.0001" value="2" />
+          <label for="scale-reference">Reference amplitude (optional)</label>
+          <input id="scale-reference" type="number" step="any" min="0.0001" value="1" />
+        </div>
+        <div class="input-row" data-scale="ph" hidden>
+          <label for="scale-concentration">Hydrogen ion concentration [H+]</label>
+          <input id="scale-concentration" type="number" step="any" min="1e-12" value="1e-7" />
+        </div>
+        <div class="input-row" data-scale="richter" hidden>
+          <label for="scale-magnitude">Ground motion amplitude</label>
+          <input id="scale-magnitude" type="number" step="any" min="0.0001" value="10" />
+          <label for="scale-richter-reference">Reference amplitude (default 1)</label>
+          <input id="scale-richter-reference" type="number" step="any" min="0.0001" value="1" />
+        </div>
+      </div>
+    </div>
+    <button id="scale-calculate" class="calculator-button primary" type="button">Convert</button>
+    <div class="result" id="scale-result" aria-live="polite"></div>
+    <div class="result-detail" id="scale-detail"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/calculator.css?v=20260116');
+  @import url('/calculators/math/log/shared.css');
+</style>

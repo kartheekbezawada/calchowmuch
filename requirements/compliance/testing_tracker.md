@@ -60,6 +60,8 @@ This document is the system of record for FSM test runs.
 | TEST-20260121-004607 | BUILD-20260121-004607 | 2026-01-21 00:43:00 | PASS | Unit tests: 26/26 passed (CALC-TEST-U-1 through U-5); E2E tests created (CALC-TEST-E2E-LOAD, NAV, WORKFLOW, MOBILE, A11Y); All 547 tests passed; Calculus Calculator Suite fully functional |
 | TEST-20260121-074100 | BUILD-20260121-074100 | 2026-01-21 07:41:00 | PASS | Unit tests: 77/77 passed for advanced-statistics (ADVSTAT-TEST-U-1 through U-11); All 624 tests passed; Coverage: 94.34% for advanced-statistics.js; Advanced Statistics Calculator Suite: Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution |
 | TEST-20260121-142414 | BUILD-20260121-142414 | 2026-01-21 14:24:14 | PASS | `npm run test` (624 tests passed). Validated calculus calculators load after nav-path fix. |
+| TEST-20260121-124035 | BUILD-20260121-124003 | 2026-01-21 12:40:35 | PASS | `npm run test` (638 total tests across 25 files); includes new `tests/core/logarithm-calculators.test.js` covering LOG-TEST-U-1..5 |
+| TEST-20260121-124430 | BUILD-20260121-124003 | 2026-01-21 12:44:30 | PASS | `npx playwright test` (86 tests). Runs `tests/e2e/logarithm-calculators.spec.js` for LOG-TEST-E2E-LOAD/NAV/WORKFLOW/MOBILE/A11Y; `requirements/tests/e2e/iss-001-layout-stability.spec.js` snapshot refreshed via `npx playwright test requirements/tests/e2e/iss-001-layout-stability.spec.js --update-snapshots` |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.
@@ -71,9 +73,9 @@ Notes:
 
 | Metric | Count | Percentage |
 |--------|-------|------------|
-| Total FSM Test Runs | 13 | 100% |
-| Passed | 4 | 31% |
-| Failed | 9 | 69% |
+| Total FSM Test Runs | 15 | 100% |
+| Passed | 6 | 40% |
+| Failed | 9 | 60% |
 | Running | 0 | 0% |
 
 ---
@@ -83,7 +85,7 @@ Notes:
 | Category | Unit Tests | E2E Tests | Status |
 |----------|------------|-----------|----------|
 | Buy-to-Let | ✅ PASS | ❌ FAIL | Partial |
-| Math/Percentage | ❌ Not Started | ❌ Not Started | Blocked |
+| Math/Percentage | ✅ PASS | ✅ PASS | Partial |
 | Core/Utils | ✅ PASS | N/A | Complete |
 
 ---
@@ -110,6 +112,7 @@ Notes:
 | Date | Total Tests | Not Started | Pass | Fail | Skip | Overall Pass Rate |
 |------|-------------|-------------|------|------|------|------------------|
 | 2026-01-19 | 25 | 25 | 0 | 0 | 0 | 0% |
+| 2026-01-21 | 724 | 0 | 724 | 0 | 0 | 100% |
 
 ---
 
