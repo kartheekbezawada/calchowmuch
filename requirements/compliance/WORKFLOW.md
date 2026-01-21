@@ -163,6 +163,7 @@ S11_TRACKERS_UPDATED → S12_SEO_CHECK → S13_RELEASE_READY → S0_IDLE
 - Create `REQ-YYYYMMDD-###`.
 - In the REQ, set **Change Type** and list **impacted targets** explicitly.
 - Add row to `requirement_tracker.md` (Status: NEW).
+- **Update corresponding build_rules file** with specific rule definitions for the requirement (math: `requirements/build_rules/math/MATH_ADVANCED_RULES.md`, loans: `requirements/build_rules/loans/`, etc.).
 - Add SEO placeholder row if page/URL/metadata scope changed (Status: PENDING).
 - Stop.
 
