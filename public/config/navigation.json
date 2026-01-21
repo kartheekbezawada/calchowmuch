@@ -11,17 +11,17 @@
             {
               "id": "basic",
               "name": "Basic Calculator",
-              "url": "#/calculators/basic"
+              "url": "#/calculators/math/basic"
             },
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "#/calculators/percentage-increase"
+              "url": "#/calculators/math/simple/percentage-increase"
             },
             {
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
-              "url": "#/calculators/fraction-calculator"
+              "url": "#/calculators/math/simple/fraction-calculator"
             }
           ]
         },
@@ -32,27 +32,27 @@
             {
               "id": "quadratic-equation",
               "name": "Quadratic Equation Solver",
-              "url": "#/calculators/quadratic-equation"
+              "url": "#/calculators/math/algebra/quadratic-equation"
             },
             {
               "id": "system-of-equations",
               "name": "System of Linear Equations",
-              "url": "#/calculators/system-of-equations"
+              "url": "#/calculators/math/algebra/system-of-equations"
             },
             {
               "id": "polynomial-operations",
               "name": "Polynomial Operations",
-              "url": "#/calculators/polynomial-operations"
+              "url": "#/calculators/math/algebra/polynomial-operations"
             },
             {
               "id": "factoring",
               "name": "Factoring Calculator",
-              "url": "#/calculators/factoring"
+              "url": "#/calculators/math/algebra/factoring"
             },
             {
               "id": "slope-distance",
               "name": "Slope & Distance Calculator",
-              "url": "#/calculators/slope-distance"
+              "url": "#/calculators/math/algebra/slope-distance"
             }
           ]
         },
@@ -63,31 +63,31 @@
             {
               "id": "unit-circle",
               "name": "Unit Circle Calculator",
-              "url": "#/calculators/unit-circle",
+              "url": "#/calculators/math/trigonometry/unit-circle",
               "keywords": ["unit circle", "reference angle", "quadrant", "sin", "cos", "tan"]
             },
             {
               "id": "triangle-solver",
               "name": "Triangle Solver",
-              "url": "#/calculators/triangle-solver",
+              "url": "#/calculators/math/trigonometry/triangle-solver",
               "keywords": ["SSS", "SAS", "ASA", "AAS", "SSA", "triangle"]
             },
             {
               "id": "trig-functions",
               "name": "Trigonometric Functions",
-              "url": "#/calculators/trig-functions",
+              "url": "#/calculators/math/trigonometry/trig-functions",
               "keywords": ["sin", "cos", "tan", "sec", "csc", "cot", "graph"]
             },
             {
               "id": "inverse-trig",
               "name": "Inverse Trig Functions",
-              "url": "#/calculators/inverse-trig",
+              "url": "#/calculators/math/trigonometry/inverse-trig",
               "keywords": ["arcsin", "arccos", "arctan", "inverse trig"]
             },
             {
               "id": "law-of-sines-cosines",
               "name": "Law of Sines/Cosines Calculator",
-              "url": "#/calculators/law-of-sines-cosines",
+              "url": "#/calculators/math/trigonometry/law-of-sines-cosines",
               "keywords": ["law of sines", "law of cosines", "triangle"]
             }
           ]
@@ -99,31 +99,31 @@
             {
               "id": "derivative",
               "name": "Derivative Calculator",
-              "url": "#/calculators/derivative",
+              "url": "#/calculators/math/calculus/derivative",
               "keywords": ["derivative", "differentiation", "power rule", "product rule", "quotient rule", "chain rule"]
             },
             {
               "id": "integral",
               "name": "Integral Calculator",
-              "url": "#/calculators/integral",
+              "url": "#/calculators/math/calculus/integral",
               "keywords": ["integral", "integration", "antiderivative", "definite", "indefinite", "area under curve"]
             },
             {
               "id": "limit",
               "name": "Limit Calculator",
-              "url": "#/calculators/limit",
+              "url": "#/calculators/math/calculus/limit",
               "keywords": ["limit", "lhopital", "indeterminate", "infinity", "continuity"]
             },
             {
               "id": "series-convergence",
               "name": "Series Convergence Calculator",
-              "url": "#/calculators/series-convergence",
+              "url": "#/calculators/math/calculus/series-convergence",
               "keywords": ["series", "convergence", "ratio test", "root test", "integral test", "comparison"]
             },
             {
               "id": "critical-points",
               "name": "Critical Points Finder",
-              "url": "#/calculators/critical-points",
+              "url": "#/calculators/math/calculus/critical-points",
               "keywords": ["critical points", "extrema", "inflection", "maximum", "minimum", "concavity"]
             }
           ]
@@ -140,64 +140,64 @@
             {
               "id": "mean-median-mode-range",
               "name": "Mean Median Mode Range Calculator",
-              "url": "#/calculators/mean-median-mode-range"
+              "url": "#/calculators/math/statistics/mean-median-mode-range"
             },
             {
               "id": "standard-deviation",
               "name": "Standard Deviation Calculator",
-              "url": "#/calculators/standard-deviation"
+              "url": "#/calculators/math/statistics/standard-deviation"
             },
             {
               "id": "statistics",
               "name": "Statistics Calculator",
-              "url": "#/calculators/statistics"
+              "url": "#/calculators/math/statistics/statistics"
             },
             {
               "id": "confidence-interval",
               "name": "Confidence Interval Calculator",
-              "url": "#/calculators/confidence-interval"
+              "url": "#/calculators/math/statistics/confidence-interval"
             },
             {
               "id": "z-score",
               "name": "Z-Score Calculator",
-              "url": "#/calculators/z-score"
+              "url": "#/calculators/math/statistics/z-score"
             },
             {
               "id": "sample-size",
               "name": "Sample Size Calculator",
-              "url": "#/calculators/sample-size"
+              "url": "#/calculators/math/statistics/sample-size"
             },
             {
               "id": "number-sequence",
               "name": "Number Sequence Calculator",
-              "url": "#/calculators/number-sequence"
+              "url": "#/calculators/math/statistics/number-sequence"
             },
             {
               "id": "permutation-combination",
               "name": "Permutation & Combination Calculator",
-              "url": "#/calculators/permutation-combination"
+              "url": "#/calculators/math/statistics/permutation-combination"
             },
             {
               "id": "probability",
               "name": "Probability Calculator",
-              "url": "#/calculators/probability"
+              "url": "#/calculators/math/statistics/probability"
             },
             {
               "id": "regression-analysis",
               "name": "Regression Analysis",
-              "url": "#/calculators/regression-analysis",
+              "url": "#/calculators/math/statistics/regression-analysis",
               "keywords": ["linear regression", "polynomial", "exponential", "r-squared", "residuals", "least squares"]
             },
             {
               "id": "anova",
               "name": "ANOVA Calculator",
-              "url": "#/calculators/anova",
+              "url": "#/calculators/math/statistics/anova",
               "keywords": ["ANOVA", "F-test", "analysis of variance", "group comparison", "eta-squared"]
             },
             {
               "id": "hypothesis-testing",
               "name": "Hypothesis Testing",
-              "url": "#/calculators/hypothesis-testing",
+              "url": "#/calculators/math/statistics/hypothesis-testing",
               "keywords": ["t-test", "z-test", "chi-square", "p-value", "significance", "null hypothesis"]
             },
             {

@@ -25,6 +25,7 @@ This document is the system of record for issues created during FSM runs. Existi
 | ISSUE-20260119-005 | REQ-20260119-003 | TEST-20260119-203815 | ISS-001 layout snapshot diff persists after shell adjustments | Release Owner | HIGH | OPEN | See `test-results/e2e-iss-001-layout-stabili-52f2e-ion---page-layout-stability-chromium/` | 2026-01-19 20:39:44 |
 | ISSUE-20260120-001 | REQ-20260120-016 | TEST-20260120-100053 | Playwright e2e failures across BOR/BTL/ISS-001 suites | Release Owner | HIGH | RESOLVED | `npx playwright test` passed (86 tests) | 2026-01-20 02:29:40 |
 | ISSUE-20260120-002 | REQ-20260120-018 | BUILD-20260120-214145 | SEO metadata, structured data, and sitemap updates implemented for the trigonometry suite | SEO Owner | MEDIUM | RESOLVED | setPageMetadata helper + structured-data.json + sitemap updates added for all five trigonometry pages; resolved 2026-01-20 21:42:40 | 2026-01-20 21:16:10 |
+| ISSUE-20260121-142500 | REQ-20260120-019 | BUILD-20260121-142414 / TEST-20260121-142414 | Calculus calculator IDs lacked nav path entries, causing the shell to show “Calculator not found” even though modules existed | Codex | P1 | RESOLVED | Added `'derivative'`, `'integral'`, `'limit'`, `'series-convergence'`, and `'critical-points'` to the calculator path map in `public/index.html`, re-ran `npm run test` (624 tests passed) to verify module loading | 2026-01-21 14:25:00 |
 
 Notes:
 - Use ISSUE-YYYYMMDD-### when creating issues in S6, S9, or S12.
