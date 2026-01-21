@@ -35,8 +35,8 @@ All state is stored in Markdown files under `requirements/compliance/`:
 
 Calculator-specific rules live under:
 
-- `requirements/build_rules/math/`
-- `requirements/build_rules/loans/`
+- `requirements/rules/math/`
+- `requirements/rules/loans/`
 - (others as added)
 
 ---
@@ -66,7 +66,7 @@ User command:
 
 Copilot must:
 1. Create `REQ-...` and add to `requirement_tracker.md` (Status: NEW)
-2. Add/update calculator rules in `requirements/build_rules/...`
+2. Add/update calculator rules in `requirements/rules/...`
 3. Add SEO placeholder in `seo_requirements.md` if SEO impact is YES/UNKNOWN
 4. Stop (Copilot does not build/test)
 
