@@ -3,29 +3,18 @@
  * Calculates limits numerically and symbolically
  */
 
+import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+
 class LimitCalculator {
   constructor(variable = 'x') {
     this.variable = variable;
     this.steps = [];
   }
 
-  // Evaluate function at a point
+  // Evaluate function at a point using safe parser
   evaluateFunction(expr, value) {
     try {
-      // Replace variable with value
-      let evalExpr = expr.replace(/\^/g, '**');
-      evalExpr = evalExpr.replace(/x/g, `(${value})`);
-
-      // Handle common functions
-      evalExpr = evalExpr.replace(/sin/g, 'Math.sin');
-      evalExpr = evalExpr.replace(/cos/g, 'Math.cos');
-      evalExpr = evalExpr.replace(/tan/g, 'Math.tan');
-      evalExpr = evalExpr.replace(/ln/g, 'Math.log');
-      evalExpr = evalExpr.replace(/log/g, 'Math.log10');
-      evalExpr = evalExpr.replace(/sqrt/g, 'Math.sqrt');
-      evalExpr = evalExpr.replace(/abs/g, 'Math.abs');
-
-      return eval(evalExpr);
+      return expressionParser.evaluate(expr, value, 'x');
     } catch (e) {
       return NaN;
     }

@@ -3,6 +3,8 @@
  * Provides symbolic differentiation capabilities
  */
 
+import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+
 // Simple expression parser and differentiator
 class SymbolicDifferentiator {
   constructor(variable = 'x') {
@@ -187,12 +189,10 @@ function plotDerivativeGraph(funcExpr, derivExpr, evalPoint) {
   ctx.lineTo(xOrigin, height);
   ctx.stroke();
 
-  // Helper to convert function string to evaluable
+  // Helper to convert function string to evaluable using safe parser
   const safeEval = (expr, x) => {
     try {
-      expr = expr.replace(/\^/g, '**');
-      expr = expr.replace(/x/g, `(${x})`);
-      return eval(expr);
+      return expressionParser.evaluate(expr, x, 'x');
     } catch (e) {
       return 0;
     }

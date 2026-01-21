@@ -75,16 +75,16 @@ test.describe('CALC-TEST-E2E-NAV: Navigation', () => {
   test('should highlight active calculator in navigation', async ({ page }) => {
     await page.goto('http://localhost:8000/#/calculators/derivative');
 
-    // Wait for navigation to render
-    await page.waitForTimeout(500);
+    // Wait for navigation to render by waiting for an active navigation item
+    await page.waitForSelector('.active, [aria-current="page"]');
 
-    // Check if Derivative Calculator is highlighted (implementation may vary)
-    // This is a placeholder - adjust based on actual navigation structure
-    const activeLink = page.locator('.active, [aria-current="page"]').first();
-    const isVisible = await activeLink.isVisible().catch(() => false);
+    // Look for any navigation item marked as active or current page
+    const activeLinks = page.locator('.active, [aria-current="page"]');
+    const activeCount = await activeLinks.count();
 
-    // Test passes if navigation is visible (specific highlighting may vary)
-    expect(isVisible || true).toBe(true);
+    // At least one active navigation entry should exist and be visible
+    expect(activeCount).toBeGreaterThan(0);
+    await expect(activeLinks.first()).toBeVisible();
   });
 });
 
