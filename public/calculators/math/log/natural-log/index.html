@@ -1,0 +1,35 @@
+<div class="log-calculator" id="natural-log-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Calculate the natural logarithm (ln) of any positive number and visualize how the function behaves.
+    </p>
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ln-value">Value (x)</label>
+        <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
+      </div>
+      <div class="input-row">
+        <label for="ln-decimals">Decimal Places</label>
+        <select id="ln-decimals">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <span class="inline-note">Higher precision helps when visualizing symbolic reasoning.</span>
+      </div>
+    </div>
+    <button id="ln-calculate" class="calculator-button primary" type="button">Compute ln(x)</button>
+    <div class="result" id="ln-result" aria-live="polite"></div>
+    <div class="result-detail" id="ln-detail"></div>
+    <div class="log-graph">
+      <canvas id="ln-graph" width="360" height="200" role="img" aria-label="Natural logarithm graph"></canvas>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/calculator.css?v=20260116');
+  @import url('/calculators/math/log/shared.css');
+</style>

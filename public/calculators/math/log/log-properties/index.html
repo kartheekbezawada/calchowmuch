@@ -1,0 +1,42 @@
+<div class="log-calculator" id="log-properties-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Demonstrate the product, quotient, and power rules for logarithms before simplifying expressions.
+    </p>
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="properties-base">Base</label>
+        <input id="properties-base" type="number" step="any" min="0.1" value="10" />
+      </div>
+      <div class="input-row">
+        <label>Product Rule Inputs</label>
+        <div class="input-stack">
+          <input id="properties-product-x" type="number" step="any" min="0.1" value="2" placeholder="x" />
+          <input id="properties-product-y" type="number" step="any" min="0.1" value="5" placeholder="y" />
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Quotient Rule Inputs</label>
+        <div class="input-stack">
+          <input id="properties-quot-n" type="number" step="any" min="0.1" value="20" placeholder="numerator" />
+          <input id="properties-quot-d" type="number" step="any" min="0.1" value="4" placeholder="denominator" />
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Power Rule Inputs</label>
+        <div class="input-stack">
+          <input id="properties-power-value" type="number" step="any" min="0.1" value="3" placeholder="value" />
+          <input id="properties-power-exp" type="number" step="any" value="2" placeholder="exponent" />
+        </div>
+      </div>
+    </div>
+    <button id="properties-calculate" class="calculator-button primary" type="button">Apply log rules</button>
+    <div class="result" id="properties-result" aria-live="polite"></div>
+    <div class="result-detail" id="properties-detail"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/calculator.css?v=20260116');
+  @import url('/calculators/math/log/shared.css');
+</style>

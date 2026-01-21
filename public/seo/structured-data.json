@@ -309,6 +309,126 @@
           }
         ]
       }
+    },
+    {
+      "id": "natural-log",
+      "url": "https://calchowmuch.com/calculators/math/log/natural-log/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate natural logarithms",
+        "description": "Enter a positive number and visualize its natural logarithm with a chart and explanation.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Provide a positive value for x."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Pick the desired precision and compute ln(x)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Review the result along with the relationship e^y = x."
+          }
+        ]
+      }
+    },
+    {
+      "id": "common-log",
+      "url": "https://calchowmuch.com/calculators/math/log/common-log/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Common and custom base logarithms",
+        "description": "Switch between base 10, base 2, e, or a custom base and observe the change-of-base outputs.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter the argument value and choose a base."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Set a custom base if required and compute log_b(x)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Compare the result with the base-10 conversion."
+          }
+        ]
+      }
+    },
+    {
+      "id": "log-properties",
+      "url": "https://calchowmuch.com/calculators/math/log/log-properties/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Logarithm property explorer",
+        "description": "Demonstrate the product, quotient, and power rules for logarithms before simplifying expressions.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter a base along with operands for each rule."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Apply the log rules to see numeric results."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Read the symbolic rewrites in the detail panel."
+          }
+        ]
+      }
+    },
+    {
+      "id": "exponential-equations",
+      "url": "https://calchowmuch.com/calculators/math/log/exponential-equations/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Solve exponential equations with logarithms",
+        "description": "Find x when base^(m·x + c) equals a target value using logarithms and visualize the intersection.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Provide base, multiplier, shift, and target value."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Compute x = (log_b(target) - c) / m."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Verify the intersection on the exponential graph."
+          }
+        ]
+      }
+    },
+    {
+      "id": "log-scale",
+      "url": "https://calchowmuch.com/calculators/math/log/log-scale/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Convert values to log scales",
+        "description": "Convert ratio values to decibels, acidity (pH), or Richter magnitudes with precise formulas.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Choose the target scale (decibel, pH, Richter)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Supply the required measurement (amplitude, hydrogen concentration, or ground motion)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Mind the reference values and read the logarithmic output."
+          }
+        ]
+      }
     }
   ]
 }

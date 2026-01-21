@@ -160,4 +160,30 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/log/natural-log/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/log/common-log/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/log/log-properties/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/log/exponential-equations/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/calculators/math/log/log-scale/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
 </urlset>
