@@ -1,0 +1,46 @@
+<div class="explanation-content">
+  <h2>Regression Analysis</h2>
+
+  <p>Regression analysis is a statistical method used to model the relationship between a dependent variable (Y) and one or more independent variables (X).</p>
+
+  <h3>Types of Regression</h3>
+
+  <h4>Linear Regression</h4>
+  <p>Fits the equation: <strong>y = ax + b</strong></p>
+  <p>The least squares method minimizes the sum of squared residuals to find the best-fitting line.</p>
+
+  <h4>Polynomial Regression</h4>
+  <p>Fits higher-degree polynomials: <strong>y = a0 + a1x + a2x2 + ... + anxn</strong></p>
+  <p>Useful when the relationship between variables is curvilinear.</p>
+
+  <h4>Exponential Regression</h4>
+  <p>Fits the equation: <strong>y = a x ebx</strong></p>
+  <p>Appropriate for data showing exponential growth or decay patterns.</p>
+
+  <h4>Logarithmic Regression</h4>
+  <p>Fits the equation: <strong>y = a + b x ln(x)</strong></p>
+  <p>Suitable for data where growth rate decreases as X increases.</p>
+
+  <h3>Key Statistics</h3>
+
+  <h4>R-squared (R2)</h4>
+  <p>The coefficient of determination measures how well the regression line fits the data. Values range from 0 to 1, where 1 indicates a perfect fit.</p>
+  <ul>
+    <li>R2 >= 0.9: Excellent fit</li>
+    <li>R2 >= 0.7: Good fit</li>
+    <li>R2 >= 0.5: Moderate fit</li>
+    <li>R2 < 0.5: Poor fit</li>
+  </ul>
+
+  <h4>Adjusted R-squared</h4>
+  <p>A modified version of R2 that adjusts for the number of predictors. It only increases if a new predictor improves the model more than expected by chance.</p>
+
+  <h4>Standard Error</h4>
+  <p>Measures the average distance between observed values and the regression line. Smaller values indicate better fit.</p>
+
+  <h4>Residuals</h4>
+  <p>The differences between observed and predicted values. Analyzing residuals helps identify patterns the model may have missed.</p>
+
+  <h3>Coefficient Testing</h3>
+  <p>The t-statistic and p-value for each coefficient test whether it significantly differs from zero. A small p-value (typically < 0.05) indicates the coefficient is statistically significant.</p>
+</div>

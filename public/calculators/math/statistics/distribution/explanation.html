@@ -1,0 +1,64 @@
+<div class="explanation-content">
+  <h2>Probability Distributions</h2>
+
+  <p>Probability distributions describe how probabilities are distributed over the values of a random variable. Understanding these distributions is fundamental to statistical inference.</p>
+
+  <h3>Normal Distribution</h3>
+  <p>The bell-shaped curve, also called Gaussian distribution, is the most important continuous distribution in statistics.</p>
+  <ul>
+    <li><strong>Parameters:</strong> Mean (mu) and Standard Deviation (sigma)</li>
+    <li><strong>Properties:</strong> Symmetric, mean = median = mode</li>
+    <li><strong>68-95-99.7 Rule:</strong> 68% within 1 std, 95% within 2 std, 99.7% within 3 std</li>
+  </ul>
+
+  <h3>Student's t-Distribution</h3>
+  <p>Similar to normal but with heavier tails, used when sample size is small or population variance is unknown.</p>
+  <ul>
+    <li><strong>Parameter:</strong> Degrees of freedom (df)</li>
+    <li><strong>Properties:</strong> Symmetric, approaches normal as df increases</li>
+    <li><strong>Use:</strong> t-tests, confidence intervals for means</li>
+  </ul>
+
+  <h3>Chi-Square Distribution</h3>
+  <p>A right-skewed distribution used for categorical data analysis and variance testing.</p>
+  <ul>
+    <li><strong>Parameter:</strong> Degrees of freedom (df)</li>
+    <li><strong>Properties:</strong> Always non-negative, skewed right (approaches normal for large df)</li>
+    <li><strong>Uses:</strong> Goodness of fit tests, tests of independence, variance tests</li>
+  </ul>
+
+  <h3>F-Distribution</h3>
+  <p>The ratio of two chi-square distributions, used to compare variances.</p>
+  <ul>
+    <li><strong>Parameters:</strong> Numerator df (d1) and Denominator df (d2)</li>
+    <li><strong>Properties:</strong> Always non-negative, right-skewed</li>
+    <li><strong>Uses:</strong> ANOVA, comparing variances, regression significance</li>
+  </ul>
+
+  <h3>Calculation Types</h3>
+
+  <h4>CDF (Cumulative Distribution Function)</h4>
+  <p>P(X <= x) - The probability that a random variable is less than or equal to x.</p>
+
+  <h4>PDF (Probability Density Function)</h4>
+  <p>f(x) - The height of the distribution curve at x. For continuous distributions, probabilities are areas, not heights.</p>
+
+  <h4>Quantile (Inverse CDF)</h4>
+  <p>Given a probability p, find the value x such that P(X <= x) = p. Used to find critical values.</p>
+
+  <h3>Common Critical Values</h3>
+  <table>
+    <tr><th>Confidence Level</th><th>alpha</th><th>Z-critical (two-tailed)</th></tr>
+    <tr><td>90%</td><td>0.10</td><td>1.645</td></tr>
+    <tr><td>95%</td><td>0.05</td><td>1.960</td></tr>
+    <tr><td>99%</td><td>0.01</td><td>2.576</td></tr>
+  </table>
+
+  <h3>Applications</h3>
+  <ul>
+    <li><strong>Normal:</strong> Natural phenomena, measurement errors, CLT applications</li>
+    <li><strong>t:</strong> Small sample means, paired comparisons</li>
+    <li><strong>Chi-square:</strong> Categorical data, contingency tables</li>
+    <li><strong>F:</strong> ANOVA, regression analysis, variance comparisons</li>
+  </ul>
+</div>

@@ -242,7 +242,7 @@ export class ExpressionParser {
   evaluate(expr, varValue, variable = 'x') {
     try {
       // Normalize exponent operator to '^' if user used '**'
-      let normalizedExpr = expr.replace(/\*\*/g, '^');
+      const normalizedExpr = expr.replace(/\*\*/g, '^');
       const tokens = this.tokenizeExpression(normalizedExpr);
       const rpn = this.toRPN(tokens, variable);
       return this.evaluateRPN(rpn, varValue);

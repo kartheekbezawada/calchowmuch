@@ -1,0 +1,43 @@
+#calc-anova .stats-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#calc-anova .stats-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+#calc-anova .stats-section h4 {
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--header-text);
+}
+
+#calc-anova .stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+#calc-anova .stats-row span:first-child {
+  color: var(--muted-text);
+}
+
+#calc-anova .stats-row span:last-child {
+  font-weight: 500;
+}
+
+#calc-anova .significant {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+#calc-anova .not-significant {
+  color: #dc2626;
+  font-weight: 600;
+}

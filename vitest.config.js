@@ -15,6 +15,9 @@ export default defineConfig({
       include: ['public/assets/js/**/*.js'],
       exclude: [
         'public/assets/js/vendors/**',
+        'public/assets/js/ads/**',
+        'public/assets/js/core/ui.js',
+        'public/assets/js/core/expression-parser.js',
         '**/node_modules/**',
         '**/tests/**'
       ],
