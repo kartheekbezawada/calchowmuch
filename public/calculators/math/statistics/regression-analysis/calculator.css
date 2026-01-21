@@ -1,0 +1,45 @@
+#calc-regression .stats-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#calc-regression .stats-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+#calc-regression .stats-section h4 {
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--header-text);
+}
+
+#calc-regression .stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+#calc-regression .stats-row span:first-child {
+  color: var(--muted-text);
+}
+
+#calc-regression .stats-row span:last-child {
+  font-weight: 500;
+}
+
+#calc-regression .equation-row {
+  font-family: monospace;
+  background: var(--bg-secondary);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+#calc-regression .equation-row span {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}

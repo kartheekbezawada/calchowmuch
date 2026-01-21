@@ -1,0 +1,168 @@
+<div id="cp-explanation-pane">
+  <section>
+    <h3>What Are Critical Points?</h3>
+    <p>
+      A critical point of a function f(x) occurs at x = c where either:
+    </p>
+    <ul>
+      <li>f'(c) = 0 (the derivative equals zero), or</li>
+      <li>f'(c) is undefined (the derivative does not exist)</li>
+    </ul>
+    <p>
+      Critical points are important because they are potential locations for local maxima, local minima, or inflection points.
+      They represent places where the function's behavior changes significantly.
+    </p>
+  </section>
+
+  <section>
+    <h3>Finding Critical Points</h3>
+    <h4>Step 1: Compute the First Derivative</h4>
+    <p>
+      Calculate f'(x) using differentiation rules (power rule, product rule, chain rule, etc.)
+    </p>
+
+    <h4>Step 2: Solve f'(x) = 0</h4>
+    <p>
+      Find all values of x where the derivative equals zero. These are candidates for critical points.
+    </p>
+
+    <h4>Step 3: Identify Where f'(x) is Undefined</h4>
+    <p>
+      Find values where the derivative doesn't exist but the function does. These are also critical points.
+    </p>
+  </section>
+
+  <section>
+    <h3>Classifying Critical Points</h3>
+
+    <h4>First Derivative Test</h4>
+    <p>
+      Examine the sign of f'(x) on either side of the critical point x = c:
+    </p>
+    <ul>
+      <li><strong>Local Maximum:</strong> f'(x) changes from positive to negative (+ to -)</li>
+      <li><strong>Local Minimum:</strong> f'(x) changes from negative to positive (- to +)</li>
+      <li><strong>Neither:</strong> f'(x) does not change sign (might be an inflection point)</li>
+    </ul>
+
+    <h4>Second Derivative Test</h4>
+    <p>
+      If f'(c) = 0, compute f''(c) (the second derivative at c):
+    </p>
+    <ul>
+      <li><strong>If f''(c) &gt; 0:</strong> The function is concave up → Local Minimum at x = c</li>
+      <li><strong>If f''(c) &lt; 0:</strong> The function is concave down → Local Maximum at x = c</li>
+      <li><strong>If f''(c) = 0:</strong> Test is inconclusive (use first derivative test or higher derivatives)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Inflection Points</h3>
+    <p>
+      An inflection point occurs where the concavity of the function changes. To find inflection points:
+    </p>
+    <ol>
+      <li>Compute the second derivative f''(x)</li>
+      <li>Solve f''(x) = 0 or find where f''(x) is undefined</li>
+      <li>Check if f''(x) changes sign at these points</li>
+      <li>If the sign changes, that point is an inflection point</li>
+    </ol>
+    <p>
+      At an inflection point, the curve changes from concave up to concave down, or vice versa.
+    </p>
+  </section>
+
+  <section>
+    <h3>Visual Interpretation</h3>
+    <div id="cp-graph-container">
+      <canvas id="cp-graph" width="600" height="400"></canvas>
+      <div class="graph-info" id="cp-graph-info"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Worked Example</h3>
+    <p><strong>Find and classify the critical points of f(x) = x³ - 3x² + 2</strong></p>
+
+    <h4>Step 1: Find f'(x)</h4>
+    <p>f'(x) = 3x² - 6x = 3x(x - 2)</p>
+
+    <h4>Step 2: Solve f'(x) = 0</h4>
+    <p>3x(x - 2) = 0</p>
+    <p>Critical points: x = 0 and x = 2</p>
+
+    <h4>Step 3: Find f''(x)</h4>
+    <p>f''(x) = 6x - 6 = 6(x - 1)</p>
+
+    <h4>Step 4: Apply Second Derivative Test</h4>
+    <ul>
+      <li>
+        <strong>At x = 0:</strong> f''(0) = -6 &lt; 0
+        <br>→ Concave down → <strong>Local Maximum</strong>
+        <br>f(0) = 2
+      </li>
+      <li>
+        <strong>At x = 2:</strong> f''(2) = 6 &gt; 0
+        <br>→ Concave up → <strong>Local Minimum</strong>
+        <br>f(2) = -2
+      </li>
+    </ul>
+
+    <h4>Step 5: Find Inflection Points</h4>
+    <p>Solve f''(x) = 0: 6(x - 1) = 0 → x = 1</p>
+    <p>Check sign change: f''(0) = -6 (negative), f''(2) = 6 (positive)</p>
+    <p>Yes, f''(x) changes sign at x = 1 → <strong>Inflection point</strong> at (1, 0)</p>
+  </section>
+
+  <section>
+    <h3>Summary Table</h3>
+    <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+      <thead>
+        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+          <th style="padding: 10px; text-align: left;">Classification</th>
+          <th style="padding: 10px; text-align: left;">First Derivative</th>
+          <th style="padding: 10px; text-align: left;">Second Derivative</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+          <td style="padding: 10px;"><strong>Local Maximum</strong></td>
+          <td style="padding: 10px;">f'(c) = 0, changes + to -</td>
+          <td style="padding: 10px;">f''(c) &lt; 0</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+          <td style="padding: 10px;"><strong>Local Minimum</strong></td>
+          <td style="padding: 10px;">f'(c) = 0, changes - to +</td>
+          <td style="padding: 10px;">f''(c) &gt; 0</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+          <td style="padding: 10px;"><strong>Inflection Point</strong></td>
+          <td style="padding: 10px;">May or may not be 0</td>
+          <td style="padding: 10px;">f''(c) = 0, changes sign</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h3>Common Mistakes to Avoid</h3>
+    <ul>
+      <li>Not checking if f'(c) = 0 AND the point is in the domain of f</li>
+      <li>Assuming all critical points are maxima or minima (some are inflection points)</li>
+      <li>Forgetting to check where f'(x) is undefined</li>
+      <li>Confusing critical points with inflection points</li>
+      <li>Not verifying that f''(x) actually changes sign at potential inflection points</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Real-World Applications</h3>
+    <ul>
+      <li><strong>Business:</strong> Finding maximum profit or minimum cost</li>
+      <li><strong>Physics:</strong> Determining equilibrium positions and stability</li>
+      <li><strong>Engineering:</strong> Optimizing designs for strength or efficiency</li>
+      <li><strong>Economics:</strong> Identifying optimal production levels</li>
+      <li><strong>Data Science:</strong> Finding local optima in machine learning models</li>
+    </ul>
+  </section>
+</div>

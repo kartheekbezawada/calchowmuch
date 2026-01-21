@@ -1,0 +1,43 @@
+<div id="calc-derivative">
+  <div class="calculator-ui">
+    <p class="helper">Calculate derivatives using symbolic differentiation</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="deriv-function">Function f(x)</label>
+        <input id="deriv-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+      </div>
+
+      <div class="input-row">
+        <label for="deriv-variable">Variable</label>
+        <input id="deriv-variable" type="text" value="x" placeholder="x" />
+      </div>
+
+      <div class="input-row">
+        <label for="deriv-order">Derivative Order</label>
+        <input id="deriv-order" type="number" value="1" min="1" max="5" />
+      </div>
+
+      <div class="input-row">
+        <label for="deriv-eval-point">Evaluate at (optional)</label>
+        <input id="deriv-eval-point" type="number" step="any" placeholder="Leave empty for symbolic only" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="deriv-calculate">
+      Calculate Derivative
+    </button>
+
+    <div class="result" id="deriv-result" aria-live="polite"></div>
+    <div class="result-detail" id="deriv-steps" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/calculus/derivative/calculator.css');
+</style>
+
+<script type="module">
+  import { initDerivativeCalculator } from '/calculators/math/calculus/derivative/module.js';
+  initDerivativeCalculator();
+</script>

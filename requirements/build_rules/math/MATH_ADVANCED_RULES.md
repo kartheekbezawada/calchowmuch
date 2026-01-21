@@ -1635,3 +1635,53 @@ Include statistical lookup tables:
 - [ ] Educational value appropriate for target users
 
 Each calculator must pass ALL associated rules and tests before being marked as VERIFIED.
+
+---
+
+## CONTENT PLACEMENT RULES (Universal Requirements UIPLACE-1 to UIPLACE-4)
+
+### CALCULUS CALCULATOR SUITE PLACEMENT (REQ-20260120-019)
+
+**CALC-PLACE-1**: Content Placement Requirements
+- **Derivative graphs** must be placed in Explanation Pane with interactive controls
+- **Step-by-step differentiation tables** must be in Explanation Pane
+- **Integral visualization plots** must be in Explanation Pane  
+- **Series convergence comparison tables** must be in Explanation Pane
+- **Critical points graph overlays** must be in Explanation Pane
+- Calculation Pane limited to: function input, derivative/integral selection, result display only
+
+**CALC-PLACE-2**: Interactive Requirements
+- LaTeX rendering for mathematical expressions in Explanation Pane
+- Real-time graph updates when input function changes
+- Tabbed or accordion organization for different calculation modes
+
+### LOGARITHM CALCULATOR SUITE PLACEMENT (REQ-20260120-020)
+
+**LOG-PLACE-1**: Content Placement Requirements  
+- **Logarithm property demonstration tables** must be in Explanation Pane
+- **Base conversion step-by-step breakdowns** must be in Explanation Pane
+- **Exponential/logarithmic function graphs** must be in Explanation Pane
+- **Data plotting visualizations** must be in Explanation Pane
+- **Taylor series expansion tables** must be in Explanation Pane
+- Calculation Pane limited to: input fields, base selection, single result display only
+
+**LOG-PLACE-2**: Visualization Requirements
+- Interactive graph controls in Explanation Pane
+- Property proof tables with mathematical notation
+- Practical application examples with data visualization
+
+### ADVANCED STATISTICS CALCULATOR SUITE PLACEMENT (REQ-20260120-021)
+
+**ADVSTATS-PLACE-1**: Content Placement Requirements
+- **Regression analysis result tables** must be in Explanation Pane
+- **ANOVA summary tables and F-statistic breakdowns** must be in Explanation Pane
+- **Hypothesis testing result tables with p-values** must be in Explanation Pane
+- **Correlation matrices and scatter plots** must be in Explanation Pane
+- **Distribution probability tables and curves** must be in Explanation Pane
+- **Residual plots and diagnostic charts** must be in Explanation Pane
+- Calculation Pane limited to: data input fields, test selection buttons, summary statistics display only
+
+**ADVSTATS-PLACE-2**: Statistical Visualization Requirements
+- Interactive statistical tables with sorting/filtering in Explanation Pane
+- Multiple graph types (scatter, residual, distribution) in Explanation Pane
+- Effect size calculations and confidence interval tables in Explanation Pane

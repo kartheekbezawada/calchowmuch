@@ -1,0 +1,50 @@
+<div id="calc-correlation">
+  <div class="calculator-ui">
+    <p class="helper">Calculate correlation coefficients and test their significance.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="corr-x-data">X Values</label>
+        <textarea id="corr-x-data" rows="2" placeholder="Enter X values separated by commas">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea>
+      </div>
+
+      <div class="input-row">
+        <label for="corr-y-data">Y Values</label>
+        <textarea id="corr-y-data" rows="2" placeholder="Enter Y values separated by commas">2.3, 4.1, 5.9, 7.8, 10.2, 12.1, 13.8, 16.2, 18.1, 19.9</textarea>
+      </div>
+
+      <div class="input-row">
+        <label>Correlation Type</label>
+        <div class="button-group" role="group" data-button-group="corr-type">
+          <button class="calculator-button secondary is-active" data-value="pearson">Pearson</button>
+          <button class="calculator-button secondary" data-value="spearman">Spearman</button>
+          <button class="calculator-button secondary" data-value="kendall">Kendall</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label>Significance Level (alpha)</label>
+        <div class="button-group" role="group" data-button-group="corr-alpha">
+          <button class="calculator-button secondary" data-value="0.01">0.01</button>
+          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
+          <button class="calculator-button secondary" data-value="0.10">0.10</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="corr-calculate">
+      Calculate Correlation
+    </button>
+
+    <div class="result" id="corr-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/statistics/correlation/calculator.css');
+</style>
+
+<script type="module">
+  import { initCorrelationCalculator } from '/calculators/math/statistics/correlation/module.js';
+  initCorrelationCalculator();
+</script>

@@ -1,0 +1,132 @@
+<div id="int-explanation-pane">
+  <section>
+    <h3>What Is an Integral?</h3>
+    <p>
+      Integration is the reverse process of differentiation. An integral represents the accumulation of quantities,
+      such as the area under a curve, total distance traveled, or accumulated change.
+    </p>
+    <p>
+      There are two types of integrals: indefinite integrals (antiderivatives) and definite integrals (numerical values).
+    </p>
+  </section>
+
+  <section>
+    <h3>Indefinite Integrals (Antiderivatives)</h3>
+    <p>
+      An indefinite integral ∫f(x)dx represents the family of all functions whose derivative is f(x).
+      The result includes an arbitrary constant C because differentiation of a constant is zero.
+    </p>
+    <p><strong>Notation:</strong> ∫f(x)dx = F(x) + C, where F'(x) = f(x)</p>
+  </section>
+
+  <section>
+    <h3>Definite Integrals</h3>
+    <p>
+      A definite integral ∫[a to b]f(x)dx calculates the net signed area between the curve f(x) and the x-axis
+      from x=a to x=b. It produces a numerical value rather than a function.
+    </p>
+    <p><strong>Fundamental Theorem of Calculus:</strong> ∫[a to b]f(x)dx = F(b) - F(a)</p>
+  </section>
+
+  <section>
+    <h3>Integration Rules</h3>
+    <h4>Power Rule for Integration</h4>
+    <p>∫x^n dx = x^(n+1)/(n+1) + C, where n ≠ -1</p>
+    <p><strong>Example:</strong> ∫x³ dx = x⁴/4 + C</p>
+
+    <h4>Constant Rule</h4>
+    <p>∫k dx = kx + C (constant k)</p>
+
+    <h4>Constant Multiple Rule</h4>
+    <p>∫k·f(x)dx = k·∫f(x)dx</p>
+
+    <h4>Sum/Difference Rule</h4>
+    <p>∫[f(x) ± g(x)]dx = ∫f(x)dx ± ∫g(x)dx</p>
+  </section>
+
+  <section>
+    <h3>Common Integrals</h3>
+    <ul>
+      <li>∫x^n dx = x^(n+1)/(n+1) + C</li>
+      <li>∫1/x dx = ln|x| + C</li>
+      <li>∫e^x dx = e^x + C</li>
+      <li>∫sin x dx = -cos x + C</li>
+      <li>∫cos x dx = sin x + C</li>
+      <li>∫sec² x dx = tan x + C</li>
+      <li>∫1/(1+x²) dx = arctan x + C</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Integration Techniques</h3>
+    <h4>Substitution Method</h4>
+    <p>
+      Used for composite functions. Replace a portion of the integrand with u to simplify.
+    </p>
+    <p><strong>Example:</strong> ∫2x·e^(x²)dx, let u = x², du = 2x dx</p>
+
+    <h4>Integration by Parts</h4>
+    <p>Based on the product rule: ∫u dv = uv - ∫v du</p>
+    <p><strong>Example:</strong> ∫x·e^x dx</p>
+
+    <h4>Partial Fractions</h4>
+    <p>Decompose rational functions into simpler fractions.</p>
+    <p><strong>Example:</strong> ∫1/(x²-1) dx = ∫1/[2(x-1)] dx - ∫1/[2(x+1)] dx</p>
+  </section>
+
+  <section>
+    <h3>Geometric Interpretation</h3>
+    <p>
+      For a definite integral ∫[a to b]f(x)dx:
+    </p>
+    <ul>
+      <li>The integral represents the signed area between f(x) and the x-axis</li>
+      <li>Area above the x-axis is positive</li>
+      <li>Area below the x-axis is negative</li>
+      <li>The net area is the algebraic sum</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Area Visualization</h3>
+    <div id="int-graph-container">
+      <canvas id="int-graph" width="500" height="300"></canvas>
+      <div class="graph-info" id="int-graph-info"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Worked Example</h3>
+    <p><strong>Calculate ∫(3x² + 2x - 5)dx</strong></p>
+    <ol>
+      <li>Apply power rule to each term:
+        <ul>
+          <li>∫3x² dx = 3·x³/3 = x³</li>
+          <li>∫2x dx = 2·x²/2 = x²</li>
+          <li>∫-5 dx = -5x</li>
+        </ul>
+      </li>
+      <li>Combine results: ∫(3x² + 2x - 5)dx = x³ + x² - 5x + C</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Real-World Applications</h3>
+    <ul>
+      <li><strong>Physics:</strong> Finding position from velocity, work from force</li>
+      <li><strong>Economics:</strong> Total cost from marginal cost, consumer surplus</li>
+      <li><strong>Probability:</strong> Computing probabilities from probability density functions</li>
+      <li><strong>Engineering:</strong> Calculating volumes, centroids, moments of inertia</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Common Mistakes</h3>
+    <ul>
+      <li>Forgetting the constant of integration + C for indefinite integrals</li>
+      <li>Incorrect application of power rule when n = -1</li>
+      <li>Sign errors when evaluating definite integrals</li>
+      <li>Not simplifying the antiderivative before evaluating bounds</li>
+    </ul>
+  </section>
+</div>

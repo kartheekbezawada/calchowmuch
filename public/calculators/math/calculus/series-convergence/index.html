@@ -1,0 +1,40 @@
+<div id="calc-series">
+  <div class="calculator-ui">
+    <p class="helper">Test series for convergence using various tests</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="series-term">General Term a_n (use 'n' as variable)</label>
+        <input id="series-term" type="text" value="1/n^2" placeholder="e.g., 1/n^2, 1/n!, n/2^n" />
+      </div>
+
+      <div class="button-group">
+        <button class="test-button active" data-test="auto">Auto-Detect</button>
+        <button class="test-button" data-test="ratio">Ratio Test</button>
+        <button class="test-button" data-test="root">Root Test</button>
+        <button class="test-button" data-test="comparison">Comparison</button>
+      </div>
+
+      <div class="input-row">
+        <label for="series-start">Starting index (n =)</label>
+        <input id="series-start" type="number" value="1" min="0" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="series-calculate">
+      Test Convergence
+    </button>
+
+    <div class="result" id="series-result" aria-live="polite"></div>
+    <div class="result-detail" id="series-steps" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/calculus/series-convergence/calculator.css');
+</style>
+
+<script type="module">
+  import { initSeriesConvergenceCalculator } from '/calculators/math/calculus/series-convergence/module.js';
+  initSeriesConvergenceCalculator();
+</script>

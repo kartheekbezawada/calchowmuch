@@ -1,0 +1,127 @@
+/* Limit Calculator Styles */
+
+#calc-limit .button-group {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+#calc-limit .direction-button {
+  flex: 1;
+  padding: 10px;
+  background-color: #ecf0f1;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.9em;
+}
+
+#calc-limit .direction-button:hover {
+  background-color: #d5dbdb;
+}
+
+#calc-limit .direction-button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+#calc-limit .result-box {
+  background-color: #f8f9fa;
+  border-left: 4px solid #3498db;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-size: 1.1em;
+}
+
+#calc-limit .result-box.success {
+  border-left-color: #2ecc71;
+}
+
+#calc-limit .result-box.error {
+  border-left-color: #e74c3c;
+}
+
+#calc-limit .info-text {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #555;
+}
+
+#calc-limit .steps-box {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#calc-limit .steps-box pre {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1.6;
+}
+
+#calc-limit .error {
+  color: #e74c3c;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #fadbd8;
+  border-radius: 4px;
+}
+
+#limit-explanation-pane {
+  padding: 0;
+}
+
+#limit-explanation-pane section {
+  margin-bottom: 25px;
+}
+
+#limit-explanation-pane h3 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+#limit-explanation-pane h4 {
+  color: #34495e;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+#limit-explanation-pane ul, #limit-explanation-pane ol {
+  padding-left: 25px;
+}
+
+#limit-explanation-pane li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+#limit-graph-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#limit-graph {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: #fff;
+  max-width: 100%;
+  height: auto;
+}
+
+.graph-info {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: center;
+}

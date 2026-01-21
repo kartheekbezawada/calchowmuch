@@ -1,0 +1,57 @@
+<div class="explanation-content">
+  <h2>Correlation Analysis</h2>
+
+  <p>Correlation measures the strength and direction of the linear relationship between two variables. The correlation coefficient ranges from -1 to +1.</p>
+
+  <h3>Types of Correlation</h3>
+
+  <h4>Pearson Correlation (r)</h4>
+  <p>Measures the linear relationship between two continuous variables.</p>
+  <p><strong>r = sum((x - x-bar)(y - y-bar)) / sqrt(sum((x - x-bar)2) x sum((y - y-bar)2))</strong></p>
+  <p>Assumes both variables are normally distributed and the relationship is linear.</p>
+
+  <h4>Spearman Rank Correlation (rho)</h4>
+  <p>A non-parametric measure based on ranks rather than actual values.</p>
+  <p>Appropriate when data are ordinal or when the relationship is monotonic but not linear.</p>
+
+  <h4>Kendall's Tau (tau)</h4>
+  <p>Another rank-based correlation that measures ordinal association.</p>
+  <p>More robust than Spearman's for small samples and handles ties better.</p>
+
+  <h3>Interpreting Correlation Strength</h3>
+  <table>
+    <tr><th>|r| Value</th><th>Interpretation</th></tr>
+    <tr><td>0.9 - 1.0</td><td>Very Strong</td></tr>
+    <tr><td>0.7 - 0.9</td><td>Strong</td></tr>
+    <tr><td>0.5 - 0.7</td><td>Moderate</td></tr>
+    <tr><td>0.3 - 0.5</td><td>Weak</td></tr>
+    <tr><td>0.0 - 0.3</td><td>Very Weak / No correlation</td></tr>
+  </table>
+
+  <h3>Direction</h3>
+  <ul>
+    <li><strong>Positive correlation (r > 0):</strong> As X increases, Y tends to increase</li>
+    <li><strong>Negative correlation (r < 0):</strong> As X increases, Y tends to decrease</li>
+    <li><strong>Zero correlation (r = 0):</strong> No linear relationship</li>
+  </ul>
+
+  <h3>Coefficient of Determination (r2)</h3>
+  <p>The square of the correlation coefficient represents the proportion of variance in Y that can be explained by X.</p>
+  <p>For example, r = 0.8 means r2 = 0.64, so 64% of the variance in Y is explained by X.</p>
+
+  <h3>Significance Testing</h3>
+  <p>The t-test for correlation tests whether r significantly differs from zero.</p>
+  <p><strong>t = r x sqrt((n-2) / (1-r2))</strong></p>
+  <p>A small p-value indicates the correlation is statistically significant.</p>
+
+  <h3>Confidence Interval</h3>
+  <p>Uses Fisher's z-transformation to construct confidence intervals for the correlation coefficient.</p>
+
+  <h3>Important Notes</h3>
+  <ul>
+    <li>Correlation does not imply causation</li>
+    <li>Outliers can strongly influence correlation</li>
+    <li>Always visualize data with scatter plots</li>
+    <li>Sample size affects significance - large samples may show significant but weak correlations</li>
+  </ul>
+</div>

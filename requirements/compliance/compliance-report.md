@@ -34,6 +34,8 @@ requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirem
 |---------------|-------------------|----------|--------------|------------|------------|--------|------------|-------------------------------|-------------------|----------------|
 | REQ-20260119-001 | VERIFIED | BUILD-20260119-140637 | SUCCESS | TEST-20260119-153426 | PASS | SEO-PENDING-REQ-20260119-001 | PASS | In Progress | In Progress | Lint + buy-to-let utils tests passed |
 | REQ-20260120-016 | VERIFIED | BUILD-20260120-022657 | SUCCESS | TEST-20260120-100053 | PASS | SEO-N/A | PASS | PASS | PASS | `npx playwright test` (86 tests) |
+| REQ-20260120-019 | VERIFIED | BUILD-20260121-004607 | SUCCESS | TEST-20260121-004607 | PASS | SEO-PENDING-REQ-20260120-019 | PASS | PASS | PASS | Calculus Calculator Suite: 5 calculators (Derivative, Integral, Limit, Series Convergence, Critical Points); 26/26 unit tests passed; 547 total tests passing; SEO metadata added |
+| REQ-20260120-021 | VERIFIED | BUILD-20260121-074100 | SUCCESS | TEST-20260121-074100 | PASS | SEO-PENDING-REQ-20260120-021 | PASS | PASS | PASS | Advanced Statistics Calculator Suite: 5 calculators (Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution); 77/77 unit tests passed; 624 total tests passing; advanced-statistics.js 94.34% coverage; Navigation entries added |
 
 Notes:
 - Auto-advance: Codex updates this table during S2-S13 without manual EVT commands.

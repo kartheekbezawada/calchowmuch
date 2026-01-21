@@ -173,6 +173,142 @@
           }
         ]
       }
+    },
+    {
+      "id": "derivative",
+      "url": "https://calchowmuch.com/calculators/math/calculus/derivative/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate derivatives using power, product, quotient, and chain rules",
+        "description": "Enter a function and compute its derivative symbolically with step-by-step solutions.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter a function in terms of x (e.g., x^2 + 3*x + 5)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Select the derivative order (1st, 2nd, 3rd, etc.)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Optionally specify a point to evaluate the derivative numerically."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Review the symbolic derivative and step-by-step differentiation process."
+          }
+        ]
+      }
+    },
+    {
+      "id": "integral",
+      "url": "https://calchowmuch.com/calculators/math/calculus/integral/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between definite and indefinite integrals?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An indefinite integral represents a family of functions (antiderivative) with a constant +C. A definite integral computes a numerical value representing the area under the curve between two bounds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the calculator handle integration?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator applies power rule integration for polynomial terms, handles special cases like 1/x (natural logarithm), and evaluates definite integrals using the Fundamental Theorem of Calculus."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "limit",
+      "url": "https://calchowmuch.com/calculators/math/calculus/limit/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Calculate limits and handle indeterminate forms",
+        "description": "Compute one-sided, two-sided, and limits at infinity with numerical approximation.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter a function and the value x approaches (or 'inf' for infinity)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Choose two-sided, left-hand, or right-hand limit direction."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "The calculator tests direct substitution and uses numerical methods for indeterminate forms."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "View the limit value, analysis steps, and graphical visualization."
+          }
+        ]
+      }
+    },
+    {
+      "id": "series-convergence",
+      "url": "https://calchowmuch.com/calculators/math/calculus/series-convergence/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What convergence tests does the calculator support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The calculator supports the Ratio Test, Root Test, and Comparison Test for determining series convergence or divergence."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I interpret the convergence result?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If the limit L < 1, the series converges. If L > 1 or L is infinite, the series diverges. If L = 1, the test is inconclusive and another method is needed."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "critical-points",
+      "url": "https://calchowmuch.com/calculators/math/calculus/critical-points/",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Find and classify critical points and inflection points",
+        "description": "Identify local maxima, minima, and inflection points using first and second derivative tests.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "text": "Enter a function and specify the x-range to analyze."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "The calculator finds points where f'(x) = 0 (critical points)."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Each critical point is classified using the second derivative test."
+          },
+          {
+            "@type": "HowToStep",
+            "text": "Inflection points where f''(x) = 0 are also identified and marked on the graph."
+          }
+        ]
+      }
     }
   ]
 }

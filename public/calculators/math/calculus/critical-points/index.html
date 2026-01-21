@@ -1,0 +1,43 @@
+<div id="calc-critical-points">
+  <div class="calculator-ui">
+    <p class="helper">Find and classify critical points using derivative tests</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="cp-function">Function f(x)</label>
+        <input id="cp-function" type="text" value="x^3 - 3*x^2 + 2" placeholder="e.g., x^3 - 3*x + 2" />
+      </div>
+
+      <div class="input-row">
+        <label for="cp-variable">Variable</label>
+        <input id="cp-variable" type="text" value="x" placeholder="x" />
+      </div>
+
+      <div class="input-row">
+        <label for="cp-range-min">Graph Range Min</label>
+        <input id="cp-range-min" type="number" value="-3" step="0.5" />
+      </div>
+
+      <div class="input-row">
+        <label for="cp-range-max">Graph Range Max</label>
+        <input id="cp-range-max" type="number" value="5" step="0.5" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="cp-calculate">
+      Find Critical Points
+    </button>
+
+    <div class="result" id="cp-result" aria-live="polite"></div>
+    <div class="result-detail" id="cp-steps" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/calculus/critical-points/calculator.css');
+</style>
+
+<script type="module">
+  import { initCriticalPointsCalculator } from '/calculators/math/calculus/critical-points/module.js';
+  initCriticalPointsCalculator();
+</script>

@@ -1,0 +1,47 @@
+<div id="calc-regression">
+  <div class="calculator-ui">
+    <p class="helper">Perform regression analysis on your data with R-squared and residual analysis.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="reg-x-data">X Values (Independent Variable)</label>
+        <textarea id="reg-x-data" rows="2" placeholder="Enter X values separated by commas">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea>
+      </div>
+
+      <div class="input-row">
+        <label for="reg-y-data">Y Values (Dependent Variable)</label>
+        <textarea id="reg-y-data" rows="2" placeholder="Enter Y values separated by commas">2.1, 4.2, 5.8, 8.1, 10.3, 11.9, 14.2, 16.1, 17.8, 20.2</textarea>
+      </div>
+
+      <div class="input-row">
+        <label>Regression Type</label>
+        <div class="button-group" role="group" data-button-group="reg-type">
+          <button class="calculator-button secondary is-active" data-value="linear">Linear</button>
+          <button class="calculator-button secondary" data-value="polynomial">Polynomial</button>
+          <button class="calculator-button secondary" data-value="exponential">Exponential</button>
+          <button class="calculator-button secondary" data-value="logarithmic">Logarithmic</button>
+        </div>
+      </div>
+
+      <div class="input-row" id="reg-degree-row" style="display: none;">
+        <label for="reg-degree">Polynomial Degree</label>
+        <input id="reg-degree" type="number" value="2" min="2" max="5" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="reg-calculate">
+      Perform Regression
+    </button>
+
+    <div class="result" id="reg-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/statistics/regression-analysis/calculator.css');
+</style>
+
+<script type="module">
+  import { initRegressionCalculator } from '/calculators/math/statistics/regression-analysis/module.js';
+  initRegressionCalculator();
+</script>

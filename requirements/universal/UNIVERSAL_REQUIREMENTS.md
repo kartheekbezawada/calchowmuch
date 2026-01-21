@@ -254,6 +254,20 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UIGRAPH-6 | Axis value markers at meaningful intervals | P1 |
 | UIGRAPH-7 | Legend required for multiple data series | P1 |
 
+### 3.8 Content Placement Rules
+
+| Rule ID | Requirement | Severity |
+|---------|-------------|----------|
+| UIPLACE-1 | **Tables in Explanation Pane** — All data tables (results, comparisons, amortization) must be placed in Explanation Pane, never in Calculation Pane | P0 |
+| UIPLACE-2 | **Graphs in Explanation Pane** — All graphs, charts, visualizations must be placed in Explanation Pane, never in Calculation Pane | P0 |
+| UIPLACE-3 | **Calculation Pane for Inputs/Results Only** — Calculation Pane limited to input fields, buttons, and simple result displays (single values, brief summaries) | P0 |
+| UIPLACE-4 | **Complex Output Segregation** — Multi-row tables, step-by-step breakdowns, detailed explanations belong in Explanation Pane | P1 |
+| UIGRAPH-3 | Reactive to state changes (inputs, toggles) | P1 |
+| UIGRAPH-4 | Horizontal scrolling allowed (`overflow-x: auto`) | P2 |
+| UIGRAPH-5 | X-axis and Y-axis labels required | P1 |
+| UIGRAPH-6 | Axis value markers at meaningful intervals | P1 |
+| UIGRAPH-7 | Legend required for multiple data series | P1 |
+
 ---
 
 ## 4) Universal Layout and Architecture Boundaries

@@ -1,250 +1,126 @@
-# Agent Workflow Rules (Compliance FSM)
+# AGENTS.md — Agent Operating Contract (Entry Point)
 
-This repo uses a deterministic, unskippable FSM for requirements -> build -> test -> SEO -> release. Agents must follow these rules and the full state definitions in `requirements/compliance/WORKFLOW.md`.
+This repo uses a deterministic FSM to ship calculator changes with traceability:
 
----
+**REQ → BUILD → TEST → SEO → COMPLIANCE**
 
-## Actors
-
-| Actor | Role | States Allowed |
-|-------|------|----------------|
-| **HUMAN_TRIGGER** | Initiates agents; provides EVT_START_BUILD command | All (trigger only) |
-| **COPILOT** | Requirement authoring + ID assignment + rule definitions | S0_IDLE, S1_REQUIREMENT_DRAFTED |
-| **CODEX** | Implementation + validation + tracker updates | S2_PREFLIGHT through S14_ESCALATED |
+**System of record lives in `requirements/compliance/`**.  
+If this file conflicts with `requirements/compliance/WORKFLOW.md`, **WORKFLOW.md wins**.
 
 ---
 
-## System of Record (State Storage)
+## Actors (Strict)
 
-State is stored in Markdown trackers only (no hidden state). 
+| Actor | What they do | What they must NOT do |
+|---|---|---|
+| **HUMAN_TRIGGER** | Starts a run; executes local build/test commands; opens PR when ready | Write trackers (unless explicitly instructed) |
+| **COPILOT (requirements)** | Writes requirements + build-rules; assigns IDs; creates SEO placeholders | Build/test; update build/test/issue/compliance trackers |
+| **IMPLEMENTER (Claude Code or Codex)** | Implements code; orchestrates build/test; updates trackers + compliance-report; prepares PR | Create new REQs; start without trigger; skip compliance updates |
 
-### Compliance Files:
+> **Claude Code and Codex are equivalent implementers**. Whichever you use must follow the same rules.
+
+---
+
+## Authoritative Files (State Storage)
+
+All state is stored in Markdown files under `requirements/compliance/`:
+
+- `requirements/compliance/WORKFLOW.md` (FSM rules + authoritative test matrix)
 - `requirements/compliance/requirement_tracker.md`
 - `requirements/compliance/build_tracker.md`
 - `requirements/compliance/testing_tracker.md`
 - `requirements/compliance/seo_requirements.md`
 - `requirements/compliance/issue_tracker.md`
-- `requirements/compliance/WORKFLOW.md`
+- `requirements/compliance/compliance-report.md` (**release gate**)
 
-### Build Rules Files (Calculator-Specific Requirements):
-- `requirements/build_rules/loans/` — All loan calculator rules
-- `requirements/build_rules/math/` — All math calculator rules
+Calculator-specific rules live under:
 
-If a required file is missing, Codex creates it using templates during S2_PREFLIGHT.
+- `requirements/build_rules/math/`
+- `requirements/build_rules/loans/`
+- (others as added)
 
 ---
 
-## Deterministic IDs
+## Deterministic IDs (Uniqueness Required)
 
 | ID Type | Format | Example |
-|---------|--------|---------|
-| Requirement ID | REQ-YYYYMMDD-### | REQ-20260119-001 |
-| Build ID | BUILD-YYYYMMDD-HHMMSS | BUILD-20260119-143022 |
-| Test Run ID | TEST-YYYYMMDD-HHMMSS | TEST-20260119-143055 |
-| SEO ID | SEO-... or SEO-PENDING-REQ-XXXX | SEO-PENDING-REQ-20260119-001 |
-| Issue ID | ISSUE-YYYYMMDD-### | ISSUE-20260119-001 |
+|---|---|---|
+| Requirement | `REQ-YYYYMMDD-###` | `REQ-20260121-001` |
+| Build Run | `BUILD-YYYYMMDD-HHMMSS` | `BUILD-20260121-142233` |
+| Test Run | `TEST-YYYYMMDD-HHMMSS` | `TEST-20260121-142455` |
+| SEO Item | `SEO-REQ-...` or `SEO-PENDING-REQ-...` | `SEO-PENDING-REQ-20260121-001` |
+| Issue | `ISSUE-YYYYMMDD-###` | `ISSUE-20260121-003` |
+
+Hard rules:
+- **IDs must not be reused**
+- **RUNNING rows must be closed by editing-in-place** (PASS/FAIL/ABORTED + end time)
+- **No duplicate rows for the same ID**
 
 ---
 
-## Copilot → Codex Handoff Protocol
+## Command Contract (How Work Starts)
 
-### Step 1: Copilot Creates Requirement (S0 → S1)
+### Step 1 — Create Requirement (Copilot)
+User command:
+- `Copilot: create requirement for <X>`
 
-User says: **"Copilot: create requirement for [X]"**
+Copilot must:
+1. Create `REQ-...` and add to `requirement_tracker.md` (Status: NEW)
+2. Add/update calculator rules in `requirements/build_rules/...`
+3. Add SEO placeholder in `seo_requirements.md` if SEO impact is YES/UNKNOWN
+4. Stop (Copilot does not build/test)
 
-Copilot MUST:
-1. Generate REQ ID (REQ-YYYYMMDD-###)
-2. Add entry to `requirement_tracker.md` with Status: NEW
-3. Add entry to `seo_requirements.md` if SEO Impact = YES/UNKNOWN
-4. Update calculator-specific rules file in `requirements/build_rules/`:
-   - Add to **5-column Requirement ID Mapping table** (bullet format)
-   - Add detailed **rule definitions**
-   - Add detailed **test definitions**
-5. Confirm requirement is ready
+### Step 2 — Trigger Implementation (Human)
+User command (permission trigger):
+- `EVT_START_BUILD REQ-YYYYMMDD-###`
 
-### Step 2: Human Triggers Codex (S1 → S2)
-
-User says exactly: **"EVT_START_BUILD REQ-YYYYMMDD-###"**
-
-This is the **permission trigger** for Codex to begin processing.
-
-### Step 3: Codex Auto-Advances (S2 → S13)
-
-After receiving EVT_START_BUILD, Codex:
-1. Enters S2_PREFLIGHT and validates requirements
-2. Auto-advances through all states until completion or failure
-3. Updates all trackers as permitted by each state
-4. Returns to S0_IDLE when complete
+Implementer must refuse to proceed without this trigger.
 
 ---
 
-## Requirement ID Mapping Table Format (MANDATORY)
+## Test Policy (Do NOT invent defaults)
 
-When Copilot creates requirements in build_rules files, MUST use this exact 5-column format:
+**The Test Selection Matrix in `requirements/compliance/WORKFLOW.md` is authoritative.**
 
-```markdown
-| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
-|----------------|------------|---------------------|---------------------|---------------|
-| REQ-YYYYMMDD-### | Calculator Name | • RULE-1<br>• RULE-2 | • {PREFIX}-TEST-E2E-LOAD<br>• {PREFIX}-TEST-E2E-NAV<br>• {PREFIX}-TEST-E2E-WORKFLOW<br>• {PREFIX}-TEST-E2E-MOBILE<br>• {PREFIX}-TEST-E2E-A11Y<br>• {PREFIX}-TEST-U-1 | YYYY-MM-DD |
-```
-
-**Format Rules:**
-- Use bullet format `• RULE-ID<br>` for each rule (NOT comma-separated)
-- Use bullet format `• TEST-ID<br>` for each test (NOT comma-separated)
-- Every requirement MUST have associated test IDs defined
+- Do **not** assume “5 default E2E tests for every REQ”.
+- E2E is **scoped to impacted calculators** unless it’s a release sweep sample.
+- Required vs optional tests must be recorded in the compliance-report row.
 
 ---
 
-## Mandatory Default Playwright E2E Tests (ALL REQUIREMENTS)
+## Local-first Development (Supported)
 
-**Every requirement MUST include these 5 default Playwright E2E tests:**
+You may build/test locally before opening a PR.
 
-| Test ID Pattern | Test Name | Description |
-|-----------------|-----------|-------------|
-| `{PREFIX}-TEST-E2E-LOAD` | Page Load Test | Verify calculator page loads correctly, no console errors |
-| `{PREFIX}-TEST-E2E-NAV` | Navigation Test | Verify navigation menu works, deep-linking functional |
-| `{PREFIX}-TEST-E2E-WORKFLOW` | User Workflow Test | Complete end-to-end user journey through calculator |
-| `{PREFIX}-TEST-E2E-MOBILE` | Mobile Responsive Test | Verify layout works on mobile viewports |
-| `{PREFIX}-TEST-E2E-A11Y` | Accessibility Test | Verify ARIA labels, keyboard navigation, screen reader support |
+Minimum expectation:
+- Record **local build/test evidence** in trackers and in `compliance-report.md` as **LOCAL**.
+- When a PR is later opened and CI runs, update compliance with **CI evidence** and finalize verdict.
 
-**Plus requirement-specific tests:**
-- Unit tests for calculation logic (`{PREFIX}-TEST-U-#`)
-- Integration tests if needed (`{PREFIX}-TEST-I-#`)
-- Additional E2E tests for specific features
-
-**Example for Percentage Calculator (PREFIX = PERC):**
-- PERC-TEST-E2E-LOAD
-- PERC-TEST-E2E-NAV
-- PERC-TEST-E2E-WORKFLOW
-- PERC-TEST-E2E-MOBILE
-- PERC-TEST-E2E-A11Y
-- PERC-TEST-U-1 (Unit: calculation modes)
-- PERC-TEST-U-2 (Unit: edge cases)
+**Definition:**
+- **LOCAL PASS** = ready to promote to PR
+- **FINAL PASS** = PR/CI validated; release-ready
 
 ---
 
-## Core Rule: Valid Transition Only
+## Mandatory Outputs Per REQ (Release Gate)
 
-- No tracker updates unless the FSM state permits it.
-- No skipping states.
-- No partial completion without logging.
-- Invalid transition response must be:
-  ```
-  INVALID TRANSITION: current_state -> requested_state; required_state: X
-  ```
-  and stop.
+A REQ is not “done” until these exist and are closed:
 
----
-
-## FSM States (Summary)
-
-```
-S0_IDLE 
-    ↓ (Copilot: create requirement)
-S1_REQUIREMENT_DRAFTED
-    ↓ (Human: EVT_START_BUILD REQ-XXX)
-S2_PREFLIGHT → S3_READY_TO_BUILD → S4_BUILD_RUNNING
-    ↓                                      ↓
-    ↓                              S5_BUILD_FAILED_RETRYABLE ←→ S6_BUILD_ABORTED → S14_ESCALATED
-    ↓                                      ↓
-S7_BUILD_PASSED → S8_TEST_RUNNING
-                        ↓
-                S9_TEST_FAILED_RETRYABLE ←→ S14_ESCALATED
-                        ↓
-                S10_TEST_PASSED → S11_TRACKERS_UPDATED → S12_SEO_CHECK → S13_RELEASE_READY
-                                                                              ↓
-                                                                          S0_IDLE
-```
-
-See `requirements/compliance/WORKFLOW.md` for full definitions, guards, and actions.
+- `requirement_tracker.md`: NEW → VERIFIED/CLOSED
+- `build_tracker.md`: 1+ BUILD row(s) closed
+- `testing_tracker.md`: required TEST rows closed
+- `seo_requirements.md`: PASS/PENDING/NA (if applicable)
+- `compliance-report.md`: **exactly one row per REQ**, filled with:
+  - scope type + meaning/definition
+  - mandatory tests + optional tests (and what ran)
+  - evidence links/snippets
+  - overall verdict: PASS / FAIL (or waiver recorded)
 
 ---
 
-## Transition Table (Guardrail)
+## Enforcement
 
-| From State | Allowed Transitions |
-|------------|---------------------|
-| S0_IDLE | → S1_REQUIREMENT_DRAFTED |
-| S1_REQUIREMENT_DRAFTED | → S2_PREFLIGHT (via EVT_START_BUILD) |
-| S2_PREFLIGHT | → S3_READY_TO_BUILD |
-| S3_READY_TO_BUILD | → S4_BUILD_RUNNING |
-| S4_BUILD_RUNNING | → S5_BUILD_FAILED_RETRYABLE or S7_BUILD_PASSED |
-| S5_BUILD_FAILED_RETRYABLE | → S4_BUILD_RUNNING (retry) or S6_BUILD_ABORTED |
-| S6_BUILD_ABORTED | → S14_ESCALATED |
-| S7_BUILD_PASSED | → S8_TEST_RUNNING |
-| S8_TEST_RUNNING | → S9_TEST_FAILED_RETRYABLE or S10_TEST_PASSED |
-| S9_TEST_FAILED_RETRYABLE | → S4_BUILD_RUNNING (fix) or S14_ESCALATED |
-| S10_TEST_PASSED | → S11_TRACKERS_UPDATED |
-| S11_TRACKERS_UPDATED | → S12_SEO_CHECK |
-| S12_SEO_CHECK | → S13_RELEASE_READY |
-| S13_RELEASE_READY | → S0_IDLE |
-| S14_ESCALATED | → S2_PREFLIGHT (after manual fix) |
-
-**Any other transition is INVALID.**
-
----
-
-## Agent Enforcement Rules
-
-### Copilot Boundaries:
-- ✅ Allowed in: S0_IDLE, S1_REQUIREMENT_DRAFTED only
-- ✅ Can write: requirement_tracker.md, seo_requirements.md, build_rules files
-- ❌ Cannot: Enter S2+, update build/test trackers, run builds
-
-### Codex Boundaries:
-- ✅ Allowed in: S2_PREFLIGHT through S14_ESCALATED only
-- ✅ Can write: All trackers (per state permissions)
-- ❌ Cannot: Create requirements, act without EVT_START_BUILD trigger
-- ❌ Must refuse: Implementation if REQ not registered
-
----
-
-## Command Contract
-
-### Copilot Commands:
-
-| User Command | Copilot Action | Result |
-|--------------|----------------|--------|
-| "Copilot: create requirement for [X]" | Generate REQ-ID, update trackers and build_rules | State → S1 |
-| "Check requirements status" | List pending NEW requirements | Info only |
-
-### Codex Commands:
-
-| User Command | Codex Action | Result |
-|--------------|--------------|--------|
-| **"EVT_START_BUILD REQ-YYYYMMDD-###"** | Validate REQ exists and is NEW/UNVERIFIED, enter S2_PREFLIGHT | Auto-advance begins |
-| "Codex: status" | Report current state and progress | Info only |
-| "Codex: abort" | Stop processing, escalate to S14 | State → S14 |
-
----
-
-## Quick Reference: Complete Flow
-
-```
-1. User: "Copilot: create requirement for percentage calculator fix"
-   
-2. Copilot:
-   - Generates REQ-20260119-002
-   - Updates requirement_tracker.md (Status: NEW)
-   - Updates seo_requirements.md (Status: PENDING)
-   - Updates build_rules/math/MATH_SIMPLE_RULES.md:
-     - Adds to 5-column mapping table
-     - Adds rule definitions
-     - Adds test definitions
-   - Confirms: "REQ-20260119-002 created. Ready for EVT_START_BUILD."
-
-3. User: "EVT_START_BUILD REQ-20260119-002"
-
-4. Codex:
-   - S2: Validates requirements exist
-   - S3: Confirms ready to build
-   - S4: Runs build commands
-   - S7: Build passed
-   - S8: Runs tests
-   - S10: Tests passed
-   - S11: Updates all trackers
-   - S12: SEO check
-   - S13: Release ready
-   - Returns to S0_IDLE
-   - Reports: "REQ-20260119-002 completed successfully."
-```
+- No tracker updates unless the FSM state permits it (see WORKFLOW).
+- Any invalid transition must stop with:
+  `INVALID TRANSITION: current_state -> requested_state; required_state: X`
+- No merge/release without **compliance-report PASS** (or explicit waiver documented).
