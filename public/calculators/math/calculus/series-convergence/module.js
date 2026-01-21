@@ -3,6 +3,8 @@
  * Tests series for convergence using various convergence tests
  */
 
+import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+
 // Series convergence analyzer
 class SeriesAnalyzer {
   constructor(termExpr, startIndex = 1) {
@@ -11,7 +13,7 @@ class SeriesAnalyzer {
     this.steps = [];
   }
 
-  // Evaluate term expression at given n
+  // Evaluate term expression at given n using safe parser
   evaluateTerm(n) {
     try {
       let expr = this.termExpr;
@@ -24,16 +26,7 @@ class SeriesAnalyzer {
         });
       }
 
-      // Replace n with actual value
-      expr = expr.replace(/\^/g, '**');
-      expr = expr.replace(/n/g, `(${n})`);
-
-      // Handle common math functions
-      expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
-      expr = expr.replace(/ln\(/g, 'Math.log(');
-      expr = expr.replace(/log\(/g, 'Math.log10(');
-
-      return eval(expr);
+      return expressionParser.evaluate(expr, n, 'n');
     } catch (e) {
       throw new Error(`Cannot evaluate term at n=${n}: ${e.message}`);
     }

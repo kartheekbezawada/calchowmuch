@@ -3,6 +3,8 @@
  * Provides symbolic and numerical integration capabilities
  */
 
+import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+
 // Simple integration engine
 class SymbolicIntegrator {
   constructor(variable = 'x') {
@@ -170,19 +172,6 @@ class SymbolicIntegrator {
   }
 }
 
-// Numerical integration using Simpson's rule
-function numericalIntegration(func, a, b, n = 100) {
-  const h = (b - a) / n;
-  let sum = func(a) + func(b);
-
-  for (let i = 1; i < n; i++) {
-    const x = a + i * h;
-    sum += (i % 2 === 0 ? 2 : 4) * func(x);
-  }
-
-  return (h / 3) * sum;
-}
-
 // Plot integral graph with shaded area
 function plotIntegralGraph(funcExpr, mode, lowerBound, upperBound) {
   const canvas = document.getElementById('int-graph');
@@ -215,12 +204,10 @@ function plotIntegralGraph(funcExpr, mode, lowerBound, upperBound) {
   ctx.lineTo(xOrigin, height);
   ctx.stroke();
 
-  // Helper to evaluate function
+  // Helper to evaluate function using safe parser
   const safeEval = (expr, x) => {
     try {
-      expr = expr.replace(/\^/g, '**');
-      expr = expr.replace(/x/g, `(${x})`);
-      return eval(expr);
+      return expressionParser.evaluate(expr, x, 'x');
     } catch (e) {
       return 0;
     }

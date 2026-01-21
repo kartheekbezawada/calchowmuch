@@ -3,6 +3,8 @@
  * Finds and classifies critical points using derivative tests
  */
 
+import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+
 // Simple symbolic differentiator for critical points
 class CriticalPointsFinder {
   constructor(funcExpr, variable = 'x') {
@@ -11,24 +13,10 @@ class CriticalPointsFinder {
     this.steps = [];
   }
 
-  // Evaluate function at a point
+  // Evaluate function at a point using a safe math-expression evaluator
   evaluateFunction(expr, x) {
     try {
-      let evalExpr = expr.replace(/\^/g, '**');
-      evalExpr = evalExpr.replace(/\*/g, '*');
-      evalExpr = evalExpr.replace(/x/g, `(${x})`);
-
-      // Handle common math functions
-      evalExpr = evalExpr.replace(/sin\(/g, 'Math.sin(');
-      evalExpr = evalExpr.replace(/cos\(/g, 'Math.cos(');
-      evalExpr = evalExpr.replace(/tan\(/g, 'Math.tan(');
-      evalExpr = evalExpr.replace(/sqrt\(/g, 'Math.sqrt(');
-      evalExpr = evalExpr.replace(/ln\(/g, 'Math.log(');
-      evalExpr = evalExpr.replace(/log\(/g, 'Math.log10(');
-      evalExpr = evalExpr.replace(/exp\(/g, 'Math.exp(');
-      evalExpr = evalExpr.replace(/abs\(/g, 'Math.abs(');
-
-      return eval(evalExpr);
+      return expressionParser.evaluate(expr, x, 'x');
     } catch (e) {
       throw new Error(`Cannot evaluate expression at x=${x}: ${e.message}`);
     }
@@ -198,7 +186,6 @@ class CriticalPointsFinder {
     const step = (xMax - xMin) / numSamples;
 
     let prevSecondDerivSign = null;
-    let prevX = null;
 
     for (let i = 0; i <= numSamples; i++) {
       const x = xMin + i * step;
@@ -227,7 +214,6 @@ class CriticalPointsFinder {
         }
 
         prevSecondDerivSign = Math.sign(secondDeriv);
-        prevX = x;
 
       } catch (e) {
         continue;
@@ -437,20 +423,9 @@ function plotCriticalPointsGraph(funcExpr, criticalPoints, inflectionPoints, xMi
   }
 }
 
-// Helper function to evaluate expression
+// Helper function to evaluate expression using safe parser
 function evaluateExpr(expr, x) {
-  let evalExpr = expr.replace(/\^/g, '**');
-  evalExpr = evalExpr.replace(/x/g, `(${x})`);
-  evalExpr = evalExpr.replace(/sin\(/g, 'Math.sin(');
-  evalExpr = evalExpr.replace(/cos\(/g, 'Math.cos(');
-  evalExpr = evalExpr.replace(/tan\(/g, 'Math.tan(');
-  evalExpr = evalExpr.replace(/sqrt\(/g, 'Math.sqrt(');
-  evalExpr = evalExpr.replace(/ln\(/g, 'Math.log(');
-  evalExpr = evalExpr.replace(/log\(/g, 'Math.log10(');
-  evalExpr = evalExpr.replace(/exp\(/g, 'Math.exp(');
-  evalExpr = evalExpr.replace(/abs\(/g, 'Math.abs(');
-
-  return eval(evalExpr);
+  return expressionParser.evaluate(expr, x, 'x');
 }
 
 // Initialize calculator

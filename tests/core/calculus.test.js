@@ -3,21 +3,8 @@
  * Tests: CALC-TEST-U-1 through CALC-TEST-U-5
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { JSDOM } from 'jsdom';
-
-// Setup DOM environment
-function setupDOM(htmlContent) {
-  const dom = new JSDOM(`
-    <!DOCTYPE html>
-    <html>
-      <body>${htmlContent}</body>
-    </html>
-  `);
-  global.document = dom.window.document;
-  global.window = dom.window;
-  return dom;
-}
 
 /**
  * CALC-TEST-U-1: Derivative Calculator Unit Tests
