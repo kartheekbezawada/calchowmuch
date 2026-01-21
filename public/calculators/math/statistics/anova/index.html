@@ -1,0 +1,51 @@
+<div id="calc-anova">
+  <div class="calculator-ui">
+    <p class="helper">Compare means across multiple groups using Analysis of Variance (ANOVA).</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="anova-groups">Number of Groups</label>
+        <input id="anova-groups" type="number" value="3" min="2" max="10" step="1" />
+      </div>
+
+      <div id="anova-group-inputs">
+        <div class="input-row">
+          <label for="anova-group-1">Group 1</label>
+          <textarea id="anova-group-1" rows="2" placeholder="Enter values separated by commas">23, 25, 27, 22, 24</textarea>
+        </div>
+        <div class="input-row">
+          <label for="anova-group-2">Group 2</label>
+          <textarea id="anova-group-2" rows="2" placeholder="Enter values separated by commas">30, 32, 28, 31, 29</textarea>
+        </div>
+        <div class="input-row">
+          <label for="anova-group-3">Group 3</label>
+          <textarea id="anova-group-3" rows="2" placeholder="Enter values separated by commas">18, 20, 22, 19, 21</textarea>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="anova-alpha">Significance Level (alpha)</label>
+        <div class="button-group" role="group" data-button-group="anova-alpha">
+          <button class="calculator-button secondary" data-value="0.01">0.01</button>
+          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
+          <button class="calculator-button secondary" data-value="0.10">0.10</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="anova-calculate">
+      Run ANOVA
+    </button>
+
+    <div class="result" id="anova-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/statistics/anova/calculator.css');
+</style>
+
+<script type="module">
+  import { initAnovaCalculator } from '/calculators/math/statistics/anova/module.js';
+  initAnovaCalculator();
+</script>

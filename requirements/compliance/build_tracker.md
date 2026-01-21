@@ -75,6 +75,8 @@ This document is the system of record for FSM build runs.
 | BUILD-20260120-214145 | REQ-20260120-018 | Codex | 2026-01-20 21:42:40 | SUCCESS | 2 | `npm run test -- tests/core/trigonometry-calculators.test.js` ok | Verified after unit tests |
 | BUILD-20260121-004607 | REQ-20260120-019 | Claude | 2026-01-21 00:28:00 | PASSED | 1 | `npm run lint` ok | Lint-only build step |
 | BUILD-20260121-004607 | REQ-20260120-019 | Claude | 2026-01-21 00:43:00 | SUCCESS | 2 | `npm run test -- tests/core/calculus.test.js` ok (26/26 tests passed); All 547 tests passing | Calculus Calculator Suite: 5 calculators (Derivative, Integral, Limit, Series Convergence, Critical Points) |
+| BUILD-20260121-074100 | REQ-20260120-021 | Claude | 2026-01-21 07:41:00 | PASSED | 1 | `npm run lint` ok (ESLINT_USE_FLAT_CONFIG=false) | Lint passed after auto-fix |
+| BUILD-20260121-074100 | REQ-20260120-021 | Claude | 2026-01-21 07:41:30 | SUCCESS | 2 | `npm run test` ok (624/624 tests passed); `npm run test:coverage` advanced-statistics.js 94.34% coverage | Advanced Statistics Calculator Suite: 5 calculators (Regression, ANOVA, Hypothesis Testing, Correlation, Distribution); 77 new unit tests |
 
 Notes:
 - Attempt starts at 1 and increments on each retry.

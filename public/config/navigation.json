@@ -181,6 +181,36 @@
               "id": "probability",
               "name": "Probability Calculator",
               "url": "#/calculators/probability"
+            },
+            {
+              "id": "regression-analysis",
+              "name": "Regression Analysis",
+              "url": "#/calculators/regression-analysis",
+              "keywords": ["linear regression", "polynomial", "exponential", "r-squared", "residuals", "least squares"]
+            },
+            {
+              "id": "anova",
+              "name": "ANOVA Calculator",
+              "url": "#/calculators/anova",
+              "keywords": ["ANOVA", "F-test", "analysis of variance", "group comparison", "eta-squared"]
+            },
+            {
+              "id": "hypothesis-testing",
+              "name": "Hypothesis Testing",
+              "url": "#/calculators/hypothesis-testing",
+              "keywords": ["t-test", "z-test", "chi-square", "p-value", "significance", "null hypothesis"]
+            },
+            {
+              "id": "correlation",
+              "name": "Correlation Calculator",
+              "url": "#/calculators/correlation",
+              "keywords": ["Pearson", "Spearman", "Kendall", "correlation coefficient", "scatter plot"]
+            },
+            {
+              "id": "distribution",
+              "name": "Distribution Calculator",
+              "url": "#/calculators/distribution",
+              "keywords": ["normal distribution", "t-distribution", "chi-square", "F-distribution", "CDF", "quantile"]
             }
           ]
         }

@@ -1,0 +1,45 @@
+#calc-distribution .stats-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#calc-distribution .stats-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+#calc-distribution .stats-section h4 {
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--header-text);
+}
+
+#calc-distribution .stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+#calc-distribution .stats-row span:first-child {
+  color: var(--muted-text);
+}
+
+#calc-distribution .stats-row span:last-child {
+  font-weight: 500;
+}
+
+#calc-distribution .result-highlight {
+  background: var(--accent-bg);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 0.25rem 0;
+}
+
+#calc-distribution .result-highlight span:last-child {
+  color: var(--accent-color);
+  font-weight: 600;
+}

@@ -58,6 +58,7 @@ This document is the system of record for FSM test runs.
 | TEST-20260120-214217 | BUILD-20260120-214145 | 2026-01-20 21:42:17 | RUNNING | `npm run test -- tests/core/trigonometry-calculators.test.js` |
 | TEST-20260120-214217 | BUILD-20260120-214145 | 2026-01-20 21:42:40 | PASS | `npm run test -- tests/core/trigonometry-calculators.test.js` (8 tests passed) |
 | TEST-20260121-004607 | BUILD-20260121-004607 | 2026-01-21 00:43:00 | PASS | Unit tests: 26/26 passed (CALC-TEST-U-1 through U-5); E2E tests created (CALC-TEST-E2E-LOAD, NAV, WORKFLOW, MOBILE, A11Y); All 547 tests passed; Calculus Calculator Suite fully functional |
+| TEST-20260121-074100 | BUILD-20260121-074100 | 2026-01-21 07:41:00 | PASS | Unit tests: 77/77 passed for advanced-statistics (ADVSTAT-TEST-U-1 through U-11); All 624 tests passed; Coverage: 94.34% for advanced-statistics.js; Advanced Statistics Calculator Suite: Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution |
 
 Notes:
 - Use TEST-YYYYMMDD-HHMMSS for each run.

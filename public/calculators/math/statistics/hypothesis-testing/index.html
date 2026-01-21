@@ -1,0 +1,83 @@
+<div id="calc-hypothesis">
+  <div class="calculator-ui">
+    <p class="helper">Perform hypothesis tests to determine statistical significance.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label>Test Type</label>
+        <div class="button-group" role="group" data-button-group="hyp-test-type">
+          <button class="calculator-button secondary is-active" data-value="one-sample-t">One-Sample t</button>
+          <button class="calculator-button secondary" data-value="two-sample-t">Two-Sample t</button>
+          <button class="calculator-button secondary" data-value="paired-t">Paired t</button>
+          <button class="calculator-button secondary" data-value="chi-square">Chi-Square</button>
+        </div>
+      </div>
+
+      <div id="hyp-one-sample-inputs">
+        <div class="input-row">
+          <label for="hyp-sample-data">Sample Data</label>
+          <textarea id="hyp-sample-data" rows="2" placeholder="Enter values separated by commas">105, 98, 102, 110, 95, 103, 107, 101</textarea>
+        </div>
+        <div class="input-row">
+          <label for="hyp-mu0">Hypothesized Mean (mu0)</label>
+          <input id="hyp-mu0" type="number" value="100" step="any" />
+        </div>
+      </div>
+
+      <div id="hyp-two-sample-inputs" style="display: none;">
+        <div class="input-row">
+          <label for="hyp-sample1-data">Sample 1 Data</label>
+          <textarea id="hyp-sample1-data" rows="2" placeholder="Enter values separated by commas">23, 25, 27, 22, 24, 26</textarea>
+        </div>
+        <div class="input-row">
+          <label for="hyp-sample2-data">Sample 2 Data</label>
+          <textarea id="hyp-sample2-data" rows="2" placeholder="Enter values separated by commas">30, 32, 28, 31, 29, 33</textarea>
+        </div>
+      </div>
+
+      <div id="hyp-chi-square-inputs" style="display: none;">
+        <div class="input-row">
+          <label for="hyp-observed">Observed Frequencies</label>
+          <textarea id="hyp-observed" rows="2" placeholder="Enter values separated by commas">50, 30, 20</textarea>
+        </div>
+        <div class="input-row">
+          <label for="hyp-expected">Expected Frequencies</label>
+          <textarea id="hyp-expected" rows="2" placeholder="Enter values separated by commas">40, 35, 25</textarea>
+        </div>
+      </div>
+
+      <div class="input-row" id="hyp-alternative-row">
+        <label>Alternative Hypothesis</label>
+        <div class="button-group" role="group" data-button-group="hyp-alternative">
+          <button class="calculator-button secondary is-active" data-value="two-sided">Two-Sided</button>
+          <button class="calculator-button secondary" data-value="greater">Greater</button>
+          <button class="calculator-button secondary" data-value="less">Less</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label>Significance Level (alpha)</label>
+        <div class="button-group" role="group" data-button-group="hyp-alpha">
+          <button class="calculator-button secondary" data-value="0.01">0.01</button>
+          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
+          <button class="calculator-button secondary" data-value="0.10">0.10</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="hyp-calculate">
+      Run Test
+    </button>
+
+    <div class="result" id="hyp-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/statistics/hypothesis-testing/calculator.css');
+</style>
+
+<script type="module">
+  import { initHypothesisCalculator } from '/calculators/math/statistics/hypothesis-testing/module.js';
+  initHypothesisCalculator();
+</script>

@@ -1,0 +1,56 @@
+<div class="explanation-content">
+  <h2>Analysis of Variance (ANOVA)</h2>
+
+  <p>ANOVA is a statistical method used to compare means across multiple groups to determine if at least one group mean is significantly different from the others.</p>
+
+  <h3>One-Way ANOVA</h3>
+  <p>Tests whether there are significant differences between the means of three or more independent groups.</p>
+
+  <h4>Hypotheses</h4>
+  <ul>
+    <li><strong>H0 (Null):</strong> All group means are equal (mu1 = mu2 = ... = muk)</li>
+    <li><strong>H1 (Alternative):</strong> At least one group mean differs</li>
+  </ul>
+
+  <h3>Key Components</h3>
+
+  <h4>Sum of Squares</h4>
+  <ul>
+    <li><strong>SSB (Between Groups):</strong> Variability due to differences between group means</li>
+    <li><strong>SSW (Within Groups):</strong> Variability within each group (error)</li>
+    <li><strong>SST (Total):</strong> Total variability in the data (SST = SSB + SSW)</li>
+  </ul>
+
+  <h4>Mean Squares</h4>
+  <ul>
+    <li><strong>MSB:</strong> SSB / (k - 1), where k is the number of groups</li>
+    <li><strong>MSW:</strong> SSW / (N - k), where N is the total sample size</li>
+  </ul>
+
+  <h4>F-Statistic</h4>
+  <p><strong>F = MSB / MSW</strong></p>
+  <p>A larger F-statistic indicates greater between-group variability relative to within-group variability, suggesting group means differ.</p>
+
+  <h3>Effect Sizes</h3>
+
+  <h4>Eta-Squared (eta2)</h4>
+  <p>The proportion of total variance explained by group membership: eta2 = SSB / SST</p>
+  <ul>
+    <li>eta2 >= 0.14: Large effect</li>
+    <li>eta2 >= 0.06: Medium effect</li>
+    <li>eta2 >= 0.01: Small effect</li>
+  </ul>
+
+  <h4>Omega-Squared (omega2)</h4>
+  <p>A less biased estimate of effect size, especially for small samples.</p>
+
+  <h3>Assumptions</h3>
+  <ol>
+    <li><strong>Independence:</strong> Observations are independent</li>
+    <li><strong>Normality:</strong> Data in each group are approximately normally distributed</li>
+    <li><strong>Homogeneity of Variance:</strong> Variances are equal across groups</li>
+  </ol>
+
+  <h3>Interpretation</h3>
+  <p>If p-value < alpha (significance level), reject the null hypothesis and conclude that at least one group mean differs significantly. Follow up with post-hoc tests (like Tukey HSD) to identify which specific groups differ.</p>
+</div>
