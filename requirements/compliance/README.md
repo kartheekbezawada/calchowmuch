@@ -54,13 +54,13 @@ All compliance checks reference rule IDs from:
 - [Universal Requirements](../universal/UNIVERSAL_REQUIREMENTS.md) - UI, coding, testing standards
 - [Calculator Hierarchy](../universal/calculator-hierarchy.md) - Navigation structure
 - Category-specific requirements:
-  - `/loans/AUTO_LOAN_RULES.md`
-  - `/loans/BUY_TO_LET_RULES.md`
-  - `/loans/CREDIT_CARD_RULES.md`
-  - `/loans/HOME_LOAN.MD`
-  - `/loans/HOW_MUCH_CAN_I_BORROW_RULES.md`
-  - `/loans/LOAN_EMI.md`
-  - `/math/Statistics.md`
+  - `requirements/rules/loans/AUTO_LOAN_RULES.md`
+  - `requirements/rules/loans/BUY_TO_LET_RULES.md`
+  - `requirements/rules/loans/CREDIT_CARD_RULES.md`
+  - `requirements/rules/loans/HOME_LOAN.MD`
+  - `requirements/rules/loans/HOW_MUCH_CAN_I_BORROW_RULES.md`
+  - `requirements/rules/loans/LOAN_EMI.md`
+  - `requirements/rules/math/Statistics.md`
 
 ---
 
@@ -72,3 +72,14 @@ All compliance checks reference rule IDs from:
 - **Check SEO**: Update `seo_requirements.md`
 - **Report Issue**: Update `issue_tracker.md`
 - **View Compliance**: See `compliance-report.md`
+
+## Specs Mirror Tests
+
+- `requirements/specs/**` = human-readable acceptance criteria
+- `tests/**` = executable automated tests
+
+Expected results / screenshots live under `requirements/expected_results/`.
+
+Examples:
+1. `requirements/specs/e2e/<x>.md` ↔ `tests/e2e/<x>.spec.js`
+2. `requirements/specs/calculators/<calc>.md` ↔ `tests/calculators/<calc>.spec.js`
