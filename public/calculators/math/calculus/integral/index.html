@@ -1,0 +1,50 @@
+<div id="calc-integral">
+  <div class="calculator-ui">
+    <p class="helper">Calculate definite and indefinite integrals</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="int-function">Function f(x)</label>
+        <input id="int-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+      </div>
+
+      <div class="input-row">
+        <label for="int-variable">Variable</label>
+        <input id="int-variable" type="text" value="x" placeholder="x" />
+      </div>
+
+      <div class="button-group">
+        <button class="mode-button active" data-mode="indefinite">Indefinite</button>
+        <button class="mode-button" data-mode="definite">Definite</button>
+      </div>
+
+      <div id="definite-bounds" style="display: none;">
+        <div class="input-row">
+          <label for="int-lower">Lower Bound (a)</label>
+          <input id="int-lower" type="number" step="any" value="0" />
+        </div>
+
+        <div class="input-row">
+          <label for="int-upper">Upper Bound (b)</label>
+          <input id="int-upper" type="number" step="any" value="1" />
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="int-calculate">
+      Calculate Integral
+    </button>
+
+    <div class="result" id="int-result" aria-live="polite"></div>
+    <div class="result-detail" id="int-steps" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/calculus/integral/calculator.css');
+</style>
+
+<script type="module">
+  import { initIntegralCalculator } from '/calculators/math/calculus/integral/module.js';
+  initIntegralCalculator();
+</script>

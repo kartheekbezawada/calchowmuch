@@ -1,0 +1,134 @@
+/* Series Convergence Calculator Styles */
+
+#calc-series .button-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+#calc-series .test-button {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#calc-series .test-button:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+#calc-series .test-button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #2980b9;
+}
+
+#calc-series .result-box {
+  background-color: #f8f9fa;
+  border-left: 4px solid #3498db;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-size: 1.05em;
+}
+
+#calc-series .result-box.converges {
+  background-color: #d4edda;
+  border-left-color: #2ecc71;
+  color: #155724;
+}
+
+#calc-series .result-box.diverges {
+  background-color: #f8d7da;
+  border-left-color: #e74c3c;
+  color: #721c24;
+}
+
+#calc-series .result-box.inconclusive {
+  background-color: #fff3cd;
+  border-left-color: #f39c12;
+  color: #856404;
+}
+
+#calc-series .steps-box {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#calc-series .steps-box pre {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1.6;
+}
+
+#calc-series .error {
+  color: #e74c3c;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #fadbd8;
+  border-radius: 4px;
+}
+
+#series-explanation-pane {
+  padding: 0;
+}
+
+#series-explanation-pane section {
+  margin-bottom: 25px;
+}
+
+#series-explanation-pane h3 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+#series-explanation-pane h4 {
+  color: #34495e;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+#series-explanation-pane ul, #series-explanation-pane ol {
+  padding-left: 25px;
+}
+
+#series-explanation-pane li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+#series-graph-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#series-graph {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: #fff;
+  max-width: 100%;
+  height: auto;
+}
+
+.graph-info {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: center;
+}

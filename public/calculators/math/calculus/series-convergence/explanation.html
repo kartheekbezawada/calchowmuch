@@ -1,0 +1,126 @@
+<div id="series-explanation-pane">
+  <section>
+    <h3>What Is Series Convergence?</h3>
+    <p>
+      An infinite series is the sum of an infinite sequence of terms: Σa<sub>n</sub> = a<sub>1</sub> + a<sub>2</sub> + a<sub>3</sub> + ...
+      The series converges if the sequence of partial sums approaches a finite limit. Otherwise, it diverges.
+    </p>
+    <p>
+      Understanding convergence is crucial in calculus, analysis, and applications ranging from physics to computer science.
+    </p>
+  </section>
+
+  <section>
+    <h3>Convergence Tests</h3>
+
+    <h4>Ratio Test</h4>
+    <p>
+      For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> |a<sub>n+1</sub>/a<sub>n</sub>|:
+    </p>
+    <ul>
+      <li><strong>If L &lt; 1:</strong> The series converges absolutely</li>
+      <li><strong>If L &gt; 1:</strong> The series diverges</li>
+      <li><strong>If L = 1:</strong> The test is inconclusive</li>
+    </ul>
+    <p><strong>Best for:</strong> Series with factorials, exponentials, or powers of n</p>
+    <p><strong>Example:</strong> For Σn!/n<sup>n</sup>, the ratio test quickly determines convergence</p>
+
+    <h4>Root Test (Cauchy Root Test)</h4>
+    <p>
+      For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> <sup>n</sup>√|a<sub>n</sub>|:
+    </p>
+    <ul>
+      <li><strong>If L &lt; 1:</strong> The series converges absolutely</li>
+      <li><strong>If L &gt; 1:</strong> The series diverges</li>
+      <li><strong>If L = 1:</strong> The test is inconclusive</li>
+    </ul>
+    <p><strong>Best for:</strong> Series with n<sup>th</sup> powers</p>
+    <p><strong>Example:</strong> For Σ(n/(n+1))<sup>n</sup>, the root test is ideal</p>
+
+    <h4>Comparison Test</h4>
+    <p>
+      Compare your series Σa<sub>n</sub> with a known series Σb<sub>n</sub>:
+    </p>
+    <ul>
+      <li><strong>Direct Comparison:</strong> If 0 ≤ a<sub>n</sub> ≤ b<sub>n</sub> and Σb<sub>n</sub> converges, then Σa<sub>n</sub> converges</li>
+      <li><strong>Direct Comparison:</strong> If a<sub>n</sub> ≥ b<sub>n</sub> ≥ 0 and Σb<sub>n</sub> diverges, then Σa<sub>n</sub> diverges</li>
+      <li><strong>Limit Comparison:</strong> If lim<sub>n→∞</sub> (a<sub>n</sub>/b<sub>n</sub>) = L where 0 &lt; L &lt; ∞, then both series converge or both diverge</li>
+    </ul>
+    <p><strong>Common comparison series:</strong></p>
+    <ul>
+      <li>p-series: Σ1/n<sup>p</sup> converges if p &gt; 1, diverges if p ≤ 1</li>
+      <li>Geometric series: Σr<sup>n</sup> converges if |r| &lt; 1, diverges otherwise</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Common Series</h3>
+    <h4>Convergent Series</h4>
+    <ul>
+      <li><strong>p-series (p &gt; 1):</strong> Σ1/n<sup>2</sup>, Σ1/n<sup>3</sup>, etc.</li>
+      <li><strong>Geometric (|r| &lt; 1):</strong> Σ(1/2)<sup>n</sup>, Σ(2/3)<sup>n</sup></li>
+      <li><strong>Alternating series:</strong> Σ(-1)<sup>n</sup>/n (conditionally convergent)</li>
+      <li><strong>Exponential:</strong> Σn/2<sup>n</sup>, Σn!/n<sup>n</sup></li>
+    </ul>
+
+    <h4>Divergent Series</h4>
+    <ul>
+      <li><strong>Harmonic series:</strong> Σ1/n</li>
+      <li><strong>p-series (p ≤ 1):</strong> Σ1/√n</li>
+      <li><strong>Geometric (|r| ≥ 1):</strong> Σ2<sup>n</sup>, Σ(-1)<sup>n</sup></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Step-by-Step Analysis</h3>
+    <ol>
+      <li>Write out the general term a<sub>n</sub> of the series</li>
+      <li>Choose an appropriate convergence test based on the form of a<sub>n</sub></li>
+      <li>Compute the limit or comparison required by the test</li>
+      <li>Apply the test criteria to determine convergence or divergence</li>
+      <li>If inconclusive, try a different test</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Visualization</h3>
+    <div id="series-graph-container">
+      <canvas id="series-graph" width="500" height="300"></canvas>
+      <div class="graph-info" id="series-graph-info"></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Worked Example</h3>
+    <p><strong>Determine if Σn/2<sup>n</sup> converges using the ratio test</strong></p>
+    <ol>
+      <li>General term: a<sub>n</sub> = n/2<sup>n</sup></li>
+      <li>Next term: a<sub>n+1</sub> = (n+1)/2<sup>n+1</sup></li>
+      <li>Compute ratio: |a<sub>n+1</sub>/a<sub>n</sub>| = [(n+1)/2<sup>n+1</sup>] / [n/2<sup>n</sup>] = (n+1)/(2n)</li>
+      <li>Take limit: L = lim<sub>n→∞</sub> (n+1)/(2n) = 1/2</li>
+      <li>Since L = 1/2 &lt; 1, the series <strong>converges</strong> by the ratio test</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Common Mistakes to Avoid</h3>
+    <ul>
+      <li>Confusing sequence convergence with series convergence</li>
+      <li>Misapplying tests (e.g., using ratio test on p-series)</li>
+      <li>Forgetting absolute value in ratio and root tests</li>
+      <li>Concluding divergence when a test is inconclusive (L = 1)</li>
+      <li>Not simplifying limits before evaluating</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Real-World Applications</h3>
+    <ul>
+      <li><strong>Physics:</strong> Fourier series for wave analysis</li>
+      <li><strong>Engineering:</strong> Power series approximations</li>
+      <li><strong>Computer Science:</strong> Analysis of algorithms (asymptotic series)</li>
+      <li><strong>Probability:</strong> Expected values and moment-generating functions</li>
+      <li><strong>Finance:</strong> Present value of perpetuities and annuities</li>
+    </ul>
+  </section>
+</div>
