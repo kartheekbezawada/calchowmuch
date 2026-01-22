@@ -21,7 +21,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'python3 -m http.server 8000 --directory public',
+    command: 'python -m http.server 8000 --directory public',
     url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
     timeout: 10000,

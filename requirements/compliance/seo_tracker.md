@@ -1,0 +1,36 @@
+# SEO Tracker
+
+> **Purpose:** Track SEO validation for pages  
+> **LLM Rule:** Load when REQ has SEO impact. STOP at Archive.
+
+---
+
+## Active Validations
+
+| SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
+|--------|--------|------|--------|--------|----|----|-----|
+| | | | | | | | |
+
+---
+
+## Priority Levels
+
+| Level | Focus | Required For |
+|-------|-------|--------------|
+| P1 | Title, meta, canonical | All pages |
+| P2 | OpenGraph, structured data | Public pages |
+| P3 | Core Web Vitals | All pages |
+
+Full rules: `seo_requirements.md`
+
+---
+
+<!-- ⛔ LLM STOP: Do not read below this line ⛔ -->
+
+## Archive
+
+<!-- Move completed SEO validations here. LLMs should not load this section. -->
+
+| SEO_ID | REQ_ID | Page | Status | Archived |
+|--------|--------|------|--------|----------|
+| | | | | |

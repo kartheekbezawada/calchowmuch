@@ -14,7 +14,7 @@
     "lint:fix": "eslint public/assets/js --ext .js --fix",
     "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
     "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
-    "serve": "python3 -m http.server 8000 --directory public",
+    "serve": "python -m http.server 8000 --directory public",
     "validate": "npm run lint && npm run test && npm run format:check"
   },
   "keywords": [

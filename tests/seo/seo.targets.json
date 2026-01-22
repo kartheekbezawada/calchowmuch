@@ -1,0 +1,15 @@
+{
+  "_comment": "SEO test targets per requirement. Use REQ_ID env var to select specific targets.",
+  
+  "default": [
+    "/calculators/math/basic/percentage-calculator/",
+    "/calculators/math/basic/fraction-calculator/"
+  ],
+  
+  "_template": {
+    "_description": "Template for adding new requirement targets",
+    "REQ-YYYYMMDD-###": [
+      "/calculators/{category}/{subcategory}/{calculator-slug}/"
+    ]
+  }
+}

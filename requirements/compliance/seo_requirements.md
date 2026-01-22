@@ -1,147 +1,188 @@
-# SEO Requirements and Tracker
+# SEO Requirements
 
-This document defines SEO requirements and tracks SEO compliance for FSM runs.
-
-## FSM SEO Status Definitions
-- **PENDING**: SEO entry created but not yet validated.
-- **PASS**: SEO validated (or placeholder used per missing SEO rule).
-- **FAIL**: SEO validation failed (issue must be created, but release can still proceed).
+> **Purpose:** Defines SEO validation rules by priority level  
+> **Authority:** These rules determine SEO compliance for new/updated pages  
+> **Last Updated:** 2026-01-22
 
 ---
 
-## FSM SEO Tracker (Authoritative)
+## Priority Levels Overview
 
-| SEO ID | Requirement ID | Page/Scope | Status | Evidence/Notes |
-|--------|----------------|------------|--------|----------------|
-| SEO-PENDING-REQ-20260119-001 | REQ-20260119-001 | Buy-to-Let Calculator page | PASS | No SEO-critical markup changes; layout verified visually |
-| SEO-PENDING-REQ-20260119-002 | REQ-20260119-002 | Math/Simple/Percentage Calculator page | PENDING | Fixing calculation functionality will improve user engagement metrics and reduce bounce rate |
-| SEO-PENDING-REQ-20260119-003 | REQ-20260119-003 | Math/Simple/Fraction Calculator page | PENDING | Fixing fraction operations will improve user engagement metrics and reduce bounce rate |
-| SEO-PENDING-REQ-20260119-008 | REQ-20260119-008 | Math/Advanced/Number Sequence page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260119-009 | REQ-20260119-009 | Math/Advanced/Permutation Combination page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260119-010 | REQ-20260119-010 | Math/Advanced/Probability Calculator page | PASS | Calculator logic/UI updates only; no SEO markup changes |
-| SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra calculator suite | PASS | New calculator pages listed in navigation, index, and sitemap |
-| SEO-PENDING-REQ-20260120-017 | REQ-20260120-017 | Math/Algebra/* (5 calculator pages) | PENDING | New Algebra Calculator Suite: Quadratic, System of Equations, Polynomial, Factoring, Slope & Distance. Requires meta tags, structured data, and sitemaps for 5 new pages. |
-| SEO-PENDING-REQ-20260120-018 | REQ-20260120-018 | Math/Trigonometry/* (5 calculator pages) | PASS | SEO metadata, structured data, and sitemap entries added for the trigonometry suite (setPageMetadata helper + updated structured-data.json and sitemap). |
-| SEO-PENDING-REQ-20260120-019 | REQ-20260120-019 | Math/Calculus/* (5 calculator pages) | PASS | Calculus Calculator Suite SEO metadata added: structured data in structured-data.json for all 5 calculators (Derivative, Integral, Limit, Series Convergence, Critical Points). Navigation entries added to navigation.json. |
-| SEO-PENDING-REQ-20260120-020 | REQ-20260120-020 | Math/Logarithm/* (5 calculator pages) | PASS | Navigation already lists the five log calculators; structured-data.json now contains entries for each page and sitemap.xml includes all log URLs; setPageMetadata called per module with unique titles/descriptions; ISSUE-20260121-152000 resolved once metadata/nav were added. |
-| SEO-PENDING-REQ-20260120-021 | REQ-20260120-021 | Math/Statistics/* (5 calculator pages) | PASS | Advanced Statistics Suite implemented: Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution. Navigation entries added to navigation.json with keywords for discoverability. Explanation.html files added for each calculator. |
-
-Notes:
-- Use SEO-... when known; otherwise use SEO-PENDING-REQ-XXXX or SEO-N/A.
-- If SEO items are missing for changed pages, add a placeholder entry and create a follow-up issue.
+| Priority | Focus Area | When Required |
+|----------|------------|---------------|
+| **P1** | Critical SEO | All new pages, all public routes |
+| **P2** | Enhanced SEO | Public-facing pages, marketing pages |
+| **P3** | Performance SEO | All pages (Core Web Vitals) |
+| **P4** | Accessibility Overlap | As needed, WCAG compliance |
+| **P5** | Advanced SEO | Site-wide changes, technical SEO |
 
 ---
 
-## SEO Requirements (To Be Defined)
+## P1 - Critical SEO (Mandatory)
 
-### General SEO Rules
+Every public page **must** pass all P1 checks.
 
-**SEO-GEN-1**  
-Each calculator page must have unique, descriptive `<title>` tag.
+### Checklist
 
-**SEO-GEN-2**  
-Each calculator page must have unique `<meta name="description">` tag (150-160 characters).
+| Rule | Requirement | Validation |
+|------|-------------|------------|
+| P1.1 | Unique `<title>` tag | 50-60 characters, contains primary keyword |
+| P1.2 | Unique `<meta name="description">` | 150-160 characters, compelling, contains keyword |
+| P1.3 | Canonical URL | `<link rel="canonical">` points to correct URL |
+| P1.4 | Single H1 tag | Exactly one `<h1>`, contains primary keyword |
+| P1.5 | No duplicate content | Page content is unique across site |
+| P1.6 | Mobile viewport | `<meta name="viewport">` present |
+| P1.7 | Language attribute | `<html lang="en">` (or appropriate lang) |
 
-**SEO-GEN-3**  
-All pages must have canonical URL defined.
+### Automated Check
 
-**SEO-GEN-4**  
-All images must have descriptive `alt` attributes.
-
-**SEO-GEN-5**  
-Page must be mobile-friendly and pass Core Web Vitals.
-
----
-
-### URL Structure Rules
-
-**SEO-URL-1**  
-URLs must be lowercase and hyphen-separated.
-
-**SEO-URL-2**  
-URLs must follow the pattern: `/calculators/{category}/{calculator-name}`
-
-**SEO-URL-3**  
-No query parameters for static content.
-
----
-
-### Structured Data Rules
-
-**SEO-SD-1**  
-Each calculator must have JSON-LD structured data.
-
-**SEO-SD-2**  
-Structured data must include: `@type`, `name`, `description`, `url`.
-
-**SEO-SD-3**  
-Structured data must be valid (test with Google Rich Results Test).
-
----
-
-### Sitemap Rules
-
-**SEO-SITEMAP-1**  
-All calculator pages must be included in sitemap.xml.
-
-**SEO-SITEMAP-2**  
-Sitemap must be updated when new calculators are added.
-
-**SEO-SITEMAP-3**  
-Sitemap must include `<lastmod>`, `<changefreq>`, `<priority>`.
-
----
-
-### Performance Rules
-
-**SEO-PERF-1**  
-Largest Contentful Paint (LCP) < 2.5 seconds.
-
-**SEO-PERF-2**  
-Cumulative Layout Shift (CLS) < 0.1.
-
-**SEO-PERF-3**  
-First Input Delay (FID) < 100ms.
-
----
-
-## Current SEO Status
-
-| Domain | Tests | Passed | Failed | Compliance Rate |
-|--------|-------|--------|--------|--------------------|
-| Math Calculators | 10 | 8 | 2 | 80% |
-| Loan Calculators | 12 | 10 | 2 | 83% |
-| Navigation | 3 | 3 | 0 | 100% |
-| **Overall** | **25** | **21** | **4** | **84%** |
-
----
-
-## SEO Summary by Priority
-
-| Priority | Total Rules | Passed | Failed | Rate |
-|----------|-------------|--------|---------|---------
-| P0 (Critical) | 8 | 8 | 0 | 100% |
-| P1 (Important) | 12 | 10 | 2 | 83% |
-| P2 (Enhancement) | 5 | 3 | 2 | 60% |
-
----
-
-## Template for New FSM SEO Entries
-
-```markdown
-| SEO-... | REQ-YYYYMMDD-### | [Page/Scope] | PENDING/PASS/FAIL | [Evidence/Notes] |
+```bash
+npm run test:seo -- --level p1
 ```
 
 ---
 
-## Additional SEO Requirements (Placeholder)
+## P2 - Enhanced SEO (Recommended)
 
-> **Note**: Additional SEO requirements will be added here as they are defined.
-> This section is reserved for future Search Engine Requirements specification.
+Public-facing and marketing pages should pass P2 checks.
 
-### Coming Soon
-- [ ] Open Graph meta tags requirements
-- [ ] Twitter Card requirements  
-- [ ] Schema.org markup requirements
-- [ ] Accessibility (A11y) requirements
-- [ ] International SEO requirements (hreflang)
+### Checklist
+
+| Rule | Requirement | Validation |
+|------|-------------|------------|
+| P2.1 | OpenGraph title | `<meta property="og:title">` present |
+| P2.2 | OpenGraph description | `<meta property="og:description">` present |
+| P2.3 | OpenGraph image | `<meta property="og:image">` with valid URL |
+| P2.4 | OpenGraph type | `<meta property="og:type">` (website, article) |
+| P2.5 | Twitter card | `<meta name="twitter:card">` present |
+| P2.6 | Structured data | Valid JSON-LD (WebPage, Calculator, etc.) |
+| P2.7 | Breadcrumb markup | BreadcrumbList schema if applicable |
+
+### Automated Check
+
+```bash
+npm run test:seo -- --level p2
+```
+
+---
+
+## P3 - Performance SEO (Required for Launch)
+
+Core Web Vitals must meet thresholds.
+
+### Checklist
+
+| Rule | Metric | Threshold | Tool |
+|------|--------|-----------|------|
+| P3.1 | Largest Contentful Paint (LCP) | < 2.5s | Lighthouse |
+| P3.2 | First Input Delay (FID) | < 100ms | Lighthouse |
+| P3.3 | Cumulative Layout Shift (CLS) | < 0.1 | Lighthouse |
+| P3.4 | First Contentful Paint (FCP) | < 1.8s | Lighthouse |
+| P3.5 | Time to Interactive (TTI) | < 3.8s | Lighthouse |
+| P3.6 | Total Blocking Time (TBT) | < 200ms | Lighthouse |
+
+### Additional P3 Rules
+
+| Rule | Requirement |
+|------|-------------|
+| P3.7 | All images have `alt` text |
+| P3.8 | No render-blocking resources above fold |
+| P3.9 | Images properly sized and optimized |
+| P3.10 | Fonts preloaded or use `font-display: swap` |
+
+### Automated Check
+
+```bash
+npm run test:seo -- --level p3
+# or
+npx lighthouse <url> --only-categories=performance
+```
+
+---
+
+## P4 - Accessibility Overlap (As Needed)
+
+Accessibility that affects SEO.
+
+### Checklist
+
+| Rule | Requirement |
+|------|-------------|
+| P4.1 | Proper heading hierarchy (H1 → H2 → H3) |
+| P4.2 | Link text is descriptive (not "click here") |
+| P4.3 | Form labels associated with inputs |
+| P4.4 | Color contrast meets WCAG AA (4.5:1) |
+| P4.5 | Focus states visible for keyboard navigation |
+| P4.6 | ARIA labels where needed |
+
+### Automated Check
+
+```bash
+npm run test:a11y
+# or
+npx pa11y <url>
+```
+
+---
+
+## P5 - Advanced SEO (Site-Wide)
+
+Technical SEO for site infrastructure.
+
+### Checklist
+
+| Rule | Requirement | When |
+|------|-------------|------|
+| P5.1 | `sitemap.xml` exists and is valid | Any page add/remove |
+| P5.2 | `robots.txt` allows crawling | Initial setup |
+| P5.3 | XML sitemap submitted to Search Console | After major changes |
+| P5.4 | 301 redirects for changed URLs | URL structure changes |
+| P5.5 | Hreflang tags for multi-language | If applicable |
+| P5.6 | HTTPS enforced | Always |
+| P5.7 | WWW/non-WWW canonical decided | Initial setup |
+
+### Automated Check
+
+```bash
+npm run test:seo -- --level p5
+```
+
+---
+
+## SEO Validation by Change Type
+
+| Change Type | P1 | P2 | P3 | P4 | P5 |
+|-------------|:--:|:--:|:--:|:--:|:--:|
+| New calculator page | ✅ | ✅ | ✅ | — | — |
+| Metadata update | ✅ | ✅ | — | — | — |
+| Content update | ✅ | — | — | — | — |
+| Layout/styling | — | — | ✅ | ✅ | — |
+| URL structure change | ✅ | — | — | — | ✅ |
+| New site section | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+---
+
+## Recording in seo_tracker.md
+
+```markdown
+| SEO_ID | REQ_ID | Page/Route | Checks Required | Status | P1 | P2 | P3 |
+|--------|--------|------------|-----------------|--------|----|----|-----|
+| SEO-REQ-20260122-001 | REQ-20260122-001 | /calc/tip | P1, P2, P3 | PASS | ✅ | ✅ | ✅ |
+```
+
+---
+
+## Common SEO Issues
+
+| Issue | Impact | Fix |
+|-------|--------|-----|
+| Missing meta description | Low click-through | Add unique description |
+| Duplicate title tags | Confusion in SERP | Make titles unique |
+| Missing canonical | Duplicate content risk | Add canonical tag |
+| Slow LCP | Poor rankings | Optimize images, fonts |
+| High CLS | Poor UX signal | Reserve space for dynamic content |
+| Missing alt text | Accessibility + image SEO | Add descriptive alt |
+
+---
+
+*SEO is discoverability. Don't ship without validation.*
