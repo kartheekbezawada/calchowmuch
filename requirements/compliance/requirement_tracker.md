@@ -45,4 +45,4 @@
 
 | REQ_ID | Title | Status | Iterations | Completed |
 |--------|-------|--------|------------|-----------|
-| | | | | |
+| REQ-20260122-001 | Navigation Restructure - Top Level Loan Categories | COMPLETE | 13 | 2026-01-22 18:35 |
