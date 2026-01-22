@@ -1,157 +1,163 @@
 # Final Compliance Report
 
-## Tracker Contract (Must Be Filled)
-
-**This file is the release gate.** If a requirement does not have a row here, it is treated as **NOT VERIFIED**.
-
-**Uniqueness rule:** **One row per Requirement ID.** Update the existing row as the requirement moves through build/test/SEO.  
-**No-orphans rule:** No `RUNNING` entries are allowed in Build/Test trackers when `Overall Compliance = PASS`.
-
-**Overall Compliance = PASS** only if:
-- Requirement Status = VERIFIED
-- Build Status = PASS
-- Test Status = PASS (or SKIPPED only when the workflow allows)
-- SEO Status = PASS (or N/A)
-- Universal Requirements Followed = PASS (with rule IDs referenced)
+> **Purpose:** This is the **release gate**. If a requirement does not have a row here with `PASS`, it is **NOT VERIFIED** for release.
 
 ---
 
+## Compliance Formula (Authoritative)
 
-This is the master compliance verification matrix showing complete traceability from requirements through build, testing, SEO, and universal requirements validation.
+A requirement achieves **PASS** when all conditions are met:
+
+```
+OVERALL_PASS = BUILD_PASS 
+             ∧ TEST_PASS 
+             ∧ (SEO_PASS ∨ SEO_NA) 
+             ∧ UNIVERSAL_RULES_PASS
+```
+
+### Component Definitions
+
+| Component | Condition for PASS |
+|-----------|-------------------|
+| **BUILD_PASS** | `npm run lint` completes with zero errors |
+| **TEST_PASS** | All **mandatory tests** pass (per [testing_requirements.md](testing_requirements.md) matrix) |
+| **SEO_PASS** | P1 SEO rules validated (or `SEO_NA` if no page/URL changes) |
+| **UNIVERSAL_RULES_PASS** | No violations of P0/P1 rules from [UNIVERSAL_REQUIREMENTS.md](../universal/UNIVERSAL_REQUIREMENTS.md) |
+
+### Test Pass Breakdown
+
+```
+TEST_PASS = mandatory_unit_tests_pass 
+          ∧ mandatory_integration_tests_pass 
+          ∧ mandatory_e2e_tests_pass (if applicable)
+          ∧ mandatory_seo_tests_pass (if applicable)
+```
+
+See [testing_requirements.md](testing_requirements.md) §3 for the Test Selection Matrix that defines mandatory vs optional tests per change type.
+
+---
+
+## Tracker Contract
+
+| Rule | Description |
+|------|-------------|
+| **One row per REQ** | Each Requirement ID appears exactly once |
+| **Update in place** | As the REQ moves through BUILD→TEST→SEO, update the same row |
+| **No orphan RUNNING** | All build/test rows must be closed (PASS/FAIL) before marking PASS |
+| **Evidence required** | Must include Test Run IDs and/or command output references |
 
 ---
 
 ## Workflow Chain Reference
+
 ```
-requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirements.md -> compliance-report.md
+requirement_tracker.md → build_tracker.md → testing_tracker.md → seo_tracker.md → compliance-report.md
+       (REQ-...)            (BUILD-...)        (TEST-...)           (SEO-...)         (PASS/FAIL)
 ```
 
 ---
 
 ## FSM Compliance Table (Authoritative)
 
-| Requirement ID | Requirement Status | Build ID | Build Status | Test Run ID | Test Status | SEO ID | SEO Status | Universal Requirements Followed | Overall Compliance | Evidence/Notes |
-|---------------|-------------------|----------|--------------|------------|------------|--------|------------|-------------------------------|-------------------|----------------|
-| REQ-20260119-001 | VERIFIED | BUILD-20260119-140637 | SUCCESS | TEST-20260119-153426 | PASS | SEO-PENDING-REQ-20260119-001 | PASS | In Progress | In Progress | Lint + buy-to-let utils tests passed |
-| REQ-20260120-016 | VERIFIED | BUILD-20260120-022657 | SUCCESS | TEST-20260120-100053 | PASS | SEO-N/A | PASS | PASS | PASS | `npx playwright test` (86 tests) |
-| REQ-20260120-019 | VERIFIED | BUILD-20260121-142414 | PASS | TEST-20260121-142414 | PASS | SEO-PENDING-REQ-20260120-019 | PASS | PASS | PASS | Calculus calculator navigation paths now resolve correctly for derivative, integral, limit, series convergence, and critical-points modules; `npm run test` (624 tests passed) after fixing the nav path mapping and resolving ISSUE-20260121-142500; previous lint/test run (BUILD-20260121-004607/TEST-20260121-004607) already confirmed base functionality; SEO metadata remained unchanged |
-| REQ-20260120-021 | VERIFIED | BUILD-20260121-074100 | SUCCESS | TEST-20260121-074100 | PASS | SEO-PENDING-REQ-20260120-021 | PASS | PASS | PASS | Advanced Statistics Calculator Suite: 5 calculators (Regression Analysis, ANOVA, Hypothesis Testing, Correlation, Distribution); 77/77 unit tests passed; 624 total tests passing; advanced-statistics.js 94.34% coverage; Navigation entries added |
-| REQ-20260120-020 | VERIFIED | BUILD-20260121-124003 | PASS | TEST-20260121-124035; TEST-20260121-124430 | PASS | SEO-PENDING-REQ-20260120-020 | PASS | PASS | PASS | Implemented Natural Log, Common Log, Log Properties, Exponential Equations, and Log Scale calculators (UI + shared CSS + explanation pages + graph + helper logic); navigation.json now surfaces all five and public/index.html maps them; SEO metadata, structured data, and sitemap rows added; `tests/core/logarithm-calculators.test.js` and `tests/e2e/logarithm-calculators.spec.js` verify functional and navigational behavior (LOG-TEST-U-1..5 + LOG-TEST-E2E-LOAD/NAV/WORKFLOW/MOBILE/A11Y); `ISSUE-20260121-152000` resolved |
-
-Notes:
-- Auto-advance: Codex updates this table during S2-S13 without manual EVT commands.
-- Legacy backlog remains in the table below until migrated.
+| Requirement ID | REQ Status | Build ID | Build Status | Test IDs | Tests Passed | SEO Status | Universal | Overall | Evidence |
+|----------------|------------|----------|--------------|----------|--------------|------------|-----------|---------|----------|
+| *(Fresh start — populate as REQs complete)* | | | | | | | | | |
 
 ---
 
-## Current Compliance Status
+## Template for New Compliance Row
 
-| Domain | Rules Checked | Passed | Failed | Compliance Rate |
-|--------|---------------|--------|---------|--------------------|
-| Universal Requirements | 50+ | 45 | 5 | 90% |
-| Math Calculators | 10 | 8 | 2 | 80% |
-| Test Standards | 7 | 6 | 1 | 86% |
-| **Overall** | **67** | **59** | **8** | **88%** |
+```markdown
+| REQ-YYYYMMDD-### | VERIFIED | BUILD-YYYYMMDD-HHMMSS | PASS | TEST-...; TEST-... | Unit: X/X, E2E: Y/Y | PASS/NA | PASS | PASS | Evidence notes |
+```
 
----
+### Field Definitions
 
-## Compliance Summary by Priority
-
-| Priority | Total Rules | Passed | Failed | Rate |
-|----------|-------------|--------|---------|---------
-| P0 (Blocking) | 25 | 24 | 1 | 96% |
-| P1 (Critical) | 30 | 25 | 5 | 83% |
-| P2 (Important) | 12 | 10 | 2 | 83% |
-
----
-
-## Compliance Criteria
-
-### Universal Requirements Compliance
-Requirements MUST follow all applicable rules from [UNIVERSAL_REQUIREMENTS.md](../universal/UNIVERSAL_REQUIREMENTS.md):
-- **UI-3.x**: User interface contract violations
-- **FS-5.x**: Folder structure violations  
-- **CS-6.x**: Coding standards violations
-- **TS-7.x**: Testing standards violations
-- **SEO-8.x**: SEO compliance violations
-
-### SEO Compliance Checklist (per seo_requirements.md)
-- ✅ SEO-GEN-1 to SEO-GEN-5: Meta tags
-- ✅ SEO-URL-1 to SEO-URL-3: URL structure
-- ✅ SEO-SD-1 to SEO-SD-3: Structured data
-- ✅ SEO-SITEMAP-1 to SEO-SITEMAP-3: Sitemap
-- ✅ SEO-PERF-1 to SEO-PERF-3: Core Web Vitals
+| Field | Description | Values |
+|-------|-------------|--------|
+| Requirement ID | From requirement_tracker.md | `REQ-YYYYMMDD-###` |
+| REQ Status | Requirement verification status | `NEW`, `UNVERIFIED`, `VERIFIED` |
+| Build ID | From build_tracker.md | `BUILD-YYYYMMDD-HHMMSS` |
+| Build Status | Build result | `PASS`, `FAIL` |
+| Test IDs | Semicolon-separated test run IDs | `TEST-...; TEST-...` |
+| Tests Passed | Summary of test results | `Unit: X/Y, E2E: Z/W` |
+| SEO Status | SEO validation result | `PASS`, `PENDING`, `NA` |
+| Universal | Universal Requirements compliance | `PASS`, `FAIL` |
+| Overall | Final compliance verdict | `PASS`, `FAIL` |
+| Evidence | Links, commands, notes | Free text |
 
 ---
 
-## Overall Project Compliance Status
+## Compliance Checklist (Per Requirement)
 
-Note: Summary metrics currently reflect legacy backlog data unless the FSM table is populated.
+Before marking a row as `PASS`:
 
-### Summary Dashboard
+### Build Verification
+- [ ] `npm run lint` passes (zero errors)
+- [ ] No new linting warnings introduced
 
-| Metric | Count | Percentage |
-|--------|-------|------------|
-| Total Requirements | 23 | - |
-| Requirements Complete | 0 | 0% |
-| Builds Complete | 0 | 0% |
-| Tests Passing | 0 | 0% |
-| SEO Compliant | 0 | 0% |
-| Universal Requirements Followed | 0 | 0% |
-| **Overall Project Status** | - | **❌ Not Compliant** |
+### Test Verification
+- [ ] Change type identified (from [testing_requirements.md](testing_requirements.md) §3)
+- [ ] Mandatory tests identified per matrix
+- [ ] All mandatory unit tests pass
+- [ ] All mandatory integration tests pass (if applicable)
+- [ ] All mandatory E2E tests pass (if applicable)
+- [ ] Coverage ≥ 80% for new compute logic (if applicable)
 
-### Compliance by Category
+### SEO Verification (if SEO_IMPACT = YES)
+- [ ] Calculator added to `sitemap.xml`
+- [ ] JSON-LD structured data present and valid
+- [ ] Title, meta description, H1 unique and accurate
+- [ ] URL format correct (lowercase, hyphen-separated)
+- [ ] SEO auto tests pass: `npx playwright test tests/seo/seo-auto.spec.js`
 
-| Category | Requirements | Complete | Builds | Tests Pass | SEO | Universal | Status |
-|----------|-------------|----------|--------|------------|-----|-----------|--------|
-| Auto Loans | 5 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Buy-to-Let | 1 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Credit Cards | 4 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Mortgage | 1 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Borrow | 1 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| EMI | 1 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Statistics | 9 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| Navigation | 1 | 0 | 0 | 0 | 0 | 0 | ❌ |
-| **TOTAL** | **23** | **0** | **0** | **0** | **0** | **0** | **❌** |
+### Universal Requirements Verification
+- [ ] No P0 rule violations
+- [ ] No P1 rule violations
+- [ ] Any P2 violations documented with waiver
 
 ---
 
-## Compliance Gates
+## Compliance Gates (Release Criteria)
 
-| Gate | Requirements | Builds | Tests | SEO | Universal | Current Status |
-|------|-------------|--------|-------|-----|-----------|---------------|
-| Alpha Release | 50% Complete | 50% Complete | 50% Pass | N/A | 100% | ❌ Not Met |
-| Beta Release | 80% Complete | 80% Complete | 80% Pass | 80% | 100% | ❌ Not Met |
-| Production Release | 100% Complete | 100% Complete | 100% Pass | 100% | 100% | ❌ Not Met |
-
----
-
-## Rule Violation Tracking
-
-| Violation ID | Rule ID | Requirement ID | Description | Status | Resolution |
-|-------------|---------|---------------|-------------|--------|------------|
-| - | - | - | No violations recorded | - | - |
+| Gate | Criteria |
+|------|----------|
+| **Alpha** | ≥50% REQs at PASS, all P0 rules followed |
+| **Beta** | ≥80% REQs at PASS, all P0+P1 rules followed, SEO validated |
+| **Production** | 100% REQs at PASS, all tests pass, SEO complete, no waivers |
 
 ---
 
-## Compliance Legend
-- ❌ = Non-compliant (0-49%)
-- ⚠️ = Partial compliance (50-79%)
-- ✅ = Fully compliant (80-100%)
+## Current Compliance Summary
+
+| Metric | Count | Status |
+|--------|-------|--------|
+| Total Active REQs | 0 | — |
+| REQs at PASS | 0 | 0% |
+| REQs at FAIL | 0 | 0% |
+| REQs Pending | 0 | 0% |
+| **Overall Status** | — | **🆕 Fresh Start** |
+
+*Note: This report was reset on 2026-01-22. Previous REQs should be re-validated using the new compliance formula.*
+
+---
+
+## Violation Tracking
+
+| Violation ID | Rule ID | REQ ID | Description | Status | Resolution |
+|-------------|---------|--------|-------------|--------|------------|
+| *(No active violations)* | | | | | |
 
 ---
 
 ## Notes
-- This report is generated based on data from all trackers:
-  - [requirement_tracker.md](requirement_tracker.md)
-  - [build_tracker.md](build_tracker.md)
-  - [testing_tracker.md](testing_tracker.md)
-  - [seo_requirements.md](seo_requirements.md)
-- All violations must reference specific rule IDs per DC-0.3
-- See [WORKFLOW.md](WORKFLOW.md) for complete workflow documentation
 
-## Template (New Compliance Row)
+- This report is the **release gate** — no merge/release without `PASS` (or documented waiver)
+- See [WORKFLOW.md](WORKFLOW.md) for FSM state transitions
+- See [testing_requirements.md](testing_requirements.md) for test selection criteria
+- See [UNIVERSAL_REQUIREMENTS.md](../universal/UNIVERSAL_REQUIREMENTS.md) for rule definitions
 
-```markdown
-| REQ-YYYYMMDD-### | NEW/UNVERIFIED/VERIFIED | BUILD-... | RUNNING/PASS/FAIL/ABORTED | TEST-... | RUNNING/PASS/FAIL/SKIPPED/ABORTED | SEO-REQ-... / SEO-N/A | PENDING/PASS/FAIL | PASS/FAIL (list rule IDs) | PASS/FAIL | [Evidence/Notes] |
-```
+---
+
+**Last Updated:** 2026-01-22  
+**Status:** Fresh Start

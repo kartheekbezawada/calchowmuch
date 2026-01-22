@@ -1,56 +1,134 @@
-# SEO Requirements and Tracker
+# SEO Tracker
 
-This document defines SEO requirements and tracks SEO compliance for FSM runs.
-
-## FSM SEO Status Definitions
-- **PENDING**: SEO entry created but not yet validated.
-- **PASS**: SEO validated (or placeholder used per missing SEO rule).
-- **FAIL**: SEO validation failed (issue must be created, but release can still proceed).
-
-## Template for New FSM SEO Entries
-| Requirement ID| RSEO ID  | [Page/Scope] | PENDING/PASS/FAIL | 
-
-## Current SEO Status
-
-| Domain | Tests | Passed | Failed | Compliance Rate |
-|--------|-------|--------|--------|--------------------|
-| Math Calculators | 10 | 8 | 2 | 80% |
-| Loan Calculators | 12 | 10 | 2 | 83% |
-| Navigation | 3 | 3 | 0 | 100% |
-| **Overall** | **25** | **21** | **4** | **84%** |
+> **Purpose:** Track SEO validation status for each requirement that impacts pages/URLs.
 
 ---
 
-## SEO Summary by Priority
+## Tracker Contract
 
-| Priority | Total Rules | Passed | Failed | Rate |
-|----------|-------------|--------|---------|---------
-| P0 (Critical) | 8 | 8 | 0 | 100% |
-| P1 (Important) | 12 | 10 | 2 | 83% |
-| P2 (Enhancement) | 5 | 3 | 2 | 60% |
+| Rule | Description |
+|------|-------------|
+| **One row per REQ** | Each Requirement ID appears exactly once |
+| **SEO ID format** | `SEO-REQ-YYYYMMDD-###` |
+| **Status lifecycle** | `PENDING` → `PASS` / `FAIL` / `NA` |
+| **Link to seo_requirements.md** | Reference specific P1 rules validated |
 
 ---
 
+## Status Definitions
 
+| Status | Meaning |
+|--------|---------|
+| **PENDING** | SEO entry created, validation not yet run |
+| **PASS** | SEO auto tests pass, P1 rules validated |
+| **FAIL** | SEO validation failed (issue must be created) |
+| **NA** | No SEO impact (compute-only change, no page/URL changes) |
 
-## FSM SEO Tracker (Authoritative)
+---
 
-| Requirement ID   | SEO ID                       | Page / Scope                                   | Status  |
-| ---------------- | ---------------------------- | ---------------------------------------------- | ------- |
-| REQ-20260119-001 | SEO-PENDING-REQ-20260119-001 | Buy-to-Let Calculator page                     | PASS    |
-| REQ-20260119-002 | SEO-PENDING-REQ-20260119-002 | Math / Simple / Percentage Calculator page     | PENDING |
-| REQ-20260119-003 | SEO-PENDING-REQ-20260119-003 | Math / Simple / Fraction Calculator page       | PENDING |
-| REQ-20260119-008 | SEO-PENDING-REQ-20260119-008 | Math / Advanced / Number Sequence page         | PASS    |
-| REQ-20260119-009 | SEO-PENDING-REQ-20260119-009 | Math / Advanced / Permutation Combination page | PASS    |
-| REQ-20260119-010 | SEO-PENDING-REQ-20260119-010 | Math / Advanced / Probability Calculator page  | PASS    |
-| REQ-20260120-017 | SEO-PENDING-REQ-20260120-017 | Math / Algebra calculator suite                | PASS    |
-| REQ-20260120-017 | SEO-PENDING-REQ-20260120-017 | Math / Algebra /* (5 calculator pages)         | PENDING |
-| REQ-20260120-018 | SEO-PENDING-REQ-20260120-018 | Math / Trigonometry /* (5 calculator pages)    | PASS    |
-| REQ-20260120-019 | SEO-PENDING-REQ-20260120-019 | Math / Calculus /* (5 calculator pages)        | PASS    |
-| REQ-20260120-020 | SEO-PENDING-REQ-20260120-020 | Math / Logarithm /* (5 calculator pages)       | PASS    |
-| REQ-20260120-021 | SEO-PENDING-REQ-20260120-021 | Math / Statistics /* (5 calculator pages)      | PASS    |
+## FSM SEO Tracker Table (Authoritative)
 
+| Requirement ID | SEO ID | Page/Scope | Status | P1 Rules Checked | Test Command | Evidence |
+|----------------|--------|------------|--------|------------------|--------------|----------|
+| *(Fresh start — populate as REQs complete)* | | | | | | |
 
-##### If Fail please update here ###########
+---
+
+## Template for New SEO Entry
+
+```markdown
+| REQ-YYYYMMDD-### | SEO-REQ-YYYYMMDD-### | /calculators/{category}/{slug}/ | PENDING | 1-16 (P1 rules) | `REQ_ID=REQ-... npx playwright test tests/seo/seo-auto.spec.js` | — |
+```
+
+---
+
+## SEO Auto Test Commands
+
+### Run for specific requirement
+```bash
+REQ_ID=REQ-20260120-021 npx playwright test tests/seo/seo-auto.spec.js
+```
+
+### Run for specific URLs
+```bash
+SEO_URLS="/calculators/math/log/natural-log/,/calculators/math/log/common-log/" npx playwright test tests/seo/seo-auto.spec.js
+```
+
+### Run with default targets
+```bash
+npx playwright test tests/seo/seo-auto.spec.js
+```
+
+---
+
+## P1 SEO Rules Reference (Auto-Checkable)
+
+From [seo_requirements.md](seo_requirements.md):
+
+| Rule # | Heading | Subheading | Auto-Checkable |
+|--------|---------|------------|----------------|
+| 1 | Indexing & Canonical | Crawlable & Indexable | ✅ Auto + Manual |
+| 2 | Indexing & Canonical | Canonical Present | ✅ Auto |
+| 3 | Indexing & Canonical | Canonical Accuracy | ✅ Auto |
+| 4 | Indexing & Canonical | HTTPS Enforcement | ✅ Auto |
+| 5 | URL Structure | URL Format | ✅ Auto |
+| 6 | URL Structure | URL Pattern | ✅ Auto |
+| 7 | URL Structure | No Query Params | ✅ Auto |
+| 8 | URL Structure | No Orphan Pages | Manual |
+| 9 | Titles & Meta | Title Tag | ✅ Auto |
+| 10 | Titles & Meta | Meta Description | ✅ Auto |
+| 11 | Titles & Meta | Single H1 | ✅ Auto |
+| 12 | Sitemap | Sitemap Inclusion | ✅ Auto |
+| 13 | Sitemap | Sitemap Updated | ✅ Auto |
+| 14 | Structured Data | JSON-LD Present | ✅ Auto |
+| 15 | Structured Data | Required Fields | ✅ Auto |
+| 16 | Structured Data | Schema Validity | ✅ Auto |
+
+---
+
+## SEO Target Configuration
+
+SEO test targets are defined in `tests/seo/seo.targets.json`:
+
+```json
+{
+  "default": ["/calculators/math/percentage-increase/"],
+  "REQ-YYYYMMDD-###": ["/calculators/{category}/{slug}/", ...]
+}
+```
+
+When adding a new requirement with SEO impact:
+1. Add URL targets to `seo.targets.json` under the REQ ID key
+2. Create a row in this tracker with status `PENDING`
+3. Run the SEO auto tests after implementation
+4. Update status to `PASS` or `FAIL`
+
+---
+
+## Current SEO Summary
+
+| Metric | Count |
+|--------|-------|
+| Total Entries | 0 |
+| PASS | 0 |
+| PENDING | 0 |
+| FAIL | 0 |
+| NA | 0 |
+
+*Note: This tracker was reset on 2026-01-22.*
+
+---
+
+## Notes
+
+- SEO validation is required for any REQ that adds/changes pages or URLs
+- P1 rules must pass for release; P2+ are enhancements
+- Failed SEO creates an issue but doesn't block release (unless P1)
+- See [seo_requirements.md](seo_requirements.md) for full rule definitions
+
+---
+
+**Last Updated:** 2026-01-22  
+**Status:** Fresh Start
 
 

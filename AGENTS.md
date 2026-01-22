@@ -25,13 +25,17 @@ If this file conflicts with `requirements/compliance/WORKFLOW.md`, **WORKFLOW.md
 
 All state is stored in Markdown files under `requirements/compliance/`:
 
-- `requirements/compliance/WORKFLOW.md` (FSM rules + authoritative test matrix)
-- `requirements/compliance/requirement_tracker.md`
-- `requirements/compliance/build_tracker.md`
-- `requirements/compliance/testing_tracker.md`
-- `requirements/compliance/seo_requirements.md`
-- `requirements/compliance/issue_tracker.md`
-- `requirements/compliance/compliance-report.md` (**release gate**)
+| File | Purpose |
+|------|---------|
+| `WORKFLOW.md` | FSM rules, state diagram |
+| `testing_requirements.md` | **Test taxonomy, selection matrix, cost-based ordering** |
+| `requirement_tracker.md` | REQ registry |
+| `build_tracker.md` | Build execution log |
+| `testing_tracker.md` | Test execution log |
+| `seo_tracker.md` | SEO validation log |
+| `seo_requirements.md` | SEO rule definitions (P1-P5) |
+| `issue_tracker.md` | Issues found during FSM |
+| `compliance-report.md` | **Release gate** |
 
 Calculator-specific rules live under:
 
@@ -45,11 +49,11 @@ Calculator-specific rules live under:
 
 | ID Type | Format | Example |
 |---|---|---|
-| Requirement | `REQ-YYYYMMDD-###` | `REQ-20260121-001` |
-| Build Run | `BUILD-YYYYMMDD-HHMMSS` | `BUILD-20260121-142233` |
-| Test Run | `TEST-YYYYMMDD-HHMMSS` | `TEST-20260121-142455` |
-| SEO Item | `SEO-REQ-...` or `SEO-PENDING-REQ-...` | `SEO-PENDING-REQ-20260121-001` |
-| Issue | `ISSUE-YYYYMMDD-###` | `ISSUE-20260121-003` |
+| Requirement | `REQ-YYYYMMDD-###` | `REQ-20260122-001` |
+| Build Run | `BUILD-YYYYMMDD-HHMMSS` | `BUILD-20260122-142233` |
+| Test Run | `TEST-YYYYMMDD-HHMMSS` | `TEST-20260122-142455` |
+| SEO Item | `SEO-REQ-YYYYMMDD-###` | `SEO-REQ-20260122-001` |
+| Issue | `ISSUE-YYYYMMDD-###` | `ISSUE-20260122-003` |
 
 Hard rules:
 - **IDs must not be reused**
@@ -67,7 +71,7 @@ User command:
 Copilot must:
 1. Create `REQ-...` and add to `requirement_tracker.md` (Status: NEW)
 2. Add/update calculator rules in `requirements/rules/...`
-3. Add SEO placeholder in `seo_requirements.md` if SEO impact is YES/UNKNOWN
+3. Add SEO placeholder in `seo_tracker.md` if SEO impact is YES/UNKNOWN
 4. Stop (Copilot does not build/test)
 
 ### Step 2 — Trigger Implementation (Human)
@@ -78,13 +82,49 @@ Implementer must refuse to proceed without this trigger.
 
 ---
 
-## Test Policy (Do NOT invent defaults)
+## Test Policy (Use the Matrix)
 
-**The Test Selection Matrix in `requirements/compliance/WORKFLOW.md` is authoritative.**
+**The Test Selection Matrix in `requirements/compliance/testing_requirements.md` is authoritative.**
 
-- Do **not** assume “5 default E2E tests for every REQ”.
-- E2E is **scoped to impacted calculators** unless it’s a release sweep sample.
-- Required vs optional tests must be recorded in the compliance-report row.
+Key principles:
+- Select tests based on **Change Type** (see testing_requirements.md §3)
+- Do **not** assume "5 default E2E tests for every REQ"
+- E2E is **scoped to impacted calculators** — never run full E2E for single-calculator changes
+- Unit tests are cheap; E2E is expensive — prefer unit tests when possible
+- Required vs optional tests must be recorded in the compliance-report row
+
+### Test Pyramid (Cost Order)
+```
+Unit (cheapest) → Integration → SEO Auto → ISS-001 → E2E (expensive) → Full Sweep (release only)
+```
+
+### Quick Reference
+
+| Change Type | Unit | E2E | SEO | ISS-001 |
+|-------------|:----:|:---:|:---:|:-------:|
+| Compute logic change | ✅ | — | — | — |
+| UI/flow change | — | ✅ | — | — |
+| New calculator | ✅ | ✅ | ✅ | — |
+| Layout/CSS change | — | — | — | ✅ |
+| SEO/metadata change | — | — | ✅ | — |
+
+See `testing_requirements.md` for full matrix.
+
+---
+
+## Compliance Formula
+
+```
+OVERALL_PASS = BUILD_PASS ∧ TEST_PASS ∧ (SEO_PASS ∨ SEO_NA) ∧ UNIVERSAL_RULES_PASS
+```
+
+Where:
+- **BUILD_PASS:** `npm run lint` zero errors
+- **TEST_PASS:** All mandatory tests pass (per test matrix)
+- **SEO_PASS/NA:** P1 SEO rules validated or not applicable
+- **UNIVERSAL_RULES_PASS:** No P0/P1 violations
+
+See `compliance-report.md` for full formula definition.
 
 ---
 
@@ -104,17 +144,17 @@ Minimum expectation:
 
 ## Mandatory Outputs Per REQ (Release Gate)
 
-A REQ is not “done” until these exist and are closed:
+A REQ is not "done" until these exist and are closed:
 
 - `requirement_tracker.md`: NEW → VERIFIED/CLOSED
-- `build_tracker.md`: 1+ BUILD row(s) closed
-- `testing_tracker.md`: required TEST rows closed
-- `seo_requirements.md`: PASS/PENDING/NA (if applicable)
+- `build_tracker.md`: 1+ BUILD row(s) closed (PASS)
+- `testing_tracker.md`: required TEST rows closed (per test matrix)
+- `seo_tracker.md`: PASS/NA (if applicable)
 - `compliance-report.md`: **exactly one row per REQ**, filled with:
-  - scope type + meaning/definition
-  - mandatory tests + optional tests (and what ran)
-  - evidence links/snippets
-  - overall verdict: PASS / FAIL (or waiver recorded)
+  - Change type
+  - Mandatory tests + what ran
+  - Evidence links/snippets
+  - Overall verdict: PASS / FAIL (or waiver recorded)
 
 ---
 
@@ -124,3 +164,19 @@ A REQ is not “done” until these exist and are closed:
 - Any invalid transition must stop with:
   `INVALID TRANSITION: current_state -> requested_state; required_state: X`
 - No merge/release without **compliance-report PASS** (or explicit waiver documented).
+
+---
+
+## Related Documents
+
+| Document | Location |
+|----------|----------|
+| Universal Requirements | `requirements/universal/UNIVERSAL_REQUIREMENTS.md` |
+| Testing Requirements | `requirements/compliance/testing_requirements.md` |
+| FSM Workflow | `requirements/compliance/WORKFLOW.md` |
+| Compliance Report | `requirements/compliance/compliance-report.md` |
+| Calculator Hierarchy | `requirements/universal/calculator-hierarchy.md` |
+
+---
+
+**Last Updated:** 2026-01-22

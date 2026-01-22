@@ -212,5 +212,36 @@ S11_TRACKERS_UPDATED → S12_SEO_CHECK → S13_RELEASE_READY → S0_IDLE
 - 1 row in requirement_tracker (NEW → VERIFIED)
 - 1 row in build_tracker (RUNNING → PASS/FAIL)
 - 1+ row(s) in testing_tracker (RUNNING → PASS/FAIL/SKIPPED) for mandatory tests
-- 0–1 row in SEO tracker (PENDING → PASS/PENDING/FAIL or N/A)
+- 0–1 row in seo_tracker (PENDING → PASS/PENDING/FAIL or N/A)
 - 1 row in compliance-report (mandatory; must include evidence and verdict)
+
+---
+
+## Compliance Formula Reference
+
+See [compliance-report.md](compliance-report.md) for the authoritative formula:
+
+```
+OVERALL_PASS = BUILD_PASS ∧ TEST_PASS ∧ (SEO_PASS ∨ SEO_NA) ∧ UNIVERSAL_RULES_PASS
+```
+
+See [testing_requirements.md](testing_requirements.md) for:
+- Test pyramid (cost-based ordering)
+- Test selection matrix by change type
+- Test ID conventions
+- Coverage requirements
+
+---
+
+## Related Documents
+
+| Document | Purpose |
+|----------|---------|
+| [testing_requirements.md](testing_requirements.md) | Test taxonomy, selection matrix, execution commands |
+| [compliance-report.md](compliance-report.md) | Release gate, compliance formula, per-REQ verdicts |
+| [requirement_tracker.md](requirement_tracker.md) | System of record for requirements |
+| [build_tracker.md](build_tracker.md) | Build execution tracking |
+| [testing_tracker.md](testing_tracker.md) | Test execution tracking |
+| [seo_tracker.md](seo_tracker.md) | SEO validation tracking |
+| [seo_requirements.md](seo_requirements.md) | SEO rule definitions (P1-P5) |
+| [issue_tracker.md](issue_tracker.md) | Issues created during FSM runs |

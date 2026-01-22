@@ -1,85 +1,111 @@
-# Compliance Tracking System
+# Compliance System
 
-This folder contains all compliance tracking documents for the calchowmuch project, ensuring deterministic, state-driven traceability from requirements to release readiness.
+> **Purpose:** Deterministic, state-driven traceability from requirements to release.
 
 ---
 
-## Workflow Chain (FSM)
+## Quick Start
+
+1. **Create requirement:** Copilot drafts in [requirement_tracker.md](requirement_tracker.md)
+2. **Build:** Human runs `npm run lint`, Codex records in [build_tracker.md](build_tracker.md)
+3. **Test:** Human runs tests, Codex records in [testing_tracker.md](testing_tracker.md)
+4. **SEO:** If applicable, validate and record in [seo_tracker.md](seo_tracker.md)
+5. **Compliance:** Update [compliance-report.md](compliance-report.md) with final verdict
+
+---
+
+## Document Overview
+
+| Document | Purpose | Key Content |
+|----------|---------|-------------|
+| [WORKFLOW.md](WORKFLOW.md) | FSM workflow | State diagram, transitions, roles |
+| [testing_requirements.md](testing_requirements.md) | **Test strategy** | Test pyramid, selection matrix, commands |
+| [requirement_tracker.md](requirement_tracker.md) | Requirements | REQ registry, change types |
+| [build_tracker.md](build_tracker.md) | Builds | Build execution log |
+| [testing_tracker.md](testing_tracker.md) | Tests | Test execution log |
+| [seo_tracker.md](seo_tracker.md) | SEO | SEO validation log |
+| [seo_requirements.md](seo_requirements.md) | SEO rules | P1-P5 SEO rule definitions |
+| [issue_tracker.md](issue_tracker.md) | Issues | Problems found during FSM |
+| [compliance-report.md](compliance-report.md) | **Release gate** | Final per-REQ verdicts |
+
+---
+
+## Workflow Chain
 
 ```
-requirement_tracker.md -> build_tracker.md -> testing_tracker.md -> seo_requirements.md -> compliance-report.md
-      (REQ-...)             (BUILD-...)         (TEST-...)            (SEO-...)
+requirement_tracker.md → build_tracker.md → testing_tracker.md → seo_tracker.md → compliance-report.md
+       (REQ-...)            (BUILD-...)        (TEST-...)          (SEO-...)         (PASS/FAIL)
 ```
 
-See [WORKFLOW.md](WORKFLOW.md) for the full finite-state machine and allowed transitions.
+---
+
+## ID Formats
+
+| Type | Format | Example |
+|------|--------|---------|
+| Requirement | `REQ-YYYYMMDD-###` | `REQ-20260122-001` |
+| Build | `BUILD-YYYYMMDD-HHMMSS` | `BUILD-20260122-143000` |
+| Test Run | `TEST-YYYYMMDD-HHMMSS` | `TEST-20260122-143500` |
+| SEO | `SEO-REQ-YYYYMMDD-###` | `SEO-REQ-20260122-001` |
+| Issue | `ISSUE-YYYYMMDD-###` | `ISSUE-20260122-001` |
 
 ---
 
-## Documents Overview
+## Compliance Formula
 
-| Document | Purpose | Owner | ID Format |
-|----------|---------|-------|-----------|
-| [WORKFLOW.md](WORKFLOW.md) | FSM workflow documentation | - | - |
-| [requirement_tracker.md](requirement_tracker.md) | System-of-record for requirement definitions | Copilot (create), Codex (verify) | REQ-YYYYMMDD-### |
-| [build_tracker.md](build_tracker.md) | Build/implementation tracking | Codex | BUILD-YYYYMMDD-HHMMSS |
-| [testing_tracker.md](testing_tracker.md) | Test execution tracking | Codex | TEST-YYYYMMDD-HHMMSS |
-| [seo_requirements.md](seo_requirements.md) | SEO requirements + validation tracking | Codex | SEO-... / SEO-PENDING-REQ-XXXX |
-| [issue_tracker.md](issue_tracker.md) | Issues created during FSM runs | Codex | ISSUE-YYYYMMDD-### |
-| [compliance-report.md](compliance-report.md) | Final compliance verification matrix | System | - |
+```
+OVERALL_PASS = BUILD_PASS ∧ TEST_PASS ∧ (SEO_PASS ∨ SEO_NA) ∧ UNIVERSAL_RULES_PASS
+```
 
----
-
-## Workflow Integration (Auto-Advance)
-
-- Human requests Copilot to draft requirements (S0 -> S1).
-- Human requests Codex to process a specific REQ (S2 -> S13 or S14).
-- Codex auto-advances through the FSM after S2_PREFLIGHT and updates trackers only in allowed states.
+Where:
+- **BUILD_PASS:** `npm run lint` zero errors
+- **TEST_PASS:** All mandatory tests pass (per test matrix)
+- **SEO_PASS/NA:** P1 SEO rules validated or not applicable
+- **UNIVERSAL_RULES_PASS:** No P0/P1 violations
 
 ---
 
-## Traceability Requirements
+## Test Selection (Summary)
 
-Each FSM requirement must have:
-- Requirement ID (`REQ-YYYYMMDD-###`)
-- Build ID (`BUILD-YYYYMMDD-HHMMSS`)
-- Test Run ID (`TEST-YYYYMMDD-HHMMSS`)
-- SEO ID or placeholder (`SEO-...`, `SEO-PENDING-REQ-XXXX`, or `SEO-N/A`)
-- Issue IDs created during the run (if any)
+| Change Type | Unit | E2E | SEO | ISS-001 |
+|-------------|:----:|:---:|:---:|:-------:|
+| New calculator | ✅ | ✅ LOAD+WORKFLOW | ✅ | — |
+| Compute logic change | ✅ | — | — | — |
+| UI/flow change | — | ✅ LOAD+WORKFLOW | — | — |
+| Layout/CSS change | — | — | — | ✅ |
+| SEO/metadata change | — | — | ✅ | — |
 
----
-
-## Rule References
-
-All compliance checks reference rule IDs from:
-- [Universal Requirements](../universal/UNIVERSAL_REQUIREMENTS.md) - UI, coding, testing standards
-- [Calculator Hierarchy](../universal/calculator-hierarchy.md) - Navigation structure
-- Category-specific requirements:
-  - `requirements/rules/loans/AUTO_LOAN_RULES.md`
-  - `requirements/rules/loans/BUY_TO_LET_RULES.md`
-  - `requirements/rules/loans/CREDIT_CARD_RULES.md`
-  - `requirements/rules/loans/HOME_LOAN.MD`
-  - `requirements/rules/loans/HOW_MUCH_CAN_I_BORROW_RULES.md`
-  - `requirements/rules/loans/LOAN_EMI.md`
-  - `requirements/rules/math/Statistics.md`
+See [testing_requirements.md](testing_requirements.md) for full matrix.
 
 ---
 
-## Quick Links
+## Roles
 
-- **Add New Requirement**: Update `requirement_tracker.md`
-- **Track Build**: Update `build_tracker.md`
-- **Record Test Results**: Update `testing_tracker.md`
-- **Check SEO**: Update `seo_requirements.md`
-- **Report Issue**: Update `issue_tracker.md`
-- **View Compliance**: See `compliance-report.md`
+| Role | Responsibilities | Does NOT do |
+|------|------------------|-------------|
+| **Copilot** | Create requirements, add SEO placeholders | Build, test, update compliance |
+| **Codex/Claude** | Implement code, run tests, update all trackers | Create new REQs |
+| **Human** | Trigger builds, execute commands, review | — |
 
-## Specs Mirror Tests
+---
 
-- `requirements/specs/**` = human-readable acceptance criteria
-- `tests/**` = executable automated tests
+## Key Rules
 
-Expected results / screenshots live under `requirements/expected_results/`.
+1. **No duplicates:** Each ID appears exactly once in its tracker
+2. **Update in place:** Edit RUNNING rows to final status
+3. **No orphans:** All RUNNING rows must be closed before REQ is VERIFIED
+4. **Evidence required:** Every PASS/FAIL needs command output or test results
+5. **One row per REQ:** Compliance report has exactly one row per requirement
 
-Examples:
-1. `requirements/specs/e2e/<x>.md` ↔ `tests/e2e/<x>.spec.js`
-2. `requirements/specs/calculators/<calc>.md` ↔ `tests/calculators/<calc>.spec.js`
+---
+
+## Related Documents
+
+- [UNIVERSAL_REQUIREMENTS.md](../universal/UNIVERSAL_REQUIREMENTS.md) — Rule definitions (UI, FS, CS, TEST, SEO)
+- [calculator-hierarchy.md](../universal/calculator-hierarchy.md) — Navigation structure
+- [AGENTS.md](../../AGENTS.md) — Agent operating contract
+
+---
+
+**Last Updated:** 2026-01-22  
+**Status:** Fresh Start
