@@ -587,7 +587,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 | DIAG-1.4 | Documentation | `README.md` |
 | DIAG-1.4 | Compliance Files | `requirements/compliance/**` (all .md files) |
 | DIAG-1.4 | Requirements | `requirements/universal/UNIVERSAL_REQUIREMENTS.md` |
-| DIAG-1.4 | Build Rules | `requirements/rules/**/*.md` |
+| DIAG-1.4 | Build Rules | `requirements/build_rules/**/*.md` |
 
 ### 14.3 Command Usage Guidelines
 
