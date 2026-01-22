@@ -100,10 +100,12 @@
 }
 
 .left-nav {
-  background: var(--panel-bg);
-  border: 2px solid var(--shell-border);
-  border-radius: 26px;
-  box-shadow: var(--panel-shadow);
+  /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
+  /* to give visual dominance to the calculator area */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   padding: 14px;
   overflow-y: scroll;
   scrollbar-gutter: stable;
