@@ -1,11 +1,11 @@
-# Universal Requirements — calchowmuch (Single Source of Truth)
+﻿# Universal Requirements â€” calchowmuch (Single Source of Truth)
 
 **Document purpose:** This file is the *one* authoritative, indexed rulebook for the calchowmuch static calculator platform.  
 **Use case:** Humans + LLM reviewers (Claude/Codex) must be able to cite an exact rule ID when something is violated.
 
 ---
 
-## Quick Reference — Rule ID Tables
+## Quick Reference â€” Rule ID Tables
 
 ### Document Control
 
@@ -57,10 +57,10 @@
 
 | Rule ID | Requirement |
 |---------|-------------|
-| DC-0.1 | **Single source of truth** — This file is the canonical universal requirements document |
-| DC-0.2 | **Applies everywhere** — These rules apply to ALL calculators, ALL phases, ALL PRs |
-| DC-0.3 | **Rule IDs are mandatory** — Any review comment must reference one or more rule IDs |
-| DC-0.4 | **Ignore duplicates elsewhere** — If older documents conflict, this file governs |
+| DC-0.1 | **Single source of truth** â€” This file is the canonical universal requirements document |
+| DC-0.2 | **Applies everywhere** â€” These rules apply to ALL calculators, ALL phases, ALL PRs |
+| DC-0.3 | **Rule IDs are mandatory** â€” Any review comment must reference one or more rule IDs |
+| DC-0.4 | **Ignore duplicates elsewhere** â€” If older documents conflict, this file governs |
 
 ---
 
@@ -68,9 +68,9 @@
 
 | Rule ID | Requirement |
 |---------|-------------|
-| PI-1.1 | **What this project is** — A modular, high-performance, SEO-friendly calculator platform answering real-world "How much?" questions using transparent logic |
-| PI-1.2 | **Target users** — general users, students/learners, financially conscious users, search users from long-tail intent |
-| PI-1.3 | **Value proposition** — One calculator = one focused question; Simple UI; Static explanations build trust + SEO; Fast load times; Modular architecture |
+| PI-1.1 | **What this project is** â€” A modular, high-performance, SEO-friendly calculator platform answering real-world "How much?" questions using transparent logic |
+| PI-1.2 | **Target users** â€” general users, students/learners, financially conscious users, search users from long-tail intent |
+| PI-1.3 | **Value proposition** â€” One calculator = one focused question; Simple UI; Static explanations build trust + SEO; Fast load times; Modular architecture |
 
 ---
 
@@ -78,9 +78,9 @@
 
 | Rule ID | Requirement |
 |---------|-------------|
-| AP-2.1 | **This file governs** — If anything conflicts, this document wins |
-| AP-2.2 | **Universal vs Phase** — Phase requirements add new scope, but must not violate universal rules |
-| AP-2.3 | **Repo truth beats assumptions** — Documentation and reviews must reflect actual repository state |
+| AP-2.1 | **This file governs** â€” If anything conflicts, this document wins |
+| AP-2.2 | **Universal vs Phase** â€” Phase requirements add new scope, but must not violate universal rules |
+| AP-2.3 | **Repo truth beats assumptions** â€” Documentation and reviews must reflect actual repository state |
 
 ---
 
@@ -115,18 +115,18 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UI-2.2 | Buttons must not wrap. Enforce `white-space: nowrap`. | P1 |
 | UI-2.3 | Use shared input classes/tokens. Must have labels. Must validate all input. | P0 |
 | UI-2.4 | Input values limited to **12 characters**. For `type="text"`: use `maxlength="12"`. For `type="number"`: enforce via JS. | P1 |
-| UI-2.5 | **No dropdowns** — `select` elements not allowed. Replace with button groups / segmented controls. | P0 |
+| UI-2.5 | **No dropdowns** â€” `select` elements not allowed. Replace with button groups / segmented controls. | P0 |
 
 ### 3.3 Layout Contract
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| UI-3.1 | **Fixed-height shell** — Layout must not exceed Basic Calculator baseline. Constrain to `100vh`. | P0 |
-| UI-3.2 | **Internal scrolling** — Left nav, calculation pane, explanation pane must scroll internally. | P0 |
-| UI-3.3 | **No horizontal scroll** — Common desktop widths must not introduce horizontal scroll. | P1 |
-| UI-3.4 | **Frameless header + primary nav** — No bordered panel or background card. | P1 |
-| UI-3.5 | **Minimal footer links** — Link-only, 15px size, underline, minimal padding. | P2 |
-| UI-3.6 | **Clean navigation hierarchy** — Navigation elements without visual containers, button-only styling for optimal space utilization | P1 |
+| UI-3.1 | **Fixed-height shell** â€” Layout must not exceed Basic Calculator baseline. Constrain to `100vh`. | P0 |
+| UI-3.2 | **Internal scrolling** â€” Left nav, calculation pane, explanation pane must scroll internally. | P0 |
+| UI-3.3 | **No horizontal scroll** â€” Common desktop widths must not introduce horizontal scroll. | P1 |
+| UI-3.4 | **Frameless header + primary nav** â€” No bordered panel or background card. | P1 |
+| UI-3.5 | **Minimal footer links** â€” Link-only, 15px size, underline, minimal padding. | P2 |
+| UI-3.6 | **Clean navigation hierarchy** â€” Navigation elements without visual containers, button-only styling for optimal space utilization | P1 |
 
 ### 3.4 Scrollbar Styling
 
@@ -136,8 +136,8 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UI-4.1 | Thumb hover | `#64748b` (slate-500) |
 | UI-4.1 | Track color | `#f1f5f9` (slate-100) |
 | UI-4.1 | Width | 8px |
-| UI-4.2 | **Always visible** — Use `overflow-y: scroll` and `scrollbar-gutter: stable` | P1 |
-| UI-4.3 | **Styling** — WebKit: `::-webkit-scrollbar-*`. Firefox: `scrollbar-width: thin`, `scrollbar-color`. Thumb `border-radius: 4px`. | P2 |
+| UI-4.2 | **Always visible** â€” Use `overflow-y: scroll` and `scrollbar-gutter: stable` | P1 |
+| UI-4.3 | **Styling** â€” WebKit: `::-webkit-scrollbar-*`. Firefox: `scrollbar-width: thin`, `scrollbar-color`. Thumb `border-radius: 4px`. | P2 |
 
 ### 3.5 Toggle Components
 
@@ -150,7 +150,7 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 ### 3.6 Tables (Universal)
 
-**Scope:** ALL tables everywhere — calculation panes, explanation panes, amortization, comparison, summary. No exceptions.
+**Scope:** ALL tables everywhere â€” calculation panes, explanation panes, amortization, comparison, summary. No exceptions.
 
 #### Table Structure
 
@@ -204,7 +204,7 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UTBL-TEXT-2 | Numeric columns right-aligned | P1 |
 | UTBL-TEXT-3 | Concise, unambiguous headers | P1 |
 | UTBL-TEXT-4 | Body text 14-15px, headers 13-14px | P2 |
-| UTBL-TEXT-5 | **No currency symbols** in cells — establish in headers | P1 |
+| UTBL-TEXT-5 | **No currency symbols** in cells â€” establish in headers | P1 |
 | UTBL-TEXT-6 | Consistent decimal precision, padding `8px 12px` min | P2 |
 
 #### Table Visual Consistency
@@ -258,10 +258,10 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| UIPLACE-1 | **Tables in Explanation Pane** — All data tables (results, comparisons, amortization) must be placed in Explanation Pane, never in Calculation Pane | P0 |
-| UIPLACE-2 | **Graphs in Explanation Pane** — All graphs, charts, visualizations must be placed in Explanation Pane, never in Calculation Pane | P0 |
-| UIPLACE-3 | **Calculation Pane for Inputs/Results Only** — Calculation Pane limited to input fields, buttons, and simple result displays (single values, brief summaries) | P0 |
-| UIPLACE-4 | **Complex Output Segregation** — Multi-row tables, step-by-step breakdowns, detailed explanations belong in Explanation Pane | P1 |
+| UIPLACE-1 | **Tables in Explanation Pane** â€” All data tables (results, comparisons, amortization) must be placed in Explanation Pane, never in Calculation Pane | P0 |
+| UIPLACE-2 | **Graphs in Explanation Pane** â€” All graphs, charts, visualizations must be placed in Explanation Pane, never in Calculation Pane | P0 |
+| UIPLACE-3 | **Calculation Pane for Inputs/Results Only** â€” Calculation Pane limited to input fields, buttons, and simple result displays (single values, brief summaries) | P0 |
+| UIPLACE-4 | **Complex Output Segregation** â€” Multi-row tables, step-by-step breakdowns, detailed explanations belong in Explanation Pane | P1 |
 | UIGRAPH-3 | Reactive to state changes (inputs, toggles) | P1 |
 | UIGRAPH-4 | Horizontal scrolling allowed (`overflow-x: auto`) | P2 |
 | UIGRAPH-5 | X-axis and Y-axis labels required | P1 |
@@ -290,14 +290,14 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| ARCH-1.2 | **Calculation Pane width reduction** — Main Calculation Pane must reduce width by 25% from its right edge | P0 |
-| ARCH-1.3 | **Explanation Pane width increase** — Explanation Pane must increase width by 25% to occupy the space released by Calculation Pane | P0 |
-| ARCH-1.4 | **Width transfer direction** — Width reduction must occur from Calculation Pane's right edge toward left; Explanation Pane grows leftward | P0 |
-| ARCH-1.5 | **Total width preserved** — Combined width of Calculation Pane + Explanation Pane must remain unchanged; only the split ratio changes | P0 |
-| ARCH-1.6 | **Responsive behavior** — Width ratios must be maintained across all supported viewport widths | P1 |
-| ARCH-1.7 | **Navigation elements styling** — Math/Loans buttons and header text must not have border/box styling (clean button-only appearance) | P0 |
-| ARCH-1.8 | **Footer positioning** — Footer links (Privacy, Terms, Contact) must be positioned to maximize vertical content space | P1 |
-| ARCH-1.9 | **Horizontal layout preservation** — No horizontal spacing or sizing changes during vertical optimizations | P0 |
+| ARCH-1.2 | **Calculation Pane width reduction** â€” Main Calculation Pane must reduce width by 25% from its right edge | P0 |
+| ARCH-1.3 | **Explanation Pane width increase** â€” Explanation Pane must increase width by 25% to occupy the space released by Calculation Pane | P0 |
+| ARCH-1.4 | **Width transfer direction** â€” Width reduction must occur from Calculation Pane's right edge toward left; Explanation Pane grows leftward | P0 |
+| ARCH-1.5 | **Total width preserved** â€” Combined width of Calculation Pane + Explanation Pane must remain unchanged; only the split ratio changes | P0 |
+| ARCH-1.6 | **Responsive behavior** â€” Width ratios must be maintained across all supported viewport widths | P1 |
+| ARCH-1.7 | **Navigation elements styling** â€” Math/Loans buttons and header text must not have border/box styling (clean button-only appearance) | P0 |
+| ARCH-1.8 | **Footer positioning** â€” Footer links (Privacy, Terms, Contact) must be positioned to maximize vertical content space | P1 |
+| ARCH-1.9 | **Horizontal layout preservation** â€” No horizontal spacing or sizing changes during vertical optimizations | P0 |
 
 #### Pane Width Specification
 
@@ -311,7 +311,7 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | Aspect | Requirement |
 |--------|-------------|
 | CSS Implementation | Use `flex-basis`, `width`, or CSS Grid `fr` units to achieve ratio |
-| Breakpoint consistency | Ratio must apply at desktop widths (≥1024px) |
+| Breakpoint consistency | Ratio must apply at desktop widths (â‰¥1024px) |
 | No shell height change | Width redistribution must not affect page shell height (UI-3.1) |
 | Internal scrolling | Both panes must continue to scroll internally (UI-3.2) |
 
@@ -329,15 +329,15 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| ARCH-3.1 | **Deep-linking** — Each calculator addressable by URL. Switching updates URL, title, meta, canonical. | P0 |
-| ARCH-3.2 | **One active calculator** — Only active calculator's UI + logic runs. | P0 |
+| ARCH-3.1 | **Deep-linking** â€” Each calculator addressable by URL. Switching updates URL, title, meta, canonical. | P0 |
+| ARCH-3.2 | **One active calculator** â€” Only active calculator's UI + logic runs. | P0 |
 
 ### 4.4 Explanation Pane Rules
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| ARCH-4.1 | **Crawlable** — Explanation must exist as HTML, not injected. Use semantic H2/H3. | P0 |
-| ARCH-4.2 | **Multi-mode** — Show only active mode explanation. | P1 |
+| ARCH-4.1 | **Crawlable** â€” Explanation must exist as HTML, not injected. Use semantic H2/H3. | P0 |
+| ARCH-4.2 | **Multi-mode** â€” Show only active mode explanation. | P1 |
 | UI-EXP-CLARIFY-1 | Text, tables, graphs allowed but never change shell height. | P0 |
 
 ### 4.5 Universal Domain Navigation
@@ -415,10 +415,10 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
 | CS-1.1 | Plain JavaScript (no TypeScript assumptions) | P1 |
-| CS-1.2 | No duplicated utility logic — shared logic in `/public/assets/js/core/` | P1 |
+| CS-1.2 | No duplicated utility logic â€” shared logic in `/public/assets/js/core/` | P1 |
 | CS-1.3 | Validate all user inputs (empty, divide-by-zero) | P0 |
-| CS-1.4 | Safe error handling — no unhandled exceptions, return clear error state | P0 |
-| CS-1.5 | Avoid globals — scope to modules | P1 |
+| CS-1.4 | Safe error handling â€” no unhandled exceptions, return clear error state | P0 |
+| CS-1.5 | Avoid globals â€” scope to modules | P1 |
 
 ### 6.2 HTML
 
@@ -445,11 +445,11 @@ The UI is a **calculator container framework**: layout is fixed/shared; calculat
 |---------|-------------|----------|
 | TEST-1.1 | All new calculator compute logic must have unit tests | P0 |
 | TEST-1.2 | Minimum **80% coverage** for new compute logic | P1 |
-| TEST-1.3 | **ISS-001 regression check** — Verify no layout shifts, scrollbars visible, no navigation ping-pong | P1 |
+| TEST-1.3 | **ISS-001 regression check** â€” Verify no layout shifts, scrollbars visible, no navigation ping-pong | P1 |
 | TEST-1.4 | Dependency/browser installs are one-time per environment; do not rerun `pnpm install` or `npx playwright install chromium` before every test run unless dependencies or cache changed | P1 |
-| TEST-1.5 | **Screenshot optimization** — Screenshots only on failure (`screenshot: 'only-on-failure'`). No routine visual regression screenshots in development. | P1 |
-| TEST-1.6 | **Trace optimization** — Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests. | P1 |
-| TEST-1.7 | **Resource efficiency** — Test execution should prioritize functional validation over visual artifact generation | P1 |
+| TEST-1.5 | **Screenshot optimization** â€” Screenshots only on failure (`screenshot: 'only-on-failure'`). No routine visual regression screenshots in development. | P1 |
+| TEST-1.6 | **Trace optimization** â€” Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests. | P1 |
+| TEST-1.7 | **Resource efficiency** â€” Test execution should prioritize functional validation over visual artifact generation | P1 |
 
 ### Minimal Required Tests by Change Type
 
@@ -485,7 +485,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 |---------|-------------|----------|
 | DOC-1.1 | Documentation must list all calculator folders under `/public/calculators/` | P0 |
 | DOC-1.2 | Every calculator labeled: Active, Work-in-progress, or Deprecated | P1 |
-| DOC-1.3 | No silent omission — unlisted folders must be acknowledged with status | P1 |
+| DOC-1.3 | No silent omission â€” unlisted folders must be acknowledged with status | P1 |
 | DOC-1.4 | Calculators are considered **live/visible** only when added to `public/config/navigation.json` and `public/calculators/index.html` | P0 |
 
 ---
@@ -513,7 +513,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 
 | Rule ID | Requirement | Severity |
 |---------|-------------|----------|
-| WF-3.1 | Update `INDEX.MD`: mark phase ✅, progress 100%, add PR number, update current phase, update date | P1 |
+| WF-3.1 | Update `INDEX.MD`: mark phase âœ…, progress 100%, add PR number, update current phase, update date | P1 |
 
 ---
 
@@ -534,12 +534,12 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 
 | Rule ID | Criterion | Required |
 |---------|-----------|----------|
-| DOD-1.1 | Code works as intended | ✅ |
-| DOD-1.2 | Unit tests pass | ✅ |
-| DOD-1.3 | No runtime or lint errors | ✅ |
-| DOD-1.4 | Reviewed by Codex | ✅ |
-| DOD-1.5 | PR approved + merged | ✅ |
-| DOD-1.6 | Phase tracker updated (`INDEX.MD`) | ✅ |
+| DOD-1.1 | Code works as intended | âœ… |
+| DOD-1.2 | Unit tests pass | âœ… |
+| DOD-1.3 | No runtime or lint errors | âœ… |
+| DOD-1.4 | Reviewed by Codex | âœ… |
+| DOD-1.5 | PR approved + merged | âœ… |
+| DOD-1.6 | Phase tracker updated (`INDEX.MD`) | âœ… |
 
 **If any item is missing, the task is NOT done.**
 
@@ -617,4 +617,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 
 ---
 
-**End of document**
+**End of Universal Requirements Document**
+
+> For site copy and content requirements, see `requirements/universal/SITE_COPY.md`  
+> Last Updated: 2026-01-22
