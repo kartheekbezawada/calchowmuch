@@ -1,11 +1,12 @@
 # GLOBAL HEADER REDESIGN REQUIREMENTS (v1)
 
-**REQ-ID:** REQ-20260123-001  
-**Title:** Global Header Redesign (Pixel-Perfect + Category Taglines)  
-**Type:** Shared Layout  
-**Priority:** HIGH  
-**Status:** NEW  
+**REQ-ID:** REQ-20260123-001
+**Title:** Global Header Redesign (Pixel-Perfect + Category Taglines)
+**Type:** Shared Layout
+**Priority:** HIGH
+**Status:** COMPLETE
 **Created:** 2026-01-23
+**Completed:** 2026-01-23
 
 ---
 
@@ -117,12 +118,12 @@ All pixel values are strict.
 
 ## Completion Checklist (for implementer)
 
-- [ ] All header copy pulled dynamically from SITE_COPY tokens
-- [ ] Header spacing and typography match the defined pixel specs on desktop, tablet, and mobile
-- [ ] Category buttons render uniformly with correct active styling and optional focus ring support
-- [ ] Category tagline appears only when context is active and matches SITE_COPY
-- [ ] One `<h1>` per page rule confirmed post-implementation
-- [ ] ISS visual regression executed and recorded
+- [x] All header copy pulled dynamically from SITE_COPY tokens
+- [x] Header spacing and typography match the defined pixel specs on desktop, tablet, and mobile
+- [x] Category buttons render uniformly with correct active styling and optional focus ring support
+- [x] Category tagline appears only when context is active and matches SITE_COPY
+- [x] One `<h1>` per page rule confirmed post-implementation
+- [x] ISS visual regression executed and recorded
 
 ---
 
