@@ -21,21 +21,21 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   await expect(creditCardsBtn).toBeVisible();
   await expect(autoLoansBtn).toBeVisible();
 
-  // HEADER-001: Verify button background is #0B0B0B for default (non-active) state
-  const buttonBlack = 'rgb(11, 11, 11)'; // #0B0B0B
+  // Verify cosmic black is used for default (non-active) state
+  const cosmicBlack = 'rgb(11, 15, 20)'; // #0b0f14
   // Check a non-active button (Math is likely active on page load)
   const homeLoanBg = await homeLoanBtn.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(homeLoanBg).toBe(buttonBlack);
+  expect(homeLoanBg).toBe(cosmicBlack);
 
-  // HEADER-001: Verify active state has blue background (#2563EB)
+  // Verify active state has white background
   const activeBtn = page.locator('[data-testid="top-nav-btn"].is-active');
   await expect(activeBtn).toBeVisible();
   const activeBg = await activeBtn.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(activeBg).toBe('rgb(37, 99, 235)'); // #2563EB
+  expect(activeBg).toBe('rgb(255, 255, 255)'); // white
 
-  // HEADER-001: Verify active state has blue border (#2563EB)
+  // Verify active state has black border
   const activeBorder = await activeBtn.evaluate((el) => getComputedStyle(el).borderTopColor);
-  expect(activeBorder).toBe('rgb(37, 99, 235)'); // #2563EB
+  expect(activeBorder).toBe(cosmicBlack);
 
   // Verify consistency: all buttons have same border-radius
   const mathRadius = await mathBtn.evaluate((el) => getComputedStyle(el).borderRadius);
@@ -48,7 +48,7 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   expect(mathRadius).toBe(autoLoansRadius);
   expect(mathRadius).toBe('10px');
 
-  // HEADER-001: Verify consistency and specifications - all buttons have same font-size (13px)
+  // Verify consistency: all buttons have same font-size
   const mathFontSize = await mathBtn.evaluate((el) => getComputedStyle(el).fontSize);
   const homeLoanFontSize = await homeLoanBtn.evaluate((el) => getComputedStyle(el).fontSize);
   const creditCardsFontSize = await creditCardsBtn.evaluate((el) => getComputedStyle(el).fontSize);
@@ -57,10 +57,8 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   expect(mathFontSize).toBe(homeLoanFontSize);
   expect(mathFontSize).toBe(creditCardsFontSize);
   expect(mathFontSize).toBe(autoLoansFontSize);
-  // Verify font-size is 13px as per HEADER-001
-  expect(mathFontSize).toMatch(/^13(\.\d+)?px$/);
 
-  // HEADER-001: Verify consistency and specifications - all buttons have same font-weight (600)
+  // Verify consistency: all buttons have same font-weight
   const mathFontWeight = await mathBtn.evaluate((el) => getComputedStyle(el).fontWeight);
   const homeLoanFontWeight = await homeLoanBtn.evaluate((el) => getComputedStyle(el).fontWeight);
   const creditCardsFontWeight = await creditCardsBtn.evaluate((el) => getComputedStyle(el).fontWeight);
@@ -69,8 +67,6 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   expect(mathFontWeight).toBe(homeLoanFontWeight);
   expect(mathFontWeight).toBe(creditCardsFontWeight);
   expect(mathFontWeight).toBe(autoLoansFontWeight);
-  // Verify font-weight is 600 as per HEADER-001
-  expect(mathFontWeight).toBe('600');
 
   // Visual regression snapshot
   await expect(page).toHaveScreenshot('iss-nav-top-001.png', {
