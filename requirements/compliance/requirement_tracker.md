@@ -9,7 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
-| | | | | | | |
+| _none_ | | | | | | |
 
 ---
 
@@ -45,6 +45,7 @@
 
 | REQ_ID | Title | Status | Iterations | Completed |
 |--------|-------|--------|------------|-----------|
+| REQ-20260123-001 | Global Header Redesign (Pixel-Perfect + Category Taglines) | COMPLETE | 1 | 2026-01-23 |
 | REQ-20260122-001 | Navigation Restructure - Top Level Loan Categories | COMPLETE | 13 | 2026-01-22 18:35 |
 | REQ-20260122-002 | Top Navigation Button Visual System | COMPLETE | 6 | 2026-01-22 18:42 |
 | REQ-20260122-003 | ISS-NAV-TOP-001 — Top Nav Visual Contract | COMPLETE | 12 | 2026-01-22 18:57 |
