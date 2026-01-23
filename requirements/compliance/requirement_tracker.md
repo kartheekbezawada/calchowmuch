@@ -46,3 +46,5 @@
 | REQ_ID | Title | Status | Iterations | Completed |
 |--------|-------|--------|------------|-----------|
 | REQ-20260122-001 | Navigation Restructure - Top Level Loan Categories | COMPLETE | 13 | 2026-01-22 18:35 |
+| REQ-20260122-002 | Top Navigation Button Visual System | COMPLETE | 6 | 2026-01-22 18:42 |
+| REQ-20260122-003 | ISS-NAV-TOP-001 — Top Nav Visual Contract | COMPLETE | 12 | 2026-01-22 18:57 |

@@ -252,7 +252,7 @@
       "name": "Loans",
       "subcategories": [
         {
-          "id": "home",
+          "id": "home-loan",
           "name": "Home",
           "calculators": [
             {

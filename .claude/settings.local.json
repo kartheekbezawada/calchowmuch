@@ -5,7 +5,10 @@
       "Bash(findstr:*)",
       "Bash(curl:*)",
       "Bash(xargs cat:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run test:iss001:*)",
+      "Bash(npm run test:e2e:update:*)"
     ]
   }
 }

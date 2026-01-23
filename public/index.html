@@ -16,7 +16,7 @@
         <div class="site-tagline">Calculate how much you need, spend, afford.</div>
       </header>
 
-      <nav class="top-nav" aria-label="Category navigation" id="top-nav"></nav>
+      <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
@@ -392,6 +392,8 @@
           button.type = 'button';
           button.textContent = item.name;
           button.classList.toggle('is-active', item.id === currentId);
+          button.setAttribute('data-testid', 'top-nav-btn');
+          button.setAttribute('data-nav-id', item.id.replace('loans:', ''));
           button.addEventListener('click', () => {
             if (item.id === currentId) {
               return;
