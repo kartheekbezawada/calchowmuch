@@ -9,7 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
-| | | | | | | |
+| REQ-20260123-001 | CalcHowMuch Universal Theme Shell | Layout/CSS | Layout/CSS | P0 | NEW | UNKNOWN |
 
 ---
 
