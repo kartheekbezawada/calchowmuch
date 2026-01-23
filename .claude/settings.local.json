@@ -8,8 +8,7 @@
       "Bash(node:*)",
       "Bash(npm run lint)",
       "Bash(npm run test:iss001:*)",
-      "Bash(npm run test:e2e:update:*)",
-      "Bash(timeout:*)"
+      "Bash(npm run test:e2e:update:*)"
     ]
   }
 }
