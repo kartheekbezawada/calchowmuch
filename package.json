@@ -10,6 +10,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:update": "playwright test --update-snapshots",
+    "test:iss": "playwright test requirements/specs/e2e/iss",
     "test:iss001": "playwright test requirements/specs/e2e/iss-design-001.spec.js",
     "lint": "eslint public/assets/js --ext .js",
     "lint:fix": "eslint public/assets/js --ext .js --fix",

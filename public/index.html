@@ -16,7 +16,7 @@
         <div class="site-tagline">Calculate how much you need, spend, afford.</div>
       </header>
 
-      <nav class="top-nav" aria-label="Category navigation" id="top-nav"></nav>
+      <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
@@ -56,6 +56,7 @@
       const state = {
         navigation: null,
         activeCategoryId: null,
+        activeSubcategoryId: null,
         activeCalculatorId: null,
         navSearchQuery: {},
         navCollapsed: {},
@@ -340,20 +341,65 @@
         });
       }
 
+      function getFlattenedNavItems() {
+        if (!state.navigation) {
+          return [];
+        }
+
+        const items = [];
+
+        state.navigation.categories.forEach((category) => {
+          if (category.id === 'loans') {
+            category.subcategories.forEach((subcategory) => {
+              items.push({
+                id: `${category.id}:${subcategory.id}`,
+                categoryId: category.id,
+                subcategoryId: subcategory.id,
+                name: subcategory.name === 'Home' ? 'Home Loan' : subcategory.name,
+                subcategory: subcategory,
+              });
+            });
+          } else {
+            items.push({
+              id: category.id,
+              categoryId: category.id,
+              subcategoryId: null,
+              name: category.name,
+              category: category,
+            });
+          }
+        });
+
+        return items;
+      }
+
+      function getCurrentNavItemId() {
+        if (state.activeSubcategoryId) {
+          return `${state.activeCategoryId}:${state.activeSubcategoryId}`;
+        }
+        return state.activeCategoryId;
+      }
+
       function renderTopNav() {
         const topNav = document.getElementById('top-nav');
         topNav.innerHTML = '';
 
-        state.navigation.categories.forEach((category) => {
+        const navItems = getFlattenedNavItems();
+        const currentId = getCurrentNavItemId();
+
+        navItems.forEach((item) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.textContent = category.name;
-          button.classList.toggle('is-active', category.id === state.activeCategoryId);
+          button.textContent = item.name;
+          button.classList.toggle('is-active', item.id === currentId);
+          button.setAttribute('data-testid', 'top-nav-btn');
+          button.setAttribute('data-nav-id', item.id.replace('loans:', ''));
           button.addEventListener('click', () => {
-            if (state.activeCategoryId === category.id) {
+            if (item.id === currentId) {
               return;
             }
-            state.activeCategoryId = category.id;
+            state.activeCategoryId = item.categoryId;
+            state.activeSubcategoryId = item.subcategoryId;
             renderTopNav();
             renderLeftNav();
           });
@@ -379,32 +425,45 @@
         }
         container.classList.remove('is-searching');
 
+        let subcategoriesToRender = category.subcategories;
+        let displayName = category.name ?? 'calculators';
+
+        if (state.activeSubcategoryId) {
+          const activeSubcategory = category.subcategories.find(
+            (sub) => sub.id === state.activeSubcategoryId
+          );
+          if (activeSubcategory) {
+            subcategoriesToRender = [activeSubcategory];
+            displayName = activeSubcategory.name === 'Home' ? 'Home Loan' : activeSubcategory.name;
+          }
+        }
+
         const searchWrap = document.createElement('div');
         searchWrap.className = 'nav-search';
 
-        const categoryName = category.name ?? 'calculators';
         const searchInput = document.createElement('input');
-        const searchId = `nav-search-${category.id}`;
+        const searchId = `nav-search-${state.activeSubcategoryId || category.id}`;
         searchInput.type = 'search';
         searchInput.className = 'nav-search-input';
         searchInput.id = searchId;
-        searchInput.placeholder = `Search ${categoryName.toLowerCase()}...`;
-        searchInput.setAttribute('aria-label', `Search ${categoryName} calculators`);
-        searchInput.value = state.navSearchQuery[category.id] ?? '';
+        searchInput.placeholder = `Search ${displayName.toLowerCase()}...`;
+        searchInput.setAttribute('aria-label', `Search ${displayName} calculators`);
+        searchInput.value = state.navSearchQuery[searchId] ?? '';
         const searchLabel = document.createElement('label');
         searchLabel.className = 'sr-only';
         searchLabel.setAttribute('for', searchId);
-        searchLabel.textContent = `Search ${categoryName} calculators`;
+        searchLabel.textContent = `Search ${displayName} calculators`;
         searchWrap.append(searchLabel, searchInput);
         container.appendChild(searchWrap);
 
-        const collapsedMap = getCollapsedMap(category.id);
+        const collapsedMapKey = state.activeSubcategoryId || category.id;
+        const collapsedMap = getCollapsedMap(collapsedMapKey);
         const selectedCalculator = findCalculatorById(state.activeCalculatorId);
         if (selectedCalculator && selectedCalculator.category.id === category.id) {
           collapsedMap[selectedCalculator.subcategory.id] = false;
         }
 
-        category.subcategories.forEach((subcategory) => {
+        subcategoriesToRender.forEach((subcategory) => {
           const categoryWrap = document.createElement('div');
           categoryWrap.className = 'nav-category';
           categoryWrap.dataset.id = subcategory.id;
@@ -460,8 +519,13 @@
         });
 
         const selected = findCalculatorById(state.activeCalculatorId);
-        if (!selected || selected.category.id !== category.id) {
-          const firstCalculator = category.subcategories
+        const needsNewCalculator =
+          !selected ||
+          selected.category.id !== category.id ||
+          (state.activeSubcategoryId && selected.subcategory.id !== state.activeSubcategoryId);
+
+        if (needsNewCalculator) {
+          const firstCalculator = subcategoriesToRender
             .map((subcategory) => subcategory.calculators[0])
             .find(Boolean);
 
@@ -476,7 +540,7 @@
 
         searchInput.addEventListener('input', () => {
           const query = searchInput.value;
-          state.navSearchQuery[category.id] = query;
+          state.navSearchQuery[searchId] = query;
           applySearchFilter(container, query);
         });
         applySearchFilter(container, searchInput.value);
@@ -491,18 +555,21 @@
         }
 
         const nextCategoryId = match.category.id;
+        const nextSubcategoryId = nextCategoryId === 'loans' ? match.subcategory.id : null;
         const nextCalculatorId = match.calculator.id;
         const categoryChanged = nextCategoryId !== state.activeCategoryId;
+        const subcategoryChanged = nextSubcategoryId !== state.activeSubcategoryId;
         const calculatorChanged = nextCalculatorId !== state.activeCalculatorId;
 
-        if (!categoryChanged && !calculatorChanged) {
+        if (!categoryChanged && !subcategoryChanged && !calculatorChanged) {
           return;
         }
 
         state.activeCategoryId = nextCategoryId;
+        state.activeSubcategoryId = nextSubcategoryId;
         state.activeCalculatorId = nextCalculatorId;
 
-        if (categoryChanged) {
+        if (categoryChanged || subcategoryChanged) {
           renderTopNav();
           renderLeftNav();
         }
@@ -518,9 +585,12 @@
           const initialMatch = getCalculatorFromLocation();
           if (initialMatch) {
             state.activeCategoryId = initialMatch.category.id;
+            state.activeSubcategoryId =
+              initialMatch.category.id === 'loans' ? initialMatch.subcategory.id : null;
             state.activeCalculatorId = initialMatch.calculator.id;
           } else {
             state.activeCategoryId = state.navigation.categories[0]?.id ?? null;
+            state.activeSubcategoryId = null;
           }
 
           renderTopNav();
