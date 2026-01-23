@@ -50,6 +50,8 @@
 11. [Hard "Never Do" Rules](#11-hard-never-do-rules)
 12. [Definition of Done](#12-definition-of-done)
 13. [How to Report Violations](#13-how-to-report-violations)
+14. [Agent Diagnostic Command Requirements](#14-agent-diagnostic-command-requirements)
+15. [Agent Environment and Cache Policy](#15-agent-environment-and-cache-policy)
 
 ---
 
@@ -614,6 +616,34 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 | DIAG-3.1 | **Additional commands needed** | Agent must explicitly request: "I need permission to use [command] to [specific purpose]" |
 | DIAG-3.2 | **Path expansion needed** | Agent must request: "I need access to [specific path] to [diagnostic reason]" |
 | DIAG-3.3 | **Write operations** | Agent must request: "I need write permission to [file] to [specific fix]" |
+
+---
+
+## 15) Agent Environment and Cache Policy
+
+### 15.1 Cache Policy (Do Not Modify)
+
+| Rule ID | Requirement | Severity |
+|---------|-------------|----------|
+| AGENT-1.1 | **Do not delete caches** â€” Playwright, npm, and pip caches must never be deleted | P0 |
+| AGENT-1.2 | **Do not move caches into the repo** â€” Cache directories must remain outside versioned paths | P0 |
+| AGENT-1.3 | **Do not commit cache directories** â€” Cache folders are forbidden from git commits | P0 |
+| AGENT-1.4 | **Do not override Playwright cache path** â€” `PLAYWRIGHT_BROWSERS_PATH` must not be set or changed | P1 |
+| AGENT-1.5 | **Assume browsers/deps are installed** â€” Do not reinstall Playwright browsers or dependencies unless explicitly required | P1 |
+
+**Cache locations (reference):**
+- Playwright browsers: `~/.cache/ms-playwright`
+- npm cache: `~/.npm`
+- pip cache: `~/.cache/pip`
+
+### 15.2 Test Execution Environment
+
+| Rule ID | Requirement | Severity |
+|---------|-------------|----------|
+| AGENT-2.1 | **WSL-only test execution** â€” All tests must run inside WSL (Linux) | P0 |
+| AGENT-2.2 | **Remote WSL VS Code** â€” Use VS Code Remote â€“ WSL when applicable | P1 |
+| AGENT-2.3 | **No Windows-shell installs** â€” Do not run Playwright or npm installs from Windows shells | P0 |
+| AGENT-2.4 | **Cache issues stop-and-report** â€” If a cache issue is suspected, stop and report; do not attempt cache cleanup | P0 |
 
 ---
 
