@@ -9,7 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
-| | | | | | | |
+| REQ-20260123-001 | Global Header Redesign (Pixel-Perfect + Category Taglines) | Shared Layout | Layout/CSS | HIGH | TESTING | YES |
 
 ---
 

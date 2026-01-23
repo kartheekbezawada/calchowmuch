@@ -3,10 +3,11 @@ import { test, expect } from "@playwright/test";
 test("ISS-DESIGN-001: tagline + hierarchy contract", async ({ page }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
-  // 1) Assert tagline exists EXACTLY (no rewording)
-  const taglineText = "Calculate how much you need, spend, afford.";
-  const tagline = page.getByText(taglineText, { exact: true });
+  // 1) Assert global tagline exists EXACTLY (no rewording) - HEADER-001
+  const taglineText = "Clear answers, without the guesswork";
+  const tagline = page.locator('.site-tagline-global');
   await expect(tagline).toBeVisible();
+  await expect(tagline).toHaveText(taglineText);
 
   // 2) Assert tagline appears below site title
   const title = page.getByText("Calculate How Much", { exact: true });

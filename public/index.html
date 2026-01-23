@@ -12,11 +12,13 @@
   <body>
     <div class="page">
       <header class="site-header">
-        <span>Calculate How Much</span>
-        <div class="site-tagline">Calculate how much you need, spend, afford.</div>
+        <div class="brand">
+          <a href="/" class="site-title" id="site-title">Calculate How Much</a>
+          <div class="site-tagline-global">Clear answers, without the guesswork</div>
+        </div>
+        <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
+        <div class="site-tagline-category" id="site-tagline-category" style="display: none;"></div>
       </header>
-
-      <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
@@ -53,6 +55,8 @@
     <script type="module" src="assets/js/core/ui.js"></script>
     <script type="module">
       import { resetPageMetadata } from './assets/js/core/ui.js';
+      import { SITE_COPY, getCategoryTagline } from './assets/js/core/site-copy.js';
+
       const state = {
         navigation: null,
         activeCategoryId: null,
@@ -380,6 +384,64 @@
         return state.activeCategoryId;
       }
 
+      /**
+       * Map nav item display names to SITE_COPY category tagline keys
+       * HEADER-001 - REQ-20260123-001
+       */
+      function mapNavNameToCategoryKey(navItemName) {
+        const mapping = {
+          'Math': 'Math',
+          'Home Loan': 'Home Loans',
+          'Credit Cards': 'Credit Cards',
+          'Auto Loans': 'Auto Loans',
+          'CFA / Advanced Finance': 'CFA / Advanced Finance'
+        };
+        return mapping[navItemName] || null;
+      }
+
+      /**
+       * Update the category tagline based on the current active nav item
+       * HEADER-001 - REQ-20260123-001
+       */
+      function updateCategoryTagline() {
+        const taglineElement = document.getElementById('site-tagline-category');
+        if (!taglineElement) {
+          return;
+        }
+
+        const navItems = getFlattenedNavItems();
+        const currentId = getCurrentNavItemId();
+        const activeItem = navItems.find((item) => item.id === currentId);
+
+        if (!activeItem) {
+          taglineElement.style.display = 'none';
+          taglineElement.textContent = '';
+          return;
+        }
+
+        const categoryKey = mapNavNameToCategoryKey(activeItem.name);
+        const tagline = categoryKey ? getCategoryTagline(categoryKey) : null;
+
+        if (tagline) {
+          taglineElement.textContent = tagline;
+          taglineElement.style.display = 'block';
+        } else {
+          taglineElement.style.display = 'none';
+          taglineElement.textContent = '';
+        }
+      }
+
+      /**
+       * Initialize header with SITE_COPY content
+       * HEADER-001 - REQ-20260123-001
+       */
+      function initializeHeader() {
+        const siteTitleElement = document.getElementById('site-title');
+        if (siteTitleElement) {
+          siteTitleElement.textContent = SITE_COPY.SITE_TITLE;
+        }
+      }
+
       function renderTopNav() {
         const topNav = document.getElementById('top-nav');
         topNav.innerHTML = '';
@@ -405,6 +467,9 @@
           });
           topNav.appendChild(button);
         });
+
+        // Update category tagline after rendering buttons (HEADER-001)
+        updateCategoryTagline();
       }
 
       function renderLeftNav() {
@@ -579,6 +644,9 @@
 
       async function initializeNavigation() {
         try {
+          // Initialize header with SITE_COPY content (HEADER-001)
+          initializeHeader();
+
           const response = await fetch('config/navigation.json');
           state.navigation = await response.json();
 
