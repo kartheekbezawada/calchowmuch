@@ -10,9 +10,10 @@
 
 | ITER_ID | REQ_ID | Status | Iterations | Phase | Log File |
 |---------|--------|--------|------------|-------|----------|
+| ITER-20260124-130848 | REQ-20260124-005 | COMPLETE | 1/25 | COMPLIANCE | iterations/ITER-20260124-130848.md |
+| ITER-20260124-181500 | REQ-20260124-004 | COMPLETE | 2/25 | COMPLIANCE | iterations/ITER-20260124-181500.md |
 | ITER-20260124-112200 | REQ-20260124-002 | COMPLETE | 2/25 | COMPLIANCE | iterations/ITER-20260124-112200.md |
 | ITER-20260124-141230 | REQ-20260124-001 | COMPLETE | 5/25 | COMPLIANCE | iterations/ITER-20260124-141230.md |
-| | | | | | |
 
 **Example:**
 ```

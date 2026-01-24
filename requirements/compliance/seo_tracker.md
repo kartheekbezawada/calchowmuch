@@ -10,6 +10,7 @@
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
 | SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |
+| SEO-REQ-20260124-001 | REQ-20260124-004 | Sitewide Footer | P1 content update | PASS | ✅ | — | — |
 
 ---
 
