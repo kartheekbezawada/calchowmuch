@@ -57,32 +57,10 @@ button {
   border: 0;
 }
 
-/* Purple scrollbars for shell elements (sidebar, ads, content wrapper) */
-.left-nav::-webkit-scrollbar,
-.ads-column::-webkit-scrollbar,
-.content::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-.left-nav::-webkit-scrollbar-track,
-.ads-column::-webkit-scrollbar-track,
-.content::-webkit-scrollbar-track {
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 5px;
-}
-
-.left-nav::-webkit-scrollbar-thumb,
-.ads-column::-webkit-scrollbar-thumb,
-.content::-webkit-scrollbar-thumb {
-  background: #667eea;
-  border-radius: 5px;
-}
-
-.left-nav::-webkit-scrollbar-thumb:hover,
-.ads-column::-webkit-scrollbar-thumb:hover,
-.content::-webkit-scrollbar-thumb:hover {
-  background: #764ba2;
+/* Scrollbar styling - always visible with subtle colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
