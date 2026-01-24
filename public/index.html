@@ -12,8 +12,16 @@
   <body>
     <div class="page">
       <header class="site-header">
-        <span>Calculate How Much</span>
-        <div class="site-tagline">Calculate how much you need, spend, afford.</div>
+        <div class="header-content">
+          <h1>Calculate How Much</h1>
+          <p class="site-tagline">Calculate how much you need, spend, afford.</p>
+        </div>
+        <div class="header-controls">
+          <div class="theme-toggle" id="theme-toggle" role="switch" aria-checked="false" aria-label="Toggle theme">
+            <div class="theme-toggle-slider">☀️</div>
+          </div>
+          <div class="header-icon" aria-label="Settings">⚙️</div>
+        </div>
       </header>
 
       <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
@@ -45,14 +53,27 @@
       </main>
 
       <footer class="site-footer">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Contact</a>
+        <div class="footer-content">
+          <a href="#" class="footer-link">Privacy</a>
+          <span class="footer-divider">|</span>
+          <a href="#" class="footer-link">Terms & Conditions</a>
+          <span class="footer-divider">|</span>
+          <a href="#" class="footer-link">Contact</a>
+          <span class="footer-divider">|</span>
+          <a href="#" class="footer-link">FAQs</a>
+          <span class="footer-divider">|</span>
+          <span class="footer-branding">© 2026 <span class="brand-name">@CalcHowMuch</span></span>
+        </div>
       </footer>
     </div>
     <script type="module" src="assets/js/core/ui.js"></script>
     <script type="module">
       import { resetPageMetadata } from './assets/js/core/ui.js';
+      import { initThemeToggle } from './assets/js/core/theme.js';
+
+      // Initialize theme toggle
+      initThemeToggle();
+
       const state = {
         navigation: null,
         activeCategoryId: null,
@@ -384,13 +405,30 @@
         const topNav = document.getElementById('top-nav');
         topNav.innerHTML = '';
 
+        // Icon mapping for categories
+        const iconMap = {
+          'math': '📐',
+          'home': '🏠',
+          'credit-cards': '💳',
+          'auto-loans': '🚗',
+          'personal': '💰'
+        };
+
         const navItems = getFlattenedNavItems();
         const currentId = getCurrentNavItemId();
 
         navItems.forEach((item) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.textContent = item.name;
+
+          // Add icon if available
+          const icon = iconMap[item.categoryId] || iconMap[item.id] || '';
+          if (icon) {
+            button.innerHTML = `<span class="icon">${icon}</span><span>${item.name}</span>`;
+          } else {
+            button.textContent = item.name;
+          }
+
           button.classList.toggle('is-active', item.id === currentId);
           button.setAttribute('data-testid', 'top-nav-btn');
           button.setAttribute('data-nav-id', item.id.replace('loans:', ''));
