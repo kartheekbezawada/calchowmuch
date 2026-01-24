@@ -249,7 +249,7 @@
 .panel {
   background: var(--panel-bg);
   border: 2px solid var(--shell-border);
-  border-radius: 32px;
+  border-radius: 12px;
   box-shadow: var(--panel-shadow);
   padding: 24px;
   display: flex;
@@ -284,7 +284,7 @@
   min-height: 0;
   background: var(--panel-bg);
   border: 2px solid var(--shell-border);
-  border-radius: 28px;
+  border-radius: 12px;
   padding: 12px;
   height: 100%;
 }
@@ -292,7 +292,7 @@
 .ad-panel {
   background: #f8f9fa;
   border: 2px dashed #e9ecef;
-  border-radius: 22px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
