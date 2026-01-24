@@ -14,6 +14,7 @@
 | REQ-20260124-003 | Increase Light Green Intensity | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-004 | Footer Content | Site | Layout/CSS | MEDIUM | COMPLETE | YES |
 | REQ-20260124-005 | Footer Links Flush to Bottom Bar | Site | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260124-006 | Subtle Panel Corner Radius | UI | Layout/CSS | MEDIUM | COMPLETE | NO |
 
 ---
 
