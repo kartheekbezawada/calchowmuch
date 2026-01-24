@@ -9,6 +9,7 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260124-191200 | REQ-20260124-006 | ITER-20260124-190900 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (update snapshots) | iterations/ITER-20260124-190900.md |
 | TEST-20260124-131452 | REQ-20260124-005 | ITER-20260124-130848 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (update snapshots) | iterations/ITER-20260124-130848.md |
 | TEST-20260124-183400 | REQ-20260124-004 | ITER-20260124-181500 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (update snapshots) | iterations/ITER-20260124-181500.md |
 | TEST-20260124-160100 | REQ-20260124-003 | ITER-20260124-160000 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (update snapshots) | iterations/ITER-20260124-160000.md |
