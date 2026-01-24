@@ -9,7 +9,9 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
-| REQ-20260123-001 | CalcHowMuch Universal Theme Shell | Layout/CSS | Layout/CSS | P0 | NEW | UNKNOWN |
+| REQ-20260124-001 | Purple Theme Refresh | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260124-002 | Light Green Page Background | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260124-003 | Increase Light Green Intensity | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 
 ---
 

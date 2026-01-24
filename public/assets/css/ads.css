@@ -7,10 +7,10 @@
 .ad-slot {
   width: 300px;
   height: 250px;
-  border: 1px dashed #cbd5f5;
+  border: 1px dashed #e0e7ff;
   border-radius: 12px;
-  background: #f8fafc;
-  color: #64748b;
+  background: #f8f9fa;
+  color: #6c757d;
   display: grid;
   place-items: center;
   text-align: center;
@@ -27,10 +27,10 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #94a3b8;
+  color: #a5b4fc;
 }
 
 .ad-copy {
   font-weight: 600;
-  color: #1f2937;
+  color: #1a2332;
 }
