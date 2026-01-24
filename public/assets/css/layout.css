@@ -1,17 +1,15 @@
 .page {
-  height: calc(100vh - 48px);
-  max-height: calc(100vh - 48px);
+  height: calc(100vh - 8px);
+  max-height: calc(100vh - 8px);
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   gap: 10px;
   max-width: none;
   width: min(1920px, calc(100vw - 48px));
-  margin: 8px auto;
-  padding: 14px;
+  margin: 8px auto 0;
+  padding: 14px 14px 0 14px;
   background: var(--shell-bg);
-  border: 2px solid var(--shell-border);
   border-radius: 28px;
-  box-shadow: 0 24px 60px rgba(46, 40, 32, 0.12);
   animation: shellLift 0.6s ease-out both;
 }
 
@@ -306,16 +304,18 @@
 
 .site-footer {
   border: none;
+  border-top: 1px solid #9ca3af;
   background: transparent;
   border-radius: 0;
-  padding: 6px 4px 4px;
+  padding: 1px 4px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
   color: var(--muted-text);
   font-size: 15px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .site-footer a {
@@ -323,6 +323,15 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+}
+
+.site-footer .footer-divider {
+  color: var(--muted-text);
+  user-select: none;
+}
+
+.site-footer .footer-branding {
+  color: var(--muted-text);
 }
 
 @keyframes shellLift {
