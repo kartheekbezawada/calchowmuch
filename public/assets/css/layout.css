@@ -46,8 +46,8 @@
 }
 
 .top-nav button {
-  background: var(--cosmic-black);
-  border: 1px solid var(--cosmic-black);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  border: 1px solid var(--accent-strong);
   color: #ffffff;
   padding: 8px 18px;
   border-radius: 10px;
@@ -65,7 +65,7 @@
 }
 
 .top-nav button:hover {
-  background: #2a2a2a;
+  background: var(--accent-strong);
 }
 
 .top-nav button:focus-visible {
@@ -74,9 +74,9 @@
 }
 
 .top-nav button.is-active {
-  background: #ffffff;
-  color: var(--cosmic-black);
-  border-color: var(--cosmic-black);
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
 }
 
 .layout-main {
@@ -235,7 +235,7 @@
   background: var(--accent);
   color: #ffffff;
   border-color: var(--accent-strong);
-  box-shadow: 0 8px 14px rgba(37, 99, 235, 0.24);
+  box-shadow: 0 8px 14px rgba(102, 126, 234, 0.24);
 }
 
 .center-column {
@@ -292,8 +292,8 @@
 }
 
 .ad-panel {
-  background: #f8fafc;
-  border: 2px dashed #e5e7eb;
+  background: #f8f9fa;
+  border: 2px dashed #e9ecef;
   border-radius: 22px;
   display: flex;
   align-items: center;

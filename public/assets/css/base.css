@@ -3,21 +3,21 @@
   --font-body: 'Trebuchet MS', 'Gill Sans', 'Candara', 'Segoe UI', sans-serif;
   --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
   font-family: var(--font-body);
-  --page-bg: #ffffff;
+  --page-bg: #d4edda;
   --page-bg-accent: #ffffff;
-  --shell-bg: #ffffff;
+  --shell-bg: #d4edda;
   --panel-bg: #ffffff;
   --header-bg: #ffffff;
-  --header-text: #111827;
-  --muted-text: #6b7280;
-  --border-color: #e5e7eb;
-  --shell-border: #e5e7eb;
-  --panel-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --pill-bg: #f3f4f6;
-  --pill-border: #e5e7eb;
-  --cosmic-black: #0b0f14;
+  --header-text: #1a2332;
+  --muted-text: #6c757d;
+  --border-color: #dee2e6;
+  --shell-border: #e9ecef;
+  --panel-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --accent: #667eea;
+  --accent-strong: #764ba2;
+  --pill-bg: #f8f9fa;
+  --pill-border: #dee2e6;
+  --cosmic-black: #1a2332;
   --header-height: 80px;
   --nav-height: 64px;
   --footer-height: 72px;
@@ -26,7 +26,7 @@
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: #94a3b8 #f1f5f9;
+  scrollbar-color: #667eea rgba(102, 126, 234, 0.1);
 }
 
 body {
@@ -64,16 +64,16 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: rgba(102, 126, 234, 0.1);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #667eea;
   border-radius: 4px;
-  border: 2px solid #f1f5f9;
+  border: 2px solid rgba(102, 126, 234, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #764ba2;
 }
