@@ -24,6 +24,8 @@
 | REQ-20260125-003 | Footer Full-Width Container | Site | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260125-004 | Sitemap Page + Footer Link | Site | UI/Flow + SEO | HIGH | COMPLETE | YES |
 | REQ-20260125-005 | Home Page Shell-Only Content | Site | UI/Flow | HIGH | COMPLETE | NO |
+| REQ-20260125-006 | Grey Scrollbars for Nav/Calc/Explanation | UI | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260125-007 | Math Navigation Expandable Icons | Navigation | UI/Flow | HIGH | BLOCKED | NO |
 
 ---
 

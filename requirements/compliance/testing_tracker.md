@@ -9,6 +9,8 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260125-114500 | REQ-20260125-007 | ITER-20260125-113300 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260125-113300.md |
+| TEST-20260125-112000 | REQ-20260125-006 | ITER-20260125-111500 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (update snapshots) | iterations/ITER-20260125-111500.md |
 | TEST-20260125-105400 | REQ-20260125-005 | ITER-20260125-104000 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260125-104000.md |
 | TEST-20260125-102000 | REQ-20260125-004 | ITER-20260125-101500 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/sitemap-footer.spec.js | iterations/ITER-20260125-101500.md |
 | TEST-20260125-102200 | REQ-20260125-004 | ITER-20260125-101500 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/sitemap-seo.spec.js | iterations/ITER-20260125-101500.md |
