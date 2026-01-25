@@ -167,6 +167,19 @@ A REQ is not "done" until these exist and are closed:
 
 ---
 
+## Sitemap Compliance (P0, Build-Blocking)
+
+- Sitemap coverage is mandatory for all LIVE calculators (navigation-visible or publicly accessible URLs).
+- Any calculator-related REQ MUST verify:
+  - Navigation entry
+  - Sitemap inclusion derived from the navigation source of truth
+- Agents MUST NOT mark a calculator REQ as COMPLETE unless sitemap compliance is verified.
+- Missing sitemap coverage is a **P0 violation** and hard-fails BUILD/TEST/COMPLIANCE (no waivers by default).
+
+**Enforcement principle:** If it’s not in the Sitemap, it’s not shipped.
+
+---
+
 ## Related Documents
 
 | Document | Location |
