@@ -244,15 +244,32 @@
         if (!calculator) {
           resetPageMetadata();
           calculatorPane.innerHTML = `
-            <h3 id="calculator-title">Main Calculation Pane</h3>
-            <p class="placeholder" id="calculator-placeholder">
-              Select a calculator from the navigation list.
+            <h3 id="home-overview-title">Home Overview</h3>
+            <p class="placeholder" id="home-overview-intro">
+              Explore calculators by category using the top navigation. This page is a guide to
+              help you discover the right tool, not a calculator itself.
             </p>
+            <div class="home-overview-links">
+              <p class="helper">Popular starting points:</p>
+              <ul>
+                <li><a href="/calculators/">Browse all calculators</a></li>
+                <li><a href="/#/calculators/loans/home-loan">Home Loan Calculator</a></li>
+                <li><a href="/#/calculators/loans/car-loan">Car Loan Calculator</a></li>
+                <li><a href="/#/calculators/math/percentage-increase">Percentage Calculator</a></li>
+                <li><a href="/#/calculators/math/basic">Basic Calculator</a></li>
+              </ul>
+            </div>
           `;
           explanationPane.innerHTML = `
-            <h3>Explanation Pane</h3>
-            <p class="placeholder" id="explanation-placeholder">
-              Explanation content will appear here once you choose a calculator.
+            <h3 id="home-guidance-title">How to choose a calculator</h3>
+            <p class="placeholder" id="home-guidance-intro">
+              Calculate How Much provides fast, focused tools for common finance and math
+              questions. Start with a category in the top navigation, then pick the calculator
+              that matches your scenario.
+            </p>
+            <p class="placeholder" id="home-guidance-trust">
+              Results are estimates for planning purposes only. Always verify details with your
+              lender, advisor, or official documentation.
             </p>
           `;
           return;
@@ -418,6 +435,15 @@
         const container = document.getElementById('left-nav-content');
         container.innerHTML = '';
 
+        if (!state.activeCategoryId) {
+          const neutralMessage = document.createElement('p');
+          neutralMessage.className = 'placeholder';
+          neutralMessage.textContent =
+            'Choose a category from the top navigation to see calculators.';
+          container.appendChild(neutralMessage);
+          return;
+        }
+
         const category = state.navigation.categories.find(
           (item) => item.id === state.activeCategoryId
         );
@@ -524,6 +550,12 @@
       function handleNavigationChange() {
         const match = getCalculatorFromLocation();
         if (!match) {
+          state.activeCategoryId = null;
+          state.activeSubcategoryId = null;
+          state.activeCalculatorId = null;
+          renderTopNav();
+          renderLeftNav();
+          loadCalculatorContent(null);
           return;
         }
 
@@ -562,8 +594,9 @@
               initialMatch.category.id === 'loans' ? initialMatch.subcategory.id : null;
             state.activeCalculatorId = initialMatch.calculator.id;
           } else {
-            state.activeCategoryId = state.navigation.categories[0]?.id ?? null;
+            state.activeCategoryId = null;
             state.activeSubcategoryId = null;
+            state.activeCalculatorId = null;
           }
 
           renderTopNav();
@@ -571,6 +604,8 @@
 
           if (initialMatch) {
             setActiveCalculator(initialMatch.calculator, { skipUrlUpdate: true });
+          } else {
+            loadCalculatorContent(null);
           }
         } catch (error) {
           console.error('Unable to load navigation.json', error);
