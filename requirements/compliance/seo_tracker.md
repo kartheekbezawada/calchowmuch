@@ -11,6 +11,9 @@
 |--------|--------|------|--------|--------|----|----|-----|
 | SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |
 | SEO-REQ-20260124-001 | REQ-20260124-004 | Sitewide Footer | P1 content update | PASS | ✅ | — | — |
+| SEO-REQ-20260124-002 | REQ-20260124-008 | Homepage | Remove tagline copy | PASS | ✅ | — | — |
+| SEO-REQ-20260125-001 | REQ-20260125-001 | Sitewide Footer | Footer layout + link list | NEW | TBD | TBD | TBD |
+| SEO-REQ-20260125-002 | REQ-20260125-004 | Sitemap | Title/meta/H1/canonical for /sitemap | PASS | ✅ | — | — |
 
 ---
 

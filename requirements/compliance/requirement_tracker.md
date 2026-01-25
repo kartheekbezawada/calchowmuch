@@ -15,6 +15,15 @@
 | REQ-20260124-004 | Footer Content | Site | Layout/CSS | MEDIUM | COMPLETE | YES |
 | REQ-20260124-005 | Footer Links Flush to Bottom Bar | Site | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-006 | Subtle Panel Corner Radius | UI | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260124-007 | Reduce Light Green Intensity | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260124-008 | Remove Homepage Tagline | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260124-009 | Remove Nav Search and Label | Site | UI/Flow | MEDIUM | COMPLETE | NO |
+| REQ-20260124-010 | System Font Stack + Typography Scale | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260125-001 | Footer Layout & Positioning Refresh | Site | Layout/CSS | MEDIUM | COMPLETE | YES |
+| REQ-20260125-002 | Light Green Background Reset | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260125-003 | Footer Full-Width Container | Site | Layout/CSS | MEDIUM | COMPLETE | NO |
+| REQ-20260125-004 | Sitemap Page + Footer Link | Site | UI/Flow + SEO | HIGH | COMPLETE | YES |
+| REQ-20260125-005 | Home Page Shell-Only Content | Site | UI/Flow | HIGH | NEW | NO |
 
 ---
 

@@ -490,6 +490,16 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 | DOC-1.3 | No silent omission â€” unlisted folders must be acknowledged with status | P1 |
 | DOC-1.4 | Calculators are considered **live/visible** only when added to `public/config/navigation.json` and `public/calculators/index.html` | P0 |
 
+### 9.1 Sitemap Coverage (Build-Blocking)
+
+| Rule ID | Requirement | Severity |
+|---------|-------------|----------|
+| DOC-SITEMAP-1 | **Mandatory sitemap coverage** â€” All live calculators MUST appear in the human-readable `/sitemap` page | P0 |
+| DOC-SITEMAP-2 | **Live calculator definition** â€” A calculator is LIVE if it appears in navigation or is directly accessible via a public URL | P0 |
+| DOC-SITEMAP-3 | **Sitemap source of truth** â€” Sitemap content must be derived from the same navigation source-of-truth (no hardcoded lists) | P0 |
+| DOC-SITEMAP-4 | **Build/compliance hard fail** â€” If any LIVE calculator is missing from the sitemap: BUILD = FAIL, TEST = FAIL, COMPLIANCE = FAIL. No waivers by default | P0 |
+| DOC-SITEMAP-5 | **REQ acceptance criterion** â€” Any new calculator REQ must include: “Calculator appears in the Sitemap page.” Missing this AC invalidates the REQ | P0 |
+
 ---
 
 ## 10) PR and Phase Workflow
