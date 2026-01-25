@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sitemap | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Browse the full list of calculators on Calculate How Much, organized by category."
+    />
+    <link rel="canonical" href="/sitemap/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <span>Calculate How Much</span>
+      </header>
+
+      <nav class="top-nav" aria-label="Category navigation" id="top-nav"></nav>
+
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content"></div>
+        </aside>
+
+        <section class="center-column">
+          <div class="panel panel-scroll">
+            <h1>Sitemap</h1>
+            <p class="helper">
+              Browse every calculator available on Calculate How Much. All entries are grouped by
+              category and stay in sync with navigation.
+            </p>
+            <div id="sitemap-content" class="sitemap-content"></div>
+          </div>
+        </section>
+
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <a href="#">Privacy</a>
+        <span class="footer-divider">|</span>
+        <a href="#">Terms &amp; Conditions</a>
+        <span class="footer-divider">|</span>
+        <a href="#">Contact</a>
+        <span class="footer-divider">|</span>
+        <a href="#">FAQs</a>
+        <span class="footer-divider">|</span>
+        <a href="/sitemap/">Sitemap</a>
+        <span class="footer-divider">|</span>
+        <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      </footer>
+    </div>
+    <script type="module">
+      const topNav = document.getElementById('top-nav');
+      const leftNav = document.getElementById('left-nav-content');
+      const sitemapContainer = document.getElementById('sitemap-content');
+
+      function createHeading(level, text) {
+        const heading = document.createElement(level);
+        heading.textContent = text;
+        return heading;
+      }
+
+      function createLinkItem(calculator) {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = calculator.url;
+        link.textContent = calculator.name;
+        listItem.appendChild(link);
+        return listItem;
+      }
+
+      function renderTopNav(categories) {
+        if (!topNav) {
+          return;
+        }
+        topNav.innerHTML = '';
+        categories.forEach((category) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = category.name;
+          topNav.appendChild(button);
+        });
+      }
+
+      function renderLeftNav(categories) {
+        if (!leftNav) {
+          return;
+        }
+        leftNav.innerHTML = '';
+        categories.forEach((category) => {
+          const categorySection = document.createElement('div');
+          categorySection.className = 'nav-category';
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'nav-category-toggle';
+
+          const label = document.createElement('span');
+          label.className = 'nav-category-label';
+          label.textContent = category.name;
+
+          const indicator = document.createElement('span');
+          indicator.className = 'nav-category-indicator';
+          indicator.textContent = 'All';
+
+          toggle.appendChild(label);
+          toggle.appendChild(indicator);
+          categorySection.appendChild(toggle);
+
+          const items = document.createElement('div');
+          items.className = 'nav-category-items';
+
+          category.subcategories.forEach((subcategory) => {
+            const subheading = document.createElement('div');
+            subheading.className = 'subcategory-title';
+            subheading.textContent = subcategory.name;
+            items.appendChild(subheading);
+
+            subcategory.calculators.forEach((calculator) => {
+              const link = document.createElement('a');
+              link.className = 'nav-item';
+              link.href = calculator.url;
+              link.textContent = calculator.name;
+              items.appendChild(link);
+            });
+          });
+
+          categorySection.appendChild(items);
+          leftNav.appendChild(categorySection);
+        });
+      }
+
+      function renderSitemap(categories) {
+        sitemapContainer.innerHTML = '';
+        categories.forEach((category) => {
+          const section = document.createElement('section');
+          section.appendChild(createHeading('h2', category.name));
+
+          category.subcategories.forEach((subcategory) => {
+            const subSection = document.createElement('div');
+            subSection.appendChild(createHeading('h3', subcategory.name));
+
+            const list = document.createElement('ul');
+            subcategory.calculators.forEach((calculator) => {
+              list.appendChild(createLinkItem(calculator));
+            });
+
+            subSection.appendChild(list);
+            section.appendChild(subSection);
+          });
+
+          sitemapContainer.appendChild(section);
+        });
+      }
+
+      async function initSitemap() {
+        try {
+          const response = await fetch('/config/navigation.json');
+          if (!response.ok) {
+            throw new Error('Navigation data unavailable');
+          }
+          const data = await response.json();
+          const categories = data.categories ?? [];
+          renderTopNav(categories);
+          renderLeftNav(categories);
+          renderSitemap(categories);
+        } catch (error) {
+          console.error('Unable to load navigation.json', error);
+          if (sitemapContainer) {
+            sitemapContainer.textContent = 'Sitemap data is temporarily unavailable.';
+          }
+        }
+      }
+
+      initSitemap();
+    </script>
+  </body>
+</html>

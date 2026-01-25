@@ -5,22 +5,20 @@
     <title>Calculate How Much</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Layout shell for calchowmuch.com" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260116" />
-    <link rel="stylesheet" href="assets/css/layout.css?v=20260116" />
-    <link rel="stylesheet" href="assets/css/calculator.css?v=20260116" />
+    <link rel="stylesheet" href="assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="assets/css/calculator.css?v=20260125" />
   </head>
   <body>
     <div class="page">
       <header class="site-header">
         <span>Calculate How Much</span>
-        <div class="site-tagline">Calculate how much you need, spend, afford.</div>
       </header>
 
       <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
 
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <h2 class="left-nav-title">Navigation</h2>
           <div id="left-nav-content"></div>
         </aside>
 
@@ -52,6 +50,8 @@
         <a href="#">Contact</a>
         <span class="footer-divider">|</span>
         <a href="#">FAQs</a>
+        <span class="footer-divider">|</span>
+        <a href="/sitemap/">Sitemap</a>
         <span class="footer-divider">|</span>
         <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
       </footer>
@@ -415,7 +415,6 @@
 
       function renderLeftNav() {
         const leftNav = document.querySelector('.left-nav');
-        const title = document.querySelector('.left-nav-title');
         const container = document.getElementById('left-nav-content');
         container.innerHTML = '';
 
@@ -426,13 +425,7 @@
           return;
         }
 
-        if (title) {
-          title.hidden = false;
-        }
-        container.classList.remove('is-searching');
-
         let subcategoriesToRender = category.subcategories;
-        let displayName = category.name ?? 'calculators';
 
         if (state.activeSubcategoryId) {
           const activeSubcategory = category.subcategories.find(
@@ -440,27 +433,8 @@
           );
           if (activeSubcategory) {
             subcategoriesToRender = [activeSubcategory];
-            displayName = activeSubcategory.name === 'Home' ? 'Home Loan' : activeSubcategory.name;
           }
         }
-
-        const searchWrap = document.createElement('div');
-        searchWrap.className = 'nav-search';
-
-        const searchInput = document.createElement('input');
-        const searchId = `nav-search-${state.activeSubcategoryId || category.id}`;
-        searchInput.type = 'search';
-        searchInput.className = 'nav-search-input';
-        searchInput.id = searchId;
-        searchInput.placeholder = `Search ${displayName.toLowerCase()}...`;
-        searchInput.setAttribute('aria-label', `Search ${displayName} calculators`);
-        searchInput.value = state.navSearchQuery[searchId] ?? '';
-        const searchLabel = document.createElement('label');
-        searchLabel.className = 'sr-only';
-        searchLabel.setAttribute('for', searchId);
-        searchLabel.textContent = `Search ${displayName} calculators`;
-        searchWrap.append(searchLabel, searchInput);
-        container.appendChild(searchWrap);
 
         const collapsedMapKey = state.activeSubcategoryId || category.id;
         const collapsedMap = getCollapsedMap(collapsedMapKey);
@@ -543,13 +517,6 @@
         }
 
         highlightActiveCalculator();
-
-        searchInput.addEventListener('input', () => {
-          const query = searchInput.value;
-          state.navSearchQuery[searchId] = query;
-          applySearchFilter(container, query);
-        });
-        applySearchFilter(container, searchInput.value);
 
         leftNav.scrollTop = 0;
       }
