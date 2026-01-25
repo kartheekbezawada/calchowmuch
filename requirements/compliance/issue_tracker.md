@@ -10,7 +10,7 @@
 
 | ISSUE_ID | REQ_ID | ITER_ID | Title | Type | Severity | Status |
 |----------|--------|---------|-------|------|----------|--------|
-| | | | | | | |
+| ISSUE-20260125-001 | REQ-20260125-006 | ITER-20260125-111500 | ISS-NAV-TOP-001 visual regression failure when running full ISS suite | BUG | MEDIUM | OPEN |
 
 ---
 
