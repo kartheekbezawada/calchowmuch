@@ -358,10 +358,113 @@
       }
 
       function highlightActiveCalculator() {
-        const items = document.querySelectorAll('.nav-item');
+        const items = document.querySelectorAll('.nav-item, .math-nav-item');
         items.forEach((item) => {
           item.classList.toggle('is-active', item.dataset.id === state.activeCalculatorId);
         });
+      }
+
+      // Math Navigation Icons (Lucide-style SVGs)
+      const mathNavIcons = {
+        simple: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>`,
+        algebra: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
+        trigonometry: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+        calculus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+        log: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+        statistics: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
+        chevronDown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`,
+        chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
+      };
+
+      function renderMathNav(container, category) {
+        const collapsedMap = getCollapsedMap(category.id);
+        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
+
+        // Ensure the active calculator's subcategory is expanded
+        if (selectedCalculator && selectedCalculator.category.id === category.id) {
+          collapsedMap[selectedCalculator.subcategory.id] = false;
+        }
+
+        // Default: expand 'simple' if nothing else is set
+        const hasAnyExpanded = category.subcategories.some(sub => collapsedMap[sub.id] === false);
+        if (!hasAnyExpanded && collapsedMap['simple'] === undefined) {
+          collapsedMap['simple'] = false;
+        }
+
+        const navContainer = document.createElement('div');
+        navContainer.className = 'math-nav-container';
+
+        category.subcategories.forEach((subcategory) => {
+          const isCollapsed = collapsedMap[subcategory.id] !== false;
+
+          const categoryWrap = document.createElement('div');
+          categoryWrap.className = 'math-nav-category';
+          categoryWrap.dataset.id = subcategory.id;
+          if (isCollapsed) {
+            categoryWrap.classList.add('is-collapsed');
+          }
+
+          // Toggle button
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'math-nav-category-toggle';
+          toggle.setAttribute('aria-expanded', String(!isCollapsed));
+
+          // Left side: icon + name
+          const leftSide = document.createElement('span');
+          leftSide.className = 'math-nav-category-left';
+
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'math-nav-category-icon';
+          iconSpan.innerHTML = mathNavIcons[subcategory.id] || mathNavIcons.simple;
+
+          const nameSpan = document.createElement('span');
+          nameSpan.className = 'math-nav-category-name';
+          nameSpan.textContent = subcategory.name.toUpperCase();
+
+          leftSide.append(iconSpan, nameSpan);
+
+          // Right side: chevron
+          const chevronSpan = document.createElement('span');
+          chevronSpan.className = 'math-nav-category-chevron';
+          chevronSpan.innerHTML = isCollapsed ? mathNavIcons.chevronRight : mathNavIcons.chevronDown;
+
+          toggle.append(leftSide, chevronSpan);
+
+          toggle.addEventListener('click', () => {
+            const nextCollapsed = !categoryWrap.classList.contains('is-collapsed');
+            categoryWrap.classList.toggle('is-collapsed', nextCollapsed);
+            collapsedMap[subcategory.id] = nextCollapsed;
+            chevronSpan.innerHTML = nextCollapsed ? mathNavIcons.chevronRight : mathNavIcons.chevronDown;
+            toggle.setAttribute('aria-expanded', String(!nextCollapsed));
+          });
+
+          // Items container
+          const items = document.createElement('div');
+          items.className = 'math-nav-category-items';
+
+          subcategory.calculators.forEach((calculator) => {
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'math-nav-item';
+            item.textContent = calculator.name;
+            item.dataset.id = calculator.id;
+
+            if (calculator.id === state.activeCalculatorId) {
+              item.classList.add('is-active');
+            }
+
+            item.addEventListener('click', () => {
+              setActiveCalculator(calculator);
+            });
+            items.appendChild(item);
+          });
+
+          categoryWrap.append(toggle, items);
+          navContainer.appendChild(categoryWrap);
+        });
+
+        container.appendChild(navContainer);
       }
 
       function getFlattenedNavItems() {
@@ -448,6 +551,30 @@
           (item) => item.id === state.activeCategoryId
         );
         if (!category) {
+          return;
+        }
+
+        // Use special Math navigation for math category
+        if (category.id === 'math') {
+          renderMathNav(container, category);
+
+          const selected = findCalculatorById(state.activeCalculatorId);
+          const needsNewCalculator = !selected || selected.category.id !== category.id;
+
+          if (needsNewCalculator) {
+            const firstCalculator = category.subcategories
+              .map((subcategory) => subcategory.calculators[0])
+              .find(Boolean);
+
+            if (firstCalculator) {
+              setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
+            } else {
+              setActiveCalculator(null, { skipUrlUpdate: true });
+            }
+          }
+
+          highlightActiveCalculator();
+          leftNav.scrollTop = 0;
           return;
         }
 
