@@ -16,6 +16,8 @@ REQ → BUILD → TEST → SEO → COMPLIANCE
 All state is stored in requirements/compliance/.
 If this file conflicts with WORKFLOW.md, WORKFLOW.md takes precedence.
 
+Hard Stop:
+If you propose loading any file outside the current FSM state scope, stop and restate the loading plan before doing work.
 
 ======================================================================
 Actors (Strict Roles)
