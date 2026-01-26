@@ -9,7 +9,11 @@
       "Bash(npm run lint)",
       "Bash(npm run test:iss001:*)",
       "Bash(npm run test:e2e:update:*)",
-      "Bash(npm run test:seo:*)"
+      "Bash(npm run test:seo:*)",
+      "Bash(git -C \"c:\\\\Users\\\\karth\\\\Desktop\\\\Calculator_project_3\\\\calchowmuch\" log --oneline -20)",
+      "Bash(tree -L 3:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

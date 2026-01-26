@@ -26,6 +26,7 @@
 | REQ-20260125-005 | Home Page Shell-Only Content | Site | UI/Flow | HIGH | COMPLETE | NO |
 | REQ-20260125-006 | Grey Scrollbars for Nav/Calc/Explanation | UI | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260125-007 | Math Navigation Expandable Icons | Navigation | UI/Flow | HIGH | BLOCKED | NO |
+| REQ-20260125-100 | Remortgage Switching Output Ownership & ISS | UI/Calculation | UI/Flow + ISS | P0 | NEW | NO |
 
 ---
 

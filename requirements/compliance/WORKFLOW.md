@@ -1,167 +1,145 @@
-# Workflow - Finite State Machine
+WORKFLOW.md — Finite State Machine (FSM)
+==================================================
+## Cold Start Instruction (Read First)
 
-> **Purpose:** Defines states, transitions, and **LLM context rules**  
-> **Ralph Lauren Loop:** Enabled (max 25 iterations)  
-> **Last Updated:** 2026-01-22
+This workflow is authoritative. Do not reinterpret or restate rules.
+Load only the active REQ, its BUILD row, and its active ITER file.
+Execute the current FSM state; record deltas only. Ignore archives and history.
 
----
 
-## ⚠️ LLM Context Management (READ FIRST)
+This file defines the only valid workflow for implementing requirements.
+It governs state transitions, file loading, and enforcement.
 
-### What to Load at Start
+If this file conflicts with AGENTS.md, this file wins.
 
-```
-ALWAYS LOAD (project rules):
-├── ../universal/UNIVERSAL_REQUIREMENTS.md ← P0 rules, UI contract (load first!)
+Purpose
+============================
+Ship calculator changes with:
+   deterministic flow
+   traceable evidence
+   minimal context load
 
-ALWAYS LOAD (workflow context):
-├── WORKFLOW.md (this file) — understand the state machine
-├── lessons_learned.md — CRITICAL: patterns from past failures
-├── requirement_tracker.md — find the active REQ
-├── build_tracker.md — check current status
-└── testing_tracker.md — check test status
+FSM:
+REQ → BUILD ↔ TEST → SEO → COMPLIANCE → COMPLETE
+Failure at any step may create an ISSUE.
 
-LOAD ON DEMAND (only when needed):
-├── iterations/ITER-{id}.md — ONLY for current REQ's ITER_ID
-├── testing_requirements.md — when selecting tests
-├── seo_requirements.md — when SEO validation needed
-└── issue_tracker.md — when creating/checking issues
-```
+File Loading Rules (Critical)
+=================================
+Always load
+   UNIVERSAL_REQUIREMENTS.md
+   WORKFLOW.md
+   AGENTS.md
 
-### What NOT to Load
+Load only when required
+   testing_requirements.md → when selecting tests
+   seo_requirements.md → when pages, URLs, or metadata change
+   Calculator rule files → for the active calculator only
+   issue_tracker.md → when creating or resolving an issue
 
-```
-❌ All files in iterations/ folder
-❌ Archived/completed iteration logs
-❌ Historical compliance reports
-❌ idea_tracker.md (unless creating ideas)
-```
+Never load
+   Archived sections
+   Historical iteration files
+   Iteration logs for other REQs
+   Old compliance reports
+   Context must stay minimal.
 
-### Context Budget Rule
+State Definitions
+=======================
+REQ
+   Requirement exists in requirement_tracker.md
+   Status: NEW
+   No implementation allowed
+   Transition allowed:
+      REQ → BUILD (only via trigger)
 
-```
-If starting work on REQ-20260122-001:
-1. Read requirement_tracker.md → find REQ details
-2. Read build_tracker.md → find ITER_ID (e.g., ITER-20260122-142233)
-3. Read iterations/ITER-20260122-142233.md → understand current state
-4. START WORK — don't read anything else
-```
+BUILD
+   Triggered by human command
+   EVT_START_BUILD REQ-YYYYMMDD-###
+   Create new ITER file
+   Add BUILD row (Status: RUNNING)
+   Run build steps (lint, compile)
+   Outcomes:
+      PASS → TEST
+      FAIL → retry (max 25 iterations)
+      BLOCKER → ISSUE
 
----
+TEST
+   Select tests strictly via testing_requirements.md
+   Run required tests only
+   Record TEST rows
+   Outcomes:
+      PASS → SEO (if applicable) or COMPLIANCE
+      FAIL → BUILD
+      Iterations ≥ 25 → ISSUE (MAX_ITERATIONS)
 
-## State Diagram (Simplified)
+SEO
+   Required only if SEO impact is YES
+   Validate per seo_requirements.md
+   Record PASS or NA
+   Outcomes:
+      PASS / NA → COMPLIANCE
+      FAIL → BUILD or ISSUE
 
-```
-IDLE → IDEA → REQ → BUILD ⟷ TEST → COMPLIANCE → COMPLETE
-                         ↓              ↓
-                       FAIL ──────→ ISSUE
-```
+COMPLIANCE
+   Verify all gates passed
+   Update exactly one row in compliance-report.md
+   Status must be PASS or FAIL
+   PASS conditions:
+      BUILD_PASS
+      TEST_PASS
+      SEO_PASS or SEO_NA
+      No P0/P1 violations
+   PASS → COMPLETE
+   FAIL → ISSUE
 
----
+ISSUE
+   Log problem in issue_tracker.md
+   Assign type and severity
+   Decide: fix now or defer
+   Resolved issues must extract patterns into lessons_learned.md.
 
-## File Structure
+COMPLETE
+   Requirement ready to archive
+   No further edits allowed without new REQ
 
-```
-requirements/compliance/
-├── WORKFLOW.md              ← THIS FILE (always read)
-├── requirement_tracker.md   ← Small, always read
-├── build_tracker.md         ← Small, always read
-├── testing_tracker.md       ← Small, always read
-├── iteration_tracker.md     ← INDEX ONLY (small)
-├── iterations/              ← DETAILED LOGS (read one at a time)
-│   ├── _TEMPLATE.md
-│   ├── ITER-20260122-142233.md
-│   └── ITER-20260122-153045.md
-├── compliance-report.md     ← Small
-├── issue_tracker.md         ← Small, load on demand
-├── idea_tracker.md          ← Small, load on demand
-├── seo_tracker.md           ← Small, load on demand
-├── testing_requirements.md  ← Reference, load when selecting tests
-└── seo_requirements.md      ← Reference, load when SEO needed
-```
+Iteration Rules (Hard)
+   One ITER file per EVT_START_BUILD
+   ITER file is the only mutable log during work
+   Max iterations: 25
+   On reaching limit: stop, log ISSUE, exit
 
----
+Deterministic IDs
+   REQ: REQ-YYYYMMDD-###
+   BUILD: BUILD-YYYYMMDD-HHMMSS
+   TEST: TEST-YYYYMMDD-HHMMSS
+   ITER: ITER-YYYYMMDD-HHMMSS
+   ISSUE: ISSUE-YYYYMMDD-###
+   IDs are unique and never reused.
 
-## Ralph Lauren Loop
+Compliance Formula
+   OVERALL_PASS =
+   BUILD_PASS
+   AND TEST_PASS
+   AND (SEO_PASS OR SEO_NA)
+   AND UNIVERSAL_RULES_PASS
+   No shortcuts.
 
-### Starting a Build
+Enforcement
+   Invalid state transitions must stop immediately
+   No tracker updates outside the current state
+   No merge or release without COMPLIANCE PASS
+   Exceptions require explicit, logged waiver
 
-```
-1. Human: EVT_START_BUILD REQ-20260122-001
+Minimal Startup Checklist (Cold Start)
+   Read AGENTS.md
+   Read WORKFLOW.md
+   Read requirement_tracker.md (Active only)
+   Read build_tracker.md to find ITER
+   Load that single ITER file
+   Start work
+   Nothing else.
 
-2. LLM reads:
-   - requirement_tracker.md → get REQ details
-   - build_tracker.md → check no active build
-
-3. LLM creates:
-   - iterations/ITER-20260122-HHMMSS.md (new file)
-   - Row in build_tracker.md (with ITER_ID)
-   - Row in iteration_tracker.md (index entry)
-
-4. LLM starts loop (working in iterations/ITER-*.md)
-```
-
-### During the Loop
-
-```
-Each iteration:
-1. Run command (npm run lint / npm run test)
-2. Log result in iterations/ITER-*.md
-3. If FAIL and iterations < 25:
-   - Read error from output
-   - Fix code
-   - Go to step 1
-4. If PASS:
-   - Update build_tracker/testing_tracker
-   - Continue to next phase
-```
-
-### Iteration File Only Grows During Active Work
-
-```
-iterations/ITER-20260122-142233.md
-
-| # | Phase | Action | Result | Error | Fix | Time |
-|---|-------|--------|--------|-------|-----|------|
-| 1 | BUILD | lint   | FAIL   | ...   | —   | ...  |
-| 2 | BUILD | lint   | PASS   | —     | ... | ...  |
-| 3 | TEST  | unit   | FAIL   | ...   | —   | ...  |
-| 4 | TEST  | unit   | PASS   | —     | ... | ...  |
-
-^ This file is ONLY read for REQ-20260122-001
-^ Other REQs have their own ITER-*.md files
-```
-
----
-
-## ID Quick Reference
-
-| ID | Format | Location |
-|----|--------|----------|
-| REQ | `REQ-YYYYMMDD-###` | requirement_tracker.md |
-| BUILD | `BUILD-YYYYMMDD-HHMMSS` | build_tracker.md |
-| TEST | `TEST-YYYYMMDD-HHMMSS` | testing_tracker.md |
-| ITER | `ITER-YYYYMMDD-HHMMSS` | iterations/{ITER_ID}.md |
-| ISSUE | `ISSUE-YYYYMMDD-###` | issue_tracker.md |
-
----
-
-## Compliance Formula
-
-```
-PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
-```
-
----
-
-## Key Rules
-
-1. **One ITER file per EVT_START_BUILD** — scoped to single REQ
-2. **Iteration files are isolated** — don't pollute other REQs' context
-3. **Index files stay small** — just pointers, no details
-4. **Load on demand** — only read what's needed for current task
-5. **Archive aggressively** — move completed work out of active sections
-
----
-
-*Context is precious. Load only what you need.*
+Intent (Plain Language)
+   Rules are fixed.
+   State is logged.
+   Only one thing happens at a time.
