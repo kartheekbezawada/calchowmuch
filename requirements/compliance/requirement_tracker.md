@@ -37,6 +37,8 @@
 | REQ-20260126-008 | Days Until a Date Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-009 | Age Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-011 | Archive Completed REQ-20260126-010 Tracker Rows | Housekeeping | Archive/Cleanup | LOW | COMPLETE | NO |
+| REQ-20260126-012 | Birthday Day-of-Week Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-013 | Nap Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 

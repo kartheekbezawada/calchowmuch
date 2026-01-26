@@ -1,0 +1,53 @@
+<div id="calc-nap-time">
+  <div class="calculator-ui">
+    <p class="helper">Choose a nap type and start time to get a recommended wake-up time.</p>
+
+    <div class="input-row">
+      <label id="nap-type-label">Nap type</label>
+      <div class="button-group" role="group" aria-labelledby="nap-type-label" data-button-group="nap-type">
+        <button class="calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
+          Quick Nap (20 min)
+        </button>
+        <button class="calculator-button secondary is-active" type="button" data-value="power" aria-pressed="true">
+          Power Nap (30 min)
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="afternoon" aria-pressed="false">
+          Afternoon Nap (90 min)
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label for="nap-start-time">Nap start time</label>
+      <div class="input-with-button">
+        <input id="nap-start-time" type="time" />
+        <button class="calculator-button secondary" type="button" id="nap-use-now">Use now</button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label id="nap-buffer-label">Wake buffer</label>
+      <div class="button-group" role="group" aria-labelledby="nap-buffer-label" data-button-group="nap-buffer">
+        <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0 min</button>
+        <button class="calculator-button secondary is-active" type="button" data-value="5" aria-pressed="true">
+          5 min
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="10" aria-pressed="false">10 min</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="nap-calculate">Calculate</button>
+
+    <div class="result" id="nap-results" aria-live="polite">
+      <p class="placeholder" id="nap-placeholder">Select a nap type and start time to see your wake-up time.</p>
+      <p class="form-error is-hidden" id="nap-error"></p>
+      <div class="nap-results-list is-hidden" id="nap-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/nap-time-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/nap-time-calculator/module.js"></script>

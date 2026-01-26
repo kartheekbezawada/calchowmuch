@@ -17,6 +17,8 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260126-013 | ITER-20260126-230824 | Unit + E2E + SEO Auto | Unit (tests/core/nap-time-calculator.test.js); E2E (requirements/specs/e2e/nap-time-calculator.spec.js); SEO Auto (requirements/specs/e2e/nap-time-seo.spec.js) | 1/25 | PASS |
+| REQ-20260126-012 | ITER-20260126-225438 | Unit + E2E + SEO Auto | Unit (tests/core/birthday-day-of-week.test.js); E2E (requirements/specs/e2e/birthday-day-of-week-calculator.spec.js); SEO Auto (requirements/specs/e2e/birthday-day-of-week-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-011 | ITER-20260126-223254 | None (Archive/Cleanup) | None | 1/25 | PASS |
 | REQ-20260126-009 | ITER-20260126-210621 | Unit + E2E + SEO Auto | Unit (tests/core/age-calculator.test.js); E2E (requirements/specs/e2e/age-calculator.spec.js); SEO Auto (requirements/specs/e2e/age-calculator-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-008 | ITER-20260126-205123 | Unit + E2E + SEO Auto | Unit (tests/core/days-until-a-date-calculator.test.js); E2E (requirements/specs/e2e/days-until-a-date-calculator.spec.js); SEO Auto (requirements/specs/e2e/days-until-a-date-seo.spec.js) | 1/25 | PASS |

@@ -13,6 +13,20 @@ const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 
 const CSS_VERSION = '20260125';
 const SITE_URL = 'https://calchowmuch.com';
+const CALCULATOR_OVERRIDES = {
+  'nap-time-calculator': {
+    title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
+    description:
+      'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.',
+    h1: 'Nap Time Calculator',
+  },
+  'birthday-day-of-week': {
+    title: 'Birthday Day-of-Week Calculator – What Day Were You Born?',
+    description:
+      'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
+    h1: 'Birthday Day-of-Week Calculator',
+  },
+};
 
 function ensureLength(text, min, max) {
   let result = text.trim().replace(/\s+/g, ' ');
@@ -509,15 +523,16 @@ function main() {
           calcLookup
         );
 
+        const override = CALCULATOR_OVERRIDES[calculator.id];
         const pageHtml = buildPageHtml({
-          title: buildTitle(calculator.name),
-          description: buildDescription(calculator.name),
+          title: override?.title ?? buildTitle(calculator.name),
+          description: override?.description ?? buildDescription(calculator.name),
           canonical: buildCanonical(calculator.url),
           headerHtml,
           footerHtml,
           topNavHtml,
           leftNavHtml,
-          calculatorTitle: calculator.name,
+          calculatorTitle: override?.h1 ?? calculator.name,
           calculatorHtml,
           explanationHtml,
           includeHomeContent: false,

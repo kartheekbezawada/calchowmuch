@@ -513,6 +513,17 @@
               ]
             },
             {
+              "id": "nap-time-calculator",
+              "name": "Nap Time Calculator",
+              "url": "/time-and-date/nap-time-calculator",
+              "keywords": [
+                "nap",
+                "power nap",
+                "afternoon nap",
+                "wake time"
+              ]
+            },
+            {
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
               "url": "/time-and-date/time-between-two-dates-calculator",
@@ -543,6 +554,17 @@
                 "birthday",
                 "years months days",
                 "date of birth"
+              ]
+            },
+            {
+              "id": "birthday-day-of-week",
+              "name": "Birthday Day-of-Week",
+              "url": "/time-and-date/birthday-day-of-week",
+              "keywords": [
+                "birthday",
+                "weekday",
+                "day of week",
+                "born on"
               ]
             }
           ]

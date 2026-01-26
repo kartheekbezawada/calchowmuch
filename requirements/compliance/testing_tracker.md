@@ -9,6 +9,12 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-232028 | REQ-20260126-013 | ITER-20260126-230824 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-seo.spec.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-232020 | REQ-20260126-013 | ITER-20260126-230824 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-calculator.spec.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-232012 | REQ-20260126-013 | ITER-20260126-230824 | Unit | COMPLETE | 1/25 | tests/core/nap-time-calculator.test.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-230357 | REQ-20260126-012 | ITER-20260126-225438 | Unit | COMPLETE | 1/25 | tests/core/birthday-day-of-week.test.js | iterations/ITER-20260126-225438.md |
+| TEST-20260126-230401 | REQ-20260126-012 | ITER-20260126-225438 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/birthday-day-of-week-calculator.spec.js | iterations/ITER-20260126-225438.md |
+| TEST-20260126-230405 | REQ-20260126-012 | ITER-20260126-225438 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/birthday-day-of-week-seo.spec.js | iterations/ITER-20260126-225438.md |
 | TEST-20260126-211300 | REQ-20260126-009 | ITER-20260126-210621 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator-seo.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211230 | REQ-20260126-009 | ITER-20260126-210621 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211200 | REQ-20260126-009 | ITER-20260126-210621 | Unit | COMPLETE | 1/25 | tests/core/age-calculator.test.js | iterations/ITER-20260126-210621.md |

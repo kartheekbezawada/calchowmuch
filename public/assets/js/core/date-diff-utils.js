@@ -8,6 +8,41 @@ function isValidDate(value) {
   return value instanceof Date && !Number.isNaN(value.getTime());
 }
 
+export function isLeapYear(year) {
+  return Number.isInteger(year) && (year % 4 === 0 ? year % 100 !== 0 || year % 400 === 0 : false);
+}
+
+export function getWeekdayName(date) {
+  if (!isValidDate(date)) {
+    return null;
+  }
+  const names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  return names[date.getDay()] ?? null;
+}
+
+export function calculateBirthdayWeekdays(birthDate, targetYear) {
+  if (!isValidDate(birthDate) || !Number.isInteger(targetYear)) {
+    return null;
+  }
+
+  const birthWeekday = getWeekdayName(birthDate);
+  if (!birthWeekday) {
+    return null;
+  }
+
+  const month = birthDate.getMonth();
+  const day = birthDate.getDate();
+  const safeDay = month === 1 && day === 29 && !isLeapYear(targetYear) ? 28 : day;
+  const targetDate = new Date(targetYear, month, safeDay);
+  const targetWeekday = getWeekdayName(targetDate);
+
+  if (!targetWeekday) {
+    return null;
+  }
+
+  return { birthWeekday, targetWeekday, targetDate };
+}
+
 export function calculateCalendarDiff(start, end) {
   if (!isValidDate(start) || !isValidDate(end) || end < start) {
     return null;

@@ -1,0 +1,51 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-birthday-dow .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-birthday-dow .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-birthday-dow .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-birthday-dow #birthday-dow-results {
+  min-height: 140px;
+}
+
+#birthday-dow-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#birthday-dow-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#birthday-dow-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#birthday-dow-explanation .birthday-dow-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
