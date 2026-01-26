@@ -12,6 +12,11 @@ It governs state transitions, file loading, and enforcement.
 
 If this file conflicts with AGENTS.md, this file wins.
 
+Hard Stop:
+=====================
+If you propose loading any file outside the current FSM state scope, stop and restate the loading plan before doing work.
+
+
 Purpose
 ============================
 Ship calculator changes with:
@@ -42,6 +47,40 @@ Never load
    Iteration logs for other REQs
    Old compliance reports
    Context must stay minimal.
+
+
+Allowed Files by FSM State (Enforced)
+=====================================
+   REQ:
+   - AGENTS.md
+   - WORKFLOW.md
+   - requirement_tracker.md (active rows only)
+
+   BUILD:
+   - AGENTS.md
+   - WORKFLOW.md
+   - requirement_tracker.md (single active REQ row)
+   - build_tracker.md
+   - active ITER file
+   - affected implementation files only
+
+   TEST:
+   - All BUILD files
+   - testing_requirements.md
+   - testing_tracker.md
+   - affected test files only
+
+   SEO:
+   - All TEST files
+   - seo_requirements.md
+   - seo_tracker.md
+   - affected SEO artifacts only
+
+   COMPLIANCE:
+   - All prior state files
+   - compliance-report.md only
+
+
 
 State Definitions
 =======================
