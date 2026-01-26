@@ -1,0 +1,75 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-sleep-time .button-group {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-sleep-time .sleep-fallback {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-sleep-time .sleep-results-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#calc-sleep-time .sleep-result {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--panel-bg);
+  display: grid;
+  gap: 4px;
+}
+
+#calc-sleep-time .sleep-result.is-primary {
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.08);
+  font-weight: 600;
+}
+
+#calc-sleep-time .sleep-result .cycle-label {
+  font-size: 12px;
+  color: var(--muted-text);
+  font-weight: 500;
+}
+
+#calc-sleep-time #sleep-results {
+  min-height: 140px;
+}
+
+#sleep-time-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#sleep-time-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#sleep-time-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#sleep-time-explanation .sleep-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+@media (max-width: 720px) {
+  #calc-sleep-time .sleep-fallback {
+    grid-template-columns: 1fr;
+  }
+}

@@ -356,6 +356,25 @@
           ]
         }
       ]
+    },
+    {
+      "id": "time-and-date",
+      "name": "Time & Date",
+      "icon": "🕒",
+      "subcategories": [
+        {
+          "id": "time-and-date",
+          "name": "Time & Date",
+          "calculators": [
+            {
+              "id": "sleep-time-calculator",
+              "name": "Sleep Time Calculator",
+              "url": "#/time-and-date/sleep-time-calculator",
+              "keywords": ["sleep", "wake up", "bedtime", "sleep cycles"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
