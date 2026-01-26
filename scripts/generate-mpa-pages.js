@@ -14,6 +14,12 @@ const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 const CSS_VERSION = '20260125';
 const SITE_URL = 'https://calchowmuch.com';
 const CALCULATOR_OVERRIDES = {
+  'work-hours-calculator': {
+    title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
+    description:
+      'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.',
+    h1: 'Work Hours Calculator',
+  },
   'nap-time-calculator': {
     title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
     description:

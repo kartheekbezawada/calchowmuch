@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-233818 | REQ-20260126-014 | ITER-20260126-232505 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-seo.spec.js | iterations/ITER-20260126-232505.md |
+| TEST-20260126-233808 | REQ-20260126-014 | ITER-20260126-232505 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-calculator.spec.js | iterations/ITER-20260126-232505.md |
+| TEST-20260126-233757 | REQ-20260126-014 | ITER-20260126-232505 | Unit | COMPLETE | 1/25 | tests/core/work-hours-calculator.test.js | iterations/ITER-20260126-232505.md |
 | TEST-20260126-232028 | REQ-20260126-013 | ITER-20260126-230824 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-seo.spec.js | iterations/ITER-20260126-230824.md |
 | TEST-20260126-232020 | REQ-20260126-013 | ITER-20260126-230824 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-calculator.spec.js | iterations/ITER-20260126-230824.md |
 | TEST-20260126-232012 | REQ-20260126-013 | ITER-20260126-230824 | Unit | COMPLETE | 1/25 | tests/core/nap-time-calculator.test.js | iterations/ITER-20260126-230824.md |

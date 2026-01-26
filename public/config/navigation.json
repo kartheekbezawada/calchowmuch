@@ -524,6 +524,17 @@
               ]
             },
             {
+              "id": "work-hours-calculator",
+              "name": "Work Hours Calculator",
+              "url": "/time-and-date/work-hours-calculator",
+              "keywords": [
+                "hours worked",
+                "breaks",
+                "timesheet",
+                "shift"
+              ]
+            },
+            {
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
               "url": "/time-and-date/time-between-two-dates-calculator",

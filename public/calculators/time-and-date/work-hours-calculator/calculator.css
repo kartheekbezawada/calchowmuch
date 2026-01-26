@@ -1,0 +1,110 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-work-hours .work-hours-section {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-work-hours .work-hours-section.is-collapsed {
+  display: none;
+}
+
+#calc-work-hours .segment-block,
+#calc-work-hours .weekly-day {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  background: var(--panel-bg);
+}
+
+#calc-work-hours .segment-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted-text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-work-hours .weekly-day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#calc-work-hours .weekly-day-name {
+  font-weight: 600;
+}
+
+#calc-work-hours .checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted-text);
+}
+
+#calc-work-hours .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-work-hours .work-hours-results-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#calc-work-hours .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-work-hours .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-work-hours .result-line {
+  font-size: 14px;
+  color: var(--text-color);
+  padding-left: 4px;
+}
+
+#calc-work-hours #work-hours-results {
+  min-height: 180px;
+}
+
+#work-hours-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#work-hours-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#work-hours-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#work-hours-explanation .work-hours-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
