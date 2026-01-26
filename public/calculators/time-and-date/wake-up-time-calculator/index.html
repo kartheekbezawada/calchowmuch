@@ -1,0 +1,56 @@
+<div id="calc-wake-up">
+  <div class="calculator-ui">
+    <p class="helper">Calculate ideal wake-up times using 90-minute sleep cycles.</p>
+
+    <div class="input-row">
+      <label id="wake-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="wake-mode-label"
+        data-button-group="wake-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="sleep" aria-pressed="true">
+          I plan to fall asleep at...
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="bed" aria-pressed="false">
+          I plan to go to bed at...
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row" id="wake-datetime-row">
+      <label for="wake-datetime">Date &amp; Time</label>
+      <input id="wake-datetime" type="datetime-local" step="900" />
+    </div>
+
+    <div class="wake-fallback is-hidden" id="wake-fallback">
+      <div class="input-row">
+        <label for="wake-date">Date</label>
+        <input id="wake-date" type="date" />
+      </div>
+      <div class="input-row">
+        <label for="wake-time">Time</label>
+        <input id="wake-time" type="time" step="900" />
+      </div>
+    </div>
+
+    <div class="input-row wake-latency is-collapsed" id="wake-latency-row" aria-hidden="true">
+      <label for="wake-latency">Fall-asleep latency (minutes) (optional)</label>
+      <input id="wake-latency" type="number" min="0" step="1" inputmode="numeric" />
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="wake-calculate">Calculate</button>
+
+    <div class="result" id="wake-results" aria-live="polite">
+      <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>
+      <div class="wake-results-list is-hidden" id="wake-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/wake-up-time-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/wake-up-time-calculator/module.js"></script>

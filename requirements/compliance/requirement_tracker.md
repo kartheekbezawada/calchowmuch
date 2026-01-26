@@ -32,6 +32,7 @@
 | REQ-20260126-003 | Remortgage Calc: Input Reflow for 1366x768 Viewport | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260126-004 | Revert REQ-20260126-003 Implementation | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260126-005 | Sleep Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-006 | Wake-Up Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 
