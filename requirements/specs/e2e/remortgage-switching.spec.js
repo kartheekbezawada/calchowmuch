@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Remortgage / Switching', () => {
   test('ISS-REMORT: outputs owned by explanation pane', async ({ page }) => {
-    await page.goto('/#/calculators/remortgage-switching');
+    await page.goto('/loans/remortgage-switching');
 
     const calcPane = page.locator('.center-column .panel').first();
     const explanationPane = page.locator('.center-column .panel').last();

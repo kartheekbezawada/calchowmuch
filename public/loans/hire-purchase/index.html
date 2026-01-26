@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hire Purchase Calculator | Calculate How Much Online Calc...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Hire Purchase Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/hire-purchase/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/car-loan">Car Loan Calculator</a><a class="nav-item" href="/loans/multiple-car-loan">Multiple Car Loan Calculator</a><a class="nav-item is-active" href="/loans/hire-purchase">Hire Purchase Calculator</a><a class="nav-item" href="/loans/pcp-calculator">PCP Calculator</a><a class="nav-item" href="/loans/leasing-calculator">Leasing Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Hire Purchase Calculator</h1>
+  <div id="calc-hire-purchase">
+  <div class="calculator-ui">
+    <p class="helper">Estimate hire purchase payments with an optional final balloon payment.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="hp-price">Vehicle Price</label>
+        <input id="hp-price" type="number" value="24000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-deposit">Deposit</label>
+        <input id="hp-deposit" type="number" value="2000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-apr">APR (%)</label>
+        <input id="hp-apr" type="number" value="6.2" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-term">Term (months)</label>
+        <input id="hp-term" type="number" value="48" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="hp-balloon">Final Balloon (optional)</label>
+        <input id="hp-balloon" type="number" value="0" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="hp-calc">
+      Calculate Hire Purchase
+    </button>
+
+    <div class="result" id="hp-result" aria-live="polite"></div>
+    <div class="result-detail" id="hp-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="hp-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="hp-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="hp-y-max"></span>
+          <span id="hp-y-mid"></span>
+          <span id="hp-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="hp-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="hp-x-start"></span>
+            <span id="hp-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/hire-purchase/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="hp-explanation">
+  <h4>Hire Purchase Summary</h4>
+  <p>
+    Financing <span data-hp="financed"></span> after a deposit of <span data-hp="deposit"></span> at
+    <span data-hp="apr"></span> APR results in a monthly payment of <span data-hp="payment"></span>.
+  </p>
+  <p>
+    The final balloon payment is <span data-hp="balloon"></span>, with total interest of
+    <span data-hp="interest"></span> and total payable of <span data-hp="total"></span>.
+  </p>
+  <p>Balloon payments reduce monthly costs but leave a larger final balance.</p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="hp-table-wrap" tabindex="0">
+      <table class="calculator-table" id="hp-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="hp-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

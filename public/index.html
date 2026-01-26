@@ -2,759 +2,165 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Calculate How Much</title>
+    <title>Calculate How Much | Free Online Calculators - Free Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Layout shell for calchowmuch.com" />
-    <link rel="stylesheet" href="assets/css/base.css?v=20260125" />
-    <link rel="stylesheet" href="assets/css/layout.css?v=20260125" />
-    <link rel="stylesheet" href="assets/css/calculator.css?v=20260125" />
+    <meta name="description" content="Browse free online calculators for math, finance, and time. Calculate How Much offers clear inputs, helpful explanations, and fast results to support everyda..." />
+    <link rel="canonical" href="https://calchowmuch.com/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
   </head>
   <body>
     <div class="page">
       <header class="site-header">
-        <span>Calculate How Much</span>
-      </header>
+  <span>Calculate How Much</span>
+</header>
 
-      <nav class="top-nav" aria-label="Category navigation" id="top-nav" data-testid="top-nav"></nav>
-
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"></div>
+          <div id="left-nav-content"><div class="nav-group" data-id="math">
+<div class="nav-category" data-id="simple">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Simple</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/basic">Basic Calculator</a><a class="nav-item" href="/math/percentage-increase">Percentage Calculator</a><a class="nav-item" href="/math/fraction-calculator">Fraction Calculator</a>
+  </div>
+</div>
+<div class="nav-category" data-id="algebra">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Algebra</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/algebra/quadratic-equation">Quadratic Equation Solver</a><a class="nav-item" href="/math/algebra/system-of-equations">System of Linear Equations</a><a class="nav-item" href="/math/algebra/polynomial-operations">Polynomial Operations</a><a class="nav-item" href="/math/algebra/factoring">Factoring Calculator</a><a class="nav-item" href="/math/algebra/slope-distance">Slope & Distance Calculator</a>
+  </div>
+</div>
+<div class="nav-category" data-id="trigonometry">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Trigonometry</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/trigonometry/unit-circle">Unit Circle Calculator</a><a class="nav-item" href="/math/trigonometry/triangle-solver">Triangle Solver</a><a class="nav-item" href="/math/trigonometry/trig-functions">Trigonometric Functions</a><a class="nav-item" href="/math/trigonometry/inverse-trig">Inverse Trig Functions</a><a class="nav-item" href="/math/trigonometry/law-of-sines-cosines">Law of Sines/Cosines Calculator</a>
+  </div>
+</div>
+<div class="nav-category" data-id="calculus">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Calculus</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/calculus/derivative">Derivative Calculator</a><a class="nav-item" href="/math/calculus/integral">Integral Calculator</a><a class="nav-item" href="/math/calculus/limit">Limit Calculator</a><a class="nav-item" href="/math/calculus/series-convergence">Series Convergence Calculator</a><a class="nav-item" href="/math/calculus/critical-points">Critical Points Finder</a>
+  </div>
+</div>
+<div class="nav-category" data-id="log">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Log</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/log/natural-log">Natural Log Calculator</a><a class="nav-item" href="/math/log/common-log">Common Log Calculator</a><a class="nav-item" href="/math/log/log-properties">Logarithm Properties</a><a class="nav-item" href="/math/log/exponential-equations">Exponential Equations Solver</a><a class="nav-item" href="/math/log/log-scale">Log Scale Converter</a>
+  </div>
+</div>
+<div class="nav-category" data-id="statistics">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Statistics</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/math/mean-median-mode-range">Mean Median Mode Range Calculator</a><a class="nav-item" href="/math/standard-deviation">Standard Deviation Calculator</a><a class="nav-item" href="/math/statistics">Statistics Calculator</a><a class="nav-item" href="/math/confidence-interval">Confidence Interval Calculator</a><a class="nav-item" href="/math/z-score">Z-Score Calculator</a><a class="nav-item" href="/math/sample-size">Sample Size Calculator</a><a class="nav-item" href="/math/number-sequence">Number Sequence Calculator</a><a class="nav-item" href="/math/permutation-combination">Permutation & Combination Calculator</a><a class="nav-item" href="/math/probability">Probability Calculator</a><a class="nav-item" href="/math/statistics/regression-analysis">Regression Analysis</a><a class="nav-item" href="/math/statistics/anova">ANOVA Calculator</a><a class="nav-item" href="/math/statistics/hypothesis-testing">Hypothesis Testing</a><a class="nav-item" href="/math/statistics/correlation">Correlation Calculator</a><a class="nav-item" href="/math/statistics/distribution">Distribution Calculator</a>
+  </div>
+</div></div><div class="nav-group" data-id="loans">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div>
+<div class="nav-category" data-id="credit-cards">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Credit Cards</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/credit-card-repayment-payoff">Repayment / Payoff Calculator</a><a class="nav-item" href="/loans/credit-card-minimum-payment">Minimum Payment Calculator</a><a class="nav-item" href="/loans/balance-transfer-installment-plan">Balance Transfer / Installment Plan Calculator</a><a class="nav-item" href="/loans/credit-card-consolidation">Credit Card Consolidation Calculator</a>
+  </div>
+</div>
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/car-loan">Car Loan Calculator</a><a class="nav-item" href="/loans/multiple-car-loan">Multiple Car Loan Calculator</a><a class="nav-item" href="/loans/hire-purchase">Hire Purchase Calculator</a><a class="nav-item" href="/loans/pcp-calculator">PCP Calculator</a><a class="nav-item" href="/loans/leasing-calculator">Leasing Calculator</a>
+  </div>
+</div></div><div class="nav-group" data-id="time-and-date">
+<div class="nav-category" data-id="time-and-date">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time & Date</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a>
+  </div>
+</div></div></div>
         </aside>
-
         <section class="center-column">
           <div class="panel panel-scroll">
-            <h3 id="calculator-title">Main Calculation Pane</h3>
-            <p class="placeholder" id="calculator-placeholder">
-              Select a calculator from the navigation list.
-            </p>
-          </div>
-          <div class="panel panel-scroll">
-            <h3>Explanation Pane</h3>
-            <p class="placeholder" id="explanation-placeholder">
-              Explanation content will appear here once you choose a calculator.
-            </p>
-          </div>
+  <h1 id="home-overview-title">Calculate How Much</h1>
+  <p class="placeholder" id="home-overview-intro">
+    Explore calculators by category using the top navigation. This page is a guide to
+    help you discover the right tool, not a calculator itself.
+  </p>
+  <div class="home-overview-links">
+    <p class="helper">Popular starting points:</p>
+    <ul>
+      <li><a href="/calculators/">Browse all calculators</a></li>
+      <li><a href="/loans/home-loan">Home Loan Calculator</a></li>
+      <li><a href="/loans/car-loan">Car Loan Calculator</a></li>
+      <li><a href="/math/percentage-increase">Percentage Calculator</a></li>
+      <li><a href="/math/basic">Basic Calculator</a></li>
+    </ul>
+  </div>
+</div>
+<div class="panel panel-scroll">
+  <h3 id="home-guidance-title">How to choose a calculator</h3>
+  <p class="placeholder" id="home-guidance-intro">
+    Calculate How Much provides fast, focused tools for common finance and math
+    questions. Start with a category in the top navigation, then pick the calculator
+    that matches your scenario.
+  </p>
+  <p class="placeholder" id="home-guidance-trust">
+    Results are estimates for planning purposes only. Always verify details with your
+    lender, advisor, or official documentation.
+  </p>
+</div>
         </section>
-
         <section class="ads-column" aria-label="Ad placeholders">
           <div class="ad-panel">Ad Pane</div>
         </section>
       </main>
-
       <footer class="site-footer">
-        <a href="#">Privacy</a>
-        <span class="footer-divider">|</span>
-        <a href="#">Terms &amp; Conditions</a>
-        <span class="footer-divider">|</span>
-        <a href="#">Contact</a>
-        <span class="footer-divider">|</span>
-        <a href="#">FAQs</a>
-        <span class="footer-divider">|</span>
-        <a href="/sitemap/">Sitemap</a>
-        <span class="footer-divider">|</span>
-        <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
-      </footer>
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
     </div>
-    <script type="module" src="assets/js/core/ui.js"></script>
-    <script type="module">
-      import { resetPageMetadata } from './assets/js/core/ui.js';
-      const state = {
-        navigation: null,
-        activeCategoryId: null,
-        activeSubcategoryId: null,
-        activeCalculatorId: null,
-        navSearchQuery: {},
-        navCollapsed: {},
-      };
-
-      function findCalculatorById(id) {
-        if (!state.navigation) {
-          return null;
-        }
-
-        for (const category of state.navigation.categories) {
-          for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find((calc) => calc.id === id);
-            if (calculator) {
-              return { category, subcategory, calculator };
-            }
-          }
-        }
-
-        return null;
-      }
-
-      function findCalculatorByUrl(path) {
-        if (!state.navigation) {
-          return null;
-        }
-
-        for (const category of state.navigation.categories) {
-          for (const subcategory of category.subcategories) {
-            const calculator = subcategory.calculators.find((calc) => calc.url === path);
-            if (calculator) {
-              return { category, subcategory, calculator };
-            }
-          }
-        }
-
-        return null;
-      }
-
-      function getCalculatorFromLocation() {
-        const hashPath = window.location.hash || '';
-        if (hashPath) {
-          const match = findCalculatorByUrl(hashPath);
-          if (match) {
-            return match;
-          }
-        }
-
-        const queryParams = new URLSearchParams(window.location.search);
-        const calculatorId = queryParams.get('calculator');
-        if (calculatorId) {
-          const match = findCalculatorById(calculatorId);
-          if (match) {
-            return match;
-          }
-        }
-
-        return null;
-      }
-
-      function normalizeSearch(value) {
-        return (value ?? '').trim().toLowerCase();
-      }
-
-      function getSearchText(calculator) {
-        if (!calculator) {
-          return '';
-        }
-        const name = calculator.name ?? '';
-        const keywords = Array.isArray(calculator.keywords)
-          ? calculator.keywords.join(' ')
-          : (calculator.keywords ?? '');
-        return `${name} ${keywords}`.trim().toLowerCase();
-      }
-
-      function getCollapsedMap(categoryId) {
-        if (!state.navCollapsed[categoryId]) {
-          state.navCollapsed[categoryId] = {};
-        }
-        return state.navCollapsed[categoryId];
-      }
-
-      function applySearchFilter(container, query) {
-        const normalizedQuery = normalizeSearch(query);
-        const hasQuery = normalizedQuery.length > 0;
-        container.classList.toggle('is-searching', hasQuery);
-
-        const categories = Array.from(container.querySelectorAll('.nav-category'));
-        categories.forEach((category) => {
-          const items = Array.from(category.querySelectorAll('.nav-item'));
-          let matches = 0;
-
-          items.forEach((item) => {
-            const text = item.dataset.search ?? '';
-            const isMatch = !hasQuery || text.includes(normalizedQuery);
-            item.hidden = hasQuery && !isMatch;
-            if (isMatch) {
-              matches += 1;
-            }
-          });
-
-          if (!hasQuery) {
-            category.hidden = false;
-            category.classList.remove('is-search-open');
-            return;
-          }
-
-          category.hidden = matches === 0;
-          category.classList.toggle('is-search-open', matches > 0);
-        });
-      }
-
-      // Track current module script for cleanup
-      let currentModuleScript = null;
-
-      function getCalculatorPath(calculatorId) {
-        // Map calculator IDs to folder paths
-        const pathMap = {
-          basic: '/calculators/math/basic',
-          'percentage-calculator': '/calculators/math/percentage-calculator',
-          'percentage-increase': '/calculators/math/percentage-increase',
-          'fraction-calculator': '/calculators/math/fraction-calculator',
-          'quadratic-equation': '/calculators/math/algebra/quadratic-equation',
-          'system-of-equations': '/calculators/math/algebra/system-of-equations',
-          'polynomial-operations': '/calculators/math/algebra/polynomial-operations',
-          factoring: '/calculators/math/algebra/factoring',
-          'slope-distance': '/calculators/math/algebra/slope-distance',
-          'unit-circle': '/calculators/math/trigonometry/unit-circle',
-          'triangle-solver': '/calculators/math/trigonometry/triangle-solver',
-          'trig-functions': '/calculators/math/trigonometry/trig-functions',
-          'inverse-trig': '/calculators/math/trigonometry/inverse-trig',
-          'law-of-sines-cosines': '/calculators/math/trigonometry/law-of-sines-cosines',
-          'derivative': '/calculators/math/calculus/derivative',
-          'integral': '/calculators/math/calculus/integral',
-          'limit': '/calculators/math/calculus/limit',
-          'series-convergence': '/calculators/math/calculus/series-convergence',
-          'critical-points': '/calculators/math/calculus/critical-points',
-          'natural-log': '/calculators/math/log/natural-log',
-          'common-log': '/calculators/math/log/common-log',
-          'log-properties': '/calculators/math/log/log-properties',
-          'exponential-equations': '/calculators/math/log/exponential-equations',
-          'log-scale': '/calculators/math/log/log-scale',
-          'standard-deviation': '/calculators/math/standard-deviation',
-          'number-sequence': '/calculators/math/number-sequence',
-          'sample-size': '/calculators/math/sample-size',
-          probability: '/calculators/math/probability',
-          statistics: '/calculators/math/statistics',
-          'mean-median-mode-range': '/calculators/math/mean-median-mode-range',
-          'permutation-combination': '/calculators/math/permutation-combination',
-          'z-score': '/calculators/math/z-score',
-          'confidence-interval': '/calculators/math/confidence-interval',
-          'loan-emi': '/calculators/loans/loan-emi',
-          'home-loan': '/calculators/loans/home-loan',
-          'how-much-can-borrow': '/calculators/loans/how-much-can-borrow',
-          'remortgage-switching': '/calculators/loans/remortgage-switching',
-          'buy-to-let': '/calculators/loans/buy-to-let',
-          'overpayment-additional-payment': '/calculators/loans/overpayment-additional-payment',
-          'offset-calculator': '/calculators/loans/offset-calculator',
-          'interest-rate-change-calculator': '/calculators/loans/interest-rate-change-calculator',
-          'loan-to-value': '/calculators/loans/loan-to-value',
-          'credit-card-repayment-payoff': '/calculators/loans/credit-card-repayment-payoff',
-          'credit-card-minimum-payment': '/calculators/loans/credit-card-minimum-payment',
-          'balance-transfer-installment-plan':
-            '/calculators/loans/balance-transfer-installment-plan',
-          'credit-card-consolidation': '/calculators/loans/credit-card-consolidation',
-          'car-loan': '/calculators/loans/car-loan',
-          'multiple-car-loan': '/calculators/loans/multiple-car-loan',
-          'hire-purchase': '/calculators/loans/hire-purchase',
-          'pcp-calculator': '/calculators/loans/pcp-calculator',
-          'leasing-calculator': '/calculators/loans/leasing-calculator',
-          'sleep-time-calculator': '/calculators/time-and-date/sleep-time-calculator',
-          'wake-up-time-calculator': '/calculators/time-and-date/wake-up-time-calculator',
-        };
-        return pathMap[calculatorId] || null;
-      }
-
-      async function loadCalculatorContent(calculator) {
-        const calculatorPane = document.querySelector('.center-column .panel:first-child');
-        const explanationPane = document.querySelector('.center-column .panel:last-child');
-
-        if (!calculator) {
-          resetPageMetadata();
-          calculatorPane.innerHTML = `
-            <h3 id="home-overview-title">Home Overview</h3>
-            <p class="placeholder" id="home-overview-intro">
-              Explore calculators by category using the top navigation. This page is a guide to
-              help you discover the right tool, not a calculator itself.
-            </p>
-            <div class="home-overview-links">
-              <p class="helper">Popular starting points:</p>
-              <ul>
-                <li><a href="/calculators/">Browse all calculators</a></li>
-                <li><a href="/#/calculators/loans/home-loan">Home Loan Calculator</a></li>
-                <li><a href="/#/calculators/loans/car-loan">Car Loan Calculator</a></li>
-                <li><a href="/#/calculators/math/percentage-increase">Percentage Calculator</a></li>
-                <li><a href="/#/calculators/math/basic">Basic Calculator</a></li>
-              </ul>
-            </div>
-          `;
-          explanationPane.innerHTML = `
-            <h3 id="home-guidance-title">How to choose a calculator</h3>
-            <p class="placeholder" id="home-guidance-intro">
-              Calculate How Much provides fast, focused tools for common finance and math
-              questions. Start with a category in the top navigation, then pick the calculator
-              that matches your scenario.
-            </p>
-            <p class="placeholder" id="home-guidance-trust">
-              Results are estimates for planning purposes only. Always verify details with your
-              lender, advisor, or official documentation.
-            </p>
-          `;
-          return;
-        }
-
-        resetPageMetadata();
-        const basePath = getCalculatorPath(calculator.id);
-        if (!basePath) {
-          resetPageMetadata();
-          calculatorPane.innerHTML = `
-            <h3 id="calculator-title">Error</h3>
-            <p style="color: #dc2626;">Calculator not found. Please try another calculator.</p>
-          `;
-          return;
-        }
-
-        try {
-          // Cleanup previous module script
-          if (currentModuleScript) {
-            currentModuleScript.remove();
-            currentModuleScript = null;
-          }
-
-          // Load calculator HTML fragment
-          const cacheBuster = `t=${Date.now()}`;
-          const calculatorResponse = await fetch(`${basePath}/index.html?${cacheBuster}`);
-          if (!calculatorResponse.ok) {
-            throw new Error(`Failed to load calculator: ${calculatorResponse.status}`);
-          }
-          const calculatorHTML = await calculatorResponse.text();
-
-          // Load explanation HTML fragment
-          const explanationResponse = await fetch(`${basePath}/explanation.html?${cacheBuster}`);
-          if (!explanationResponse.ok) {
-            throw new Error(`Failed to load explanation: ${explanationResponse.status}`);
-          }
-          const explanationHTML = await explanationResponse.text();
-
-          // Update title and inject calculator HTML
-          calculatorPane.innerHTML =
-            `<h3 id="calculator-title">${calculator.name}</h3>` + calculatorHTML;
-
-          // Inject explanation HTML
-          explanationPane.innerHTML = `<h3>Explanation</h3>` + explanationHTML;
-
-          // Load and execute module.js
-          const moduleScript = document.createElement('script');
-          moduleScript.type = 'module';
-          moduleScript.src = `${basePath}/module.js?t=${Date.now()}`; // Cache bust
-          document.body.appendChild(moduleScript);
-          currentModuleScript = moduleScript;
-        } catch (error) {
-          resetPageMetadata();
-          calculatorPane.innerHTML = `
-            <h3 id="calculator-title">Error</h3>
-            <p style="color: #dc2626;">Failed to load calculator. Please try again.</p>
-          `;
-        }
-      }
-
-      function updateUrl(calculator) {
-        if (!calculator || !calculator.url) {
-          return;
-        }
-
-        if (calculator.url.startsWith('#')) {
-          const nextUrl = new URL(window.location.href);
-          nextUrl.hash = calculator.url;
-          history.pushState({ calculatorId: calculator.id }, '', nextUrl);
-          return;
-        }
-
-        const nextUrl = new URL(window.location.href);
-        nextUrl.searchParams.set('calculator', calculator.id);
-        history.pushState({ calculatorId: calculator.id }, '', nextUrl);
-      }
-
-      async function setActiveCalculator(calculator, options = {}) {
-        state.activeCalculatorId = calculator?.id ?? null;
-        await loadCalculatorContent(calculator);
-        highlightActiveCalculator();
-
-        if (!options.skipUrlUpdate && calculator) {
-          updateUrl(calculator);
-        }
-      }
-
-      function highlightActiveCalculator() {
-        const items = document.querySelectorAll('.nav-item, .math-nav-item');
-        items.forEach((item) => {
-          item.classList.toggle('is-active', item.dataset.id === state.activeCalculatorId);
-        });
-      }
-
-      // Math Navigation Icons (Lucide-style SVGs)
-      const mathNavIcons = {
-        simple: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>`,
-        algebra: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
-        trigonometry: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
-        calculus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-        log: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
-        statistics: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
-        chevronDown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`,
-        chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
-      };
-
-      function renderMathNav(container, category) {
-        const collapsedMap = getCollapsedMap(category.id);
-        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
-
-        // Ensure the active calculator's subcategory is expanded
-        if (selectedCalculator && selectedCalculator.category.id === category.id) {
-          collapsedMap[selectedCalculator.subcategory.id] = false;
-        }
-
-        // Default: expand 'simple' if nothing else is set
-        const hasAnyExpanded = category.subcategories.some(sub => collapsedMap[sub.id] === false);
-        if (!hasAnyExpanded && collapsedMap['simple'] === undefined) {
-          collapsedMap['simple'] = false;
-        }
-
-        const navContainer = document.createElement('div');
-        navContainer.className = 'math-nav-container';
-
-        category.subcategories.forEach((subcategory) => {
-          const isCollapsed = collapsedMap[subcategory.id] !== false;
-
-          const categoryWrap = document.createElement('div');
-          categoryWrap.className = 'math-nav-category';
-          categoryWrap.dataset.id = subcategory.id;
-          if (isCollapsed) {
-            categoryWrap.classList.add('is-collapsed');
-          }
-
-          // Toggle button
-          const toggle = document.createElement('button');
-          toggle.type = 'button';
-          toggle.className = 'math-nav-category-toggle';
-          toggle.setAttribute('aria-expanded', String(!isCollapsed));
-
-          // Left side: icon + name
-          const leftSide = document.createElement('span');
-          leftSide.className = 'math-nav-category-left';
-
-          const iconSpan = document.createElement('span');
-          iconSpan.className = 'math-nav-category-icon';
-          iconSpan.innerHTML = mathNavIcons[subcategory.id] || mathNavIcons.simple;
-
-          const nameSpan = document.createElement('span');
-          nameSpan.className = 'math-nav-category-name';
-          nameSpan.textContent = subcategory.name.toUpperCase();
-
-          leftSide.append(iconSpan, nameSpan);
-
-          // Right side: chevron
-          const chevronSpan = document.createElement('span');
-          chevronSpan.className = 'math-nav-category-chevron';
-          chevronSpan.innerHTML = isCollapsed ? mathNavIcons.chevronRight : mathNavIcons.chevronDown;
-
-          toggle.append(leftSide, chevronSpan);
-
-          toggle.addEventListener('click', () => {
-            const nextCollapsed = !categoryWrap.classList.contains('is-collapsed');
-            categoryWrap.classList.toggle('is-collapsed', nextCollapsed);
-            collapsedMap[subcategory.id] = nextCollapsed;
-            chevronSpan.innerHTML = nextCollapsed ? mathNavIcons.chevronRight : mathNavIcons.chevronDown;
-            toggle.setAttribute('aria-expanded', String(!nextCollapsed));
-          });
-
-          // Items container
-          const items = document.createElement('div');
-          items.className = 'math-nav-category-items';
-
-          subcategory.calculators.forEach((calculator) => {
-            const item = document.createElement('button');
-            item.type = 'button';
-            item.className = 'math-nav-item';
-            item.textContent = calculator.name;
-            item.dataset.id = calculator.id;
-
-            if (calculator.id === state.activeCalculatorId) {
-              item.classList.add('is-active');
-            }
-
-            item.addEventListener('click', () => {
-              setActiveCalculator(calculator);
-            });
-            items.appendChild(item);
-          });
-
-          categoryWrap.append(toggle, items);
-          navContainer.appendChild(categoryWrap);
-        });
-
-        container.appendChild(navContainer);
-      }
-
-      function getFlattenedNavItems() {
-        if (!state.navigation) {
-          return [];
-        }
-
-        const items = [];
-
-        state.navigation.categories.forEach((category) => {
-          if (category.id === 'loans') {
-            category.subcategories.forEach((subcategory) => {
-              items.push({
-                id: `${category.id}:${subcategory.id}`,
-                categoryId: category.id,
-                subcategoryId: subcategory.id,
-                name: subcategory.name === 'Home' ? 'Home Loan' : subcategory.name,
-                subcategory: subcategory,
-              });
-            });
-          } else {
-            items.push({
-              id: category.id,
-              categoryId: category.id,
-              subcategoryId: null,
-              name: category.name,
-              category: category,
-            });
-          }
-        });
-
-        return items;
-      }
-
-      function getCurrentNavItemId() {
-        if (state.activeSubcategoryId) {
-          return `${state.activeCategoryId}:${state.activeSubcategoryId}`;
-        }
-        return state.activeCategoryId;
-      }
-
-      function renderTopNav() {
-        const topNav = document.getElementById('top-nav');
-        topNav.innerHTML = '';
-
-        const navItems = getFlattenedNavItems();
-        const currentId = getCurrentNavItemId();
-
-        navItems.forEach((item) => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          const label = document.createElement('span');
-          label.className = 'nav-label';
-          label.textContent = item.name;
-          if (item.category && item.category.icon) {
-            const icon = document.createElement('span');
-            icon.className = 'nav-icon';
-            icon.setAttribute('aria-hidden', 'true');
-            icon.textContent = item.category.icon;
-            button.append(icon, label);
-          } else {
-            button.append(label);
-          }
-          button.classList.toggle('is-active', item.id === currentId);
-          button.setAttribute('data-testid', 'top-nav-btn');
-          button.setAttribute('data-nav-id', item.id.replace('loans:', ''));
-          button.addEventListener('click', () => {
-            if (item.id === currentId) {
-              return;
-            }
-            state.activeCategoryId = item.categoryId;
-            state.activeSubcategoryId = item.subcategoryId;
-            renderTopNav();
-            renderLeftNav();
-          });
-          topNav.appendChild(button);
-        });
-      }
-
-      function renderLeftNav() {
-        const leftNav = document.querySelector('.left-nav');
-        const container = document.getElementById('left-nav-content');
-        container.innerHTML = '';
-
-        if (!state.activeCategoryId) {
-          const neutralMessage = document.createElement('p');
-          neutralMessage.className = 'placeholder';
-          neutralMessage.textContent =
-            'Choose a category from the top navigation to see calculators.';
-          container.appendChild(neutralMessage);
-          return;
-        }
-
-        const category = state.navigation.categories.find(
-          (item) => item.id === state.activeCategoryId
-        );
-        if (!category) {
-          return;
-        }
-
-        // Use special Math navigation for math category
-        if (category.id === 'math') {
-          renderMathNav(container, category);
-
-          const selected = findCalculatorById(state.activeCalculatorId);
-          const needsNewCalculator = !selected || selected.category.id !== category.id;
-
-          if (needsNewCalculator) {
-            const firstCalculator = category.subcategories
-              .map((subcategory) => subcategory.calculators[0])
-              .find(Boolean);
-
-            if (firstCalculator) {
-              setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
-            } else {
-              setActiveCalculator(null, { skipUrlUpdate: true });
-            }
-          }
-
-          highlightActiveCalculator();
-          leftNav.scrollTop = 0;
-          return;
-        }
-
-        let subcategoriesToRender = category.subcategories;
-
-        if (state.activeSubcategoryId) {
-          const activeSubcategory = category.subcategories.find(
-            (sub) => sub.id === state.activeSubcategoryId
-          );
-          if (activeSubcategory) {
-            subcategoriesToRender = [activeSubcategory];
-          }
-        }
-
-        const collapsedMapKey = state.activeSubcategoryId || category.id;
-        const collapsedMap = getCollapsedMap(collapsedMapKey);
-        const selectedCalculator = findCalculatorById(state.activeCalculatorId);
-        if (selectedCalculator && selectedCalculator.category.id === category.id) {
-          collapsedMap[selectedCalculator.subcategory.id] = false;
-        }
-
-        subcategoriesToRender.forEach((subcategory) => {
-          const categoryWrap = document.createElement('div');
-          categoryWrap.className = 'nav-category';
-          categoryWrap.dataset.id = subcategory.id;
-
-          const isCollapsed = collapsedMap[subcategory.id] === true;
-          categoryWrap.classList.toggle('is-collapsed', isCollapsed);
-
-          const toggle = document.createElement('button');
-          toggle.type = 'button';
-          toggle.className = 'nav-category-toggle';
-          toggle.setAttribute('aria-expanded', String(!isCollapsed));
-
-          const label = document.createElement('span');
-          label.className = 'nav-category-label';
-          label.textContent = subcategory.name;
-
-          const indicator = document.createElement('span');
-          indicator.className = 'nav-category-indicator';
-          indicator.textContent = isCollapsed ? '+' : '-';
-
-          toggle.append(label, indicator);
-          toggle.addEventListener('click', () => {
-            const nextCollapsed = !categoryWrap.classList.contains('is-collapsed');
-            categoryWrap.classList.toggle('is-collapsed', nextCollapsed);
-            collapsedMap[subcategory.id] = nextCollapsed;
-            indicator.textContent = nextCollapsed ? '+' : '-';
-            toggle.setAttribute('aria-expanded', String(!nextCollapsed));
-          });
-
-          const items = document.createElement('div');
-          items.className = 'nav-category-items';
-
-          subcategory.calculators.forEach((calculator) => {
-            const item = document.createElement('button');
-            item.type = 'button';
-            item.className = 'nav-item';
-            item.textContent = calculator.name;
-            item.dataset.id = calculator.id;
-
-            const searchText = getSearchText(calculator);
-            if (searchText) {
-              item.dataset.search = searchText;
-            }
-
-            item.addEventListener('click', () => {
-              setActiveCalculator(calculator);
-            });
-            items.appendChild(item);
-          });
-
-          categoryWrap.append(toggle, items);
-          container.appendChild(categoryWrap);
-        });
-
-        const selected = findCalculatorById(state.activeCalculatorId);
-        const needsNewCalculator =
-          !selected ||
-          selected.category.id !== category.id ||
-          (state.activeSubcategoryId && selected.subcategory.id !== state.activeSubcategoryId);
-
-        if (needsNewCalculator) {
-          const firstCalculator = subcategoriesToRender
-            .map((subcategory) => subcategory.calculators[0])
-            .find(Boolean);
-
-          if (firstCalculator) {
-            setActiveCalculator(firstCalculator, { skipUrlUpdate: true });
-          } else {
-            setActiveCalculator(null, { skipUrlUpdate: true });
-          }
-        }
-
-        highlightActiveCalculator();
-
-        leftNav.scrollTop = 0;
-      }
-
-      function handleNavigationChange() {
-        const match = getCalculatorFromLocation();
-        if (!match) {
-          state.activeCategoryId = null;
-          state.activeSubcategoryId = null;
-          state.activeCalculatorId = null;
-          renderTopNav();
-          renderLeftNav();
-          loadCalculatorContent(null);
-          return;
-        }
-
-        const nextCategoryId = match.category.id;
-        const nextSubcategoryId = nextCategoryId === 'loans' ? match.subcategory.id : null;
-        const nextCalculatorId = match.calculator.id;
-        const categoryChanged = nextCategoryId !== state.activeCategoryId;
-        const subcategoryChanged = nextSubcategoryId !== state.activeSubcategoryId;
-        const calculatorChanged = nextCalculatorId !== state.activeCalculatorId;
-
-        if (!categoryChanged && !subcategoryChanged && !calculatorChanged) {
-          return;
-        }
-
-        state.activeCategoryId = nextCategoryId;
-        state.activeSubcategoryId = nextSubcategoryId;
-        state.activeCalculatorId = nextCalculatorId;
-
-        if (categoryChanged || subcategoryChanged) {
-          renderTopNav();
-          renderLeftNav();
-        }
-
-        setActiveCalculator(match.calculator, { skipUrlUpdate: true });
-      }
-
-      async function initializeNavigation() {
-        try {
-          const response = await fetch('config/navigation.json');
-          state.navigation = await response.json();
-
-          const initialMatch = getCalculatorFromLocation();
-          if (initialMatch) {
-            state.activeCategoryId = initialMatch.category.id;
-            state.activeSubcategoryId =
-              initialMatch.category.id === 'loans' ? initialMatch.subcategory.id : null;
-            state.activeCalculatorId = initialMatch.calculator.id;
-          } else {
-            state.activeCategoryId = null;
-            state.activeSubcategoryId = null;
-            state.activeCalculatorId = null;
-          }
-
-          renderTopNav();
-          renderLeftNav();
-
-          if (initialMatch) {
-            setActiveCalculator(initialMatch.calculator, { skipUrlUpdate: true });
-          } else {
-            loadCalculatorContent(null);
-          }
-        } catch (error) {
-          console.error('Unable to load navigation.json', error);
-        }
-      }
-
-      window.addEventListener('popstate', handleNavigationChange);
-      window.addEventListener('hashchange', handleNavigationChange);
-      document.addEventListener('DOMContentLoaded', initializeNavigation);
-    </script>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
   </body>
 </html>

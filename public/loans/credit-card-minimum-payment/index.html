@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Minimum Payment Calculator | Calculate How Much Online Ca...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Minimum Payment Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you pla..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/credit-card-minimum-payment/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link is-active" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="credit-cards">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Credit Cards</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/credit-card-repayment-payoff">Repayment / Payoff Calculator</a><a class="nav-item is-active" href="/loans/credit-card-minimum-payment">Minimum Payment Calculator</a><a class="nav-item" href="/loans/balance-transfer-installment-plan">Balance Transfer / Installment Plan Calculator</a><a class="nav-item" href="/loans/credit-card-consolidation">Credit Card Consolidation Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Minimum Payment Calculator</h1>
+  <div id="calc-cc-min">
+  <div class="calculator-ui">
+    <p class="helper">Estimate payoff time when only the minimum payment is made each month.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="cc-min-balance">Card Balance</label>
+        <input id="cc-min-balance" type="number" value="3200" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-apr">APR (%)</label>
+        <input id="cc-min-apr" type="number" value="21.9" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-rate">Minimum Payment Rate (%)</label>
+        <input id="cc-min-rate" type="number" value="2.5" min="0" step="0.1" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-min-floor">Minimum Payment Floor</label>
+        <input id="cc-min-floor" type="number" value="25" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="cc-min-calc">
+      Calculate Minimum Payment
+    </button>
+
+    <div class="result" id="cc-min-result" aria-live="polite"></div>
+    <div class="result-detail" id="cc-min-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="cc-min-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="cc-min-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="cc-min-y-max"></span>
+          <span id="cc-min-y-mid"></span>
+          <span id="cc-min-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="cc-min-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="cc-min-x-start"></span>
+            <span id="cc-min-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/credit-card-minimum-payment/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="cc-min-explanation">
+  <h4>Minimum Payment Summary</h4>
+  <p>
+    With a balance of <span data-cc-min="balance"></span> at <span data-cc-min="apr"></span> APR,
+    the minimum payment starts at <span data-cc-min="first-payment"></span> and finishes in
+    <span data-cc-min="months"></span> months.
+  </p>
+  <p>
+    Total interest paid is <span data-cc-min="interest"></span>, resulting in total payments of
+    <span data-cc-min="total"></span>.
+  </p>
+  <p>
+    Minimum payments decline as the balance drops, which extends payoff time and increases interest
+    paid.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Payoff Snapshot</h4>
+    <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-min-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="cc-min-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

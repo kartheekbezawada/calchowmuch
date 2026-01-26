@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Interest Rate Change Calculator | Calculate How Much Onli...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interest Rate Change Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help yo..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/interest-rate-change-calculator/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item is-active" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Interest Rate Change Calculator</h1>
+  <div id="calc-interest-rate-change">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compare monthly payments and total interest before and after a rate change.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="rate-balance">Loan Balance</label>
+        <input id="rate-balance" type="number" value="250000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-current">Current Rate (APR %)</label>
+        <input id="rate-current" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-new">New Rate (APR %)</label>
+        <input id="rate-new" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="rate-term">Remaining Term (years)</label>
+        <input id="rate-term" type="number" value="25" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label id="rate-change-label">Rate Change Timing</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="rate-change-label"
+          data-button-group="rate-change-timing"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="immediate"
+            aria-pressed="true"
+          >
+            Apply Immediately
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="after"
+            aria-pressed="false"
+          >
+            After X Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row is-hidden" id="rate-change-months-row">
+        <label for="rate-change-months">Change After (months)</label>
+        <input id="rate-change-months" type="number" value="12" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="rate-calculate">
+      Calculate Rate Impact
+    </button>
+
+    <div class="result" id="rate-result" aria-live="polite"></div>
+    <div class="result-detail" id="rate-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/interest-rate-change-calculator/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-rate-change-explanation">
+  <h4>Rate Change Summary</h4>
+  <p>
+    Current monthly payment is <span data-rate="current-payment"></span>. After the rate change, the
+    payment becomes <span data-rate="new-payment"></span>, a monthly difference of
+    <span data-rate="monthly-diff"></span> (about <span data-rate="annual-diff"></span> per year).
+  </p>
+  <p>
+    Over the remaining term, total interest changes from <span data-rate="interest-base"></span> to
+    <span data-rate="interest-new"></span>. Rate changes affect amortization because the interest
+    portion of each payment is recalculated on the remaining balance.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Comparison</h4>
+    <div class="table-scroll" id="rate-table-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Interest Base</th>
+            <th scope="col">Interest New</th>
+            <th scope="col">Payment Base</th>
+            <th scope="col">Payment New</th>
+            <th scope="col">Balance Base</th>
+            <th scope="col">Balance New</th>
+          </tr>
+        </thead>
+        <tbody id="rate-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Payment Timeline</h4>
+    <div class="graph-panel" id="rate-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="rate-graph-title">Monthly Payment Over Time</span>
+        <span class="graph-note" id="rate-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="rate-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>New rate</span>
+        </div>
+        <div class="graph-legend-item">
+          <span class="graph-legend-color secondary"></span>
+          <span>Baseline</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="rate-y-label">Payment</span>
+        <div class="graph-y-axis" id="rate-y-axis">
+          <span id="rate-y-max"></span>
+          <span id="rate-y-mid"></span>
+          <span id="rate-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="rate-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline id="rate-line-new" class="line-primary" points=""></polyline>
+              <polyline id="rate-line-base" class="line-secondary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="rate-x-axis">
+            <span id="rate-x-start"></span>
+            <span id="rate-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="rate-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

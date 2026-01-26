@@ -33,6 +33,10 @@
 | REQ-20260126-004 | Revert REQ-20260126-003 Implementation | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260126-005 | Sleep Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-006 | Wake-Up Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-007 | Time Between Two Dates Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-008 | Days Until a Date Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-009 | Age Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-010 | Switch Calculator Navigation to Full Page Loads (MPA) | Navigation | Architecture | P0 | IN_PROGRESS | YES |
 
 ---
 

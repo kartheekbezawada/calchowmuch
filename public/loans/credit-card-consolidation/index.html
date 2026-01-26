@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Credit Card Consolidation Calculator | Calculate How Much...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Credit Card Consolidation Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to he..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/credit-card-consolidation/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link is-active" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="credit-cards">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Credit Cards</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/credit-card-repayment-payoff">Repayment / Payoff Calculator</a><a class="nav-item" href="/loans/credit-card-minimum-payment">Minimum Payment Calculator</a><a class="nav-item" href="/loans/balance-transfer-installment-plan">Balance Transfer / Installment Plan Calculator</a><a class="nav-item is-active" href="/loans/credit-card-consolidation">Credit Card Consolidation Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Credit Card Consolidation Calculator</h1>
+  <div id="calc-cc-consolidation">
+  <div class="calculator-ui">
+    <p class="helper">Compare paying current cards vs consolidating into a fixed-rate loan.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="cc-con-balance">Total Card Balance</label>
+        <input id="cc-con-balance" type="number" value="12000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-con-apr">Current Average APR (%)</label>
+        <input id="cc-con-apr" type="number" value="19.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-con-payment">Current Monthly Payment</label>
+        <input id="cc-con-payment" type="number" value="400" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-con-new-apr">Consolidation APR (%)</label>
+        <input id="cc-con-new-apr" type="number" value="10.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-con-term">Consolidation Term (years)</label>
+        <input id="cc-con-term" type="number" value="3" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="cc-con-fees">Consolidation Fees</label>
+        <input id="cc-con-fees" type="number" value="250" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="cc-con-calc">
+      Calculate Consolidation
+    </button>
+
+    <div class="result" id="cc-con-result" aria-live="polite"></div>
+    <div class="result-detail" id="cc-con-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="cc-con-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Comparison</span>
+        <span class="graph-note" id="cc-con-graph-note"></span>
+      </div>
+      <div class="graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Current cards</span>
+        </div>
+        <div class="graph-legend-item">
+          <span class="graph-legend-color secondary"></span>
+          <span>Consolidation</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="cc-con-y-max"></span>
+          <span id="cc-con-y-mid"></span>
+          <span id="cc-con-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="cc-con-line-current" points=""></polyline>
+              <polyline class="line-secondary" id="cc-con-line-new" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="cc-con-x-start"></span>
+            <span id="cc-con-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/credit-card-consolidation/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="cc-con-explanation">
+  <h4>Consolidation Summary</h4>
+  <p>
+    Paying <span data-cc-con="current-payment"></span> on a balance of
+    <span data-cc-con="balance"></span> at <span data-cc-con="current-apr"></span> APR clears the
+    cards in <span data-cc-con="current-months"></span> months.
+  </p>
+  <p>
+    A consolidation loan at <span data-cc-con="new-apr"></span> APR for
+    <span data-cc-con="new-term"></span> months results in a payment of
+    <span data-cc-con="new-payment"></span>.
+  </p>
+  <p>
+    Interest savings are <span data-cc-con="interest-diff"></span> and total cost difference is
+    <span data-cc-con="total-diff"></span>.
+  </p>
+
+  <div class="result-section">
+    <h4>Cost Comparison</h4>
+    <div class="table-scroll" id="cc-con-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-con-table">
+        <thead>
+          <tr>
+            <th scope="col">Scenario</th>
+            <th scope="col">Months</th>
+            <th scope="col">Total Interest</th>
+            <th scope="col">Total Paid</th>
+          </tr>
+        </thead>
+        <tbody id="cc-con-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>
