@@ -1,195 +1,152 @@
-# AGENTS.md — Agent Operating Contract (Entry Point)
+AGENTS.md — Agent Operating Contract (Entry Point)
+========================================================
+## Cold Start Instruction (Read First)
 
-This repo uses a deterministic FSM to ship calculator changes with traceability:
+Read AGENTS.md and WORKFLOW.md as authoritative law. Do not reinterpret rules.
+Load only the active REQ from requirement_tracker.md and its active ITER file.
+Apply rules verbatim; update ledgers with deltas only. No history, no archives.
 
-**REQ → BUILD → TEST → SEO → COMPLIANCE**
 
-**System of record lives in `requirements/compliance/`**.  
-If this file conflicts with `requirements/compliance/WORKFLOW.md`, **WORKFLOW.md wins**.
 
----
+This repository uses a deterministic finite-state workflow to ship calculator changes with traceability.
 
-## Actors (Strict)
+Flow:
+REQ → BUILD → TEST → SEO → COMPLIANCE
 
-| Actor | What they do | What they must NOT do |
-|---|---|---|
-| **HUMAN_TRIGGER** | Starts a run; executes local build/test commands; opens PR when ready | Write trackers (unless explicitly instructed) |
-| **COPILOT (requirements)** | Writes requirements + build-rules; assigns IDs; creates SEO placeholders | Build/test; update build/test/issue/compliance trackers |
-| **IMPLEMENTER (Claude Code or Codex)** | Implements code; orchestrates build/test; updates trackers + compliance-report; prepares PR | Create new REQs; start without trigger; skip compliance updates |
+All state is stored in requirements/compliance/.
+If this file conflicts with WORKFLOW.md, WORKFLOW.md takes precedence.
 
-> **Claude Code and Codex are equivalent implementers**. Whichever you use must follow the same rules.
 
----
+======================================================================
+Actors (Strict Roles)
+  HUMAN
+    Triggers builds
+    Runs local build/test commands
+    Opens pull requests
+    Must not write trackers unless explicitly instructed.
 
-## Authoritative Files (State Storage)
+COPILOT (Requirements Agent)
+  Creates requirements
+  Assigns REQ IDs
+  Writes or updates calculator rules
+  Creates SEO placeholders
+  Must not build, test, or update build/test/issue/compliance trackers.
 
-All state is stored in Markdown files under `requirements/compliance/`:
+CODEX  or  Claude Code ==> (Implementer Agent)
+  Implements code changes
+  Runs build and test steps
+  Updates trackers and compliance records
+  Prepares pull requests
+  Must not create new requirements or start work without an explicit trigger.
+  Codex and Claude Code are equivalent implementers and must follow the same rules.
+===========================================================
 
-| File | Purpose |
-|------|---------|
-| `WORKFLOW.md` | FSM rules, state diagram |
-| `testing_requirements.md` | **Test taxonomy, selection matrix, cost-based ordering** |
-| `requirement_tracker.md` | REQ registry |
-| `build_tracker.md` | Build execution log |
-| `testing_tracker.md` | Test execution log |
-| `seo_tracker.md` | SEO validation log |
-| `seo_requirements.md` | SEO rule definitions (P1-P5) |
-| `issue_tracker.md` | Issues found during FSM |
-| `compliance-report.md` | **Release gate** |
 
-Calculator-specific rules live under:
+File Classification (Critical)
+===============================
+  LAW (Authoritative Rules)
+  Define behavior. Do not reinterpret.
+    UNIVERSAL_REQUIREMENTS.md
+    WORKFLOW.md
+    AGENTS.md
 
-- `requirements/rules/math/`
-- `requirements/rules/loans/`
-- (others as added)
+REFERENCE (Conditional Manuals)
+===============================
+  Load only when relevant to the change.
+  testing_requirements.md (when selecting tests)
+  seo_requirements.md (when pages, URLs, or metadata change)
+  Calculator rules under requirements/rules/
 
----
+LEDGER (State Tables)
+===========================
+Do not analyze. Only update rows.
+  requirement_tracker.md
+  build_tracker.md
+  testing_tracker.md
+  seo_tracker.md
+  issue_tracker.md
+  iteration_tracker.md
+  compliance-report.md
+  idea_tracker.md
 
-## Deterministic IDs (Uniqueness Required)
+How Work Starts
+======================
+Step 1 — Create Requirement (Copilot)
 
-| ID Type | Format | Example |
-|---|---|---|
-| Requirement | `REQ-YYYYMMDD-###` | `REQ-20260122-001` |
-| Build Run | `BUILD-YYYYMMDD-HHMMSS` | `BUILD-20260122-142233` |
-| Test Run | `TEST-YYYYMMDD-HHMMSS` | `TEST-20260122-142455` |
-| SEO Item | `SEO-REQ-YYYYMMDD-###` | `SEO-REQ-20260122-001` |
-| Issue | `ISSUE-YYYYMMDD-###` | `ISSUE-20260122-003` |
-
-Hard rules:
-- **IDs must not be reused**
-- **RUNNING rows must be closed by editing-in-place** (PASS/FAIL/ABORTED + end time)
-- **No duplicate rows for the same ID**
-
----
-
-## Command Contract (How Work Starts)
-
-### Step 1 — Create Requirement (Copilot)
 User command:
-- `Copilot: create requirement for <X>`
+Copilot: create requirement for <X>
 
 Copilot must:
-1. Create `REQ-...` and add to `requirement_tracker.md` (Status: NEW)
-2. Add/update calculator rules in `requirements/rules/...`
-3. Add SEO placeholder in `seo_tracker.md` if SEO impact is YES/UNKNOWN
-4. Stop (Copilot does not build/test)
+  Add a new REQ row in requirement_tracker.md (Status: NEW)
+  Add or update calculator rules
+  Add an SEO placeholder if applicable
+  Co Pilot Must never ever build 
+  Stop
 
-### Step 2 — Trigger Implementation (Human)
-User command (permission trigger):
-- `EVT_START_BUILD REQ-YYYYMMDD-###`
+Step 2 — Start Implementation (Human)
+  User command:
+  EVT_START_BUILD REQ-YYYYMMDD-###
+  Codex must refuse to proceed without this trigger.
 
-Implementer must refuse to proceed without this trigger.
+Deterministic IDs
+=======================
+  Requirement: REQ-YYYYMMDD-###
+  Build: BUILD-YYYYMMDD-HHMMSS
+  Test: TEST-YYYYMMDD-HHMMSS
+  Iteration: ITER-YYYYMMDD-HHMMSS
+  Issue: ISSUE-YYYYMMDD-###
 
----
+Rules:
+  IDs must be unique
+  No duplicate rows for the same ID
+  RUNNING rows must be closed in place
 
-## Test Policy (Use the Matrix)
+Test Policy
+=============================
+The test selection matrix in testing_requirements.md is authoritative.
+  Principles:
+    Select tests strictly by Change Type
+    Prefer unit tests when possible
+    Scope E2E tests to affected calculators only
+    Do not run full E2E for single-calculator changes
+    Record required vs executed tests in compliance-report.md
 
-**The Test Selection Matrix in `requirements/compliance/testing_requirements.md` is authoritative.**
+Compliance Gate
+===============================
+A requirement is complete only when all of the following are closed:
+  requirement_tracker.md
+  build_tracker.md
+  testing_tracker.md
+  seo_tracker.md (PASS or NA)
+  compliance-report.md (exactly one row per REQ)
+  No merge or release without COMPLIANCE PASS.
 
-Key principles:
-- Select tests based on **Change Type** (see testing_requirements.md §3)
-- Do **not** assume "5 default E2E tests for every REQ"
-- E2E is **scoped to impacted calculators** — never run full E2E for single-calculator changes
-- Unit tests are cheap; E2E is expensive — prefer unit tests when possible
-- Required vs optional tests must be recorded in the compliance-report row
+Sitemap Rule (P0)
+========================
+Any calculator that is:
+  visible in navigation, or
+  reachable via a public URL
+must appear in the sitemap.
+Missing sitemap coverage is a hard failure for BUILD, TEST, and COMPLIANCE.
 
-### Test Pyramid (Cost Order)
-```
-Unit (cheapest) → Integration → SEO Auto → ISS-001 → E2E (expensive) → Full Sweep (release only)
-```
+Enforcement
+=======================
+Invalid FSM transitions must stop immediately
+No tracker updates outside the allowed state
+No exceptions without an explicit waiver recorded
 
-### Quick Reference
+Related Documents
+========================
+  Universal Requirements: requirements/universal/UNIVERSAL_REQUIREMENTS.md
+  Workflow FSM: requirements/compliance/WORKFLOW.md
+  Testing Rules: requirements/compliance/testing_requirements.md
+  SEO Rules: requirements/compliance/seo_requirements.md
+  Calculator Hierarchy: requirements/universal/calculator-hierarchy.md
 
-| Change Type | Unit | E2E | SEO | ISS-001 |
-|-------------|:----:|:---:|:---:|:-------:|
-| Compute logic change | ✅ | — | — | — |
-| UI/flow change | — | ✅ | — | — |
-| New calculator | ✅ | ✅ | ✅ | — |
-| Layout/CSS change | — | — | — | ✅ |
-| SEO/metadata change | — | — | ✅ | — |
+One-line intent
+========================
+Copilot defines work.
+Human authorizes work.
+Codex executes work.
 
-See `testing_requirements.md` for full matrix.
-
----
-
-## Compliance Formula
-
-```
-OVERALL_PASS = BUILD_PASS ∧ TEST_PASS ∧ (SEO_PASS ∨ SEO_NA) ∧ UNIVERSAL_RULES_PASS
-```
-
-Where:
-- **BUILD_PASS:** `npm run lint` zero errors
-- **TEST_PASS:** All mandatory tests pass (per test matrix)
-- **SEO_PASS/NA:** P1 SEO rules validated or not applicable
-- **UNIVERSAL_RULES_PASS:** No P0/P1 violations
-
-See `compliance-report.md` for full formula definition.
-
----
-
-## Local-first Development (Supported)
-
-You may build/test locally before opening a PR.
-
-Minimum expectation:
-- Record **local build/test evidence** in trackers and in `compliance-report.md` as **LOCAL**.
-- When a PR is later opened and CI runs, update compliance with **CI evidence** and finalize verdict.
-
-**Definition:**
-- **LOCAL PASS** = ready to promote to PR
-- **FINAL PASS** = PR/CI validated; release-ready
-
----
-
-## Mandatory Outputs Per REQ (Release Gate)
-
-A REQ is not "done" until these exist and are closed:
-
-- `requirement_tracker.md`: NEW → VERIFIED/CLOSED
-- `build_tracker.md`: 1+ BUILD row(s) closed (PASS)
-- `testing_tracker.md`: required TEST rows closed (per test matrix)
-- `seo_tracker.md`: PASS/NA (if applicable)
-- `compliance-report.md`: **exactly one row per REQ**, filled with:
-  - Change type
-  - Mandatory tests + what ran
-  - Evidence links/snippets
-  - Overall verdict: PASS / FAIL (or waiver recorded)
-
----
-
-## Enforcement
-
-- No tracker updates unless the FSM state permits it (see WORKFLOW).
-- Any invalid transition must stop with:
-  `INVALID TRANSITION: current_state -> requested_state; required_state: X`
-- No merge/release without **compliance-report PASS** (or explicit waiver documented).
-
----
-
-## Sitemap Compliance (P0, Build-Blocking)
-
-- Sitemap coverage is mandatory for all LIVE calculators (navigation-visible or publicly accessible URLs).
-- Any calculator-related REQ MUST verify:
-  - Navigation entry
-  - Sitemap inclusion derived from the navigation source of truth
-- Agents MUST NOT mark a calculator REQ as COMPLETE unless sitemap compliance is verified.
-- Missing sitemap coverage is a **P0 violation** and hard-fails BUILD/TEST/COMPLIANCE (no waivers by default).
-
-**Enforcement principle:** If it’s not in the Sitemap, it’s not shipped.
-
----
-
-## Related Documents
-
-| Document | Location |
-|----------|----------|
-| Universal Requirements | `requirements/universal/UNIVERSAL_REQUIREMENTS.md` |
-| Testing Requirements | `requirements/compliance/testing_requirements.md` |
-| FSM Workflow | `requirements/compliance/WORKFLOW.md` |
-| Compliance Report | `requirements/compliance/compliance-report.md` |
-| Calculator Hierarchy | `requirements/universal/calculator-hierarchy.md` |
-
----
-
-**Last Updated:** 2026-01-22
+Everything else is a record.
