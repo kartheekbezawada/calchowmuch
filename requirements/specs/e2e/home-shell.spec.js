@@ -22,7 +22,9 @@ test.describe('Home page shell-only content', () => {
     const explanationText = await explanationPane.innerText();
     expect(explanationText.trim().length).toBeGreaterThan(0);
 
-    await expect(page.locator('.left-nav .nav-item')).toHaveCount(0);
+    const leftNavItems = page.locator('.left-nav .nav-item');
+    expect(await leftNavItems.count()).toBeGreaterThan(0);
+    await expect(leftNavItems.first()).toBeVisible();
     await expect(page.locator('.top-nav .is-active')).toHaveCount(0);
 
     const footerLinks = page.locator('.site-footer a');

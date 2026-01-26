@@ -15,6 +15,11 @@
 | SEO-REQ-20260125-001 | REQ-20260125-001 | Sitewide Footer | Footer layout + link list | NEW | TBD | TBD | TBD |
 | SEO-REQ-20260125-002 | REQ-20260125-004 | Sitemap | Title/meta/H1/canonical for /sitemap | PASS | ✅ | — | — |
 | SEO-REQ-20260126-001 | REQ-20260126-005 | Sleep Time Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260126-002 | REQ-20260126-006 | Wake-Up Time Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260126-003 | REQ-20260126-007 | Time Between Two Dates Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260126-004 | REQ-20260126-008 | Days Until a Date Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260126-005 | REQ-20260126-009 | Age Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260126-006 | REQ-20260126-010 | All Calculator Pages (MPA) | P1 + P5 (clean URLs, canonical, H1, sitemap) | FAIL | ❌ | — | — |
 
 ---
 

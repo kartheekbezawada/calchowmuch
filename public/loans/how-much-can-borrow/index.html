@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>How Much Can I Borrow | Calculate How Much Online Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Much Can I Borrow calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan con..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/how-much-can-borrow/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item is-active" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">How Much Can I Borrow</h1>
+  <div id="calc-how-much-can-borrow">
+  <div class="calculator-ui">
+    <p class="helper">Estimate a maximum affordable loan using income multiples or payment caps.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="bor-gross-income">Gross Annual Income</label>
+        <input id="bor-gross-income" type="number" value="90000" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-net-income">Net Monthly Income (optional)</label>
+        <input id="bor-net-income" type="number" value="5000" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label id="bor-income-basis-label">Income Basis</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="bor-income-basis-label"
+          data-button-group="bor-income-basis"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="gross"
+            aria-pressed="true"
+          >
+            Gross
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="net"
+            aria-pressed="false"
+          >
+            Net
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="bor-expenses">Monthly Expenses</label>
+        <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-debts">Monthly Debt Payments</label>
+        <input id="bor-debts" type="number" value="300" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-rate">Interest Rate (APR %)</label>
+        <input id="bor-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-term">Loan Term (years)</label>
+        <input id="bor-term" type="number" value="25" min="1" step="1" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label id="bor-method-label">Affordability Method</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="bor-method-label"
+          data-button-group="bor-method"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="income"
+            aria-pressed="true"
+          >
+            Income Multiple
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="payment"
+            aria-pressed="false"
+          >
+            Payment Cap
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="bor-multiple-row">
+        <label for="bor-multiple">Income Multiple (e.g., 4-5.5x)</label>
+        <input id="bor-multiple" type="number" value="4.5" min="0" step="0.1" maxlength="10" />
+      </div>
+
+      <div class="input-row is-hidden" id="bor-cap-row">
+        <label for="bor-cap">Payment Cap (% of income)</label>
+        <input id="bor-cap" type="number" value="35" min="0" max="100" step="0.1" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="bor-deposit">Deposit (optional)</label>
+        <input id="bor-deposit" type="number" value="20000" min="0" step="0.01" maxlength="10" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="bor-calculate">
+      Calculate Borrowing Power
+    </button>
+
+    <div class="result" id="bor-result" aria-live="polite"></div>
+    <div class="result-detail" id="bor-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/assets/css/base.css');
+  @import url('/assets/css/calculator.css');
+  @import url('/calculators/loans/how-much-can-borrow/calculator.css');
+</style>
+
+<script type="module" src="/calculators/loans/how-much-can-borrow/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-borrow-explanation">
+  <h4>Borrowing Summary</h4>
+  <p>
+    Using the <span data-bor="basis"></span> monthly income of <span data-bor="income"></span>, the
+    calculator allows up to <span data-bor="max-payment"></span> per month for a mortgage payment.
+    This implies a maximum loan of <span data-bor="max-borrow"></span> at
+    <span data-bor="rate"></span>% over <span data-bor="term"></span> years.
+  </p>
+  <p>
+    Example: with monthly income of <span data-bor="income-example"></span> and total outgoings of
+    <span data-bor="outgoings"></span>, the usable payment is <span data-bor="max-payment"></span>,
+    which maps to <span data-bor="max-borrow"></span> of borrowing.
+  </p>
+
+  <div class="result-section">
+    <h4>Scenario Summary</h4>
+    <div class="table-scroll" id="bor-table-wrap" tabindex="0">
+      <table class="calculator-table" id="bor-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody id="bor-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Borrow Amount vs Interest Rate</h4>
+    <div class="graph-panel" id="bor-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="bor-graph-title">Max Borrow by Rate</span>
+        <span class="graph-note" id="bor-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="bor-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Max borrow</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="bor-y-label">Borrow</span>
+        <div class="graph-y-axis" id="bor-y-axis">
+          <span id="bor-y-max"></span>
+          <span id="bor-y-mid"></span>
+          <span id="bor-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="bor-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="bor-x-axis">
+            <span id="bor-x-start"></span>
+            <span id="bor-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="bor-x-label">Rate (%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

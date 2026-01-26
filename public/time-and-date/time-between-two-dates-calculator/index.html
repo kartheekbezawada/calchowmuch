@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Time Between Two Dates Calculator | Calculate How Much On...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Time Between Two Dates Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help..." />
+    <link rel="canonical" href="https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-and-date">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time & Date</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item is-active" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Time Between Two Dates Calculator</h1>
+  <div id="calc-date-diff">
+  <div class="calculator-ui">
+    <p class="helper">Measure the exact time between two dates, including calendar months and years.</p>
+
+    <div class="input-row">
+      <label id="date-diff-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="date-diff-mode-label"
+        data-button-group="date-diff-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="date" aria-pressed="true">
+          Dates only
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="datetime" aria-pressed="false">
+          Date &amp; time
+        </button>
+      </div>
+    </div>
+
+    <div class="input-grid">
+      <div class="input-row">
+        <label for="date-diff-start-date">Start date</label>
+        <input id="date-diff-start-date" type="date" />
+      </div>
+      <div class="input-row">
+        <label for="date-diff-end-date">End date</label>
+        <input id="date-diff-end-date" type="date" />
+      </div>
+    </div>
+
+    <div class="input-grid time-inputs is-collapsed" id="date-diff-time-inputs" aria-hidden="true">
+      <div class="input-row">
+        <label for="date-diff-start-time">Start time</label>
+        <input id="date-diff-start-time" type="time" step="60" />
+      </div>
+      <div class="input-row">
+        <label for="date-diff-end-time">End time</label>
+        <input id="date-diff-end-time" type="time" step="60" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="date-diff-calculate">Calculate</button>
+
+    <div class="result" id="date-diff-results" aria-live="polite">
+      <p class="placeholder" id="date-diff-placeholder">Select dates and click Calculate.</p>
+      <p class="form-error is-hidden" id="date-diff-error"></p>
+      <div class="date-diff-results-list is-hidden" id="date-diff-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/time-between-two-dates-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/time-between-two-dates-calculator/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="date-diff-explanation">
+  <h2>What is a Time Between Two Dates Calculator?</h2>
+  <p>
+    A Time Between Two Dates Calculator tells you how much time separates two dates. It can show the difference in days, weeks, and also in calendar months and years.
+  </p>
+
+  <h2>How This Time Between Two Dates Calculator Works</h2>
+  <p>
+    This calculator compares a start date and an end date and measures the elapsed time between them.
+  </p>
+  <p>In Dates only mode, it treats each date as starting at midnight in your local time.</p>
+  <p>In Date &amp; time mode, it measures the exact timestamp difference in minutes and hours as well.</p>
+
+  <h2>Days vs Months (Why Results Can Differ)</h2>
+  <p>
+    Days and weeks are based on exact elapsed time. Months and years are based on the calendar. Because months have different lengths (28–31 days), "1 month" is not always the same as "30 days." That's why the calculator shows both styles of results.
+  </p>
+
+  <h2>Examples</h2>
+  <p>If you select 1 January as the start date and 31 January as the end date, the result is 30 days.</p>
+  <p>If you select 1 January and 1 February, the result is usually 1 calendar month, even though the day count depends on the month length.</p>
+
+  <h2>Assumptions and Limitations</h2>
+  <p>This calculator uses your device's local time zone. Daylight saving time changes can affect hour-level differences in Date &amp; time mode. Results are general calculations and do not replace professional advice for legal or contractual deadlines.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="date-diff-faq-item">
+    <p><strong>Why do months and days give different answers?</strong></p>
+    <p>Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.</p>
+  </div>
+
+  <div class="date-diff-faq-item">
+    <p><strong>Does the calculator include the start date?</strong></p>
+    <p>No. It calculates the time from the start date/time up to the end date/time.</p>
+  </div>
+
+  <div class="date-diff-faq-item">
+    <p><strong>What happens if the end date is before the start date?</strong></p>
+    <p>The calculator will show an error and ask you to choose an end date that is after the start date.</p>
+  </div>
+
+  <div class="date-diff-faq-item">
+    <p><strong>Does daylight saving time affect the result?</strong></p>
+    <p>It can affect results in Date &amp; time mode, because a day can be 23 or 25 hours when clocks change.</p>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

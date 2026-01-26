@@ -9,6 +9,20 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-221055 | REQ-20260126-010 | ITER-20260126-212224 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260126-212224.md |
+| TEST-20260126-221059 | REQ-20260126-010 | ITER-20260126-212224 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js | iterations/ITER-20260126-212224.md |
+| TEST-20260126-211300 | REQ-20260126-009 | ITER-20260126-210621 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator-seo.spec.js | iterations/ITER-20260126-210621.md |
+| TEST-20260126-211230 | REQ-20260126-009 | ITER-20260126-210621 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js | iterations/ITER-20260126-210621.md |
+| TEST-20260126-211200 | REQ-20260126-009 | ITER-20260126-210621 | Unit | COMPLETE | 1/25 | tests/core/age-calculator.test.js | iterations/ITER-20260126-210621.md |
+| TEST-20260126-205800 | REQ-20260126-008 | ITER-20260126-205123 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/days-until-a-date-seo.spec.js | iterations/ITER-20260126-205123.md |
+| TEST-20260126-205730 | REQ-20260126-008 | ITER-20260126-205123 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/days-until-a-date-calculator.spec.js | iterations/ITER-20260126-205123.md |
+| TEST-20260126-205700 | REQ-20260126-008 | ITER-20260126-205123 | Unit | COMPLETE | 1/25 | tests/core/days-until-a-date-calculator.test.js | iterations/ITER-20260126-205123.md |
+| TEST-20260126-204600 | REQ-20260126-007 | ITER-20260126-203351 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/time-between-two-dates-seo.spec.js | iterations/ITER-20260126-203351.md |
+| TEST-20260126-204530 | REQ-20260126-007 | ITER-20260126-203351 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/time-between-two-dates-calculator.spec.js | iterations/ITER-20260126-203351.md |
+| TEST-20260126-204500 | REQ-20260126-007 | ITER-20260126-203351 | Unit | COMPLETE | 1/25 | tests/core/time-between-two-dates-calculator.test.js | iterations/ITER-20260126-203351.md |
+| TEST-20260126-201200 | REQ-20260126-006 | ITER-20260126-195916 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/wake-up-time-seo.spec.js | iterations/ITER-20260126-195916.md |
+| TEST-20260126-201130 | REQ-20260126-006 | ITER-20260126-195916 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/wake-up-time-calculator.spec.js | iterations/ITER-20260126-195916.md |
+| TEST-20260126-201100 | REQ-20260126-006 | ITER-20260126-195916 | Unit | COMPLETE | 1/25 | tests/core/wake-up-time-calculator.test.js | iterations/ITER-20260126-195916.md |
 | TEST-20260126-191600 | REQ-20260126-005 | ITER-20260126-185212 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-seo.spec.js | iterations/ITER-20260126-185212.md |
 | TEST-20260126-191530 | REQ-20260126-005 | ITER-20260126-185212 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-calculator.spec.js | iterations/ITER-20260126-185212.md |
 | TEST-20260126-191500 | REQ-20260126-005 | ITER-20260126-185212 | Unit | COMPLETE | 1/25 | tests/core/sleep-time-calculator.test.js | iterations/ITER-20260126-185212.md |

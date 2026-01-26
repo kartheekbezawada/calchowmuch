@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loan-to-Value (LTV) Calculator | Calculate How Much Onlin...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Loan-to-Value (LTV) Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you..." />
+    <link rel="canonical" href="https://calchowmuch.com/loans/loan-to-value/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item is-active" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Loan-to-Value (LTV) Calculator</h1>
+  <div id="calc-loan-to-value">
+  <div class="calculator-ui">
+    <p class="helper">
+      Calculate loan-to-value (LTV), deposit, and risk bands for mortgage eligibility.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ltv-property">Property Value</label>
+        <input id="ltv-property" type="number" value="300000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="ltv-mode-label">Input Mode</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ltv-mode-label"
+          data-button-group="ltv-mode"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="loan"
+            aria-pressed="true"
+          >
+            Loan Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="deposit"
+            aria-pressed="false"
+          >
+            Deposit
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="ltv-loan-row">
+        <label for="ltv-loan">Loan Amount</label>
+        <input id="ltv-loan" type="number" value="240000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-type-row">
+        <label id="ltv-deposit-type-label">Deposit Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ltv-deposit-type-label"
+          data-button-group="ltv-deposit-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-amount-row">
+        <label for="ltv-deposit-amount">Deposit Amount</label>
+        <input id="ltv-deposit-amount" type="number" value="60000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="ltv-deposit-percent-row">
+        <label for="ltv-deposit-percent">Deposit Percent (%)</label>
+        <input id="ltv-deposit-percent" type="number" value="20" min="0" max="99.99" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ltv-calculate">
+      Calculate LTV
+    </button>
+
+    <div class="result" id="ltv-result" aria-live="polite"></div>
+    <div class="result-detail" id="ltv-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/loan-to-value/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-ltv-explanation">
+  <h4>LTV Summary</h4>
+  <p>
+    With a property value of <span data-ltv="property"></span> and a loan amount of
+    <span data-ltv="loan"></span>, the deposit is <span data-ltv="deposit"></span> (<span
+      data-ltv="deposit-percent"
+    ></span
+    >). The loan-to-value (LTV) is <span data-ltv="ltv"></span>.
+  </p>
+  <p>
+    LTV measures the portion of the property financed by debt. Higher LTVs typically face tighter
+    availability or higher rates.
+  </p>
+  <p>This is informational, not financial advice.</p>
+
+  <div class="result-section">
+    <h4>LTV Thresholds</h4>
+    <div class="table-scroll" id="ltv-table-wrap" tabindex="0">
+      <table class="calculator-table" id="ltv-table">
+        <thead>
+          <tr>
+            <th scope="col">LTV Band</th>
+            <th scope="col">Availability Note</th>
+            <th scope="col">Risk Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>60% or lower</td>
+            <td>Best availability</td>
+            <td>Lowest risk</td>
+          </tr>
+          <tr>
+            <td>Up to 75%</td>
+            <td>Strong availability</td>
+            <td>Low risk</td>
+          </tr>
+          <tr>
+            <td>Up to 80%</td>
+            <td>Common range</td>
+            <td>Moderate risk</td>
+          </tr>
+          <tr>
+            <td>Up to 85%</td>
+            <td>More limited</td>
+            <td>Elevated risk</td>
+          </tr>
+          <tr>
+            <td>Up to 90%</td>
+            <td>Limited options</td>
+            <td>High risk</td>
+          </tr>
+          <tr>
+            <td>Up to 95%</td>
+            <td>Restricted</td>
+            <td>Very high risk</td>
+          </tr>
+          <tr>
+            <td>Above 95%</td>
+            <td>Rare availability</td>
+            <td>Highest risk</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>LTV vs Deposit %</h4>
+    <div class="graph-panel" id="ltv-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="ltv-graph-title">LTV Curve</span>
+        <span class="graph-note" id="ltv-graph-note"></span>
+      </div>
+      <div class="graph-legend" id="ltv-graph-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>LTV</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="ltv-y-label">LTV (%)</span>
+        <div class="graph-y-axis" id="ltv-y-axis">
+          <span id="ltv-y-max"></span>
+          <span id="ltv-y-mid"></span>
+          <span id="ltv-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="ltv-graph-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis" id="ltv-x-axis">
+            <span id="ltv-x-start"></span>
+            <span id="ltv-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="ltv-x-label">Deposit (%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

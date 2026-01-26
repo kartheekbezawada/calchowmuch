@@ -47,3 +47,28 @@ export function calculateSleepRecommendations({ mode, date }) {
     };
   });
 }
+
+export function calculateWakeUpRecommendations({ mode, date, latencyMinutes = FALL_ASLEEP_MINUTES }) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
+    return [];
+  }
+
+  const baseTime = roundToMinute(date);
+  const parsedLatency = Number.isFinite(latencyMinutes) ? latencyMinutes : FALL_ASLEEP_MINUTES;
+  const safeLatency = Math.max(0, parsedLatency);
+
+  if (mode === 'bed') {
+    const sleepTime = roundToMinute(addMinutes(baseTime, safeLatency));
+    return SLEEP_CYCLES.map((cycles) => ({
+      cycles,
+      sleepTime,
+      wakeTime: roundToMinute(addMinutes(sleepTime, cycles * CYCLE_MINUTES)),
+    }));
+  }
+
+  return SLEEP_CYCLES.map((cycles) => ({
+    cycles,
+    sleepTime: baseTime,
+    wakeTime: roundToMinute(addMinutes(baseTime, cycles * CYCLE_MINUTES)),
+  }));
+}

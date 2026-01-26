@@ -1,196 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://calchowmuch.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/calculators/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://calchowmuch.com/calculators/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Math Calculators -->
-  <url>
-    <loc>https://calchowmuch.com/calculators/math/basic/</loc>
+    <loc>https://calchowmuch.com/math/basic/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/percentage-calculator/</loc>
+    <loc>https://calchowmuch.com/math/percentage-increase/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/percentage-increase/</loc>
+    <loc>https://calchowmuch.com/math/fraction-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/fraction-calculator/</loc>
+    <loc>https://calchowmuch.com/math/algebra/quadratic-equation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/algebra/quadratic-equation/</loc>
+    <loc>https://calchowmuch.com/math/algebra/system-of-equations/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/algebra/system-of-equations/</loc>
+    <loc>https://calchowmuch.com/math/algebra/polynomial-operations/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/algebra/polynomial-operations/</loc>
+    <loc>https://calchowmuch.com/math/algebra/factoring/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/algebra/factoring/</loc>
+    <loc>https://calchowmuch.com/math/algebra/slope-distance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/algebra/slope-distance/</loc>
+    <loc>https://calchowmuch.com/math/trigonometry/unit-circle/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Trigonometry Calculators -->
   <url>
-    <loc>https://calchowmuch.com/calculators/math/trigonometry/unit-circle/</loc>
+    <loc>https://calchowmuch.com/math/trigonometry/triangle-solver/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/trigonometry/triangle-solver/</loc>
+    <loc>https://calchowmuch.com/math/trigonometry/trig-functions/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/trigonometry/trig-functions/</loc>
+    <loc>https://calchowmuch.com/math/trigonometry/inverse-trig/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/trigonometry/inverse-trig/</loc>
+    <loc>https://calchowmuch.com/math/trigonometry/law-of-sines-cosines/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/trigonometry/law-of-sines-cosines/</loc>
+    <loc>https://calchowmuch.com/math/calculus/derivative/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Statistics Calculators -->
   <url>
-    <loc>https://calchowmuch.com/calculators/math/standard-deviation/</loc>
+    <loc>https://calchowmuch.com/math/calculus/integral/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/number-sequence/</loc>
+    <loc>https://calchowmuch.com/math/calculus/limit/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/sample-size/</loc>
+    <loc>https://calchowmuch.com/math/calculus/series-convergence/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/probability/</loc>
+    <loc>https://calchowmuch.com/math/calculus/critical-points/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/statistics/</loc>
+    <loc>https://calchowmuch.com/math/log/natural-log/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/mean-median-mode-range/</loc>
+    <loc>https://calchowmuch.com/math/log/common-log/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/permutation-combination/</loc>
+    <loc>https://calchowmuch.com/math/log/log-properties/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/z-score/</loc>
+    <loc>https://calchowmuch.com/math/log/exponential-equations/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/confidence-interval/</loc>
+    <loc>https://calchowmuch.com/math/log/log-scale/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/calculators/math/log/natural-log/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://calchowmuch.com/calculators/math/log/common-log/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://calchowmuch.com/calculators/math/log/log-properties/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://calchowmuch.com/calculators/math/log/exponential-equations/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://calchowmuch.com/calculators/math/log/log-scale/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-
-  <!-- Time & Date Calculators -->
-  <url>
-    <loc>https://calchowmuch.com/calculators/time-and-date/sleep-time-calculator/</loc>
+    <loc>https://calchowmuch.com/math/mean-median-mode-range/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://calchowmuch.com/math/standard-deviation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/confidence-interval/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/z-score/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/sample-size/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/number-sequence/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/permutation-combination/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/probability/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/regression-analysis/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/anova/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/hypothesis-testing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/correlation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/math/statistics/distribution/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/home-loan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/how-much-can-borrow/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/remortgage-switching/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/buy-to-let/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/offset-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/interest-rate-change-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/loan-to-value/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/credit-card-repayment-payoff/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/credit-card-minimum-payment/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/balance-transfer-installment-plan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/credit-card-consolidation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/car-loan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/multiple-car-loan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/hire-purchase/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/pcp-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/loans/leasing-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/time-and-date/sleep-time-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/time-and-date/wake-up-time-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/time-and-date/days-until-a-date-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/time-and-date/age-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

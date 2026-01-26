@@ -1,0 +1,58 @@
+<div id="calc-date-diff">
+  <div class="calculator-ui">
+    <p class="helper">Measure the exact time between two dates, including calendar months and years.</p>
+
+    <div class="input-row">
+      <label id="date-diff-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="date-diff-mode-label"
+        data-button-group="date-diff-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="date" aria-pressed="true">
+          Dates only
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="datetime" aria-pressed="false">
+          Date &amp; time
+        </button>
+      </div>
+    </div>
+
+    <div class="input-grid">
+      <div class="input-row">
+        <label for="date-diff-start-date">Start date</label>
+        <input id="date-diff-start-date" type="date" />
+      </div>
+      <div class="input-row">
+        <label for="date-diff-end-date">End date</label>
+        <input id="date-diff-end-date" type="date" />
+      </div>
+    </div>
+
+    <div class="input-grid time-inputs is-collapsed" id="date-diff-time-inputs" aria-hidden="true">
+      <div class="input-row">
+        <label for="date-diff-start-time">Start time</label>
+        <input id="date-diff-start-time" type="time" step="60" />
+      </div>
+      <div class="input-row">
+        <label for="date-diff-end-time">End time</label>
+        <input id="date-diff-end-time" type="time" step="60" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="date-diff-calculate">Calculate</button>
+
+    <div class="result" id="date-diff-results" aria-live="polite">
+      <p class="placeholder" id="date-diff-placeholder">Select dates and click Calculate.</p>
+      <p class="form-error is-hidden" id="date-diff-error"></p>
+      <div class="date-diff-results-list is-hidden" id="date-diff-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/time-between-two-dates-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/time-between-two-dates-calculator/module.js"></script>

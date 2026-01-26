@@ -17,6 +17,10 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260126-009 | ITER-20260126-210621 | Unit + E2E + SEO Auto | Unit (tests/core/age-calculator.test.js); E2E (requirements/specs/e2e/age-calculator.spec.js); SEO Auto (requirements/specs/e2e/age-calculator-seo.spec.js) | 1/25 | PASS |
+| REQ-20260126-008 | ITER-20260126-205123 | Unit + E2E + SEO Auto | Unit (tests/core/days-until-a-date-calculator.test.js); E2E (requirements/specs/e2e/days-until-a-date-calculator.spec.js); SEO Auto (requirements/specs/e2e/days-until-a-date-seo.spec.js) | 1/25 | PASS |
+| REQ-20260126-007 | ITER-20260126-203351 | Unit + E2E + SEO Auto | Unit (tests/core/time-between-two-dates-calculator.test.js); E2E (requirements/specs/e2e/time-between-two-dates-calculator.spec.js); SEO Auto (requirements/specs/e2e/time-between-two-dates-seo.spec.js) | 1/25 | PASS |
+| REQ-20260126-006 | ITER-20260126-195916 | Unit + E2E + SEO Auto | Unit (tests/core/wake-up-time-calculator.test.js); E2E (requirements/specs/e2e/wake-up-time-calculator.spec.js); SEO Auto (requirements/specs/e2e/wake-up-time-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-005 | ITER-20260126-185212 | Unit + E2E + SEO Auto | Unit (tests/core/sleep-time-calculator.test.js); E2E (requirements/specs/e2e/sleep-time-calculator.spec.js); SEO Auto (requirements/specs/e2e/sleep-time-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-004 | ITER-20260126-131858 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-001-layout-stability.spec.js, snapshots updated) | 1/25 | PASS |
 | REQ-20260126-003 | ITER-20260126-115903 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-001-layout-stability.spec.js, snapshots updated) | 1/25 | PASS |
