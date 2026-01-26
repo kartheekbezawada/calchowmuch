@@ -371,6 +371,12 @@
               "name": "Sleep Time Calculator",
               "url": "#/time-and-date/sleep-time-calculator",
               "keywords": ["sleep", "wake up", "bedtime", "sleep cycles"]
+            },
+            {
+              "id": "wake-up-time-calculator",
+              "name": "Wake-Up Time Calculator",
+              "url": "#/time-and-date/wake-up-time-calculator",
+              "keywords": ["wake up", "sleep cycles", "bedtime", "alarm"]
             }
           ]
         }

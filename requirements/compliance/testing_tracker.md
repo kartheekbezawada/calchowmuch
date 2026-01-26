@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-201200 | REQ-20260126-006 | ITER-20260126-195916 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/wake-up-time-seo.spec.js | iterations/ITER-20260126-195916.md |
+| TEST-20260126-201130 | REQ-20260126-006 | ITER-20260126-195916 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/wake-up-time-calculator.spec.js | iterations/ITER-20260126-195916.md |
+| TEST-20260126-201100 | REQ-20260126-006 | ITER-20260126-195916 | Unit | COMPLETE | 1/25 | tests/core/wake-up-time-calculator.test.js | iterations/ITER-20260126-195916.md |
 | TEST-20260126-191600 | REQ-20260126-005 | ITER-20260126-185212 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-seo.spec.js | iterations/ITER-20260126-185212.md |
 | TEST-20260126-191530 | REQ-20260126-005 | ITER-20260126-185212 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-calculator.spec.js | iterations/ITER-20260126-185212.md |
 | TEST-20260126-191500 | REQ-20260126-005 | ITER-20260126-185212 | Unit | COMPLETE | 1/25 | tests/core/sleep-time-calculator.test.js | iterations/ITER-20260126-185212.md |
