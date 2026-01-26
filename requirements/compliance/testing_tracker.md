@@ -9,8 +9,6 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
-| TEST-20260126-221055 | REQ-20260126-010 | ITER-20260126-212224 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260126-212224.md |
-| TEST-20260126-221059 | REQ-20260126-010 | ITER-20260126-212224 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js | iterations/ITER-20260126-212224.md |
 | TEST-20260126-211300 | REQ-20260126-009 | ITER-20260126-210621 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator-seo.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211230 | REQ-20260126-009 | ITER-20260126-210621 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211200 | REQ-20260126-009 | ITER-20260126-210621 | Unit | COMPLETE | 1/25 | tests/core/age-calculator.test.js | iterations/ITER-20260126-210621.md |
@@ -66,4 +64,6 @@ Full matrix: `testing_requirements.md`
 
 | TEST_ID | REQ_ID | Type | Status | Tests Run | Archived |
 |---------|--------|------|--------|-----------|----------|
-| | | | | | |
+| TEST-20260126-222306 | REQ-20260126-010 | ISS-001 | COMPLETE | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | 2026-01-26 22:34 |
+| TEST-20260126-221055 | REQ-20260126-010 | ISS-001 | COMPLETE | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | 2026-01-26 22:34 |
+| TEST-20260126-221059 | REQ-20260126-010 | E2E | COMPLETE | requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js | 2026-01-26 22:34 |

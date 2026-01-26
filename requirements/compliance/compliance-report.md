@@ -17,6 +17,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260126-011 | ITER-20260126-223254 | None (Archive/Cleanup) | None | 1/25 | PASS |
 | REQ-20260126-009 | ITER-20260126-210621 | Unit + E2E + SEO Auto | Unit (tests/core/age-calculator.test.js); E2E (requirements/specs/e2e/age-calculator.spec.js); SEO Auto (requirements/specs/e2e/age-calculator-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-008 | ITER-20260126-205123 | Unit + E2E + SEO Auto | Unit (tests/core/days-until-a-date-calculator.test.js); E2E (requirements/specs/e2e/days-until-a-date-calculator.spec.js); SEO Auto (requirements/specs/e2e/days-until-a-date-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-007 | ITER-20260126-203351 | Unit + E2E + SEO Auto | Unit (tests/core/time-between-two-dates-calculator.test.js); E2E (requirements/specs/e2e/time-between-two-dates-calculator.spec.js); SEO Auto (requirements/specs/e2e/time-between-two-dates-seo.spec.js) | 1/25 | PASS |
@@ -57,4 +58,4 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | Tests Run | Iterations | Verdict | Released |
 |--------|-----------|------------|---------|----------|
-| | | | | |
+| REQ-20260126-010 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated); E2E (requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js) | 1/25 | PASS | 2026-01-26 22:34 |

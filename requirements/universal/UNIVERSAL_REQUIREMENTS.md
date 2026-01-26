@@ -324,6 +324,18 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 ---
 
+## Navigation Architecture (Authoritative)
+
+- Calculator pages MUST be implemented as Multi-Page Application (MPA).
+- Calculator navigation MUST use standard `<a href>` links.
+- Full page reloads are REQUIRED when switching calculators.
+- SPA-style routing (hash routing, history.pushState, dynamic content swapping)
+  is NOT permitted for calculators.
+- Each calculator MUST be a standalone HTML document with its own ads,
+  metadata, and explanation content.
+
+---
+
 ## 4) Universal Layout and Architecture Boundaries
 
 The UI is a **calculator container framework**: layout is fixed/shared; calculators plug in.

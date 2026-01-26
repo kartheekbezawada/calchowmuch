@@ -36,7 +36,7 @@
 | REQ-20260126-007 | Time Between Two Dates Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-008 | Days Until a Date Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-009 | Age Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260126-010 | Switch Calculator Navigation to Full Page Loads (MPA) | Navigation | Architecture | P0 | IN_PROGRESS | YES |
+| REQ-20260126-011 | Archive Completed REQ-20260126-010 Tracker Rows | Housekeeping | Archive/Cleanup | LOW | COMPLETE | NO |
 
 ---
 
@@ -75,3 +75,4 @@
 | REQ-20260122-001 | Navigation Restructure - Top Level Loan Categories | COMPLETE | 13 | 2026-01-22 18:35 |
 | REQ-20260122-002 | Top Navigation Button Visual System | COMPLETE | 6 | 2026-01-22 18:42 |
 | REQ-20260122-003 | ISS-NAV-TOP-001 — Top Nav Visual Contract | COMPLETE | 12 | 2026-01-22 18:57 |
+| REQ-20260126-010 | Switch Calculator Navigation to Full Page Loads (MPA) | COMPLETE | 2 | 2026-01-26 22:21 |
