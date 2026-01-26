@@ -12,6 +12,41 @@ const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 
 const CSS_VERSION = '20260125';
+const SITE_URL = 'https://calchowmuch.com';
+
+function ensureLength(text, min, max) {
+  let result = text.trim().replace(/\s+/g, ' ');
+  const filler = ' - Free Tool';
+  while (result.length < min) {
+    result = `${result}${filler}`;
+    if (result.length > max) {
+      break;
+    }
+  }
+  if (result.length > max) {
+    result = result.slice(0, Math.max(max - 3, 0)).trimEnd();
+    result = `${result}...`;
+  }
+  return result;
+}
+
+function buildTitle(name) {
+  const longTitle = `${name} | Calculate How Much Online Calculator`;
+  return ensureLength(longTitle, 50, 60);
+}
+
+function buildDescription(name) {
+  const base =
+    `${name} calculator with fast inputs and clear results. ` +
+    'Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.';
+  return ensureLength(base, 150, 160);
+}
+
+function buildCanonical(pathname) {
+  const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  const withSlash = normalized.endsWith('/') ? normalized : `${normalized}/`;
+  return `${SITE_URL}${withSlash}`;
+}
 
 function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -245,6 +280,7 @@ function buildLeftNavHtml(categories, activeCategoryId, activeSubcategoryId, act
 function buildPageHtml({
   title,
   description,
+  canonical,
   headerHtml,
   footerHtml,
   topNavHtml,
@@ -256,7 +292,7 @@ function buildPageHtml({
 }) {
   const calcContent = includeHomeContent
     ? `<div class="panel panel-scroll">
-  <h3 id="home-overview-title">Home Overview</h3>
+  <h1 id="home-overview-title">Calculate How Much</h1>
   <p class="placeholder" id="home-overview-intro">
     Explore calculators by category using the top navigation. This page is a guide to
     help you discover the right tool, not a calculator itself.
@@ -285,7 +321,7 @@ function buildPageHtml({
   </p>
 </div>`
     : `<div class="panel panel-scroll">
-  <h3 id="calculator-title">${calculatorTitle}</h3>
+  <h1 id="calculator-title">${calculatorTitle}</h1>
   ${calculatorHtml}
 </div>
 <div class="panel panel-scroll">
@@ -300,6 +336,7 @@ function buildPageHtml({
     <title>${title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="${description}" />
+    <link rel="canonical" href="${canonical}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
@@ -350,16 +387,24 @@ function buildCalculatorIndex(categories) {
     })
     .join('');
 
+  const title = ensureLength('All Calculators | Calculate How Much', 50, 60);
+  const description = ensureLength(
+    'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.',
+    150,
+    160
+  );
+
   return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>All Calculators | Calculate How Much</title>
+    <title>${title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Browse all calculators available on Calculate How Much, organized by category."
+      content="${description}"
     />
+    <link rel="canonical" href="${buildCanonical('/calculators/')}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
@@ -465,8 +510,9 @@ function main() {
         );
 
         const pageHtml = buildPageHtml({
-          title: `${calculator.name} | Calculate How Much`,
-          description: `Calculate with the ${calculator.name} on Calculate How Much.`,
+          title: buildTitle(calculator.name),
+          description: buildDescription(calculator.name),
+          canonical: buildCanonical(calculator.url),
           headerHtml,
           footerHtml,
           topNavHtml,
@@ -494,8 +540,13 @@ function main() {
   );
 
   const homeHtml = buildPageHtml({
-    title: 'Calculate How Much',
-    description: 'Layout shell for calchowmuch.com',
+    title: ensureLength('Calculate How Much | Free Online Calculators', 50, 60),
+    description: ensureLength(
+      'Browse free online calculators for math, finance, and time. Calculate How Much offers clear inputs, helpful explanations, and fast results to support everyday planning.',
+      150,
+      160
+    ),
+    canonical: buildCanonical('/'),
     headerHtml,
     footerHtml,
     topNavHtml: homeTopNav,
