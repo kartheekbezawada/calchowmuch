@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-191600 | REQ-20260126-005 | ITER-20260126-185212 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-seo.spec.js | iterations/ITER-20260126-185212.md |
+| TEST-20260126-191530 | REQ-20260126-005 | ITER-20260126-185212 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/sleep-time-calculator.spec.js | iterations/ITER-20260126-185212.md |
+| TEST-20260126-191500 | REQ-20260126-005 | ITER-20260126-185212 | Unit | COMPLETE | 1/25 | tests/core/sleep-time-calculator.test.js | iterations/ITER-20260126-185212.md |
 | TEST-20260126-132348 | REQ-20260126-004 | ITER-20260126-131858 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-131858.md |
 | TEST-20260126-120641 | REQ-20260126-003 | ITER-20260126-115903 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-115903.md |
 | TEST-20260126-114000 | REQ-20260126-002 | ITER-20260126-113856 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-113856.md |

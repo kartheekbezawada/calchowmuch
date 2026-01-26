@@ -1,0 +1,51 @@
+<div id="calc-sleep-time">
+  <div class="calculator-ui">
+    <p class="helper">Find ideal sleep or wake times using 90-minute sleep cycles.</p>
+
+    <div class="input-row">
+      <label id="sleep-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="sleep-mode-label"
+        data-button-group="sleep-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="wake" aria-pressed="true">
+          I want to wake up at...
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="sleep" aria-pressed="false">
+          I want to fall asleep at...
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row" id="sleep-datetime-row">
+      <label for="sleep-datetime">Date &amp; Time</label>
+      <input id="sleep-datetime" type="datetime-local" step="900" />
+    </div>
+
+    <div class="sleep-fallback is-hidden" id="sleep-fallback">
+      <div class="input-row">
+        <label for="sleep-date">Date</label>
+        <input id="sleep-date" type="date" />
+      </div>
+      <div class="input-row">
+        <label for="sleep-time">Time</label>
+        <input id="sleep-time" type="time" step="900" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="sleep-calculate">Calculate</button>
+
+    <div class="result" id="sleep-results" aria-live="polite">
+      <p class="placeholder" id="sleep-placeholder">Select a time and click Calculate.</p>
+      <div class="sleep-results-list is-hidden" id="sleep-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/sleep-time-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/sleep-time-calculator/module.js"></script>

@@ -84,7 +84,18 @@
         categories.forEach((category) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.textContent = category.name;
+          const label = document.createElement('span');
+          label.className = 'nav-label';
+          label.textContent = category.name;
+          if (category.icon) {
+            const icon = document.createElement('span');
+            icon.className = 'nav-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = category.icon;
+            button.append(icon, label);
+          } else {
+            button.append(label);
+          }
           topNav.appendChild(button);
         });
       }

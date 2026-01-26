@@ -233,6 +233,7 @@
           'hire-purchase': '/calculators/loans/hire-purchase',
           'pcp-calculator': '/calculators/loans/pcp-calculator',
           'leasing-calculator': '/calculators/loans/leasing-calculator',
+          'sleep-time-calculator': '/calculators/time-and-date/sleep-time-calculator',
         };
         return pathMap[calculatorId] || null;
       }
@@ -516,7 +517,18 @@
         navItems.forEach((item) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.textContent = item.name;
+          const label = document.createElement('span');
+          label.className = 'nav-label';
+          label.textContent = item.name;
+          if (item.category && item.category.icon) {
+            const icon = document.createElement('span');
+            icon.className = 'nav-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = item.category.icon;
+            button.append(icon, label);
+          } else {
+            button.append(label);
+          }
           button.classList.toggle('is-active', item.id === currentId);
           button.setAttribute('data-testid', 'top-nav-btn');
           button.setAttribute('data-nav-id', item.id.replace('loans:', ''));
