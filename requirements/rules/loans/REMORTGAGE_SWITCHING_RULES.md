@@ -14,6 +14,10 @@ Purpose: Compare current mortgage vs new deal, including fees, rate, payment cha
 | Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
 |----------------|------------|---------------------|---------------------|---------------|
 | REQ-REMO-001 | Remortgage Calculator | • REMO-NAV-1<br>• REMO-IN-C-1<br>• REMO-IN-C-2<br>• REMO-IN-C-3<br>• REMO-IN-C-4<br>• REMO-IN-N-1<br>• REMO-IN-N-2<br>• REMO-IN-N-3<br>• REMO-IN-N-4<br>• REMO-IN-N-5<br>• REMO-IN-N-6<br>• REMO-OUT-1<br>• REMO-OUT-2<br>• REMO-OUT-3<br>• REMO-OUT-4<br>• REMO-OUT-5<br>• REMO-OUT-6<br>• REMO-TBL-1<br>• REMO-TBL-2<br>• REMO-TBL-3<br>• REMO-GRAPH-1<br>• REMO-GRAPH-2<br>• REMO-GRAPH-3<br>• REMO-EXP-1<br>• REMO-EXP-2<br>• REMO-EXP-3 | • REMO-TEST-U-1<br>• REMO-TEST-U-2<br>• REMO-TEST-E2E-1<br>• REMO-TEST-E2E-2 | 2026-01-19 |
+| REQ-20260126-001 | Remortgage Calculator UI/UX Improvements | • REMO-UI-7<br>• REMO-UI-8<br>• REMO-UI-9<br>• REMO-UI-10<br>• REMO-UI-11 | • REMO-TEST-E2E-UX-1<br>• REMO-TEST-E2E-UX-2<br>• REMO-TEST-E2E-UX-3 | 2026-01-26 |
+| REQ-20260126-002 | Remortgage Calculator: No Vertical Scroll in Calculation Pane | • REMO-LAYOUT-1<br>• REMO-LAYOUT-2<br>• REMO-LAYOUT-3<br>• REMO-LAYOUT-4<br>• REMO-LAYOUT-5<br>• REMO-LAYOUT-6 | • REMO-TEST-LAYOUT-1<br>• REMO-TEST-LAYOUT-2<br>• REMO-TEST-LAYOUT-3 | 2026-01-26 |
+| REQ-20260126-003 | Remortgage Calc: Input Reflow for 1366x768 Viewport | • REMO-REFLOW-1<br>• REMO-REFLOW-2<br>• REMO-REFLOW-3<br>• REMO-REFLOW-4 | • REMO-TEST-REFLOW-1<br>• REMO-TEST-REFLOW-2 | 2026-01-26 |
+| REQ-20260126-004 | Revert REQ-20260126-003 Implementation | • REMO-REVERT-1<br>• REMO-REVERT-2<br>• REMO-REVERT-3 | • REMO-TEST-REVERT-1<br>• REMO-TEST-REVERT-2 | 2026-01-26 |
 
 ---
 
@@ -84,6 +88,146 @@ Fee inputs (Exit Fees, Legal Fees) can be in a collapsible "Additional Fees" sec
 
 **REMO-UI-6**  
 Button group for horizon must be visually prominent with clear active state indication.
+
+**REMO-UI-7** (REQ-20260126-001)  
+Additional Fees toggle buttons must function correctly:
+- Currently the Hide/Show toggle is always showing the fees section even when "Hide" is selected
+- Fix the toggle logic to properly hide/show the additional fees section
+- When "Hide" is pressed: additional fees inputs (Exit Fees, Legal/Valuation Fees) must be visually hidden
+- When "Show" is pressed: additional fees inputs must be visible
+
+**REMO-UI-8** (REQ-20260126-001)  
+Rename Additional Fees toggle button text:
+- Change "Hide" button text to "Exclude"
+- Change "Show" button text to "Include"
+- "Include" means show/include the additional fees in calculations
+- "Exclude" means hide/exclude the additional fees from calculations
+
+**REMO-UI-9** (REQ-20260126-001)  
+Rename main action button:
+- Change "Compare Deals" button text to "Calculate"
+- This provides clearer user intent and matches standard calculator UX
+
+**REMO-UI-10** (REQ-20260126-001)  
+Prevent calculations before user action:
+- Currently calculations are happening automatically before the "Compare Deals" button is pressed
+- All calculations must ONLY happen after the user clicks the "Calculate" button
+- No auto-calculation on input change or page load with default values
+- Results area must remain empty until user explicitly triggers calculation
+
+**REMO-UI-11** (REQ-20260126-001)  
+Optimize calculator pane layout to eliminate scroll:
+- All calculation input boxes and buttons must fit within the calculator pane without requiring scrollbar
+- Currently input elements overflow to bottom requiring vertical scroll
+- Improve vertical spacing, reduce padding/margins, or reorganize layout to make everything visible
+- Follow UNIVERSAL_REQUIREMENTS.md UI-3.x layout constraints for fixed-height panes
+- Calculator pane should show all inputs, buttons, and initial results area without scrolling
+
+---
+
+## REMO-LAYOUT — Calculation Pane Layout Constraints (REQ-20260126-002)
+
+**REMO-LAYOUT-1**  
+No vertical scrolling in Calculation Pane:
+- `overflow-y: hidden` or equivalent behavior must be enforced
+- Scrollbars must not appear at any time for the remortgage calculator
+- The Calculation Pane must not introduce vertical scrollbar at standard desktop viewport sizes (1366×768 and above)
+- scrollHeight must be <= clientHeight for the calculation pane element
+
+**REMO-LAYOUT-2**  
+All mandatory inputs must be visible simultaneously:
+- Current Balance, Current Rate, Remaining Term, Current Monthly Payment
+- New Rate, New Term, New Deal Fees
+- Additional Fees section (Exit Fees, Legal/Valuation Fees) 
+- Comparison Horizon buttons (2/3/5 years)
+- Calculate button
+- All must be visible without any scrolling action by the user
+
+**REMO-LAYOUT-3**  
+Horizontal and sectional reflow allowed:
+- Inputs may flow into two columns for space efficiency
+- Inputs may collapse into logical sections (Current Deal vs New Deal)
+- Inputs may use grouped rows for visual organization
+- Goal is visibility first, then optimal density
+- Must not reduce font size below existing calculator standards
+
+**REMO-LAYOUT-4**  
+Pane contract preservation:
+- Calculation Pane: inputs + Calculate action only
+- Explanation Pane: results, summaries, tables, graphs
+- No output elements may be moved into Calculation Pane to "make space"
+- No dynamic resizing that causes layout shift after page load
+
+**REMO-LAYOUT-5**  
+Layout stability requirements:
+- Pane height must remain stable after initial page load
+- Changing input values must not cause reflow that introduces scrolling
+- Layout must work at desktop baseline viewport (1366×768) and above
+- No regression to other calculators' layouts allowed
+
+**REMO-LAYOUT-6**  
+Input visibility rules:
+- Must not hide required inputs behind toggles by default
+- Optional/advanced fields (like additional fees) may be grouped but core inputs visible
+- Core inputs: Balance, Current Rate, Term, New Rate, New Term, Fees, Calculate button
+
+---
+
+## REMO-REFLOW — Input Reflow for 1366x768 Viewport (REQ-20260126-003)
+
+**REMO-REFLOW-1**  
+Specific 1366x768 viewport constraint:
+- Calculation pane must not scroll at exactly 1366x768 resolution
+- This is the minimum desktop viewport that must be supported
+- Test specifically at this resolution to ensure no vertical scrollbar appears
+- All inputs must be visible within the available viewport height at this resolution
+
+**REMO-REFLOW-2**  
+Keep Additional Fees visible by default:
+- Additional Fees section (Exit Fees, Legal/Valuation Fees) must remain visible
+- Do NOT hide Additional Fees behind collapsed/toggle states to save space
+- Users should see the complete fee structure upfront for transparent comparison
+- Both Exit Fees and Legal/Valuation fee inputs must be visible without user interaction
+
+**REMO-REFLOW-3**  
+Input reflow strategies for space optimization:
+- Arrange inputs in efficient grid layouts (2-3 columns where logical)
+- Group related inputs: Current Deal vs New Deal vs Fees vs Options
+- Reduce vertical spacing/padding between input groups while maintaining readability
+- Use horizontal layouts for related inputs (Rate + Term on same row)
+- Optimize button group layouts (horizon selection buttons in compact row)
+
+**REMO-REFLOW-4**  
+Layout constraints and limitations:
+- Maintain minimum touch target sizes for accessibility
+- Preserve visual hierarchy and input grouping logic
+- Do not reduce font sizes below universal calculator standards
+- Ensure labels remain clearly associated with their inputs
+- Test that tab order remains logical after reflow changes
+
+---
+
+## REMO-REVERT — Revert REQ-20260126-003 Implementation (REQ-20260126-004)
+
+**REMO-REVERT-1**  
+Revert layout changes from REQ-20260126-003:
+- Remove any input reflow implementations that were added for 1366x768 viewport optimization
+- Restore calculator layout to the state before REQ-20260126-003 implementation
+- Remove any grid layouts or column arrangements specifically added for REQ-20260126-003
+- Restore original input grouping and spacing that existed prior to REQ-20260126-003
+
+**REMO-REVERT-2**  
+Revert Additional Fees visibility changes:
+- If Additional Fees section was made always visible due to REMO-REFLOW-2, revert to previous toggle behavior
+- Restore original Hide/Show or Include/Exclude toggle functionality
+- Remove any forced visibility implementations added for REQ-20260126-003 compliance
+
+**REMO-REVERT-3**  
+Restore original layout constraints:
+- Remove specific 1366x768 resolution optimizations
+- Restore original overflow and scrolling behavior that existed before REQ-20260126-003
+- Ensure reversion does not break functionality from other completed requirements
+- Maintain compatibility with UNIVERSAL_REQUIREMENTS.md constraints
 
 ---
 
@@ -385,3 +529,98 @@ Visual regression test:
 - Verify colors match theme tokens
 - Verify typography matches universal styles
 - **Screenshot:** `visual-regression.png`
+
+**REMO-TEST-E2E-UX-1** (REQ-20260126-001)  
+Additional Fees toggle functionality test:
+- Navigate to remortgage calculator
+- Verify "Include" button shows additional fees inputs (Exit Fees, Legal/Valuation Fees)
+- Click "Exclude" button and verify additional fees inputs are hidden
+- Click "Include" button again and verify inputs are visible
+- Verify toggle state persists correctly throughout interaction
+
+**REMO-TEST-E2E-UX-2** (REQ-20260126-001)  
+Button text and calculation trigger test:
+- Verify main action button displays "Calculate" (not "Compare Deals")
+- Fill in all required inputs with valid values
+- Verify result area is empty before clicking Calculate
+- Click "Calculate" button and verify calculations are performed
+- Verify results appear only after button click, not on input change
+
+**REMO-TEST-E2E-UX-3** (REQ-20260126-001)  
+Calculator pane layout test:
+- Navigate to remortgage calculator
+- Verify all input fields, buttons, and initial result area are visible without scrolling
+- Verify no vertical scrollbar appears in calculator pane
+- Test on standard screen resolutions (1920x1080, 1366x768)
+- Verify layout remains compact and accessible
+
+**REMO-TEST-LAYOUT-1** (REQ-20260126-002)  
+Calculation Pane Scroll Prevention Test:
+- Navigate to remortgage calculator at baseline viewport (1366x768)
+- Verify `overflow-y` is set to `hidden` or equivalent on calculation pane
+- Use JavaScript to verify `scrollHeight <= clientHeight` for calculation pane element
+- Verify no vertical scrollbar appears regardless of input content
+- Test viewport resize scenarios to ensure constraint holds
+- **Screenshot:** `calculation-pane-no-scroll.png`
+
+**REMO-TEST-LAYOUT-2** (REQ-20260126-002)  
+Input Visibility Verification Test:
+- Navigate to remortgage calculator
+- Verify all mandatory inputs visible without scrolling:
+  - Current Balance, Current Rate, Remaining Term, Current Monthly Payment
+  - New Rate, New Term, New Deal Fees
+  - Additional Fees section (even if collapsed)
+  - Comparison Horizon buttons (2/3/5 years)
+  - Calculate button
+- Expand Additional Fees section and verify all inputs still fit
+- Measure actual visible area vs required content height
+- **Screenshot:** `all-inputs-visible.png`
+
+**REMO-TEST-LAYOUT-3** (REQ-20260126-002)  
+Layout Stability and Regression Test:
+- Load remortgage calculator and measure initial pane height
+- Fill in all input fields with maximum length values
+- Verify pane height remains stable (no dynamic growth)
+- Change input values multiple times and verify no scrollbar appears
+- Test other calculators to ensure no layout regression introduced
+- Verify Explanation Pane independently handles its overflow
+- **Screenshot:** `layout-stability.png`
+
+**REMO-TEST-REFLOW-1** (REQ-20260126-003)  
+1366x768 Viewport Specific Test:
+- Set browser window to exactly 1366x768 resolution
+- Navigate to remortgage calculator
+- Verify no vertical scrollbar appears in calculation pane
+- Verify all inputs are visible without scrolling: Current Balance, Current Rate, Remaining Term, Current Monthly Payment, New Rate, New Term, New Deal Fees, Exit Fees, Legal/Valuation Fees, Comparison Horizon buttons, Calculate button
+- Take measurements of available height vs content height
+- Verify Additional Fees section is expanded and visible by default
+- **Screenshot:** `1366x768-no-scroll.png`
+
+**REMO-TEST-REFLOW-2** (REQ-20260126-003)  
+Reflow Layout Verification Test:
+- Navigate to remortgage calculator at 1366x768 resolution
+- Verify efficient use of horizontal space with input groupings/columns
+- Verify visual hierarchy maintained: Current Deal → New Deal → Additional Fees → Options → Calculate
+- Test tab order remains logical after layout changes
+- Verify all labels clearly associated with correct inputs
+- Compare font sizes to ensure no reduction below calculator standards
+- Test touch target sizes meet accessibility requirements
+- **Screenshot:** `reflow-layout-optimized.png`
+
+**REMO-TEST-REVERT-1** (REQ-20260126-004)  
+Verify Reversion of REQ-20260126-003 Changes:
+- Navigate to remortgage calculator
+- Verify layout matches state before REQ-20260126-003 implementation
+- Verify any grid layouts or column arrangements added for REQ-20260126-003 are removed
+- Verify input grouping and spacing matches pre-REQ-20260126-003 state
+- Compare against baseline screenshots taken before REQ-20260126-003 implementation
+- **Screenshot:** `reverted-layout.png`
+
+**REMO-TEST-REVERT-2** (REQ-20260126-004)  
+Functional Verification After Reversion:
+- Test all calculator functionality works correctly after reversion
+- Verify calculations produce expected results
+- Verify no regressions introduced to other requirements (REQ-20260126-001, REQ-20260126-002)
+- Test Additional Fees toggle behavior matches original specifications
+- Verify no broken styles or layout issues after reverting REQ-20260126-003 changes
+- **Screenshot:** `functionality-post-revert.png`

@@ -26,7 +26,12 @@
 | REQ-20260125-005 | Home Page Shell-Only Content | Site | UI/Flow | HIGH | COMPLETE | NO |
 | REQ-20260125-006 | Grey Scrollbars for Nav/Calc/Explanation | UI | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260125-007 | Math Navigation Expandable Icons | Navigation | UI/Flow | HIGH | BLOCKED | NO |
-| REQ-20260125-100 | Remortgage Switching Output Ownership & ISS | UI/Calculation | UI/Flow + ISS | P0 | NEW | NO |
+| REQ-20260125-100 | Remortgage Switching Output Ownership & ISS | UI/Calculation | UI/Flow + ISS | P0 | COMPLETE | NO |
+| REQ-20260126-001 | Remortgage Calculator UI/UX Improvements | Calculator | UI/Flow | HIGH | COMPLETE | NO |
+| REQ-20260126-002 | Remortgage Calculator: No Vertical Scroll in Calculation Pane | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260126-003 | Remortgage Calc: Input Reflow for 1366x768 Viewport | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260126-004 | Revert REQ-20260126-003 Implementation | Calculator | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260126-005 | Sleep Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 

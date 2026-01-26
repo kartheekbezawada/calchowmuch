@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateRemortgage } from '/assets/js/core/loan-utils.js';
@@ -14,20 +14,24 @@ const newFeesInput = document.querySelector('#remo-new-fees');
 const exitFeesInput = document.querySelector('#remo-exit-fees');
 const legalFeesInput = document.querySelector('#remo-legal-fees');
 const calculateButton = document.querySelector('#remo-calculate');
-const resultDiv = document.querySelector('#remo-result');
-const summaryDiv = document.querySelector('#remo-summary');
 
 const horizonGroup = document.querySelector('[data-button-group="remo-horizon"]');
 const feesToggleGroup = document.querySelector('[data-button-group="remo-fees-toggle"]');
 const feesOptions = document.querySelector('#remo-fees-options');
 
 const explanationRoot = document.querySelector('#loan-remortgage-explanation');
+const errorDiv = document.querySelector('#remo-error');
+const promptText = document.querySelector('#remo-prompt');
+const outputsRoot = document.querySelector('#remo-outputs');
 const currentPaymentValue = explanationRoot?.querySelector('[data-remo="current-payment"]');
 const newPaymentValue = explanationRoot?.querySelector('[data-remo="new-payment"]');
 const monthlyDiffValue = explanationRoot?.querySelector('[data-remo="monthly-diff"]');
 const annualDiffValue = explanationRoot?.querySelector('[data-remo="annual-diff"]');
 const feesValue = explanationRoot?.querySelector('[data-remo="fees"]');
 const breakEvenValue = explanationRoot?.querySelector('[data-remo="break-even"]');
+const totalCurrentValue = explanationRoot?.querySelector('[data-remo="total-current"]');
+const totalNewValue = explanationRoot?.querySelector('[data-remo="total-new"]');
+const totalSavingsValue = explanationRoot?.querySelector('[data-remo="total-savings"]');
 
 const tableBody = document.querySelector('#remo-table-body');
 
@@ -42,8 +46,21 @@ const graphNote = document.querySelector('#remo-graph-note');
 const breakMarker = document.querySelector('#remo-break-marker');
 const breakLine = document.querySelector('#remo-break-line');
 const breakDot = document.querySelector('#remo-break-dot');
+const graphPanel = document.querySelector('#remo-graph');
+const graphMain = graphPanel?.querySelector('.graph-main');
+const graphTooltip = document.querySelector('#remo-graph-tooltip');
+const graphTooltipTitle = document.querySelector('#remo-graph-tooltip-title');
+const graphTooltipCurrent = document.querySelector('#remo-graph-tooltip-current');
+const graphTooltipNew = document.querySelector('#remo-graph-tooltip-new');
 
 const MAX_INPUT_LENGTH = 10;
+const FORMAT_HINTS = Object.freeze({ number_decimals: 2, thousands_separator: ',' });
+
+let latestContract = null;
+let hoverBound = false;
+let scheduled = null;
+let hasCalculated = false;
+let feesIncluded = false;
 
 function enforceMaxLength(input) {
   if (!input) {
@@ -59,12 +76,15 @@ function enforceMaxLength(input) {
 
 const horizonButtons = setupButtonGroup(horizonGroup, {
   defaultValue: '2',
-  onChange: () => calculate(),
+  onChange: () => scheduleCalculate(),
 });
 
 const feesToggleButtons = setupButtonGroup(feesToggleGroup, {
-  defaultValue: 'expanded',
-  onChange: (value) => setFeesVisibility(value === 'expanded'),
+  defaultValue: 'exclude',
+  onChange: (value) => {
+    setFeesIncluded(value === 'include');
+    scheduleCalculate();
+  },
 });
 
 [
@@ -79,8 +99,14 @@ const feesToggleButtons = setupButtonGroup(feesToggleGroup, {
   legalFeesInput,
 ].forEach(enforceMaxLength);
 
-function setFeesVisibility(isExpanded) {
-  feesOptions?.classList.toggle('is-hidden', !isExpanded);
+function setOutputsVisible(isVisible) {
+  outputsRoot?.classList.toggle('is-hidden', !isVisible);
+  promptText?.classList.toggle('is-hidden', isVisible);
+}
+
+function setFeesIncluded(isIncluded) {
+  feesIncluded = isIncluded;
+  feesOptions?.classList.toggle('is-hidden', !isIncluded);
 }
 
 function formatTableNumber(value) {
@@ -91,7 +117,20 @@ function formatAxisValue(value) {
   return formatNumber(value, { maximumFractionDigits: 0 });
 }
 
+function formatOutputNumber(value) {
+  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
 function clearOutputs() {
+  if (currentPaymentValue) currentPaymentValue.textContent = '';
+  if (newPaymentValue) newPaymentValue.textContent = '';
+  if (monthlyDiffValue) monthlyDiffValue.textContent = '';
+  if (annualDiffValue) annualDiffValue.textContent = '';
+  if (feesValue) feesValue.textContent = '';
+  if (breakEvenValue) breakEvenValue.textContent = '';
+  if (totalCurrentValue) totalCurrentValue.textContent = '';
+  if (totalNewValue) totalNewValue.textContent = '';
+  if (totalSavingsValue) totalSavingsValue.textContent = '';
   if (tableBody) {
     tableBody.innerHTML = '';
   }
@@ -100,57 +139,157 @@ function clearOutputs() {
   if (breakMarker) {
     breakMarker.setAttribute('display', 'none');
   }
+
+  if (graphTooltip) {
+    graphTooltip.classList.add('is-hidden');
+  }
 }
 
 function setError(message) {
-  if (resultDiv) {
-    resultDiv.textContent = message;
-  }
-  if (summaryDiv) {
-    summaryDiv.textContent = '';
-  }
   clearOutputs();
+  setOutputsVisible(false);
+  if (errorDiv) {
+    errorDiv.textContent = message;
+  }
 }
 
-function updateExplanation(data) {
+function buildContract(inputs, model) {
+  const feesTotal = inputs.newFees + inputs.exitFees + inputs.legalFees;
+  const horizonMonths = Math.round(inputs.horizonYears * 12);
+
+  return {
+    current: {
+      apr_percent: inputs.currentRate,
+      remaining_term_months: Math.round(inputs.remainingYears * 12),
+      monthly_payment: inputs.currentPayment,
+      balance_remaining: inputs.balance,
+      fees_total: 0,
+    },
+    new: {
+      apr_percent: inputs.newRate,
+      term_months: Math.round(inputs.newTermYears * 12),
+      monthly_payment: model.newPayment,
+      fees_total: feesTotal,
+      initial_rate_period_months: null,
+    },
+    comparison: {
+      horizon_months: horizonMonths,
+    },
+    summary: {
+      current_monthly_payment: model.baselinePayment,
+      new_monthly_payment: model.newPayment,
+      monthly_difference: model.baselinePayment - model.newPayment,
+      annual_difference: (model.baselinePayment - model.newPayment) * 12,
+      current_deal_fees_total: 0,
+      new_deal_fees_total: feesTotal,
+      fees_difference_total: feesTotal,
+      break_even_month: model.breakEvenMonth,
+      break_even_label: model.breakEvenMonth ? `month ${model.breakEvenMonth}` : 'not within the horizon',
+      total_cost_current_at_horizon: model.totalCurrent,
+      total_cost_new_at_horizon: model.totalNew,
+      total_savings_at_horizon: model.totalSavings,
+    },
+    table: {
+      rows: model.costSeries.map((row) => ({
+        period_month: row.month,
+        current: { cumulative_cost: row.currentCost },
+        new: { cumulative_cost: row.newCost },
+        difference: row.savings,
+      })),
+    },
+    graph: {
+      series: model.costSeries.map((row) => ({
+        month: row.month,
+        current_cumulative_cost: row.currentCost,
+        new_cumulative_cost: row.newCost,
+      })),
+      break_even_month: model.breakEvenMonth,
+    },
+    format: FORMAT_HINTS,
+  };
+}
+
+function updateExplanation(contract) {
   if (!explanationRoot) {
     return;
   }
-  currentPaymentValue.textContent = formatCurrency(data.baselinePayment);
-  newPaymentValue.textContent = formatCurrency(data.newPayment);
-  monthlyDiffValue.textContent = formatCurrency(data.monthlyDifference);
-  annualDiffValue.textContent = formatCurrency(data.annualDifference);
-  feesValue.textContent = formatCurrency(data.fees);
-  breakEvenValue.textContent = data.breakEvenMonth
-    ? `month ${data.breakEvenMonth}`
-    : 'not within the horizon';
+
+  if (currentPaymentValue) currentPaymentValue.textContent = formatOutputNumber(contract.summary.current_monthly_payment);
+  if (newPaymentValue) newPaymentValue.textContent = formatOutputNumber(contract.summary.new_monthly_payment);
+  if (monthlyDiffValue) monthlyDiffValue.textContent = formatOutputNumber(contract.summary.monthly_difference);
+  if (annualDiffValue) annualDiffValue.textContent = formatOutputNumber(contract.summary.annual_difference);
+  if (feesValue) feesValue.textContent = formatOutputNumber(contract.summary.new_deal_fees_total);
+  if (breakEvenValue) breakEvenValue.textContent = contract.summary.break_even_label;
+
+  if (totalCurrentValue) totalCurrentValue.textContent = formatOutputNumber(contract.summary.total_cost_current_at_horizon);
+  if (totalNewValue) totalNewValue.textContent = formatOutputNumber(contract.summary.total_cost_new_at_horizon);
+  if (totalSavingsValue) totalSavingsValue.textContent = formatOutputNumber(contract.summary.total_savings_at_horizon);
 }
 
-function updateTable(data) {
+function updateTable(contract) {
   if (!tableBody) {
     return;
   }
 
-  tableBody.innerHTML = data.costSeries
+  tableBody.innerHTML = contract.table.rows
     .map(
       (row) => `
         <tr>
-          <td>${row.month}</td>
-          <td>${formatTableNumber(row.currentCost)}</td>
-          <td>${formatTableNumber(row.newCost)}</td>
-          <td>${formatTableNumber(row.savings)}</td>
+          <td>${row.period_month}</td>
+          <td>${formatTableNumber(row.current.cumulative_cost)}</td>
+          <td>${formatTableNumber(row.new.cumulative_cost)}</td>
+          <td>${formatTableNumber(row.difference)}</td>
         </tr>`
     )
     .join('');
 }
 
-function updateGraph(data) {
+function setGraphTooltip(monthIndex) {
+  if (!latestContract || !graphTooltip || !graphTooltipTitle || !graphTooltipCurrent || !graphTooltipNew) {
+    return;
+  }
+  const entry = latestContract.graph.series[monthIndex - 1];
+  if (!entry) {
+    graphTooltip.classList.add('is-hidden');
+    return;
+  }
+
+  graphTooltipTitle.textContent = `Month ${entry.month}`;
+  graphTooltipCurrent.textContent = `Current: ${formatTableNumber(entry.current_cumulative_cost)}`;
+  graphTooltipNew.textContent = `New: ${formatTableNumber(entry.new_cumulative_cost)}`;
+  graphTooltip.classList.remove('is-hidden');
+}
+
+function bindGraphHover() {
+  if (hoverBound || !graphMain) {
+    return;
+  }
+  hoverBound = true;
+
+  graphMain.addEventListener('mousemove', (event) => {
+    if (!latestContract || !latestContract.graph?.series?.length) {
+      return;
+    }
+    const rect = graphMain.getBoundingClientRect();
+    const relativeX = Math.min(rect.width, Math.max(0, event.clientX - rect.left));
+    const ratio = rect.width > 0 ? relativeX / rect.width : 0;
+    const horizonMonths = latestContract.graph.series.length;
+    const index = Math.min(horizonMonths, Math.max(1, Math.round(ratio * (horizonMonths - 1)) + 1));
+    setGraphTooltip(index);
+  });
+
+  graphMain.addEventListener('mouseleave', () => {
+    graphTooltip?.classList.add('is-hidden');
+  });
+}
+
+function updateGraph(contract) {
   if (!lineNew || !lineCurrent) {
     return;
   }
 
-  const currentValues = data.costSeries.map((row) => row.currentCost);
-  const newValues = data.costSeries.map((row) => row.newCost);
+  const currentValues = contract.graph.series.map((row) => row.current_cumulative_cost);
+  const newValues = contract.graph.series.map((row) => row.new_cumulative_cost);
   const { min, max } = getPaddedMinMax([...currentValues, ...newValues], 0.1);
   const mid = (min + max) / 2;
 
@@ -160,20 +299,22 @@ function updateGraph(data) {
   graphYMid.textContent = formatAxisValue(mid);
   graphYMin.textContent = formatAxisValue(min);
   graphXStart.textContent = '1';
-  graphXEnd.textContent = String(data.horizonMonths);
+  graphXEnd.textContent = String(contract.graph.series.length);
 
   if (graphNote) {
-    graphNote.textContent = data.breakEvenMonth
-      ? `Break-even at month ${data.breakEvenMonth}`
+    graphNote.textContent = contract.graph.break_even_month
+      ? `Break-even at month ${contract.graph.break_even_month}`
       : 'No break-even within horizon';
   }
 
-  if (data.breakEvenMonth && breakMarker && breakLine && breakDot) {
+  if (contract.graph.break_even_month && breakMarker && breakLine && breakDot) {
     const xRatio =
-      data.horizonMonths > 1 ? (data.breakEvenMonth - 1) / (data.horizonMonths - 1) : 0;
+      contract.graph.series.length > 1
+        ? (contract.graph.break_even_month - 1) / (contract.graph.series.length - 1)
+        : 0;
     const x = xRatio * 100;
-    const breakRow = data.costSeries[data.breakEvenMonth - 1];
-    const breakValue = breakRow ? breakRow.newCost : 0;
+    const breakRow = contract.graph.series[contract.graph.break_even_month - 1];
+    const breakValue = breakRow ? breakRow.new_cumulative_cost : 0;
     const y = max === min ? 50 : 100 - ((breakValue - min) / (max - min)) * 100;
     const clampedY = Math.min(100, Math.max(0, y));
 
@@ -185,15 +326,31 @@ function updateGraph(data) {
     breakDot.setAttribute('cx', x.toFixed(2));
     breakDot.setAttribute('cy', clampedY.toFixed(2));
   }
+
+  bindGraphHover();
+}
+
+function scheduleCalculate() {
+  if (!hasCalculated) {
+    return;
+  }
+  if (scheduled) {
+    window.clearTimeout(scheduled);
+  }
+  scheduled = window.setTimeout(() => {
+    calculate();
+    scheduled = null;
+  }, 120);
 }
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {
+  if (!explanationRoot) {
     return;
   }
 
-  resultDiv.textContent = '';
-  summaryDiv.textContent = '';
+  if (errorDiv) {
+    errorDiv.textContent = '';
+  }
   clearOutputs();
 
   // Validate input maxlength per REMO-UI-3
@@ -205,8 +362,7 @@ function calculate() {
     newRateInput,
     newTermInput,
     newFeesInput,
-    exitFeesInput,
-    legalFeesInput,
+    ...(feesIncluded ? [exitFeesInput, legalFeesInput] : []),
   ].filter(Boolean);
 
   const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
@@ -252,17 +408,21 @@ function calculate() {
   }
 
   const newFees = Number(newFeesInput?.value);
-  const exitFees = Number(exitFeesInput?.value);
-  const legalFees = Number(legalFeesInput?.value);
+  if (!Number.isFinite(newFees) || newFees < 0) {
+    setError('Fees must be 0 or more.');
+    return;
+  }
 
-  if ([newFees, exitFees, legalFees].some((value) => !Number.isFinite(value) || value < 0)) {
+  const exitFees = feesIncluded ? Number(exitFeesInput?.value) : 0;
+  const legalFees = feesIncluded ? Number(legalFeesInput?.value) : 0;
+  if ([exitFees, legalFees].some((value) => !Number.isFinite(value) || value < 0)) {
     setError('Fees must be 0 or more.');
     return;
   }
 
   const horizonYears = Number(horizonButtons?.getValue() ?? 2);
 
-  const data = calculateRemortgage({
+  const inputs = {
     balance,
     currentRate,
     remainingYears,
@@ -273,35 +433,37 @@ function calculate() {
     exitFees,
     legalFees,
     horizonYears,
+  };
+
+  const data = calculateRemortgage({
+    ...inputs,
   });
 
-  const paymentGap = Math.abs(data.calculatedPayment - data.baselinePayment);
-  const paymentNote =
-    currentPayment > 0 && paymentGap > 1
-      ? `<p>Calculated payment is ${formatCurrency(data.calculatedPayment)}; ` +
-        `difference may be due to escrow or fees.</p>`
-      : '';
+  latestContract = buildContract(inputs, data);
+  updateExplanation(latestContract);
+  updateTable(latestContract);
+  updateGraph(latestContract);
 
-  resultDiv.innerHTML =
-    `<strong>Current payment:</strong> ${formatCurrency(data.baselinePayment)} ` +
-    `| <strong>New payment:</strong> ${formatCurrency(data.newPayment)}`;
-
-  summaryDiv.innerHTML =
-    `<p><strong>Total cost over ${data.horizonYears} years:</strong> ` +
-    `${formatCurrency(data.totalCurrent)} vs ${formatCurrency(data.totalNew)}</p>` +
-    `<p><strong>Total savings:</strong> ${formatCurrency(data.totalSavings)}</p>` +
-    `<p><strong>Break-even:</strong> ` +
-    `${data.breakEvenMonth ? `month ${data.breakEvenMonth}` : 'not within horizon'}</p>` +
-    paymentNote;
-
-  updateExplanation(data);
-  updateTable(data);
-  updateGraph(data);
+  hasCalculated = true;
+  setOutputsVisible(true);
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => {
+  hasCalculated = false;
+  calculate();
+});
 
-// Initialize fees visibility per REMO-UI-5
-setFeesVisibility(feesToggleButtons?.getValue() === 'expanded');
+[balanceInput, currentRateInput, termInput, currentPaymentInput, newRateInput, newTermInput, newFeesInput, exitFeesInput, legalFeesInput]
+  .filter(Boolean)
+  .forEach((input) =>
+    input.addEventListener('input', () => {
+      if (errorDiv) {
+        errorDiv.textContent = '';
+      }
+      scheduleCalculate();
+    })
+  );
 
-calculate();
+setFeesIncluded(feesToggleButtons?.getValue() === 'include');
+setOutputsVisible(false);
+clearOutputs();

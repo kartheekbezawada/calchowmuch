@@ -186,4 +186,11 @@
     <priority>0.65</priority>
   </url>
 
+  <!-- Time & Date Calculators -->
+  <url>
+    <loc>https://calchowmuch.com/calculators/time-and-date/sleep-time-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
