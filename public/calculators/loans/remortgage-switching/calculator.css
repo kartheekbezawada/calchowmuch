@@ -3,21 +3,21 @@
 .remo-compact-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 10px;
 }
 
 .remo-fees-section {
-  padding: 12px;
+  padding: 8px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   background: #f8fafc;
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .remo-fees-options {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 @media (max-width: 720px) {
@@ -26,41 +26,98 @@
   }
 }
 
-#calc-remortgage-switching .graph-line {
+#calc-remortgage-switching .calculator-ui {
+  gap: 10px;
+}
+
+#calc-remortgage-switching .calculator-ui .helper {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+#calc-remortgage-switching .input-stack {
+  gap: 10px;
+}
+
+#calc-remortgage-switching .button-group {
+  gap: 8px;
+}
+
+#calc-remortgage-switching .calculator-button {
+  padding: 10px 12px;
+}
+
+#loan-remortgage-explanation .graph-line {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-#calc-remortgage-switching .graph-line polyline {
+#loan-remortgage-explanation .graph-line polyline {
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-#calc-remortgage-switching .graph-line .line-primary {
+#loan-remortgage-explanation .graph-line .line-primary {
   stroke: var(--accent);
 }
 
-#calc-remortgage-switching .graph-line .line-secondary {
+#loan-remortgage-explanation .graph-line .line-secondary {
   stroke: #94a3b8;
   stroke-dasharray: 6 4;
 }
 
-#calc-remortgage-switching .graph-legend-color.secondary {
+#loan-remortgage-explanation .graph-legend-color.secondary {
   background: #94a3b8;
 }
 
-#calc-remortgage-switching .graph-marker line {
+#loan-remortgage-explanation .graph-marker line {
   stroke: #f59e0b;
   stroke-width: 1.5;
 }
 
-#calc-remortgage-switching .graph-marker circle {
+#loan-remortgage-explanation .graph-marker circle {
   fill: #f59e0b;
 }
 
-.page #calc-remortgage-switching .standalone-explanation {
+#loan-remortgage-explanation .graph-main {
+  position: relative;
+}
+
+#loan-remortgage-explanation .graph-tooltip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 240px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.3;
+  pointer-events: none;
+}
+
+#loan-remortgage-explanation .graph-tooltip.is-hidden {
   display: none;
+}
+
+#loan-remortgage-explanation .graph-tooltip-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+#loan-remortgage-explanation .graph-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+#loan-remortgage-explanation .graph-tooltip-row + .graph-tooltip-row {
+  margin-top: 4px;
 }

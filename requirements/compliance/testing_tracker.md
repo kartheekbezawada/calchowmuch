@@ -9,6 +9,11 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260126-132348 | REQ-20260126-004 | ITER-20260126-131858 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-131858.md |
+| TEST-20260126-120641 | REQ-20260126-003 | ITER-20260126-115903 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-115903.md |
+| TEST-20260126-114000 | REQ-20260126-002 | ITER-20260126-113856 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (snapshots updated) | iterations/ITER-20260126-113856.md |
+| TEST-20260126-112942 | REQ-20260126-001 | ITER-20260126-112255 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/remortgage-switching.spec.js | iterations/ITER-20260126-112255.md |
+| TEST-20260126-110222 | REQ-20260125-100 | ITER-20260126-105223 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/remortgage-switching.spec.js | iterations/ITER-20260126-105223.md |
 | TEST-20260125-114500 | REQ-20260125-007 | ITER-20260125-113300 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260125-113300.md |
 | TEST-20260125-112000 | REQ-20260125-006 | ITER-20260125-111500 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-001-layout-stability.spec.js (update snapshots) | iterations/ITER-20260125-111500.md |
 | TEST-20260125-105400 | REQ-20260125-005 | ITER-20260125-104000 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260125-104000.md |
