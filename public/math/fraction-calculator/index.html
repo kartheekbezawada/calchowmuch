@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fraction Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Fraction Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content"><div class="math-nav-container">
+<div class="math-nav-category" data-id="simple">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
+      <span class="math-nav-category-name">SIMPLE</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/basic">Basic Calculator</a><a class="math-nav-item" href="/math/percentage-increase">Percentage Calculator</a><a class="math-nav-item is-active" href="/math/fraction-calculator">Fraction Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="algebra">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+      <span class="math-nav-category-name">ALGEBRA</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/algebra/quadratic-equation">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance">Slope & Distance Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="trigonometry">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+      <span class="math-nav-category-name">TRIGONOMETRY</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/trigonometry/unit-circle">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines">Law of Sines/Cosines Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="calculus">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      <span class="math-nav-category-name">CALCULUS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/calculus/derivative">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points">Critical Points Finder</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="log">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="math-nav-category-name">LOG</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/log/natural-log">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale">Log Scale Converter</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="statistics">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+      <span class="math-nav-category-name">STATISTICS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/mean-median-mode-range">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size">Sample Size Calculator</a><a class="math-nav-item" href="/math/number-sequence">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution">Distribution Calculator</a>
+  </div>
+</div></div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Fraction Calculator</h3>
+  <div id="calc-fraction-calculator">
+  <div class="calculator-ui">
+    <p class="helper">Select a mode to perform different fraction operations.</p>
+
+    <div
+      class="button-group"
+      role="group"
+      aria-label="Calculation modes"
+      data-button-group="fraction-mode"
+    >
+      <button
+        class="calculator-button secondary is-active"
+        data-value="add"
+        aria-pressed="true"
+      >
+        Add
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="subtract"
+        aria-pressed="false"
+      >
+        Subtract
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="multiply"
+        aria-pressed="false"
+      >
+        Multiply
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="divide"
+        aria-pressed="false"
+      >
+        Divide
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="simplify"
+        aria-pressed="false"
+      >
+        Simplify
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="convert"
+        aria-pressed="false"
+      >
+        Convert
+      </button>
+    </div>
+
+    <!-- Add Fractions -->
+    <div class="input-section active" data-mode="add" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="add-num1">First fraction</label>
+          <div class="fraction-row">
+            <input id="add-num1" type="number" value="1" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="add-den1" class="visually-hidden">First denominator</label>
+            <input id="add-den1" type="number" value="4" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+        <div>
+          <label class="fraction-label" for="add-num2">Second fraction</label>
+          <div class="fraction-row">
+            <input id="add-num2" type="number" value="1" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="add-den2" class="visually-hidden">Second denominator</label>
+            <input id="add-den2" type="number" value="8" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="add">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Subtract Fractions -->
+    <div class="input-section" data-mode="subtract" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="sub-num1">First fraction</label>
+          <div class="fraction-row">
+            <input id="sub-num1" type="number" value="3" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="sub-den1" class="visually-hidden">First denominator</label>
+            <input id="sub-den1" type="number" value="4" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+        <div>
+          <label class="fraction-label" for="sub-num2">Second fraction</label>
+          <div class="fraction-row">
+            <input id="sub-num2" type="number" value="1" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="sub-den2" class="visually-hidden">Second denominator</label>
+            <input id="sub-den2" type="number" value="6" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="subtract">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Multiply Fractions -->
+    <div class="input-section" data-mode="multiply" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="mul-num1">First fraction</label>
+          <div class="fraction-row">
+            <input id="mul-num1" type="number" value="2" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="mul-den1" class="visually-hidden">First denominator</label>
+            <input id="mul-den1" type="number" value="3" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+        <div>
+          <label class="fraction-label" for="mul-num2">Second fraction</label>
+          <div class="fraction-row">
+            <input id="mul-num2" type="number" value="3" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="mul-den2" class="visually-hidden">Second denominator</label>
+            <input id="mul-den2" type="number" value="5" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="multiply">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Divide Fractions -->
+    <div class="input-section" data-mode="divide" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="div-num1">First fraction</label>
+          <div class="fraction-row">
+            <input id="div-num1" type="number" value="2" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="div-den1" class="visually-hidden">First denominator</label>
+            <input id="div-den1" type="number" value="3" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+        <div>
+          <label class="fraction-label" for="div-num2">Second fraction</label>
+          <div class="fraction-row">
+            <input id="div-num2" type="number" value="4" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="div-den2" class="visually-hidden">Second denominator</label>
+            <input id="div-den2" type="number" value="5" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="divide">
+        Calculate
+      </button>
+    </div>
+
+    <!-- Simplify Fraction -->
+    <div class="input-section" data-mode="simplify" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="simp-num">Fraction to simplify</label>
+          <div class="fraction-row">
+            <input id="simp-num" type="number" value="6" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="simp-den" class="visually-hidden">Denominator</label>
+            <input id="simp-den" type="number" value="8" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="simplify">
+        Simplify
+      </button>
+    </div>
+
+    <!-- Convert Improper/Mixed -->
+    <div class="input-section" data-mode="convert" role="tabpanel">
+      <div class="fraction-inputs">
+        <div>
+          <label class="fraction-label" for="conv-imp-num">Improper fraction → Mixed number</label>
+          <div class="fraction-row">
+            <input id="conv-imp-num" type="number" value="7" placeholder="Numerator" maxlength="10" />
+            <div class="fraction-divider">/</div>
+            <label for="conv-imp-den" class="visually-hidden">Improper denominator</label>
+            <input id="conv-imp-den" type="number" value="3" placeholder="Denominator" maxlength="10" />
+          </div>
+        </div>
+        <div>
+          <label class="fraction-label" for="conv-mix-whole">Mixed number → Improper fraction</label>
+          <div class="mixed-number-row">
+            <input id="conv-mix-whole" type="number" value="1" placeholder="Whole" maxlength="10" />
+            <div class="fraction-row">
+              <label for="conv-mix-num" class="visually-hidden">Mixed numerator</label>
+              <input id="conv-mix-num" type="number" value="2" placeholder="Numerator" maxlength="10" />
+              <div class="fraction-divider">/</div>
+              <label for="conv-mix-den" class="visually-hidden">Mixed denominator</label>
+              <input id="conv-mix-den" type="number" value="5" placeholder="Denominator" maxlength="10" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calculator-button full-width" data-calculate="convert">
+        Convert Both
+      </button>
+    </div>
+
+    <div class="result" id="fraction-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/fraction-calculator/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="fraction-explanation" data-fraction-explanation>
+  <section data-mode="add">
+    <h3>Add Fractions</h3>
+    <p>
+      To add fractions, find a common denominator (typically the least common multiple), convert
+      both fractions, add the numerators, and simplify.
+    </p>
+    <p><strong>Example:</strong> 1/4 + 1/8</p>
+    <ul>
+      <li>Common denominator: 8</li>
+      <li>Convert: 1/4 = 2/8</li>
+      <li>Add: 2/8 + 1/8 = 3/8</li>
+    </ul>
+  </section>
+
+  <section data-mode="subtract" hidden>
+    <h3>Subtract Fractions</h3>
+    <p>Subtraction works the same as addition, but you subtract the numerators instead.</p>
+    <p><strong>Example:</strong> 3/4 ƒ^' 1/6</p>
+    <ul>
+      <li>Common denominator: 12</li>
+      <li>Convert: 3/4 = 9/12, 1/6 = 2/12</li>
+      <li>Subtract: 9/12 ƒ^' 2/12 = 7/12</li>
+    </ul>
+  </section>
+
+  <section data-mode="multiply" hidden>
+    <h3>Multiply Fractions</h3>
+    <p>Multiply the numerators together and the denominators together, then simplify.</p>
+    <p><strong>Example:</strong> 2/3 ا- 3/5</p>
+    <ul>
+      <li>Multiply numerators: 2 ا- 3 = 6</li>
+      <li>Multiply denominators: 3 ا- 5 = 15</li>
+      <li>Result: 6/15 = 2/5 (simplified)</li>
+    </ul>
+  </section>
+
+  <section data-mode="divide" hidden>
+    <h3>Divide Fractions</h3>
+    <p>
+      To divide fractions, multiply the first fraction by the reciprocal (flipped version) of the
+      second.
+    </p>
+    <p><strong>Example:</strong> 2/3 اْ 4/5</p>
+    <ul>
+      <li>Reciprocal of 4/5: 5/4</li>
+      <li>Multiply: 2/3 ا- 5/4 = 10/12 = 5/6 (simplified)</li>
+    </ul>
+  </section>
+
+  <section data-mode="simplify" hidden>
+    <h3>Simplify Fraction</h3>
+    <p>
+      Simplifying a fraction means dividing both numerator and denominator by their greatest common
+      divisor (GCD).
+    </p>
+    <p><strong>Example:</strong> 6/8</p>
+    <ul>
+      <li>GCD of 6 and 8: 2</li>
+      <li>Divide both: 6اْ2 = 3, 8اْ2 = 4</li>
+      <li>Simplified: 3/4</li>
+    </ul>
+  </section>
+
+  <section data-mode="convert" hidden>
+    <h3>Convert Improper ƒإ" Mixed Number</h3>
+    <p>
+      An improper fraction has a numerator larger than the denominator. A mixed number combines a
+      whole number and a fraction.
+    </p>
+    <p><strong>Example:</strong> 7/3 = 2 1/3</p>
+    <ul>
+      <li>Divide: 7 اْ 3 = 2 remainder 1</li>
+      <li>Whole: 2, Fraction: 1/3</li>
+    </ul>
+    <p><strong>Reverse example:</strong> 1 2/5 = 7/5</p>
+    <ul>
+      <li>Convert: (1 ا- 5) + 2 = 7</li>
+      <li>Improper: 7/5</li>
+    </ul>
+  </section>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

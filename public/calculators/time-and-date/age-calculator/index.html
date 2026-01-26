@@ -1,0 +1,30 @@
+<div id="calc-age">
+  <div class="calculator-ui">
+    <p class="helper">Calculate your exact age in years, months, and days.</p>
+
+    <div class="input-row">
+      <label for="age-dob">Date of birth</label>
+      <input id="age-dob" type="date" />
+    </div>
+
+    <div class="input-row">
+      <label for="age-as-of">Calculate age as of</label>
+      <input id="age-as-of" type="date" />
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="age-calculate">Calculate</button>
+
+    <div class="result" id="age-results" aria-live="polite">
+      <p class="placeholder" id="age-placeholder">Enter your date of birth to calculate age.</p>
+      <p class="form-error is-hidden" id="age-error"></p>
+      <div class="age-results-list is-hidden" id="age-results-list"></div>
+      <p class="age-clarification is-hidden" id="age-clarification"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/age-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/age-calculator/module.js"></script>

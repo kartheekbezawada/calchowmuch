@@ -42,7 +42,8 @@
   animation: headerSlide 0.55s ease-out both;
 }
 
-.top-nav button {
+.top-nav button,
+.top-nav .top-nav-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -58,6 +59,7 @@
   flex-shrink: 0;
   min-height: 38px;
   line-height: 1.4;
+  text-decoration: none;
   transition:
     background 0.15s ease,
     color 0.15s ease,
@@ -69,16 +71,19 @@
   line-height: 1;
 }
 
-.top-nav button:hover {
+.top-nav button:hover,
+.top-nav .top-nav-link:hover {
   background: var(--accent-strong);
 }
 
-.top-nav button:focus-visible {
+.top-nav button:focus-visible,
+.top-nav .top-nav-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.top-nav button.is-active {
+.top-nav button.is-active,
+.top-nav .top-nav-link.is-active {
   background: var(--accent);
   color: #ffffff;
   border-color: var(--accent);
@@ -226,6 +231,8 @@
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   color: var(--header-text);
+  display: block;
+  text-decoration: none;
   margin-bottom: 0;
   border: 1px solid var(--pill-border);
   cursor: pointer;
@@ -543,6 +550,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  display: block;
+  text-decoration: none;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;

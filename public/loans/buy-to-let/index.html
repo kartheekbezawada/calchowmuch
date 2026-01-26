@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Buy-to-Let Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Buy-to-Let Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item is-active" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Buy-to-Let Calculator</h3>
+  <div id="calc-buy-to-let">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate buy-to-let cashflow, yields, and stress coverage based on rent and mortgage costs.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="btl-price">Property Price</label>
+        <input id="btl-price" type="number" value="250000" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label id="btl-deposit-label">Deposit Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="btl-deposit-label"
+          data-button-group="btl-deposit-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-grid btl-compact-grid">
+        <div class="btl-deposit-slot">
+          <div class="input-row" id="btl-deposit-amount-row">
+            <label for="btl-deposit-amount">Deposit Amount</label>
+            <input
+              id="btl-deposit-amount"
+              type="number"
+              value="50000"
+              min="0"
+              step="0.01"
+              maxlength="10"
+            />
+          </div>
+
+          <div class="input-row is-hidden" id="btl-deposit-percent-row">
+            <label for="btl-deposit-percent">Deposit Percent (%)</label>
+            <input
+              id="btl-deposit-percent"
+              type="number"
+              value="20"
+              min="0"
+              max="99.99"
+              step="0.01"
+              maxlength="10"
+            />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <label for="btl-rate">Interest Rate (APR %)</label>
+          <input id="btl-rate" type="number" value="5.5" min="0" step="0.01" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="btl-term">Loan Term (years)</label>
+          <input id="btl-term" type="number" value="25" min="1" step="1" maxlength="10" />
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="btl-mortgage-label">Mortgage Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="btl-mortgage-label"
+          data-button-group="btl-mortgage-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="interest-only"
+            aria-pressed="true"
+          >
+            Interest Only
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="repayment"
+            aria-pressed="false"
+          >
+            Repayment
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="btl-rent">Monthly Rent</label>
+        <input id="btl-rent" type="number" value="1400" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label id="btl-rent-increase-label">Rent Increase</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="btl-rent-increase-label"
+          data-button-group="btl-rent-increase"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="off"
+            aria-pressed="true"
+          >
+            Off
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="on"
+            aria-pressed="false"
+          >
+            On
+          </button>
+        </div>
+      </div>
+
+      <div class="btl-rent-increase-options is-hidden" id="btl-rent-increase-options">
+        <div class="input-row">
+          <label id="btl-rent-increase-type-label">Increase Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="btl-rent-increase-type-label"
+            data-button-group="btl-rent-increase-type"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="percent"
+              aria-pressed="true"
+            >
+              By Percentage
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="amount"
+              aria-pressed="false"
+            >
+              By Amount
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row" id="btl-rent-increase-percent-row">
+          <label for="btl-rent-increase-percent">Annual Increase (%)</label>
+          <input
+            id="btl-rent-increase-percent"
+            type="number"
+            value="3"
+            min="0"
+            step="0.1"
+            maxlength="10"
+          />
+        </div>
+
+        <div class="input-row is-hidden" id="btl-rent-increase-amount-row">
+          <label for="btl-rent-increase-amount">Annual Increase (Amount)</label>
+          <input
+            id="btl-rent-increase-amount"
+            type="number"
+            value="50"
+            min="0"
+            step="0.01"
+            maxlength="10"
+          />
+        </div>
+
+        <div class="input-row">
+          <label id="btl-rent-increase-frequency-label">Increase Frequency</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="btl-rent-increase-frequency-label"
+            data-button-group="btl-rent-increase-frequency"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="1"
+              aria-pressed="true"
+            >
+              Every Year
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="2"
+              aria-pressed="false"
+            >
+              Every 2 Years
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="3"
+              aria-pressed="false"
+            >
+              Every 3 Years
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="custom"
+              aria-pressed="false"
+            >
+              Custom
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row is-hidden" id="btl-rent-increase-custom-row">
+          <label for="btl-rent-increase-custom">Custom Interval (Years)</label>
+          <input
+            id="btl-rent-increase-custom"
+            type="number"
+            value="2"
+            min="1"
+            step="1"
+            maxlength="10"
+          />
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="btl-vacancy-label">Vacancy Input</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="btl-vacancy-label"
+          data-button-group="btl-vacancy-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="percent"
+            aria-pressed="true"
+          >
+            Percent
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="months"
+            aria-pressed="false"
+          >
+            Months per Year
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="btl-vacancy-percent-row">
+        <label for="btl-vacancy-percent">Vacancy Percent (%)</label>
+        <input
+          id="btl-vacancy-percent"
+          type="number"
+          value="5"
+          min="0"
+          max="100"
+          step="0.1"
+          maxlength="10"
+        />
+      </div>
+
+      <div class="input-row is-hidden" id="btl-vacancy-months-row">
+        <label for="btl-vacancy-months">Vacancy Months per Year</label>
+        <input
+          id="btl-vacancy-months"
+          type="number"
+          value="0"
+          min="0"
+          max="12"
+          step="1"
+          maxlength="10"
+        />
+      </div>
+
+      <div class="input-row">
+        <label for="btl-agent-fee">Letting Agent Fee (%)</label>
+        <input id="btl-agent-fee" type="number" value="10" min="0" step="0.1" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="btl-maintenance">Maintenance / Monthly Costs</label>
+        <input id="btl-maintenance" type="number" value="120" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <div class="input-row">
+        <label for="btl-other-costs">Insurance / Service / Ground Rent</label>
+        <input id="btl-other-costs" type="number" value="80" min="0" step="0.01" maxlength="10" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="btl-calculate">
+      Calculate Buy-to-Let
+    </button>
+
+    <div class="result" id="btl-result" aria-live="polite"></div>
+    <div class="result-detail" id="btl-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/buy-to-let/calculator.css');
+</style>
+
+<script type="module" src="/calculators/loans/buy-to-let/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-btl-explanation">
+  <h4>Buy-to-Let Summary</h4>
+  <p>
+    With a property price of <span data-btl="price"></span> and a deposit of
+    <span data-btl="deposit"></span> (<span data-btl="deposit-percent"></span>), the loan amount is
+    <span data-btl="loan"></span>.
+  </p>
+  <p>
+    Effective rent after vacancy is <span data-btl="effective-rent"></span> per month. The mortgage
+    payment is <span data-btl="mortgage-payment"></span>, leaving net cashflow of
+    <span data-btl="net-monthly"></span> per month or <span data-btl="net-annual"></span> per year.
+  </p>
+  <div class="result-section">
+    <h4>Net Cashflow Over Time</h4>
+    <div class="graph-panel" id="btl-cashflow-graph">
+      <div class="graph-header">
+        <span class="graph-title" id="btl-cashflow-title">Annual Net Cashflow</span>
+        <span class="graph-note" id="btl-cashflow-note"></span>
+      </div>
+      <div class="graph-legend" id="btl-cashflow-legend">
+        <div class="graph-legend-item">
+          <span class="graph-legend-color principal"></span>
+          <span>Net cashflow (baseline)</span>
+        </div>
+        <div class="graph-legend-item is-hidden" id="btl-cashflow-legend-increase">
+          <span class="graph-legend-color btl-rent-increase"></span>
+          <span>With rent increase</span>
+        </div>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label" id="btl-cashflow-y-label">Cashflow</span>
+        <div class="graph-y-axis" id="btl-cashflow-y-axis">
+          <span id="btl-cashflow-y-max"></span>
+          <span id="btl-cashflow-y-mid"></span>
+          <span id="btl-cashflow-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg
+              class="graph-line"
+              id="btl-cashflow-line"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <polyline class="line-primary" points=""></polyline>
+              <polyline class="line-rent-increase" points=""></polyline>
+            </svg>
+            <div class="graph-hover-layer" id="btl-cashflow-hover" aria-hidden="true"></div>
+            <div
+              class="graph-tooltip is-hidden"
+              id="btl-cashflow-tooltip"
+              role="tooltip"
+              aria-hidden="true"
+            >
+              <div class="graph-tooltip-title" id="btl-cashflow-tooltip-title"></div>
+              <div class="graph-tooltip-row" id="btl-cashflow-tooltip-baseline"></div>
+              <div
+                class="graph-tooltip-row is-hidden"
+                id="btl-cashflow-tooltip-increase"
+              ></div>
+              <div
+                class="graph-tooltip-row is-hidden"
+                id="btl-cashflow-tooltip-applied"
+              ></div>
+            </div>
+          </div>
+          <div class="graph-x-axis" id="btl-cashflow-x-axis">
+            <span id="btl-cashflow-x-start"></span>
+            <span id="btl-cashflow-x-end"></span>
+          </div>
+          <span class="graph-x-label" id="btl-cashflow-x-label">Year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+    Gross yield is <span data-btl="gross-yield"></span> and net yield is
+    <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
+    <span data-btl="stress-coverage"></span>.
+  </p>
+  <p class="is-hidden" id="btl-rent-increase-explainer">
+    With rent increases <span data-btl="rent-increase-desc"></span>, projected annual cashflow grows
+    from <span data-btl="rent-increase-start"></span> in year 1 to
+    <span data-btl="rent-increase-end"></span> by year <span data-btl="rent-increase-years"></span>.
+  </p>
+  <p>
+    Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
+    increase equity faster but reduce monthly cashflow.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Projection</h4>
+    <div class="table-scroll" id="btl-table-wrap" tabindex="0">
+      <table class="calculator-table" id="btl-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Rent Income</th>
+            <th scope="col">Mortgage Cost</th>
+            <th scope="col">Costs</th>
+            <th scope="col">Net Cashflow</th>
+            <th scope="col">Cumulative</th>
+            <th scope="col">Increase Applied</th>
+          </tr>
+        </thead>
+        <tbody id="btl-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h4>Rate Scenarios</h4>
+    <div class="btl-scenario-grid" id="btl-rate-scenarios">
+      <div class="btl-scenario-card">
+        <span class="btl-scenario-label">Your rate</span>
+        <span class="btl-scenario-value" data-btl="rate-current"></span>
+        <span class="btl-scenario-detail" data-btl="cashflow-current"></span>
+      </div>
+      <div class="btl-scenario-card">
+        <span class="btl-scenario-label"
+          >If rates rise to <span data-btl="rate-higher"></span
+        ></span>
+        <span class="btl-scenario-detail" data-btl="cashflow-higher"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

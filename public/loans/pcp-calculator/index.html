@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PCP Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the PCP Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/car-loan">Car Loan Calculator</a><a class="nav-item" href="/loans/multiple-car-loan">Multiple Car Loan Calculator</a><a class="nav-item" href="/loans/hire-purchase">Hire Purchase Calculator</a><a class="nav-item is-active" href="/loans/pcp-calculator">PCP Calculator</a><a class="nav-item" href="/loans/leasing-calculator">Leasing Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">PCP Calculator</h3>
+  <div id="calc-pcp">
+  <div class="calculator-ui">
+    <p class="helper">Estimate PCP payments with a guaranteed future value (GFV) and option fee.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pcp-price">Vehicle Price</label>
+        <input id="pcp-price" type="number" value="32000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-deposit">Deposit</label>
+        <input id="pcp-deposit" type="number" value="3000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-apr">APR (%)</label>
+        <input id="pcp-apr" type="number" value="5.9" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-term">Term (months)</label>
+        <input id="pcp-term" type="number" value="36" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-gfv">GFV / Balloon</label>
+        <input id="pcp-gfv" type="number" value="15000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pcp-option-fee">Option Fee</label>
+        <input id="pcp-option-fee" type="number" value="100" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pcp-calc">Calculate PCP</button>
+
+    <div class="result" id="pcp-result" aria-live="polite"></div>
+    <div class="result-detail" id="pcp-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="pcp-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="pcp-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="pcp-y-max"></span>
+          <span id="pcp-y-mid"></span>
+          <span id="pcp-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="pcp-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="pcp-x-start"></span>
+            <span id="pcp-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/pcp-calculator/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="pcp-explanation">
+  <h4>PCP Summary</h4>
+  <p>
+    Financing <span data-pcp="financed"></span> with a deposit of
+    <span data-pcp="deposit"></span> at <span data-pcp="apr"></span> APR results in a monthly
+    payment of <span data-pcp="payment"></span>.
+  </p>
+  <p>
+    The final payment is <span data-pcp="balloon"></span> (GFV + option fee). Total interest is
+    <span data-pcp="interest"></span> and total payable is <span data-pcp="total"></span>.
+  </p>
+  <p>PCP keeps monthly payments lower by deferring a portion of the balance to the end.</p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="pcp-table-wrap" tabindex="0">
+      <table class="calculator-table" id="pcp-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

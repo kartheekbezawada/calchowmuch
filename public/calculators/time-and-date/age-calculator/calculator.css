@@ -1,0 +1,58 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-age .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-age .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-age .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-age .age-clarification {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#calc-age #age-results {
+  min-height: 150px;
+}
+
+#age-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#age-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#age-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#age-explanation .age-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}

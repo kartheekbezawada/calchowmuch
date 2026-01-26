@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Home Loan | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Home Loan on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item is-active" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Home Loan</h3>
+  <div id="calc-home-loan">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate mortgage payments, payoff timeline, and savings from extra payments.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="mtg-price">Home Price</label>
+        <input id="mtg-price" type="number" value="400000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="mtg-down-label">Down Payment Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="mtg-down-label"
+          data-button-group="mtg-down-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="mtg-down-amount-row">
+        <label for="mtg-down-amount">Down Payment Amount</label>
+        <input id="mtg-down-amount" type="number" value="80000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="mtg-down-percent-row">
+        <label for="mtg-down-percent">Down Payment Percent (%)</label>
+        <input id="mtg-down-percent" type="number" value="20" min="0" max="99.99" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-term">Loan Term (years)</label>
+        <input id="mtg-term" type="number" value="30" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-rate">Interest Rate (APR %)</label>
+        <input id="mtg-rate" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-tax">Property Tax (annual, optional)</label>
+        <input id="mtg-tax" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-insurance">Home Insurance (annual, optional)</label>
+        <input id="mtg-insurance" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-start">Start Date (optional)</label>
+        <input id="mtg-start" type="month" value="" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-extra">Extra Monthly Payment</label>
+        <input id="mtg-extra" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-lump">One-time Lump Sum (optional)</label>
+        <input id="mtg-lump" type="number" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="mtg-lump-month">Lump Sum Month (number)</label>
+        <input id="mtg-lump-month" type="number" value="" min="1" step="1" placeholder="e.g., 12" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="mtg-calculate">
+      Calculate Mortgage
+    </button>
+
+    <div class="result" id="mtg-result" aria-live="polite"></div>
+    <div class="result-detail" id="mtg-summary" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/home-loan/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-mtg-explanation">
+  <h2>Mortgage Payment Overview</h2>
+  <p>
+    A mortgage payment repays the home loan balance plus interest over time. Early payments are
+    interest-heavy because interest is calculated on the larger starting balance. As the balance
+    falls, more of each payment goes toward principal.
+  </p>
+  <p>
+    Extra payments reduce the outstanding balance faster, which shortens the payoff timeline and
+    lowers total interest paid.
+  </p>
+
+  <h3>Current Inputs</h3>
+  <ul>
+    <li>Home price: <span data-mtg="price"></span></li>
+    <li>
+      Down payment: <span data-mtg="down-payment"></span> (<span data-mtg="down-percent"></span>)
+    </li>
+    <li>Loan amount: <span data-mtg="loan-amount"></span></li>
+    <li>Interest rate: <span data-mtg="rate"></span></li>
+    <li>Loan term: <span data-mtg="term"></span></li>
+    <li>Extra monthly payment: <span data-mtg="extra-monthly"></span></li>
+    <li>Lump sum payment: <span data-mtg="lump-sum"></span></li>
+    <li>Taxes + insurance: <span data-mtg="escrow"></span></li>
+  </ul>
+
+  <h3 id="mtg-view-label">Schedule View</h3>
+  <div
+    class="button-group"
+    role="group"
+    aria-labelledby="mtg-view-label"
+    data-button-group="mtg-view"
+  >
+    <button
+      class="calculator-button secondary is-active"
+      type="button"
+      data-value="monthly"
+      aria-pressed="true"
+    >
+      Monthly
+    </button>
+    <button
+      class="calculator-button secondary"
+      type="button"
+      data-value="yearly"
+      aria-pressed="false"
+    >
+      Yearly
+    </button>
+  </div>
+
+  <h3>Monthly Summary</h3>
+  <div class="mtg-summary" data-mtg-view="monthly">
+    <p data-mtg="monthly-summary"></p>
+    <p data-mtg="monthly-breakdown"></p>
+  </div>
+
+  <h3>Yearly Summary</h3>
+  <div class="mtg-summary" data-mtg-view="yearly">
+    <p data-mtg="yearly-summary"></p>
+  </div>
+
+  <h3>Lifetime Totals</h3>
+  <p data-mtg="lifetime-summary"></p>
+
+  <h3>Balance Chart</h3>
+  <div class="graph-panel" id="mtg-graph">
+    <div class="graph-header">
+      <span class="graph-title" id="mtg-graph-title">Remaining Balance</span>
+      <span class="graph-note" id="mtg-graph-note"></span>
+    </div>
+    <div class="graph-legend" id="mtg-graph-legend">
+      <div class="graph-legend-item">
+        <span class="graph-legend-color balance"></span>
+        <span>With extras</span>
+      </div>
+      <div class="graph-legend-item">
+        <span class="graph-legend-color baseline"></span>
+        <span>Baseline</span>
+      </div>
+    </div>
+    <div class="graph-container">
+      <span class="graph-y-label" id="mtg-y-label">Balance</span>
+      <div class="graph-y-axis" id="mtg-y-axis">
+        <span id="mtg-y-max"></span>
+        <span id="mtg-y-mid"></span>
+        <span id="mtg-y-min">0</span>
+      </div>
+      <div class="graph-main">
+        <div class="graph-bars-wrapper">
+          <svg
+            class="graph-line"
+            id="mtg-graph-line"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <polyline id="mtg-line-base" class="line-baseline" points=""></polyline>
+            <polyline id="mtg-line-over" class="line-over" points=""></polyline>
+          </svg>
+        </div>
+        <div class="graph-x-axis" id="mtg-x-axis">
+          <span id="mtg-x-start">1</span>
+          <span id="mtg-x-end"></span>
+        </div>
+        <span class="graph-x-label" id="mtg-x-label">Month</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 id="mtg-table-title">Amortization Table (Monthly)</h3>
+  <div class="table-scroll" id="mtg-table-monthly-wrap" tabindex="0">
+    <table class="calculator-table" id="mtg-table-monthly">
+      <thead>
+        <tr>
+          <th scope="col">Month</th>
+          <th scope="col">Payment</th>
+          <th scope="col">Principal</th>
+          <th scope="col">Interest</th>
+          <th scope="col">Extra</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody id="mtg-table-monthly-body"></tbody>
+    </table>
+  </div>
+
+  <div class="table-scroll" id="mtg-table-yearly-wrap" hidden tabindex="0">
+    <table class="calculator-table" id="mtg-table-yearly">
+      <thead>
+        <tr>
+          <th scope="col">Year</th>
+          <th scope="col">Total Paid</th>
+          <th scope="col">Total Principal</th>
+          <th scope="col">Total Interest</th>
+          <th scope="col">Total Extra</th>
+          <th scope="col">Ending Balance</th>
+        </tr>
+      </thead>
+      <tbody id="mtg-table-yearly-body"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

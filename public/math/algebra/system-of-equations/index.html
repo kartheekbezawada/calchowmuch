@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>System of Linear Equations | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the System of Linear Equations on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content"><div class="math-nav-container">
+<div class="math-nav-category is-collapsed" data-id="simple">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
+      <span class="math-nav-category-name">SIMPLE</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/basic">Basic Calculator</a><a class="math-nav-item" href="/math/percentage-increase">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator">Fraction Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category" data-id="algebra">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+      <span class="math-nav-category-name">ALGEBRA</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/algebra/quadratic-equation">Quadratic Equation Solver</a><a class="math-nav-item is-active" href="/math/algebra/system-of-equations">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance">Slope & Distance Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="trigonometry">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+      <span class="math-nav-category-name">TRIGONOMETRY</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/trigonometry/unit-circle">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines">Law of Sines/Cosines Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="calculus">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      <span class="math-nav-category-name">CALCULUS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/calculus/derivative">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points">Critical Points Finder</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="log">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="math-nav-category-name">LOG</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/log/natural-log">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale">Log Scale Converter</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="statistics">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+      <span class="math-nav-category-name">STATISTICS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/mean-median-mode-range">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size">Sample Size Calculator</a><a class="math-nav-item" href="/math/number-sequence">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution">Distribution Calculator</a>
+  </div>
+</div></div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">System of Linear Equations</h3>
+  <div id="calc-system-equations">
+  <div class="calculator-ui">
+    <p class="helper">Solve systems of linear equations using elimination, substitution, or matrix methods</p>
+
+    <div class="system-type-selector">
+      <label>System Size:</label>
+      <div class="button-group" role="group" data-button-group="system-size">
+        <button class="calculator-button secondary is-active" type="button" data-value="2x2" aria-pressed="true">2×2 System</button>
+        <button class="calculator-button secondary" type="button" data-value="3x3" aria-pressed="false">3×3 System</button>
+      </div>
+    </div>
+
+    <div id="equations-input">
+      <!-- 2x2 System -->
+      <div class="system-2x2" id="system-2x2">
+        <h3>Enter coefficients for the system:</h3>
+        <div class="equation-row">
+          <input type="number" id="a11" value="1" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a12" value="2" step="any" class="coeff-input">
+          <span>y =</span>
+          <input type="number" id="b1" value="5" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a21" value="3" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a22" value="4" step="any" class="coeff-input">
+          <span>y =</span>
+          <input type="number" id="b2" value="11" step="any" class="coeff-input">
+        </div>
+      </div>
+
+      <!-- 3x3 System (hidden by default) -->
+      <div class="system-3x3" id="system-3x3" style="display: none;">
+        <h3>Enter coefficients for the system:</h3>
+        <div class="equation-row">
+          <input type="number" id="a11-3x3" value="1" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a12-3x3" value="2" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a13-3x3" value="3" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b1-3x3" value="14" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a21-3x3" value="4" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a22-3x3" value="5" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a23-3x3" value="6" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b2-3x3" value="32" step="any" class="coeff-input">
+        </div>
+        <div class="equation-row">
+          <input type="number" id="a31-3x3" value="7" step="any" class="coeff-input">
+          <span>x +</span>
+          <input type="number" id="a32-3x3" value="8" step="any" class="coeff-input">
+          <span>y +</span>
+          <input type="number" id="a33-3x3" value="9" step="any" class="coeff-input">
+          <span>z =</span>
+          <input type="number" id="b3-3x3" value="50" step="any" class="coeff-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="solution-method-selector">
+      <label>Solution Method:</label>
+      <div class="button-group" role="group" data-button-group="solution-method">
+        <button class="calculator-button secondary is-active" type="button" data-value="elimination" aria-pressed="true">Elimination</button>
+        <button class="calculator-button secondary" type="button" data-value="substitution" aria-pressed="false">Substitution</button>
+        <button class="calculator-button secondary" type="button" data-value="matrix" aria-pressed="false">Matrix</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="solve-system">
+      Solve System
+    </button>
+
+    <div class="result" id="system-result" aria-live="polite"></div>
+    <div class="result-detail" id="system-detail" aria-live="polite"></div>
+    
+    <div class="graph-container" id="system-graph-container" style="display: none;">
+      <h3>Graphical Solution (2×2 systems only)</h3>
+      <canvas id="system-graph" width="400" height="400"></canvas>
+      <div class="graph-info" id="system-graph-info"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/system-of-equations/calculator.css');
+</style>
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <section>
+  <h3>What Is a System of Linear Equations?</h3>
+  <p>
+    A system of linear equations is a set of two or more equations that share variables. Solving
+    the system means finding values that satisfy every equation at the same time.
+  </p>
+</section>
+
+<section>
+  <h3>Solution Types</h3>
+  <ul>
+    <li><strong>Unique solution:</strong> Lines (or planes) intersect at one point.</li>
+    <li><strong>No solution:</strong> Lines are parallel or planes do not intersect.</li>
+    <li><strong>Infinite solutions:</strong> The equations represent the same line or plane.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Methods Used</h3>
+  <ul>
+    <li><strong>Elimination:</strong> Add or subtract equations to eliminate a variable.</li>
+    <li><strong>Substitution:</strong> Solve one equation for a variable and substitute.</li>
+    <li><strong>Matrix / Cramer's Rule:</strong> Use determinants to solve for variables.</li>
+  </ul>
+</section>
+
+<section>
+  <h3>2×2 System Example</h3>
+  <p>For the system:</p>
+  <p style="margin-left: 1rem">x + 2y = 5</p>
+  <p style="margin-left: 1rem">3x + 4y = 11</p>
+  <p>
+    The determinant is 1×4 - 2×3 = -2. Using Cramer's rule gives x = 1 and y = 2.
+  </p>
+</section>
+
+<section>
+  <h3>3×3 System Notes</h3>
+  <p>
+    For 3×3 systems, Cramer's rule uses determinants of 3×3 matrices. If the main determinant is
+    zero, there is no unique solution.
+  </p>
+</section>
+
+<section>
+  <h3>Graphing Insight</h3>
+  <p>
+    For 2×2 systems, each equation is a line. The intersection point on the graph is the solution.
+  </p>
+</section>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

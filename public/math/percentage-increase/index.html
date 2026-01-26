@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Percentage Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Percentage Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content"><div class="math-nav-container">
+<div class="math-nav-category" data-id="simple">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
+      <span class="math-nav-category-name">SIMPLE</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/basic">Basic Calculator</a><a class="math-nav-item is-active" href="/math/percentage-increase">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator">Fraction Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="algebra">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+      <span class="math-nav-category-name">ALGEBRA</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/algebra/quadratic-equation">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance">Slope & Distance Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="trigonometry">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+      <span class="math-nav-category-name">TRIGONOMETRY</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/trigonometry/unit-circle">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines">Law of Sines/Cosines Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="calculus">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      <span class="math-nav-category-name">CALCULUS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/calculus/derivative">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points">Critical Points Finder</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="log">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="math-nav-category-name">LOG</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/log/natural-log">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale">Log Scale Converter</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="statistics">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+      <span class="math-nav-category-name">STATISTICS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/mean-median-mode-range">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size">Sample Size Calculator</a><a class="math-nav-item" href="/math/number-sequence">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution">Distribution Calculator</a>
+  </div>
+</div></div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Percentage Calculator</h3>
+  <div id="calc-percentage-increase">
+  <div class="calculator-ui">
+    <p class="helper">Choose a calculation type and enter your values.</p>
+
+    <div
+      class="button-group"
+      role="tablist"
+      aria-label="Percentage calculation types"
+      data-button-group="percent-mode"
+    >
+      <button
+        class="calculator-button secondary is-active"
+        data-value="change"
+        data-mode="change"
+        role="tab"
+        aria-selected="true"
+      >
+        Percent Change
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="percent-of"
+        data-mode="percent-of"
+        role="tab"
+        aria-selected="false"
+      >
+        Percent Of
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="increase"
+        data-mode="increase"
+        role="tab"
+        aria-selected="false"
+      >
+        Increase By
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="decrease"
+        data-mode="decrease"
+        role="tab"
+        aria-selected="false"
+      >
+        Decrease By
+      </button>
+      <button
+        class="calculator-button secondary"
+        data-value="what-percent"
+        data-mode="what-percent"
+        role="tab"
+        aria-selected="false"
+      >
+        What Percent
+      </button>
+    </div>
+
+    <div class="input-section active" data-mode="change" role="tabpanel">
+      <div class="input-grid">
+        <div>
+          <label for="percent-change-start">Starting value</label>
+          <input id="percent-change-start" type="number" value="200" step="any" maxlength="15" />
+        </div>
+        <div>
+          <label for="percent-change-end">Ending value</label>
+          <input id="percent-change-end" type="number" value="260" step="any" maxlength="15" />
+        </div>
+      </div>
+      <button class="calculator-button full-width" type="button" data-calc="change">
+        Calculate change
+      </button>
+    </div>
+
+    <div class="input-section" data-mode="percent-of" role="tabpanel">
+      <div class="input-grid">
+        <div>
+          <label for="percent-of-rate">Percent (%)</label>
+          <input id="percent-of-rate" type="number" value="15" step="any" maxlength="15" />
+        </div>
+        <div>
+          <label for="percent-of-value">Value</label>
+          <input id="percent-of-value" type="number" value="400" step="any" maxlength="15" />
+        </div>
+      </div>
+      <button class="calculator-button full-width" type="button" data-calc="percent-of">
+        Calculate percent of
+      </button>
+    </div>
+
+    <div class="input-section" data-mode="increase" role="tabpanel">
+      <div class="input-grid">
+        <div>
+          <label for="percent-increase-base">Original value</label>
+          <input id="percent-increase-base" type="number" value="150" step="any" maxlength="15" />
+        </div>
+        <div>
+          <label for="percent-increase-rate">Increase (%)</label>
+          <input id="percent-increase-rate" type="number" value="20" step="any" maxlength="15" />
+        </div>
+      </div>
+      <button class="calculator-button full-width" type="button" data-calc="increase">
+        Calculate increase
+      </button>
+    </div>
+
+    <div class="input-section" data-mode="decrease" role="tabpanel">
+      <div class="input-grid">
+        <div>
+          <label for="percent-decrease-base">Original value</label>
+          <input id="percent-decrease-base" type="number" value="150" step="any" maxlength="15" />
+        </div>
+        <div>
+          <label for="percent-decrease-rate">Decrease (%)</label>
+          <input id="percent-decrease-rate" type="number" value="20" step="any" maxlength="15" />
+        </div>
+      </div>
+      <button class="calculator-button full-width" type="button" data-calc="decrease">
+        Calculate decrease
+      </button>
+    </div>
+
+    <div class="input-section" data-mode="what-percent" role="tabpanel">
+      <div class="input-grid">
+        <div>
+          <label for="percent-what-part">Part value</label>
+          <input id="percent-what-part" type="number" value="45" step="any" maxlength="15" />
+        </div>
+        <div>
+          <label for="percent-what-total">Total value</label>
+          <input id="percent-what-total" type="number" value="180" step="any" maxlength="15" />
+        </div>
+      </div>
+      <button class="calculator-button full-width" type="button" data-calc="what-percent">
+        Calculate percent
+      </button>
+    </div>
+
+    <div class="result" id="percent-result" aria-live="polite"></div>
+    <p class="helper" id="percent-details"></p>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/percentage-increase/calculator.css');
+</style>
+
+<script type="module" src="/calculators/math/percentage-increase/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="percent-explanation" data-percent-explanation>
+  <section data-mode="change">
+    <h3>Percent Change</h3>
+    <p>
+      This shows how much the ending value changes compared to the starting value. We turn the
+      difference into a percent of the starting value.
+    </p>
+    <ol>
+      <li>
+        Difference =
+        <span data-field="change-end">260</span> - <span data-field="change-start">200</span> =
+        <span data-field="change-diff">60</span>
+      </li>
+      <li>
+        Ratio = Difference / Starting value =
+        <span data-field="change-diff">60</span> / <span data-field="change-start">200</span> =
+        <span data-field="change-ratio">0.3</span>
+      </li>
+      <li>
+        Percent change = Ratio x 100 =
+        <span data-field="change-percent">30%</span>
+      </li>
+    </ol>
+    <p>
+      <strong>Output:</strong>
+      <span data-field="change-percent">30%</span> change with a difference of
+      <span data-field="change-diff">60</span>.
+    </p>
+  </section>
+
+  <section data-mode="percent-of" hidden>
+    <h3>Percent Of a Value</h3>
+    <p>
+      This calculates a percentage of a value by turning the percent into a decimal, then
+      multiplying by the value.
+    </p>
+    <ol>
+      <li>
+        Decimal form of the percent =
+        <span data-field="of-rate">15%</span> / 100 =
+        <span data-field="of-decimal">0.15</span>
+      </li>
+      <li>
+        Multiply the decimal by the value =
+        <span data-field="of-decimal">0.15</span> x <span data-field="of-value">400</span> =
+        <span data-field="of-result">60</span>
+      </li>
+    </ol>
+    <p>
+      <strong>Output:</strong>
+      <span data-field="of-rate">15%</span> of <span data-field="of-value">400</span> is
+      <span data-field="of-result">60</span>.
+    </p>
+  </section>
+
+  <section data-mode="increase" hidden>
+    <h3>Increase By a Percent</h3>
+    <p>This finds the increase amount and then adds it to the original value.</p>
+    <ol>
+      <li>
+        Increase amount =
+        <span data-field="inc-base">150</span> x <span data-field="inc-rate">20%</span> =
+        <span data-field="inc-amount">30</span>
+      </li>
+      <li>
+        New value =
+        <span data-field="inc-base">150</span> + <span data-field="inc-amount">30</span> =
+        <span data-field="inc-result">180</span>
+      </li>
+    </ol>
+    <p>
+      <strong>Output:</strong>
+      <span data-field="inc-base">150</span> increased by <span data-field="inc-rate">20%</span> is
+      <span data-field="inc-result">180</span>.
+    </p>
+  </section>
+
+  <section data-mode="decrease" hidden>
+    <h3>Decrease By a Percent</h3>
+    <p>This finds the decrease amount and then subtracts it from the original value.</p>
+    <ol>
+      <li>
+        Decrease amount =
+        <span data-field="dec-base">150</span> x <span data-field="dec-rate">20%</span> =
+        <span data-field="dec-amount">30</span>
+      </li>
+      <li>
+        New value =
+        <span data-field="dec-base">150</span> - <span data-field="dec-amount">30</span> =
+        <span data-field="dec-result">120</span>
+      </li>
+    </ol>
+    <p>
+      <strong>Output:</strong>
+      <span data-field="dec-base">150</span> decreased by <span data-field="dec-rate">20%</span> is
+      <span data-field="dec-result">120</span>.
+    </p>
+  </section>
+
+  <section data-mode="what-percent" hidden>
+    <h3>What Percent One Value Is of Another</h3>
+    <p>This finds the ratio of part to total and converts it to a percent.</p>
+    <ol>
+      <li>
+        Ratio = Part / Total =
+        <span data-field="what-part">45</span> / <span data-field="what-total">180</span> =
+        <span data-field="what-ratio">0.25</span>
+      </li>
+      <li>
+        Percent = Ratio x 100 =
+        <span data-field="what-percent">25%</span>
+      </li>
+    </ol>
+    <p>
+      <strong>Output:</strong>
+      <span data-field="what-part">45</span> is <span data-field="what-percent">25%</span> of
+      <span data-field="what-total">180</span>.
+    </p>
+  </section>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

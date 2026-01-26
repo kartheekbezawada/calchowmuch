@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Leasing Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Leasing Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/car-loan">Car Loan Calculator</a><a class="nav-item" href="/loans/multiple-car-loan">Multiple Car Loan Calculator</a><a class="nav-item" href="/loans/hire-purchase">Hire Purchase Calculator</a><a class="nav-item" href="/loans/pcp-calculator">PCP Calculator</a><a class="nav-item is-active" href="/loans/leasing-calculator">Leasing Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Leasing Calculator</h3>
+  <div id="calc-lease">
+  <div class="calculator-ui">
+    <p class="helper">Estimate leasing payments using residual value and money factor.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="lease-price">Vehicle Price</label>
+        <input id="lease-price" type="number" value="30000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="lease-residual-label">Residual Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="lease-residual-label"
+          data-button-group="lease-residual-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="lease-residual-amount-row">
+        <label for="lease-residual-amount">Residual Value</label>
+        <input id="lease-residual-amount" type="number" value="15000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="lease-residual-percent-row">
+        <label for="lease-residual-percent">Residual (%)</label>
+        <input
+          id="lease-residual-percent"
+          type="number"
+          value="50"
+          min="0"
+          max="99.99"
+          step="0.01"
+        />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-term">Lease Term (months)</label>
+        <input id="lease-term" type="number" value="36" min="1" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-factor">Money Factor</label>
+        <input id="lease-factor" type="number" value="0.0022" min="0" step="0.0001" />
+      </div>
+
+      <div class="input-row">
+        <label for="lease-upfront">Upfront Payment</label>
+        <input id="lease-upfront" type="number" value="1500" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="lease-calc">
+      Calculate Lease
+    </button>
+
+    <div class="result" id="lease-result" aria-live="polite"></div>
+    <div class="result-detail" id="lease-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="lease-graph">
+      <div class="graph-header">
+        <span class="graph-title">Total Cost Over Time</span>
+        <span class="graph-note" id="lease-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Cost</span>
+        <div class="graph-y-axis">
+          <span id="lease-y-max"></span>
+          <span id="lease-y-mid"></span>
+          <span id="lease-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="lease-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="lease-x-start"></span>
+            <span id="lease-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/leasing-calculator/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="lease-explanation">
+  <h4>Lease Summary</h4>
+  <p>
+    With a vehicle price of <span data-lease="price"></span> and residual value of
+    <span data-lease="residual"></span>, the monthly lease payment is
+    <span data-lease="payment"></span>.
+  </p>
+  <p>
+    The total lease cost over <span data-lease="months"></span> months is
+    <span data-lease="total"></span>, including the upfront payment.
+  </p>
+  <p>Residual value lowers monthly depreciation but leaves a higher end-of-term value.</p>
+
+  <div class="result-section">
+    <h4>Yearly Cost Snapshot</h4>
+    <div class="table-scroll" id="lease-table-wrap" tabindex="0">
+      <table class="calculator-table" id="lease-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="lease-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

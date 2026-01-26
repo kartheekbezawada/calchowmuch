@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Car Loan Calculator | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Car Loan Calculator on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item is-active" href="/loans/car-loan">Car Loan Calculator</a><a class="nav-item" href="/loans/multiple-car-loan">Multiple Car Loan Calculator</a><a class="nav-item" href="/loans/hire-purchase">Hire Purchase Calculator</a><a class="nav-item" href="/loans/pcp-calculator">PCP Calculator</a><a class="nav-item" href="/loans/leasing-calculator">Leasing Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Car Loan Calculator</h3>
+  <div id="calc-car-loan">
+  <div class="calculator-ui">
+    <p class="helper">Estimate monthly car loan payments after down payment, trade-in, and fees.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="car-price">Vehicle Price</label>
+        <input id="car-price" type="number" value="28000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="car-down-label">Down Payment Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="car-down-label"
+          data-button-group="car-down-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="amount"
+            aria-pressed="true"
+          >
+            Amount
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="percent"
+            aria-pressed="false"
+          >
+            Percent
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row" id="car-down-amount-row">
+        <label for="car-down-amount">Down Payment</label>
+        <input id="car-down-amount" type="number" value="3000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" id="car-down-percent-row">
+        <label for="car-down-percent">Down Payment (%)</label>
+        <input id="car-down-percent" type="number" value="10" min="0" max="99.99" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-trade">Trade-in Value</label>
+        <input id="car-trade" type="number" value="1500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-fees">Dealer Fees</label>
+        <input id="car-fees" type="number" value="600" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-tax">Sales Tax (%)</label>
+        <input id="car-tax" type="number" value="7" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-apr">APR (%)</label>
+        <input id="car-apr" type="number" value="6.5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="car-term">Loan Term (years)</label>
+        <input id="car-term" type="number" value="5" min="1" step="1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="car-calc">
+      Calculate Car Loan
+    </button>
+
+    <div class="result" id="car-result" aria-live="polite"></div>
+    <div class="result-detail" id="car-summary" aria-live="polite"></div>
+
+    <div class="graph-panel" id="car-graph">
+      <div class="graph-header">
+        <span class="graph-title">Balance Over Time</span>
+        <span class="graph-note" id="car-graph-note"></span>
+      </div>
+      <div class="graph-container">
+        <span class="graph-y-label">Balance</span>
+        <div class="graph-y-axis">
+          <span id="car-y-max"></span>
+          <span id="car-y-mid"></span>
+          <span id="car-y-min"></span>
+        </div>
+        <div class="graph-main">
+          <div class="graph-bars-wrapper">
+            <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polyline class="line-primary" id="car-line" points=""></polyline>
+            </svg>
+          </div>
+          <div class="graph-x-axis">
+            <span id="car-x-start"></span>
+            <span id="car-x-end"></span>
+          </div>
+          <span class="graph-x-label">Month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/car-loan/calculator.css');
+</style>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="car-explanation">
+  <h4>Car Loan Summary</h4>
+  <p>
+    The amount financed is <span data-car="financed"></span> after a down payment of
+    <span data-car="down"></span>, trade-in of <span data-car="trade"></span>, and taxes/fees.
+  </p>
+  <p>
+    At <span data-car="apr"></span> APR for <span data-car="term"></span> years, the monthly payment
+    is <span data-car="payment"></span>.
+  </p>
+  <p>
+    Total interest paid is <span data-car="interest"></span>, and total payments are
+    <span data-car="total"></span>.
+  </p>
+
+  <div class="result-section">
+    <h4>Yearly Loan Snapshot</h4>
+    <div class="table-scroll" id="car-table-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>

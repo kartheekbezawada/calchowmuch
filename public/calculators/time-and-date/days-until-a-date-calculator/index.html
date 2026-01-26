@@ -1,0 +1,27 @@
+<div id="calc-days-until">
+  <div class="calculator-ui">
+    <p class="helper">Find the number of full days between today and a target date.</p>
+
+    <div class="input-row">
+      <label for="days-until-date">Target date</label>
+      <input id="days-until-date" type="date" />
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="days-until-calculate">
+      Calculate
+    </button>
+
+    <div class="result" id="days-until-results" aria-live="polite">
+      <p class="placeholder" id="days-until-placeholder">Select a date and click Calculate.</p>
+      <p class="form-error is-hidden" id="days-until-error"></p>
+      <div class="days-until-results-list is-hidden" id="days-until-results-list"></div>
+      <p class="days-until-clarification is-hidden" id="days-until-clarification"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/days-until-a-date-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/days-until-a-date-calculator/module.js"></script>

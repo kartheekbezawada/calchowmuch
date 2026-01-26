@@ -1,0 +1,84 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-date-diff .button-group {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-date-diff .input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-date-diff .time-inputs {
+  transition: opacity 0.2s ease;
+}
+
+#calc-date-diff .time-inputs.is-collapsed {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#calc-date-diff .date-diff-results-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#calc-date-diff .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-date-diff .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-date-diff .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-date-diff #date-diff-results {
+  min-height: 190px;
+}
+
+#date-diff-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#date-diff-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#date-diff-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#date-diff-explanation .date-diff-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+@media (max-width: 720px) {
+  #calc-date-diff .input-grid {
+    grid-template-columns: 1fr;
+  }
+}

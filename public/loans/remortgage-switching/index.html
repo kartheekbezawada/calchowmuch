@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Remortgage / Switching | Calculate How Much</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate with the Remortgage / Switching on Calculate How Much." />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="home-loan">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Home</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item is-active" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h3 id="calculator-title">Remortgage / Switching</h3>
+  <div id="calc-remortgage-switching">
+  <div class="calculator-ui">
+    <p class="helper">
+      Compare your current mortgage with a new deal, including fees and break-even timing.
+    </p>
+
+    <div class="input-stack">
+      <!-- Current Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
+      <div class="input-grid remo-compact-grid">
+        <div class="input-row">
+          <label for="remo-balance">Current Balance</label>
+          <input id="remo-balance" type="number" value="220000" min="0" step="0.01" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-current-rate">Current Rate (APR %)</label>
+          <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-term">Remaining Term (years)</label>
+          <input id="remo-term" type="number" value="20" min="1" step="1" maxlength="10" />
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="remo-current-payment">Current Monthly Payment (optional)</label>
+        <input id="remo-current-payment" type="number" value="0" min="0" step="0.01" maxlength="10" />
+      </div>
+
+      <!-- New Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
+      <div class="input-grid remo-compact-grid">
+        <div class="input-row">
+          <label for="remo-new-rate">New Rate (APR %)</label>
+          <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-new-term">New Term (years)</label>
+          <input id="remo-new-term" type="number" value="20" min="1" step="1" maxlength="10" />
+        </div>
+
+        <div class="input-row">
+          <label for="remo-new-fees">New Deal Fees</label>
+          <input id="remo-new-fees" type="number" value="1500" min="0" step="0.01" maxlength="10" />
+        </div>
+      </div>
+
+      <!-- Additional Fees Section per REMO-UI-5 -->
+      <div class="remo-fees-section">
+        <div class="input-row">
+          <label id="remo-fees-label">Additional Fees</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="remo-fees-label"
+            data-button-group="remo-fees-toggle"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="exclude"
+              aria-pressed="true"
+            >
+              Exclude
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="include"
+              aria-pressed="false"
+            >
+              Include
+            </button>
+          </div>
+        </div>
+
+        <div class="remo-fees-options is-hidden" id="remo-fees-options">
+          <div class="input-row">
+            <label for="remo-exit-fees">Exit Fees / ERC</label>
+            <input id="remo-exit-fees" type="number" value="1000" min="0" step="0.01" maxlength="10" />
+          </div>
+
+          <div class="input-row">
+            <label for="remo-legal-fees">Legal / Valuation Fees</label>
+            <input id="remo-legal-fees" type="number" value="500" min="0" step="0.01" maxlength="10" />
+          </div>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="remo-horizon-label">Comparison Horizon</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="remo-horizon-label"
+          data-button-group="remo-horizon"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="2"
+            aria-pressed="true"
+          >
+            2 Years
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="3"
+            aria-pressed="false"
+          >
+            3 Years
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="5"
+            aria-pressed="false"
+          >
+            5 Years
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="remo-calculate">
+      Calculate
+    </button>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loans/remortgage-switching/calculator.css');
+</style>
+
+<script type="module" src="/calculators/loans/remortgage-switching/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="loan-remortgage-explanation">
+  <div class="result" id="remo-error" aria-live="polite"></div>
+
+  <p class="placeholder" id="remo-prompt">Click Calculate to see your results.</p>
+
+  <div class="is-hidden" id="remo-outputs">
+    <h4>Remortgage Summary</h4>
+    <p>
+      Your current monthly payment is <span data-remo="current-payment"></span>, compared to
+      <span data-remo="new-payment"></span> on the new deal, resulting in a monthly difference of
+      <span data-remo="monthly-diff"></span> (approximately <span data-remo="annual-diff"></span> per
+      year).
+    </p>
+    <p>
+      Fees of <span data-remo="fees"></span> are included in the new deal’s total cost. The break-even
+      point occurs at <span data-remo="break-even"></span>, when cumulative savings exceed the fees.
+    </p>
+    <p>
+      Over the selected period, the total cost is <span data-remo="total-current"></span> for the
+      current deal versus <span data-remo="total-new"></span> for the new deal, for total savings of
+      <span data-remo="total-savings"></span>.
+    </p>
+
+    <div class="result-section">
+      <h4>Cost Comparison Table</h4>
+      <div class="table-scroll" id="remo-table-wrap" tabindex="0">
+        <table class="calculator-table" id="remo-table">
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">Current Cost</th>
+              <th scope="col">New Cost</th>
+              <th scope="col">Net Savings</th>
+            </tr>
+          </thead>
+          <tbody id="remo-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <h4>Cumulative Cost Over Time</h4>
+      <div class="graph-panel" id="remo-graph">
+        <div class="graph-header">
+          <span class="graph-title" id="remo-graph-title">Cumulative Cost</span>
+          <span class="graph-note" id="remo-graph-note"></span>
+        </div>
+        <div class="graph-legend" id="remo-graph-legend">
+          <div class="graph-legend-item">
+            <span class="graph-legend-color principal"></span>
+            <span>New deal</span>
+          </div>
+          <div class="graph-legend-item">
+            <span class="graph-legend-color secondary"></span>
+            <span>Current deal</span>
+          </div>
+          <div class="graph-legend-item">
+            <span class="graph-legend-color interest"></span>
+            <span>Break-even</span>
+          </div>
+        </div>
+        <div class="graph-container">
+          <span class="graph-y-label" id="remo-y-label">Cost</span>
+          <div class="graph-y-axis" id="remo-y-axis">
+            <span id="remo-y-max"></span>
+            <span id="remo-y-mid"></span>
+            <span id="remo-y-min"></span>
+          </div>
+          <div class="graph-main">
+            <div class="graph-bars-wrapper">
+              <svg
+                class="graph-line"
+                id="remo-graph-line"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <polyline id="remo-line-new" class="line-primary" points=""></polyline>
+                <polyline id="remo-line-current" class="line-secondary" points=""></polyline>
+                <g class="graph-marker" id="remo-break-marker">
+                  <line id="remo-break-line" x1="0" y1="0" x2="0" y2="100"></line>
+                  <circle id="remo-break-dot" cx="0" cy="0" r="2"></circle>
+                </g>
+              </svg>
+            </div>
+            <div class="graph-tooltip is-hidden" id="remo-graph-tooltip" role="tooltip">
+              <div class="graph-tooltip-title" id="remo-graph-tooltip-title"></div>
+              <div class="graph-tooltip-row" id="remo-graph-tooltip-current"></div>
+              <div class="graph-tooltip-row" id="remo-graph-tooltip-new"></div>
+            </div>
+            <div class="graph-x-axis" id="remo-x-axis">
+              <span id="remo-x-start"></span>
+              <span id="remo-x-end"></span>
+            </div>
+            <span class="graph-x-label" id="remo-x-label">Month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>
