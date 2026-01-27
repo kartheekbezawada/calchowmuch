@@ -10,10 +10,12 @@ test.describe('Home page shell-only content', () => {
     await expect(page.locator('.center-column')).toHaveCount(1);
     await expect(page.locator('.site-footer')).toHaveCount(1);
 
-    const inputCount = await page.locator('input, select, textarea').count();
+    const inputCount = await page.locator('.layout-main input, .layout-main select, .layout-main textarea').count();
     const tableCount = await page.locator('table').count();
     expect(inputCount).toBe(0);
     expect(tableCount).toBe(0);
+
+    await expect(page.locator('.header-search-input')).toHaveCount(1);
 
     const calculatorPane = page.locator('.center-column .panel').first();
     const explanationPane = page.locator('.center-column .panel').nth(1);

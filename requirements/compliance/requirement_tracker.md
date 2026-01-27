@@ -42,6 +42,19 @@
 | REQ-20260126-014 | Work Hours Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-015 | Overtime Hours Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260127-001 | Countdown Timer Generator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260127-002 | General Terms Excluded Pages (GTEP) | Site | Layout/CSS + New Pages + SEO | HIGH | COMPLETE | YES |
+| REQ-20260127-003 | Terms and Conditions Content Update | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-004 | Privacy Policy Content Update | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-005 | Privacy Policy & Terms & Conditions Content Refresh | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-006 | Car Loan Calculator Rebuild (Auto Loans) | Calculator | Bug Fix + UI Relocation + SEO Content | HIGH | COMPLETE | YES |
+| REQ-20260127-007 | Background Color Update + React-based Theme Shell | Theme/Architecture | Layout/CSS + New Framework + Refactor | HIGH | CANCELLED | YES |
+| REQ-20260127-008 | Enable premium-dark theme globally by default | Theme | Layout/CSS | HIGH | NEW | NO |
+| REQ-20260127-008 | Premium Dark Theme Migration (MPA-Compatible) | Theme | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260127-009 | Enable premium-dark theme globally by default | Theme | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260127-010 | Remove navigation shell - single page layout | Site | Layout/CSS + Architecture | HIGH | NEW | YES |
+| REQ-20260127-011 | Remove outer page shell - full viewport width | Site | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260127-012 | Global premium header bar with brand and search | Site | Layout/CSS + UI/Flow | HIGH | COMPLETE | YES |
+| REQ-20260127-013 | Home page full-viewport layout (remove shell on /) | Site | Layout/CSS | HIGH | COMPLETE | NO |
 
 ---
 

@@ -24,6 +24,9 @@ Ship calculator changes with:
    traceable evidence
    minimal context load
 
+GTEP pages (e.g., /sitemap/, /privacy/, /terms/, /contact/, /faqs/) are supported non-calculator pages.
+They must remain standalone HTML and must not be wrapped back into the calculator shell.
+
 FSM:
 REQ → BUILD ↔ TEST → SEO → COMPLIANCE → COMPLETE
 Failure at any step may create an ISSUE.
