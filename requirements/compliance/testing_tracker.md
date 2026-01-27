@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260127-021447 | REQ-20260127-001 | ITER-20260127-014245 | SEO | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator-seo.spec.js | iterations/ITER-20260127-014245.md |
+| TEST-20260127-021002 | REQ-20260127-001 | ITER-20260127-014245 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator.spec.js | iterations/ITER-20260127-014245.md |
+| TEST-20260127-015139 | REQ-20260127-001 | ITER-20260127-014245 | Unit | COMPLETE | 2/25 | tests/core/countdown-timer-generator.test.js | iterations/ITER-20260127-014245.md |
 | TEST-20260127-001622 | REQ-20260126-015 | ITER-20260126-235614 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-seo.spec.js | iterations/ITER-20260126-235614.md |
 | TEST-20260127-001610 | REQ-20260126-015 | ITER-20260126-235614 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-calculator.spec.js | iterations/ITER-20260126-235614.md |
 | TEST-20260127-001557 | REQ-20260126-015 | ITER-20260126-235614 | Unit | COMPLETE | 1/25 | tests/core/overtime-hours-calculator.test.js | iterations/ITER-20260126-235614.md |

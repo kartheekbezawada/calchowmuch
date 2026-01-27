@@ -17,6 +17,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260127-001 | ITER-20260127-014245 | Unit + E2E + SEO Auto | Unit (tests/core/countdown-timer-generator.test.js); E2E (requirements/specs/e2e/countdown-timer-generator.spec.js); SEO Auto (requirements/specs/e2e/countdown-timer-generator-seo.spec.js) | 2/25 | PASS |
 | REQ-20260126-015 | ITER-20260126-235614 | Unit + E2E + SEO Auto | Unit (tests/core/overtime-hours-calculator.test.js); E2E (requirements/specs/e2e/overtime-hours-calculator.spec.js); SEO Auto (requirements/specs/e2e/overtime-hours-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-014 | ITER-20260126-232505 | Unit + E2E + SEO Auto | Unit (tests/core/work-hours-calculator.test.js); E2E (requirements/specs/e2e/work-hours-calculator.spec.js); SEO Auto (requirements/specs/e2e/work-hours-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-013 | ITER-20260126-230824 | Unit + E2E + SEO Auto | Unit (tests/core/nap-time-calculator.test.js); E2E (requirements/specs/e2e/nap-time-calculator.spec.js); SEO Auto (requirements/specs/e2e/nap-time-seo.spec.js) | 1/25 | PASS |

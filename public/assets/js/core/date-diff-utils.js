@@ -3,6 +3,9 @@ export const HOURS_PER_DAY = 24;
 export const DAYS_PER_WEEK = 7;
 export const MINUTES_PER_DAY = MINUTES_PER_HOUR * HOURS_PER_DAY;
 export const DAY_MS = MINUTES_PER_DAY * 60 * 1000;
+export const SECONDS_PER_MINUTE = 60;
+export const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
+export const SECONDS_PER_DAY = SECONDS_PER_HOUR * HOURS_PER_DAY;
 
 function isValidDate(value) {
   return value instanceof Date && !Number.isNaN(value.getTime());
@@ -116,6 +119,39 @@ export function calculateTimeBetweenDates({ start, end, includeTime = false }) {
     years: calendar?.years ?? 0,
     months: calendar?.months ?? 0,
     totalMonths: calendar?.totalMonths ?? 0,
+  };
+}
+
+export function calculateCountdown(targetDate, referenceDate = new Date()) {
+  if (!isValidDate(targetDate) || !isValidDate(referenceDate)) {
+    return null;
+  }
+
+  const diffMs = targetDate.getTime() - referenceDate.getTime();
+  if (diffMs < 0) {
+    return null;
+  }
+
+  const totalSeconds = Math.floor(diffMs / 1000);
+  const totalMinutes = totalSeconds / SECONDS_PER_MINUTE;
+  const totalHours = totalMinutes / MINUTES_PER_HOUR;
+  const totalDays = totalHours / HOURS_PER_DAY;
+  const days = Math.floor(totalSeconds / SECONDS_PER_DAY);
+  const remainingAfterDays = totalSeconds % SECONDS_PER_DAY;
+  const hours = Math.floor(remainingAfterDays / SECONDS_PER_HOUR);
+  const remainingAfterHours = remainingAfterDays % SECONDS_PER_HOUR;
+  const minutes = Math.floor(remainingAfterHours / SECONDS_PER_MINUTE);
+  const seconds = remainingAfterHours % SECONDS_PER_MINUTE;
+
+  return {
+    totalSeconds,
+    totalMinutes,
+    totalHours,
+    totalDays,
+    days,
+    hours,
+    minutes,
+    seconds,
   };
 }
 

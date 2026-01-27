@@ -312,6 +312,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://calchowmuch.com/time-and-date/countdown-timer-generator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://calchowmuch.com/time-and-date/age-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -568,6 +568,17 @@
               ]
             },
             {
+              "id": "countdown-timer-generator",
+              "name": "Countdown Timer Generator",
+              "url": "/time-and-date/countdown-timer-generator",
+              "keywords": [
+                "countdown",
+                "timer",
+                "date and time",
+                "event countdown"
+              ]
+            },
+            {
               "id": "age-calculator",
               "name": "Age Calculator",
               "url": "/time-and-date/age-calculator",
