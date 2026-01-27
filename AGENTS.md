@@ -52,6 +52,11 @@ File Classification (Critical)
     WORKFLOW.md
     AGENTS.md
 
+Calculator Architecture Rule:
+- All calculators use MPA by default.
+- Do NOT implement SPA routing for calculator navigation.
+- Navigation must be `<a href>` based with full reloads.
+
 REFERENCE (Conditional Manuals)
 ===============================
   Load only when relevant to the change.

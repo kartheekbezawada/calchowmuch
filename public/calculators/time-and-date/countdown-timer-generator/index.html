@@ -1,0 +1,40 @@
+<div id="calc-countdown-timer">
+  <div class="calculator-ui">
+    <p class="helper">Create a live countdown to a future date and time.</p>
+
+    <div class="input-row" id="countdown-datetime-row">
+      <label for="countdown-datetime">Target date &amp; time</label>
+      <input id="countdown-datetime" type="datetime-local" step="60" data-maxlength="16" />
+    </div>
+
+    <div class="countdown-fallback is-hidden" id="countdown-fallback">
+      <div class="input-row">
+        <label for="countdown-date">Date</label>
+        <input id="countdown-date" type="date" />
+      </div>
+      <div class="input-row">
+        <label for="countdown-time">Time</label>
+        <input id="countdown-time" type="time" step="60" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="countdown-start">
+      Start countdown
+    </button>
+
+    <div class="result" id="countdown-results" aria-live="polite">
+      <p class="placeholder" id="countdown-placeholder">
+        Choose a future date and time, then start the countdown.
+      </p>
+      <p class="form-error is-hidden" id="countdown-error"></p>
+      <div class="countdown-results-list is-hidden" id="countdown-results-list"></div>
+      <p class="countdown-status is-hidden" id="countdown-status"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/countdown-timer-generator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js"></script>

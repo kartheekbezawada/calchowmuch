@@ -1,0 +1,76 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-countdown-timer .countdown-fallback {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-countdown-timer .countdown-results-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#calc-countdown-timer .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-countdown-timer .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-countdown-timer .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-countdown-timer .countdown-status {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#calc-countdown-timer #countdown-results {
+  min-height: 180px;
+}
+
+#countdown-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#countdown-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#countdown-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#countdown-explanation .countdown-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+@media (max-width: 720px) {
+  #calc-countdown-timer .countdown-fallback {
+    grid-template-columns: 1fr;
+  }
+}

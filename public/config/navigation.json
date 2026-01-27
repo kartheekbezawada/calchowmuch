@@ -513,6 +513,39 @@
               ]
             },
             {
+              "id": "nap-time-calculator",
+              "name": "Nap Time Calculator",
+              "url": "/time-and-date/nap-time-calculator",
+              "keywords": [
+                "nap",
+                "power nap",
+                "afternoon nap",
+                "wake time"
+              ]
+            },
+            {
+              "id": "work-hours-calculator",
+              "name": "Work Hours Calculator",
+              "url": "/time-and-date/work-hours-calculator",
+              "keywords": [
+                "hours worked",
+                "breaks",
+                "timesheet",
+                "shift"
+              ]
+            },
+            {
+              "id": "overtime-hours-calculator",
+              "name": "Overtime Hours Calculator",
+              "url": "/time-and-date/overtime-hours-calculator",
+              "keywords": [
+                "overtime",
+                "regular hours",
+                "weekly hours",
+                "night shift"
+              ]
+            },
+            {
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
               "url": "/time-and-date/time-between-two-dates-calculator",
@@ -535,6 +568,17 @@
               ]
             },
             {
+              "id": "countdown-timer-generator",
+              "name": "Countdown Timer Generator",
+              "url": "/time-and-date/countdown-timer-generator",
+              "keywords": [
+                "countdown",
+                "timer",
+                "date and time",
+                "event countdown"
+              ]
+            },
+            {
               "id": "age-calculator",
               "name": "Age Calculator",
               "url": "/time-and-date/age-calculator",
@@ -543,6 +587,17 @@
                 "birthday",
                 "years months days",
                 "date of birth"
+              ]
+            },
+            {
+              "id": "birthday-day-of-week",
+              "name": "Birthday Day-of-Week",
+              "url": "/time-and-date/birthday-day-of-week",
+              "keywords": [
+                "birthday",
+                "weekday",
+                "day of week",
+                "born on"
               ]
             }
           ]

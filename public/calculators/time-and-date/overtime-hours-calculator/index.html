@@ -1,0 +1,493 @@
+<div id="calc-overtime-hours">
+  <div class="calculator-ui">
+    <p class="helper">Calculate regular and overtime hours for single shifts, split shifts, or weekly cycles.</p>
+
+    <div class="input-row">
+      <label id="overtime-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="overtime-mode-label"
+        data-button-group="overtime-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="single" aria-pressed="true">
+          Single Shift
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="split" aria-pressed="false">
+          Split Shift
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="weekly" aria-pressed="false">
+          Weekly Shift
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label id="overtime-rule-label">Overtime rule</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="overtime-rule-label"
+        data-button-group="overtime-rule"
+      >
+        <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
+          Daily
+        </button>
+        <button class="calculator-button secondary is-active" type="button" data-value="weekly" aria-pressed="true">
+          Weekly
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="both" aria-pressed="false">
+          Daily + Weekly
+        </button>
+      </div>
+    </div>
+
+    <div class="input-grid">
+      <div class="input-row">
+        <label for="overtime-daily-limit">Daily regular limit (hours)</label>
+        <input id="overtime-daily-limit" type="number" min="0" max="24" step="0.5" inputmode="decimal" />
+      </div>
+      <div class="input-row">
+        <label for="overtime-weekly-limit">Weekly regular limit (hours)</label>
+        <input id="overtime-weekly-limit" type="number" min="0" max="168" step="0.5" inputmode="decimal" />
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label id="overtime-rounding-label">Rounding</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="overtime-rounding-label"
+        data-button-group="overtime-rounding"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+          None
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="5" aria-pressed="false">
+          Nearest 5 minutes
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="10" aria-pressed="false">
+          Nearest 10 minutes
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">
+          Nearest 15 minutes
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label id="overtime-break-label">Break minutes</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="overtime-break-label"
+        data-button-group="overtime-break"
+      >
+        <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0</button>
+        <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+        <button class="calculator-button secondary is-active" type="button" data-value="30" aria-pressed="true">
+          30
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+        <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+      </div>
+    </div>
+
+    <div class="input-row checkbox-row">
+      <label class="checkbox-label" for="overtime-night-toggle">
+        <input id="overtime-night-toggle" type="checkbox" />
+        Track night hours and night overtime
+      </label>
+    </div>
+
+    <div class="night-settings is-collapsed" id="overtime-night-settings" aria-hidden="true">
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="overtime-night-start">Night window start</label>
+          <input id="overtime-night-start" type="time" />
+        </div>
+        <div class="input-row">
+          <label for="overtime-night-end">Night window end</label>
+          <input id="overtime-night-end" type="time" />
+        </div>
+      </div>
+      <div class="input-row checkbox-row">
+        <label class="checkbox-label" for="overtime-night-crosses">
+          <input id="overtime-night-crosses" type="checkbox" />
+          Night window crosses midnight
+        </label>
+      </div>
+    </div>
+
+    <div class="overtime-section" id="overtime-single">
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="overtime-single-start">Start time</label>
+          <input id="overtime-single-start" type="time" />
+        </div>
+        <div class="input-row">
+          <label for="overtime-single-end">End time</label>
+          <input id="overtime-single-end" type="time" />
+        </div>
+      </div>
+      <div class="input-row checkbox-row">
+        <label class="checkbox-label" for="overtime-single-next-day">
+          <input id="overtime-single-next-day" type="checkbox" />
+          Ends next day
+        </label>
+      </div>
+    </div>
+
+    <div class="overtime-section is-collapsed" id="overtime-split" aria-hidden="true">
+      <div class="segment-block">
+        <p class="segment-title">Segment 1</p>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-split-1-start">Start time</label>
+            <input id="overtime-split-1-start" type="time" />
+          </div>
+          <div class="input-row">
+            <label for="overtime-split-1-end">End time</label>
+            <input id="overtime-split-1-end" type="time" />
+          </div>
+        </div>
+        <div class="input-row checkbox-row">
+          <label class="checkbox-label" for="overtime-split-1-next-day">
+            <input id="overtime-split-1-next-day" type="checkbox" />
+            Ends next day
+          </label>
+        </div>
+      </div>
+
+      <div class="segment-block">
+        <p class="segment-title">Segment 2 (optional)</p>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-split-2-start">Start time</label>
+            <input id="overtime-split-2-start" type="time" />
+          </div>
+          <div class="input-row">
+            <label for="overtime-split-2-end">End time</label>
+            <input id="overtime-split-2-end" type="time" />
+          </div>
+        </div>
+        <div class="input-row checkbox-row">
+          <label class="checkbox-label" for="overtime-split-2-next-day">
+            <input id="overtime-split-2-next-day" type="checkbox" />
+            Ends next day
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="overtime-section is-collapsed" id="overtime-weekly" aria-hidden="true">
+      <div class="input-row">
+        <label id="overtime-week-start-label">Week starts on</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="overtime-week-start-label"
+          data-button-group="overtime-week-start"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="1" aria-pressed="true">
+            Mon
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="2" aria-pressed="false">Tue</button>
+          <button class="calculator-button secondary" type="button" data-value="3" aria-pressed="false">Wed</button>
+          <button class="calculator-button secondary" type="button" data-value="4" aria-pressed="false">Thu</button>
+          <button class="calculator-button secondary" type="button" data-value="5" aria-pressed="false">Fri</button>
+          <button class="calculator-button secondary" type="button" data-value="6" aria-pressed="false">Sat</button>
+          <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">Sun</button>
+        </div>
+      </div>
+      <div class="input-row">
+        <label for="overtime-week-start-date">Week start date</label>
+        <input id="overtime-week-start-date" type="date" />
+      </div>
+      <p class="helper week-range-label">
+        This week covers: <span data-placeholder="week-range-label">—</span>
+      </p>
+
+      <div class="weekly-day" data-weekly-index="0">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Mon —</span>
+          <label class="checkbox-label" for="overtime-weekly-0-next-day">
+            <input id="overtime-weekly-0-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-0-start">Start time</label>
+            <input id="overtime-weekly-0-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-0-end">End time</label>
+            <input id="overtime-weekly-0-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-0-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-0-break-label"
+            data-button-group="overtime-weekly-0-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="1">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Tue —</span>
+          <label class="checkbox-label" for="overtime-weekly-1-next-day">
+            <input id="overtime-weekly-1-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-1-start">Start time</label>
+            <input id="overtime-weekly-1-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-1-end">End time</label>
+            <input id="overtime-weekly-1-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-1-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-1-break-label"
+            data-button-group="overtime-weekly-1-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="2">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Wed —</span>
+          <label class="checkbox-label" for="overtime-weekly-2-next-day">
+            <input id="overtime-weekly-2-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-2-start">Start time</label>
+            <input id="overtime-weekly-2-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-2-end">End time</label>
+            <input id="overtime-weekly-2-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-2-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-2-break-label"
+            data-button-group="overtime-weekly-2-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="3">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Thu —</span>
+          <label class="checkbox-label" for="overtime-weekly-3-next-day">
+            <input id="overtime-weekly-3-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-3-start">Start time</label>
+            <input id="overtime-weekly-3-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-3-end">End time</label>
+            <input id="overtime-weekly-3-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-3-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-3-break-label"
+            data-button-group="overtime-weekly-3-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="4">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Fri —</span>
+          <label class="checkbox-label" for="overtime-weekly-4-next-day">
+            <input id="overtime-weekly-4-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-4-start">Start time</label>
+            <input id="overtime-weekly-4-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-4-end">End time</label>
+            <input id="overtime-weekly-4-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-4-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-4-break-label"
+            data-button-group="overtime-weekly-4-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="5">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Sat —</span>
+          <label class="checkbox-label" for="overtime-weekly-5-next-day">
+            <input id="overtime-weekly-5-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-5-start">Start time</label>
+            <input id="overtime-weekly-5-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-5-end">End time</label>
+            <input id="overtime-weekly-5-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-5-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-5-break-label"
+            data-button-group="overtime-weekly-5-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-index="6">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name" data-weekly-label>Sun —</span>
+          <label class="checkbox-label" for="overtime-weekly-6-next-day">
+            <input id="overtime-weekly-6-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="overtime-weekly-6-start">Start time</label>
+            <input id="overtime-weekly-6-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="overtime-weekly-6-end">End time</label>
+            <input id="overtime-weekly-6-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="overtime-weekly-6-break-label">Break minutes</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="overtime-weekly-6-break-label"
+            data-button-group="overtime-weekly-6-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="overtime-calculate">Calculate</button>
+
+    <div class="result" id="overtime-results" aria-live="polite">
+      <p class="placeholder" id="overtime-placeholder">Enter your times and click Calculate.</p>
+      <p class="form-error is-hidden" id="overtime-error"></p>
+      <div class="overtime-results-list is-hidden" id="overtime-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/overtime-hours-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/overtime-hours-calculator/module.js"></script>
