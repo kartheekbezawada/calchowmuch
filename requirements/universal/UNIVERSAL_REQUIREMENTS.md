@@ -64,6 +64,16 @@ Load only if triggered:
 | AP-2.2  | Phase requirements add scope but must not violate universal rules | P0       |
 | AP-2.3  | Documentation must reflect actual repository state                | P1       |
 
+### Excluded Page Types
+
+
+| Rule ID | Requirement                                                                                                           | Severity |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- | ---------- |
+| EXCL-1.1 | General Terms Excluded Pages (GTEP) must not use calculator shell layout regions (top nav, left nav, calc/explanation panes, ads). | P0       |
+| EXCL-1.2 | GTEP pages must be plain HTML-first and crawlable.                                                                     | P0       |
+| EXCL-1.3 | GTEP pages must have internal scrolling and must not depend on calculator navigation state.                           | P0       |
+| EXCL-1.4 | GTEP pages must not load calculator-specific JS modules.                                                               | P0       |
+
 ---
 
 ## Table of Contents
@@ -157,6 +167,8 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 | UI-2.5  | **No dropdowns** â€” `select` elements not allowed. Replace with button groups / segmented controls.                                                            | P0       |
 
 ### 3.3 Layout Contract
+
+Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 
 
 | Rule ID | Requirement                                                                                                                            | Severity |
@@ -338,7 +350,17 @@ The Basic Calculator is the **visual source of truth** for colors, typography, s
 
 ## 4) Universal Layout and Architecture Boundaries
 
-The UI is a **calculator container framework**: layout is fixed/shared; calculators plug in.
+### EXCL-1 Excluded Page Types (P0)
+
+| Rule ID  | Requirement                                                                                                  | Severity |
+| ---------- | -------------------------------------------------------------------------------------------------------------- | ---------- |
+| EXCL-1.1 | General Terms Excluded Pages (GTEP) must not use calculator shell layout regions (top nav, left nav, calc/explanation panes, ads). | P0       |
+| EXCL-1.2 | GTEP pages must be plain HTML-first and crawlable.                                                            | P0       |
+| EXCL-1.3 | GTEP pages must have internal scrolling and must not depend on calculator navigation state.                  | P0       |
+| EXCL-1.4 | GTEP pages must not load calculator-specific JS modules.                                                      | P0       |
+
+The UI rules below describe the **calculator container framework** for calculator pages only.
+GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the calculator shell.
 
 ### 4.1 Page Regions
 
