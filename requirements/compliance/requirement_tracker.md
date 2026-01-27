@@ -52,7 +52,9 @@
 | REQ-20260127-008 | Premium Dark Theme Migration (MPA-Compatible) | Theme | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260127-009 | Enable premium-dark theme globally by default | Theme | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260127-010 | Remove navigation shell - single page layout | Site | Layout/CSS + Architecture | HIGH | NEW | YES |
-| REQ-20260127-011 | Remove outer page shell - full viewport width | Site | Layout/CSS | HIGH | NEW | NO |
+| REQ-20260127-011 | Remove outer page shell - full viewport width | Site | Layout/CSS | HIGH | COMPLETE | NO |
+| REQ-20260127-012 | Global premium header bar with brand and search | Site | Layout/CSS + UI/Flow | HIGH | COMPLETE | YES |
+| REQ-20260127-013 | Home page full-viewport layout (remove shell on /) | Site | Layout/CSS | HIGH | COMPLETE | NO |
 
 ---
 

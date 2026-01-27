@@ -9,6 +9,8 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
+| SEO-REQ-20260127-012 | REQ-20260127-012 | Global premium header + search | Layout/UI update only; no URL/meta/content changes | NA | — | — | — |
+| SEO-REQ-20260127-011 | REQ-20260127-011 | Calculator shell width | Layout-only; no URL/meta/content changes | NA | — | — | — |
 | SEO-REQ-20260127-010 | REQ-20260127-010 | Navigation shell removal (all pages) | Layout-only; no URL/meta/content changes | CANCELLED | — | — | — |
 | SEO-REQ-20260127-009 | REQ-20260127-009 | Global theme default | CSS-only; no URL/meta/content changes | NA | — | — | — |
 | SEO-REQ-20260127-008 | REQ-20260127-008 | Theme CSS (all calculator pages) | No URL/meta/content changes (layout/CSS only) | NA | — | — | — |

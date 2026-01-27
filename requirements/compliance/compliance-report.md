@@ -17,6 +17,9 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260127-013 | ITER-20260127-215418 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
+| REQ-20260127-012 | ITER-20260127-203619 | ISS-001 + E2E | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated); E2E (requirements/specs/e2e/home-shell.spec.js) | 8/25 | PASS |
+| REQ-20260127-011 | ITER-20260127-202322 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated) | 3/25 | PASS |
 | REQ-20260127-010 | ITER-20260127-195428 | ISS-001 | ISS-001 (rollback) | 6/25 | FAIL |
 | REQ-20260127-009 | ITER-20260127-193224 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated) | 3/25 | PASS |
 | REQ-20260127-008 | ITER-20260127-185716 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |

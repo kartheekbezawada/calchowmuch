@@ -20,7 +20,7 @@ const navigateWithClick = async (page, locator) => {
 
 test.describe('ISS-001: Layout Stability', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/loans/car-loan');
     // Wait for animations to complete
     await page.waitForTimeout(800);
   });
