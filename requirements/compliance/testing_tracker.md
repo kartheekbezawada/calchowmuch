@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260127-081840 | REQ-20260127-002 | ITER-20260127-080207 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/gtep-pages-seo.spec.js | iterations/ITER-20260127-080207.md |
+| TEST-20260127-081835 | REQ-20260127-002 | ITER-20260127-080207 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/gtep-pages.spec.js | iterations/ITER-20260127-080207.md |
+| TEST-20260127-081830 | REQ-20260127-002 | ITER-20260127-080207 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260127-080207.md |
 | TEST-20260127-021447 | REQ-20260127-001 | ITER-20260127-014245 | SEO | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator-seo.spec.js | iterations/ITER-20260127-014245.md |
 | TEST-20260127-021002 | REQ-20260127-001 | ITER-20260127-014245 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator.spec.js | iterations/ITER-20260127-014245.md |
 | TEST-20260127-015139 | REQ-20260127-001 | ITER-20260127-014245 | Unit | COMPLETE | 2/25 | tests/core/countdown-timer-generator.test.js | iterations/ITER-20260127-014245.md |

@@ -12,6 +12,7 @@ const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 
 const CSS_VERSION = '20260125';
+const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const CALCULATOR_OVERRIDES = {
   'overtime-hours-calculator': {
@@ -455,6 +456,61 @@ function buildCalculatorIndex(categories) {
 </html>`;
 }
 
+function buildGtepFooter() {
+  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faqs/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap/">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
+}
+
+function buildGtepPage({ title, description, canonical, bodyHtml }) {
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+}
+
+function buildGtepSitemap(categories) {
+  const sections = categories
+    .map((category) => {
+      const subSections = category.subcategories
+        .map((subcategory) => {
+          const items = subcategory.calculators
+            .map((calculator) => `<li><a href="${calculator.url}">${calculator.name}</a></li>`)
+            .join('');
+          return `
+            <div>
+              <h3>${subcategory.name}</h3>
+              <ul>
+                ${items}
+              </ul>
+            </div>`;
+        })
+        .join('');
+      return `
+          <section>
+            <h2>${category.name}</h2>
+            ${subSections}
+          </section>`;
+    })
+    .join('');
+
+  const bodyHtml = `
+          <h1>Sitemap</h1>
+          <p>
+            Browse every calculator available on Calculate How Much. All entries are grouped by
+            category and stay in sync with navigation.
+          </p>
+          <div id="sitemap-content" class="gtep-sitemap-links">
+            ${sections}
+          </div>`;
+
+  return buildGtepPage({
+    title: ensureLength('Sitemap | Calculate How Much', 50, 60),
+    description: ensureLength(
+      'Browse the full list of calculators on Calculate How Much, organized by category.',
+      150,
+      160
+    ),
+    canonical: buildCanonical('/sitemap/'),
+    bodyHtml,
+  });
+}
+
 function buildSitemapXml(categories) {
   const urls = [];
   categories.forEach((category) => {
@@ -587,6 +643,7 @@ function main() {
   writeFile(path.join(PUBLIC_DIR, 'index.html'), homeHtml);
   writeFile(path.join(PUBLIC_DIR, 'calculators', 'index.html'), buildCalculatorIndex(navigation.categories));
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
+  writeFile(path.join(PUBLIC_DIR, 'sitemap', 'index.html'), buildGtepSitemap(navigation.categories));
 }
 
 main();

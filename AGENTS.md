@@ -56,6 +56,7 @@ Calculator Architecture Rule:
 - All calculators use MPA by default.
 - Do NOT implement SPA routing for calculator navigation.
 - Navigation must be `<a href>` based with full reloads.
+- General Terms Excluded Pages (GTEP) are non-calculator pages and must remain standalone HTML (no calculator shell, nav panes, or calculator JS).
 
 REFERENCE (Conditional Manuals)
 ===============================

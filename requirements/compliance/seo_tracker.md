@@ -10,6 +10,7 @@
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
 | SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |
+| SEO-REQ-20260127-002 | REQ-20260127-002 | GTEP Pages (Sitemap, Privacy, Terms, Contact, FAQs) | Title/meta/H1/canonical + footer links | PASS | ✅ | — | — |
 | SEO-REQ-20260124-001 | REQ-20260124-004 | Sitewide Footer | P1 content update | PASS | ✅ | — | — |
 | SEO-REQ-20260124-002 | REQ-20260124-008 | Homepage | Remove tagline copy | PASS | ✅ | — | — |
 | SEO-REQ-20260125-001 | REQ-20260125-001 | Sitewide Footer | Footer layout + link list | NEW | TBD | TBD | TBD |
@@ -24,6 +25,7 @@
 | SEO-REQ-20260126-009 | REQ-20260126-014 | Work Hours Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
 | SEO-REQ-20260126-010 | REQ-20260126-015 | Overtime Hours Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
 | SEO-REQ-20260127-001 | REQ-20260127-001 | Countdown Timer Generator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260127-002 | REQ-20260127-002 | GTEP Pages (/sitemap/, /privacy/, /terms/, /contact/, /faqs/) | New pages: unique title/meta/H1/canonical per page | NEW | TBD | TBD | TBD |
 
 ---
 
