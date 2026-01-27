@@ -11,7 +11,7 @@ const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 
-const CSS_VERSION = '20260125';
+const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const CALCULATOR_OVERRIDES = {
@@ -316,6 +316,7 @@ function buildPageHtml({
   calculatorHtml,
   explanationHtml,
   includeHomeContent,
+  pageType,
 }) {
   const calcContent = includeHomeContent
     ? `<div class="panel panel-scroll">
@@ -356,6 +357,8 @@ function buildPageHtml({
   ${explanationHtml}
 </div>`;
 
+  const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
+
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -368,7 +371,7 @@ function buildPageHtml({
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
   </head>
-  <body>
+  <body${bodyAttribute}>
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
@@ -604,6 +607,7 @@ function main() {
           calculatorHtml,
           explanationHtml,
           includeHomeContent: false,
+          pageType: 'calculator',
         });
 
         const outputDir = path.join(PUBLIC_DIR, relPath);
@@ -638,6 +642,7 @@ function main() {
     calculatorHtml: '',
     explanationHtml: '',
     includeHomeContent: true,
+    pageType: 'home',
   });
 
   writeFile(path.join(PUBLIC_DIR, 'index.html'), homeHtml);
