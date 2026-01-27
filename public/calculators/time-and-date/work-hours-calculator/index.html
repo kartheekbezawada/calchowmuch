@@ -1,0 +1,403 @@
+<div id="calc-work-hours">
+  <div class="calculator-ui">
+    <p class="helper">Calculate total hours worked for a shift, split shift, or full week.</p>
+
+    <div class="input-row">
+      <label id="work-hours-mode-label">Mode</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="work-hours-mode-label"
+        data-button-group="work-hours-mode"
+      >
+        <button class="calculator-button secondary is-active" type="button" data-value="single" aria-pressed="true">
+          Single Shift
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="split" aria-pressed="false">
+          Split Shift
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="weekly" aria-pressed="false">
+          Weekly Total
+        </button>
+      </div>
+    </div>
+
+    <div class="work-hours-section" id="work-hours-single">
+      <div class="input-grid">
+        <div class="input-row">
+          <label for="work-hours-single-start">Start time</label>
+          <input id="work-hours-single-start" type="time" />
+        </div>
+        <div class="input-row">
+          <label for="work-hours-single-end">End time</label>
+          <input id="work-hours-single-end" type="time" />
+        </div>
+      </div>
+      <div class="input-row checkbox-row">
+        <label class="checkbox-label" for="work-hours-single-next-day">
+          <input id="work-hours-single-next-day" type="checkbox" />
+          Ends next day
+        </label>
+      </div>
+      <div class="input-row">
+        <label id="work-hours-single-break-label">Unpaid break</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="work-hours-single-break-label"
+          data-button-group="work-hours-single-break"
+        >
+          <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0</button>
+          <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+          <button class="calculator-button secondary is-active" type="button" data-value="30" aria-pressed="true">
+            30
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+          <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-hours-section is-collapsed" id="work-hours-split" aria-hidden="true">
+      <div class="segment-block">
+        <p class="segment-title">Segment 1</p>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-split-1-start">Start time</label>
+            <input id="work-hours-split-1-start" type="time" />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-split-1-end">End time</label>
+            <input id="work-hours-split-1-end" type="time" />
+          </div>
+        </div>
+        <div class="input-row checkbox-row">
+          <label class="checkbox-label" for="work-hours-split-1-next-day">
+            <input id="work-hours-split-1-next-day" type="checkbox" />
+            Ends next day
+          </label>
+        </div>
+      </div>
+
+      <div class="segment-block">
+        <p class="segment-title">Segment 2 (optional)</p>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-split-2-start">Start time</label>
+            <input id="work-hours-split-2-start" type="time" />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-split-2-end">End time</label>
+            <input id="work-hours-split-2-end" type="time" />
+          </div>
+        </div>
+        <div class="input-row checkbox-row">
+          <label class="checkbox-label" for="work-hours-split-2-next-day">
+            <input id="work-hours-split-2-next-day" type="checkbox" />
+            Ends next day
+          </label>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="work-hours-split-break-label">Unpaid break (total)</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="work-hours-split-break-label"
+          data-button-group="work-hours-split-break"
+        >
+          <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0</button>
+          <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+          <button class="calculator-button secondary is-active" type="button" data-value="30" aria-pressed="true">
+            30
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+          <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-hours-section is-collapsed" id="work-hours-weekly" aria-hidden="true">
+      <div class="weekly-day" data-weekly-day="monday" data-weekly-label="Mon">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Mon</span>
+          <label class="checkbox-label" for="work-hours-weekly-mon-next-day">
+            <input id="work-hours-weekly-mon-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-mon-start">Start time</label>
+            <input id="work-hours-weekly-mon-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-mon-end">End time</label>
+            <input id="work-hours-weekly-mon-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-mon-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-mon-break-label"
+            data-button-group="work-hours-weekly-mon-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="tuesday" data-weekly-label="Tue">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Tue</span>
+          <label class="checkbox-label" for="work-hours-weekly-tue-next-day">
+            <input id="work-hours-weekly-tue-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-tue-start">Start time</label>
+            <input id="work-hours-weekly-tue-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-tue-end">End time</label>
+            <input id="work-hours-weekly-tue-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-tue-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-tue-break-label"
+            data-button-group="work-hours-weekly-tue-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="wednesday" data-weekly-label="Wed">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Wed</span>
+          <label class="checkbox-label" for="work-hours-weekly-wed-next-day">
+            <input id="work-hours-weekly-wed-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-wed-start">Start time</label>
+            <input id="work-hours-weekly-wed-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-wed-end">End time</label>
+            <input id="work-hours-weekly-wed-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-wed-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-wed-break-label"
+            data-button-group="work-hours-weekly-wed-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="thursday" data-weekly-label="Thu">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Thu</span>
+          <label class="checkbox-label" for="work-hours-weekly-thu-next-day">
+            <input id="work-hours-weekly-thu-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-thu-start">Start time</label>
+            <input id="work-hours-weekly-thu-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-thu-end">End time</label>
+            <input id="work-hours-weekly-thu-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-thu-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-thu-break-label"
+            data-button-group="work-hours-weekly-thu-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="friday" data-weekly-label="Fri">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Fri</span>
+          <label class="checkbox-label" for="work-hours-weekly-fri-next-day">
+            <input id="work-hours-weekly-fri-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-fri-start">Start time</label>
+            <input id="work-hours-weekly-fri-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-fri-end">End time</label>
+            <input id="work-hours-weekly-fri-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-fri-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-fri-break-label"
+            data-button-group="work-hours-weekly-fri-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="saturday" data-weekly-label="Sat">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Sat</span>
+          <label class="checkbox-label" for="work-hours-weekly-sat-next-day">
+            <input id="work-hours-weekly-sat-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-sat-start">Start time</label>
+            <input id="work-hours-weekly-sat-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-sat-end">End time</label>
+            <input id="work-hours-weekly-sat-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-sat-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-sat-break-label"
+            data-button-group="work-hours-weekly-sat-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-day" data-weekly-day="sunday" data-weekly-label="Sun">
+        <div class="weekly-day-header">
+          <span class="weekly-day-name">Sun</span>
+          <label class="checkbox-label" for="work-hours-weekly-sun-next-day">
+            <input id="work-hours-weekly-sun-next-day" type="checkbox" data-weekly-next-day />
+            Ends next day
+          </label>
+        </div>
+        <div class="input-grid">
+          <div class="input-row">
+            <label for="work-hours-weekly-sun-start">Start time</label>
+            <input id="work-hours-weekly-sun-start" type="time" data-weekly-start />
+          </div>
+          <div class="input-row">
+            <label for="work-hours-weekly-sun-end">End time</label>
+            <input id="work-hours-weekly-sun-end" type="time" data-weekly-end />
+          </div>
+        </div>
+        <div class="input-row">
+          <label id="work-hours-weekly-sun-break-label">Unpaid break</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="work-hours-weekly-sun-break-label"
+            data-button-group="work-hours-weekly-sun-break"
+            data-weekly-break
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+              0
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
+            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
+            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
+            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="work-hours-calculate">Calculate</button>
+
+    <div class="result" id="work-hours-results" aria-live="polite">
+      <p class="placeholder" id="work-hours-placeholder">Enter your times and click Calculate.</p>
+      <p class="form-error is-hidden" id="work-hours-error"></p>
+      <div class="work-hours-results-list is-hidden" id="work-hours-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/work-hours-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/work-hours-calculator/module.js"></script>

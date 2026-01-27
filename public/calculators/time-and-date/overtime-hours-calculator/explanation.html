@@ -1,0 +1,220 @@
+<div id="overtime-explanation">
+  <ul class="toc">
+    <li><a href="#quick-summary">Quick Summary</a></li>
+    <li><a href="#how-to-use">How to Use</a></li>
+    <li><a href="#weekly-mode">Weekly Mode</a></li>
+    <li><a href="#overtime-rules">Overtime Rules</a></li>
+    <li><a href="#night-overtime">Night Overtime</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <h2 id="quick-summary">Quick Summary (Updates As You Change Inputs)</h2>
+  <p>
+    This table updates automatically based on what you enter in the calculator. It shows your
+    current mode, total hours, regular hours, overtime hours, and optional night overtime
+    classification.
+  </p>
+  <p><strong>Table: Current Calculation Summary (Dynamic)</strong></p>
+
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mode</td>
+          <td><span data-placeholder="mode">—</span></td>
+        </tr>
+        <tr>
+          <td>Week range (weekly mode only)</td>
+          <td><span data-placeholder="week-range-label">—</span></td>
+        </tr>
+        <tr>
+          <td>Regular hours (HH:MM)</td>
+          <td><span data-placeholder="regular-hhmm">—</span></td>
+        </tr>
+        <tr>
+          <td>Overtime hours (HH:MM)</td>
+          <td><span data-placeholder="ot-hhmm">—</span></td>
+        </tr>
+        <tr>
+          <td>Overtime rule</td>
+          <td><span data-placeholder="ot-rule-label">—</span></td>
+        </tr>
+        <tr>
+          <td>Daily regular limit</td>
+          <td><span data-placeholder="daily-limit">—</span> hours</td>
+        </tr>
+        <tr>
+          <td>Weekly regular limit</td>
+          <td><span data-placeholder="weekly-limit">—</span> hours</td>
+        </tr>
+        <tr>
+          <td>Rounding</td>
+          <td><span data-placeholder="rounding">—</span></td>
+        </tr>
+        <tr>
+          <td>Break deducted</td>
+          <td><span data-placeholder="break-minutes">—</span> minutes</td>
+        </tr>
+        <tr>
+          <td>Night hours (if enabled)</td>
+          <td><span data-placeholder="night-hhmm">—</span></td>
+        </tr>
+        <tr>
+          <td>Night overtime (if enabled)</td>
+          <td><span data-placeholder="night-ot-hhmm">—</span></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total worked (HH:MM)</td>
+          <td><span data-placeholder="total-hhmm">—</span></td>
+        </tr>
+        <tr>
+          <td>Decimal total</td>
+          <td><span data-placeholder="total-decimal">—</span> hours</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>What is an Overtime Hours Calculator?</h2>
+  <p>
+    An Overtime Hours Calculator helps you measure how many hours you worked and split them into
+    regular hours and overtime hours. Your results show Total worked
+    <span data-placeholder="total-hhmm">—</span>, Regular hours
+    <span data-placeholder="regular-hhmm">—</span>, and Overtime hours
+    <span data-placeholder="ot-hhmm">—</span> based on the overtime rule you selected.
+  </p>
+
+  <h2 id="how-to-use">How to Use This Calculator</h2>
+  <p>Choose a mode: Single Shift, Split Shift, or Weekly Shift.</p>
+  <p>Enter your start and end times. If your shift ends after midnight, enable “Ends next day.”</p>
+  <p>Enter unpaid break minutes if needed.</p>
+  <p>Choose an overtime rule: Daily, Weekly, or Daily + Weekly.</p>
+  <p>Set your regular limits (daily and/or weekly).</p>
+  <p>(Optional) Enable night hours tracking to classify night hours and night overtime.</p>
+  <p>Review the summary table and the compact results.</p>
+
+  <h2 id="weekly-mode">Weekly Mode for Different Work Cycles</h2>
+  <p>
+    Not everyone uses a Monday-to-Sunday week. Weekly mode lets you pick a week start day such as
+    Sunday-to-Saturday or Friday-to-Thursday. Choose your week start day and a week start date to
+    label each day with the correct date, then enter the shifts for that 7-day cycle.
+  </p>
+
+  <h2 id="overtime-rules">Overtime Rules Explained (Daily vs Weekly)</h2>
+  <p>
+    Different workplaces use different overtime policies. Some count overtime after a certain
+    number of hours in a day. Others count overtime after a certain number of hours in a week.
+  </p>
+  <p><strong>Table: Common Overtime Policies (Hours-Only)</strong></p>
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Policy</th>
+          <th>What counts as overtime</th>
+          <th>Best for</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Daily overtime</td>
+          <td>Time above your daily regular limit</td>
+          <td>Long single days</td>
+          <td>Useful when you work very long shifts</td>
+        </tr>
+        <tr>
+          <td>Weekly overtime</td>
+          <td>Time above your weekly regular limit</td>
+          <td>Variable schedules</td>
+          <td>Common for weekly timesheets</td>
+        </tr>
+        <tr>
+          <td>Daily + Weekly</td>
+          <td>Overtime if you exceed either rule</td>
+          <td>Mixed schedules</td>
+          <td>Helps avoid missing overtime in unusual weeks</td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+
+  <h2 id="night-overtime">Night Shifts and Night Overtime</h2>
+  <p>
+    Night shifts often cross midnight, which is why the calculator includes an “Ends next day”
+    option. Night overtime is a classification of overtime that occurs during a night-time window
+    (for example, 22:00 to 06:00). This calculator shows night overtime as hours only and does not
+    calculate pay rates.
+  </p>
+
+  <h2>Breaks, Rounding, and Why Results Differ</h2>
+  <p>
+    Breaks and rounding policies can change totals even when shift times look the same. If your
+    employer rounds time to the nearest 5, 10, or 15 minutes, choose the rounding option that
+    matches your policy.
+  </p>
+
+  <h2>Assumptions and Limitations</h2>
+  <p>This calculator:</p>
+  <p>Calculates hours only, not pay, wages, or overtime rates</p>
+  <p>Does not provide legal compliance guidance</p>
+  <p>Subtracts unpaid breaks that you enter</p>
+  <p>Uses your selected overtime rule and thresholds to split hours</p>
+  <p>May not match an employer’s exact rounding rules unless you select the same rounding option</p>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="overtime-faq-item">
+    <p><strong>What is the difference between regular hours and overtime hours?</strong></p>
+    <p>Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>Which overtime rule should I choose?</strong></p>
+    <p>Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>How does “Daily + Weekly” avoid double counting overtime?</strong></p>
+    <p>The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>Can I calculate overtime for split shifts?</strong></p>
+    <p>Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>What does “Ends next day” do?</strong></p>
+    <p>It treats the end time as the next day so night shifts are counted correctly.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>What is night overtime in this calculator?</strong></p>
+    <p>Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>Does this calculator round time the way my employer does?</strong></p>
+    <p>It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>Can I set a custom week like Sunday–Saturday or Friday–Thursday?</strong></p>
+    <p>Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week.</p>
+  </div>
+
+  <div class="overtime-faq-item">
+    <p><strong>Does the calculator save my hours?</strong></p>
+    <p>No. It runs in your browser and does not store your inputs.</p>
+  </div>
+</div>

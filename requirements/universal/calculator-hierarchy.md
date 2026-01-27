@@ -75,6 +75,11 @@ On page load (including deep links), the system MUST:
 ### 2.3 One Page = One Calculator
 Each calculator page MUST map to exactly one leaf item in this hierarchy.
 
+Note:
+All calculator routes resolve to standalone HTML pages.
+Navigation between calculators performs a full page load (MPA),
+not in-page content swapping.
+
 ---
 
 ## 3) Naming Conventions (Canonical)

@@ -1,0 +1,33 @@
+<div id="calc-birthday-dow">
+  <div class="calculator-ui">
+    <p class="helper">Find the weekday you were born and the weekday your birthday falls on.</p>
+
+    <div class="input-row">
+      <label for="birthday-dow-dob">Date of birth</label>
+      <input id="birthday-dow-dob" type="date" />
+    </div>
+
+    <div class="input-row">
+      <label for="birthday-dow-year">Birthday weekday in year</label>
+      <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="birthday-dow-calculate">
+      Calculate
+    </button>
+
+    <div class="result" id="birthday-dow-results" aria-live="polite">
+      <p class="placeholder" id="birthday-dow-placeholder">
+        Enter your date of birth to calculate weekdays.
+      </p>
+      <p class="form-error is-hidden" id="birthday-dow-error"></p>
+      <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/birthday-day-of-week/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js"></script>

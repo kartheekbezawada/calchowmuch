@@ -9,8 +9,21 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
-| TEST-20260126-221055 | REQ-20260126-010 | ITER-20260126-212224 | ISS-001 | COMPLETE | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260126-212224.md |
-| TEST-20260126-221059 | REQ-20260126-010 | ITER-20260126-212224 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js | iterations/ITER-20260126-212224.md |
+| TEST-20260127-021447 | REQ-20260127-001 | ITER-20260127-014245 | SEO | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator-seo.spec.js | iterations/ITER-20260127-014245.md |
+| TEST-20260127-021002 | REQ-20260127-001 | ITER-20260127-014245 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/countdown-timer-generator.spec.js | iterations/ITER-20260127-014245.md |
+| TEST-20260127-015139 | REQ-20260127-001 | ITER-20260127-014245 | Unit | COMPLETE | 2/25 | tests/core/countdown-timer-generator.test.js | iterations/ITER-20260127-014245.md |
+| TEST-20260127-001622 | REQ-20260126-015 | ITER-20260126-235614 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-seo.spec.js | iterations/ITER-20260126-235614.md |
+| TEST-20260127-001610 | REQ-20260126-015 | ITER-20260126-235614 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-calculator.spec.js | iterations/ITER-20260126-235614.md |
+| TEST-20260127-001557 | REQ-20260126-015 | ITER-20260126-235614 | Unit | COMPLETE | 1/25 | tests/core/overtime-hours-calculator.test.js | iterations/ITER-20260126-235614.md |
+| TEST-20260126-233818 | REQ-20260126-014 | ITER-20260126-232505 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-seo.spec.js | iterations/ITER-20260126-232505.md |
+| TEST-20260126-233808 | REQ-20260126-014 | ITER-20260126-232505 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-calculator.spec.js | iterations/ITER-20260126-232505.md |
+| TEST-20260126-233757 | REQ-20260126-014 | ITER-20260126-232505 | Unit | COMPLETE | 1/25 | tests/core/work-hours-calculator.test.js | iterations/ITER-20260126-232505.md |
+| TEST-20260126-232028 | REQ-20260126-013 | ITER-20260126-230824 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-seo.spec.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-232020 | REQ-20260126-013 | ITER-20260126-230824 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/nap-time-calculator.spec.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-232012 | REQ-20260126-013 | ITER-20260126-230824 | Unit | COMPLETE | 1/25 | tests/core/nap-time-calculator.test.js | iterations/ITER-20260126-230824.md |
+| TEST-20260126-230357 | REQ-20260126-012 | ITER-20260126-225438 | Unit | COMPLETE | 1/25 | tests/core/birthday-day-of-week.test.js | iterations/ITER-20260126-225438.md |
+| TEST-20260126-230401 | REQ-20260126-012 | ITER-20260126-225438 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/birthday-day-of-week-calculator.spec.js | iterations/ITER-20260126-225438.md |
+| TEST-20260126-230405 | REQ-20260126-012 | ITER-20260126-225438 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/birthday-day-of-week-seo.spec.js | iterations/ITER-20260126-225438.md |
 | TEST-20260126-211300 | REQ-20260126-009 | ITER-20260126-210621 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator-seo.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211230 | REQ-20260126-009 | ITER-20260126-210621 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/age-calculator.spec.js | iterations/ITER-20260126-210621.md |
 | TEST-20260126-211200 | REQ-20260126-009 | ITER-20260126-210621 | Unit | COMPLETE | 1/25 | tests/core/age-calculator.test.js | iterations/ITER-20260126-210621.md |
@@ -66,4 +79,6 @@ Full matrix: `testing_requirements.md`
 
 | TEST_ID | REQ_ID | Type | Status | Tests Run | Archived |
 |---------|--------|------|--------|-----------|----------|
-| | | | | | |
+| TEST-20260126-222306 | REQ-20260126-010 | ISS-001 | COMPLETE | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | 2026-01-26 22:34 |
+| TEST-20260126-221055 | REQ-20260126-010 | ISS-001 | COMPLETE | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | 2026-01-26 22:34 |
+| TEST-20260126-221059 | REQ-20260126-010 | E2E | COMPLETE | requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js | 2026-01-26 22:34 |

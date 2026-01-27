@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs." />
+    <link rel="canonical" href="https://calchowmuch.com/time-and-date/nap-time-calculator/" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260125" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260125" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+  <span>Calculate How Much</span>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-and-date">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time & Date</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item is-active" href="/time-and-date/nap-time-calculator">Nap Time Calculator</a><a class="nav-item" href="/time-and-date/work-hours-calculator">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week">Birthday Day-of-Week</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Nap Time Calculator</h1>
+  <div id="calc-nap-time">
+  <div class="calculator-ui">
+    <p class="helper">Choose a nap type and start time to get a recommended wake-up time.</p>
+
+    <div class="input-row">
+      <label id="nap-type-label">Nap type</label>
+      <div class="button-group" role="group" aria-labelledby="nap-type-label" data-button-group="nap-type">
+        <button class="calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
+          Quick Nap (20 min)
+        </button>
+        <button class="calculator-button secondary is-active" type="button" data-value="power" aria-pressed="true">
+          Power Nap (30 min)
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="afternoon" aria-pressed="false">
+          Afternoon Nap (90 min)
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label for="nap-start-time">Nap start time</label>
+      <div class="input-with-button">
+        <input id="nap-start-time" type="time" />
+        <button class="calculator-button secondary" type="button" id="nap-use-now">Use now</button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label id="nap-buffer-label">Wake buffer</label>
+      <div class="button-group" role="group" aria-labelledby="nap-buffer-label" data-button-group="nap-buffer">
+        <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0 min</button>
+        <button class="calculator-button secondary is-active" type="button" data-value="5" aria-pressed="true">
+          5 min
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="10" aria-pressed="false">10 min</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="nap-calculate">Calculate</button>
+
+    <div class="result" id="nap-results" aria-live="polite">
+      <p class="placeholder" id="nap-placeholder">Select a nap type and start time to see your wake-up time.</p>
+      <p class="form-error is-hidden" id="nap-error"></p>
+      <div class="nap-results-list is-hidden" id="nap-results-list"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/nap-time-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/nap-time-calculator/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="nap-time-explanation">
+  <h2>What is a Nap Time Calculator?</h2>
+  <p>
+    A Nap Time Calculator helps you choose a wake-up time based on when you start your nap and
+    the type of nap you want. If you start at <span data-placeholder="start-time">{START_TIME}</span>
+    and choose <span data-placeholder="nap-type">{NAP_TYPE}</span>, this calculator suggests
+    waking up at <span data-placeholder="wake-time">{WAKE_TIME}</span>.
+  </p>
+
+  <h2>Quick Naps (10–20 minutes)</h2>
+  <p>
+    Quick naps are short and focused. They are often used when you want a fast reset without
+    feeling heavy or groggy afterward.
+  </p>
+  <p>Pros</p>
+  <p>Fast boost in alertness</p>
+  <p>Easy to fit into a busy day</p>
+  <p>Lower chance of waking up feeling sluggish</p>
+  <p>Cons</p>
+  <p>Short naps may not feel "restful" if you are very tired</p>
+  <p>Benefits can be brief if you are sleep-deprived</p>
+
+  <h2>Power Naps (25–30 minutes)</h2>
+  <p>
+    Power naps are a common middle-ground. They are long enough to feel restorative but short
+    enough to avoid a deep, hard-to-wake phase for many people.
+  </p>
+  <p>Pros</p>
+  <p>Stronger refresh than a very short nap</p>
+  <p>Often improves focus and mood</p>
+  <p>Still relatively easy to schedule</p>
+  <p>Cons</p>
+  <p>Some people may still feel groggy if they wake at the wrong moment</p>
+  <p>Can affect nighttime sleep if taken too late in the day</p>
+
+  <h2>Afternoon Naps (60–90 minutes)</h2>
+  <p>
+    Afternoon naps are longer naps typically taken when you have more time. They can feel more
+    like a full recharge, but they also come with a higher chance of waking up groggy.
+  </p>
+  <p>Pros</p>
+  <p>More recovery than shorter naps</p>
+  <p>Can feel like a full reset</p>
+  <p>Useful after a very early morning or poor sleep</p>
+  <p>Cons</p>
+  <p>Higher chance of sleep inertia (waking up groggy)</p>
+  <p>More likely to interfere with nighttime sleep, especially if taken late</p>
+
+  <h2>When to Use a Wake Buffer</h2>
+  <p>
+    A wake buffer adds extra minutes after your nap time so you can wake up gradually. A small
+    buffer can help you sit up, drink water, and get oriented before you need to perform a task.
+  </p>
+
+  <h2>Assumptions and Limitations</h2>
+  <p>This calculator:</p>
+  <p>Uses fixed nap durations for simplicity</p>
+  <p>Uses your local browser time for "now"</p>
+  <p>Does not diagnose sleep problems or provide medical advice</p>
+  <p>Is a general planning tool and results may feel different for different people</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="nap-faq-item">
+    <p><strong>Which nap is best for work breaks?</strong></p>
+    <p>Quick naps and power naps are usually the easiest to fit into a workday because they are shorter.</p>
+  </div>
+
+  <div class="nap-faq-item">
+    <p><strong>Why do I sometimes feel worse after a nap?</strong></p>
+    <p>
+      If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a
+      different nap length can help.
+    </p>
+  </div>
+
+  <div class="nap-faq-item">
+    <p><strong>Will napping ruin my sleep at night?</strong></p>
+    <p>
+      Naps taken too late in the day can make it harder to fall asleep at night. If this happens,
+      try a shorter nap or nap earlier.
+    </p>
+  </div>
+
+  <div class="nap-faq-item">
+    <p><strong>What is the best time of day to nap?</strong></p>
+    <p>Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.</p>
+  </div>
+
+  <div class="nap-faq-item">
+    <p><strong>Does the calculator set an alarm?</strong></p>
+    <p>No. It only suggests a wake-up time. You can set an alarm on your phone or device.</p>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="#">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="#">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="#">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+  </body>
+</html>
