@@ -17,6 +17,9 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260127-006 | ITER-20260127-164722 | SEO Auto | SEO Auto (requirements/specs/e2e/car-loan-seo.spec.js) | 1/25 | PASS |
+| REQ-20260127-005 | ITER-20260127-121647 | SEO Auto | SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |
+| REQ-20260127-004 | ITER-20260127-121111 | SEO Auto | SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |
 | REQ-20260127-003 | ITER-20260127-120145 | SEO Auto | SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |
 | REQ-20260127-002 | ITER-20260127-080207 | ISS-001 + E2E + SEO Auto | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated); E2E (requirements/specs/e2e/gtep-pages.spec.js); SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |
 | REQ-20260127-001 | ITER-20260127-014245 | Unit + E2E + SEO Auto | Unit (tests/core/countdown-timer-generator.test.js); E2E (requirements/specs/e2e/countdown-timer-generator.spec.js); SEO Auto (requirements/specs/e2e/countdown-timer-generator-seo.spec.js) | 2/25 | PASS |

@@ -1,147 +1,380 @@
-# Credit Card Calculators - Requirements with Rule IDs
+CAR_LOAN_CALCULATOR_REBUILD_RULES.md
 
-Scope: Loans - Credit Cards category.
 
-Calculators covered:
-- Repayment / Payoff Calculator
-- Minimum Payment Calculator
-- Balance Transfer / Installment Plan Calculator
-- Credit Card Consolidation Calculator
+Title: Car Loan (Auto Loans) — Fix Calculations + Move Graph/Table to Explanation Pane + SEO Blog Explanation
+Change Type: Bug Fix + UI Relocation + SEO Content + Table/Graph Enhancements
 
----
+1) Problem Statement
 
-## Requirement ID Mapping
+The existing Car Loan Calculator under Loans → Auto Loans → Car Loan Calculator is not producing correct results (calculation not working or not updating). It also currently renders a graph inside the Calculation Pane, which violates the platform separation rules (complex outputs belong in the Explanation Pane). The Explanation Pane must become SEO-friendly blog content with tables + graphs placed at the top.
 
-| Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
-|----------------|------------|---------------------|---------------------|---------------|
-| REQ-CC-001 | Repayment / Payoff Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-PAYOFF-1<br>• CC-PAYOFF-2<br>• CC-PAYOFF-3<br>• CC-PAYOFF-4<br>• CC-PAYOFF-5 | • CC-TEST-U-1<br>• CC-TEST-E2E-1 | 2026-01-19 |
-| REQ-CC-002 | Minimum Payment Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-MIN-1<br>• CC-MIN-2<br>• CC-MIN-3<br>• CC-MIN-4<br>• CC-MIN-5<br>• CC-MIN-6 | • CC-TEST-U-2<br>• CC-TEST-E2E-2 | 2026-01-19 |
-| REQ-CC-003 | Balance Transfer Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-BT-1<br>• CC-BT-2<br>• CC-BT-3<br>• CC-BT-4 | • CC-TEST-U-3<br>• CC-TEST-E2E-3 | 2026-01-19 |
-| REQ-CC-004 | CC Consolidation Calculator | • CC-NAV-1<br>• CC-NAV-2<br>• CC-IN-1<br>• CC-IN-2<br>• CC-IN-3<br>• CC-IN-4<br>• CC-CONSOL-1<br>• CC-CONSOL-2<br>• CC-CONSOL-3 | • CC-TEST-U-4<br>• CC-TEST-E2E-4 | 2026-01-19 |
+2) Goals
 
----
+    Rebuild the calculator logic deterministically (inputs → compute → render).
+    Keep the Calculation Pane compact: inputs + a few summary results only.
+    Move Graph + Amortization Table into the Explanation Pane.
+    Make Explanation Pane blog-style, long-form, SEO-heavy with multiple sections + FAQs.
 
-## CC-NAV
+Add:
+    A table toggle: Monthly / Yearly
+    Graph always Yearly with hover tooltips
+    Table columns: Date (MM-YYYY), Principal Amount, Interest, Total
+    Graph: X = years, Y = amount, series = Total, Principal, Interest
+    Remove currency symbols from table cells and graph values (units established via headers/labels).
 
-**CC-NAV-1**  
-All credit card calculators must appear under Loans - Credit Cards in navigation and be deep-linkable.
+3) Page Placement & Navigation
+Top Navigation
+Appears under Auto Loans top nav and any small icon like Time and Date.
+Left Navigation Hierarchy
+Auto Loans
+    Car Loan Calculator 
+Routing
 
-**CC-NAV-2**  
-Display names must match the universal hierarchy exactly.
+URL: /auto-loans/car-loan-calculator
 
----
+Deep-linking must activate:
 
-## CC-IN - Shared Input Rules
+Loans in top nav
 
-**CC-IN-1**  
-Balance inputs must be numeric and > 0.
+Auto Loans section expanded in left nav
 
-**CC-IN-2**  
-APR inputs must be numeric and >= 0.
+Car Loan Calculator highlighted
 
-**CC-IN-3**  
-Monthly payment inputs must be numeric and > 0.
+4) Calculation Pane (Inputs + Compact Summary Only)
+Inputs (Interactive)
 
-**CC-IN-4**  
-Use button groups for mode toggles (no dropdowns).
+Vehicle Price (number)
 
----
+Down Payment Type (segmented buttons): Amount / Percent
 
-## CC-PAYOFF - Repayment / Payoff Calculator
+Down Payment (number)
 
-**CC-PAYOFF-1**  
-Inputs: balance, APR, monthly payment, optional extra payment.
+Trade-in Value (number)
 
-**CC-PAYOFF-2**  
-If payment is insufficient to reduce principal (payment <= monthly interest), show an error.
+Dealer Fees (number)
 
-**CC-PAYOFF-3**  
-Outputs: payoff months, total interest, total paid, average monthly payment.
+Sales Tax (%) (number)
 
-**CC-PAYOFF-4**  
-Table: yearly summary with Year, Payments, Interest, Ending Balance.
+APR (%) (number)
 
-**CC-PAYOFF-5**  
-Graph: balance over time (line).
+Loan Term (years) (number; allow decimals? No, integer only)
 
----
+Button: Calculate (primary)
 
-## CC-MIN - Minimum Payment Calculator
+Input Validation (Required)
 
-**CC-MIN-1**  
-Inputs: balance, APR, minimum payment rate (%), minimum payment floor.
+All numeric fields must be ≥ 0
 
-**CC-MIN-2**  
-Payment per month = max(balance * rate %, floor), capped at remaining balance + interest.
+Sales Tax %: 0–30
 
-**CC-MIN-3**  
-If minimum payment cannot reduce principal, show an error.
+APR %: 0–40
 
-**CC-MIN-4**  
-Outputs: payoff months, total interest, total paid, first payment, last payment.
+Loan Term years: 1–8 (integer)
 
-**CC-MIN-5**  
-Table: yearly summary with Year, Payments, Interest, Ending Balance.
+Down payment percent: 0–100
 
-**CC-MIN-6**  
-Graph: balance over time (line).
+Prevent Amount Financed < 0 (show inline error: “Down payment + trade-in exceeds total cost.”)
 
----
+Compact Outputs (Calculation Pane)
 
-## CC-BT - Balance Transfer / Installment Plan
+Show as short text lines only:
 
-**CC-BT-1**  
-Inputs: transfer balance, transfer fee %, promo APR, promo months, post-promo APR, monthly payment.
+Amount Financed
 
-**CC-BT-2**  
-Transfer fee is applied upfront to the balance.
+Monthly Payment
 
-**CC-BT-3**  
-Promo APR applies for promo months; post-promo APR applies afterward.
+Total Interest
 
-**CC-BT-4**  
-Outputs: payoff months, total interest, total fees, total paid.
+Total Cost (Principal + Interest)
 
-**CC-BT-5**  
-Table: yearly summary with Year, Payments, Interest, Ending Balance.
+Rules:
 
-**CC-BT-6**  
-Graph: balance over time (line).
+No tables in Calculation Pane
 
----
+No graphs in Calculation Pane
 
-## CC-CONSOL - Credit Card Consolidation
+No currency symbols in values (use labels like “Amount (GBP)” or “Amount”)
 
-**CC-CONSOL-1**  
-Inputs: current balance, current APR, current monthly payment, consolidation APR, consolidation term (years), optional consolidation fees.
+5) Core Logic (Rebuild Spec)
+Definitions
 
-**CC-CONSOL-2**  
-Comparison must show current payoff vs consolidation loan payoff.
+Let:
 
-**CC-CONSOL-3**  
-Outputs: monthly payment difference, total interest difference, total cost difference.
+P = vehicle price
 
-**CC-CONSOL-4**  
-Table: summary with Current vs Consolidation totals.
+fees = dealer fees
 
-**CC-CONSOL-5**  
-Graph: balance over time (line) for both scenarios.
+trade = trade-in value
 
----
+taxRate = salesTaxPercent / 100
 
-## CC-EXP
+apr = aprPercent / 100
 
-**CC-EXP-1**  
-Explanation must show a summary using the user's inputs and outcomes.
+years = loanTermYears (integer)
 
-**CC-EXP-2**  
-Include a short note about interest compounding and payment sensitivity.
+n = years * 12
 
----
+r = apr / 12
 
-## CC-UI
+Down Payment
 
-**CC-UI-1**  
-Use shared calculator classes and Universal table/graph rules.
+If Down Payment Type = Amount:
 
-Completion: CC-* pass + Universal compliance.
+down = downPaymentAmount
+If Down Payment Type = Percent:
+
+down = P * (downPaymentPercent / 100)
+
+Taxable Base (Deterministic Rule)
+
+Sales tax is applied to:
+
+taxable = max(0, (P - trade) + fees)
+
+Then:
+
+tax = taxable * taxRate
+
+Amount Financed
+
+amountFinanced = (P - down - trade) + fees + tax
+
+Clamp: if amountFinanced < 0 → error state (do not compute payment)
+
+Monthly Payment
+
+If aprPercent == 0:
+
+monthlyPayment = amountFinanced / n
+Else:
+
+monthlyPayment = amountFinanced * (r * (1+r)^n) / ((1+r)^n - 1)
+
+Amortization Schedule (Monthly)
+
+For month m = 1..n:
+
+interest_m = balance * r
+
+principal_m = monthlyPayment - interest_m
+
+balance = max(0, balance - principal_m)
+
+total_m = principal_m + interest_m (equals payment except last month rounding)
+
+Rounding rule:
+
+Round display to 2 decimals
+
+Keep internal computation in full precision; adjust final payment to close balance to zero if needed.
+
+6) Explanation Pane (SEO Blog + Graph + Table at Top)
+Top of Explanation Pane (Always First)
+
+Order:
+
+Removable summary block (text)
+
+Graph (Yearly only)
+
+Table (toggle Monthly/Yearly)
+
+6.1 Graph Requirements (Yearly Only)
+
+X-axis: Year number (1..years)
+
+Y-axis: Amount (no currency symbol)
+
+Series (3 lines):
+
+Total Paid (per year)
+
+Principal Paid (per year)
+
+Interest Paid (per year)
+
+Hover tooltip required:
+
+On hover, show values for that year for all 3 series
+
+Fixed-height container; must not change page height.
+
+Graph data source:
+
+Aggregate monthly schedule into yearly buckets.
+
+Yearly aggregation rule:
+
+Year k includes months ((k-1)*12 + 1) .. min(k*12, n).
+
+6.2 Table Requirements (Toggle Monthly / Yearly)
+
+Toggle control in Explanation Pane above table: Monthly / Yearly
+
+Default: Yearly (lower row count; better UX)
+
+Table columns (exact):
+
+Date (MM-YYYY)
+
+Principal Amount
+
+Interest
+
+Total
+
+Date rules:
+
+Use Loan Start Month = current local month/year at compute time (no additional input in v1).
+
+Monthly view:
+
+One row per month, date increments monthly from start month.
+
+Yearly view:
+
+One row per year using 12-YYYY (end of year marker) except partial last year uses month of last payment.
+
+Principal/Interest/Total are summed for that year.
+
+Table format rules:
+
+Semantic <table><thead><tbody><tfoot>
+
+Full outer border + full gridlines
+
+Numeric columns right-aligned
+
+No cell wrapping
+
+No currency symbols in cells (headers define units)
+
+7) Explanation Pane Content (Blog-Style, SEO-Heavy)
+Required Sections (H2/H3)
+
+H2: What is a Car Loan Calculator?
+
+H2: How Monthly Car Loan Payments Work
+
+H3: APR vs Interest Paid
+
+H3: Loan Term Trade-offs (shorter vs longer)
+
+H2: How Down Payments and Trade-ins Reduce Borrowing
+
+H2: Fees and Sales Tax (What Gets Financed)
+
+H2: How to Use This Calculator (Step-by-step)
+
+H2: Examples (at least 2 scenarios)
+
+H2: Assumptions and Limitations
+
+H2: Frequently Asked Questions (minimum 10 FAQs)
+
+FAQ topics (minimum):
+
+What is amount financed?
+
+Does a bigger down payment lower total interest?
+
+How does a trade-in affect sales tax (not advice; just explain this calculator’s assumption)
+
+What if APR is 0%?
+
+Why does extending term lower monthly but increase total cost?
+
+Are dealer fees included in financing?
+
+Is this an official quote?
+
+Why might my lender payment differ? (rounding, fees, insurance, etc.)
+
+Can I model early payoff? (Not in v1)
+
+What about balloon payments? (Not in v1)
+
+Structured Data:
+
+Add FAQPage JSON-LD for the FAQ section.
+
+8) SEO Metadata
+
+Title: Car Loan Calculator – Monthly Payment, Interest, and Amortization
+
+Meta Description: Estimate car loan monthly payments after down payment, trade-in, fees, and sales tax. View yearly payment graph and amortization table.
+
+H1: Car Loan Calculator
+
+Canonical: /loans/auto-loans/car-loan-calculator
+
+9) Non-Goals (v1)
+
+No lender offers or rate shopping
+
+No insurance/maintenance calculations
+
+No balloon payments
+
+No early payoff / extra payment logic
+
+No currency selection (values remain symbol-agnostic)
+
+10) File Structure
+/public/calculators/loans/auto-loans/car-loan-calculator/
+  index.html
+  module.js
+  explanation.html
+
+11) Testing Requirements
+Unit Tests (Required)
+
+Amount financed calculation (amount + percent down payment paths)
+
+APR = 0 case
+
+Standard amortization payment sanity check (known expected values within tolerance)
+
+Yearly aggregation correctness (sum(monthly) == yearly total)
+
+Date formatting MM-YYYY rollovers across years
+
+E2E Tests (Required)
+
+Inputs change → calculate → results update
+
+Graph exists in Explanation Pane, not in Calculation Pane
+
+Table exists in Explanation Pane with toggle Monthly/Yearly
+
+Hover over graph shows tooltip values
+
+No currency symbols in table cells
+
+12) Acceptance Criteria
+
+MUST HAVE
+
+ Calculator computes and updates correctly for provided sample inputs
+
+ Graph removed from Calculation Pane and rendered in Explanation Pane
+
+ Graph: yearly only; axes labeled; series = total/principal/interest; hover tooltip works
+
+ Table in Explanation Pane with toggle Monthly/Yearly; default Yearly
+
+ Table columns exactly: Date (MM-YYYY), Principal Amount, Interest, Total
+
+ Values symbol-agnostic (no currency symbols in cells/tooltips)
+
+ Explanation Pane is long-form SEO blog with required sections + 10+ FAQs
+
+ FAQPage structured data added
+
+ Unit + E2E tests pass
+
+SHOULD HAVE
+
+ Smooth toggle without layout shifts
+
+ Scroll containers stable; no page height growth

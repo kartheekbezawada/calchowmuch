@@ -44,6 +44,9 @@
 | REQ-20260127-001 | Countdown Timer Generator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260127-002 | General Terms Excluded Pages (GTEP) | Site | Layout/CSS + New Pages + SEO | HIGH | COMPLETE | YES |
 | REQ-20260127-003 | Terms and Conditions Content Update | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-004 | Privacy Policy Content Update | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-005 | Privacy Policy & Terms & Conditions Content Refresh | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260127-006 | Car Loan Calculator Rebuild (Auto Loans) | Calculator | Bug Fix + UI Relocation + SEO Content | HIGH | COMPLETE | YES |
 
 ---
 
