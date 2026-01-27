@@ -17,6 +17,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260126-015 | ITER-20260126-235614 | Unit + E2E + SEO Auto | Unit (tests/core/overtime-hours-calculator.test.js); E2E (requirements/specs/e2e/overtime-hours-calculator.spec.js); SEO Auto (requirements/specs/e2e/overtime-hours-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-014 | ITER-20260126-232505 | Unit + E2E + SEO Auto | Unit (tests/core/work-hours-calculator.test.js); E2E (requirements/specs/e2e/work-hours-calculator.spec.js); SEO Auto (requirements/specs/e2e/work-hours-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-013 | ITER-20260126-230824 | Unit + E2E + SEO Auto | Unit (tests/core/nap-time-calculator.test.js); E2E (requirements/specs/e2e/nap-time-calculator.spec.js); SEO Auto (requirements/specs/e2e/nap-time-seo.spec.js) | 1/25 | PASS |
 | REQ-20260126-012 | ITER-20260126-225438 | Unit + E2E + SEO Auto | Unit (tests/core/birthday-day-of-week.test.js); E2E (requirements/specs/e2e/birthday-day-of-week-calculator.spec.js); SEO Auto (requirements/specs/e2e/birthday-day-of-week-seo.spec.js) | 1/25 | PASS |

@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260127-001622 | REQ-20260126-015 | ITER-20260126-235614 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-seo.spec.js | iterations/ITER-20260126-235614.md |
+| TEST-20260127-001610 | REQ-20260126-015 | ITER-20260126-235614 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/overtime-hours-calculator.spec.js | iterations/ITER-20260126-235614.md |
+| TEST-20260127-001557 | REQ-20260126-015 | ITER-20260126-235614 | Unit | COMPLETE | 1/25 | tests/core/overtime-hours-calculator.test.js | iterations/ITER-20260126-235614.md |
 | TEST-20260126-233818 | REQ-20260126-014 | ITER-20260126-232505 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-seo.spec.js | iterations/ITER-20260126-232505.md |
 | TEST-20260126-233808 | REQ-20260126-014 | ITER-20260126-232505 | E2E | COMPLETE | 1/25 | requirements/specs/e2e/work-hours-calculator.spec.js | iterations/ITER-20260126-232505.md |
 | TEST-20260126-233757 | REQ-20260126-014 | ITER-20260126-232505 | Unit | COMPLETE | 1/25 | tests/core/work-hours-calculator.test.js | iterations/ITER-20260126-232505.md |

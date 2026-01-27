@@ -1,0 +1,113 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-overtime-hours .overtime-section {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-overtime-hours .overtime-section.is-collapsed {
+  display: none;
+}
+
+#calc-overtime-hours .is-collapsed {
+  display: none;
+}
+
+#calc-overtime-hours .segment-block,
+#calc-overtime-hours .weekly-day {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  background: var(--panel-bg);
+}
+
+#calc-overtime-hours .segment-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted-text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-overtime-hours .weekly-day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#calc-overtime-hours .weekly-day-name {
+  font-weight: 600;
+}
+
+#calc-overtime-hours .week-range-label {
+  margin: 0;
+}
+
+#calc-overtime-hours .checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted-text);
+}
+
+#calc-overtime-hours .night-settings.is-collapsed {
+  display: none;
+}
+
+#calc-overtime-hours .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-overtime-hours .overtime-results-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#calc-overtime-hours .result-line {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+#calc-overtime-hours #overtime-results {
+  min-height: 180px;
+}
+
+#overtime-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#overtime-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#overtime-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#overtime-explanation .toc {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+#overtime-explanation .overtime-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}

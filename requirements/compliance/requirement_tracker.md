@@ -40,6 +40,7 @@
 | REQ-20260126-012 | Birthday Day-of-Week Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-013 | Nap Time Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260126-014 | Work Hours Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260126-015 | Overtime Hours Calculator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 

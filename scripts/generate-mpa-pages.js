@@ -14,6 +14,12 @@ const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 const CSS_VERSION = '20260125';
 const SITE_URL = 'https://calchowmuch.com';
 const CALCULATOR_OVERRIDES = {
+  'overtime-hours-calculator': {
+    title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
+    description:
+      'Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime.',
+    h1: 'Overtime Hours Calculator',
+  },
   'work-hours-calculator': {
     title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
     description:
