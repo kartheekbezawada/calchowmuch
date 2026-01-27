@@ -9,6 +9,9 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
+| SEO-REQ-20260127-010 | REQ-20260127-010 | Navigation shell removal (all pages) | Layout-only; no URL/meta/content changes | CANCELLED | — | — | — |
+| SEO-REQ-20260127-009 | REQ-20260127-009 | Global theme default | CSS-only; no URL/meta/content changes | NA | — | — | — |
+| SEO-REQ-20260127-008 | REQ-20260127-008 | Theme CSS (all calculator pages) | No URL/meta/content changes (layout/CSS only) | NA | — | — | — |
 | SEO-REQ-20260127-005 | REQ-20260127-005 | Privacy Policy + Terms & Conditions | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |
 | SEO-REQ-20260127-007 | REQ-20260127-007 | All Calculator Pages | React theme shell impact: SSR/crawlability/performance/meta preservation | CANCELLED | — | — | — |
 | SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |

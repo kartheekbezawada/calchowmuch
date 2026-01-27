@@ -11,7 +11,7 @@ const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 
-const CSS_VERSION = '20260125';
+const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const CALCULATOR_OVERRIDES = {

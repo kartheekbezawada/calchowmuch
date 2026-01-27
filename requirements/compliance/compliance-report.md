@@ -17,6 +17,9 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260127-010 | ITER-20260127-195428 | ISS-001 | ISS-001 (rollback) | 6/25 | FAIL |
+| REQ-20260127-009 | ITER-20260127-193224 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated) | 3/25 | PASS |
+| REQ-20260127-008 | ITER-20260127-185716 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
 | REQ-20260127-006 | ITER-20260127-164722 | SEO Auto | SEO Auto (requirements/specs/e2e/car-loan-seo.spec.js) | 1/25 | PASS |
 | REQ-20260127-005 | ITER-20260127-121647 | SEO Auto | SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |
 | REQ-20260127-004 | ITER-20260127-121111 | SEO Auto | SEO Auto (requirements/specs/e2e/gtep-pages-seo.spec.js) | 1/25 | PASS |

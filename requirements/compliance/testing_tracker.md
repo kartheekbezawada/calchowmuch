@@ -9,6 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260127-200449 | REQ-20260127-010 | ITER-20260127-195428 | ISS-001 | FAIL | 6/25 | requirements/specs/e2e/iss-design-001.spec.js (rollback) | iterations/ITER-20260127-195428.md |
+| TEST-20260127-194100 | REQ-20260127-009 | ITER-20260127-193224 | ISS-001 | COMPLETE | 3/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260127-193224.md |
+| TEST-20260127-191425 | REQ-20260127-008 | ITER-20260127-185716 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js | iterations/ITER-20260127-185716.md |
 | TEST-20260127-170310 | REQ-20260127-006 | ITER-20260127-164722 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/car-loan-seo.spec.js | iterations/ITER-20260127-164722.md |
 | TEST-20260127-122330 | REQ-20260127-005 | ITER-20260127-121647 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/gtep-pages-seo.spec.js | iterations/ITER-20260127-121647.md |
 | TEST-20260127-121245 | REQ-20260127-004 | ITER-20260127-121111 | SEO | COMPLETE | 1/25 | requirements/specs/e2e/gtep-pages-seo.spec.js | iterations/ITER-20260127-121111.md |
