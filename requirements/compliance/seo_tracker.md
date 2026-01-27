@@ -10,6 +10,7 @@
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
 | SEO-REQ-20260127-005 | REQ-20260127-005 | Privacy Policy + Terms & Conditions | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |
+| SEO-REQ-20260127-007 | REQ-20260127-007 | All Calculator Pages | React theme shell impact: SSR/crawlability/performance/meta preservation | CANCELLED | — | — | — |
 | SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |
 | SEO-REQ-20260127-002 | REQ-20260127-002 | GTEP Pages (Sitemap, Privacy, Terms, Contact, FAQs) | Title/meta/H1/canonical + footer links | PASS | ✅ | — | — |
 | SEO-REQ-20260127-003 | REQ-20260127-003 | Terms & Conditions | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |

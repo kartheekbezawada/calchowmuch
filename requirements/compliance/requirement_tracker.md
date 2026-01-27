@@ -47,6 +47,7 @@
 | REQ-20260127-004 | Privacy Policy Content Update | Site | Content | MEDIUM | COMPLETE | YES |
 | REQ-20260127-005 | Privacy Policy & Terms & Conditions Content Refresh | Site | Content | MEDIUM | COMPLETE | YES |
 | REQ-20260127-006 | Car Loan Calculator Rebuild (Auto Loans) | Calculator | Bug Fix + UI Relocation + SEO Content | HIGH | COMPLETE | YES |
+| REQ-20260127-007 | Background Color Update + React-based Theme Shell | Theme/Architecture | Layout/CSS + New Framework + Refactor | HIGH | CANCELLED | YES |
 
 ---
 
