@@ -9,6 +9,14 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260128-093655 | REQ-20260128-003 | ITER-20260128-093138 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-093138.md |
+| TEST-20260128-093525 | REQ-20260128-003 | ITER-20260128-093138 | E2E | FAIL | 1/25 | requirements/specs/e2e/home-loan-calculator.spec.js (timeout waiting for #mtg-schedule-toggle) | iterations/ITER-20260128-093138.md |
+| TEST-20260128-084237 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-084232 | REQ-20260128-001 | ITER-20260128-082355 | Unit | COMPLETE | 3/25 | tests/loans/home-loan.test.js (9 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-084007 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083840 | REQ-20260128-001 | ITER-20260128-082355 | E2E | FAIL | 2/25 | tests/e2e/calculators/home-loan.spec.js (no tests found) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083826 | REQ-20260128-001 | ITER-20260128-082355 | Unit | COMPLETE | 2/25 | tests/loans/home-loan.test.js (9 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083700 | REQ-20260128-001 | ITER-20260128-082355 | Unit | FAIL | 1/25 | tests/loans/home-loan.test.js (1 failed) | iterations/ITER-20260128-082355.md |
 | TEST-20260127-215700 | REQ-20260127-013 | ITER-20260127-215418 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js | iterations/ITER-20260127-215418.md |
 | TEST-20260127-211700 | REQ-20260127-012 | ITER-20260127-203619 | ISS-001 | COMPLETE | 8/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260127-203619.md |
 | TEST-20260127-211830 | REQ-20260127-012 | ITER-20260127-203619 | E2E | COMPLETE | 8/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260127-203619.md |

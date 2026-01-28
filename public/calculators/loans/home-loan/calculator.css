@@ -29,3 +29,16 @@
 #calc-home-loan .graph-legend-color.baseline {
   background: #94a3b8;
 }
+
+#calc-home-loan .mtg-table-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+#calc-home-loan #mtg-schedule-toggle {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  padding: 0.35rem 0.85rem;
+}

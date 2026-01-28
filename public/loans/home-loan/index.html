@@ -215,42 +215,6 @@
     <li>Taxes + insurance: <span data-mtg="escrow"></span></li>
   </ul>
 
-  <h3 id="mtg-view-label">Schedule View</h3>
-  <div
-    class="button-group"
-    role="group"
-    aria-labelledby="mtg-view-label"
-    data-button-group="mtg-view"
-  >
-    <button
-      class="calculator-button secondary is-active"
-      type="button"
-      data-value="monthly"
-      aria-pressed="true"
-    >
-      Monthly
-    </button>
-    <button
-      class="calculator-button secondary"
-      type="button"
-      data-value="yearly"
-      aria-pressed="false"
-    >
-      Yearly
-    </button>
-  </div>
-
-  <h3>Monthly Summary</h3>
-  <div class="mtg-summary" data-mtg-view="monthly">
-    <p data-mtg="monthly-summary"></p>
-    <p data-mtg="monthly-breakdown"></p>
-  </div>
-
-  <h3>Yearly Summary</h3>
-  <div class="mtg-summary" data-mtg-view="yearly">
-    <p data-mtg="yearly-summary"></p>
-  </div>
-
   <h3>Lifetime Totals</h3>
   <p data-mtg="lifetime-summary"></p>
 
@@ -299,7 +263,17 @@
     </div>
   </div>
 
-  <h3 id="mtg-table-title">Amortization Table (Monthly)</h3>
+  <div class="mtg-table-header">
+    <h3 id="mtg-table-title">Amortization Table (Monthly)</h3>
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="mtg-schedule-toggle"
+      aria-pressed="true"
+    >
+      Switch to Yearly Schedule
+    </button>
+  </div>
   <div class="table-scroll" id="mtg-table-monthly-wrap" tabindex="0">
     <table class="calculator-table" id="mtg-table-monthly">
       <thead>
@@ -316,7 +290,7 @@
     </table>
   </div>
 
-  <div class="table-scroll" id="mtg-table-yearly-wrap" hidden tabindex="0">
+  <div class="table-scroll is-hidden" id="mtg-table-yearly-wrap" tabindex="0">
     <table class="calculator-table" id="mtg-table-yearly">
       <thead>
         <tr>
@@ -354,6 +328,7 @@
 </footer>
 
     </div>
+    <script type="module" src="/calculators/loans/home-loan/module.js"></script>
     <script type="module" src="/assets/js/core/mpa-nav.js"></script>
   </body>
 </html>
