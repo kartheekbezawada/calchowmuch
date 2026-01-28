@@ -81,7 +81,7 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+  <div class="panel panel-scroll">
   <h1 id="calculator-title">Home Loan</h1>
   <div id="calc-home-loan">
   <div class="calculator-ui">
@@ -95,82 +95,93 @@
         <input id="mtg-price" type="number" value="400000" min="0" step="0.01" />
       </div>
 
-      <div class="input-row">
-        <label id="mtg-down-label">Down Payment Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="mtg-down-label"
-          data-button-group="mtg-down-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="amount"
-            aria-pressed="true"
+      <div class="input-row down-combined">
+        <div class="down-combined-left">
+          <label id="mtg-down-label">Down Payment Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="mtg-down-label"
+            data-button-group="mtg-down-type"
           >
-            Amount
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="percent"
-            aria-pressed="false"
-          >
-            Percent
-          </button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="amount"
+              aria-pressed="true"
+            >
+              Amount
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="percent"
+              aria-pressed="false"
+            >
+              Percent
+            </button>
+          </div>
+        </div>
+        <div class="down-combined-right">
+          <label id="mtg-down-value-label" for="mtg-down-value">Down Payment Amount</label>
+          <input
+            id="mtg-down-value"
+            type="number"
+            value="80000"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          />
         </div>
       </div>
 
-      <div class="input-row" id="mtg-down-amount-row">
-        <label for="mtg-down-amount">Down Payment Amount</label>
-        <input id="mtg-down-amount" type="number" value="80000" min="0" step="0.01" />
+      <div class="input-row split-row">
+        <div class="split-column">
+          <label for="mtg-term">Loan Term (years)</label>
+          <input id="mtg-term" type="number" value="30" min="1" step="1" />
+        </div>
+        <div class="split-column">
+          <label for="mtg-rate">Interest Rate (APR %)</label>
+          <input id="mtg-rate" type="number" value="6.5" min="0" step="0.01" />
+        </div>
       </div>
 
-      <div class="input-row is-hidden" id="mtg-down-percent-row">
-        <label for="mtg-down-percent">Down Payment Percent (%)</label>
-        <input id="mtg-down-percent" type="number" value="20" min="0" max="99.99" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-term">Loan Term (years)</label>
-        <input id="mtg-term" type="number" value="30" min="1" step="1" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-rate">Interest Rate (APR %)</label>
-        <input id="mtg-rate" type="number" value="6.5" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-tax">Property Tax (annual, optional)</label>
-        <input id="mtg-tax" type="number" value="0" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-insurance">Home Insurance (annual, optional)</label>
-        <input id="mtg-insurance" type="number" value="0" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-start">Start Date (optional)</label>
-        <input id="mtg-start" type="month" value="" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-extra">Extra Monthly Payment</label>
-        <input id="mtg-extra" type="number" value="0" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-lump">One-time Lump Sum (optional)</label>
-        <input id="mtg-lump" type="number" value="0" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="mtg-lump-month">Lump Sum Month (number)</label>
-        <input id="mtg-lump-month" type="number" value="" min="1" step="1" placeholder="e.g., 12" />
-      </div>
+      <details class="advanced-options">
+        <summary>Advanced Options</summary>
+        <div class="advanced-grid">
+          <div class="input-row">
+            <label for="mtg-tax">Property Tax (annual, optional)</label>
+            <input id="mtg-tax" type="number" value="0" min="0" step="0.01" />
+          </div>
+          <div class="input-row">
+            <label for="mtg-insurance">Home Insurance (annual, optional)</label>
+            <input id="mtg-insurance" type="number" value="0" min="0" step="0.01" />
+          </div>
+          <div class="input-row">
+            <label for="mtg-start">Start Date (optional)</label>
+            <input id="mtg-start" type="month" value="" />
+          </div>
+          <div class="input-row">
+            <label for="mtg-extra">Extra Monthly Payment</label>
+            <input id="mtg-extra" type="number" value="0" min="0" step="0.01" />
+          </div>
+          <div class="input-row">
+            <label for="mtg-lump">One-time Lump Sum (optional)</label>
+            <input id="mtg-lump" type="number" value="0" min="0" step="0.01" />
+          </div>
+          <div class="input-row">
+            <label for="mtg-lump-month">Lump Sum Month (number)</label>
+            <input
+              id="mtg-lump-month"
+              type="number"
+              value=""
+              min="1"
+              step="1"
+              placeholder="e.g., 12"
+            />
+          </div>
+        </div>
+      </details>
     </div>
 
     <button class="calculator-button full-width" type="button" id="mtg-calculate">

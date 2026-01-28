@@ -9,9 +9,13 @@ test.describe('Home Loan calculator', () => {
   test('HOME-LOAN-TEST-E2E-1: calculates and populates explanation outputs', async ({ page }) => {
     await page.fill('#mtg-price', '400000');
     await page.locator('[data-button-group="mtg-down-type"] button[data-value="percent"]').click();
-    await page.fill('#mtg-down-percent', '20');
+    const downLabel = page.locator('#mtg-down-value-label');
+    await expect(downLabel).toHaveText('Down Payment Percent');
+    await page.fill('#mtg-down-value', '20');
     await page.fill('#mtg-term', '30');
     await page.fill('#mtg-rate', '6.5');
+    const advancedSummary = page.locator('.advanced-options summary');
+    await advancedSummary.click();
     await page.fill('#mtg-extra', '200');
 
     await page.click('#mtg-calculate');

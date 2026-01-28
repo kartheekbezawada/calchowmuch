@@ -17,6 +17,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260128-004 | ITER-20260128-101144 | E2E | E2E (requirements/specs/e2e/home-loan-calculator.spec.js) | 3/25 | PASS |
 | REQ-20260128-002 | ITER-20260128-092323 | None | None | 1/25 | PASS |
 | REQ-20260128-003 | ITER-20260128-093138 | E2E | E2E (requirements/specs/e2e/home-loan-calculator.spec.js) | 3/25 | PASS |
 | REQ-20260128-001 | ITER-20260128-082355 | Unit + E2E | Unit (tests/loans/home-loan.test.js); E2E (requirements/specs/e2e/home-loan-calculator.spec.js) | 3/25 | PASS |

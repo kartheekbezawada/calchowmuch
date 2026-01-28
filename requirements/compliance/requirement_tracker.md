@@ -61,7 +61,7 @@
 
 | REQ-20260128-003 | Home Loan: Remove Monthly/Yearly Summary, Fix Chart, Simplify View Toggle | Calculator | UI/Flow + Bug Fix | HIGH | COMPLETE | NO |
 
-| REQ-20260128-004 | Home Loan: Reduce Calculation Pane Vertical Scroll, Restructure Rows | Calculator | UI/Flow | HIGH | NEW | NO |
+| REQ-20260128-004 | Home Loan: Reduce Calculation Pane Vertical Scroll, Restructure Rows | Calculator | UI/Flow | HIGH | COMPLIANCE | NO |
 
 ---
 

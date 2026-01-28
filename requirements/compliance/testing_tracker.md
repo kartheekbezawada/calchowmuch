@@ -9,8 +9,9 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260128-101739 | REQ-20260128-004 | ITER-20260128-101144 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-101144.md |
+| TEST-20260128-101644 | REQ-20260128-004 | ITER-20260128-101144 | E2E | FAIL | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (timeout waiting for #mtg-extra while advanced options were collapsed) | iterations/ITER-20260128-101144.md |
 | TEST-20260128-093655 | REQ-20260128-003 | ITER-20260128-093138 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-093138.md |
-| TEST-20260128-093525 | REQ-20260128-003 | ITER-20260128-093138 | E2E | FAIL | 1/25 | requirements/specs/e2e/home-loan-calculator.spec.js (timeout waiting for #mtg-schedule-toggle) | iterations/ITER-20260128-093138.md |
 | TEST-20260128-084237 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |
 | TEST-20260128-084232 | REQ-20260128-001 | ITER-20260128-082355 | Unit | COMPLETE | 3/25 | tests/loans/home-loan.test.js (9 passed) | iterations/ITER-20260128-082355.md |
 | TEST-20260128-084007 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |

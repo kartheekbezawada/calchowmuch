@@ -14,10 +14,8 @@ import {
 } from '/assets/js/core/home-loan-utils.js';
 
 const priceInput = document.querySelector('#mtg-price');
-const downAmountInput = document.querySelector('#mtg-down-amount');
-const downPercentInput = document.querySelector('#mtg-down-percent');
-const downAmountRow = document.querySelector('#mtg-down-amount-row');
-const downPercentRow = document.querySelector('#mtg-down-percent-row');
+const downValueInput = document.querySelector('#mtg-down-value');
+const downValueLabel = document.querySelector('#mtg-down-value-label');
 const termInput = document.querySelector('#mtg-term');
 const rateInput = document.querySelector('#mtg-rate');
 const taxInput = document.querySelector('#mtg-tax');
@@ -64,21 +62,41 @@ const yearlyTableWrap = explanationRoot?.querySelector('#mtg-table-yearly-wrap')
 const downTypeButtons = setupButtonGroup(downTypeGroup, {
   defaultValue: 'amount',
   onChange: (value) => {
-    setDownPaymentVisibility(value);
+    handleDownTypeChange(value);
     calculate();
   },
 });
 
+let lastDownType = downTypeButtons?.getValue() ?? 'amount';
 let currentData = null;
 let scheduleView = 'monthly';
 
-function setDownPaymentVisibility(type) {
-  if (downAmountRow) {
-    downAmountRow.classList.toggle('is-hidden', type !== 'amount');
+function handleDownTypeChange(type) {
+  const price = Number(priceInput?.value);
+  const rawValue = Number(downValueInput?.value);
+
+  if (
+    downValueInput &&
+    Number.isFinite(rawValue) &&
+    rawValue >= 0 &&
+    price > 0 &&
+    lastDownType !== type
+  ) {
+    if (type === 'percent' && lastDownType === 'amount') {
+      downValueInput.value = ((rawValue / price) * 100).toFixed(2);
+    } else if (type === 'amount' && lastDownType === 'percent') {
+      downValueInput.value = ((rawValue / 100) * price).toFixed(2);
+    }
   }
-  if (downPercentRow) {
-    downPercentRow.classList.toggle('is-hidden', type !== 'percent');
+
+  if (downValueLabel) {
+    downValueLabel.textContent = type === 'percent' ? 'Down Payment Percent' : 'Down Payment Amount';
   }
+  if (downValueInput) {
+    downValueInput.setAttribute('placeholder', type === 'percent' ? '0.00' : '0');
+  }
+
+  lastDownType = type;
 }
 
 function formatTableNumber(value) {
@@ -313,23 +331,24 @@ function calculate() {
   }
 
   const downType = downTypeButtons?.getValue() ?? 'amount';
-  const downAmountRaw = Number(downAmountInput?.value);
-  const downPercentRaw = Number(downPercentInput?.value);
+  const downInputValue = Number(downValueInput?.value);
 
-  let downAmount = downAmountRaw;
-  let downPercent = downPercentRaw;
+  let downAmount = 0;
+  let downPercent = 0;
 
   if (downType === 'percent') {
-    if (!Number.isFinite(downPercent) || downPercent < 0 || downPercent >= 100) {
+    if (!Number.isFinite(downInputValue) || downInputValue < 0 || downInputValue >= 100) {
       setError('Down payment percent must be between 0 and 100.');
       return;
     }
+    downPercent = downInputValue;
     downAmount = (price * downPercent) / 100;
   } else {
-    if (!Number.isFinite(downAmount) || downAmount < 0) {
+    if (!Number.isFinite(downInputValue) || downInputValue < 0) {
       setError('Down payment amount must be 0 or more.');
       return;
     }
+    downAmount = downInputValue;
     downPercent = price > 0 ? (downAmount / price) * 100 : 0;
     if (downPercent >= 100) {
       setError('Down payment must be less than the home price.');
@@ -342,11 +361,8 @@ function calculate() {
     return;
   }
 
-  if (downType === 'percent' && downAmountInput) {
-    downAmountInput.value = downAmount.toFixed(2);
-  }
-  if (downType === 'amount' && downPercentInput) {
-    downPercentInput.value = downPercent.toFixed(2);
+  if (downValueInput) {
+    downValueInput.value = downType === 'percent' ? downPercent.toFixed(2) : downAmount.toFixed(2);
   }
 
   const principal = price - downAmount;
@@ -495,7 +511,7 @@ function calculate() {
   refreshScheduleToggle();
 }
 
-setDownPaymentVisibility(downTypeButtons?.getValue() ?? 'amount');
+handleDownTypeChange(lastDownType);
 
 calculateButton?.addEventListener('click', calculate);
 
