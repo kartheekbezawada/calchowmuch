@@ -7,6 +7,31 @@
   </p>
   <p>Total interest paid across both loans is <span data-multi="interest-total"></span>.</p>
 
+  <div class="graph-panel" id="multi-loan-graph">
+    <div class="graph-header">
+      <span class="graph-title">Monthly Payment Comparison</span>
+      <span class="graph-note" id="multi-loan-graph-note"></span>
+    </div>
+    <div class="graph-container">
+      <span class="graph-y-label">Payment</span>
+      <div class="graph-y-axis">
+        <span id="multi-loan-y-max"></span>
+        <span id="multi-loan-y-mid"></span>
+        <span id="multi-loan-y-min"></span>
+      </div>
+      <div class="graph-main">
+        <div class="graph-bars-wrapper">
+          <div class="graph-bars" id="multi-loan-bars"></div>
+        </div>
+        <div class="graph-x-axis">
+          <span id="multi-loan-x-a">Loan A</span>
+          <span id="multi-loan-x-b">Loan B</span>
+        </div>
+        <span class="graph-x-label">Loan</span>
+      </div>
+    </div>
+  </div>
+
   <div class="result-section">
     <h4>Loan Comparison</h4>
     <div class="table-scroll" id="multi-loan-table-wrap" tabindex="0">

@@ -156,7 +156,7 @@ function getTopNavItems(categories) {
           id: `${category.id}:${subcategory.id}`,
           label: subcategory.name === 'Home' ? 'Home Loan' : subcategory.name,
           href: calculator.url,
-          icon: category.icon,
+          icon: subcategory.icon || category.icon,
         });
       });
     } else {
@@ -317,6 +317,7 @@ function buildPageHtml({
   explanationHtml,
   includeHomeContent,
   pageType,
+  calculatorRelPath,
 }) {
   const calcContent = includeHomeContent
     ? `<div class="panel panel-scroll">
@@ -358,6 +359,9 @@ function buildPageHtml({
 </div>`;
 
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
+  const calculatorScript = calculatorRelPath
+    ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
+    : '';
 
   return `<!doctype html>
 <html lang="en">
@@ -389,7 +393,7 @@ function buildPageHtml({
       </main>
       ${footerHtml}
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>${calculatorScript}
   </body>
 </html>
 `;
@@ -610,6 +614,7 @@ function main() {
           explanationHtml,
           includeHomeContent: false,
           pageType: 'calculator',
+          calculatorRelPath: relPath,
         });
 
         const outputDir = path.join(PUBLIC_DIR, relPath);

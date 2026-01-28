@@ -376,6 +376,7 @@
         {
           "id": "home-loan",
           "name": "Home",
+          "icon": "🏠",
           "calculators": [
             {
               "id": "home-loan",
@@ -425,25 +426,26 @@
         {
           "id": "credit-cards",
           "name": "Credit Cards",
+          "icon": "💳",
           "calculators": [
             {
               "id": "credit-card-repayment-payoff",
-              "name": "Repayment / Payoff Calculator",
+              "name": "Repayment",
               "url": "/loans/credit-card-repayment-payoff"
             },
             {
               "id": "credit-card-minimum-payment",
-              "name": "Minimum Payment Calculator",
+              "name": "Minimum Payment",
               "url": "/loans/credit-card-minimum-payment"
             },
             {
               "id": "balance-transfer-installment-plan",
-              "name": "Balance Transfer / Installment Plan Calculator",
+              "name": "Balance Transfer",
               "url": "/loans/balance-transfer-installment-plan"
             },
             {
               "id": "credit-card-consolidation",
-              "name": "Credit Card Consolidation Calculator",
+              "name": "Card Consolidation",
               "url": "/loans/credit-card-consolidation"
             }
           ]
@@ -451,6 +453,7 @@
         {
           "id": "auto-loans",
           "name": "Auto Loans",
+          "icon": "🚗",
           "calculators": [
             {
               "id": "car-loan",
