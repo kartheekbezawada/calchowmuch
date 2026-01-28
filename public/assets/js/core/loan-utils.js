@@ -757,30 +757,50 @@ export function calculateBorrow({
   termYears,
   method,
   incomeMultiple,
-  paymentCapPercent,
   deposit,
 }) {
   const months = Math.round(termYears * 12);
   const monthlyIncome = incomeBasis === 'net' ? netIncomeMonthly : grossIncomeAnnual / 12;
 
   const totalOutgoings = expensesMonthly + debtMonthly;
-  const hasAffordabilityGap = monthlyIncome - totalOutgoings <= 0;
+  const monthlyDisposable = monthlyIncome - totalOutgoings;
+  const hasAffordabilityGap = monthlyDisposable <= 0;
 
   let maxBorrow = 0;
   let monthlyPayment = 0;
-  let maxPayment = 0;
+  let maxPayment = Math.max(0, monthlyDisposable);
 
   const annualIncomeForMultiple = incomeBasis === 'net' ? netIncomeMonthly * 12 : grossIncomeAnnual;
 
   if (method === 'payment') {
-    maxPayment = monthlyIncome * (paymentCapPercent / 100) - totalOutgoings;
-    if (maxPayment > 0) {
-      maxBorrow = computePrincipalFromPayment(maxPayment, interestRate, months);
+    if (monthlyDisposable > 0) {
+      maxBorrow = computePrincipalFromPayment(monthlyDisposable, interestRate, months);
       monthlyPayment = computeMonthlyPayment(maxBorrow, interestRate, months);
+      maxPayment = monthlyDisposable;
+    } else {
+      maxBorrow = 0;
+      monthlyPayment = 0;
+      maxPayment = 0;
     }
   } else {
     maxBorrow = annualIncomeForMultiple * incomeMultiple;
     monthlyPayment = computeMonthlyPayment(maxBorrow, interestRate, months);
+    if (monthlyDisposable > 0 && monthlyPayment > monthlyDisposable) {
+      let lower = 0;
+      let upper = maxBorrow;
+      const iterations = 40;
+      for (let i = 0; i < iterations; i += 1) {
+        const midpoint = (lower + upper) / 2;
+        const midpointPayment = computeMonthlyPayment(midpoint, interestRate, months);
+        if (midpointPayment > monthlyDisposable) {
+          upper = midpoint;
+        } else {
+          lower = midpoint;
+        }
+      }
+      maxBorrow = lower;
+      monthlyPayment = computeMonthlyPayment(maxBorrow, interestRate, months);
+    }
     maxPayment = monthlyPayment;
   }
 
@@ -806,10 +826,10 @@ export function calculateBorrow({
     termYears,
     method,
     incomeMultiple,
-    paymentCapPercent,
     deposit,
     monthlyIncome,
     totalOutgoings,
+    monthlyDisposable,
     hasAffordabilityGap,
     maxPayment,
     maxBorrow,

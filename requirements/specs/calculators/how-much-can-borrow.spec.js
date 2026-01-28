@@ -27,7 +27,6 @@ const TEST_DATA = {
     rate: 4.5,
     term: 30,
     multiple: 4.5,
-    paymentCap: 40,
     deposit: 20000,
   },
   highIncome: {
@@ -38,7 +37,6 @@ const TEST_DATA = {
     rate: 5.2,
     term: 25,
     multiple: 5.0,
-    paymentCap: 35,
     deposit: 50000,
   },
   lowIncome: {
@@ -49,7 +47,6 @@ const TEST_DATA = {
     rate: 6.0,
     term: 35,
     multiple: 4.0,
-    paymentCap: 30,
     deposit: 5000,
   },
 };
@@ -138,17 +135,16 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
 
     // Initially Income Multiple should be selected
     const incomeMultipleField = page.locator('#bor-multiple-row');
-    const paymentCapField = page.locator('#bor-cap-row');
-
     await expect(incomeMultipleField).toBeVisible();
-    await expect(paymentCapField).toHaveClass(/is-hidden/);
 
-    // Switch to Payment Cap method
+    // Switch to Payment-to-Income method
     await selectMethod(page, 'payment');
     await page.waitForTimeout(300); // Allow UI to update
 
-    await expect(incomeMultipleField).toHaveClass(/is-hidden/);
-    await expect(paymentCapField).toBeVisible();
+    const paymentButton = page.locator('[data-button-group="bor-method"] [data-value="payment"]');
+    const incomeButton = page.locator('[data-button-group="bor-method"] [data-value="income"]');
+    await expect(paymentButton).toHaveAttribute('aria-pressed', 'true');
+    await expect(incomeButton).toHaveAttribute('aria-pressed', 'false');
 
     console.log('[E2E-3] ✓ Method toggle functionality verified');
   });
@@ -196,16 +192,13 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     // Step 3: Enter monthly debts
     await page.fill('#bor-debts', String(testData.debts));
 
-    // Step 4: Select Payment Cap method
+    // Step 4: Select Payment-to-Income method
     await selectMethod(page, 'payment');
 
-    // Step 5: Enter payment cap
-    await page.fill('#bor-cap', String(testData.paymentCap));
-
-    // Step 6: Enter interest rate
+    // Step 5: Enter interest rate
     await page.fill('#bor-rate', String(testData.rate));
 
-    // Step 7: Enter term
+    // Step 6: Enter term
     await page.fill('#bor-term', String(testData.term));
 
     // Step 8: Click calculate
@@ -370,17 +363,20 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     await waitForCalculation(page);
 
     const incomeMethodResult = await page.textContent('#bor-result');
+    const incomeSummary = await page.textContent('#bor-summary');
 
-    // Switch to payment cap method
+    // Switch to Payment-to-Income method
     await selectMethod(page, 'payment');
-    await page.fill('#bor-cap', String(TEST_DATA.standard.paymentCap));
     await page.click('#bor-calculate');
     await waitForCalculation(page);
 
     const paymentMethodResult = await page.textContent('#bor-result');
+    const paymentSummary = await page.textContent('#bor-summary');
 
     // Results should be different
     expect(incomeMethodResult).not.toBe(paymentMethodResult);
+    expect(paymentSummary).toContain('Payment-to-income cap');
+    expect(paymentSummary).not.toBe(incomeSummary);
 
     console.log('[INT] ✓ Method switching produces different results');
   });

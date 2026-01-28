@@ -1,9 +1,14 @@
-const { test, expect } = require('@playwright/test');
+const IS_VITEST = typeof process.env.VITEST_WORKER_ID !== 'undefined';
 
-test.describe('Sitemap page SEO baseline', () => {
-  test('SITEMAP-SEO-1: title/meta/h1/canonical present', async ({ page, baseURL }) => {
-    const response = await page.goto('/sitemap/', { waitUntil: 'domcontentloaded' });
-    expect(response && response.ok(), 'Sitemap page must load').toBeTruthy();
+if (IS_VITEST) {
+  globalThis.test.skip('Sitemap SEO baseline requires Playwright', () => {});
+} else {
+  const { test, expect } = require('@playwright/test');
+
+  test.describe('Sitemap page SEO baseline', () => {
+    test('SITEMAP-SEO-1: title/meta/h1/canonical present', async ({ page, baseURL }) => {
+      const response = await page.goto('/sitemap/', { waitUntil: 'domcontentloaded' });
+      expect(response && response.ok(), 'Sitemap page must load').toBeTruthy();
 
     const title = await page.title();
     expect(title).toBeTruthy();
@@ -32,3 +37,5 @@ test.describe('Sitemap page SEO baseline', () => {
     expect(linkCount).toBeGreaterThan(0);
   });
 });
+
+}

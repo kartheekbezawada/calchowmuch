@@ -1,5 +1,10 @@
-const { test, expect } = require("@playwright/test");
-const targets = require("./seo.targets.json");
+const IS_VITEST = typeof process.env.VITEST_WORKER_ID !== "undefined";
+
+if (IS_VITEST) {
+  globalThis.test.skip("SEO auto rules require Playwright", () => {});
+} else {
+  const { test, expect } = require("@playwright/test");
+  const targets = require("./seo.targets.json");
 
 /**
  * Run:
@@ -69,9 +74,9 @@ function validateHeadingHierarchy(levels) {
   }
   return { ok: true };
 }
-
-test.describe("SEO Auto Rules (1:1 with matrix)", () => {
-  test("baseURL must be set", async ({ baseURL }) => {
+ 
+  test.describe("SEO Auto Rules (1:1 with matrix)", () => {
+    test("baseURL must be set", async ({ baseURL }) => {
     expect(baseURL, "Set baseURL in Playwright config").toBeTruthy();
   });
 
@@ -189,3 +194,5 @@ test.describe("SEO Auto Rules (1:1 with matrix)", () => {
     }
   });
 });
+
+}

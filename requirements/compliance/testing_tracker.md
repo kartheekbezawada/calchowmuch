@@ -9,6 +9,8 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260128-160315 | REQ-20260128-019 | ITER-20260128-154622 | ISS-001 | PASS | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-154622.md |
+| TEST-20260128-160234 | REQ-20260128-019 | ITER-20260128-154622 | Unit | PASS | 1/25 | requirements/specs/loans/loan-utils.test.js (19 passed) | iterations/ITER-20260128-154622.md |
 | TEST-20260128-122945 | REQ-20260128-015 | ITER-20260128-122745 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-122745.md |
 | TEST-20260128-121235 | REQ-20260128-014 | ITER-20260128-121035 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-121035.md |
 | TEST-20260128-101739 | REQ-20260128-004 | ITER-20260128-101144 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-101144.md |

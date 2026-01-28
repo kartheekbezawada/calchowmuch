@@ -58,6 +58,9 @@
 | REQ-20260127-013 | Home page full-viewport layout (remove shell on /) | Site | Layout/CSS | HIGH | COMPLETE | NO |
 
 | REQ-20260128-002 | Remove redundant home-loan e2e spec under tests/e2e | Housekeeping | Test Cleanup | LOW | COMPLETE | NO |
+| REQ-20260128-019 | Implement and Test HOW_MUCH_CAN_BORROW_RULES_V2 for Calculator | Calculator/UI | UI/Flow + ISS + Testing | HIGH | IN_PROGRESS | NO |
+| REQ-20260128-016 | Modularize and Expand Universal Header/Footer Rules | UI/Layout | Layout/Contract/Refactor | HIGH | COMPLETE | NO |
+| REQ-20260128-017 | Enforce Calculation Pane Form Density Rules for 'How Much Can I Borrow' and 'Remortgage/Switching' | Calculator | UI/Flow + ISS | HIGH | NEW | NO |
 | REQ-20260128-015 | Single Source: iss_form_density_calculation_pane_rules.md as Canonical Form Density Contract | UI/ISS | Layout/UI/Contract | HIGH | COMPLIANCE | NO |
 | REQ-20260128-014 | Unified Theme Rules: Universal Tokens + Premium-Dark Global Default | Theme | Layout/CSS | HIGH | COMPLIANCE | NO |
 
