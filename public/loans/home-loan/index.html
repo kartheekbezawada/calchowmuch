@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body data-page="calculator">
     <div class="page">
@@ -81,7 +82,7 @@
 </div></div>
         </aside>
         <section class="center-column">
-  <div class="panel panel-scroll">
+          <div class="panel panel-scroll">
   <h1 id="calculator-title">Home Loan</h1>
   <div id="calc-home-loan">
   <div class="calculator-ui">
@@ -146,6 +147,15 @@
         </div>
       </div>
 
+      <div class="input-row action-row">
+        <button class="calculator-button full-width" type="button" id="mtg-calculate">
+          Calculate Mortgage
+        </button>
+      </div>
+
+      <div class="result" id="mtg-result" aria-live="polite"></div>
+      <div class="result-detail" id="mtg-summary" aria-live="polite"></div>
+
       <details class="advanced-options">
         <summary>Advanced Options</summary>
         <div class="advanced-grid">
@@ -183,13 +193,6 @@
         </div>
       </details>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="mtg-calculate">
-      Calculate Mortgage
-    </button>
-
-    <div class="result" id="mtg-result" aria-live="polite"></div>
-    <div class="result-detail" id="mtg-summary" aria-live="polite"></div>
   </div>
 </div>
 
@@ -339,7 +342,6 @@
 </footer>
 
     </div>
-    <script type="module" src="/calculators/loans/home-loan/module.js"></script>
     <script type="module" src="/assets/js/core/mpa-nav.js"></script>
   </body>
 </html>
