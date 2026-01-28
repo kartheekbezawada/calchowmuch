@@ -9,6 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
+| REQ-20260128-001 | Cloudflare Web Analytics (RUM) Global Injection | Analytics | Site-wide Integration | HIGH | COMPLETE | NO |
 | REQ-20260124-001 | Purple Theme Refresh | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-002 | Light Green Page Background | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-003 | Increase Light Green Intensity | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |

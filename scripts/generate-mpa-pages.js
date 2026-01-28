@@ -370,6 +370,7 @@ function buildPageHtml({
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body${bodyAttribute}>
     <div class="page">
@@ -438,6 +439,7 @@ function buildCalculatorIndex(categories) {
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body>
     <div class="page">
@@ -464,7 +466,7 @@ function buildGtepFooter() {
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
