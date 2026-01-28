@@ -11,6 +11,33 @@
   </p>
   <p>PCP keeps monthly payments lower by deferring a portion of the balance to the end.</p>
 
+  <div class="graph-panel" id="pcp-graph">
+    <div class="graph-header">
+      <span class="graph-title">Balance Over Time</span>
+      <span class="graph-note" id="pcp-graph-note"></span>
+    </div>
+    <div class="graph-container">
+      <span class="graph-y-label">Balance</span>
+      <div class="graph-y-axis">
+        <span id="pcp-y-max"></span>
+        <span id="pcp-y-mid"></span>
+        <span id="pcp-y-min"></span>
+      </div>
+      <div class="graph-main">
+        <div class="graph-bars-wrapper">
+          <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polyline class="line-primary" id="pcp-line" points=""></polyline>
+          </svg>
+        </div>
+        <div class="graph-x-axis">
+          <span id="pcp-x-start"></span>
+          <span id="pcp-x-end"></span>
+        </div>
+        <span class="graph-x-label">Month</span>
+      </div>
+    </div>
+  </div>
+
   <div class="result-section">
     <h4>Yearly Loan Snapshot</h4>
     <div class="table-scroll" id="pcp-table-wrap" tabindex="0">
