@@ -1,167 +1,39 @@
+# Calculation Pane Form Density & ISS Rules (Single Source)
 
-# ISS-UI-FDP — Form Density & Progressive Disclosure Rules
+> **Canonical source:** This file replaces all previous scattered references. Issued under REQ-20260128-015, it is the single source of truth for calculation-pane form density and ISS-related layout expectations.
 
-**Source Requirements:**
-UUI-FDP-001
-UUI-FDP-002
-UUI-FDP-003
-UUI-FDP-004
-UUI-FDP-005
-UUI-FDP-006
-UUI-FDP-007
+## Scope
 
-**Scope:** Calculation Pane only  
-**Applies to:** All calculators  
-**Does NOT apply to:** GTEP pages (Sitemap, Privacy, Terms, Contact, FAQs)
+- Applies to the Calculation Pane on every active calculator (MPA shell pages).
+- Does not apply to GTEP pages (sitemap, privacy, terms, contact, faqs).
+- Captures the ISS requirements that protect form density, progressive disclosure, and layout stability without duplicating guidance elsewhere.
 
----
+## Core Principles (UUI-FDP equivalents)
 
-## ISS-UI-FDP-001 — Core Inputs Visibility (P0)
-**Rule:**
-All core inputs required to produce the primary result must be accessible without mandatory scrolling inside the Calculation Pane.
+| Rule ID | Principle | Severity |
+| ------- | --------- | -------- |
+| UUI-FDP-001 | Core inputs must be reachable without mandatory scroll inside the calculation pane. | P0 |
+| UUI-FDP-002 | Optional/advanced inputs must never block the primary calculation. | P0 |
+| UUI-FDP-003 | Use progressive disclosure when inputs exceed comfortable density (collapsible advanced sections, mode toggles, logical groups). | P0 |
+| UUI-FDP-004 | Related inputs may share a row to save vertical space, provided clarity remains (e.g., loan term + rate). | P1 |
+| UUI-FDP-005 | Scrolling is allowed only for optional sections; core CTA must be accessible without scroll. | P1 |
+| UUI-FDP-006 | Form density must never erode labels, hit targets, or clarity. | P0 |
+| UUI-FDP-007 | Interactions (mode switches, toggles) must not change the number of visible rows or push core inputs off-screen. | P0 |
 
-**Violation Conditions:**
-- A user must scroll before reaching the minimum set of inputs required to calculate.
-- Required inputs are placed below optional inputs.
+## Requirements
 
-**Test Strategy:**
-- Identify the calculator’s “primary calculate” action.
-- Identify required inputs for that action.
-- Assert that all required inputs are present in the initial scroll viewport of the Calculation Pane.
+1. **Core Inputs First** – Required fields for the primary result must live above the fold (the first viewport of the calculation pane) without needing optional fields to be interacted with.
+2. **Optional Inputs Tucked Away** – Optional or advanced controls must sit inside collapsible sections, secondary rows, or toggled panels that do not interfere with the core flow.
+3. **Progressive Disclosure** – When the input set outgrows a single view, use logical grouping, disclosure panels, or mode-specific labels; avoid stacking more than one screen-full of inputs in a single column.
+4. **Row Efficiency** – Where semantics permit, combine related controls (term + rate, start + end) so they share a horizontal row while preserving explicit labels.
+5. **Layout Stability** – Switching between modes (Amount vs Percent) must not alter row counts, heights, or push the calculation button; animations should not cause layout shifts.
+6. **Clarity Preservation** – Every input stays labeled, spacing remains legible, and no unlabeled placeholders replace textual guidance.
 
----
+## Testing Notes
 
-## ISS-UI-FDP-002 — Optional Inputs Must Not Block Calculation (P0)
-**Rule:**
-Optional or advanced inputs must not prevent a user from calculating the primary result.
+- This document feeds the ISS-001 layout stability checks for calculators touched under this REQ: `requirements/specs/e2e/iss-design-001.spec.js`.
+- When you alter a calculator’s calculation pane, verify compliance via the layout stability suite and confirm review notes reference this file and the relevant UUI-FDP rule IDs.
 
-**Violation Conditions:**
-- Optional inputs are placed between required inputs.
-- Optional inputs visually interrupt the core calculation flow.
-- Calculation cannot proceed unless optional inputs are interacted with.
+## Reference
 
-**Test Strategy:**
-- Attempt calculation using only required inputs.
-- Assert calculation succeeds without interaction with optional fields.
-
----
-
-## ISS-UI-FDP-003 — Progressive Disclosure for Excess Inputs (P0)
-**Rule:**
-When the number of inputs exceeds comfortable density, progressive disclosure must be used instead of linear vertical stacking.
-
-**Allowed Mechanisms:**
-- Collapsible “Advanced / Optional” sections
-- Mode-based input switching (e.g., Amount vs Percent)
-- Logical grouping
-
-**Violation Conditions:**
-- More than one screen-height of inputs stacked without grouping.
-- Optional inputs permanently expanded without justification.
-
-**Test Strategy:**
-- Count visible inputs before calculation.
-- If input count exceeds threshold defined in calculator spec, assert presence of a disclosure mechanism.
-
----
-
-## ISS-UI-FDP-004 — Row Efficiency for Related Inputs (P1)
-**Rule:**
-Conceptually related inputs may share a row to reduce vertical depth, provided clarity is maintained.
-
-**Examples (Non-exhaustive):**
-- Loan Term + Interest Rate
-- Down Payment Type + Down Payment Value
-- Start Time + End Time
-
-**Violation Conditions:**
-- Related inputs are unnecessarily separated into multiple rows, causing avoidable scroll.
-- Switching modes changes row structure (layout instability).
-
-**Test Strategy:**
-- Detect related input pairs defined in calculator spec.
-- Assert they render within the same logical row/container.
-
----
-
-## ISS-UI-FDP-005 — Scroll Usage Justification (P1)
-**Rule:**
-Scrolling inside the Calculation Pane is permitted only when justified.
-
-**Acceptable Causes:**
-- Optional / advanced inputs
-- Extended configuration sections
-
-**Unacceptable Causes:**
-- Required inputs hidden below the fold
-- Primary CTA unreachable without scroll
-
-**Test Strategy:**
-- Assert Calculate button is reachable without scrolling when only core inputs are present.
-- Assert scroll is required only after optional sections expand.
-
----
-
-## ISS-UI-FDP-006 — No Density at the Cost of Clarity (P0)
-**Rule:**
-Improving form density must not reduce usability or comprehension.
-
-**Violation Conditions:**
-- Labels removed or replaced with placeholders only
-- Inputs compressed into ambiguous groupings
-- One row contains unrelated controls
-
-**Test Strategy:**
-- Assert every input has an explicit label.
-- Assert row groupings align with calculator spec definitions.
-
----
-
-## ISS-UI-FDP-007 — Layout Stability Under Interaction (P0)
-**Rule:**
-User interactions must not cause layout shifts inside the Calculation Pane.
-
-**Violation Conditions:**
-- Switching modes (e.g., Amount ↔ Percent) changes row count or pushes inputs vertically.
-- Calculation results cause input rows to move.
-
-**Test Strategy:**
-- Capture DOM structure before and after mode switch.
-- Assert row structure remains stable.
-
----
-
-## ISS-UI-FDP-008 — Calculator-Specific Compliance Declaration (P1)
-**Rule:**
-Each calculator must implicitly comply with these rules when modified. No explicit opt-in is required.
-
-**Violation Conditions:**
-- A calculator update introduces new scroll requirements without justification.
-- Agent introduces layout changes without referencing FDP rules.
-
-**Test Strategy:**
-- Compare pre-change and post-change Calculation Pane height and structure.
-- Flag regressions that increase scroll for core inputs.
-
----
-
-## ISS Enforcement Notes (Agent Guardrails)
-
-**Agents MUST NOT:**
-- Redesign global UI
-- Change breakpoints or spacing tokens
-- Apply FDP rules retroactively unless touching that calculator
-
-**Agents MAY:**
-- Combine rows for related inputs
-- Add progressive disclosure
-- Reorder inputs to surface core fields earlier
-
----
-
-## Placement & Wiring
-
-- Add this file as: requirements/rules/iss/ISS-UI-FDP.md
-- Reference it from:
-  - UNIVERSAL_REQUIREMENTS.md → UI & Interaction section
-  - testing_requirements.md → UI regression category
+Use this document (not UNIVERSAL_REQUIREMENTS.md) when updating or reviewing calculation-pane form density. Any future clarifications or updates must live here to keep the contract single-sourced.
