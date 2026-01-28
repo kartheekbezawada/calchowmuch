@@ -1,4 +1,20 @@
+
 # Testing Requirements
+
+
+**UI Regression Rules Reference:**
+See [ISS-UI-FDP — Form Density & Progressive Disclosure Rules](../rules/iss/ISS-UI-FDP.md) for Calculation Pane density and progressive disclosure requirements.
+
+### Universal Requirement ↔ ISS Rule ↔ Test Type Mapping
+
+| Universal Requirement | ISS Rule(s) | Test Type | Required When |
+|----------------------|-------------|-----------|---------------|
+| UUI-FDP-001 | ISS-UI-FDP-001,005 | E2E/UI | Any calculator form/layout change |
+| UUI-FDP-002 | ISS-UI-FDP-002 | E2E | Any calculator change |
+| UUI-FDP-003 | ISS-UI-FDP-003 | E2E/UI | When adding inputs or new calculator |
+| UUI-FDP-004 | ISS-UI-FDP-004 | E2E/UI | When touching related-field rows |
+| UUI-FDP-006 | ISS-UI-FDP-006 | E2E/UI | Any form refactor |
+| UUI-FDP-007 | ISS-UI-FDP-007 | E2E/UI | Any mode toggle / dynamic inputs |
 
 > **Purpose:** Defines test taxonomy, selection matrix, and execution rules  
 > **Authority:** This document determines which tests are required for each change type  

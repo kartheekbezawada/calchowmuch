@@ -131,9 +131,29 @@ Load only if triggered:
 
 ---
 
+
 ## 3) Universal UI Contract
 
-The Basic Calculator is the **visual source of truth** for colors, typography, spacing, and component styling.
+
+## UI & Interaction Principles
+
+
+**See also:** [ISS-UI-FDP — Form Density & Progressive Disclosure Rules](../rules/iss/ISS-UI-FDP.md)
+
+### Traceability: Universal Requirements ↔ ISS Enforcement
+
+| Universal Requirement | Severity | Enforced By (ISS Rule IDs) |
+|----------------------|----------|---------------------------|
+| UUI-FDP-001 Core inputs should not require mandatory scroll | P0 | ISS-UI-FDP-001, ISS-UI-FDP-005 |
+| UUI-FDP-002 Optional inputs must not block calculation | P0 | ISS-UI-FDP-002 |
+| UUI-FDP-003 Use progressive disclosure when input set is large | P0 | ISS-UI-FDP-003 |
+| UUI-FDP-004 Row efficiency for related inputs | P1 | ISS-UI-FDP-004 |
+| UUI-FDP-006 Density must not remove clarity/labels | P0 | ISS-UI-FDP-006 |
+| UUI-FDP-007 Layout stability under interaction | P0 | ISS-UI-FDP-007 |
+
+### Form Density & Progressive Disclosure (Calculation Pane)
+
+The public calculation-pane form density and ISS expectations are centralized in `requirements/universal-rules/iss_form_density_calculation_pane_rules.md`. That document is now the authoritative source for UUI-FDP/ISS rules (core inputs above the fold, optional sections, progressive disclosure, row efficiency, layout stability, etc.). When reviewing or updating calculation panes, cite and follow the canonical file rather than restating the requirements here; this section remains to highlight the intent and traceability links.
 
 ### 3.1 Theme Tokens
 
