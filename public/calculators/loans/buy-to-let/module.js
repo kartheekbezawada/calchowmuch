@@ -793,4 +793,18 @@ setRentIncreaseFrequencyVisibility(rentIncreaseFrequencyButtons?.getValue() ?? '
 
 calculateButton?.addEventListener('click', calculate);
 
+// Advanced Options Toggle
+const advancedToggle = document.getElementById('btl-advanced-toggle');
+const advancedOptions = document.getElementById('btl-advanced-options');
+
+if (advancedToggle && advancedOptions) {
+  advancedToggle.addEventListener('click', () => {
+    const expanded = advancedToggle.getAttribute('aria-expanded') === 'true';
+    advancedToggle.setAttribute('aria-expanded', String(!expanded));
+    advancedOptions.hidden = expanded;
+    advancedOptions.classList.toggle('is-collapsed', expanded);
+    advancedToggle.textContent = expanded ? 'Show Advanced Options' : 'Hide Advanced Options';
+  });
+}
+
 calculate();

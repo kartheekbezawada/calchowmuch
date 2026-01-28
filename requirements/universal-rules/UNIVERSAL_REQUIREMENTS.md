@@ -395,6 +395,8 @@ GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the ca
 | ARCH-1.1 | Right Monetization Panes    | Ads (stable containers)    |
 | ARCH-1.1 | Footer                      | Site-wide footer           |
 
+> **Header/Footer modules** — For the full rules that govern the global header and footer regions (rule IDs `HDR-*` and `FTR-*`), see `requirements/universal-rules/HEADER_RULES.md` and `requirements/universal-rules/FOOTER_RULES.md`.
+
 ### 4.1.1 Pane Width Distribution (Universal Requirement)
 
 
@@ -405,8 +407,6 @@ GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the ca
 | ARCH-1.4 | **Width transfer direction** â€” Width reduction must occur from Calculation Pane's right edge toward left; Explanation Pane grows leftward | P0       |
 | ARCH-1.5 | **Total width preserved** â€” Combined width of Calculation Pane + Explanation Pane must remain unchanged; only the split ratio changes     | P0       |
 | ARCH-1.6 | **Responsive behavior** â€” Width ratios must be maintained across all supported viewport widths                                            | P1       |
-| ARCH-1.7 | **Navigation elements styling** â€” Math/Loans buttons and header text must not have border/box styling (clean button-only appearance)      | P0       |
-| ARCH-1.8 | **Footer positioning** â€” Footer links (Privacy, Terms, Contact) must be positioned to maximize vertical content space                     | P1       |
 | ARCH-1.9 | **Horizontal layout preservation** â€” No horizontal spacing or sizing changes during vertical optimizations                                | P0       |
 
 #### Pane Width Specification
@@ -426,6 +426,8 @@ GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the ca
 | Breakpoint consistency | Ratio must apply at desktop widths (â‰¥1024px)                 |
 | No shell height change | Width redistribution must not affect page shell height (UI-3.1)   |
 | Internal scrolling     | Both panes must continue to scroll internally (UI-3.2)            |
+
+> **Header & footer details** — The header navigation styling and footer link layout are now governed by `requirements/universal-rules/HEADER_RULES.md` (`HDR-*` rules) and `requirements/universal-rules/FOOTER_RULES.md` (`FTR-*` rules). Those documents are the only authoritative sources for header/footer behavior and replace the previous ARCH-1.7/ARCH-1.8 content.
 
 ### 4.2 Responsibility Boundaries
 
