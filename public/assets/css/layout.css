@@ -238,6 +238,14 @@ body .site-header .header-search-icon {
 .top-nav .nav-icon {
   font-size: 14px;
   line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.top-nav .nav-label {
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .top-nav button:hover,

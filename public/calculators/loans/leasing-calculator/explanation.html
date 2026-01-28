@@ -11,6 +11,33 @@
   </p>
   <p>Residual value lowers monthly depreciation but leaves a higher end-of-term value.</p>
 
+  <div class="graph-panel" id="lease-graph">
+    <div class="graph-header">
+      <span class="graph-title">Total Cost Over Time</span>
+      <span class="graph-note" id="lease-graph-note"></span>
+    </div>
+    <div class="graph-container">
+      <span class="graph-y-label">Cost</span>
+      <div class="graph-y-axis">
+        <span id="lease-y-max"></span>
+        <span id="lease-y-mid"></span>
+        <span id="lease-y-min"></span>
+      </div>
+      <div class="graph-main">
+        <div class="graph-bars-wrapper">
+          <svg class="graph-line" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polyline class="line-primary" id="lease-line" points=""></polyline>
+          </svg>
+        </div>
+        <div class="graph-x-axis">
+          <span id="lease-x-start"></span>
+          <span id="lease-x-end"></span>
+        </div>
+        <span class="graph-x-label">Month</span>
+      </div>
+    </div>
+  </div>
+
   <div class="result-section">
     <h4>Yearly Cost Snapshot</h4>
     <div class="table-scroll" id="lease-table-wrap" tabindex="0">
