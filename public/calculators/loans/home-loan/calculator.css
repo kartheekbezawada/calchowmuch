@@ -29,3 +29,63 @@
 #calc-home-loan .graph-legend-color.baseline {
   background: #94a3b8;
 }
+
+#calc-home-loan .mtg-table-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+#calc-home-loan #mtg-schedule-toggle {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  padding: 0.35rem 0.85rem;
+}
+
+#calc-home-loan .down-combined {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+#calc-home-loan .down-combined-left .button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#calc-home-loan .split-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+#calc-home-loan .advanced-options {
+  margin-top: 1rem;
+  position: relative;
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 10px;
+  padding: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+#calc-home-loan .advanced-options summary {
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+#calc-home-loan .advanced-options summary::-webkit-details-marker {
+  display: none;
+}
+
+#calc-home-loan .advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}

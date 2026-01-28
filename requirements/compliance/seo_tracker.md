@@ -9,6 +9,9 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
+| SEO-REQ-20260128-004 | REQ-20260128-004 | Home Loan Calculator | Layout/UI change only; no URL/meta/content changes | NA | — | — | — |
+| SEO-REQ-20260128-002 | REQ-20260128-002 | Home Loan E2E spec cleanup | Test-only change; no URL/meta/content updates | NA | — | — | — |
+| SEO-REQ-20260128-001 | REQ-20260128-001 | Home Loan Calculator | Script include + JS logic updates only; no URL/meta/content changes | NA | — | — | — |
 | SEO-REQ-20260127-012 | REQ-20260127-012 | Global premium header + search | Layout/UI update only; no URL/meta/content changes | NA | — | — | — |
 | SEO-REQ-20260127-011 | REQ-20260127-011 | Calculator shell width | Layout-only; no URL/meta/content changes | NA | — | — | — |
 | SEO-REQ-20260127-010 | REQ-20260127-010 | Navigation shell removal (all pages) | Layout-only; no URL/meta/content changes | CANCELLED | — | — | — |

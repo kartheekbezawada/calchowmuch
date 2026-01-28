@@ -7,12 +7,22 @@
   align-items: start;
 }
 
+#calc-buy-to-let .btl-compact-grid--rent-price {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-buy-to-let .btl-compact-grid--two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .btl-deposit-slot {
   display: contents;
 }
 
-.btl-compact-grid .input-row label {
-  min-height: 48px;
+#calc-buy-to-let .btl-compact-grid .input-row label {
+  min-height: 0;
+  margin-bottom: 0;
+  line-height: 1.1;
 }
 
 .btl-rent-increase-options {

@@ -1,4 +1,124 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+#calc-how-much-can-borrow {
+  width: 100%;
+}
+
+#calc-how-much-can-borrow .calculator-ui--borrow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.calc-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.calc-row--pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: flex-end;
+}
+
+.calc-row--pair .calc-field {
+  min-width: 0;
+}
+
+.row-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.calc-field label {
+  font-weight: 600;
+  font-size: 0.81rem;
+}
+
+.calc-field input[type='number'] {
+  border-radius: 0.75rem;
+  padding: 0.675rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0f172a;
+  color: #fff;
+  font-size: 0.86rem;
+}
+
+.calc-field--optional label::after {
+  content: ' (optional)';
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.slider-row {
+  margin-top: 0.5rem;
+}
+
+.slider-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.slider-input {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.slider-input input[type='range'] {
+  width: 100%;
+  appearance: none;
+  height: 7px;
+  border-radius: 9999px;
+  background: #1e293b;
+  cursor: pointer;
+  margin: 0;
+}
+
+.slider-input input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slider-input input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slider-value {
+  font-size: 0.77rem;
+  font-weight: 600;
+  min-width: 54px;
+  text-align: right;
+}
+
+.deposit-field {
+  gap: 0.5rem;
+}
 
 #calc-how-much-can-borrow .is-hidden {
   display: none;

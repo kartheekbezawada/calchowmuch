@@ -90,9 +90,15 @@
     </p>
 
     <div class="input-stack">
-      <div class="input-row">
-        <label for="btl-price">Property Price</label>
-        <input id="btl-price" type="number" value="250000" min="0" step="0.01" maxlength="10" />
+      <div class="input-grid btl-compact-grid btl-compact-grid--rent-price">
+        <div class="input-row">
+          <label for="btl-price">Property Price</label>
+          <input id="btl-price" type="number" value="250000" min="0" step="0.01" maxlength="10" />
+        </div>
+        <div class="input-row">
+          <label for="btl-rent">Monthly Rent</label>
+          <input id="btl-rent" type="number" value="1400" min="0" step="0.01" maxlength="10" />
+        </div>
       </div>
 
       <div class="input-row">
@@ -151,12 +157,12 @@
         </div>
 
         <div class="input-row">
-          <label for="btl-rate">Interest Rate (APR %)</label>
+          <label for="btl-rate">Interest Rate %</label>
           <input id="btl-rate" type="number" value="5.5" min="0" step="0.01" maxlength="10" />
         </div>
 
         <div class="input-row">
-          <label for="btl-term">Loan Term (years)</label>
+          <label for="btl-term">Loan Term - Years</label>
           <input id="btl-term" type="number" value="25" min="1" step="1" maxlength="10" />
         </div>
       </div>
@@ -188,10 +194,6 @@
         </div>
       </div>
 
-      <div class="input-row">
-        <label for="btl-rent">Monthly Rent</label>
-        <input id="btl-rent" type="number" value="1400" min="0" step="0.01" maxlength="10" />
-      </div>
 
       <div class="input-row">
         <label id="btl-rent-increase-label">Rent Increase</label>
@@ -273,54 +275,11 @@
         </div>
 
         <div class="input-row">
-          <label id="btl-rent-increase-frequency-label">Increase Frequency</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="btl-rent-increase-frequency-label"
-            data-button-group="btl-rent-increase-frequency"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="1"
-              aria-pressed="true"
-            >
-              Every Year
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="2"
-              aria-pressed="false"
-            >
-              Every 2 Years
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="3"
-              aria-pressed="false"
-            >
-              Every 3 Years
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="custom"
-              aria-pressed="false"
-            >
-              Custom
-            </button>
-          </div>
-        </div>
-
-        <div class="input-row is-hidden" id="btl-rent-increase-custom-row">
-          <label for="btl-rent-increase-custom">Custom Interval (Years)</label>
+          <label for="btl-rent-increase-frequency">Increase Frequency (Years)</label>
           <input
-            id="btl-rent-increase-custom"
+            id="btl-rent-increase-frequency"
             type="number"
-            value="2"
+            value="1"
             min="1"
             step="1"
             maxlength="10"
@@ -355,45 +314,47 @@
         </div>
       </div>
 
-      <div class="input-row" id="btl-vacancy-percent-row">
-        <label for="btl-vacancy-percent">Vacancy Percent (%)</label>
-        <input
-          id="btl-vacancy-percent"
-          type="number"
-          value="5"
-          min="0"
-          max="100"
-          step="0.1"
-          maxlength="10"
-        />
-      </div>
+      <div class="input-grid btl-compact-grid btl-compact-grid--two-up">
+        <div class="input-row" id="btl-vacancy-percent-row">
+          <label for="btl-vacancy-percent">Vacancy Percent (%)</label>
+          <input
+            id="btl-vacancy-percent"
+            type="number"
+            value="5"
+            min="0"
+            max="100"
+            step="0.1"
+            maxlength="10"
+          />
+        </div>
 
-      <div class="input-row is-hidden" id="btl-vacancy-months-row">
-        <label for="btl-vacancy-months">Vacancy Months per Year</label>
-        <input
-          id="btl-vacancy-months"
-          type="number"
-          value="0"
-          min="0"
-          max="12"
-          step="1"
-          maxlength="10"
-        />
-      </div>
+        <div class="input-row is-hidden" id="btl-vacancy-months-row">
+          <label for="btl-vacancy-months">Vacancy Months per Year</label>
+          <input
+            id="btl-vacancy-months"
+            type="number"
+            value="0"
+            min="0"
+            max="12"
+            step="1"
+            maxlength="10"
+          />
+        </div>
 
-      <div class="input-row">
-        <label for="btl-agent-fee">Letting Agent Fee (%)</label>
-        <input id="btl-agent-fee" type="number" value="10" min="0" step="0.1" maxlength="10" />
-      </div>
+        <div class="input-row">
+          <label for="btl-agent-fee">Letting Agent Fee (%)</label>
+          <input id="btl-agent-fee" type="number" value="10" min="0" step="0.1" maxlength="10" />
+        </div>
 
-      <div class="input-row">
-        <label for="btl-maintenance">Maintenance / Monthly Costs</label>
-        <input id="btl-maintenance" type="number" value="120" min="0" step="0.01" maxlength="10" />
-      </div>
+        <div class="input-row">
+          <label for="btl-maintenance">Maintenance / Monthly Costs</label>
+          <input id="btl-maintenance" type="number" value="120" min="0" step="0.01" maxlength="10" />
+        </div>
 
-      <div class="input-row">
-        <label for="btl-other-costs">Insurance / Service / Ground Rent</label>
-        <input id="btl-other-costs" type="number" value="80" min="0" step="0.01" maxlength="10" />
+        <div class="input-row">
+          <label for="btl-other-costs">Insurance / Service / Ground Rent</label>
+          <input id="btl-other-costs" type="number" value="80" min="0" step="0.01" maxlength="10" />
+        </div>
       </div>
     </div>
 

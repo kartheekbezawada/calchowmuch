@@ -9,6 +9,18 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260128-160315 | REQ-20260128-019 | ITER-20260128-154622 | ISS-001 | PASS | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-154622.md |
+| TEST-20260128-160234 | REQ-20260128-019 | ITER-20260128-154622 | Unit | PASS | 1/25 | requirements/specs/loans/loan-utils.test.js (19 passed) | iterations/ITER-20260128-154622.md |
+| TEST-20260128-122945 | REQ-20260128-015 | ITER-20260128-122745 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-122745.md |
+| TEST-20260128-121235 | REQ-20260128-014 | ITER-20260128-121035 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-121035.md |
+| TEST-20260128-101739 | REQ-20260128-004 | ITER-20260128-101144 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-101144.md |
+| TEST-20260128-093655 | REQ-20260128-003 | ITER-20260128-093138 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-093138.md |
+| TEST-20260128-084237 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 3/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-084232 | REQ-20260128-001 | ITER-20260128-082355 | Unit | COMPLETE | 3/25 | tests/loans/home-loan.test.js (9 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-084007 | REQ-20260128-001 | ITER-20260128-082355 | E2E | COMPLETE | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (2 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083840 | REQ-20260128-001 | ITER-20260128-082355 | E2E | FAIL | 2/25 | tests/e2e/calculators/home-loan.spec.js (no tests found) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083826 | REQ-20260128-001 | ITER-20260128-082355 | Unit | COMPLETE | 2/25 | tests/loans/home-loan.test.js (9 passed) | iterations/ITER-20260128-082355.md |
+| TEST-20260128-083700 | REQ-20260128-001 | ITER-20260128-082355 | Unit | FAIL | 1/25 | tests/loans/home-loan.test.js (1 failed) | iterations/ITER-20260128-082355.md |
 | TEST-20260127-215700 | REQ-20260127-013 | ITER-20260127-215418 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js | iterations/ITER-20260127-215418.md |
 | TEST-20260127-211700 | REQ-20260127-012 | ITER-20260127-203619 | ISS-001 | COMPLETE | 8/25 | requirements/specs/e2e/iss-design-001.spec.js (snapshots updated) | iterations/ITER-20260127-203619.md |
 | TEST-20260127-211830 | REQ-20260127-012 | ITER-20260127-203619 | E2E | COMPLETE | 8/25 | requirements/specs/e2e/home-shell.spec.js | iterations/ITER-20260127-203619.md |

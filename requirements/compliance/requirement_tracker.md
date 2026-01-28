@@ -48,6 +48,7 @@
 | REQ-20260127-005 | Privacy Policy & Terms & Conditions Content Refresh | Site | Content | MEDIUM | COMPLETE | YES |
 | REQ-20260127-006 | Car Loan Calculator Rebuild (Auto Loans) | Calculator | Bug Fix + UI Relocation + SEO Content | HIGH | COMPLETE | YES |
 | REQ-20260127-007 | Background Color Update + React-based Theme Shell | Theme/Architecture | Layout/CSS + New Framework + Refactor | HIGH | CANCELLED | YES |
+| REQ-20260128-001 | Home Loan Calculator Testing & Bug Fixes | Calculator | Bug Fix + Testing | HIGH | COMPLETE | NO |
 | REQ-20260127-008 | Enable premium-dark theme globally by default | Theme | Layout/CSS | HIGH | NEW | NO |
 | REQ-20260127-008 | Premium Dark Theme Migration (MPA-Compatible) | Theme | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260127-009 | Enable premium-dark theme globally by default | Theme | Layout/CSS | HIGH | COMPLETE | NO |
@@ -55,6 +56,17 @@
 | REQ-20260127-011 | Remove outer page shell - full viewport width | Site | Layout/CSS | HIGH | COMPLETE | NO |
 | REQ-20260127-012 | Global premium header bar with brand and search | Site | Layout/CSS + UI/Flow | HIGH | COMPLETE | YES |
 | REQ-20260127-013 | Home page full-viewport layout (remove shell on /) | Site | Layout/CSS | HIGH | COMPLETE | NO |
+
+| REQ-20260128-002 | Remove redundant home-loan e2e spec under tests/e2e | Housekeeping | Test Cleanup | LOW | COMPLETE | NO |
+| REQ-20260128-019 | Implement and Test HOW_MUCH_CAN_BORROW_RULES_V2 for Calculator | Calculator/UI | UI/Flow + ISS + Testing | HIGH | IN_PROGRESS | NO |
+| REQ-20260128-016 | Modularize and Expand Universal Header/Footer Rules | UI/Layout | Layout/Contract/Refactor | HIGH | COMPLETE | NO |
+| REQ-20260128-017 | Enforce Calculation Pane Form Density Rules for 'How Much Can I Borrow' and 'Remortgage/Switching' | Calculator | UI/Flow + ISS | HIGH | NEW | NO |
+| REQ-20260128-015 | Single Source: iss_form_density_calculation_pane_rules.md as Canonical Form Density Contract | UI/ISS | Layout/UI/Contract | HIGH | COMPLIANCE | NO |
+| REQ-20260128-014 | Unified Theme Rules: Universal Tokens + Premium-Dark Global Default | Theme | Layout/CSS | HIGH | COMPLIANCE | NO |
+
+| REQ-20260128-003 | Home Loan: Remove Monthly/Yearly Summary, Fix Chart, Simplify View Toggle | Calculator | UI/Flow + Bug Fix | HIGH | COMPLETE | NO |
+
+| REQ-20260128-004 | Home Loan: Reduce Calculation Pane Vertical Scroll, Restructure Rows | Calculator | UI/Flow | HIGH | COMPLIANCE | NO |
 
 ---
 
