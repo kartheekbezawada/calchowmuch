@@ -3,21 +3,31 @@
 .remo-compact-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 9px;
+}
+
+.remo-compact-grid--current {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .remo-fees-section {
-  padding: 8px;
+  padding: 7px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   background: #f8fafc;
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .remo-fees-options {
   display: grid;
-  gap: 8px;
+  gap: 7px;
+}
+
+.remo-fees-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 9px;
+  row-gap: 7px;
 }
 
 @media (max-width: 720px) {
@@ -27,24 +37,33 @@
 }
 
 #calc-remortgage-switching .calculator-ui {
-  gap: 10px;
+  gap: 9px;
 }
 
 #calc-remortgage-switching .calculator-ui .helper {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.35;
 }
 
 #calc-remortgage-switching .input-stack {
-  gap: 10px;
+  gap: 9px;
 }
 
 #calc-remortgage-switching .button-group {
-  gap: 8px;
+  gap: 7px;
 }
 
 #calc-remortgage-switching .calculator-button {
-  padding: 10px 12px;
+  padding: 9px 11px;
+}
+
+#calc-remortgage-switching label {
+  font-size: 0.81rem;
+}
+
+#calc-remortgage-switching input[type='number'] {
+  padding: 0.675rem 0.9rem;
+  font-size: 0.86rem;
 }
 
 #loan-remortgage-explanation .graph-line {

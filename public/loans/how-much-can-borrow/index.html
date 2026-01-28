@@ -84,107 +84,146 @@
           <div class="panel panel-scroll">
   <h1 id="calculator-title">How Much Can I Borrow</h1>
   <div id="calc-how-much-can-borrow">
-  <div class="calculator-ui">
-    <p class="helper">Estimate a maximum affordable loan using income multiples or payment caps.</p>
+  <div class="calculator-ui calculator-ui--borrow">
+    <p class="helper">
+      Estimate a maximum affordable loan using income multiples or a payment-to-income cap.
+    </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="bor-gross-income">Gross Annual Income</label>
-        <input id="bor-gross-income" type="number" value="90000" min="0" step="0.01" maxlength="10" />
+    <div class="calc-form">
+      <div class="calc-row calc-row--pair">
+        <div class="calc-field">
+          <label for="bor-gross-income">Gross Annual Income</label>
+          <input
+            id="bor-gross-income"
+            type="number"
+            value="90000"
+            min="0"
+            step="0.01"
+            maxlength="10"
+          />
+        </div>
+        <div class="calc-field">
+          <label for="bor-net-income">Net Monthly - Optional</label>
+          <input
+            id="bor-net-income"
+            type="number"
+            value="5000"
+            min="0"
+            step="0.01"
+            maxlength="10"
+          />
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="bor-net-income">Net Monthly Income (optional)</label>
-        <input id="bor-net-income" type="number" value="5000" min="0" step="0.01" maxlength="10" />
-      </div>
-
-      <div class="input-row">
-        <label id="bor-income-basis-label">Income Basis</label>
+      <div class="calc-row">
+        <span class="row-label" id="bor-income-basis-label">Income Basis</span>
         <div
           class="button-group"
           role="group"
           aria-labelledby="bor-income-basis-label"
           data-button-group="bor-income-basis"
         >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="gross"
-            aria-pressed="true"
-          >
+          <button class="calculator-button secondary is-active" type="button" data-value="gross" aria-pressed="true">
             Gross
           </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="net"
-            aria-pressed="false"
-          >
+          <button class="calculator-button secondary" type="button" data-value="net" aria-pressed="false">
             Net
           </button>
         </div>
       </div>
 
-      <div class="input-row">
-        <label for="bor-expenses">Monthly Expenses</label>
-        <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" maxlength="10" />
+      <div class="calc-row calc-row--pair">
+        <div class="calc-field">
+          <label for="bor-expenses">Monthly Expenses</label>
+          <input id="bor-expenses" type="number" value="1200" min="0" step="0.01" maxlength="10" />
+        </div>
+        <div class="calc-field">
+          <label for="bor-debts">Monthly Debt Payments</label>
+          <input id="bor-debts" type="number" value="300" min="0" step="0.01" maxlength="10" />
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="bor-debts">Monthly Debt Payments</label>
-        <input id="bor-debts" type="number" value="300" min="0" step="0.01" maxlength="10" />
+      <div class="calc-row calc-row--pair slider-row">
+        <div class="calc-field slider-field">
+          <label for="bor-rate">Interest Rate (APR %)</label>
+          <div class="slider-input">
+            <input
+              id="bor-rate"
+              type="range"
+              min="0"
+              max="49.99"
+              step="0.01"
+              value="6.5"
+              aria-label="Interest rate"
+            />
+            <span class="slider-value" data-slider-display="bor-rate">6.50%</span>
+          </div>
+        </div>
+        <div class="calc-field slider-field">
+          <label for="bor-term">Loan Term (years)</label>
+          <div class="slider-input">
+            <input
+              id="bor-term"
+              type="range"
+              min="0"
+              max="50"
+              step="1"
+              value="25"
+              aria-label="Loan term"
+            />
+            <span class="slider-value" data-slider-display="bor-term">25 yr</span>
+          </div>
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="bor-rate">Interest Rate (APR %)</label>
-        <input id="bor-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
-      </div>
-
-      <div class="input-row">
-        <label for="bor-term">Loan Term (years)</label>
-        <input id="bor-term" type="number" value="25" min="1" step="1" maxlength="10" />
-      </div>
-
-      <div class="input-row">
-        <label id="bor-method-label">Affordability Method</label>
+      <div class="calc-row">
+        <span class="row-label" id="bor-method-label">Affordability Method</span>
         <div
           class="button-group"
           role="group"
           aria-labelledby="bor-method-label"
           data-button-group="bor-method"
         >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="income"
-            aria-pressed="true"
-          >
+          <button class="calculator-button secondary is-active" type="button" data-value="income" aria-pressed="true">
             Income Multiple
           </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="payment"
-            aria-pressed="false"
-          >
-            Payment Cap
+          <button class="calculator-button secondary" type="button" data-value="payment" aria-pressed="false">
+            Payment-to-Income
           </button>
         </div>
       </div>
 
-      <div class="input-row" id="bor-multiple-row">
-        <label for="bor-multiple">Income Multiple (e.g., 4-5.5x)</label>
-        <input id="bor-multiple" type="number" value="4.5" min="0" step="0.1" maxlength="10" />
-      </div>
-
-      <div class="input-row is-hidden" id="bor-cap-row">
-        <label for="bor-cap">Payment Cap (% of income)</label>
-        <input id="bor-cap" type="number" value="35" min="0" max="100" step="0.1" maxlength="10" />
-      </div>
-
-      <div class="input-row">
-        <label for="bor-deposit">Deposit (optional)</label>
-        <input id="bor-deposit" type="number" value="20000" min="0" step="0.01" maxlength="10" />
+      <div class="calc-row calc-row--pair slider-row slider-row--bottom">
+        <div class="calc-field slider-field">
+          <label for="bor-multiple">Income Multiple (e.g., 4-5.5x)</label>
+          <div class="slider-input">
+            <input
+              id="bor-multiple"
+              type="range"
+              min="1"
+              max="10"
+              step="0.01"
+              value="4.5"
+              aria-label="Income multiple"
+            />
+            <span class="slider-value" data-slider-display="bor-multiple">4.50x</span>
+          </div>
+        </div>
+        <div class="calc-field slider-field deposit-field">
+          <label for="bor-deposit">Deposit (optional)</label>
+          <div class="slider-input">
+            <input
+              id="bor-deposit"
+              type="range"
+              min="0"
+              max="1000000"
+              step="0.01"
+              value="0"
+              aria-label="Deposit amount"
+            />
+            <span class="slider-value" data-slider-display="bor-deposit">£0.00</span>
+          </div>
+        </div>
       </div>
     </div>
 

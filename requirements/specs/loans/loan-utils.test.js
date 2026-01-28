@@ -219,15 +219,17 @@ describe('loan utility calculations', () => {
       incomeBasis: 'net',
       expensesMonthly: 1200,
       debtMonthly: 300,
-      interestRate: 5,
-      termYears: 25,
+      interestRate: 6,
+      termYears: 10,
       method: 'payment',
       incomeMultiple: 4.5,
-      paymentCapPercent: 35,
       deposit: 20000,
     });
 
+    const expectedDisposable = 5000 - (1200 + 300);
     expect(result.hasAffordabilityGap).toBe(false);
+    expect(result.monthlyDisposable).toBeCloseTo(expectedDisposable, 0);
+    expect(result.maxPayment).toBeCloseTo(expectedDisposable, 0);
     expect(result.maxBorrow).toBeGreaterThan(0);
     expect(result.maxPropertyPrice).toBeGreaterThan(result.maxBorrow);
   });
@@ -243,7 +245,6 @@ describe('loan utility calculations', () => {
       termYears: 30,
       method: 'income',
       incomeMultiple: 4,
-      paymentCapPercent: 35,
       deposit: 0,
     });
 
@@ -261,10 +262,30 @@ describe('loan utility calculations', () => {
       termYears: 25,
       method: 'income',
       incomeMultiple: 4,
-      paymentCapPercent: 35,
       deposit: 0,
     });
 
     expect(result.hasAffordabilityGap).toBe(true);
+  });
+
+  it('caps income multiple borrow when payment exceeds disposable', () => {
+    const disposable = 5000 - (2000 + 1200);
+    const result = calculateBorrow({
+      grossIncomeAnnual: 90000,
+      netIncomeMonthly: 5000,
+      incomeBasis: 'net',
+      expensesMonthly: 2000,
+      debtMonthly: 1200,
+      interestRate: 6,
+      termYears: 10,
+      method: 'income',
+      incomeMultiple: 5,
+      deposit: 0,
+    });
+
+    const maxAnnualMultiple = 5 * 5000 * 12;
+    expect(result.monthlyPayment).toBeLessThanOrEqual(disposable + 0.01);
+    expect(result.maxPayment).toBeCloseTo(result.monthlyPayment, 0);
+    expect(result.maxBorrow).toBeLessThan(maxAnnualMultiple);
   });
 });

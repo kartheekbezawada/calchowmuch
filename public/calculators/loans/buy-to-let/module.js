@@ -17,8 +17,7 @@ const rentIncreasePercentRow = document.querySelector('#btl-rent-increase-percen
 const rentIncreaseAmountRow = document.querySelector('#btl-rent-increase-amount-row');
 const rentIncreasePercentInput = document.querySelector('#btl-rent-increase-percent');
 const rentIncreaseAmountInput = document.querySelector('#btl-rent-increase-amount');
-const rentIncreaseCustomRow = document.querySelector('#btl-rent-increase-custom-row');
-const rentIncreaseCustomInput = document.querySelector('#btl-rent-increase-custom');
+const rentIncreaseFrequencyInput = document.querySelector('#btl-rent-increase-frequency');
 const vacancyPercentInput = document.querySelector('#btl-vacancy-percent');
 const vacancyMonthsInput = document.querySelector('#btl-vacancy-months');
 const vacancyPercentRow = document.querySelector('#btl-vacancy-percent-row');
@@ -36,9 +35,6 @@ const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-t
 const vacancyGroup = document.querySelector('[data-button-group="btl-vacancy-type"]');
 const rentIncreaseGroup = document.querySelector('[data-button-group="btl-rent-increase"]');
 const rentIncreaseTypeGroup = document.querySelector('[data-button-group="btl-rent-increase-type"]');
-const rentIncreaseFrequencyGroup = document.querySelector(
-  '[data-button-group="btl-rent-increase-frequency"]'
-);
 
 const explanationRoot = document.querySelector('#loan-btl-explanation');
 const priceValue = explanationRoot?.querySelector('[data-btl="price"]');
@@ -163,13 +159,6 @@ const rentIncreaseTypeButtons = setupButtonGroup(rentIncreaseTypeGroup, {
   },
 });
 
-const rentIncreaseFrequencyButtons = setupButtonGroup(rentIncreaseFrequencyGroup, {
-  defaultValue: '1',
-  onChange: (value) => {
-    setRentIncreaseFrequencyVisibility(value);
-    calculate();
-  },
-});
 
 [
   priceInput,
@@ -180,7 +169,7 @@ const rentIncreaseFrequencyButtons = setupButtonGroup(rentIncreaseFrequencyGroup
   rentInput,
   rentIncreasePercentInput,
   rentIncreaseAmountInput,
-  rentIncreaseCustomInput,
+  rentIncreaseFrequencyInput,
   vacancyPercentInput,
   vacancyMonthsInput,
   agentFeeInput,
@@ -209,9 +198,6 @@ function setRentIncreaseTypeVisibility(type) {
   rentIncreaseAmountRow?.classList.toggle('is-hidden', type !== 'amount');
 }
 
-function setRentIncreaseFrequencyVisibility(value) {
-  rentIncreaseCustomRow?.classList.toggle('is-hidden', value !== 'custom');
-}
 
 function formatTableNumber(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -688,11 +674,7 @@ function calculate() {
   const rentIncreaseValue = Number(
     rentIncreaseType === 'amount' ? rentIncreaseAmountInput?.value : rentIncreasePercentInput?.value
   );
-  const rentIncreaseFrequency = rentIncreaseFrequencyButtons?.getValue() ?? '1';
-  const rentIncreaseInterval =
-    rentIncreaseFrequency === 'custom'
-      ? Number(rentIncreaseCustomInput?.value)
-      : Number(rentIncreaseFrequency);
+  const rentIncreaseInterval = Number(rentIncreaseFrequencyInput?.value ?? 1);
 
   if (rentIncreaseEnabled) {
     if (!Number.isFinite(rentIncreaseValue) || rentIncreaseValue < 0) {
@@ -789,7 +771,6 @@ setDepositVisibility(depositButtons?.getValue() ?? 'amount');
 setVacancyVisibility(vacancyButtons?.getValue() ?? 'percent');
 setRentIncreaseVisibility(rentIncreaseButtons?.getValue() === 'on');
 setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
-setRentIncreaseFrequencyVisibility(rentIncreaseFrequencyButtons?.getValue() ?? '1');
 
 calculateButton?.addEventListener('click', calculate);
 

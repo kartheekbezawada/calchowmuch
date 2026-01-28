@@ -11,7 +11,6 @@ const debtsInput = document.querySelector('#bor-debts');
 const rateInput = document.querySelector('#bor-rate');
 const termInput = document.querySelector('#bor-term');
 const multipleInput = document.querySelector('#bor-multiple');
-const capInput = document.querySelector('#bor-cap');
 const depositInput = document.querySelector('#bor-deposit');
 const calculateButton = document.querySelector('#bor-calculate');
 const resultDiv = document.querySelector('#bor-result');
@@ -21,8 +20,87 @@ const formatBorrowCurrency = (value) => formatCurrency(value, 'GBP');
 const incomeBasisGroup = document.querySelector('[data-button-group="bor-income-basis"]');
 const methodGroup = document.querySelector('[data-button-group="bor-method"]');
 
-const multipleRow = document.querySelector('#bor-multiple-row');
-const capRow = document.querySelector('#bor-cap-row');
+
+const sliderPalette = {
+  rate: { start: '#3b82f6', end: '#06b6d4' },
+  term: { start: '#10b981', end: '#059669' },
+  multiple: { start: '#f97316', end: '#dc2626' },
+  deposit: { start: '#8b5cf6', end: '#6366f1' },
+};
+
+const sliderConfigs = [
+  {
+    element: rateInput,
+    displaySelector: '[data-slider-display="bor-rate"]',
+    format: (value) =>
+      `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`,
+    gradient: sliderPalette.rate,
+  },
+  {
+    element: termInput,
+    displaySelector: '[data-slider-display="bor-term"]',
+    format: (value) => `${formatNumber(value, { maximumFractionDigits: 0 })} yr`,
+    gradient: sliderPalette.term,
+  },
+  {
+    element: multipleInput,
+    displaySelector: '[data-slider-display="bor-multiple"]',
+    format: (value) =>
+      `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}x`,
+    gradient: sliderPalette.multiple,
+  },
+  {
+    element: depositInput,
+    displaySelector: '[data-slider-display="bor-deposit"]',
+    format: (value) => formatBorrowCurrency(value),
+    gradient: sliderPalette.deposit,
+  },
+];
+
+function applySliderGradient(slider, colors) {
+  if (!slider || !colors) {
+    return;
+  }
+  const min = Number(slider.min ?? 0);
+  const max = Number(slider.max ?? 100);
+  const value = Number(slider.value ?? 0);
+  const percent =
+    Number.isFinite(min) &&
+    Number.isFinite(max) &&
+    max > min
+      ? Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100))
+      : 0;
+
+  slider.style.background = `linear-gradient(90deg, ${colors.start} 0%, ${colors.end} ${percent}%, #1e293b ${percent}%, #1e293b 100%)`;
+}
+
+function bindSlider({ element, displaySelector, format, gradient }) {
+  if (!element) {
+    return;
+  }
+  const display = document.querySelector(displaySelector);
+  const update = () => {
+    const numericValue = Number(element.value);
+    if (display) {
+      display.textContent = format(Number.isFinite(numericValue) ? numericValue : 0);
+    }
+    applySliderGradient(element, gradient);
+  };
+
+  element.addEventListener('input', update);
+  element.addEventListener('change', update);
+  update();
+}
+
+sliderConfigs.forEach(bindSlider);
+
+
+function resolveExplanationRoot() {
+  return (
+    document.querySelector('.center-column .panel:last-child #loan-borrow-explanation') ||
+    document.querySelector('#loan-borrow-explanation')
+  );
+}
 
 let explanationRoot = null;
 let basisValue = null;
@@ -41,15 +119,6 @@ let graphYMin = null;
 let graphXStart = null;
 let graphXEnd = null;
 let graphNote = null;
-
-const MAX_INPUT_LENGTH = 10;
-
-function resolveExplanationRoot() {
-  return (
-    document.querySelector('.center-column .panel:last-child #loan-borrow-explanation') ||
-    document.querySelector('#loan-borrow-explanation')
-  );
-}
 
 function cacheExplanationElements() {
   explanationRoot = resolveExplanationRoot();
@@ -103,11 +172,13 @@ function enforceMaxLength(input) {
   }
   input.addEventListener('input', () => {
     const { value } = input;
-    if (value.length > MAX_INPUT_LENGTH) {
-      input.value = value.slice(0, MAX_INPUT_LENGTH);
+    if (value.length > 10) {
+      input.value = value.slice(0, 10);
     }
   });
 }
+
+[grossIncomeInput, netIncomeInput, expensesInput, debtsInput].forEach(enforceMaxLength);
 
 const incomeBasisButtons = setupButtonGroup(incomeBasisGroup, {
   defaultValue: 'gross',
@@ -116,35 +187,11 @@ const incomeBasisButtons = setupButtonGroup(incomeBasisGroup, {
 
 const methodButtons = setupButtonGroup(methodGroup, {
   defaultValue: 'income',
-  onChange: (value) => {
-    toggleMethodFields(value);
-    calculate();
-  },
+  onChange: () => calculate(),
 });
 
-[
-  grossIncomeInput,
-  netIncomeInput,
-  expensesInput,
-  debtsInput,
-  rateInput,
-  termInput,
-  multipleInput,
-  capInput,
-  depositInput,
-].forEach(enforceMaxLength);
-
-function toggleMethodFields(method) {
-  multipleRow?.classList.toggle('is-hidden', method !== 'income');
-  capRow?.classList.toggle('is-hidden', method !== 'payment');
-}
-
-function formatTableNumber(value) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function formatAxisValue(value) {
-  return formatNumber(value, { maximumFractionDigits: 0 });
+function formatTableNumber(value, options = {}) {
+  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2, ...options });
 }
 
 function clearOutputs() {
@@ -206,17 +253,17 @@ function updateTable(data) {
     { label: 'Income basis', value: data.incomeBasis === 'net' ? 'Net' : 'Gross' },
     { label: 'Monthly income used', value: formatTableNumber(data.monthlyIncome) },
     { label: 'Total outgoings', value: formatTableNumber(data.totalOutgoings) },
+    { label: 'Monthly disposable', value: formatTableNumber(data.monthlyDisposable) },
     { label: 'Interest rate', value: formatTableNumber(data.interestRate) },
-    { label: 'Loan term (years)', value: formatTableNumber(data.termYears) },
+    { label: 'Loan term (years)', value: formatTableNumber(data.termYears, { maximumFractionDigits: 0 }) },
     data.method === 'income'
-      ? { label: 'Income multiple', value: formatTableNumber(data.incomeMultiple) }
-      : { label: 'Payment cap (%)', value: formatTableNumber(data.paymentCapPercent) },
-    { label: 'Max monthly payment', value: formatTableNumber(data.maxPayment) },
-    { label: 'Max borrow', value: formatTableNumber(data.maxBorrow) },
+      ? { label: 'Income multiple', value: `${formatTableNumber(data.incomeMultiple)}x` }
+      : { label: 'Monthly payment cap', value: formatBorrowCurrency(data.maxPayment) },
+    { label: 'Max borrow', value: formatBorrowCurrency(data.maxBorrow) },
   ];
 
   if (data.deposit > 0 && data.maxPropertyPrice) {
-    rows.push({ label: 'Max property price', value: formatTableNumber(data.maxPropertyPrice) });
+    rows.push({ label: 'Max property price', value: formatBorrowCurrency(data.maxPropertyPrice) });
   }
 
   tableBody.innerHTML = rows
@@ -241,13 +288,13 @@ function updateGraph(data) {
 
   graphLine.setAttribute('points', buildPolyline(values, min, max));
   if (graphYMax) {
-    graphYMax.textContent = formatAxisValue(max);
+    graphYMax.textContent = formatNumber(max, { maximumFractionDigits: 0 });
   }
   if (graphYMid) {
-    graphYMid.textContent = formatAxisValue(mid);
+    graphYMid.textContent = formatNumber(mid, { maximumFractionDigits: 0 });
   }
   if (graphYMin) {
-    graphYMin.textContent = formatAxisValue(min);
+    graphYMin.textContent = formatNumber(min, { maximumFractionDigits: 0 });
   }
   if (graphXStart) {
     graphXStart.textContent = formatNumber(data.rateSeries[0]?.rate ?? 0, {
@@ -264,6 +311,47 @@ function updateGraph(data) {
   }
 }
 
+function formatSummaryLine(label, value) {
+  return `<p><strong>${label}</strong> ${value}</p>`;
+}
+
+function populateSummary(data, method) {
+  if (!summaryDiv) {
+    return;
+  }
+
+  const summaryLines = [];
+
+  summaryLines.push(
+    formatSummaryLine('Estimated payment:', formatBorrowCurrency(data.monthlyPayment))
+  );
+
+  if (method === 'income') {
+    summaryLines.push(
+      formatSummaryLine(
+        'Constraint:',
+        `Income multiple ${formatNumber(data.incomeMultiple, { maximumFractionDigits: 2 })}x`
+      )
+    );
+  } else {
+    summaryLines.push(
+      formatSummaryLine('Constraint:', `Payment-to-income cap ${formatBorrowCurrency(data.maxPayment)}`)
+    );
+  }
+
+  summaryLines.push(
+    formatSummaryLine('Monthly disposable:', formatBorrowCurrency(data.monthlyDisposable))
+  );
+
+  if (data.maxPropertyPrice) {
+    summaryLines.push(
+      formatSummaryLine('Max property price:', formatBorrowCurrency(data.maxPropertyPrice))
+    );
+  }
+
+  summaryDiv.innerHTML = summaryLines.join('');
+}
+
 function calculate() {
   if (!resultDiv || !summaryDiv) {
     return;
@@ -273,19 +361,9 @@ function calculate() {
   summaryDiv.textContent = '';
   clearOutputs();
 
-  // Validate input maxlength per universal requirements
-  const inputsToValidate = [
-    grossIncomeInput,
-    netIncomeInput,
-    expensesInput,
-    debtsInput,
-    rateInput,
-    termInput,
-    multipleInput,
-    capInput,
-    depositInput,
-  ].filter(Boolean);
-
+  const inputsToValidate = [grossIncomeInput, netIncomeInput, expensesInput, debtsInput].filter(
+    Boolean
+  );
   const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
   if (invalidLength) {
     setError('Inputs must be 10 digits or fewer.');
@@ -331,22 +409,12 @@ function calculate() {
 
   const method = methodButtons?.getValue() ?? 'income';
   const incomeMultiple = Number(multipleInput?.value);
-  const paymentCapPercent = Number(capInput?.value);
-  const deposit = Number(depositInput?.value);
-
   if (method === 'income' && (!Number.isFinite(incomeMultiple) || incomeMultiple <= 0)) {
     setError('Income multiple must be greater than 0.');
     return;
   }
 
-  if (
-    method === 'payment' &&
-    (!Number.isFinite(paymentCapPercent) || paymentCapPercent <= 0 || paymentCapPercent > 100)
-  ) {
-    setError('Payment cap must be between 0 and 100.');
-    return;
-  }
-
+  const deposit = Number(depositInput?.value);
   if (!Number.isFinite(deposit) || deposit < 0) {
     setError('Deposit must be 0 or more.');
     return;
@@ -362,7 +430,6 @@ function calculate() {
     termYears,
     method,
     incomeMultiple,
-    paymentCapPercent,
     deposit,
   });
 
@@ -372,26 +439,20 @@ function calculate() {
   }
 
   if (data.maxBorrow <= 0 || data.maxPayment <= 0) {
-    setError('Not affordable with the current payment cap.');
+    setError('Not affordable with the current inputs.');
     return;
   }
 
   resultDiv.innerHTML = `<strong>Maximum Borrow:</strong> ${formatBorrowCurrency(data.maxBorrow)}`;
 
-  const propertyLine = data.maxPropertyPrice
-    ? `<p><strong>Max property price:</strong> ${formatBorrowCurrency(data.maxPropertyPrice)}</p>`
-    : '';
+  if (data.maxPropertyPrice) {
+    resultDiv.insertAdjacentHTML(
+      'beforeend',
+      `<p><strong>Max property price:</strong> ${formatBorrowCurrency(data.maxPropertyPrice)}</p>`
+    );
+  }
 
-  summaryDiv.innerHTML =
-    `<p><strong>Estimated payment:</strong> ${formatBorrowCurrency(data.monthlyPayment)}</p>` +
-    `<p><strong>Constraint:</strong> ` +
-    `${
-      method === 'income'
-        ? `Income multiple ${formatNumber(data.incomeMultiple, { maximumFractionDigits: 2 })}x`
-        : `Payment cap ${formatNumber(data.paymentCapPercent, { maximumFractionDigits: 1 })}%`
-    }</p>` +
-    propertyLine;
-
+  populateSummary(data, method);
   updateExplanation(data);
   updateTable(data);
   updateGraph(data);
@@ -404,7 +465,6 @@ calculateButton?.addEventListener('click', async () => {
 
 async function initialize() {
   await ensureExplanation();
-  toggleMethodFields(methodButtons?.getValue() ?? 'income');
   calculate();
 }
 

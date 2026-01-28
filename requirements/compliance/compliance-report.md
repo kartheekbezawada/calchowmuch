@@ -17,6 +17,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
 |--------|---------|----------------|-----------|------------|---------|
+| REQ-20260128-019 | ITER-20260128-154622 | Unit + ISS-001 | Unit (requirements/specs/loans/loan-utils.test.js); ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
 | REQ-20260128-004 | ITER-20260128-101144 | E2E | E2E (requirements/specs/e2e/home-loan-calculator.spec.js) | 3/25 | PASS |
 | REQ-20260128-015 | ITER-20260128-122745 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
 | REQ-20260128-014 | ITER-20260128-121035 | ISS-001 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
