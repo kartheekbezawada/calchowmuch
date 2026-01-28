@@ -58,6 +58,7 @@
 | REQ-20260127-013 | Home page full-viewport layout (remove shell on /) | Site | Layout/CSS | HIGH | COMPLETE | NO |
 
 | REQ-20260128-002 | Remove redundant home-loan e2e spec under tests/e2e | Housekeeping | Test Cleanup | LOW | COMPLETE | NO |
+| REQ-20260128-014 | Unified Theme Rules: Universal Tokens + Premium-Dark Global Default | Theme | Layout/CSS | HIGH | NEW | NO |
 
 | REQ-20260128-003 | Home Loan: Remove Monthly/Yearly Summary, Fix Chart, Simplify View Toggle | Calculator | UI/Flow + Bug Fix | HIGH | COMPLETE | NO |
 
