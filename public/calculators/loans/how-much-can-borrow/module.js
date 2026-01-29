@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBorrow } from '/assets/js/core/loan-utils.js';
@@ -15,7 +15,7 @@ const depositInput = document.querySelector('#bor-deposit');
 const calculateButton = document.querySelector('#bor-calculate');
 const resultDiv = document.querySelector('#bor-result');
 const summaryDiv = document.querySelector('#bor-summary');
-const formatBorrowCurrency = (value) => formatCurrency(value, 'GBP');
+const formatBorrowCurrency = (value) => formatNumber(value, 'GBP');
 
 const incomeBasisGroup = document.querySelector('[data-button-group="bor-income-basis"]');
 const methodGroup = document.querySelector('[data-button-group="bor-method"]');

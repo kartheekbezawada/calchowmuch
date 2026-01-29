@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLease } from '/assets/js/core/auto-loan-utils.js';
@@ -102,11 +102,11 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  priceValue.textContent = formatCurrency(data.price);
-  residualValue.textContent = formatCurrency(data.residual);
-  paymentValue.textContent = formatCurrency(data.monthlyPayment);
+  priceValue.textContent = formatNumber(data.price);
+  residualValue.textContent = formatNumber(data.residual);
+  paymentValue.textContent = formatNumber(data.monthlyPayment);
   monthsValue.textContent = formatNumber(data.termMonths, { maximumFractionDigits: 0 });
-  totalValue.textContent = formatCurrency(data.totalLeaseCost);
+  totalValue.textContent = formatNumber(data.totalLeaseCost);
 }
 
 function calculate() {
@@ -147,12 +147,12 @@ function calculate() {
     residualPercentInput.value = ((data.residual / price) * 100).toFixed(2);
   }
 
-  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatCurrency(data.monthlyPayment)}`;
+  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatNumber(data.monthlyPayment)}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Total lease cost:</strong> ${formatCurrency(data.totalLeaseCost)}</p>` +
-    `<p><strong>Residual value:</strong> ${formatCurrency(data.residual)}</p>` +
-    `<p><strong>Upfront payment:</strong> ${formatCurrency(data.upfrontPayment)}</p>`;
+    `<p><strong>Total lease cost:</strong> ${formatNumber(data.totalLeaseCost)}</p>` +
+    `<p><strong>Residual value:</strong> ${formatNumber(data.residual)}</p>` +
+    `<p><strong>Upfront payment:</strong> ${formatNumber(data.upfrontPayment)}</p>`;
 
   updateTable(data.yearly);
   updateGraph(data.schedule, data.termMonths);

@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateCarLoan } from '/assets/js/core/auto-loan-utils.js';
@@ -156,17 +156,17 @@ function updateExplanation(data) {
     return;
   }
   if (priceValue) {
-    priceValue.textContent = formatCurrency(data.price);
+    priceValue.textContent = formatNumber(data.price);
   }
-  financedValue.textContent = formatCurrency(data.amountFinanced);
-  downValue.textContent = formatCurrency(data.downPayment);
-  tradeValue.textContent = formatCurrency(data.tradeIn);
+  financedValue.textContent = formatNumber(data.amountFinanced);
+  downValue.textContent = formatNumber(data.downPayment);
+  tradeValue.textContent = formatNumber(data.tradeIn);
   aprValue.textContent = formatPercent(data.apr);
   termValue.textContent = formatNumber(data.termYears, { maximumFractionDigits: 0 });
-  paymentValue.textContent = formatCurrency(data.monthlyPayment);
-  interestValue.textContent = formatCurrency(data.totalInterest);
+  paymentValue.textContent = formatNumber(data.monthlyPayment);
+  interestValue.textContent = formatNumber(data.totalInterest);
   if (totalCostValue) {
-    totalCostValue.textContent = formatCurrency(data.totalCost);
+    totalCostValue.textContent = formatNumber(data.totalCost);
   }
 }
 
@@ -212,12 +212,12 @@ function calculate() {
     downPercentInput.value = data.downPaymentPercent.toFixed(2);
   }
 
-  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatCurrency(data.monthlyPayment)}`;
+  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatNumber(data.monthlyPayment)}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Amount financed:</strong> ${formatCurrency(data.amountFinanced)}</p>` +
-    `<p><strong>Total interest:</strong> ${formatCurrency(data.totalInterest)}</p>` +
-    `<p><strong>Total cost:</strong> ${formatCurrency(data.totalCost)}</p>`;
+    `<p><strong>Amount financed:</strong> ${formatNumber(data.amountFinanced)}</p>` +
+    `<p><strong>Total interest:</strong> ${formatNumber(data.totalInterest)}</p>` +
+    `<p><strong>Total cost:</strong> ${formatNumber(data.totalCost)}</p>`;
 
   updateTable(data.yearly);
   updateGraph(data.schedule, data.months);

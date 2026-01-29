@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateInterestRateChange } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
@@ -72,12 +72,12 @@ function updateExplanation(data) {
   if (!explanationRoot || !data) {
     return;
   }
-  currentPaymentValue.textContent = formatCurrency(data.baselinePayment);
-  newPaymentValue.textContent = formatCurrency(data.newPayment);
-  monthlyDiffValue.textContent = formatCurrency(data.monthlyDifference);
-  annualDiffValue.textContent = formatCurrency(data.annualDifference);
-  interestBaseValue.textContent = formatCurrency(data.totalInterestBaseline);
-  interestNewValue.textContent = formatCurrency(data.totalInterestNew);
+  currentPaymentValue.textContent = formatNumber(data.baselinePayment);
+  newPaymentValue.textContent = formatNumber(data.newPayment);
+  monthlyDiffValue.textContent = formatNumber(data.monthlyDifference);
+  annualDiffValue.textContent = formatNumber(data.annualDifference);
+  interestBaseValue.textContent = formatNumber(data.totalInterestBaseline);
+  interestNewValue.textContent = formatNumber(data.totalInterestNew);
 }
 
 function updateTable(data) {
@@ -214,13 +214,13 @@ function calculate() {
   });
 
   resultDiv.innerHTML =
-    `<strong>Current payment:</strong> ${formatCurrency(data.baselinePayment)} ` +
-    `| <strong>New payment:</strong> ${formatCurrency(data.newPayment)}`;
+    `<strong>Current payment:</strong> ${formatNumber(data.baselinePayment)} ` +
+    `| <strong>New payment:</strong> ${formatNumber(data.newPayment)}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Monthly difference:</strong> ${formatCurrency(data.monthlyDifference)}</p>` +
-    `<p><strong>Annual difference:</strong> ${formatCurrency(data.annualDifference)}</p>` +
-    `<p><strong>Total interest change:</strong> ${formatCurrency(
+    `<p><strong>Monthly difference:</strong> ${formatNumber(data.monthlyDifference)}</p>` +
+    `<p><strong>Annual difference:</strong> ${formatNumber(data.annualDifference)}</p>` +
+    `<p><strong>Total interest change:</strong> ${formatNumber(
       data.totalInterestNew - data.totalInterestBaseline
     )}</p>`;
 

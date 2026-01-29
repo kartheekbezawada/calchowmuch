@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { calculateMinimumPayment } from '/assets/js/core/credit-card-utils.js';
 
@@ -87,12 +87,12 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  balanceValue.textContent = formatCurrency(data.balance);
+  balanceValue.textContent = formatNumber(data.balance);
   aprValue.textContent = formatPercent(data.apr);
-  firstPaymentValue.textContent = formatCurrency(data.firstPayment);
+  firstPaymentValue.textContent = formatNumber(data.firstPayment);
   monthsValue.textContent = formatNumber(data.months, { maximumFractionDigits: 0 });
-  interestValue.textContent = formatCurrency(data.totalInterest);
-  totalValue.textContent = formatCurrency(data.totalPayment);
+  interestValue.textContent = formatNumber(data.totalInterest);
+  totalValue.textContent = formatNumber(data.totalPayment);
 }
 
 function calculate() {
@@ -125,9 +125,9 @@ function calculate() {
   })} months`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Total interest:</strong> ${formatCurrency(data.totalInterest)}</p>` +
-    `<p><strong>Total paid:</strong> ${formatCurrency(data.totalPayment)}</p>` +
-    `<p><strong>First payment:</strong> ${formatCurrency(data.firstPayment)}</p>`;
+    `<p><strong>Total interest:</strong> ${formatNumber(data.totalInterest)}</p>` +
+    `<p><strong>Total paid:</strong> ${formatNumber(data.totalPayment)}</p>` +
+    `<p><strong>First payment:</strong> ${formatNumber(data.firstPayment)}</p>`;
 
   updateTable(data.yearly);
   updateGraph(data.schedule, data.months);

@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
 import { sampleValues, buildPolyline } from '/assets/js/core/graph-utils.js';
@@ -165,16 +165,16 @@ function updateExplanation(data) {
   }
 
   if (priceValue) {
-    priceValue.textContent = formatCurrency(data.price);
+    priceValue.textContent = formatNumber(data.price);
   }
   if (downPaymentValue) {
-    downPaymentValue.textContent = formatCurrency(data.downAmount);
+    downPaymentValue.textContent = formatNumber(data.downAmount);
   }
   if (downPercentValue) {
     downPercentValue.textContent = formatPercent(data.downPercent);
   }
   if (loanAmountValue) {
-    loanAmountValue.textContent = formatCurrency(data.principal);
+    loanAmountValue.textContent = formatNumber(data.principal);
   }
   if (rateValue) {
     rateValue.textContent = formatPercent(data.annualRate);
@@ -186,20 +186,20 @@ function updateExplanation(data) {
   }
   if (extraMonthlyValue) {
     extraMonthlyValue.textContent =
-      data.extraMonthly > 0 ? `${formatCurrency(data.extraMonthly)} per month` : 'None';
+      data.extraMonthly > 0 ? `${formatNumber(data.extraMonthly)} per month` : 'None';
   }
   if (lumpSumValue) {
     if (data.lumpSum > 0 && data.lumpSumMonth) {
-      lumpSumValue.textContent = `${formatCurrency(data.lumpSum)} in month ${data.lumpSumMonth}`;
+      lumpSumValue.textContent = `${formatNumber(data.lumpSum)} in month ${data.lumpSumMonth}`;
     } else if (data.lumpSum > 0) {
-      lumpSumValue.textContent = formatCurrency(data.lumpSum);
+      lumpSumValue.textContent = formatNumber(data.lumpSum);
     } else {
       lumpSumValue.textContent = 'None';
     }
   }
   if (escrowValue) {
     escrowValue.textContent =
-      data.escrowMonthly > 0 ? `${formatCurrency(data.escrowMonthly)} per month` : 'None';
+      data.escrowMonthly > 0 ? `${formatNumber(data.escrowMonthly)} per month` : 'None';
   }
 
   const interestSaved = Math.max(0, data.baseline.totalInterest - data.overpayment.totalInterest);
@@ -210,9 +210,9 @@ function updateExplanation(data) {
 
   if (lifetimeSummary) {
     lifetimeSummary.textContent =
-      `Total paid is ${formatCurrency(data.overpayment.totalPayment)}. ` +
-      `Total principal is ${formatCurrency(data.overpayment.totalPrincipal)} ` +
-      `and total interest is ${formatCurrency(data.overpayment.totalInterest)}.`;
+      `Total paid is ${formatNumber(data.overpayment.totalPayment)}. ` +
+      `Total principal is ${formatNumber(data.overpayment.totalPrincipal)} ` +
+      `and total interest is ${formatNumber(data.overpayment.totalInterest)}.`;
   }
 }
 
@@ -479,7 +479,7 @@ function calculate() {
     yearlyOver,
   };
 
-  resultDiv.innerHTML = `<strong>Monthly Payment (Principal + Interest):</strong> ${formatCurrency(payment)}`;
+  resultDiv.innerHTML = `<strong>Monthly Payment (Principal + Interest):</strong> ${formatNumber(payment)}`;
 
   const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
   const timeSaved = Math.max(0, baseline.months - overpayment.months);
@@ -489,12 +489,12 @@ function calculate() {
     : null;
   const escrowLine =
     escrowMonthly > 0
-      ? `Total monthly payment (PITI): ${formatCurrency(payment + escrowMonthly)} ` +
-        `(taxes + insurance ${formatCurrency(escrowMonthly)}/mo).`
+      ? `Total monthly payment (PITI): ${formatNumber(payment + escrowMonthly)} ` +
+        `(taxes + insurance ${formatNumber(escrowMonthly)}/mo).`
       : '';
   const extraLine =
     extraMonthly > 0 || lumpSum > 0
-      ? `Extra payments save ${formatCurrency(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
+      ? `Extra payments save ${formatNumber(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
       : 'No extra payment applied.';
   const payoffLine = payoffDate ? `${payoffText} (ending ${payoffDate})` : payoffText;
 
