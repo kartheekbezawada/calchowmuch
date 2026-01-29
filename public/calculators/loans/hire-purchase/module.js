@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { calculateHirePurchase } from '/assets/js/core/auto-loan-utils.js';
 
@@ -89,13 +89,13 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  financedValue.textContent = formatCurrency(data.financed);
-  depositValue.textContent = formatCurrency(data.deposit);
+  financedValue.textContent = formatNumber(data.financed);
+  depositValue.textContent = formatNumber(data.deposit);
   aprValue.textContent = formatPercent(data.apr);
-  paymentValue.textContent = formatCurrency(data.monthlyPayment);
-  balloonValue.textContent = formatCurrency(data.balloon);
-  interestValue.textContent = formatCurrency(data.totalInterest);
-  totalValue.textContent = formatCurrency(data.totalPayable);
+  paymentValue.textContent = formatNumber(data.monthlyPayment);
+  balloonValue.textContent = formatNumber(data.balloon);
+  interestValue.textContent = formatNumber(data.totalInterest);
+  totalValue.textContent = formatNumber(data.totalPayable);
 }
 
 function calculate() {
@@ -125,12 +125,12 @@ function calculate() {
     balloon,
   });
 
-  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatCurrency(data.monthlyPayment)}`;
+  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatNumber(data.monthlyPayment)}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Total interest:</strong> ${formatCurrency(data.totalInterest)}</p>` +
-    `<p><strong>Total payable:</strong> ${formatCurrency(data.totalPayable)}</p>` +
-    `<p><strong>Final balloon:</strong> ${formatCurrency(data.balloon)}</p>`;
+    `<p><strong>Total interest:</strong> ${formatNumber(data.totalInterest)}</p>` +
+    `<p><strong>Total payable:</strong> ${formatNumber(data.totalPayable)}</p>` +
+    `<p><strong>Final balloon:</strong> ${formatNumber(data.balloon)}</p>`;
 
   updateTable(data.yearly);
   updateGraph(data.schedule, data.termMonths);

@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { calculateConsolidation } from '/assets/js/core/credit-card-utils.js';
 
@@ -107,15 +107,15 @@ function updateExplanation(data, termMonths) {
   if (!explanationRoot) {
     return;
   }
-  balanceValue.textContent = formatCurrency(data.balance);
+  balanceValue.textContent = formatNumber(data.balance);
   currentAprValue.textContent = formatPercent(data.currentApr);
-  currentPaymentValue.textContent = formatCurrency(data.currentPayment);
+  currentPaymentValue.textContent = formatNumber(data.currentPayment);
   currentMonthsValue.textContent = formatNumber(data.current.months, { maximumFractionDigits: 0 });
   newAprValue.textContent = formatPercent(data.consolidationApr);
   newTermValue.textContent = formatNumber(termMonths, { maximumFractionDigits: 0 });
-  newPaymentValue.textContent = formatCurrency(data.consolidation.monthlyPayment);
-  interestDiffValue.textContent = formatCurrency(data.interestDifference);
-  totalDiffValue.textContent = formatCurrency(data.totalDifference);
+  newPaymentValue.textContent = formatNumber(data.consolidation.monthlyPayment);
+  interestDiffValue.textContent = formatNumber(data.interestDifference);
+  totalDiffValue.textContent = formatNumber(data.totalDifference);
 }
 
 function calculate() {
@@ -148,14 +148,14 @@ function calculate() {
     return;
   }
 
-  resultDiv.innerHTML = `<strong>Monthly payment change:</strong> ${formatCurrency(
+  resultDiv.innerHTML = `<strong>Monthly payment change:</strong> ${formatNumber(
     data.monthlyDifference
   )}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Interest difference:</strong> ${formatCurrency(data.interestDifference)}</p>` +
-    `<p><strong>Total cost difference:</strong> ${formatCurrency(data.totalDifference)}</p>` +
-    `<p><strong>Consolidation payment:</strong> ${formatCurrency(
+    `<p><strong>Interest difference:</strong> ${formatNumber(data.interestDifference)}</p>` +
+    `<p><strong>Total cost difference:</strong> ${formatNumber(data.totalDifference)}</p>` +
+    `<p><strong>Consolidation payment:</strong> ${formatNumber(
       data.consolidation.monthlyPayment
     )}</p>`;
 

@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBuyToLet } from '/assets/js/core/loan-utils.js';
@@ -28,7 +28,7 @@ const otherCostsInput = document.querySelector('#btl-other-costs');
 const calculateButton = document.querySelector('#btl-calculate');
 const resultDiv = document.querySelector('#btl-result');
 const summaryDiv = document.querySelector('#btl-summary');
-const formatLoanCurrency = (value) => formatCurrency(value, 'GBP');
+const formatLoanCurrency = (value) => formatNumber(value, 'GBP');
 
 const depositGroup = document.querySelector('[data-button-group="btl-deposit-type"]');
 const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-type"]');

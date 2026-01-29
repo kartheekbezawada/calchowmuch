@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateOffset } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
@@ -81,11 +81,11 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  effectiveBalanceValue.textContent = formatCurrency(data.effectiveBalance);
-  paymentValue.textContent = formatCurrency(data.payment);
-  interestBaseValue.textContent = formatCurrency(data.baseline.totalInterest);
-  interestOffsetValue.textContent = formatCurrency(data.offset.totalInterest);
-  interestSavedValue.textContent = formatCurrency(data.interestSaved);
+  effectiveBalanceValue.textContent = formatNumber(data.effectiveBalance);
+  paymentValue.textContent = formatNumber(data.payment);
+  interestBaseValue.textContent = formatNumber(data.baseline.totalInterest);
+  interestOffsetValue.textContent = formatNumber(data.offset.totalInterest);
+  interestSavedValue.textContent = formatNumber(data.interestSaved);
   timeSavedValue.textContent = formatTerm(data.timeSaved);
 }
 
@@ -182,12 +182,12 @@ function calculate() {
     offsetMode,
   });
 
-  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatCurrency(data.payment)}`;
+  resultDiv.innerHTML = `<strong>Monthly payment:</strong> ${formatNumber(data.payment)}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Interest saved:</strong> ${formatCurrency(data.interestSaved)}</p>` +
+    `<p><strong>Interest saved:</strong> ${formatNumber(data.interestSaved)}</p>` +
     `<p><strong>Time saved:</strong> ${formatTerm(data.timeSaved)}</p>` +
-    `<p><strong>Effective balance:</strong> ${formatCurrency(data.effectiveBalance)}</p>`;
+    `<p><strong>Effective balance:</strong> ${formatNumber(data.effectiveBalance)}</p>`;
 
   updateExplanation(data);
   updateTable(data);
