@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLtv } from '/assets/js/core/loan-utils.js';
 import { buildPolyline } from '/assets/js/core/graph-utils.js';
@@ -86,9 +86,9 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  propertyValue.textContent = formatCurrency(data.propertyValue);
-  loanValue.textContent = formatCurrency(data.loanAmount);
-  depositValue.textContent = formatCurrency(data.depositAmount);
+  propertyValue.textContent = formatNumber(data.propertyValue);
+  loanValue.textContent = formatNumber(data.loanAmount);
+  depositValue.textContent = formatNumber(data.depositAmount);
   depositPercentValue.textContent = formatPercent(data.depositPercent);
   ltvValue.textContent = formatPercent(data.ltv);
 }
@@ -186,7 +186,7 @@ function calculate() {
     : '';
 
   summaryDiv.innerHTML =
-    `<p><strong>Deposit:</strong> ${formatCurrency(data.depositAmount)} ` +
+    `<p><strong>Deposit:</strong> ${formatNumber(data.depositAmount)} ` +
     `(${formatPercent(data.depositPercent)})</p>` +
     `<p><strong>Band:</strong> ${data.bucket}</p>` +
     warning;

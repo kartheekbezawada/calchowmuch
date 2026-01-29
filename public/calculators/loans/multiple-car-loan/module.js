@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 import { calculateMultipleCarLoan } from '/assets/js/core/auto-loan-utils.js';
 
@@ -98,10 +98,10 @@ function updateExplanation(data) {
   if (!explanationRoot) {
     return;
   }
-  paymentAValue.textContent = formatCurrency(data.loanA.monthlyPayment);
-  paymentBValue.textContent = formatCurrency(data.loanB.monthlyPayment);
-  paymentTotalValue.textContent = formatCurrency(data.combined.monthlyPayment);
-  interestTotalValue.textContent = formatCurrency(data.combined.totalInterest);
+  paymentAValue.textContent = formatNumber(data.loanA.monthlyPayment);
+  paymentBValue.textContent = formatNumber(data.loanB.monthlyPayment);
+  paymentTotalValue.textContent = formatNumber(data.combined.monthlyPayment);
+  interestTotalValue.textContent = formatNumber(data.combined.totalInterest);
 }
 
 function calculate() {
@@ -134,13 +134,13 @@ function calculate() {
 
   const data = calculateMultipleCarLoan({ loanA, loanB });
 
-  resultDiv.innerHTML = `<strong>Combined payment:</strong> ${formatCurrency(
+  resultDiv.innerHTML = `<strong>Combined payment:</strong> ${formatNumber(
     data.combined.monthlyPayment
   )}`;
 
   summaryDiv.innerHTML =
-    `<p><strong>Total interest:</strong> ${formatCurrency(data.combined.totalInterest)}</p>` +
-    `<p><strong>Total paid:</strong> ${formatCurrency(data.combined.totalPayment)}</p>`;
+    `<p><strong>Total interest:</strong> ${formatNumber(data.combined.totalInterest)}</p>` +
+    `<p><strong>Total paid:</strong> ${formatNumber(data.combined.totalPayment)}</p>`;
 
   updateTable(data);
   updateGraph(data);
