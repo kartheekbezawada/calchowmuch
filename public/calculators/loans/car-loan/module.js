@@ -38,6 +38,10 @@ const yMin = document.querySelector('#car-y-min');
 const xStart = document.querySelector('#car-x-start');
 const xEnd = document.querySelector('#car-x-end');
 const graphNote = document.querySelector('#car-graph-note');
+const tooltip = document.querySelector('#car-tooltip');
+
+let currentSchedule = [];
+let currentMonths = 0;
 
 const metadata = {
   title: 'Car Loan Calculator – Monthly Payment & Total Cost',
@@ -136,6 +140,10 @@ function updateGraph(schedule, months) {
   if (!graphLine) {
     return;
   }
+
+  currentSchedule = schedule;
+  currentMonths = months;
+
   const balances = schedule.map((entry) => entry.balance);
   const sampled = sampleValues(balances, 36);
   const { min, max } = getPaddedMinMax(sampled, 0.15);
@@ -227,3 +235,35 @@ function calculate() {
 calculateButton?.addEventListener('click', calculate);
 
 calculate();
+
+// Add hover tooltip functionality
+if (graphLine && tooltip) {
+  const graphWrapper = graphLine.closest('.graph-bars-wrapper');
+
+  if (graphWrapper) {
+    graphWrapper.addEventListener('mousemove', (e) => {
+      if (currentSchedule.length === 0) return;
+
+      const rect = graphWrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const xPercent = x / rect.width;
+
+      // Calculate which month we're hovering over
+      const monthIndex = Math.round(xPercent * (currentSchedule.length - 1));
+
+      if (monthIndex >= 0 && monthIndex < currentSchedule.length) {
+        const balance = currentSchedule[monthIndex].balance;
+        const month = monthIndex + 1;
+
+        tooltip.textContent = `Month ${month}: ${formatNumber(balance)}`;
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${e.clientY - rect.top - 40}px`;
+        tooltip.classList.add('visible');
+      }
+    });
+
+    graphWrapper.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+    });
+  }
+}

@@ -1,1 +1,24 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
+
+/* Graph tooltip on hover */
+.graph-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.graph-tooltip.visible {
+  opacity: 1;
+}
+
+.graph-bars-wrapper {
+  position: relative;
+}

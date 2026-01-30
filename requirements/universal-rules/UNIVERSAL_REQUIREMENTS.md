@@ -366,6 +366,26 @@ Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 - Each calculator MUST be a standalone HTML document with its own ads,
   metadata, and explanation content.
 
+### 3.9 Left Navigation Styling
+
+**Scope:** Applies to all calculator navigation items in the left navigation pane for Home Loan, Credit Cards, Auto Loans, and Time & Date categories.
+
+| Rule ID | Requirement | Severity |
+| --------- | ----------------------------------------------------------------------------- | ---------- |
+| UI-NAV-1 | Inset border must be 2px thickness (increased from 1px) | P1 |
+| UI-NAV-2 | Left accent bar must be 4px width (increased from 3px) | P1 |
+| UI-NAV-3 | Hover effect must show 4px left border with stronger blue color | P1 |
+| UI-NAV-4 | Border opacity must be increased for better visibility | P1 |
+| UI-NAV-5 | Active state must use 2px border with 4px white left border | P1 |
+
+**Implementation Details:**
+- Default state: `border: 2px solid rgba(102, 126, 234, 0.3)` with `border-left: 4px solid rgba(102, 126, 234, 0.5)`
+- Hover state: `border-left: 4px solid rgba(102, 126, 234, 0.9)` with subtle background tint
+- Active state: `border: 2px solid var(--accent-strong)` with `border-left: 4px solid #ffffff`
+- Smooth transitions on all border and background changes (0.15s ease)
+
+**Target Categories:** `home-loan`, `credit-cards`, `auto-loans`, `time-and-date`
+
 ---
 
 ## 4) Universal Layout and Architecture Boundaries
