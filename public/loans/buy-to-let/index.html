@@ -77,7 +77,7 @@
     <span class="nav-category-indicator">-</span>
   </button>
   <div class="nav-category-items">
-    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item is-active" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-i-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item is-active" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
   </div>
 </div></div>
         </aside>
@@ -280,129 +280,320 @@
 <div class="panel panel-scroll">
   <h3>Explanation</h3>
   <div id="loan-btl-explanation">
-  <h4>Buy-to-Let Summary</h4>
-  <p>
-    With a property price of <span data-btl="price"></span> and a deposit of
-    <span data-btl="deposit"></span> (<span data-btl="deposit-percent"></span>), the loan amount is
-    <span data-btl="loan"></span>.
+  <!-- Dynamic Buy-to-Let Summary (H2) -->
+  <h2>Buy-to-Let Summary</h2>
+  <p class="btl-dynamic-summary">
+    Based on a property price of <span data-btl="price"></span> and monthly rent of
+    <span data-btl="rent"></span>, this estimate shows expected cashflow, yields, and stress
+    coverage under your selected mortgage terms. With a <span data-btl="mortgage-type-label"></span>
+    mortgage at <span data-btl="rate"></span>% over <span data-btl="term"></span> years, your
+    projected net monthly cashflow is <span data-btl="net-monthly"></span> and stress coverage is
+    <span data-btl="stress-coverage-percent"></span>%.
   </p>
-  <p>
-    Effective rent after vacancy is <span data-btl="effective-rent"></span> per month. The mortgage
-    payment is <span data-btl="mortgage-payment"></span>, leaving net cashflow of
-    <span data-btl="net-monthly"></span> per month or <span data-btl="net-annual"></span> per year.
-  </p>
+
+  <!-- Output Snapshot Table (H2) -->
+  <h2>Key Results</h2>
   <div class="result-section">
-    <h4>Net Cashflow Over Time</h4>
-    <div class="graph-panel" id="btl-cashflow-graph">
-      <div class="graph-header">
-        <span class="graph-title" id="btl-cashflow-title">Annual Net Cashflow</span>
-        <span class="graph-note" id="btl-cashflow-note"></span>
+    <table class="calculator-table btl-output-table">
+      <thead>
+        <tr>
+          <th scope="col">Output</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly Mortgage Payment</td>
+          <td data-btl="mortgage-payment"></td>
+        </tr>
+        <tr>
+          <td>Net Monthly Cashflow</td>
+          <td data-btl="net-monthly"></td>
+        </tr>
+        <tr>
+          <td>Gross Yield</td>
+          <td data-btl="gross-yield"></td>
+        </tr>
+        <tr>
+          <td>Net Yield</td>
+          <td data-btl="net-yield"></td>
+        </tr>
+        <tr>
+          <td>Stress Coverage</td>
+          <td data-btl="stress-coverage"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Input Summary Table (H3) -->
+  <h3>Calculation Inputs</h3>
+  <div class="result-section">
+    <table class="calculator-table btl-input-table">
+      <thead>
+        <tr>
+          <th scope="col">Input</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Property Price</td>
+          <td data-btl="price"></td>
+        </tr>
+        <tr>
+          <td>Monthly Rent</td>
+          <td data-btl="rent"></td>
+        </tr>
+        <tr>
+          <td>Deposit Type</td>
+          <td data-btl="deposit-type"></td>
+        </tr>
+        <tr>
+          <td>Deposit Amount</td>
+          <td data-btl="deposit"></td>
+        </tr>
+        <tr>
+          <td>Deposit Percent</td>
+          <td data-btl="deposit-percent"></td>
+        </tr>
+        <tr>
+          <td>Loan Amount</td>
+          <td data-btl="loan"></td>
+        </tr>
+        <tr>
+          <td>LTV</td>
+          <td data-btl="ltv"></td>
+        </tr>
+        <tr>
+          <td>Interest Rate</td>
+          <td data-btl="rate"></td>
+        </tr>
+        <tr>
+          <td>Loan Term</td>
+          <td data-btl="term"></td>
+        </tr>
+        <tr>
+          <td>Mortgage Type</td>
+          <td data-btl="mortgage-type-label"></td>
+        </tr>
+        <tr>
+          <td>Rent Increase Enabled</td>
+          <td data-btl="rent-increase-enabled"></td>
+        </tr>
+        <tr class="is-hidden" id="btl-input-rent-increase-type-row">
+          <td>Rent Increase Type</td>
+          <td data-btl="rent-increase-type"></td>
+        </tr>
+        <tr class="is-hidden" id="btl-input-rent-increase-value-row">
+          <td>Rent Increase Value</td>
+          <td data-btl="rent-increase-value"></td>
+        </tr>
+        <tr class="is-hidden" id="btl-input-rent-increase-frequency-row">
+          <td>Rent Increase Frequency</td>
+          <td data-btl="rent-increase-frequency"></td>
+        </tr>
+        <tr>
+          <td>Vacancy Type</td>
+          <td data-btl="vacancy-type"></td>
+        </tr>
+        <tr>
+          <td>Vacancy Value</td>
+          <td data-btl="vacancy-value"></td>
+        </tr>
+        <tr>
+          <td>Letting Agent Fee</td>
+          <td data-btl="agent-fee"></td>
+        </tr>
+        <tr>
+          <td>Maintenance (Monthly)</td>
+          <td data-btl="maintenance"></td>
+        </tr>
+        <tr>
+          <td>Insurance / Service / Ground Rent (Monthly)</td>
+          <td data-btl="other-costs"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Net Cash Flow Graph (H3) -->
+  <h3>Net Cash Flow Comparison</h3>
+  <div class="result-section">
+    <div class="btl-chart-container">
+      <div class="btl-chart-header">
+        <h4 class="btl-chart-title">Annual Net Cashflow Over 25 Years</h4>
+        <p class="btl-chart-subtitle">Compare baseline scenario with rent increase projections</p>
       </div>
-      <div class="graph-legend" id="btl-cashflow-legend">
-        <div class="graph-legend-item">
-          <span class="graph-legend-color principal"></span>
-          <span>Net cashflow (baseline)</span>
-        </div>
-        <div class="graph-legend-item is-hidden" id="btl-cashflow-legend-increase">
-          <span class="graph-legend-color btl-rent-increase"></span>
-          <span>With rent increase</span>
-        </div>
-      </div>
-      <div class="graph-container">
-        <span class="graph-y-label" id="btl-cashflow-y-label">Cashflow</span>
-        <div class="graph-y-axis" id="btl-cashflow-y-axis">
-          <span id="btl-cashflow-y-max"></span>
-          <span id="btl-cashflow-y-mid"></span>
-          <span id="btl-cashflow-y-min"></span>
-        </div>
-        <div class="graph-main">
-          <div class="graph-bars-wrapper">
-            <svg
-              class="graph-line"
-              id="btl-cashflow-line"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <polyline class="line-primary" points=""></polyline>
-              <polyline class="line-rent-increase" points=""></polyline>
-            </svg>
-            <div class="graph-hover-layer" id="btl-cashflow-hover" aria-hidden="true"></div>
-            <div
-              class="graph-tooltip is-hidden"
-              id="btl-cashflow-tooltip"
-              role="tooltip"
-              aria-hidden="true"
-            >
-              <div class="graph-tooltip-title" id="btl-cashflow-tooltip-title"></div>
-              <div class="graph-tooltip-row" id="btl-cashflow-tooltip-baseline"></div>
-              <div
-                class="graph-tooltip-row is-hidden"
-                id="btl-cashflow-tooltip-increase"
-              ></div>
-              <div
-                class="graph-tooltip-row is-hidden"
-                id="btl-cashflow-tooltip-applied"
-              ></div>
-            </div>
-          </div>
-          <div class="graph-x-axis" id="btl-cashflow-x-axis">
-            <span id="btl-cashflow-x-start"></span>
-            <span id="btl-cashflow-x-end"></span>
-          </div>
-          <span class="graph-x-label" id="btl-cashflow-x-label">Year</span>
-        </div>
+      <div class="btl-chart-wrapper">
+        <canvas id="btl-cashflow-chart"></canvas>
       </div>
     </div>
   </div>
-  <p>
-    Gross yield is <span data-btl="gross-yield"></span> and net yield is
-    <span data-btl="net-yield"></span>. The stress coverage ratio (rent / interest-only payment) is
-    <span data-btl="stress-coverage"></span>.
-  </p>
-  <p class="is-hidden" id="btl-rent-increase-explainer">
-    With rent increases <span data-btl="rent-increase-desc"></span>, projected annual cashflow grows
-    from <span data-btl="rent-increase-start"></span> in year 1 to
-    <span data-btl="rent-increase-end"></span> by year <span data-btl="rent-increase-years"></span>.
-  </p>
-  <p>
-    Interest-only loans keep payments lower but do not reduce the principal. Repayment mortgages
-    increase equity faster but reduce monthly cashflow.
-  </p>
 
-  <div class="result-section">
-    <h4>Yearly Projection</h4>
-    <div class="table-scroll" id="btl-table-wrap" tabindex="0">
-      <table class="calculator-table" id="btl-table">
-        <thead>
-          <tr>
-            <th scope="col">Year</th>
-            <th scope="col">Rent Income</th>
-            <th scope="col">Mortgage Cost</th>
-            <th scope="col">Costs</th>
-            <th scope="col">Net Cashflow</th>
-            <th scope="col">Cumulative</th>
-            <th scope="col">Increase Applied</th>
-          </tr>
-        </thead>
-        <tbody id="btl-table-body"></tbody>
-      </table>
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- FAQ Section (H3) -->
+  <h3>Frequently Asked Questions</h3>
+  <div class="result-section btl-faq">
+    <div class="faq-item">
+      <h4>What is a buy-to-let mortgage?</h4>
+      <p>
+        A buy-to-let mortgage is a loan designed for purchasing property to rent out to tenants
+        rather than for personal occupation. These mortgages typically require larger deposits
+        (usually 25% or more) and have different affordability criteria based on expected rental
+        income rather than just personal income.
+      </p>
     </div>
-  </div>
 
-  <div class="result-section">
-    <h4>Rate Scenarios</h4>
-    <div class="btl-scenario-grid" id="btl-rate-scenarios">
-      <div class="btl-scenario-card">
-        <span class="btl-scenario-label">Your rate</span>
-        <span class="btl-scenario-value" data-btl="rate-current"></span>
-        <span class="btl-scenario-detail" data-btl="cashflow-current"></span>
-      </div>
-      <div class="btl-scenario-card">
-        <span class="btl-scenario-label"
-          >If rates rise to <span data-btl="rate-higher"></span
-        ></span>
-        <span class="btl-scenario-detail" data-btl="cashflow-higher"></span>
-      </div>
+    <div class="faq-item">
+      <h4>How does a buy-to-let mortgage work?</h4>
+      <p>
+        You borrow money to purchase a rental property, make monthly mortgage payments, and collect
+        rent from tenants. The rental income should ideally cover the mortgage payment plus
+        additional costs (maintenance, insurance, letting fees, void periods). Any surplus is your
+        profit or cashflow.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>What deposit do I need for a buy-to-let mortgage?</h4>
+      <p>
+        Most lenders require a minimum deposit of 25% of the property value for buy-to-let
+        mortgages. Some lenders may accept 20%, but larger deposits (30-40%) often secure better
+        interest rates and loan terms.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Are buy-to-let interest rates higher than residential mortgages?</h4>
+      <p>
+        Yes, buy-to-let mortgage rates are typically higher than standard residential mortgages
+        because lenders consider them higher risk. The difference is usually between 0.5% to 1.5%
+        higher than equivalent residential rates.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>What is the rental coverage rule?</h4>
+      <p>
+        Most lenders require that the monthly rental income covers 125% to 145% of the monthly
+        mortgage payment (calculated on an interest-only basis). This buffer ensures you can still
+        afford the mortgage during void periods or if interest rates rise.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Can first-time buyers get a buy-to-let mortgage?</h4>
+      <p>
+        While possible, it's more difficult. Most lenders prefer borrowers who already own their own
+        home or have previous landlord experience. First-time landlords may face higher rates,
+        larger deposit requirements, or need to demonstrate significant rental income coverage.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Can I live in my buy-to-let property?</h4>
+      <p>
+        No, buy-to-let mortgages are specifically for rental properties. Living in the property
+        would breach your mortgage terms. If you want to live in the property, you need a
+        residential mortgage instead.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Do I need a separate income for a buy-to-let mortgage?</h4>
+      <p>
+        Many lenders require you to have a minimum personal income (often £25,000-£30,000 per year)
+        in addition to the expected rental income. This demonstrates you can cover mortgage payments
+        during void periods without relying solely on rent.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>What mortgage terms are available for buy-to-let?</h4>
+      <p>
+        Buy-to-let mortgages typically range from 5 to 35 years, though some lenders impose age
+        limits (e.g., the mortgage must be repaid by age 70 or 75). Shorter terms mean higher
+        monthly payments but less interest paid overall.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Should I choose interest-only or repayment?</h4>
+      <p>
+        Interest-only mortgages are popular for buy-to-let because they maximize monthly cashflow.
+        You only pay the interest each month, not the capital, which keeps payments lower. However,
+        you'll need a repayment strategy for the capital at the end of the term (usually selling the
+        property). Repayment mortgages build equity faster but reduce monthly cashflow.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>What fees should I expect?</h4>
+      <p>
+        Common fees include arrangement fees (1-2% of loan), valuation fees (£300-£1,500), legal
+        fees (£500-£1,500), stamp duty (higher rates for buy-to-let), letting agent fees (8-12% of
+        rent), insurance, and ongoing maintenance costs.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>How is buy-to-let income taxed?</h4>
+      <p>
+        Rental income is taxed as income at your marginal rate. Since 2020, mortgage interest is no
+        longer fully deductible; instead, you receive a 20% tax credit on interest paid. You can
+        deduct other expenses (repairs, letting fees, insurance) before calculating profit. Capital
+        gains tax applies when you sell the property.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Can I remortgage my buy-to-let property?</h4>
+      <p>
+        Yes, you can remortgage to secure a better interest rate, release equity, or switch from
+        interest-only to repayment (or vice versa). The property will be revalued, and rental income
+        must still meet the lender's coverage requirements.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Should I use a limited company for buy-to-let?</h4>
+      <p>
+        Buying through a limited company can offer tax advantages, especially for higher-rate
+        taxpayers, because companies pay corporation tax (19-25%) on profits rather than income tax
+        (up to 45%). However, company mortgages often have higher rates, and there are additional
+        administrative costs. Seek professional tax advice.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>What are the main investment risks?</h4>
+      <p>
+        Key risks include void periods (no rental income), tenant damage or non-payment, property
+        value decline, interest rate rises, unexpected maintenance costs, regulatory changes
+        (landlord obligations), and higher taxation. Always maintain cash reserves for emergencies.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>How do I account for void periods?</h4>
+      <p>
+        Void periods are times when the property is unoccupied. Budget for 4-8 weeks (8-15% of
+        annual rent) of void time per year to account for tenant turnover, repairs between tenants,
+        or seasonal rental market fluctuations.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Can I switch my residential mortgage to buy-to-let?</h4>
+      <p>
+        Yes, this is called a consent-to-let or converting to buy-to-let. You'll need to remortgage
+        onto a buy-to-let product, which typically requires a larger deposit (25%+ equity), meets
+        rental coverage requirements, and may have higher interest rates. Notify your current lender
+        first.
+      </p>
     </div>
   </div>
 </div>

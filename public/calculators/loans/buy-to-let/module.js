@@ -279,6 +279,76 @@ function updateExplanation(data) {
     return;
   }
 
+  // Helper function to set text content by data-btl attribute
+  const setByAttr = (attr, value) => {
+    const elements = explanationRoot.querySelectorAll(`[data-btl="${attr}"]`);
+    elements.forEach((el) => {
+      el.textContent = value;
+    });
+  };
+
+  // Dynamic Summary Section
+  setByAttr('price', formatLoanCurrency(data.price));
+  setByAttr('rent', formatLoanCurrency(data.monthlyRent));
+  setByAttr('mortgage-type-label', data.mortgageType === 'interest-only' ? 'Interest-Only' : 'Repayment');
+  setByAttr('rate', formatNumber(data.annualRate, { maximumFractionDigits: 2 }));
+  setByAttr('term', `${data.termYears}`);
+  setByAttr('net-monthly', formatLoanCurrency(data.netMonthlyCashflow));
+  setByAttr('stress-coverage-percent', formatNumber(data.stressCoverage * 100, { maximumFractionDigits: 2 }));
+
+  // Output Snapshot Table
+  setByAttr('mortgage-payment', formatLoanCurrency(data.monthlyMortgage));
+  setByAttr('gross-yield', formatPercent(data.grossYield));
+  setByAttr('net-yield', formatPercent(data.netYield));
+  setByAttr('stress-coverage', formatNumber(data.stressCoverage, { maximumFractionDigits: 2 }));
+
+  // Input Summary Table
+  setByAttr('deposit-type', data.depositType === 'amount' ? 'Amount' : 'Percent');
+  setByAttr('deposit', formatLoanCurrency(data.depositAmount));
+  setByAttr('deposit-percent', formatPercent(data.depositPercent));
+  setByAttr('loan', formatLoanCurrency(data.loanAmount));
+  setByAttr('ltv', formatPercent(data.ltv));
+  setByAttr('rent-increase-enabled', data.rentIncreaseEnabled ? 'Yes' : 'No');
+
+  // Handle rent increase conditional rows
+  const rentIncreaseTypeRow = document.querySelector('#btl-input-rent-increase-type-row');
+  const rentIncreaseValueRow = document.querySelector('#btl-input-rent-increase-value-row');
+  const rentIncreaseFrequencyRow = document.querySelector('#btl-input-rent-increase-frequency-row');
+
+  if (data.rentIncreaseEnabled) {
+    rentIncreaseTypeRow?.classList.remove('is-hidden');
+    rentIncreaseValueRow?.classList.remove('is-hidden');
+    rentIncreaseFrequencyRow?.classList.remove('is-hidden');
+
+    setByAttr('rent-increase-type', data.rentIncreaseType === 'percent' ? 'Percent' : 'Amount');
+
+    const rentIncreaseValueText = data.rentIncreaseType === 'percent'
+      ? formatPercent(data.rentIncreaseValue)
+      : formatLoanCurrency(data.rentIncreaseValue);
+    setByAttr('rent-increase-value', rentIncreaseValueText);
+
+    const frequencyText = data.rentIncreaseInterval === 1
+      ? 'Every year'
+      : `Every ${data.rentIncreaseInterval} years`;
+    setByAttr('rent-increase-frequency', frequencyText);
+  } else {
+    rentIncreaseTypeRow?.classList.add('is-hidden');
+    rentIncreaseValueRow?.classList.add('is-hidden');
+    rentIncreaseFrequencyRow?.classList.add('is-hidden');
+  }
+
+  setByAttr('vacancy-type', data.vacancyType === 'percent' ? 'Percent' : 'Months');
+
+  const vacancyValueText = data.vacancyType === 'percent'
+    ? formatPercent(data.vacancyPercent)
+    : `${data.vacancyMonths} months`;
+  setByAttr('vacancy-value', vacancyValueText);
+
+  setByAttr('agent-fee', formatPercent(data.agentFeePercent));
+  setByAttr('maintenance', formatLoanCurrency(data.maintenanceMonthly));
+  setByAttr('other-costs', formatLoanCurrency(data.otherCostsMonthly));
+
+  // Legacy support for old elements (if any)
   if (priceValue) {
     priceValue.textContent = formatLoanCurrency(data.price);
   }
@@ -392,62 +462,151 @@ function updateTable(data) {
     .join('');
 }
 
+// Global Chart.js instance
+let cashflowChartInstance = null;
+
+function renderCashflowChart(yearsArray, baselineData, increaseData, rentIncreaseEnabled) {
+  const canvas = document.getElementById('btl-cashflow-chart');
+  if (!canvas) {
+    return;
+  }
+
+  // Destroy existing chart instance
+  if (cashflowChartInstance) {
+    cashflowChartInstance.destroy();
+    cashflowChartInstance = null;
+  }
+
+  const ctx = canvas.getContext('2d');
+
+  // Prepare datasets
+  const datasets = [
+    {
+      label: 'Net Cash Flow',
+      data: baselineData,
+      borderColor: 'rgba(59, 130, 246, 1)',
+      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+      borderWidth: 2,
+      tension: 0.4,
+      pointRadius: 3,
+      pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1,
+      fill: false,
+    },
+  ];
+
+  // Add rent increase dataset if enabled
+  if (rentIncreaseEnabled) {
+    datasets.push({
+      label: 'With Rent Increase',
+      data: increaseData,
+      borderColor: 'rgba(16, 185, 129, 1)',
+      backgroundColor: 'rgba(16, 185, 129, 0.1)',
+      borderWidth: 2,
+      tension: 0.4,
+      pointRadius: 3,
+      pointBackgroundColor: 'rgba(16, 185, 129, 1)',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1,
+      fill: false,
+    });
+  }
+
+  cashflowChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: yearsArray,
+      datasets: datasets,
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            color: '#1f2937',
+            font: {
+              size: 12,
+              weight: '500',
+            },
+            padding: 12,
+            usePointStyle: true,
+          },
+        },
+        tooltip: {
+          backgroundColor: 'rgba(17, 24, 39, 0.95)',
+          titleColor: '#f9fafb',
+          bodyColor: '#f9fafb',
+          borderColor: '#374151',
+          borderWidth: 1,
+          padding: 12,
+          displayColors: true,
+          callbacks: {
+            label: function (context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += formatLoanCurrency(context.parsed.y);
+              return label;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: {
+            color: 'rgba(59, 130, 246, 0.1)',
+            drawBorder: false,
+          },
+          ticks: {
+            color: '#6b7280',
+            font: {
+              size: 11,
+            },
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 10,
+          },
+        },
+        y: {
+          grid: {
+            color: 'rgba(59, 130, 246, 0.1)',
+            drawBorder: false,
+          },
+          ticks: {
+            color: '#6b7280',
+            font: {
+              size: 11,
+            },
+            callback: function (value) {
+              return '£' + formatNumber(value, { maximumFractionDigits: 0 });
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
 function updateCashflowGraph(data) {
-  cacheCashflowElements();
+  // Prepare data for Chart.js
+  const baselineProjection = data.baselineProjection || [];
+  const projection = data.projection || [];
 
-  const baselineValues = data.cashflowSeriesBaseline.map((entry) => entry.value);
-  const increaseValues = data.rentIncreaseEnabled
-    ? data.cashflowSeriesWithIncrease.map((entry) => entry.value)
-    : [];
-  const sampledBaseline = sampleValues(baselineValues, 30);
-  const sampledIncrease = data.rentIncreaseEnabled ? sampleValues(increaseValues, 30) : [];
-  const combinedValues = sampledBaseline.concat(sampledIncrease);
-  const { min, max } = getPaddedMinMax(combinedValues, 0.15);
-  const mid = (min + max) / 2;
+  const years = baselineProjection.map((row) => `Year ${row.year}`);
+  const baselineValues = baselineProjection.map((row) => row.netCashflow);
+  const increaseValues = projection.map((row) => row.netCashflow);
 
-  if (cashflowLine) {
-    cashflowLine.setAttribute('points', buildPolyline(sampledBaseline, min, max));
-  }
-  if (cashflowIncreaseLine) {
-    cashflowIncreaseLine.setAttribute(
-      'points',
-      data.rentIncreaseEnabled ? buildPolyline(sampledIncrease, min, max) : ''
-    );
-  }
-  if (cashflowLegendIncrease) {
-    cashflowLegendIncrease.classList.toggle('is-hidden', !data.rentIncreaseEnabled);
-  }
-  if (cashflowYMax) {
-    cashflowYMax.textContent = formatAxisValue(max);
-  }
-  if (cashflowYMid) {
-    cashflowYMid.textContent = formatAxisValue(mid);
-  }
-  if (cashflowYMin) {
-    cashflowYMin.textContent = formatAxisValue(min);
-  }
-  if (cashflowXStart) {
-    cashflowXStart.textContent = '1';
-  }
-  if (cashflowXEnd) {
-    cashflowXEnd.textContent = String(data.baselineProjection.length);
-  }
-  if (cashflowNote) {
-    cashflowNote.textContent = data.rentIncreaseEnabled
-      ? `${data.baselineProjection.length} years (rent increase on)`
-      : `${data.baselineProjection.length} years`;
-  }
-
-  cashflowTooltipData = {
-    baseline: data.baselineProjection,
-    projection: data.projection,
-    rentIncreaseEnabled: data.rentIncreaseEnabled,
-    rentIncreaseType: data.rentIncreaseType,
-    rentIncreaseValue: data.rentIncreaseValue,
-    rentIncreaseInterval: data.rentIncreaseInterval,
-  };
-
-  ensureCashflowTooltipBindings();
+  // Render Chart.js graph
+  renderCashflowChart(years, baselineValues, increaseValues, data.rentIncreaseEnabled);
 }
 
 function ensureCashflowTooltipBindings() {
@@ -615,7 +774,6 @@ function calculate() {
     rentInput,
     rentIncreasePercentInput,
     rentIncreaseAmountInput,
-    rentIncreaseCustomInput,
     vacancyPercentInput,
     vacancyMonthsInput,
     agentFeeInput,
@@ -750,6 +908,12 @@ function calculate() {
   if (depositType === 'amount' && depositPercentInput) {
     depositPercentInput.value = data.depositPercent.toFixed(2);
   }
+
+  // Enrich data object with additional input values for explanation pane
+  data.depositType = depositType;
+  data.vacancyType = vacancyType;
+  data.vacancyMonths = vacancyMonths;
+  data.ltv = data.loanAmount > 0 && price > 0 ? (data.loanAmount / price) * 100 : 0;
 
   resultDiv.innerHTML = `<strong>Net Monthly Cashflow:</strong> ${formatLoanCurrency(
     data.netMonthlyCashflow
