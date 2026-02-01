@@ -1,7 +1,6 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
-import { sampleValues, buildPolyline } from '/assets/js/core/graph-utils.js';
 import {
   parseStartDate,
   addMonths,
@@ -9,8 +8,6 @@ import {
   formatTerm,
   buildHomeLoanSchedule,
   aggregateYearly,
-  buildMonthlySeries,
-  buildYearlySeries,
 } from '/assets/js/core/home-loan-utils.js';
 
 const priceInput = document.querySelector('#mtg-price');
@@ -42,16 +39,6 @@ const extraMonthlyValue = explanationRoot?.querySelector('[data-mtg="extra-month
 const lumpSumValue = explanationRoot?.querySelector('[data-mtg="lump-sum"]');
 const escrowValue = explanationRoot?.querySelector('[data-mtg="escrow"]');
 const lifetimeSummary = explanationRoot?.querySelector('[data-mtg="lifetime-summary"]');
-
-const lineBaseline = explanationRoot?.querySelector('#mtg-line-base');
-const lineOver = explanationRoot?.querySelector('#mtg-line-over');
-const graphTitle = explanationRoot?.querySelector('#mtg-graph-title');
-const graphNote = explanationRoot?.querySelector('#mtg-graph-note');
-const graphYMax = explanationRoot?.querySelector('#mtg-y-max');
-const graphYMid = explanationRoot?.querySelector('#mtg-y-mid');
-const graphXStart = explanationRoot?.querySelector('#mtg-x-start');
-const graphXEnd = explanationRoot?.querySelector('#mtg-x-end');
-const graphXLabel = explanationRoot?.querySelector('#mtg-x-label');
 
 const tableTitle = explanationRoot?.querySelector('#mtg-table-title');
 const monthlyTableBody = explanationRoot?.querySelector('#mtg-table-monthly-body');
@@ -101,16 +88,6 @@ function handleDownTypeChange(type) {
 
 function formatTableNumber(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function formatAxisValue(value) {
-  if (value >= 1000000) {
-    return `${(value / 1000000).toFixed(1)}M`;
-  }
-  if (value >= 1000) {
-    return `${(value / 1000).toFixed(0)}K`;
-  }
-  return formatNumber(value, { maximumFractionDigits: 0 });
 }
 
 function getMonthLabel(month, startDate) {
@@ -216,53 +193,6 @@ function updateExplanation(data) {
   }
 }
 
-function updateGraph(data, view) {
-  if (!lineBaseline || !lineOver) {
-    return;
-  }
-
-  const isMonthly = view === 'monthly';
-  const timeline = isMonthly
-    ? Math.max(data.baseline.months, data.overpayment.months)
-    : Math.max(data.yearlyBase.length, data.yearlyOver.length);
-  const baseSeries = isMonthly
-    ? buildMonthlySeries(data.baseline.schedule, data.principal, timeline)
-    : buildYearlySeries(data.yearlyBase, data.principal, timeline);
-  const overSeries = isMonthly
-    ? buildMonthlySeries(data.overpayment.schedule, data.principal, timeline)
-    : buildYearlySeries(data.yearlyOver, data.principal, timeline);
-
-  const sampledBase = sampleValues(baseSeries, 60);
-  const sampledOver = sampleValues(overSeries, 60);
-
-  lineBaseline.setAttribute('points', buildPolyline(sampledBase, 0, data.principal));
-  lineOver.setAttribute('points', buildPolyline(sampledOver, 0, data.principal));
-
-  if (graphTitle) {
-    graphTitle.textContent = isMonthly
-      ? 'Remaining Balance (Monthly)'
-      : 'Remaining Balance (Yearly)';
-  }
-  if (graphNote) {
-    graphNote.textContent = isMonthly ? `${timeline} months` : `${timeline} years`;
-  }
-  if (graphYMax) {
-    graphYMax.textContent = formatAxisValue(data.principal);
-  }
-  if (graphYMid) {
-    graphYMid.textContent = formatAxisValue(data.principal / 2);
-  }
-  if (graphXStart) {
-    graphXStart.textContent = '1';
-  }
-  if (graphXEnd) {
-    graphXEnd.textContent = String(timeline);
-  }
-  if (graphXLabel) {
-    graphXLabel.textContent = isMonthly ? 'Month' : 'Year';
-  }
-}
-
 function applyView(view) {
   if (!currentData) {
     return;
@@ -275,7 +205,6 @@ function applyView(view) {
       ? 'Amortization Table (Monthly)'
       : 'Amortization Table (Yearly)';
   }
-  updateGraph(currentData, view);
 }
 
 function refreshScheduleToggle() {
@@ -295,12 +224,6 @@ function clearOutputs() {
   }
   if (yearlyTableBody) {
     yearlyTableBody.innerHTML = '';
-  }
-  if (lineBaseline) {
-    lineBaseline.setAttribute('points', '');
-  }
-  if (lineOver) {
-    lineOver.setAttribute('points', '');
   }
 }
 

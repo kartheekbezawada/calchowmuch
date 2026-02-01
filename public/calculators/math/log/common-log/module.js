@@ -4,7 +4,6 @@ import { setPageMetadata } from '/assets/js/core/ui.js';
 import {
   calculateLogBase,
   calculateLogChangeOfBase,
-  drawLogCurve,
 } from '/assets/js/core/logarithm.js';
 
 const valueInput = document.querySelector('#log-value');
@@ -15,7 +14,6 @@ const calculateBtn = document.querySelector('#log-calculate');
 const resultDiv = document.querySelector('#log-result');
 const detailDiv = document.querySelector('#log-detail');
 const changeDiv = document.querySelector('#log-change');
-const graphCanvas = document.querySelector('#log-graph');
 
 const commonLogMetadata = {
   title: 'Common & Custom Log Calculator | Calculate How Much',
@@ -50,12 +48,6 @@ function getSelectedBase() {
 
 function toggleCustomRow() {
   customRow.hidden = baseSelect.value !== 'custom';
-}
-
-function updateGraph(base, argument) {
-  if (graphCanvas) {
-    drawLogCurve(graphCanvas, base, argument);
-  }
 }
 
 function showMessage(message) {
@@ -112,8 +104,6 @@ function updateResults() {
       maximumFractionDigits: 6,
     })}.`;
   }
-
-  updateGraph(base, value);
 }
 
 baseSelect?.addEventListener('change', () => {

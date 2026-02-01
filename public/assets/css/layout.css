@@ -274,6 +274,7 @@ body .site-header .header-search-icon {
   padding: 0;
   min-height: 0;
   flex: 1 1 auto;
+  margin-top: 12px;
   margin-bottom: 0.5rem;
 }
 
@@ -305,6 +306,27 @@ body .site-header .header-search-icon {
   scrollbar-gutter: stable;
   height: 100%;
   margin-left: -4px;
+  position: relative;
+}
+
+/* Edge glow effect */
+.left-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.4) 20%,
+    rgba(102, 126, 234, 0.6) 50%,
+    rgba(102, 126, 234, 0.4) 80%,
+    transparent 100%
+  );
+  animation: edgeGlow 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .left-nav-title {
@@ -421,20 +443,112 @@ body .site-header .header-search-icon {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
   transition:
     background 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    transform 0.15s ease,
+    border-left-width 0.15s ease,
+    border-left-color 0.15s ease;
+}
+
+/* Ripple effect structure */
+.left-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(102, 126, 234, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.left-nav .nav-item.ripple::after {
+  width: 300%;
+  height: 300%;
+  opacity: 0;
 }
 
 .left-nav .nav-item.is-active {
-  background: var(--accent);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
   color: #ffffff;
   border-color: var(--accent-strong);
-  box-shadow: 0 8px 14px rgba(102, 126, 234, 0.24);
+  box-shadow:
+    0 8px 14px rgba(102, 126, 234, 0.24),
+    0 0 20px rgba(102, 126, 234, 0.3);
+  position: relative;
+}
+
+/* Pulsing glow effect on active item */
+.left-nav .nav-item.is-active::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
+  filter: blur(8px);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .left-nav .nav-item.is-hidden {
   display: none;
+}
+
+/* Enhanced hover with multi-layer shadows */
+.left-nav .nav-item:hover:not(.is-active) {
+  background: rgba(102, 126, 234, 0.08);
+  border-left-width: 5px;
+  border-left-color: rgba(102, 126, 234, 0.7);
+  transform: translateX(2px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(102, 126, 234, 0.15),
+    0 8px 16px rgba(102, 126, 234, 0.1);
+}
+
+/* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
+.nav-category[data-id="home-loan"] .nav-item,
+.nav-category[data-id="credit-cards"] .nav-item,
+.nav-category[data-id="auto-loans"] .nav-item,
+.nav-category[data-id="time-and-date"] .nav-item {
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-left: 4px solid rgba(102, 126, 234, 0.5);
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    border-left-color 0.15s ease;
+}
+
+.nav-category[data-id="home-loan"] .nav-item:hover,
+.nav-category[data-id="credit-cards"] .nav-item:hover,
+.nav-category[data-id="auto-loans"] .nav-item:hover,
+.nav-category[data-id="time-and-date"] .nav-item:hover {
+  border-left: 4px solid rgba(102, 126, 234, 0.9);
+  border-color: rgba(102, 126, 234, 0.4);
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.nav-category[data-id="home-loan"] .nav-item.is-active,
+.nav-category[data-id="credit-cards"] .nav-item.is-active,
+.nav-category[data-id="auto-loans"] .nav-item.is-active,
+.nav-category[data-id="time-and-date"] .nav-item.is-active {
+  border: 2px solid var(--accent-strong);
+  border-left: 4px solid #ffffff;
 }
 
 .center-column {
@@ -581,11 +695,50 @@ body .site-header .header-search-icon {
   }
 }
 
+/* Keyframe animations for navigation enhancements */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes edgeGlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page,
   .site-header,
   .top-nav,
   .layout-main > * {
+    animation: none;
+  }
+
+  .left-nav::before,
+  .left-nav .nav-item.is-active,
+  .left-nav .nav-item.is-active::before {
     animation: none;
   }
 }

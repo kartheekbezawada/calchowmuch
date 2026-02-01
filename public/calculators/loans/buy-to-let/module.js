@@ -279,6 +279,76 @@ function updateExplanation(data) {
     return;
   }
 
+  // Helper function to set text content by data-btl attribute
+  const setByAttr = (attr, value) => {
+    const elements = explanationRoot.querySelectorAll(`[data-btl="${attr}"]`);
+    elements.forEach((el) => {
+      el.textContent = value;
+    });
+  };
+
+  // Dynamic Summary Section
+  setByAttr('price', formatLoanCurrency(data.price));
+  setByAttr('rent', formatLoanCurrency(data.monthlyRent));
+  setByAttr('mortgage-type-label', data.mortgageType === 'interest-only' ? 'Interest-Only' : 'Repayment');
+  setByAttr('rate', formatNumber(data.annualRate, { maximumFractionDigits: 2 }));
+  setByAttr('term', `${data.termYears}`);
+  setByAttr('net-monthly', formatLoanCurrency(data.netMonthlyCashflow));
+  setByAttr('stress-coverage-percent', formatNumber(data.stressCoverage * 100, { maximumFractionDigits: 2 }));
+
+  // Output Snapshot Table
+  setByAttr('mortgage-payment', formatLoanCurrency(data.monthlyMortgage));
+  setByAttr('gross-yield', formatPercent(data.grossYield));
+  setByAttr('net-yield', formatPercent(data.netYield));
+  setByAttr('stress-coverage', formatNumber(data.stressCoverage, { maximumFractionDigits: 2 }));
+
+  // Input Summary Table
+  setByAttr('deposit-type', data.depositType === 'amount' ? 'Amount' : 'Percent');
+  setByAttr('deposit', formatLoanCurrency(data.depositAmount));
+  setByAttr('deposit-percent', formatPercent(data.depositPercent));
+  setByAttr('loan', formatLoanCurrency(data.loanAmount));
+  setByAttr('ltv', formatPercent(data.ltv));
+  setByAttr('rent-increase-enabled', data.rentIncreaseEnabled ? 'Yes' : 'No');
+
+  // Handle rent increase conditional rows
+  const rentIncreaseTypeRow = document.querySelector('#btl-input-rent-increase-type-row');
+  const rentIncreaseValueRow = document.querySelector('#btl-input-rent-increase-value-row');
+  const rentIncreaseFrequencyRow = document.querySelector('#btl-input-rent-increase-frequency-row');
+
+  if (data.rentIncreaseEnabled) {
+    rentIncreaseTypeRow?.classList.remove('is-hidden');
+    rentIncreaseValueRow?.classList.remove('is-hidden');
+    rentIncreaseFrequencyRow?.classList.remove('is-hidden');
+
+    setByAttr('rent-increase-type', data.rentIncreaseType === 'percent' ? 'Percent' : 'Amount');
+
+    const rentIncreaseValueText = data.rentIncreaseType === 'percent'
+      ? formatPercent(data.rentIncreaseValue)
+      : formatLoanCurrency(data.rentIncreaseValue);
+    setByAttr('rent-increase-value', rentIncreaseValueText);
+
+    const frequencyText = data.rentIncreaseInterval === 1
+      ? 'Every year'
+      : `Every ${data.rentIncreaseInterval} years`;
+    setByAttr('rent-increase-frequency', frequencyText);
+  } else {
+    rentIncreaseTypeRow?.classList.add('is-hidden');
+    rentIncreaseValueRow?.classList.add('is-hidden');
+    rentIncreaseFrequencyRow?.classList.add('is-hidden');
+  }
+
+  setByAttr('vacancy-type', data.vacancyType === 'percent' ? 'Percent' : 'Months');
+
+  const vacancyValueText = data.vacancyType === 'percent'
+    ? formatPercent(data.vacancyPercent)
+    : `${data.vacancyMonths} months`;
+  setByAttr('vacancy-value', vacancyValueText);
+
+  setByAttr('agent-fee', formatPercent(data.agentFeePercent));
+  setByAttr('maintenance', formatLoanCurrency(data.maintenanceMonthly));
+  setByAttr('other-costs', formatLoanCurrency(data.otherCostsMonthly));
+
+  // Legacy support for old elements (if any)
   if (priceValue) {
     priceValue.textContent = formatLoanCurrency(data.price);
   }
@@ -390,64 +460,6 @@ function updateTable(data) {
       </tr>`
     )
     .join('');
-}
-
-function updateCashflowGraph(data) {
-  cacheCashflowElements();
-
-  const baselineValues = data.cashflowSeriesBaseline.map((entry) => entry.value);
-  const increaseValues = data.rentIncreaseEnabled
-    ? data.cashflowSeriesWithIncrease.map((entry) => entry.value)
-    : [];
-  const sampledBaseline = sampleValues(baselineValues, 30);
-  const sampledIncrease = data.rentIncreaseEnabled ? sampleValues(increaseValues, 30) : [];
-  const combinedValues = sampledBaseline.concat(sampledIncrease);
-  const { min, max } = getPaddedMinMax(combinedValues, 0.15);
-  const mid = (min + max) / 2;
-
-  if (cashflowLine) {
-    cashflowLine.setAttribute('points', buildPolyline(sampledBaseline, min, max));
-  }
-  if (cashflowIncreaseLine) {
-    cashflowIncreaseLine.setAttribute(
-      'points',
-      data.rentIncreaseEnabled ? buildPolyline(sampledIncrease, min, max) : ''
-    );
-  }
-  if (cashflowLegendIncrease) {
-    cashflowLegendIncrease.classList.toggle('is-hidden', !data.rentIncreaseEnabled);
-  }
-  if (cashflowYMax) {
-    cashflowYMax.textContent = formatAxisValue(max);
-  }
-  if (cashflowYMid) {
-    cashflowYMid.textContent = formatAxisValue(mid);
-  }
-  if (cashflowYMin) {
-    cashflowYMin.textContent = formatAxisValue(min);
-  }
-  if (cashflowXStart) {
-    cashflowXStart.textContent = '1';
-  }
-  if (cashflowXEnd) {
-    cashflowXEnd.textContent = String(data.baselineProjection.length);
-  }
-  if (cashflowNote) {
-    cashflowNote.textContent = data.rentIncreaseEnabled
-      ? `${data.baselineProjection.length} years (rent increase on)`
-      : `${data.baselineProjection.length} years`;
-  }
-
-  cashflowTooltipData = {
-    baseline: data.baselineProjection,
-    projection: data.projection,
-    rentIncreaseEnabled: data.rentIncreaseEnabled,
-    rentIncreaseType: data.rentIncreaseType,
-    rentIncreaseValue: data.rentIncreaseValue,
-    rentIncreaseInterval: data.rentIncreaseInterval,
-  };
-
-  ensureCashflowTooltipBindings();
 }
 
 function ensureCashflowTooltipBindings() {
@@ -615,7 +627,6 @@ function calculate() {
     rentInput,
     rentIncreasePercentInput,
     rentIncreaseAmountInput,
-    rentIncreaseCustomInput,
     vacancyPercentInput,
     vacancyMonthsInput,
     agentFeeInput,
@@ -751,6 +762,12 @@ function calculate() {
     depositPercentInput.value = data.depositPercent.toFixed(2);
   }
 
+  // Enrich data object with additional input values for explanation pane
+  data.depositType = depositType;
+  data.vacancyType = vacancyType;
+  data.vacancyMonths = vacancyMonths;
+  data.ltv = data.loanAmount > 0 && price > 0 ? (data.loanAmount / price) * 100 : 0;
+
   resultDiv.innerHTML = `<strong>Net Monthly Cashflow:</strong> ${formatLoanCurrency(
     data.netMonthlyCashflow
   )}`;
@@ -764,7 +781,6 @@ function calculate() {
 
   updateExplanation(data);
   updateTable(data);
-  updateCashflowGraph(data);
 }
 
 setDepositVisibility(depositButtons?.getValue() ?? 'amount');

@@ -1,14 +1,13 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
-import { calculateNaturalLog, drawLogCurve } from '/assets/js/core/logarithm.js';
+import { calculateNaturalLog } from '/assets/js/core/logarithm.js';
 
 const valueInput = document.querySelector('#ln-value');
 const decimalsSelect = document.querySelector('#ln-decimals');
 const resultDiv = document.querySelector('#ln-result');
 const detailDiv = document.querySelector('#ln-detail');
 const calculateBtn = document.querySelector('#ln-calculate');
-const graphCanvas = document.querySelector('#ln-graph');
 
 const naturalLogMetadata = {
   title: 'Natural Log Calculator | Calculate How Much',
@@ -61,7 +60,6 @@ function updateResults() {
 
   resultDiv.innerHTML = `<strong>ln(${formatNumber(x, { maximumFractionDigits: 6 })}) = ${formattedLn}</strong>`;
   detailDiv.innerHTML = `e^{${formattedLn}} = ${formatNumber(Math.exp(result), { maximumFractionDigits: 6 })}`;
-  drawLogCurve(graphCanvas, Math.E, x);
 }
 
 calculateBtn?.addEventListener('click', updateResults);

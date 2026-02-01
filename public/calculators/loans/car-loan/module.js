@@ -1,5 +1,4 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateCarLoan } from '/assets/js/core/auto-loan-utils.js';
 
@@ -31,13 +30,6 @@ const interestValue = explanationRoot?.querySelector('[data-car="interest"]');
 const totalCostValue = explanationRoot?.querySelector('[data-car="total-cost"]');
 
 const tableBody = document.querySelector('#car-table-body');
-const graphLine = document.querySelector('#car-line');
-const yMax = document.querySelector('#car-y-max');
-const yMid = document.querySelector('#car-y-mid');
-const yMin = document.querySelector('#car-y-min');
-const xStart = document.querySelector('#car-x-start');
-const xEnd = document.querySelector('#car-x-end');
-const graphNote = document.querySelector('#car-graph-note');
 
 const metadata = {
   title: 'Car Loan Calculator – Monthly Payment & Total Cost',
@@ -99,9 +91,6 @@ function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
   }
-  if (graphLine) {
-    graphLine.setAttribute('points', '');
-  }
 }
 
 function setError(message) {
@@ -130,25 +119,6 @@ function updateTable(yearly) {
       `
     )
     .join('');
-}
-
-function updateGraph(schedule, months) {
-  if (!graphLine) {
-    return;
-  }
-  const balances = schedule.map((entry) => entry.balance);
-  const sampled = sampleValues(balances, 36);
-  const { min, max } = getPaddedMinMax(sampled, 0.15);
-  graphLine.setAttribute('points', buildPolyline(sampled, min, max));
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  xStart.textContent = '1';
-  xEnd.textContent = formatNumber(months, { maximumFractionDigits: 0 });
-  if (graphNote) {
-    graphNote.textContent = `Loan term ${formatNumber(months, { maximumFractionDigits: 0 })} months`;
-  }
 }
 
 function updateExplanation(data) {
@@ -220,7 +190,6 @@ function calculate() {
     `<p><strong>Total cost:</strong> ${formatNumber(data.totalCost)}</p>`;
 
   updateTable(data.yearly);
-  updateGraph(data.schedule, data.months);
   updateExplanation({ ...data, apr, termYears });
 }
 

@@ -392,9 +392,9 @@
               ]
             },
             {
-              "id": "how-much-can-borrow",
+              "id": "how-much-can-i-borrow",
               "name": "How Much Can I Borrow",
-              "url": "/loans/how-much-can-borrow"
+              "url": "/loans/how-much-can-i-borrow"
             },
             {
               "id": "remortgage-switching",

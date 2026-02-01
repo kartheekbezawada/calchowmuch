@@ -277,120 +277,6 @@ class SeriesAnalyzer {
 }
 
 // Plot partial sums to visualize convergence
-function plotSeriesGraph(termExpr, startIndex, conclusion) {
-  const canvas = document.getElementById('series-graph');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-
-  ctx.clearRect(0, 0, width, height);
-
-  try {
-    const analyzer = new SeriesAnalyzer(termExpr, startIndex);
-
-    // Calculate partial sums
-    const maxTerms = 50;
-    const partialSums = [];
-    let sum = 0;
-
-    for (let n = startIndex; n < startIndex + maxTerms; n++) {
-      try {
-        const term = analyzer.evaluateTerm(n);
-        sum += term;
-        partialSums.push({ n, sum, term });
-      } catch (e) {
-        break;
-      }
-    }
-
-    if (partialSums.length === 0) return;
-
-    // Find y-axis range
-    const sumValues = partialSums.map(p => p.sum);
-    const yMin = Math.min(...sumValues) - 1;
-    const yMax = Math.max(...sumValues) + 1;
-    const yRange = yMax - yMin;
-
-    const xScale = width / maxTerms;
-    const yScale = height / yRange;
-
-    // Draw axes
-    ctx.strokeStyle = '#ccc';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-
-    // X-axis
-    const yZero = height - (0 - yMin) * yScale;
-    ctx.moveTo(0, yZero);
-    ctx.lineTo(width, yZero);
-
-    ctx.stroke();
-
-    // Draw gridlines
-    ctx.strokeStyle = '#f0f0f0';
-    ctx.lineWidth = 1;
-    for (let i = 10; i < maxTerms; i += 10) {
-      const x = i * xScale;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.stroke();
-    }
-
-    // Plot partial sums
-    ctx.strokeStyle = conclusion === 'converges' ? '#2ecc71' : conclusion === 'diverges' ? '#e74c3c' : '#f39c12';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-
-    partialSums.forEach((p, i) => {
-      const x = (p.n - startIndex) * xScale;
-      const y = height - (p.sum - yMin) * yScale;
-
-      if (i === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-    });
-
-    ctx.stroke();
-
-    // Draw points
-    ctx.fillStyle = '#3498db';
-    partialSums.forEach(p => {
-      const x = (p.n - startIndex) * xScale;
-      const y = height - (p.sum - yMin) * yScale;
-
-      ctx.beginPath();
-      ctx.arc(x, y, 3, 0, 2 * Math.PI);
-      ctx.fill();
-    });
-
-    // Update graph info
-    const graphInfo = document.getElementById('series-graph-info');
-    if (graphInfo) {
-      const lastSum = partialSums[partialSums.length - 1].sum;
-      const convergenceColor = conclusion === 'converges' ? '#2ecc71' : conclusion === 'diverges' ? '#e74c3c' : '#f39c12';
-
-      graphInfo.innerHTML = `
-        <div style="margin-top: 10px;">
-          <span style="color: ${convergenceColor};">■ Partial Sums S_n = Σ(k=${startIndex} to n) a_k</span><br>
-          <span style="color: #3498db;">● Individual terms</span><br>
-          <span>First ${partialSums.length} terms computed</span><br>
-          <span>S_${partialSums[partialSums.length - 1].n} ≈ ${lastSum.toFixed(6)}</span>
-          ${conclusion === 'converges' ? '<br><span style="color: #2ecc71;">Series appears to converge to a limit</span>' : ''}
-          ${conclusion === 'diverges' ? '<br><span style="color: #e74c3c;">Series appears to diverge</span>' : ''}
-        </div>
-      `;
-    }
-
-  } catch (error) {
-    console.error('Error plotting series:', error);
-  }
-}
-
 // Initialize calculator
 export function initSeriesConvergenceCalculator() {
   const calculateBtn = document.getElementById('series-calculate');
@@ -469,10 +355,6 @@ export function initSeriesConvergenceCalculator() {
           </div>
         `;
       }
-
-      // Plot graph
-      plotSeriesGraph(termInput, startIndex, result.conclusion);
-
     } catch (error) {
       resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
       stepsDiv.innerHTML = '';

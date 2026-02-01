@@ -1,5 +1,4 @@
 import { formatNumber } from '/assets/js/core/format.js';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLease } from '/assets/js/core/auto-loan-utils.js';
 
@@ -25,13 +24,6 @@ const monthsValue = explanationRoot?.querySelector('[data-lease="months"]');
 const totalValue = explanationRoot?.querySelector('[data-lease="total"]');
 
 const tableBody = document.querySelector('#lease-table-body');
-const graphLine = document.querySelector('#lease-line');
-const yMax = document.querySelector('#lease-y-max');
-const yMid = document.querySelector('#lease-y-mid');
-const yMin = document.querySelector('#lease-y-min');
-const xStart = document.querySelector('#lease-x-start');
-const xEnd = document.querySelector('#lease-x-end');
-const graphNote = document.querySelector('#lease-graph-note');
 
 const residualTypeButtons = setupButtonGroup(residualTypeGroup, {
   defaultValue: 'amount',
@@ -45,9 +37,6 @@ const residualTypeButtons = setupButtonGroup(residualTypeGroup, {
 function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
-  }
-  if (graphLine) {
-    graphLine.setAttribute('points', '');
   }
 }
 
@@ -77,25 +66,6 @@ function updateTable(yearly) {
       `
     )
     .join('');
-}
-
-function updateGraph(schedule, months) {
-  if (!graphLine) {
-    return;
-  }
-  const totals = schedule.map((entry) => entry.cumulative);
-  const sampled = sampleValues(totals, 36);
-  const { min, max } = getPaddedMinMax(sampled, 0.1);
-  graphLine.setAttribute('points', buildPolyline(sampled, min, max));
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  xStart.textContent = '1';
-  xEnd.textContent = formatNumber(months, { maximumFractionDigits: 0 });
-  if (graphNote) {
-    graphNote.textContent = `Lease term ${formatNumber(months, { maximumFractionDigits: 0 })} months`;
-  }
 }
 
 function updateExplanation(data) {
@@ -155,7 +125,6 @@ function calculate() {
     `<p><strong>Upfront payment:</strong> ${formatNumber(data.upfrontPayment)}</p>`;
 
   updateTable(data.yearly);
-  updateGraph(data.schedule, data.termMonths);
   updateExplanation(data);
 }
 

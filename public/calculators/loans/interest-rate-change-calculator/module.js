@@ -1,7 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateInterestRateChange } from '/assets/js/core/loan-utils.js';
-import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 
 const balanceInput = document.querySelector('#rate-balance');
 const currentRateInput = document.querySelector('#rate-current');
@@ -25,15 +24,6 @@ const interestNewValue = explanationRoot?.querySelector('[data-rate="interest-ne
 
 const tableBody = document.querySelector('#rate-table-body');
 
-const lineNew = document.querySelector('#rate-line-new');
-const lineBase = document.querySelector('#rate-line-base');
-const graphYMax = document.querySelector('#rate-y-max');
-const graphYMid = document.querySelector('#rate-y-mid');
-const graphYMin = document.querySelector('#rate-y-min');
-const graphXStart = document.querySelector('#rate-x-start');
-const graphXEnd = document.querySelector('#rate-x-end');
-const graphNote = document.querySelector('#rate-graph-note');
-
 const timingButtons = setupButtonGroup(timingGroup, {
   defaultValue: 'immediate',
   onChange: (value) => {
@@ -54,8 +44,6 @@ function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
   }
-  lineNew?.setAttribute('points', '');
-  lineBase?.setAttribute('points', '');
 }
 
 function setError(message) {
@@ -112,54 +100,6 @@ function updateTable(data) {
         </tr>`
     )
     .join('');
-}
-
-function updateGraph(data) {
-  if (!lineNew || !lineBase) {
-    return;
-  }
-
-  const baseline = data.paymentTimelineBaseline;
-  const updated = data.paymentTimelineNew;
-  const { min, max } = getPaddedMinMax([...baseline, ...updated], 0.1);
-  const mid = (min + max) / 2;
-
-  const buildStepPoints = (values, stepIndex) => {
-    if (!values.length) {
-      return '';
-    }
-    const points = [];
-    const total = values.length;
-    const mapPoint = (index, value) => {
-      const x = total === 1 ? 0 : (index / (total - 1)) * 100;
-      const ratio = max === min ? 0.5 : (value - min) / (max - min);
-      const y = 100 - ratio * 100;
-      const clampedY = Math.min(100, Math.max(0, y));
-      return `${x.toFixed(2)},${clampedY.toFixed(2)}`;
-    };
-
-    values.forEach((value, index) => {
-      if (stepIndex > 0 && index === stepIndex) {
-        const priorValue = values[index - 1] ?? value;
-        points.push(mapPoint(index, priorValue));
-      }
-      points.push(mapPoint(index, value));
-    });
-
-    return points.join(' ');
-  };
-
-  lineBase.setAttribute('points', buildPolyline(baseline, min, max));
-  lineNew.setAttribute('points', buildStepPoints(updated, data.changeMonths));
-  graphYMax.textContent = formatAxisValue(max);
-  graphYMid.textContent = formatAxisValue(mid);
-  graphYMin.textContent = formatAxisValue(min);
-  graphXStart.textContent = '1';
-  graphXEnd.textContent = String(data.months);
-  if (graphNote) {
-    graphNote.textContent =
-      data.changeMonths > 0 ? `Change at month ${data.changeMonths}` : 'Immediate change';
-  }
 }
 
 function calculate() {
@@ -226,7 +166,6 @@ function calculate() {
 
   updateExplanation(data);
   updateTable(data);
-  updateGraph(data);
 }
 
 changeMonthsRow?.classList.toggle('is-hidden', timingButtons?.getValue() !== 'after');

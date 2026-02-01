@@ -159,108 +159,6 @@ class SymbolicDifferentiator {
   }
 }
 
-// Graph plotting function
-function plotDerivativeGraph(funcExpr, derivExpr, evalPoint) {
-  const canvas = document.getElementById('deriv-graph');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-
-  ctx.clearRect(0, 0, width, height);
-
-  // Set up coordinate system
-  const xMin = -5, xMax = 5;
-  const yMin = -10, yMax = 10;
-
-  const xScale = width / (xMax - xMin);
-  const yScale = height / (yMax - yMin);
-  const xOrigin = -xMin * xScale;
-  const yOrigin = yMax * yScale;
-
-  // Draw axes
-  ctx.strokeStyle = '#ccc';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, yOrigin);
-  ctx.lineTo(width, yOrigin);
-  ctx.moveTo(xOrigin, 0);
-  ctx.lineTo(xOrigin, height);
-  ctx.stroke();
-
-  // Helper to convert function string to evaluable using safe parser
-  const safeEval = (expr, x) => {
-    try {
-      return expressionParser.evaluate(expr, x, 'x');
-    } catch (e) {
-      return 0;
-    }
-  };
-
-  // Plot original function
-  ctx.strokeStyle = '#3498db';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-
-  for (let px = 0; px < width; px++) {
-    const x = xMin + px / xScale;
-    const y = safeEval(funcExpr, x);
-    const py = yOrigin - y * yScale;
-
-    if (px === 0) {
-      ctx.moveTo(px, py);
-    } else {
-      ctx.lineTo(px, py);
-    }
-  }
-  ctx.stroke();
-
-  // Plot derivative
-  if (derivExpr) {
-    ctx.strokeStyle = '#e74c3c';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-
-    for (let px = 0; px < width; px++) {
-      const x = xMin + px / xScale;
-      const y = safeEval(derivExpr, x);
-      const py = yOrigin - y * yScale;
-
-      if (px === 0) {
-        ctx.moveTo(px, py);
-      } else {
-        ctx.lineTo(px, py);
-      }
-    }
-    ctx.stroke();
-  }
-
-  // Mark evaluation point if specified
-  if (evalPoint !== null && evalPoint !== undefined && !isNaN(evalPoint)) {
-    const px = (evalPoint - xMin) * xScale;
-    const y = safeEval(funcExpr, evalPoint);
-    const py = yOrigin - y * yScale;
-
-    ctx.fillStyle = '#2ecc71';
-    ctx.beginPath();
-    ctx.arc(px, py, 5, 0, 2 * Math.PI);
-    ctx.fill();
-  }
-
-  // Update graph info
-  const graphInfo = document.getElementById('deriv-graph-info');
-  if (graphInfo) {
-    graphInfo.innerHTML = `
-      <div style="margin-top: 10px;">
-        <span style="color: #3498db;">■ Original function f(x)</span><br>
-        <span style="color: #e74c3c;">■ Derivative f'(x)</span>
-        ${evalPoint !== null && !isNaN(evalPoint) ? `<br><span style="color: #2ecc71;">● Evaluation point (x=${evalPoint})</span>` : ''}
-      </div>
-    `;
-  }
-}
-
 // Initialize calculator
 export function initDerivativeCalculator() {
   const calculateBtn = document.getElementById('deriv-calculate');
@@ -302,10 +200,6 @@ export function initDerivativeCalculator() {
             f${"'".repeat(orderInput)}(${evalPoint}) = ${value.toFixed(6)}
           </div>
         `;
-
-        plotDerivativeGraph(funcInput, result.derivative, evalPoint);
-      } else {
-        plotDerivativeGraph(funcInput, result.derivative, null);
       }
 
       // Show steps
