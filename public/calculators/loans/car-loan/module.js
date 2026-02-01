@@ -1,5 +1,4 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateCarLoan } from '/assets/js/core/auto-loan-utils.js';
 
@@ -31,17 +30,6 @@ const interestValue = explanationRoot?.querySelector('[data-car="interest"]');
 const totalCostValue = explanationRoot?.querySelector('[data-car="total-cost"]');
 
 const tableBody = document.querySelector('#car-table-body');
-const graphLine = document.querySelector('#car-line');
-const yMax = document.querySelector('#car-y-max');
-const yMid = document.querySelector('#car-y-mid');
-const yMin = document.querySelector('#car-y-min');
-const xStart = document.querySelector('#car-x-start');
-const xEnd = document.querySelector('#car-x-end');
-const graphNote = document.querySelector('#car-graph-note');
-const tooltip = document.querySelector('#car-tooltip');
-
-let currentSchedule = [];
-let currentMonths = 0;
 
 const metadata = {
   title: 'Car Loan Calculator – Monthly Payment & Total Cost',
@@ -103,9 +91,6 @@ function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
   }
-  if (graphLine) {
-    graphLine.setAttribute('points', '');
-  }
 }
 
 function setError(message) {
@@ -134,29 +119,6 @@ function updateTable(yearly) {
       `
     )
     .join('');
-}
-
-function updateGraph(schedule, months) {
-  if (!graphLine) {
-    return;
-  }
-
-  currentSchedule = schedule;
-  currentMonths = months;
-
-  const balances = schedule.map((entry) => entry.balance);
-  const sampled = sampleValues(balances, 36);
-  const { min, max } = getPaddedMinMax(sampled, 0.15);
-  graphLine.setAttribute('points', buildPolyline(sampled, min, max));
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  xStart.textContent = '1';
-  xEnd.textContent = formatNumber(months, { maximumFractionDigits: 0 });
-  if (graphNote) {
-    graphNote.textContent = `Loan term ${formatNumber(months, { maximumFractionDigits: 0 })} months`;
-  }
 }
 
 function updateExplanation(data) {
@@ -228,42 +190,9 @@ function calculate() {
     `<p><strong>Total cost:</strong> ${formatNumber(data.totalCost)}</p>`;
 
   updateTable(data.yearly);
-  updateGraph(data.schedule, data.months);
   updateExplanation({ ...data, apr, termYears });
 }
 
 calculateButton?.addEventListener('click', calculate);
 
 calculate();
-
-// Add hover tooltip functionality
-if (graphLine && tooltip) {
-  const graphWrapper = graphLine.closest('.graph-bars-wrapper');
-
-  if (graphWrapper) {
-    graphWrapper.addEventListener('mousemove', (e) => {
-      if (currentSchedule.length === 0) return;
-
-      const rect = graphWrapper.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const xPercent = x / rect.width;
-
-      // Calculate which month we're hovering over
-      const monthIndex = Math.round(xPercent * (currentSchedule.length - 1));
-
-      if (monthIndex >= 0 && monthIndex < currentSchedule.length) {
-        const balance = currentSchedule[monthIndex].balance;
-        const month = monthIndex + 1;
-
-        tooltip.textContent = `Month ${month}: ${formatNumber(balance)}`;
-        tooltip.style.left = `${x}px`;
-        tooltip.style.top = `${e.clientY - rect.top - 40}px`;
-        tooltip.classList.add('visible');
-      }
-    });
-
-    graphWrapper.addEventListener('mouseleave', () => {
-      tooltip.classList.remove('visible');
-    });
-  }
-}

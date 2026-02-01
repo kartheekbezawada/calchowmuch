@@ -91,34 +91,6 @@
   border: 1px solid #cbd5e1;
 }
 
-.graph-container {
-  margin-top: 20px;
-  padding: 16px;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-}
-
-.graph-container h3 {
-  margin: 0 0 12px 0;
-  color: #1e40af;
-  text-align: center;
-}
-
-#system-graph {
-  display: block;
-  margin: 0 auto;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
-  background: white;
-}
-
-.graph-info {
-  margin-top: 12px;
-  font-size: 14px;
-  color: #64748b;
-}
-
 .system-type {
   background: #ecfccb;
   border: 1px solid #84cc16;

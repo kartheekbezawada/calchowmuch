@@ -20,9 +20,6 @@ const solutionMethodGroup = setupButtonGroup(document.querySelector('[data-butto
 const solveButton = document.querySelector('#solve-system');
 const resultDiv = document.querySelector('#system-result');
 const detailDiv = document.querySelector('#system-detail');
-const graphContainer = document.querySelector('#system-graph-container');
-const graphCanvas = document.querySelector('#system-graph');
-const graphInfo = document.querySelector('#system-graph-info');
 
 function validateInputs(ids) {
   const inputs = ids.map((id) => document.querySelector(id));
@@ -50,7 +47,6 @@ function toggleSystemSize(size) {
 function solveSystem() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
-  graphContainer.style.display = 'none';
   
   const systemSize = systemSizeGroup.getValue();
   const method = solutionMethodGroup.getValue();
@@ -114,9 +110,6 @@ function solve2x2System(method) {
     } else if (method === 'matrix') {
       detailHTML += showMatrixSteps(a11, a12, b1, a21, a22, b2, x, y, det);
     }
-    
-    // Draw graph
-    drawSystem2x2Graph(a11, a12, b1, a21, a22, b2, x, y);
   }
   
   resultDiv.innerHTML = solutionHTML;
@@ -252,129 +245,6 @@ function solve3x3System(method) {
   
   resultDiv.innerHTML = solutionHTML;
   detailDiv.innerHTML = detailHTML;
-}
-
-function drawSystem2x2Graph(a11, a12, b1, a21, a22, b2, x, y) {
-  const ctx = graphCanvas.getContext('2d');
-  const width = graphCanvas.width;
-  const height = graphCanvas.height;
-  
-  // Clear canvas
-  ctx.clearRect(0, 0, width, height);
-  
-  // Set up coordinate system
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const scale = 20;
-  const range = 10;
-  
-  // Helper function to convert coordinates
-  function toCanvas(mathX, mathY) {
-    return {
-      x: centerX + mathX * scale,
-      y: centerY - mathY * scale
-    };
-  }
-  
-  // Draw grid
-  ctx.strokeStyle = '#f1f5f9';
-  ctx.lineWidth = 1;
-  
-  for (let i = -range; i <= range; i++) {
-    if (i !== 0) {
-      // Vertical lines
-      const x = centerX + i * scale;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.stroke();
-      
-      // Horizontal lines
-      const y = centerY - i * scale;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
-    }
-  }
-  
-  // Draw axes
-  ctx.strokeStyle = '#64748b';
-  ctx.lineWidth = 2;
-  
-  // X-axis
-  ctx.beginPath();
-  ctx.moveTo(0, centerY);
-  ctx.lineTo(width, centerY);
-  ctx.stroke();
-  
-  // Y-axis
-  ctx.beginPath();
-  ctx.moveTo(centerX, 0);
-  ctx.lineTo(centerX, height);
-  ctx.stroke();
-  
-  // Draw lines for equations
-  // Line 1: a11*x + a12*y = b1  =>  y = (b1 - a11*x) / a12
-  // Line 2: a21*x + a22*y = b2  =>  y = (b2 - a21*x) / a22
-  
-  if (Math.abs(a12) > 1e-10) {
-    ctx.strokeStyle = '#3b82f6';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    
-    const x1 = -range;
-    const y1 = (b1 - a11 * x1) / a12;
-    const x2 = range;
-    const y2 = (b1 - a11 * x2) / a12;
-    
-    const pos1 = toCanvas(x1, y1);
-    const pos2 = toCanvas(x2, y2);
-    
-    ctx.moveTo(pos1.x, pos1.y);
-    ctx.lineTo(pos2.x, pos2.y);
-    ctx.stroke();
-  }
-  
-  if (Math.abs(a22) > 1e-10) {
-    ctx.strokeStyle = '#dc2626';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    
-    const x1 = -range;
-    const y1 = (b2 - a21 * x1) / a22;
-    const x2 = range;
-    const y2 = (b2 - a21 * x2) / a22;
-    
-    const pos1 = toCanvas(x1, y1);
-    const pos2 = toCanvas(x2, y2);
-    
-    ctx.moveTo(pos1.x, pos1.y);
-    ctx.lineTo(pos2.x, pos2.y);
-    ctx.stroke();
-  }
-  
-  // Mark intersection point if solution exists
-  if (x !== undefined && y !== undefined && !isNaN(x) && !isNaN(y)) {
-    const solutionPos = toCanvas(x, y);
-    if (solutionPos.x >= 0 && solutionPos.x <= width && solutionPos.y >= 0 && solutionPos.y <= height) {
-      ctx.fillStyle = '#16a34a';
-      ctx.beginPath();
-      ctx.arc(solutionPos.x, solutionPos.y, 6, 0, 2 * Math.PI);
-      ctx.fill();
-    }
-  }
-  
-  graphContainer.style.display = 'block';
-  
-  // Graph info
-  let infoHTML = `<p><strong>Blue line:</strong> ${formatNumber(a11)}x + ${formatNumber(a12)}y = ${formatNumber(b1)}</p>`;
-  infoHTML += `<p><strong>Red line:</strong> ${formatNumber(a21)}x + ${formatNumber(a22)}y = ${formatNumber(b2)}</p>`;
-  if (x !== undefined && y !== undefined && !isNaN(x) && !isNaN(y)) {
-    infoHTML += `<p><strong>Intersection (Solution):</strong> (${formatNumber(x, { maximumFractionDigits: 3 })}, ${formatNumber(y, { maximumFractionDigits: 3 })})</p>`;
-  }
-  
-  graphInfo.innerHTML = infoHTML;
 }
 
 // Event listeners

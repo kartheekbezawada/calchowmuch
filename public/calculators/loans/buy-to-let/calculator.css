@@ -34,83 +34,9 @@
   gap: 12px;
 }
 
-#btl-cashflow-graph .graph-bars-wrapper {
-  position: relative;
-  overflow-y: visible;
-  overflow-x: hidden;
-  min-height: 140px;
-}
-
-#btl-cashflow-graph .graph-bars-wrapper.btl-column-chart {
-  overflow: hidden;
-}
-
-#btl-cashflow-graph .graph-columns {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-#btl-cashflow-graph .graph-main {
-  overflow-x: hidden;
-}
-
-.graph-hover-layer {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  cursor: crosshair;
-  pointer-events: auto;
-  z-index: 1;
-}
-
-#btl-cashflow-graph .graph-line {
-  pointer-events: none;
-}
-
-.graph-tooltip {
-  position: absolute;
-  min-width: 160px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: #111827;
-  color: #f9fafb;
-  font-size: 12px;
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
-  pointer-events: none;
-  transform: translate(-50%, -100%);
-  z-index: 5;
-}
-
 .btl-negative {
   color: #b91c1c;
   font-weight: 600;
-}
-
-.graph-tooltip-title {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.graph-tooltip-row {
-  line-height: 1.4;
-}
-
-.graph-line .line-rent-increase {
-  stroke: #667eea;
-}
-
-.graph-legend-color.btl-rent-increase {
-  background: #667eea;
-}
-
-#btl-cashflow-bars rect {
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-#btl-cashflow-bars rect:hover {
-  opacity: 1 !important;
 }
 
 .btl-scenario-grid {
@@ -145,48 +71,8 @@
   color: var(--muted-text);
 }
 
-/* Chart.js Container */
-.btl-chart-container {
-  background: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 16px;
-}
-
-.btl-chart-header {
-  margin-bottom: 16px;
-}
-
-.btl-chart-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-  color: var(--text-color);
-}
-
-.btl-chart-subtitle {
-  font-size: 13px;
-  color: var(--muted-text);
-  margin: 0;
-}
-
-.btl-chart-wrapper {
-  position: relative;
-  height: 300px;
-  width: 100%;
-}
-
-#btl-cashflow-chart {
-  max-height: 300px;
-}
-
 @media (max-width: 720px) {
   #calc-buy-to-let .btl-compact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .btl-chart-wrapper {
-    height: 250px;
   }
 }

@@ -29,14 +29,6 @@ const monthlySummary = explanationRoot?.querySelector('[data-emi="monthly-summar
 const yearlySummary = explanationRoot?.querySelector('[data-emi="yearly-summary"]');
 const monthlySummaryBlock = explanationRoot?.querySelector('[data-emi-view="monthly"]');
 const yearlySummaryBlock = explanationRoot?.querySelector('[data-emi-view="yearly"]');
-const graphTitle = explanationRoot?.querySelector('#emi-graph-title');
-const graphNote = explanationRoot?.querySelector('#emi-graph-note');
-const graphBars = explanationRoot?.querySelector('#emi-graph-bars');
-const graphYMax = explanationRoot?.querySelector('#emi-y-max');
-const graphYMid = explanationRoot?.querySelector('#emi-y-mid');
-const graphXStart = explanationRoot?.querySelector('#emi-x-start');
-const graphXEnd = explanationRoot?.querySelector('#emi-x-end');
-const graphXLabel = explanationRoot?.querySelector('#emi-x-label');
 
 const extraButtons = setupButtonGroup(extraGroup, {
   defaultValue: 'monthly',
@@ -302,66 +294,6 @@ function updateExplanation(data, view) {
   }
 }
 
-function formatAxisValue(value) {
-  if (value >= 1000000) {
-    return `${(value / 1000000).toFixed(1)}M`;
-  }
-  if (value >= 1000) {
-    return `${(value / 1000).toFixed(0)}K`;
-  }
-  return formatNumber(value, { maximumFractionDigits: 0 });
-}
-
-function updateGraph(data, view) {
-  if (!graphBars || !graphTitle) {
-    return;
-  }
-
-  const maxBalance = data.principal;
-  const isMonthly = view === 'monthly';
-  const sourceData = isMonthly ? data.overpayment.schedule : data.yearlyOver;
-  const balances = sourceData.map((entry) => entry.balance);
-
-  if (balances[0] !== maxBalance) {
-    balances.unshift(maxBalance);
-  }
-
-  const sampled = sampleValues(balances, 60);
-  graphBars.innerHTML = '';
-
-  sampled.forEach((balance, index) => {
-    const bar = document.createElement('div');
-    bar.className = 'graph-bar balance';
-    const height = maxBalance > 0 ? (balance / maxBalance) * 100 : 0;
-    bar.style.height = `${Math.max(2, Math.min(100, height))}%`;
-    bar.title = `${isMonthly ? 'Month' : 'Year'} ${index + 1}: ${formatTableNumber(balance)}`;
-    graphBars.appendChild(bar);
-  });
-
-  graphTitle.textContent = isMonthly ? 'Remaining Balance (Monthly)' : 'Remaining Balance (Yearly)';
-
-  if (graphNote) {
-    graphNote.textContent = isMonthly ? `${sampled.length} points` : `${sampled.length} years`;
-  }
-
-  if (graphYMax) {
-    graphYMax.textContent = formatAxisValue(maxBalance);
-  }
-  if (graphYMid) {
-    graphYMid.textContent = formatAxisValue(maxBalance / 2);
-  }
-
-  if (graphXStart) {
-    graphXStart.textContent = '1';
-  }
-  if (graphXEnd) {
-    const totalPeriods = isMonthly ? data.overpayment.months : data.yearlyOver.length;
-    graphXEnd.textContent = String(totalPeriods);
-  }
-  if (graphXLabel) {
-    graphXLabel.textContent = isMonthly ? 'Month' : 'Year';
-  }
-}
 
 function applyView(view) {
   if (!currentData) {
@@ -386,7 +318,6 @@ function applyView(view) {
   }
 
   updateExplanation(currentData, view);
-  updateGraph(currentData, view);
 }
 
 function updateView() {
@@ -407,9 +338,6 @@ function clearOutputs() {
   }
   if (yearlyTableBody) {
     yearlyTableBody.innerHTML = '';
-  }
-  if (graphBars) {
-    graphBars.innerHTML = '';
   }
 }
 

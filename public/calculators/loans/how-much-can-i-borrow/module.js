@@ -2,7 +2,6 @@ import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBorrow } from '/assets/js/core/loan-utils.js';
-import { buildPolyline, getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 
 const metadata = {
   title: 'How Much Can I Borrow – Mortgage Affordability Calculator | CalcHowMuch',
@@ -159,13 +158,6 @@ let maxBorrowValue = null;
 let incomeExampleValue = null;
 let outgoingsValue = null;
 let tableBody = null;
-let graphLine = null;
-let graphYMax = null;
-let graphYMid = null;
-let graphYMin = null;
-let graphXStart = null;
-let graphXEnd = null;
-let graphNote = null;
 
 function cacheExplanationElements() {
   explanationRoot = resolveExplanationRoot();
@@ -178,13 +170,6 @@ function cacheExplanationElements() {
   incomeExampleValue = explanationRoot?.querySelector('[data-bor="income-example"]') ?? null;
   outgoingsValue = explanationRoot?.querySelector('[data-bor="outgoings"]') ?? null;
   tableBody = explanationRoot?.querySelector('#bor-table-body') ?? null;
-  graphLine = explanationRoot?.querySelector('#bor-graph-line polyline') ?? null;
-  graphYMax = explanationRoot?.querySelector('#bor-y-max') ?? null;
-  graphYMid = explanationRoot?.querySelector('#bor-y-mid') ?? null;
-  graphYMin = explanationRoot?.querySelector('#bor-y-min') ?? null;
-  graphXStart = explanationRoot?.querySelector('#bor-x-start') ?? null;
-  graphXEnd = explanationRoot?.querySelector('#bor-x-end') ?? null;
-  graphNote = explanationRoot?.querySelector('#bor-graph-note') ?? null;
 }
 
 cacheExplanationElements();
@@ -245,7 +230,6 @@ function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
   }
-  graphLine?.setAttribute('points', '');
 }
 
 function setError(message) {
@@ -322,40 +306,6 @@ function updateTable(data) {
         </tr>`
     )
     .join('');
-}
-
-function updateGraph(data) {
-  if (!graphLine) {
-    return;
-  }
-
-  const values = data.rateSeries.map((entry) => entry.value);
-  const { min, max } = getPaddedMinMax(values, 0.1);
-  const mid = (min + max) / 2;
-
-  graphLine.setAttribute('points', buildPolyline(values, min, max));
-  if (graphYMax) {
-    graphYMax.textContent = formatNumber(max, { maximumFractionDigits: 0 });
-  }
-  if (graphYMid) {
-    graphYMid.textContent = formatNumber(mid, { maximumFractionDigits: 0 });
-  }
-  if (graphYMin) {
-    graphYMin.textContent = formatNumber(min, { maximumFractionDigits: 0 });
-  }
-  if (graphXStart) {
-    graphXStart.textContent = formatNumber(data.rateSeries[0]?.rate ?? 0, {
-      maximumFractionDigits: 1,
-    });
-  }
-  if (graphXEnd) {
-    graphXEnd.textContent = formatNumber(data.rateSeries[data.rateSeries.length - 1]?.rate ?? 0, {
-      maximumFractionDigits: 1,
-    });
-  }
-  if (graphNote) {
-    graphNote.textContent = 'Payment held constant';
-  }
 }
 
 function formatSummaryLine(label, value) {
@@ -502,7 +452,6 @@ function calculate() {
   populateSummary(data, method);
   updateExplanation(data);
   updateTable(data);
-  updateGraph(data);
 }
 
 calculateButton?.addEventListener('click', async () => {

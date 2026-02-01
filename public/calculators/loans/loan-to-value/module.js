@@ -1,7 +1,6 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLtv } from '/assets/js/core/loan-utils.js';
-import { buildPolyline } from '/assets/js/core/graph-utils.js';
 
 const propertyInput = document.querySelector('#ltv-property');
 const loanInput = document.querySelector('#ltv-loan');
@@ -24,14 +23,6 @@ const loanValue = explanationRoot?.querySelector('[data-ltv="loan"]');
 const depositValue = explanationRoot?.querySelector('[data-ltv="deposit"]');
 const depositPercentValue = explanationRoot?.querySelector('[data-ltv="deposit-percent"]');
 const ltvValue = explanationRoot?.querySelector('[data-ltv="ltv"]');
-
-const graphLine = document.querySelector('#ltv-graph-line polyline');
-const graphYMax = document.querySelector('#ltv-y-max');
-const graphYMid = document.querySelector('#ltv-y-mid');
-const graphYMin = document.querySelector('#ltv-y-min');
-const graphXStart = document.querySelector('#ltv-x-start');
-const graphXEnd = document.querySelector('#ltv-x-end');
-const graphNote = document.querySelector('#ltv-graph-note');
 
 const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'loan',
@@ -69,7 +60,6 @@ function setDepositTypeVisibility(type) {
 }
 
 function clearOutputs() {
-  graphLine?.setAttribute('points', '');
 }
 
 function setError(message) {
@@ -93,29 +83,6 @@ function updateExplanation(data) {
   ltvValue.textContent = formatPercent(data.ltv);
 }
 
-function updateGraph(data) {
-  if (!graphLine) {
-    return;
-  }
-
-  const step = 5;
-  const maxDeposit = Math.min(100, Math.max(50, Math.ceil(data.depositPercent / step) * step));
-  const depositPercents = [];
-  for (let pct = 0; pct <= maxDeposit; pct += step) {
-    depositPercents.push(pct);
-  }
-  const ltvValues = depositPercents.map((pct) => Math.max(0, 100 - pct));
-
-  graphLine.setAttribute('points', buildPolyline(ltvValues, 0, 100));
-  graphYMax.textContent = '100';
-  graphYMid.textContent = '50';
-  graphYMin.textContent = '0';
-  graphXStart.textContent = '0';
-  graphXEnd.textContent = formatNumber(maxDeposit, { maximumFractionDigits: 0 });
-  if (graphNote) {
-    graphNote.textContent = `Range 0-${maxDeposit}% deposit`;
-  }
-}
 
 function calculate() {
   if (!resultDiv || !summaryDiv) {
@@ -192,7 +159,6 @@ function calculate() {
     warning;
 
   updateExplanation(data);
-  updateGraph(data);
 }
 
 setModeVisibility(modeButtons?.getValue() ?? 'loan');

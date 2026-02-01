@@ -14,7 +14,22 @@
       "Bash(tree -L 3:*)",
       "Bash(git checkout:*)",
       "Bash(npm run:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(for calc in leasing-calculator loan-emi loan-to-value multiple-car-loan offset-calculator pcp-calculator remortgage-switching)",
+      "Bash(do echo \"=== $calc ===\" grep -l \"graph-panel\\\\|svg.*polyline\" /home/kartheek/repos/public/calculators/loans/$calc/*.{html,js,css})",
+      "Bash(done)",
+      "Bash(for calc in loan-emi loan-to-value multiple-car-loan offset-calculator pcp-calculator remortgage-switching)",
+      "Bash(do)",
+      "Bash(file=\"/home/kartheek/repos/public/calculators/loans/$calc/module.js\")",
+      "Bash(if grep -q \"graph-utils\\\\|updateGraph\" \"$file\")",
+      "Bash(then)",
+      "Bash(echo:*)",
+      "Bash(else)",
+      "Bash(fi)",
+      "Bash(for calc in loan-emi loan-to-value multiple-car-loan offset-calculator pcp-calculator remortgage-switching balance-transfer-installment-plan credit-card-consolidation credit-card-minimum-payment credit-card-repayment-payoff)",
+      "Bash(do echo \"=== $calc ===\" grep -n \"import.*graph-utils\" \"$calc/module.js\")",
+      "Bash(grep:*)",
+      "Bash(find:*)"
     ]
   }
 }
