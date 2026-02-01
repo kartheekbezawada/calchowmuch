@@ -1,5 +1,4 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { calculatePcp } from '/assets/js/core/auto-loan-utils.js';
 
 const priceInput = document.querySelector('#pcp-price');
@@ -22,20 +21,10 @@ const interestValue = explanationRoot?.querySelector('[data-pcp="interest"]');
 const totalValue = explanationRoot?.querySelector('[data-pcp="total"]');
 
 const tableBody = document.querySelector('#pcp-table-body');
-const graphLine = document.querySelector('#pcp-line');
-const yMax = document.querySelector('#pcp-y-max');
-const yMid = document.querySelector('#pcp-y-mid');
-const yMin = document.querySelector('#pcp-y-min');
-const xStart = document.querySelector('#pcp-x-start');
-const xEnd = document.querySelector('#pcp-x-end');
-const graphNote = document.querySelector('#pcp-graph-note');
 
 function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
-  }
-  if (graphLine) {
-    graphLine.setAttribute('points', '');
   }
 }
 
@@ -67,24 +56,6 @@ function updateTable(yearly) {
     .join('');
 }
 
-function updateGraph(schedule, months) {
-  if (!graphLine) {
-    return;
-  }
-  const balances = schedule.map((entry) => entry.balance);
-  const sampled = sampleValues(balances, 36);
-  const { min, max } = getPaddedMinMax(sampled, 0.15);
-  graphLine.setAttribute('points', buildPolyline(sampled, min, max));
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  xStart.textContent = '1';
-  xEnd.textContent = formatNumber(months, { maximumFractionDigits: 0 });
-  if (graphNote) {
-    graphNote.textContent = `Term ${formatNumber(months, { maximumFractionDigits: 0 })} months`;
-  }
-}
 
 function updateExplanation(data) {
   if (!explanationRoot) {
@@ -136,7 +107,6 @@ function calculate() {
     `<p><strong>Final payment:</strong> ${formatNumber(data.balloon)}</p>`;
 
   updateTable(data.yearly);
-  updateGraph(data.schedule, data.termMonths);
   updateExplanation(data);
 }
 

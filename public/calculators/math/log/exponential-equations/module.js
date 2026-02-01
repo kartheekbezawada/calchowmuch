@@ -10,7 +10,6 @@ const shiftInput = document.querySelector('#exp-shift');
 const resultDiv = document.querySelector('#exp-result');
 const detailDiv = document.querySelector('#exp-detail');
 const calculateBtn = document.querySelector('#exp-calculate');
-const graphCanvas = document.querySelector('#exp-graph');
 
 const expMetadata = {
   title: 'Exponential Equation Solver | Calculate How Much',
@@ -35,58 +34,6 @@ setPageMetadata(expMetadata);
 function showMessage(message) {
   resultDiv.textContent = message;
   detailDiv.textContent = '';
-}
-
-function drawExponentialCurve(base, multiplier, shift, focusX = null) {
-  if (!graphCanvas) {
-    return;
-  }
-  const ctx = graphCanvas.getContext('2d');
-  const width = graphCanvas.width;
-  const height = graphCanvas.height;
-  const padding = 32;
-
-  ctx.clearRect(0, 0, width, height);
-  ctx.strokeStyle = '#cbd5e1';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(padding, height - padding);
-  ctx.lineTo(width - padding, height - padding);
-  ctx.moveTo(padding, padding);
-  ctx.lineTo(padding, height - padding);
-  ctx.stroke();
-
-  const xMin = -2;
-  const xMax = 4;
-  const yMax = Math.pow(base, multiplier * xMax + shift);
-  const yMin = Math.pow(base, multiplier * xMin + shift);
-  const yRange = Math.max(yMax, yMin, 10);
-
-  ctx.strokeStyle = '#2563eb';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  for (let x = xMin; x <= xMax; x += 0.05) {
-    const y = Math.pow(base, multiplier * x + shift);
-    const canvasX = padding + ((x - xMin) / (xMax - xMin)) * (width - 2 * padding);
-    const canvasY = height - padding - (Math.min(y, yRange) / yRange) * (height - 2 * padding);
-    if (x === xMin) {
-      ctx.moveTo(canvasX, canvasY);
-    } else {
-      ctx.lineTo(canvasX, canvasY);
-    }
-  }
-  ctx.stroke();
-
-  if (focusX !== null) {
-    const focusY = Math.pow(base, multiplier * focusX + shift);
-    const highlightX = padding + ((focusX - xMin) / (xMax - xMin)) * (width - 2 * padding);
-    const highlightY = height - padding - (Math.min(focusY, yRange) / yRange) * (height - 2 * padding);
-
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(highlightX, highlightY, 4, 0, Math.PI * 2);
-    ctx.fill();
-  }
 }
 
 function updateResults() {
@@ -117,7 +64,6 @@ function updateResults() {
     shift,
     { maximumFractionDigits: 4 }
   )}) / ${formatNumber(multiplier, { maximumFractionDigits: 4 })}`;
-  drawExponentialCurve(base, multiplier, shift, solution);
 }
 
 for (const input of [baseInput, targetInput, multiplierInput, shiftInput]) {

@@ -1,5 +1,4 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
-import { sampleValues, getPaddedMinMax, buildPolyline } from '/assets/js/core/graph-utils.js';
 import { calculateConsolidation } from '/assets/js/core/credit-card-utils.js';
 
 const balanceInput = document.querySelector('#cc-con-balance');
@@ -24,24 +23,10 @@ const interestDiffValue = explanationRoot?.querySelector('[data-cc-con="interest
 const totalDiffValue = explanationRoot?.querySelector('[data-cc-con="total-diff"]');
 
 const tableBody = document.querySelector('#cc-con-table-body');
-const lineCurrent = document.querySelector('#cc-con-line-current');
-const lineNew = document.querySelector('#cc-con-line-new');
-const yMax = document.querySelector('#cc-con-y-max');
-const yMid = document.querySelector('#cc-con-y-mid');
-const yMin = document.querySelector('#cc-con-y-min');
-const xStart = document.querySelector('#cc-con-x-start');
-const xEnd = document.querySelector('#cc-con-x-end');
-const graphNote = document.querySelector('#cc-con-graph-note');
 
 function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
-  }
-  if (lineCurrent) {
-    lineCurrent.setAttribute('points', '');
-  }
-  if (lineNew) {
-    lineNew.setAttribute('points', '');
   }
 }
 
@@ -75,33 +60,6 @@ function updateTable(current, consolidation) {
   `;
 }
 
-function updateGraph(current, consolidation) {
-  if (!lineCurrent || !lineNew) {
-    return;
-  }
-
-  const currentBalances = current.schedule.map((entry) => entry.balance);
-  const newBalances = consolidation.schedule.map((entry) => entry.balance);
-
-  const sampledCurrent = sampleValues(currentBalances, 36);
-  const sampledNew = sampleValues(newBalances, 36);
-  const combined = [...sampledCurrent, ...sampledNew];
-  const { min, max } = getPaddedMinMax(combined, 0.15);
-
-  lineCurrent.setAttribute('points', buildPolyline(sampledCurrent, min, max));
-  lineNew.setAttribute('points', buildPolyline(sampledNew, min, max));
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  xStart.textContent = '1';
-  xEnd.textContent = formatNumber(Math.max(current.months, consolidation.months), {
-    maximumFractionDigits: 0,
-  });
-  if (graphNote) {
-    graphNote.textContent = 'Current vs consolidation balance';
-  }
-}
 
 function updateExplanation(data, termMonths) {
   if (!explanationRoot) {
@@ -160,7 +118,6 @@ function calculate() {
     )}</p>`;
 
   updateTable(data.current, data.consolidation);
-  updateGraph(data.current, data.consolidation);
   updateExplanation({ ...data, balance, currentApr, currentPayment, consolidationApr }, termMonths);
 }
 

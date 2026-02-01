@@ -18,8 +18,6 @@ const poly2Input = document.querySelector('#poly2');
 const calculateButton = document.querySelector('#calculate-poly');
 const resultDiv = document.querySelector('#poly-result');
 const detailDiv = document.querySelector('#poly-detail');
-const graphContainer = document.querySelector('#poly-graph-container');
-const graphCanvas = document.querySelector('#poly-graph');
 
 function validatePolynomialInput(input) {
   const tokens = input.match(/-?\d*\.?\d+/g) || [];
@@ -27,98 +25,9 @@ function validatePolynomialInput(input) {
   return invalidToken ? 'Numeric values are limited to 12 digits.' : null;
 }
 
-function getGraphBounds(coeffs, range = 10) {
-  let minY = Infinity;
-  let maxY = -Infinity;
-  for (let x = -range; x <= range; x += 0.5) {
-    const y = evaluatePolynomial(coeffs, x);
-    minY = Math.min(minY, y);
-    maxY = Math.max(maxY, y);
-  }
-  if (!Number.isFinite(minY) || !Number.isFinite(maxY)) {
-    minY = -10;
-    maxY = 10;
-  }
-  if (minY === maxY) {
-    minY -= 5;
-    maxY += 5;
-  }
-  const padding = (maxY - minY) * 0.1;
-  return { minY: minY - padding, maxY: maxY + padding, range };
-}
-
-function drawPolynomialGraph(coeffs) {
-  const ctx = graphCanvas.getContext('2d');
-  const width = graphCanvas.width;
-  const height = graphCanvas.height;
-  const bounds = getGraphBounds(coeffs);
-  const xMin = -bounds.range;
-  const xMax = bounds.range;
-  const yMin = bounds.minY;
-  const yMax = bounds.maxY;
-  const xScale = width / (xMax - xMin);
-  const yScale = height / (yMax - yMin);
-
-  ctx.clearRect(0, 0, width, height);
-
-  ctx.strokeStyle = '#e2e8f0';
-  ctx.lineWidth = 1;
-  for (let x = Math.ceil(xMin); x <= Math.floor(xMax); x += 1) {
-    const canvasX = (x - xMin) * xScale;
-    ctx.beginPath();
-    ctx.moveTo(canvasX, 0);
-    ctx.lineTo(canvasX, height);
-    ctx.stroke();
-  }
-  for (let y = Math.ceil(yMin); y <= Math.floor(yMax); y += 1) {
-    const canvasY = height - (y - yMin) * yScale;
-    ctx.beginPath();
-    ctx.moveTo(0, canvasY);
-    ctx.lineTo(width, canvasY);
-    ctx.stroke();
-  }
-
-  ctx.strokeStyle = '#64748b';
-  ctx.lineWidth = 2;
-  const xAxisY = height - (0 - yMin) * yScale;
-  if (xAxisY >= 0 && xAxisY <= height) {
-    ctx.beginPath();
-    ctx.moveTo(0, xAxisY);
-    ctx.lineTo(width, xAxisY);
-    ctx.stroke();
-  }
-  const yAxisX = (0 - xMin) * xScale;
-  if (yAxisX >= 0 && yAxisX <= width) {
-    ctx.beginPath();
-    ctx.moveTo(yAxisX, 0);
-    ctx.lineTo(yAxisX, height);
-    ctx.stroke();
-  }
-
-  ctx.strokeStyle = '#1e40af';
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  let started = false;
-  for (let canvasX = 0; canvasX <= width; canvasX += 1) {
-    const x = xMin + (canvasX / width) * (xMax - xMin);
-    const y = evaluatePolynomial(coeffs, x);
-    const canvasY = height - (y - yMin) * yScale;
-    if (!started) {
-      ctx.moveTo(canvasX, canvasY);
-      started = true;
-    } else {
-      ctx.lineTo(canvasX, canvasY);
-    }
-  }
-  ctx.stroke();
-
-  graphContainer.style.display = 'block';
-}
-
 function calculate() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
-  graphContainer.style.display = 'none';
 
   const op = operationGroup.getValue();
   const poly1Text = poly1Input.value || '';
@@ -185,8 +94,6 @@ function calculate() {
     <p><strong>Steps:</strong> ${steps}</p>
     <p><strong>Result:</strong> ${formatPolynomial(result)}</p>
   `;
-
-  drawPolynomialGraph(result);
 }
 
 calculateButton.addEventListener('click', calculate);

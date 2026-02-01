@@ -1,0 +1,29 @@
+<div id="loan-borrow-explanation">
+  <h4>Borrowing Summary</h4>
+  <p>
+    Using the <span data-bor="basis"></span> monthly income of <span data-bor="income"></span>, the
+    calculator allows up to <span data-bor="max-payment"></span> per month for a mortgage payment.
+    This implies a maximum loan of <span data-bor="max-borrow"></span> at
+    <span data-bor="rate"></span>% over <span data-bor="term"></span> years.
+  </p>
+  <p>
+    Example: with monthly income of <span data-bor="income-example"></span> and total outgoings of
+    <span data-bor="outgoings"></span>, the usable payment is <span data-bor="max-payment"></span>,
+    which maps to <span data-bor="max-borrow"></span> of borrowing.
+  </p>
+
+  <div class="result-section">
+    <h4>Scenario Summary</h4>
+    <div class="table-scroll" id="bor-table-wrap" tabindex="0">
+      <table class="calculator-table" id="bor-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody id="bor-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -366,6 +366,110 @@ Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 - Each calculator MUST be a standalone HTML document with its own ads,
   metadata, and explanation content.
 
+### 3.9 Left Navigation Styling
+
+**Scope:** Applies to all calculator navigation items in the left navigation pane for Home Loan, Credit Cards, Auto Loans, and Time & Date categories.
+
+#### 3.9.1 Basic Navigation Styling
+
+| Rule ID | Requirement | Severity |
+| --------- | ----------------------------------------------------------------------------- | ---------- |
+| UI-NAV-1 | Inset border must be 2px thickness (increased from 1px) | P1 |
+| UI-NAV-2 | Left accent bar must be 4px width (increased from 3px) | P1 |
+| UI-NAV-3 | Hover effect must show 4px left border with stronger blue color | P1 |
+| UI-NAV-4 | Border opacity must be increased for better visibility | P1 |
+| UI-NAV-5 | Active state must use 2px border with 4px white left border | P1 |
+
+**Implementation Details:**
+- Default state: `border: 2px solid rgba(102, 126, 234, 0.3)` with `border-left: 4px solid rgba(102, 126, 234, 0.5)`
+- Hover state: `border-left: 4px solid rgba(102, 126, 234, 0.9)` with subtle background tint
+- Active state: `border: 2px solid var(--accent-strong)` with `border-left: 4px solid #ffffff`
+- Smooth transitions on all border and background changes (0.15s ease)
+
+**Target Categories:** `home-loan`, `credit-cards`, `auto-loans`, `time-and-date`
+
+#### 3.9.2 Advanced Navigation Effects (Universal - All Categories)
+
+**Scope:** Applies to all navigation items in the left navigation pane across all calculator categories.
+
+| Rule ID | Requirement | Severity |
+| ---------- | ------------------------------------------------------------------------------------- | ---------- |
+| UI-NAV-6 | Edge glow animation must be present on left navigation sidebar right edge | P1 |
+| UI-NAV-7 | Ripple effect must trigger on navigation item click with 600ms duration | P1 |
+| UI-NAV-8 | Active navigation items must have animated gradient background (4s cycle) | P1 |
+| UI-NAV-9 | Active navigation items must have pulsing glow effect behind element (2s cycle) | P1 |
+| UI-NAV-10 | Hover state must show multi-layer shadows (3 layers with varying blur/opacity) | P1 |
+| UI-NAV-11 | Hover state must include 5px left border and 2px translateX transform | P1 |
+| UI-NAV-12 | All animations must respect prefers-reduced-motion for accessibility | P0 |
+
+**Edge Glow Animation (UI-NAV-6):**
+- Position: Absolute positioned `::before` pseudo-element on `.left-nav`
+- Size: 2px width, 100% height, positioned at right edge
+- Gradient: Vertical gradient from transparent → blue (40%/60% opacity) → transparent
+- Animation: `edgeGlow` 3s ease-in-out infinite (opacity 0.3 → 1 → 0.3)
+- Purpose: Subtle visual indicator of navigation pane boundary
+
+**Ripple Effect (UI-NAV-7):**
+- Structure: `::after` pseudo-element on `.nav-item` with circular expansion
+- Trigger: JavaScript click event adds `.ripple` class
+- Animation: Width/height 0 → 300%, opacity 1 → 0 over 600ms
+- Background: `rgba(102, 126, 234, 0.3)`
+- Cleanup: Class removed after 600ms via setTimeout
+
+**Animated Gradient Background (UI-NAV-8):**
+- Active state gradient: `linear-gradient(135deg, rgba(102,126,234,0.9) 0%, rgba(79,70,229,0.95) 50%, rgba(102,126,234,0.9) 100%)`
+- Background size: `200% 200%` for smooth animation
+- Animation: `gradientShift` 4s ease infinite (background-position shift)
+- Enhanced shadow: Multi-layer box-shadow with glow effect
+
+**Pulsing Glow Effect (UI-NAV-9):**
+- Position: `::before` pseudo-element on `.nav-item.is-active` with `z-index: -1`
+- Size: Inset -2px (slightly larger than parent element)
+- Background: Gradient matching active state colors
+- Filter: `blur(8px)` for glow effect
+- Animation: `pulse` 2s ease-in-out infinite (opacity 0.4 → 0.8, scale 1 → 1.05)
+
+**Multi-Layer Hover Shadows (UI-NAV-10):**
+- Layer 1: `0 2px 4px rgba(0, 0, 0, 0.05)` (subtle depth)
+- Layer 2: `0 4px 8px rgba(102, 126, 234, 0.15)` (accent color diffusion)
+- Layer 3: `0 8px 16px rgba(102, 126, 234, 0.1)` (outer glow)
+- Background: `rgba(102, 126, 234, 0.08)` subtle tint on hover
+
+**Enhanced Hover Transform (UI-NAV-11):**
+- Border-left: 5px (increased from 4px) with `rgba(102, 126, 234, 0.7)`
+- Transform: `translateX(2px)` for subtle forward motion
+- Applies only to non-active items (`:hover:not(.is-active)`)
+
+**Accessibility Compliance (UI-NAV-12):**
+- All animations MUST be disabled when `prefers-reduced-motion: reduce` is detected
+- Affected elements: `.left-nav::before`, `.nav-item.is-active`, `.nav-item.is-active::before`
+- Fallback: Static styles maintained, only animation removed
+
+**Keyframe Definitions:**
+```css
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes edgeGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+```
+
+**JavaScript Requirements:**
+- File: `/public/assets/js/core/mpa-nav.js`
+- Event: Click listener on all `.nav-item` elements
+- Action: Add `.ripple` class, remove after 600ms
+- Scope: Applies to all navigation items universally
+
 ---
 
 ## 4) Universal Layout and Architecture Boundaries

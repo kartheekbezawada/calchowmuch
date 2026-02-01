@@ -116,22 +116,3 @@
   margin-bottom: 8px;
   line-height: 1.6;
 }
-
-#cp-graph-container {
-  margin: 20px 0;
-  text-align: center;
-}
-
-#cp-graph {
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  background-color: #fff;
-  max-width: 100%;
-  height: auto;
-}
-
-.graph-info {
-  margin-top: 10px;
-  font-size: 0.9em;
-  text-align: center;
-}

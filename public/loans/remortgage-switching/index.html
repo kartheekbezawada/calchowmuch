@@ -77,7 +77,7 @@
     <span class="nav-category-indicator">-</span>
   </button>
   <div class="nav-category-items">
-    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-borrow">How Much Can I Borrow</a><a class="nav-item is-active" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
+    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-i-borrow">How Much Can I Borrow</a><a class="nav-item is-active" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
   </div>
 </div></div>
         </aside>
@@ -261,65 +261,6 @@
           </thead>
           <tbody id="remo-table-body"></tbody>
         </table>
-      </div>
-    </div>
-
-    <div class="result-section">
-      <h4>Cumulative Cost Over Time</h4>
-      <div class="graph-panel" id="remo-graph">
-        <div class="graph-header">
-          <span class="graph-title" id="remo-graph-title">Cumulative Cost</span>
-          <span class="graph-note" id="remo-graph-note"></span>
-        </div>
-        <div class="graph-legend" id="remo-graph-legend">
-          <div class="graph-legend-item">
-            <span class="graph-legend-color principal"></span>
-            <span>New deal</span>
-          </div>
-          <div class="graph-legend-item">
-            <span class="graph-legend-color secondary"></span>
-            <span>Current deal</span>
-          </div>
-          <div class="graph-legend-item">
-            <span class="graph-legend-color interest"></span>
-            <span>Break-even</span>
-          </div>
-        </div>
-        <div class="graph-container">
-          <span class="graph-y-label" id="remo-y-label">Cost</span>
-          <div class="graph-y-axis" id="remo-y-axis">
-            <span id="remo-y-max"></span>
-            <span id="remo-y-mid"></span>
-            <span id="remo-y-min"></span>
-          </div>
-          <div class="graph-main">
-            <div class="graph-bars-wrapper">
-              <svg
-                class="graph-line"
-                id="remo-graph-line"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-              >
-                <polyline id="remo-line-new" class="line-primary" points=""></polyline>
-                <polyline id="remo-line-current" class="line-secondary" points=""></polyline>
-                <g class="graph-marker" id="remo-break-marker">
-                  <line id="remo-break-line" x1="0" y1="0" x2="0" y2="100"></line>
-                  <circle id="remo-break-dot" cx="0" cy="0" r="2"></circle>
-                </g>
-              </svg>
-            </div>
-            <div class="graph-tooltip is-hidden" id="remo-graph-tooltip" role="tooltip">
-              <div class="graph-tooltip-title" id="remo-graph-tooltip-title"></div>
-              <div class="graph-tooltip-row" id="remo-graph-tooltip-current"></div>
-              <div class="graph-tooltip-row" id="remo-graph-tooltip-new"></div>
-            </div>
-            <div class="graph-x-axis" id="remo-x-axis">
-              <span id="remo-x-start"></span>
-              <span id="remo-x-end"></span>
-            </div>
-            <span class="graph-x-label" id="remo-x-label">Month</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>

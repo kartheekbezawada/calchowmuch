@@ -1,5 +1,4 @@
 import { formatNumber } from '/assets/js/core/format.js';
-import { getPaddedMinMax } from '/assets/js/core/graph-utils.js';
 import { calculateMultipleCarLoan } from '/assets/js/core/auto-loan-utils.js';
 
 const loanAAmountInput = document.querySelector('#multi-loan-a-amount');
@@ -19,18 +18,10 @@ const paymentTotalValue = explanationRoot?.querySelector('[data-multi="payment-t
 const interestTotalValue = explanationRoot?.querySelector('[data-multi="interest-total"]');
 
 const tableBody = document.querySelector('#multi-loan-table-body');
-const barsContainer = document.querySelector('#multi-loan-bars');
-const yMax = document.querySelector('#multi-loan-y-max');
-const yMid = document.querySelector('#multi-loan-y-mid');
-const yMin = document.querySelector('#multi-loan-y-min');
-const graphNote = document.querySelector('#multi-loan-graph-note');
 
 function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
-  }
-  if (barsContainer) {
-    barsContainer.innerHTML = '';
   }
 }
 
@@ -70,29 +61,6 @@ function updateTable(data) {
   `;
 }
 
-function updateGraph(data) {
-  if (!barsContainer) {
-    return;
-  }
-  const payments = [data.loanA.monthlyPayment, data.loanB.monthlyPayment];
-  const { min, max } = getPaddedMinMax(payments, 0.15);
-
-  barsContainer.innerHTML = '';
-  payments.forEach((value, index) => {
-    const bar = document.createElement('div');
-    bar.className = index === 0 ? 'graph-bar' : 'graph-bar interest';
-    const height = max === min ? 60 : ((value - min) / (max - min)) * 100;
-    bar.style.height = `${Math.max(8, height)}%`;
-    barsContainer.appendChild(bar);
-  });
-
-  yMax.textContent = formatNumber(max);
-  yMid.textContent = formatNumber((max + min) / 2);
-  yMin.textContent = formatNumber(min);
-  if (graphNote) {
-    graphNote.textContent = 'Loan A vs Loan B payments';
-  }
-}
 
 function updateExplanation(data) {
   if (!explanationRoot) {
@@ -143,7 +111,6 @@ function calculate() {
     `<p><strong>Total paid:</strong> ${formatNumber(data.combined.totalPayment)}</p>`;
 
   updateTable(data);
-  updateGraph(data);
   updateExplanation(data);
 }
 

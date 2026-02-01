@@ -173,118 +173,6 @@ class SymbolicIntegrator {
 }
 
 // Plot integral graph with shaded area
-function plotIntegralGraph(funcExpr, mode, lowerBound, upperBound) {
-  const canvas = document.getElementById('int-graph');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-
-  ctx.clearRect(0, 0, width, height);
-
-  // Set up coordinate system
-  const xMin = mode === 'definite' ? Math.min(-5, lowerBound - 1) : -5;
-  const xMax = mode === 'definite' ? Math.max(5, upperBound + 1) : 5;
-  const yMin = -10;
-  const yMax = 10;
-
-  const xScale = width / (xMax - xMin);
-  const yScale = height / (yMax - yMin);
-  const xOrigin = -xMin * xScale;
-  const yOrigin = yMax * yScale;
-
-  // Draw axes
-  ctx.strokeStyle = '#ccc';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, yOrigin);
-  ctx.lineTo(width, yOrigin);
-  ctx.moveTo(xOrigin, 0);
-  ctx.lineTo(xOrigin, height);
-  ctx.stroke();
-
-  // Helper to evaluate function using safe parser
-  const safeEval = (expr, x) => {
-    try {
-      return expressionParser.evaluate(expr, x, 'x');
-    } catch (e) {
-      return 0;
-    }
-  };
-
-  // Shade area under curve for definite integral
-  if (mode === 'definite' && lowerBound !== null && upperBound !== null) {
-    ctx.fillStyle = 'rgba(52, 152, 219, 0.2)';
-    ctx.beginPath();
-
-    const startPx = (lowerBound - xMin) * xScale;
-    const endPx = (upperBound - xMin) * xScale;
-
-    ctx.moveTo(startPx, yOrigin);
-
-    for (let px = startPx; px <= endPx; px++) {
-      const x = xMin + px / xScale;
-      const y = safeEval(funcExpr, x);
-      const py = yOrigin - y * yScale;
-      ctx.lineTo(px, py);
-    }
-
-    ctx.lineTo(endPx, yOrigin);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  // Plot function
-  ctx.strokeStyle = '#3498db';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-
-  for (let px = 0; px < width; px++) {
-    const x = xMin + px / xScale;
-    const y = safeEval(funcExpr, x);
-    const py = yOrigin - y * yScale;
-
-    if (px === 0) {
-      ctx.moveTo(px, py);
-    } else {
-      ctx.lineTo(px, py);
-    }
-  }
-  ctx.stroke();
-
-  // Mark bounds for definite integral
-  if (mode === 'definite' && lowerBound !== null && upperBound !== null) {
-    const markBound = (bound, color) => {
-      const px = (bound - xMin) * xScale;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
-      ctx.setLineDash([5, 5]);
-      ctx.beginPath();
-      ctx.moveTo(px, 0);
-      ctx.lineTo(px, height);
-      ctx.stroke();
-      ctx.setLineDash([]);
-    };
-
-    markBound(lowerBound, '#2ecc71');
-    markBound(upperBound, '#e74c3c');
-  }
-
-  // Update graph info
-  const graphInfo = document.getElementById('int-graph-info');
-  if (graphInfo) {
-    graphInfo.innerHTML = `
-      <div style="margin-top: 10px;">
-        <span style="color: #3498db;">■ Function f(x)</span>
-        ${mode === 'definite' ? `<br><span style="color: rgba(52, 152, 219, 0.5);">▉ Shaded area represents ∫[${lowerBound} to ${upperBound}]f(x)dx</span>
-        <br><span style="color: #2ecc71;">| Lower bound (a=${lowerBound})</span>
-        <br><span style="color: #e74c3c;">| Upper bound (b=${upperBound})</span>` : ''}
-      </div>
-    `;
-  }
-}
-
 // Initialize calculator
 export function initIntegralCalculator() {
   const calculateBtn = document.getElementById('int-calculate');
@@ -333,9 +221,6 @@ export function initIntegralCalculator() {
             <strong>∫f(${variableInput})d${variableInput} = ${result.integral}</strong>
           </div>
         `;
-
-        plotIntegralGraph(funcInput, 'indefinite', null, null);
-
       } else {
         // Definite integral
         const lowerBound = parseFloat(document.getElementById('int-lower').value);
@@ -352,8 +237,6 @@ export function initIntegralCalculator() {
             <strong>Antiderivative:</strong> F(${variableInput}) = ${result.integral}
           </div>
         `;
-
-        plotIntegralGraph(funcInput, 'definite', lowerBound, upperBound);
       }
 
       // Show steps
