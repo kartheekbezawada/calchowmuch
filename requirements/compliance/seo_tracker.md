@@ -41,6 +41,7 @@
 | SEO-REQ-20260127-004 | REQ-20260127-004 | Privacy Policy (/privacy/) | Content update: verify title/meta/H1/canonical remain valid | NEW | TBD | TBD | TBD |
 | SEO-REQ-20260127-005 | REQ-20260127-005 | Privacy Policy & Terms & Conditions (/privacy/, /terms/) | Content refresh: verify title/meta/H1/canonical remain valid for both pages | NEW | TBD | TBD | TBD |
 | SEO-REQ-20260127-006 | REQ-20260127-006 | Car Loan Calculator (/loans/car-loan) | Calculator rebuild: verify title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
+| SEO-REQ-20260202-001 | REQ-20260202-001 | How Much Can I Borrow (/loans/how-much-can-i-borrow) | Explanation pane content update; no URL/meta changes | NA | — | — | — |
 
 ---
 
