@@ -26,7 +26,8 @@ const resultDiv = document.querySelector('#mtg-result');
 const summaryDiv = document.querySelector('#mtg-summary');
 
 const downTypeGroup = document.querySelector('[data-button-group="mtg-down-type"]');
-const scheduleToggle = document.querySelector('#mtg-schedule-toggle');
+const viewMonthlyButton = document.querySelector('#mtg-view-monthly');
+const viewYearlyButton = document.querySelector('#mtg-view-yearly');
 
 const explanationRoot = document.querySelector('#loan-mtg-explanation');
 const priceValue = explanationRoot?.querySelector('[data-mtg="price"]');
@@ -40,7 +41,6 @@ const lumpSumValue = explanationRoot?.querySelector('[data-mtg="lump-sum"]');
 const escrowValue = explanationRoot?.querySelector('[data-mtg="escrow"]');
 const lifetimeSummary = explanationRoot?.querySelector('[data-mtg="lifetime-summary"]');
 
-const tableTitle = explanationRoot?.querySelector('#mtg-table-title');
 const monthlyTableBody = explanationRoot?.querySelector('#mtg-table-monthly-body');
 const yearlyTableBody = explanationRoot?.querySelector('#mtg-table-yearly-body');
 const monthlyTableWrap = explanationRoot?.querySelector('#mtg-table-monthly-wrap');
@@ -200,22 +200,10 @@ function applyView(view) {
   const isMonthly = view === 'monthly';
   monthlyTableWrap?.classList.toggle('is-hidden', !isMonthly);
   yearlyTableWrap?.classList.toggle('is-hidden', isMonthly);
-  if (tableTitle) {
-    tableTitle.textContent = isMonthly
-      ? 'Amortization Table (Monthly)'
-      : 'Amortization Table (Yearly)';
-  }
-}
 
-function refreshScheduleToggle() {
-  if (!scheduleToggle) {
-    return;
-  }
-  const isMonthly = scheduleView === 'monthly';
-  scheduleToggle.textContent = isMonthly
-    ? 'Switch to Yearly Schedule'
-    : 'Switch to Monthly Schedule';
-  scheduleToggle.setAttribute('aria-pressed', String(isMonthly));
+  // Update segmented control active states
+  viewMonthlyButton?.classList.toggle('is-active', isMonthly);
+  viewYearlyButton?.classList.toggle('is-active', !isMonthly);
 }
 
 function clearOutputs() {
@@ -438,15 +426,21 @@ handleDownTypeChange(lastDownType);
 
 calculateButton?.addEventListener('click', calculate);
 
-scheduleToggle?.addEventListener('click', () => {
-  if (!currentData) {
+// Segmented control for table view (Monthly/Yearly)
+viewMonthlyButton?.addEventListener('click', () => {
+  if (!currentData || scheduleView === 'monthly') {
     return;
   }
-  scheduleView = scheduleView === 'monthly' ? 'yearly' : 'monthly';
+  scheduleView = 'monthly';
   applyView(scheduleView);
-  refreshScheduleToggle();
 });
 
-refreshScheduleToggle();
+viewYearlyButton?.addEventListener('click', () => {
+  if (!currentData || scheduleView === 'yearly') {
+    return;
+  }
+  scheduleView = 'yearly';
+  applyView(scheduleView);
+});
 
 calculate();

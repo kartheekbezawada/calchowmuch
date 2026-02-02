@@ -29,7 +29,8 @@
       "Bash(for calc in loan-emi loan-to-value multiple-car-loan offset-calculator pcp-calculator remortgage-switching balance-transfer-installment-plan credit-card-consolidation credit-card-minimum-payment credit-card-repayment-payoff)",
       "Bash(do echo \"=== $calc ===\" grep -n \"import.*graph-utils\" \"$calc/module.js\")",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)"
     ]
   }
 }

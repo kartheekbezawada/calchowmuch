@@ -232,16 +232,33 @@
   <h3>Lifetime Totals</h3>
   <p data-mtg="lifetime-summary"></p>
 
-  <div class="mtg-table-header">
-    <h3 id="mtg-table-title">Amortization Table (Monthly)</h3>
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="mtg-schedule-toggle"
-      aria-pressed="true"
-    >
-      Switch to Yearly Schedule
-    </button>
+  <div class="amortization-section">
+    <div class="amortization-header">
+      <h3>Amortization Table</h3>
+      <div
+        class="table-view-toggle"
+        role="group"
+        aria-label="Table view selector"
+        data-button-group="amortization-view"
+      >
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="monthly"
+          id="mtg-view-monthly"
+        >
+          Monthly
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="yearly"
+          id="mtg-view-yearly"
+        >
+          Yearly
+        </button>
+      </div>
+    </div>
   </div>
   <div class="table-scroll" id="mtg-table-monthly-wrap" tabindex="0">
     <table class="calculator-table" id="mtg-table-monthly">
