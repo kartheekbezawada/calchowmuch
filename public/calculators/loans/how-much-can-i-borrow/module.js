@@ -149,26 +149,14 @@ function resolveExplanationRoot() {
 }
 
 let explanationRoot = null;
-let basisValue = null;
-let incomeValue = null;
-let rateValue = null;
-let termValue = null;
-let maxPaymentValue = null;
-let maxBorrowValue = null;
-let incomeExampleValue = null;
-let outgoingsValue = null;
+let summaryTextValue = null;
+let summaryNoteValue = null;
 let tableBody = null;
 
 function cacheExplanationElements() {
   explanationRoot = resolveExplanationRoot();
-  basisValue = explanationRoot?.querySelector('[data-bor="basis"]') ?? null;
-  incomeValue = explanationRoot?.querySelector('[data-bor="income"]') ?? null;
-  rateValue = explanationRoot?.querySelector('[data-bor="rate"]') ?? null;
-  termValue = explanationRoot?.querySelector('[data-bor="term"]') ?? null;
-  maxPaymentValue = explanationRoot?.querySelector('[data-bor="max-payment"]') ?? null;
-  maxBorrowValue = explanationRoot?.querySelector('[data-bor="max-borrow"]') ?? null;
-  incomeExampleValue = explanationRoot?.querySelector('[data-bor="income-example"]') ?? null;
-  outgoingsValue = explanationRoot?.querySelector('[data-bor="outgoings"]') ?? null;
+  summaryTextValue = explanationRoot?.querySelector('[data-bor="summary-text"]') ?? null;
+  summaryNoteValue = explanationRoot?.querySelector('[data-bor="summary-note"]') ?? null;
   tableBody = explanationRoot?.querySelector('#bor-table-body') ?? null;
 }
 
@@ -186,7 +174,7 @@ async function ensureExplanation() {
   }
 
   try {
-    const response = await fetch('/calculators/loans/how-much-can-borrow/explanation.html');
+    const response = await fetch('/calculators/loans/how-much-can-i-borrow/explanation.html');
     if (!response.ok) {
       return;
     }
@@ -222,10 +210,6 @@ const methodButtons = setupButtonGroup(methodGroup, {
   onChange: () => calculate(),
 });
 
-function formatTableNumber(value, options = {}) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2, ...options });
-}
-
 function clearOutputs() {
   if (tableBody) {
     tableBody.innerHTML = '';
@@ -248,31 +232,23 @@ function updateExplanation(data) {
   }
 
   const basisLabel = data.incomeBasis === 'net' ? 'net' : 'gross';
+  const methodLabel = data.method === 'income' ? 'income multiple' : 'payment-to-income';
 
-  if (basisValue) {
-    basisValue.textContent = basisLabel;
+  if (summaryTextValue) {
+    summaryTextValue.textContent = `Using the ${basisLabel} income basis, this estimate considers your gross annual income, net monthly income, monthly expenses, monthly debt payments, the interest rate you selected, the loan term, and the ${methodLabel} affordability method.`;
   }
-  if (incomeValue) {
-    incomeValue.textContent = formatBorrowCurrency(data.monthlyIncome);
+  if (summaryNoteValue) {
+    summaryNoteValue.textContent =
+      'This result is an estimate, not a guarantee. Lenders apply their own criteria, so final approvals can vary.';
   }
-  if (rateValue) {
-    rateValue.textContent = formatNumber(data.interestRate, { maximumFractionDigits: 2 });
-  }
-  if (termValue) {
-    termValue.textContent = formatNumber(data.termYears, { maximumFractionDigits: 0 });
-  }
-  if (maxPaymentValue) {
-    maxPaymentValue.textContent = formatBorrowCurrency(data.maxPayment);
-  }
-  if (maxBorrowValue) {
-    maxBorrowValue.textContent = formatBorrowCurrency(data.maxBorrow);
-  }
-  if (incomeExampleValue) {
-    incomeExampleValue.textContent = formatBorrowCurrency(data.monthlyIncome);
-  }
-  if (outgoingsValue) {
-    outgoingsValue.textContent = formatBorrowCurrency(data.totalOutgoings);
-  }
+}
+
+function formatTableNumber(value, options = {}) {
+  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2, ...options });
+}
+
+function formatTableMoney(value) {
+  return formatTableNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function updateTable(data) {
@@ -281,28 +257,73 @@ function updateTable(data) {
   }
 
   const rows = [
-    { label: 'Income basis', value: data.incomeBasis === 'net' ? 'Net' : 'Gross' },
-    { label: 'Monthly income used', value: formatTableNumber(data.monthlyIncome) },
-    { label: 'Total outgoings', value: formatTableNumber(data.totalOutgoings) },
-    { label: 'Monthly disposable', value: formatTableNumber(data.monthlyDisposable) },
-    { label: 'Interest rate', value: formatTableNumber(data.interestRate) },
-    { label: 'Loan term (years)', value: formatTableNumber(data.termYears, { maximumFractionDigits: 0 }) },
-    data.method === 'income'
-      ? { label: 'Income multiple', value: `${formatTableNumber(data.incomeMultiple)}x` }
-      : { label: 'Monthly payment cap', value: formatBorrowCurrency(data.maxPayment) },
-    { label: 'Max borrow', value: formatBorrowCurrency(data.maxBorrow) },
+    {
+      label: 'Gross Annual Income',
+      value: formatTableMoney(data.grossIncomeAnnual),
+      meaning: 'Total yearly income before tax.',
+    },
+    {
+      label: 'Net Monthly Income',
+      value: formatTableMoney(data.netIncomeMonthly),
+      meaning: 'Take-home income per month.',
+    },
+    {
+      label: 'Monthly Expenses',
+      value: formatTableMoney(data.expensesMonthly),
+      meaning: 'Regular monthly living costs.',
+    },
+    {
+      label: 'Monthly Debt Payments',
+      value: formatTableMoney(data.debtMonthly),
+      meaning: 'Existing debt commitments each month.',
+    },
+    {
+      label: 'Interest Rate (APR %)',
+      value: `${formatTableNumber(data.interestRate)}%`,
+      meaning: 'Rate used to estimate repayments.',
+    },
+    {
+      label: 'Loan Term',
+      value: `${formatNumber(data.termYears, { maximumFractionDigits: 0 })} years`,
+      meaning: 'Length of the mortgage.',
+    },
+    {
+      label: 'Affordability Method',
+      value: data.method === 'income' ? 'Income multiple' : 'Payment-to-income',
+      meaning: 'Approach used to estimate borrowing.',
+    },
+    {
+      label: 'Income Multiple',
+      value:
+        data.method === 'income'
+          ? `${formatNumber(data.incomeMultiple, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}x`
+          : 'Not used',
+      meaning: 'Multiplier applied to annual income.',
+    },
   ];
 
-  if (data.deposit > 0 && data.maxPropertyPrice) {
-    rows.push({ label: 'Max property price', value: formatBorrowCurrency(data.maxPropertyPrice) });
+  if (data.deposit > 0) {
+    rows.push({
+      label: 'Deposit',
+      value: formatTableMoney(data.deposit),
+      meaning: 'Cash you plan to put down.',
+    });
   }
+
+  rows.push({
+    label: 'Estimated Max Borrowing',
+    value: formatTableMoney(data.maxBorrow),
+    meaning: 'Estimated loan amount before lender review.',
+    highlight: true,
+  });
 
   tableBody.innerHTML = rows
     .map(
       (row) => `
-        <tr>
+        <tr${row.highlight ? ' class="bor-table__highlight"' : ''}>
           <td>${row.label}</td>
           <td>${row.value}</td>
+          <td>${row.meaning}</td>
         </tr>`
     )
     .join('');

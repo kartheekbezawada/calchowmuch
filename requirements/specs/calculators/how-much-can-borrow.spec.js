@@ -5,12 +5,12 @@
  * All tests follow UNIVERSAL_REQUIREMENTS.md [TEST-x.x] standards
  *
  * Test File: tests/calculators/how-much-can-borrow.spec.js
- * Calculator: /calculators/loans/how-much-can-borrow/
+ * Calculator: /loans/how-much-can-i-borrow/
  */
 
 import { test, expect } from '@playwright/test';
 
-const CALCULATOR_URL = '/calculators/loans/how-much-can-borrow/';
+const CALCULATOR_URL = '/loans/how-much-can-i-borrow/';
 
 // Helper function to format current datetime for logging
 function getTimestamp() {

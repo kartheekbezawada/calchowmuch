@@ -39,7 +39,7 @@ mathToggles.forEach((toggle) => {
 // Add ripple effect to nav items on click
 const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach((item) => {
-  item.addEventListener('click', function (e) {
+  item.addEventListener('click', function () {
     this.classList.add('ripple');
     setTimeout(() => {
       this.classList.remove('ripple');

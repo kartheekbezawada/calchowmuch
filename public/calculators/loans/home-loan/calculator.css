@@ -4,17 +4,133 @@
   display: none;
 }
 
-#calc-home-loan .mtg-table-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 0.75rem;
+/* Amortization Section */
+#calc-home-loan .amortization-section {
+  margin-top: 32px;
+  padding: 24px 0 0 0;
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
 }
 
-#calc-home-loan #mtg-schedule-toggle {
-  white-space: nowrap;
-  font-size: 0.875rem;
-  padding: 0.35rem 0.85rem;
+/* Header row with title and toggle side by side */
+#calc-home-loan .amortization-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+#calc-home-loan .amortization-section h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Segmented Control for View Toggle */
+#calc-home-loan .table-view-toggle {
+  display: flex;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+#calc-home-loan .table-view-toggle .calculator-button {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 0;
+  border-right-width: 0;
+  transition: all 0.15s ease;
+}
+
+#calc-home-loan .table-view-toggle .calculator-button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+#calc-home-loan .table-view-toggle .calculator-button:last-child {
+  border-radius: 0 8px 8px 0;
+  border-right-width: 1px;
+}
+
+#calc-home-loan .table-view-toggle .calculator-button.is-active {
+  background: rgba(102, 126, 234, 0.9);
+  color: white;
+  border-color: rgba(102, 126, 234, 0.9);
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+#calc-home-loan .table-view-toggle .calculator-button:hover:not(.is-active) {
+  background: rgba(102, 126, 234, 0.08);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+/* Table Spacing */
+#calc-home-loan .table-scroll {
+  margin-top: 20px;
+}
+
+#loan-mtg-explanation .faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+#loan-mtg-explanation .faq-item h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#loan-mtg-explanation .faq-item p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+#loan-mtg-explanation h3 {
+  text-decoration: none;
+}
+
+#loan-mtg-explanation h2 {
+  position: relative;
+  margin-top: 0;
+}
+
+#loan-mtg-explanation h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
+}
+
+#loan-mtg-explanation .amortization-header {
+  gap: 6px;
+}
+
+#loan-mtg-explanation .table-scroll:last-of-type {
+  margin-bottom: 12px;
+}
+
+#loan-mtg-explanation h3 + .result-section {
+  margin-top: 6px;
+}
+
+#loan-mtg-explanation .result-section {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#loan-mtg-explanation .faq-item + .faq-item {
+  margin-top: 6px;
 }
 
 #calc-home-loan .down-combined {
@@ -62,4 +178,29 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
   margin-top: 0.75rem;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 720px) {
+  #calc-home-loan .amortization-section {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  #calc-home-loan .amortization-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  #calc-home-loan .amortization-section h3 {
+    font-size: 16px;
+  }
+
+  #calc-home-loan .table-view-toggle .calculator-button {
+    min-width: 100px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
 }

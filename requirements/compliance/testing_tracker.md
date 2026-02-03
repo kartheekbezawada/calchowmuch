@@ -9,6 +9,15 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260203-215740 | REQ-20260203-001 | ITER-20260203-214153 | E2E | PASS | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (3 passed) | iterations/ITER-20260203-214153.md |
+| TEST-20260203-215233 | REQ-20260203-001 | ITER-20260203-214153 | E2E | FAIL | 1/25 | requirements/specs/e2e/home-loan-calculator.spec.js (3 failed) | iterations/ITER-20260203-214153.md |
+| TEST-20260203-214854 | REQ-20260203-001 | ITER-20260203-214153 | E2E | FAIL | 1/25 | tests/e2e/calculators/home-loan.spec.js (no tests found) | iterations/ITER-20260203-214153.md |
+| TEST-20260202-231527 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | requirements/specs/calculators/how-much-can-borrow.spec.js (6 failed) | iterations/ITER-20260202-224155.md |
+| TEST-20260202-230925 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | requirements/specs/calculators/how-much-can-borrow.spec.js (6 failed) | iterations/ITER-20260202-224155.md |
+| TEST-20260202-230001 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | requirements/specs/calculators/how-much-can-borrow.spec.js (6 failed) | iterations/ITER-20260202-224155.md |
+| TEST-20260202-225508 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | requirements/specs/calculators/how-much-can-borrow.spec.js (11 failed) | iterations/ITER-20260202-224155.md |
+| TEST-20260202-225224 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | tests/e2e/calculators/how-much-can-borrow.spec.js (no tests found) | iterations/ITER-20260202-224155.md |
+| TEST-20260202-225006 | REQ-20260202-001 | ITER-20260202-224155 | E2E | FAIL | 1/25 | tests/e2e/calculators/how-much-can-borrow.spec.js (timeout) | iterations/ITER-20260202-224155.md |
 | TEST-20260128-160315 | REQ-20260128-019 | ITER-20260128-154622 | ISS-001 | PASS | 1/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-154622.md |
 | TEST-20260128-160234 | REQ-20260128-019 | ITER-20260128-154622 | Unit | PASS | 1/25 | requirements/specs/loans/loan-utils.test.js (19 passed) | iterations/ITER-20260128-154622.md |
 | TEST-20260128-122945 | REQ-20260128-015 | ITER-20260128-122745 | ISS-001 | COMPLETE | 2/25 | requirements/specs/e2e/iss-design-001.spec.js (9 passed) | iterations/ITER-20260128-122745.md |

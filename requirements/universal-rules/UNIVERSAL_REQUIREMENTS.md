@@ -23,6 +23,7 @@ Always load (P0 core):
 Load only if triggered:
 
 - UI-* / UTBL-* / UIGRAPH-* when UI, tables, or graphs change
+- UI-EXP-PANE-STD when explanation pane structure/content changes (see `requirements/universal-rules/explanation_pane_standard.md`)
 - TEST-* when selecting or changing tests
 - SEO-* when URLs/metadata/content change
 - DIAG-* / AGENT-* only when diagnosing failures or environment issues
