@@ -10,6 +10,7 @@
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
 | REQ-20260128-001 | Cloudflare Web Analytics (RUM) Global Injection | Analytics | Site-wide Integration | HIGH | COMPLETE | NO |
+| REQ-20260201-001 | Home Loan Calculator Website Testing | Calculator | Test Coverage | HIGH | NEW | YES |
 | REQ-20260124-001 | Purple Theme Refresh | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-002 | Light Green Page Background | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
 | REQ-20260124-003 | Increase Light Green Intensity | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |
@@ -47,6 +48,7 @@
 | REQ-20260127-001 | Countdown Timer Generator (Time & Date) | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260127-002 | General Terms Excluded Pages (GTEP) | Site | Layout/CSS + New Pages + SEO | HIGH | COMPLETE | YES |
 | REQ-20260127-003 | Terms and Conditions Content Update | Site | Content | MEDIUM | COMPLETE | YES |
+| REQ-20260202-001 | Explanation Pane Requirements Doc | Documentation | Architecture | HIGH | NEW | NO |
 | REQ-20260127-004 | Privacy Policy Content Update | Site | Content | MEDIUM | COMPLETE | YES |
 | REQ-20260127-005 | Privacy Policy & Terms & Conditions Content Refresh | Site | Content | MEDIUM | COMPLETE | YES |
 | REQ-20260127-006 | Car Loan Calculator Rebuild (Auto Loans) | Calculator | Bug Fix + UI Relocation + SEO Content | HIGH | COMPLETE | YES |
@@ -70,6 +72,9 @@
 | REQ-20260128-003 | Home Loan: Remove Monthly/Yearly Summary, Fix Chart, Simplify View Toggle | Calculator | UI/Flow + Bug Fix | HIGH | COMPLETE | NO |
 
 | REQ-20260128-004 | Home Loan: Reduce Calculation Pane Vertical Scroll, Restructure Rows | Calculator | UI/Flow | HIGH | COMPLIANCE | NO |
+| REQ-20260202-001 | How Much Can I Borrow: Explanation Pane v3 Rebuild | Calculator | UI/Flow + Content | HIGH | TESTING | NO |
+| REQ-20260203-001 | Home Loan Calculator: Add FAQ Section to Explanation Pane | Calculator | Content + UI/Flow | HIGH | COMPLETE | YES |
+| REQ-20260203-002 | Remortgage / Switching Calculator: Add FAQ Section to Explanation Pane | Calculator | Content + UI/Flow | HIGH | NEW | YES |
 
 ---
 

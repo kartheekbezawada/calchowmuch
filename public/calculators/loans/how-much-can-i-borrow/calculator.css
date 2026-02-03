@@ -123,3 +123,65 @@
 #calc-how-much-can-borrow .is-hidden {
   display: none;
 }
+
+#loan-borrow-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#loan-borrow-explanation .bor-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#loan-borrow-explanation .bor-summary {
+  gap: 0.4rem;
+}
+
+#loan-borrow-explanation .bor-summary h2 {
+  margin: 0 0 0.2rem;
+}
+
+#loan-borrow-explanation .bor-summary [data-bor="summary-text"],
+#loan-borrow-explanation .bor-summary [data-bor="summary-note"] {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+#loan-borrow-explanation .bor-summary__answer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+#loan-borrow-explanation .bor-summary__label {
+  font-weight: 600;
+}
+
+#loan-borrow-explanation .bor-table__highlight td {
+  font-weight: 600;
+}
+
+#loan-borrow-explanation .bor-faq__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+#loan-borrow-explanation .bor-faq__item p {
+  margin: 0;
+}
+
+#loan-borrow-explanation .bor-faq__answer {
+  padding-left: 1rem;
+}

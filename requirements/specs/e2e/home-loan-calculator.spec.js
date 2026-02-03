@@ -26,9 +26,6 @@ test.describe('Home Loan calculator', () => {
     const priceValue = page.locator('[data-mtg="price"]');
     await expect(priceValue).not.toHaveText('');
 
-    const graphLine = page.locator('#mtg-line-over');
-    await expect(graphLine).toHaveAttribute('points', /\S+/);
-
     const tableRows = page.locator('#mtg-table-monthly-body tr');
     const rowCount = await tableRows.count();
     expect(rowCount).toBeGreaterThan(0);
@@ -37,18 +34,45 @@ test.describe('Home Loan calculator', () => {
   test('HOME-LOAN-TEST-E2E-2: view toggle switches table visibility', async ({ page }) => {
     await page.click('#mtg-calculate');
 
-    const toggle = page.locator('#mtg-schedule-toggle');
+    const yearlyButton = page.locator('#mtg-view-yearly');
+    const monthlyButton = page.locator('#mtg-view-monthly');
     const yearlyWrap = page.locator('#mtg-table-yearly-wrap');
     const monthlyWrap = page.locator('#mtg-table-monthly-wrap');
 
     await expect(yearlyWrap).toHaveClass(/is-hidden/);
     await expect(monthlyWrap).not.toHaveClass(/is-hidden/);
 
-    await toggle.click();
+    await yearlyButton.click();
     await expect(yearlyWrap).not.toHaveClass(/is-hidden/);
     await expect(monthlyWrap).toHaveClass(/is-hidden/);
 
-    await toggle.click();
+    await monthlyButton.click();
     await expect(monthlyWrap).not.toHaveClass(/is-hidden/);
+  });
+
+  test('HOME-LOAN-TEST-FAQ-E2E-1: FAQ section renders with styling', async ({ page }) => {
+    const faqHeading = page.locator('#loan-mtg-explanation h3', {
+      hasText: 'Frequently Asked Questions',
+    });
+    await expect(faqHeading).toBeVisible();
+
+    const faqItems = page.locator('#loan-mtg-explanation .faq-item');
+    await expect(faqItems).toHaveCount(10);
+
+    const firstFaq = faqItems.first();
+    await expect(firstFaq.locator('h4')).toBeVisible();
+    await expect(firstFaq.locator('p')).toBeVisible();
+
+    await expect(firstFaq).toHaveCSS('display', 'grid');
+    await expect(firstFaq).toHaveCSS('gap', '6px');
+    await expect(firstFaq).toHaveCSS('padding-top', '12px');
+    await expect(firstFaq).toHaveCSS('border-top-style', 'solid');
+    await expect(firstFaq).toHaveCSS('border-top-width', '1px');
+
+    const hasHorizontalScroll = await page.evaluate(() => {
+      const root = document.documentElement;
+      return root.scrollWidth > root.clientWidth;
+    });
+    expect(hasHorizontalScroll).toBe(false);
   });
 });

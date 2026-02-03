@@ -86,6 +86,8 @@ requirements/compliance/testing_tracker.md
 | Check test matrix | `compliance/testing_requirements.md` |
 | Validate SEO | `compliance/seo_requirements.md` |
 
+**See also:** `universal-rules/explanation_pane_standard.md` (mandatory Explanation Pane structure and table/FAQ standards)
+
 ---
 
 ## Archive Rule

@@ -71,6 +71,44 @@
   color: var(--muted-text);
 }
 
+#loan-btl-explanation h3 {
+  text-decoration: none;
+}
+
+#loan-btl-explanation h3 + .result-section {
+  margin-top: 6px;
+}
+
+#loan-btl-explanation .result-section {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#loan-btl-explanation .faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+#loan-btl-explanation .faq-item h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#loan-btl-explanation .faq-item p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.btl-faq .faq-item + .faq-item {
+  margin-top: 6px;
+}
+
 @media (max-width: 720px) {
   #calc-buy-to-let .btl-compact-grid {
     grid-template-columns: 1fr;

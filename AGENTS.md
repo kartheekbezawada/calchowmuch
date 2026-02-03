@@ -158,6 +158,8 @@ requirements/compliance/WORKFLOW.md
 
 requirements/universal/UNIVERSAL_REQUIREMENTS.md
 
+requirements/universal-rules/EXPLANATION_PANE_REQUIREMENTS.md
+
 REFERENCE (Load Only When Relevant)
 
 requirements/compliance/testing_requirements.md
