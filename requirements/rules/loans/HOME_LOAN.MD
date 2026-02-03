@@ -10,6 +10,7 @@ Purpose: Compute mortgage monthly payment, interest vs principal split, and payo
 | Requirement ID | Calculator | Associated Rule IDs | Associated Test IDs | Date Created |
 |----------------|------------|---------------------|---------------------|---------------|
 | REQ-MTG-001 | Mortgage Calculator | • MTG-NAV-1<br>• MTG-NAV-2<br>• MTG-IN-1<br>• MTG-IN-2<br>• MTG-IN-3<br>• MTG-IN-4<br>• MTG-IN-5<br>• MTG-IN-6<br>• MTG-OP-1<br>• MTG-OP-2<br>• MTG-OP-3<br>• MTG-OP-4<br>• MTG-OUT-1<br>• MTG-OUT-2<br>• MTG-OUT-3<br>• MTG-OUT-4<br>• MTG-OUT-5<br>• MTG-TBL-1<br>• MTG-TBL-2<br>• MTG-TBL-3<br>• MTG-GRAPH-1<br>• MTG-GRAPH-2<br>• MTG-GRAPH-3<br>• MTG-EXP-1<br>• MTG-EXP-2<br>• MTG-EXP-3 | • MTG-TEST-U-1<br>• MTG-TEST-U-2<br>• MTG-TEST-E2E-1<br>• MTG-TEST-E2E-2 | 2026-01-19 |
+| REQ-20260203-001 | Home Loan Calculator FAQ | • MTG-FAQ-1<br>• MTG-FAQ-2<br>• MTG-FAQ-3<br>• MTG-FAQ-4<br>• MTG-FAQ-5<br>• MTG-FAQ-6<br>• MTG-FAQ-7 | • MTG-TEST-FAQ-E2E-1 | 2026-02-03 |
 
 ---
 
@@ -196,6 +197,49 @@ Graph must update on:
 
 **MTG-GRAPH-3**  
 Graph must not increase page height; it must fit in fixed-height container with internal scroll.
+
+---
+
+## MTG-FAQ — FAQ Section (Explanation Pane Only)
+
+**MTG-FAQ-1**  
+FAQ section must appear in explanation pane below the amortization table.
+
+**MTG-FAQ-2**  
+FAQ section must be contained within `<div class="result-section">` wrapper.
+
+**MTG-FAQ-3**  
+Each FAQ item must use the `.faq-item` class with:
+- Border: 1px solid var(--border-color)
+- Border-radius: 12px
+- Padding: 12px
+- Background: var(--panel-bg)
+- Display: grid
+- Gap: 6px
+
+**MTG-FAQ-4**  
+Each FAQ item must contain:
+- `<h4>` for the question
+- `<p>` for the answer
+
+**MTG-FAQ-5**  
+FAQ section heading must be `<h3>Frequently Asked Questions</h3>`.
+
+**MTG-FAQ-6**  
+FAQ items must have indented spacing within the container box (following Buy-to-Let pattern).
+
+**MTG-FAQ-7**  
+FAQ section must include 10 questions covering:
+1. What is a home loan?
+2. How much can I borrow for a home loan?
+3. What is Loan-to-Value (LTV)?
+4. How do interest rates affect my monthly payment?
+5. What is a typical home loan term?
+6. What is the difference between fixed and variable rates?
+7. How much deposit do I need to buy a house?
+8. What additional costs come with a home loan?
+9. Can I repay my home loan early?
+10. What happens if I miss payments?
 
 ---
 

@@ -73,6 +73,8 @@
 
 | REQ-20260128-004 | Home Loan: Reduce Calculation Pane Vertical Scroll, Restructure Rows | Calculator | UI/Flow | HIGH | COMPLIANCE | NO |
 | REQ-20260202-001 | How Much Can I Borrow: Explanation Pane v3 Rebuild | Calculator | UI/Flow + Content | HIGH | TESTING | NO |
+| REQ-20260203-001 | Home Loan Calculator: Add FAQ Section to Explanation Pane | Calculator | Content + UI/Flow | HIGH | COMPLETE | YES |
+| REQ-20260203-002 | Remortgage / Switching Calculator: Add FAQ Section to Explanation Pane | Calculator | Content + UI/Flow | HIGH | NEW | YES |
 
 ---
 
