@@ -826,7 +826,7 @@ body .site-header .header-search-icon {
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .math-nav-category {
@@ -866,46 +866,46 @@ body .site-header .header-search-icon {
 .math-nav-category-icon {
   width: 14px;
   height: 14px;
-  color: #6b7280;
+  color: var(--muted-text);
   flex-shrink: 0;
   transition: color 0.15s ease;
 }
 
 .math-nav-category-toggle:hover .math-nav-category-icon {
-  color: #4f46e5;
+  color: var(--accent);
 }
 
 .math-nav-category-name {
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
-  color: #374151;
+  color: var(--muted-text);
   transition: color 0.15s ease;
 }
 
 .math-nav-category-toggle:hover .math-nav-category-name {
-  color: #4338ca;
+  color: var(--header-text);
 }
 
 .math-nav-category-chevron {
   width: 14px;
   height: 14px;
-  color: #9ca3af;
+  color: var(--muted-text);
   flex-shrink: 0;
   transition: color 0.15s ease;
 }
 
 .math-nav-category-toggle:hover .math-nav-category-chevron {
-  color: #4f46e5;
+  color: var(--accent);
 }
 
 .math-nav-category-items {
-  margin-left: 24px;
+  margin-left: 0;
   margin-top: 4px;
-  padding-left: 12px;
-  border-left: 2px solid #e5e7eb;
+  padding-left: 0;
+  border-left: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .math-nav-category.is-collapsed .math-nav-category-items {
@@ -923,17 +923,22 @@ body .site-header .header-search-icon {
 .math-nav-item {
   width: 100%;
   text-align: left;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 8px;
+  border-radius: 12px;
   font-size: var(--text-sm);
-  color: #4b5563;
-  background: transparent;
-  border: none;
+  font-weight: var(--font-medium);
+  color: var(--header-text);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
   cursor: pointer;
   display: block;
   text-decoration: none;
   transition:
-    background-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease,
+    border-left-width 0.15s ease,
+    border-left-color 0.15s ease,
     color 0.15s ease;
   white-space: nowrap;
   overflow: hidden;
@@ -941,8 +946,14 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: rgba(102, 126, 234, 0.08);
+  border-left-width: 5px;
+  border-left-color: rgba(102, 126, 234, 0.7);
+  transform: translateX(2px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(102, 126, 234, 0.15),
+    0 8px 16px rgba(102, 126, 234, 0.1);
 }
 
 .math-nav-item:focus-visible {
@@ -951,13 +962,28 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item.is-active {
-  background: #4f46e5;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
   color: #ffffff;
-  font-weight: var(--font-medium);
+  border-color: var(--accent-strong);
+  box-shadow:
+    0 8px 14px rgba(102, 126, 234, 0.24),
+    0 0 20px rgba(102, 126, 234, 0.3);
 }
 
 .math-nav-item.is-active:hover {
-  background: #4338ca;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
   color: #ffffff;
 }
 
