@@ -1,12 +1,26 @@
+REQ-20260206-001
 Present Value (PV) Calculator — Finance Category
 ===============================================
 
 ## Status: NEW
 
-- Type: Brand-new calculator + new category entry
+- Type: Requirements spec + build/generation instructions
 - FSM Phase: REQ
 - Owner: Product / Platform
 - Scope: UI, Compute, Navigation, SEO, Sitemap, Testing
+
+### Repo Reality Check (AP-2.3)
+
+As of 2026-02-06, the Present Value calculator implementation already exists at:
+
+- `/public/calculators/finance/present-value/` (fragments + module)
+- Navigation entry exists in `/public/config/navigation.json` under `finance → time-value-of-money → present-value`
+- The build generator `/scripts/generate-mpa-pages.js` already has a `present-value` override and generates:
+  - `/public/finance/present-value/index.html`
+  - `/public/sitemap.xml`
+  - `/public/sitemap/index.html`
+
+This REQ documents the contract and the deterministic build steps so new Finance calculators can follow the same pattern.
 
 ## 1) Purpose & User Intent
 
@@ -18,70 +32,49 @@ This calculator answers one focused financial question, aligned with Time Value 
 
 ## 2) Category & Navigation Requirements
 
-### 2.1 New Top-Level Category
+### 2.1 Top Navigation Category
 
 Top Navigation Button: Finance
 
-Category Status: NEW (not previously present)
-
-When the user clicks Finance in the top navigation:
-
-The left navigation pane MUST switch to the Finance tree
-
-No cross-category leakage allowed
-
-### 2.2 Left Navigation (Finance)
-
-Finance
-
-Time Value of Money
-
-Present Value (PV)
+Category Status: Existing in `public/config/navigation.json`
 
 Rules:
 
-Display name must be exactly “Present Value (PV)”
+- Navigation MUST be config-driven via `public/config/navigation.json` (no hard-coded lists)
+- Deep linking MUST activate the correct top nav category and highlight the active calculator
+- Navigation between calculators MUST be full page loads (MPA)
 
-Must follow hierarchy and deep-link rules
+## 3) URL & Page Model
 
-calculator-hierarchy
+Public URL:
 
-Must be config-driven (no hard-coded lists)
-
-## 3) URL & Page Model (MVP Rule)
-
-URL:
-- /finance/present-value/
+- `/finance/present-value/`
 
 Architecture:
-Multi-Page Application (MPA)
 
-One calculator = one HTML page
-
-Full page reload on navigation
-
-Rules enforced:
-
-One page = one calculator
-
-Standalone HTML document
-
-Crawlable explanation content
-
-UNIVERSAL_REQUIREMENTS
+- MPA (full page reload on navigation)
+- One page = one calculator
+- Explanation content is static HTML (crawlable)
 
 ## 4) Folder & File Structure
 
+This project uses a generator that wraps calculator fragments into the full 3-column shell.
+
+**Fragments (source-of-truth):**
+
 ```
 /public/calculators/finance/present-value/
-  ├── index.html          # Calculator shell + calculation pane
-  ├── module.js           # PV calculation logic
-  └── explanation.html    # Static explanation pane (crawlable)
+  ├── index.html          # Calculation pane fragment (NOT full page)
+  ├── module.js           # Calculator UI + compute glue
+  ├── explanation.html    # Explanation pane fragment
+  └── calculator.css      # Optional per-calculator styling
 ```
 
-Must comply with folder contract and naming rules
+**Generated output (do not hand-edit):**
 
-UNIVERSAL_REQUIREMENTS
+```
+/public/finance/present-value/index.html
+```
 
 ## 5) Calculation Pane Requirements
 
@@ -203,6 +196,61 @@ explanation_pane_standard
 Universal Table Rules (UTBL-*)
 
 No extra headings allowed
+
+## 9) Build / Generation Steps (What to run)
+
+This repo uses a deterministic generator to:
+
+- Normalize `public/config/navigation.json` URLs based on calculator folder locations
+- Generate the full calculator shell pages under `/public/<category>/<calculator>/index.html`
+- Regenerate `/public/sitemap.xml` and `/public/sitemap/index.html`
+
+### 9.1 Create (or update) a calculator (pattern)
+
+1) Create fragments:
+
+- Create folder: `public/calculators/<category-id>/<calculator-id>/`
+- Add:
+  - `index.html` (calculation pane fragment)
+  - `explanation.html` (explanation pane fragment)
+  - `module.js`
+  - Optional: `calculator.css`
+
+2) Add nav entry:
+
+- Update `public/config/navigation.json`:
+  - Add the calculator under the correct `categories[].subcategories[].calculators[]`
+  - Ensure `id` matches the folder name exactly
+
+3) (Optional) add SEO override:
+
+- Add an entry in `scripts/generate-mpa-pages.js` `CALCULATOR_OVERRIDES` for tighter Title/Description/H1.
+
+4) Run generator:
+
+- `node scripts/generate-mpa-pages.js`
+
+### 9.2 Local preview
+
+- `npm run serve`
+- Open `http://localhost:8000/finance/present-value/`
+
+### 9.3 Validation commands (implementer phase)
+
+- `npm run lint`
+- `npm test`
+- `npm run format:check`
+
+## 10) Implementation Reference (already exists)
+
+If you’re implementing a new Finance calculator, copy these patterns:
+
+- Present Value fragments: `public/calculators/finance/present-value/`
+- TVM core function: `public/assets/js/core/time-value-utils.js` (`calculatePresentValue`, `resolveCompounding`)
+- Metadata helper: `public/assets/js/core/ui.js` (`setPageMetadata`)
+- Generator entrypoints:
+  - `scripts/generate-mpa-pages.js` (shell + sitemap regeneration)
+  - `public/config/navigation.json` (navigation source)
 
 ## 8) SEO Requirements (New Calculator Page)
 

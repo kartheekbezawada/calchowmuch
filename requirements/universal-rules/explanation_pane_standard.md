@@ -136,9 +136,9 @@ To align Explanation H2 with Calculation Pane H1, the Explanation Pane H2 MUST h
 ### 4.2 Agent Template (Pattern Only)
 
 Use calculator-defined variables:
-
+```css
 “Based on your inputs of {INPUT_A}, {INPUT_B}, and {INPUT_C}, your estimated result is {OUTPUT_X} over {TIME_OR_TERM}. This suggests {INSIGHT}.”
-
+```
 ---
 
 ## 5) H3 — Scenario Summary (Compact table from inputs/outputs)
@@ -227,35 +227,24 @@ This section must:
 - EXP-FAQ-2 — SEO-friendly questions (P1)
 - EXP-FAQ-3 — No informal language/emojis (P1)
 
-8.2 Requirements (Layout / Styling)
+### 8.2 Requirements (Layout / Styling)
 
 No underline under the H3 header (note: the universal border-bottom is allowed; do not add text underline)
 
-Spacing:
+**Spacing**:
+- 6px gap between H3 header and first FAQ box
+- 6px gap between FAQ boxes
+- Each FAQ must be in a bordered container
+- Each FAQ must have consistent indentation:
+- Q: bolded
+- A: indented
+- Rule IDs
+  - EXP-FAQ-UI-1 — No text underline for FAQ H3 (P1)
+  - EXP-FAQ-UI-2 — 6px gap after H3 and between boxes (P0)
+  - EXP-FAQ-UI-3 — Each FAQ must be in bordered container (P0)
+  - EXP-FAQ-UI-4 — Q/A indentation required (P1)
 
-6px gap between H3 header and first FAQ box
-
-6px gap between FAQ boxes
-
-Each FAQ must be in a bordered container
-
-Each FAQ must have consistent indentation:
-
-Q: bolded
-
-A: indented
-
-Rule IDs
-
-EXP-FAQ-UI-1 — No text underline for FAQ H3 (P1)
-
-EXP-FAQ-UI-2 — 6px gap after H3 and between boxes (P0)
-
-EXP-FAQ-UI-3 — Each FAQ must be in bordered container (P0)
-
-EXP-FAQ-UI-4 — Q/A indentation required (P1)
-
-8.3 FAQ Container Contract
+### 8.3 FAQ Container Contract
 
 Each FAQ must render as:
 
@@ -264,7 +253,7 @@ Q: [Question]
 A: [Answer line 1]
 [Answer continuation lines aligned]
 
-8.4 Reference CSS Contract
+### 8.4 Reference CSS Contract
 
 FAQ container must be wrapped in .faq-box:
 
@@ -279,67 +268,69 @@ FAQ container must be wrapped in .faq-box:
 
 All tables in the Explanation Pane (Scenario Summary and Results Table) MUST comply with UTBL rules.
 
-9.1 Table Structure
-Rule ID Requirement Severity
-UTBL-STRUCT-1 Semantic HTML tables required: <table>, <thead>, <tbody>, <tfoot> P0
-UTBL-STRUCT-2 Header row required inside <thead> P0
-UTBL-STRUCT-3 Totals/summaries MUST be in <tfoot>, not body rows P1
-9.2 Table Borders
-Rule ID Requirement Severity
-UTBL-BORDER-1 Full outer border on all four sides P0
-UTBL-BORDER-2 Full grid lines between all columns and rows P0
-UTBL-BORDER-3 Grid lines visually consistent (no missing separators) P1
-UTBL-BORDER-4 Excel-style layout, not "card" or "list" P1
-9.3 Table Scroll Behavior
-Rule ID Requirement Severity
-UTBL-SCROLL-1 Every table wrapped in dedicated container P0
-UTBL-SCROLL-2 Vertical and horizontal scrollbars enabled by default P0
-UTBL-SCROLL-3 Scrollbars visible even if content fits P1
-UTBL-SCROLL-4 Tables must never expand page height P0
-9.4 Table Size & Containment
-Rule ID Requirement Severity
-UTBL-SIZE-1 Tables must NOT control page layout P0
-UTBL-SIZE-2 Table height constrained by parent pane P0
-UTBL-SIZE-3 Overflow: overflow-x: scroll, overflow-y: scroll P1
-UTBL-SIZE-4 Readable at standard desktop widths P1
-9.5 Header & Footer
-Rule ID Requirement Severity
-UTBL-HEADER-1 Headers visually distinct from body rows P1
-UTBL-HEADER-2 Headers aligned with columns during horizontal scroll P1
-UTBL-HEADER-3 Sticky headers allowed but must not overlap content P2
-UTBL-FOOTER-1 Footer rows (totals) visually distinct from body rows P1
-9.6 Text Formatting
-Rule ID Requirement Severity
-UTBL-TEXT-1 No cell wrapping (white-space: nowrap) P1
-UTBL-TEXT-2 Numeric columns right-aligned P1
-UTBL-TEXT-3 Concise, unambiguous headers P1
-UTBL-TEXT-4 Body text 14–15px, headers 13–14px P2
-UTBL-TEXT-5 No currency symbols in cells — establish in headers P1
-UTBL-TEXT-6 Consistent decimal precision; padding ≥ 8px 12px P2
-9.7 Visual Consistency
-Rule ID Requirement Severity
-UTBL-STYLE-1 All tables use same base styling P1
-UTBL-STYLE-2 No custom border styles outside universal theme P0
-UTBL-STYLE-3 Match other components visually P2
-9.8 Forbidden
-Rule ID Forbidden Item Severity
-UTBL-FORBID-1 List-style tables (rows without borders) P0
-UTBL-FORBID-2 Plain text block tables P0
-UTBL-FORBID-3 Tables relying on page scrolling P0
-UTBL-FORBID-4 Borderless data tables P0
-9.9 Accessibility
-Rule ID Requirement Severity
-UTBL-ACCESS-1 Keyboard-scrollable P1
-UTBL-ACCESS-2 Screen readers identify headers/data cells correctly P1
-9.10 Table Pass/Fail Criteria
-Condition Result
-Borders missing on any side FAIL
-Grid lines missing between rows/columns FAIL
-Scrollbars not visible by default FAIL
-Table expands page height FAIL
-Headers/totals mixed into body rows FAIL
-All UTBL-* rules pass PASS
-10) Mandatory Universal Requirements Clause (Copy/Paste)
+## Tables
+
+- **9.1 Table Structure**
+  - **UTBL-STRUCT-1 (P0):** Semantic HTML tables required: `<table>`, `<thead>`, `<tbody>`, `<tfoot>`.
+  - **UTBL-STRUCT-2 (P0):** Header row required inside `<thead>`.
+  - **UTBL-STRUCT-3 (P1):** Totals/summaries must be in `<tfoot>`, not body rows.
+
+- **9.2 Table Borders**
+  - **UTBL-BORDER-1 (P0):** Full outer border on all four sides.
+  - **UTBL-BORDER-2 (P0):** Full grid lines between all columns and rows.
+  - **UTBL-BORDER-3 (P1):** Grid lines visually consistent (no missing separators).
+  - **UTBL-BORDER-4 (P1):** Excel-style layout, not "card" or "list".
+
+- **9.3 Table Scroll Behavior**
+  - **UTBL-SCROLL-1 (P0):** Every table wrapped in dedicated container.
+  - **UTBL-SCROLL-2 (P0):** Vertical and horizontal scrollbars enabled by default.
+  - **UTBL-SCROLL-3 (P1):** Scrollbars visible even if content fits.
+  - **UTBL-SCROLL-4 (P0):** Tables must never expand page height.
+
+- **9.4 Table Size & Containment**
+  - **UTBL-SIZE-1 (P0):** Tables must not control page layout.
+  - **UTBL-SIZE-2 (P0):** Table height constrained by parent pane.
+  - **UTBL-SIZE-3 (P1):** Overflow: `overflow-x: scroll`, `overflow-y: scroll`.
+  - **UTBL-SIZE-4 (P1):** Readable at standard desktop widths.
+
+- **9.5 Header & Footer**
+  - **UTBL-HEADER-1 (P1):** Headers visually distinct from body rows.
+  - **UTBL-HEADER-2 (P1):** Headers aligned with columns during horizontal scroll.
+  - **UTBL-HEADER-3 (P2):** Sticky headers allowed but must not overlap content.
+  - **UTBL-FOOTER-1 (P1):** Footer rows (totals) visually distinct from body rows.
+
+- **9.6 Text Formatting**
+  - **UTBL-TEXT-1 (P1):** No cell wrapping (`white-space: nowrap`).
+  - **UTBL-TEXT-2 (P1):** Numeric columns right-aligned.
+  - **UTBL-TEXT-3 (P1):** Concise, unambiguous headers.
+  - **UTBL-TEXT-4 (P2):** Body text 14–15px, headers 13–14px.
+  - **UTBL-TEXT-5 (P1):** No currency symbols in cells—establish in headers.
+  - **UTBL-TEXT-6 (P2):** Consistent decimal precision; padding ≥ 8px 12px.
+
+- **9.7 Visual Consistency**
+  - **UTBL-STYLE-1 (P1):** All tables use same base styling.
+  - **UTBL-STYLE-2 (P0):** No custom border styles outside universal theme.
+  - **UTBL-STYLE-3 (P2):** Match other components visually.
+
+- **9.8 Forbidden**
+  - **UTBL-FORBID-1 (P0):** List-style tables (rows without borders).
+  - **UTBL-FORBID-2 (P0):** Plain text block tables.
+  - **UTBL-FORBID-3 (P0):** Tables relying on page scrolling.
+  - **UTBL-FORBID-4 (P0):** Borderless data tables.
+
+- **9.9 Accessibility**
+  - **UTBL-ACCESS-1 (P1):** Keyboard-scrollable.
+  - **UTBL-ACCESS-2 (P1):** Screen readers identify headers/data cells correctly.
+
+- **9.10 Table Pass/Fail Criteria**
+  - **FAIL:** Borders missing on any side.
+  - **FAIL:** Grid lines missing between rows/columns.
+  - **FAIL:** Scrollbars not visible by default.
+  - **FAIL:** Table expands page height.
+  - **FAIL:** Headers/totals mixed into body rows.
+  - **PASS:** All UTBL-* rules pass.
+
+## 10) Mandatory Universal Requirements Clause (Copy/Paste)
 
 Add the following clause into UNIVERSAL_REQUIREMENTS.md:
 

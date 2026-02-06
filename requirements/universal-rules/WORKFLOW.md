@@ -126,6 +126,7 @@ State Definitions
    ====
       Select tests strictly via testing_rules.md
       Run required tests only
+      On BUILD PASS, proceed immediately to TEST execution without waiting for another human confirmation.
       Record TEST rows
       Outcomes:
          PASS → SEO (if applicable) or COMPLIANCE

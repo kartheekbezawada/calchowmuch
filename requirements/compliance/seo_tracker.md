@@ -9,43 +9,8 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
-| SEO-REQ-20260128-004 | REQ-20260128-004 | Home Loan Calculator | Layout/UI change only; no URL/meta/content changes | NA | — | — | — |
-| SEO-REQ-20260128-002 | REQ-20260128-002 | Home Loan E2E spec cleanup | Test-only change; no URL/meta/content updates | NA | — | — | — |
-| SEO-REQ-20260128-001 | REQ-20260128-001 | Home Loan Calculator | Script include + JS logic updates only; no URL/meta/content changes | NA | — | — | — |
-| SEO-REQ-20260127-012 | REQ-20260127-012 | Global premium header + search | Layout/UI update only; no URL/meta/content changes | NA | — | — | — |
-| SEO-REQ-20260127-011 | REQ-20260127-011 | Calculator shell width | Layout-only; no URL/meta/content changes | NA | — | — | — |
-| SEO-REQ-20260127-010 | REQ-20260127-010 | Navigation shell removal (all pages) | Layout-only; no URL/meta/content changes | CANCELLED | — | — | — |
-| SEO-REQ-20260127-009 | REQ-20260127-009 | Global theme default | CSS-only; no URL/meta/content changes | NA | — | — | — |
-| SEO-REQ-20260127-008 | REQ-20260127-008 | Theme CSS (all calculator pages) | No URL/meta/content changes (layout/CSS only) | NA | — | — | — |
-| SEO-REQ-20260127-005 | REQ-20260127-005 | Privacy Policy + Terms & Conditions | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |
-| SEO-REQ-20260127-007 | REQ-20260127-007 | All Calculator Pages | React theme shell impact: SSR/crawlability/performance/meta preservation | CANCELLED | — | — | — |
-| SEO-REQ-20260122-001 | REQ-20260122-001 | Navigation (All Pages) | Navigation structure, breadcrumbs, internal linking | NEW | TBD | TBD | TBD |
-| SEO-REQ-20260127-002 | REQ-20260127-002 | GTEP Pages (Sitemap, Privacy, Terms, Contact, FAQs) | Title/meta/H1/canonical + footer links | PASS | ✅ | — | — |
-| SEO-REQ-20260127-003 | REQ-20260127-003 | Terms & Conditions | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |
-| SEO-REQ-20260127-004 | REQ-20260127-004 | Privacy Policy | Content update: title/meta/H1/canonical | PASS | ✅ | — | — |
-| SEO-REQ-20260124-001 | REQ-20260124-004 | Sitewide Footer | P1 content update | PASS | ✅ | — | — |
-| SEO-REQ-20260124-002 | REQ-20260124-008 | Homepage | Remove tagline copy | PASS | ✅ | — | — |
-| SEO-REQ-20260125-001 | REQ-20260125-001 | Sitewide Footer | Footer layout + link list | NEW | TBD | TBD | TBD |
-| SEO-REQ-20260125-002 | REQ-20260125-004 | Sitemap | Title/meta/H1/canonical for /sitemap | PASS | ✅ | — | — |
-| SEO-REQ-20260126-001 | REQ-20260126-005 | Sleep Time Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-002 | REQ-20260126-006 | Wake-Up Time Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-003 | REQ-20260126-007 | Time Between Two Dates Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-004 | REQ-20260126-008 | Days Until a Date Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-005 | REQ-20260126-009 | Age Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-007 | REQ-20260126-012 | Birthday Day-of-Week Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-008 | REQ-20260126-013 | Nap Time Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-009 | REQ-20260126-014 | Work Hours Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260126-010 | REQ-20260126-015 | Overtime Hours Calculator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260127-001 | REQ-20260127-001 | Countdown Timer Generator | New page: title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260127-002 | REQ-20260127-002 | GTEP Pages (/sitemap/, /privacy/, /terms/, /contact/, /faqs/) | New pages: unique title/meta/H1/canonical per page | NEW | TBD | TBD | TBD || SEO-REQ-20260127-003 | REQ-20260127-003 | Terms and Conditions (/terms/) | Content update: verify title/meta/H1/canonical remain valid | NEW | TBD | TBD | TBD |
-| SEO-REQ-20260127-004 | REQ-20260127-004 | Privacy Policy (/privacy/) | Content update: verify title/meta/H1/canonical remain valid | NEW | TBD | TBD | TBD |
-| SEO-REQ-20260127-005 | REQ-20260127-005 | Privacy Policy & Terms & Conditions (/privacy/, /terms/) | Content refresh: verify title/meta/H1/canonical remain valid for both pages | NEW | TBD | TBD | TBD |
-| SEO-REQ-20260127-006 | REQ-20260127-006 | Car Loan Calculator (/loans/car-loan) | Calculator rebuild: verify title/meta/H1/canonical + FAQ structured data | PASS | ✅ | ✅ | — |
-| SEO-REQ-20260202-001 | REQ-20260202-001 | How Much Can I Borrow (/loans/how-much-can-i-borrow) | Explanation pane content update; no URL/meta changes | NA | — | — | — |
-| SEO-REQ-20260203-001 | REQ-20260203-001 | Home Loan Calculator (/calculators/loans/home-loan) | FAQ section addition: content-only; no URL/meta changes | PASS | ✅ | — | — |
-| SEO-REQ-20260203-002 | REQ-20260203-002 | Remortgage / Switching Calculator (/calculators/loans/remortgage-switching) | FAQ section addition: content-only; verify FAQ schema opportunity | NEW | TBD | TBD | — |
+| SEO-REQ-20260206-003 | REQ-20260206-003 | N/A (testing-governance docs) | SEO impact marked `NO` in requirement tracker; SEO gate not applicable | NA | — | — | — |
 
----
 
 ## Priority Levels
 
