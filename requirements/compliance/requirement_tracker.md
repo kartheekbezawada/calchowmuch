@@ -9,6 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 |--------|-------|------|-------------|----------|--------|------|
+| REQ-20260206-001 | Present Value (PV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | IN_PROGRESS | YES |
 | REQ-20260128-001 | Cloudflare Web Analytics (RUM) Global Injection | Analytics | Site-wide Integration | HIGH | COMPLETE | NO |
 | REQ-20260201-001 | Home Loan Calculator Website Testing | Calculator | Test Coverage | HIGH | NEW | YES |
 | REQ-20260124-001 | Purple Theme Refresh | Theme | Layout/CSS | MEDIUM | COMPLETE | NO |

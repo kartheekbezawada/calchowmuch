@@ -9,6 +9,7 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260206-013835 | REQ-20260206-001 | ITER-20260206-012439 | Unit | PASS | 1/25 | tests/core/present-value-calculator.test.js (5 passed) | iterations/ITER-20260206-012439.md |
 | TEST-20260203-215740 | REQ-20260203-001 | ITER-20260203-214153 | E2E | PASS | 2/25 | requirements/specs/e2e/home-loan-calculator.spec.js (3 passed) | iterations/ITER-20260203-214153.md |
 | TEST-20260203-215233 | REQ-20260203-001 | ITER-20260203-214153 | E2E | FAIL | 1/25 | requirements/specs/e2e/home-loan-calculator.spec.js (3 failed) | iterations/ITER-20260203-214153.md |
 | TEST-20260203-214854 | REQ-20260203-001 | ITER-20260203-214153 | E2E | FAIL | 1/25 | tests/e2e/calculators/home-loan.spec.js (no tests found) | iterations/ITER-20260203-214153.md |

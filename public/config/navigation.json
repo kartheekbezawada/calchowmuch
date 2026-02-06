@@ -485,6 +485,23 @@
       ]
     },
     {
+      "id": "finance",
+      "name": "Finance",
+      "subcategories": [
+        {
+          "id": "time-value-of-money",
+          "name": "Time Value of Money",
+          "calculators": [
+            {
+              "id": "present-value",
+              "name": "Present Value (PV)",
+              "url": "/finance/present-value"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "time-and-date",
       "name": "Time & Date",
       "icon": "🕒",

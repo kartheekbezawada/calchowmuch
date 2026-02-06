@@ -14,6 +14,7 @@ const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
+const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
 const CALCULATOR_OVERRIDES = {
   'overtime-hours-calculator': {
     title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
@@ -38,6 +39,12 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
     h1: 'Birthday Day-of-Week Calculator',
+  },
+  'present-value': {
+    title: 'Present Value (PV) Calculator – CalcHowMuch',
+    description:
+      'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
+    h1: 'Present Value Calculator',
   },
 };
 
@@ -371,6 +378,15 @@ function buildPageHtml({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${canonical}" />
+    <meta property="og:image" content="${OG_IMAGE}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${OG_IMAGE}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
