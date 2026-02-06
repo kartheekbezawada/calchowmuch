@@ -139,22 +139,15 @@ Load only if triggered:
 ## UI & Interaction Principles
 
 
-**See also:** [ISS-UI-FDP — Form Density & Progressive Disclosure Rules](../rules/iss/ISS-UI-FDP.md)
+**See also:** [Calculation Pane Rules — Form Density & Progressive Disclosure](calculation_pane_rules.md)
 
-### Traceability: Universal Requirements ↔ ISS Enforcement
+### Traceability: Universal Requirements ↔ Calculation Pane Rules
 
-| Universal Requirement | Severity | Enforced By (ISS Rule IDs) |
-|----------------------|----------|---------------------------|
-| UUI-FDP-001 Core inputs should not require mandatory scroll | P0 | ISS-UI-FDP-001, ISS-UI-FDP-005 |
-| UUI-FDP-002 Optional inputs must not block calculation | P0 | ISS-UI-FDP-002 |
-| UUI-FDP-003 Use progressive disclosure when input set is large | P0 | ISS-UI-FDP-003 |
-| UUI-FDP-004 Row efficiency for related inputs | P1 | ISS-UI-FDP-004 |
-| UUI-FDP-006 Density must not remove clarity/labels | P0 | ISS-UI-FDP-006 |
-| UUI-FDP-007 Layout stability under interaction | P0 | ISS-UI-FDP-007 |
+The detailed form-density, progressive-disclosure, and layout-stability contract for the Calculation Pane is defined in `calculation_pane_rules.md`. Treat that file as the single source of truth; avoid duplicating or drifting rule text here.
 
 ### Form Density & Progressive Disclosure (Calculation Pane)
 
-The public calculation-pane form density and ISS expectations are centralized in `requirements/universal-rules/iss_form_density_calculation_pane_rules.md`. That document is now the authoritative source for UUI-FDP/ISS rules (core inputs above the fold, optional sections, progressive disclosure, row efficiency, layout stability, etc.). When reviewing or updating calculation panes, cite and follow the canonical file rather than restating the requirements here; this section remains to highlight the intent and traceability links.
+The public calculation-pane form density and progressive-disclosure expectations are centralized in `requirements/universal-rules/calculation_pane_rules.md`. When reviewing or updating calculation panes, cite and follow that canonical file rather than restating the requirements here; this section remains to highlight the intent and traceability links.
 
 ### 3.1 Theme Tokens
 
@@ -704,15 +697,7 @@ Note: Full release sweep = run the full unit test suite plus E2E for only 1 repr
 
 ## 8) SEO and URL Rules
 
-
-| Rule ID | Requirement                                                                                                      | Severity |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | ---------- |
-| SEO-1.1 | Each calculator directly accessible via URL                                                                      | P0       |
-| SEO-1.2 | Changing calculator selection updates title/description/canonical                                                | P0       |
-| SEO-1.3 | Explanation pane contains long-form content (examples, assumptions, edge cases). Calculation pane stays compact. | P1       |
-| SEO-1.4 | Live calculators must be listed in`public/calculators/index.html` for crawlable discovery                        | P1       |
-
----
+For Search Engine Optimization Rules (or) SEO and URL Rules, go and read SEO_RULES.MD file.Thats is Single Source of Truth
 
 ## 9) Inventory and Documentation Accuracy
 
