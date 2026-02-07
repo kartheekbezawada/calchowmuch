@@ -31,49 +31,56 @@ const totalCostValue = explanationRoot?.querySelector('[data-car="total-cost"]')
 
 const tableBody = document.querySelector('#car-table-body');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How is the amount financed calculated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It is the vehicle price minus down payment and trade-in, plus dealer fees and sales tax.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does a larger down payment reduce monthly payments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. A larger down payment lowers the amount financed, which reduces monthly payment and total interest.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does total cost include?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Total cost equals all monthly payments plus your down payment for the vehicle.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does sales tax affect the loan?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sales tax increases the amount financed, which raises both monthly payment and total interest.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Car Loan Calculator – Monthly Payment & Total Cost',
   description:
     'Calculate car loan payments, interest, and total cost with down payment, trade-in, fees, and sales tax. Includes yearly payoff table and FAQs.',
   canonical: 'https://calchowmuch.com/loans/car-loan/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How is the amount financed calculated?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'It is the vehicle price minus down payment and trade-in, plus dealer fees and sales tax.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does a larger down payment reduce monthly payments?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. A larger down payment lowers the amount financed, which reduces monthly payment and total interest.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What does total cost include?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Total cost equals all monthly payments plus your down payment for the vehicle.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How does sales tax affect the loan?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Sales tax increases the amount financed, which raises both monthly payment and total interest.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

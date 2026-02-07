@@ -30,11 +30,104 @@ const valueTargets = explanationRoot
     }
   : null;
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is future value (FV)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Future value is the amount your money will be worth at a future date after earning interest or growth.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is future value different from present value?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Present value is today’s worth of money, while future value shows what it grows into over time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What interest rate should I use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use an expected return rate based on savings, investments, or inflation assumptions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does compounding affect future value?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'More frequent compounding increases growth by earning interest on interest.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does time period matter for future value?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, longer time periods significantly increase future value due to compounding.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are regular contributions?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Regular contributions are additional amounts added periodically to increase total savings.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is future value useful for retirement planning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, it helps estimate how current savings may grow by retirement.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can future value decrease over time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'With a positive interest rate, future value increases; negative rates reduce growth.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if the interest rate is zero?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The future value equals the present value plus any contributions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this calculator suitable for savings and investments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, it can be used for savings goals, investments, education funds, and retirement planning.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Future Value (FV) Calculator – CalcHowMuch',
   description:
     'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
   canonical: 'https://calchowmuch.com/finance/future-value/',
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
@@ -65,91 +158,6 @@ const metadata = {
           price: '0',
           priceCurrency: 'USD',
         },
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'What is future value (FV)?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Future value is the amount your money will be worth at a future date after earning interest or growth.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'How is future value different from present value?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Present value is today’s worth of money, while future value shows what it grows into over time.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What interest rate should I use?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Use an expected return rate based on savings, investments, or inflation assumptions.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'How does compounding affect future value?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'More frequent compounding increases growth by earning interest on interest.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Does time period matter for future value?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes, longer time periods significantly increase future value due to compounding.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What are regular contributions?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Regular contributions are additional amounts added periodically to increase total savings.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Is future value useful for retirement planning?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes, it helps estimate how current savings may grow by retirement.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Can future value decrease over time?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'With a positive interest rate, future value increases; negative rates reduce growth.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What happens if the interest rate is zero?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'The future value equals the present value plus any contributions.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Is this calculator suitable for savings and investments?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes, it can be used for savings goals, investments, education funds, and retirement planning.',
-            },
-          },
-        ],
       },
       {
         '@type': 'BreadcrumbList',

@@ -8,50 +8,57 @@ const resultsList = document.querySelector('#birthday-dow-results-list');
 const placeholder = document.querySelector('#birthday-dow-placeholder');
 const errorMessage = document.querySelector('#birthday-dow-error');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is the result accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The day-of-week is calculated using standard calendar rules for the date you enter.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if I was born on February 29?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'You were born on the weekday for February 29 in your birth year. For non-leap target years, this calculator uses February 28 for the birthday weekday.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I check future or past years?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Enter any target year from 1600 to 2100.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this store my birthday?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. This runs in your browser and does not save your inputs.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Birthday Day-of-Week Calculator – What Day Were You Born?',
   description:
     'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Is the result accurate?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. The day-of-week is calculated using standard calendar rules for the date you enter.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What if I was born on February 29?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'You were born on the weekday for February 29 in your birth year. For non-leap target years, this calculator uses February 28 for the birthday weekday.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I check future or past years?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Enter any target year from 1600 to 2100.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does this store my birthday?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. This runs in your browser and does not save your inputs.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

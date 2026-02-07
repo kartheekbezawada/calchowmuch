@@ -9,6 +9,7 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 | ------ | ----- | ---- | ----------- | -------- | ------ | ---- |
+| REQ-20260207-001 | FAQPage Schema Injection Guard — Prevent Global FAQ Leakage Onto Calculator Pages | SEO | SEO | HIGH | NEW | YES |
 | REQ-20260206-001 | Present Value (PV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
 | REQ-20260206-004 | Future Value (FV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
 | REQ-20260206-003 | Align TESTING_RULES with package.json scripts | Compliance | Testing Governance | HIGH | COMPLETE | NO |

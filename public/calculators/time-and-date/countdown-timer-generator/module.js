@@ -14,49 +14,56 @@ const placeholder = document.querySelector('#countdown-placeholder');
 const errorMessage = document.querySelector('#countdown-error');
 const statusMessage = document.querySelector('#countdown-status');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does the countdown include the current second?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It counts the full time remaining between now and the target time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if the target time is in the past?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The calculator will show an error and ask for a future date and time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will daylight saving time affect the countdown?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It can. The countdown uses your local time and will follow daylight saving changes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this for long term events?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The countdown will show days and hours remaining, even for dates months away.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Countdown Timer Generator – Live Countdown to a Date',
   description:
     'Create a live countdown to any future date and time. Simple, fast, and free countdown timer generator.',
   canonical: 'https://calchowmuch.com/calculators/time-and-date/countdown-timer-generator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Does the countdown include the current second?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. It counts the full time remaining between now and the target time.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What happens if the target time is in the past?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The calculator will show an error and ask for a future date and time.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Will daylight saving time affect the countdown?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'It can. The countdown uses your local time and will follow daylight saving changes.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use this for long term events?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. The countdown will show days and hours remaining, even for dates months away.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);
