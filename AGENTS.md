@@ -71,6 +71,11 @@ FSM Flow
 
 REQ → BUILD → TEST → SEO → COMPLIANCE
 
+Auto-Test Mode (Deterministic)
+
+- After a BUILD PASS, the Implementer MUST immediately run the required tests (per TESTING_RULES) without waiting for an additional human confirmation.
+- In Auto-Test Mode, updating `testing_tracker.md` is permitted during the BUILD state as part of the single continuous BUILD→TEST execution.
+
 All workflow state is stored under requirements/compliance/
 
 Invalid FSM transitions must stop immediately
@@ -154,11 +159,11 @@ LAW (Authoritative — Do Not Reinterpret)
 
 AGENTS.md
 
-requirements/compliance/WORKFLOW.md
+requirements/universal-rules/WORKFLOW.md
 
-requirements/universal/UNIVERSAL_REQUIREMENTS.md
+requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
 
-requirements/universal-rules/EXPLANATION_PANE_REQUIREMENTS.md
+requirements/universal-rules/explanation_pane_standard.md
 
 REFERENCE (Load Only When Relevant)
 
@@ -217,6 +222,11 @@ Scope E2E tests to affected calculators only
 Do not run full E2E for single-calculator changes
 
 Record required vs executed tests in compliance-report.md
+
+Auto-Test Mode note:
+
+- Implementer runs required tests immediately after BUILD PASS.
+- Implementer records executed tests in `testing_tracker.md` even if this occurs during BUILD, then proceeds to SEO/COMPLIANCE per WORKFLOW.
 
 8. Compliance Gate (Default Mode)
 

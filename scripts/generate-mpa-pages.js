@@ -52,6 +52,12 @@ const CALCULATOR_OVERRIDES = {
       'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
     h1: 'Future Value Calculator',
   },
+  'present-value-of-annuity': {
+    title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    description:
+      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
+    h1: 'Present Value of Annuity Calculator',
+  },
 };
 
 function ensureLength(text, min, max) {

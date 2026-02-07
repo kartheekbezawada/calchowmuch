@@ -85,19 +85,28 @@ Missing required schema = SEO-P2 FAIL.
 
 ## 5) Test Selection Matrix (Authoritative)
 
+### 5.0 Global Rule — Calculator Performance Gate (SEO-P3)
+
+If a REQ creates or modifies any **calculator** page (i.e., any route under `/loans/`, `/finance/`, `/math/`, `/time-and-date/`, or any page generated from `public/calculators/**`), then **SEO-P3 (Lighthouse performance / Core Web Vitals) is ALWAYS REQUIRED**, regardless of whether the change is compute-only, UI-only, copy-only, or refactor.
+
+This rule overrides the matrix below.
+
+Legend used in matrix:
+- `IF_CALC` = required when the change touches a calculator route/page (per Section 5.0)
+
 | Change Type | Unit | SEO-P1 | SEO-P2 | SEO-P3 | SEO-P4 | SEO-P5 | ISS-001 | E2E |
 |-------------|:----:|:------:|:------:|:------:|:------:|:------:|:-------:|:---:|
-| Compute logic change | YES | - | - | - | - | - | - | - |
-| SEO/metadata change | - | YES | YES | - | - | - | - | - |
+| Compute logic change | YES | - | - | IF_CALC | - | - | - | - |
+| SEO/metadata change | - | YES | YES | IF_CALC | - | - | - | - |
 | Layout/CSS change | - | - | - | YES | YES | - | YES | - |
-| UI/flow change | - | - | - | - | - | - | - | YES |
+| UI/flow change | - | - | - | IF_CALC | - | - | - | YES |
 | New calculator | YES | YES | YES | YES | YES | YES | YES | YES |
 | New site section | - | YES | YES | YES | YES | YES | YES | YES |
-| Content update (copy) | - | YES | - | - | - | - | - | - |
-| URL structure change | - | YES | - | - | - | YES | - | - |
-| Bug fix (compute) | YES | - | - | - | - | - | - | - |
-| Bug fix (UI) | - | - | - | - | - | - | YES | YES |
-| Refactor (no behavior change) | YES | - | - | - | - | - | - | - |
+| Content update (copy) | - | YES | - | IF_CALC | - | - | - | - |
+| URL structure change | - | YES | - | IF_CALC | - | YES | - | - |
+| Bug fix (compute) | YES | - | - | IF_CALC | - | - | - | - |
+| Bug fix (UI) | - | - | - | IF_CALC | - | - | YES | YES |
+| Refactor (no behavior change) | YES | - | - | IF_CALC | - | - | - | - |
 
 Tests stack when multiple change types apply.
 

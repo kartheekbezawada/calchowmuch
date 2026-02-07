@@ -10,6 +10,13 @@
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 | ------ | ----- | ---- | ----------- | -------- | ------ | ---- |
 | REQ-20260207-001 | FAQPage Schema Injection Guard — Prevent Global FAQ Leakage Onto Calculator Pages | SEO | SEO | HIGH | NEW | YES |
+| REQ-20260207-002 | Present Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
+| REQ-20260207-003 | Future Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260207-004 | Effective Annual Rate (EAR) Converter — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260207-005 | Compound Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260207-006 | Savings Goal Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260207-007 | Investment Growth Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260207-008 | Simple Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
 | REQ-20260206-001 | Present Value (PV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
 | REQ-20260206-004 | Future Value (FV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
 | REQ-20260206-003 | Align TESTING_RULES with package.json scripts | Compliance | Testing Governance | HIGH | COMPLETE | NO |

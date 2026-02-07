@@ -1,11 +1,24 @@
-# Present Value of Annuity Calculator (Ordinary & Due)
+REQ-20260207-002
+Present Value of Annuity Calculator (Ordinary & Due) — Finance Category
+=====================================================================
 
-**Status:** NEW
+## Status: NEW
 
-**Type:** Brand-new calculator (Finance → Time Value of Money)
-**FSM Phase:** REQ
+- Type: Requirements spec + build/generation instructions
+- FSM Phase: REQ
+- Scope: UI, Compute, Navigation, SEO, Sitemap, Testing
 
-**Scope:** UI, Compute, Navigation, SEO, Sitemap, Testing
+### Repo Reality Check (AP-2.3)
+
+Finance calculators in this repo use:
+
+- Fragments under `/public/calculators/<domain>/<slug>/` (source-of-truth)
+- Generated full shell page under `/public/<domain>/<slug>/index.html` (do not hand-edit)
+
+This calculator MUST follow the same pattern as existing Finance calculators such as:
+
+- `/public/calculators/finance/present-value/`
+- `/public/calculators/finance/future-value/`
 
 ## 1. Purpose & Search Intent (SEO-Critical)
 
@@ -79,11 +92,20 @@ Finance
 
 ## 4. Folder & File Structure
 
+**Fragments (source-of-truth) — FS-3.1:**
+
 ```text
 /public/calculators/finance/present-value-of-annuity/
-├── index.html          # Calculator shell + calculation pane
-├── module.js           # PV annuity logic (ordinary + due)
-└── explanation.html    # Static explanation pane (SEO-critical)
+├── index.html          # Calculation pane fragment (NOT full page)
+├── module.js           # UI glue + PV annuity compute (ordinary + due)
+├── explanation.html    # Explanation pane fragment (SEO-critical)
+└── calculator.css      # Optional per-calculator styling
+```
+
+**Generated output (do not hand-edit):**
+
+```text
+/public/finance/present-value-of-annuity/index.html
 ```
 
 ## 5. Calculation Pane Requirements
@@ -101,9 +123,11 @@ Finance
 
 **Rules:**
 
-- No dropdowns
+- No dropdowns (UI-2.5)
 - Optional inputs must not block calculation
 - Users needs to expand or close option for Optional Inputs. This is must be clearly visible.
+- Validate all inputs (UI-2.3, CS-1.3)
+- Cap input length to 12 characters (UI-2.4)
 
 ## 6. Calculator Engine (Logic)
 
@@ -138,6 +162,12 @@ PVdue = PVordinary × (1 + r)
 - Prevent divide-by-zero
 - Validate negative / empty inputs
 - No unhandled exceptions
+
+#### Period/Rate Normalization (Required)
+
+- Calculator MUST compute and display the discount rate per period and effective period count.
+- If `Compounding Frequency` is not selected, interpret the user-entered discount rate as the rate per selected period type (Years = per year, Months = per month).
+- If `Compounding Frequency` is selected, rate/period and effective periods MUST be normalized the same way as the existing Finance `present-value` / `future-value` calculators to ensure consistent Time Value of Money behavior across Finance.
 
 ## 7. Explanation Pane (SEO-Critical)
 
@@ -232,6 +262,10 @@ Present value of annuity calculations are widely used in loans, mortgages, lease
 - Meta Description:
 
 Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.
+
+SEO phase tracking file:
+
+- `requirements/seo/REQ-20260207-002.md`
 
 Below is the complete, production-ready Structured Data bundle for the Present Value of Annuity (Ordinary & Due) Calculator, meeting SEO-P2 requirements exactly.
 This is written to be:
@@ -458,9 +492,15 @@ Use this to verify your code, not the document.
 
 Must update:
 
+- public/config/navigation.json
 - sitemap.xml
 - /sitemap
 - public/calculators/index.html
+
+Rules:
+
+- `sitemap.xml` MUST list every active calculator URL (FS-4.2)
+- New calculator REQs MUST include sitemap coverage as an acceptance criterion (DOC-SITEMAP-5)
 
 ## 10. Testing Requirements
 
@@ -482,7 +522,7 @@ REQ → BUILD → TEST → SEO → COMPLIANCE → COMPLETE
 | 1. Purpose & Search Intent | Primary question: "What is the PV of regular payments (annuity)?" Targeted users. - Primary/Secondary/Long-Tail Keywords in H1, title, meta, etc. |
 | 2. Category & Navigation | - Top: Finance > Time Value of Money. - Left nav: Exact structure, display name, config-driven, no separate pages for annuity types. |
 | 3. URL & Page Model | - Canonical: /finance/present-value-of-annuity/. - MPA, one calc/page, full reload, crawlable explanation. - Single page for both annuity types. |
-| 4. Folder & File Structure | - Dir: /public/calculators/finance/present-value-of-annuity/. - Files: index.html, module.js, explanation.html. |
+| 4. Folder & File Structure | - Fragments: /public/calculators/finance/present-value-of-annuity/ (index.html, module.js, explanation.html, optional calculator.css). - Generated output: /public/finance/present-value-of-annuity/index.html. |
 | Implementation note: | All Tables implemented as a semantic HTML table with column headers preserved during Word → Markdown/HTML conversion. |
 | 5. Calculation Pane | - H2: Present Value of Annuity Calculator (Ordinary & Due). - Core Inputs: PMT, Discount Rate, Periods, Period Type (toggle), Annuity Type (toggle, visible default). - Optional: Compounding Frequency (button group). - Rules: No dropdowns, optionals non-blocking, expandable section visible. |
 | 6. Calculator Engine | - Formulas: Ordinary PV, Due PV, variables defined. - Outputs: PV Annuity, Type Applied, Total Payments, Rate/Period, Period Count. - Validation: No divide-by-zero, negative/empty inputs, no exceptions. |

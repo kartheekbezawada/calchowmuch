@@ -501,6 +501,11 @@
               "id": "future-value",
               "name": "Future Value (FV)",
               "url": "/finance/future-value"
+            },
+            {
+              "id": "present-value-of-annuity",
+              "name": "Present Value of Annuity",
+              "url": "/finance/present-value-of-annuity"
             }
           ]
         }

@@ -51,6 +51,76 @@ export function calculatePresentValue({
   };
 }
 
+export function calculatePresentValueOfAnnuity({
+  payment,
+  discountRate,
+  periods,
+  periodType = 'years',
+  compounding = null,
+  annuityType = 'ordinary',
+}) {
+  const pmt = Number(payment);
+  const rate = Number(discountRate);
+  const periodCount = Number(periods);
+
+  if (!Number.isFinite(pmt) || !Number.isFinite(rate) || !Number.isFinite(periodCount)) {
+    return null;
+  }
+
+  if (pmt < 0 || rate < 0 || periodCount < 0) {
+    return null;
+  }
+
+  const hasCompounding = Boolean(compounding);
+  let totalPeriods = 0;
+  let periodicRate = 0;
+  let periodsPerYear = 1;
+
+  if (hasCompounding) {
+    const compoundingInfo = resolveCompounding(compounding);
+    periodsPerYear = compoundingInfo.periodsPerYear;
+    const years = periodType === 'months' ? periodCount / 12 : periodCount;
+    totalPeriods = years * periodsPerYear;
+    periodicRate = rate / 100 / periodsPerYear;
+  } else {
+    totalPeriods = periodCount;
+    periodicRate = rate / 100;
+    periodsPerYear = periodType === 'months' ? 12 : 1;
+  }
+
+  if (!Number.isFinite(totalPeriods) || !Number.isFinite(periodicRate)) {
+    return null;
+  }
+
+  if (1 + periodicRate <= 0) {
+    return null;
+  }
+
+  let presentValue = 0;
+
+  if (totalPeriods > 0) {
+    if (periodicRate === 0) {
+      presentValue = pmt * totalPeriods;
+    } else {
+      presentValue = (pmt * (1 - Math.pow(1 + periodicRate, -totalPeriods))) / periodicRate;
+    }
+  }
+
+  if (annuityType === 'due') {
+    presentValue *= 1 + periodicRate;
+  }
+
+  const totalPayments = pmt * totalPeriods;
+
+  return {
+    presentValue,
+    totalPayments,
+    totalPeriods,
+    periodicRate,
+    periodsPerYear,
+  };
+}
+
 export function calculateFutureValue({
   presentValue,
   interestRate,
