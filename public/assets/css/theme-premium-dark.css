@@ -207,8 +207,9 @@ body .calculator-button.secondary {
 
 body .calculator-button.is-active,
 body .calculator-button[aria-pressed='true'] {
-  background: var(--gradient-brand-primary);
+  background: #1d4ed8;
   color: #fff;
+  box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
 }
 
 body .calculator-ui .result,

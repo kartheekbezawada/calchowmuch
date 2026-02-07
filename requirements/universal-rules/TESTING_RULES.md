@@ -1,206 +1,167 @@
+# Testing Requirements - Canonical Test Governance
 
-# Testing Requirements
-
-
-**UI Regression Rules Reference:**
-See [ISS-UI-FDP — Form Density & Progressive Disclosure Rules](../rules/iss/ISS-UI-FDP.md) for Calculation Pane density and progressive disclosure requirements.
-
-### Universal Requirement ↔ ISS Rule ↔ Test Type Mapping
-
-| Universal Requirement | ISS Rule(s) | Test Type | Required When |
-|----------------------|-------------|-----------|---------------|
-| UUI-FDP-001 | ISS-UI-FDP-001,005 | E2E/UI | Any calculator form/layout change |
-| UUI-FDP-002 | ISS-UI-FDP-002 | E2E | Any calculator change |
-| UUI-FDP-003 | ISS-UI-FDP-003 | E2E/UI | When adding inputs or new calculator |
-| UUI-FDP-004 | ISS-UI-FDP-004 | E2E/UI | When touching related-field rows |
-| UUI-FDP-006 | ISS-UI-FDP-006 | E2E/UI | Any form refactor |
-| UUI-FDP-007 | ISS-UI-FDP-007 | E2E/UI | Any mode toggle / dynamic inputs |
-
-> **Purpose:** Defines test taxonomy, selection matrix, and execution rules  
-> **Authority:** This document determines which tests are required for each change type  
-> **Last Updated:** 2026-01-22
+**Authority:** This document defines mandatory test selection and execution for CalcHowMuch.com.
+**Status:** Canonical; other testing docs must defer to this file.
+**Issued Under:** REQ-20260128-016
+**Last Updated:** 2026-02-06
+**Version:** 2.1
 
 ---
 
-## §1 Test Pyramid (Cost Order)
+## 0) Scope & Applicability
 
-```
-         ┌─────────────────┐
-         │   Full Sweep    │  ← Release only
-         │    (highest)    │
-         ├─────────────────┤
-         │      E2E        │  ← UI/Flow changes
-         ├─────────────────┤
-         │    ISS-001      │  ← Layout/CSS
-         ├─────────────────┤
-         │    SEO Auto     │  ← SEO/Metadata
-         ├─────────────────┤
-         │  Integration    │  ← API changes
-         ├─────────────────┤
-         │      Unit       │  ← Compute logic
-         │    (cheapest)   │
-         └─────────────────┘
-```
+**Applies to:**
+- All public routes
+- All calculators
+- All UI, SEO, layout, and compute changes
 
-**Principle:** Prefer tests lower in the pyramid. They're cheaper and faster.
+**Does NOT apply to:**
+- GTEP pages unless explicitly stated by a REQ
+
+**Principle:**
+> Test what is required, no more, no less.
 
 ---
 
-## §2 Test Types Defined
+## 1) Canonical Rule References
 
-| Test Type | What It Tests | Command | Cost | Typical Duration |
-|-----------|---------------|---------|------|------------------|
-| `Unit` | Individual functions, calculations | `npm run test:unit` | Low | < 30s |
-| `Integration` | API endpoints, service interactions | `npm run test:integration` | Medium | 1-2 min |
-| `SEO Auto` | Meta tags, structured data, canonicals | `npm run test:seo` | Medium | 30s-1 min |
-| `ISS-001` | Visual regression, layout shift | `npm run test:iss001` | Medium | 1-2 min |
-| `E2E` | User flows, mode switching | `npm run test:e2e` | High | 3-5 min |
-| `Full Sweep` | Everything, all calculators | `npm run test:all` | Very High | 10+ min |
+- **Calculation Pane:** `requirements/universal-rules/calculation_pane_rules.md`
+- **Explanation Pane:** `requirements/universal-rules/explanation_pane_standard.md`
+- **SEO Governance (P1-P5):** `requirements/universal-rules/SEO_RULES.md`
+- **Universal Requirements:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
+- **Workflow FSM:** `requirements/universal-rules/WORKFLOW.md`
 
----
-
-## §3 Test Selection Matrix
-
-**This matrix is authoritative.** Select tests based on Change Type.
-
-| Change Type | Unit | Integration | SEO Auto | ISS-001 | E2E | Notes |
-|-------------|:----:|:-----------:|:--------:|:-------:|:---:|-------|
-| Compute logic change | ✅ | — | — | — | — | Test the calculation |
-| API/service change | — | ✅ | — | — | — | Test endpoints |
-| SEO/metadata change | — | — | ✅ | — | — | Validate meta tags |
-| Layout/CSS change | — | — | — | ✅ | — | Check for visual regression |
-| UI/flow change | — | — | — | — | ✅ | Test user interactions |
-| New calculator | ✅ | — | ✅ | — | ✅ | Full coverage for new |
-| Bug fix (compute) | ✅ | — | — | — | — | Regression test |
-| Bug fix (UI) | — | — | — | — | ✅ | Regression test |
-| Refactor (no behavior change) | ✅ | — | — | — | — | Ensure no regression |
-
-### Reading the Matrix
-
-- ✅ = **Required** — must pass for compliance
-- — = **Not required** — may run optionally
-- Multiple ✅ = **All required** — must all pass
+This document defines which suites must run and how to execute them.
 
 ---
 
-## §4 E2E Scoping Rules
+## 2) BUILD -> TEST Handoff (Mandatory)
 
-E2E tests are expensive. Scope them appropriately.
+When BUILD status is `PASS`, implementers must immediately execute required tests per the matrix in Section 5.
+No extra human confirmation is required for BUILD -> TEST progression.
+
+If tests require a local server and one is not running, start it and continue:
+- `npm run serve`
+
+---
+
+## 3) Test Suites Defined (Authoritative)
+
+### 3.1 Functional Test Suites
+
+| Suite | Purpose | Command |
+|------|--------|---------|
+| Unit | Calculation logic and core JS behavior | `npm run test` |
+| E2E | User flows and navigation | `npm run test:e2e` |
+| ISS-001 | Layout stability and density checks | `npm run test:iss001` |
+
+### 3.2 SEO Validation Suites
+
+| SEO Suite | Validates | Priority | Command |
+|---------|----------|----------|---------|
+| SEO-P1 | Title, meta description, canonical, H1, lang, viewport | P1 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
+| SEO-P2 | OpenGraph, Twitter cards, structured data | P2 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
+| SEO-P3 | Core Web Vitals (LCP, CLS, TBT, FCP, TTI) | P3 | `N/A (manual gate; see SEO_RULES.md)` |
+| SEO-P4 | Accessibility impacting SEO | P4 | `N/A (manual gate; see SEO_RULES.md)` |
+| SEO-P5 | Sitemap, robots, redirects, canonical domain | P5 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
+
+**Note:** P3 and P4 remain mandatory when required by matrix, but are executed using direct tool commands defined in `SEO_RULES.md`.
+
+---
+
+## 4) SEO Structured Data Enforcement (Hard Rules)
+
+When SEO-P2 is required, required schema must exist:
+
+| Page Type | Required Schema |
+|----------|-----------------|
+| Homepage | `Organization`, `WebSite`, `BreadcrumbList` |
+| Category page | `WebPage`, `BreadcrumbList` |
+| Calculator page | `WebPage`, `SoftwareApplication`, `FAQPage`, `BreadcrumbList` |
+
+Missing required schema = SEO-P2 FAIL.
+
+---
+
+## 5) Test Selection Matrix (Authoritative)
+
+| Change Type | Unit | SEO-P1 | SEO-P2 | SEO-P3 | SEO-P4 | SEO-P5 | ISS-001 | E2E |
+|-------------|:----:|:------:|:------:|:------:|:------:|:------:|:-------:|:---:|
+| Compute logic change | YES | - | - | - | - | - | - | - |
+| SEO/metadata change | - | YES | YES | - | - | - | - | - |
+| Layout/CSS change | - | - | - | YES | YES | - | YES | - |
+| UI/flow change | - | - | - | - | - | - | - | YES |
+| New calculator | YES | YES | YES | YES | YES | YES | YES | YES |
+| New site section | - | YES | YES | YES | YES | YES | YES | YES |
+| Content update (copy) | - | YES | - | - | - | - | - | - |
+| URL structure change | - | YES | - | - | - | YES | - | - |
+| Bug fix (compute) | YES | - | - | - | - | - | - | - |
+| Bug fix (UI) | - | - | - | - | - | - | YES | YES |
+| Refactor (no behavior change) | YES | - | - | - | - | - | - | - |
+
+Tests stack when multiple change types apply.
+
+---
+
+## 6) E2E Scoping Rules
 
 | Scenario | E2E Scope |
-|----------|-----------|
-| Single calculator change | E2E for **that calculator only** |
-| Shared component change | E2E for **all affected calculators** |
-| Navigation change | E2E for **mode switching + affected flows** |
-| New calculator | E2E for **new calculator + integration with nav** |
-| Release candidate | **Full sweep** |
+|--------|-----------|
+| Single calculator change | That calculator only |
+| Shared component change | Affected calculators only |
+| Navigation change | Affected navigation flows |
+| New calculator | New calculator + nav integration |
+| Release candidate | Full representative sweep |
 
-**Never** run full E2E sweep for single-calculator changes.
+Never run a full E2E sweep for single-calculator changes.
 
 ---
 
-## §5 Test Evidence Requirements
+## 7) Evidence & Traceability (Mandatory)
 
 Each test run must record:
+- TEST_ID
+- REQ_ID (and SEO_ID when applicable)
+- Test suite(s)
+- Route(s)
+- PASS/FAIL result
+- Artifacts/evidence link
+- ITER_ID
 
-| Field | Required | Example |
-|-------|----------|---------|
-| TEST_ID | Yes | `TEST-20260122-142455` |
-| Test Type | Yes | `Unit`, `E2E`, etc. |
-| Tests Run | Yes | `12/12 passed`, `10/12 passed` |
-| Duration | Optional | `28s` |
-| Iteration Count | Yes | `5/25` |
-| ITER_ID | Yes | Links to iteration_tracker |
-
----
-
-## §6 Test Failure Handling
-
-When tests fail within the Ralph Lauren Loop:
-
-1. **Log failure in iteration_tracker.md**
-   - Iteration number
-   - Test that failed
-   - Error message
-   - Phase = TEST
-
-2. **Decide fix strategy:**
-   - Code fix needed → Go to BUILD phase, fix, rebuild
-   - Test fix needed → Fix test, re-run TEST phase
-   - Flaky test → Document, retry up to 2x, then escalate
-
-3. **Increment iteration counter**
-
-4. **If iteration >= 25:**
-   - Mark TEST status = ABORTED
-   - Create ISSUE with MAX_ITERATIONS type
-   - Stop loop
+Record results in `requirements/compliance/testing_tracker.md` and iteration notes.
 
 ---
 
-## §7 Required vs Optional Tests
+## 8) Failure Handling
 
-| Context | Required Tests | Optional Tests |
-|---------|----------------|----------------|
-| Local development | Per matrix | Any additional |
-| PR validation | Per matrix | Reviewer's choice |
-| Release candidate | Full sweep | — |
-
-**Recording in compliance-report.md:**
-```
-Tests Required: Unit (per matrix)
-Tests Run: Unit (12/12), E2E (optional, 3/3)
-```
+1. Log failure in active ITER file.
+2. Classify failure source:
+- Code defect -> BUILD
+- Test defect -> BUILD (fix tests)
+- Flaky -> Retry up to 2 times
+3. Update trackers with failure row.
+4. If iterations reach 25, file ISSUE and stop.
 
 ---
 
-## §8 Test Commands Reference
+## 9) Command Reference (Repository-Valid)
 
 ```bash
-# Unit tests
-npm run test:unit
+# Unit
+npm run test
 
-# Integration tests  
-npm run test:integration
+# E2E (all specs in configured testDir)
+npm run test:e2e
 
-# SEO validation
-npm run test:seo
+# E2E (single spec)
+npm run test:e2e -- requirements/specs/e2e/<spec-file>.spec.js
 
-# ISS-001 (layout shift/visual)
+# ISS-001
 npm run test:iss001
 
-# E2E - specific calculator
-npm run test:e2e -- --grep "percentage"
+# Lint (build gate)
+npm run lint
 
-# E2E - mode switching
-npm run test:e2e -- --grep "mode"
-
-# Full sweep (all tests)
-npm run test:all
+# Start local static server if needed
+npm run serve
 ```
-
----
-
-## §9 Test Configuration
-
-Tests should be configured to:
-
-- ✅ Exit with non-zero code on failure
-- ✅ Output machine-readable results (JSON or TAP)
-- ✅ Support filtering by test name/tag
-- ✅ Generate coverage reports (for Unit)
-- ✅ Take screenshots on failure (for E2E)
-
----
-
-## §10 Coverage Thresholds
-
-| Test Type | Minimum Coverage | Target |
-|-----------|------------------|--------|
-| Unit (new code) | 80% | 90% |
-| Unit (existing) | No regression | — |
-| E2E (critical paths) | 100% | 100% |
-
----
-
-*The matrix is the law. Test what's required, no more, no less.*

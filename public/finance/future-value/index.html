@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Future Value (FV) Calculator – CalcHowMuch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator." />
+    <link rel="canonical" href="https://calchowmuch.com/finance/future-value/" />
+    <meta property="og:title" content="Future Value (FV) Calculator – CalcHowMuch" />
+    <meta property="og:description" content="Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/finance/future-value/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Future Value (FV) Calculator – CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="calculator">
+    <div class="page">
+      <header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a class="brand-logo" href="/" aria-label="Home">
+        <span class="brand-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2.5" width="16" height="19" rx="3" />
+            <line x1="8" y1="6.5" x2="16" y2="6.5" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="12" y1="10" x2="12" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="13.5" x2="9" y2="13.51" />
+            <line x1="12" y1="13.5" x2="12" y2="13.51" />
+            <line x1="15" y1="13.5" x2="15" y2="13.51" />
+            <line x1="9" y1="17" x2="9" y2="17.01" />
+            <line x1="12" y1="17" x2="12" y2="17.01" />
+            <line x1="15" y1="17" x2="15" y2="17.01" />
+          </svg>
+        </span>
+      </a>
+      <div class="brand-block">
+        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+        <a class="brand-badge" href="/loans/home-loan">
+          <span class="brand-badge-icon" aria-hidden="true">✦</span>
+          <span>Premium Calculator Suite</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+    </div>
+    <div class="header-right" role="search">
+      <label class="sr-only" for="global-calculator-search">Search calculators</label>
+      <div class="header-search">
+        <span class="header-search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+        </span>
+        <input
+          id="global-calculator-search"
+          class="header-search-input"
+          type="search"
+          placeholder="Search calculators…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-value-of-money">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time Value of Money</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item is-active" href="/finance/future-value">Future Value (FV)</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Future Value Calculator</h1>
+  <div id="calc-future-value">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate how much your money can grow using interest rate, time period, and optional regular contributions.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="fv-present-value">Present Value (PV)</label>
+        <input id="fv-present-value" type="number" value="10000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fv-interest-rate">Interest / Growth Rate (%)</label>
+        <input id="fv-interest-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fv-time-period">Time Period</label>
+        <input id="fv-time-period" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="fv-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fv-period-type-label"
+          data-button-group="fv-period-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="years"
+            aria-pressed="true"
+          >
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="fv-optional-toggle"
+      aria-expanded="false"
+      aria-controls="fv-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="fv-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="fv-compound-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fv-compound-label"
+          data-button-group="fv-compounding"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="annual"
+            aria-pressed="true"
+          >
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
+            Monthly
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="fv-regular-contribution">Regular Contribution</label>
+        <input id="fv-regular-contribution" type="number" value="0" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="fv-calc">
+      Calculate Future Value
+    </button>
+
+    <div class="result" id="fv-result" aria-live="polite"></div>
+    <div class="result-detail" id="fv-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/future-value/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/future-value/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="fv-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    Based on your inputs for starting amount of <span data-fv="present-value"></span>, interest rate of
+    <span data-fv="interest-rate"></span>, and time period of <span data-fv="time-period"></span>, this calculator
+    estimates a future value of <span data-fv="future-value"></span>.
+    The result shows how much your money could grow over time through compound interest and optional regular
+    contributions of <span data-fv="regular-contribution"></span>.
+    This helps you plan savings, investments, and long-term financial goals.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Present Value</td>
+          <td><span data-fv="present-value"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Rate</td>
+          <td><span data-fv="interest-rate"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Period</td>
+          <td><span data-fv="time-period"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Compounding Frequency</td>
+          <td><span data-fv="compounding-frequency"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Future Value</td>
+          <td><span data-fv="future-value"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Future Value (FV)</td>
+          <td><span data-fv="future-value"></span></td>
+          <td>Currency</td>
+          <td>Value of money in future</td>
+        </tr>
+        <tr>
+          <td>Present Value (PV)</td>
+          <td><span data-fv="present-value"></span></td>
+          <td>Currency</td>
+          <td>Starting amount</td>
+        </tr>
+        <tr>
+          <td>Total Contributions</td>
+          <td><span data-fv="total-contributions"></span></td>
+          <td>Currency</td>
+          <td>Money added over time</td>
+        </tr>
+        <tr>
+          <td>Total Growth</td>
+          <td><span data-fv="total-growth"></span></td>
+          <td>Currency</td>
+          <td>Interest earned</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Effective Periods</td>
+          <td><span data-fv="total-periods"></span></td>
+          <td>Periods</td>
+          <td>Total compounding periods</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    Future value represents how much money today can grow over time when interest or growth is applied. Because
+    returns compound, growth accelerates as both the original amount and accumulated interest earn returns.
+  </p>
+  <p>
+    In this calculation, your present value grows using the selected interest rate, compounding frequency, and time
+    period. Higher rates or longer periods increase future value, while lower rates or shorter periods reduce it.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is future value (FV)?</strong></p>
+    <p class="faq-answer">
+      A: Future value is the amount your money will be worth at a future date after earning interest or growth.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How is future value different from present value?</strong></p>
+    <p class="faq-answer">
+      A: Present value is today’s worth of money, while future value shows what it grows into over time.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What interest rate should I use?</strong></p>
+    <p class="faq-answer">
+      A: Use an expected return rate based on savings, investments, or inflation assumptions.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How does compounding affect future value?</strong></p>
+    <p class="faq-answer">
+      A: More frequent compounding increases growth by earning interest on interest.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Does time period matter for future value?</strong></p>
+    <p class="faq-answer">
+      A: Yes, longer time periods significantly increase future value due to compounding.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What are regular contributions?</strong></p>
+    <p class="faq-answer">
+      A: Regular contributions are additional amounts added periodically to increase total savings.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is future value useful for retirement planning?</strong></p>
+    <p class="faq-answer">
+      A: Yes, it helps estimate how current savings may grow by retirement.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can future value decrease over time?</strong></p>
+    <p class="faq-answer">
+      A: With a positive interest rate, future value increases; negative rates reduce growth.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the interest rate is zero?</strong></p>
+    <p class="faq-answer">
+      A: The future value equals the present value plus any contributions.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is this calculator suitable for savings and investments?</strong></p>
+    <p class="faq-answer">
+      A: Yes, it can be used for savings goals, investments, education funds, and retirement planning.
+    </p>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="/privacy/">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="/terms/">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="/contact/">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="/faqs/">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/calculators/finance/future-value/module.js"></script>
+  </body>
+</html>

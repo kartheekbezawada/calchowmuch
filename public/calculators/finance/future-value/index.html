@@ -1,0 +1,104 @@
+<div id="calc-future-value">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate how much your money can grow using interest rate, time period, and optional regular contributions.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="fv-present-value">Present Value (PV)</label>
+        <input id="fv-present-value" type="number" value="10000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fv-interest-rate">Interest / Growth Rate (%)</label>
+        <input id="fv-interest-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fv-time-period">Time Period</label>
+        <input id="fv-time-period" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="fv-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fv-period-type-label"
+          data-button-group="fv-period-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="years"
+            aria-pressed="true"
+          >
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="fv-optional-toggle"
+      aria-expanded="false"
+      aria-controls="fv-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="fv-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="fv-compound-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fv-compound-label"
+          data-button-group="fv-compounding"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="annual"
+            aria-pressed="true"
+          >
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
+            Monthly
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="fv-regular-contribution">Regular Contribution</label>
+        <input id="fv-regular-contribution" type="number" value="0" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="fv-calc">
+      Calculate Future Value
+    </button>
+
+    <div class="result" id="fv-result" aria-live="polite"></div>
+    <div class="result-detail" id="fv-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/future-value/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/future-value/module.js"></script>
