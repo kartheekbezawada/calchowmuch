@@ -51,10 +51,24 @@ Category treated as its own top-level group
 
 2.2 Left Navigation Structure
 
-Add entry:
 
+```
 Percentage Calculators
-└── Percent to Fraction/Decimal
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
+```
+
 
 
 Rules
@@ -109,7 +123,7 @@ https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal/
 6. Calculation Pane Requirements
 6.1 Heading
 
-H2: Percent to Fraction & Decimal Converter
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 6.2 Inputs (Above the Fold)
 Section	Input	Type	Required	Notes
@@ -173,7 +187,7 @@ Fraction simplification must be deterministic
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-8.1 H2 — Summary (Keyword-Dense, Natural)
+8.1 Summary Content (No Summary Heading Node)
 
 This percent to fraction and decimal converter turns a percentage into its equivalent decimal and simplified fraction.
 

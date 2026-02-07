@@ -100,6 +100,36 @@ const CALCULATOR_OVERRIDES = {
       'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
     h1: 'Commission Calculator',
   },
+  'margin-calculator': {
+    title: 'Margin Calculator – CalcHowMuch',
+    description:
+      'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
+    h1: 'Margin Calculator',
+  },
+  'percent-change': {
+    title: 'Percent Change Calculator – CalcHowMuch',
+    description:
+      'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
+    h1: 'Percent Change Calculator',
+  },
+  'percentage-increase': {
+    title: 'Percentage Increase Calculator – CalcHowMuch',
+    description:
+      'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
+    h1: 'Percentage Increase Calculator',
+  },
+  'percent-to-fraction-decimal': {
+    title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
+    description:
+      'Convert any percentage to a decimal and simplified fraction instantly. Free percent to fraction and percent to decimal converter with steps.',
+    h1: 'Percent to Fraction & Decimal Converter',
+  },
+  'percentage-of-a-number': {
+    title: 'Find Percentage of a Number Calculator – CalcHowMuch',
+    description:
+      'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
+    h1: 'Find Percentage of a Number Calculator',
+  },
 };
 
 function ensureLength(text, min, max) {
@@ -291,6 +321,23 @@ function buildMathNav(category, activeCalculatorId, calcLookup) {
 }
 
 function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup) {
+  if (category.id === 'percentage-calculators') {
+    const calculators = category.subcategories.flatMap((subcategory) => subcategory.calculators);
+    const itemsHtml = calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}">${calculator.name}</a>`;
+      })
+      .join('');
+
+    return `
+<div class="nav-category" data-id="percentage-calculators-flat">
+  <div class="nav-category-items">
+    ${itemsHtml}
+  </div>
+</div>`;
+  }
+
   let subcategoriesToRender = category.subcategories;
   if (activeSubcategoryId) {
     const activeSubcategory = category.subcategories.find((sub) => sub.id === activeSubcategoryId);

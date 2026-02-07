@@ -1,0 +1,115 @@
+<div id="pct-diff-explanation" class="explanation-pane">
+  <p>
+    Percentage difference shows how far apart Value A and Value B are as a percentage of their average baseline, so swapping A and B gives the same result.
+  </p>
+  <p>
+    Based on your inputs, the calculator finds the absolute difference and divides it by the average of |A| and |B| to produce a non-negative percentage difference.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Value A</td>
+          <td><span data-pct-diff="a"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Value B</td>
+          <td><span data-pct-diff="b"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Absolute Difference</td>
+          <td><span data-pct-diff="abs-diff"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+        <tr>
+          <td>Average Baseline</td>
+          <td><span data-pct-diff="avg-baseline"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Percentage Difference</td>
+          <td><span data-pct-diff="pct-diff"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Value A</td>
+          <td><span data-pct-diff="a"></span></td>
+          <td>First value</td>
+        </tr>
+        <tr>
+          <td>Value B</td>
+          <td><span data-pct-diff="b"></span></td>
+          <td>Second value</td>
+        </tr>
+        <tr>
+          <td>Absolute Difference</td>
+          <td><span data-pct-diff="abs-diff"></span></td>
+          <td>Magnitude of (A - B)</td>
+        </tr>
+        <tr>
+          <td>Average Baseline</td>
+          <td><span data-pct-diff="avg-baseline"></span></td>
+          <td>Average of |A| and |B|</td>
+        </tr>
+        <tr>
+          <td>Percentage Difference</td>
+          <td><span data-pct-diff="pct-diff"></span></td>
+          <td>Symmetric percent difference</td>
+        </tr>
+        <tr>
+          <td>Formula</td>
+          <td><span data-pct-diff="formula"></span></td>
+          <td>Percent difference formula</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    First, calculate the absolute difference |A - B| to measure how far apart the values are. Next, compute the average baseline using (|A| + |B|) / 2.
+  </p>
+  <p>
+    Finally, divide the absolute difference by the average baseline and multiply by 100 to get the percentage difference. If both values are 0, the baseline is 0 and the percentage difference cannot be calculated.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box"><p><strong>Q: What is percentage difference?</strong></p><p class="faq-answer">A: Percentage difference compares two values as a percentage of their average, so the result is symmetric.</p></div>
+  <div class="faq-box"><p><strong>Q: How do you calculate percentage difference between A and B?</strong></p><p class="faq-answer">A: Take |A - B|, divide by ((|A| + |B|) / 2), then multiply by 100.</p></div>
+  <div class="faq-box"><p><strong>Q: What is the percentage difference formula?</strong></p><p class="faq-answer">A: The formula is (|A - B| / ((|A| + |B|) / 2)) x 100.</p></div>
+  <div class="faq-box"><p><strong>Q: Why is percentage difference symmetric?</strong></p><p class="faq-answer">A: Because it uses an absolute difference and divides by the average of the two magnitudes.</p></div>
+  <div class="faq-box"><p><strong>Q: Is percentage difference always non-negative?</strong></p><p class="faq-answer">A: Yes, percentage difference uses an absolute difference, so it is never negative.</p></div>
+  <div class="faq-box"><p><strong>Q: Can A and B be negative?</strong></p><p class="faq-answer">A: Yes, the baseline uses |A| and |B| so negative values are supported.</p></div>
+  <div class="faq-box"><p><strong>Q: What happens if both values are zero?</strong></p><p class="faq-answer">A: Percentage difference is undefined because the average baseline is 0 and division by zero is not possible.</p></div>
+  <div class="faq-box"><p><strong>Q: How is percentage difference different from percent change?</strong></p><p class="faq-answer">A: Percent change uses one value as the original baseline, while percentage difference uses the average of both values.</p></div>
+  <div class="faq-box"><p><strong>Q: When should you use percentage difference?</strong></p><p class="faq-answer">A: Use it when neither value should be treated as the original, such as comparing two measurements or prices.</p></div>
+  <div class="faq-box"><p><strong>Q: Can percentage difference be more than 100%?</strong></p><p class="faq-answer">A: Yes, if the two values differ a lot compared to their average, the percentage difference can exceed 100%.</p></div>
+</div>

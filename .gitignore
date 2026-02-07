@@ -45,3 +45,7 @@ temp/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Lighthouse temp browser profiles (WSL/Windows path artifacts)
+C:/Users/*/AppData/Local/lighthouse.*/
+C:\\Users\\*\\AppData\\Local\\lighthouse.*/

@@ -10,18 +10,18 @@
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 | ------ | ----- | ---- | ----------- | -------- | ------ | ---- |
 | REQ-20260208-001 | Commission Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260208-002 | Discount Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
-| REQ-20260208-003 | Margin Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-004 | Markup Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-005 | Percent Change Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-006 | Percentage Decrease Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-007 | Percentage Difference Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-008 | Percentage Increase Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-009 | Percentage Composition Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-010 | Percent to Fraction/Decimal Converter — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-011 | Reverse Percentage Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-012 | What Percent Is X of Y Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260208-013 | Find Percentage of a Number Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260208-002 | Discount Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-003 | Margin Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-004 | Markup Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-005 | Percent Change Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-006 | Percentage Decrease Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-007 | Percentage Difference Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-008 | Percentage Increase Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-009 | Percentage Composition Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-010 | Percent to Fraction/Decimal Converter — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-011 | Reverse Percentage Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-012 | What Percent Is X of Y Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-013 | Find Percentage of a Number Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 

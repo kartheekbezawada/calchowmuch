@@ -59,8 +59,24 @@ Top navigation display name: Percentage Calculators
 Category treated as its own top-level group
 
 2.2 Left Navigation Structure
+
+```
 Percentage Calculators
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
 └── Markup Calculator
+```
+
 
 
 Rules
@@ -109,7 +125,7 @@ https://calchowmuch.com/percentage-calculators/markup-calculator/
 6. Calculation Pane Requirements
 6.1 Heading
 
-H2: Markup Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 6.2 Mode Toggle (Required, Visible by Default)
 
@@ -309,7 +325,7 @@ Formatting must follow site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-8.1 H2 — Summary (Keyword-Dense, Natural)
+8.1 Summary Content (No Summary Heading Node)
 
 A markup calculator helps you price products by adding a markup percentage to the cost, or by finding the markup percentage when you know the cost and selling price.
 

@@ -53,10 +53,24 @@ Top navigation display name: Percentage Calculators
 Category is treated as its own top-level group (not under Math)
 
 ### 2.2 Left Navigation Structure
+
 ```
 Percentage Calculators
-└── Find Percentage of a Number
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
 ```
+
 
 
 #### Rules
@@ -92,7 +106,7 @@ Crawlable explanation pane
 ## 5. Calculation Pane Requirements
 ### 5.1 Heading
 
-H2: Find Percentage of a Number Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 5.2 Inputs (Above the Fold)
 | Section | Input | Type | Required | Notes |
@@ -145,7 +159,7 @@ No unhandled exceptions
 
 Must implement Explanation Pane — Universal Standard exactly (layout, headings, table semantics, boxed FAQ styling rules).
 
-### 7.1 H2 — Summary (Keyword-Dense, Natural)
+### 7.1 Summary Content (No Summary Heading Node)
 
 The percentage of a number calculation shows how much a given percentage represents out of a total value.
 

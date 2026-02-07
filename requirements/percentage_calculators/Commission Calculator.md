@@ -58,10 +58,24 @@ Category treated as its own top-level group
 
 ### 2.2 Left Navigation Structure
 
-Add entry:
 
+```
 Percentage Calculators
-└── Commission Calculator
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
+```
+
 
 
 #### Rules
@@ -118,7 +132,7 @@ https://calchowmuch.com/percentage-calculators/commission-calculator/
 ## 6. Calculation Pane Requirements
 ### 6.1 Heading
 
-H2: Commission Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Mode Toggle (Required)
 
@@ -227,7 +241,7 @@ Formatting must follow site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-### 8.1 H2 — Summary (Keyword-Dense, Natural)
+### 8.1 Summary Content (No Summary Heading Node)
 
 A commission calculator estimates how much commission you earn from sales based on a commission percentage.
 

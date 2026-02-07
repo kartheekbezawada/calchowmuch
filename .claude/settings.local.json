@@ -38,7 +38,8 @@
       "Bash(npx vitest run:*)",
       "Bash(set:*)",
       "Bash(git show:*)",
-      "Bash(npx prettier:*)"
+      "Bash(npx prettier:*)",
+      "Bash(npx playwright test:*)"
     ]
   }
 }

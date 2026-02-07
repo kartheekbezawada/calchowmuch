@@ -17,7 +17,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/math/percentage-increase/</loc>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-increase/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -322,16 +322,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/percentage-calculators/commission-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://calchowmuch.com/percentage-calculators/discount-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://calchowmuch.com/time-and-date/sleep-time-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -378,6 +368,71 @@
   </url>
   <url>
     <loc>https://calchowmuch.com/time-and-date/birthday-day-of-week/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percent-change/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-difference/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-increase/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-decrease/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-composition/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/reverse-percentage/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/what-percent-is-x-of-y/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/percentage-of-a-number/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/commission-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/discount-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/margin-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/percentage-calculators/markup-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

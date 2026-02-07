@@ -1,0 +1,29 @@
+<div id="calc-reverse-percentage">
+  <div class="calculator-ui">
+    <p class="helper">Y is X% of what number? Find the original value.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="revpct-percent">Percentage (X%)</label>
+        <input id="revpct-percent" type="number" value="20" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="revpct-final">Final Value (Y)</label>
+        <input id="revpct-final" type="number" value="60" step="any" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="revpct-calc">
+      Calculate Original Value
+    </button>
+
+    <div class="result" id="revpct-result" aria-live="polite"></div>
+    <div class="result-detail" id="revpct-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script
+  type="module"
+  src="/calculators/percentage-calculators/reverse-percentage/module.js"
+></script>

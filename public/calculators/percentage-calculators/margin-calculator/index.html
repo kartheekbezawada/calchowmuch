@@ -1,0 +1,52 @@
+<div id="calc-margin-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Calculate gross margin %, profit, and selling price from cost and margin targets.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label id="margin-mode-label">Mode</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="margin-mode-label"
+          data-button-group="margin-mode"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="cost-price" aria-pressed="true">
+            Cost + Price -> Margin %
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="cost-margin" aria-pressed="false">
+            Cost + Margin % -> Selling Price
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="margin-cost">Cost (C)</label>
+        <input id="margin-cost" type="number" value="60" min="0" step="0.01" />
+      </div>
+
+      <div id="margin-mode-cost-price" class="input-stack">
+        <div class="input-row">
+          <label for="margin-price">Selling Price (P)</label>
+          <input id="margin-price" type="number" value="100" min="0" step="0.01" />
+        </div>
+      </div>
+
+      <div id="margin-mode-cost-margin" class="input-stack is-hidden" aria-hidden="true" hidden>
+        <div class="input-row">
+          <label for="margin-percent">Gross Margin % (based on selling price)</label>
+          <input id="margin-percent" type="number" value="40" min="0" step="0.01" />
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="margin-calc">Calculate Margin</button>
+
+    <div class="result" id="margin-result" aria-live="polite"></div>
+    <div class="result-detail" id="margin-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script type="module" src="/calculators/percentage-calculators/margin-calculator/module.js"></script>
