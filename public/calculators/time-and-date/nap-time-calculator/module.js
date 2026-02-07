@@ -17,59 +17,66 @@ const resultsList = document.querySelector('#nap-results-list');
 const placeholder = document.querySelector('#nap-placeholder');
 const errorMessage = document.querySelector('#nap-error');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Which nap is best for work breaks?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Quick naps and power naps are usually the easiest to fit into a workday because they are shorter.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do I sometimes feel worse after a nap?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will napping ruin my sleep at night?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the best time of day to nap?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator set an alarm?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It only suggests a wake-up time. You can set an alarm on your phone or device.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
   description:
     'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.',
   canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Which nap is best for work breaks?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Quick naps and power naps are usually the easiest to fit into a workday because they are shorter.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why do I sometimes feel worse after a nap?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Will napping ruin my sleep at night?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the best time of day to nap?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does the calculator set an alarm?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. It only suggests a wake-up time. You can set an alarm on your phone or device.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

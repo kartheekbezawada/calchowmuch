@@ -151,6 +151,124 @@ const INITIAL_METADATA = (() => {
   };
 })();
 
+function normalizePageSchema(schema) {
+  const calculatorFAQ = Boolean(schema?.calculatorFAQ);
+  const globalFAQ = Boolean(schema?.globalFAQ);
+  return { calculatorFAQ, globalFAQ };
+}
+
+function isFaqPageNode(node) {
+  return Boolean(node && typeof node === 'object' && node['@type'] === 'FAQPage');
+}
+
+function countFaqPages(structuredData) {
+  if (!structuredData) {
+    return 0;
+  }
+  if (Array.isArray(structuredData)) {
+    return structuredData.reduce((sum, item) => sum + countFaqPages(item), 0);
+  }
+  if (typeof structuredData !== 'object') {
+    return 0;
+  }
+  if (isFaqPageNode(structuredData)) {
+    return 1;
+  }
+  const graph = structuredData['@graph'];
+  if (Array.isArray(graph)) {
+    return graph.reduce((sum, item) => sum + countFaqPages(item), 0);
+  }
+  return 0;
+}
+
+function ensureSchemaContext(base, fallback = 'https://schema.org') {
+  if (base && typeof base === 'object' && !Array.isArray(base) && base['@context']) {
+    return base['@context'];
+  }
+  return fallback;
+}
+
+function mergeStructuredDataWithFaq({ base, faqSchema }) {
+  if (!faqSchema) {
+    return base ?? null;
+  }
+
+  const context = ensureSchemaContext(base);
+
+  if (!base) {
+    return {
+      '@context': context,
+      ...faqSchema,
+    };
+  }
+
+  if (Array.isArray(base)) {
+    return {
+      '@context': context,
+      '@graph': [...base, faqSchema],
+    };
+  }
+
+  if (typeof base === 'object') {
+    const graph = base['@graph'];
+    if (Array.isArray(graph)) {
+      return {
+        ...base,
+        '@graph': [...graph, faqSchema],
+      };
+    }
+    return {
+      '@context': context,
+      '@graph': [base, faqSchema],
+    };
+  }
+
+  return {
+    '@context': context,
+    ...faqSchema,
+  };
+}
+
+function buildGuardedStructuredData(metadata) {
+  const schemaFlags = normalizePageSchema(metadata?.pageSchema);
+  const hasFlags = schemaFlags.calculatorFAQ || schemaFlags.globalFAQ;
+  const calculatorFAQSchema = metadata?.calculatorFAQSchema ?? null;
+  const globalFAQSchema = metadata?.globalFAQSchema ?? null;
+  const baseStructuredData = Object.prototype.hasOwnProperty.call(metadata, 'structuredData')
+    ? metadata.structuredData
+    : null;
+
+  if (schemaFlags.calculatorFAQ && schemaFlags.globalFAQ) {
+    throw new Error('Invalid schema flags: both calculatorFAQ and globalFAQ are true.');
+  }
+
+  if (!hasFlags && !calculatorFAQSchema && !globalFAQSchema) {
+    return baseStructuredData;
+  }
+
+  const pathname = typeof window !== 'undefined' ? window.location?.pathname ?? '' : '';
+  const isFaqPath = pathname === '/faq' || pathname === '/faq/';
+  if (schemaFlags.globalFAQ && !isFaqPath) {
+    throw new Error(`Invalid schema flags: globalFAQ is true on non-FAQ path (${pathname}).`);
+  }
+  if (schemaFlags.calculatorFAQ && isFaqPath) {
+    throw new Error(`Invalid schema flags: calculatorFAQ is true on FAQ path (${pathname}).`);
+  }
+
+  const selectedFaqSchema = schemaFlags.calculatorFAQ
+    ? calculatorFAQSchema
+    : schemaFlags.globalFAQ
+      ? globalFAQSchema
+      : null;
+
+  const merged = mergeStructuredDataWithFaq({ base: baseStructuredData, faqSchema: selectedFaqSchema });
+  const faqCount = countFaqPages(merged);
+  if (faqCount > 1) {
+    throw new Error(`Invalid structured data: found ${faqCount} FAQPage schemas on one URL.`);
+  }
+  return merged;
+}
+
 export function setPageMetadata(metadata = {}) {
   if (typeof document === 'undefined') {
     return;
@@ -184,10 +302,17 @@ export function setPageMetadata(metadata = {}) {
     canonicalLink.setAttribute('href', metadata.canonical ?? '');
   }
 
-  if (Object.prototype.hasOwnProperty.call(metadata, 'structuredData')) {
+  const hasSchemaUpdate =
+    Object.prototype.hasOwnProperty.call(metadata, 'structuredData') ||
+    Object.prototype.hasOwnProperty.call(metadata, 'pageSchema') ||
+    Object.prototype.hasOwnProperty.call(metadata, 'calculatorFAQSchema') ||
+    Object.prototype.hasOwnProperty.call(metadata, 'globalFAQSchema');
+
+  if (hasSchemaUpdate) {
     const scriptSelector = 'script[data-calculator-ld]';
     const existingScript = head.querySelector(scriptSelector);
-    if (metadata.structuredData) {
+    const guardedStructuredData = buildGuardedStructuredData(metadata);
+    if (guardedStructuredData) {
       let script = existingScript;
       if (!script) {
         script = document.createElement('script');
@@ -195,7 +320,7 @@ export function setPageMetadata(metadata = {}) {
         script.dataset.calculatorLd = 'true';
         head.appendChild(script);
       }
-      script.textContent = JSON.stringify(metadata.structuredData);
+      script.textContent = JSON.stringify(guardedStructuredData);
     } else if (existingScript) {
       existingScript.remove();
     }

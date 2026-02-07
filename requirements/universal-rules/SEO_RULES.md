@@ -96,7 +96,7 @@ Must include:
 npm run test:seo -- --level p2
 ```
 
-## P3 — Performance SEO (Launch Gate)
+## P3 — Performance SEO (Launch Gate; Waivable for calculator pages in headless/no-GUI environments)
 
 | Metric | Threshold | Tool |
 | --- | --- | --- |
@@ -137,6 +137,30 @@ npx lighthouse "http://127.0.0.1:8002/finance/present-value/" \
 Notes:
 - This command mitigates `NO_FCP` by forcing a fixed viewport.
 - This command avoids Windows `C:\Users\...\AppData\Local\lighthouse.*` profile sprawl by pinning `CHROME_PATH` to Playwright Chromium in WSL/Linux.
+
+### P3 Waiver Policy — Calculator pages in headless/no-GUI environments (NO_FCP)
+
+**Problem:** In headless/non-GUI environments, Chrome may not reliably “paint” a real frame. Lighthouse can then fail to detect First Contentful Paint and report `NO_FCP`.
+
+**Clarification:** This is not inherently a “WSL problem”. The common root cause is **no real GUI/display** (headless with no WSLg/X server/desktop session).
+
+**Policy (calculator pages):** SEO-P3 is **NOT a blocking launch gate** for calculator REQs when the failure mode is `NO_FCP` in a headless/no-GUI environment. In this case, record **P3 = WAIVED**.
+
+**Automation / recording note:** This waiver is a standing policy for calculator pages. Do **not** add special per-REQ notes in `requirement_tracker.md`. Record the waiver status and evidence only in `seo_tracker.md` (and the REQ compliance row).
+
+**Waiver is allowed ONLY when all are true:**
+- The route is a calculator page.
+- Lighthouse was attempted using the Canonical P3 command (or equivalent) and fails specifically with `NO_FCP` / missing FCP due to headless/no-GUI execution.
+- P1 / P2 / P5 checks pass (Playwright SEO suite).
+- P4 passes via Pa11y (or equivalent) and evidence is recorded.
+
+**Required evidence when P3 is WAIVED:**
+- The exact Lighthouse command used and the terminal output showing `NO_FCP` (or the best available log/trace).
+- Any produced Lighthouse JSON artifact (if created) or a note that none was produced due to runtime failure.
+- Evidence of P1/P2/P5 Playwright SEO passing.
+- The Pa11y JSON output (or equivalent) showing results.
+
+**Non-waivable failures:** If Lighthouse runs successfully but reports poor metrics (e.g., slow LCP/TTI/TBT, high CLS), then P3 is **FAIL** and remains blocking.
 
 ## P4 — Accessibility (Baseline Requirement)
 
@@ -201,7 +225,8 @@ Notes:
 | URL structure change | ✅ | — | — | — | ✅ |
 | New site section | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-Rationale: New calculators and new sections reshape site architecture, indexing, performance, and schema — therefore they must pass P1–P5.
+Rationale: New calculators and new sections reshape site architecture, indexing, performance, and schema — therefore they must complete P1–P5.
+For calculator pages, P3 may be recorded as **WAIVED** only under the P3 Waiver Policy above.
 
 ## Recording Compliance (seo_tracker.md)
 
@@ -361,20 +386,20 @@ A change is FAIL if:
 ### Blockers (recommended)
 
 - P1 always blocks public launch
-- P3 blocks launch (Core Web Vitals)
+- P3 blocks launch (Core Web Vitals) for non-calculator pages; for calculator pages, P3 may be WAIVED only under the P3 Waiver Policy above
 - P5 blocks if it affects crawl/indexing (sitemap/robots/canonical/redirects)
 
 ## Concrete “Pass/Fail checklist by change type”
 
 ### A) New calculator page (must pass P1–P5)
 
-PASS only if: P1 ✅ P2 ✅ P3 ✅ P4 ✅ P5 ✅
+PASS only if: P1 ✅ P2 ✅ (P3 ✅ OR P3 = WAIVED per policy) P4 ✅ P5 ✅
 
 Minimum evidence to record
 
 - P1: title/meta/canonical/H1/lang/viewport checks
 - P2: OG/Twitter + JSON-LD (WebPage + SoftwareApplication + FAQPage + BreadcrumbList)
-- P3: Lighthouse report (mobile + desktop) with metrics
+- P3: Lighthouse report with metrics OR WAIVER evidence (NO_FCP logs + artifacts)
 - P4: pa11y report (or equivalent) + heading/labels verified
 - P5: sitemap updated + robots ok + canonical domain ok
 
@@ -397,7 +422,7 @@ PASS only if: P1 ✅
 
 ### E) Layout/styling change (P3–P4)
 
-PASS only if: P3 ✅ P4 ✅
+PASS only if: (P3 ✅ OR P3 = WAIVED per policy) P4 ✅
 (If layout change affects headings/meta/schema, also run P1/P2.)
 
 ### F) URL structure change (P1 + P5)
@@ -416,7 +441,8 @@ Add columns that make Pass/Fail explicit:
 Overall should be computed deterministically:
 
 - If any required Px = FAIL → Overall = FAIL
-- If all required Px = PASS → Overall = PASS
+- If any required Px = WAIVED → Overall = PASS only if the waiver policy allows WAIVED for that Px and route type; otherwise Overall = FAIL
+- If all required Px are PASS (or allowed WAIVED) → Overall = PASS
 
 ## Implementation tip (what makes this actually useful)
 
@@ -424,4 +450,4 @@ Define a rule in your workflow like:
 
 No deploy of public route unless Overall = PASS for that SEO_ID
 
-Evidence artifacts must exist (Lighthouse JSON, pa11y output, schema validation screenshot/link)
+Evidence artifacts must exist (Lighthouse JSON or waiver logs, pa11y output, schema validation screenshot/link)

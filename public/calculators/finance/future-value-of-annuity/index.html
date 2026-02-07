@@ -1,0 +1,109 @@
+<div id="calc-future-value-of-annuity">
+  <div class="calculator-ui">
+    <h2>Future Value of Annuity Calculator (Ordinary & Due)</h2>
+    <p class="helper">
+      Estimate the future value of a series of regular payments and compare ordinary annuity vs annuity due.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="fva-payment">Payment Amount (PMT)</label>
+        <input id="fva-payment" type="number" value="500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fva-interest-rate">Interest Rate (%)</label>
+        <input id="fva-interest-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="fva-periods">Number of Periods</label>
+        <input id="fva-periods" type="number" value="10" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="fva-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fva-period-type-label"
+          data-button-group="fva-period-type"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="fva-annuity-type-label">Annuity Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fva-annuity-type-label"
+          data-button-group="fva-annuity-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="ordinary"
+            aria-pressed="true"
+          >
+            Ordinary
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
+            Due
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="fva-optional-toggle"
+      aria-expanded="false"
+      aria-controls="fva-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="fva-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="fva-compound-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="fva-compound-label"
+          data-button-group="fva-compounding"
+        >
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
+            Monthly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="fva-calc">
+      Calculate Future Value of Annuity
+    </button>
+
+    <div class="result" id="fva-result" aria-live="polite"></div>
+    <div class="result-detail" id="fva-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/future-value-of-annuity/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/future-value-of-annuity/module.js"></script>

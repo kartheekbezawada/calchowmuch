@@ -14,53 +14,60 @@ const resultsList = document.querySelector('#date-diff-results-list');
 const placeholder = document.querySelector('#date-diff-placeholder');
 const errorMessage = document.querySelector('#date-diff-error');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Why do months and days give different answers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator include the start date?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It calculates the time from the start date/time up to the end date/time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if the end date is before the start date?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'The calculator will show an error and ask you to choose an end date that is after the start date.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does daylight saving time affect the result?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'It can affect results in Date & time mode, because a day can be 23 or 25 hours when clocks change.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Time Between Two Dates Calculator – Days, Weeks, Months, Years',
   description:
     'Calculate the time between two dates in days, weeks, months, and years. Simple, fast, and free time between dates calculator.',
   canonical:
     'https://calchowmuch.com/calculators/time-and-date/time-between-two-dates-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Why do months and days give different answers?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does the calculator include the start date?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. It calculates the time from the start date/time up to the end date/time.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What happens if the end date is before the start date?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'The calculator will show an error and ask you to choose an end date that is after the start date.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does daylight saving time affect the result?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'It can affect results in Date & time mode, because a day can be 23 or 25 hours when clocks change.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

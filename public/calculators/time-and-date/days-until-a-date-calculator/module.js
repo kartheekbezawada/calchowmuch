@@ -9,51 +9,57 @@ const placeholder = document.querySelector('#days-until-placeholder');
 const errorMessage = document.querySelector('#days-until-error');
 const clarification = document.querySelector('#days-until-clarification');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does the calculator include today in the count?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It counts the number of full days between today and the selected date.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this for past dates?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. If the date is in the past, the calculator shows how many days have passed since then.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does daylight saving time affect the result?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. The calculator works with dates only, not hours.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this suitable for deadlines or legal use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "It's useful for planning, but always verify important deadlines with official sources.",
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Days Until a Date Calculator – How Many Days Until',
   description:
     'Calculate how many days are left until a specific date. Simple, fast, and free days until a date calculator.',
   canonical: 'https://calchowmuch.com/calculators/time-and-date/days-until-a-date-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Does the calculator include today in the count?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. It counts the number of full days between today and the selected date.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use this for past dates?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Yes. If the date is in the past, the calculator shows how many days have passed since then.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does daylight saving time affect the result?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. The calculator works with dates only, not hours.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is this suitable for deadlines or legal use?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            "It's useful for planning, but always verify important deadlines with official sources.",
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

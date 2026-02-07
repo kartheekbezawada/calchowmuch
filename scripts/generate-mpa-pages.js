@@ -52,6 +52,48 @@ const CALCULATOR_OVERRIDES = {
       'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
     h1: 'Future Value Calculator',
   },
+  'present-value-of-annuity': {
+    title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    description:
+      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
+    h1: 'Present Value of Annuity Calculator',
+  },
+  'future-value-of-annuity': {
+    title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    description:
+      'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
+    h1: 'Future Value of Annuity Calculator',
+  },
+  'effective-annual-rate': {
+    title: 'Effective Annual Rate (EAR) Calculator – CalcHowMuch',
+    description:
+      'Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.',
+    h1: 'Effective Annual Rate Calculator',
+  },
+  'compound-interest': {
+    title: 'Compound Interest Calculator – CalcHowMuch',
+    description:
+      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions.',
+    h1: 'Compound Interest Calculator',
+  },
+  'simple-interest': {
+    title: 'Simple Interest Calculator – CalcHowMuch',
+    description:
+      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+    h1: 'Simple Interest Calculator',
+  },
+  'savings-goal': {
+    title: 'Savings Goal Calculator – CalcHowMuch',
+    description:
+      'Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding.',
+    h1: 'Savings Goal Calculator',
+  },
+  'investment-growth': {
+    title: 'Investment Growth Calculator \u2013 CalcHowMuch',
+    description:
+      'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
+    h1: 'Investment Growth Calculator',
+  },
 };
 
 function ensureLength(text, min, max) {

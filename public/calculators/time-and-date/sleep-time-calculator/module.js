@@ -15,61 +15,68 @@ const calculateButton = document.querySelector('#sleep-calculate');
 const resultsList = document.querySelector('#sleep-results-list');
 const placeholder = document.querySelector('#sleep-placeholder');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How many hours of sleep do I need?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most adults do best with 7–9 hours per night (about 5–6 cycles).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a sleep cycle?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is 6 hours of sleep enough?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Six hours is roughly 4 cycles. Some people manage short-term, but many perform better with 7+ hours consistently.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why are multiple sleep times shown?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'The calculator shows options for 4, 5, and 6 cycles so you can choose a schedule that fits your day.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why might I still feel tired after following the suggestions?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt, or sleep disorders can affect how rested you feel.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Sleep Time Calculator – Best Time to Sleep and Wake Up',
   description:
     'Calculate the best time to sleep or wake up based on natural sleep cycles. Simple, fast, and free sleep time calculator.',
   canonical: 'https://calchowmuch.com/calculators/time-and-date/sleep-time-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How many hours of sleep do I need?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Most adults do best with 7–9 hours per night (about 5–6 cycles).',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is a sleep cycle?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is 6 hours of sleep enough?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Six hours is roughly 4 cycles. Some people manage short-term, but many perform better with 7+ hours consistently.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why are multiple sleep times shown?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'The calculator shows options for 4, 5, and 6 cycles so you can choose a schedule that fits your day.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why might I still feel tired after following the suggestions?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt, or sleep disorders can affect how rested you feel.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

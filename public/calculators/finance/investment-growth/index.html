@@ -1,0 +1,102 @@
+<div id="calc-investment-growth">
+  <div class="calculator-ui">
+    <h2>Investment Growth Calculator</h2>
+    <p class="helper">
+      Estimate investment growth over time using an expected annual return. Optional monthly contributions and inflation adjustment.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ig-initial">Initial Investment</label>
+        <input id="ig-initial" type="number" value="10000" min="0" step="100" />
+      </div>
+
+      <div class="input-row">
+        <label for="ig-return">Expected Annual Return (%)</label>
+        <input id="ig-return" type="number" value="7" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="ig-time">Time Period</label>
+        <input id="ig-time" type="number" value="10" min="0" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label id="ig-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ig-period-type-label"
+          data-button-group="ig-period-type"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="ig-compounding-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ig-compounding-label"
+          data-button-group="ig-compounding"
+        >
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+            Monthly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
+            Daily
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="ig-optional-toggle"
+      aria-expanded="false"
+      aria-controls="ig-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="ig-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label for="ig-contribution">Monthly Contribution</label>
+        <input id="ig-contribution" type="number" value="0" min="0" step="50" />
+      </div>
+      <div class="input-row">
+        <label for="ig-inflation">Inflation Rate (% per year)</label>
+        <input id="ig-inflation" type="number" value="0" min="0" step="0.1" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ig-calc">
+      Calculate Investment Growth
+    </button>
+
+    <div class="result" id="ig-result" aria-live="polite"></div>
+    <div class="result-detail" id="ig-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/investment-growth/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/investment-growth/module.js"></script>

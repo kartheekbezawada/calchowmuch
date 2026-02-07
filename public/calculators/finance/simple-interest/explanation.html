@@ -1,0 +1,155 @@
+<div id="si-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    This simple interest calculator estimates total interest and ending amount from
+    principal, rate, and time. It uses the simple interest formula
+    <strong>I = P × r × t</strong>, where interest is calculated only on the original principal.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Principal Amount</td>
+          <td><span data-si="principal"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Rate</td>
+          <td><span data-si="rate"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Period</td>
+          <td><span data-si="time"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Unit</td>
+          <td><span data-si="time-unit"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Basis</td>
+          <td><span data-si="basis"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Ending Amount</td>
+          <td><span data-si="ending-amount"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Interest</td>
+          <td><span data-si="total-interest"></span></td>
+          <td>Currency</td>
+          <td>Interest earned or owed</td>
+        </tr>
+        <tr>
+          <td>Ending Amount</td>
+          <td><span data-si="ending-amount"></span></td>
+          <td>Currency</td>
+          <td>Principal + total interest</td>
+        </tr>
+        <tr>
+          <td>Principal Used</td>
+          <td><span data-si="principal"></span></td>
+          <td>Currency</td>
+          <td>Starting balance</td>
+        </tr>
+        <tr>
+          <td>Rate Used</td>
+          <td><span data-si="rate"></span></td>
+          <td>Percent</td>
+          <td>Input interest rate</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Time Used (Years)</td>
+          <td><span data-si="years"></span></td>
+          <td>Years</td>
+          <td>Normalized duration</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    Simple interest is calculated only on the original principal and does not include
+    interest-on-interest. Because growth is linear, this method is useful for quick estimates.
+  </p>
+  <p>
+    If you need long-term growth projections where interest compounds, compare this result with
+    a compound interest calculator for better planning.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is simple interest?</strong></p>
+    <p class="faq-answer">A: Simple interest is interest calculated only on the original principal amount.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the simple interest formula?</strong></p>
+    <p class="faq-answer">A: A common formula is I = P × r × t, where P is principal, r is rate, and t is time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate simple interest?</strong></p>
+    <p class="faq-answer">A: Multiply the principal by the rate and the time period to get total interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the ending amount with simple interest?</strong></p>
+    <p class="faq-answer">A: The ending amount is A = P + I, which is principal plus total interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the difference between simple and compound interest?</strong></p>
+    <p class="faq-answer">A: Simple interest applies only to principal, while compound interest applies to principal plus accumulated interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use this for a simple interest loan calculation?</strong></p>
+    <p class="faq-answer">A: Yes. It can estimate interest owed on loans that use simple interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Does simple interest grow linearly?</strong></p>
+    <p class="faq-answer">A: Yes. With a fixed rate, simple interest increases at a constant amount over time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do I calculate simple interest for months?</strong></p>
+    <p class="faq-answer">A: Convert months to years by dividing by 12, then apply the same formula.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the interest rate is 0%?</strong></p>
+    <p class="faq-answer">A: Total interest is zero and the ending amount equals the principal.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is simple interest common for long-term investing?</strong></p>
+    <p class="faq-answer">A: Generally no. Long-term investing more often involves compounding, but simple interest is useful for quick comparisons.</p>
+  </div>
+</div>

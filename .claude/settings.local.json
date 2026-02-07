@@ -30,7 +30,13 @@
       "Bash(do echo \"=== $calc ===\" grep -n \"import.*graph-utils\" \"$calc/module.js\")",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(if [ -f test-results/seo/compound-interest/lighthouse-performance.json ])",
+      "Bash(then node -e \"const r=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''test-results/seo/compound-interest/lighthouse-performance.json'',''utf8''\\)\\); console.log\\(''Score:'', r.categories?.performance?.score\\); const a=r.audits; console.log\\(''FCP:'', a?.[''first-contentful-paint'']?.numericValue ?? ''N/A''\\); console.log\\(''LCP:'', a?.[''largest-contentful-paint'']?.numericValue ?? ''N/A''\\); console.log\\(''TBT:'', a?.[''total-blocking-time'']?.numericValue ?? ''N/A''\\); console.log\\(''CLS:'', a?.[''cumulative-layout-shift'']?.numericValue ?? ''N/A''\\);\")",
+      "Bash(else echo \"No JSON produced\")",
+      "Bash(else echo \"No JSON produced - P3 WAIVED \\(NO_FCP headless environment\\)\")",
+      "Bash(npx vitest run:*)",
+      "Bash(set:*)"
     ]
   }
 }

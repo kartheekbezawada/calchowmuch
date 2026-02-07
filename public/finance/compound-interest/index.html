@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Compound Interest Calculator – CalcHowMuch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions." />
+    <link rel="canonical" href="https://calchowmuch.com/finance/compound-interest/" />
+    <meta property="og:title" content="Compound Interest Calculator – CalcHowMuch" />
+    <meta property="og:description" content="Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/finance/compound-interest/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Compound Interest Calculator – CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="calculator">
+    <div class="page">
+      <header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a class="brand-logo" href="/" aria-label="Home">
+        <span class="brand-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2.5" width="16" height="19" rx="3" />
+            <line x1="8" y1="6.5" x2="16" y2="6.5" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="12" y1="10" x2="12" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="13.5" x2="9" y2="13.51" />
+            <line x1="12" y1="13.5" x2="12" y2="13.51" />
+            <line x1="15" y1="13.5" x2="15" y2="13.51" />
+            <line x1="9" y1="17" x2="9" y2="17.01" />
+            <line x1="12" y1="17" x2="12" y2="17.01" />
+            <line x1="15" y1="17" x2="15" y2="17.01" />
+          </svg>
+        </span>
+      </a>
+      <div class="brand-block">
+        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+        <a class="brand-badge" href="/loans/home-loan">
+          <span class="brand-badge-icon" aria-hidden="true">✦</span>
+          <span>Premium Calculator Suite</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+    </div>
+    <div class="header-right" role="search">
+      <label class="sr-only" for="global-calculator-search">Search calculators</label>
+      <div class="header-search">
+        <span class="header-search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+        </span>
+        <input
+          id="global-calculator-search"
+          class="header-search-input"
+          type="search"
+          placeholder="Search calculators…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-value-of-money">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time Value of Money</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  </div>
+</div>
+<div class="nav-category" data-id="interest-and-growth">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Interest & Growth</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/simple-interest">Simple Interest</a><a class="nav-item is-active" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  </div>
+</div>
+<div class="nav-category" data-id="investments-and-savings">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Investments & Savings</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/savings-goal">Savings Goal</a><a class="nav-item" href="/finance/investment-growth">Investment Growth</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Compound Interest Calculator</h1>
+  <div id="calc-compound-interest">
+  <div class="calculator-ui">
+    <h2>Compound Interest Calculator</h2>
+    <p class="helper">
+      Estimate your ending balance, total interest earned, and growth over time using compound interest.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ci-principal">Initial Principal</label>
+        <input id="ci-principal" type="number" value="10000" min="0" step="100" />
+      </div>
+
+      <div class="input-row">
+        <label for="ci-rate">Annual Interest Rate (%)</label>
+        <input id="ci-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="ci-time">Time Period</label>
+        <input id="ci-time" type="number" value="10" min="0" step="1" />
+      </div>
+
+      <div class="input-row">
+        <label id="ci-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ci-period-type-label"
+          data-button-group="ci-period-type"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="ci-compounding-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ci-compounding-label"
+          data-button-group="ci-compounding"
+        >
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+            Monthly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
+            Daily
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="ci-optional-toggle"
+      aria-expanded="false"
+      aria-controls="ci-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="ci-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label for="ci-contribution">Regular Contribution (per period)</label>
+        <input id="ci-contribution" type="number" value="0" min="0" step="50" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ci-calc">
+      Calculate Compound Interest
+    </button>
+
+    <div class="result" id="ci-result" aria-live="polite"></div>
+    <div class="result-detail" id="ci-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/compound-interest/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/compound-interest/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="ci-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    Based on your principal of <span data-ci="principal"></span> at an annual rate of
+    <span data-ci="rate"></span> compounded <span data-ci="frequency"></span> over
+    <span data-ci="time"></span>, your estimated ending balance is <span data-ci="ending-balance"></span>.
+    This means you would earn <span data-ci="total-interest"></span> in interest over the period.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Initial Principal</td>
+          <td><span data-ci="principal"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Annual Interest Rate</td>
+          <td><span data-ci="rate"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Compounding Frequency</td>
+          <td><span data-ci="frequency"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Period</td>
+          <td><span data-ci="time"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Ending Balance</td>
+          <td><span data-ci="ending-balance"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ending Balance</td>
+          <td><span data-ci="ending-balance"></span></td>
+          <td>Currency</td>
+          <td>Total value after compounding</td>
+        </tr>
+        <tr>
+          <td>Total Interest Earned</td>
+          <td><span data-ci="total-interest"></span></td>
+          <td>Currency</td>
+          <td>Interest accrued over the period</td>
+        </tr>
+        <tr>
+          <td>Total Contributions</td>
+          <td><span data-ci="total-contributions"></span></td>
+          <td>Currency</td>
+          <td>Sum of all regular contributions</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Initial Principal</td>
+          <td><span data-ci="principal"></span></td>
+          <td>Currency</td>
+          <td>Starting amount invested</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    Compound interest calculates interest on both the initial principal and the accumulated interest
+    from prior periods. This compounding effect causes your balance to grow faster than simple interest.
+  </p>
+  <p>
+    In your scenario, a principal of <span data-ci="principal"></span> at
+    <span data-ci="rate"></span> compounded <span data-ci="frequency"></span> produces an
+    ending balance of <span data-ci="ending-balance"></span>, with
+    <span data-ci="total-interest"></span> earned in interest. More frequent compounding
+    and longer time horizons amplify the growth.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is compound interest?</strong></p>
+    <p class="faq-answer">A: Compound interest is interest calculated on the initial principal and on previously accumulated interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the compound interest formula?</strong></p>
+    <p class="faq-answer">A: A common compound interest formula is A = P x (1 + r/n)^(n x t).</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate compound interest?</strong></p>
+    <p class="faq-answer">A: You calculate compound interest by applying the compound interest formula using your principal, rate, compounding frequency, and time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the difference between simple and compound interest?</strong></p>
+    <p class="faq-answer">A: Simple interest is calculated only on the principal, while compound interest is calculated on principal plus accumulated interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Does compounding monthly increase returns?</strong></p>
+    <p class="faq-answer">A: Monthly compounding generally produces a higher ending balance than annual compounding at the same nominal rate.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What does compounding frequency mean?</strong></p>
+    <p class="faq-answer">A: Compounding frequency is how often interest is added to the balance each year.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use this as a savings compound interest calculator?</strong></p>
+    <p class="faq-answer">A: Yes. You can estimate savings growth using an initial balance, interest rate, time, and optional contributions.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do contributions affect compound interest?</strong></p>
+    <p class="faq-answer">A: Contributions increase the balance and can also earn interest, raising the final amount over time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the interest rate is 0%?</strong></p>
+    <p class="faq-answer">A: If the interest rate is 0%, the ending balance equals the principal plus any contributions.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is compound interest useful for investing?</strong></p>
+    <p class="faq-answer">A: Yes. Compound interest helps estimate long-term growth for investments, savings, and retirement planning.</p>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="/privacy/">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="/terms/">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="/contact/">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="/faqs/">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/calculators/finance/compound-interest/module.js"></script>
+  </body>
+</html>

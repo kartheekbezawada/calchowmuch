@@ -32,51 +32,58 @@ const resultsList = document.querySelector('#work-hours-results-list');
 const placeholder = document.querySelector('#work-hours-placeholder');
 const errorMessage = document.querySelector('#work-hours-error');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can I calculate hours for a night shift?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Enable "Ends next day" when your shift ends after midnight.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this include paid breaks?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Only unpaid breaks that you enter are subtracted.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do I see both HH:MM and decimal hours?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it round time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
   description:
     'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.',
   canonical: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Can I calculate hours for a night shift?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. Enable "Ends next day" when your shift ends after midnight.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does this include paid breaks?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. Only unpaid breaks that you enter are subtracted.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why do I see both HH:MM and decimal hours?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does it round time?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

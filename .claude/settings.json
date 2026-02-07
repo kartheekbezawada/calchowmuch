@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run test:iss:*)"
+      "Bash(npm run test:iss:*)",
+      "Bash(lsof:*)"
     ]
   }
 }

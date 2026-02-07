@@ -9,49 +9,56 @@ const placeholder = document.querySelector('#age-placeholder');
 const errorMessage = document.querySelector('#age-error');
 const clarification = document.querySelector('#age-clarification');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How accurate is this age calculator?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It is accurate to the calendar day, using real month lengths and leap years.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it handle leap years correctly?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. February 29 is accounted for when calculating years, months, and days.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I calculate my age on a past or future date?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You can select a different "as of" date to see your age at that time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: "Why doesn't the calculator show hours or minutes?",
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It focuses on exact calendar age, which is typically expressed in years, months, and days.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Age Calculator – Exact Age in Years, Months, and Days',
   description:
     'Calculate your exact age in years, months, and days based on your date of birth. Simple, fast, and free age calculator.',
   canonical: 'https://calchowmuch.com/calculators/time-and-date/age-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How accurate is this age calculator?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'It is accurate to the calendar day, using real month lengths and leap years.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does it handle leap years correctly?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. February 29 is accounted for when calculating years, months, and days.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I calculate my age on a past or future date?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. You can select a different "as of" date to see your age at that time.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: "Why doesn't the calculator show hours or minutes?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'It focuses on exact calendar age, which is typically expressed in years, months, and days.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

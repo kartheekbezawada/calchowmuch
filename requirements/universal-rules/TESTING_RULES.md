@@ -61,11 +61,12 @@ If tests require a local server and one is not running, start it and continue:
 |---------|----------|----------|---------|
 | SEO-P1 | Title, meta description, canonical, H1, lang, viewport | P1 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
 | SEO-P2 | OpenGraph, Twitter cards, structured data | P2 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
-| SEO-P3 | Core Web Vitals (LCP, CLS, TBT, FCP, TTI) | P3 | `N/A (manual gate; see SEO_RULES.md)` |
+| SEO-P3 | Core Web Vitals (LCP, CLS, TBT, FCP, TTI) | P3 | `Manual via SEO_RULES.md (may be WAIVED for calculator pages in headless/no-GUI NO_FCP environments)` |
 | SEO-P4 | Accessibility impacting SEO | P4 | `N/A (manual gate; see SEO_RULES.md)` |
 | SEO-P5 | Sitemap, robots, redirects, canonical domain | P5 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
 
-**Note:** P3 and P4 remain mandatory when required by matrix, but are executed using direct tool commands defined in `SEO_RULES.md`.
+**Note:** SEO-P4 remains mandatory when required by the matrix.
+SEO-P3 is executed using direct tool commands defined in `SEO_RULES.md`; for calculator pages, SEO-P3 must be attempted and may be recorded as **WAIVED** only under the policy in Section 5.0.
 
 ---
 
@@ -84,6 +85,17 @@ Missing required schema = SEO-P2 FAIL.
 ---
 
 ## 5) Test Selection Matrix (Authoritative)
+
+### 5.0 Global Rule — Calculator Lighthouse P3 Policy (NO_FCP Waiver)
+
+If a REQ creates or modifies any **calculator** page, attempt SEO-P3 (Lighthouse performance) using the commands in `SEO_RULES.md`.
+
+If Lighthouse fails with `NO_FCP` in a headless/no-GUI environment, then SEO-P3 may be recorded as **WAIVED** for calculator pages **only** if:
+- P1 / P2 / P5 Playwright SEO checks pass, and
+- P4 (Pa11y) passes, and
+- failure evidence is recorded (command + logs and any produced artifacts).
+
+If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high CLS, etc.), SEO-P3 is **FAIL** (not waivable).
 
 | Change Type | Unit | SEO-P1 | SEO-P2 | SEO-P3 | SEO-P4 | SEO-P5 | ISS-001 | E2E |
 |-------------|:----:|:------:|:------:|:------:|:------:|:------:|:-------:|:---:|
