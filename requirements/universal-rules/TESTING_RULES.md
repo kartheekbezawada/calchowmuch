@@ -82,6 +82,15 @@ When SEO-P2 is required, required schema must exist:
 
 Missing required schema = SEO-P2 FAIL.
 
+Additional mandatory FAQ schema guard for calculator pages:
+- Exactly one `FAQPage` schema is allowed per URL.
+- Calculator routes must use calculator-scoped FAQ schema only.
+- Global FAQ schema is permitted only on `/faq` or `/faq/`.
+- Global FAQ schema appearing on any non-FAQ calculator route is an automatic FAIL.
+
+Required enforcement test command:
+- `npx vitest run tests/core/page-metadata-schema-guard.test.js`
+
 ---
 
 ## 5) Test Selection Matrix (Authoritative)
@@ -112,6 +121,15 @@ If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high 
 | Refactor (no behavior change) | YES | - | - | - | - | - | - | - |
 
 Tests stack when multiple change types apply.
+
+### 5.1 Mandatory FAQ Schema Guard Execution
+
+Run `npx vitest run tests/core/page-metadata-schema-guard.test.js` when any of the following are true:
+- New calculator page is added.
+- Any calculator metadata/schema wiring changes.
+- `public/assets/js/core/ui.js` structured-data logic changes.
+
+This test is a release gate for calculator-related REQs.
 
 ---
 
@@ -161,6 +179,9 @@ Record results in `requirements/compliance/testing_tracker.md` and iteration not
 ```bash
 # Unit
 npm run test
+
+# FAQ schema guard (calculator schema isolation)
+npx vitest run tests/core/page-metadata-schema-guard.test.js
 
 # E2E (all specs in configured testDir)
 npm run test:e2e
