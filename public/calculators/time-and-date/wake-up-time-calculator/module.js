@@ -19,60 +19,67 @@ const calculateButton = document.querySelector('#wake-calculate');
 const resultsList = document.querySelector('#wake-results-list');
 const placeholder = document.querySelector('#wake-placeholder');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How many sleep cycles should I aim for?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many adults feel best with 5–6 cycles (about 7.5–9 hours), but needs vary.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a sleep cycle?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does the calculator show multiple wake-up times?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It shows options for 4, 5, and 6 cycles so you can pick what fits your schedule.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why might I still feel tired even if I wake up after full cycles?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Cycle length varies, and factors like stress, caffeine, irregular schedules, or sleep disorders can affect sleep quality.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator account for naps or sleep debt?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'No. It provides simple estimates based on typical cycles and does not model naps or long-term sleep patterns.',
+      },
+    },
+  ],
+};
+
 const metadata = {
   title: 'Wake-Up Time Calculator – When Should I Wake Up?',
   description:
     'Calculate the best wake-up time based on when you go to sleep and full sleep cycles. Simple, fast, and free wake-up time calculator.',
   canonical: 'https://calchowmuch.com/calculators/time-and-date/wake-up-time-calculator/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How many sleep cycles should I aim for?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Many adults feel best with 5–6 cycles (about 7.5–9 hours), but needs vary.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is a sleep cycle?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why does the calculator show multiple wake-up times?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'It shows options for 4, 5, and 6 cycles so you can pick what fits your schedule.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why might I still feel tired even if I wake up after full cycles?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Cycle length varies, and factors like stress, caffeine, irregular schedules, or sleep disorders can affect sleep quality.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does the calculator account for naps or sleep debt?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'No. It provides simple estimates based on typical cycles and does not model naps or long-term sleep patterns.',
-        },
-      },
-    ],
-  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

@@ -1,0 +1,109 @@
+<div id="calc-present-value-of-annuity">
+  <div class="calculator-ui">
+    <h2>Present Value of Annuity Calculator (Ordinary & Due)</h2>
+    <p class="helper">
+      Estimate the present value of a series of regular payments and compare ordinary annuity vs annuity due.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pva-payment">Payment Amount (PMT)</label>
+        <input id="pva-payment" type="number" value="500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pva-discount-rate">Discount Rate (%)</label>
+        <input id="pva-discount-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pva-periods">Number of Periods</label>
+        <input id="pva-periods" type="number" value="10" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="pva-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pva-period-type-label"
+          data-button-group="pva-period-type"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="pva-annuity-type-label">Annuity Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pva-annuity-type-label"
+          data-button-group="pva-annuity-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="ordinary"
+            aria-pressed="true"
+          >
+            Ordinary
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
+            Due
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="pva-optional-toggle"
+      aria-expanded="false"
+      aria-controls="pva-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="pva-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="pva-compound-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pva-compound-label"
+          data-button-group="pva-compounding"
+        >
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
+            Monthly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pva-calc">
+      Calculate Present Value of Annuity
+    </button>
+
+    <div class="result" id="pva-result" aria-live="polite"></div>
+    <div class="result-detail" id="pva-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/present-value-of-annuity/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/present-value-of-annuity/module.js"></script>

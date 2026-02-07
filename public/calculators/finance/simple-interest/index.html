@@ -1,0 +1,84 @@
+<div id="calc-simple-interest">
+  <div class="calculator-ui">
+    <h2>Simple Interest Calculator</h2>
+    <p class="helper">
+      Calculate total simple interest and ending amount from principal, rate, and time.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="si-principal">Principal Amount (P)</label>
+        <input id="si-principal" type="number" value="10000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="si-rate">Interest Rate (%)</label>
+        <input id="si-rate" type="number" value="6" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="si-time">Time Period</label>
+        <input id="si-time" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="si-time-unit-label">Time Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="si-time-unit-label"
+          data-button-group="si-time-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="si-optional-toggle"
+      aria-expanded="false"
+      aria-controls="si-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="si-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="si-basis-label">Interest Basis</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="si-basis-label"
+          data-button-group="si-basis"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="per-year" aria-pressed="true">
+            Per Year
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="per-month" aria-pressed="false">
+            Per Month
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="si-calc">
+      Calculate Simple Interest
+    </button>
+
+    <div class="result" id="si-result" aria-live="polite"></div>
+    <div class="result-detail" id="si-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/simple-interest/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/simple-interest/module.js"></script>

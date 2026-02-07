@@ -37,26 +37,31 @@ File Loading Rules (Critical) Always load
    WORKFLOW.md
    AGENTS.md
 
-When Building A New Caclulator (brand New Calculator Page)
+   Notes on paths
+   --------------
+   - Rule files (including this file) live in `requirements/universal-rules/`
+   - Tracker/ledger files live in `requirements/compliance/`
+
+When Building a New Calculator (brand new calculator page)
 =========================================================
    calculation_pane_rules.md for calculation pane
    explanation_pane_standard.md for explanation pane
-   seo_rules.md for search engine optimization
-   testing_rules.md
+   SEO_RULES.md for search engine optimization
+   TESTING_RULES.md
 
 When Changing Calculation Pane or Updating a Calculation Pane
 ==========================================================
    calculation_pane_rules.md for calculation pane
    explanation_pane_standard.md for explanation pane
-   seo_rules.md for search engine optimization 
-   testing_rules.md
+   SEO_RULES.md for search engine optimization
+   TESTING_RULES.md
 
-When Changing Explnation Pane or Updating a Explanation Pane
+When Changing Explanation Pane or Updating an Explanation Pane
 ==========================================================
    calculation_pane_rules.md for calculation pane
    explanation_pane_standard.md for explanation pane
-   seo_rules.md for search engine optimization 
-   testing_rules.md
+   SEO_RULES.md for search engine optimization
+   TESTING_RULES.md
 
 Never load
 ==========
@@ -81,16 +86,19 @@ Allowed Files by FSM State (Enforced)
    - build_tracker.md
    - active ITER file
    - affected implementation files only
+   - TESTING_RULES.md (for Auto-Test Mode selection)
+   - testing_tracker.md (Auto-Test Mode: permitted to record executed tests during BUILD)
+   - affected test files only (when tests are executed during BUILD)
 
    TEST:
    - All BUILD files
-   - testing_rules.md
+   - TESTING_RULES.md
    - testing_tracker.md
    - affected test files only
 
    SEO:
    - All TEST files
-   - seo_rules.md
+   - SEO_RULES.md
    - seo_tracker.md
    - affected SEO artifacts only
 
@@ -117,6 +125,12 @@ State Definitions
       Create new ITER file
       Add BUILD row (Status: RUNNING)
       Run build steps (lint, compile)
+
+      Auto-Test Mode (Enabled)
+      ------------------------
+      After BUILD PASS, the Implementer MUST immediately run the required tests (per TESTING_RULES) without waiting for an additional human confirmation.
+      In Auto-Test Mode, recording test execution in `testing_tracker.md` is permitted during the BUILD state as part of the single continuous BUILD→TEST execution.
+      If tests fail, transition returns to BUILD.
       Outcomes:
          PASS → TEST
          FAIL → retry (max 25 iterations)
@@ -124,9 +138,9 @@ State Definitions
 
    TEST
    ====
-      Select tests strictly via testing_rules.md
+      Select tests strictly via TESTING_RULES.md
       Run required tests only
-      On BUILD PASS, proceed immediately to TEST execution without waiting for another human confirmation.
+      Begin TEST execution immediately after BUILD PASS without waiting for another human confirmation.
       Record TEST rows
       Outcomes:
          PASS → SEO (if applicable) or COMPLIANCE
@@ -135,11 +149,11 @@ State Definitions
 
    SEO
    ====
-      Required only if SEO impact is YES
-      Validate per seo_rules.md
-      Record PASS or NA
+      Required for all calculator-related REQs and any change affecting a public route.
+      Validate per SEO_RULES.md
+      Record PASS, FAIL, WAIVED (per SEO_RULES), or NA
       Outcomes:
-         PASS / NA → COMPLIANCE
+         PASS / WAIVED / NA → COMPLIANCE
          FAIL → BUILD or ISSUE
 
    COMPLIANCE
@@ -150,7 +164,7 @@ State Definitions
       PASS conditions:
          BUILD_PASS
          TEST_PASS
-         SEO_PASS or SEO_NA
+         SEO_PASS or SEO_WAIVED or SEO_NA
          No P0/P1 violations
       PASS → COMPLETE
       FAIL → ISSUE
@@ -159,7 +173,7 @@ State Definitions
       Log problem in issue_tracker.md
       Assign type and severity
       Decide: fix now or defer
-      Resolved issues must extract patterns into lessons_learned.md.
+      Resolved issues must extract patterns into `requirements/compliance/lessons_learned.md`.
 
    COMPLETE
       Requirement ready to archive
@@ -183,13 +197,13 @@ State Definitions
       OVERALL_PASS =
       BUILD_PASS
       AND TEST_PASS
-      AND (SEO_PASS OR SEO_NA)
+      AND (SEO_PASS OR SEO_WAIVED OR SEO_NA)
       AND UNIVERSAL_RULES_PASS
       No shortcuts.
 
    Enforcement
       Invalid state transitions must stop immediately
-      No tracker updates outside the current state
+      No tracker updates outside the current state (exception: `testing_tracker.md` updates during BUILD are permitted in Auto-Test Mode as defined above)
       No merge or release without COMPLIANCE PASS
       Exceptions require explicit, logged waiver
 

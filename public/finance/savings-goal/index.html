@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Savings Goal Calculator – CalcHowMuch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding." />
+    <link rel="canonical" href="https://calchowmuch.com/finance/savings-goal/" />
+    <meta property="og:title" content="Savings Goal Calculator – CalcHowMuch" />
+    <meta property="og:description" content="Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/finance/savings-goal/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Savings Goal Calculator – CalcHowMuch" />
+    <meta name="twitter:description" content="Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="calculator">
+    <div class="page">
+      <header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a class="brand-logo" href="/" aria-label="Home">
+        <span class="brand-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2.5" width="16" height="19" rx="3" />
+            <line x1="8" y1="6.5" x2="16" y2="6.5" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="12" y1="10" x2="12" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="13.5" x2="9" y2="13.51" />
+            <line x1="12" y1="13.5" x2="12" y2="13.51" />
+            <line x1="15" y1="13.5" x2="15" y2="13.51" />
+            <line x1="9" y1="17" x2="9" y2="17.01" />
+            <line x1="12" y1="17" x2="12" y2="17.01" />
+            <line x1="15" y1="17" x2="15" y2="17.01" />
+          </svg>
+        </span>
+      </a>
+      <div class="brand-block">
+        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+        <a class="brand-badge" href="/loans/home-loan">
+          <span class="brand-badge-icon" aria-hidden="true">✦</span>
+          <span>Premium Calculator Suite</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+    </div>
+    <div class="header-right" role="search">
+      <label class="sr-only" for="global-calculator-search">Search calculators</label>
+      <div class="header-search">
+        <span class="header-search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+        </span>
+        <input
+          id="global-calculator-search"
+          class="header-search-input"
+          type="search"
+          placeholder="Search calculators…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-value-of-money">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time Value of Money</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  </div>
+</div>
+<div class="nav-category" data-id="interest-and-growth">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Interest & Growth</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/simple-interest">Simple Interest</a><a class="nav-item" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  </div>
+</div>
+<div class="nav-category" data-id="investments-and-savings">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Investments & Savings</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item is-active" href="/finance/savings-goal">Savings Goal</a><a class="nav-item" href="/finance/investment-growth">Investment Growth</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Savings Goal Calculator</h1>
+  <div id="calc-savings-goal">
+  <div class="calculator-ui">
+    <h2>Savings Goal Calculator</h2>
+    <p class="helper">
+      Estimate time to goal or required monthly savings with optional interest and compounding.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label id="sg-mode-label">Mode</label>
+        <div class="button-group" role="group" aria-labelledby="sg-mode-label" data-button-group="sg-mode">
+          <button class="calculator-button secondary is-active" type="button" data-value="time-to-goal" aria-pressed="true">
+            Time to Goal
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly-needed" aria-pressed="false">
+            Monthly Savings Needed
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="sg-goal">Savings Goal Amount</label>
+        <input id="sg-goal" type="number" value="25000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="sg-current">Current Savings</label>
+        <input id="sg-current" type="number" value="5000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row" data-mode-row="time-to-goal">
+        <label for="sg-monthly">Monthly Contribution</label>
+        <input id="sg-monthly" type="number" value="500" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row is-hidden" data-mode-row="monthly-needed" aria-hidden="true">
+        <label for="sg-target-time">Target Time</label>
+        <input id="sg-target-time" type="number" value="36" min="0" step="1" />
+      </div>
+
+      <div class="input-row is-hidden" data-mode-row="monthly-needed" aria-hidden="true">
+        <label id="sg-time-unit-label">Time Unit</label>
+        <div class="button-group" role="group" aria-labelledby="sg-time-unit-label" data-button-group="sg-time-unit">
+          <button class="calculator-button secondary" type="button" data-value="years" aria-pressed="false">Years</button>
+          <button class="calculator-button secondary is-active" type="button" data-value="months" aria-pressed="true">Months</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button secondary" type="button" id="sg-optional-toggle" aria-expanded="false" aria-controls="sg-optional-section">
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="sg-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label for="sg-rate">Annual Interest Rate (APY %)</label>
+        <input id="sg-rate" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="sg-compounding-label">Compounding Frequency</label>
+        <div class="button-group" role="group" aria-labelledby="sg-compounding-label" data-button-group="sg-compounding">
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">Quarterly</button>
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">Annually</button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label id="sg-timing-label">Contribution Timing</label>
+        <div class="button-group" role="group" aria-labelledby="sg-timing-label" data-button-group="sg-timing">
+          <button class="calculator-button secondary is-active" type="button" data-value="end" aria-pressed="true">End of Month</button>
+          <button class="calculator-button secondary" type="button" data-value="beginning" aria-pressed="false">Beginning of Month</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="sg-calc">Calculate Savings Goal</button>
+
+    <div class="result" id="sg-result" aria-live="polite"></div>
+    <div class="result-detail" id="sg-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/savings-goal/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/savings-goal/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="sg-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    This savings goal calculator helps you plan either how long it may take to reach your target
+    or how much to save each month to hit a target date.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Savings Goal Amount</td><td><span data-sg="goal"></span></td><td>Calculation Pane</td></tr>
+        <tr><td>Current Savings</td><td><span data-sg="current"></span></td><td>Calculation Pane</td></tr>
+        <tr><td>Mode</td><td><span data-sg="mode"></span></td><td>Calculation Pane</td></tr>
+        <tr><td>Monthly Contribution</td><td><span data-sg="monthly"></span></td><td>Calculation Pane / Engine</td></tr>
+        <tr><td>Target Time</td><td><span data-sg="target-time"></span></td><td>Calculation Pane</td></tr>
+        <tr><td>Annual Interest Rate</td><td><span data-sg="rate"></span></td><td>Calculation Pane</td></tr>
+        <tr><td>Compounding Frequency</td><td><span data-sg="frequency"></span></td><td>Calculation Pane</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Primary Result</td><td><span data-sg="primary"></span></td><td>Calculator Engine</td></tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Time to Goal</td><td><span data-sg="time-to-goal"></span></td><td>Duration</td><td>Estimated time needed to reach your savings goal</td></tr>
+        <tr><td>Required Monthly Savings</td><td><span data-sg="required-monthly"></span></td><td>Currency</td><td>Monthly amount needed for target time</td></tr>
+        <tr><td>Final Balance</td><td><span data-sg="final-balance"></span></td><td>Currency</td><td>Projected ending balance</td></tr>
+        <tr><td>Total Contributions</td><td><span data-sg="total-contributions"></span></td><td>Currency</td><td>Total amount deposited</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total Interest Earned</td><td><span data-sg="total-interest"></span></td><td>Currency</td><td>Growth from interest and compounding</td></tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    Savings planning becomes easier when you convert a large goal into a monthly amount and timeline.
+    Interest and compounding can reduce the time to goal or lower the monthly amount needed.
+  </p>
+  <p>
+    Use the mode that matches your planning question: estimate time to goal with a known contribution,
+    or estimate monthly savings needed for a fixed deadline.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box"><p><strong>Q: What is a savings goal calculator?</strong></p><p class="faq-answer">A: A savings goal calculator estimates how long it will take to reach a target amount or how much you need to save each month to reach it.</p></div>
+  <div class="faq-box"><p><strong>Q: How do I calculate how much to save per month?</strong></p><p class="faq-answer">A: You can divide the remaining amount needed by the number of months, and optionally include interest to account for compounding growth.</p></div>
+  <div class="faq-box"><p><strong>Q: How do I calculate how long it will take to reach my savings goal?</strong></p><p class="faq-answer">A: Use your goal amount, current savings, and monthly contribution to estimate the number of months needed, optionally including interest.</p></div>
+  <div class="faq-box"><p><strong>Q: Does interest make it easier to reach a savings goal?</strong></p><p class="faq-answer">A: Yes. Interest can increase your balance over time, reducing the monthly amount needed or shortening the time to goal.</p></div>
+  <div class="faq-box"><p><strong>Q: What compounding frequency should I use?</strong></p><p class="faq-answer">A: Use the frequency that matches your account, such as monthly, quarterly, or annually.</p></div>
+  <div class="faq-box"><p><strong>Q: What if my current savings is already higher than my goal?</strong></p><p class="faq-answer">A: Then your time to goal is zero because you have already reached the target.</p></div>
+  <div class="faq-box"><p><strong>Q: What happens if my monthly contribution is zero?</strong></p><p class="faq-answer">A: If your goal is higher than your current savings, you will not reach it without contributions or interest growth.</p></div>
+  <div class="faq-box"><p><strong>Q: Is this a savings goal calculator with interest?</strong></p><p class="faq-answer">A: Yes. You can add an annual interest rate and compounding frequency to include interest growth.</p></div>
+  <div class="faq-box"><p><strong>Q: Can this help me plan for a house deposit or emergency fund?</strong></p><p class="faq-answer">A: Yes. You can use it for any target amount, including an emergency fund, house deposit, or holiday budget.</p></div>
+  <div class="faq-box"><p><strong>Q: Why do results change when I choose beginning vs end of month contributions?</strong></p><p class="faq-answer">A: Contributing at the beginning gives money more time to earn interest, which can slightly reduce the time to goal or the required monthly savings.</p></div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="/privacy/">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="/terms/">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="/contact/">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="/faqs/">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/calculators/finance/savings-goal/module.js"></script>
+  </body>
+</html>

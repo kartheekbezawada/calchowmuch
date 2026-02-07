@@ -1,0 +1,259 @@
+<div id="fva-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    Based on your payment amount of <span data-fva="payment-amount"></span>, an interest rate of
+    <span data-fva="interest-rate"></span>, and <span data-fva="period-count"></span>, the future value of the annuity is
+    <span data-fva="future-value"></span>.
+    This calculation reflects an <span data-fva="annuity-type"></span> with an applied rate of
+    <span data-fva="applied-rate"></span> percent per period over <span data-fva="effective-periods"></span> effective
+    periods.
+    This future value of annuity calculator shows the accumulated value of regular payments with compound interest.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Payment Amount</td>
+          <td><span data-fva="payment-amount"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Rate</td>
+          <td><span data-fva="interest-rate"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Number of Periods</td>
+          <td><span data-fva="period-count"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Annuity Type</td>
+          <td><span data-fva="annuity-type"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Future Value of Annuity</td>
+          <td><span data-fva="future-value"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Payment Amount</td>
+          <td><span data-fva="payment-amount"></span></td>
+          <td>Currency</td>
+          <td>Regular payment each period</td>
+        </tr>
+        <tr>
+          <td>Total Payments</td>
+          <td><span data-fva="total-payments"></span></td>
+          <td>Currency</td>
+          <td>Sum of all payments</td>
+        </tr>
+        <tr>
+          <td>Total Interest Earned</td>
+          <td><span data-fva="total-interest"></span></td>
+          <td>Currency</td>
+          <td>Interest earned over term</td>
+        </tr>
+        <tr>
+          <td>Annuity Type</td>
+          <td><span data-fva="annuity-type"></span></td>
+          <td>N/A</td>
+          <td>Ordinary or due timing</td>
+        </tr>
+        <tr>
+          <td>Interest Rate per Period</td>
+          <td><span data-fva="applied-rate"></span></td>
+          <td>Percent</td>
+          <td>Rate applied each period</td>
+        </tr>
+        <tr>
+          <td>Effective Periods</td>
+          <td><span data-fva="effective-periods"></span></td>
+          <td>Periods</td>
+          <td>Total payment periods</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Future Value of Annuity</td>
+          <td><span data-fva="future-value"></span></td>
+          <td>Currency</td>
+          <td>Accumulated value at end</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    The future value of annuity calculations project a stream of payments into their accumulated value at a future date.
+    Your FV of annuity estimate of <span data-fva="future-value"></span> is based on total payments of
+    <span data-fva="total-payments"></span> spread over <span data-fva="effective-periods"></span> effective periods,
+    earning <span data-fva="total-interest"></span> in total interest.
+  </p>
+  <p>
+    Selecting annuity due assumes payments are made at the beginning of each period, which increases the future value
+    compared with an ordinary annuity because each payment earns interest for one extra period. The future value of
+    annuity formula compounds each payment using the applied rate per period of
+    <span data-fva="applied-rate"></span> percent.
+  </p>
+  <p><strong>Ordinary annuity vs annuity due comparison:</strong></p>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Feature</th>
+          <th scope="col">Ordinary Annuity</th>
+          <th scope="col">Annuity Due</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Payment Timing</td>
+          <td>End of each period</td>
+          <td>Beginning of each period</td>
+        </tr>
+        <tr>
+          <td>First Payment Occurs</td>
+          <td>After first period</td>
+          <td>Immediately</td>
+        </tr>
+        <tr>
+          <td>Future Value</td>
+          <td>Lower</td>
+          <td>Higher</td>
+        </tr>
+        <tr>
+          <td>Compounding</td>
+          <td>Less compounding applied</td>
+          <td>More compounding applied</td>
+        </tr>
+        <tr>
+          <td>Common Examples</td>
+          <td>Retirement contributions, savings</td>
+          <td>Rent prepayments, lease payments</td>
+        </tr>
+        <tr>
+          <td>Formula Basis</td>
+          <td>Standard annuity FV calculation</td>
+          <td>Ordinary annuity FV adjusted for timing</td>
+        </tr>
+        <tr>
+          <td>Cash Flow Timing</td>
+          <td>Later</td>
+          <td>Earlier</td>
+        </tr>
+        <tr>
+          <td>Typical Use Case</td>
+          <td>Savings plans and investments</td>
+          <td>Leases and advance payments</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Summary</td>
+          <td>Payments invested later</td>
+          <td>Payments invested sooner</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p>
+    Use this future value of annuity example to compare scenarios for ordinary annuity and annuity due payments.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is the future value of an annuity?</strong></p>
+    <p class="faq-answer">
+      A: The future value of an annuity is the total value of a series of regular payments at a future date after earning
+      interest over time.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the difference between an ordinary annuity and an annuity due?</strong></p>
+    <p class="faq-answer">
+      A: In an ordinary annuity, payments are made at the end of each period, while in an annuity due, payments are made
+      at the beginning of each period.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Why is the future value of an annuity due higher?</strong></p>
+    <p class="faq-answer">
+      A: An annuity due has a higher future value because payments are invested earlier and earn interest for a longer
+      time.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate the future value of an ordinary annuity?</strong></p>
+    <p class="faq-answer">
+      A: The future value of an ordinary annuity is calculated by compounding each payment made at the end of each period
+      using the interest rate.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate the future value of an annuity due?</strong></p>
+    <p class="faq-answer">
+      A: The future value of an annuity due is calculated by adjusting the ordinary annuity future value to account for
+      payments made at the beginning of each period.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What interest rate should be used in future value calculations?</strong></p>
+    <p class="faq-answer">
+      A: The interest rate should reflect expected investment returns, savings rates, or long-term growth assumptions.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is the future value of annuity useful for retirement planning?</strong></p>
+    <p class="faq-answer">
+      A: Yes, it is commonly used to estimate how regular retirement contributions will grow over time.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can this calculator be used for monthly contributions?</strong></p>
+    <p class="faq-answer">
+      A: Yes, the calculator supports monthly, quarterly, and annual contribution periods.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the interest rate is zero?</strong></p>
+    <p class="faq-answer">
+      A: If the interest rate is zero, the future value of the annuity equals the total amount of all contributions.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is future value of annuity used for investment planning?</strong></p>
+    <p class="faq-answer">
+      A: Yes, it is widely used to evaluate savings plans, investment strategies, and long-term financial goals.
+    </p>
+  </div>
+</div>

@@ -7,7 +7,7 @@
 
 ## Formula
 
-```
+```text
 PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 ```
 
@@ -16,7 +16,14 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 ## Active Checks
 
 | REQ_ID | ITER_ID | Tests Required | Tests Run | Iterations | Verdict |
-|--------|---------|----------------|-----------|------------|---------|
+| ------ | ------- | -------------- | --------- | ---------- | ------- |
+| REQ-20260207-007 | ITER-20260207-130000 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/investment-growth-calculator.test.js`, 15 passed); E2E (`investment-growth-calculator.spec.js`, 1 passed); SEO E2E (`investment-growth-seo.spec.js`, 1 passed); ISS-001 (`npm run test:iss001`, 9 passed); Lighthouse P3 (NO_FCP, WAIVED); Pa11y P4 PASS (`test-results/seo/investment-growth/pa11y.json`) | 1/25 | PASS |
+| REQ-20260207-006 | ITER-20260207-112035 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/savings-goal-calculator.test.js`, 5 passed); E2E (`savings-goal-calculator.spec.js`, 1 passed); SEO E2E (`savings-goal-seo.spec.js`, 1 passed); ISS-001 (`npm run test:iss001`, 9 passed); Lighthouse P3 PASS (`test-results/seo/savings-goal/lighthouse-performance.json`); Pa11y P4 PASS (`test-results/seo/savings-goal/pa11y.json`) | 11/25 | PASS |
+| REQ-20260207-005 | ITER-20260207-120000 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/compound-interest-calculator.test.js`, 12 passed); E2E (`compound-interest-calculator.spec.js`, 1 passed); SEO E2E (`compound-interest-seo.spec.js`, 1 passed); ISS-001 (`npm run test:iss001`, 9 passed); Lighthouse P3 (NO_FCP, WAIVED); Pa11y P4 PASS (`test-results/seo/compound-interest/pa11y.json`) | 1/25 | PASS |
+| REQ-20260207-008 | ITER-20260207-111221 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/simple-interest-calculator.test.js`, 5 passed); E2E (`simple-interest-calculator.spec.js`, 1 passed); SEO E2E (`simple-interest-seo.spec.js`, 1 passed); ISS-001 (`npm run test:iss001`, 9 passed); Lighthouse P3 PASS (`test-results/seo/simple-interest/lighthouse-performance.json`); Pa11y P4 PASS (`test-results/seo/simple-interest/pa11y.json`) | 11/25 | PASS |
+| REQ-20260207-003 | ITER-20260207-111500 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/future-value-of-annuity-calculator.test.js`, 9 passed); E2E (`future-value-of-annuity-calculator.spec.js`, 1 passed); SEO E2E (`future-value-of-annuity-seo.spec.js`, 1 passed); ISS-001 (`npm run test:iss001`, 9 passed); P3 PENDING; P4 PENDING | 1/25 | PENDING |
+| REQ-20260207-009 | ITER-20260207-105501 | ISS-001 + scoped E2E + SEO (P1/P2/P3/P4/P5) | ISS-001 (`iss-design-001.spec.js`, 9 passed with updated snapshots); E2E (`home-shell.spec.js`, 1 passed); SEO E2E (`car-loan-seo.spec.js`, 1 passed); Lighthouse P3 PASS (`test-results/seo/iss-001-shell/lighthouse-performance.json`); Pa11y P4 PASS (`test-results/seo/iss-001-shell/pa11y.json`) | 11/25 | PASS |
+| REQ-20260207-004 | ITER-20260207-101227 | Unit + E2E + SEO + ISS-001 + P3/P4 evidence | Unit (`npx vitest run tests/core/effective-annual-rate-calculator.test.js`); E2E (`effective-annual-rate-calculator.spec.js`); SEO E2E (`effective-annual-rate-seo.spec.js`); ISS-001 (`npm run test:iss001`); P3 Lighthouse (NO_FCP, WAIVED); P4 Pa11y (`npx pa11y http://127.0.0.1:8002/finance/effective-annual-rate/ ...`) | 11/25 | PASS |
 | REQ-20260206-003 | ITER-20260206-021115 | Unit + command-alignment verification | Unit (`npm run test`); E2E (`present-value-calculator.spec.js`); SEO E2E (`present-value-seo.spec.js`); ISS-001 + P3/P4 manual command runs executed as evidence (failures logged, non-blocking for docs-only REQ) | 1/25 | PASS |
 | REQ-20260203-001 | ITER-20260203-214153 | E2E | E2E (requirements/specs/e2e/home-loan-calculator.spec.js) | 2/25 | PASS |
 | REQ-20260128-019 | ITER-20260128-154622 | Unit + ISS-001 | Unit (requirements/specs/loans/loan-utils.test.js); ISS-001 (requirements/specs/e2e/iss-design-001.spec.js) | 2/25 | PASS |
@@ -68,7 +75,7 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 ## Verdicts
 
 | Verdict | Meaning |
-|---------|---------|
+| ------- | ------- |
 | PASS | Ship it |
 | FAIL | Fix required |
 | PENDING | In progress |
@@ -83,4 +90,5 @@ PASS = BUILD_PASS ∧ TEST_PASS ∧ SEO_OK ∧ ITERATIONS ≤ 25
 
 | REQ_ID | Tests Run | Iterations | Verdict | Released |
 |--------|-----------|------------|---------|----------|
+<!-- markdownlint-disable-next-line MD060 -->
 | REQ-20260126-010 | ISS-001 (requirements/specs/e2e/iss-design-001.spec.js, snapshots updated); E2E (requirements/specs/e2e/age-calculator.spec.js; requirements/specs/e2e/remortgage-switching.spec.js) | 1/25 | PASS | 2026-01-26 22:34 |

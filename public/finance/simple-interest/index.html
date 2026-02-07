@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple Interest Calculator – CalcHowMuch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly." />
+    <link rel="canonical" href="https://calchowmuch.com/finance/simple-interest/" />
+    <meta property="og:title" content="Simple Interest Calculator – CalcHowMuch" />
+    <meta property="og:description" content="Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/finance/simple-interest/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Simple Interest Calculator – CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="calculator">
+    <div class="page">
+      <header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a class="brand-logo" href="/" aria-label="Home">
+        <span class="brand-logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2.5" width="16" height="19" rx="3" />
+            <line x1="8" y1="6.5" x2="16" y2="6.5" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="12" y1="10" x2="12" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="13.5" x2="9" y2="13.51" />
+            <line x1="12" y1="13.5" x2="12" y2="13.51" />
+            <line x1="15" y1="13.5" x2="15" y2="13.51" />
+            <line x1="9" y1="17" x2="9" y2="17.01" />
+            <line x1="12" y1="17" x2="12" y2="17.01" />
+            <line x1="15" y1="17" x2="15" y2="17.01" />
+          </svg>
+        </span>
+      </a>
+      <div class="brand-block">
+        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+        <a class="brand-badge" href="/loans/home-loan">
+          <span class="brand-badge-icon" aria-hidden="true">✦</span>
+          <span>Premium Calculator Suite</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+    </div>
+    <div class="header-right" role="search">
+      <label class="sr-only" for="global-calculator-search">Search calculators</label>
+      <div class="header-search">
+        <span class="header-search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+        </span>
+        <input
+          id="global-calculator-search"
+          class="header-search-input"
+          type="search"
+          placeholder="Search calculators…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="time-value-of-money">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Time Value of Money</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  </div>
+</div>
+<div class="nav-category" data-id="interest-and-growth">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Interest & Growth</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item is-active" href="/finance/simple-interest">Simple Interest</a><a class="nav-item" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  </div>
+</div>
+<div class="nav-category" data-id="investments-and-savings">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Investments & Savings</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item" href="/finance/savings-goal">Savings Goal</a><a class="nav-item" href="/finance/investment-growth">Investment Growth</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+  <h1 id="calculator-title">Simple Interest Calculator</h1>
+  <div id="calc-simple-interest">
+  <div class="calculator-ui">
+    <h2>Simple Interest Calculator</h2>
+    <p class="helper">
+      Calculate total simple interest and ending amount from principal, rate, and time.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="si-principal">Principal Amount (P)</label>
+        <input id="si-principal" type="number" value="10000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="si-rate">Interest Rate (%)</label>
+        <input id="si-rate" type="number" value="6" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="si-time">Time Period</label>
+        <input id="si-time" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="si-time-unit-label">Time Unit</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="si-time-unit-label"
+          data-button-group="si-time-unit"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="si-optional-toggle"
+      aria-expanded="false"
+      aria-controls="si-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="si-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="si-basis-label">Interest Basis</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="si-basis-label"
+          data-button-group="si-basis"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="per-year" aria-pressed="true">
+            Per Year
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="per-month" aria-pressed="false">
+            Per Month
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="si-calc">
+      Calculate Simple Interest
+    </button>
+
+    <div class="result" id="si-result" aria-live="polite"></div>
+    <div class="result-detail" id="si-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/simple-interest/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/simple-interest/module.js"></script>
+
+</div>
+<div class="panel panel-scroll">
+  <h3>Explanation</h3>
+  <div id="si-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    This simple interest calculator estimates total interest and ending amount from
+    principal, rate, and time. It uses the simple interest formula
+    <strong>I = P × r × t</strong>, where interest is calculated only on the original principal.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Principal Amount</td>
+          <td><span data-si="principal"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Rate</td>
+          <td><span data-si="rate"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Period</td>
+          <td><span data-si="time"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Time Unit</td>
+          <td><span data-si="time-unit"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Interest Basis</td>
+          <td><span data-si="basis"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Ending Amount</td>
+          <td><span data-si="ending-amount"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Interest</td>
+          <td><span data-si="total-interest"></span></td>
+          <td>Currency</td>
+          <td>Interest earned or owed</td>
+        </tr>
+        <tr>
+          <td>Ending Amount</td>
+          <td><span data-si="ending-amount"></span></td>
+          <td>Currency</td>
+          <td>Principal + total interest</td>
+        </tr>
+        <tr>
+          <td>Principal Used</td>
+          <td><span data-si="principal"></span></td>
+          <td>Currency</td>
+          <td>Starting balance</td>
+        </tr>
+        <tr>
+          <td>Rate Used</td>
+          <td><span data-si="rate"></span></td>
+          <td>Percent</td>
+          <td>Input interest rate</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Time Used (Years)</td>
+          <td><span data-si="years"></span></td>
+          <td>Years</td>
+          <td>Normalized duration</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    Simple interest is calculated only on the original principal and does not include
+    interest-on-interest. Because growth is linear, this method is useful for quick estimates.
+  </p>
+  <p>
+    If you need long-term growth projections where interest compounds, compare this result with
+    a compound interest calculator for better planning.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is simple interest?</strong></p>
+    <p class="faq-answer">A: Simple interest is interest calculated only on the original principal amount.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the simple interest formula?</strong></p>
+    <p class="faq-answer">A: A common formula is I = P × r × t, where P is principal, r is rate, and t is time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate simple interest?</strong></p>
+    <p class="faq-answer">A: Multiply the principal by the rate and the time period to get total interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the ending amount with simple interest?</strong></p>
+    <p class="faq-answer">A: The ending amount is A = P + I, which is principal plus total interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the difference between simple and compound interest?</strong></p>
+    <p class="faq-answer">A: Simple interest applies only to principal, while compound interest applies to principal plus accumulated interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use this for a simple interest loan calculation?</strong></p>
+    <p class="faq-answer">A: Yes. It can estimate interest owed on loans that use simple interest.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Does simple interest grow linearly?</strong></p>
+    <p class="faq-answer">A: Yes. With a fixed rate, simple interest increases at a constant amount over time.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do I calculate simple interest for months?</strong></p>
+    <p class="faq-answer">A: Convert months to years by dividing by 12, then apply the same formula.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the interest rate is 0%?</strong></p>
+    <p class="faq-answer">A: Total interest is zero and the ending amount equals the principal.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is simple interest common for long-term investing?</strong></p>
+    <p class="faq-answer">A: Generally no. Long-term investing more often involves compounding, but simple interest is useful for quick comparisons.</p>
+  </div>
+</div>
+
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="/privacy/">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="/terms/">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="/contact/">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="/faqs/">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/calculators/finance/simple-interest/module.js"></script>
+  </body>
+</html>

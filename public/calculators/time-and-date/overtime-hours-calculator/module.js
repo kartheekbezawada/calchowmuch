@@ -64,6 +64,96 @@ const resultsList = document.querySelector('#overtime-results-list');
 const placeholder = document.querySelector('#overtime-placeholder');
 const errorMessage = document.querySelector('#overtime-error');
 
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the difference between regular hours and overtime hours?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which overtime rule should I choose?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does “Daily + Weekly” avoid double counting overtime?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I calculate overtime for split shifts?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does “Ends next day” do?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It treats the end time as the next day so night shifts are counted correctly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is night overtime in this calculator?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this calculator round time the way my employer does?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I set a custom week like Sunday–Saturday or Friday–Thursday?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator save my hours?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It runs in your browser and does not store your inputs.',
+      },
+    },
+  ],
+};
+
 const placeholderElements = Array.from(document.querySelectorAll('[data-placeholder]')).reduce(
   (acc, element) => {
     const key = element.dataset.placeholder;
@@ -85,90 +175,6 @@ const metadata = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'What is the difference between regular hours and overtime hours?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Which overtime rule should I choose?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'How does “Daily + Weekly” avoid double counting overtime?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Can I calculate overtime for split shifts?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What does “Ends next day” do?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'It treats the end time as the next day so night shifts are counted correctly.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What is night overtime in this calculator?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Does this calculator round time the way my employer does?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Can I set a custom week like Sunday–Saturday or Friday–Thursday?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text:
-                'Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Does the calculator save my hours?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'No. It runs in your browser and does not store your inputs.',
-            },
-          },
-        ],
-      },
-      {
         '@type': 'WebPage',
         name: 'Overtime Hours Calculator',
         description:
@@ -177,6 +183,8 @@ const metadata = {
       },
     ],
   },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

@@ -1,0 +1,71 @@
+<div id="calc-effective-annual-rate">
+  <div class="calculator-ui">
+    <h2>Effective Annual Rate (EAR) Calculator</h2>
+    <p class="helper">
+      Convert nominal interest rates into effective annual rates to compare loans, savings, and investment returns.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ear-nominal-rate">Nominal Interest Rate (%)</label>
+        <input id="ear-nominal-rate" type="number" value="12" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="ear-frequency-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="ear-frequency-label"
+          data-button-group="ear-frequency"
+        >
+          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
+            Monthly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
+            Daily
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="ear-optional-toggle"
+      aria-expanded="false"
+      aria-controls="ear-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="ear-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label for="ear-custom-periods">Custom Compounding Periods</label>
+        <input id="ear-custom-periods" type="number" min="1" step="1" placeholder="e.g. 52" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ear-calc">
+      Calculate Effective Annual Rate
+    </button>
+
+    <div class="result" id="ear-result" aria-live="polite"></div>
+    <div class="result-detail" id="ear-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/effective-annual-rate/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/effective-annual-rate/module.js"></script>
