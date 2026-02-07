@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Discount Calculator – CalcHowMuch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Calculate the price after X% off and your savings instantly. Use our free discount calculator for sale prices and deals."
+    />
+    <link
+      rel="canonical"
+      href="https://calchowmuch.com/percentage-calculators/discount-calculator/"
+    />
+    <meta property="og:title" content="Discount Calculator – CalcHowMuch" />
+    <meta
+      property="og:description"
+      content="Calculate the price after X% off and your savings instantly. Use our free discount calculator for sale prices and deals."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://calchowmuch.com/percentage-calculators/discount-calculator/"
+    />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Discount Calculator – CalcHowMuch" />
+    <meta
+      name="twitter:description"
+      content="Calculate the price after X% off and your savings instantly. Use our free discount calculator for sale prices and deals."
+    />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="calculator">
+    <div class="page">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <div class="header-left">
+            <a class="brand-logo" href="/" aria-label="Home">
+              <span class="brand-logo-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="4" y="2.5" width="16" height="19" rx="3" />
+                  <line x1="8" y1="6.5" x2="16" y2="6.5" />
+                  <line x1="9" y1="10" x2="9" y2="10.01" />
+                  <line x1="12" y1="10" x2="12" y2="10.01" />
+                  <line x1="15" y1="10" x2="15" y2="10.01" />
+                  <line x1="9" y1="13.5" x2="9" y2="13.51" />
+                  <line x1="12" y1="13.5" x2="12" y2="13.51" />
+                  <line x1="15" y1="13.5" x2="15" y2="13.51" />
+                  <line x1="9" y1="17" x2="9" y2="17.01" />
+                  <line x1="12" y1="17" x2="12" y2="17.01" />
+                  <line x1="15" y1="17" x2="15" y2="17.01" />
+                </svg>
+              </span>
+            </a>
+            <div class="brand-block">
+              <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+              <a class="brand-badge" href="/loans/home-loan">
+                <span class="brand-badge-icon" aria-hidden="true">✦</span>
+                <span>Premium Calculator Suite</span>
+              </a>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="header-title">Calculate How Much</div>
+            <div class="header-subtitle">Quick calculations for everyday numbers</div>
+          </div>
+          <div class="header-right" role="search">
+            <label class="sr-only" for="global-calculator-search">Search calculators</label>
+            <div class="header-search">
+              <span class="header-search-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                </svg>
+              </span>
+              <input
+                id="global-calculator-search"
+                class="header-search-input"
+                type="search"
+                placeholder="Search calculators…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="top-nav" aria-label="Category navigation">
+        <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
+        ><a class="top-nav-link" href="/loans/home-loan"
+          ><span class="nav-icon" aria-hidden="true">🏠</span
+          ><span class="nav-label">Home Loan</span></a
+        ><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"
+          ><span class="nav-icon" aria-hidden="true">💳</span
+          ><span class="nav-label">Credit Cards</span></a
+        ><a class="top-nav-link" href="/loans/car-loan"
+          ><span class="nav-icon" aria-hidden="true">🚗</span
+          ><span class="nav-label">Auto Loans</span></a
+        ><a class="top-nav-link" href="/finance/present-value"
+          ><span class="nav-label">Finance</span></a
+        ><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"
+          ><span class="nav-icon" aria-hidden="true">🕒</span
+          ><span class="nav-label">Time & Date</span></a
+        ><a class="top-nav-link is-active" href="/percentage-calculators/discount-calculator"
+          ><span class="nav-label">Percentage Calculators</span></a
+        >
+      </nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+            <div class="math-nav-container">
+              <div class="math-nav-category" data-id="percentage-calculators">
+                <button type="button" class="math-nav-category-toggle" aria-expanded="true">
+                  <span class="math-nav-category-left">
+                    <span class="math-nav-category-icon"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="4" y="2" width="16" height="20" rx="2" />
+                        <line x1="8" y1="6" x2="16" y2="6" />
+                        <line x1="16" y1="14" x2="16" y2="18" />
+                        <line x1="16" y1="10" x2="16" y2="10.01" />
+                        <line x1="12" y1="10" x2="12" y2="10.01" />
+                        <line x1="8" y1="10" x2="8" y2="10.01" />
+                        <line x1="12" y1="14" x2="12" y2="14.01" />
+                        <line x1="8" y1="14" x2="8" y2="14.01" />
+                        <line x1="12" y1="18" x2="12" y2="18.01" />
+                        <line x1="8" y1="18" x2="8" y2="18.01" /></svg
+                    ></span>
+                    <span class="math-nav-category-name">PERCENTAGE CALCULATORS</span>
+                  </span>
+                  <span
+                    class="math-nav-category-chevron"
+                    data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'
+                    data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'
+                    ><svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" /></svg
+                  ></span>
+                </button>
+                <div class="math-nav-category-items">
+                  <a class="math-nav-item" href="/percentage-calculators/commission-calculator"
+                    >Commission Calculator</a
+                  ><a
+                    class="math-nav-item is-active"
+                    href="/percentage-calculators/discount-calculator"
+                    >Discount Calculator</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll">
+            <h1 id="calculator-title">Discount Calculator</h1>
+            <div id="calc-discount-calculator">
+              <div class="calculator-ui">
+                <h2>Discount Calculator</h2>
+                <p class="helper">
+                  Calculate the price after a percentage discount and how much you save.
+                </p>
+
+                <div class="input-stack">
+                  <div class="input-row">
+                    <label for="discount-original-price">Original Price (P)</label>
+                    <input
+                      id="discount-original-price"
+                      type="number"
+                      value="80"
+                      min="0"
+                      step="0.01"
+                    />
+                  </div>
+
+                  <div class="input-row">
+                    <label for="discount-percent">Discount Percent (X%)</label>
+                    <input id="discount-percent" type="number" value="25" min="0" step="0.01" />
+                  </div>
+                </div>
+
+                <button class="calculator-button full-width" type="button" id="discount-calc">
+                  Calculate Discount
+                </button>
+
+                <div class="result" id="discount-result" aria-live="polite"></div>
+                <div class="result-detail" id="discount-result-detail" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <script
+              type="module"
+              src="/calculators/percentage-calculators/discount-calculator/module.js"
+            ></script>
+          </div>
+          <div class="panel panel-scroll">
+            <h3>Explanation</h3>
+            <div id="discount-explanation" class="explanation-pane">
+              <h2>Summary</h2>
+              <p>
+                A discount calculator shows the price after a percentage discount and how much you
+                save compared to the original price. This discount calculator finds the final sale
+                price after X% off by calculating the discount amount and subtracting it from the
+                original price. It is useful for sales, coupons, promotions, and comparing deals
+                quickly.
+              </p>
+
+              <h3>Scenario Summary</h3>
+              <div class="table-scroll" tabindex="0">
+                <table class="calculator-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Value</th>
+                      <th scope="col">Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Original Price</td>
+                      <td><span data-discount="original-price"></span></td>
+                      <td>Calculation Pane</td>
+                    </tr>
+                    <tr>
+                      <td>Discount Percent</td>
+                      <td><span data-discount="discount-percent"></span></td>
+                      <td>Calculation Pane</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Final Price</td>
+                      <td><span data-discount="final-price"></span></td>
+                      <td>Calculator Engine</td>
+                    </tr>
+                    <tr>
+                      <td>Savings Amount</td>
+                      <td><span data-discount="savings"></span></td>
+                      <td>Calculator Engine</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <h3>Results Table</h3>
+              <div class="table-scroll" tabindex="0">
+                <table class="calculator-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Metric</th>
+                      <th scope="col">Value</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">Explanation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Original Price</td>
+                      <td><span data-discount="original-price"></span></td>
+                      <td>Currency</td>
+                      <td>Price before discount</td>
+                    </tr>
+                    <tr>
+                      <td>Discount Percent</td>
+                      <td><span data-discount="discount-percent"></span></td>
+                      <td>Percent</td>
+                      <td>Percentage off</td>
+                    </tr>
+                    <tr>
+                      <td>Discount Amount</td>
+                      <td><span data-discount="discount-amount"></span></td>
+                      <td>Currency</td>
+                      <td>Amount removed from the price</td>
+                    </tr>
+                    <tr>
+                      <td>Final Price</td>
+                      <td><span data-discount="final-price"></span></td>
+                      <td>Currency</td>
+                      <td>Price after discount</td>
+                    </tr>
+                    <tr>
+                      <td>Savings Amount</td>
+                      <td><span data-discount="savings"></span></td>
+                      <td>Currency</td>
+                      <td>Money saved</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Formula</td>
+                      <td>Final = P × (1 − X/100)</td>
+                      <td>—</td>
+                      <td>Discount formula</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <h3>Explanation</h3>
+              <p>
+                To calculate a discounted price, convert the discount percent into a decimal by
+                dividing by 100, then multiply the original price by that discount rate to find the
+                discount amount. Subtract the discount amount from the original price to get the
+                final price.
+              </p>
+              <p>
+                For example, if an item costs 80 and it is 25% off, the discount amount is 80 × 0.25
+                = 20. The final price is 80 − 20 = 60, so you save 20.
+              </p>
+              <p>
+                If the discount percent is 0%, the final price is the same as the original price. If
+                the discount percent is over 100%, the result becomes negative because the discount
+                exceeds the original price.
+              </p>
+
+              <h3>Frequently Asked Questions</h3>
+              <div class="faq-box">
+                <p><strong>Q: What is a discount calculator?</strong></p>
+                <p class="faq-answer">
+                  A: A discount calculator finds the final price after a percentage discount and the
+                  amount saved.
+                </p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: How do you calculate price after X% off?</strong></p>
+                <p class="faq-answer">A: Multiply the original price by (1 − X/100).</p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: How do you calculate the discount amount?</strong></p>
+                <p class="faq-answer">A: Multiply the original price by X/100.</p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: What is the discount formula?</strong></p>
+                <p class="faq-answer">A: The formula is Final = P × (1 − X/100).</p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: How much do I save with a discount?</strong></p>
+                <p class="faq-answer">
+                  A: Savings equals the original price minus the final price.
+                </p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: What happens if the discount is 0%?</strong></p>
+                <p class="faq-answer">A: The final price stays the same as the original price.</p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: Can the discount be more than 100%?</strong></p>
+                <p class="faq-answer">
+                  A: Mathematically yes, but it would produce a negative final price.
+                </p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: Can I use decimals like 12.5% off?</strong></p>
+                <p class="faq-answer">A: Yes, decimal discount percentages work the same way.</p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: Is a discount the same as percent off?</strong></p>
+                <p class="faq-answer">
+                  A: Yes, percent off is another way to describe a percentage discount.
+                </p>
+              </div>
+              <div class="faq-box">
+                <p><strong>Q: Where is a discount calculator used in real life?</strong></p>
+                <p class="faq-answer">
+                  A: It is used for shopping sales, coupons, promotions, and comparing deals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">Ad Pane</div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <a href="/privacy/">Privacy</a>
+        <span class="footer-divider">|</span>
+        <a href="/terms/">Terms &amp; Conditions</a>
+        <span class="footer-divider">|</span>
+        <a href="/contact/">Contact</a>
+        <span class="footer-divider">|</span>
+        <a href="/faqs/">FAQs</a>
+        <span class="footer-divider">|</span>
+        <a href="/sitemap/">Sitemap</a>
+        <span class="footer-divider">|</span>
+        <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      </footer>
+    </div>
+    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script
+      type="module"
+      src="/calculators/percentage-calculators/discount-calculator/module.js"
+    ></script>
+  </body>
+</html>

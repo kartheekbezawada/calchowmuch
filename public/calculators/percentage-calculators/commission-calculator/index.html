@@ -1,0 +1,52 @@
+<div id="calc-commission-calculator">
+  <div class="calculator-ui">
+    <h2>Commission Calculator</h2>
+    <p class="helper">
+      Calculate commission earnings from total sales using a flat commission rate or tiered rates.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label id="comm-mode-label">Mode</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="comm-mode-label"
+          data-button-group="comm-mode"
+        >
+          <button class="calculator-button secondary is-active" type="button" data-value="flat" aria-pressed="true">
+            Flat Commission %
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="tiered" aria-pressed="false">
+            Tiered Commission
+          </button>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label for="comm-sales">Total Sales (S)</label>
+        <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
+      </div>
+
+      <div id="comm-flat-section" class="input-stack">
+        <div class="input-row">
+          <label for="comm-rate">Commission Rate % (R)</label>
+          <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+        </div>
+      </div>
+
+      <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
+        <p class="helper">Set tiers in ascending “Up to” order. Leave the last “Up to” blank for “Above last threshold”.</p>
+        <div id="comm-tier-rows" class="input-stack"></div>
+        <button class="calculator-button secondary" id="comm-add-tier" type="button">Add Tier</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="comm-calc">Calculate Commission</button>
+
+    <div class="result" id="comm-result" aria-live="polite"></div>
+    <div class="result-detail" id="comm-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script type="module" src="/calculators/percentage-calculators/commission-calculator/module.js"></script>

@@ -1,0 +1,163 @@
+<div id="discount-explanation" class="explanation-pane">
+  <h2>Summary</h2>
+  <p>
+    A discount calculator shows the price after a percentage discount and how much you save compared
+    to the original price. This discount calculator finds the final sale price after X% off by
+    calculating the discount amount and subtracting it from the original price. It is useful for
+    sales, coupons, promotions, and comparing deals quickly.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Original Price</td>
+          <td><span data-discount="original-price"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Discount Percent</td>
+          <td><span data-discount="discount-percent"></span></td>
+          <td>Calculation Pane</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Final Price</td>
+          <td><span data-discount="final-price"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+        <tr>
+          <td>Savings Amount</td>
+          <td><span data-discount="savings"></span></td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Original Price</td>
+          <td><span data-discount="original-price"></span></td>
+          <td>Currency</td>
+          <td>Price before discount</td>
+        </tr>
+        <tr>
+          <td>Discount Percent</td>
+          <td><span data-discount="discount-percent"></span></td>
+          <td>Percent</td>
+          <td>Percentage off</td>
+        </tr>
+        <tr>
+          <td>Discount Amount</td>
+          <td><span data-discount="discount-amount"></span></td>
+          <td>Currency</td>
+          <td>Amount removed from the price</td>
+        </tr>
+        <tr>
+          <td>Final Price</td>
+          <td><span data-discount="final-price"></span></td>
+          <td>Currency</td>
+          <td>Price after discount</td>
+        </tr>
+        <tr>
+          <td>Savings Amount</td>
+          <td><span data-discount="savings"></span></td>
+          <td>Currency</td>
+          <td>Money saved</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Formula</td>
+          <td>Final = P × (1 − X/100)</td>
+          <td>—</td>
+          <td>Discount formula</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    To calculate a discounted price, convert the discount percent into a decimal by dividing by 100,
+    then multiply the original price by that discount rate to find the discount amount. Subtract the
+    discount amount from the original price to get the final price.
+  </p>
+  <p>
+    For example, if an item costs 80 and it is 25% off, the discount amount is 80 × 0.25 = 20. The
+    final price is 80 − 20 = 60, so you save 20.
+  </p>
+  <p>
+    If the discount percent is 0%, the final price is the same as the original price. If the
+    discount percent is over 100%, the result becomes negative because the discount exceeds the
+    original price.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is a discount calculator?</strong></p>
+    <p class="faq-answer">
+      A: A discount calculator finds the final price after a percentage discount and the amount
+      saved.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate price after X% off?</strong></p>
+    <p class="faq-answer">A: Multiply the original price by (1 − X/100).</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate the discount amount?</strong></p>
+    <p class="faq-answer">A: Multiply the original price by X/100.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the discount formula?</strong></p>
+    <p class="faq-answer">A: The formula is Final = P × (1 − X/100).</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How much do I save with a discount?</strong></p>
+    <p class="faq-answer">A: Savings equals the original price minus the final price.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What happens if the discount is 0%?</strong></p>
+    <p class="faq-answer">A: The final price stays the same as the original price.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can the discount be more than 100%?</strong></p>
+    <p class="faq-answer">A: Mathematically yes, but it would produce a negative final price.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use decimals like 12.5% off?</strong></p>
+    <p class="faq-answer">A: Yes, decimal discount percentages work the same way.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Is a discount the same as percent off?</strong></p>
+    <p class="faq-answer">A: Yes, percent off is another way to describe a percentage discount.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Where is a discount calculator used in real life?</strong></p>
+    <p class="faq-answer">
+      A: It is used for shopping sales, coupons, promotions, and comparing deals.
+    </p>
+  </div>
+</div>

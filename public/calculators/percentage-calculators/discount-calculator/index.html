@@ -1,0 +1,30 @@
+<div id="calc-discount-calculator">
+  <div class="calculator-ui">
+    <h2>Discount Calculator</h2>
+    <p class="helper">Calculate the price after a percentage discount and how much you save.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="discount-original-price">Original Price (P)</label>
+        <input id="discount-original-price" type="number" value="80" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="discount-percent">Discount Percent (X%)</label>
+        <input id="discount-percent" type="number" value="25" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="discount-calc">
+      Calculate Discount
+    </button>
+
+    <div class="result" id="discount-result" aria-live="polite"></div>
+    <div class="result-detail" id="discount-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script
+  type="module"
+  src="/calculators/percentage-calculators/discount-calculator/module.js"
+></script>

@@ -94,6 +94,12 @@ const CALCULATOR_OVERRIDES = {
       'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
     h1: 'Investment Growth Calculator',
   },
+  'commission-calculator': {
+    title: 'Commission Calculator – CalcHowMuch',
+    description:
+      'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
+    h1: 'Commission Calculator',
+  },
 };
 
 function ensureLength(text, min, max) {
