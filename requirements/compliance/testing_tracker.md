@@ -9,6 +9,8 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 | ------- | ------ | ------- | ---- | ------ | ---------- | --------- | -------- |
+| TEST-20260207-215624 | REQ-20260207-001 | ITER-20260207-215624 | Unit | PASS | 1/25 | `npx vitest run tests/core/page-metadata-schema-guard.test.js` (4 passed) | iterations/ITER-20260207-215624.md |
+| TEST-20260207-215625 | REQ-20260207-001 | ITER-20260207-215624 | SEO | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/car-loan-seo.spec.js requirements/specs/e2e/gtep-pages-seo.spec.js` (6 passed) | iterations/ITER-20260207-215624.md |
 | TEST-20260207-130600 | REQ-20260207-007 | ITER-20260207-130000 | Unit | PASS | 1/25 | `npx vitest run tests/core/investment-growth-calculator.test.js` (15 passed) | iterations/ITER-20260207-130000.md |
 | TEST-20260207-130700 | REQ-20260207-007 | ITER-20260207-130000 | E2E | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/investment-growth-calculator.spec.js` (1 passed) | iterations/ITER-20260207-130000.md |
 | TEST-20260207-130800 | REQ-20260207-007 | ITER-20260207-130000 | SEO | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/investment-growth-seo.spec.js` (1 passed) | iterations/ITER-20260207-130000.md |

@@ -735,6 +735,7 @@ GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the ca
 | TEST-1.5 | **Screenshot optimization** â€” Screenshots only on failure (`screenshot: 'only-on-failure'`). No routine visual regression screenshots in development.                           | P1       |
 | TEST-1.6 | **Trace optimization** â€” Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests.                                               | P1       |
 | TEST-1.7 | **Resource efficiency** â€” Test execution should prioritize functional validation over visual artifact generation                                                                | P1       |
+| TEST-1.8 | **FAQ schema isolation guard (mandatory for calculator builds)** â€” Calculator routes must not receive global FAQ schema; exactly one `FAQPage` allowed per URL                 | P0       |
 
 ### Minimal Required Tests by Change Type
 
@@ -748,6 +749,7 @@ GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the ca
 | Layout/CSS/shared shell change              | `ISS-001` regression E2E check (no layout shifts, scrollbars visible, no nav ping-pong)                                                | Full E2E suite                                           |
 | Navigation/config change                    | `*-TEST-E2E-NAV` for affected domain + `ISS-001`                                                                                       | Full E2E suite                                           |
 | Accessibility-only change                   | `*-TEST-E2E-A11Y` for affected calculators                                                                                             | Full E2E suite                                           |
+| New calculator page                         | Unit + calculator E2E + calculator SEO E2E + FAQ schema isolation guard unit test (`npx vitest run tests/core/page-metadata-schema-guard.test.js`)                                | None                                                     |
 | No UI changes (pure logic)                  | Unit tests only (`TEST-1.1`, `TEST-1.2`)                                                                                               | E2E skip                                                 |
 
 Note: Full release sweep = run the full unit test suite plus E2E for only 1 representative calculator per category (not every calculator).
