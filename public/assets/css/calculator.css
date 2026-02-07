@@ -145,13 +145,13 @@
 
 .calculator-button.is-active,
 .calculator-button[aria-pressed='true'] {
-  background: var(--accent);
+  background: var(--button-active-bg, #1d4ed8);
   color: #fff;
 }
 
 .calculator-button.secondary.is-active,
 .calculator-button.secondary[aria-pressed='true'] {
-  background: var(--accent);
+  background: var(--button-active-bg, #1d4ed8);
   color: #fff;
 }
 
@@ -275,6 +275,53 @@
 .graph-title {
   color: var(--header-text);
   font-weight: 600;
+}
+
+.explanation-pane h2,
+.explanation-pane h3 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+  position: relative;
+}
+
+.explanation-pane h2 {
+  margin-top: 0;
+}
+
+.explanation-pane h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 48px;
+  background: var(--accent);
+}
+
+.faq-box {
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.explanation-pane h3 + .faq-box {
+  margin-top: 6px;
+}
+
+.faq-box + .faq-box {
+  margin-top: 6px;
+}
+
+.faq-box p {
+  margin: 0;
+}
+
+.faq-box p + p {
+  margin-top: 6px;
+}
+
+.faq-box .faq-answer {
+  margin-left: 12px;
 }
 
 .graph-legend {

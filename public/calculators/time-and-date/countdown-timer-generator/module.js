@@ -217,6 +217,9 @@ function addResultRow(key, label, value) {
   const row = document.createElement('div');
   row.className = 'result-row';
   row.dataset.result = key;
+  if (key !== 'target') {
+    row.classList.add('countdown-value-row');
+  }
 
   const labelSpan = document.createElement('span');
   labelSpan.textContent = label;
@@ -250,6 +253,7 @@ function showResults(countdown, target, isComplete = false) {
   clearError();
   resultsList.innerHTML = '';
 
+  addResultRow('target', 'Target date & time', formatTargetLabel(target));
   addResultRow('days', 'Days', formatNumber(countdown.days, { maximumFractionDigits: 0 }));
   addResultRow('hours', 'Hours', formatNumber(countdown.hours, { maximumFractionDigits: 0 }));
   addResultRow('minutes', 'Minutes', formatNumber(countdown.minutes, { maximumFractionDigits: 0 }));

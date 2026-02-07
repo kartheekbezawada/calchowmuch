@@ -1,0 +1,99 @@
+<div id="calc-present-value">
+  <div class="calculator-ui">
+    <p class="helper">
+      Estimate the present value of a future amount using a discount rate and time period.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pv-future-value">Future Value (FV)</label>
+        <input id="pv-future-value" type="number" value="10000" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pv-discount-rate">Discount Rate (%)</label>
+        <input id="pv-discount-rate" type="number" value="5" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pv-time-period">Time Period</label>
+        <input id="pv-time-period" type="number" value="3" min="0" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label id="pv-period-type-label">Period Type</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pv-period-type-label"
+          data-button-group="pv-period-type"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="years"
+            aria-pressed="true"
+          >
+            Years
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
+            Months
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="calculator-button secondary"
+      type="button"
+      id="pv-optional-toggle"
+      aria-expanded="false"
+      aria-controls="pv-optional-section"
+    >
+      Show Optional Inputs
+    </button>
+
+    <div class="input-stack is-hidden" id="pv-optional-section" aria-hidden="true" hidden>
+      <div class="input-row">
+        <label id="pv-compound-label">Compounding Frequency</label>
+        <div
+          class="button-group"
+          role="group"
+          aria-labelledby="pv-compound-label"
+          data-button-group="pv-compounding"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="annual"
+            aria-pressed="true"
+          >
+            Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
+            Semi-Annual
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
+            Quarterly
+          </button>
+          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
+            Monthly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pv-calc">
+      Calculate Present Value
+    </button>
+
+    <div class="result" id="pv-result" aria-live="polite"></div>
+    <div class="result-detail" id="pv-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/present-value/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/present-value/module.js"></script>

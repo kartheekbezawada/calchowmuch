@@ -1,0 +1,6 @@
+#pv-optional-section {
+  padding: 12px;
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}

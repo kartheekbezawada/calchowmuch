@@ -30,7 +30,9 @@ test.describe('Countdown Timer Generator', () => {
 
     await expect(page.locator('#countdown-results-list')).not.toHaveClass(/is-hidden/);
     await expect(page.locator('#countdown-status')).toContainText('Counting down to');
-    await expect(page.locator('#countdown-results-list .result-row')).toHaveCount(7);
+    const resultRows = page.locator('#countdown-results-list .result-row');
+    await expect(resultRows).toHaveCount(8);
+    await expect(resultRows.first()).toContainText('Target date & time');
   });
 
   test('COUNTDOWN-TEST-E2E-2: layout stability and explanation content', async ({ page }) => {
