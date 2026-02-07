@@ -9,6 +9,7 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
+| SEO-REQ-20260206-004 | REQ-20260206-004 | /finance/future-value/ | P1/P2/P5 via `future-value-seo.spec.js` PASS; P4 via Pa11y PASS (0 issues); P3 Lighthouse FAIL (`NO_FCP`) | FAIL | PASS | PASS | FAIL |
 | SEO-REQ-20260206-003 | REQ-20260206-003 | N/A (testing-governance docs) | SEO impact marked `NO` in requirement tracker; SEO gate not applicable | NA | — | — | — |
 
 

@@ -1,11 +1,25 @@
-REQ-20260206-002
+REQ-20260206-004
 Future Value (FV) Calculator — Finance Category
+==============================================
 
-Status: NEW
-Type: Brand-new calculator (existing Finance category)
-FSM Phase: REQ
-Owner: Product / Platform
-Scope: UI, Compute, Navigation, SEO, Sitemap, Testing
+## Status: NEW
+
+- Type: Brand-new calculator (existing Finance category)
+- FSM Phase: REQ
+- Owner: Product / Platform
+- Scope: UI, Compute, Navigation, SEO, Sitemap, Testing
+
+### Repo Reality Check (AP-2.3)
+
+This repo renders calculator pages via a generator that wraps calculator *fragments* into the full 3-column shell.
+
+Source-of-truth fragments live under:
+
+- `/public/calculators/finance/future-value/` (to be created in BUILD)
+
+Generated output page (do not hand-edit) will be:
+
+- `/public/finance/future-value/index.html`
 
 1. Purpose & User Intent
 1.1 Calculator Question (Single-Question Rule)
@@ -68,10 +82,21 @@ Crawlable explanation content
 One page = one calculator
 
 4. Folder & File Structure
-/public/calculators/finance/future-value/
-├── index.html          # Calculator shell + calculation pane
-├── module.js           # FV calculation logic
-└── explanation.html    # Static explanation pane (crawlable)
+
+This project uses a generator that wraps fragments into the full shell.
+
+**Fragments (source-of-truth):**
+
+`/public/calculators/finance/future-value/`
+
+- `index.html` — calculation pane fragment (NOT the full page shell)
+- `module.js` — FV calculator UI + compute glue
+- `explanation.html` — explanation pane fragment (crawlable)
+- `calculator.css` — optional per-calculator styling
+
+**Generated output (do not hand-edit):**
+
+- `/public/finance/future-value/index.html`
 
 
 Must comply with folder structure and naming rules defined in UNIVERSAL_REQUIREMENTS.
@@ -126,7 +151,7 @@ Validate negative and empty inputs
 
 No unhandled exceptions
 
-# 7. Explanation Pane (Mandatory)
+## 7. Explanation Pane (Mandatory)
 
 Must implement Explanation Pane — Universal Standard exactly.
 
@@ -139,7 +164,7 @@ Must implement Explanation Pane — Universal Standard exactly.
 - H3 — Frequently Asked Questions (exactly 10)
 - No extra headings or sections are allowed.
 
-###7.2 H2 — Summary
+### 7.2 H2 — Summary
 
 Based on your inputs for starting amount, interest rate, and time period, this calculator estimates the future value (FV) of your money.
 
@@ -147,19 +172,24 @@ The result shows how much your money could grow over time through compound inter
 This helps you plan savings, investments, and long-term financial goals.
 
 ### 7.3 H3 — Scenario Summary
-Category	Value	Source
-Present Value	{PRESENT_VALUE}	Calculation Pane
-Interest Rate	{INTEREST_RATE}%	Calculation Pane
-Time Period	{TIME_PERIOD} {PERIOD_TYPE}	Calculation Pane
-Compounding Frequency	{COMPOUNDING_FREQUENCY}	Calculation Pane
-Future Value	{FUTURE_VALUE}	Calculator Engine
-7.4 H3 — Results Table
-Metric	Value	Unit	Explanation
-Future Value (FV)	{FUTURE_VALUE}	Currency	Value of money in future
-Present Value (PV)	{PRESENT_VALUE}	Currency	Starting amount
-Total Contributions	{TOTAL_CONTRIBUTIONS}	Currency	Money added over time
-Total Growth	{TOTAL_GROWTH}	Currency	Interest earned
-Effective Periods	{TOTAL_PERIODS}	Periods	Total compounding periods
+
+| Category | Value | Source |
+| --- | --- | --- |
+| Present Value | {PRESENT_VALUE} | Calculation Pane |
+| Interest Rate | {INTEREST_RATE}% | Calculation Pane |
+| Time Period | {TIME_PERIOD} {PERIOD_TYPE} | Calculation Pane |
+| Compounding Frequency | {COMPOUNDING_FREQUENCY} | Calculation Pane |
+| Future Value | {FUTURE_VALUE} | Calculator Engine |
+
+### 7.4 H3 — Results Table
+
+| Metric | Value | Unit | Explanation |
+| --- | --- | --- | --- |
+| Future Value (FV) | {FUTURE_VALUE} | Currency | Value of money in future |
+| Present Value (PV) | {PRESENT_VALUE} | Currency | Starting amount |
+| Total Contributions | {TOTAL_CONTRIBUTIONS} | Currency | Money added over time |
+| Total Growth | {TOTAL_GROWTH} | Currency | Interest earned |
+| Effective Periods | {TOTAL_PERIODS} | Periods | Total compounding periods |
 
 ### 7.5 H3 — Explanation
 
@@ -173,35 +203,16 @@ Higher rates or longer periods increase future value, while lower rates or short
 
 Each FAQ must be rendered inside a bordered .faq-box.
 
-##### What is future value (FV)?
-Future value is the amount your money will be worth at a future date after earning interest or growth.
-
-##### How is future value different from present value?
-Present value is today’s worth of money, while future value shows what it grows into over time.
-
-##### What interest rate should I use?
-Use an expected return rate based on savings, investments, or inflation assumptions.
-
-##### How does compounding affect future value?
-More frequent compounding increases growth by earning interest on interest.
-
-##### Does time period matter for future value?
-Yes, longer time periods significantly increase future value due to compounding.
-
-##### What are regular contributions?
-Regular contributions are additional amounts added periodically to increase total savings.
-
-##### Is future value useful for retirement planning?
-Yes, it helps estimate how current savings may grow by retirement.
-
-##### Can future value decrease over time?
-With a positive interest rate, future value increases; negative rates reduce growth.
-
-##### What happens if the interest rate is zero?
-The future value equals the present value plus any contributions.
-
-##### Is this calculator suitable for savings and investments?
-Yes, it can be used for savings goals, investments, education funds, and retirement planning.
+<div class="faq-box"><strong>Q: What is future value (FV)?</strong> A: Future value is the amount your money will be worth at a future date after earning interest or growth.</div>
+<div class="faq-box"><strong>Q: How is future value different from present value?</strong> A: Present value is today’s worth of money, while future value shows what it grows into over time.</div>
+<div class="faq-box"><strong>Q: What interest rate should I use?</strong> A: Use an expected return rate based on savings, investments, or inflation assumptions.</div>
+<div class="faq-box"><strong>Q: How does compounding affect future value?</strong> A: More frequent compounding increases growth by earning interest on interest.</div>
+<div class="faq-box"><strong>Q: Does time period matter for future value?</strong> A: Yes, longer time periods significantly increase future value due to compounding.</div>
+<div class="faq-box"><strong>Q: What are regular contributions?</strong> A: Regular contributions are additional amounts added periodically to increase total savings.</div>
+<div class="faq-box"><strong>Q: Is future value useful for retirement planning?</strong> A: Yes, it helps estimate how current savings may grow by retirement.</div>
+<div class="faq-box"><strong>Q: Can future value decrease over time?</strong> A: With a positive interest rate, future value increases; negative rates reduce growth.</div>
+<div class="faq-box"><strong>Q: What happens if the interest rate is zero?</strong> A: The future value equals the present value plus any contributions.</div>
+<div class="faq-box"><strong>Q: Is this calculator suitable for savings and investments?</strong> A: Yes, it can be used for savings goals, investments, education funds, and retirement planning.</div>
 
 8. SEO Requirements (New Calculator Page)
 8.1 Mandatory SEO Scope
@@ -218,7 +229,7 @@ Meta Description:
 
 Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.
 
-##8.3 Structured Data (Required)
+## 8.3 Structured Data (Required)
 The calculator page MUST include:
 - WebPage
 - SoftwareApplication
@@ -226,7 +237,7 @@ The calculator page MUST include:
 - BreadcrumbList
 - Missing any schema = SEO FAIL
 
-#9. Sitemap & Indexing (Build-Blocking)
+## 9. Sitemap & Indexing (Build-Blocking)
 
 Must update:
 - sitemap.xml
@@ -237,7 +248,7 @@ Rules
 - A calculator is LIVE if it appears in navigation
 - LIVE calculators must appear in sitemap
 
-# 10. Testing Requirements
+## 10. Testing Requirements
 
 Change Type: New calculator (existing category)
 
@@ -252,7 +263,7 @@ SEO-P3	✅
 SEO-P4	✅
 SEO-P5	✅
 
-# 11. Workflow Enforcement
+## 11. Workflow Enforcement
 
 FSM sequence is mandatory:
 

@@ -46,6 +46,12 @@ const CALCULATOR_OVERRIDES = {
       'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
     h1: 'Present Value Calculator',
   },
+  'future-value': {
+    title: 'Future Value (FV) Calculator – CalcHowMuch',
+    description:
+      'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
+    h1: 'Future Value Calculator',
+  },
 };
 
 function ensureLength(text, min, max) {

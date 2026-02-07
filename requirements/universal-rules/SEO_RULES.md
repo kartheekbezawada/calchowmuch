@@ -120,6 +120,24 @@ npm run test:seo -- --level p2
 npx lighthouse <url> --only-categories=performance
 ```
 
+### 4.1 Canonical P3 Lighthouse Command (Locked)
+
+Purpose: run SEO-P3 Performance using Playwright Chromium in WSL/Linux with deterministic artifact output and no `xvfb-run`.
+
+```bash
+mkdir -p test-results/seo/present-value
+CHROME_PATH="$(find "${HOME}/.cache/ms-playwright" -type f -path '*/chrome-linux64/chrome' | sort | tail -n 1)" \
+npx lighthouse "http://127.0.0.1:8002/finance/present-value/" \
+  --only-categories=performance \
+  --output=json \
+  --output-path="test-results/seo/present-value/lighthouse-performance.json" \
+  --chrome-flags="--headless=new --window-size=1365,940 --no-sandbox --disable-dev-shm-usage --user-data-dir=/tmp/lighthouse-profile-present-value"
+```
+
+Notes:
+- This command mitigates `NO_FCP` by forcing a fixed viewport.
+- This command avoids Windows `C:\Users\...\AppData\Local\lighthouse.*` profile sprawl by pinning `CHROME_PATH` to Playwright Chromium in WSL/Linux.
+
 ## P4 — Accessibility (Baseline Requirement)
 
 | Rule | Requirement |
@@ -136,6 +154,29 @@ npx lighthouse <url> --only-categories=performance
 ```
 npx pa11y <url>
 ```
+
+### 4.2 Canonical P4 Pa11y Command (Locked)
+
+Purpose: run SEO-P4 accessibility with Playwright Chromium and deterministic JSON output while preserving Pa11y exit semantics.
+
+```bash
+mkdir -p test-results/seo/present-value
+set +e
+PUPPETEER_EXECUTABLE_PATH="$(find "${HOME}/.cache/ms-playwright" -type f -path '*/chrome-linux64/chrome' | sort | tail -n 1)" \
+npx pa11y "http://127.0.0.1:8002/finance/present-value/" \
+  --timeout 120000 \
+  --wait 1000 \
+  --reporter json > "test-results/seo/present-value/pa11y.json"
+PA11Y_EXIT=$?
+set -e
+if [ "${PA11Y_EXIT}" -gt 2 ]; then
+  exit "${PA11Y_EXIT}"
+fi
+```
+
+Notes:
+- Exit code `0` means pass, `2` means violations found, and values `>2` are runtime/tooling failures.
+- This command distinguishes real accessibility issues from environment failures.
 
 ## P5 — Advanced SEO (Site-Wide Governance)
 

@@ -9,6 +9,12 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 |---------|--------|---------|------|--------|------------|-----------|----------|
+| TEST-20260206-092811 | REQ-20260206-004 | ITER-20260206-091703 | SEO | PASS | 1/25 | `npx pa11y http://127.0.0.1:8002/finance/future-value/ --timeout 120000 --wait 1000 --reporter json` (exit 0, 0 issues) | iterations/ITER-20260206-091703.md |
+| TEST-20260206-092744 | REQ-20260206-004 | ITER-20260206-091703 | SEO | FAIL | 1/25 | `CHROME_PATH=<WSL Chrome> npx lighthouse http://127.0.0.1:8002/finance/future-value/ --only-categories=performance` (`NO_FCP`) | iterations/ITER-20260206-091703.md |
+| TEST-20260206-092130 | REQ-20260206-004 | ITER-20260206-091703 | ISS-001 | FAIL | 1/25 | `npm run test:iss001` (5 failed, 4 passed in `requirements/specs/e2e/iss-design-001.spec.js`) | iterations/ITER-20260206-091703.md |
+| TEST-20260206-092111 | REQ-20260206-004 | ITER-20260206-091703 | SEO | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/future-value-seo.spec.js` (1 passed) | iterations/ITER-20260206-091703.md |
+| TEST-20260206-092110 | REQ-20260206-004 | ITER-20260206-091703 | E2E | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/future-value-calculator.spec.js` (1 passed) | iterations/ITER-20260206-091703.md |
+| TEST-20260206-092109 | REQ-20260206-004 | ITER-20260206-091703 | Unit | PASS | 1/25 | `npx vitest run tests/core/future-value-calculator.test.js` (4 passed) | iterations/ITER-20260206-091703.md |
 | TEST-20260206-022156 | REQ-20260206-003 | ITER-20260206-021115 | ISS-001 | FAIL | 1/25 | `npm run test:iss001` (5 failed, 4 passed in `requirements/specs/e2e/iss-design-001.spec.js`) | iterations/ITER-20260206-021115.md |
 | TEST-20260206-022233 | REQ-20260206-003 | ITER-20260206-021115 | SEO | FAIL | 1/25 | `npx lighthouse http://localhost:8002/finance/present-value/ --only-categories=performance` + `--only-categories=seo` (Unable to connect to Chrome) | iterations/ITER-20260206-021115.md |
 | TEST-20260206-022331 | REQ-20260206-003 | ITER-20260206-021115 | SEO | FAIL | 1/25 | `npx pa11y http://localhost:8002/finance/present-value/ --reporter json` (Navigation timeout) | iterations/ITER-20260206-021115.md |

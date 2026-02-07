@@ -50,3 +50,68 @@ export function calculatePresentValue({
     periodsPerYear,
   };
 }
+
+export function calculateFutureValue({
+  presentValue,
+  interestRate,
+  timePeriod,
+  periodType = 'years',
+  compounding = 'annual',
+  regularContribution = 0,
+}) {
+  const pv = Number(presentValue);
+  const rate = Number(interestRate);
+  const period = Number(timePeriod);
+  const contribution = Number(regularContribution);
+
+  if (
+    !Number.isFinite(pv) ||
+    !Number.isFinite(rate) ||
+    !Number.isFinite(period) ||
+    !Number.isFinite(contribution)
+  ) {
+    return null;
+  }
+
+  if (pv < 0 || rate < 0 || period < 0 || contribution < 0) {
+    return null;
+  }
+
+  const { periodsPerYear } = resolveCompounding(compounding);
+  const years = periodType === 'months' ? period / 12 : period;
+  const totalPeriods = years * periodsPerYear;
+  const periodicRate = rate / 100 / periodsPerYear;
+
+  if (!Number.isFinite(totalPeriods) || !Number.isFinite(periodicRate)) {
+    return null;
+  }
+
+  if (1 + periodicRate <= 0) {
+    return null;
+  }
+
+  const initialFutureValue = pv * Math.pow(1 + periodicRate, totalPeriods);
+  let contributionFutureValue = 0;
+
+  if (totalPeriods > 0 && contribution > 0) {
+    if (periodicRate === 0) {
+      contributionFutureValue = contribution * totalPeriods;
+    } else {
+      contributionFutureValue =
+        contribution * ((Math.pow(1 + periodicRate, totalPeriods) - 1) / periodicRate);
+    }
+  }
+
+  const futureValue = initialFutureValue + contributionFutureValue;
+  const totalContributions = contribution * totalPeriods;
+  const totalGrowth = futureValue - pv - totalContributions;
+
+  return {
+    futureValue,
+    totalContributions,
+    totalGrowth,
+    totalPeriods,
+    periodicRate,
+    periodsPerYear,
+  };
+}

@@ -282,6 +282,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://calchowmuch.com/finance/future-value/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://calchowmuch.com/time-and-date/sleep-time-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
