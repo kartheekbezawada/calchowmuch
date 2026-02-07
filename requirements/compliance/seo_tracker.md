@@ -9,6 +9,7 @@
 
 | SEO_ID | REQ_ID | Page | Checks | Status | P1 | P2 | P3 |
 |--------|--------|------|--------|--------|----|----|-----|
+| SEO-REQ-20260207-001 | REQ-20260207-001 | /loans/car-loan/ and /faqs/ | FAQ schema guard enforced in `setPageMetadata` (`tests/core/page-metadata-schema-guard.test.js` PASS, 4 tests); P1/P2/P5 via `car-loan-seo.spec.js` and `gtep-pages-seo.spec.js` PASS (6 passed) | PASS | PASS | PASS | NA |
 | SEO-REQ-20260207-007 | REQ-20260207-007 | /finance/investment-growth/ | P1/P2/P5 via `investment-growth-seo.spec.js` PASS; ISS-001 PASS (9 passed); P4 via Pa11y PASS (0 issues); P3 Lighthouse NO_FCP in headless/no-GUI (WAIVED) | PASS | PASS | PASS | WAIVED |
 | SEO-REQ-20260207-006 | REQ-20260207-006 | /finance/savings-goal/ | P1/P2/P5 via `savings-goal-seo.spec.js` PASS; ISS-001 PASS (9 passed); P4 via Pa11y PASS (0 issues); P3 Lighthouse PASS (score 0.98) | PASS | PASS | PASS | PASS |
 | SEO-REQ-20260207-005 | REQ-20260207-005 | /finance/compound-interest/ | P1/P2/P5 via `compound-interest-seo.spec.js` PASS; ISS-001 PASS (9 passed); P4 via Pa11y PASS (0 issues); P3 Lighthouse NO_FCP in headless/no-GUI (evidence in `test-results/seo/compound-interest/`) | PASS | PASS | PASS | WAIVED |
