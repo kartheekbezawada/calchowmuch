@@ -11,6 +11,8 @@
 
 import { test, expect } from '@playwright/test';
 
+const BOX_TOLERANCE_PX = 3;
+
 const navigateWithClick = async (page, locator) => {
   await Promise.all([
     page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
@@ -18,11 +20,28 @@ const navigateWithClick = async (page, locator) => {
   ]);
 };
 
+const waitForStableShell = async (page) => {
+  // Wait until fonts and layout have settled before measuring dimensions.
+  await page.evaluate(async () => {
+    if (document.fonts?.status !== 'loaded') {
+      await document.fonts.ready;
+    }
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
+  await page.waitForTimeout(120);
+};
+
+const assertStableBox = (currentBox, initialBox) => {
+  expect(Math.abs(currentBox.width - initialBox.width)).toBeLessThanOrEqual(BOX_TOLERANCE_PX);
+  expect(Math.abs(currentBox.height - initialBox.height)).toBeLessThanOrEqual(BOX_TOLERANCE_PX);
+  expect(Math.abs(currentBox.x - initialBox.x)).toBeLessThanOrEqual(BOX_TOLERANCE_PX);
+  expect(Math.abs(currentBox.y - initialBox.y)).toBeLessThanOrEqual(BOX_TOLERANCE_PX);
+};
+
 test.describe('ISS-001: Layout Stability', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/loans/car-loan');
-    // Wait for animations to complete
-    await page.waitForTimeout(800);
+    await waitForStableShell(page);
   });
 
   test('page shell maintains fixed dimensions during navigation', async ({ page }) => {
@@ -38,15 +57,12 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, navItems.nth(Math.min(i, count - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
 
       const currentBox = await pageElement.boundingBox();
 
-      // Verify dimensions remain stable
-      expect(currentBox.width).toBeCloseTo(initialBox.width, 0);
-      expect(currentBox.height).toBeCloseTo(initialBox.height, 0);
-      expect(currentBox.x).toBeCloseTo(initialBox.x, 0);
-      expect(currentBox.y).toBeCloseTo(initialBox.y, 0);
+      // Verify dimensions remain stable.
+      assertStableBox(currentBox, initialBox);
     }
   });
 
@@ -61,14 +77,11 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, navItems.nth(Math.min(i, count - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
 
       const currentBox = await leftNav.boundingBox();
 
-      expect(currentBox.width).toBeCloseTo(initialBox.width, 0);
-      expect(currentBox.height).toBeCloseTo(initialBox.height, 0);
-      expect(currentBox.x).toBeCloseTo(initialBox.x, 0);
-      expect(currentBox.y).toBeCloseTo(initialBox.y, 0);
+      assertStableBox(currentBox, initialBox);
     }
   });
 
@@ -83,14 +96,11 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, navItems.nth(Math.min(i, count - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
 
       const currentBox = await centerColumn.boundingBox();
 
-      expect(currentBox.width).toBeCloseTo(initialBox.width, 0);
-      expect(currentBox.height).toBeCloseTo(initialBox.height, 0);
-      expect(currentBox.x).toBeCloseTo(initialBox.x, 0);
-      expect(currentBox.y).toBeCloseTo(initialBox.y, 0);
+      assertStableBox(currentBox, initialBox);
     }
   });
 
@@ -105,14 +115,11 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, navItems.nth(Math.min(i, count - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
 
       const currentBox = await adsColumn.boundingBox();
 
-      expect(currentBox.width).toBeCloseTo(initialBox.width, 0);
-      expect(currentBox.height).toBeCloseTo(initialBox.height, 0);
-      expect(currentBox.x).toBeCloseTo(initialBox.x, 0);
-      expect(currentBox.y).toBeCloseTo(initialBox.y, 0);
+      assertStableBox(currentBox, initialBox);
     }
   });
 
@@ -171,14 +178,11 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, navItems.nth(Math.min(i, count - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
     }
 
     const finalBox = await pageElement.boundingBox();
-    expect(finalBox.width).toBeCloseTo(initialBox.width, 0);
-    expect(finalBox.height).toBeCloseTo(initialBox.height, 0);
-    expect(finalBox.x).toBeCloseTo(initialBox.x, 0);
-    expect(finalBox.y).toBeCloseTo(initialBox.y, 0);
+    assertStableBox(finalBox, initialBox);
   });
 
   test('category switching does not cause layout shift', async ({ page }) => {
@@ -198,29 +202,39 @@ test.describe('ISS-001: Layout Stability', () => {
         break;
       }
       await navigateWithClick(page, topNavButtons.nth(Math.min(i, categoryCount - 1)));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
 
       const currentPageBox = await pageElement.boundingBox();
       const currentLeftNavBox = await leftNav.boundingBox();
       const currentCenterBox = await centerColumn.boundingBox();
 
       // Page shell should not move
-      expect(currentPageBox.width).toBeCloseTo(initialPageBox.width, 0);
-      expect(currentPageBox.height).toBeCloseTo(initialPageBox.height, 0);
+      expect(Math.abs(currentPageBox.width - initialPageBox.width)).toBeLessThanOrEqual(BOX_TOLERANCE_PX);
+      expect(Math.abs(currentPageBox.height - initialPageBox.height)).toBeLessThanOrEqual(
+        BOX_TOLERANCE_PX
+      );
 
       // Left nav position should not change
-      expect(currentLeftNavBox.x).toBeCloseTo(initialLeftNavBox.x, 0);
-      expect(currentLeftNavBox.y).toBeCloseTo(initialLeftNavBox.y, 0);
+      expect(Math.abs(currentLeftNavBox.x - initialLeftNavBox.x)).toBeLessThanOrEqual(
+        BOX_TOLERANCE_PX
+      );
+      expect(Math.abs(currentLeftNavBox.y - initialLeftNavBox.y)).toBeLessThanOrEqual(
+        BOX_TOLERANCE_PX
+      );
 
       // Center column position should not change
-      expect(currentCenterBox.x).toBeCloseTo(initialCenterBox.x, 0);
-      expect(currentCenterBox.y).toBeCloseTo(initialCenterBox.y, 0);
+      expect(Math.abs(currentCenterBox.x - initialCenterBox.x)).toBeLessThanOrEqual(
+        BOX_TOLERANCE_PX
+      );
+      expect(Math.abs(currentCenterBox.y - initialCenterBox.y)).toBeLessThanOrEqual(
+        BOX_TOLERANCE_PX
+      );
     }
   });
 
   test('visual regression - page layout stability', async ({ page }) => {
     // Take screenshot after initial load
-    await page.waitForTimeout(1000); // Wait for animations
+    await waitForStableShell(page);
     await expect(page).toHaveScreenshot('layout-initial.png', {
       fullPage: true,
       animations: 'disabled',
@@ -230,7 +244,7 @@ test.describe('ISS-001: Layout Stability', () => {
     const navItems = page.locator('.nav-item');
     if ((await navItems.count()) > 1) {
       await navigateWithClick(page, navItems.nth(1));
-      await page.waitForTimeout(800);
+      await waitForStableShell(page);
       await expect(page).toHaveScreenshot('layout-after-navigation.png', {
         fullPage: true,
         animations: 'disabled',

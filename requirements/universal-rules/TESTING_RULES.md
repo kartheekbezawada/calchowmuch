@@ -61,11 +61,12 @@ If tests require a local server and one is not running, start it and continue:
 |---------|----------|----------|---------|
 | SEO-P1 | Title, meta description, canonical, H1, lang, viewport | P1 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
 | SEO-P2 | OpenGraph, Twitter cards, structured data | P2 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
-| SEO-P3 | Core Web Vitals (LCP, CLS, TBT, FCP, TTI) | P3 | `N/A (manual gate; see SEO_RULES.md)` |
+| SEO-P3 | Core Web Vitals (LCP, CLS, TBT, FCP, TTI) | P3 | `Manual via SEO_RULES.md (may be WAIVED for calculator pages in headless/no-GUI NO_FCP environments)` |
 | SEO-P4 | Accessibility impacting SEO | P4 | `N/A (manual gate; see SEO_RULES.md)` |
 | SEO-P5 | Sitemap, robots, redirects, canonical domain | P5 | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` |
 
-**Note:** P3 and P4 remain mandatory when required by matrix, but are executed using direct tool commands defined in `SEO_RULES.md`.
+**Note:** SEO-P4 remains mandatory when required by the matrix.
+SEO-P3 is executed using direct tool commands defined in `SEO_RULES.md`; for calculator pages, SEO-P3 must be attempted and may be recorded as **WAIVED** only under the policy in Section 5.0.
 
 ---
 
@@ -85,28 +86,30 @@ Missing required schema = SEO-P2 FAIL.
 
 ## 5) Test Selection Matrix (Authoritative)
 
-### 5.0 Global Rule — Calculator Performance Gate (SEO-P3)
+### 5.0 Global Rule — Calculator Lighthouse P3 Policy (NO_FCP Waiver)
 
-If a REQ creates or modifies any **calculator** page (i.e., any route under `/loans/`, `/finance/`, `/math/`, `/time-and-date/`, or any page generated from `public/calculators/**`), then **SEO-P3 (Lighthouse performance / Core Web Vitals) is ALWAYS REQUIRED**, regardless of whether the change is compute-only, UI-only, copy-only, or refactor.
+If a REQ creates or modifies any **calculator** page, attempt SEO-P3 (Lighthouse performance) using the commands in `SEO_RULES.md`.
 
-This rule overrides the matrix below.
+If Lighthouse fails with `NO_FCP` in a headless/no-GUI environment, then SEO-P3 may be recorded as **WAIVED** for calculator pages **only** if:
+- P1 / P2 / P5 Playwright SEO checks pass, and
+- P4 (Pa11y) passes, and
+- failure evidence is recorded (command + logs and any produced artifacts).
 
-Legend used in matrix:
-- `IF_CALC` = required when the change touches a calculator route/page (per Section 5.0)
+If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high CLS, etc.), SEO-P3 is **FAIL** (not waivable).
 
 | Change Type | Unit | SEO-P1 | SEO-P2 | SEO-P3 | SEO-P4 | SEO-P5 | ISS-001 | E2E |
 |-------------|:----:|:------:|:------:|:------:|:------:|:------:|:-------:|:---:|
-| Compute logic change | YES | - | - | IF_CALC | - | - | - | - |
-| SEO/metadata change | - | YES | YES | IF_CALC | - | - | - | - |
+| Compute logic change | YES | - | - | - | - | - | - | - |
+| SEO/metadata change | - | YES | YES | - | - | - | - | - |
 | Layout/CSS change | - | - | - | YES | YES | - | YES | - |
-| UI/flow change | - | - | - | IF_CALC | - | - | - | YES |
+| UI/flow change | - | - | - | - | - | - | - | YES |
 | New calculator | YES | YES | YES | YES | YES | YES | YES | YES |
 | New site section | - | YES | YES | YES | YES | YES | YES | YES |
-| Content update (copy) | - | YES | - | IF_CALC | - | - | - | - |
-| URL structure change | - | YES | - | IF_CALC | - | YES | - | - |
-| Bug fix (compute) | YES | - | - | IF_CALC | - | - | - | - |
-| Bug fix (UI) | - | - | - | IF_CALC | - | - | YES | YES |
-| Refactor (no behavior change) | YES | - | - | IF_CALC | - | - | - | - |
+| Content update (copy) | - | YES | - | - | - | - | - | - |
+| URL structure change | - | YES | - | - | - | YES | - | - |
+| Bug fix (compute) | YES | - | - | - | - | - | - | - |
+| Bug fix (UI) | - | - | - | - | - | - | YES | YES |
+| Refactor (no behavior change) | YES | - | - | - | - | - | - | - |
 
 Tests stack when multiple change types apply.
 

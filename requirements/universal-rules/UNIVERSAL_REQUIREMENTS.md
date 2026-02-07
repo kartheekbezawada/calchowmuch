@@ -395,6 +395,11 @@ Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 | UI-NAV-10 | Hover state must show multi-layer shadows (3 layers with varying blur/opacity) | P1 |
 | UI-NAV-11 | Hover state must include 5px left border and 2px translateX transform | P1 |
 | UI-NAV-12 | All animations must respect prefers-reduced-motion for accessibility | P0 |
+| UI-NAV-13 | Expandable subcategory labels must remain fully visible (no ellipsis clipping) | P0 |
+| UI-NAV-14 | Expandable subcategory headers must support multi-line wrapping for long names | P1 |
+| UI-NAV-15 | Expand/collapse indicators (`+` / `-` or equivalent) must stay visible and aligned | P1 |
+| UI-NAV-16 | Expandable subcategory controls must use readable, high-contrast text sizing | P1 |
+| UI-NAV-17 | Right-side calculator search must return every live calculator and allow direct navigation | P0 |
 
 **Edge Glow Animation (UI-NAV-6):**
 - Position: Absolute positioned `::before` pseudo-element on `.left-nav`
@@ -438,6 +443,60 @@ Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 - All animations MUST be disabled when `prefers-reduced-motion: reduce` is detected
 - Affected elements: `.left-nav::before`, `.nav-item.is-active`, `.nav-item.is-active::before`
 - Fallback: Static styles maintained, only animation removed
+
+**Expandable Subcategory Readability (UI-NAV-13 to UI-NAV-16):**
+- Scope: ALL expandable left-nav subcategory headers across present and future calculator domains
+- Label text must not be truncated via `text-overflow: ellipsis` when expanded navigation is shown
+- Header labels must permit wrapping (at least up to two lines) for long category names
+- Indicator control must remain visible while labels wrap (no overlap, clipping, or hidden state)
+- Text sizing baseline for expandable subcategory headers should be at least `12px`, with clear contrast against background
+
+**Locked Visual Spec (Mandatory, No Guesswork):**
+- Applies to expandable Finance subcategory cards and any future equivalent pattern in other domains
+- Card container background: `linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.2) 100%)`
+- Card container border: `1px solid rgba(148, 163, 184, 0.28)`
+- Card container radius: `14px`
+- Card container padding: `10px 10px 8px`
+- Card container internal gap: `10px`
+- Toggle button background: `linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(59, 130, 246, 0.12))`
+- Toggle button hover background: `linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.16))`
+- Toggle button border: `1px solid rgba(96, 165, 250, 0.35)`
+- Toggle button radius: `10px`
+- Toggle button padding: `8px 10px`
+- Toggle label color: `#e2e8f0`
+- Toggle label font family: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif` (inherited from `--font-body`)
+- Toggle label font size: `12px`
+- Toggle label font weight: `700`
+- Toggle label letter spacing: `0.2px`
+- Toggle label transform: `none` (must not force uppercase)
+- Toggle label line-height: `1.25`
+- Toggle label clipping policy: `white-space: normal; overflow: visible; text-overflow: clip; padding-right: 6px`
+- Indicator (`+` / `-`) size: `22px` by `22px`
+- Indicator radius: `999px`
+- Indicator background: `rgba(15, 23, 42, 0.85)`
+- Indicator border: `1px solid rgba(148, 163, 184, 0.4)`
+- Indicator color: `#f8fafc`
+- Indicator font size: `14px`
+- Subcategory item stack gap: `7px`
+- Subcategory item background: `rgba(15, 23, 42, 0.45)`
+- Subcategory item border: `1px solid rgba(148, 163, 184, 0.25)`
+- Subcategory item left accent: `3px solid rgba(96, 165, 250, 0.55)`
+- Subcategory item radius: `10px`
+- Subcategory item font size: `13px`
+- Subcategory item hover border: `rgba(96, 165, 250, 0.55)`
+- Subcategory item hover left accent: `rgba(125, 211, 252, 0.95)`
+- Subcategory item hover background: `rgba(30, 64, 175, 0.3)`
+- Subcategory item hover shadow: `0 4px 10px rgba(30, 64, 175, 0.18)`
+- Active item border: `1px solid rgba(147, 197, 253, 0.9)`
+- Active item left accent: `3px solid #f8fafc`
+- Active item shadow: `0 8px 14px rgba(37, 99, 235, 0.26), 0 0 16px rgba(59, 130, 246, 0.3)`
+
+**Right-Side Calculator Search Coverage (UI-NAV-17):**
+- Scope: Right-hand global/header search control used to find calculators
+- Every live calculator must be searchable by name through this control
+- Search dataset source must be the same live navigation source of truth (`public/config/navigation.json`) to prevent drift
+- Selecting a result must navigate directly to that calculator URL in one action
+- Missing any live calculator in right-side search is a hard compliance failure
 
 **Keyframe Definitions:**
 ```css

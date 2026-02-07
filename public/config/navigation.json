@@ -506,6 +506,48 @@
               "id": "present-value-of-annuity",
               "name": "Present Value of Annuity",
               "url": "/finance/present-value-of-annuity"
+            },
+            {
+              "id": "future-value-of-annuity",
+              "name": "Future Value of Annuity",
+              "url": "/finance/future-value-of-annuity"
+            }
+          ]
+        },
+        {
+          "id": "interest-and-growth",
+          "name": "Interest & Growth",
+          "calculators": [
+            {
+              "id": "simple-interest",
+              "name": "Simple Interest",
+              "url": "/finance/simple-interest"
+            },
+            {
+              "id": "compound-interest",
+              "name": "Compound Interest",
+              "url": "/finance/compound-interest"
+            },
+            {
+              "id": "effective-annual-rate",
+              "name": "Effective Annual Rate (EAR)",
+              "url": "/finance/effective-annual-rate"
+            }
+          ]
+        },
+        {
+          "id": "investments-and-savings",
+          "name": "Investments & Savings",
+          "calculators": [
+            {
+              "id": "savings-goal",
+              "name": "Savings Goal",
+              "url": "/finance/savings-goal"
+            },
+            {
+              "id": "investment-growth",
+              "name": "Investment Growth",
+              "url": "/finance/investment-growth"
             }
           ]
         }

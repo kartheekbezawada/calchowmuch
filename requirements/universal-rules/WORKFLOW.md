@@ -151,9 +151,9 @@ State Definitions
    ====
       Required for all calculator-related REQs and any change affecting a public route.
       Validate per SEO_RULES.md
-      Record PASS or NA
+      Record PASS, FAIL, WAIVED (per SEO_RULES), or NA
       Outcomes:
-         PASS / NA → COMPLIANCE
+         PASS / WAIVED / NA → COMPLIANCE
          FAIL → BUILD or ISSUE
 
    COMPLIANCE
@@ -164,7 +164,7 @@ State Definitions
       PASS conditions:
          BUILD_PASS
          TEST_PASS
-         SEO_PASS or SEO_NA
+         SEO_PASS or SEO_WAIVED or SEO_NA
          No P0/P1 violations
       PASS → COMPLETE
       FAIL → ISSUE
@@ -197,7 +197,7 @@ State Definitions
       OVERALL_PASS =
       BUILD_PASS
       AND TEST_PASS
-      AND (SEO_PASS OR SEO_NA)
+      AND (SEO_PASS OR SEO_WAIVED OR SEO_NA)
       AND UNIVERSAL_RULES_PASS
       No shortcuts.
 
