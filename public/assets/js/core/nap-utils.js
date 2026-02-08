@@ -4,6 +4,14 @@ export const NAP_TYPES = {
   afternoon: { label: 'Afternoon Nap', minutes: 90 },
 };
 
+export const ENERGY_NAP_GOALS = {
+  quick: { label: 'Quick', minutes: 15 },
+  strong: { label: 'Strong', minutes: 25 },
+  full: { label: 'Full', minutes: 90 },
+};
+
+export const ENERGY_NAP_DEFAULT_GOAL = 'full';
+
 export const DEFAULT_NAP_TYPE = 'power';
 export const DEFAULT_BUFFER_MINUTES = 5;
 export const BUFFER_OPTIONS = [0, 5, 10];
@@ -41,4 +49,59 @@ export function calculateWakeTime(startTime, napMinutes, bufferMinutes) {
   const hours = Math.floor(normalized / 60);
   const minutes = normalized % 60;
   return { hours, minutes };
+}
+
+export function getTimeBucket(startTime) {
+  if (!startTime) {
+    return 'Day';
+  }
+
+  const totalMinutes = startTime.hours * 60 + startTime.minutes;
+  if (totalMinutes >= 18 * 60 || totalMinutes < 5 * 60) {
+    return 'Night';
+  }
+  if (totalMinutes >= 12 * 60) {
+    return 'Afternoon';
+  }
+  return 'Day';
+}
+
+export function getEnergyNapRecommendation(goal, startTime, isExplicitGoal = false) {
+  const selectedGoal = ENERGY_NAP_GOALS[goal] ? goal : ENERGY_NAP_DEFAULT_GOAL;
+  const bucket = getTimeBucket(startTime);
+  const isNight = bucket === 'Night';
+  const isFullGoal = selectedGoal === 'full';
+
+  if (isNight && isFullGoal && !isExplicitGoal) {
+    return {
+      selectedGoal,
+      effectiveGoal: 'strong',
+      recommendedMinutes: ENERGY_NAP_GOALS.strong.minutes,
+      timeBucket: bucket,
+      warning:
+        'Late-night full naps can disturb nighttime sleep. Recommendation downgraded to 25 minutes.',
+      overridden: true,
+    };
+  }
+
+  if (isNight && isFullGoal && isExplicitGoal) {
+    return {
+      selectedGoal,
+      effectiveGoal: selectedGoal,
+      recommendedMinutes: ENERGY_NAP_GOALS[selectedGoal].minutes,
+      timeBucket: bucket,
+      warning:
+        'A full 90-minute nap late at night may delay bedtime and reduce sleep quality.',
+      overridden: false,
+    };
+  }
+
+  return {
+    selectedGoal,
+    effectiveGoal: selectedGoal,
+    recommendedMinutes: ENERGY_NAP_GOALS[selectedGoal].minutes,
+    timeBucket: bucket,
+    warning: '',
+    overridden: false,
+  };
 }

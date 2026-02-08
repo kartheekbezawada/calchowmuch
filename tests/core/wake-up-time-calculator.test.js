@@ -52,6 +52,33 @@ describe('Wake-Up Time Calculator - WAKEUP-TEST-U-1: Calculation Logic', () => {
     const invalid = new Date('invalid');
     expect(calculateWakeUpRecommendations({ mode: 'sleep', date: invalid })).toEqual([]);
   });
+
+  it('should roll over to next day for near-midnight fall-asleep times', () => {
+    const sleepTime = new Date(2026, 0, 2, 23, 50);
+    const recommendations = calculateWakeUpRecommendations({ mode: 'sleep', date: sleepTime });
+    const primary = recommendations.find((rec) => rec.cycles === 4);
+    expect(primary).toBeTruthy();
+    expect(primary.wakeTime.getDate()).toBe(3);
+    expect(primary.wakeTime.getHours()).toBe(5);
+    expect(primary.wakeTime.getMinutes()).toBe(50);
+  });
+
+  it('should roll over correctly in bedtime mode with fixed fall-asleep buffer', () => {
+    const bedTime = new Date(2026, 0, 2, 23, 50);
+    const recommendations = calculateWakeUpRecommendations({
+      mode: 'bed',
+      date: bedTime,
+      latencyMinutes: FALL_ASLEEP_MINUTES,
+    });
+    const primary = recommendations.find((rec) => rec.cycles === 4);
+    expect(primary).toBeTruthy();
+    expect(primary.sleepTime.getDate()).toBe(3);
+    expect(primary.sleepTime.getHours()).toBe(0);
+    expect(primary.sleepTime.getMinutes()).toBe(5);
+    expect(primary.wakeTime.getDate()).toBe(3);
+    expect(primary.wakeTime.getHours()).toBe(6);
+    expect(primary.wakeTime.getMinutes()).toBe(5);
+  });
 });
 
 describe('Wake-Up Time Calculator - WAKEUP-TEST-U-2: Defaults and Rounding', () => {

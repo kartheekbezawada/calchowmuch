@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Wake-Up Time Calculator', () => {
   test('WAKEUP-TEST-E2E-1: user journey and recommendations', async ({ page }) => {
-    await page.goto('/#/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator');
 
-    const topNavActive = page.locator('#top-nav button.is-active');
+    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
     const leftActive = page.locator('.nav-item.is-active');
@@ -17,7 +17,8 @@ test.describe('Wake-Up Time Calculator', () => {
     await expect(latencyRow).toHaveClass(/is-collapsed/);
 
     const dateTimeInput = page.locator('#wake-datetime');
-    if (await dateTimeInput.count()) {
+    const fallbackWrap = page.locator('#wake-fallback');
+    if (!(await fallbackWrap.isVisible())) {
       await expect(dateTimeInput).toHaveValue(/T/);
     }
 
@@ -29,13 +30,20 @@ test.describe('Wake-Up Time Calculator', () => {
     await expect(resultsList.locator('.wake-result.is-primary')).toHaveCount(1);
     await expect(resultsList.locator('.wake-result').first()).toContainText('Wake up at');
 
+    const baselinePrimary = (await resultsList.locator('.wake-result.is-primary').first().textContent()) ?? '';
     await modeButtons.nth(1).click();
     await expect(latencyRow).not.toHaveClass(/is-collapsed/);
-    await expect(page.locator('#wake-latency')).toBeEnabled();
+    await expect(page.locator('#wake-latency')).toHaveValue('15');
+    await expect(resultsList).toHaveClass(/is-hidden/);
+    await expect(page.locator('#wake-placeholder')).toBeVisible();
+
+    await page.locator('#wake-calculate').click();
+    await expect(resultsList).not.toHaveClass(/is-hidden/);
+    await expect(resultsList.locator('.wake-result.is-primary').first()).not.toContainText(baselinePrimary);
   });
 
   test('WAKEUP-TEST-E2E-2: layout stability and content', async ({ page }) => {
-    await page.goto('/#/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator');
 
     const calcPanel = page.locator('.center-column .panel').first();
     const initialHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
@@ -50,9 +58,11 @@ test.describe('Wake-Up Time Calculator', () => {
     expect(Math.abs(afterSleepHeight - initialHeight)).toBeLessThanOrEqual(1);
 
     const explanation = page.locator('#wake-up-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(5);
-    await expect(explanation).toContainText('What is a Wake-Up Time Calculator?');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation.locator('h3')).toHaveCount(4);
+    await expect(explanation).toContainText('Scenario Summary');
+    await expect(explanation).toContainText('Results Table');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.wake-faq-item')).toHaveCount(5);
+    await expect(explanation.locator('.faq-box')).toHaveCount(10);
   });
 });

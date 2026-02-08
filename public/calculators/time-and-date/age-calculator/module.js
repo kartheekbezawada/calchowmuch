@@ -49,6 +49,54 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'It focuses on exact calendar age, which is typically expressed in years, months, and days.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between chronological age and biological age?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Chronological age is the time elapsed since your date of birth, which this calculator provides. Biological age refers to how well your body functions relative to your actual age.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is age calculated when the birth day exceeds the current month length?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If you were born on the 31st and the current month has only 30 days, the calculator treats the last day of the month as the boundary and adjusts the day count accordingly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this calculator to find the age difference between two people?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Enter one person\'s date of birth and use the other person\'s date of birth as the "as of" date to see the age difference.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this calculator account for time zones?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. The calculator works with calendar dates only and does not factor in time zones or the exact time of birth.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this calculator suitable for legal or official age verification?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. This calculator provides a general age estimate for personal reference. Official age verification requires legal documentation.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What date format does the calculator accept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The calculator uses your browser\'s native date picker, which follows your system\'s locale settings for date format.',
+      },
+    },
   ],
 };
 
@@ -56,9 +104,65 @@ const metadata = {
   title: 'Age Calculator – Exact Age in Years, Months, and Days',
   description:
     'Calculate your exact age in years, months, and days based on your date of birth. Simple, fast, and free age calculator.',
-  canonical: 'https://calchowmuch.com/calculators/time-and-date/age-calculator/',
+  canonical: 'https://calchowmuch.com/time-and-date/age-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        name: 'Age Calculator',
+        url: 'https://calchowmuch.com/time-and-date/age-calculator/',
+        description:
+          'Calculate your exact age in years, months, and days based on your date of birth.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Age Calculator',
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/time-and-date/age-calculator/',
+        description:
+          'Free age calculator to compute your exact age in years, months, and days from your date of birth.',
+        browserRequirements: 'Requires JavaScript enabled',
+        softwareVersion: '1.0',
+        creator: {
+          '@type': 'Organization',
+          name: 'CalcHowMuch',
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://calchowmuch.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Age Calculator',
+            item: 'https://calchowmuch.com/time-and-date/age-calculator/',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 setPageMetadata(metadata);

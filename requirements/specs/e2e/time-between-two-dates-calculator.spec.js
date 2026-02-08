@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Time Between Two Dates Calculator', () => {
   test('DATE-DIFF-TEST-E2E-1: user journey, validation, results', async ({ page }) => {
-    await page.goto('/#/time-and-date/time-between-two-dates-calculator');
+    await page.goto('/time-and-date/time-between-two-dates-calculator');
 
-    const topNavActive = page.locator('#top-nav button.is-active');
+    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
     const leftActive = page.locator('.nav-item.is-active');
@@ -42,7 +42,7 @@ test.describe('Time Between Two Dates Calculator', () => {
   });
 
   test('DATE-DIFF-TEST-E2E-2: layout stability and content', async ({ page }) => {
-    await page.goto('/#/time-and-date/time-between-two-dates-calculator');
+    await page.goto('/time-and-date/time-between-two-dates-calculator');
 
     const calcPanel = page.locator('.center-column .panel').first();
     const initialHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);

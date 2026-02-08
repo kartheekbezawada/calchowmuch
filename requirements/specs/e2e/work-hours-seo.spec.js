@@ -4,11 +4,13 @@ test.describe('Work Hours Calculator SEO', () => {
   test('WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/work-hours-calculator');
 
-    await expect(page).toHaveTitle('Work Hours Calculator – Calculate Hours Worked (With Breaks)');
+    await expect(page).toHaveTitle(
+      'Work Hours Calculator – Calculate Shift Hours & Breaks | CalcHowMuch'
+    );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.'
+      'Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours.'
     );
 
     const h1 = page.locator('h1');
@@ -26,9 +28,14 @@ test.describe('Work Hours Calculator SEO', () => {
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(4);
-    expect(structuredData.mainEntity[0].name).toBe('Can I calculate hours for a night shift?');
+    const types = structuredData['@graph'].map((node) => node['@type']);
+    expect(types).toEqual(
+      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
+    );
+
+    const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
+    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity[0].name).toBe('Can I calculate hours for a night shift?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

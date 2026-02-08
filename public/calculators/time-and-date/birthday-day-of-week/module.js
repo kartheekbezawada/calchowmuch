@@ -29,8 +29,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What if I was born on February 29?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'You were born on the weekday for February 29 in your birth year. For non-leap target years, this calculator uses February 28 for the birthday weekday.',
+        text: 'You were born on the weekday for February 29 in your birth year. For non-leap target years, this calculator uses February 28 for the birthday weekday.',
       },
     },
     {
@@ -49,6 +48,54 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'No. This runs in your browser and does not save your inputs.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Why does my birthday fall on a different weekday each year?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A common year has 365 days, which is 52 weeks plus 1 day. This shifts your birthday forward by one weekday each year, or two days after a leap year.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How far back or forward can this calculator go?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The calculator supports target years from 1600 to 2100, covering the Gregorian calendar era used in most countries.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this to plan a birthday party?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Enter a future year to see what weekday your birthday falls on, so you can plan around weekends or weekdays.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What calendar system does this calculator use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It uses the Gregorian calendar, which is the standard calendar system used in most of the world today.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator account for historical calendar changes?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It applies Gregorian calendar rules uniformly. For dates before a country adopted the Gregorian calendar, the result may differ from the historical weekday.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How often does my birthday fall on the same weekday?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The pattern repeats in cycles of 5, 6, or 11 years depending on leap year positions. On average, your birthday falls on the same weekday roughly every 5 to 6 years.',
+      },
+    },
   ],
 };
 
@@ -59,6 +106,62 @@ const metadata = {
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        name: 'Birthday Day-of-Week Calculator',
+        url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+        description:
+          'Find the day of the week you were born on, and see what weekday your birthday falls on in any year.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Birthday Day-of-Week Calculator',
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+        description:
+          'Free birthday weekday calculator to find what day of the week you were born and what weekday your birthday falls on in any year.',
+        browserRequirements: 'Requires JavaScript enabled',
+        softwareVersion: '1.0',
+        creator: {
+          '@type': 'Organization',
+          name: 'CalcHowMuch',
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://calchowmuch.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Birthday Day-of-Week Calculator',
+            item: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 setPageMetadata(metadata);

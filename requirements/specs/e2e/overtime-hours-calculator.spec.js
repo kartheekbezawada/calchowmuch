@@ -25,19 +25,47 @@ test.describe('Overtime Hours Calculator', () => {
     await expect(page.locator('[data-placeholder="total-hhmm"]').first()).toContainText('8:00');
   });
 
-  test('OVERTIME-TEST-E2E-2: weekly mode labels and totals', async ({ page }) => {
+  test('OVERTIME-TEST-E2E-2: input change resets results (UI-2.6)', async ({ page }) => {
     await page.goto('/time-and-date/overtime-hours-calculator');
 
-    await page.locator('[data-button-group="overtime-mode"] button[data-value="weekly"]').click();
-    await page.locator('[data-button-group="overtime-week-start"] button[data-value="0"]').click();
-    await page.locator('#overtime-week-start-date').fill('2026-02-01');
-
-    await page.locator('#overtime-weekly-0-start').fill('08:00');
-    await page.locator('#overtime-weekly-0-end').fill('12:00');
+    await page.locator('#overtime-single-start').fill('09:00');
+    await page.locator('#overtime-single-end').fill('17:30');
     await page.locator('#overtime-calculate').click();
 
-    await expect(page.locator('[data-placeholder="week-range-label"]').first()).toContainText('Sun Feb 1, 2026');
-    const results = page.locator('#overtime-results-list');
-    await expect(results).toContainText('Sun Feb 1, 2026');
+    const resultsList = page.locator('#overtime-results-list');
+    await expect(resultsList).not.toHaveClass(/is-hidden/);
+
+    await page.locator('#overtime-single-start').fill('10:00');
+
+    await expect(resultsList).toHaveClass(/is-hidden/);
+    await expect(page.locator('#overtime-placeholder')).toBeVisible();
+
+    await page.locator('#overtime-calculate').click();
+    await expect(resultsList).not.toHaveClass(/is-hidden/);
+  });
+
+  test('OVERTIME-TEST-E2E-3: mode switch resets results (UI-2.6)', async ({ page }) => {
+    await page.goto('/time-and-date/overtime-hours-calculator');
+
+    await page.locator('#overtime-single-start').fill('09:00');
+    await page.locator('#overtime-single-end').fill('17:30');
+    await page.locator('#overtime-calculate').click();
+
+    const resultsList = page.locator('#overtime-results-list');
+    await expect(resultsList).not.toHaveClass(/is-hidden/);
+
+    await page.locator('[data-button-group="overtime-mode"] button[data-value="split"]').click();
+
+    await expect(resultsList).toHaveClass(/is-hidden/);
+    await expect(page.locator('#overtime-placeholder')).toBeVisible();
+  });
+
+  test('OVERTIME-TEST-E2E-4: explanation content and FAQs', async ({ page }) => {
+    await page.goto('/time-and-date/overtime-hours-calculator');
+
+    const explanation = page.locator('#overtime-explanation');
+    await expect(explanation).toContainText('What is an Overtime Hours Calculator?');
+    await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation.locator('.overtime-faq-item')).toHaveCount(10);
   });
 });

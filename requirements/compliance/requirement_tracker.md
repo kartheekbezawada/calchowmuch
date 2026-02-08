@@ -22,6 +22,17 @@
 | REQ-20260208-011 | Reverse Percentage Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260208-012 | What Percent Is X of Y Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260208-013 | Find Percentage of a Number Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-014 | Age Calculator — Time & Date | Calculator | SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-015 | Nap Time Calculator — Time & Date | Calculator | SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-016 | Time Between Two Dates Calculator — Time & Date | Calculator | SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-017 | Wake-Up Time Calculator — Time & Date | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-018 | Birthday Day-of-Week Calculator — Time & Date | Calculator | SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-019 | Countdown Timer Generator — Time & Date | Calculator | SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-020 | Work Hours Calculator — Time & Date | Calculator | Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-021 | Power Nap Calculator — Time & Date | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-022 | Energy-Based Nap Selector — Time & Date | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-023 | Sleep Time Calculator — Time & Date | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-024 | Overtime Hours Calculator — Time & Date | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
 
 ---
 

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Age Calculator SEO', () => {
   test('AGE-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
-    await page.goto('/#/time-and-date/age-calculator');
+    await page.goto('/time-and-date/age-calculator');
 
     await expect(page).toHaveTitle('Age Calculator – Exact Age in Years, Months, and Days');
 
@@ -18,7 +18,7 @@ test.describe('Age Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/calculators/time-and-date/age-calculator/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/time-and-date/age-calculator/');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -26,13 +26,18 @@ test.describe('Age Calculator SEO', () => {
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(4);
-    expect(structuredData.mainEntity[0].name).toBe('How accurate is this age calculator?');
+    const types = structuredData['@graph'].map((node) => node['@type']);
+    expect(types).toEqual(
+      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
+    );
+
+    const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
+    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity[0].name).toBe('How accurate is this age calculator?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/calculators/time-and-date/age-calculator/');
+    expect(sitemapText).toContain('/time-and-date/age-calculator/');
   });
 });

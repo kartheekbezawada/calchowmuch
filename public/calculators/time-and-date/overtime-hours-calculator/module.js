@@ -55,7 +55,7 @@ const weeklyRows = Array.from(document.querySelectorAll('[data-weekly-index]')).
   nextDayInput: row.querySelector('[data-weekly-next-day]'),
   breakGroup: setupButtonGroup(row.querySelector('[data-weekly-break]'), {
     defaultValue: '0',
-    onChange: () => calculate({ showErrors: hasCalculated }),
+    onChange: () => resetIfCalculated(),
   }),
 }));
 
@@ -151,6 +151,15 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'No. It runs in your browser and does not store your inputs.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'How are breaks handled in overtime calculations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Unpaid break minutes are subtracted from total worked time before overtime is calculated. This means breaks reduce your paid hours but do not change when overtime starts.',
+      },
+    },
   ],
 };
 
@@ -177,9 +186,53 @@ const metadata = {
       {
         '@type': 'WebPage',
         name: 'Overtime Hours Calculator',
-        description:
-          'Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime.',
         url: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
+        description:
+          'Calculate total work hours and split them into regular and overtime hours with daily and weekly overtime rules.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Overtime Hours Calculator',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
+        description:
+          'Free overtime hours calculator supporting single shifts, split shifts, weekly cycles, night shifts, and multiple overtime rules.',
+        browserRequirements: 'Requires JavaScript enabled',
+        softwareVersion: '1.0',
+        creator: {
+          '@type': 'Organization',
+          name: 'CalcHowMuch',
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://calchowmuch.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Overtime Hours Calculator',
+            item: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
+          },
+        ],
       },
     ],
   },
@@ -206,34 +259,40 @@ const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'single',
   onChange: (value) => {
     updateModeVisibility(value);
-    calculate({ showErrors: hasCalculated });
+    resetIfCalculated();
   },
 });
 
 const ruleButtons = setupButtonGroup(ruleGroup, {
   defaultValue: 'weekly',
-  onChange: () => calculate({ showErrors: hasCalculated }),
+  onChange: () => resetIfCalculated(),
 });
 
 const roundingButtons = setupButtonGroup(roundingGroup, {
   defaultValue: '0',
-  onChange: () => calculate({ showErrors: hasCalculated }),
+  onChange: () => resetIfCalculated(),
 });
 
 const breakButtons = setupButtonGroup(breakGroup, {
   defaultValue: '30',
-  onChange: () => calculate({ showErrors: hasCalculated }),
+  onChange: () => resetIfCalculated(),
 });
 
 const weekStartButtons = setupButtonGroup(weekStartGroup, {
   defaultValue: '1',
   onChange: () => {
     updateWeekLabels();
-    calculate({ showErrors: hasCalculated });
+    resetIfCalculated();
   },
 });
 
 let hasCalculated = false;
+
+function resetIfCalculated() {
+  if (hasCalculated && !resultsList?.classList.contains('is-hidden')) {
+    showPlaceholder();
+  }
+}
 
 function setPlaceholder(key, value) {
   const nodes = placeholderElements[key] || [];
@@ -751,21 +810,21 @@ nightToggle?.addEventListener('change', () => {
     nightSettings.classList.toggle('is-collapsed', !enabled);
     nightSettings.setAttribute('aria-hidden', String(!enabled));
   }
-  calculate({ showErrors: hasCalculated });
+  resetIfCalculated();
 });
 
-nightStartInput?.addEventListener('change', () => calculate({ showErrors: hasCalculated }));
-nightEndInput?.addEventListener('change', () => calculate({ showErrors: hasCalculated }));
-nightCrossesInput?.addEventListener('change', () => calculate({ showErrors: hasCalculated }));
+nightStartInput?.addEventListener('change', () => resetIfCalculated());
+nightEndInput?.addEventListener('change', () => resetIfCalculated());
+nightCrossesInput?.addEventListener('change', () => resetIfCalculated());
 
 weekStartDateInput?.addEventListener('change', () => {
   updateWeekLabels();
-  calculate({ showErrors: hasCalculated });
+  resetIfCalculated();
 });
 
 const inputs = document.querySelectorAll('#calc-overtime-hours input');
 inputs.forEach((input) => {
-  input.addEventListener('input', () => calculate({ showErrors: hasCalculated }));
+  input.addEventListener('input', () => resetIfCalculated());
 });
 
 calculateButton?.addEventListener('click', () => {
