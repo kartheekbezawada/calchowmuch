@@ -1,8 +1,10 @@
 import { calculateMargin } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 
-const modeGroup = document.querySelector('[data-button-group="margin-mode"]');
+const costMarginToggle = document.querySelector('#margin-cost-margin-toggle');
+const costPriceModeLabel = document.querySelector('[data-margin-mode-label="cost-price"]');
+const costMarginModeLabel = document.querySelector('[data-margin-mode-label="cost-margin"]');
 const costInput = document.querySelector('#margin-cost');
 const priceInput = document.querySelector('#margin-price');
 const marginPercentInput = document.querySelector('#margin-percent');
@@ -210,10 +212,22 @@ function setModeVisibility(mode) {
   modeCostMargin.classList.toggle('is-hidden', isCostPrice);
 }
 
+function getMode() {
+  return costMarginToggle?.checked ? 'cost-margin' : 'cost-price';
+}
+
+function syncModeUI() {
+  const mode = getMode();
+  setModeVisibility(mode);
+  costPriceModeLabel?.classList.toggle('is-active', mode === 'cost-price');
+  costMarginModeLabel?.classList.toggle('is-active', mode === 'cost-margin');
+}
+
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
-  const mode = modeButtons.getValue();
+  const mode = getMode();
   const cost = Number.parseFloat(costInput?.value ?? '');
 
   if (!Number.isFinite(cost) || cost < 0) {
@@ -269,21 +283,18 @@ function calculate() {
   updateTargets(valueTargets?.formula, result.formula);
 }
 
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'cost-price',
-  onChange: (mode) => {
-    setModeVisibility(mode);
-    if (hasCalculated) {
-      calculate();
-    }
-  },
-});
+syncModeUI();
 
-setModeVisibility('cost-price');
+costMarginToggle?.addEventListener('change', () => {
+  syncModeUI();
+  if (liveUpdatesEnabled && hasCalculated) {
+    calculate();
+  }
+});
 
 [costInput, priceInput, marginPercentInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

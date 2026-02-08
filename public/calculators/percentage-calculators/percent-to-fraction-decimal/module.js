@@ -158,6 +158,7 @@ function updateTargets(nodes, value) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const inputText = String(percentInput?.value ?? '').trim();
@@ -189,7 +190,7 @@ function calculate() {
 calculateButton?.addEventListener('click', calculate);
 
 percentInput?.addEventListener('input', () => {
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });

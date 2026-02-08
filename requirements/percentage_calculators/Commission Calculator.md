@@ -136,7 +136,7 @@ No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Mode Toggle (Required)
 
-Button Toggle:
+Switch Toggle:
 
 Flat Commission %
 
@@ -148,9 +148,15 @@ Flat mode is default
 
 Tiered mode is optional but must be fully supported if enabled
 
+Switch OFF = Flat mode; Switch ON = Tiered mode
+
 Non-selected mode inputs must be hidden/disabled
 
-Calculation updates on input change (or Calculate button if globally required)
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Commission" click
+
+No live recalculation on input change
 
 ### 6.3 Inputs (Above the Fold)
 Mode A — Flat Commission %
@@ -192,6 +198,10 @@ Add/Remove tier row buttons
 Validate monotonic thresholds (ascending)
 
 Do not auto-round during typing
+
+Tier rows must use compact density: threshold + rate fields in one row block with Remove action aligned in the same row
+
+Rows added via "Add Tier" must keep the same layout structure/class pattern as initial rows
 
 ### 6.4 Outputs (Both Modes)
 | Output | Required | Notes |

@@ -188,7 +188,7 @@ setPageMetadata(metadata);
 const periodTypeButtons = setupButtonGroup(periodTypeGroup, {
   defaultValue: 'years',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
@@ -197,13 +197,14 @@ const periodTypeButtons = setupButtonGroup(periodTypeGroup, {
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'monthly',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
 });
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function setOptionalVisibility(expanded) {
   if (!optionalSection || !optionalToggle) {
@@ -377,7 +378,7 @@ if (calculateButton) {
 [initialInput, returnInput, timeInput, contributionInput, inflationInput].forEach((input) => {
   if (input) {
     input.addEventListener('input', () => {
-      if (hasCalculated) {
+      if (liveUpdatesEnabled && hasCalculated) {
         calculate();
       }
     });

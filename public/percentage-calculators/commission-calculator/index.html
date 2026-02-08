@@ -97,19 +97,23 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label id="comm-mode-label">Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="comm-mode-label"
-          data-button-group="comm-mode"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="flat" aria-pressed="true">
+        <label>Mode</label>
+        <div class="mode-switch-control" role="group" aria-label="Commission mode">
+          <span class="mode-switch-label is-active" data-comm-mode-label="flat">
             Flat Commission %
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="tiered" aria-pressed="false">
-            Tiered Commission
-          </button>
+          </span>
+          <label class="mode-switch-toggle" for="comm-tiered-toggle">
+            <input
+              id="comm-tiered-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Enable tiered commission mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-comm-mode-label="tiered">Tiered Commission</span>
         </div>
       </div>
 

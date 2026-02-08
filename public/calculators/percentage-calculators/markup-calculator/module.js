@@ -4,10 +4,16 @@ import {
   calculateBasketMarkup,
 } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 
-const productModeGroup = document.querySelector('[data-button-group="markup-product-mode"]');
-const calcModeGroup = document.querySelector('[data-button-group="markup-calc-mode"]');
+const productModeToggle = document.querySelector('#markup-product-toggle');
+const calcModeToggle = document.querySelector('#markup-calc-toggle');
+const productSingleLabel = document.querySelector('[data-markup-product-mode-label="single"]');
+const productBasketLabel = document.querySelector('[data-markup-product-mode-label="basket"]');
+const calcCostPriceLabel = document.querySelector('[data-markup-calc-mode-label="cost-to-price"]');
+const calcPriceMarkupLabel = document.querySelector(
+  '[data-markup-calc-mode-label="price-to-markup"]'
+);
 
 const singleSection = document.querySelector('#markup-single-section');
 const singleCtp = document.querySelector('#markup-single-ctp');
@@ -233,31 +239,60 @@ function setVisibility(element, visible) {
   element.setAttribute('aria-hidden', String(!visible));
 }
 
+function getProductMode() {
+  return productModeToggle?.checked ? 'basket' : 'single';
+}
+
+function getCalcMode() {
+  return calcModeToggle?.checked ? 'price-to-markup' : 'cost-to-price';
+}
+
+function syncModeUI() {
+  const productMode = getProductMode();
+  const calcMode = getCalcMode();
+  const isCtp = calcMode === 'cost-to-price';
+
+  productSingleLabel?.classList.toggle('is-active', productMode === 'single');
+  productBasketLabel?.classList.toggle('is-active', productMode === 'basket');
+  calcCostPriceLabel?.classList.toggle('is-active', isCtp);
+  calcPriceMarkupLabel?.classList.toggle('is-active', !isCtp);
+
+  setVisibility(singleSection, productMode === 'single');
+  setVisibility(basketSection, productMode === 'basket');
+  setVisibility(singleCtp, isCtp);
+  setVisibility(singlePtm, !isCtp);
+
+  if (productMode === 'basket') {
+    ensureBasketRows();
+  }
+  updateBasketRowVisibility();
+}
+
 function renderBasketRow({ name = '', quantity = '1', cost = '', price = '', markupPercent = '' }) {
   const row = document.createElement('div');
   row.className = 'input-row markup-basket-row';
 
-  const calcMode = calcModeButtons.getValue();
+  const calcMode = getCalcMode();
   const isCtp = calcMode === 'cost-to-price';
 
   row.innerHTML = `
-    <div class="input-stack">
+    <div class="markup-row-field markup-row-name-field">
       <label>Name</label>
       <input type="text" class="markup-row-name" value="${name}" placeholder="Optional" />
     </div>
-    <div class="input-stack">
+    <div class="markup-row-field markup-row-qty-field">
       <label>Qty</label>
       <input type="number" class="markup-row-qty" value="${quantity}" min="0" step="1" />
     </div>
-    <div class="input-stack">
+    <div class="markup-row-field markup-row-cost-field">
       <label>Cost</label>
       <input type="number" class="markup-row-cost" value="${cost}" min="0" step="0.01" />
     </div>
-    <div class="input-stack markup-row-price-wrap" ${isCtp ? 'hidden' : ''}>
+    <div class="markup-row-field markup-row-price-wrap" ${isCtp ? 'hidden' : ''}>
       <label>Price</label>
       <input type="number" class="markup-row-price" value="${price}" min="0" step="0.01" />
     </div>
-    <div class="input-stack markup-row-markup-wrap" ${isCtp ? '' : 'hidden'}>
+    <div class="markup-row-field markup-row-markup-wrap" ${isCtp ? '' : 'hidden'}>
       <label>Markup %</label>
       <input type="number" class="markup-row-markup" value="${markupPercent}" min="0" step="0.01" />
     </div>
@@ -282,7 +317,7 @@ function ensureBasketRows() {
 }
 
 function updateBasketRowVisibility() {
-  const calcMode = calcModeButtons.getValue();
+  const calcMode = getCalcMode();
   const isCtp = calcMode === 'cost-to-price';
   const rows = basketRowsContainer?.querySelectorAll('.markup-basket-row') ?? [];
   rows.forEach((row) => {
@@ -298,9 +333,10 @@ function updateBasketRowVisibility() {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculateSingle() {
-  const calcMode = calcModeButtons.getValue();
+  const calcMode = getCalcMode();
 
   if (calcMode === 'cost-to-price') {
     const result = calculateMarkupFromCost(singleCostInput?.value, singleMarkupInput?.value);
@@ -352,7 +388,7 @@ function calculateSingle() {
 }
 
 function collectBasketRows() {
-  const calcMode = calcModeButtons.getValue();
+  const calcMode = getCalcMode();
   const rowElements = basketRowsContainer?.querySelectorAll('.markup-basket-row') ?? [];
   const rows = [];
   for (const rowEl of rowElements) {
@@ -400,7 +436,7 @@ function calculateBasket() {
 
   updateTargets(
     valueTargets?.mode,
-    `Basket — ${calcModeButtons.getValue() === 'cost-to-price' ? 'Cost → Price' : 'Price → Markup %'}`
+    `Basket — ${getCalcMode() === 'cost-to-price' ? 'Cost → Price' : 'Price → Markup %'}`
   );
   updateTargets(valueTargets?.productCount, String(result.rows.length));
   updateTargets(valueTargets?.cost, '—');
@@ -416,7 +452,7 @@ function calculateBasket() {
 }
 
 function calculate() {
-  const productMode = productModeButtons.getValue();
+  const productMode = getProductMode();
   if (productMode === 'single') {
     calculateSingle();
   } else {
@@ -424,38 +460,21 @@ function calculate() {
   }
 }
 
-const productModeButtons = setupButtonGroup(productModeGroup, {
-  defaultValue: 'single',
-  onChange: (mode) => {
-    setVisibility(singleSection, mode === 'single');
-    setVisibility(basketSection, mode === 'basket');
-    if (mode === 'basket') {
-      ensureBasketRows();
-      updateBasketRowVisibility();
-    }
-    if (hasCalculated) {
-      calculate();
-    }
-  },
+syncModeUI();
+
+productModeToggle?.addEventListener('change', () => {
+  syncModeUI();
+  if (liveUpdatesEnabled && hasCalculated) {
+    calculate();
+  }
 });
 
-const calcModeButtons = setupButtonGroup(calcModeGroup, {
-  defaultValue: 'cost-to-price',
-  onChange: (mode) => {
-    const isCtp = mode === 'cost-to-price';
-    setVisibility(singleCtp, isCtp);
-    setVisibility(singlePtm, !isCtp);
-    updateBasketRowVisibility();
-    if (hasCalculated) {
-      calculate();
-    }
-  },
+calcModeToggle?.addEventListener('change', () => {
+  syncModeUI();
+  if (liveUpdatesEnabled && hasCalculated) {
+    calculate();
+  }
 });
-
-setVisibility(singleSection, true);
-setVisibility(basketSection, false);
-setVisibility(singleCtp, true);
-setVisibility(singlePtm, false);
 
 addRowButton?.addEventListener('click', () => {
   basketRowsContainer?.appendChild(renderBasketRow({ cost: '', markupPercent: '', price: '' }));
@@ -471,20 +490,20 @@ basketRowsContainer?.addEventListener('click', (event) => {
     return;
   }
   button.closest('.markup-basket-row')?.remove();
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });
 
 basketRowsContainer?.addEventListener('input', () => {
-  if (hasCalculated && productModeButtons.getValue() === 'basket') {
+  if (liveUpdatesEnabled && hasCalculated && getProductMode() === 'basket') {
     calculate();
   }
 });
 
 [singleCostInput, singleMarkupInput, singleCost2Input, singlePriceInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated && productModeButtons.getValue() === 'single') {
+    if (liveUpdatesEnabled && hasCalculated && getProductMode() === 'single') {
       calculate();
     }
   });

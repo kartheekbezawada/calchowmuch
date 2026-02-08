@@ -22,7 +22,9 @@ test.describe('Margin Calculator', () => {
     const modeAResult = await page.locator('#margin-result').textContent();
     expect(parseNumber(modeAResult)).toBeCloseTo(40, 2);
 
-    await page.click('[data-button-group="margin-mode"] button[data-value="cost-margin"]');
+    await page.click(
+      'label.mode-switch-toggle[for="margin-cost-margin-toggle"] .mode-switch-track'
+    );
     await expect(page.locator('#margin-mode-cost-margin')).not.toBeHidden();
 
     await page.fill('#margin-cost', '60');

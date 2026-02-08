@@ -129,7 +129,7 @@ No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 6.2 Mode Toggle (Required, Visible by Default)
 
-Button Toggle (Primary):
+Switch Toggle (Primary):
 
 Single Product
 
@@ -150,6 +150,10 @@ Price → Markup % (given cost and price per row)
 Rules
 
 Toggles are mandatory and visible by default
+
+Primary switch OFF = Single Product; ON = Basket
+
+Secondary switch OFF = Cost → Price; ON = Price → Markup %
 
 No dropdowns
 
@@ -212,11 +216,19 @@ Default rows: 3 rows (or 1 row if your universal pattern prefers minimal)
 
 Input validation inline per row
 
-Calculation updates on change
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Markup" click
+
+No live recalculation on input change
 
 Do not auto-round during typing
 
 Clear labeling: “Markup is based on cost (not selling price)”
+
+Basket rows must use compact density with Name, Qty, Cost, active mode field (Price or Markup %), and Remove action in one row block
+
+Rows added via "Add Product Row" must keep the same layout structure/class pattern as initial rows
 
 If Quantity exists, all totals must use quantity
 

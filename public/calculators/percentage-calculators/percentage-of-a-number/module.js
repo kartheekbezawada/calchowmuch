@@ -157,6 +157,7 @@ function updateTargets(nodes, value) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const x = Number.parseFloat(percentInput?.value ?? '');
@@ -196,7 +197,7 @@ calculateButton?.addEventListener('click', calculate);
 
 [percentInput, numberInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

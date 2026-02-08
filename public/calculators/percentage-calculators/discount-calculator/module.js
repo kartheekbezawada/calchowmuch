@@ -206,6 +206,7 @@ function updateExplanation(values) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const originalPrice = Number.parseFloat(originalPriceInput?.value ?? '');
@@ -249,7 +250,7 @@ calculateButton?.addEventListener('click', calculate);
 
 [originalPriceInput, discountPercentInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

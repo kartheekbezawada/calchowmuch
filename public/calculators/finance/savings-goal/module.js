@@ -186,7 +186,7 @@ const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'time-to-goal',
   onChange: (value) => {
     updateModeRows(value);
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
@@ -195,7 +195,7 @@ const modeButtons = setupButtonGroup(modeGroup, {
 const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
   defaultValue: 'months',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
@@ -204,7 +204,7 @@ const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'monthly',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
@@ -213,13 +213,14 @@ const compoundingButtons = setupButtonGroup(compoundingGroup, {
 const timingButtons = setupButtonGroup(timingGroup, {
   defaultValue: 'end',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
 });
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function setOptionalVisibility(expanded) {
   if (!optionalSection || !optionalToggle) {
@@ -421,7 +422,7 @@ if (calculateButton) {
     return;
   }
   input.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

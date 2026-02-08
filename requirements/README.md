@@ -12,12 +12,15 @@ requirements/
 │
 ├── README.md                    ← THIS FILE (start here)
 │
-├── universal/                   ← PROJECT RULES (rarely changes)
+├── universal-rules/             ← PROJECT RULES (rarely changes)
 │   ├── UNIVERSAL_REQUIREMENTS.md   ← P0: Master rules, UI contract, standards
-│   └── calculator-hierarchy.md     ← Navigation structure source of truth
+│   ├── WORKFLOW.md                 ← FSM state machine and enforcement gates
+│   ├── TESTING_RULES.md            ← Canonical test governance
+│   ├── SEO_RULES.md                ← Canonical SEO P1-P5 rules
+│   ├── calculation_pane_rules.md   ← Calculation-pane interaction + density contract
+│   └── explanation_pane_standard.md← Explanation pane structure/source of truth
 │
 ├── compliance/                  ← TRACKING & WORKFLOW (changes per REQ)
-│   ├── WORKFLOW.md                 ← State machine, Ralph Lauren Loop
 │   ├── lessons_learned.md          ← Curated patterns from past failures
 │   ├── requirement_tracker.md      ← Active requirements
 │   ├── build_tracker.md            ← Active builds
@@ -30,8 +33,8 @@ requirements/
 │   ├── issue_tracker.md            ← Problems & blockers
 │   ├── seo_tracker.md              ← SEO validations
 │   ├── compliance-report.md        ← Release gate
-│   ├── testing_requirements.md     ← Test selection matrix
-│   └── seo_requirements.md         ← SEO P1-P5 rules
+│   ├── testing_requirements.md     ← Legacy test matrix (defer to universal-rules/TESTING_RULES.md)
+│   └── seo_requirements.md         ← Legacy SEO matrix (defer to universal-rules/SEO_RULES.md)
 │
 └── rules/                       ← CALCULATOR-SPECIFIC (optional)
     ├── math/
@@ -47,7 +50,7 @@ requirements/
 ### 1. Always Load First (Project Rules)
 
 ```
-requirements/universal/UNIVERSAL_REQUIREMENTS.md
+requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
 └── P0 rules, UI contract, coding standards, test requirements
 ```
 
@@ -56,7 +59,7 @@ requirements/universal/UNIVERSAL_REQUIREMENTS.md
 ### 2. Always Load for Build Work
 
 ```
-requirements/compliance/WORKFLOW.md         ← State machine
+requirements/universal-rules/WORKFLOW.md    ← State machine
 requirements/compliance/lessons_learned.md  ← Past failure patterns
 requirements/compliance/requirement_tracker.md
 requirements/compliance/build_tracker.md
@@ -79,14 +82,15 @@ requirements/compliance/testing_tracker.md
 
 | Need To... | Read... |
 |------------|---------|
-| Know the rules | `universal/UNIVERSAL_REQUIREMENTS.md` |
-| Start a build | `compliance/WORKFLOW.md` |
+| Know the rules | `universal-rules/UNIVERSAL_REQUIREMENTS.md` |
+| Start a build | `universal-rules/WORKFLOW.md` |
 | Avoid past mistakes | `compliance/lessons_learned.md` |
 | Find active work | `compliance/requirement_tracker.md` |
-| Check test matrix | `compliance/testing_requirements.md` |
-| Validate SEO | `compliance/seo_requirements.md` |
+| Check test matrix | `universal-rules/TESTING_RULES.md` |
+| Validate SEO | `universal-rules/SEO_RULES.md` |
 
 **See also:** `universal-rules/explanation_pane_standard.md` (mandatory Explanation Pane structure and table/FAQ standards)
+**REQ Authoring Note:** For calculators with many inputs, mode toggles, or dynamic rows, requirements must include an explicit Calculation Pane Interaction Contract (control type, default mode, per-mode visibility, row parity, button-only trigger behavior).
 
 ---
 

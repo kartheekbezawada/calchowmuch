@@ -200,6 +200,7 @@ function updateExplanation(values) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const x = Number.parseFloat(originalInput?.value ?? '');
@@ -247,7 +248,7 @@ calculateButton?.addEventListener('click', calculate);
 
 [originalInput, newInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

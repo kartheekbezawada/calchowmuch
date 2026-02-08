@@ -133,15 +133,19 @@ No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 6.2 Mode Toggle (Required)
 
-Button Toggle:
+Switch Toggle:
 
-Use Calculated Total (Sum of Items)
+Calculated Total (default)
 
-Use Known Total (Show Remainder %)
+Known Total (Show Remainder %)
 
 Rules
 
-Default: “Use Calculated Total”
+Default: Calculated Total (switch OFF)
+
+Switch ON must activate Known Total mode and show the Known Total (T) input
+
+Switch OFF must activate Calculated Total mode and hide the Known Total (T) input
 
 Non-selected mode inputs must be hidden/disabled
 
@@ -149,6 +153,18 @@ Basket-style multi-item input grid is required
 
 6.3 Inputs (Above the Fold)
 Multi-Item Grid (Required)
+
+Form Density and Row Layout (Required)
+
+Each item row must be compact and rendered in one row block
+
+Name and Value fields must be side-by-side on desktop/tablet widths
+
+Remove action must stay in the same row block as Name/Value
+
+Rows added from "Add Item Row" must use the same compact layout/style
+
+Mobile may stack fields for readability
 
 Basket Controls
 
@@ -168,6 +184,15 @@ Column	Field	Type	Required	Notes
 Known Total Mode (Additional Input)
 Input	Type	Required	Notes
 Total (T)	Number	Yes	Must be ≥ 0; used to compute remainder
+
+Interaction Trigger Rule
+
+Initial prefilled result may render on page load
+
+After user input edits, output updates must happen only on "Calculate Composition" click
+
+No live recalculation on input change
+
 6.4 Outputs
 Per Item (Required)
 Output	Required	Notes

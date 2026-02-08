@@ -1,8 +1,10 @@
 import { calculatePercentageComposition } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 
-const modeGroup = document.querySelector('[data-button-group="composition-mode"]');
+const knownModeToggle = document.querySelector('#composition-known-toggle');
+const calculatedModeLabel = document.querySelector('[data-composition-mode-label="calculated"]');
+const knownModeLabel = document.querySelector('[data-composition-mode-label="known"]');
 const knownTotalSection = document.querySelector('#composition-known-total-section');
 const knownTotalInput = document.querySelector('#composition-known-total');
 const rowsContainer = document.querySelector('#composition-rows');
@@ -202,15 +204,26 @@ function setVisibility(element, visible) {
   element.setAttribute('aria-hidden', String(!visible));
 }
 
+function getMode() {
+  return knownModeToggle?.checked ? 'known' : 'calculated';
+}
+
+function syncModeUI() {
+  const mode = getMode();
+  setVisibility(knownTotalSection, mode === 'known');
+  calculatedModeLabel?.classList.toggle('is-active', mode === 'calculated');
+  knownModeLabel?.classList.toggle('is-active', mode === 'known');
+}
+
 function renderItemRow({ name = '', value = '' } = {}) {
   const row = document.createElement('div');
   row.className = 'input-row composition-item-row';
   row.innerHTML = `
-    <div class="input-stack">
+    <div class="composition-row-field">
       <label>Name</label>
       <input type="text" class="composition-row-name" value="${name}" placeholder="Optional" />
     </div>
-    <div class="input-stack">
+    <div class="composition-row-field">
       <label>Value</label>
       <input type="number" class="composition-row-value" value="${value}" min="0" step="any" />
     </div>
@@ -231,6 +244,7 @@ function collectItems() {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const items = collectItems();
@@ -240,7 +254,7 @@ function calculate() {
     return;
   }
 
-  const mode = modeButtons.getValue();
+  const mode = getMode();
   const knownTotal = mode === 'known' ? Number.parseFloat(knownTotalInput?.value ?? '') : null;
 
   if (mode === 'known' && !Number.isFinite(knownTotal)) {
@@ -286,17 +300,14 @@ function calculate() {
   hasCalculated = true;
 }
 
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'calculated',
-  onChange: (mode) => {
-    setVisibility(knownTotalSection, mode === 'known');
-    if (hasCalculated) {
-      calculate();
-    }
-  },
-});
+syncModeUI();
 
-setVisibility(knownTotalSection, false);
+knownModeToggle?.addEventListener('change', () => {
+  syncModeUI();
+  if (liveUpdatesEnabled && hasCalculated) {
+    calculate();
+  }
+});
 
 addRowButton?.addEventListener('click', () => {
   rowsContainer?.appendChild(renderItemRow());
@@ -312,19 +323,19 @@ rowsContainer?.addEventListener('click', (event) => {
     return;
   }
   button.closest('.composition-item-row')?.remove();
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });
 
 rowsContainer?.addEventListener('input', () => {
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });
 
 knownTotalInput?.addEventListener('input', () => {
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });

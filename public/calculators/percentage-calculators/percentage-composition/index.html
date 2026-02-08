@@ -5,13 +5,24 @@
       the remainder.
     </p>
 
-    <div data-button-group="composition-mode" class="button-group" role="group">
-      <button type="button" data-value="calculated" aria-pressed="true">
-        Use Calculated Total
-      </button>
-      <button type="button" data-value="known" aria-pressed="false">
-        Use Known Total (Show Remainder %)
-      </button>
+    <div class="composition-mode-switch" role="group" aria-label="Total source mode">
+      <span class="composition-mode-label is-active" data-composition-mode-label="calculated">
+        Calculated Total
+      </span>
+      <label class="composition-toggle" for="composition-known-toggle">
+        <input
+          id="composition-known-toggle"
+          type="checkbox"
+          role="switch"
+          aria-label="Use known total mode"
+        />
+        <span class="composition-toggle-track" aria-hidden="true">
+          <span class="composition-toggle-thumb"></span>
+        </span>
+      </label>
+      <span class="composition-mode-label" data-composition-mode-label="known">
+        Known Total
+      </span>
     </div>
 
     <div id="composition-known-total-section" hidden aria-hidden="true">
@@ -23,11 +34,11 @@
 
     <div id="composition-rows">
       <div class="input-row composition-item-row">
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Name</label>
           <input type="text" class="composition-row-name" value="" placeholder="Optional" />
         </div>
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Value</label>
           <input type="number" class="composition-row-value" value="300" min="0" step="any" />
         </div>
@@ -36,11 +47,11 @@
         </button>
       </div>
       <div class="input-row composition-item-row">
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Name</label>
           <input type="text" class="composition-row-name" value="" placeholder="Optional" />
         </div>
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Value</label>
           <input type="number" class="composition-row-value" value="200" min="0" step="any" />
         </div>
@@ -49,11 +60,11 @@
         </button>
       </div>
       <div class="input-row composition-item-row">
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Name</label>
           <input type="text" class="composition-row-name" value="" placeholder="Optional" />
         </div>
-        <div class="input-stack">
+        <div class="composition-row-field">
           <label>Value</label>
           <input type="number" class="composition-row-value" value="500" min="0" step="any" />
         </div>

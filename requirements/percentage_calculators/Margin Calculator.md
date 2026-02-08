@@ -135,7 +135,7 @@ No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Mode Toggle (Required, Visible by Default)
 
-Button Toggle:
+Switch Toggle:
 
 Cost + Price → Margin %
 
@@ -144,6 +144,8 @@ Cost + Margin % → Selling Price
 #### Rules
 
 Toggle is mandatory and visible by default
+
+Switch OFF = Cost + Price mode; Switch ON = Cost + Margin % mode
 
 Non-selected mode inputs must be hidden/disabled
 
@@ -166,7 +168,11 @@ Mode B — Cost + Margin % → Selling Price and Profit
 
 No dropdowns
 
-Calculation updates on input change (or Calculate button if globally required)
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Margin" click
+
+No live recalculation on input change
 
 Do not auto-round during typing
 

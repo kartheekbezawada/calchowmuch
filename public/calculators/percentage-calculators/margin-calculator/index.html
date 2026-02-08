@@ -6,19 +6,25 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label id="margin-mode-label">Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="margin-mode-label"
-          data-button-group="margin-mode"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="cost-price" aria-pressed="true">
+        <label>Mode</label>
+        <div class="mode-switch-control" role="group" aria-label="Margin mode">
+          <span class="mode-switch-label is-active" data-margin-mode-label="cost-price">
             Cost + Price -> Margin %
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="cost-margin" aria-pressed="false">
+          </span>
+          <label class="mode-switch-toggle" for="margin-cost-margin-toggle">
+            <input
+              id="margin-cost-margin-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Switch to cost plus margin mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-margin-mode-label="cost-margin">
             Cost + Margin % -> Selling Price
-          </button>
+          </span>
         </div>
       </div>
 

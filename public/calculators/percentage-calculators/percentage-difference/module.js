@@ -196,6 +196,7 @@ function updateTargets(nodes, value) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
   const a = Number.parseFloat(valueAInput?.value ?? '');
@@ -240,8 +241,10 @@ calculateButton?.addEventListener('click', calculate);
 
 [valueAInput, valueBInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });
 });
+
+calculate();

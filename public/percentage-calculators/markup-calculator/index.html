@@ -98,56 +98,48 @@
 
     <div class="input-stack">
       <div class="input-row">
-        <label id="markup-product-mode-label">Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="markup-product-mode-label"
-          data-button-group="markup-product-mode"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="single"
-            aria-pressed="true"
-          >
+        <label>Product Scope</label>
+        <div class="mode-switch-control" role="group" aria-label="Markup product scope">
+          <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
             Single Product
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="basket"
-            aria-pressed="false"
-          >
-            Multiple Products (Basket)
-          </button>
+          </span>
+          <label class="mode-switch-toggle" for="markup-product-toggle">
+            <input
+              id="markup-product-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Switch to basket mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-markup-product-mode-label="basket">
+            Basket (Multi Product)
+          </span>
         </div>
       </div>
 
       <div class="input-row">
-        <label id="markup-calc-mode-label">Direction</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="markup-calc-mode-label"
-          data-button-group="markup-calc-mode"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="cost-to-price"
-            aria-pressed="true"
-          >
-            Cost → Price
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="price-to-markup"
-            aria-pressed="false"
-          >
-            Price → Markup %
-          </button>
+        <label>Direction</label>
+        <div class="mode-switch-control" role="group" aria-label="Markup direction">
+          <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
+            Cost -> Price
+          </span>
+          <label class="mode-switch-toggle" for="markup-calc-toggle">
+            <input
+              id="markup-calc-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Switch to price to markup mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-markup-calc-mode-label="price-to-markup">
+            Price -> Markup %
+          </span>
         </div>
       </div>
     </div>

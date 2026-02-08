@@ -190,7 +190,7 @@ setPageMetadata(metadata);
 const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
   defaultValue: 'years',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
@@ -199,13 +199,14 @@ const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
 const basisButtons = setupButtonGroup(basisGroup, {
   defaultValue: 'per-year',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
 });
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function setOptionalVisibility(expanded) {
   if (!optionalSection || !optionalToggle) {
@@ -336,3 +337,5 @@ updateExplanation({
   endingAmount: '$11,800.00',
   years: '3',
 });
+
+calculate();

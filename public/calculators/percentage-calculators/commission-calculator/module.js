@@ -1,8 +1,10 @@
 import { calculateCommission } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 
-const modeGroup = document.querySelector('[data-button-group="comm-mode"]');
+const tieredModeToggle = document.querySelector('#comm-tiered-toggle');
+const flatModeLabel = document.querySelector('[data-comm-mode-label="flat"]');
+const tieredModeLabel = document.querySelector('[data-comm-mode-label="tiered"]');
 const salesInput = document.querySelector('#comm-sales');
 const flatSection = document.querySelector('#comm-flat-section');
 const tieredSection = document.querySelector('#comm-tiered-section');
@@ -206,11 +208,11 @@ function renderTierRow({ upTo = '', rate = '' } = {}) {
   const row = document.createElement('div');
   row.className = 'input-row commission-tier-row';
   row.innerHTML = `
-    <div class="input-stack">
+    <div class="commission-tier-field">
       <label>Tier Up to</label>
       <input type="number" class="comm-tier-up-to" min="0" step="0.01" value="${upTo}" placeholder="Leave blank for above last threshold" />
     </div>
-    <div class="input-stack">
+    <div class="commission-tier-field">
       <label>Tier Rate %</label>
       <input type="number" class="comm-tier-rate" min="0" step="0.01" value="${rate}" />
     </div>
@@ -235,6 +237,17 @@ function setModeVisibility(mode) {
   tieredSection.classList.toggle('is-hidden', !isTiered);
   tieredSection.hidden = !isTiered;
   tieredSection.setAttribute('aria-hidden', String(!isTiered));
+}
+
+function getMode() {
+  return tieredModeToggle?.checked ? 'tiered' : 'flat';
+}
+
+function syncModeUI() {
+  const mode = getMode();
+  setModeVisibility(mode);
+  flatModeLabel?.classList.toggle('is-active', mode === 'flat');
+  tieredModeLabel?.classList.toggle('is-active', mode === 'tiered');
 }
 
 function collectTiers() {
@@ -296,9 +309,10 @@ function renderBreakdownRows(rows) {
 }
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function calculate() {
-  const mode = modeButtons.getValue();
+  const mode = getMode();
   const sales = Number(salesInput.value);
 
   if (!Number.isFinite(sales) || sales < 0) {
@@ -355,18 +369,15 @@ function calculate() {
   }
 }
 
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'flat',
-  onChange: (mode) => {
-    setModeVisibility(mode);
-    if (hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-setModeVisibility('flat');
+syncModeUI();
 ensureTierRows();
+
+tieredModeToggle?.addEventListener('change', () => {
+  syncModeUI();
+  if (liveUpdatesEnabled && hasCalculated) {
+    calculate();
+  }
+});
 
 addTierButton?.addEventListener('click', () => {
   tierRows?.appendChild(renderTierRow({ upTo: '', rate: '' }));
@@ -382,20 +393,20 @@ tierRows?.addEventListener('click', (event) => {
     return;
   }
   button.closest('.commission-tier-row')?.remove();
-  if (hasCalculated) {
+  if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
 });
 
 tierRows?.addEventListener('input', () => {
-  if (hasCalculated && modeButtons.getValue() === 'tiered') {
+  if (liveUpdatesEnabled && hasCalculated && getMode() === 'tiered') {
     calculate();
   }
 });
 
 [salesInput, flatRateInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

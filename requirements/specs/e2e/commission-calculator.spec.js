@@ -18,7 +18,7 @@ test.describe('Commission Calculator', () => {
     const flatResult = await page.locator('#comm-result').textContent();
     expect(parseNumber(flatResult)).toBeCloseTo(1500, 2);
 
-    await page.click('[data-button-group="comm-mode"] button[data-value="tiered"]');
+    await page.click('label.mode-switch-toggle[for="comm-tiered-toggle"] .mode-switch-track');
     const tierSection = page.locator('#comm-tiered-section');
     await expect(tierSection).not.toBeHidden();
 
