@@ -16,7 +16,7 @@
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "/math/percentage-increase"
+              "url": "/percentage-calculators/percentage-increase"
             },
             {
               "id": "fraction-calculator",
@@ -670,6 +670,167 @@
                 "weekday",
                 "day of week",
                 "born on"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "percentage-calculators",
+      "name": "Percentage Calculators",
+      "subcategories": [
+        {
+          "id": "percentage-calculators",
+          "name": "Percentage Calculators",
+          "calculators": [
+            {
+              "id": "percent-change",
+              "name": "Percent Change",
+              "url": "/percentage-calculators/percent-change",
+              "keywords": [
+                "percent change calculator",
+                "percentage change calculator",
+                "percent difference from a to b",
+                "how to calculate percent change"
+              ]
+            },
+            {
+              "id": "percentage-difference",
+              "name": "Percentage Difference",
+              "url": "/percentage-calculators/percentage-difference",
+              "keywords": [
+                "percentage difference calculator",
+                "percent difference calculator",
+                "symmetric percent difference",
+                "percentage difference formula"
+              ]
+            },
+            {
+              "id": "percentage-increase",
+              "name": "Percentage Increase",
+              "url": "/percentage-calculators/percentage-increase",
+              "keywords": [
+                "percentage increase calculator",
+                "percent increase calculator",
+                "percentage increase formula",
+                "how to calculate percentage increase"
+              ]
+            },
+            {
+              "id": "percentage-decrease",
+              "name": "Percentage Decrease",
+              "url": "/percentage-calculators/percentage-decrease",
+              "keywords": [
+                "percentage decrease calculator",
+                "percent decrease calculator",
+                "percentage decrease formula",
+                "how to calculate percentage decrease"
+              ]
+            },
+            {
+              "id": "percentage-composition",
+              "name": "Percentage Composition",
+              "url": "/percentage-calculators/percentage-composition",
+              "keywords": [
+                "percentage composition calculator",
+                "share of total calculator",
+                "percent of total",
+                "percentage breakdown"
+              ]
+            },
+            {
+              "id": "reverse-percentage",
+              "name": "Reverse Percentage",
+              "url": "/percentage-calculators/reverse-percentage",
+              "keywords": [
+                "reverse percentage calculator",
+                "find original value from percentage",
+                "Y is X percent of what number",
+                "original price before discount",
+                "reverse percent formula"
+              ]
+            },
+            {
+              "id": "percent-to-fraction-decimal",
+              "name": "Percent to Fraction/Decimal",
+              "url": "/percentage-calculators/percent-to-fraction-decimal",
+              "keywords": [
+                "percent to fraction converter",
+                "percent to decimal converter",
+                "percentage to fraction",
+                "percentage to decimal",
+                "convert percentage to fraction"
+              ]
+            },
+            {
+              "id": "what-percent-is-x-of-y",
+              "name": "What Percent Is X of Y",
+              "url": "/percentage-calculators/what-percent-is-x-of-y",
+              "keywords": [
+                "what percent is X of Y",
+                "X is what percent of Y",
+                "percent of calculator",
+                "percentage of a number reverse",
+                "convert fraction to percent"
+              ]
+            },
+            {
+              "id": "percentage-of-a-number",
+              "name": "Find Percentage of a Number",
+              "url": "/percentage-calculators/percentage-of-a-number",
+              "keywords": [
+                "find percentage of a number",
+                "what is x% of y",
+                "percent of a number calculator",
+                "calculate percentage",
+                "how to calculate x percent of y"
+              ]
+            },
+            {
+              "id": "commission-calculator",
+              "name": "Commission Calculator",
+              "url": "/percentage-calculators/commission-calculator",
+              "keywords": [
+                "commission calculator",
+                "sales commission",
+                "commission rate",
+                "tiered commission"
+              ]
+            },
+            {
+              "id": "discount-calculator",
+              "name": "Discount Calculator",
+              "url": "/percentage-calculators/discount-calculator",
+              "keywords": [
+                "discount calculator",
+                "percentage discount",
+                "price after discount",
+                "savings calculator",
+                "percent off"
+              ]
+            },
+            {
+              "id": "margin-calculator",
+              "name": "Margin Calculator",
+              "url": "/percentage-calculators/margin-calculator",
+              "keywords": [
+                "margin calculator",
+                "gross margin calculator",
+                "profit margin",
+                "selling price from margin"
+              ]
+            },
+            {
+              "id": "markup-calculator",
+              "name": "Markup Calculator",
+              "url": "/percentage-calculators/markup-calculator",
+              "keywords": [
+                "markup calculator",
+                "markup percentage",
+                "cost to price markup",
+                "basket markup calculator",
+                "weighted average markup"
               ]
             }
           ]

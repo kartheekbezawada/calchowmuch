@@ -6,8 +6,8 @@
 | --- | --- |
 | Purpose | Defines mandatory SEO validation rules, priorities, and best practices for all public pages on CalcHowMuch.com, with special emphasis on calculator tools. |
 | Authority | These rules are binding for all new and modified pages. Non-compliance risks reduced rankings, poor indexing, or algorithmic penalties. |
-| Last Updated | 2026-01-22 |
-| Version | 2.0 (Structured Data Integrated Edition) |
+| Last Updated | 2026-02-08 |
+| Version | 2.1 (Structured Data + Multi-Mode Interaction Integrity) |
 | Scope | All public routes, with emphasis on calculators in: Time Value of Money, Bonds, Portfolio & Risk, Corporate Finance, Derivatives, FX & Rates, and Statistics & Probability. |
 | Core Principles | Prioritize user intent, mobile performance, structured data, and verifiable compliance recorded in seo_tracker.md. |
 
@@ -54,6 +54,14 @@ npm run test:seo -- --level p1
 - Primary keyword must appear early in title and description.
 - Titles must be unique across the site (no templates duplicated page-to-page).
 
+### P1 Interaction Integrity for Multi-Mode Calculators (Mandatory)
+
+For calculators with mode switches/toggles and dense input forms:
+- Keep exactly one visible `<h1>` per page at all times (mode switches must not inject duplicate headings).
+- Mode switching must not rewrite title/canonical/meta tags client-side.
+- Mode labels must remain explicit and user-intent clear in visible HTML.
+- Core explanatory copy for the calculator intent must remain crawlable regardless of default mode.
+
 ## P2 — Enhanced SEO (Required for All Public Pages)
 
 Includes structured data as a first-class requirement.
@@ -89,6 +97,8 @@ Must include:
 - SoftwareApplication (calculator schema)
 - FAQPage (if FAQs exist — they must exist)
 - BreadcrumbList
+
+For multi-mode calculators, FAQ and explanation coverage must describe all supported modes in crawlable HTML content (not mode-hidden JS-only text).
 
 ### Automated check
 

@@ -9,18 +9,19 @@
 
 | REQ_ID | Title | Type | Change Type | Priority | Status | SEO? |
 | ------ | ----- | ---- | ----------- | -------- | ------ | ---- |
-| REQ-20260207-001 | FAQPage Schema Injection Guard — Prevent Global FAQ Leakage Onto Calculator Pages | SEO | SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-002 | Present Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
-| REQ-20260207-003 | Future Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
-| REQ-20260207-004 | Effective Annual Rate (EAR) Converter — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-005 | Compound Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-006 | Savings Goal Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-007 | Investment Growth Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-008 | Simple Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
-| REQ-20260207-009 | ISS-001 Global Shell Layout Stability Fix (All Calculator Pages) | Calculator Platform | Layout/CSS + Test Stabilization | HIGH | COMPLETE | YES |
-| REQ-20260206-001 | Present Value (PV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
-| REQ-20260206-004 | Future Value (FV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
-| REQ-20260206-003 | Align TESTING_RULES with package.json scripts | Compliance | Testing Governance | HIGH | COMPLETE | NO |
+| REQ-20260208-001 | Commission Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-002 | Discount Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-003 | Margin Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-004 | Markup Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-005 | Percent Change Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-006 | Percentage Decrease Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-007 | Percentage Difference Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-008 | Percentage Increase Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-009 | Percentage Composition Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-010 | Percent to Fraction/Decimal Converter — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-011 | Reverse Percentage Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-012 | What Percent Is X of Y Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-013 | Find Percentage of a Number Calculator — Percentage Calculators | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 
 ---
 

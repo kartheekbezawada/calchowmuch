@@ -58,10 +58,24 @@ Category treated as its own top-level group
 
 ### 2.2 Left Navigation Structure
 
-Add entry:
 
+```
 Percentage Calculators
-└── Commission Calculator
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
+```
+
 
 
 #### Rules
@@ -118,11 +132,11 @@ https://calchowmuch.com/percentage-calculators/commission-calculator/
 ## 6. Calculation Pane Requirements
 ### 6.1 Heading
 
-H2: Commission Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Mode Toggle (Required)
 
-Button Toggle:
+Switch Toggle:
 
 Flat Commission %
 
@@ -134,9 +148,15 @@ Flat mode is default
 
 Tiered mode is optional but must be fully supported if enabled
 
+Switch OFF = Flat mode; Switch ON = Tiered mode
+
 Non-selected mode inputs must be hidden/disabled
 
-Calculation updates on input change (or Calculate button if globally required)
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Commission" click
+
+No live recalculation on input change
 
 ### 6.3 Inputs (Above the Fold)
 Mode A — Flat Commission %
@@ -178,6 +198,10 @@ Add/Remove tier row buttons
 Validate monotonic thresholds (ascending)
 
 Do not auto-round during typing
+
+Tier rows must use compact density: threshold + rate fields in one row block with Remove action aligned in the same row
+
+Rows added via "Add Tier" must keep the same layout structure/class pattern as initial rows
 
 ### 6.4 Outputs (Both Modes)
 | Output | Required | Notes |
@@ -227,7 +251,7 @@ Formatting must follow site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-### 8.1 H2 — Summary (Keyword-Dense, Natural)
+### 8.1 Summary Content (No Summary Heading Node)
 
 A commission calculator estimates how much commission you earn from sales based on a commission percentage.
 

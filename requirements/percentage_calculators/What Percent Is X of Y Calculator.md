@@ -53,11 +53,24 @@ Top navigation display name: Percentage Calculators
 Category treated as its own top-level group
 
 ### 2.2 Left Navigation Structure
+
 ```
 Percentage Calculators
-├── Percentage of a Number
-└── What Percent Is X of Y
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
 ```
+
 
 
 #### Rules
@@ -93,7 +106,7 @@ Crawlable explanation pane
 ## 5. Calculation Pane Requirements
 ### 5.1 Heading
 
-H2: What Percent Is X of Y Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 5.2 Inputs (Above the Fold)
 | Section | Input | Type | Required | Notes |
@@ -147,7 +160,7 @@ Output formatting: keep consistent with site rules (e.g., trim trailing zeros; c
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-### 7.1 H2 — Summary (Keyword-Dense, Natural)
+### 7.1 Summary Content (No Summary Heading Node)
 
 The “what percent is X of Y” calculation tells you what percentage a part represents of a whole.
 

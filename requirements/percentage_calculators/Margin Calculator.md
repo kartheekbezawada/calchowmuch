@@ -58,11 +58,24 @@ Top navigation display name: Percentage Calculators
 Category treated as its own top-level group
 
 ### 2.2 Left Navigation Structure
+
 ```
 Percentage Calculators
-└── Margin Calculator
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
 ```
-(Existing calculators remain; add this entry.)
+
 
 #### Rules
 
@@ -118,11 +131,11 @@ https://calchowmuch.com/percentage-calculators/margin-calculator/
 ## 6. Calculation Pane Requirements
 ### 6.1 Heading
 
-H2: Margin Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Mode Toggle (Required, Visible by Default)
 
-Button Toggle:
+Switch Toggle:
 
 Cost + Price → Margin %
 
@@ -131,6 +144,8 @@ Cost + Margin % → Selling Price
 #### Rules
 
 Toggle is mandatory and visible by default
+
+Switch OFF = Cost + Price mode; Switch ON = Cost + Margin % mode
 
 Non-selected mode inputs must be hidden/disabled
 
@@ -153,7 +168,11 @@ Mode B — Cost + Margin % → Selling Price and Profit
 
 No dropdowns
 
-Calculation updates on input change (or Calculate button if globally required)
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Margin" click
+
+No live recalculation on input change
 
 Do not auto-round during typing
 
@@ -202,7 +221,7 @@ Formatting must follow site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-### 8.1 H2 — Summary (Keyword-Dense, Natural)
+### 8.1 Summary Content (No Summary Heading Node)
 
 A margin calculator helps you find gross margin %, profit, and the selling price needed to reach a target margin.
 
