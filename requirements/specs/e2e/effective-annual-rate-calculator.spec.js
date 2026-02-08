@@ -12,7 +12,7 @@ test.describe('Effective Annual Rate Calculator', () => {
     await expect(topNavActive).toHaveText('Finance');
 
     const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Effective Annual Rate');
+    await expect(leftActive).toHaveText('Effective Annual Rate (EAR)');
 
     const optionalSection = page.locator('#ear-optional-section');
     await expect(optionalSection).toHaveClass(/is-hidden/);

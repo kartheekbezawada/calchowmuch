@@ -1,0 +1,45 @@
+import { expect, test } from '@playwright/test';
+
+test.describe('Credit Card Repayment Calculator SEO', () => {
+  test('REPAYMENT-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
+    await page.goto('/loans/credit-card-repayment-payoff');
+
+    await expect(page).toHaveTitle(
+      'Credit Card Repayment Calculator – Payoff Time & Interest'
+    );
+
+    const description = await page.locator('meta[name="description"]').getAttribute('content');
+    expect(description).toBe(
+      'Calculate how long it takes to pay off your credit card balance with fixed monthly payments. See total interest, payoff time, and yearly breakdown.'
+    );
+
+    const h1 = page.locator('h1');
+    await expect(h1).toHaveCount(1);
+    await expect(h1).toHaveText('Credit Card Repayment Calculator');
+
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveCount(1);
+    const canonicalHref = await canonical.getAttribute('href');
+    expect(canonicalHref).toBe('https://calchowmuch.com/loans/credit-card-repayment-payoff/');
+
+    const structuredDataScript = page.locator('script[data-calculator-ld]');
+    await expect(structuredDataScript).toHaveCount(1);
+    const structuredText = await structuredDataScript.textContent();
+    expect(structuredText).toBeTruthy();
+    const structuredData = JSON.parse(structuredText || '{}');
+
+    const types = structuredData['@graph'].map((node) => node['@type']);
+    expect(types).toEqual(
+      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
+    );
+
+    const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
+    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity[0].name).toBe('What is a credit card payoff calculator?');
+
+    const sitemapResponse = await page.request.get('/sitemap.xml');
+    expect(sitemapResponse.ok()).toBeTruthy();
+    const sitemapText = await sitemapResponse.text();
+    expect(sitemapText).toContain('/loans/credit-card-repayment-payoff/');
+  });
+});

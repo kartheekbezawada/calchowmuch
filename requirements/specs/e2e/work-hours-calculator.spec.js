@@ -19,6 +19,11 @@ test.describe('Work Hours Calculator', () => {
     await expect(results.nth(0)).toContainText('Total worked time');
     await expect(results.nth(1)).toContainText('Total hours (decimal)');
     await expect(results.nth(2)).toContainText('Total break deducted');
+
+    await page.locator('#work-hours-single-end').fill('18:00');
+    await expect(page.locator('#work-hours-results-list')).toHaveClass(/is-hidden/);
+    await page.locator('#work-hours-calculate').click();
+    await expect(page.locator('#work-hours-results-list')).not.toHaveClass(/is-hidden/);
   });
 
   test('WORK-HOURS-TEST-E2E-2: weekly totals with daily lines', async ({ page }) => {
@@ -31,5 +36,10 @@ test.describe('Work Hours Calculator', () => {
 
     const results = page.locator('#work-hours-results-list');
     await expect(results).toContainText('Mon:');
+
+    const explanation = page.locator('#work-hours-explanation');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation.locator('h3')).toHaveCount(4);
+    await expect(explanation.locator('.faq-box')).toHaveCount(10);
   });
 });

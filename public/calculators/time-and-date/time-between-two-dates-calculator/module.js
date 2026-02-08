@@ -60,12 +60,55 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Time Between Two Dates Calculator',
+      url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
+      description:
+        'Calculate the difference between two dates (and times) in days, weeks, months, hours, and minutes.',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Time Between Two Dates Calculator',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Web',
+      url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
+      description: 'Free date difference calculator to find the time between two dates and times.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Time Between Two Dates Calculator',
+          item: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
+        },
+      ],
+    },
+  ],
+};
+
 const metadata = {
-  title: 'Time Between Two Dates Calculator – Days, Weeks, Months, Years',
+  title: 'Time Between Two Dates Calculator – Date Difference in Days, Weeks & Months | CalcHowMuch',
   description:
-    'Calculate the time between two dates in days, weeks, months, and years. Simple, fast, and free time between dates calculator.',
+    'Calculate the time between two dates and times. Get the difference in days, weeks, months, hours, and minutes with clear results.',
   canonical:
-    'https://calchowmuch.com/calculators/time-and-date/time-between-two-dates-calculator/',
+    'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
+  structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };

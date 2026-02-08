@@ -26,9 +26,14 @@ test.describe('Birthday Day-of-Week SEO', () => {
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(4);
-    expect(structuredData.mainEntity[0].name).toBe('Is the result accurate?');
+    const types = structuredData['@graph'].map((node) => node['@type']);
+    expect(types).toEqual(
+      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
+    );
+
+    const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
+    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity[0].name).toBe('Is the result accurate?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

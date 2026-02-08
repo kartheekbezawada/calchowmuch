@@ -67,6 +67,108 @@ const CALCULATOR_FAQ_SCHEMA = {
           'Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt, or sleep disorders can affect how rested you feel.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Does this calculator account for time to fall asleep?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. When calculating bedtimes, it adds a 15-minute buffer to allow time to fall asleep before the first sleep cycle begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this calculator if I work night shifts?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Enter your target wake-up or fall-asleep time regardless of the hour. The calculator handles cross-day rollover and works for any schedule.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens if I wake up in the middle of a sleep cycle?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Waking during deep sleep can cause sleep inertia, a temporary feeling of grogginess and reduced alertness that may last several minutes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Should I go to bed at the same time every night?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'A consistent bedtime helps regulate your body clock and can improve sleep quality over time. The calculator can help you find a schedule to stick to.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is it better to get 4 or 5 sleep cycles?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Five cycles (about 7.5 hours) is generally better for most adults. Four cycles (about 6 hours) may leave you short on rest unless time is limited.',
+      },
+    },
+  ],
+};
+
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Sleep Time Calculator',
+      url: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
+      description:
+        'Calculate the best time to sleep or wake up based on natural 90-minute sleep cycles.',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Sleep Time Calculator',
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'Web',
+      url: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
+      description:
+        'Free sleep time calculator that suggests bedtimes and wake-up times aligned with natural sleep cycles for better rest.',
+      browserRequirements: 'Requires JavaScript enabled',
+      softwareVersion: '1.0',
+      creator: {
+        '@type': 'Organization',
+        name: 'CalcHowMuch',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Sleep Time Calculator',
+          item: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
+        },
+      ],
+    },
   ],
 };
 
@@ -74,7 +176,8 @@ const metadata = {
   title: 'Sleep Time Calculator – Best Time to Sleep and Wake Up',
   description:
     'Calculate the best time to sleep or wake up based on natural sleep cycles. Simple, fast, and free sleep time calculator.',
-  canonical: 'https://calchowmuch.com/calculators/time-and-date/sleep-time-calculator/',
+  canonical: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
+  structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
@@ -98,7 +201,7 @@ const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'wake',
   onChange: () => {
     if (!resultsList?.classList.contains('is-hidden')) {
-      calculate();
+      showPlaceholder();
     }
   },
 });
@@ -250,6 +353,11 @@ calculateButton?.addEventListener('click', calculate);
   input?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       calculate();
+    }
+  });
+  input?.addEventListener('change', () => {
+    if (!resultsList?.classList.contains('is-hidden')) {
+      showPlaceholder();
     }
   });
 });

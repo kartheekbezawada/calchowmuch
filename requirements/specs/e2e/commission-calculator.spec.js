@@ -8,7 +8,7 @@ test.describe('Commission Calculator', () => {
   test('COMM-TEST-E2E-1: flat and tiered commission workflows', async ({ page }) => {
     await page.goto('/percentage-calculators/commission-calculator');
 
-    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Percentage Calculators');
+    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Percentage');
     await expect(page.locator('.nav-item.is-active')).toHaveText('Commission Calculator');
 
     await page.fill('#comm-sales', '20000');

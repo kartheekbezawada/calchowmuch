@@ -1,1 +1,69 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-cc-min .cc-min-results-list {
+  display: grid;
+  gap: 6px;
+}
+
+#calc-cc-min .result-line {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#calc-cc-min .form-error {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #dc2626;
+}
+
+#calc-cc-min #cc-min-summary {
+  display: grid;
+  gap: 4px;
+}
+
+#calc-cc-min #cc-min-summary p {
+  margin: 0;
+}
+
+#cc-min-explanation {
+  display: grid;
+  gap: 10px;
+}
+
+#cc-min-explanation > p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+#calc-cc-min .cc-min-provider-note {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#cc-min-explanation [data-cc-min] {
+  font-weight: 600;
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 6px;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: rgba(59, 130, 246, 0.28);
+  outline: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+#cc-min-explanation .cc-min-table-placeholder-row td {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted-text);
+}
+
+#cc-min-explanation .cc-min-faq-item {
+  border: 1px solid var(--border-color);
+}
+
+#cc-min-explanation .cc-min-faq-item .faq-answer {
+  margin-left: 12px;
+}

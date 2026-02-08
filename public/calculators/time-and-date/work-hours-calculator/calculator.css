@@ -95,12 +95,29 @@
   font-size: 18px;
 }
 
+#work-hours-explanation h3 {
+  margin: 0;
+}
+
 #work-hours-explanation p {
   margin: 0;
   line-height: 1.5;
 }
 
-#work-hours-explanation .work-hours-faq-item {
+#work-hours-explanation table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#work-hours-explanation th,
+#work-hours-explanation td {
+  border: 1px solid var(--border-color);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+#work-hours-explanation .faq-box {
   display: grid;
   gap: 6px;
   padding: 12px;

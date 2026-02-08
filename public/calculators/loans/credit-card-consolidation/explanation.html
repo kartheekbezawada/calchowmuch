@@ -1,34 +1,212 @@
-<div id="cc-con-explanation">
-  <h4>Consolidation Summary</h4>
+<div id="cc-con-explanation" class="explanation-pane">
+  <h2 id="cc-con-summary-heading">Credit Card Consolidation Summary</h2>
   <p>
-    Paying <span data-cc-con="current-payment"></span> on a balance of
-    <span data-cc-con="balance"></span> at <span data-cc-con="current-apr"></span> APR clears the
-    cards in <span data-cc-con="current-months"></span> months.
+    Based on a card balance of <span data-cc-con="balance">—</span>, current APR of
+    <span data-cc-con="current-apr">—</span>, and current monthly payment of
+    <span data-cc-con="current-payment">—</span>, your existing card payoff takes
+    <span data-cc-con="current-months">—</span>.
   </p>
   <p>
-    A consolidation loan at <span data-cc-con="new-apr"></span> APR for
-    <span data-cc-con="new-term"></span> months results in a payment of
-    <span data-cc-con="new-payment"></span>.
+    A consolidation loan at <span data-cc-con="new-apr">—</span> for
+    <span data-cc-con="new-term">—</span> with fees of
+    <span data-cc-con="fees">—</span> gives a monthly payment of
+    <span data-cc-con="new-payment">—</span>.
   </p>
   <p>
-    Interest savings are <span data-cc-con="interest-diff"></span> and total cost difference is
-    <span data-cc-con="total-diff"></span>.
+    This comparison currently <span data-cc-con="recommendation">—</span>:
+    interest difference is <span data-cc-con="interest-diff">—</span>, total cost difference is
+    <span data-cc-con="total-diff">—</span>, and monthly payment change is
+    <span data-cc-con="monthly-diff">—</span>.
   </p>
 
-  <div class="result-section">
-    <h4>Cost Comparison</h4>
-    <div class="table-scroll" id="cc-con-table-wrap" tabindex="0">
-      <table class="calculator-table" id="cc-con-table">
-        <thead>
-          <tr>
-            <th scope="col">Scenario</th>
-            <th scope="col">Months</th>
-            <th scope="col">Total Interest</th>
-            <th scope="col">Total Paid</th>
-          </tr>
-        </thead>
-        <tbody id="cc-con-table-body"></tbody>
-      </table>
-    </div>
+  <h3 id="cc-con-scenario-heading">Scenario Summary</h3>
+  <div class="table-scroll" id="cc-con-scenario-wrap" tabindex="0">
+    <table class="calculator-table" id="cc-con-scenario-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Card Balance</td>
+          <td><span data-cc-con="scenario-balance">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Current Average APR</td>
+          <td><span data-cc-con="scenario-current-apr">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Current Monthly Payment</td>
+          <td><span data-cc-con="scenario-current-payment">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Consolidation APR</td>
+          <td><span data-cc-con="scenario-new-apr">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Consolidation Term</td>
+          <td><span data-cc-con="scenario-new-term">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Consolidation Fees</td>
+          <td><span data-cc-con="scenario-fees">—</span></td>
+          <td>Input</td>
+        </tr>
+        <tr>
+          <td>Current Payoff Time</td>
+          <td><span data-cc-con="scenario-current-months">—</span></td>
+          <td>Output</td>
+        </tr>
+        <tr>
+          <td>Consolidation Payment</td>
+          <td><span data-cc-con="scenario-new-payment">—</span></td>
+          <td>Output</td>
+        </tr>
+        <tr>
+          <td>Interest Difference</td>
+          <td><span data-cc-con="scenario-interest-diff">—</span></td>
+          <td>Output</td>
+        </tr>
+        <tr>
+          <td>Total Cost Difference</td>
+          <td><span data-cc-con="scenario-total-diff">—</span></td>
+          <td>Output</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="cc-con-results-heading">Results Table (Cost Comparison)</h3>
+  <div class="table-scroll" id="cc-con-table-wrap" tabindex="0">
+    <table class="calculator-table" id="cc-con-table">
+      <thead>
+        <tr>
+          <th scope="col">Scenario</th>
+          <th scope="col">Months</th>
+          <th scope="col">Total Interest</th>
+          <th scope="col">Total Paid</th>
+        </tr>
+      </thead>
+      <tbody id="cc-con-table-body">
+        <tr class="cc-con-table-placeholder-row">
+          <td colspan="4">Run Calculate to populate comparison rows.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="cc-con-explain-heading">Explanation</h3>
+  <p>
+    Credit card consolidation combines existing balances into one fixed-term loan, usually with a
+    lower APR. In this scenario, your current cards take <span data-cc-con="current-months">—</span>,
+    while the consolidation plan runs for <span data-cc-con="con-months">—</span>.
+  </p>
+  <p>
+    Lower APR can reduce interest cost over time, but consolidation fees increase the amount financed.
+    Here, current-card total interest is <span data-cc-con="current-interest">—</span> versus
+    <span data-cc-con="con-interest">—</span> under consolidation.
+  </p>
+  <p>
+    Total paid on current cards is <span data-cc-con="current-total">—</span>, compared with
+    <span data-cc-con="con-total">—</span> for consolidation. That is why the result
+    <span data-cc-con="recommendation-detail">—</span>.
+  </p>
+  <p>
+    Consolidation works best when the new APR is materially lower and fees are modest. If differences
+    are small, focus on payment discipline and compare multiple lender offers before switching.
+  </p>
+  <p>
+    This estimate assumes fixed APRs, fixed monthly payments, no new purchases, no late fees, and
+    on-time payments throughout the term.
+  </p>
+
+  <h3 id="cc-con-faq-heading">Frequently Asked Questions</h3>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: What is credit card debt consolidation?</strong></p>
+    <p class="faq-answer">
+      A: Credit card debt consolidation combines multiple card balances into one loan with a fixed
+      APR and repayment term so you can simplify payments and compare total cost.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: How does a consolidation loan reduce interest costs?</strong></p>
+    <p class="faq-answer">
+      A: If the consolidation APR is lower than your current card APR, a larger share of each payment
+      goes to principal, which can reduce total interest.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: When is consolidation not worth it?</strong></p>
+    <p class="faq-answer">
+      A: Consolidation may not be worth it when fees are high, the new APR is not lower enough, or
+      the new term is too long and increases total cost.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: How are consolidation fees handled in the calculation?</strong></p>
+    <p class="faq-answer">
+      A: Fees are added to the balance financed by the consolidation loan, which can raise monthly
+      payment and total cost.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: What APR can I expect for a consolidation loan?</strong></p>
+    <p class="faq-answer">
+      A: APR depends on credit profile, lender policy, loan amount, and term. Compare multiple offers
+      to estimate realistic rates.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: Does consolidation affect my credit score?</strong></p>
+    <p class="faq-answer">
+      A: It can. Opening a new loan and paying off cards may change utilization and account mix.
+      Long-term impact depends on repayment behavior.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: Can I consolidate cards with different APRs?</strong></p>
+    <p class="faq-answer">
+      A: Yes. This calculator uses one average current APR input, so combine your card balances and
+      use a reasonable weighted average APR.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: What happens if I miss a payment on a consolidation loan?</strong></p>
+    <p class="faq-answer">
+      A: Missing payments may trigger fees, possible APR changes, and credit-score damage, which can
+      reduce or erase expected savings.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: Does this calculator include origination fees?</strong></p>
+    <p class="faq-answer">
+      A: Yes. Enter origination or setup fees in Consolidation Fees so the comparison reflects the
+      full financed amount.
+    </p>
+  </div>
+
+  <div class="faq-box cc-con-faq-item">
+    <p><strong>Q: How do I compare consolidation vs. balance transfer?</strong></p>
+    <p class="faq-answer">
+      A: Compare APR, fees, repayment term, and payoff discipline. Use both calculators and select
+      the option with lower total paid and realistic monthly payment.
+    </p>
   </div>
 </div>

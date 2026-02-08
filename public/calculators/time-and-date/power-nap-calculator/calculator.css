@@ -1,0 +1,101 @@
+/* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-power-nap .input-with-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#calc-power-nap .input-with-button input {
+  flex: 1;
+}
+
+#calc-power-nap .power-nap-results-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#calc-power-nap .result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--panel-bg);
+}
+
+#calc-power-nap .result-row span:last-child {
+  font-weight: 600;
+}
+
+#calc-power-nap .result-row.is-recommended {
+  border-color: #16a34a;
+  background: var(--panel-bg);
+  color: var(--header-text, #e2e8f0);
+}
+
+#calc-power-nap .recommend-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #22c55e;
+  margin-left: 6px;
+}
+
+#calc-power-nap .evening-warning {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid #f59e0b;
+  border-radius: 10px;
+  background: #fffbeb;
+  font-size: 13px;
+  color: #92400e;
+}
+
+#calc-power-nap .form-error {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-power-nap #power-nap-results {
+  min-height: 160px;
+}
+
+#power-nap-explanation {
+  display: grid;
+  gap: 16px;
+}
+
+#power-nap-explanation h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#power-nap-explanation p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#power-nap-explanation .power-nap-faq-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+@media (max-width: 720px) {
+  #calc-power-nap .input-with-button {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #calc-power-nap .input-with-button .calculator-button {
+    width: 100%;
+  }
+}
