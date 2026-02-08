@@ -87,7 +87,7 @@ Example (do not rename items):
 
 ### 3.1 Canonical URL (REQUIRED)
 
-`/time-date/sleep-time-calculator/`
+`/time-and-date/sleep-time-calculator/`
 
 ### 3.2 Architecture
 
@@ -97,7 +97,7 @@ Example (do not rename items):
 
 ## 4. Folder & File Structure (REQUIRED)
 
-`/public/calculators/time-date/sleep-time-calculator/`
+`/public/calculators/time-and-date/sleep-time-calculator/`
 
 - `index.html` — calculator shell + calculation pane + schema injection
 - `module.js` — compute logic + validation
@@ -272,7 +272,7 @@ Calculate the best time to sleep or wake up using 90-minute sleep cycles. Get id
 
 **H1:** Sleep Time Calculator
 
-**Canonical:** `https://calchowmuch.com/time-date/sleep-time-calculator/`
+**Canonical:** `https://calchowmuch.com/time-and-date/sleep-time-calculator/`
 
 ## 9. Page-Scoped JSON-LD Bundle (Required)
 
@@ -284,7 +284,7 @@ Calculate the best time to sleep or wake up using 90-minute sleep cycles. Get id
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Sleep Time Calculator",
-  "url": "https://calchowmuch.com/time-date/sleep-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/sleep-time-calculator/",
   "description": "Calculate ideal bedtimes or wake-up times using 90-minute sleep cycles and a fall-asleep buffer.",
   "inLanguage": "en"
 }
@@ -302,7 +302,7 @@ Calculate the best time to sleep or wake up using 90-minute sleep cycles. Get id
   "applicationCategory": "HealthApplication",
   "applicationSubCategory": "Sleep Cycle Calculator",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/sleep-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/sleep-time-calculator/",
   "description": "Free sleep time calculator to find ideal bedtimes or wake-up times based on 90-minute sleep cycles.",
   "browserRequirements": "Requires JavaScript enabled",
   "softwareVersion": "1.0",
@@ -391,8 +391,8 @@ Calculate the best time to sleep or wake up using 90-minute sleep cycles. Get id
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Sleep Time Calculator", "item": "https://calchowmuch.com/time-date/sleep-time-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Sleep Time Calculator", "item": "https://calchowmuch.com/time-and-date/sleep-time-calculator/" }
   ]
 }
 </script>
@@ -412,7 +412,7 @@ Implement a boolean flag pattern to prevent any global/layout FAQPage from leaki
 
 Must update:
 
-- `sitemap.xml` add `/time-date/sleep-time-calculator/`
+- `sitemap.xml` add `/time-and-date/sleep-time-calculator/`
 - `/sitemap` page listing
 - public calculators index (if you maintain one)
 - left-nav config (ensure slug points to this canonical)

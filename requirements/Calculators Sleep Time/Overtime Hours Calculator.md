@@ -53,7 +53,7 @@ Target user: a medium-skilled worker who needs fast, reliable results with minim
 
 - **Category:** Time & Date
 - **Left-nav label:** Overtime Hours Calculator
-- **Canonical URL:** `/time-date/overtime-hours-calculator/`
+- **Canonical URL:** `/time-and-date/overtime-hours-calculator/`
 
 ## 4. Calculation Pane (Simple, Clean, No Rounding)
 
@@ -344,7 +344,7 @@ Calculate overtime hours for single, split, or weekly shifts. Supports daily, we
 
 **H1:** Overtime Hours Calculator
 
-**Canonical:** `https://calchowmuch.com/time-date/overtime-hours-calculator/`
+**Canonical:** `https://calchowmuch.com/time-and-date/overtime-hours-calculator/`
 
 ## 9. Page-Scoped JSON-LD Bundle (Required)
 
@@ -356,7 +356,7 @@ Calculate overtime hours for single, split, or weekly shifts. Supports daily, we
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Overtime Hours Calculator",
-  "url": "https://calchowmuch.com/time-date/overtime-hours-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/",
   "description": "Calculate regular vs overtime hours for single, split, or weekly shifts with daily, weekly, or combined overtime rules, including breaks and night hours.",
   "inLanguage": "en"
 }
@@ -374,7 +374,7 @@ Calculate overtime hours for single, split, or weekly shifts. Supports daily, we
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Timesheet Overtime Calculator",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/overtime-hours-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/",
   "description": "Free overtime hours calculator for daily, weekly, or daily+weekly overtime rules with breaks, overnight shifts, and night hours tracking.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -395,8 +395,8 @@ Use the exact 10 FAQs above verbatim.
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Overtime Hours Calculator", "item": "https://calchowmuch.com/time-date/overtime-hours-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Overtime Hours Calculator", "item": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/" }
   ]
 }
 </script>
@@ -412,7 +412,7 @@ Use the exact 10 FAQs above verbatim.
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/overtime-hours-calculator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/overtime-hours-calculator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

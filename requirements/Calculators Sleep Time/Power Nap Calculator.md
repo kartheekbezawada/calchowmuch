@@ -83,7 +83,7 @@ No renaming or visual changes allowed.
 
 ## 4. URL & Page Model
 
-**Canonical URL (REQUIRED):** `/time-date/power-nap-calculator/`
+**Canonical URL (REQUIRED):** `/time-and-date/power-nap-calculator/`
 
 **Architecture:**
 
@@ -249,7 +249,7 @@ Find the best power nap time and length for energy and alertness. Calculate idea
 
 **H1:** Power Nap Calculator
 
-**Canonical:** `https://calchowmuch.com/time-date/power-nap-calculator/`
+**Canonical:** `https://calchowmuch.com/time-and-date/power-nap-calculator/`
 
 ## 10. Page-Scoped JSON-LD
 
@@ -261,7 +261,7 @@ Find the best power nap time and length for energy and alertness. Calculate idea
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Power Nap Calculator",
-  "url": "https://calchowmuch.com/time-date/power-nap-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/power-nap-calculator/",
   "description": "Calculate the best power nap length and wake-up time for energy and alertness.",
   "inLanguage": "en"
 }
@@ -278,7 +278,7 @@ Find the best power nap time and length for energy and alertness. Calculate idea
   "name": "Power Nap Calculator",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/power-nap-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/power-nap-calculator/",
   "description": "Free power nap calculator to find the best nap duration for energy and alertness.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -296,7 +296,7 @@ Add:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/power-nap-calculator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/power-nap-calculator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

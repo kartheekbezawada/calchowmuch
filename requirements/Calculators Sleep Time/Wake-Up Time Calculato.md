@@ -67,7 +67,7 @@ No renames, no reordering required for this REQ.
 
 ### 3.1 Canonical URL (REQUIRED)
 
-/time-date/wake-up-time-calculator/
+/time-and-date/wake-up-time-calculator/
 
 ### 3.2 Architecture
 
@@ -76,7 +76,7 @@ No renames, no reordering required for this REQ.
 
 ## 4. Folder & File Structure (REQUIRED)
 
-/public/calculators/time-date/wake-up-time-calculator/
+/public/calculators/time-and-date/wake-up-time-calculator/
 
 - index.html — calculator shell + calculation pane + schema injection
 - module.js — compute logic + validation
@@ -235,7 +235,7 @@ Calculate the best time to wake up from your bedtime using 90-minute sleep cycle
 
 **H1:** Wake-Up Time Calculator
 
-**Canonical:** https://calchowmuch.com/time-date/wake-up-time-calculator/
+**Canonical:** https://calchowmuch.com/time-and-date/wake-up-time-calculator/
 
 ## 9. Page-Scoped JSON-LD Bundle (Required)
 
@@ -246,7 +246,7 @@ Calculate the best time to wake up from your bedtime using 90-minute sleep cycle
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Wake-Up Time Calculator",
-  "url": "https://calchowmuch.com/time-date/wake-up-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/wake-up-time-calculator/",
   "description": "Calculate ideal wake-up times from your bedtime using 90-minute sleep cycles and a fall-asleep buffer.",
   "inLanguage": "en"
 }
@@ -262,7 +262,7 @@ Calculate the best time to wake up from your bedtime using 90-minute sleep cycle
   "applicationCategory": "HealthApplication",
   "applicationSubCategory": "Sleep Cycle Calculator",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/wake-up-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/wake-up-time-calculator/",
   "description": "Free wake-up time calculator to find ideal wake-up options from a bedtime using 90-minute sleep cycles.",
   "browserRequirements": "Requires JavaScript enabled",
   "softwareVersion": "1.0",
@@ -300,8 +300,8 @@ Calculate the best time to wake up from your bedtime using 90-minute sleep cycle
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Wake-Up Time Calculator", "item": "https://calchowmuch.com/time-date/wake-up-time-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Wake-Up Time Calculator", "item": "https://calchowmuch.com/time-and-date/wake-up-time-calculator/" }
   ]
 }
 ```
@@ -316,7 +316,7 @@ Calculate the best time to wake up from your bedtime using 90-minute sleep cycle
 
 Update:
 
-- sitemap.xml add /time-date/wake-up-time-calculator/
+- sitemap.xml add /time-and-date/wake-up-time-calculator/
 - /sitemap page list (if you have one)
 - Navigation config: slug points to canonical
 

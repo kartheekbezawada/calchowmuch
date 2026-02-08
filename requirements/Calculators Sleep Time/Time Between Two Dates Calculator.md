@@ -39,10 +39,10 @@ Do not rewrite headings, paragraphs, or FAQ wording in the explanation pane. SER
 ## 2. Canonical URL (REQUIRED)
 
 **Canonical URL:**
-/time-date/time-between-two-dates/
+/time-and-date/time-between-two-dates/
 
 **Canonical tag:**
-https://calchowmuch.com/time-date/time-between-two-dates/
+https://calchowmuch.com/time-and-date/time-between-two-dates/
 
 ## 3. SEO Metadata (REQUIRED)
 
@@ -67,7 +67,7 @@ Do not change existing H1/H2/H3.
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Time Between Two Dates Calculator",
-  "url": "https://calchowmuch.com/time-date/time-between-two-dates/",
+  "url": "https://calchowmuch.com/time-and-date/time-between-two-dates/",
   "description": "Calculate the difference between two dates (and times) in days, weeks, months, hours, and minutes.",
   "inLanguage": "en"
 }
@@ -82,7 +82,7 @@ Do not change existing H1/H2/H3.
   "name": "Time Between Two Dates Calculator",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/time-between-two-dates/",
+  "url": "https://calchowmuch.com/time-and-date/time-between-two-dates/",
   "description": "Free date difference calculator to find the time between two dates and times.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -142,8 +142,8 @@ Inject these FAQs verbatim (same punctuation and wording). If the page has more 
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Time Between Two Dates Calculator", "item": "https://calchowmuch.com/time-date/time-between-two-dates/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Time Between Two Dates Calculator", "item": "https://calchowmuch.com/time-and-date/time-between-two-dates/" }
   ]
 }
 ```
@@ -164,7 +164,7 @@ Add/confirm entry:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/time-between-two-dates/</loc>
+  <loc>https://calchowmuch.com/time-and-date/time-between-two-dates/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

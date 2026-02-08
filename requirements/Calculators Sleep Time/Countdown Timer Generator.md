@@ -38,10 +38,10 @@ Do not rewrite headings, paragraphs, or FAQ wording in the explanation pane. SER
 ## 2. Canonical URL (REQUIRED)
 
 **Canonical URL:**
-/time-date/countdown-timer-generator/
+/time-and-date/countdown-timer-generator/
 
 **Canonical tag:**
-https://calchowmuch.com/time-date/countdown-timer-generator/
+https://calchowmuch.com/time-and-date/countdown-timer-generator/
 
 ## 3. SEO Metadata (REQUIRED)
 
@@ -66,7 +66,7 @@ Do not change existing H1/H2/H3.
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Countdown Timer Generator",
-  "url": "https://calchowmuch.com/time-date/countdown-timer-generator/",
+  "url": "https://calchowmuch.com/time-and-date/countdown-timer-generator/",
   "description": "Generate a countdown timer to a future date and time and see the time remaining in days, hours, minutes, and seconds.",
   "inLanguage": "en"
 }
@@ -81,7 +81,7 @@ Do not change existing H1/H2/H3.
   "name": "Countdown Timer Generator",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/countdown-timer-generator/",
+  "url": "https://calchowmuch.com/time-and-date/countdown-timer-generator/",
   "description": "Free countdown timer generator to count down to any future date and time.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -141,8 +141,8 @@ You provided these FAQs and they must be injected verbatim (same punctuation and
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Countdown Timer Generator", "item": "https://calchowmuch.com/time-date/countdown-timer-generator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Countdown Timer Generator", "item": "https://calchowmuch.com/time-and-date/countdown-timer-generator/" }
   ]
 }
 ```
@@ -163,7 +163,7 @@ Add/confirm entry:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/countdown-timer-generator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/countdown-timer-generator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

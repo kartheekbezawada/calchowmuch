@@ -36,9 +36,9 @@ Do not rewrite headings, paragraphs, or FAQ wording in the explanation pane. SER
 
 ## 2. Canonical URL (REQUIRED)
 
-**Canonical URL:** `/time-date/birthday-day-of-week/`
+**Canonical URL:** `/time-and-date/birthday-day-of-week/`
 
-**Canonical tag:** `https://calchowmuch.com/time-date/birthday-day-of-week/`
+**Canonical tag:** `https://calchowmuch.com/time-and-date/birthday-day-of-week/`
 
 ## 3. SEO Metadata (REQUIRED)
 
@@ -64,7 +64,7 @@ Do not change existing H1/H2/H3.
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Birthday Day-of-Week Calculator",
-  "url": "https://calchowmuch.com/time-date/birthday-day-of-week/",
+  "url": "https://calchowmuch.com/time-and-date/birthday-day-of-week/",
   "description": "Calculate the day of the week for a birthday date in the past or future.",
   "inLanguage": "en"
 }
@@ -81,7 +81,7 @@ Do not change existing H1/H2/H3.
   "name": "Birthday Day-of-Week Calculator",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/birthday-day-of-week/",
+  "url": "https://calchowmuch.com/time-and-date/birthday-day-of-week/",
   "description": "Free birthday weekday calculator to find what day of the week a birthday falls on.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -114,8 +114,8 @@ If the current explanation pane has no FAQs, then:
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Birthday Day-of-Week Calculator", "item": "https://calchowmuch.com/time-date/birthday-day-of-week/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Birthday Day-of-Week Calculator", "item": "https://calchowmuch.com/time-and-date/birthday-day-of-week/" }
   ]
 }
 </script>
@@ -136,7 +136,7 @@ Add/confirm entry:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/birthday-day-of-week/</loc>
+  <loc>https://calchowmuch.com/time-and-date/birthday-day-of-week/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

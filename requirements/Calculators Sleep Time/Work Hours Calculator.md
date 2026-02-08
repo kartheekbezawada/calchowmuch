@@ -67,7 +67,7 @@ You must NOT change layout or wording of the calculation pane. Current inputs/co
 ## 3. URL & Canonical
 
 **Canonical URL (REQUIRED):**
-/time-date/work-hours-calculator/
+/time-and-date/work-hours-calculator/
 
 ## 4. SERP Package (Page Meta)
 
@@ -78,7 +78,7 @@ Calculate hours worked for a shift, split shift, or week. Includes unpaid breaks
 
 **H1:** Work Hours Calculator
 
-**Canonical:** https://calchowmuch.com/time-date/work-hours-calculator/
+**Canonical:** https://calchowmuch.com/time-and-date/work-hours-calculator/
 
 ## 5. Explanation Pane (REBUILD — must be crawlable HTML)
 
@@ -214,7 +214,7 @@ It can be used like a simple timesheet calculator to estimate hours worked, but 
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Work Hours Calculator",
-  "url": "https://calchowmuch.com/time-date/work-hours-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/work-hours-calculator/",
   "description": "Calculate hours worked for a shift, split shift, or week. Includes unpaid breaks and overnight shifts.",
   "inLanguage": "en"
 }
@@ -230,7 +230,7 @@ It can be used like a simple timesheet calculator to estimate hours worked, but 
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Timesheet Calculator",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/work-hours-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/work-hours-calculator/",
   "description": "Free work hours calculator to total shift, split shift, or weekly hours worked with unpaid breaks and overnight shifts.",
   "browserRequirements": "Requires JavaScript enabled",
   "softwareVersion": "1.0",
@@ -251,8 +251,8 @@ It can be used like a simple timesheet calculator to estimate hours worked, but 
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Work Hours Calculator", "item": "https://calchowmuch.com/time-date/work-hours-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Work Hours Calculator", "item": "https://calchowmuch.com/time-and-date/work-hours-calculator/" }
   ]
 }
 ```
@@ -269,7 +269,7 @@ Add / confirm:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/work-hours-calculator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/work-hours-calculator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

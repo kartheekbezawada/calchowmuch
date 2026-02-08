@@ -36,9 +36,9 @@ Do not rewrite headings, paragraphs, or FAQ wording in the explanation pane. SER
 
 ## 2. Canonical URL (REQUIRED)
 
-**Canonical URL:** `/time-date/age-calculator/`
+**Canonical URL:** `/time-and-date/age-calculator/`
 
-**Canonical tag:** `https://calchowmuch.com/time-date/age-calculator/`
+**Canonical tag:** `https://calchowmuch.com/time-and-date/age-calculator/`
 
 ## 3. SEO Metadata (REQUIRED)
 
@@ -64,7 +64,7 @@ Do not change existing H1/H2/H3.
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Age Calculator",
-  "url": "https://calchowmuch.com/time-date/age-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/age-calculator/",
   "description": "Calculate age in years, months, and days from a date of birth, including leap years and real month lengths.",
   "inLanguage": "en"
 }
@@ -81,7 +81,7 @@ Do not change existing H1/H2/H3.
   "name": "Age Calculator",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/age-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/age-calculator/",
   "description": "Free age calculator to compute age in years, months, and days, with leap-year support and an optional 'as of' date.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -145,8 +145,8 @@ Inject these FAQs verbatim (same punctuation and wording). If the page has more 
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Age Calculator", "item": "https://calchowmuch.com/time-date/age-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Age Calculator", "item": "https://calchowmuch.com/time-and-date/age-calculator/" }
   ]
 }
 </script>
@@ -167,7 +167,7 @@ Add/confirm entry:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/age-calculator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/age-calculator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

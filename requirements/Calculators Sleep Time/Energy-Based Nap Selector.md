@@ -79,11 +79,11 @@ Energy-Based Nap Selector
 
 ### 3.3 Canonical URL
 
-/time-date/energy-based-nap-selector/
+/time-and-date/energy-based-nap-selector/
 
 ## 4. Folder & File Structure (REQUIRED)
 
-/public/calculators/time-date/energy-based-nap-selector/
+/public/calculators/time-and-date/energy-based-nap-selector/
 
 - index.html
 - module.js
@@ -281,7 +281,7 @@ No. It provides general guidance based on averages and timing rules.
 **Meta description (140–160 chars):**
 Choose the best nap length for energy—15, 25, or 90 minutes. Get wake-up times and avoid grogginess with a simple nap selector.
 
-**Canonical:** https://calchowmuch.com/time-date/energy-based-nap-selector/
+**Canonical:** https://calchowmuch.com/time-and-date/energy-based-nap-selector/
 
 **H1:** Energy-Based Nap Selector
 
@@ -294,7 +294,7 @@ Choose the best nap length for energy—15, 25, or 90 minutes. Get wake-up times
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Energy-Based Nap Selector",
-  "url": "https://calchowmuch.com/time-date/energy-based-nap-selector/",
+  "url": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/",
   "description": "Choose the best nap length for energy—15, 25, or 90 minutes—and get recommended wake-up times.",
   "inLanguage": "en"
 }
@@ -309,7 +309,7 @@ Choose the best nap length for energy—15, 25, or 90 minutes. Get wake-up times
   "name": "Energy-Based Nap Selector",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/energy-based-nap-selector/",
+  "url": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/",
   "description": "Free nap selector to choose 15, 25, or 90 minutes for energy and alertness, with wake-up times.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -328,8 +328,8 @@ Use the exact 10 FAQs above in FAQPage JSON-LD (same pattern as your other calcu
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Energy-Based Nap Selector", "item": "https://calchowmuch.com/time-date/energy-based-nap-selector/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Energy-Based Nap Selector", "item": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/" }
   ]
 }
 ```
@@ -346,7 +346,7 @@ Add:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/energy-based-nap-selector/</loc>
+  <loc>https://calchowmuch.com/time-and-date/energy-based-nap-selector/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>

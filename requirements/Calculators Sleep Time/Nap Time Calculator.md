@@ -39,9 +39,9 @@ SERP readiness must be achieved only via metadata, schema, canonical, sitemap, a
 
 ## 2. Canonical URL (REQUIRED)
 
-**Canonical URL:** `/time-date/nap-time-calculator/`
+**Canonical URL:** `/time-and-date/nap-time-calculator/`
 
-**Canonical tag:** `https://calchowmuch.com/time-date/nap-time-calculator/`
+**Canonical tag:** `https://calchowmuch.com/time-and-date/nap-time-calculator/`
 
 ## 3. SEO Metadata (REQUIRED)
 
@@ -67,7 +67,7 @@ Do not change existing H1/H2/H3.
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Nap Time Calculator",
-  "url": "https://calchowmuch.com/time-date/nap-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/nap-time-calculator/",
   "description": "Calculate the best nap time and wake-up time based on different nap lengths.",
   "inLanguage": "en"
 }
@@ -84,7 +84,7 @@ Do not change existing H1/H2/H3.
   "name": "Nap Time Calculator",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "Web",
-  "url": "https://calchowmuch.com/time-date/nap-time-calculator/",
+  "url": "https://calchowmuch.com/time-and-date/nap-time-calculator/",
   "description": "Free nap time calculator to find ideal nap lengths and suggested wake-up times.",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "creator": { "@type": "Organization", "name": "CalcHowMuch" }
@@ -156,8 +156,8 @@ Inject these FAQs verbatim (same wording and punctuation). Do not add or remove 
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-date/" },
-    { "@type": "ListItem", "position": 3, "name": "Nap Time Calculator", "item": "https://calchowmuch.com/time-date/nap-time-calculator/" }
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Nap Time Calculator", "item": "https://calchowmuch.com/time-and-date/nap-time-calculator/" }
   ]
 }
 </script>
@@ -179,7 +179,7 @@ Add/confirm:
 
 ```xml
 <url>
-  <loc>https://calchowmuch.com/time-date/nap-time-calculator/</loc>
+  <loc>https://calchowmuch.com/time-and-date/nap-time-calculator/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.70</priority>
 </url>
