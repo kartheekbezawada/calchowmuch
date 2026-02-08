@@ -9,7 +9,7 @@ test.describe('Percentage Difference Calculator', () => {
     await page.goto('/percentage-calculators/percentage-difference');
 
     await expect(page.locator('.top-nav-link.is-active .nav-label').first()).toHaveText(
-      'Percentage Calculators'
+      'Percentage'
     );
     await expect(
       page

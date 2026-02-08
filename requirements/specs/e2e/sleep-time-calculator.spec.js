@@ -26,6 +26,36 @@ test.describe('Sleep Time Calculator', () => {
     await expect(resultsList.locator('.sleep-result.is-primary')).toHaveCount(1);
   });
 
+  test('SLEEP-TEST-E2E-1B: left nav includes nap calculator links and navigation works', async ({
+    page,
+  }) => {
+    await page.goto('/time-and-date/sleep-time-calculator');
+
+    const powerNapLink = page.locator(
+      '.left-nav .nav-item[href="/time-and-date/power-nap-calculator"]'
+    );
+    const energyNapLink = page.locator(
+      '.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]'
+    );
+
+    await expect(powerNapLink).toBeVisible();
+    await expect(powerNapLink).toHaveText('Power Nap Calculator');
+    await expect(energyNapLink).toBeVisible();
+    await expect(energyNapLink).toHaveText('Energy-Based Nap Selector');
+
+    await Promise.all([
+      page.waitForURL('**/time-and-date/power-nap-calculator/'),
+      powerNapLink.click(),
+    ]);
+    await expect(page.locator('.nav-item.is-active')).toHaveText('Power Nap Calculator');
+
+    await Promise.all([
+      page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
+      page.locator('.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]').click(),
+    ]);
+    await expect(page.locator('.nav-item.is-active')).toHaveText('Energy-Based Nap Selector');
+  });
+
   test('SLEEP-TEST-E2E-2: mode switch resets results (UI-2.6)', async ({ page }) => {
     await page.goto('/time-and-date/sleep-time-calculator');
 

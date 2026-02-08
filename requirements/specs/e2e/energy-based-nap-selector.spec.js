@@ -45,4 +45,33 @@ test.describe('Energy-Based Nap Selector', () => {
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.faq-box')).toHaveCount(10);
   });
+
+  test('ENAP-TEST-E2E-3: primary recommendation keeps dark-row styling with readable text', async ({
+    page,
+  }) => {
+    await page.goto('/time-and-date/energy-based-nap-selector');
+
+    await page.locator('#energy-nap-start-time').fill('23:30');
+    await page.locator('#energy-nap-calculate').click();
+
+    const primaryCard = page.locator('#energy-nap-primary');
+    await expect(primaryCard).toBeVisible();
+
+    const primaryBackground = await primaryCard.evaluate((card) => getComputedStyle(card).backgroundColor);
+    const headingColor = await primaryCard
+      .locator('h4')
+      .evaluate((heading) => getComputedStyle(heading).color);
+    const metricsColor = await primaryCard
+      .locator('.energy-primary-metrics')
+      .evaluate((metrics) => getComputedStyle(metrics).color);
+    const reasonColor = await primaryCard
+      .locator('.energy-primary-reason')
+      .evaluate((reason) => getComputedStyle(reason).color);
+
+    expect(primaryBackground).toBe('rgb(15, 23, 42)');
+    expect(primaryBackground).not.toBe('rgb(240, 253, 244)');
+    expect(headingColor).not.toBe(primaryBackground);
+    expect(metricsColor).not.toBe(primaryBackground);
+    expect(reasonColor).not.toBe('rgb(20, 83, 45)');
+  });
 });

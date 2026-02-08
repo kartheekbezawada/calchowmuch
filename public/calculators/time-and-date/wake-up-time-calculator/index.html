@@ -36,14 +36,15 @@
     </div>
 
     <div class="input-row wake-latency is-collapsed" id="wake-latency-row" aria-hidden="true">
-      <label for="wake-latency">Fall-asleep latency (minutes) (optional)</label>
-      <input id="wake-latency" type="number" min="0" step="1" inputmode="numeric" />
+      <label for="wake-latency">Fall-asleep buffer (fixed)</label>
+      <input id="wake-latency" type="number" min="15" max="15" step="1" inputmode="numeric" />
     </div>
 
     <button class="calculator-button full-width" type="button" id="wake-calculate">Calculate</button>
 
     <div class="result" id="wake-results" aria-live="polite">
       <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>
+      <p class="form-error is-hidden" id="wake-error"></p>
       <div class="wake-results-list is-hidden" id="wake-results-list"></div>
     </div>
   </div>

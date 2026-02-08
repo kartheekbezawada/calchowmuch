@@ -41,6 +41,33 @@ test.describe('Power Nap Calculator', () => {
     await expect(explanation.locator('.power-nap-faq-item')).toHaveCount(10);
   });
 
+  test('POWER-NAP-TEST-E2E-2B: recommended rows keep dark-row styling with readable text', async ({
+    page,
+  }) => {
+    await page.goto('/time-and-date/power-nap-calculator');
+
+    await page.locator('#power-nap-start-time').fill('13:00');
+    await page.locator('#power-nap-calculate').click();
+
+    const recommended = page.locator('#power-nap-results-list .result-row.is-recommended');
+    await expect(recommended).toHaveCount(2);
+
+    const recommendedBackgrounds = await recommended.evaluateAll((rows) =>
+      rows.map((row) => getComputedStyle(row).backgroundColor)
+    );
+    const recommendedTextColors = await recommended.evaluateAll((rows) =>
+      rows.map((row) => getComputedStyle(row).color)
+    );
+
+    recommendedBackgrounds.forEach((background) => {
+      expect(background).toBe('rgb(15, 23, 42)');
+      expect(background).not.toBe('rgb(240, 253, 244)');
+    });
+    recommendedTextColors.forEach((textColor) => {
+      expect(textColor).not.toBe('rgb(240, 253, 244)');
+    });
+  });
+
   test('POWER-NAP-TEST-E2E-3: evening warning for late start', async ({ page }) => {
     await page.goto('/time-and-date/power-nap-calculator');
 

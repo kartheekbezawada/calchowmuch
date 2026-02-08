@@ -596,6 +596,28 @@
               ]
             },
             {
+              "id": "power-nap-calculator",
+              "name": "Power Nap Calculator",
+              "url": "/time-and-date/power-nap-calculator",
+              "keywords": [
+                "power nap",
+                "nap length",
+                "wake time",
+                "micro nap"
+              ]
+            },
+            {
+              "id": "energy-based-nap-selector",
+              "name": "Energy-Based Nap Selector",
+              "url": "/time-and-date/energy-based-nap-selector",
+              "keywords": [
+                "energy nap",
+                "quick nap",
+                "strong nap",
+                "full nap"
+              ]
+            },
+            {
               "id": "work-hours-calculator",
               "name": "Work Hours Calculator",
               "url": "/time-and-date/work-hours-calculator",

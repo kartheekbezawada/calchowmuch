@@ -42,6 +42,36 @@ test.describe('Wake-Up Time Calculator', () => {
     await expect(resultsList.locator('.wake-result.is-primary').first()).not.toContainText(baselinePrimary);
   });
 
+  test('WAKEUP-TEST-E2E-1B: left nav includes nap calculator links and navigation works', async ({
+    page,
+  }) => {
+    await page.goto('/time-and-date/wake-up-time-calculator');
+
+    const powerNapLink = page.locator(
+      '.left-nav .nav-item[href="/time-and-date/power-nap-calculator"]'
+    );
+    const energyNapLink = page.locator(
+      '.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]'
+    );
+
+    await expect(powerNapLink).toBeVisible();
+    await expect(powerNapLink).toHaveText('Power Nap Calculator');
+    await expect(energyNapLink).toBeVisible();
+    await expect(energyNapLink).toHaveText('Energy-Based Nap Selector');
+
+    await Promise.all([
+      page.waitForURL('**/time-and-date/power-nap-calculator/'),
+      powerNapLink.click(),
+    ]);
+    await expect(page.locator('.nav-item.is-active')).toHaveText('Power Nap Calculator');
+
+    await Promise.all([
+      page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
+      page.locator('.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]').click(),
+    ]);
+    await expect(page.locator('.nav-item.is-active')).toHaveText('Energy-Based Nap Selector');
+  });
+
   test('WAKEUP-TEST-E2E-2: layout stability and content', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator');
 

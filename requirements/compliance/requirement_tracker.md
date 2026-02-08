@@ -33,6 +33,10 @@
 | REQ-20260208-022 | Energy-Based Nap Selector — Time & Date | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
 | REQ-20260208-023 | Sleep Time Calculator — Time & Date | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
 | REQ-20260208-024 | Overtime Hours Calculator — Time & Date | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-025 | Credit Card Repayment/Payoff Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-026 | Credit Card Minimum Payment Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
+| REQ-20260208-027 | Balance Transfer / Installment Plan Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | NEW | YES |
+| REQ-20260208-028 | Credit Card Consolidation Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | NEW | YES |
 
 ---
 
