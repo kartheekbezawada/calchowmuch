@@ -9,7 +9,7 @@ test.describe('Margin Calculator', () => {
     await page.goto('/percentage-calculators/margin-calculator');
 
     await expect(page.locator('.top-nav-link.is-active .nav-label').first()).toHaveText(
-      'Percentage Calculators'
+      'Percentage'
     );
     await expect(
       page.locator('.math-nav-item.is-active, .nav-item.is-active').filter({ hasText: 'Margin Calculator' }).first()

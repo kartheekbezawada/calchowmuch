@@ -29,6 +29,29 @@ test.describe('Home page shell-only content', () => {
     await expect(leftNavItems.first()).toBeVisible();
     await expect(page.locator('.top-nav .is-active')).toHaveCount(0);
 
+    const topNavLabels = page.locator('.top-nav .top-nav-link .nav-label');
+    await expect(topNavLabels).toHaveText([
+      'Math',
+      'Home Loan',
+      'Credit Cards',
+      'Auto Loans',
+      'Finance',
+      'Time & Date',
+      'Percentage',
+    ]);
+
+    const financeTopLink = page
+      .locator('.top-nav .top-nav-link')
+      .filter({ has: page.locator('.nav-label', { hasText: 'Finance' }) })
+      .first();
+    const percentageTopLink = page
+      .locator('.top-nav .top-nav-link')
+      .filter({ has: page.locator('.nav-label', { hasText: 'Percentage' }) })
+      .first();
+    await expect(financeTopLink.locator('.nav-icon:not(.nav-icon-right)')).toHaveText('$');
+    await expect(financeTopLink.locator('.nav-icon-right')).toHaveText('£');
+    await expect(percentageTopLink.locator('.nav-icon:not(.nav-icon-right)')).toHaveText('%');
+
     const footerLinks = page.locator('.site-footer a');
     await expect(footerLinks).toHaveCount(5);
     await expect(footerLinks.nth(4)).toHaveText('Sitemap');

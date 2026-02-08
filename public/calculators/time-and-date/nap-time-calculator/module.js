@@ -70,11 +70,53 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Nap Time Calculator',
+      url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+      description: 'Calculate the best nap time and wake-up time based on different nap lengths.',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Nap Time Calculator',
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'Web',
+      url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+      description: 'Free nap time calculator to find ideal nap lengths and suggested wake-up times.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Nap Time Calculator',
+          item: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+        },
+      ],
+    },
+  ],
+};
+
 const metadata = {
-  title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
+  title: 'Nap Time Calculator – Find the Best Time to Wake Up | CalcHowMuch',
   description:
-    'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.',
+    'Calculate the best nap length and wake-up time. Plan quick naps, power naps, or longer naps without grogginess.',
   canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+  structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
@@ -104,12 +146,12 @@ const placeholders = {
 
 const napTypeButtons = setupButtonGroup(napTypeGroup, {
   defaultValue: DEFAULT_NAP_TYPE,
-  onChange: () => calculate(),
+  onChange: () => showPlaceholder(),
 });
 
 const bufferButtons = setupButtonGroup(bufferGroup, {
   defaultValue: String(DEFAULT_BUFFER_MINUTES),
-  onChange: () => calculate(),
+  onChange: () => showPlaceholder(),
 });
 
 function formatTimeInput(date) {
@@ -253,14 +295,14 @@ startTimeInput?.addEventListener('input', () => {
     showPlaceholder();
     return;
   }
-  calculate();
+  clearError();
 });
 
-startTimeInput?.addEventListener('change', () => calculate());
+startTimeInput?.addEventListener('change', () => clearError());
 
 useNowButton?.addEventListener('click', () => {
   setNowValue();
-  calculate();
+  clearError();
 });
 
 calculateButton?.addEventListener('click', () => calculate());

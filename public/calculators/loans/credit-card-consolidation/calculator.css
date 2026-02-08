@@ -1,1 +1,74 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
+
+#calc-cc-con .cc-con-results-list {
+  display: grid;
+  gap: 6px;
+}
+
+#calc-cc-con .result-line {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#calc-cc-con .form-error {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #dc2626;
+}
+
+#calc-cc-con #cc-con-summary {
+  display: grid;
+  gap: 4px;
+}
+
+#calc-cc-con #cc-con-summary p {
+  margin: 0;
+}
+
+#cc-con-explanation {
+  display: grid;
+  gap: 10px;
+}
+
+#cc-con-explanation > p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+#cc-con-explanation [data-cc-con] {
+  font-weight: 600;
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 6px;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: rgba(59, 130, 246, 0.24);
+  outline: 1px solid rgba(59, 130, 246, 0.45);
+}
+
+#cc-con-explanation #cc-con-scenario-table th:nth-child(3),
+#cc-con-explanation #cc-con-scenario-table td:nth-child(3) {
+  text-align: left;
+}
+
+#cc-con-explanation #cc-con-scenario-table td:nth-child(2),
+#cc-con-explanation #cc-con-table td:nth-child(2),
+#cc-con-explanation #cc-con-table td:nth-child(3),
+#cc-con-explanation #cc-con-table td:nth-child(4) {
+  text-align: right;
+}
+
+#cc-con-explanation .cc-con-table-placeholder-row td {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted-text);
+}
+
+#cc-con-explanation .cc-con-faq-item {
+  border: 1px solid var(--border-color);
+}
+
+#cc-con-explanation .cc-con-faq-item .faq-answer {
+  margin-left: 12px;
+}

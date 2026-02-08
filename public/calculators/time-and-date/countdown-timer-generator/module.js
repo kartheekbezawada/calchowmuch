@@ -57,11 +57,54 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Countdown Timer Generator',
+      url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+      description:
+        'Generate a countdown timer to a future date and time and see the time remaining in days, hours, minutes, and seconds.',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Countdown Timer Generator',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Web',
+      url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+      description: 'Free countdown timer generator to count down to any future date and time.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Countdown Timer Generator',
+          item: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+        },
+      ],
+    },
+  ],
+};
+
 const metadata = {
-  title: 'Countdown Timer Generator – Live Countdown to a Date',
+  title: 'Countdown Timer Generator – Countdown to Any Date & Time | CalcHowMuch',
   description:
-    'Create a live countdown to any future date and time. Simple, fast, and free countdown timer generator.',
-  canonical: 'https://calchowmuch.com/calculators/time-and-date/countdown-timer-generator/',
+    'Create a countdown timer to any future date and time. See days, hours, minutes, and seconds remaining—fast, free, and accurate.',
+  canonical: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+  structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };

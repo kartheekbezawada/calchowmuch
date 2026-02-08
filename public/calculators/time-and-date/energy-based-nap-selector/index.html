@@ -1,0 +1,56 @@
+<div id="calc-energy-nap">
+  <div class="calculator-ui">
+    <p class="helper">
+      Choose your energy goal and start time to get a deterministic nap duration, wake-up time,
+      and two alternatives.
+    </p>
+
+    <div class="input-row">
+      <label id="energy-goal-label">Goal</label>
+      <div
+        class="button-group"
+        role="group"
+        aria-labelledby="energy-goal-label"
+        data-button-group="energy-goal"
+      >
+        <button class="calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
+          Quick
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="strong" aria-pressed="false">
+          Strong
+        </button>
+        <button class="calculator-button secondary is-active" type="button" data-value="full" aria-pressed="true">
+          Full
+        </button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <label for="energy-nap-start-time">Nap start time</label>
+      <div class="input-with-button">
+        <input id="energy-nap-start-time" type="time" />
+        <button class="calculator-button secondary" type="button" id="energy-nap-use-now">Use now</button>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="energy-nap-calculate">Calculate</button>
+
+    <div class="result" id="energy-nap-results" aria-live="polite">
+      <p class="placeholder" id="energy-nap-placeholder">
+        Select a goal, set a start time, and click Calculate to see recommendations.
+      </p>
+      <p class="form-error is-hidden" id="energy-nap-error"></p>
+      <div class="energy-results">
+        <div class="energy-primary-card is-hidden" id="energy-nap-primary"></div>
+        <div class="energy-alt-list is-hidden" id="energy-nap-alternatives"></div>
+      </div>
+      <div class="energy-warning is-hidden" id="energy-nap-warning"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/time-and-date/energy-based-nap-selector/calculator.css');
+</style>
+
+<script type="module" src="/calculators/time-and-date/energy-based-nap-selector/module.js"></script>

@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Work Hours Calculator – Calculate Hours Worked (With Breaks)</title>
+    <title>Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free." />
+    <meta name="description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/work-hours-calculator/" />
-    <meta property="og:title" content="Work Hours Calculator – Calculate Hours Worked (With Breaks)" />
-    <meta property="og:description" content="Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free." />
+    <meta property="og:title" content="Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch" />
+    <meta property="og:description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/work-hours-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Work Hours Calculator – Calculate Hours Worked (With Breaks)" />
-    <meta name="twitter:description" content="Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free." />
+    <meta name="twitter:title" content="Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
@@ -86,7 +86,7 @@
     <span class="nav-category-indicator">-</span>
   </button>
   <div class="nav-category-items">
-    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/nap-time-calculator">Nap Time Calculator</a><a class="nav-item is-active" href="/time-and-date/work-hours-calculator">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week">Birthday Day-of-Week</a>
+    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/nap-time-calculator">Nap Time Calculator</a><a class="nav-item" href="/time-and-date/power-nap-calculator">Power Nap Calculator</a><a class="nav-item" href="/time-and-date/energy-based-nap-selector">Energy-Based Nap Selector</a><a class="nav-item is-active" href="/time-and-date/work-hours-calculator">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week">Birthday Day-of-Week</a>
   </div>
 </div></div>
         </aside>
@@ -500,63 +500,149 @@
 </div>
 <div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="work-hours-explanation">
-  <h2>What is a Work Hours Calculator?</h2>
+  <div id="work-hours-explanation" class="explanation-pane">
+  <h2>
+    Based on your <span data-work-summary="mode">single shift</span> inputs
+    (<span data-work-summary="primaryInput">09:00 to 17:30</span>, <span data-work-summary="secondaryInput">Not used</span>),
+    your worked time is <span data-work-summary="totalHHMM">8:00</span>
+    (<span data-work-summary="totalDecimal">8.00</span> hours) after
+    <span data-work-summary="breakMinutes">30</span> break minutes. This helps you convert shift time into payroll-ready formats.
+  </h2>
+
+  <h3>Scenario Summary</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Value</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mode</td>
+        <td data-work-scenario="modeLabel">Single Shift</td>
+        <td>Calculation Pane</td>
+      </tr>
+      <tr>
+        <td>Primary Window</td>
+        <td data-work-scenario="primaryWindow">09:00 to 17:30</td>
+        <td>Calculation Pane</td>
+      </tr>
+      <tr>
+        <td>Secondary Window</td>
+        <td data-work-scenario="secondaryWindow">Not used</td>
+        <td>Calculation Pane</td>
+      </tr>
+      <tr>
+        <td>Unpaid Break</td>
+        <td data-work-scenario="breakValue">30 minutes</td>
+        <td>Calculation Pane</td>
+      </tr>
+      <tr>
+        <td>Ends Next Day</td>
+        <td data-work-scenario="overnightValue">No</td>
+        <td>Calculation Pane</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Results Table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Value</th>
+        <th>Unit</th>
+        <th>Explanation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total Worked Time</td>
+        <td data-work-metric="workedHhmm">8:00</td>
+        <td>HH:MM</td>
+        <td>Paid duration after break deduction.</td>
+      </tr>
+      <tr>
+        <td>Total Hours</td>
+        <td data-work-metric="workedDecimal">8.00</td>
+        <td>Hours</td>
+        <td>Decimal format often used in payroll.</td>
+      </tr>
+      <tr>
+        <td>Total Break Deducted</td>
+        <td data-work-metric="breakMinutes">30</td>
+        <td>Minutes</td>
+        <td>Unpaid break removed from gross time.</td>
+      </tr>
+      <tr>
+        <td>Gross Scheduled Time</td>
+        <td data-work-metric="grossHhmm">8:30</td>
+        <td>HH:MM</td>
+        <td>Full shift span before break deduction.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Explanation</h3>
   <p>
-    A Work Hours Calculator helps you measure the time you worked between a start time and an end time. It can subtract unpaid breaks and show your total as both hours and minutes and as decimal hours.
+    In <span data-work-expl="modeNarrative">single shift</span> mode, the calculator first measures gross time as
+    <span data-work-expl="grossHHMM">8:30</span>. It then subtracts <span data-work-expl="breakMinutes">30</span>
+    break minutes to produce <span data-work-expl="totalHHMM">8:00</span> worked time, which equals
+    <span data-work-expl="totalDecimal">8.00</span> decimal hours. This is useful when comparing schedule time versus payable time.
   </p>
 
-  <h2>Why Decimal Hours Matter</h2>
-  <p>
-    Some timesheets and payroll systems use decimal hours. For example, 7 hours 30 minutes is 7.50 hours. This calculator shows both formats so you can copy the one you need.
-  </p>
+  <h3>Frequently Asked Questions</h3>
 
-  <h2>Breaks and Unpaid Time</h2>
-  <p>
-    If you take an unpaid break, your paid time is usually your shift length minus the break. This calculator subtracts your selected break minutes from your total.
-  </p>
-
-  <h2>Night Shifts (Ends Next Day)</h2>
-  <p>
-    If your shift ends after midnight, your end time can look earlier than your start time. Use the "Ends next day" option so the calculator treats the end time as the next calendar day.
-  </p>
-
-  <h2>Examples</h2>
-  <p>
-    If you work 09:00 to 17:30 with a <span data-placeholder="break-minutes">30</span> minute unpaid break, your total worked time is
-    <span data-placeholder="total-hhmm">8:00</span>, which is <span data-placeholder="total-decimal">8.00</span> hours.
-  </p>
-  <p>
-    If you work 22:00 to 06:00 and it ends after midnight, enable "Ends next day" to calculate 8:00 hours correctly.
-  </p>
-
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator:</p>
-  <p>Works with time-of-day inputs and does not require dates</p>
-  <p>Subtracts unpaid breaks that you select</p>
-  <p>Does not calculate pay, overtime rules, taxes, or legal compliance requirements</p>
-  <p>Is a general timesheet helper and may not match every employer's rounding policy</p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="work-hours-faq-item">
+  <div class="faq-box">
     <p><strong>Can I calculate hours for a night shift?</strong></p>
     <p>Yes. Enable "Ends next day" when your shift ends after midnight.</p>
   </div>
 
-  <div class="work-hours-faq-item">
+  <div class="faq-box">
     <p><strong>Does this include paid breaks?</strong></p>
     <p>No. Only unpaid breaks that you enter are subtracted.</p>
   </div>
 
-  <div class="work-hours-faq-item">
+  <div class="faq-box">
     <p><strong>Why do I see both HH:MM and decimal hours?</strong></p>
     <p>Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll.</p>
   </div>
 
-  <div class="work-hours-faq-item">
+  <div class="faq-box">
     <p><strong>Does it round time?</strong></p>
     <p>No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>How do I calculate split shifts with two work periods?</strong></p>
+    <p>Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Can I leave Segment 2 blank in split shift mode?</strong></p>
+    <p>Yes. Segment 2 is optional. If left blank, only Segment 1 is used.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Can I calculate weekly work hours for multiple days?</strong></p>
+    <p>Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>What if my unpaid break is longer than the shift?</strong></p>
+    <p>The calculator shows an error because unpaid break minutes cannot exceed worked minutes.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Does this calculator include overtime pay rules?</strong></p>
+    <p>No. It calculates worked time only. Overtime pay policies depend on employer and local regulations.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Can I use this for timesheets and payroll prep?</strong></p>
+    <p>Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules.</p>
   </div>
 </div>
 

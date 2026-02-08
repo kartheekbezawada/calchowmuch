@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Wake-Up Time Calculator | Calculate How Much Online Calcu...</title>
+    <title>Wake-Up Time Calculator – Best Times to Wake Up | CalcHowMuch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Wake-Up Time Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan c..." />
+    <meta name="description" content="Calculate wake-up times using 90-minute sleep cycles. Enter your bedtime and get clear 4, 5, and 6 cycle wake-up recommendations." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/wake-up-time-calculator/" />
-    <meta property="og:title" content="Wake-Up Time Calculator | Calculate How Much Online Calcu..." />
-    <meta property="og:description" content="Wake-Up Time Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan c..." />
+    <meta property="og:title" content="Wake-Up Time Calculator – Best Times to Wake Up | CalcHowMuch" />
+    <meta property="og:description" content="Calculate wake-up times using 90-minute sleep cycles. Enter your bedtime and get clear 4, 5, and 6 cycle wake-up recommendations." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/wake-up-time-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Wake-Up Time Calculator | Calculate How Much Online Calcu..." />
-    <meta name="twitter:description" content="Wake-Up Time Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan c..." />
+    <meta name="twitter:title" content="Wake-Up Time Calculator – Best Times to Wake Up | CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate wake-up times using 90-minute sleep cycles. Enter your bedtime and get clear 4, 5, and 6 cycle wake-up recommendations." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
@@ -86,7 +86,7 @@
     <span class="nav-category-indicator">-</span>
   </button>
   <div class="nav-category-items">
-    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item is-active" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/nap-time-calculator">Nap Time Calculator</a><a class="nav-item" href="/time-and-date/work-hours-calculator">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week">Birthday Day-of-Week</a>
+    <a class="nav-item" href="/time-and-date/sleep-time-calculator">Sleep Time Calculator</a><a class="nav-item is-active" href="/time-and-date/wake-up-time-calculator">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/nap-time-calculator">Nap Time Calculator</a><a class="nav-item" href="/time-and-date/power-nap-calculator">Power Nap Calculator</a><a class="nav-item" href="/time-and-date/energy-based-nap-selector">Energy-Based Nap Selector</a><a class="nav-item" href="/time-and-date/work-hours-calculator">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week">Birthday Day-of-Week</a>
   </div>
 </div></div>
         </aside>
@@ -131,14 +131,15 @@
     </div>
 
     <div class="input-row wake-latency is-collapsed" id="wake-latency-row" aria-hidden="true">
-      <label for="wake-latency">Fall-asleep latency (minutes) (optional)</label>
-      <input id="wake-latency" type="number" min="0" step="1" inputmode="numeric" />
+      <label for="wake-latency">Fall-asleep buffer (fixed)</label>
+      <input id="wake-latency" type="number" min="15" max="15" step="1" inputmode="numeric" />
     </div>
 
     <button class="calculator-button full-width" type="button" id="wake-calculate">Calculate</button>
 
     <div class="result" id="wake-results" aria-live="polite">
       <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>
+      <p class="form-error is-hidden" id="wake-error"></p>
       <div class="wake-results-list is-hidden" id="wake-results-list"></div>
     </div>
   </div>
@@ -153,60 +154,149 @@
 </div>
 <div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="wake-up-explanation">
-  <h2>What is a Wake-Up Time Calculator?</h2>
-  <p>
-    A Wake-Up Time Calculator suggests the best times to wake up based on when you fall asleep. It aims to line up your wake-up time with the end of a sleep cycle, which can help reduce grogginess.
-  </p>
+  <div id="wake-up-explanation" class="explanation-pane">
+  <h2>
+    Based on your input time of <span data-wake-summary="input-time">—</span>, your estimated sleep
+    start is <span data-wake-summary="sleep-start">—</span> and the primary wake-up recommendation is
+    <span data-wake-summary="recommended-wake">—</span>.
+  </h2>
 
-  <h2>How This Wake-Up Time Calculator Works</h2>
-  <p>
-    Sleep typically happens in repeating cycles that average about 90 minutes. This calculator uses 90-minute cycles to estimate wake-up times after 4, 5, or 6 full cycles.
-  </p>
-  <p>• If you enter a fall-asleep time, it adds full cycles to suggest wake-up times.</p>
-  <p>• If you enter a bedtime, it adds about 15 minutes first to estimate when you fall asleep, then adds full cycles.</p>
-
-  <h2>Best Wake-Up Times (Examples)</h2>
-  <p>
-    If you fall asleep at 11:30 PM, your wake-up options are roughly 5:30 AM (4 cycles), 7:00 AM (5 cycles), or 8:30 AM (6 cycles).
-  </p>
-  <p>
-    If you go to bed at 11:30 PM, the calculator first assumes you fall asleep around 11:45 PM, then shows wake-up options from there.
-  </p>
-
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator uses averages:</p>
-  <p>• Sleep cycle length is assumed to be 90 minutes (real cycles can vary).</p>
-  <p>• Time to fall asleep is assumed to be 15 minutes when you enter a bedtime.</p>
-  <p>
-    Results are general estimates and are not medical advice. If you have persistent sleep problems, consider speaking with a healthcare professional.
-  </p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="wake-faq-item">
-    <p><strong>How many sleep cycles should I aim for?</strong></p>
-    <p>Many adults feel best with 5–6 cycles (about 7.5–9 hours), but needs vary.</p>
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mode</td>
+          <td data-wake-scenario="mode">—</td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Input time</td>
+          <td data-wake-scenario="input">—</td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Estimated sleep start</td>
+          <td data-wake-scenario="sleep-start">—</td>
+          <td>Calculator Engine</td>
+        </tr>
+        <tr>
+          <td>Primary recommendation</td>
+          <td data-wake-scenario="recommended">—</td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="wake-faq-item">
-    <p><strong>What is a sleep cycle?</strong></p>
-    <p>A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.</p>
+  <h3>Results Table</h3>
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Unit</th>
+          <th>Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4-cycle wake time</td>
+          <td data-wake-metric="cycle-4">—</td>
+          <td>time</td>
+          <td>Earliest recommended wake option.</td>
+        </tr>
+        <tr>
+          <td>5-cycle wake time</td>
+          <td data-wake-metric="cycle-5">—</td>
+          <td>time</td>
+          <td>Primary balance of rest and schedule.</td>
+        </tr>
+        <tr>
+          <td>6-cycle wake time</td>
+          <td data-wake-metric="cycle-6">—</td>
+          <td>time</td>
+          <td>Longest standard recommendation shown.</td>
+        </tr>
+        <tr>
+          <td>Fall-asleep buffer</td>
+          <td data-wake-metric="buffer">—</td>
+          <td>minutes</td>
+          <td>Fixed buffer before cycles in bedtime mode.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="wake-faq-item">
-    <p><strong>Why does the calculator show multiple wake-up times?</strong></p>
-    <p>It shows options for 4, 5, and 6 cycles so you can pick what fits your schedule.</p>
+  <h3>Explanation</h3>
+  <p>
+    The calculator uses fixed 90-minute cycles and reports
+    <span data-wake-expl="primary">—</span> as the default target. This matches a full-cycle wake
+    boundary that many users find easier than waking mid-cycle.
+  </p>
+  <p>
+    Your recommended wake window currently spans <span data-wake-expl="window">—</span>, so you can
+    choose a time that fits your schedule while still aligning to full cycles.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+
+  <div class="faq-box">
+    <p><strong>Q: How many sleep cycles should I aim for?</strong></p>
+    <p class="faq-answer">A: Many adults feel best with 5 or 6 cycles (about 7.5 to 9 hours), but personal needs vary.</p>
   </div>
 
-  <div class="wake-faq-item">
-    <p><strong>Why might I still feel tired even if I wake up after full cycles?</strong></p>
-    <p>Cycle length varies, and factors like stress, caffeine, irregular schedules, or sleep disorders can affect sleep quality.</p>
+  <div class="faq-box">
+    <p><strong>Q: What is a sleep cycle?</strong></p>
+    <p class="faq-answer">A: A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.</p>
   </div>
 
-  <div class="wake-faq-item">
-    <p><strong>Does the calculator account for naps or sleep debt?</strong></p>
-    <p>No. It provides simple estimates based on typical cycles and does not model naps or long-term sleep patterns.</p>
+  <div class="faq-box">
+    <p><strong>Q: Why are 4, 5, and 6 cycles shown?</strong></p>
+    <p class="faq-answer">A: These options balance schedule flexibility with enough total sleep for most adults.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Does this calculator assume it takes time to fall asleep?</strong></p>
+    <p class="faq-answer">A: Yes. In bedtime mode, it adds a fixed 15-minute buffer before sleep cycles begin.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Can I use this if I wake during the night?</strong></p>
+    <p class="faq-answer">A: Yes. Re-enter the new bedtime and calculate again for updated wake-up suggestions.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Why might I feel groggy even after a suggested wake-up time?</strong></p>
+    <p class="faq-answer">A: Cycle length varies by person, so timing can still feel off on some nights.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Does daylight saving time affect the result?</strong></p>
+    <p class="faq-answer">A: It can, because clock changes can shift local wall-clock wake-up times.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Is this calculator a medical tool?</strong></p>
+    <p class="faq-answer">A: No. It is a planning aid and does not diagnose sleep or health conditions.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: Should I choose 5 or 6 cycles?</strong></p>
+    <p class="faq-answer">A: Choose the option that fits your schedule while still leaving enough rest time.</p>
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: What if my schedule allows only 4 cycles?</strong></p>
+    <p class="faq-answer">A: 4 cycles can work occasionally, but many adults feel better with longer sleep when possible.</p>
   </div>
 </div>
 

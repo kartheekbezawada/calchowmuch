@@ -12,7 +12,7 @@ test.describe('Countdown Timer Generator', () => {
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
-      'Create a live countdown to any future date and time. Simple, fast, and free countdown timer generator.'
+      'Create a countdown timer to any future date and time. See days, hours, minutes, and seconds remaining—fast, free, and accurate.'
     );
 
     const targetDateTime = await page.evaluate(() => {

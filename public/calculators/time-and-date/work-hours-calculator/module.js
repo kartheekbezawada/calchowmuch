@@ -74,14 +74,110 @@ const CALCULATOR_FAQ_SCHEMA = {
           'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'How do I calculate split shifts with two work periods?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I leave Segment 2 blank in split shift mode?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Segment 2 is optional. If left blank, only Segment 1 is used.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I calculate weekly work hours for multiple days?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if my unpaid break is longer than the shift?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The calculator shows an error because unpaid break minutes cannot exceed worked minutes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this calculator include overtime pay rules?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'No. It calculates worked time only. Overtime pay policies depend on employer and local regulations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use this for timesheets and payroll prep?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules.',
+      },
+    },
+  ],
+};
+
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Work Hours Calculator',
+      url: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
+      description:
+        'Calculate worked hours from start and end times, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Work Hours Calculator',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Web',
+      url: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
+      description:
+        'Free work hours calculator for single shift, split shift, and weekly total calculations with break deductions.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Work Hours Calculator',
+          item: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
+        },
+      ],
+    },
   ],
 };
 
 const metadata = {
-  title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
+  title: 'Work Hours Calculator – Calculate Shift Hours & Breaks | CalcHowMuch',
   description:
-    'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.',
+    'Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours.',
   canonical: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
+  structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
@@ -101,11 +197,22 @@ function ensureH1Title() {
 
 ensureH1Title();
 
-const placeholderMap = {
-  totalHhmm: document.querySelector('[data-placeholder="total-hhmm"]'),
-  totalDecimal: document.querySelector('[data-placeholder="total-decimal"]'),
-  breakMinutes: document.querySelector('[data-placeholder="break-minutes"]'),
-};
+function updateDataPlaceholders(attribute, values) {
+  document.querySelectorAll(`[data-${attribute}]`).forEach((node) => {
+    const key = node.getAttribute(`data-${attribute}`);
+    if (!key || !Object.prototype.hasOwnProperty.call(values, key)) {
+      return;
+    }
+    node.textContent = String(values[key]);
+  });
+}
+
+function formatTimeRange(startValue, endValue) {
+  if (!startValue || !endValue) {
+    return 'Not set';
+  }
+  return `${startValue} to ${endValue}`;
+}
 
 const weeklyRows = Array.from(document.querySelectorAll('[data-weekly-day]')).map((row) => ({
   label: row.dataset.weeklyLabel,
@@ -114,18 +221,18 @@ const weeklyRows = Array.from(document.querySelectorAll('[data-weekly-day]')).ma
   nextDayInput: row.querySelector('[data-weekly-next-day]'),
   breakGroup: setupButtonGroup(row.querySelector('[data-weekly-break]'), {
     defaultValue: '0',
-    onChange: () => recalculateIfVisible(),
+    onChange: () => showPlaceholder(),
   }),
 }));
 
 const singleBreakButtons = setupButtonGroup(singleBreakGroup, {
   defaultValue: '30',
-  onChange: () => recalculateIfVisible(),
+  onChange: () => showPlaceholder(),
 });
 
 const splitBreakButtons = setupButtonGroup(splitBreakGroup, {
   defaultValue: '30',
-  onChange: () => recalculateIfVisible(),
+  onChange: () => showPlaceholder(),
 });
 
 function setSectionVisibility(section, isVisible) {
@@ -214,22 +321,63 @@ function addResultLine(text) {
   resultsList.appendChild(line);
 }
 
-function updateExplanationPlaceholders(totalHHMM, totalDecimal, breakMinutes) {
-  if (placeholderMap.totalHhmm) {
-    placeholderMap.totalHhmm.textContent = totalHHMM;
-  }
-  if (placeholderMap.totalDecimal) {
-    placeholderMap.totalDecimal.textContent = totalDecimal;
-  }
-  if (placeholderMap.breakMinutes) {
-    placeholderMap.breakMinutes.textContent = String(breakMinutes);
-  }
+function buildExplanationData(result, totalHHMM, decimalHours) {
+  const grossMinutes = result.totalMinutes + result.totalBreakMinutes;
+  const grossHHMM = formatHHMM(grossMinutes);
+
+  const summaryData = {
+    mode:
+      result.mode === 'single'
+        ? 'single shift'
+        : result.mode === 'split'
+          ? 'split shift'
+          : 'weekly total',
+    primaryInput: result.primaryInput,
+    secondaryInput: result.secondaryInput,
+    breakMinutes: result.totalBreakMinutes,
+    totalHHMM,
+    totalDecimal: decimalHours,
+  };
+
+  const scenarioData = {
+    modeLabel:
+      result.mode === 'single'
+        ? 'Single Shift'
+        : result.mode === 'split'
+          ? 'Split Shift'
+          : 'Weekly Total',
+    primaryWindow: result.primaryInput,
+    secondaryWindow: result.secondaryInput,
+    breakValue: `${result.totalBreakMinutes} minutes`,
+    overnightValue: result.overnightLabel,
+  };
+
+  const metricData = {
+    workedHhmm: totalHHMM,
+    workedDecimal: decimalHours,
+    breakMinutes: result.totalBreakMinutes,
+    grossHhmm: grossHHMM,
+  };
+
+  const explData = {
+    modeNarrative: summaryData.mode,
+    totalHHMM,
+    totalDecimal: decimalHours,
+    grossHHMM,
+    breakMinutes: result.totalBreakMinutes,
+  };
+
+  updateDataPlaceholders('work-summary', summaryData);
+  updateDataPlaceholders('work-scenario', scenarioData);
+  updateDataPlaceholders('work-metric', metricData);
+  updateDataPlaceholders('work-expl', explData);
 }
 
-function buildResults({ mode, totalMinutes, totalBreakMinutes, segmentMinutes, dailyLines }) {
+function buildResults(result) {
   if (!resultsList || !placeholder) {
     return;
   }
+  const { mode, totalMinutes, totalBreakMinutes, segmentMinutes, dailyLines } = result;
   resultsList.innerHTML = '';
   const totalHHMM = formatHHMM(totalMinutes);
   const decimalHours = formatDecimalHours(totalMinutes);
@@ -249,7 +397,7 @@ function buildResults({ mode, totalMinutes, totalBreakMinutes, segmentMinutes, d
     dailyLines.forEach((line) => addResultLine(line));
   }
 
-  updateExplanationPlaceholders(totalHHMM, decimalHours, totalBreakMinutes);
+  buildExplanationData(result, totalHHMM, decimalHours);
   placeholder.classList.add('is-hidden');
   resultsList.classList.remove('is-hidden');
 }
@@ -274,6 +422,9 @@ function calculateSingle() {
     mode: 'single',
     totalMinutes: segmentMinutes - breakMinutes,
     totalBreakMinutes: breakMinutes,
+    primaryInput: formatTimeRange(singleStartInput?.value ?? '', singleEndInput?.value ?? ''),
+    secondaryInput: 'Not used',
+    overnightLabel: singleNextDayInput?.checked ? 'Yes' : 'No',
   };
 }
 
@@ -321,6 +472,12 @@ function calculateSplit() {
     totalMinutes: total.totalMinutes,
     totalBreakMinutes: total.totalBreakMinutes,
     segmentMinutes: total.segmentMinutes,
+    primaryInput: formatTimeRange(splitStartInput?.value ?? '', splitEndInput?.value ?? ''),
+    secondaryInput: hasSegment2
+      ? formatTimeRange(split2StartInput?.value ?? '', split2EndInput?.value ?? '')
+      : 'Not used',
+    overnightLabel:
+      splitNextDayInput?.checked || split2NextDayInput?.checked ? 'Yes (one or more segments)' : 'No',
   };
 }
 
@@ -370,6 +527,9 @@ function calculateWeekly() {
     totalMinutes: totals.totalMinutes,
     totalBreakMinutes: totals.totalBreakMinutes,
     dailyLines,
+    primaryInput: `${filledDays.length} day(s) entered`,
+    secondaryInput: 'Per-day windows listed below',
+    overnightLabel: filledDays.some((day) => day.endsNextDay) ? 'Yes (one or more days)' : 'No',
   };
 }
 
@@ -395,16 +555,12 @@ function calculate() {
   buildResults(result);
 }
 
-function recalculateIfVisible() {
-  if (resultsList && !resultsList.classList.contains('is-hidden')) {
-    calculate();
-  }
-}
-
 calculateButton?.addEventListener('click', () => calculate());
 
 const inputs = document.querySelectorAll('#calc-work-hours input');
 inputs.forEach((input) => {
-  input.addEventListener('input', () => recalculateIfVisible());
-  input.addEventListener('change', () => recalculateIfVisible());
+  input.addEventListener('input', () => showPlaceholder());
+  input.addEventListener('change', () => showPlaceholder());
 });
+
+showPlaceholder();

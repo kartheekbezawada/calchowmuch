@@ -22,6 +22,18 @@ test.describe('Nap Time Calculator', () => {
     await expect(results.nth(0)).toContainText('Recommended wake-up time');
     await expect(results.nth(1)).toContainText('Nap length (excluding buffer)');
     await expect(results.nth(2)).toContainText('Buffer applied');
+
+    const baselineWakeTime = (await results.nth(0).textContent()) ?? '';
+    await page.locator('#nap-start-time').fill('14:00');
+    await page.locator('[data-button-group="nap-type"] button[data-value="quick"]').click();
+    await page.locator('[data-button-group="nap-buffer"] button[data-value="0"]').click();
+
+    await expect(page.locator('#nap-results-list')).toBeHidden();
+    await expect(page.locator('#nap-placeholder')).toBeVisible();
+
+    await page.locator('#nap-calculate').click();
+    await expect(page.locator('#nap-results-list')).toBeVisible();
+    await expect(results.nth(0)).not.toHaveText(baselineWakeTime);
   });
 
   test('NAP-TEST-E2E-2: explanation content and FAQs', async ({ page }) => {

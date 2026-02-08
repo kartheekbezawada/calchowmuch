@@ -1,4 +1,5 @@
-import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 import { calculateMinimumPayment } from '/assets/js/core/credit-card-utils.js';
 
 const balanceInput = document.querySelector('#cc-min-balance');
@@ -6,104 +7,397 @@ const aprInput = document.querySelector('#cc-min-apr');
 const rateInput = document.querySelector('#cc-min-rate');
 const floorInput = document.querySelector('#cc-min-floor');
 const calculateButton = document.querySelector('#cc-min-calc');
-const resultDiv = document.querySelector('#cc-min-result');
+
+const placeholder = document.querySelector('#cc-min-placeholder');
+const errorMessage = document.querySelector('#cc-min-error');
+const resultsList = document.querySelector('#cc-min-results-list');
 const summaryDiv = document.querySelector('#cc-min-summary');
-
-const explanationRoot = document.querySelector('#cc-min-explanation');
-const balanceValue = explanationRoot?.querySelector('[data-cc-min="balance"]');
-const aprValue = explanationRoot?.querySelector('[data-cc-min="apr"]');
-const firstPaymentValue = explanationRoot?.querySelector('[data-cc-min="first-payment"]');
-const monthsValue = explanationRoot?.querySelector('[data-cc-min="months"]');
-const interestValue = explanationRoot?.querySelector('[data-cc-min="interest"]');
-const totalValue = explanationRoot?.querySelector('[data-cc-min="total"]');
-
 const tableBody = document.querySelector('#cc-min-table-body');
 
-function clearOutputs() {
-  if (tableBody) {
-    tableBody.innerHTML = '';
+const explanationSpans = Array.from(document.querySelectorAll('[data-cc-min]')).reduce((acc, el) => {
+  const key = el.dataset.ccMin;
+  if (!acc[key]) {
+    acc[key] = [];
   }
+  acc[key].push(el);
+  return acc;
+}, {});
+
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const FAQ_ITEMS = [
+  {
+    question: 'What is a credit card minimum payment?',
+    answer:
+      'A credit card minimum payment is the lowest amount your issuer requires each month to keep the account current and avoid late-payment penalties.',
+  },
+  {
+    question: 'How is the minimum payment calculated?',
+    answer:
+      'Issuers commonly set the minimum as a percentage of your balance with a lowest monthly payment floor, and this calculator models that same structure month by month.',
+  },
+  {
+    question: 'Why does it take so long to pay off with minimum payments?',
+    answer:
+      'Minimum payments usually decline as your balance drops, so less principal is reduced each month while interest keeps accruing.',
+  },
+  {
+    question: 'What is the minimum payment trap?',
+    answer:
+      'The minimum payment trap is when declining required payments make balances last for years, causing much higher total interest costs.',
+  },
+  {
+    question: 'How does the lowest monthly payment floor work?',
+    answer:
+      'The lowest monthly payment floor is a fixed dollar amount that sets the smallest allowed minimum payment even when the percentage-based amount becomes lower.',
+  },
+  {
+    question: 'What happens if I pay more than the minimum?',
+    answer:
+      'Paying more than the minimum reduces principal faster, shortens payoff time, and lowers total interest compared with minimum-only payments.',
+  },
+  {
+    question: 'Does the minimum payment rate vary by card issuer?',
+    answer:
+      'Yes. Issuers can use different minimum payment formulas, percentages, and lowest payment floors, so your monthly requirement can vary by card.',
+  },
+  {
+    question: 'Can my minimum payment ever go up?',
+    answer:
+      'Yes. It can increase if your balance rises, your issuer changes terms, or fees and penalty APR adjustments apply.',
+  },
+  {
+    question: 'Does this calculator include new purchases or fees?',
+    answer:
+      'No. This model assumes no new purchases and no additional fees during payoff so you can isolate the minimum-payment repayment path.',
+  },
+  {
+    question: 'How can I estimate a faster payoff strategy?',
+    answer:
+      'Compare the minimum-only outcome with a higher fixed monthly payment and use the difference in months and interest to set a faster payoff target.',
+  },
+];
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+
+const metadata = {
+  title: 'Credit Card Minimum Payment Calculator -- True Cost of Minimums',
+  description:
+    'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+  canonical: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        name: 'Credit Card Minimum Payment Calculator',
+        url: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',
+        description:
+          'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Credit Card Minimum Payment Calculator',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',
+        description:
+          'Free credit card minimum payment calculator. Estimate payoff months, first payment, total interest, and total paid when making minimum payments only.',
+        browserRequirements: 'Requires JavaScript enabled',
+        softwareVersion: '1.0',
+        creator: {
+          '@type': 'Organization',
+          name: 'CalcHowMuch',
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://calchowmuch.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Credit Cards',
+            item: 'https://calchowmuch.com/loans/credit-card-repayment-payoff/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Credit Card Minimum Payment Calculator',
+            item: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',
+          },
+        ],
+      },
+    ],
+  },
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+};
+
+setPageMetadata(metadata);
+
+let hasCalculated = false;
+
+function setSpan(key, value) {
+  const nodes = explanationSpans[key] || [];
+  nodes.forEach((node) => {
+    node.textContent = value;
+  });
 }
 
-function setError(message) {
-  if (resultDiv) {
-    resultDiv.textContent = message;
-  }
-  if (summaryDiv) {
-    summaryDiv.textContent = '';
-  }
-  clearOutputs();
+function formatExplanationAmount(value) {
+  return formatNumber(value, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 }
 
-function updateTable(yearly) {
+function setInputSpans({ balance, apr, minRate, minPayment }) {
+  setSpan('balance', formatExplanationAmount(balance));
+  setSpan('apr', formatPercent(apr));
+  setSpan('rate', formatPercent(minRate, { maximumFractionDigits: 1 }));
+  setSpan('floor', formatExplanationAmount(minPayment));
+}
+
+function setOutputPlaceholders() {
+  setSpan('first-payment', '—');
+  setSpan('months', '—');
+  setSpan('interest', '—');
+  setSpan('total', '—');
+}
+
+function setOutputSpans(data) {
+  setSpan('first-payment', formatExplanationAmount(data.firstPayment));
+  setSpan('months', `${formatNumber(data.months, { maximumFractionDigits: 0 })} months`);
+  setSpan('interest', formatExplanationAmount(data.totalInterest));
+  setSpan('total', formatExplanationAmount(data.totalPayment));
+}
+
+function renderTablePlaceholder() {
   if (!tableBody) {
     return;
   }
-  tableBody.innerHTML = yearly
+  tableBody.innerHTML =
+    '<tr class="cc-min-table-placeholder-row"><td colspan="4">Run Calculate to populate yearly payoff rows.</td></tr>';
+}
+
+function updateTable(yearlyRows) {
+  if (!tableBody) {
+    return;
+  }
+  if (!Array.isArray(yearlyRows) || yearlyRows.length === 0) {
+    renderTablePlaceholder();
+    return;
+  }
+
+  tableBody.innerHTML = yearlyRows
     .map(
       (row) => `
         <tr>
           <td>${row.year}</td>
-          <td>${formatNumber(row.payment)}</td>
-          <td>${formatNumber(row.interest)}</td>
-          <td>${formatNumber(row.balance)}</td>
+          <td>${formatExplanationAmount(row.payment)}</td>
+          <td>${formatExplanationAmount(row.interest)}</td>
+          <td>${formatExplanationAmount(row.balance)}</td>
         </tr>
       `
     )
     .join('');
 }
 
-
-function updateExplanation(data) {
-  if (!explanationRoot) {
+function clearError() {
+  if (!errorMessage) {
     return;
   }
-  balanceValue.textContent = formatNumber(data.balance);
-  aprValue.textContent = formatPercent(data.apr);
-  firstPaymentValue.textContent = formatNumber(data.firstPayment);
-  monthsValue.textContent = formatNumber(data.months, { maximumFractionDigits: 0 });
-  interestValue.textContent = formatNumber(data.totalInterest);
-  totalValue.textContent = formatNumber(data.totalPayment);
+  errorMessage.textContent = '';
+  errorMessage.classList.add('is-hidden');
+}
+
+function showPlaceholder() {
+  clearError();
+  placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  summaryDiv?.classList.add('is-hidden');
+
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
+  if (summaryDiv) {
+    summaryDiv.innerHTML = '';
+  }
+
+  renderTablePlaceholder();
+}
+
+function showError(message) {
+  if (errorMessage) {
+    errorMessage.textContent = message;
+    errorMessage.classList.remove('is-hidden');
+  }
+
+  placeholder?.classList.add('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  summaryDiv?.classList.add('is-hidden');
+
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
+  if (summaryDiv) {
+    summaryDiv.innerHTML = '';
+  }
+
+  renderTablePlaceholder();
+}
+
+function addResultLine(text) {
+  if (!resultsList) {
+    return;
+  }
+  const line = document.createElement('div');
+  line.className = 'result-line';
+  line.textContent = text;
+  resultsList.appendChild(line);
+}
+
+function readInputs() {
+  return {
+    balance: Number(balanceInput?.value),
+    apr: Number(aprInput?.value),
+    minRate: Number(rateInput?.value),
+    minPayment: Number(floorInput?.value),
+  };
+}
+
+function validateInputs(values) {
+  if (!Number.isFinite(values.balance) || values.balance <= 0) {
+    return 'Balance must be greater than 0.';
+  }
+  if (!Number.isFinite(values.apr) || values.apr < 0) {
+    return 'APR must be 0 or higher.';
+  }
+  if (!Number.isFinite(values.minRate) || values.minRate < 0) {
+    return 'Minimum payment rate must be 0 or higher.';
+  }
+  if (!Number.isFinite(values.minPayment) || values.minPayment < 0) {
+    return 'Lowest monthly payment must be 0 or higher.';
+  }
+  return null;
+}
+
+function resetAfterInputChange() {
+  if (!hasCalculated) {
+    return;
+  }
+
+  const values = readInputs();
+  setInputSpans(values);
+  setOutputPlaceholders();
+  showPlaceholder();
 }
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {
+  const values = readInputs();
+  setInputSpans(values);
+
+  const validationError = validateInputs(values);
+  if (validationError) {
+    setOutputPlaceholders();
+    showError(validationError);
     return;
   }
-  resultDiv.textContent = '';
-  summaryDiv.textContent = '';
-  clearOutputs();
 
-  const balance = Number(balanceInput?.value);
-  const apr = Number(aprInput?.value);
-  const minRate = Number(rateInput?.value);
-  const minPayment = Number(floorInput?.value);
-
-  const data = calculateMinimumPayment({
-    balance,
-    apr,
-    minRate,
-    minPayment,
-  });
-
+  const data = calculateMinimumPayment(values);
   if (data.error) {
-    setError(data.error);
+    setOutputPlaceholders();
+    showError(data.error);
     return;
   }
 
-  resultDiv.innerHTML = `<strong>Payoff time:</strong> ${formatNumber(data.months, {
-    maximumFractionDigits: 0,
-  })} months`;
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
 
-  summaryDiv.innerHTML =
-    `<p><strong>Total interest:</strong> ${formatNumber(data.totalInterest)}</p>` +
-    `<p><strong>Total paid:</strong> ${formatNumber(data.totalPayment)}</p>` +
-    `<p><strong>First payment:</strong> ${formatNumber(data.firstPayment)}</p>`;
+  addResultLine(
+    `Payoff time: ${formatNumber(data.months, { maximumFractionDigits: 0 })} months`
+  );
+
+  if (summaryDiv) {
+    summaryDiv.innerHTML =
+      `<p><strong>Total interest:</strong> ${formatCurrency(data.totalInterest)}</p>` +
+      `<p><strong>Total paid:</strong> ${formatCurrency(data.totalPayment)}</p>` +
+      `<p><strong>First payment:</strong> ${formatCurrency(data.firstPayment)}</p>`;
+  }
+
+  clearError();
+  placeholder?.classList.add('is-hidden');
+  resultsList?.classList.remove('is-hidden');
+  summaryDiv?.classList.remove('is-hidden');
 
   updateTable(data.yearly);
-  updateExplanation({ ...data, balance, apr });
+  setOutputSpans(data);
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => {
+  hasCalculated = true;
+  calculate();
+});
 
-calculate();
+document.querySelectorAll('#calc-cc-min input').forEach((input) => {
+  input.addEventListener('input', resetAfterInputChange);
+});
+
+(function initializeExplanation() {
+  const values = readInputs();
+  setInputSpans(values);
+  setOutputPlaceholders();
+
+  clearError();
+  placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  summaryDiv?.classList.add('is-hidden');
+
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
+  if (summaryDiv) {
+    summaryDiv.innerHTML = '';
+  }
+
+  const validationError = validateInputs(values);
+  if (validationError) {
+    renderTablePlaceholder();
+    return;
+  }
+
+  const defaultData = calculateMinimumPayment(values);
+  if (defaultData.error) {
+    renderTablePlaceholder();
+    return;
+  }
+
+  updateTable(defaultData.yearly);
+  setOutputSpans(defaultData);
+})();

@@ -45,6 +45,6 @@ test.describe('Age Calculator', () => {
     await expect(explanation.locator('h2')).toHaveCount(5);
     await expect(explanation).toContainText('What is an Age Calculator?');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.age-faq-item')).toHaveCount(4);
+    await expect(explanation.locator('.age-faq-item')).toHaveCount(10);
   });
 });

@@ -261,6 +261,11 @@ body .site-header .header-search-icon {
   margin-right: 4px;
 }
 
+.top-nav .nav-icon-right {
+  margin-right: 0;
+  margin-left: 2px;
+}
+
 .top-nav .nav-label {
   vertical-align: middle;
   display: inline-block;
