@@ -1,0 +1,28 @@
+# REQ-20260208-029 slug list (one per line)
+# Rules:
+# - Use explicit slugs only (no auto-discovery during audit)
+# - Prefer trailing slash for directory routes; audit runner normalizes
+#
+# Seed examples (replace/expand to full scope for Finance, Credit Cards, Percentage, Time & Date, Home Loan, Auto Loans):
+/
+/finance/
+/finance/present-value-of-annuity/
+
+/percentage-calculators/
+/percentage-calculators/percentage-increase/
+
+/time-and-date/
+
+# Credit Cards (top-nav entrypoint is typically a calculator page)
+/loans/credit-card-repayment-payoff/
+/loans/credit-card-minimum-payment/
+/loans/balance-transfer-installment-plan/
+/loans/credit-card-consolidation/
+
+# Home Loan (confirm correct entry + include all in-scope slugs)
+/loans/home-loan/
+/loans/how-much-can-i-borrow/
+
+# Auto Loans (confirm correct entry + include all in-scope slugs)
+/loans/car-loan/
+/loans/pcp-calculator/
