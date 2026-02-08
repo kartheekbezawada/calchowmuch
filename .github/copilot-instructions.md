@@ -13,7 +13,7 @@
 
 ## Critical Requirements
 
-**ALWAYS read `requirements/universal/UNIVERSAL_REQUIREMENTS.md` first** - Contains indexed rule IDs (e.g., `UI-2.3`, `UTBL-BORDER-1`) that must be cited in reviews.
+**ALWAYS read `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` first** - Contains indexed rule IDs (e.g., `UI-2.3`, `UTBL-BORDER-1`) that must be cited in reviews.
 
 **Calculator hierarchy**: Follow `requirements/universal/calculator-hierarchy.md` for navigation structure. Categories: Math, Loans. Each calculator maps to exactly one leaf item.
 
@@ -78,3 +78,16 @@ Before implementing any calculator, read its requirements file:
 - Math: `requirements/math/*.md`
 
 These contain acceptance criteria, edge cases, and calculation formulas.
+
+## Requirement Authoring Guard (Copilot)
+
+When drafting a new calculator requirement (or updating an existing REQ), include an explicit **Calculation Pane Interaction Contract** if any of these are true:
+- The calculator has many inputs (or dynamic add/remove rows)
+- The calculator has mode switching/toggling
+- The calculator has an explicit Calculate button
+
+The contract must state:
+- Mode control type and exact labels (`switch` or segmented `button-group`; never dropdown)
+- Default mode on page load and visibility rules per mode
+- Row density/layout rules (including dynamic rows from Add Item)
+- Trigger behavior: keep initial prefilled load result allowed, but no recalculation on input edits; recompute only on Calculate click

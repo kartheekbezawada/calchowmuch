@@ -64,15 +64,24 @@ Top navigation display name: Percentage Calculators
 Category treated as its own top-level group
 
 ### 2.2 Left Navigation Structure
+
 ```
 Percentage Calculators
-├── Percentage of a Number
-├── What Percent Is X of Y
+├── Percent Change
+├── Percentage Difference
 ├── Percentage Increase
 ├── Percentage Decrease
-├── Percent Change
-└── Reverse Percentage
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
+└── Markup Calculator
 ```
+
 
 
 #### Rules
@@ -129,7 +138,7 @@ https://calchowmuch.com/percentage-calculators/reverse-percentage/
 ## 6. Calculation Pane Requirements
 ### 6.1 Heading
 
-H2: Reverse Percentage Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 ### 6.2 Inputs (Above the Fold)
 | Section | Input | Type | Required | Notes |
@@ -184,7 +193,7 @@ Formatting must follow your site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-### 8.1 H2 — Summary (Keyword-Dense, Natural)
+### 8.1 Summary Content (No Summary Heading Node)
 
 Reverse percentage helps you find the original value when you know a final value and the percentage it represents.
 

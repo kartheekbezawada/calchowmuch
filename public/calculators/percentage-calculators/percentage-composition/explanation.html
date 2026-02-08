@@ -1,0 +1,151 @@
+<div id="composition-explanation" class="explanation-pane">
+  <p>Percentage composition shows how each item contributes to a total as a percentage.</p>
+  <p>
+    This percentage composition calculator computes each item's share of total by dividing the item
+    value by the total and multiplying by 100. If you provide a known total, it can also calculate
+    the remainder (Other) percentage.
+  </p>
+  <p>
+    It is useful for budgets, allocations, category breakdowns, and any situation where you want a
+    percentage split.
+  </p>
+
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+          <th scope="col">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Items Count</td>
+          <td><span data-composition="items-count"></span></td>
+          <td>Grid</td>
+        </tr>
+        <tr>
+          <td>Total Used</td>
+          <td><span data-composition="total-used"></span></td>
+          <td>Mode</td>
+        </tr>
+        <tr>
+          <td>Total (T)</td>
+          <td><span data-composition="total"></span></td>
+          <td>Engine</td>
+        </tr>
+        <tr>
+          <td>Sum of Items</td>
+          <td><span data-composition="sum-items"></span></td>
+          <td>Engine</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Remainder %</td>
+          <td><span data-composition="remainder-percent"></span></td>
+          <td>Engine (Known Total mode)</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Results Table</h3>
+  <div class="table-scroll" tabindex="0">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Metric</th>
+          <th scope="col">Value</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody id="composition-results-body">
+        <tr>
+          <td>Total</td>
+          <td><span data-composition="total"></span></td>
+          <td>Total used for the calculation</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Formula</td>
+          <td>(Item ÷ Total) × 100</td>
+          <td>Share-of-total formula</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h3>Explanation</h3>
+  <p>
+    To calculate each item's percentage share, first determine the total. Then divide each item
+    value by the total and multiply by 100.
+  </p>
+  <p>
+    If you already know the total (for example, a fixed budget), you can enter it to see the
+    remainder value and remainder percentage. The remainder shows how much of the total is not
+    covered by the listed items.
+  </p>
+  <p>
+    If the total is zero, percentages cannot be calculated because division by zero is not possible.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: What is percentage composition?</strong></p>
+    <p class="faq-answer">
+      A: Percentage composition shows each item's share of a total as a percentage.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate percent of total for an item?</strong></p>
+    <p class="faq-answer">A: Divide the item value by the total and multiply by 100.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is the share of total formula?</strong></p>
+    <p class="faq-answer">A: The formula is (Item ÷ Total) × 100.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What is remainder percentage?</strong></p>
+    <p class="faq-answer">
+      A: Remainder percentage is the part of the total not covered by the listed items, expressed as
+      a percent of the total.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: How do you calculate remainder %?</strong></p>
+    <p class="faq-answer">
+      A: Subtract the sum of items from the total, divide by the total, then multiply by 100.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What if the items already add up to the total?</strong></p>
+    <p class="faq-answer">A: Then the remainder is zero and the remainder percentage is 0%.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: What if the items exceed the total?</strong></p>
+    <p class="faq-answer">
+      A: The remainder becomes negative, which indicates the items are larger than the total.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use decimals for item values?</strong></p>
+    <p class="faq-answer">A: Yes, decimals work the same way for percent of total.</p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Do the percentages always add up to 100%?</strong></p>
+    <p class="faq-answer">
+      A: They should add up to 100% when using the same total, but rounding can cause small
+      differences.
+    </p>
+  </div>
+  <div class="faq-box">
+    <p><strong>Q: Where is percentage composition used in real life?</strong></p>
+    <p class="faq-answer">
+      A: It is used for budgets, allocations, category breakdowns, and percent share reporting.
+    </p>
+  </div>
+</div>

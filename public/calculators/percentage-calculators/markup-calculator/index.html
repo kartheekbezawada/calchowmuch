@@ -1,0 +1,101 @@
+<div id="calc-markup-calculator">
+  <div class="calculator-ui">
+    <p class="helper">
+      Calculate markup for one or multiple products from cost and markup %, or find markup % from
+      cost and price.
+    </p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label>Product Scope</label>
+        <div class="mode-switch-control" role="group" aria-label="Markup product scope">
+          <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
+            Single Product
+          </span>
+          <label class="mode-switch-toggle" for="markup-product-toggle">
+            <input
+              id="markup-product-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Switch to basket mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-markup-product-mode-label="basket">
+            Basket (Multi Product)
+          </span>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label>Direction</label>
+        <div class="mode-switch-control" role="group" aria-label="Markup direction">
+          <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
+            Cost -> Price
+          </span>
+          <label class="mode-switch-toggle" for="markup-calc-toggle">
+            <input
+              id="markup-calc-toggle"
+              type="checkbox"
+              role="switch"
+              aria-label="Switch to price to markup mode"
+            />
+            <span class="mode-switch-track" aria-hidden="true">
+              <span class="mode-switch-thumb"></span>
+            </span>
+          </label>
+          <span class="mode-switch-label" data-markup-calc-mode-label="price-to-markup">
+            Price -> Markup %
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div id="markup-single-section" class="input-stack">
+      <div id="markup-single-ctp" class="input-stack">
+        <div class="input-row">
+          <label for="markup-single-cost">Cost (C)</label>
+          <input id="markup-single-cost" type="number" value="50" min="0" step="0.01" />
+        </div>
+        <div class="input-row">
+          <label for="markup-single-markup">Markup Percent (M%)</label>
+          <input id="markup-single-markup" type="number" value="40" min="0" step="0.01" />
+        </div>
+      </div>
+      <div id="markup-single-ptm" class="input-stack is-hidden" aria-hidden="true" hidden>
+        <div class="input-row">
+          <label for="markup-single-cost2">Cost (C)</label>
+          <input id="markup-single-cost2" type="number" value="50" min="0" step="0.01" />
+        </div>
+        <div class="input-row">
+          <label for="markup-single-price">Selling Price (P)</label>
+          <input id="markup-single-price" type="number" value="70" min="0" step="0.01" />
+        </div>
+      </div>
+    </div>
+
+    <div id="markup-basket-section" class="input-stack is-hidden" aria-hidden="true" hidden>
+      <p class="helper">
+        Markup is based on cost, not selling price. Add products and enter values per row.
+      </p>
+      <div id="markup-basket-rows" class="input-stack"></div>
+      <button class="calculator-button secondary" id="markup-add-row" type="button">
+        Add Product Row
+      </button>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="markup-calc">
+      Calculate Markup
+    </button>
+
+    <div class="result" id="markup-result" aria-live="polite"></div>
+    <div class="result-detail" id="markup-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script
+  type="module"
+  src="/calculators/percentage-calculators/markup-calculator/module.js"
+></script>

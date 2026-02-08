@@ -2,8 +2,8 @@
 
 **Canonical Source:** This document is the single source of truth for Calculation Pane form density, progressive disclosure, and layout stability rules. It replaces all scattered references and duplicates.
 
-**Last Updated:** 2026-02-05  
-**Version:** 1.0
+**Last Updated:** 2026-02-08  
+**Version:** 1.1
 
 ---
 
@@ -25,6 +25,9 @@
 - UUI-FDP-005
 - UUI-FDP-006
 - UUI-FDP-007
+- UUI-FDP-008
+- UUI-FDP-009
+- UUI-FDP-010
 
 ---
 
@@ -39,6 +42,9 @@
 | UUI-FDP-005 | Scrolling is allowed only for optional sections; core CTA must be accessible without scroll. | P1 |
 | UUI-FDP-006 | Density must not erode labels, tap targets, or comprehension. | P0 |
 | UUI-FDP-007 | Interactions must not cause layout shifts or alter row structure. | P0 |
+| UUI-FDP-008 | Calculations must be button-triggered only after page-load baseline; input edits must not auto-recalculate results. | P0 |
+| UUI-FDP-009 | Multi-mode calculators must use explicit, labeled mode controls with a defined default mode and deterministic field visibility. | P0 |
+| UUI-FDP-010 | Dynamic row controls (Add/Remove Item) must preserve the same compact row layout as initial rows. | P1 |
 
 ---
 
@@ -166,7 +172,30 @@ User interactions must not cause layout shifts inside the Calculation Pane.
 
 ---
 
-### ISS-UI-FDP-008 — Calculator-Specific Compliance Declaration (P1)
+### ISS-UI-FDP-008 — Button-Only Calculation Trigger (P0)
+**Rule:**  
+For calculators that expose an explicit Calculate CTA, results and explanation-pane dynamic values must update only when the user clicks that CTA.
+
+**Required Behavior:**
+- Keep initial prefilled baseline output on page load.
+- After page load, editing input fields must not update results/explanations until Calculate is clicked.
+- Mode/toggle/row-management interactions may update visibility/state, but must not trigger recomputation.
+
+**Violation Conditions:**
+- Any result text changes while typing/editing inputs before a Calculate click.
+- Any explanation dynamic token updates while typing/editing inputs before a Calculate click.
+- Any mode toggle or row add/remove triggers recomputation without a Calculate click.
+
+**Test Strategy:**
+- Capture result + explanation baseline at load.
+- Edit one visible input.
+- Assert no result/explanation change.
+- Click Calculate.
+- Assert result and/or explanation updates.
+
+---
+
+### ISS-UI-FDP-009 — Calculator-Specific Compliance Declaration (P1)
 **Rule:**  
 Each calculator must comply with these rules when modified; no explicit opt-in is required.
 
@@ -177,6 +206,49 @@ Each calculator must comply with these rules when modified; no explicit opt-in i
 **Test Strategy:**
 - Compare pre-change and post-change Calculation Pane height/structure.
 - Flag regressions that increase scroll for core inputs or introduce layout instability.
+
+---
+
+### ISS-UI-FDP-010 — Multi-Mode Toggle Contract for Dense Forms (P0)
+**Rule:**  
+When a calculator has high input density and mode switching, mode controls must be explicit, labeled, and deterministic.
+
+**Required Behavior:**
+- Use a two-state switch or segmented button-group (never dropdown) for mode selection.
+- Define and implement a default mode at page load.
+- Each mode must clearly map to which fields are visible/hidden.
+- Mode switching may update visibility/state only; it must not recompute results before Calculate click.
+
+**Violation Conditions:**
+- Mode control type is ambiguous or unlabeled.
+- Default mode is not defined or differs between requirement and implementation.
+- Field visibility changes are inconsistent per mode.
+- Mode switch triggers recomputation without Calculate click.
+
+**Test Strategy:**
+- Assert default mode state on initial load.
+- Toggle mode and verify only expected fields visibility changes.
+- Assert no result/explanation recomputation occurs until Calculate click.
+
+---
+
+### ISS-UI-FDP-011 — Dynamic Row Density Parity (P1)
+**Rule:**  
+Calculators with add/remove row interactions must keep dynamic rows visually and structurally consistent with initial rows.
+
+**Required Behavior:**
+- Added rows must reuse the same layout structure/classes as initial rows.
+- Compact row density (for related fields in one row) must be preserved after Add Item.
+- Mobile responsiveness may stack controls, but parity between initial and added rows must remain.
+
+**Violation Conditions:**
+- Added rows use a different layout pattern than initial rows.
+- Added rows break compact density rules or push unrelated controls into separate unstable blocks.
+
+**Test Strategy:**
+- Capture initial row structure/classes.
+- Add one row and compare structure/class parity.
+- Validate desktop and mobile behavior for row consistency.
 
 ---
 

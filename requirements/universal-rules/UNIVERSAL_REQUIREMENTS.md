@@ -179,6 +179,24 @@ The public calculation-pane form density and progressive-disclosure expectations
 | UI-2.3  | Use shared input classes/tokens. Must have labels. Must validate all input.                                                                                        | P0       |
 | UI-2.4  | Input values limited to**12 characters**. For `type="text"`: use `maxlength="12"`. For `type="number"`: enforce via JS.                                            | P1       |
 | UI-2.5  | **No dropdowns** â€” `select` elements not allowed. Replace with button groups / segmented controls.                                                            | P0       |
+| UI-2.6  | **Button-only calculation trigger** â€” For calculators with a Calculate CTA, recomputation must happen only on CTA click after initial page-load baseline. Input edits must not auto-recalculate. | P0 |
+| UI-2.7  | **Dense multi-input mode contract** â€” For calculators with many inputs and mode switching, requirements must define control type, default mode, field visibility per mode, and dynamic-row layout parity. | P0 |
+
+### 3.2.1 Calculation Trigger Contract (UI-2.6)
+
+- Initial prefilled result state on page load is allowed.
+- After load, editing any input must not change calculation output until the user clicks the calculator's Calculate button.
+- Explanation pane dynamic values are part of the calculation output and must follow the same trigger rule.
+- Mode toggles and add/remove-row controls may change visibility/state, but must not trigger recomputation without Calculate click.
+
+### 3.2.2 Requirement Authoring Contract (UI-2.7)
+
+When a calculator requirement includes high input density, mode switching, or dynamic add/remove rows, the REQ must include an explicit "Calculation Pane Interaction Contract" with:
+- Mode control type and exact labels (`switch` or segmented `button-group`; no dropdown)
+- Default mode at page load
+- Field visibility map per mode (which controls show/hide)
+- Dynamic-row layout parity rule (rows added via Add Item must match initial row layout)
+- Trigger behavior contract (initial prefilled baseline allowed; post-load recomputation only on Calculate click)
 
 ### 3.3 Layout Contract
 
@@ -211,10 +229,12 @@ Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
 
 | Rule ID | Requirement                                                                 | Severity |
 | --------- | ----------------------------------------------------------------------------- | ---------- |
-| UITGL-1 | Use button groups, not dropdowns                                            | P0       |
+| UITGL-1 | Use explicit toggles (`switch` or segmented button-group), never dropdowns  | P0       |
 | UITGL-2 | Toggle state must be visually obvious                                       | P1       |
 | UITGL-3 | Toggles must not change page height or shell size                           | P0       |
 | UITGL-4 | Toggle interaction must update all dependent UI (tables, graphs, summaries) | P1       |
+| UITGL-5 | Default toggle state must be defined in the requirement and match implementation | P0    |
+| UITGL-6 | Toggle interactions may change visibility/state but must not recompute before Calculate click | P0 |
 
 ### 3.6 Tables (Universal)
 
@@ -934,12 +954,17 @@ For Search Engine Optimization Rules (or) SEO and URL Rules, go and read SEO_RUL
 | AGENT-1.3 | **Do not commit cache directories** â€” Cache folders are forbidden from git commits                                       | P0       |
 | AGENT-1.4 | **Do not override Playwright cache path** â€” `PLAYWRIGHT_BROWSERS_PATH` must not be set or changed                        | P1       |
 | AGENT-1.5 | **Assume browsers/deps are installed** â€” Do not reinstall Playwright browsers or dependencies unless explicitly required | P1       |
+| AGENT-1.6 | **No in-repo browser profiles** â€” Lighthouse/Chrome/Puppeteer `--user-data-dir` or profile output paths must never point inside the repository | P0 |
+| AGENT-1.7 | **No machine-specific `.gitignore` spam** â€” Do not add file-by-file absolute paths (for example `C:/Users/...` or `C:\\Users\\...`) for generated artifacts | P0 |
+| AGENT-1.8 | **Ignore rules must be generalized** â€” Use minimal wildcard ignores for generated tool artifacts, never enumerated per-file cache entries | P1 |
+| AGENT-1.9 | **Accidental artifact cleanup is mandatory** â€” If tool-generated profile/cache folders appear in repo, remove them in the same change that fixes ignore rules | P1 |
 
 **Cache locations (reference):**
 
 - Playwright browsers: `~/.cache/ms-playwright`
 - npm cache: `~/.npm`
 - pip cache: `~/.cache/pip`
+- Lighthouse/Chrome temporary profiles (WSL/Linux): `/tmp/lighthouse-*`, `/tmp/chrome-profile-*`
 
 ### 15.2 Test Execution Environment
 
@@ -950,10 +975,11 @@ For Search Engine Optimization Rules (or) SEO and URL Rules, go and read SEO_RUL
 | AGENT-2.2 | **Remote WSL VS Code** â€” Use VS Code Remote â€“ WSL when applicable                                          | P1       |
 | AGENT-2.3 | **No Windows-shell installs** â€” Do not run Playwright or npm installs from Windows shells                       | P0       |
 | AGENT-2.4 | **Cache issues stop-and-report** â€” If a cache issue is suspected, stop and report; do not attempt cache cleanup | P0       |
+| AGENT-2.5 | **WSL path normalization** â€” In WSL, writable output paths must be Linux paths (`/tmp`, `/home`, `/mnt/c/...`) and must not use raw `C:\\...` strings | P0 |
 
 ---
 
 **End of Universal Requirements Document**
 
 > For site copy and content requirements, see `requirements/universal/SITE_COPY.md`
-> Last Updated: 2026-01-22
+> Last Updated: 2026-02-08

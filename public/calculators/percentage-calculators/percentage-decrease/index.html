@@ -1,0 +1,29 @@
+<div id="calc-percentage-decrease">
+  <div class="calculator-ui">
+    <p class="helper">Calculate the percentage decrease from an original value to a new value.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pctdec-original">Original Value (X)</label>
+        <input id="pctdec-original" type="number" value="200" step="any" />
+      </div>
+
+      <div class="input-row">
+        <label for="pctdec-new">New Value (Y)</label>
+        <input id="pctdec-new" type="number" value="150" step="any" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pctdec-calc">
+      Calculate Percentage Decrease
+    </button>
+
+    <div class="result" id="pctdec-result" aria-live="polite"></div>
+    <div class="result-detail" id="pctdec-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script
+  type="module"
+  src="/calculators/percentage-calculators/percentage-decrease/module.js"
+></script>

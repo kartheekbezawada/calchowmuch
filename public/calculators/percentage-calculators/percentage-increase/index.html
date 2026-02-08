@@ -1,0 +1,24 @@
+<div id="calc-percentage-increase">
+  <div class="calculator-ui">
+    <p class="helper">Calculate percentage increase from X to Y.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="pct-inc-x">Original Value (X)</label>
+        <input id="pct-inc-x" type="number" value="80" step="0.01" />
+      </div>
+
+      <div class="input-row">
+        <label for="pct-inc-y">New Value (Y)</label>
+        <input id="pct-inc-y" type="number" value="100" step="0.01" />
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="pct-inc-calc">Calculate Percentage Increase</button>
+
+    <div class="result" id="pct-inc-result" aria-live="polite"></div>
+    <div class="result-detail" id="pct-inc-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script type="module" src="/calculators/percentage-calculators/percentage-increase/module.js"></script>

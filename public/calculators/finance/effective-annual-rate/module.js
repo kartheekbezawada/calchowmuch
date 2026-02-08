@@ -182,13 +182,14 @@ setPageMetadata(metadata);
 const frequencyButtons = setupButtonGroup(frequencyGroup, {
   defaultValue: 'monthly',
   onChange: () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   },
 });
 
 let hasCalculated = false;
+const liveUpdatesEnabled = false;
 
 function setOptionalVisibility(expanded) {
   if (!optionalSection || !optionalToggle) {
@@ -312,7 +313,7 @@ if (calculateButton) {
 
 if (nominalRateInput) {
   nominalRateInput.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });
@@ -320,7 +321,7 @@ if (nominalRateInput) {
 
 if (customPeriodsInput) {
   customPeriodsInput.addEventListener('input', () => {
-    if (hasCalculated) {
+    if (liveUpdatesEnabled && hasCalculated) {
       calculate();
     }
   });

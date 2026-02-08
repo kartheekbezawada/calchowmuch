@@ -1,0 +1,20 @@
+<div id="calc-percent-to-fraction-decimal">
+  <div class="calculator-ui">
+    <p class="helper">Convert X% to decimal and simplified fraction.</p>
+
+    <div class="input-stack">
+      <div class="input-row">
+        <label for="ptfd-percent">Percentage (X)</label>
+        <input id="ptfd-percent" type="text" inputmode="decimal" value="12.5" placeholder="12.5 or 12.5%" />
+        <p class="helper">Example: 12.5%</p>
+      </div>
+    </div>
+
+    <button class="calculator-button full-width" type="button" id="ptfd-calc">Convert</button>
+
+    <div class="result" id="ptfd-result" aria-live="polite"></div>
+    <div class="result-detail" id="ptfd-result-detail" aria-live="polite"></div>
+  </div>
+</div>
+
+<script type="module" src="/calculators/percentage-calculators/percent-to-fraction-decimal/module.js"></script>

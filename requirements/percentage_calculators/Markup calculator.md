@@ -59,8 +59,24 @@ Top navigation display name: Percentage Calculators
 Category treated as its own top-level group
 
 2.2 Left Navigation Structure
+
+```
 Percentage Calculators
+├── Percent Change
+├── Percentage Difference
+├── Percentage Increase
+├── Percentage Decrease
+├── Percentage Composition
+├── Reverse Percentage
+├── Percent to Fraction/Decimal
+├── What Percent Is X of Y
+├── Find Percentage of a Number
+├── Commission Calculator
+├── Discount Calculator
+├── Margin Calculator
 └── Markup Calculator
+```
+
 
 
 Rules
@@ -109,11 +125,11 @@ https://calchowmuch.com/percentage-calculators/markup-calculator/
 6. Calculation Pane Requirements
 6.1 Heading
 
-H2: Markup Calculator
+No inner H2 inside the calculation pane. Use only the page-level H1 title.
 
 6.2 Mode Toggle (Required, Visible by Default)
 
-Button Toggle (Primary):
+Switch Toggle (Primary):
 
 Single Product
 
@@ -134,6 +150,10 @@ Price → Markup % (given cost and price per row)
 Rules
 
 Toggles are mandatory and visible by default
+
+Primary switch OFF = Single Product; ON = Basket
+
+Secondary switch OFF = Cost → Price; ON = Price → Markup %
 
 No dropdowns
 
@@ -196,11 +216,19 @@ Default rows: 3 rows (or 1 row if your universal pattern prefers minimal)
 
 Input validation inline per row
 
-Calculation updates on change
+Initial prefilled result may render on page load
+
+After input edits, recomputation must happen only on "Calculate Markup" click
+
+No live recalculation on input change
 
 Do not auto-round during typing
 
 Clear labeling: “Markup is based on cost (not selling price)”
+
+Basket rows must use compact density with Name, Qty, Cost, active mode field (Price or Markup %), and Remove action in one row block
+
+Rows added via "Add Product Row" must keep the same layout structure/class pattern as initial rows
 
 If Quantity exists, all totals must use quantity
 
@@ -309,7 +337,7 @@ Formatting must follow site-wide output rules
 
 Must implement Explanation Pane — Universal Standard exactly.
 
-8.1 H2 — Summary (Keyword-Dense, Natural)
+8.1 Summary Content (No Summary Heading Node)
 
 A markup calculator helps you price products by adding a markup percentage to the cost, or by finding the markup percentage when you know the cost and selling price.
 

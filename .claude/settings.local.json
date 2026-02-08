@@ -36,7 +36,10 @@
       "Bash(else echo \"No JSON produced\")",
       "Bash(else echo \"No JSON produced - P3 WAIVED \\(NO_FCP headless environment\\)\")",
       "Bash(npx vitest run:*)",
-      "Bash(set:*)"
+      "Bash(set:*)",
+      "Bash(git show:*)",
+      "Bash(npx prettier:*)",
+      "Bash(npx playwright test:*)"
     ]
   }
 }

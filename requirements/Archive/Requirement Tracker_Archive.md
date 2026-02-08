@@ -67,6 +67,18 @@ Source of truth for active work remains:
 | REQ-20260128-003 | Home Loan: Remove Monthly/Yearly Summary, Fix Chart, Simplify View Toggle | Calculator | UI/Flow + Bug Fix | HIGH | COMPLETE | NO |
 | REQ-20260128-016 | Modularize and Expand Universal Header/Footer Rules | UI/Layout | Layout/Contract/Refactor | HIGH | COMPLETE | NO |
 | REQ-20260203-001 | Home Loan Calculator: Add FAQ Section to Explanation Pane | Calculator | Content + UI/Flow | HIGH | COMPLETE | YES |
+| REQ-20260206-003 | Align TESTING_RULES with package.json scripts | Compliance | Testing Governance | HIGH | COMPLETE | NO |
+| REQ-20260206-001 | Present Value (PV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | NEW | YES |
+| REQ-20260206-004 | Future Value (FV) Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
+| REQ-20260207-001 | FAQPage Schema Injection Guard — Prevent Global FAQ Leakage Onto Calculator Pages | SEO | SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-002 | Present Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
+| REQ-20260207-003 | Future Value of Annuity Calculator (Ordinary & Due) — Finance Category | Calculator | New Calculator + SEO | HIGH | TESTING | YES |
+| REQ-20260207-004 | Effective Annual Rate (EAR) Converter — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-005 | Compound Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-006 | Savings Goal Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-007 | Investment Growth Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-008 | Simple Interest Calculator — Finance Category | Calculator | New Calculator + SEO | HIGH | COMPLETE | YES |
+| REQ-20260207-009 | ISS-001 Global Shell Layout Stability Fix (All Calculator Pages) | Calculator Platform | Layout/CSS + Test Stabilization | HIGH | COMPLETE | YES |
 
 | REQ-20260201-001 | Home Loan Calculator Website Testing | Calculator | Test Coverage | HIGH | NEW | YES |
 | REQ-20260125-007 | Math Navigation Expandable Icons | Navigation | UI/Flow | HIGH | BLOCKED | NO |

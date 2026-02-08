@@ -115,6 +115,14 @@ State Definitions
       Requirement exists in requirement_tracker.md
       Status: NEW
       No implementation allowed
+      Requirement completeness gate (for calculators with many inputs, mode toggles, or dynamic rows):
+         REQ must include a "Calculation Pane Interaction Contract" with:
+            - mode control type and labels (switch or segmented button-group)
+            - default mode on page load
+            - field visibility mapping per mode
+            - dynamic-row layout parity requirement (Add Item rows match initial rows)
+            - button-only calculation trigger contract
+      If missing, REQ is invalid for BUILD start and must be returned for requirement update.
       Transition allowed:
          REQ → BUILD (only via trigger)
 
@@ -141,6 +149,11 @@ State Definitions
       Select tests strictly via TESTING_RULES.md
       Run required tests only
       Begin TEST execution immediately after BUILD PASS without waiting for another human confirmation.
+      For calculator trigger-behavior changes, execute the relevant button-only trigger regression spec(s).
+      Minimum required command when Finance/Percentage calculators are affected:
+      `npm run test:e2e -- requirements/specs/e2e/button-only-recalc-finance-percentage.spec.js`
+      For dense input + mode-toggle layout changes, ISS-001 layout stability validation is also mandatory:
+      `npm run test:iss001`
       Record TEST rows
       Outcomes:
          PASS → SEO (if applicable) or COMPLIANCE
@@ -151,6 +164,9 @@ State Definitions
    ====
       Required for all calculator-related REQs and any change affecting a public route.
       Validate per SEO_RULES.md
+      Any Lighthouse/Chrome/Puppeteer run that uses a profile directory must set output/profile paths outside the repository (for example `/tmp/lighthouse-*`).
+      Recommended WSL Lighthouse template (safe defaults):
+      `CHROME_PATH="$(node -e "const { chromium } = require('playwright'); console.log(chromium.executablePath())")" && npx lighthouse "http://127.0.0.1:8002/<route>/" --only-categories=performance --chrome-path="$CHROME_PATH" --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage --user-data-dir=/tmp/lighthouse-$$" --output=json --output-path="test-results/seo/<slug>/lighthouse-performance.json"`
       Record PASS, FAIL, WAIVED (per SEO_RULES), or NA
       Outcomes:
          PASS / WAIVED / NA → COMPLIANCE
@@ -204,6 +220,17 @@ State Definitions
    Enforcement
       Invalid state transitions must stop immediately
       No tracker updates outside the current state (exception: `testing_tracker.md` updates during BUILD are permitted in Auto-Test Mode as defined above)
+      Workspace hygiene gate is mandatory before COMPLIANCE PASS:
+      - No tool-generated browser profile/cache directories under repo root (including `lighthouse.*` profile folders)
+      - `.gitignore` must not contain machine-specific absolute per-file cache/profile paths; use generalized wildcard rules only
+      Calculation trigger gate is mandatory before COMPLIANCE PASS (when applicable):
+      - For calculators with an explicit Calculate CTA, results and explanation updates must be button-only after page-load baseline (no live input auto-recalc)
+      - Evidence must include passing run of relevant trigger-regression tests (minimum: `requirements/specs/e2e/button-only-recalc-finance-percentage.spec.js` when Finance/Percentage routes are in scope)
+      Dense toggle/input contract gate is mandatory before COMPLIANCE PASS (when applicable):
+      - For calculators with high input density and mode switching, requirement + implementation must agree on mode control type, default state, and field visibility mapping
+      - Added dynamic rows (if present) must preserve the same row-density layout as initial rows
+      - Evidence must include ISS-001 coverage and route-level E2E evidence for mode-toggle and Add Item behavior
+      If violated, return to BUILD and remediate before proceeding.
       No merge or release without COMPLIANCE PASS
       Exceptions require explicit, logged waiver
 

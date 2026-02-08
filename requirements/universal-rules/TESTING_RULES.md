@@ -3,8 +3,8 @@
 **Authority:** This document defines mandatory test selection and execution for CalcHowMuch.com.
 **Status:** Canonical; other testing docs must defer to this file.
 **Issued Under:** REQ-20260128-016
-**Last Updated:** 2026-02-06
-**Version:** 2.1
+**Last Updated:** 2026-02-08
+**Version:** 2.3
 
 ---
 
@@ -112,6 +112,7 @@ If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high 
 | SEO/metadata change | - | YES | YES | - | - | - | - | - |
 | Layout/CSS change | - | - | - | YES | YES | - | YES | - |
 | UI/flow change | - | - | - | - | - | - | - | YES |
+| UI/flow change (dense multi-input toggle, mode visibility, Add/Remove row behavior) | - | - | - | - | - | - | YES | YES |
 | New calculator | YES | YES | YES | YES | YES | YES | YES | YES |
 | New site section | - | YES | YES | YES | YES | YES | YES | YES |
 | Content update (copy) | - | YES | - | - | - | - | - | - |
@@ -130,6 +131,35 @@ Run `npx vitest run tests/core/page-metadata-schema-guard.test.js` when any of t
 - `public/assets/js/core/ui.js` structured-data logic changes.
 
 This test is a release gate for calculator-related REQs.
+
+### 5.2 Mandatory Button-Only Trigger Regression (Finance + Percentage)
+
+Run this when any Finance or Percentage calculator changes calculation-trigger behavior, input handling, or explanation-pane live-binding behavior:
+- `npm run test:e2e -- requirements/specs/e2e/button-only-recalc-finance-percentage.spec.js`
+
+For other calculator domains with explicit Calculate CTAs, run an equivalent targeted trigger-regression spec for the affected routes.
+
+Pass criteria:
+- Editing inputs does not change calculation result/explanation before Calculate click.
+- Clicking Calculate updates calculation result/explanation as expected.
+
+### 5.3 Mandatory Dense Toggle/Input Regression (All Calculator Domains)
+
+Run this when a calculator change includes any of the following:
+- Mode switching/toggling behavior
+- Progressive disclosure for dense input sets
+- Dynamic Add Item / Remove Item row interactions
+
+Required checks:
+- `npm run test:iss001`
+- Route-level E2E covering mode change + Calculate click behavior
+- If Finance/Percentage calculators are in scope, also run:
+  - `npm run test:e2e -- requirements/specs/e2e/button-only-recalc-finance-percentage.spec.js`
+
+Pass criteria:
+- Toggle default state matches requirement and shows correct fields.
+- Mode toggles do not trigger result/explanation recomputation before Calculate click.
+- Add Item rows keep the same layout density/structure as initial rows.
 
 ---
 
@@ -191,6 +221,9 @@ npm run test:e2e -- requirements/specs/e2e/<spec-file>.spec.js
 
 # ISS-001
 npm run test:iss001
+
+# Button-only trigger regression (Finance + Percentage)
+npm run test:e2e -- requirements/specs/e2e/button-only-recalc-finance-percentage.spec.js
 
 # Lint (build gate)
 npm run lint
