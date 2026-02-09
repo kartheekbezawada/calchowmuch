@@ -2,22 +2,162 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch</title>
+    <title>Work Hours Calculator – With Breaks | CalcHowMuch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow">
     <meta name="description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/work-hours-calculator/" />
-    <meta property="og:title" content="Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch" />
+    <meta property="og:title" content="Work Hours Calculator – With Breaks | CalcHowMuch" />
     <meta property="og:description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/work-hours-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Work Hours Calculator – Calculate Shift Hours &amp; Breaks | CalcHowMuch" />
+    <meta name="twitter:title" content="Work Hours Calculator – With Breaks | CalcHowMuch" />
     <meta name="twitter:description" content="Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "Work Hours Calculator",
+          "url": "https://calchowmuch.com/time-and-date/work-hours-calculator/",
+          "description": "Calculate worked hours from start and end times, subtract unpaid breaks, and view totals in HH:MM and decimal hours.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Work Hours Calculator",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Web",
+          "url": "https://calchowmuch.com/time-and-date/work-hours-calculator/",
+          "description": "Free work hours calculator for single shift, split shift, and weekly total calculations with break deductions.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "creator": {
+            "@type": "Organization",
+            "name": "CalcHowMuch"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://calchowmuch.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Time & Date",
+              "item": "https://calchowmuch.com/time-and-date/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Work Hours Calculator",
+              "item": "https://calchowmuch.com/time-and-date/work-hours-calculator/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can I calculate hours for a night shift?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Enable \"Ends next day\" when your shift ends after midnight."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does this include paid breaks?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Only unpaid breaks that you enter are subtracted."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why do I see both HH:MM and decimal hours?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does it round time?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I calculate split shifts with two work periods?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I leave Segment 2 blank in split shift mode?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Segment 2 is optional. If left blank, only Segment 1 is used."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I calculate weekly work hours for multiple days?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if my unpaid break is longer than the shift?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The calculator shows an error because unpaid break minutes cannot exceed worked minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does this calculator include overtime pay rules?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It calculates worked time only. Overtime pay policies depend on employer and local regulations."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I use this for timesheets and payroll prep?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body data-page="calculator">

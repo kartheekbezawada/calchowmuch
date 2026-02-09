@@ -65,7 +65,7 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Time Between Two Dates Calculator',
+      name: 'Time Between Two Dates Calculator – Date Difference',
       url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
       description:
         'Calculate the difference between two dates (and times) in days, weeks, months, hours, and minutes.',
@@ -103,7 +103,7 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Time Between Two Dates Calculator – Date Difference in Days, Weeks & Months | CalcHowMuch',
+  title: 'Time Between Two Dates Calculator – Date Difference',
   description:
     'Calculate the time between two dates and times. Get the difference in days, weeks, months, hours, and minutes with clear results.',
   canonical:

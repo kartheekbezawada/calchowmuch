@@ -124,7 +124,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+  title: 'Present Value of Annuity Calculator Ordinary & Due',
   description:
     'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
   canonical: 'https://calchowmuch.com/finance/present-value-of-annuity/',
@@ -135,7 +135,7 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Present Value of Annuity Calculator',
+        name: 'Present Value of Annuity Calculator Ordinary & Due',
         url: 'https://calchowmuch.com/finance/present-value-of-annuity/',
         description:
           'Calculate the present value of an annuity. Compare ordinary annuity and annuity due using payment amount, discount rate, and number of periods.',

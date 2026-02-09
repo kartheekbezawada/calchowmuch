@@ -75,7 +75,7 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Nap Time Calculator',
+      name: 'Nap Time Calculator – Best Nap Length & Wake Time',
       url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
       description: 'Calculate the best nap time and wake-up time based on different nap lengths.',
       inLanguage: 'en',
@@ -112,7 +112,7 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Nap Time Calculator – Find the Best Time to Wake Up | CalcHowMuch',
+  title: 'Nap Time Calculator – Best Nap Length & Wake Time',
   description:
     'Calculate the best nap length and wake-up time. Plan quick naps, power naps, or longer naps without grogginess.',
   canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',

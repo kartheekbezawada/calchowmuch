@@ -121,7 +121,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Present Value (PV) Calculator – CalcHowMuch',
   description:
-    'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
+    'Calculate the present value of future cash using discount rate and time. Fast, accurate PV calculator with clear steps and examples.',
   canonical: 'https://calchowmuch.com/finance/present-value/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

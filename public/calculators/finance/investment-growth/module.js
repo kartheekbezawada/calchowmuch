@@ -125,7 +125,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Investment Growth Calculator \u2013 CalcHowMuch',
   description:
-    'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
+    'Estimate investment growth over time. Calculate future value, total contributions, and gains using expected annual return. Optional inflation.',
   canonical: 'https://calchowmuch.com/finance/investment-growth/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

@@ -62,7 +62,7 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Countdown Timer Generator',
+      name: 'Countdown Timer Generator – Count Down to Any Date',
       url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
       description:
         'Generate a countdown timer to a future date and time and see the time remaining in days, hours, minutes, and seconds.',
@@ -100,7 +100,7 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Countdown Timer Generator – Countdown to Any Date & Time | CalcHowMuch',
+  title: 'Countdown Timer Generator – Count Down to Any Date',
   description:
     'Create a countdown timer to any future date and time. See days, hours, minutes, and seconds remaining—fast, free, and accurate.',
   canonical: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',

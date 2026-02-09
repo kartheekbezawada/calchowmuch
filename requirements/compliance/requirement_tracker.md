@@ -37,6 +37,8 @@
 | REQ-20260208-026 | Credit Card Minimum Payment Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | COMPLETE | YES |
 | REQ-20260208-027 | Balance Transfer / Installment Plan Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | NEW | YES |
 | REQ-20260208-028 | Credit Card Consolidation Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | NEW | YES |
+| REQ-20260208-029 | Local SEO & Performance Audit Framework — Calculators | Compliance | SEO + Performance | HIGH | BLOCKED | YES |
+| REQ-20260208-030 | Implement Local SEO & Performance Audit Runner — Calculators | Tooling | SEO + Performance | HIGH | COMPLETE | YES |
 
 ---
 

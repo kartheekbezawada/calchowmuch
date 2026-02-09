@@ -258,7 +258,7 @@ Present value of annuity calculations are widely used in loans, mortgages, lease
 ### 8.1 Metadata (Keyword-Optimized)
 
 - H1: Present Value of Annuity Calculator
-- Title: Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch
+- Title: Present Value of Annuity Calculator Ordinary & Due
 - Meta Description:
 
 Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.

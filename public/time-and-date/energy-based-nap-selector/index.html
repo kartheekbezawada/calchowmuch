@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Energy-Based Nap Selector - Quick, Strong, or Full Nap Timing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow">
     <meta name="description" content="Pick Quick, Strong, or Full and get deterministic nap recommendations with wake-up times, alternatives, and late-night guidance." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/energy-based-nap-selector/" />
     <meta property="og:title" content="Energy-Based Nap Selector - Quick, Strong, or Full Nap Timing" />
@@ -18,6 +19,147 @@
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "Energy-Based Nap Selector",
+          "url": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/",
+          "description": "Select an energy goal and nap start time to get a recommended nap length with wake-up time alternatives.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Energy-Based Nap Selector",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": "Web",
+          "url": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/",
+          "description": "Free energy-based nap selector that maps Quick, Strong, and Full goals to deterministic nap durations and wake-up recommendations.",
+          "browserRequirements": "Requires JavaScript enabled",
+          "softwareVersion": "1.0",
+          "creator": {
+            "@type": "Organization",
+            "name": "CalcHowMuch"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://calchowmuch.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Time & Date",
+              "item": "https://calchowmuch.com/time-and-date/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Energy-Based Nap Selector",
+              "item": "https://calchowmuch.com/time-and-date/energy-based-nap-selector/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does the Energy-Based Nap Selector do?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It recommends a nap length based on your selected goal and start time, then shows wake-up times for the primary and alternative options."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How are Quick, Strong, and Full goals mapped?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the recommendation change at night?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Late-night long naps can disrupt normal sleep timing, so inferred Full goals at night are downgraded to a shorter recommendation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When is a Full nap not downgraded?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "If you explicitly choose Full, the tool keeps the 90-minute recommendation and shows a warning instead of downgrading."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does this calculator account for bedtime routines?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It applies deterministic nap-duration rules and does not model personal bedtime habits."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What time buckets are used for warnings?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The calculator groups time into Day, Afternoon, and Night buckets and applies late-night warnings to long naps."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I use the selector for shift work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The logic is based on local clock time and works for any schedule, including overnight routines."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the calculator set an alarm for me?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It gives wake-up times that you can use to set an alarm manually."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will changing inputs recalculate instantly?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. After page load, results update only when you click Calculate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is this tool medical advice?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It is a planning aid and does not diagnose sleep conditions or replace professional medical guidance."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body data-page="calculator">
