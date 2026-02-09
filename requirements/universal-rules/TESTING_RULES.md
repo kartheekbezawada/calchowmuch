@@ -68,6 +68,14 @@ If tests require a local server and one is not running, start it and continue:
 **Note:** SEO-P4 remains mandatory when required by the matrix.
 SEO-P3 is executed using direct tool commands defined in `SEO_RULES.md`; for calculator pages, SEO-P3 must be attempted and may be recorded as **WAIVED** only under the policy in Section 5.0.
 
+### 3.3 SEO-P1 Snippet-Length Classification
+
+For title and meta description length checks under SEO-P1:
+- Title optimal range: `35-61` characters (proxy for ~`600px` snippet width).
+- Meta description optimal range: `110-165` characters (proxy for ~`920px`; mobile-safe floor near `110`).
+- Out-of-range length is recorded as `WARN` evidence (snippet/CTR display risk).
+- Missing required tags (for example missing `<title>` or missing meta description) remain `FAIL`.
+
 ---
 
 ## 4) SEO Structured Data Enforcement (Hard Rules)
@@ -210,6 +218,11 @@ If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high 
 
 Tests stack when multiple change types apply.
 
+For `SEO/metadata change` runs:
+- SEO-P1 and SEO-P2 remain mandatory.
+- Title/meta description outside optimal snippet ranges are `WARN` outcomes, not `FAIL`.
+- Missing required tags (`<title>`, meta description, canonical, robots) remain `FAIL`.
+
 ### 5.1 Mandatory FAQ Schema Guard Execution
 
 Run `npx vitest run tests/core/page-metadata-schema-guard.test.js` when any of the following are true:
@@ -342,8 +355,8 @@ Before deploying any calculator page:
 
 ### P1 Checks
 
-- [ ] Title (50-60 chars with primary keyword)
-- [ ] Meta description (150-160 chars)
+- [ ] Title (35-61 chars with primary keyword; warn outside range)
+- [ ] Meta description (110-165 chars; warn outside range, fail if missing)
 - [ ] Canonical URL correct
 - [ ] Exactly one H1 with primary keyword
 - [ ] Mobile viewport present

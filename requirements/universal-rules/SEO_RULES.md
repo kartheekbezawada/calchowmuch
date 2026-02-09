@@ -35,8 +35,8 @@ Every public page must pass all P1 checks.
 
 | Rule | Requirement | Validation |
 | --- | --- | --- |
-| P1.1 | Unique <title> (50–60 chars) containing primary keyword | Automated + manual |
-| P1.2 | Unique meta description (150–160 chars) | Manual |
+| P1.1 | Unique <title> (35–61 chars) containing primary keyword | Automated + manual |
+| P1.2 | Unique meta description (110–165 chars) | Manual |
 | P1.3 | Correct canonical URL | HTML source |
 | P1.4 | Exactly one <h1> with primary keyword | DOM check |
 | P1.5 | No duplicate content | Copyscape/Plagiarism check |
@@ -63,6 +63,9 @@ npm run test:seo -- --level p1
 
 - Primary keyword must appear early in title and description.
 - Titles must be unique across the site (no templates duplicated page-to-page).
+- Pixels over characters: Google snippet display is width-based (~600px title, ~920px description); char ranges are an enforcement proxy.
+- Frontload critical keywords/value proposition because truncated snippets may hide trailing copy.
+- Over/under target length is primarily a CTR/display risk; missing required tags remain failures.
 
 ### P1 Interaction Integrity for Multi-Mode Calculators (Mandatory)
 
@@ -412,11 +415,11 @@ https://calchowmuch.com/{category}/{calculator-slug}/
 
 ### 2) <head> SEO Elements
 
-Title (55–60 chars)
+Title (35–61 chars; keep near ~600px)
 
 {Primary Keyword} – {Qualifier} | CalcHowMuch
 
-Meta description (150–160 chars)
+Meta description (110–165 chars; keep under ~920px)
 
 Use our free {primary keyword} to estimate {main outcome} based on your {key inputs}. Fast, simple, and mobile-friendly.
 

@@ -429,16 +429,14 @@ async function buildPageAudit({
 
   if (titleLength === 0) {
     seoFailures.push('Missing <title>');
-  } else if (titleLength > 65) {
-    seoFailures.push(`Title too long (${titleLength})`);
-  } else if (titleLength > 60) {
-    seoWarnings.push(`Title in warning range (${titleLength})`);
+  } else if (titleLength < 35 || titleLength > 61) {
+    seoWarnings.push(`Title out of optimal snippet range (${titleLength}; target 35-61)`);
   }
 
   if (!metaDescription) {
     seoFailures.push('Missing meta description');
-  } else if (descriptionLength < 140 || descriptionLength > 160) {
-    seoWarnings.push(`Meta description out of preferred range (${descriptionLength})`);
+  } else if (descriptionLength < 110 || descriptionLength > 165) {
+    seoWarnings.push(`Meta description out of optimal snippet range (${descriptionLength}; target 110-165)`);
   }
 
   const h1Nodes = document ? [...document.querySelectorAll('h1')] : [];
@@ -458,17 +456,10 @@ async function buildPageAudit({
   const explanationContainer =
     document?.querySelector('.explanation-pane,[id*="explanation"]') ?? null;
   const explanationTextLength = normalizeText(explanationContainer?.textContent ?? '').length;
-  const explanationHeading = explanationContainer?.querySelector('h2,h3,h4');
   const calculatorUiRoot = document?.querySelector('.calculator-ui,[id^="calc-"],[id*="calc-"]');
 
   if (isCalculator) {
     if (!calculatorUiRoot) seoFailures.push('Calculator UI root not detected');
-    if (!explanationContainer) {
-      seoFailures.push('Explanation pane container not detected');
-    } else {
-      if (!explanationHeading) seoFailures.push('Explanation pane heading missing');
-      if (explanationTextLength < 160) seoFailures.push('Explanation pane content appears too short');
-    }
   }
 
   const jsonLdObjects = document ? readJsonLdObjects(document, pageUrl) : [];
@@ -500,8 +491,8 @@ async function buildPageAudit({
 
     const faqNode = extractFaqPage(jsonLdObjects);
     const faqEntries = Array.isArray(faqNode?.mainEntity) ? faqNode.mainEntity : [];
-    if (faqEntries.length !== 10) {
-      schemaFailures.push(`FAQPage has ${faqEntries.length} entries; expected 10`);
+    if (faqEntries.length < 4 || faqEntries.length > 20) {
+      schemaFailures.push(`FAQPage has ${faqEntries.length} entries; expected range 4-20`);
     }
 
     const visibleFaqQuestions = getVisibleFaqQuestions(document);

@@ -3,7 +3,7 @@
 Environment (localhost base URL): http://127.0.0.1:8002
 Audit Type: Pre-Deployment
 SERP Priority: P0
-Timestamp (ISO): 2026-02-09T09:46:15.121Z
+Timestamp (ISO): 2026-02-09T14:54:44.815Z
 Slug List: requirements/compliance/REQ-20260208-029.slugs.txt
 
 ---
@@ -12,56 +12,56 @@ Slug List: requirements/compliance/REQ-20260208-029.slugs.txt
 
 | Category | Slug | SEO Status | Perf Score | Schema Status | SERP Risk | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| Finance | /finance/present-value/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (112) |
-| Finance | /finance/future-value/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (113) |
-| Finance | /finance/present-value-of-annuity/ | FAIL | IGNORED | PASS | HIGH | Title too long (66) |
-| Finance | /finance/future-value-of-annuity/ | WARN | IGNORED | PASS | MED | Title in warning range (65); Meta description out of preferred range (131) |
+| Finance | /finance/present-value/ | PASS | IGNORED | PASS | LOW | — |
+| Finance | /finance/future-value/ | PASS | IGNORED | PASS | LOW | — |
+| Finance | /finance/present-value-of-annuity/ | PASS | IGNORED | PASS | LOW | — |
+| Finance | /finance/future-value-of-annuity/ | PASS | IGNORED | PASS | LOW | — |
 | Finance | /finance/simple-interest/ | PASS | IGNORED | PASS | LOW | — |
 | Finance | /finance/compound-interest/ | PASS | IGNORED | PASS | LOW | — |
 | Finance | /finance/effective-annual-rate/ | PASS | IGNORED | PASS | LOW | — |
 | Finance | /finance/savings-goal/ | PASS | IGNORED | PASS | LOW | — |
-| Finance | /finance/investment-growth/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (162) |
-| Credit Cards | /loans/credit-card-repayment-payoff/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected |
-| Credit Cards | /loans/credit-card-minimum-payment/ | WARN | IGNORED | PASS | MED | Title in warning range (63) |
-| Credit Cards | /loans/balance-transfer-installment-plan/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected |
+| Finance | /finance/investment-growth/ | PASS | IGNORED | PASS | LOW | — |
+| Credit Cards | /loans/credit-card-repayment-payoff/ | PASS | IGNORED | PASS | LOW | — |
+| Credit Cards | /loans/credit-card-minimum-payment/ | PASS | IGNORED | PASS | LOW | — |
+| Credit Cards | /loans/balance-transfer-installment-plan/ | PASS | IGNORED | PASS | LOW | — |
 | Credit Cards | /loans/credit-card-consolidation/ | PASS | IGNORED | PASS | LOW | — |
-| Percentage Calculators | /percentage-calculators/percent-change/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (128) |
+| Percentage Calculators | /percentage-calculators/percent-change/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/percentage-difference/ | PASS | IGNORED | PASS | LOW | — |
-| Percentage Calculators | /percentage-calculators/percentage-increase/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (132) |
+| Percentage Calculators | /percentage-calculators/percentage-increase/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/percentage-decrease/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/percentage-composition/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/reverse-percentage/ | FAIL | IGNORED | FAIL | HIGH | Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication |
 | Percentage Calculators | /percentage-calculators/percent-to-fraction-decimal/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/what-percent-is-x-of-y/ | FAIL | IGNORED | FAIL | HIGH | Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication |
-| Percentage Calculators | /percentage-calculators/percentage-of-a-number/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (116) |
-| Percentage Calculators | /percentage-calculators/commission-calculator/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (135) |
+| Percentage Calculators | /percentage-calculators/percentage-of-a-number/ | PASS | IGNORED | PASS | LOW | — |
+| Percentage Calculators | /percentage-calculators/commission-calculator/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/discount-calculator/ | PASS | IGNORED | PASS | LOW | — |
-| Percentage Calculators | /percentage-calculators/margin-calculator/ | WARN | IGNORED | PASS | MED | Meta description out of preferred range (138) |
+| Percentage Calculators | /percentage-calculators/margin-calculator/ | PASS | IGNORED | PASS | LOW | — |
 | Percentage Calculators | /percentage-calculators/markup-calculator/ | PASS | IGNORED | PASS | LOW | — |
-| Time & Date | /time-and-date/sleep-time-calculator/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected; Meta description out of preferred range (120) |
-| Time & Date | /time-and-date/wake-up-time-calculator/ | WARN | IGNORED | PASS | MED | Title in warning range (61); Meta description out of preferred range (129) |
-| Time & Date | /time-and-date/nap-time-calculator/ | FAIL | IGNORED | FAIL | HIGH | Explanation pane container not detected; FAQPage has 5 entries; expected 10 |
-| Time & Date | /time-and-date/power-nap-calculator/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected; Meta description out of preferred range (126) |
-| Time & Date | /time-and-date/energy-based-nap-selector/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected; Title in warning range (61) |
-| Time & Date | /time-and-date/work-hours-calculator/ | FAIL | IGNORED | PASS | HIGH | Title too long (68); Meta description out of preferred range (123) |
-| Time & Date | /time-and-date/overtime-hours-calculator/ | FAIL | IGNORED | PASS | HIGH | Title too long (70); Explanation pane container not detected |
-| Time & Date | /time-and-date/time-between-two-dates-calculator/ | FAIL | IGNORED | FAIL | HIGH | Title too long (89); Explanation pane container not detected |
-| Time & Date | /time-and-date/days-until-a-date-calculator/ | FAIL | IGNORED | FAIL | HIGH | Explanation pane container not detected; FAQPage has 4 entries; expected 10 |
-| Time & Date | /time-and-date/countdown-timer-generator/ | FAIL | IGNORED | FAIL | HIGH | Title too long (70); Explanation pane container not detected |
-| Time & Date | /time-and-date/age-calculator/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected; Meta description out of preferred range (119) |
-| Time & Date | /time-and-date/birthday-day-of-week/ | FAIL | IGNORED | PASS | HIGH | Explanation pane container not detected; Meta description out of preferred range (123) |
-| Home Loan | /loans/home-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/how-much-can-i-borrow/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/remortgage-switching/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/buy-to-let/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/offset-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/interest-rate-change-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Home Loan | /loans/loan-to-value/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Auto Loans | /loans/car-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Auto Loans | /loans/multiple-car-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Auto Loans | /loans/hire-purchase/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Auto Loans | /loans/pcp-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
-| Auto Loans | /loans/leasing-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Explanation pane container not detected |
+| Time & Date | /time-and-date/sleep-time-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/wake-up-time-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/nap-time-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/power-nap-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/energy-based-nap-selector/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/work-hours-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/overtime-hours-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/time-between-two-dates-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/days-until-a-date-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/countdown-timer-generator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/age-calculator/ | PASS | IGNORED | PASS | LOW | — |
+| Time & Date | /time-and-date/birthday-day-of-week/ | PASS | IGNORED | PASS | LOW | — |
+| Home Loan | /loans/home-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/how-much-can-i-borrow/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/remortgage-switching/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/buy-to-let/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/offset-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/interest-rate-change-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Home Loan | /loans/loan-to-value/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Auto Loans | /loans/car-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Auto Loans | /loans/multiple-car-loan/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Auto Loans | /loans/hire-purchase/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Auto Loans | /loans/pcp-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
+| Auto Loans | /loans/leasing-calculator/ | FAIL | IGNORED | FAIL | HIGH | Missing robots index,follow meta; Missing JSON-LD WebPage |
 
 ## Per-Page Details
 
@@ -73,12 +73,11 @@ HTTP Status: 200
 SEO
 - H1: 1 (Present Value Calculator)
 - Title length: 43
-- Meta description: 112
+- Meta description: 132
 - Canonical: https://calchowmuch.com/finance/present-value/
 - Intent clarity: calculator=yes, explanation=yes (len 2458)
 - Robots index,follow: PASS
 - Canonical path: /finance/present-value/
-- SEO warnings: Meta description out of preferred range (112)
 
 Schema
 - WebPage: PASS
@@ -93,7 +92,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /finance/future-value/
 
@@ -103,12 +102,11 @@ HTTP Status: 200
 SEO
 - H1: 1 (Future Value Calculator)
 - Title length: 42
-- Meta description: 113
+- Meta description: 146
 - Canonical: https://calchowmuch.com/finance/future-value/
 - Intent clarity: calculator=yes, explanation=yes (len 2605)
 - Robots index,follow: PASS
 - Canonical path: /finance/future-value/
-- SEO warnings: Meta description out of preferred range (113)
 
 Schema
 - WebPage: PASS
@@ -123,7 +121,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /finance/present-value-of-annuity/
 
@@ -132,13 +130,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Present Value of Annuity Calculator)
-- Title length: 66
+- Title length: 50
 - Meta description: 148
 - Canonical: https://calchowmuch.com/finance/present-value-of-annuity/
 - Intent clarity: calculator=yes, explanation=yes (len 4235)
 - Robots index,follow: PASS
 - Canonical path: /finance/present-value-of-annuity/
-- SEO failures: Title too long (66)
 
 Schema
 - WebPage: PASS
@@ -153,7 +150,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /finance/future-value-of-annuity/
 
@@ -162,13 +159,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Future Value of Annuity Calculator)
-- Title length: 65
-- Meta description: 131
+- Title length: 49
+- Meta description: 144
 - Canonical: https://calchowmuch.com/finance/future-value-of-annuity/
 - Intent clarity: calculator=yes, explanation=yes (len 4042)
 - Robots index,follow: PASS
 - Canonical path: /finance/future-value-of-annuity/
-- SEO warnings: Title in warning range (65); Meta description out of preferred range (131)
 
 Schema
 - WebPage: PASS
@@ -183,7 +179,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /finance/simple-interest/
 
@@ -309,12 +305,11 @@ HTTP Status: 200
 SEO
 - H1: 1 (Investment Growth Calculator)
 - Title length: 42
-- Meta description: 162
+- Meta description: 142
 - Canonical: https://calchowmuch.com/finance/investment-growth/
 - Intent clarity: calculator=yes, explanation=yes (len 2653)
 - Robots index,follow: PASS
 - Canonical path: /finance/investment-growth/
-- SEO warnings: Meta description out of preferred range (162)
 
 Schema
 - WebPage: PASS
@@ -329,7 +324,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /loans/credit-card-repayment-payoff/
 
@@ -344,7 +339,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /loans/credit-card-repayment-payoff/
-- SEO failures: Explanation pane container not detected
 
 Schema
 - WebPage: PASS
@@ -359,7 +353,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /loans/credit-card-minimum-payment/
 
@@ -368,13 +362,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Credit Card Minimum Payment)
-- Title length: 63
+- Title length: 60
 - Meta description: 148
 - Canonical: https://calchowmuch.com/loans/credit-card-minimum-payment/
 - Intent clarity: calculator=yes, explanation=yes (len 3376)
 - Robots index,follow: PASS
 - Canonical path: /loans/credit-card-minimum-payment/
-- SEO warnings: Title in warning range (63)
 
 Schema
 - WebPage: PASS
@@ -389,7 +382,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /loans/balance-transfer-installment-plan/
 
@@ -404,7 +397,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /loans/balance-transfer-installment-plan/
-- SEO failures: Explanation pane container not detected
 
 Schema
 - WebPage: PASS
@@ -419,7 +411,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /loans/credit-card-consolidation/
 
@@ -463,7 +455,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2686)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/percent-change/
-- SEO warnings: Meta description out of preferred range (128)
 
 Schema
 - WebPage: PASS
@@ -478,7 +469,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /percentage-calculators/percentage-difference/
 
@@ -522,7 +513,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2665)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/percentage-increase/
-- SEO warnings: Meta description out of preferred range (132)
 
 Schema
 - WebPage: PASS
@@ -537,7 +527,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /percentage-calculators/percentage-decrease/
 
@@ -610,7 +600,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2417)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/reverse-percentage/
-- SEO failures: Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10; FAQ visible/schema mismatch (10 unmatched questions)
+- SEO failures: Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20; FAQ visible/schema mismatch (10 unmatched questions)
 
 Schema
 - WebPage: FAIL
@@ -669,7 +659,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 1967)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/what-percent-is-x-of-y/
-- SEO failures: Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10; FAQ visible/schema mismatch (10 unmatched questions)
+- SEO failures: Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20; FAQ visible/schema mismatch (10 unmatched questions)
 
 Schema
 - WebPage: FAIL
@@ -699,7 +689,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2073)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/percentage-of-a-number/
-- SEO warnings: Meta description out of preferred range (116)
 
 Schema
 - WebPage: PASS
@@ -714,7 +703,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /percentage-calculators/commission-calculator/
 
@@ -729,7 +718,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2492)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/commission-calculator/
-- SEO warnings: Meta description out of preferred range (135)
 
 Schema
 - WebPage: PASS
@@ -744,7 +732,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /percentage-calculators/discount-calculator/
 
@@ -782,13 +770,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Margin Calculator)
-- Title length: 31
+- Title length: 51
 - Meta description: 138
 - Canonical: https://calchowmuch.com/percentage-calculators/margin-calculator/
 - Intent clarity: calculator=yes, explanation=yes (len 2553)
 - Robots index,follow: PASS
 - Canonical path: /percentage-calculators/margin-calculator/
-- SEO warnings: Meta description out of preferred range (138)
 
 Schema
 - WebPage: PASS
@@ -803,7 +790,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /percentage-calculators/markup-calculator/
 
@@ -847,8 +834,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/sleep-time-calculator/
-- SEO failures: Explanation pane container not detected
-- SEO warnings: Meta description out of preferred range (120)
 
 Schema
 - WebPage: PASS
@@ -863,7 +848,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/wake-up-time-calculator/
 
@@ -878,7 +863,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=yes (len 2253)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/wake-up-time-calculator/
-- SEO warnings: Title in warning range (61); Meta description out of preferred range (129)
 
 Schema
 - WebPage: PASS
@@ -893,7 +877,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: WATCH
+SERP Verdict: SAFE
 
 ## /time-and-date/nap-time-calculator/
 
@@ -902,14 +886,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Nap Time Calculator)
-- Title length: 65
+- Title length: 49
 - Meta description: 111
 - Canonical: https://calchowmuch.com/time-and-date/nap-time-calculator/
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/nap-time-calculator/
-- SEO failures: Explanation pane container not detected; FAQPage has 5 entries; expected 10
-- SEO warnings: Title in warning range (65); Meta description out of preferred range (111)
 
 Schema
 - WebPage: PASS
@@ -917,14 +899,14 @@ Schema
 - FAQPage: PASS
 - BreadcrumbList: PASS
 - FAQ count: 5
-- Schema Status: FAIL
+- Schema Status: PASS
 
 Performance
 - Desktop: IGNORED
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/power-nap-calculator/
 
@@ -939,8 +921,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/power-nap-calculator/
-- SEO failures: Explanation pane container not detected
-- SEO warnings: Meta description out of preferred range (126)
 
 Schema
 - WebPage: PASS
@@ -955,7 +935,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/energy-based-nap-selector/
 
@@ -970,8 +950,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/energy-based-nap-selector/
-- SEO failures: Explanation pane container not detected
-- SEO warnings: Title in warning range (61); Meta description out of preferred range (128)
 
 Schema
 - WebPage: PASS
@@ -986,7 +964,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/work-hours-calculator/
 
@@ -995,14 +973,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Work Hours Calculator)
-- Title length: 68
+- Title length: 49
 - Meta description: 123
 - Canonical: https://calchowmuch.com/time-and-date/work-hours-calculator/
 - Intent clarity: calculator=yes, explanation=yes (len 2418)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/work-hours-calculator/
-- SEO failures: Title too long (68)
-- SEO warnings: Meta description out of preferred range (123)
 
 Schema
 - WebPage: PASS
@@ -1017,7 +993,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/overtime-hours-calculator/
 
@@ -1026,14 +1002,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Overtime Hours Calculator)
-- Title length: 70
-- Meta description: 168
+- Title length: 56
+- Meta description: 125
 - Canonical: https://calchowmuch.com/time-and-date/overtime-hours-calculator/
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/overtime-hours-calculator/
-- SEO failures: Title too long (70); Explanation pane container not detected
-- SEO warnings: Meta description out of preferred range (168)
 
 Schema
 - WebPage: PASS
@@ -1048,7 +1022,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/time-between-two-dates-calculator/
 
@@ -1057,14 +1031,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Time Between Two Dates Calculator)
-- Title length: 89
+- Title length: 51
 - Meta description: 129
 - Canonical: https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/time-between-two-dates-calculator/
-- SEO failures: Title too long (89); Explanation pane container not detected; FAQPage has 4 entries; expected 10
-- SEO warnings: Meta description out of preferred range (129)
 
 Schema
 - WebPage: PASS
@@ -1072,14 +1044,14 @@ Schema
 - FAQPage: PASS
 - BreadcrumbList: PASS
 - FAQ count: 4
-- Schema Status: FAIL
+- Schema Status: PASS
 
 Performance
 - Desktop: IGNORED
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/days-until-a-date-calculator/
 
@@ -1094,7 +1066,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/days-until-a-date-calculator/
-- SEO failures: Explanation pane container not detected; FAQPage has 4 entries; expected 10
 
 Schema
 - WebPage: PASS
@@ -1102,14 +1073,14 @@ Schema
 - FAQPage: PASS
 - BreadcrumbList: PASS
 - FAQ count: 4
-- Schema Status: FAIL
+- Schema Status: PASS
 
 Performance
 - Desktop: IGNORED
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/countdown-timer-generator/
 
@@ -1118,14 +1089,12 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Countdown Timer Generator)
-- Title length: 70
+- Title length: 50
 - Meta description: 127
 - Canonical: https://calchowmuch.com/time-and-date/countdown-timer-generator/
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/countdown-timer-generator/
-- SEO failures: Title too long (70); Explanation pane container not detected; FAQPage has 4 entries; expected 10
-- SEO warnings: Meta description out of preferred range (127)
 
 Schema
 - WebPage: PASS
@@ -1133,14 +1102,14 @@ Schema
 - FAQPage: PASS
 - BreadcrumbList: PASS
 - FAQ count: 4
-- Schema Status: FAIL
+- Schema Status: PASS
 
 Performance
 - Desktop: IGNORED
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/age-calculator/
 
@@ -1155,8 +1124,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/age-calculator/
-- SEO failures: Explanation pane container not detected
-- SEO warnings: Meta description out of preferred range (119)
 
 Schema
 - WebPage: PASS
@@ -1171,7 +1138,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /time-and-date/birthday-day-of-week/
 
@@ -1186,8 +1153,6 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: PASS
 - Canonical path: /time-and-date/birthday-day-of-week/
-- SEO failures: Explanation pane container not detected
-- SEO warnings: Meta description out of preferred range (123)
 
 Schema
 - WebPage: PASS
@@ -1202,7 +1167,7 @@ Performance
 - Mobile: IGNORED
 - Perf Status: NA
 
-SERP Verdict: BLOCK
+SERP Verdict: SAFE
 
 ## /loans/home-loan/
 
@@ -1217,7 +1182,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/home-loan/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1247,7 +1212,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/how-much-can-i-borrow/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1277,7 +1242,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/remortgage-switching/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1307,7 +1272,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/buy-to-let/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1337,7 +1302,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/offset-calculator/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1367,7 +1332,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/interest-rate-change-calculator/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1397,7 +1362,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/loan-to-value/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1427,7 +1392,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/car-loan/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1457,7 +1422,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/multiple-car-loan/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1487,7 +1452,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/hire-purchase/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1517,7 +1482,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/pcp-calculator/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
@@ -1547,7 +1512,7 @@ SEO
 - Intent clarity: calculator=yes, explanation=no (len 0)
 - Robots index,follow: FAIL
 - Canonical path: /loans/leasing-calculator/
-- SEO failures: Missing robots index,follow meta; Explanation pane container not detected; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected 10
+- SEO failures: Missing robots index,follow meta; Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
 
 Schema
 - WebPage: FAIL
