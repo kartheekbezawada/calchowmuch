@@ -173,7 +173,7 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Work Hours Calculator – Calculate Shift Hours & Breaks | CalcHowMuch',
+  title: 'Work Hours Calculator – With Breaks | CalcHowMuch',
   description:
     'Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours.',
   canonical: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',

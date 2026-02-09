@@ -126,7 +126,7 @@ Located in: `public/config/navigation.json` under `categories[1].subcategories[1
 
 ## 4) SEO Metadata
 
-- **Title** (<=60 chars): `Credit Card Minimum Payment Calculator -- True Cost of Minimums`
+- **Title** (<=60 chars): `Credit Card Minimum Payment Calculator True Cost of Minimums`
 - **Meta description** (140-160 chars): `See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.`
 - **Canonical URL:** `https://calchowmuch.com/loans/credit-card-minimum-payment/`
 - **OpenGraph/Twitter:** Title and description must match. og:type = website. og:image = site default.

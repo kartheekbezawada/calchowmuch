@@ -442,7 +442,7 @@ Title: Present Value (PV) Calculator – CalcHowMuch
 
 Meta Description:
 
-“Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.”
+“Calculate how much your money could grow over time using interest rate and compounding. Fast, accurate Future Value calculator with clear results.”
 
 ### 8.3 Structured Data (Required)
 

@@ -12,10 +12,12 @@
     "test:e2e:update": "playwright test --update-snapshots",
     "test:iss": "playwright test requirements/specs/e2e/iss",
     "test:iss001": "playwright test requirements/specs/e2e/iss-design-001.spec.js",
+    "test:seo:source-finance": "vitest run tests/core/finance-static-schema-source-parity.test.js",
     "lint": "eslint public/assets/js --ext .js",
     "lint:fix": "eslint public/assets/js --ext .js --fix",
     "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
     "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
+    "audit:local-seo": "node scripts/local-seo-performance-audit.mjs",
     "serve": "python -m http.server 8000 --directory public",
     "validate": "npm run lint && npm run test && npm run format:check"
   },

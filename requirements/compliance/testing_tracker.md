@@ -9,6 +9,8 @@
 
 | TEST_ID | REQ_ID | ITER_ID | Type | Status | Iterations | Tests Run | Evidence |
 | ------- | ------ | ------- | ---- | ------ | ---------- | --------- | -------- |
+| TEST-20260209-061008 | REQ-20260208-029 | ITER-20260208-233101 | SEO | FAIL | 1/25 | `npm run audit:local-seo -- --base-url http://127.0.0.1:8002 --slugs requirements/compliance/REQ-20260208-029.slugs.txt --audit-md requirements/compliance/Audit.md --out-dir test-results/seo/local-audit --ignore-perf` (50 slugs audited; 50 FAIL; Perf Score ignored) | requirements/compliance/Audit.md |
+| TEST-20260208-234404 | REQ-20260208-030 | ITER-20260208-234216 | Unit | PASS | 1/25 | `npm run test` (914 passed, 2 skipped) | iterations/ITER-20260208-234216.md |
 | TEST-20260208-222046 | REQ-20260208-026 | ITER-20260208-222056 | ISS-001 | PASS | 1/25 | `npm run test:iss001` (9 passed) | iterations/ITER-20260208-222056.md |
 | TEST-20260208-222045 | REQ-20260208-026 | ITER-20260208-222056 | SEO | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/credit-card-minimum-payment-seo.spec.js` (1 passed) | iterations/ITER-20260208-222056.md |
 | TEST-20260208-222044 | REQ-20260208-026 | ITER-20260208-222056 | E2E | PASS | 1/25 | `npm run test:e2e -- requirements/specs/e2e/credit-card-minimum-payment.spec.js` (3 passed) | iterations/ITER-20260208-222056.md |

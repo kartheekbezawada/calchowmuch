@@ -118,7 +118,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Margin Calculator – CalcHowMuch',
+  title: 'Margin Calculator – Calculate Gross Margin & Profit',
   description:
     'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
   canonical: 'https://calchowmuch.com/percentage-calculators/margin-calculator/',
@@ -129,7 +129,7 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Margin Calculator',
+        name: 'Margin Calculator – Calculate Gross Margin & Profit',
         url: 'https://calchowmuch.com/percentage-calculators/margin-calculator/',
         description:
           'Calculate gross margin %, profit, and selling price instantly using our free margin calculator.',

@@ -71,7 +71,7 @@ You must NOT change layout or wording of the calculation pane. Current inputs/co
 
 ## 4. SERP Package (Page Meta)
 
-**Title:** Work Hours Calculator – Calculate Hours Worked (With Breaks) | CalcHowMuch
+**Title:** Work Hours Calculator – With Breaks | CalcHowMuch
 
 **Meta description (140–160 chars):**
 Calculate hours worked for a shift, split shift, or week. Includes unpaid breaks and overnight shifts (ends next day). Fast and free.

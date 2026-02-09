@@ -94,7 +94,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Minimum Payment Calculator -- True Cost of Minimums',
+  title: 'Credit Card Minimum Payment Calculator True Cost of Minimums',
   description:
     'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
   canonical: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',

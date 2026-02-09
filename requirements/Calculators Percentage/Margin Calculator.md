@@ -116,7 +116,7 @@ Margin Calculator
 
 Title
 
-Margin Calculator – CalcHowMuch
+Margin Calculator – Calculate Gross Margin & Profit
 
 
 Meta Description (≤160 chars)
@@ -298,7 +298,7 @@ It is used for product pricing, profitability analysis, and business planning.
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Margin Calculator",
+  "name": "Margin Calculator – Calculate Gross Margin & Profit",
   "url": "https://calchowmuch.com/percentage-calculators/margin-calculator/",
   "description": "Calculate gross margin %, profit, and selling price instantly using our free margin calculator.",
   "inLanguage": "en"

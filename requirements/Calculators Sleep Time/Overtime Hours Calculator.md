@@ -337,7 +337,7 @@ Payroll rules can include rounding, paid breaks, or local overtime laws; this ca
 
 ## 8. SEO Metadata (Required)
 
-**Title:** Overtime Hours Calculator – Daily & Weekly Overtime | CalcHowMuch
+**Title:** Overtime Hours Calculator – Daily & Weekly | CalcHowMuch
 
 **Meta description (140–160 chars):**
 Calculate overtime hours for single, split, or weekly shifts. Supports daily, weekly, and daily+weekly rules, breaks, overnight and night hours.
