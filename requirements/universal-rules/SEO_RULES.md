@@ -6,8 +6,8 @@
 | --- | --- |
 | Purpose | Defines mandatory SEO validation rules, priorities, and best practices for all public pages on CalcHowMuch.com, with special emphasis on calculator tools. |
 | Authority | These rules are binding for all new and modified pages. Non-compliance risks reduced rankings, poor indexing, or algorithmic penalties. |
-| Last Updated | 2026-02-08 |
-| Version | 2.1 (Structured Data + Multi-Mode Interaction Integrity) |
+| Last Updated | 2026-02-09 |
+| Version | 2.2 (Static HTML Schema Requirements + Three-Place Check Rule) |
 | Scope | All public routes, with emphasis on calculators in: Time Value of Money, Bonds, Portfolio & Risk, Corporate Finance, Derivatives, FX & Rates, and Statistics & Probability. |
 | Core Principles | Prioritize user intent, mobile performance, structured data, and verifiable compliance recorded in seo_tracker.md. |
 
@@ -42,6 +42,16 @@ Every public page must pass all P1 checks.
 | P1.5 | No duplicate content | Copyscape/Plagiarism check |
 | P1.6 | Mobile viewport present | HTML check |
 | P1.7 | <html lang="en"> (or correct locale) | HTML check |
+| P1.8 | Robots meta tag in static HTML | HTML source |
+
+### P1.8: Robots Meta Tag (Static HTML)
+
+Every public calculator page MUST include `<meta name="robots" content="index,follow">` in the static HTML `<head>` section:
+
+- **Must be present in raw HTML source** (not injected via JavaScript)
+- **Placement:** Immediately after `<meta name="viewport">` tag
+- **Format:** `<meta name="robots" content="index,follow">`
+- **Rationale:** Audit tools and search engine crawlers parse static HTML only; runtime injection is invisible to validators
 
 ### Automated check
 
@@ -100,11 +110,143 @@ Must include:
 
 For multi-mode calculators, FAQ and explanation coverage must describe all supported modes in crawlable HTML content (not mode-hidden JS-only text).
 
+### The Three-Place Check Rule for JSON-LD Schema
+
+All calculator pages MUST follow this validation hierarchy:
+
+#### 1. Raw HTML Source (MANDATORY)
+
+- JSON-LD schema MUST be present in static HTML `<head>` section
+- Schema MUST be visible when viewing page source (Ctrl+U) without JavaScript execution
+- **Location:** Insert `<script type="application/ld+json">` block BEFORE Cloudflare script, AFTER stylesheets
+- **Format:** Single JSON-LD block with `@graph` array containing all schema types
+
+#### 2. JavaScript Module Parity (MANDATORY)
+
+- `module.js` MUST contain matching schema in `metadata.structuredData`
+- All values (names, descriptions, URLs) MUST match HTML exactly
+- FAQ questions and answers MUST match character-for-character
+- **Purpose:** Enables runtime schema updates while maintaining static baseline
+
+#### 3. Visible UI Alignment (MANDATORY for FAQs)
+
+- FAQ text in HTML body MUST match FAQPage JSON-LD exactly
+- Count of visible `.faq-box` elements MUST equal FAQPage `mainEntity` count
+- Question text MUST match including punctuation
+- Answer text MUST match including punctuation
+
+### Required Schema Types (All MUST be in Static HTML)
+
+#### WebPage Schema
+
+- `name`: Calculator display name
+- `url`: Canonical URL
+- `description`: Meta description text
+- `inLanguage`: "en"
+
+#### SoftwareApplication Schema
+
+- `name`: Calculator display name
+- `applicationCategory`: "FinanceApplication" (or appropriate category)
+- `operatingSystem`: "Web"
+- `url`: Canonical URL
+- `description`: Expanded calculator description
+- `browserRequirements`: "Requires JavaScript enabled"
+- `softwareVersion`: "1.0"
+- `creator`: `{ "@type": "Organization", "name": "CalcHowMuch" }`
+- `offers`: `{ "@type": "Offer", "price": "0", "priceCurrency": "USD" }`
+
+#### BreadcrumbList Schema (3 positions)
+
+- Position 1: Home (<https://calchowmuch.com/>)
+- Position 2: Category (e.g., /percentage-calculators/percent-change/)
+- Position 3: Calculator (current page URL)
+
+#### FAQPage Schema (if calculator has FAQs)
+
+- `mainEntity`: Array of 8-10 Question objects
+- Each Question MUST have `name` (question text) and `acceptedAnswer.text` (answer text)
+- Text MUST match visible `.faq-box` elements in HTML body exactly
+
+### Schema Location in HTML
+
+```html
+<head>
+  <!-- Meta tags, styles, etc. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", ... },
+      { "@type": "SoftwareApplication", ... },
+      { "@type": "BreadcrumbList", ... },
+      { "@type": "FAQPage", ... }
+    ]
+  }
+  </script>
+  <!-- Cloudflare script -->
+</head>
+```
+
+### Validation Requirements
+
+- View page source (Ctrl+U) and verify JSON-LD script block is visible
+- Copy JSON-LD content and validate at <https://validator.schema.org/>
+- Verify no JSON syntax errors (commas, quotes, brackets)
+- Verify all URLs use canonical domain: `https://calchowmuch.com/`
+- Verify FAQ count matches between HTML body, HTML JSON-LD, and module.js
+
+### P2 Failure Conditions
+
+Any of the following = P2 FAIL:
+
+- JSON-LD schema missing from static HTML source
+- Schema only injected via JavaScript (runtime-only)
+- Required schema type missing (WebPage, SoftwareApplication, BreadcrumbList)
+- FAQPage missing when calculator has visible FAQs
+- FAQ text mismatch between HTML body and JSON-LD
+- FAQ count mismatch between sources
+- HTML and module.js schema values don't match
+- Schema validation fails at schema.org validator
+- Robots meta tag missing from static HTML
+
 ### Automated check
 
 ```
 npm run test:seo -- --level p2
 ```
+
+## Common JSON-LD Schema Pitfalls
+
+### Pitfall 1: Runtime-Only Schema Injection
+
+- ❌ **Problem:** Using `setPageMetadata()` or similar JavaScript functions without static HTML schema
+- ❌ **Why it fails:** Audit tools and some crawlers parse static HTML only
+- ✅ **Solution:** Include schema in BOTH static HTML and JavaScript module
+
+### Pitfall 2: FAQ Text Mismatch
+
+- ❌ **Problem:** FAQ text in HTML body differs from FAQPage JSON-LD
+- ❌ **Why it fails:** Creates confusion for search engines, may be flagged as manipulation
+- ✅ **Solution:** Copy FAQ text verbatim from HTML to JSON-LD, including punctuation
+
+### Pitfall 3: Missing Robots Meta Tag
+
+- ❌ **Problem:** No `<meta name="robots">` tag or only added via JavaScript
+- ❌ **Why it fails:** Crawlers may default to `noindex` or audit tools flag as missing
+- ✅ **Solution:** Add `<meta name="robots" content="index,follow">` in static HTML after viewport tag
+
+### Pitfall 4: Schema in Wrong Location
+
+- ❌ **Problem:** JSON-LD script placed in `<body>` or after Cloudflare script
+- ❌ **Why it fails:** May not be processed by all parsers; violates best practices
+- ✅ **Solution:** Place JSON-LD script in `<head>`, before Cloudflare script, after stylesheets
+
+### Pitfall 5: Invalid JSON Syntax
+
+- ❌ **Problem:** Missing commas, trailing commas, unescaped quotes in JSON-LD
+- ❌ **Why it fails:** Schema parser errors, structured data not recognized
+- ✅ **Solution:** Validate all JSON-LD at <https://validator.schema.org/> before deployment
 
 ## P3 — Performance SEO (Launch Gate; Waivable for calculator pages in headless/no-GUI environments)
 

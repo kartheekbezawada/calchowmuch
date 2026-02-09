@@ -125,9 +125,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+  title: 'Future Value of Annuity Calculator Ordinary & Due – CalcHowMuch',
   description:
-    'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
+    'Calculate the future value of an annuity and compare ordinary annuity vs annuity due using payment amount, interest rate, and number of periods.',
   canonical: 'https://calchowmuch.com/finance/future-value-of-annuity/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

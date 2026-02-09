@@ -4,6 +4,43 @@ This file documents known issues, investigations, and resolutions to help with f
 
 ---
 
+## Issue #002: REQ-20260208-029 Local SEO Audit Blocking Failures (P0/P1)
+
+**Date:** 2026-02-09
+**Category:** SEO Compliance / Release Gate
+**Status:** OPEN
+**Severity:** High (Release blocking)
+
+### Problem Description
+
+The localhost SEO audit for `REQ-20260208-029` was rerun across all non-math categories using the slug source-of-truth file `requirements/compliance/REQ-20260208-029.slugs.txt` (50 routes total).  
+Result: **50/50 routes failed SEO checks**.
+
+Primary blocking failures:
+- Missing `index,follow` robots meta on audited routes (indexability P0).
+- Missing calculator-required JSON-LD schema (`WebPage`, `SoftwareApplication`, `FAQPage`, `BreadcrumbList`) on audited routes (structured data P0).
+- Missing/undetected explanation-pane coverage on multiple routes (intent/explanation P1).
+
+Performance score was explicitly ignored by human directive for this audit run; SEO failures remain blocking independent of performance.
+
+### Evidence
+
+- Human-readable audit log: `requirements/compliance/Audit.md`
+- Machine artifacts (desktop/mobile JSON placeholders per slug): `test-results/seo/local-audit/`
+- Tracker entries:
+  - `requirements/compliance/testing_tracker.md` (`TEST-20260209-061008`)
+  - `requirements/compliance/seo_tracker.md` (`SEO-REQ-20260208-029`)
+  - `requirements/compliance/compliance-report.md` (`REQ-20260208-029` verdict `FAIL`)
+
+### Resolution Path
+
+- Fix route metadata and robots indexability contract.
+- Restore required calculator schema blocks and FAQ parity.
+- Re-run `npm run audit:local-seo -- --base-url http://127.0.0.1:8002 --slugs requirements/compliance/REQ-20260208-029.slugs.txt --audit-md requirements/compliance/Audit.md --out-dir test-results/seo/local-audit --ignore-perf`.
+- Move issue to `RESOLVED` only after all routes pass SEO gate.
+
+---
+
 ## Issue #001: URL Changes Auto-Reverting in navigation.json and sitemap.xml
 
 **Date:** 2026-01-30

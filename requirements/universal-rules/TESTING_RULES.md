@@ -3,8 +3,8 @@
 **Authority:** This document defines mandatory test selection and execution for CalcHowMuch.com.
 **Status:** Canonical; other testing docs must defer to this file.
 **Issued Under:** REQ-20260128-016
-**Last Updated:** 2026-02-08
-**Version:** 2.3
+**Last Updated:** 2026-02-09
+**Version:** 2.4 (Static HTML Schema Validation + P2-Static Evidence)
 
 ---
 
@@ -91,6 +91,93 @@ Additional mandatory FAQ schema guard for calculator pages:
 Required enforcement test command:
 - `npx vitest run tests/core/page-metadata-schema-guard.test.js`
 
+### 4.1 P2.1: Static HTML Schema Validation (MANDATORY)
+
+**Validation Method:**
+View page source (not browser DevTools) to verify schema presence in raw HTML.
+
+**Required Checks:**
+
+1. **Robots Meta Tag Check**
+
+   View page source and search for: `<meta name="robots" content="index,follow">`
+
+   - Must be present after viewport tag
+   - Must be in static HTML (visible in source)
+
+2. **JSON-LD Script Block Check**
+
+   View page source and search for: `<script type="application/ld+json">`
+
+   - Must be present in `<head>` section
+   - Must contain complete JSON-LD with `@graph` array
+   - Must be before Cloudflare script tag
+
+3. **Required Schema Types Check**
+
+   View page source and verify presence of:
+   - `"@type": "WebPage"`
+   - `"@type": "SoftwareApplication"`
+   - `"@type": "BreadcrumbList"`
+   - `"@type": "FAQPage"` (if calculator has visible FAQs)
+
+4. **Schema Validator Check**
+
+   - Copy JSON-LD from page source
+   - Paste into: <https://validator.schema.org/>
+   - Verify: No errors, all types recognized
+
+5. **Parity Check (HTML vs module.js)**
+
+   Compare values between static HTML JSON-LD and module.js:
+   - Title matches `metadata.title`
+   - Description matches `metadata.description`
+   - Canonical URL matches `metadata.canonical`
+   - FAQ questions match `CALCULATOR_FAQ_SCHEMA` exactly
+   - FAQ answers match `CALCULATOR_FAQ_SCHEMA` exactly
+   - Schema counts match (WebPage: 1, SoftwareApplication: 1, BreadcrumbList: 1, FAQPage: 1 or 0)
+
+6. **FAQ Alignment Check (HTML body vs JSON-LD)**
+
+   - Count `.faq-box` elements in HTML body
+   - Count FAQPage `mainEntity` items in HTML JSON-LD
+   - Counts must match exactly
+   - Question text must match character-for-character
+   - Answer text must match character-for-character
+
+**Failure Conditions:**
+
+Any of the following = P2 FAIL:
+- Robots meta tag missing from static HTML
+- JSON-LD script block missing from static HTML
+- Schema only visible after JavaScript execution
+- Required schema type missing
+- Schema validation fails at schema.org
+- HTML and module.js values don't match
+- FAQ text mismatch between sources
+- FAQ count mismatch
+
+**Testing Commands:**
+
+```bash
+# Start local server
+npm run serve
+
+# View page source (manual)
+# Open browser to http://127.0.0.1:8002/{route}
+# Right-click → View Page Source (or Ctrl+U)
+# Search for: <meta name="robots"
+# Search for: <script type="application/ld+json">
+
+# Automated check (if audit script exists)
+node requirements/compliance/audit-script.js --routes={route}
+
+# Schema validator (manual)
+# 1. Copy JSON-LD from page source
+# 2. Open https://validator.schema.org/
+# 3. Paste and validate
+```
+
 ---
 
 ## 5) Test Selection Matrix (Authoritative)
@@ -109,11 +196,11 @@ If Lighthouse runs successfully but reports bad metrics (slow LCP/TTI/TBT, high 
 | Change Type | Unit | SEO-P1 | SEO-P2 | SEO-P3 | SEO-P4 | SEO-P5 | ISS-001 | E2E |
 |-------------|:----:|:------:|:------:|:------:|:------:|:------:|:-------:|:---:|
 | Compute logic change | YES | - | - | - | - | - | - | - |
-| SEO/metadata change | - | YES | YES | - | - | - | - | - |
+| SEO/metadata change | - | YES | YES (static HTML check) | - | - | - | - | - |
 | Layout/CSS change | - | - | - | YES | YES | - | YES | - |
 | UI/flow change | - | - | - | - | - | - | - | YES |
 | UI/flow change (dense multi-input toggle, mode visibility, Add/Remove row behavior) | - | - | - | - | - | - | YES | YES |
-| New calculator | YES | YES | YES | YES | YES | YES | YES | YES |
+| New calculator | YES | YES | YES (static HTML + parity + FAQ alignment) | YES | YES | YES | YES | YES |
 | New site section | - | YES | YES | YES | YES | YES | YES | YES |
 | Content update (copy) | - | YES | - | - | - | - | - | - |
 | URL structure change | - | YES | - | - | - | YES | - | - |
@@ -190,6 +277,21 @@ Each test run must record:
 
 Record results in `requirements/compliance/testing_tracker.md` and iteration notes.
 
+### 7.1 SEO Evidence Recording Format
+
+For SEO-related changes, record in `seo_tracker.md` with the following format:
+
+| SEO_ID | REQ_ID | Route | P1 | P2 | P2-Static | P3 | P4 | P5 | Overall | Evidence |
+|---|---|---|---|---|---|---|---|---|---|---|
+| SEO-001 | REQ-001 | /finance/present-value/ | PASS | PASS | PASS | PASS | PASS | PASS | PASS | audit, schema-validator |
+
+**Evidence Requirements for P2-Static:**
+- Screenshot of page source showing `<meta name="robots">`
+- Screenshot of page source showing `<script type="application/ld+json">`
+- Schema.org validator screenshot showing no errors
+- Confirmation that HTML and module.js values match
+- Confirmation that FAQ counts and text match across all three sources (HTML body, HTML JSON-LD, module.js)
+
 ---
 
 ## 8) Failure Handling
@@ -230,4 +332,62 @@ npm run lint
 
 # Start local static server if needed
 npm run serve
+```
+
+---
+
+## 10) Pre-Deployment SEO Checklist
+
+Before deploying any calculator page:
+
+### P1 Checks
+
+- [ ] Title (50-60 chars with primary keyword)
+- [ ] Meta description (150-160 chars)
+- [ ] Canonical URL correct
+- [ ] Exactly one H1 with primary keyword
+- [ ] Mobile viewport present
+- [ ] `<html lang="en">` present
+- [ ] Robots meta tag in static HTML: `<meta name="robots" content="index,follow">`
+
+### P2-Static Checks
+
+- [ ] View page source and verify robots meta tag present
+- [ ] View page source and verify JSON-LD script block present
+- [ ] Verify JSON-LD contains WebPage, SoftwareApplication, BreadcrumbList
+- [ ] If FAQs exist, verify FAQPage in JSON-LD
+- [ ] Validate JSON-LD at <https://validator.schema.org/> (no errors)
+- [ ] Verify HTML JSON-LD matches module.js metadata exactly
+- [ ] Verify FAQ text matches between HTML body, HTML JSON-LD, and module.js
+- [ ] Verify FAQ counts match across all three sources
+
+### P2-Guard Check
+
+- [ ] Run FAQ schema guard test: `npx vitest run tests/core/page-metadata-schema-guard.test.js`
+
+### P3 Checks
+
+- [ ] Run Lighthouse (waivable if NO_FCP in headless environment)
+
+### P4 Checks
+
+- [ ] Run Pa11y accessibility test
+
+### P5 Checks
+
+- [ ] Verify sitemap includes new route
+- [ ] Verify robots.txt allows crawler access
+
+### Quick Verification Command
+
+```bash
+# 1. Start server
+npm run serve
+
+# 2. Open browser to calculator page
+# 3. Right-click → View Page Source
+# 4. Search for: <meta name="robots" content="index,follow">
+# 5. Search for: <script type="application/ld+json">
+# 6. Copy JSON-LD content
+# 7. Validate at: https://validator.schema.org/
 ```

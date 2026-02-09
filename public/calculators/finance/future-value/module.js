@@ -124,7 +124,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Future Value (FV) Calculator – CalcHowMuch',
   description:
-    'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
+    'Calculate how much your money could grow over time using interest rate and compounding. Fast, accurate Future Value calculator with clear results.',
   canonical: 'https://calchowmuch.com/finance/future-value/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
