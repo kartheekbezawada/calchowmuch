@@ -44,7 +44,9 @@
       "Bash(ss:*)",
       "Bash(npx pa11y:*)",
       "Bash(npx lighthouse:*)",
-      "Bash(CHROME_PATH=/home/kartheek/.cache/puppeteer-browsers/chrome/linux-145.0.7632.46/chrome-linux64/chrome npx lighthouse:*)"
+      "Bash(CHROME_PATH=/home/kartheek/.cache/puppeteer-browsers/chrome/linux-145.0.7632.46/chrome-linux64/chrome npx lighthouse:*)",
+      "Bash(pkill:*)",
+      "Bash(killall:*)"
     ]
   }
 }

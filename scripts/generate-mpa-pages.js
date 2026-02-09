@@ -583,7 +583,7 @@ function buildCalculatorIndex(categories) {
 }
 
 function buildGtepFooter() {
-  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faqs/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap/">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
+  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faqs/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap/">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
@@ -591,6 +591,16 @@ function buildGtepPage({ title, description, canonical, bodyHtml }) {
 }
 
 function buildGtepSitemap(categories) {
+  const sitePages = `
+          <section>
+            <h2>Site Pages</h2>
+            <ul>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
+              <li><a href="/contact-us/">Contact</a></li>
+              <li><a href="/faqs/">FAQs</a></li>
+            </ul>
+          </section>`;
   const sections = categories
     .map((category) => {
       const subSections = category.subcategories
@@ -622,6 +632,7 @@ function buildGtepSitemap(categories) {
             category and stay in sync with navigation.
           </p>
           <div id="sitemap-content" class="gtep-sitemap-links">
+            ${sitePages}
             ${sections}
           </div>`;
 
@@ -638,6 +649,29 @@ function buildGtepSitemap(categories) {
 }
 
 function buildSitemapXml(categories) {
+  const staticUrls = [
+    { path: '/sitemap/', changefreq: 'monthly', priority: '0.4' },
+    { path: '/privacy/', changefreq: 'monthly', priority: '0.4' },
+    {
+      path: '/privacy-policy/',
+      lastmod: '2026-02-09',
+      changefreq: 'yearly',
+      priority: '0.30',
+    },
+    {
+      path: '/terms-and-conditions/',
+      lastmod: '2026-02-09',
+      changefreq: 'yearly',
+      priority: '0.30',
+    },
+    {
+      path: '/contact-us/',
+      lastmod: '2026-02-09',
+      changefreq: 'yearly',
+      priority: '0.30',
+    },
+    { path: '/faqs/', lastmod: '2026-02-09', changefreq: 'monthly', priority: '0.40' },
+  ];
   const urls = [];
   categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
@@ -646,6 +680,17 @@ function buildSitemapXml(categories) {
       });
     });
   });
+
+  const staticUrlItems = staticUrls
+    .map(
+      (entry) => `
+  <url>
+    <loc>https://calchowmuch.com${entry.path}</loc>
+${entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : ''}    <changefreq>${entry.changefreq}</changefreq>
+    <priority>${entry.priority}</priority>
+  </url>`
+    )
+    .join('');
 
   const urlItems = urls
     .map(
@@ -670,6 +715,7 @@ function buildSitemapXml(categories) {
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+${staticUrlItems}
 ${urlItems}
 </urlset>`;
 }

@@ -40,20 +40,20 @@ const pages = [
   },
   {
     name: 'Terms',
-    path: '/terms/',
+    path: '/terms-and-conditions/',
     title: 'Terms & Conditions | Calculate How Much - Usage & Liability',
     description:
       'Review the terms and conditions for using Calculate How Much calculators, including accuracy limitations, permitted use, updates, and content ownership.',
-    canonical: 'https://calchowmuch.com/terms/',
+    canonical: 'https://calchowmuch.com/terms-and-conditions/',
     h1: 'Terms & Conditions',
   },
   {
     name: 'Contact',
-    path: '/contact/',
+    path: '/contact-us/',
     title: 'Contact | Calculate How Much - Feedback and Support',
     description:
       'Reach the Calculate How Much team for feedback, questions, or support. Learn how to get in touch without sharing personal email addresses or mailto links.',
-    canonical: 'https://calchowmuch.com/contact/',
+    canonical: 'https://calchowmuch.com/contact-us/',
     h1: 'Contact',
   },
   {
