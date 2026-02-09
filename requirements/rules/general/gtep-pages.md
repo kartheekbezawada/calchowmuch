@@ -22,9 +22,9 @@ Included routes
 
 /privacy/
 
-/terms/
+/terms-and-conditions/
 
-/contact/
+/contact-us/
 
 /faqs/
 
@@ -116,9 +116,9 @@ C) Implementation Requirement: Standalone “Privacy / Terms / Contact / FAQs”
 
 /privacy/
 
-/terms/
+/terms-and-conditions/
 
-/contact/
+/contact-us/
 
 /faqs/
 
@@ -179,8 +179,8 @@ Create a separate folder for GTEP pages (example):
 /public/pages/
   sitemap/index.html
   privacy/index.html
-  terms/index.html
-  contact/index.html
+  terms-and-conditions/index.html
+  contact-us/index.html
   faqs/index.html
 
 
@@ -192,7 +192,7 @@ F) Testing Requirements
 Add a small E2E suite to assert GTEP layout exclusion:
 
 For each route in:
-/sitemap/, /privacy/, /terms/, /contact/, /faqs/
+/sitemap/, /privacy/, /terms-and-conditions/, /contact-us/, /faqs/
 
 Assert:
 
@@ -217,7 +217,7 @@ Must Have
 
  /sitemap/ is a standalone, indexable HTML page (no calculator shell, no ads)
 
- /privacy/, /terms/, /contact/, /faqs/ are standalone, indexable HTML pages
+ /privacy/, /terms-and-conditions/, /contact-us/, /faqs/ are standalone, indexable HTML pages
 
  Universal requirements updated with GTEP exclusion clause (EXCL-1.*)
 

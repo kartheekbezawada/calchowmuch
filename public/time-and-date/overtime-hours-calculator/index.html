@@ -2,164 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Overtime Hours Calculator – Daily &amp; Weekly | CalcHowMuch</title>
+    <title>Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="index,follow">
-    <meta name="description" content="Calculate work hours and split into regular and overtime. Supports daily and weekly limits, split shifts, and night overtime." />
+    <meta name="description" content="Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/overtime-hours-calculator/" />
-    <meta property="og:title" content="Overtime Hours Calculator – Daily &amp; Weekly | CalcHowMuch" />
-    <meta property="og:description" content="Calculate work hours and split into regular and overtime. Supports daily and weekly limits, split shifts, and night overtime." />
+    <meta property="og:title" content="Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)" />
+    <meta property="og:description" content="Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/overtime-hours-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Overtime Hours Calculator – Daily &amp; Weekly | CalcHowMuch" />
-    <meta name="twitter:description" content="Calculate work hours and split into regular and overtime. Supports daily and weekly limits, split shifts, and night overtime." />
+    <meta name="twitter:title" content="Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)" />
+    <meta name="twitter:description" content="Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "name": "Overtime Hours Calculator",
-          "url": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/",
-          "description": "Calculate total work hours and split them into regular and overtime hours with daily and weekly overtime rules.",
-          "inLanguage": "en"
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "Overtime Hours Calculator",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web",
-          "url": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/",
-          "description": "Free overtime hours calculator supporting single shifts, split shifts, weekly cycles, night shifts, and multiple overtime rules.",
-          "browserRequirements": "Requires JavaScript enabled",
-          "softwareVersion": "1.0",
-          "creator": {
-            "@type": "Organization",
-            "name": "CalcHowMuch"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://calchowmuch.com/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Time & Date",
-              "item": "https://calchowmuch.com/time-and-date/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Overtime Hours Calculator",
-              "item": "https://calchowmuch.com/time-and-date/overtime-hours-calculator/"
-            }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is the difference between regular hours and overtime hours?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which overtime rule should I choose?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does \"Daily + Weekly\" avoid double counting overtime?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I calculate overtime for split shifts?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What does \"Ends next day\" do?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "It treats the end time as the next day so night shifts are counted correctly."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is night overtime in this calculator?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does this calculator round time the way my employer does?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I set a custom week like Sunday–Saturday or Friday–Thursday?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does the calculator save my hours?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. It runs in your browser and does not store your inputs."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How are breaks handled in overtime calculations?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Unpaid break minutes are subtracted from total worked time before overtime is calculated. This means breaks reduce your paid hours but do not change when overtime starts."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body data-page="calculator">
@@ -967,9 +825,9 @@
       <footer class="site-footer">
   <a href="/privacy/">Privacy</a>
   <span class="footer-divider">|</span>
-  <a href="/terms/">Terms &amp; Conditions</a>
+  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
   <span class="footer-divider">|</span>
-  <a href="/contact/">Contact</a>
+  <a href="/contact-us/">Contact</a>
   <span class="footer-divider">|</span>
   <a href="/faqs/">FAQs</a>
   <span class="footer-divider">|</span>

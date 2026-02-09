@@ -3,7 +3,7 @@
 Environment (localhost base URL): http://127.0.0.1:8002
 Audit Type: Pre-Deployment
 SERP Priority: P0
-Timestamp (ISO): 2026-02-09T14:54:44.815Z
+Timestamp (ISO): 2026-02-09T15:01:39.238Z
 Slug List: requirements/compliance/REQ-20260208-029.slugs.txt
 
 ---
@@ -594,8 +594,8 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (Reverse Percentage)
-- Title length: 57
-- Meta description: 160
+- Title length: 43
+- Meta description: 131
 - Canonical: https://calchowmuch.com/percentage-calculators/reverse-percentage/
 - Intent clarity: calculator=yes, explanation=yes (len 2417)
 - Robots index,follow: PASS
@@ -653,8 +653,8 @@ HTTP Status: 200
 
 SEO
 - H1: 1 (What Percent Is X of Y)
-- Title length: 60
-- Meta description: 160
+- Title length: 47
+- Meta description: 121
 - Canonical: https://calchowmuch.com/percentage-calculators/what-percent-is-x-of-y/
 - Intent clarity: calculator=yes, explanation=yes (len 1967)
 - Robots index,follow: PASS
