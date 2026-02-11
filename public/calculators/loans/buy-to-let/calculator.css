@@ -1,116 +1,849 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+/* Buy-to-Let Calculator — Redesigned */
 
-#calc-buy-to-let .btl-compact-grid {
+/* ── Keyframe Animations ── */
+
+@keyframes btl-result-pop {
+  0%   { opacity: 0.4; transform: scale(0.88); }
+  50%  { opacity: 1;   transform: scale(1.05); }
+  100% { opacity: 1;   transform: scale(1); }
+}
+
+@keyframes btl-metric-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes btl-cashflow-pulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(2, 6, 23, 0.4), 0 0 20px rgba(74, 222, 128, 0.15), 0 0 40px rgba(34, 197, 94, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+  50%      { box-shadow: 0 8px 32px rgba(2, 6, 23, 0.4), 0 0 30px rgba(74, 222, 128, 0.25), 0 0 60px rgba(34, 197, 94, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+}
+
+@keyframes btl-cashflow-warning {
+  0%, 100% { box-shadow: 0 8px 32px rgba(2, 6, 23, 0.4), 0 0 20px rgba(251, 113, 133, 0.15), 0 0 40px rgba(220, 38, 38, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+  50%      { box-shadow: 0 8px 32px rgba(2, 6, 23, 0.4), 0 0 30px rgba(251, 113, 133, 0.25), 0 0 60px rgba(220, 38, 38, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+}
+
+/* ── Layout ── */
+
+#calculator-title {
+  width: 100%;
+  margin: 0 auto 0.5rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+#calc-buy-to-let {
+  width: 100%;
+}
+
+#calc-buy-to-let .btl-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 0.78rem;
+}
+
+#calc-buy-to-let .btl-hero {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 1rem;
   align-items: start;
 }
 
-#calc-buy-to-let .btl-compact-grid--rent-price {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+#calc-buy-to-let .btl-form-panel {
+  display: grid;
+  gap: 0.94rem;
+  align-content: start;
+}
+
+#calc-buy-to-let .helper {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+/* ── Form Inputs ── */
+
+#calc-buy-to-let .input-row {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+#calc-buy-to-let .input-grid {
+  display: grid;
+  gap: 0.72rem;
 }
 
 #calc-buy-to-let .btl-compact-grid--two-up {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.btl-deposit-slot {
+#calc-buy-to-let .btl-deposit-slot {
   display: contents;
 }
 
-#calc-buy-to-let .btl-compact-grid .input-row label {
-  min-height: 0;
-  margin-bottom: 0;
-  line-height: 1.1;
-}
-
-.btl-rent-increase-options {
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  background: #f8fafc;
-  display: grid;
-  gap: 12px;
-}
-
-.btl-negative {
-  color: #b91c1c;
+#calc-buy-to-let label {
+  font-size: 0.78rem;
   font-weight: 600;
+  color: rgba(226, 232, 240, 0.95);
+  line-height: 1.28;
 }
 
-.btl-scenario-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+#calc-buy-to-let input[type='number'] {
+  width: 100%;
+  min-height: 38px;
+  border-radius: 0.72rem;
+  border: 1px solid rgba(125, 211, 252, 0.38);
+  background: rgba(15, 23, 42, 0.82);
+  color: #fff;
+  padding: 0.44rem 0.66rem;
+  font-size: 0.86rem;
+  line-height: 1.2;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.btl-scenario-card {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--panel-bg);
-  display: grid;
-  gap: 6px;
+#calc-buy-to-let input[type='number']:hover {
+  border-color: rgba(125, 211, 252, 0.62);
 }
 
-.btl-scenario-label {
-  font-size: 12px;
-  color: var(--muted-text);
+#calc-buy-to-let input[type='number']:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.54);
+  outline-offset: 1px;
+  border-color: rgba(125, 211, 252, 0.84);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.22);
+}
+
+/* ── Range Slider Inputs ── */
+
+#calc-buy-to-let .slider-row {
+  gap: 0.52rem;
+}
+
+#calc-buy-to-let .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+#calc-buy-to-let .slider-value {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.68rem;
+  border-radius: 0.52rem;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(34, 197, 94, 0.45);
+  color: #4ade80;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow:
+    0 0 8px rgba(74, 222, 128, 0.7),
+    0 0 20px rgba(74, 222, 128, 0.4),
+    0 0 40px rgba(34, 197, 94, 0.2);
+  box-shadow:
+    0 0 8px rgba(34, 197, 94, 0.2),
+    0 0 20px rgba(34, 197, 94, 0.08);
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#calc-buy-to-let .slider-row:hover .slider-value {
+  border-color: rgba(251, 113, 133, 0.55);
+  color: #fb7185;
+  text-shadow:
+    0 0 8px rgba(251, 113, 133, 0.7),
+    0 0 20px rgba(251, 113, 133, 0.45),
+    0 0 40px rgba(251, 113, 133, 0.2);
+  box-shadow:
+    0 0 8px rgba(251, 113, 133, 0.2),
+    0 0 20px rgba(251, 113, 133, 0.08);
+}
+
+#calc-buy-to-let input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    #22c55e 0%,
+    #22c55e var(--fill, 50%),
+    rgba(148, 163, 184, 0.18) var(--fill, 50%)
+  );
+  transition: box-shadow 0.2s ease;
+}
+
+#calc-buy-to-let input[type='range']:focus-visible {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+#calc-buy-to-let input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(34, 197, 94, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+#calc-buy-to-let input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  border-color: rgba(251, 113, 133, 0.7);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(251, 113, 133, 0.2);
+}
+
+#calc-buy-to-let input[type='range']:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+
+#calc-buy-to-let input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(34, 197, 94, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+#calc-buy-to-let input[type='range']::-moz-range-track {
+  height: 5px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+/* ── Button Groups ── */
+
+#calc-buy-to-let .button-group {
+  display: inline-flex;
+  gap: 0.15rem;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.76);
+  width: fit-content;
+  max-width: 100%;
+}
+
+#calc-buy-to-let .calculator-button.secondary {
+  min-height: 32px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.94);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.4rem 0.86rem;
+}
+
+#calc-buy-to-let .calculator-button.secondary:hover {
+  background: rgba(59, 130, 246, 0.12);
+  color: #e0f2fe;
+}
+
+#calc-buy-to-let .calculator-button.secondary.is-active {
+  border-color: rgba(56, 189, 248, 0.82);
+  background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+  color: #fff;
+}
+
+/* ── Advanced Options (softer) ── */
+
+#calc-buy-to-let .advanced-options {
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  background: none;
+  overflow: hidden;
+  margin-top: 0.1rem;
+  padding-top: 0.5rem;
+}
+
+#calc-buy-to-let .advanced-options summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.55rem 0.68rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.58rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.1));
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#calc-buy-to-let .advanced-options summary:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.16));
+}
+
+#calc-buy-to-let .advanced-options summary::-webkit-details-marker {
+  display: none;
+}
+
+#calc-buy-to-let .advanced-summary-title {
+  font-size: 0.77rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.03em;
+  color: rgba(191, 219, 254, 0.96);
 }
 
-.btl-scenario-value {
-  font-size: 18px;
+#calc-buy-to-let .advanced-summary-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  padding: 0.16rem 0.55rem;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+#calc-buy-to-let .summary-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
   font-weight: 600;
+  color: rgba(224, 242, 254, 0.95);
 }
 
-.btl-scenario-detail {
-  font-size: 13px;
-  color: var(--muted-text);
+#calc-buy-to-let .summary-state-close {
+  display: none;
+}
+
+#calc-buy-to-let .advanced-options[open] .summary-state-expand {
+  display: none;
+}
+
+#calc-buy-to-let .advanced-options[open] .summary-state-close {
+  display: inline-flex;
+  color: #022c22;
+}
+
+#calc-buy-to-let .advanced-options[open] .advanced-summary-pill {
+  background: rgba(74, 222, 128, 0.86);
+  border-color: rgba(34, 197, 94, 0.68);
+}
+
+#calc-buy-to-let .advanced-stack {
+  padding: 0.82rem 0 0;
+  display: grid;
+  gap: 0.72rem;
+}
+
+#calc-buy-to-let .btl-rent-increase-options {
+  padding: 0.68rem;
+  border-radius: 0.72rem;
+  border: 1px solid rgba(125, 211, 252, 0.34);
+  background: rgba(15, 23, 42, 0.45);
+  display: grid;
+  gap: 0.66rem;
+}
+
+/* ── Calculate Button ── */
+
+#calc-buy-to-let .btl-action-row {
+  margin-top: 0.15rem;
+}
+
+#calc-buy-to-let .btl-action-row .calculator-button {
+  min-height: 48px;
+  border-radius: 0.82rem;
+  border: 1px solid rgba(34, 197, 94, 0.64);
+  background: linear-gradient(120deg, rgba(22, 163, 74, 0.95), rgba(14, 165, 233, 0.9));
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+#calc-buy-to-let .btl-action-row .calculator-button:hover {
+  box-shadow: 0 10px 28px rgba(14, 165, 233, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Preview Panel (Glass Morphism) ── */
+
+#calc-buy-to-let .btl-preview-panel {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1.25rem;
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  box-shadow:
+    0 8px 32px rgba(2, 6, 23, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.6s ease, border-color 0.4s ease;
+}
+
+#calc-buy-to-let .btl-preview-panel.is-positive {
+  animation: btl-cashflow-pulse 3s ease-in-out infinite;
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+#calc-buy-to-let .btl-preview-panel.is-negative {
+  animation: btl-cashflow-warning 3s ease-in-out infinite;
+  border-color: rgba(251, 113, 133, 0.2);
+}
+
+#calc-buy-to-let .btl-preview-main {
+  display: grid;
+  gap: 0.46rem;
+}
+
+#calc-buy-to-let .btl-preview-label {
+  margin: 0;
+  font-size: 0.71rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(134, 239, 172, 0.95);
+  font-weight: 700;
+}
+
+/* ── Hero Result Value ── */
+
+#calc-buy-to-let .btl-result-card {
+  margin: 0;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-buy-to-let .btl-hero-value {
+  display: block;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+#calc-buy-to-let .btl-hero-value.is-positive {
+  color: #4ade80;
+  text-shadow:
+    0 0 12px rgba(74, 222, 128, 0.6),
+    0 0 30px rgba(74, 222, 128, 0.3),
+    0 0 50px rgba(34, 197, 94, 0.15);
+}
+
+#calc-buy-to-let .btl-hero-value.is-negative {
+  color: #fb7185;
+  text-shadow:
+    0 0 12px rgba(251, 113, 133, 0.6),
+    0 0 30px rgba(251, 113, 133, 0.3),
+    0 0 50px rgba(220, 38, 38, 0.15);
+}
+
+#calc-buy-to-let .btl-hero-value.is-updated {
+  animation: btl-result-pop 0.4s ease-out;
+}
+
+/* ── Key Metric Cards (Preview Panel) ── */
+
+#calc-buy-to-let .btl-key-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.55rem;
+}
+
+#calc-buy-to-let .btl-metric-card {
+  padding: 0.65rem 0.72rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+#calc-buy-to-let .btl-metric-card:hover {
+  border-color: rgba(125, 211, 252, 0.3);
+  background: rgba(30, 41, 59, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.1);
+}
+
+#calc-buy-to-let .btl-metric-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.8);
+}
+
+#calc-buy-to-let .btl-metric-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-buy-to-let .btl-metric-card.is-entering {
+  animation: btl-metric-enter 0.3s ease-out both;
+}
+#calc-buy-to-let .btl-metric-card:nth-child(1).is-entering { animation-delay: 0ms; }
+#calc-buy-to-let .btl-metric-card:nth-child(2).is-entering { animation-delay: 50ms; }
+#calc-buy-to-let .btl-metric-card:nth-child(3).is-entering { animation-delay: 100ms; }
+#calc-buy-to-let .btl-metric-card:nth-child(4).is-entering { animation-delay: 150ms; }
+#calc-buy-to-let .btl-metric-card:nth-child(5).is-entering { animation-delay: 200ms; }
+
+/* ── Explanation Section ── */
+
+#loan-btl-explanation {
+  display: grid;
+  gap: 0.92rem;
+}
+
+#loan-btl-explanation .btl-exp-section {
+  border-radius: 0.94rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.3), rgba(30, 41, 59, 0.2));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1rem;
+  display: grid;
+  gap: 0.72rem;
+}
+
+#loan-btl-explanation h2 {
+  margin: 0;
+  font-size: 1.03rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  letter-spacing: 0.01em;
 }
 
 #loan-btl-explanation h3 {
-  text-decoration: none;
-}
-
-#loan-btl-explanation h3 + .result-section {
-  margin-top: 6px;
-}
-
-#loan-btl-explanation .result-section {
-  padding-left: 0;
-  margin-left: 0;
-}
-
-#loan-btl-explanation .faq-item {
-  display: grid;
-  gap: 6px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
-}
-
-#loan-btl-explanation .faq-item h4 {
   margin: 0;
-  font-size: 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+#loan-btl-explanation .btl-dynamic-summary {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.54;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+/* ── Key Results Grid (Cards) ── */
+
+#loan-btl-explanation .btl-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+#loan-btl-explanation .btl-result-tile {
+  padding: 0.72rem 0.78rem;
+  border-radius: 0.82rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.3));
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition:
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+#loan-btl-explanation .btl-result-tile:hover {
+  border-color: rgba(125, 211, 252, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.1);
+}
+
+#loan-btl-explanation .btl-result-tile-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.78);
+}
+
+#loan-btl-explanation .btl-result-tile-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: rgba(248, 250, 252, 0.98);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Advanced Results Details ── */
+
+#loan-btl-explanation .btl-advanced-results-details {
+  border-radius: 0.72rem;
+  overflow: hidden;
+}
+
+#loan-btl-explanation .btl-advanced-results-details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.52rem 0.72rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(191, 219, 254, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 0.72rem;
+  background: rgba(15, 23, 42, 0.4);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#loan-btl-explanation .btl-advanced-results-details summary:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(15, 23, 42, 0.55);
+}
+
+#loan-btl-explanation .btl-advanced-results-details summary::-webkit-details-marker {
+  display: none;
+}
+
+#loan-btl-explanation .btl-adv-toggle-icon {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(125, 211, 252, 0.8);
+  transition: transform 0.2s ease;
+}
+
+#loan-btl-explanation .btl-advanced-results-details[open] .btl-adv-toggle-icon {
+  transform: rotate(45deg);
+}
+
+#loan-btl-explanation .btl-advanced-results-grid {
+  display: grid;
+  gap: 0;
+  padding: 0.4rem 0;
+}
+
+#loan-btl-explanation .btl-adv-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.42rem 0.72rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  font-size: 0.78rem;
+}
+
+#loan-btl-explanation .btl-adv-row:last-child {
+  border-bottom: none;
+}
+
+#loan-btl-explanation .btl-adv-row span:first-child {
+  color: rgba(148, 163, 184, 0.85);
+}
+
+#loan-btl-explanation .btl-adv-row span:last-child {
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.95);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Projection Table ── */
+
+#loan-btl-explanation .btl-exp-section--projection .table-scroll {
+  max-height: 360px;
+  overflow: auto;
+}
+
+#loan-btl-explanation .table-scroll {
+  overflow: auto;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+#loan-btl-explanation .calculator-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+#loan-btl-explanation .calculator-table th,
+#loan-btl-explanation .calculator-table td {
+  padding: 0.5rem 0.58rem;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+#loan-btl-explanation .calculator-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: rgba(191, 219, 254, 0.94);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+#loan-btl-explanation .calculator-table td {
+  font-size: 0.79rem;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+#loan-btl-explanation .btl-projection-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.3);
+}
+
+#loan-btl-explanation .btl-negative {
+  color: #fecaca;
+  font-weight: 700;
+}
+
+/* ── FAQ ── */
+
+#loan-btl-explanation .btl-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+}
+
+#loan-btl-explanation .btl-faq-card {
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.66);
+  padding: 0.64rem;
+  display: grid;
+  gap: 0.22rem;
+}
+
+#loan-btl-explanation .btl-faq-number {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.95);
+}
+
+#loan-btl-explanation .btl-faq-card h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.32;
+  color: rgba(248, 250, 252, 0.98);
   font-weight: 600;
 }
 
-#loan-btl-explanation .faq-item p {
+#loan-btl-explanation .btl-faq-card p {
   margin: 0;
+  font-size: 0.77rem;
   line-height: 1.5;
-  font-size: 14px;
+  color: rgba(203, 213, 225, 0.9);
 }
 
-.btl-faq .faq-item + .faq-item {
-  margin-top: 6px;
-}
+/* ── Responsive ── */
 
-@media (max-width: 720px) {
-  #calc-buy-to-let .btl-compact-grid {
+@media (max-width: 1220px) {
+  #calc-buy-to-let .btl-hero {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  #calc-buy-to-let .btl-compact-grid--two-up,
+  #loan-btl-explanation .btl-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #loan-btl-explanation .btl-results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-buy-to-let .btl-key-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #calc-buy-to-let .btl-form-panel,
+  #calc-buy-to-let .btl-preview-panel,
+  #loan-btl-explanation .btl-exp-section {
+    padding: 0.72rem;
+  }
+
+  #calc-buy-to-let .calculator-button.secondary {
+    font-size: 0.73rem;
+    padding: 0.38rem 0.72rem;
+  }
+
+  #loan-btl-explanation .btl-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-buy-to-let .btl-key-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-buy-to-let .btl-hero-value.is-updated {
+    animation: none;
+  }
+  #calc-buy-to-let .btl-preview-panel.is-positive,
+  #calc-buy-to-let .btl-preview-panel.is-negative {
+    animation: none;
+  }
+  #calc-buy-to-let .btl-metric-card.is-entering {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

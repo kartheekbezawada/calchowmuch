@@ -6,32 +6,65 @@ test.describe('Home Loan calculator', () => {
     await page.waitForSelector('#mtg-calculate');
   });
 
-  test('HOME-LOAN-TEST-E2E-1: calculates and populates explanation outputs', async ({ page }) => {
-    await page.fill('#mtg-price', '400000');
+  test('HOME-LOAN-TEST-E2E-1: calculates and populates merged snapshot outputs', async ({ page }) => {
+    await page.$eval('#mtg-price', (el) => {
+      el.value = 400000;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
     await page.locator('[data-button-group="mtg-down-type"] button[data-value="percent"]').click();
+
     const downLabel = page.locator('#mtg-down-value-label');
     await expect(downLabel).toHaveText('Down Payment Percent');
-    await page.fill('#mtg-down-value', '20');
-    await page.fill('#mtg-term', '30');
-    await page.fill('#mtg-rate', '6.5');
+
+    const advancedTitle = page.locator('.advanced-options .advanced-summary-title');
+    await expect(advancedTitle).toHaveText('Advanced Options - Optional');
+
     const advancedSummary = page.locator('.advanced-options summary');
+    const expandState = page.locator('.advanced-options .summary-state-expand');
+    const closeState = page.locator('.advanced-options .summary-state-close');
+    await expect(expandState).toContainText('Expand');
+    await expect(expandState).toBeVisible();
+    await expect(closeState).toBeHidden();
     await advancedSummary.click();
+    await expect(expandState).toBeHidden();
+    await expect(closeState).toContainText('Close');
+    await expect(closeState).toBeVisible();
+
+    await expect(page.locator('label[for="mtg-tax"]')).toHaveText('Property Tax');
+    await expect(page.locator('label[for="mtg-insurance"]')).toHaveText('Home Insurance');
+
+    await page.$eval('#mtg-down-value', (el) => {
+      el.value = 20;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.$eval('#mtg-term', (el) => {
+      el.value = 30;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await page.$eval('#mtg-rate', (el) => {
+      el.value = 6.5;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    });
     await page.fill('#mtg-extra', '200');
 
     await page.click('#mtg-calculate');
 
-    const result = page.locator('#mtg-result');
-    await expect(result).toContainText('Monthly Payment');
+    await expect(page.locator('#mtg-result')).toContainText('Monthly Payment');
+    await expect(page.locator('[data-mtg="price"]')).not.toHaveText('');
+    const totalPaidValue = page.locator('[data-mtg="total-paid"]');
+    await expect(totalPaidValue).toContainText(/[0-9]/);
+    await expect(totalPaidValue).not.toContainText(/[£$€]/);
 
-    const priceValue = page.locator('[data-mtg="price"]');
-    await expect(priceValue).not.toHaveText('');
+    const resultCard = page.locator('#mtg-result');
+    await expect(resultCard).not.toContainText(/[£$€]/);
+    const summaryCard = page.locator('#mtg-summary');
+    await expect(summaryCard).not.toContainText(/[£$€]/);
 
     const tableRows = page.locator('#mtg-table-monthly-body tr');
-    const rowCount = await tableRows.count();
-    expect(rowCount).toBeGreaterThan(0);
+    expect(await tableRows.count()).toBeGreaterThan(0);
   });
 
-  test('HOME-LOAN-TEST-E2E-2: view toggle switches table visibility', async ({ page }) => {
+  test('HOME-LOAN-TEST-E2E-2: view toggle switches table visibility and header remains sticky', async ({ page }) => {
     await page.click('#mtg-calculate');
 
     const yearlyButton = page.locator('#mtg-view-yearly');
@@ -48,26 +81,51 @@ test.describe('Home Loan calculator', () => {
 
     await monthlyButton.click();
     await expect(monthlyWrap).not.toHaveClass(/is-hidden/);
+
+    const stickyHeader = page.locator('#mtg-table-monthly thead th').first();
+    await expect(stickyHeader).toHaveCSS('position', 'sticky');
+    await expect(stickyHeader).toHaveCSS('top', '0px');
   });
 
-  test('HOME-LOAN-TEST-FAQ-E2E-1: FAQ section renders with styling', async ({ page }) => {
-    const faqHeading = page.locator('#loan-mtg-explanation h3', {
-      hasText: 'Frequently Asked Questions',
+  test('HOME-LOAN-TEST-E2E-3: renders as single center panel with aligned advanced fields', async ({ page }) => {
+    const centerPanels = page.locator('.center-column > .panel');
+    await expect(centerPanels).toHaveCount(1);
+    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+
+    await expect(page.locator('#loan-mtg-explanation h3', { hasText: 'Current Inputs' })).toHaveCount(0);
+    await expect(page.locator('#calc-home-loan .mtg-preview-label')).toHaveText(
+      'Estimated Monthly Payment'
+    );
+
+    await page.locator('.advanced-options summary').click();
+
+    const alignment = await page.evaluate(() => {
+      const taxInput = document.querySelector('#mtg-tax');
+      const insInput = document.querySelector('#mtg-insurance');
+      const taxLabel = document.querySelector('label[for="mtg-tax"]');
+      const insLabel = document.querySelector('label[for="mtg-insurance"]');
+      if (!taxInput || !insInput || !taxLabel || !insLabel) {
+        return null;
+      }
+      const taxInputRect = taxInput.getBoundingClientRect();
+      const insInputRect = insInput.getBoundingClientRect();
+      const taxLabelRect = taxLabel.getBoundingClientRect();
+      const insLabelRect = insLabel.getBoundingClientRect();
+
+      return {
+        inputTopDiff: Math.abs(taxInputRect.top - insInputRect.top),
+        inputHeightDiff: Math.abs(taxInputRect.height - insInputRect.height),
+        labelTopDiff: Math.abs(taxLabelRect.top - insLabelRect.top),
+      };
     });
-    await expect(faqHeading).toBeVisible();
 
-    const faqItems = page.locator('#loan-mtg-explanation .faq-item');
+    expect(alignment).not.toBeNull();
+    expect(alignment.inputTopDiff).toBeLessThanOrEqual(1.5);
+    expect(alignment.inputHeightDiff).toBeLessThanOrEqual(1.5);
+    expect(alignment.labelTopDiff).toBeLessThanOrEqual(1.5);
+
+    const faqItems = page.locator('#loan-mtg-explanation .bor-faq-card');
     await expect(faqItems).toHaveCount(10);
-
-    const firstFaq = faqItems.first();
-    await expect(firstFaq.locator('h4')).toBeVisible();
-    await expect(firstFaq.locator('p')).toBeVisible();
-
-    await expect(firstFaq).toHaveCSS('display', 'grid');
-    await expect(firstFaq).toHaveCSS('gap', '6px');
-    await expect(firstFaq).toHaveCSS('padding-top', '12px');
-    await expect(firstFaq).toHaveCSS('border-top-style', 'solid');
-    await expect(firstFaq).toHaveCSS('border-top-width', '1px');
 
     const hasHorizontalScroll = await page.evaluate(() => {
       const root = document.documentElement;

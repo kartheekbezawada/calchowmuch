@@ -1,49 +1,55 @@
 <div id="calc-buy-to-let">
-  <div class="calculator-ui">
-    <p class="helper">
-      Estimate buy-to-let cashflow, yields, and stress coverage based on rent and mortgage costs.
-    </p>
+  <div class="calculator-ui btl-ui">
+    <section class="btl-hero" aria-label="Buy-to-let calculator">
+      <div class="btl-form-panel">
+        <p class="helper">
+          Estimate buy-to-let cashflow, yields, and stress coverage based on rent and mortgage
+          costs.
+        </p>
 
-    <div class="input-stack">
-      <div class="input-grid btl-compact-grid btl-compact-grid--rent-price">
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="btl-price">Property Price</label>
+            <span class="slider-value" id="btl-price-display">250,000</span>
+          </div>
+          <input id="btl-price" type="range" value="250000" min="50000" max="2000000" step="5000" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="btl-rent">Monthly Rent</label>
+            <span class="slider-value" id="btl-rent-display">1,400</span>
+          </div>
+          <input id="btl-rent" type="range" value="1400" min="200" max="10000" step="50" />
+        </div>
+
         <div class="input-row">
-          <label for="btl-price">Property Price</label>
-          <input id="btl-price" type="number" value="250000" min="0" step="0.01" maxlength="10" />
-        </div>
-        <div class="input-row">
-          <label for="btl-rent">Monthly Rent</label>
-          <input id="btl-rent" type="number" value="1400" min="0" step="0.01" maxlength="10" />
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label id="btl-deposit-label">Deposit Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="btl-deposit-label"
-          data-button-group="btl-deposit-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="amount"
-            aria-pressed="true"
+          <label id="btl-deposit-label">Deposit Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="btl-deposit-label"
+            data-button-group="btl-deposit-type"
           >
-            Amount
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="percent"
-            aria-pressed="false"
-          >
-            Percent
-          </button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="amount"
+              aria-pressed="true"
+            >
+              Amount
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="percent"
+              aria-pressed="false"
+            >
+              Percent
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-grid btl-compact-grid">
         <div class="btl-deposit-slot">
           <div class="input-row" id="btl-deposit-amount-row">
             <label for="btl-deposit-amount">Deposit Amount</label>
@@ -71,121 +77,285 @@
           </div>
         </div>
 
-        <div class="input-row">
-          <label for="btl-rate">Interest Rate %</label>
-          <input id="btl-rate" type="number" value="5.5" min="0" step="0.01" maxlength="10" />
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="btl-rate">Interest Rate (%)</label>
+            <span class="slider-value" id="btl-rate-display">5.5%</span>
+          </div>
+          <input id="btl-rate" type="range" value="5.5" min="0.5" max="15" step="0.1" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="btl-term">Loan Term (Years)</label>
+            <span class="slider-value" id="btl-term-display">25 yrs</span>
+          </div>
+          <input id="btl-term" type="range" value="25" min="1" max="40" step="1" />
         </div>
 
         <div class="input-row">
-          <label for="btl-term">Loan Term - Years</label>
-          <input id="btl-term" type="number" value="25" min="1" step="1" maxlength="10" />
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label id="btl-mortgage-label">Mortgage Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="btl-mortgage-label"
-          data-button-group="btl-mortgage-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="interest-only"
-            aria-pressed="true"
+          <label id="btl-mortgage-label">Mortgage Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="btl-mortgage-label"
+            data-button-group="btl-mortgage-type"
           >
-            Interest Only
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="repayment"
-            aria-pressed="false"
-          >
-            Repayment
-          </button>
-        </div>
-      </div>
-
-
-      <!-- Advanced Options (collapsible) -->
-      <button class="calculator-button secondary" type="button" id="btl-advanced-toggle" aria-expanded="false" aria-controls="btl-advanced-options" style="margin-top: 1rem;">
-        Show Advanced Options
-      </button>
-      <div class="advanced-options is-collapsed" id="btl-advanced-options" hidden>
-        <div class="input-row">
-          <label id="btl-rent-increase-label">Rent Increase</label>
-          <div class="button-group" role="group" aria-labelledby="btl-rent-increase-label" data-button-group="btl-rent-increase">
-            <button class="calculator-button secondary is-active" type="button" data-value="off" aria-pressed="true">Off</button>
-            <button class="calculator-button secondary" type="button" data-value="on" aria-pressed="false">On</button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="interest-only"
+              aria-pressed="true"
+            >
+              Interest Only
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="repayment"
+              aria-pressed="false"
+            >
+              Repayment
+            </button>
           </div>
         </div>
-        <div class="btl-rent-increase-options is-hidden" id="btl-rent-increase-options">
-          <div class="input-row">
-            <label id="btl-rent-increase-type-label">Increase Type</label>
-            <div class="button-group" role="group" aria-labelledby="btl-rent-increase-type-label" data-button-group="btl-rent-increase-type">
-              <button class="calculator-button secondary is-active" type="button" data-value="percent" aria-pressed="true">By Percentage</button>
-              <button class="calculator-button secondary" type="button" data-value="amount" aria-pressed="false">By Amount</button>
+
+        <details class="advanced-options">
+          <summary>
+            <span class="advanced-summary-title">Advanced Options - Optional</span>
+            <span class="advanced-summary-pill" aria-hidden="true">
+              <span class="summary-state summary-state-expand">
+                <span class="summary-icon">+</span>
+                <span class="summary-text">Expand</span>
+              </span>
+              <span class="summary-state summary-state-close">
+                <span class="summary-icon">-</span>
+                <span class="summary-text">Close</span>
+              </span>
+            </span>
+          </summary>
+
+          <div class="advanced-stack">
+            <div class="input-row">
+              <label id="btl-rent-increase-label">Rent Increase</label>
+              <div
+                class="button-group"
+                role="group"
+                aria-labelledby="btl-rent-increase-label"
+                data-button-group="btl-rent-increase"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="off"
+                  aria-pressed="true"
+                >
+                  Off
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="on"
+                  aria-pressed="false"
+                >
+                  On
+                </button>
+              </div>
+            </div>
+
+            <div class="btl-rent-increase-options is-hidden" id="btl-rent-increase-options">
+              <div class="input-row">
+                <label id="btl-rent-increase-type-label">Increase Type</label>
+                <div
+                  class="button-group"
+                  role="group"
+                  aria-labelledby="btl-rent-increase-type-label"
+                  data-button-group="btl-rent-increase-type"
+                >
+                  <button
+                    class="calculator-button secondary is-active"
+                    type="button"
+                    data-value="percent"
+                    aria-pressed="true"
+                  >
+                    By Percentage
+                  </button>
+                  <button
+                    class="calculator-button secondary"
+                    type="button"
+                    data-value="amount"
+                    aria-pressed="false"
+                  >
+                    By Amount
+                  </button>
+                </div>
+              </div>
+              <div class="input-row" id="btl-rent-increase-percent-row">
+                <label for="btl-rent-increase-percent">Annual Increase (%)</label>
+                <input
+                  id="btl-rent-increase-percent"
+                  type="number"
+                  value="3"
+                  min="0"
+                  step="0.1"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row is-hidden" id="btl-rent-increase-amount-row">
+                <label for="btl-rent-increase-amount">Annual Increase (Amount)</label>
+                <input
+                  id="btl-rent-increase-amount"
+                  type="number"
+                  value="50"
+                  min="0"
+                  step="0.01"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row">
+                <label for="btl-rent-increase-frequency">Increase Frequency (Years)</label>
+                <input
+                  id="btl-rent-increase-frequency"
+                  type="number"
+                  value="1"
+                  min="1"
+                  step="1"
+                  maxlength="10"
+                />
+              </div>
+            </div>
+
+            <div class="input-row">
+              <label id="btl-vacancy-label">Vacancy Input</label>
+              <div
+                class="button-group"
+                role="group"
+                aria-labelledby="btl-vacancy-label"
+                data-button-group="btl-vacancy-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="percent"
+                  aria-pressed="true"
+                >
+                  Percent
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months per Year
+                </button>
+              </div>
+            </div>
+
+            <div class="input-grid btl-compact-grid--two-up">
+              <div class="input-row" id="btl-vacancy-percent-row">
+                <label for="btl-vacancy-percent">Vacancy Percent (%)</label>
+                <input
+                  id="btl-vacancy-percent"
+                  type="number"
+                  value="5"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row is-hidden" id="btl-vacancy-months-row">
+                <label for="btl-vacancy-months">Vacancy Months per Year</label>
+                <input
+                  id="btl-vacancy-months"
+                  type="number"
+                  value="0"
+                  min="0"
+                  max="12"
+                  step="1"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row">
+                <label for="btl-agent-fee">Letting Agent Fee (%)</label>
+                <input
+                  id="btl-agent-fee"
+                  type="number"
+                  value="10"
+                  min="0"
+                  step="0.1"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row">
+                <label for="btl-maintenance">Maintenance / Monthly Costs</label>
+                <input
+                  id="btl-maintenance"
+                  type="number"
+                  value="120"
+                  min="0"
+                  step="0.01"
+                  maxlength="10"
+                />
+              </div>
+              <div class="input-row">
+                <label for="btl-other-costs">Insurance / Service / Ground Rent</label>
+                <input
+                  id="btl-other-costs"
+                  type="number"
+                  value="80"
+                  min="0"
+                  step="0.01"
+                  maxlength="10"
+                />
+              </div>
             </div>
           </div>
-          <div class="input-row" id="btl-rent-increase-percent-row">
-            <label for="btl-rent-increase-percent">Annual Increase (%)</label>
-            <input id="btl-rent-increase-percent" type="number" value="3" min="0" step="0.1" maxlength="10" />
-          </div>
-          <div class="input-row is-hidden" id="btl-rent-increase-amount-row">
-            <label for="btl-rent-increase-amount">Annual Increase (Amount)</label>
-            <input id="btl-rent-increase-amount" type="number" value="50" min="0" step="0.01" maxlength="10" />
-          </div>
-          <div class="input-row">
-            <label for="btl-rent-increase-frequency">Increase Frequency (Years)</label>
-            <input id="btl-rent-increase-frequency" type="number" value="1" min="1" step="1" maxlength="10" />
-          </div>
-        </div>
-        <div class="input-row">
-          <label id="btl-vacancy-label">Vacancy Input</label>
-          <div class="button-group" role="group" aria-labelledby="btl-vacancy-label" data-button-group="btl-vacancy-type">
-            <button class="calculator-button secondary is-active" type="button" data-value="percent" aria-pressed="true">Percent</button>
-            <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">Months per Year</button>
-          </div>
-        </div>
-        <div class="input-grid btl-compact-grid btl-compact-grid--two-up">
-          <div class="input-row" id="btl-vacancy-percent-row">
-            <label for="btl-vacancy-percent">Vacancy Percent (%)</label>
-            <input id="btl-vacancy-percent" type="number" value="5" min="0" max="100" step="0.1" maxlength="10" />
-          </div>
-          <div class="input-row is-hidden" id="btl-vacancy-months-row">
-            <label for="btl-vacancy-months">Vacancy Months per Year</label>
-            <input id="btl-vacancy-months" type="number" value="0" min="0" max="12" step="1" maxlength="10" />
-          </div>
-          <div class="input-row">
-            <label for="btl-agent-fee">Letting Agent Fee (%)</label>
-            <input id="btl-agent-fee" type="number" value="10" min="0" step="0.1" maxlength="10" />
-          </div>
-          <div class="input-row">
-            <label for="btl-maintenance">Maintenance / Monthly Costs</label>
-            <input id="btl-maintenance" type="number" value="120" min="0" step="0.01" maxlength="10" />
-          </div>
-          <div class="input-row">
-            <label for="btl-other-costs">Insurance / Service / Ground Rent</label>
-            <input id="btl-other-costs" type="number" value="80" min="0" step="0.01" maxlength="10" />
-          </div>
+        </details>
+
+        <div class="input-row action-row btl-action-row">
+          <button class="calculator-button full-width" type="button" id="btl-calculate">
+            Calculate Buy-to-Let
+          </button>
         </div>
       </div>
-    </div>
 
-    <button class="calculator-button full-width" type="button" id="btl-calculate">
-      Calculate Buy-to-Let
-    </button>
+      <aside class="btl-preview-panel" aria-label="Buy-to-let results">
+        <div class="btl-preview-main">
+          <p class="btl-preview-label">Estimated Net Monthly Cashflow</p>
+          <div class="result btl-result-card" id="btl-result" aria-live="polite">
+            <span class="btl-hero-value"></span>
+          </div>
+        </div>
 
-    <div class="result" id="btl-result" aria-live="polite"></div>
-    <div class="result-detail" id="btl-summary" aria-live="polite"></div>
+        <div class="btl-key-metrics" id="btl-key-metrics" aria-live="polite">
+          <div class="btl-metric-card">
+            <span class="btl-metric-label">Monthly Mortgage</span>
+            <span class="btl-metric-value" data-btl="mortgage-payment"></span>
+          </div>
+          <div class="btl-metric-card">
+            <span class="btl-metric-label">Annual Cashflow</span>
+            <span class="btl-metric-value" data-btl="net-annual"></span>
+          </div>
+          <div class="btl-metric-card">
+            <span class="btl-metric-label">Gross Yield</span>
+            <span class="btl-metric-value" data-btl="gross-yield"></span>
+          </div>
+          <div class="btl-metric-card">
+            <span class="btl-metric-label">Net Yield</span>
+            <span class="btl-metric-value" data-btl="net-yield"></span>
+          </div>
+          <div class="btl-metric-card">
+            <span class="btl-metric-label">Stress Coverage</span>
+            <span class="btl-metric-value" data-btl="stress-coverage"></span>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
 <style>
   @import url('/calculators/loans/buy-to-let/calculator.css');
 </style>
-
-<script type="module" src="/calculators/loans/buy-to-let/module.js"></script>

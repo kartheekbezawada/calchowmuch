@@ -16,6 +16,34 @@ const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
 const CALCULATOR_OVERRIDES = {
+  'home-loan': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'how-much-can-i-borrow': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'remortgage-switching': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'buy-to-let': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'offset-calculator': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'interest-rate-change-calculator': {
+    title: 'Interest Rate Change Calculator | Calculate How Much Online Calculator',
+    description:
+      'Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term.',
+    h1: 'Interest Rate Change Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'overtime-hours-calculator': {
     title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
     description:
@@ -214,8 +242,7 @@ const mathIcons = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
   calculus:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
-  log:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  log: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
   statistics:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg>',
   chevronDown:
@@ -264,14 +291,11 @@ function getTopNavItems(categories) {
 
 function buildTopNavHtml(categories, activeCategoryId, activeSubcategoryId) {
   const items = getTopNavItems(categories);
-  const activeId =
-    activeCategoryId === 'loans' ? `loans:${activeSubcategoryId}` : activeCategoryId;
+  const activeId = activeCategoryId === 'loans' ? `loans:${activeSubcategoryId}` : activeCategoryId;
 
   return items
     .map((item) => {
-      const icon = item.icon
-        ? `<span class="nav-icon" aria-hidden="true">${item.icon}</span>`
-        : '';
+      const icon = item.icon ? `<span class="nav-icon" aria-hidden="true">${item.icon}</span>` : '';
       const activeClass = item.id === activeId ? ' is-active' : '';
       return `<a class="top-nav-link${activeClass}" href="${item.href}">${icon}<span class="nav-label">${item.label}</span></a>`;
     })
@@ -373,14 +397,24 @@ function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, cal
     .join('');
 }
 
-function buildLeftNavHtml(categories, activeCategoryId, activeSubcategoryId, activeCalculatorId, calcLookup, mode) {
+function buildLeftNavHtml(
+  categories,
+  activeCategoryId,
+  activeSubcategoryId,
+  activeCalculatorId,
+  calcLookup,
+  mode
+) {
   if (!activeCategoryId && mode === 'home') {
     const sections = categories
       .map((category) => {
         const items = category.subcategories
           .map((subcategory) => {
             const calculators = subcategory.calculators
-              .map((calculator) => `<a class="nav-item" href="${calculator.url}">${calculator.name}</a>`)
+              .map(
+                (calculator) =>
+                  `<a class="nav-item" href="${calculator.url}">${calculator.name}</a>`
+              )
               .join('');
             return `
 <div class="nav-category" data-id="${subcategory.id}">
@@ -423,10 +457,17 @@ function buildPageHtml({
   calculatorTitle,
   calculatorHtml,
   explanationHtml,
+  explanationHeading = 'Explanation',
+  paneLayout = 'split',
   includeHomeContent,
   pageType,
   calculatorRelPath,
 }) {
+  const explanationTitleHtml =
+    explanationHeading === '' || explanationHeading === null
+      ? ''
+      : `  <h3>${explanationHeading}</h3>\n`;
+
   const calcContent = includeHomeContent
     ? `<div class="panel panel-scroll">
   <h1 id="home-overview-title">Calculate How Much</h1>
@@ -457,13 +498,20 @@ function buildPageHtml({
     lender, advisor, or official documentation.
   </p>
 </div>`
-    : `<div class="panel panel-scroll">
+    : paneLayout === 'single'
+      ? `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  <div class="calculator-page-single">
+    ${calculatorHtml}
+${explanationTitleHtml}    ${explanationHtml}
+  </div>
+</div>`
+      : `<div class="panel panel-scroll">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   ${calculatorHtml}
 </div>
 <div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  ${explanationHtml}
+${explanationTitleHtml}  ${explanationHtml}
 </div>`;
 
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
@@ -775,6 +823,13 @@ function main() {
           calculatorTitle: override?.h1 ?? calculator.name,
           calculatorHtml,
           explanationHtml,
+          explanationHeading: Object.prototype.hasOwnProperty.call(
+            override ?? {},
+            'explanationHeading'
+          )
+            ? override.explanationHeading
+            : 'Explanation',
+          paneLayout: override?.paneLayout ?? 'split',
           includeHomeContent: false,
           pageType: 'calculator',
           calculatorRelPath: relPath,
@@ -787,14 +842,7 @@ function main() {
   });
 
   const homeTopNav = buildTopNavHtml(navigation.categories, null, null);
-  const homeLeftNav = buildLeftNavHtml(
-    navigation.categories,
-    null,
-    null,
-    null,
-    calcLookup,
-    'home'
-  );
+  const homeLeftNav = buildLeftNavHtml(navigation.categories, null, null, null, calcLookup, 'home');
 
   const homeHtml = buildPageHtml({
     title: ensureLength('Calculate How Much | Free Online Calculators', 50, 60),
@@ -816,9 +864,15 @@ function main() {
   });
 
   writeFile(path.join(PUBLIC_DIR, 'index.html'), homeHtml);
-  writeFile(path.join(PUBLIC_DIR, 'calculators', 'index.html'), buildCalculatorIndex(navigation.categories));
+  writeFile(
+    path.join(PUBLIC_DIR, 'calculators', 'index.html'),
+    buildCalculatorIndex(navigation.categories)
+  );
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
-  writeFile(path.join(PUBLIC_DIR, 'sitemap', 'index.html'), buildGtepSitemap(navigation.categories));
+  writeFile(
+    path.join(PUBLIC_DIR, 'sitemap', 'index.html'),
+    buildGtepSitemap(navigation.categories)
+  );
 }
 
 main();

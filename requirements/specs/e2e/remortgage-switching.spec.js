@@ -1,62 +1,56 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Remortgage / Switching', () => {
-  test('ISS-REMORT: outputs owned by explanation pane', async ({ page }) => {
+test.describe('Remortgage / Switching Hybrid', () => {
+  test('ISS-REMORT-HYBRID: single-pane ownership and interaction contract', async ({ page }) => {
     await page.goto('/loans/remortgage-switching');
 
-    const calcPane = page.locator('.center-column .panel').first();
-    const explanationPane = page.locator('.center-column .panel').last();
+    const centerPanels = page.locator('.center-column > .panel');
+    await expect(centerPanels).toHaveCount(1);
 
-    await expect(calcPane.locator('#calc-remortgage-switching')).toBeVisible();
-    await expect(explanationPane.locator('#loan-remortgage-explanation')).toBeVisible();
+    const panel = centerPanels.first();
+    await expect(panel).toHaveClass(/panel-span-all/);
+    await expect(panel.locator('#calc-remortgage-switching')).toBeVisible();
+    await expect(panel.locator('#loan-remortgage-explanation')).toBeVisible();
 
-    // ISS-REMORT-1: No outputs in calculation pane
-    await expect(calcPane.locator('table')).toHaveCount(0);
-    await expect(calcPane.locator('.graph-panel')).toHaveCount(0);
-    await expect(calcPane.locator('h4:has-text("Remortgage Summary")')).toHaveCount(0);
+    // Explanation heading is removed in single-pane generation.
+    await expect(panel.locator('h3:has-text("Explanation")')).toHaveCount(0);
 
-    // ISS-REMORT-2/3: Outputs exist in explanation pane and are not duplicated
-    await expect(explanationPane.locator('#loan-remortgage-explanation')).toHaveCount(1);
-    await expect(page.locator('#loan-remortgage-explanation')).toHaveCount(1);
-    await expect(page.locator('#remo-table')).toHaveCount(1);
-    await expect(page.locator('#remo-graph')).toHaveCount(1);
+    // Fees UI removed.
+    await expect(page.locator('[data-button-group="remo-fees-toggle"]')).toHaveCount(0);
+    await expect(page.locator('#remo-new-fees')).toHaveCount(0);
+    await expect(page.locator('#remo-exit-fees')).toHaveCount(0);
+    await expect(page.locator('#remo-legal-fees')).toHaveCount(0);
 
-    // REMO-UI-8/9/10: button labels and no pre-calculation outputs
-    await expect(calcPane.locator('#remo-calculate')).toHaveText(/Calculate/);
-    await expect(page.locator('#remo-fees-options')).toHaveClass(/is-hidden/);
-    await expect(explanationPane.locator('#remo-outputs')).toHaveClass(/is-hidden/);
+    // Horizon slider contract.
+    const horizon = page.locator('#remo-horizon-years');
+    await expect(horizon).toHaveAttribute('min', '2');
+    await expect(horizon).toHaveAttribute('max', '10');
+    await expect(horizon).toHaveAttribute('step', '1');
+    await expect(page.locator('.remo-horizon-tick-row span')).toHaveCount(9);
 
-    // Trigger first calculation
-    await calcPane.locator('#remo-calculate').click();
-    await expect(explanationPane.locator('#remo-outputs')).not.toHaveClass(/is-hidden/);
+    // Defaults should render immediately (yearly is default).
+    await expect(page.locator('#remo-metric-total')).toContainText(/[0-9]/);
+    await expect(page.locator('#remo-table-monthly-wrap')).toHaveClass(/is-hidden/);
+    await expect(page.locator('#remo-table-yearly-wrap')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#remo-table-yearly-body tr')).toHaveCount(5);
 
-    // ISS-REMORT-4: Currency symbol prohibition in rendered outputs
-    const explanationRoot = explanationPane.locator('#loan-remortgage-explanation');
-    await expect(explanationRoot).not.toContainText(/[£$€₹¥]/);
+    // Explicit calculate remains available and stable.
+    await page.locator('#remo-calculate').click();
+    await page.waitForFunction(() => {
+      const metric = document.querySelector('#remo-metric-monthly');
+      return metric && metric.textContent.trim() !== '' && metric.textContent.trim() !== '--';
+    });
 
-    // REMO-UI-8: Exclude/Include additional fees affects fees total
-    const fees = explanationRoot.locator('[data-remo="fees"]');
-    await expect(fees).toContainText(/1,?500/);
-    await calcPane.locator('button[data-value="include"]').click();
-    await expect(page.locator('#remo-fees-options')).not.toHaveClass(/is-hidden/);
-    await expect(fees).toContainText(/3,?000/);
-    await calcPane.locator('button[data-value="exclude"]').click();
-    await expect(page.locator('#remo-fees-options')).toHaveClass(/is-hidden/);
-    await expect(fees).toContainText(/1,?500/);
+    // View toggle switches wrapped tables.
+    await page.locator('#remo-view-monthly').click();
+    await expect(page.locator('#remo-table-monthly-wrap')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#remo-table-yearly-wrap')).toHaveClass(/is-hidden/);
+    await expect(page.locator('#remo-table-monthly-body tr')).toHaveCount(60);
 
-    // Dynamic updates (post user action): input change updates outputs
-    const savings = explanationRoot.locator('[data-remo="total-savings"]');
-    const originalSavings = (await savings.textContent())?.trim() ?? '';
-    await page.locator('#remo-new-rate').fill('1');
-    await expect(savings).not.toHaveText(originalSavings);
+    // FAQ contract (10 cards).
+    await expect(page.locator('#loan-remortgage-explanation .remo-faq-card')).toHaveCount(10);
 
-    // ISS-REMORT-5: Graph hover tooltip shows time period + both values
-    const tooltip = page.locator('#remo-graph-tooltip');
-    await expect(tooltip).toHaveClass(/is-hidden/);
-    await page.locator('#remo-graph .graph-main').hover({ position: { x: 120, y: 40 } });
-    await expect(tooltip).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('#remo-graph-tooltip-title')).toContainText('Month');
-    await expect(page.locator('#remo-graph-tooltip-current')).toContainText('Current:');
-    await expect(page.locator('#remo-graph-tooltip-new')).toContainText('New:');
+    // Currency symbol prohibition.
+    await expect(page.locator('#loan-remortgage-explanation')).not.toContainText(/[£$€₹¥]/);
   });
 });

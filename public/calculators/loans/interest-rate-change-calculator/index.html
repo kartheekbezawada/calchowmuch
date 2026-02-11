@@ -1,74 +1,126 @@
 <div id="calc-interest-rate-change">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compare monthly payments and total interest before and after a rate change.
-    </p>
+  <div class="calculator-ui home-loan-ui">
+    <section class="mtg-hero" aria-label="Interest rate change calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Compare monthly payments and lifetime interest before and after a mortgage rate change.
+        </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="rate-balance">Loan Balance</label>
-        <input id="rate-balance" type="number" value="250000" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-balance">Loan Balance</label>
+            <span class="slider-value" id="rate-balance-display">250,000</span>
+          </div>
+          <input id="rate-balance" type="range" value="250000" min="10000" max="2000000" step="5000" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-current">Current Rate (APR %)</label>
-        <input id="rate-current" type="number" value="5" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-current">Current Rate (APR %)</label>
+            <span class="slider-value" id="rate-current-display">5.0%</span>
+          </div>
+          <input id="rate-current" type="range" value="5" min="0" max="20" step="0.1" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-new">New Rate (APR %)</label>
-        <input id="rate-new" type="number" value="6.5" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-new">New Rate (APR %)</label>
+            <span class="slider-value" id="rate-new-display">6.5%</span>
+          </div>
+          <input id="rate-new" type="range" value="6.5" min="0" max="20" step="0.1" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-term">Remaining Term (years)</label>
-        <input id="rate-term" type="number" value="25" min="1" step="1" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-term">Remaining Term (years)</label>
+            <span class="slider-value" id="rate-term-display">25 yrs</span>
+          </div>
+          <input id="rate-term" type="range" value="25" min="1" max="40" step="1" />
+        </div>
 
-      <div class="input-row">
-        <label id="rate-change-label">Rate Change Timing</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="rate-change-label"
-          data-button-group="rate-change-timing"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="immediate"
-            aria-pressed="true"
+        <div class="input-row down-combined-left">
+          <label id="rate-change-label">Rate Change Timing</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="rate-change-label"
+            data-button-group="rate-change-timing"
           >
-            Apply Immediately
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="after"
-            aria-pressed="false"
-          >
-            After X Months
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="immediate"
+              aria-pressed="true"
+            >
+              Apply Immediately
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="after" aria-pressed="false">
+              After X Months
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row slider-row is-hidden" id="rate-change-months-row">
+          <div class="slider-header">
+            <label for="rate-change-months">Change After (months)</label>
+            <span class="slider-value" id="rate-change-months-display">12 mo</span>
+          </div>
+          <input id="rate-change-months" type="range" value="12" min="1" max="480" step="1" />
+        </div>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="rate-calculate">
+            Calculate Rate Impact
           </button>
         </div>
       </div>
 
-      <div class="input-row is-hidden" id="rate-change-months-row">
-        <label for="rate-change-months">Change After (months)</label>
-        <input id="rate-change-months" type="number" value="12" min="1" step="1" />
-      </div>
-    </div>
+      <aside class="mtg-preview-panel" aria-label="Rate change scenario snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Updated Monthly Payment</p>
+          <div class="result mtg-result-card" id="rate-result" aria-live="polite"></div>
+          <div class="result-detail mtg-summary-card" id="rate-summary" aria-live="polite"></div>
+        </div>
 
-    <button class="calculator-button full-width" type="button" id="rate-calculate">
-      Calculate Rate Impact
-    </button>
-
-    <div class="result" id="rate-result" aria-live="polite"></div>
-    <div class="result-detail" id="rate-summary" aria-live="polite"></div>
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Current Payment</span>
+            <strong data-rate="snap-current-payment"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>New Payment</span>
+            <strong data-rate="snap-new-payment"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Monthly Difference</span>
+            <strong data-rate="snap-monthly-diff"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Annual Difference</span>
+            <strong data-rate="snap-annual-diff"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Baseline Interest</span>
+            <strong data-rate="snap-interest-base"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>New Interest</span>
+            <strong data-rate="snap-interest-new"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Interest Change</span>
+            <strong data-rate="snap-interest-change"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Timing</span>
+            <strong data-rate="snap-timing"></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
 <style>
   @import url('/calculators/loans/interest-rate-change-calculator/calculator.css');
 </style>
-
-<script type="module" src="/calculators/loans/interest-rate-change-calculator/module.js"></script>

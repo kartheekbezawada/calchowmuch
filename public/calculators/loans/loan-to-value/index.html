@@ -1,96 +1,166 @@
 <div id="calc-loan-to-value">
-  <div class="calculator-ui">
-    <p class="helper">
-      Calculate loan-to-value (LTV), deposit, and risk bands for mortgage eligibility.
-    </p>
+  <div class="calculator-ui home-loan-ui ltv-ui">
+    <section class="mtg-hero" aria-label="Loan-to-value calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Set your property value and enter either the loan amount or deposit to instantly see your
+          loan-to-value (LTV) band and lending risk level.
+        </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ltv-property">Property Value</label>
-        <input id="ltv-property" type="number" value="300000" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="ltv-property">Property Value</label>
+            <span class="slider-value" id="ltv-property-display">350,000</span>
+          </div>
+          <input
+            id="ltv-property"
+            type="range"
+            value="350000"
+            min="50000"
+            max="3000000"
+            step="5000"
+          />
+        </div>
 
-      <div class="input-row">
-        <label id="ltv-mode-label">Input Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ltv-mode-label"
-          data-button-group="ltv-mode"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="loan"
-            aria-pressed="true"
+        <div class="input-row down-combined-left">
+          <label id="ltv-mode-label">Input Mode</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="ltv-mode-label"
+            data-button-group="ltv-mode"
           >
-            Loan Amount
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="deposit"
-            aria-pressed="false"
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="loan"
+              aria-pressed="true"
+            >
+              Loan Amount
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="deposit"
+              aria-pressed="false"
+            >
+              Deposit
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row slider-row" id="ltv-loan-row">
+          <div class="slider-header">
+            <label for="ltv-loan">Loan Amount</label>
+            <span class="slider-value" id="ltv-loan-display">280,000</span>
+          </div>
+          <input id="ltv-loan" type="range" value="280000" min="0" max="3000000" step="5000" />
+        </div>
+
+        <div class="input-row down-combined-left is-hidden" id="ltv-deposit-type-row">
+          <label id="ltv-deposit-type-label">Deposit Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="ltv-deposit-type-label"
+            data-button-group="ltv-deposit-type"
           >
-            Deposit
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="amount"
+              aria-pressed="true"
+            >
+              Amount
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="percent"
+              aria-pressed="false"
+            >
+              Percent
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row slider-row is-hidden" id="ltv-deposit-amount-row">
+          <div class="slider-header">
+            <label for="ltv-deposit-amount">Deposit Amount</label>
+            <span class="slider-value" id="ltv-deposit-amount-display">70,000</span>
+          </div>
+          <input
+            id="ltv-deposit-amount"
+            type="range"
+            value="70000"
+            min="0"
+            max="3000000"
+            step="5000"
+          />
+        </div>
+
+        <div class="input-row slider-row is-hidden" id="ltv-deposit-percent-row">
+          <div class="slider-header">
+            <label for="ltv-deposit-percent">Deposit Percent</label>
+            <span class="slider-value" id="ltv-deposit-percent-display">20.0%</span>
+          </div>
+          <input id="ltv-deposit-percent" type="range" value="20" min="0" max="99.9" step="0.1" />
+        </div>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="ltv-calculate">
+            Calculate LTV
           </button>
         </div>
       </div>
 
-      <div class="input-row" id="ltv-loan-row">
-        <label for="ltv-loan">Loan Amount</label>
-        <input id="ltv-loan" type="number" value="240000" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row is-hidden" id="ltv-deposit-type-row">
-        <label id="ltv-deposit-type-label">Deposit Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ltv-deposit-type-label"
-          data-button-group="ltv-deposit-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="amount"
-            aria-pressed="true"
-          >
-            Amount
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="percent"
-            aria-pressed="false"
-          >
-            Percent
-          </button>
+      <aside class="mtg-preview-panel" aria-label="LTV snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Current LTV Position</p>
+          <div class="result mtg-result-card" id="ltv-result" aria-live="polite"></div>
+          <div class="result-detail mtg-summary-card" id="ltv-summary" aria-live="polite"></div>
         </div>
-      </div>
 
-      <div class="input-row is-hidden" id="ltv-deposit-amount-row">
-        <label for="ltv-deposit-amount">Deposit Amount</label>
-        <input id="ltv-deposit-amount" type="number" value="60000" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row is-hidden" id="ltv-deposit-percent-row">
-        <label for="ltv-deposit-percent">Deposit Percent (%)</label>
-        <input id="ltv-deposit-percent" type="number" value="20" min="0" max="99.99" step="0.01" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="ltv-calculate">
-      Calculate LTV
-    </button>
-
-    <div class="result" id="ltv-result" aria-live="polite"></div>
-    <div class="result-detail" id="ltv-summary" aria-live="polite"></div>
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Property Value</span>
+            <strong data-ltv="snapshot-property"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Loan Amount</span>
+            <strong data-ltv="snapshot-loan"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Deposit</span>
+            <strong
+              ><span data-ltv="snapshot-deposit"></span> (<span
+                data-ltv="snapshot-deposit-percent"
+              ></span
+              >)</strong
+            >
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>LTV</span>
+            <strong data-ltv="snapshot-ltv"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Band</span>
+            <strong data-ltv="snapshot-bucket"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Risk Level</span>
+            <strong><span class="ltv-risk-pill" data-ltv="snapshot-risk"></span></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Status</span>
+            <strong><span class="ltv-status-pill" data-ltv="snapshot-high-risk"></span></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
 <style>
   @import url('/calculators/loans/loan-to-value/calculator.css');
 </style>
-
-<script type="module" src="/calculators/loans/loan-to-value/module.js"></script>

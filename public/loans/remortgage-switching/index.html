@@ -91,136 +91,106 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Remortgage / Switching</h1>
-  <div id="calc-remortgage-switching">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compare your current mortgage with a new deal, including fees and break-even timing.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-remortgage-switching">
+  <div class="calculator-ui remo-ui">
+    <section class="remo-hero" aria-label="Remortgage switching calculator">
+      <div class="remo-form-panel">
+        <section class="remo-input-group" aria-label="Current mortgage inputs">
+          <p class="remo-group-label">Current Mortgage</p>
+          <div class="remo-input-grid remo-input-grid--three">
+            <div class="input-row">
+              <label for="remo-balance">Current Balance</label>
+              <input id="remo-balance" type="number" value="220000" min="0" step="0.01" maxlength="10" />
+            </div>
+            <div class="input-row">
+              <label for="remo-current-rate">Current Rate (APR %)</label>
+              <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" maxlength="10" />
+            </div>
+            <div class="input-row">
+              <label for="remo-term">Remaining Term (years)</label>
+              <input id="remo-term" type="number" value="20" min="1" step="1" maxlength="10" />
+            </div>
+          </div>
+        </section>
 
-    <div class="input-stack">
-      <!-- Current Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
-      <div class="input-grid remo-compact-grid remo-compact-grid--current">
-        <div class="input-row">
-          <label for="remo-balance">Current Balance</label>
-          <input id="remo-balance" type="number" value="220000" min="0" step="0.01" maxlength="10" />
-        </div>
+        <section class="remo-input-group" aria-label="New deal inputs">
+          <div class="remo-input-grid remo-input-grid--two">
+            <div class="input-row">
+              <label for="remo-new-rate">New Rate (APR %)</label>
+              <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+            </div>
+            <div class="input-row">
+              <label for="remo-new-term">New Term (years)</label>
+              <input id="remo-new-term" type="number" value="20" min="1" step="1" maxlength="10" />
+            </div>
+          </div>
+        </section>
 
-        <div class="input-row">
-          <label for="remo-current-rate">Current Rate (APR %)</label>
-          <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" maxlength="10" />
-        </div>
+        <section class="remo-input-group remo-horizon-group" aria-label="Comparison horizon selector">
+          <div class="remo-horizon-head">
+            <strong id="remo-horizon-display">5 years</strong>
+          </div>
+          <div class="remo-horizon-slider-wrap">
+            <input
+              id="remo-horizon-years"
+              type="range"
+              min="2"
+              max="10"
+              step="1"
+              value="5"
+              list="remo-horizon-ticks"
+            />
+            <datalist id="remo-horizon-ticks">
+              <option value="2"></option>
+              <option value="3"></option>
+              <option value="4"></option>
+              <option value="5"></option>
+              <option value="6"></option>
+              <option value="7"></option>
+              <option value="8"></option>
+              <option value="9"></option>
+              <option value="10"></option>
+            </datalist>
+            <div class="remo-horizon-tick-row" aria-hidden="true">
+              <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            </div>
+          </div>
+        </section>
 
-        <div class="input-row">
-          <label for="remo-term">Remaining Term - Yrs</label>
-          <input id="remo-term" type="number" value="20" min="1" step="1" maxlength="10" />
-        </div>
-        <div class="input-row">
-          <label for="remo-current-payment">Current Monthly Payment</label>
-          <input id="remo-current-payment" type="number" value="0" min="0" step="0.01" maxlength="10" />
+        <div class="input-row action-row remo-action-row">
+          <button class="calculator-button full-width" type="button" id="remo-calculate">Calculate</button>
         </div>
       </div>
 
-      <!-- New Mortgage Inputs - Horizontal Layout per REMO-UI-4 -->
-      <div class="input-grid remo-compact-grid">
-        <div class="input-row">
-          <label for="remo-new-rate">New Rate (APR %)</label>
-          <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+      <aside class="remo-result-dashboard" aria-label="Switching summary">
+        <p class="remo-dashboard-label">Switching Snapshot</p>
+        <div class="remo-metric-grid">
+          <article class="remo-metric remo-metric--primary">
+            <span class="remo-metric__label">Monthly Saving</span>
+            <span class="remo-metric__value" id="remo-metric-monthly" aria-live="polite">—</span>
+          </article>
+          <article class="remo-metric">
+            <span class="remo-metric__label">Annual Saving</span>
+            <span class="remo-metric__value" id="remo-metric-annual" aria-live="polite">—</span>
+          </article>
+          <article class="remo-metric">
+            <span class="remo-metric__label">Break-even</span>
+            <span class="remo-metric__value" id="remo-metric-break-even" aria-live="polite">—</span>
+          </article>
+          <article class="remo-metric">
+            <span class="remo-metric__label">Total Saving</span>
+            <span class="remo-metric__value" id="remo-metric-total" aria-live="polite">—</span>
+          </article>
         </div>
-
-        <div class="input-row">
-          <label for="remo-new-term">New Term (years)</label>
-          <input id="remo-new-term" type="number" value="20" min="1" step="1" maxlength="10" />
-        </div>
-      </div>
-
-      <!-- Additional Fees Section per REMO-UI-5 -->
-      <div class="remo-fees-section">
-        <div class="input-row">
-          <label id="remo-fees-label">Additional Fees</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="remo-fees-label"
-            data-button-group="remo-fees-toggle"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="exclude"
-              aria-pressed="true"
-            >
-              Exclude
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="include"
-              aria-pressed="false"
-            >
-              Include
-            </button>
-          </div>
-        </div>
-
-        <div class="remo-fees-options remo-fees-grid is-hidden" id="remo-fees-options">
-          <div class="input-row">
-            <label for="remo-new-fees">New Deal Fees</label>
-            <input id="remo-new-fees" type="number" value="1500" min="0" step="0.01" maxlength="10" />
-          </div>
-
-          <div class="input-row">
-            <label for="remo-exit-fees">Exit Fees / ERC</label>
-            <input id="remo-exit-fees" type="number" value="1000" min="0" step="0.01" maxlength="10" />
-          </div>
-
-          <div class="input-row">
-            <label for="remo-legal-fees">Legal / Valuation</label>
-            <input id="remo-legal-fees" type="number" value="500" min="0" step="0.01" maxlength="10" />
-          </div>
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label id="remo-horizon-label">Comparison Horizon</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="remo-horizon-label"
-          data-button-group="remo-horizon"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="2"
-            aria-pressed="true"
-          >
-            2 Years
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="3"
-            aria-pressed="false"
-          >
-            3 Years
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="5"
-            aria-pressed="false"
-          >
-            5 Years
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="remo-calculate">
-      Calculate
-    </button>
+        <p class="remo-result-note" id="remo-result-note" aria-live="polite">
+          Press calculate to compare your current and new cost paths.
+        </p>
+        <div class="remo-error" id="remo-error" aria-live="polite"></div>
+      </aside>
+    </section>
   </div>
 </div>
 
@@ -228,53 +198,136 @@
   @import url('/calculators/loans/remortgage-switching/calculator.css');
 </style>
 
-<script type="module" src="/calculators/loans/remortgage-switching/module.js"></script>
+    <div id="loan-remortgage-explanation">
+  <p class="remo-exp-summary" id="remo-exp-summary" aria-live="polite">
+    Set your inputs and click calculate to compare cumulative costs over your selected horizon.
+  </p>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="loan-remortgage-explanation">
-  <div class="result" id="remo-error" aria-live="polite"></div>
-
-  <p class="placeholder" id="remo-prompt">Click Calculate to see your results.</p>
-
-  <div class="is-hidden" id="remo-outputs">
-    <h4>Remortgage Summary</h4>
-    <p>
-      Your current monthly payment is <span data-remo="current-payment"></span>, compared to
-      <span data-remo="new-payment"></span> on the new deal, resulting in a monthly difference of
-      <span data-remo="monthly-diff"></span> (approximately <span data-remo="annual-diff"></span> per
-      year).
-    </p>
-    <p>
-      Fees of <span data-remo="fees"></span> are included in the new deal’s total cost. The break-even
-      point occurs at <span data-remo="break-even"></span>, when cumulative savings exceed the fees.
-    </p>
-    <p>
-      Over the selected period, the total cost is <span data-remo="total-current"></span> for the
-      current deal versus <span data-remo="total-new"></span> for the new deal, for total savings of
-      <span data-remo="total-savings"></span>.
-    </p>
-
-    <div class="result-section">
-      <h4>Cost Comparison Table</h4>
-      <div class="table-scroll" id="remo-table-wrap" tabindex="0">
-        <table class="calculator-table" id="remo-table">
-          <thead>
-            <tr>
-              <th scope="col">Month</th>
-              <th scope="col">Current Cost</th>
-              <th scope="col">New Cost</th>
-              <th scope="col">Net Savings</th>
-            </tr>
-          </thead>
-          <tbody id="remo-table-body"></tbody>
-        </table>
+  <section class="remo-exp-section remo-exp-section--table">
+    <div class="remo-table-header">
+      <h3>Cost Comparison Table</h3>
+      <div
+        class="remo-table-view-toggle"
+        role="group"
+        aria-label="Table view selector"
+        data-button-group="remo-table-view"
+      >
+        <button class="calculator-button secondary" type="button" data-value="monthly" id="remo-view-monthly">
+          Monthly
+        </button>
+        <button class="calculator-button secondary is-active" type="button" data-value="yearly" id="remo-view-yearly">
+          Yearly
+        </button>
       </div>
     </div>
-  </div>
+
+    <div class="table-scroll is-hidden" id="remo-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="remo-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Current Cost</th>
+            <th scope="col">New Cost</th>
+            <th scope="col">Net Saving</th>
+          </tr>
+        </thead>
+        <tbody id="remo-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="remo-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="remo-table-yearly">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Current Cost</th>
+            <th scope="col">New Cost</th>
+            <th scope="col">Net Saving</th>
+          </tr>
+        </thead>
+        <tbody id="remo-table-yearly-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="remo-exp-section remo-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="remo-faq-grid">
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">01</span>
+        <h4>What does this remortgage comparison show?</h4>
+        <p>
+          It compares cumulative cost of your current mortgage versus a new rate and term over your chosen horizon.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">02</span>
+        <h4>Why is horizon length important?</h4>
+        <p>
+          A longer horizon shows how differences compound over time, which can change your switching decision.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">03</span>
+        <h4>Can a lower rate still be a weak switch?</h4>
+        <p>
+          Yes. If the term changes materially, short-term monthly relief may not always mean strongest long-term value.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">04</span>
+        <h4>How should I read break-even month?</h4>
+        <p>
+          It is the first month where cumulative new-deal cost becomes lower than the current-deal cost.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">05</span>
+        <h4>Should I compare monthly and yearly table views?</h4>
+        <p>
+          Yes. Monthly reveals timing details, while yearly helps you evaluate strategy with less noise.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">06</span>
+        <h4>What if my current payment differs from formula output?</h4>
+        <p>
+          This calculator computes baseline from balance, rate, and term for consistency across all scenarios.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">07</span>
+        <h4>Can I use this for quick refinancing checks?</h4>
+        <p>
+          Yes. It is designed for fast directional decisions before lender-specific fee and product validation.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">08</span>
+        <h4>Does changing term length affect total saving?</h4>
+        <p>
+          Absolutely. Term length influences monthly payment profile and cumulative interest over your horizon.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">09</span>
+        <h4>Is this a lender approval or offer?</h4>
+        <p>
+          No. It is an estimate tool. Final terms depend on product rules, credit profile, and underwriting.
+        </p>
+      </div>
+      <div class="remo-faq-card">
+        <span class="remo-faq-number">10</span>
+        <h4>How do I use this for better decisions?</h4>
+        <p>
+          Keep balance fixed, vary one input at a time, and compare outcomes across multiple horizon years.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

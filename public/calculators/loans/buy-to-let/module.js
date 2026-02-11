@@ -27,14 +27,22 @@ const maintenanceInput = document.querySelector('#btl-maintenance');
 const otherCostsInput = document.querySelector('#btl-other-costs');
 const calculateButton = document.querySelector('#btl-calculate');
 const resultDiv = document.querySelector('#btl-result');
-const summaryDiv = document.querySelector('#btl-summary');
+const heroValue = resultDiv?.querySelector('.btl-hero-value');
+const previewPanel = document.querySelector('.btl-preview-panel');
 const formatLoanCurrency = (value) => formatNumber(value, 'GBP');
+
+const priceDisplay = document.querySelector('#btl-price-display');
+const rentDisplay = document.querySelector('#btl-rent-display');
+const rateDisplay = document.querySelector('#btl-rate-display');
+const termDisplay = document.querySelector('#btl-term-display');
 
 const depositGroup = document.querySelector('[data-button-group="btl-deposit-type"]');
 const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-type"]');
 const vacancyGroup = document.querySelector('[data-button-group="btl-vacancy-type"]');
 const rentIncreaseGroup = document.querySelector('[data-button-group="btl-rent-increase"]');
-const rentIncreaseTypeGroup = document.querySelector('[data-button-group="btl-rent-increase-type"]');
+const rentIncreaseTypeGroup = document.querySelector(
+  '[data-button-group="btl-rent-increase-type"]'
+);
 
 const explanationRoot = document.querySelector('#loan-btl-explanation');
 const priceValue = explanationRoot?.querySelector('[data-btl="price"]');
@@ -111,7 +119,7 @@ function cacheCashflowElements() {
 cacheCashflowElements();
 
 function enforceMaxLength(input) {
-  if (!input) {
+  if (!input || input.type === 'range') {
     return;
   }
   input.addEventListener('input', () => {
@@ -120,6 +128,34 @@ function enforceMaxLength(input) {
       input.value = value.slice(0, MAX_INPUT_LENGTH);
     }
   });
+}
+
+function updateSliderFill(input) {
+  if (!input || input.type !== 'range') return;
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || 100;
+  const val = parseFloat(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (priceInput && priceDisplay) {
+    priceDisplay.textContent = formatNumber(Number(priceInput.value), { maximumFractionDigits: 0 });
+    updateSliderFill(priceInput);
+  }
+  if (rentInput && rentDisplay) {
+    rentDisplay.textContent = formatNumber(Number(rentInput.value), { maximumFractionDigits: 0 });
+    updateSliderFill(rentInput);
+  }
+  if (rateInput && rateDisplay) {
+    rateDisplay.textContent = `${rateInput.value}%`;
+    updateSliderFill(rateInput);
+  }
+  if (termInput && termDisplay) {
+    termDisplay.textContent = `${termInput.value} yrs`;
+    updateSliderFill(termInput);
+  }
 }
 
 const depositButtons = setupButtonGroup(depositGroup, {
@@ -159,14 +195,9 @@ const rentIncreaseTypeButtons = setupButtonGroup(rentIncreaseTypeGroup, {
   },
 });
 
-
 [
-  priceInput,
   depositAmountInput,
   depositPercentInput,
-  rateInput,
-  termInput,
-  rentInput,
   rentIncreasePercentInput,
   rentIncreaseAmountInput,
   rentIncreaseFrequencyInput,
@@ -197,7 +228,6 @@ function setRentIncreaseTypeVisibility(type) {
   rentIncreasePercentRow?.classList.toggle('is-hidden', type !== 'percent');
   rentIncreaseAmountRow?.classList.toggle('is-hidden', type !== 'amount');
 }
-
 
 function formatTableNumber(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -265,23 +295,23 @@ function clearOutputs() {
 }
 
 function setError(message) {
-  if (resultDiv) {
+  if (heroValue) {
+    heroValue.textContent = message;
+    heroValue.classList.remove('is-positive', 'is-negative', 'is-updated');
+  } else if (resultDiv) {
     resultDiv.textContent = message;
-  }
-  if (summaryDiv) {
-    summaryDiv.textContent = '';
   }
   clearOutputs();
 }
 
 function updateExplanation(data) {
-  if (!explanationRoot || !data) {
+  if (!data) {
     return;
   }
 
   // Helper function to set text content by data-btl attribute
   const setByAttr = (attr, value) => {
-    const elements = explanationRoot.querySelectorAll(`[data-btl="${attr}"]`);
+    const elements = document.querySelectorAll(`[data-btl="${attr}"]`);
     elements.forEach((el) => {
       el.textContent = value;
     });
@@ -290,14 +320,21 @@ function updateExplanation(data) {
   // Dynamic Summary Section
   setByAttr('price', formatLoanCurrency(data.price));
   setByAttr('rent', formatLoanCurrency(data.monthlyRent));
-  setByAttr('mortgage-type-label', data.mortgageType === 'interest-only' ? 'Interest-Only' : 'Repayment');
+  setByAttr(
+    'mortgage-type-label',
+    data.mortgageType === 'interest-only' ? 'Interest-Only' : 'Repayment'
+  );
   setByAttr('rate', formatNumber(data.annualRate, { maximumFractionDigits: 2 }));
   setByAttr('term', `${data.termYears}`);
   setByAttr('net-monthly', formatLoanCurrency(data.netMonthlyCashflow));
-  setByAttr('stress-coverage-percent', formatNumber(data.stressCoverage * 100, { maximumFractionDigits: 2 }));
+  setByAttr(
+    'stress-coverage-percent',
+    formatNumber(data.stressCoverage * 100, { maximumFractionDigits: 2 })
+  );
 
-  // Output Snapshot Table
+  // Key Results (both preview panel metric cards and explanation tiles)
   setByAttr('mortgage-payment', formatLoanCurrency(data.monthlyMortgage));
+  setByAttr('net-annual', formatLoanCurrency(data.annualCashflow));
   setByAttr('gross-yield', formatPercent(data.grossYield));
   setByAttr('net-yield', formatPercent(data.netYield));
   setByAttr('stress-coverage', formatNumber(data.stressCoverage, { maximumFractionDigits: 2 }));
@@ -322,14 +359,14 @@ function updateExplanation(data) {
 
     setByAttr('rent-increase-type', data.rentIncreaseType === 'percent' ? 'Percent' : 'Amount');
 
-    const rentIncreaseValueText = data.rentIncreaseType === 'percent'
-      ? formatPercent(data.rentIncreaseValue)
-      : formatLoanCurrency(data.rentIncreaseValue);
+    const rentIncreaseValueText =
+      data.rentIncreaseType === 'percent'
+        ? formatPercent(data.rentIncreaseValue)
+        : formatLoanCurrency(data.rentIncreaseValue);
     setByAttr('rent-increase-value', rentIncreaseValueText);
 
-    const frequencyText = data.rentIncreaseInterval === 1
-      ? 'Every year'
-      : `Every ${data.rentIncreaseInterval} years`;
+    const frequencyText =
+      data.rentIncreaseInterval === 1 ? 'Every year' : `Every ${data.rentIncreaseInterval} years`;
     setByAttr('rent-increase-frequency', frequencyText);
   } else {
     rentIncreaseTypeRow?.classList.add('is-hidden');
@@ -339,9 +376,10 @@ function updateExplanation(data) {
 
   setByAttr('vacancy-type', data.vacancyType === 'percent' ? 'Percent' : 'Months');
 
-  const vacancyValueText = data.vacancyType === 'percent'
-    ? formatPercent(data.vacancyPercent)
-    : `${data.vacancyMonths} months`;
+  const vacancyValueText =
+    data.vacancyType === 'percent'
+      ? formatPercent(data.vacancyPercent)
+      : `${data.vacancyMonths} months`;
   setByAttr('vacancy-value', vacancyValueText);
 
   setByAttr('agent-fee', formatPercent(data.agentFeePercent));
@@ -391,9 +429,7 @@ function updateExplanation(data) {
   if (data.rentIncreaseEnabled) {
     if (rentIncreaseDescValue) {
       const intervalLabel =
-        data.rentIncreaseInterval === 1
-          ? 'every year'
-          : `every ${data.rentIncreaseInterval} years`;
+        data.rentIncreaseInterval === 1 ? 'every year' : `every ${data.rentIncreaseInterval} years`;
       const valueLabel =
         data.rentIncreaseType === 'percent'
           ? `${formatNumber(data.rentIncreaseValue, { maximumFractionDigits: 2 })}%`
@@ -401,9 +437,7 @@ function updateExplanation(data) {
       rentIncreaseDescValue.textContent = `${valueLabel} ${intervalLabel}`;
     }
     if (rentIncreaseStartValue) {
-      rentIncreaseStartValue.textContent = formatLoanCurrency(
-        data.projection[0]?.netCashflow ?? 0
-      );
+      rentIncreaseStartValue.textContent = formatLoanCurrency(data.projection[0]?.netCashflow ?? 0);
     }
     if (rentIncreaseEndValue) {
       rentIncreaseEndValue.textContent = formatLoanCurrency(
@@ -524,10 +558,7 @@ function showCashflowTooltip(event) {
   }
 
   const hoverTarget =
-    cashflowGraphPanel ||
-    cashflowGraphWrapper ||
-    cashflowHoverLayer ||
-    event.currentTarget;
+    cashflowGraphPanel || cashflowGraphWrapper || cashflowHoverLayer || event.currentTarget;
   if (
     !hoverTarget ||
     !cashflowTooltip ||
@@ -608,14 +639,15 @@ function hideCashflowTooltip() {
 }
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {
+  if (!resultDiv) {
     return;
   }
 
   cacheCashflowElements();
 
-  resultDiv.textContent = '';
-  summaryDiv.textContent = '';
+  if (heroValue) {
+    heroValue.textContent = '';
+  }
   clearOutputs();
 
   const inputsToValidate = [
@@ -768,19 +800,33 @@ function calculate() {
   data.vacancyMonths = vacancyMonths;
   data.ltv = data.loanAmount > 0 && price > 0 ? (data.loanAmount / price) * 100 : 0;
 
-  resultDiv.innerHTML = `<strong>Net Monthly Cashflow:</strong> ${formatLoanCurrency(
-    data.netMonthlyCashflow
-  )}`;
+  // Update hero value with animation
+  if (heroValue) {
+    heroValue.textContent = formatLoanCurrency(data.netMonthlyCashflow);
+    heroValue.classList.toggle('is-positive', data.netMonthlyCashflow >= 0);
+    heroValue.classList.toggle('is-negative', data.netMonthlyCashflow < 0);
+    heroValue.classList.remove('is-updated');
+    void heroValue.offsetWidth;
+    heroValue.classList.add('is-updated');
+  }
 
-  summaryDiv.innerHTML =
-    `<p><strong>Monthly mortgage payment:</strong> ${formatLoanCurrency(data.monthlyMortgage)}</p>` +
-    `<p><strong>Annual cashflow:</strong> ${formatLoanCurrency(data.annualCashflow)}</p>` +
-    `<p><strong>Gross yield:</strong> ${formatPercent(data.grossYield)} | ` +
-    `<strong>Net yield:</strong> ${formatPercent(data.netYield)}</p>` +
-    `<p><strong>Stress coverage:</strong> ${formatNumber(data.stressCoverage, { maximumFractionDigits: 2 })}</p>`;
+  // Update panel emotional state
+  if (previewPanel) {
+    previewPanel.classList.toggle('is-positive', data.netMonthlyCashflow >= 0);
+    previewPanel.classList.toggle('is-negative', data.netMonthlyCashflow < 0);
+  }
+
+  // Trigger stagger animation on metric cards
+  const metricCards = document.querySelectorAll('.btl-metric-card');
+  metricCards.forEach((card) => {
+    card.classList.remove('is-entering');
+    void card.offsetWidth;
+    card.classList.add('is-entering');
+  });
 
   updateExplanation(data);
   updateTable(data);
+  updateSliderDisplays();
 }
 
 setDepositVisibility(depositButtons?.getValue() ?? 'amount');
@@ -790,18 +836,29 @@ setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
 
 calculateButton?.addEventListener('click', calculate);
 
-// Advanced Options Toggle
-const advancedToggle = document.getElementById('btl-advanced-toggle');
-const advancedOptions = document.getElementById('btl-advanced-options');
-
-if (advancedToggle && advancedOptions) {
-  advancedToggle.addEventListener('click', () => {
-    const expanded = advancedToggle.getAttribute('aria-expanded') === 'true';
-    advancedToggle.setAttribute('aria-expanded', String(!expanded));
-    advancedOptions.hidden = expanded;
-    advancedOptions.classList.toggle('is-collapsed', expanded);
-    advancedToggle.textContent = expanded ? 'Show Advanced Options' : 'Hide Advanced Options';
-  });
+// Live calculation on slider drag (debounced)
+let calcDebounceTimer = null;
+function debouncedCalculate() {
+  clearTimeout(calcDebounceTimer);
+  calcDebounceTimer = setTimeout(calculate, 80);
 }
 
+priceInput?.addEventListener('input', () => {
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+rentInput?.addEventListener('input', () => {
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+rateInput?.addEventListener('input', () => {
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+termInput?.addEventListener('input', () => {
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+
+updateSliderDisplays();
 calculate();

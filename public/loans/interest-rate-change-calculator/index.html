@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Interest Rate Change Calculator | Calculate How Much Onli...</title>
+    <title>Interest Rate Change Calculator | Calculate How Much Online Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Interest Rate Change Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help yo..." />
+    <meta name="description" content="Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term." />
     <link rel="canonical" href="https://calchowmuch.com/loans/interest-rate-change-calculator/" />
-    <meta property="og:title" content="Interest Rate Change Calculator | Calculate How Much Onli..." />
-    <meta property="og:description" content="Interest Rate Change Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help yo..." />
+    <meta property="og:title" content="Interest Rate Change Calculator | Calculate How Much Online Calculator" />
+    <meta property="og:description" content="Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loans/interest-rate-change-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Interest Rate Change Calculator | Calculate How Much Onli..." />
-    <meta name="twitter:description" content="Interest Rate Change Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help yo..." />
+    <meta name="twitter:title" content="Interest Rate Change Calculator | Calculate How Much Online Calculator" />
+    <meta name="twitter:description" content="Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
@@ -91,74 +91,129 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Interest Rate Change Calculator</h1>
-  <div id="calc-interest-rate-change">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compare monthly payments and total interest before and after a rate change.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-interest-rate-change">
+  <div class="calculator-ui home-loan-ui">
+    <section class="mtg-hero" aria-label="Interest rate change calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Compare monthly payments and lifetime interest before and after a mortgage rate change.
+        </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="rate-balance">Loan Balance</label>
-        <input id="rate-balance" type="number" value="250000" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-balance">Loan Balance</label>
+            <span class="slider-value" id="rate-balance-display">250,000</span>
+          </div>
+          <input id="rate-balance" type="range" value="250000" min="10000" max="2000000" step="5000" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-current">Current Rate (APR %)</label>
-        <input id="rate-current" type="number" value="5" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-current">Current Rate (APR %)</label>
+            <span class="slider-value" id="rate-current-display">5.0%</span>
+          </div>
+          <input id="rate-current" type="range" value="5" min="0" max="20" step="0.1" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-new">New Rate (APR %)</label>
-        <input id="rate-new" type="number" value="6.5" min="0" step="0.01" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-new">New Rate (APR %)</label>
+            <span class="slider-value" id="rate-new-display">6.5%</span>
+          </div>
+          <input id="rate-new" type="range" value="6.5" min="0" max="20" step="0.1" />
+        </div>
 
-      <div class="input-row">
-        <label for="rate-term">Remaining Term (years)</label>
-        <input id="rate-term" type="number" value="25" min="1" step="1" />
-      </div>
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="rate-term">Remaining Term (years)</label>
+            <span class="slider-value" id="rate-term-display">25 yrs</span>
+          </div>
+          <input id="rate-term" type="range" value="25" min="1" max="40" step="1" />
+        </div>
 
-      <div class="input-row">
-        <label id="rate-change-label">Rate Change Timing</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="rate-change-label"
-          data-button-group="rate-change-timing"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="immediate"
-            aria-pressed="true"
+        <div class="input-row down-combined-left">
+          <label id="rate-change-label">Rate Change Timing</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="rate-change-label"
+            data-button-group="rate-change-timing"
           >
-            Apply Immediately
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="after"
-            aria-pressed="false"
-          >
-            After X Months
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="immediate"
+              aria-pressed="true"
+            >
+              Apply Immediately
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="after" aria-pressed="false">
+              After X Months
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row slider-row is-hidden" id="rate-change-months-row">
+          <div class="slider-header">
+            <label for="rate-change-months">Change After (months)</label>
+            <span class="slider-value" id="rate-change-months-display">12 mo</span>
+          </div>
+          <input id="rate-change-months" type="range" value="12" min="1" max="480" step="1" />
+        </div>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="rate-calculate">
+            Calculate Rate Impact
           </button>
         </div>
       </div>
 
-      <div class="input-row is-hidden" id="rate-change-months-row">
-        <label for="rate-change-months">Change After (months)</label>
-        <input id="rate-change-months" type="number" value="12" min="1" step="1" />
-      </div>
-    </div>
+      <aside class="mtg-preview-panel" aria-label="Rate change scenario snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Updated Monthly Payment</p>
+          <div class="result mtg-result-card" id="rate-result" aria-live="polite"></div>
+          <div class="result-detail mtg-summary-card" id="rate-summary" aria-live="polite"></div>
+        </div>
 
-    <button class="calculator-button full-width" type="button" id="rate-calculate">
-      Calculate Rate Impact
-    </button>
-
-    <div class="result" id="rate-result" aria-live="polite"></div>
-    <div class="result-detail" id="rate-summary" aria-live="polite"></div>
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Current Payment</span>
+            <strong data-rate="snap-current-payment"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>New Payment</span>
+            <strong data-rate="snap-new-payment"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Monthly Difference</span>
+            <strong data-rate="snap-monthly-diff"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Annual Difference</span>
+            <strong data-rate="snap-annual-diff"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Baseline Interest</span>
+            <strong data-rate="snap-interest-base"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>New Interest</span>
+            <strong data-rate="snap-interest-new"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Interest Change</span>
+            <strong data-rate="snap-interest-change"></strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Timing</span>
+            <strong data-rate="snap-timing"></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
@@ -166,28 +221,97 @@
   @import url('/calculators/loans/interest-rate-change-calculator/calculator.css');
 </style>
 
-<script type="module" src="/calculators/loans/interest-rate-change-calculator/module.js"></script>
-
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="loan-rate-change-explanation">
-  <h4>Rate Change Summary</h4>
+    <div id="loan-rate-change-explanation">
+  <h2>Interest Rate Change - Payment Impact</h2>
   <p>
-    Current monthly payment is <span data-rate="current-payment"></span>. After the rate change, the
-    payment becomes <span data-rate="new-payment"></span>, a monthly difference of
-    <span data-rate="monthly-diff"></span> (about <span data-rate="annual-diff"></span> per year).
+    When a mortgage rate changes, payment and lifetime interest can shift materially even if the
+    remaining balance and term stay the same.
   </p>
   <p>
-    Over the remaining term, total interest changes from <span data-rate="interest-base"></span> to
-    <span data-rate="interest-new"></span>. Rate changes affect amortization because the interest
-    portion of each payment is recalculated on the remaining balance.
+    Use this view to compare baseline and new scenarios, inspect monthly and yearly payment
+    differences, and understand how total interest moves across the remaining term.
   </p>
 
-  <div class="result-section">
-    <h4>Yearly Comparison</h4>
-    <div class="table-scroll" id="rate-table-wrap" tabindex="0">
-      <table class="calculator-table" id="rate-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-rate="lifetime-donut"
+        role="img"
+        aria-label="Baseline versus new interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Baseline Share</span>
+          <strong data-rate="lt-baseline-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>New Scenario Share</span>
+          <strong data-rate="lt-new-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Baseline Interest</span>
+        <strong data-rate="lt-baseline-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>New Scenario Interest</span>
+        <strong data-rate="lt-new-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Interest Change</span>
+        <strong data-rate="lt-interest-change"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-rate="lt-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Rate Change Table</h3>
+        <div
+          class="table-view-toggle"
+          role="group"
+          aria-label="Table view selector"
+          data-button-group="rate-amortization-view"
+        >
+          <button class="calculator-button secondary" type="button" data-value="monthly" id="rate-view-monthly">
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="yearly"
+            id="rate-view-yearly"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="rate-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Baseline Payment</th>
+            <th scope="col">New Payment</th>
+            <th scope="col">Difference</th>
+          </tr>
+        </thead>
+        <tbody id="rate-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="rate-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
@@ -199,12 +323,108 @@
             <th scope="col">Balance New</th>
           </tr>
         </thead>
-        <tbody id="rate-table-body"></tbody>
+        <tbody id="rate-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does this calculator compare?</h4>
+        <p>
+          It compares baseline mortgage payments and interest against a new rate scenario over your
+          remaining term.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Why can small rate moves matter so much?</h4>
+        <p>
+          Mortgage balances are large and terms are long, so even small rate differences can compound
+          into meaningful payment and interest changes.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What does Apply Immediately mean?</h4>
+        <p>
+          It assumes the new rate starts from month one of your remaining term, so all projected
+          payments use the updated rate.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What does After X Months mean?</h4>
+        <p>
+          It keeps the current rate for the selected months, then recalculates payment for the
+          remaining term at the new rate.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does this include taxes and insurance?</h4>
+        <p>
+          No. This tool focuses on principal and interest so you can isolate the effect of rate
+          changes on core mortgage cost.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can a lower rate reduce total interest?</h4>
+        <p>
+          Yes. If all else is unchanged, a lower rate generally reduces both monthly payment and total
+          interest paid.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can a higher rate increase total interest?</h4>
+        <p>
+          Yes. Higher rates typically raise monthly payment and can significantly increase lifetime
+          interest over the remaining term.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Why view both monthly and yearly tables?</h4>
+        <p>
+          Monthly view helps with timing and budget detail, while yearly view makes long-term trend
+          comparison easier.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this an official lender quote?</h4>
+        <p>
+          No. It is a planning estimate. Final lender terms may differ due to product rules, fees,
+          and underwriting.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>How should I use this to make decisions?</h4>
+        <p>
+          Run multiple new-rate and timing scenarios, then compare monthly affordability and lifetime
+          interest direction before choosing a strategy.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">
