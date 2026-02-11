@@ -1,24 +1,427 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
-/* FAQ boxes use shared .faq-box class from calculator.css */
+/* Balance Transfer calculator styling (UI-only refresh) */
 
-[data-cc-bt] {
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 8px;
-  background: rgba(59, 130, 246, 0.45);
-  outline: 1px solid rgba(59, 130, 246, 0.65);
-}
-
-#cc-bt-yearly {
-  margin-bottom: 12px;
-}
-
-.cc-bt-results-list {
+.cc-bt-page-single {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 1.2rem;
 }
 
-.result-line {
-  font-size: 0.95rem;
+#calc-cc-balance-transfer .cc-bt-ui {
+  display: grid;
+  gap: 1rem;
+}
+
+#calc-cc-balance-transfer .cc-bt-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+#calc-cc-balance-transfer .cc-bt-form-panel {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  background:
+    radial-gradient(circle at 6% -10%, rgba(34, 197, 94, 0.18), transparent 42%),
+    linear-gradient(155deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.94));
+  box-shadow:
+    0 14px 38px rgba(2, 6, 23, 0.48),
+    0 0 30px rgba(14, 165, 233, 0.08);
+  overflow: hidden;
+}
+
+#calc-cc-balance-transfer .cc-bt-form-panel::before {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  right: -80px;
+  top: -110px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.28), transparent 72%);
+  pointer-events: none;
+}
+
+#calc-cc-balance-transfer .cc-bt-heading {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.42rem;
+}
+
+#calc-cc-balance-transfer .cc-bt-kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(125, 211, 252, 0.94);
+}
+
+#calc-cc-balance-transfer .helper {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#calc-cc-balance-transfer .cc-bt-input-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.74rem;
+}
+
+#calc-cc-balance-transfer .input-row {
+  margin: 0;
+  display: grid;
+  gap: 0.34rem;
+  min-width: 0;
+  padding: 0.72rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(71, 85, 105, 0.72);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.86), rgba(30, 41, 59, 0.65));
+}
+
+#calc-cc-balance-transfer label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(186, 230, 253, 0.98);
+  line-height: 1.2;
+}
+
+#calc-cc-balance-transfer input[type='number'] {
+  width: 100%;
+  min-height: 40px;
+  padding: 0.45rem 0.62rem;
+  border-radius: 0.66rem;
+  border: 1px solid rgba(125, 211, 252, 0.32);
+  background: rgba(15, 23, 42, 0.82);
+  color: #f8fafc;
+  font-size: 0.87rem;
+  line-height: 1.2;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+#calc-cc-balance-transfer input[type='number']:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+#calc-cc-balance-transfer input[type='number']:focus-visible {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.95);
+  box-shadow:
+    0 0 0 2px rgba(14, 165, 233, 0.4),
+    0 0 0 6px rgba(2, 132, 199, 0.14);
+  background: rgba(15, 23, 42, 0.94);
+}
+
+#calc-cc-balance-transfer .cc-bt-action-row {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+#calc-cc-balance-transfer .cc-bt-action-row .calculator-button {
+  min-height: 48px;
+  border-radius: 0.82rem;
+  border: 1px solid rgba(125, 211, 252, 0.54);
+  background: linear-gradient(140deg, rgba(2, 132, 199, 0.95), rgba(234, 88, 12, 0.94));
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.25s ease,
+    filter 0.2s ease;
+}
+
+#calc-cc-balance-transfer .cc-bt-action-row .calculator-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 22px rgba(2, 132, 199, 0.34),
+    0 6px 18px rgba(234, 88, 12, 0.26);
+  filter: saturate(1.08);
+}
+
+#calc-cc-balance-transfer .cc-bt-action-row .calculator-button:active {
+  transform: translateY(0);
+}
+
+#calc-cc-balance-transfer .cc-bt-preview-panel {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.02rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(56, 189, 248, 0.16), transparent 34%),
+    linear-gradient(165deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.92));
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
+}
+
+#calc-cc-balance-transfer .cc-bt-preview-main {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.82rem;
+  border-radius: 0.86rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: linear-gradient(170deg, rgba(15, 23, 42, 0.56), rgba(30, 64, 175, 0.12));
+}
+
+#calc-cc-balance-transfer .cc-bt-preview-label {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(186, 230, 253, 0.96);
+}
+
+#calc-cc-balance-transfer .cc-bt-result-card {
+  margin: 0;
+  min-height: 152px;
+  display: grid;
+  gap: 0.48rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(241, 245, 249, 0.98);
+}
+
+#calc-cc-balance-transfer #cc-bt-placeholder {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.42;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#calc-cc-balance-transfer #cc-bt-error {
+  margin: 0;
+  padding: 0.56rem 0.64rem;
+  border-radius: 0.62rem;
+  border: 1px solid rgba(248, 113, 113, 0.64);
+  background: rgba(127, 29, 29, 0.36);
+  color: #fecaca;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+#calc-cc-balance-transfer .cc-bt-results-list {
+  display: grid;
+  gap: 0.4rem;
+}
+
+#calc-cc-balance-transfer .result-line {
+  margin: 0;
+  padding: 0.58rem 0.64rem;
+  border-radius: 0.64rem;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(30, 41, 59, 0.68));
+  color: rgba(241, 245, 249, 0.99);
+  font-size: 0.84rem;
+  line-height: 1.34;
+  font-weight: 600;
+}
+
+#calc-cc-balance-transfer .result-line:first-child {
+  border-color: rgba(251, 146, 60, 0.6);
+  box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.25) inset;
+  font-size: 0.88rem;
+}
+
+#calc-cc-balance-transfer .result-metric {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+#calc-cc-balance-transfer .result-metric .metric-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(186, 230, 253, 0.88);
+}
+
+#calc-cc-balance-transfer .result-metric .metric-value {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #f8fafc;
+  text-align: right;
+  white-space: nowrap;
+}
+
+#calc-cc-balance-transfer .cc-bt-summary-card {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+#calc-cc-balance-transfer .cc-bt-snapshot-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+#calc-cc-balance-transfer .cc-bt-snapshot-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.78rem;
+  padding: 0.52rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+#calc-cc-balance-transfer .cc-bt-snapshot-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-cc-balance-transfer .cc-bt-snapshot-row > span {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+#calc-cc-balance-transfer .cc-bt-snapshot-row strong {
+  font-size: 0.84rem;
+  color: rgba(248, 250, 252, 0.99);
+  text-align: right;
+  line-height: 1.28;
+}
+
+#cc-bt-explanation {
+  display: grid;
+  gap: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background: linear-gradient(165deg, rgba(10, 22, 42, 0.75), rgba(5, 11, 28, 0.82));
+  padding: 1rem;
+}
+
+#cc-bt-explanation h2,
+#cc-bt-explanation h3 {
+  margin: 0;
+}
+
+#cc-bt-explanation h2 {
+  font-size: 1.06rem;
+  letter-spacing: 0.01em;
+  color: rgba(224, 242, 254, 0.98);
+}
+
+#cc-bt-explanation h3 {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(186, 230, 253, 0.96);
+}
+
+#cc-bt-explanation > p,
+#cc-bt-explanation .cc-bt-exp-section > p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.58;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+#cc-bt-explanation .cc-bt-exp-section {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.95rem;
+  border-radius: 0.92rem;
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  background: linear-gradient(170deg, rgba(15, 23, 42, 0.46), rgba(30, 41, 59, 0.26));
+}
+
+[data-cc-bt] {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.44);
+  background: rgba(2, 132, 199, 0.22);
+  color: #e0f2fe;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#cc-bt-table-wrap {
+  max-height: 300px;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.58);
+}
+
+#cc-bt-table {
+  min-width: 430px;
+}
+
+#cc-bt-table thead th {
+  background: rgba(30, 41, 59, 0.96);
+  color: rgba(186, 230, 253, 0.95);
+}
+
+#cc-bt-table tbody td {
+  color: rgba(226, 232, 240, 0.96);
+}
+
+#cc-bt-explanation .cc-bt-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.66rem;
+}
+
+#cc-bt-explanation .faq-box {
+  border-radius: 0.82rem;
+  border-color: rgba(148, 163, 184, 0.28);
+  background: linear-gradient(170deg, rgba(15, 23, 42, 0.48), rgba(30, 41, 59, 0.22));
+}
+
+#cc-bt-explanation .faq-box p {
+  font-size: 0.84rem;
+  line-height: 1.53;
+}
+
+@media (max-width: 1080px) {
+  #calc-cc-balance-transfer .cc-bt-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #cc-bt-explanation .cc-bt-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-cc-balance-transfer .cc-bt-form-panel,
+  #calc-cc-balance-transfer .cc-bt-preview-panel {
+    padding: 0.9rem;
+  }
+
+  #calc-cc-balance-transfer .cc-bt-input-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.62rem;
+  }
+
+  #calc-cc-balance-transfer .cc-bt-action-row .calculator-button {
+    min-height: 46px;
+    font-size: 0.86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-cc-balance-transfer .cc-bt-action-row .calculator-button {
+    transition: none;
+  }
 }

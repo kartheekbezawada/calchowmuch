@@ -1,55 +1,88 @@
 <div id="calc-cc-min">
-  <div class="calculator-ui">
-    <p class="helper">
-      See the true cost of making minimum-only payments, including payoff time, first payment,
-      and total interest.
-    </p>
+  <div class="calculator-ui cc-min-ui">
+    <section class="cc-min-hero" aria-label="Minimum payment planner">
+      <div class="cc-min-form-panel">
+        <h2 class="cc-min-headline">Plan your card payoff with mortgage-grade clarity.</h2>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="cc-min-balance">Card Balance</label>
-        <input
-          id="cc-min-balance"
-          type="number"
-          value="3200"
-          min="0.01"
-          step="0.01"
-          inputmode="decimal"
-        />
+        <p class="helper">
+          See the true cost of making minimum-only payments, including payoff time, first payment,
+          and total interest.
+        </p>
+
+        <div class="input-stack">
+          <div class="input-row">
+            <label for="cc-min-balance">Card Balance</label>
+            <input
+              id="cc-min-balance"
+              type="number"
+              value="3200"
+              min="0.01"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-min-apr">APR (%)</label>
+            <input
+              id="cc-min-apr"
+              type="number"
+              value="21.9"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-min-rate">Minimum Payment Rate (%)</label>
+            <input
+              id="cc-min-rate"
+              type="number"
+              value="2.5"
+              min="0"
+              step="0.1"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-min-floor">Lowest Monthly Payment</label>
+            <input
+              id="cc-min-floor"
+              type="number"
+              value="25"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+        </div>
+
+        <p class="cc-min-provider-note">
+          <em
+            >Note: Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary
+            by credit card provider. Check your provider's Terms &amp; Conditions for exact
+            values.</em
+          >
+        </p>
+
+        <button class="calculator-button full-width" type="button" id="cc-min-calc">
+          Calculate Minimum-Only Plan
+        </button>
       </div>
 
-      <div class="input-row">
-        <label for="cc-min-apr">APR (%)</label>
-        <input id="cc-min-apr" type="number" value="21.9" min="0" step="0.01" inputmode="decimal" />
-      </div>
-
-      <div class="input-row">
-        <label for="cc-min-rate">Minimum Payment Rate (%)</label>
-        <input id="cc-min-rate" type="number" value="2.5" min="0" step="0.1" inputmode="decimal" />
-      </div>
-
-      <div class="input-row">
-        <label for="cc-min-floor">Lowest Monthly Payment ($)</label>
-        <input id="cc-min-floor" type="number" value="25" min="0" step="0.01" inputmode="decimal" />
-      </div>
-    </div>
-
-    <p class="cc-min-provider-note">
-      <em
-        >Note: Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary by
-        credit card provider. Check your provider's Terms &amp; Conditions for exact values.</em
-      >
-    </p>
-
-    <button class="calculator-button full-width" type="button" id="cc-min-calc">Calculate</button>
-
-    <div class="result" id="cc-min-result" aria-live="polite">
-      <p class="placeholder" id="cc-min-placeholder">Enter values and click Calculate.</p>
-      <p class="form-error is-hidden" id="cc-min-error"></p>
-      <div class="cc-min-results-list is-hidden" id="cc-min-results-list"></div>
-    </div>
-
-    <div class="result-detail is-hidden" id="cc-min-summary" aria-live="polite"></div>
+      <aside class="cc-min-preview-panel" aria-label="Minimum payment snapshot">
+        <div class="cc-min-preview-main">
+          <p class="cc-min-preview-label">How Many Months to Pay Off</p>
+          <div class="result cc-min-result-card" id="cc-min-result" aria-live="polite">
+            <p class="placeholder" id="cc-min-placeholder">Enter values and click Calculate.</p>
+            <p class="form-error is-hidden" id="cc-min-error"></p>
+            <div class="cc-min-results-list is-hidden" id="cc-min-results-list"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 

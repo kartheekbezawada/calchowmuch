@@ -22,12 +22,13 @@ test.describe('Balance Transfer Calculator', () => {
     await expect(resultsList).not.toHaveClass(/is-hidden/);
 
     const results = resultsList.locator('.result-line');
-    await expect(results).toHaveCount(4);
-    await expect(results.nth(0)).toContainText('Payoff time');
+    await expect(results).toHaveCount(5);
+    await expect(results.nth(0)).toContainText('Estimated Payoff');
     await expect(results.nth(0)).toContainText('months');
-    await expect(results.nth(1)).toContainText('Total interest');
-    await expect(results.nth(2)).toContainText('Total fees');
-    await expect(results.nth(3)).toContainText('Total paid');
+    await expect(results.nth(1)).toContainText('Total Paid');
+    await expect(results.nth(2)).toContainText('Total Interest');
+    await expect(results.nth(3)).toContainText('Total Fees');
+    await expect(results.nth(4)).toContainText('Starting Balance');
 
     const tableRows = page.locator('#cc-bt-table-body tr');
     const rowCount = await tableRows.count();

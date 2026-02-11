@@ -36,11 +36,32 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'loan-to-value': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'interest-rate-change-calculator': {
     title: 'Interest Rate Change Calculator | Calculate How Much Online Calculator',
     description:
       'Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term.',
     h1: 'Interest Rate Change Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-minimum-payment': {
+    h1: 'Credit Card Minimum Payment',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-repayment-payoff': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-consolidation': {
+    title: 'Credit Card Consolidation Calculator -- Compare & Save',
+    description:
+      'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
+    h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
