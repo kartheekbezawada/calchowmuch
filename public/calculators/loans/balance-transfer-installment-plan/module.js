@@ -182,28 +182,11 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-let hasCalculated = false;
-
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function resetIfCalculated() {
-  if (hasCalculated && !resultsList?.classList.contains('is-hidden')) {
-    showPlaceholder();
-  }
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
 }
 
 function clearError() {
@@ -326,18 +309,14 @@ function calculate() {
   });
 }
 
-calculateButton?.addEventListener('click', () => {
-  hasCalculated = true;
-  calculate();
-});
+calculateButton?.addEventListener('click', calculate);
 
 const inputs = document.querySelectorAll('#calc-cc-balance-transfer input');
 inputs.forEach((input) => {
-  input.addEventListener('input', () => resetIfCalculated());
+  input.addEventListener('input', calculate);
 });
 
 // Show projected outcome immediately for the default scenario on first load.
 (function initializeDefaultOutcome() {
-  hasCalculated = true;
   calculate();
 })();
