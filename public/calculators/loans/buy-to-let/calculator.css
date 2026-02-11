@@ -73,6 +73,10 @@
   min-width: 0;
 }
 
+#calc-buy-to-let .input-row.is-hidden {
+  display: none;
+}
+
 #calc-buy-to-let .input-grid {
   display: grid;
   gap: 0.72rem;

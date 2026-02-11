@@ -51,28 +51,33 @@
         </div>
 
         <div class="btl-deposit-slot">
-          <div class="input-row" id="btl-deposit-amount-row">
-            <label for="btl-deposit-amount">Deposit Amount</label>
+          <div class="input-row slider-row" id="btl-deposit-amount-row">
+            <div class="slider-header">
+              <label for="btl-deposit-amount">Deposit Amount</label>
+              <span class="slider-value" id="btl-deposit-amount-display">50,000</span>
+            </div>
             <input
               id="btl-deposit-amount"
-              type="number"
+              type="range"
               value="50000"
               min="0"
-              step="0.01"
-              maxlength="10"
+              max="250000"
+              step="1000"
             />
           </div>
 
-          <div class="input-row is-hidden" id="btl-deposit-percent-row">
-            <label for="btl-deposit-percent">Deposit Percent (%)</label>
+          <div class="input-row slider-row is-hidden" id="btl-deposit-percent-row">
+            <div class="slider-header">
+              <label for="btl-deposit-percent">Deposit Percent (%)</label>
+              <span class="slider-value" id="btl-deposit-percent-display">20.0%</span>
+            </div>
             <input
               id="btl-deposit-percent"
-              type="number"
+              type="range"
               value="20"
               min="0"
-              max="99.99"
-              step="0.01"
-              maxlength="10"
+              max="99.9"
+              step="0.1"
             />
           </div>
         </div>

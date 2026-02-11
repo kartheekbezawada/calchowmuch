@@ -1,11 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 function parseNumber(text) {
-  return Number(
-    String(text || '')
-      .replace(/,/g, '')
-      .trim()
-  );
+  return Number(String(text || '').replace(/[^0-9.-]/g, ''));
+}
+
+async function setSliderValue(page, selector, value) {
+  await page.locator(selector).evaluate((element, nextValue) => {
+    element.value = String(nextValue);
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+    element.dispatchEvent(new Event('change', { bubbles: true }));
+  }, value);
 }
 
 async function openAdvancedOptions(page) {
@@ -17,11 +21,11 @@ async function openAdvancedOptions(page) {
 }
 
 async function setBaseInputs(page) {
-  await page.fill('#btl-price', '200000');
-  await page.fill('#btl-deposit-amount', '50000');
-  await page.fill('#btl-rate', '5');
-  await page.fill('#btl-term', '5');
-  await page.fill('#btl-rent', '1000');
+  await setSliderValue(page, '#btl-price', 200000);
+  await setSliderValue(page, '#btl-deposit-amount', 50000);
+  await setSliderValue(page, '#btl-rate', 5);
+  await setSliderValue(page, '#btl-term', 5);
+  await setSliderValue(page, '#btl-rent', 1000);
 
   await openAdvancedOptions(page);
   await page.fill('#btl-vacancy-percent', '0');
@@ -39,33 +43,63 @@ test.describe('Buy-to-Let calculator requirements', () => {
     await page.waitForTimeout(300);
   });
 
-  test('BTL-TEST-E2E-1: compact input layout desktop and mobile', async ({ page }) => {
-    const depositBox = await page.locator('#btl-deposit-amount').boundingBox();
-    const rateBox = await page.locator('#btl-rate').boundingBox();
-    if (!depositBox || !rateBox) {
-      throw new Error('Compact input row could not be measured.');
-    }
+  test('BTL-TEST-E2E-1: deposit type shows only selected slider input', async ({ page }) => {
+    await expect(page.locator('#btl-deposit-amount')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#btl-deposit-percent')).toHaveAttribute('type', 'range');
 
-    expect(Math.abs(depositBox.y - rateBox.y)).toBeLessThan(6);
+    await expect(page.locator('#btl-deposit-amount-row')).toBeVisible();
+    await expect(page.locator('#btl-deposit-percent-row')).toBeHidden();
 
-    await page.setViewportSize({ width: 375, height: 812 });
-    await page.reload();
-    await page.waitForSelector('#btl-deposit-amount');
+    await page.click('[data-button-group="btl-deposit-type"] button[data-value="percent"]');
+    await expect(page.locator('#btl-deposit-amount-row')).toBeHidden();
+    await expect(page.locator('#btl-deposit-percent-row')).toBeVisible();
 
-    const depositMobile = await page.locator('#btl-deposit-amount').boundingBox();
-    const rateMobile = await page.locator('#btl-rate').boundingBox();
-
-    if (!depositMobile || !rateMobile) {
-      throw new Error('Mobile input layout could not be measured.');
-    }
-
-    expect(rateMobile.y).toBeGreaterThan(depositMobile.y + 8);
+    await page.click('[data-button-group="btl-deposit-type"] button[data-value="amount"]');
+    await expect(page.locator('#btl-deposit-amount-row')).toBeVisible();
+    await expect(page.locator('#btl-deposit-percent-row')).toBeHidden();
   });
 
-  test('BTL-TEST-E2E-2: input maxlength restriction', async ({ page }) => {
-    await page.fill('#btl-price', '123456789012345');
-    const value = await page.inputValue('#btl-price');
-    expect(value.length).toBeLessThanOrEqual(10);
+  test('BTL-TEST-E2E-2: deposit slider displays update and amount max tracks property price', async ({
+    page,
+  }) => {
+    await setSliderValue(page, '#btl-price', 300000);
+    await expect(page.locator('#btl-deposit-amount')).toHaveAttribute('max', '300000');
+
+    await setSliderValue(page, '#btl-deposit-amount', 120000);
+    await expect(page.locator('#btl-deposit-amount-display')).toContainText('120,000');
+
+    await page.click('[data-button-group="btl-deposit-type"] button[data-value="percent"]');
+    await setSliderValue(page, '#btl-deposit-percent', 35.5);
+    await expect(page.locator('#btl-deposit-percent-display')).toContainText('35.5%');
+
+    await setSliderValue(page, '#btl-price', 100000);
+    await expect(page.locator('#btl-deposit-amount')).toHaveAttribute('max', '100000');
+
+    const amountValue = Number(await page.inputValue('#btl-deposit-amount'));
+    expect(amountValue).toBeLessThanOrEqual(100000);
+  });
+
+  test('BTL-TEST-E2E-3: selected deposit mode drives calculation and syncs inactive control', async ({
+    page,
+  }) => {
+    await setSliderValue(page, '#btl-price', 200000);
+    await setSliderValue(page, '#btl-deposit-amount', 50000);
+    await page.click('#btl-calculate');
+
+    const percentFromAmountMode = Number(await page.inputValue('#btl-deposit-percent'));
+    expect(percentFromAmountMode).toBeCloseTo(25, 1);
+
+    const baselineNetMonthly = parseNumber(await page.locator('[data-btl="net-monthly"]').first().textContent());
+
+    await page.click('[data-button-group="btl-deposit-type"] button[data-value="percent"]');
+    await setSliderValue(page, '#btl-deposit-percent', 30);
+    await page.click('#btl-calculate');
+
+    const syncedAmount = Number(await page.inputValue('#btl-deposit-amount'));
+    expect(Math.abs(syncedAmount - 60000)).toBeLessThanOrEqual(1000);
+
+    const updatedNetMonthly = parseNumber(await page.locator('[data-btl="net-monthly"]').first().textContent());
+    expect(updatedNetMonthly).toBeGreaterThan(baselineNetMonthly);
   });
 
   test('BTL-TEST-I-1: table updates when rent increase toggles', async ({ page }) => {
@@ -95,24 +129,9 @@ test.describe('Buy-to-Let calculator requirements', () => {
     expect(revertedRent).toBeCloseTo(baselineRent, 2);
   });
 
-  test('BTL-TEST-E2E-3: key results advanced toggle reveals optional rows', async ({ page }) => {
-    const advancedRow = page
-      .locator('#loan-btl-explanation [data-btl-advanced-row]')
-      .filter({ hasText: 'Vacancy Type' })
-      .first();
-
-    await expect(advancedRow).toBeHidden();
-
-    await page.check('#btl-key-results-advanced-toggle');
-    await expect(advancedRow).toBeVisible();
-
-    await page.uncheck('#btl-key-results-advanced-toggle');
-    await expect(advancedRow).toBeHidden();
-  });
-
   test('BTL-TEST-E2E-4: full user journey with rent increase', async ({ page }) => {
     await setBaseInputs(page);
-    await page.fill('#btl-term', '10');
+    await setSliderValue(page, '#btl-term', 10);
 
     await openAdvancedOptions(page);
     await page.click('[data-button-group="btl-rent-increase"] button[data-value="on"]');

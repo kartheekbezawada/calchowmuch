@@ -35,6 +35,8 @@ const priceDisplay = document.querySelector('#btl-price-display');
 const rentDisplay = document.querySelector('#btl-rent-display');
 const rateDisplay = document.querySelector('#btl-rate-display');
 const termDisplay = document.querySelector('#btl-term-display');
+const depositAmountDisplay = document.querySelector('#btl-deposit-amount-display');
+const depositPercentDisplay = document.querySelector('#btl-deposit-percent-display');
 
 const depositGroup = document.querySelector('[data-button-group="btl-deposit-type"]');
 const mortgageGroup = document.querySelector('[data-button-group="btl-mortgage-type"]');
@@ -135,14 +137,52 @@ function updateSliderFill(input) {
   const min = parseFloat(input.min) || 0;
   const max = parseFloat(input.max) || 100;
   const val = parseFloat(input.value) || 0;
-  const pct = ((val - min) / (max - min)) * 100;
+  const pct = max > min ? ((val - min) / (max - min)) * 100 : 0;
   input.style.setProperty('--fill', `${pct}%`);
+}
+
+function formatPercentInput(value) {
+  if (!Number.isFinite(value)) {
+    return '--';
+  }
+  return `${formatNumber(value, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })}%`;
+}
+
+function syncDepositBounds() {
+  if (!priceInput || !depositAmountInput) {
+    return;
+  }
+  const propertyPrice = Number(priceInput.value);
+  if (!Number.isFinite(propertyPrice) || propertyPrice <= 0) {
+    return;
+  }
+
+  depositAmountInput.max = String(propertyPrice);
+
+  const currentValue = Number(depositAmountInput.value);
+  const boundedValue = Number.isFinite(currentValue)
+    ? Math.min(propertyPrice, Math.max(0, currentValue))
+    : 0;
+  depositAmountInput.value = String(Math.round(boundedValue));
 }
 
 function updateSliderDisplays() {
   if (priceInput && priceDisplay) {
     priceDisplay.textContent = formatNumber(Number(priceInput.value), { maximumFractionDigits: 0 });
     updateSliderFill(priceInput);
+  }
+  if (depositAmountInput && depositAmountDisplay) {
+    depositAmountDisplay.textContent = formatNumber(Number(depositAmountInput.value), {
+      maximumFractionDigits: 0,
+    });
+    updateSliderFill(depositAmountInput);
+  }
+  if (depositPercentInput && depositPercentDisplay) {
+    depositPercentDisplay.textContent = formatPercentInput(Number(depositPercentInput.value));
+    updateSliderFill(depositPercentInput);
   }
   if (rentInput && rentDisplay) {
     rentDisplay.textContent = formatNumber(Number(rentInput.value), { maximumFractionDigits: 0 });
@@ -677,6 +717,7 @@ function calculate() {
     setError('Enter a property price greater than 0.');
     return;
   }
+  syncDepositBounds();
 
   const depositType = depositButtons?.getValue() ?? 'amount';
   const depositAmount = Number(depositAmountInput?.value);
@@ -788,11 +829,12 @@ function calculate() {
   });
 
   if (depositType === 'percent' && depositAmountInput) {
-    depositAmountInput.value = data.depositAmount.toFixed(2);
+    depositAmountInput.value = String(Math.round(data.depositAmount));
   }
   if (depositType === 'amount' && depositPercentInput) {
-    depositPercentInput.value = data.depositPercent.toFixed(2);
+    depositPercentInput.value = data.depositPercent.toFixed(1);
   }
+  syncDepositBounds();
 
   // Enrich data object with additional input values for explanation pane
   data.depositType = depositType;
@@ -833,6 +875,7 @@ setDepositVisibility(depositButtons?.getValue() ?? 'amount');
 setVacancyVisibility(vacancyButtons?.getValue() ?? 'percent');
 setRentIncreaseVisibility(rentIncreaseButtons?.getValue() === 'on');
 setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
+syncDepositBounds();
 
 calculateButton?.addEventListener('click', calculate);
 
@@ -844,6 +887,15 @@ function debouncedCalculate() {
 }
 
 priceInput?.addEventListener('input', () => {
+  syncDepositBounds();
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+depositAmountInput?.addEventListener('input', () => {
+  updateSliderDisplays();
+  debouncedCalculate();
+});
+depositPercentInput?.addEventListener('input', () => {
   updateSliderDisplays();
   debouncedCalculate();
 });
