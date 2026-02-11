@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
 
+async function setSliderValue(page, selector, value) {
+  await page.locator(selector).evaluate((el, nextValue) => {
+    el.value = String(nextValue);
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }, value);
+}
+
 test.describe('Credit Card Minimum Payment Calculator', () => {
   test('MINPAY-TEST-E2E-1: load, nav, calculate, verify results', async ({ page }) => {
     await page.goto('/loans/credit-card-minimum-payment');
@@ -15,6 +23,13 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#calc-cc-min .cc-min-provider-note')).toContainText(
       "Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary by credit card provider. Check your provider's Terms & Conditions for exact values."
     );
+    await expect(page.locator('#cc-min-balance')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-min-apr')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-min-rate')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-min-floor')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-min-rate')).toHaveAttribute('min', '0');
+    await expect(page.locator('#cc-min-rate')).toHaveAttribute('max', '10');
+    await expect(page.locator('#cc-min-rate')).toHaveAttribute('step', '0.5');
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Credit Card');
@@ -26,10 +41,11 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
     await expect(page.locator('#cc-min-table-body tr')).toHaveCount(21);
 
-    await page.locator('#cc-min-balance').fill('5000');
-    await page.locator('#cc-min-apr').fill('19.5');
-    await page.locator('#cc-min-rate').fill('2.5');
-    await page.locator('#cc-min-floor').fill('30');
+    await setSliderValue(page, '#cc-min-balance', 5000);
+    await setSliderValue(page, '#cc-min-apr', 19.5);
+    await setSliderValue(page, '#cc-min-rate', 2.5);
+    await setSliderValue(page, '#cc-min-floor', 30);
+    await expect(page.locator('#cc-min-floor')).toHaveAttribute('max', '5000');
     await page.locator('#cc-min-calc').click();
 
     const resultsList = page.locator('#cc-min-results-list');
@@ -82,7 +98,8 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-placeholder')).toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
 
-    await page.locator('#cc-min-balance').fill('6400');
+    await setSliderValue(page, '#cc-min-balance', 6400);
+    await expect(page.locator('#cc-min-floor')).toHaveAttribute('max', '6400');
 
     await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-min-summary')).toHaveCount(0);

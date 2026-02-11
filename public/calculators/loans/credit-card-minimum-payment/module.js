@@ -7,6 +7,10 @@ const aprInput = document.querySelector('#cc-min-apr');
 const rateInput = document.querySelector('#cc-min-rate');
 const floorInput = document.querySelector('#cc-min-floor');
 const calculateButton = document.querySelector('#cc-min-calc');
+const balanceDisplay = document.querySelector('#cc-min-balance-display');
+const aprDisplay = document.querySelector('#cc-min-apr-display');
+const rateDisplay = document.querySelector('#cc-min-rate-display');
+const floorDisplay = document.querySelector('#cc-min-floor-display');
 
 const placeholder = document.querySelector('#cc-min-placeholder');
 const errorMessage = document.querySelector('#cc-min-error');
@@ -169,6 +173,78 @@ function setSpan(key, value) {
   });
 }
 
+function formatSliderAmount(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  });
+}
+
+function updateSliderFill(input) {
+  if (!(input instanceof HTMLInputElement) || input.type !== 'range') {
+    return;
+  }
+
+  const min = Number(input.min || 0);
+  const max = Number(input.max || 100);
+  const value = Number(input.value);
+
+  if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min || !Number.isFinite(value)) {
+    input.style.setProperty('--fill', '50%');
+    return;
+  }
+
+  const percentage = ((value - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
+}
+
+function syncFloorMaxWithBalance() {
+  if (!balanceInput || !floorInput) {
+    return;
+  }
+
+  const balance = Number(balanceInput.value);
+  const fallbackMax = Number(balanceInput.max || 0);
+  const maxFloor = Number.isFinite(balance) && balance > 0 ? balance : fallbackMax;
+
+  floorInput.max = String(maxFloor);
+
+  const currentFloor = Number(floorInput.value);
+  if (Number.isFinite(currentFloor) && currentFloor > maxFloor) {
+    floorInput.value = String(maxFloor);
+  }
+}
+
+function updateSliderDisplays() {
+  const balance = Number(balanceInput?.value);
+  const apr = Number(aprInput?.value);
+  const rate = Number(rateInput?.value);
+  const floor = Number(floorInput?.value);
+
+  if (balanceDisplay) {
+    balanceDisplay.textContent = Number.isFinite(balance) ? formatSliderAmount(balance, 0) : '—';
+  }
+  if (aprDisplay) {
+    aprDisplay.textContent = Number.isFinite(apr) ? `${formatSliderAmount(apr, 1)}%` : '—';
+  }
+  if (rateDisplay) {
+    rateDisplay.textContent = Number.isFinite(rate) ? `${formatSliderAmount(rate, 1)}%` : '—';
+  }
+  if (floorDisplay) {
+    floorDisplay.textContent = Number.isFinite(floor) ? formatSliderAmount(floor, 0) : '—';
+  }
+}
+
+function syncSliderUI() {
+  syncFloorMaxWithBalance();
+  updateSliderDisplays();
+  [balanceInput, aprInput, rateInput, floorInput].forEach((input) => {
+    if (input) {
+      updateSliderFill(input);
+    }
+  });
+}
+
 function outcomeMarkup(months) {
   return `<span class="metric-label">Estimated Payoff</span><strong class="metric-value metric-value-flashy">${formatNumber(months, { maximumFractionDigits: 0 })}<span class="metric-unit">months</span></strong>`;
 }
@@ -292,6 +368,7 @@ function renderOutcomeCard(months) {
 }
 
 function readInputs() {
+  syncFloorMaxWithBalance();
   return {
     balance: Number(balanceInput?.value),
     apr: Number(aprInput?.value),
@@ -317,6 +394,7 @@ function validateInputs(values) {
 }
 
 function resetAfterInputChange() {
+  syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
 
@@ -336,6 +414,7 @@ function resetAfterInputChange() {
 }
 
 function calculate() {
+  syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
 
@@ -367,6 +446,7 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 });
 
 (function initializeExplanation() {
+  syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
   setOutputPlaceholders();
