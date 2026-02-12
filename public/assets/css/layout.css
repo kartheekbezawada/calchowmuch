@@ -707,15 +707,20 @@ body .site-header .header-search-icon {
 
 .ad-panel {
   background: #f8f9fa;
-  border: 2px dashed #e9ecef;
+  border: 1px solid #d9e2ef;
   border-radius: 12px;
+  padding: 10px;
+  min-height: 250px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  color: var(--muted-text);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.ad-panel .adsbygoogle {
+  display: block;
+  width: 100%;
+  min-height: 250px;
 }
 
 .site-footer {
@@ -895,8 +900,7 @@ body .site-header .header-search-icon {
   }
 
   .ads-column {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(180px, 1fr);
+    display: none;
   }
 }
 
