@@ -17,6 +17,28 @@ afterEach(() => {
 });
 
 describe('UI schema guard for FAQPage injection', () => {
+  it('does not require FAQPage when no FAQ schema flag is enabled', async () => {
+    setupDom('/finance/simple-interest/');
+    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+
+    setPageMetadata({
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [{ '@type': 'WebPage', name: 'Simple Interest Calculator' }],
+      },
+      pageSchema: {
+        calculatorFAQ: false,
+        globalFAQ: false,
+      },
+    });
+
+    const script = document.head.querySelector('script[data-calculator-ld]');
+    expect(script).not.toBeNull();
+    const parsed = JSON.parse(script.textContent);
+    const faqNodes = parsed['@graph'].filter((node) => node['@type'] === 'FAQPage');
+    expect(faqNodes).toHaveLength(0);
+  });
+
   it('injects calculator FAQ schema on calculator routes', async () => {
     setupDom('/finance/simple-interest/');
     const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');

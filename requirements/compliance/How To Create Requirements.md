@@ -1,6 +1,6 @@
 # SERP-Ready Calculator Requirements Standard (CalcHowMuch)
 Version: 1.0  
-Last updated: 2026-02-08  
+Last updated: 2026-02-12  
 Applies to: **All CalcHowMuch calculators** (new builds + SERP upgrades)
 
 ---
@@ -45,15 +45,21 @@ If it can’t be verified by a unit test, E2E test, or SEO assertion, it’s not
 ---
 
 ## 2) Requirement document types
-### Type A — New calculator (full REQ)
-Includes: UI spec, compute spec, explanation pane spec, 10 FAQs (unless you have a different rule), JSON-LD bundle, sitemap/nav updates, tests.
+### Type A — New route (full REQ, `routeArchetype=calc_exp`)
+Includes: UI spec, compute spec, explanation spec, FAQ policy, JSON-LD bundle, sitemap/nav updates, tests.
 
-### Type B — SERP upgrade (existing calculator, “no content changes”)
+### Type B — SERP upgrade (existing route, no layout/content change)
 Includes: title/meta/canonical, JSON-LD, sitemap/nav, schema guard, tests.  
-Explicitly states: **calculation pane unchanged** and **explanation pane unchanged**.
+Explicitly states pane status is unchanged from current archetype.
 
-### Type C — SERP rebuild (existing calculator, keep layout but rewrite explanation pane)
-Includes: calculation pane locked, compute may be unchanged or hardened, explanation pane rewritten to standard, 10 FAQs, JSON-LD, tests.
+### Type C — SERP rebuild (existing route, layout retained with explanation/content rewrite)
+Includes: compute lock or hardening, explanation/content rewrite scope, FAQ policy, JSON-LD, tests.
+
+### Type D — Calculator-only route (`routeArchetype=calc_only`)
+Includes: calculation pane contract, compute contract, SEO/schema contract without mandatory explanation pane, and explicit explanation omission rationale.
+
+### Type E — Explanation-only or content-shell route (`routeArchetype=exp_only` or `content_shell`)
+Includes: content/explanation contract, SEO/schema contract by archetype, and explicit calculation pane omission rationale.
 
 ---
 
@@ -64,6 +70,11 @@ Every REQ must start with this metadata:
 - Calculator:
 - Primary Question (Single-Question Rule):
 - Status: NEW / REBUILD / SERP Upgrade
+- Route Archetype: `calc_exp | calc_only | exp_only | content_shell`
+- Design Family: `home-loan | auto-loans | credit-cards | neutral`
+- Calculation Pane: `REQUIRED | OMITTED`
+- Explanation Pane: `REQUIRED | OMITTED`
+- Pane Omission Rationale: (mandatory if any pane is omitted)
 - Constraints: (e.g., “keep layout as-is”)
 - FSM Phase: REQ
 - Scope: UI / Compute / Navigation / SEO / Sitemap / Testing / Compliance
@@ -126,6 +137,8 @@ Only allowed when:
 ---
 
 ## 6) Calculation pane (UI) requirements
+Applicability: required only if archetype includes calculation pane (`calc_exp`, `calc_only`).
+
 ### 6.1 Form spec
 Provide:
 - Inputs list: label, type, units, default, min/max, step, required/optional
@@ -141,6 +154,10 @@ Provide:
 ### 6.3 “Keep as-is” rule
 If calculation pane is locked, explicitly paste the current UI wording and state:
 - “Do not change labels/order/control types”
+
+If calculation pane is omitted by archetype:
+- mark this entire section as `N/A`
+- provide replacement content contract and omission rationale
 
 ---
 
@@ -171,6 +188,8 @@ State explicitly:
 ---
 
 ## 8) Explanation pane (SERP-critical) standard
+Applicability: required only if archetype includes explanation pane (`calc_exp`, `exp_only`).
+
 ### 8.1 Structure rules
 - H2: Summary (single H2)
 - H3: all other sections
@@ -199,6 +218,10 @@ Pick one model per page and state it:
 - Do not edit FAQ text
 - Copy FAQs into JSON-LD verbatim
 - If page has no FAQs, do not inject FAQPage schema
+
+If explanation pane is omitted by archetype:
+- mark explanation section as `N/A`
+- FAQPage is required only when visible FAQ content exists on-page
 
 ---
 

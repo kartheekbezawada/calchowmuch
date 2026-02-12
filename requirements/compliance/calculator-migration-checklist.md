@@ -1,9 +1,9 @@
 # Migration Checklist (Legacy Calculator -> New Design System)
 
 ## Scope
-Applies to existing public calculator routes being migrated from legacy implementation to the current design and compliance baseline.
+Applies to existing public routes being migrated from legacy implementation to the current design/compliance baseline.
 
-This checklist is mandatory for migration workstreams and is designed to produce deterministic PASS/FAIL evidence.
+This checklist is mandatory for migration workstreams and produces deterministic PASS/FAIL evidence.
 
 ## Usage Contract
 
@@ -12,7 +12,10 @@ Required inputs:
 - `REQ_ID`
 - Route (`/category/calculator-slug/`)
 - Source calculator path (legacy implementation)
-- Target module paths (HTML, `module.js`, explanation, shared utilities)
+- Target module/fragment paths
+- `routeArchetype` and `designFamily`
+- Pane declarations (`Calculation Pane: REQUIRED|OMITTED`, `Explanation Pane: REQUIRED|OMITTED`)
+- Pane omission rationale when any pane is omitted
 - Navigation category + left-nav label target
 - Sitemap target (`/sitemap/` entry and XML coverage)
 
@@ -32,87 +35,90 @@ Use this exact format for every checklist run.
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-A1 | P0 | AP-2.3 | Compare legacy route behavior to migration scope notes | Baseline inventory exists for inputs, outputs, nav state, SEO metadata, and explanation sections | Migration notes file or REQ section |
-| MIG-A2 | P0 | AP-2.3 | Review compute contract before/after | Compute formulas and validation behavior are explicitly marked retained or intentionally changed in REQ | REQ delta section + unit test diff |
-| MIG-A3 | P1 | TEST-1.3 | Capture pre-migration UI evidence | Before-state layout/interaction evidence captured for regression comparison | Screenshot links or E2E baseline artifacts |
+| MIG-A1 | P0 | UR-AP-003 | Compare legacy route behavior to migration scope notes | Baseline inventory exists for inputs/outputs/nav/SEO/schema and pane contracts | Migration notes or REQ delta section |
+| MIG-A2 | P0 | UR-NAV-030..033 | Validate migration governance contract | Target archetype/family and pane declarations are explicit; omissions include rationale and replacement contract | REQ header + migration contract |
+| MIG-A3 | P1 | UR-TEST-034 | Capture pre-migration visual evidence | Before-state desktop/mobile evidence captured for regression comparison | Screenshot refs |
 
 ## Group B - Shell and Routing Integrity (MPA)
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-B1 | P0 | NAV-MPA-1, NAV-MPA-2 | Inspect top-nav/left-nav markup and runtime navigation | Navigation uses static `<a href>` links and full page reloads | Route E2E nav run + HTML snippet |
-| MIG-B2 | P0 | NAV-MPA-3 | Search for SPA/router patterns in route scope | No SPA routing libraries or client-side route interception | `rg` output in iteration evidence |
-| MIG-B3 | P1 | FS-3.1 | Validate calculator path contract | Route uses expected calculator file/module boundaries | File tree + changed file list |
+| MIG-B1 | P0 | UR-NAV-001, UR-NAV-002 | Inspect nav markup and runtime behavior | Navigation uses static `<a href>` links with full reloads | Route E2E nav run + HTML snippet |
+| MIG-B2 | P0 | UR-NAV-003, UR-NAV-004 | Validate hierarchy/pathing | Route remains in correct hierarchy and nav source of truth | Navigation config evidence |
+| MIG-B3 | P0 | UR-NAV-035, UR-NAV-036 | Validate route metadata and fragment contract | Generated page exposes body metadata and required archetype fragments exist | Generated HTML + file tree evidence |
 
 ## Group C - New Design Adoption
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-C1 | P0 | UI-1.1, UNIVERSAL_REQUIREMENTS.md | Inspect page CSS imports/tokens | Premium-dark theme is inherited from shared theme load; no per-page duplicate theme link | HTML head + CSS import evidence |
-| MIG-C2 | P0 | UI-2.1, UI-2.3 | Inspect component classes | Shared calculator classes/tokens used for buttons/inputs; labels present | DOM snapshot + CSS class evidence |
-| MIG-C3 | P1 | CS-3.1, CS-3.3 | Review CSS ownership | No unnecessary page-local layout duplication when shared styles exist | Changed CSS diff |
+| MIG-C1 | P0 | UR-UI-001..003 | Inspect CSS imports/token usage | Route inherits global theme and shared tokens; no duplicate per-page theme load | HTML/CSS evidence |
+| MIG-C2 | P0 | UR-UI-030..033 | Inspect design family implementation | Route reflects declared design family while preserving shared shell standards | CSS/token evidence |
+| MIG-C3 | P1 | UR-UI-034, UR-UI-035 | Verify design evidence | Desktop/mobile screenshots and token/class proof are attached | Screenshot + diff refs |
 
 ## Group D - Interaction Contract
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-D1 | P0 | UI-2.5 | Inspect controls and run route workflow | No `<select>` dropdowns for calculator mode/control patterns | Route E2E + DOM check |
-| MIG-D2 | P0 | UI-2.6, ISS-UI-FDP-008 | Run calculate-trigger regression on migrated route | Post-load input edits do not recompute until Calculate click | Route E2E trigger test |
-| MIG-D3 | P0 | UI-2.7, ISS-UI-FDP-010 | Validate requirement and implementation for dense/multi-mode routes | Control type, default mode, visibility mapping, and trigger behavior are deterministic and aligned | REQ contract + E2E evidence |
-| MIG-D4 | P1 | ISS-UI-FDP-011 | Test Add/Remove row behavior where applicable | Dynamic rows preserve initial row density/layout parity | Route E2E + screenshot evidence |
+| MIG-D1 | P0 | UR-UI-012 | Control audit for calc archetypes | No prohibited dropdown mode controls for calculator interactions (or valid `N/A`) | DOM check |
+| MIG-D2 | P0 | UR-UI-020, UR-UI-021 | Trigger regression test | Post-load edits do not recompute before Calculate click (or valid `N/A`) | Route E2E trigger evidence |
+| MIG-D3 | P0 | UR-UI-022 | Dense/multi-mode determinism check | Mode controls/default mapping and dynamic row behavior remain deterministic | REQ contract + E2E evidence |
+| MIG-D4 | P0 | UR-NAV-033, UR-CHK-005 | Pane omission legality check | Omitted panes are explicitly documented and justified; implicit omission is not allowed | Checklist rationale + REQ proof |
 
-## Group E - Explanation Pane Standard Compliance
+## Group E - Explanation Contract / Omission Compliance
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-E1 | P0 | UI-EXP-PANE-STD, EXP-STRUCT-1..4 | Inspect explanation HTML structure | Required section order and heading hierarchy are correct | Explanation HTML snippet + route E2E |
-| MIG-E2 | P0 | EXP-SUM-2, EXP-SCEN-3, EXP-RES-4 | Validate dynamic tokens/results | Summary/tables reference real input/output values (no static placeholder results) | Calculation run capture |
-| MIG-E3 | P0 | EXP-FAQ-1 | Count FAQs and compare with schema | Exactly 10 FAQs rendered for calculator route | DOM check + schema guard evidence |
+| MIG-E1 | P0 | UR-EXP-001..003 | Inspect explanation structure | Required section order and heading hierarchy pass when explanation pane exists | Explanation HTML + E2E |
+| MIG-E2 | P0 | UR-EXP-010, UR-EXP-011 | Validate dynamic content | Summary/tables reference runtime values (no static placeholders) when explanation exists | Runtime capture |
+| MIG-E3 | P0 | UR-EXP-012, UR-EXP-013 | FAQ contract check | FAQ baseline/parity is correct when FAQ exists | DOM + schema parity evidence |
+| MIG-E4 | P0 | UR-NAV-033 | Omitted explanation pane gate | For archetypes without explanation pane, checklist records `N/A` with replacement content evidence | Checklist `N/A` rationale |
 
 ## Group F - SEO / Schema / Static HTML
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-F1 | P0 | SEO-P1.8 | View raw HTML source | Static robots meta exists: `index,follow` | Source capture or SEO E2E |
-| MIG-F2 | P0 | SEO-P1.3 | Validate canonical tag | Canonical exists once, absolute, production domain | SEO E2E output |
-| MIG-F3 | P0 | SEO-P1.4 | Heading audit | Exactly one H1 on route | SEO E2E output |
-| MIG-F4 | P0 | SEO-P2.6, SEO-P2.7 | Validate JSON-LD types | WebPage, SoftwareApplication, BreadcrumbList, FAQPage (when required) present and valid | Schema guard + SEO E2E |
-| MIG-F5 | P0 | UNIVERSAL_REQUIREMENTS.md (Three-Place Check + FAQ parity) | Cross-compare FAQ/body/module schema | FAQ text/count parity across visible HTML, static JSON-LD, module metadata | Schema parity evidence |
+| MIG-F1 | P0 | UR-SEO-001..003 | Execute P1 checks | Title/meta/H1/robots/canonical contracts pass | SEO E2E output |
+| MIG-F2 | P0 | UR-SEO-010 | Validate archetype-aware schema set | Required schema types by archetype are present | Schema report |
+| MIG-F3 | P0 | UR-SEO-011 | Validate FAQ three-place check when required | Static JSON-LD + module + visible FAQ parity passes when FAQPage is required | Schema parity evidence |
+| MIG-F4 | P0 | UR-SEO-012 | Validate failure conditions | No missing required schema type and no invalid JSON-LD | Validation output |
 
 ## Group G - Sitemap and Navigation Coverage
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-G1 | P0 | DOC-SITEMAP-2, DOC-SITEMAP-5 | Confirm public reachability and REQ acceptance criteria | Route is explicitly marked live/reachable and REQ includes sitemap acceptance criterion | REQ + nav config evidence |
-| MIG-G2 | P0 | DOC-SITEMAP-1, DOC-SITEMAP-4 | Verify `/sitemap/` coverage | Migrated route appears in human-readable sitemap | Sitemap E2E or HTML proof |
-| MIG-G3 | P1 | SEO-P5-SITEMAP | Validate XML sitemap + robots linkage | `sitemap.xml` contains route and remains crawlable | XML and robots validation evidence |
+| MIG-G1 | P0 | UR-SMAP-002, UR-SMAP-005 | Confirm live/reachable classification and REQ criterion | Route is live/reachable and REQ includes sitemap acceptance criterion | REQ + nav evidence |
+| MIG-G2 | P0 | UR-SMAP-001, UR-SMAP-004 | Verify `/sitemap/` coverage | Migrated route appears in human sitemap and is not omitted | Sitemap evidence |
+| MIG-G3 | P1 | UR-SMAP-006, UR-SEO-022 | Validate XML sitemap + robots linkage | `sitemap.xml` coverage and crawlability remain valid | XML + robots evidence |
 
 ## Group H - Test Evidence Minimums
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-H1 | P0 | TEST-1.1, TEST-1.2 | Execute required unit tests when compute changes exist | Required unit tests pass for changed logic | Test command output |
-| MIG-H2 | P0 | UNIVERSAL_REQUIREMENTS.md (change-type matrix) | Execute route-scoped E2E workflow | Route E2E passes for affected user flows | E2E run output |
-| MIG-H3 | P0 | TEST-1.8, SEO-P1/P2/P5 | Execute schema guard + SEO checks | Schema guard and route SEO validations pass | Vitest + SEO E2E output |
-| MIG-H4 | P1 | TEST-1.3 | Run ISS-001 when layout/shell changes are in scope | ISS-001 passes when triggered | `npm run test:iss001` evidence |
-| MIG-H5 | P0 | WORKFLOW trigger gate + UNIVERSAL_REQUIREMENTS.md | Run button-only trigger regression when Finance/Percentage scope applies | Trigger regression spec passes when applicable | `button-only-recalc-finance-percentage.spec.js` output |
+| MIG-H1 | P0 | UR-TEST-030..033 | Execute mandatory test matrix by archetype | Required suites pass; non-applicable suites are marked `N/A` with rationale | Test outputs + checklist notes |
+| MIG-H2 | P0 | UR-TEST-035 | Execute archetype contract E2E | Body metadata and pane presence/absence match declared archetype | `route-archetype-contract.spec.js` output |
+| MIG-H3 | P0 | UR-TEST-004 | Execute schema guard | Schema guard passes for migrated scope | Vitest output |
+| MIG-H4 | P1 | UR-TEST-034, UR-TEST-003 | Run ISS-001 when triggered | ISS-001 passes for shell/layout-impacting changes | ISS-001 output |
+| MIG-H5 | P0 | UR-TEST-013 | Run trigger regression where applicable | Finance/Percentage trigger contract passes when in scope | E2E output |
 
 ## Group I - Compliance Artifact Completion
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-I1 | P0 | WORKFLOW BUILD/TEST | Check `build_tracker.md` and `testing_tracker.md` | Build and required tests are recorded with correct IDs/statuses | Tracker row references |
-| MIG-I2 | P0 | WORKFLOW SEO | Check `seo_tracker.md` | SEO status is PASS/WAIVED/NA with required evidence | Tracker row reference |
-| MIG-I3 | P0 | WORKFLOW COMPLIANCE | Check `compliance-report.md` | Exactly one compliance row exists for REQ and reflects executed evidence | Compliance row reference |
-| MIG-I4 | P1 | AP-2.3 | Check iteration log traceability | Iteration log captures commands, outcomes, and blocking issues | Iteration file reference |
+| MIG-I1 | P0 | UR-FSM-011, UR-TEST-020 | Check `build_tracker.md` and `testing_tracker.md` | Build and required tests are recorded with correct IDs/statuses | Tracker row refs |
+| MIG-I2 | P0 | UR-SEO-031 | Check `seo_tracker.md` | SEO status is PASS/WAIVED/NA with required evidence | Tracker row ref |
+| MIG-I3 | P0 | UR-FSM-032, UR-DOD-005 | Check `compliance-report.md` | Exactly one compliance row exists for REQ and reflects executed evidence | Compliance row ref |
+| MIG-I4 | P0 | UR-CHK-003..005 | Verify checklist quality gate | Checklist includes pass/fail, artifacts, screenshot evidence, and required omission rationales | Completed checklist artifact |
 
 ## Hard Fail Conditions
 
 Any of the following is an automatic `FAIL`:
 
-- Missing sitemap coverage for a live/public route (`DOC-SITEMAP-*`)
+- Missing sitemap coverage for a live/public route
 - Any unresolved P0 violation in this checklist
 - Missing required evidence artifact for a required gate
+- Missing archetype/design-family declaration evidence
+- Pane omission without explicit rationale and replacement content evidence
+- Missing required desktop/mobile design screenshot evidence
 
 ## Completion Block (Required)
 

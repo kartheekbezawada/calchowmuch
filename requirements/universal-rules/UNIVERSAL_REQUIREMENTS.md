@@ -7,7 +7,7 @@
 | Status | Authoritative (sole active governance file) |
 | Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
 | Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
-| Version | 3.0 (Universal consolidation) |
+| Version | 3.1 (Archetype + design-family governance) |
 | Last Updated | 2026-02-12 |
 
 This is the only active governance file under `requirements/universal-rules/`.
@@ -109,6 +109,27 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-NAV-021 | GTEP pages must not load calculator-specific JS modules. | P0 |
 | UR-NAV-022 | GTEP pages must remain crawlable with lightweight header/footer patterns. | P0 |
 
+### 3.2 Route Archetype and Metadata Contract
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-NAV-030 | Every calculator route entry in `public/config/navigation.json` must declare `routeArchetype`, `designFamily`, and `paneLayout`. | P0 |
+| UR-NAV-031 | Allowed `routeArchetype` values are `calc_exp`, `calc_only`, `exp_only`, `content_shell`. | P0 |
+| UR-NAV-032 | Allowed `designFamily` values are `home-loan`, `auto-loans`, `credit-cards`, `neutral`. | P0 |
+| UR-NAV-033 | Pane omission is legal only when archetype explicitly omits that pane and the REQ states omission rationale and replacement content contract. | P0 |
+| UR-NAV-034 | Legacy routes missing metadata must default to `routeArchetype=calc_exp` and inferred `designFamily` without breaking existing pages. | P0 |
+| UR-NAV-035 | Page generation must emit `data-route-archetype` and `data-design-family` on `<body>`. | P0 |
+| UR-NAV-036 | Fragment loading is archetype-bound: `calc_exp` requires `index.html` + `explanation.html`; `calc_only` requires `index.html`; `exp_only` requires `explanation.html`; `content_shell` requires `content.html`. | P0 |
+
+### 3.3 Archetype Behavior Matrix
+
+| Archetype | Calculation Pane | Explanation Pane | Allowed `paneLayout` |
+| --- | --- | --- | --- |
+| `calc_exp` | Required | Required | `single` or `split` |
+| `calc_only` | Required | Omitted | `single` |
+| `exp_only` | Omitted | Required | `single` |
+| `content_shell` | Omitted | Omitted | `single` |
+
 ---
 
 ## 4) Theme and UI Core
@@ -138,9 +159,23 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-UI-021 | Input edits/mode toggles/add-remove rows may change state/visibility but must not recompute before Calculate click. | P0 |
 | UR-UI-022 | Dense/multi-mode calculators require explicit mode control type, default mode, visibility mapping, and dynamic-row parity. | P0 |
 
+### 4.4 New Design Philosophy and Design Families
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-UI-030 | New design philosophy is mandatory: high-impact visual identity, simple interaction model, smooth motion, and glassmorphism-like depth via shared tokens/components. | P0 |
+| UR-UI-031 | `designFamily` controls accent style and micro-visual language, while shared shell structure and usability standards remain unchanged. | P0 |
+| UR-UI-032 | Family-level styling must be token-driven; route CSS must not hardcode conflicting palette systems that bypass shared tokens. | P0 |
+| UR-UI-033 | `home-loan`, `auto-loans`, and `credit-cards` families may vary accent and card treatments, but must preserve accessibility, readability, and deterministic layout behavior. | P0 |
+| UR-UI-034 | New or migrated routes must provide desktop and mobile screenshot evidence showing design-family compliance. | P1 |
+| UR-UI-035 | Design-family evidence must include token/class proof plus screenshot references in iteration/compliance artifacts. | P1 |
+| UR-UI-036 | Design family must not change MPA behavior, semantic landmarks, or required keyboard/focus behavior. | P0 |
+
 ---
 
 ## 5) Calculation Pane Contract
+
+Applicability: applies only to archetypes that include a calculation pane (`calc_exp`, `calc_only`).
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
@@ -156,6 +191,8 @@ All previously separate rule modules are merged here and re-numbered with the `U
 
 ## 6) Explanation Pane Contract
 
+Applicability: applies only to archetypes that include an explanation pane (`calc_exp`, `exp_only`).
+
 ### 6.1 Mandatory Structure
 
 | Rule ID | Requirement | Severity |
@@ -170,7 +207,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | --- | --- | --- |
 | UR-EXP-010 | Summary must be dynamic and reference meaningful inputs and outputs. | P0 |
 | UR-EXP-011 | Scenario and result tables must be output-driven, not static placeholders. | P0 |
-| UR-EXP-012 | Exactly 10 FAQs are required per calculator route unless requirement explicitly scopes otherwise. | P0 |
+| UR-EXP-012 | Default FAQ baseline is 10 items for calculator explanation panes unless REQ explicitly scopes otherwise. | P0 |
 | UR-EXP-013 | FAQ layout and text parity requirements must align with schema and visible content. | P0 |
 
 ### 6.3 Table Baseline
@@ -196,9 +233,9 @@ All previously separate rule modules are merged here and re-numbered with the `U
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-SEO-010 | Calculator pages require WebPage + SoftwareApplication + BreadcrumbList + FAQPage schema as applicable. | P0 |
-| UR-SEO-011 | Three-place schema check is mandatory: static HTML JSON-LD, module metadata parity, and visible FAQ parity. | P0 |
-| UR-SEO-012 | Missing required schema type, parity mismatch, or invalid JSON-LD is a FAIL. | P0 |
+| UR-SEO-010 | Schema set is archetype-aware: calculator routes require WebPage + SoftwareApplication + BreadcrumbList; FAQPage is required only when visible FAQs exist on the route. | P0 |
+| UR-SEO-011 | FAQ three-place schema check is mandatory when FAQPage is required: static HTML JSON-LD, module metadata parity, and visible FAQ parity. | P0 |
+| UR-SEO-012 | Missing required schema type, required FAQ parity mismatch, or invalid JSON-LD is a FAIL. | P0 |
 
 ### 7.3 P3/P4/P5 Governance
 
@@ -243,6 +280,17 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | --- | --- | --- |
 | UR-TEST-020 | Test execution evidence must be recorded in `testing_tracker.md` and iteration logs. | P0 |
 | UR-TEST-021 | Required-vs-executed coverage must be reflected in `compliance-report.md`. | P0 |
+
+### 8.4 Archetype Test Matrix
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-TEST-030 | `calc_exp` routes require calc-flow E2E, explanation/FAQ assertions, SEO E2E, schema guard, and unit tests as applicable. | P0 |
+| UR-TEST-031 | `calc_only` routes require calc-flow E2E, trigger contract checks, SEO/schema checks; explanation-pane tests must be marked `N/A` with rationale. | P0 |
+| UR-TEST-032 | `exp_only` routes require explanation-content assertions, SEO/schema checks; calculation-pane tests must be marked `N/A` with rationale. | P0 |
+| UR-TEST-033 | `content_shell` routes require shell/nav/search/SEO/sitemap assertions; calc/exp pane tests must be marked `N/A` with rationale. | P0 |
+| UR-TEST-034 | Any archetype that changes shell/layout dimensions must run ISS-001. | P1 |
+| UR-TEST-035 | Archetype compliance E2E must assert body metadata (`data-route-archetype`, `data-design-family`) and pane presence/absence parity. | P0 |
 
 ---
 
@@ -291,6 +339,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-CHK-002 | New calculator work must complete `requirements/compliance/new-calculator-design-checklist.md`. | P0 |
 | UR-CHK-003 | Required checklist gates must include pass/fail and evidence artifacts. | P0 |
 | UR-CHK-004 | Missing required checklist evidence is a compliance failure. | P0 |
+| UR-CHK-005 | Missing archetype/design-family declaration evidence, pane omission rationale, or required screenshot evidence is a compliance failure. | P0 |
 
 ---
 
@@ -351,15 +400,17 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | AP-2.* | UR-AP-001..003 | UNIVERSAL_REQUIREMENTS.md (previous) | unchanged |
 | NAV-MPA-* | UR-NAV-001..003 | UNIVERSAL_REQUIREMENTS.md (previous) | unchanged |
 | EXCL-1.* | UR-NAV-020..022 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
+| Route metadata/archetype governance | UR-NAV-030..036 | consolidated universal model | new |
 | UI-2.5 / UI-2.6 / UI-2.7 | UR-UI-012 / UR-UI-020 / UR-UI-022 | UNIVERSAL + THEME + CALC sources | unchanged/tightened |
-| UUI-FDP-* + ISS-UI-FDP-* | UR-CALC-001..007 + UR-UI-020..022 | calculation_pane_rules.md | merged |
-| EXP-* + UTBL-* (explanation scope) | UR-EXP-001..021 | explanation_pane_standard.md | merged |
-| P1.*..P5.* (SEO families) | UR-SEO-001..031 | SEO_RULES.md | merged |
-| TEST-1.* and matrix rules | UR-TEST-001..021 | TESTING_RULES.md | merged |
+| New design-family governance | UR-UI-030..036 | consolidated universal model | new |
+| UUI-FDP-* + ISS-UI-FDP-* | UR-CALC-001..007 + UR-UI-020..022 | calculation_pane_rules.md | conditionalized/tightened |
+| EXP-* + UTBL-* (explanation scope) | UR-EXP-001..021 | explanation_pane_standard.md | conditionalized/tightened |
+| P1.*..P5.* (SEO families) | UR-SEO-001..031 | SEO_RULES.md | merged/tightened |
+| TEST-1.* and matrix rules | UR-TEST-001..035 | TESTING_RULES.md | merged/tightened |
 | HDR-* | UR-HDR-001..005 | HEADER_RULES.md | merged |
 | FTR-* | UR-FTR-001..005 | FOOTER_RULES.md | merged |
 | DOC-SITEMAP-* | UR-SMAP-001..006 | UNIVERSAL + FOOTER + SEO sources | unchanged/tightened |
-| CHK-* | UR-CHK-001..004 | universal/checklist governance | unchanged |
+| CHK-* | UR-CHK-001..005 | universal/checklist governance | tightened |
 | NEVER-* | UR-NEVER-001..006 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
 | DOD-* | UR-DOD-001..005 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
 
@@ -374,9 +425,9 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | Field | Value |
 | --- | --- |
 | Migration Date | 2026-02-12 |
-| Change Type | Universal governance consolidation (single-file authority) |
+| Change Type | Universal governance consolidation + archetype/design-family contract |
 | Legacy Files Moved | `WORKFLOW.md`, `SEO_RULES.md`, `TESTING_RULES.md`, `THEME_RULES.md`, `HEADER_RULES.md`, `FOOTER_RULES.md`, `calculation_pane_rules.md`, `explanation_pane_standard.md` -> `requirements/Archive/universal-rules/` |
-| Rule ID Transition | Legacy families remapped to `UR-*` scheme per section 16.2 |
+| Rule ID Transition | Legacy families remapped to `UR-*` scheme per section 16.2; `UR-CALC-*` and `UR-EXP-*` applicability is now archetype-bound |
 | Active Governance File | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
 
 ---
@@ -386,3 +437,4 @@ All previously separate rule modules are merged here and re-numbered with the `U
 - Site copy: `requirements/site-structure/SITE_COPY.md`
 - Navigation hierarchy: `requirements/site-structure/calculator-hierarchy.md`
 - Compliance trackers: `requirements/compliance/`
+- MPA generator: `scripts/generate-mpa-pages.js`

@@ -15,6 +15,9 @@ const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
+const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
+const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
+const PANE_LAYOUTS = new Set(['single', 'split']);
 const CALCULATOR_OVERRIDES = {
   'home-loan': {
     explanationHeading: '',
@@ -213,6 +216,66 @@ const CALCULATOR_OVERRIDES = {
   },
 };
 
+function inferDesignFamily(categoryId, subcategoryId) {
+  if (categoryId === 'loans' && DESIGN_FAMILIES.has(subcategoryId)) {
+    return subcategoryId;
+  }
+  return 'neutral';
+}
+
+function resolveCalculatorGovernance({ category, subcategory, calculator, override }) {
+  const routeArchetype = calculator.routeArchetype ?? 'calc_exp';
+  const inferredDesignFamily = inferDesignFamily(category.id, subcategory.id);
+  const designFamily = calculator.designFamily ?? inferredDesignFamily;
+  const overridePaneLayout = override?.paneLayout;
+
+  if (
+    calculator.paneLayout &&
+    overridePaneLayout &&
+    calculator.paneLayout !== overridePaneLayout
+  ) {
+    throw new Error(
+      `Conflicting paneLayout for ${calculator.id}: navigation=${calculator.paneLayout} override=${overridePaneLayout}`
+    );
+  }
+
+  let paneLayout = calculator.paneLayout ?? overridePaneLayout ?? 'split';
+
+  if (!ROUTE_ARCHETYPES.has(routeArchetype)) {
+    throw new Error(
+      `Unsupported routeArchetype "${routeArchetype}" for ${calculator.id}. Allowed: ${Array.from(
+        ROUTE_ARCHETYPES
+      ).join(', ')}`
+    );
+  }
+
+  if (!DESIGN_FAMILIES.has(designFamily)) {
+    throw new Error(
+      `Unsupported designFamily "${designFamily}" for ${calculator.id}. Allowed: ${Array.from(
+        DESIGN_FAMILIES
+      ).join(', ')}`
+    );
+  }
+
+  if (!PANE_LAYOUTS.has(paneLayout)) {
+    throw new Error(
+      `Unsupported paneLayout "${paneLayout}" for ${calculator.id}. Allowed: ${Array.from(
+        PANE_LAYOUTS
+      ).join(', ')}`
+    );
+  }
+
+  if (routeArchetype !== 'calc_exp') {
+    paneLayout = 'single';
+  }
+
+  calculator.routeArchetype = routeArchetype;
+  calculator.designFamily = designFamily;
+  calculator.paneLayout = paneLayout;
+
+  return { routeArchetype, designFamily, paneLayout };
+}
+
 function ensureLength(text, min, max) {
   let result = text.trim().replace(/\s+/g, ' ');
   const filler = ' - Free Tool';
@@ -256,6 +319,75 @@ function writeFile(filePath, contents) {
   fs.writeFileSync(filePath, contents);
 }
 
+function readRequiredFragment(filePath, fragmentName, calculatorId, routeArchetype) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(
+      `Missing required ${fragmentName} fragment for ${calculatorId} (${routeArchetype}): ${filePath}`
+    );
+  }
+  return readFile(filePath);
+}
+
+function loadRouteFragments(fragmentDir, calculatorId, routeArchetype) {
+  const calculatorPath = path.join(fragmentDir, 'index.html');
+  const explanationPath = path.join(fragmentDir, 'explanation.html');
+  const contentPath = path.join(fragmentDir, 'content.html');
+
+  switch (routeArchetype) {
+    case 'calc_exp':
+      return {
+        calculatorHtml: readRequiredFragment(
+          calculatorPath,
+          'index.html',
+          calculatorId,
+          routeArchetype
+        ),
+        explanationHtml: readRequiredFragment(
+          explanationPath,
+          'explanation.html',
+          calculatorId,
+          routeArchetype
+        ),
+        contentHtml: '',
+      };
+    case 'calc_only':
+      return {
+        calculatorHtml: readRequiredFragment(
+          calculatorPath,
+          'index.html',
+          calculatorId,
+          routeArchetype
+        ),
+        explanationHtml: '',
+        contentHtml: '',
+      };
+    case 'exp_only':
+      return {
+        calculatorHtml: '',
+        explanationHtml: readRequiredFragment(
+          explanationPath,
+          'explanation.html',
+          calculatorId,
+          routeArchetype
+        ),
+        contentHtml: '',
+      };
+    case 'content_shell':
+      return {
+        calculatorHtml: '',
+        explanationHtml: '',
+        contentHtml: readRequiredFragment(
+          contentPath,
+          'content.html',
+          calculatorId,
+          routeArchetype
+        ),
+      };
+    default:
+      throw new Error(`Unsupported routeArchetype "${routeArchetype}" for ${calculatorId}`);
+  }
+}
+
 function findCalculatorDirs(rootDir) {
   const map = new Map();
   const stack = [rootDir];
@@ -264,13 +396,17 @@ function findCalculatorDirs(rootDir) {
     const entries = fs.readdirSync(current, { withFileTypes: true });
     let hasIndex = false;
     let hasModule = false;
+    let hasExplanation = false;
+    let hasContent = false;
     for (const entry of entries) {
       if (entry.isFile()) {
         if (entry.name === 'index.html') hasIndex = true;
         if (entry.name === 'module.js') hasModule = true;
+        if (entry.name === 'explanation.html') hasExplanation = true;
+        if (entry.name === 'content.html') hasContent = true;
       }
     }
-    if (hasIndex && hasModule) {
+    if ((hasIndex || hasExplanation || hasContent) && (hasModule || hasContent)) {
       const id = path.basename(current);
       const relPath = path.relative(rootDir, current).replace(/\\/g, '/');
       if (!map.has(id)) {
@@ -510,8 +646,11 @@ function buildPageHtml({
   calculatorTitle,
   calculatorHtml,
   explanationHtml,
+  contentHtml = '',
   explanationHeading = 'Explanation',
   paneLayout = 'split',
+  routeArchetype = 'calc_exp',
+  designFamily = 'neutral',
   includeHomeContent,
   pageType,
   calculatorRelPath,
@@ -521,8 +660,10 @@ function buildPageHtml({
       ? ''
       : `  <h3>${explanationHeading}</h3>\n`;
 
-  const calcContent = includeHomeContent
-    ? `<div class="panel panel-scroll">
+  let calcContent = '';
+
+  if (includeHomeContent) {
+    calcContent = `<div class="panel panel-scroll">
   <h1 id="home-overview-title">Calculate How Much</h1>
   <p class="placeholder" id="home-overview-intro">
     Explore calculators by category using the top navigation. This page is a guide to
@@ -550,24 +691,50 @@ function buildPageHtml({
     Results are estimates for planning purposes only. Always verify details with your
     lender, advisor, or official documentation.
   </p>
-</div>`
-    : paneLayout === 'single'
-      ? `<div class="panel panel-scroll panel-span-all">
+</div>`;
+  } else if (routeArchetype === 'calc_exp') {
+    calcContent =
+      paneLayout === 'single'
+        ? `<div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${calculatorHtml}
 ${explanationTitleHtml}    ${explanationHtml}
   </div>
 </div>`
-      : `<div class="panel panel-scroll">
+        : `<div class="panel panel-scroll">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   ${calculatorHtml}
 </div>
 <div class="panel panel-scroll">
 ${explanationTitleHtml}  ${explanationHtml}
 </div>`;
+  } else if (routeArchetype === 'calc_only') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  <div class="calculator-page-single">
+    ${calculatorHtml}
+  </div>
+</div>`;
+  } else if (routeArchetype === 'exp_only') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+${explanationTitleHtml}  ${explanationHtml}
+</div>`;
+  } else if (routeArchetype === 'content_shell') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  ${contentHtml}
+</div>`;
+  } else {
+    throw new Error(`Unsupported routeArchetype "${routeArchetype}" while building ${canonical}`);
+  }
 
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
+  const routeArchetypeAttribute = routeArchetype
+    ? ` data-route-archetype="${routeArchetype}"`
+    : '';
+  const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
     : '';
@@ -589,12 +756,13 @@ ${explanationTitleHtml}  ${explanationHtml}
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${OG_IMAGE}" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body${bodyAttribute}>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
@@ -658,6 +826,7 @@ function buildCalculatorIndex(categories) {
       content="${description}"
     />
     <link rel="canonical" href="${buildCanonical('/calculators/')}" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
@@ -688,7 +857,7 @@ function buildGtepFooter() {
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -833,8 +1002,15 @@ function main() {
         if (!relPath) {
           throw new Error(`Unable to locate calculator folder for ${calculator.id}`);
         }
+        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const governance = resolveCalculatorGovernance({
+          category,
+          subcategory,
+          calculator,
+          override,
+        });
         calculator.url = `/${relPath}`;
-        calcLookup.set(calculator.id, { category, subcategory, calculator });
+        calcLookup.set(calculator.id, { category, subcategory, calculator, governance });
       });
     });
   });
@@ -849,8 +1025,14 @@ function main() {
       subcategory.calculators.forEach((calculator) => {
         const relPath = calculatorDirs.get(calculator.id);
         const fragmentDir = path.join(CALC_DIR, relPath);
-        const calculatorHtml = readFile(path.join(fragmentDir, 'index.html'));
-        const explanationHtml = readFile(path.join(fragmentDir, 'explanation.html'));
+        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const governance = resolveCalculatorGovernance({
+          category,
+          subcategory,
+          calculator,
+          override,
+        });
+        const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
         const topNavHtml = buildTopNavHtml(
           navigation.categories,
           category.id,
@@ -864,7 +1046,6 @@ function main() {
           calcLookup
         );
 
-        const override = CALCULATOR_OVERRIDES[calculator.id];
         const pageHtml = buildPageHtml({
           title: override?.title ?? buildTitle(calculator.name),
           description: override?.description ?? buildDescription(calculator.name),
@@ -874,18 +1055,21 @@ function main() {
           topNavHtml,
           leftNavHtml,
           calculatorTitle: override?.h1 ?? calculator.name,
-          calculatorHtml,
-          explanationHtml,
+          calculatorHtml: fragments.calculatorHtml,
+          explanationHtml: fragments.explanationHtml,
+          contentHtml: fragments.contentHtml,
           explanationHeading: Object.prototype.hasOwnProperty.call(
             override ?? {},
             'explanationHeading'
           )
             ? override.explanationHeading
             : 'Explanation',
-          paneLayout: override?.paneLayout ?? 'split',
+          paneLayout: governance.paneLayout,
+          routeArchetype: governance.routeArchetype,
+          designFamily: governance.designFamily,
           includeHomeContent: false,
           pageType: 'calculator',
-          calculatorRelPath: relPath,
+          calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
         });
 
         const outputDir = path.join(PUBLIC_DIR, relPath);
@@ -912,6 +1096,10 @@ function main() {
     calculatorTitle: '',
     calculatorHtml: '',
     explanationHtml: '',
+    contentHtml: '',
+    routeArchetype: 'content_shell',
+    designFamily: 'neutral',
+    paneLayout: 'single',
     includeHomeContent: true,
     pageType: 'home',
   });
