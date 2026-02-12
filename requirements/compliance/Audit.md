@@ -1529,3 +1529,57 @@ Performance
 
 SERP Verdict: BLOCK
 
+## Scoped Audit Run - 2026-02-12T15:41:18.670Z - /loans/home-loan/
+
+Run Metadata
+- Environment (localhost base URL): `http://127.0.0.1:8002`
+- Audit Type: `Pre-Deployment`
+- SERP Priority: `P0`
+- Scope Slug List: `/tmp/home-loan-seo-slugs-20260212T154112Z.txt`
+- Output Directory: `test-results/seo/local-audit/home-loan/20260212T154112Z`
+- Source Audit Output: `/tmp/home-loan-seo-audit-20260212T154112Z.md`
+
+### Scoped Master Audit Table
+
+| Category | Slug | SEO Status | Perf Score | Schema Status | SERP Risk | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| Home Loan | /loans/home-loan/ | FAIL | N/A | FAIL | HIGH | Desktop lighthouse unavailable; Mobile lighthouse unavailable |
+
+### Per-Page Details
+
+#### /loans/home-loan/
+
+URL: `http://127.0.0.1:8002/loans/home-loan/`  
+HTTP Status: `200`
+
+SEO
+- H1: 1 (`Home Loan`)
+- Title length: `60`
+- Meta description: `154`
+- Canonical: `https://calchowmuch.com/loans/home-loan/`
+- Intent clarity: calculator=yes, explanation=no (len 0)
+- Robots index,follow: `PASS`
+- Canonical path: `/loans/home-loan/`
+- SEO failures: Missing JSON-LD WebPage; Missing JSON-LD SoftwareApplication; Missing JSON-LD FAQPage; Missing JSON-LD BreadcrumbList; SoftwareApplication count is 0; expected 1; FAQPage has 0 entries; expected range 4-20
+
+Schema
+- WebPage: `FAIL`
+- SoftwareApplication: `FAIL (0)`
+- FAQPage: `FAIL`
+- BreadcrumbList: `FAIL`
+- FAQ count: `0`
+- Schema Status: `FAIL`
+
+Performance
+- Desktop: score N/A, LCP N/A, CLS N/A, INP N/A
+- Mobile: score N/A, LCP N/A, CLS N/A, INP N/A
+- Perf Status: `WARN`
+
+SERP Verdict: `BLOCK`
+
+### Artifacts
+
+- `test-results/seo/local-audit/home-loan/20260212T154112Z/loans__home-loan/lighthouse-desktop.json`
+- `test-results/seo/local-audit/home-loan/20260212T154112Z/loans__home-loan/lighthouse-mobile.json`
+- `test-results/seo/local-audit/home-loan/20260212T154112Z/loans__home-loan/lighthouse-desktop.error.log` (`Unable to connect to Chrome`)
+- `test-results/seo/local-audit/home-loan/20260212T154112Z/loans__home-loan/lighthouse-mobile.error.log` (`Unable to connect to Chrome`)
