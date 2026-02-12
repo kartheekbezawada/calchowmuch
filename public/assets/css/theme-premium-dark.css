@@ -136,9 +136,8 @@ body .ads-column {
 }
 
 body .ad-panel {
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px dashed rgba(59, 130, 246, 0.35);
-  color: var(--muted-text);
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 body .panel h1,

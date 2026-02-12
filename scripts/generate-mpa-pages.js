@@ -10,11 +10,26 @@ const CALC_DIR = path.join(PUBLIC_DIR, 'calculators');
 const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
+const ADSENSE_SNIPPET_PATH = path.join(
+  ROOT,
+  'requirements',
+  'universal-rules',
+  'AdSense code snippet.md'
+);
+const AD_UNIT_SNIPPET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'Ad Unit Code.md');
 
 const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
+const ADSENSE_HEAD_MARKER_START = '<!-- CHM_ADSENSE_HEAD_START -->';
+const ADSENSE_HEAD_MARKER_END = '<!-- CHM_ADSENSE_HEAD_END -->';
+const ADSENSE_SLOT_MARKER_START = '<!-- CHM_AD_SLOT_START -->';
+const ADSENSE_SLOT_MARKER_END = '<!-- CHM_AD_SLOT_END -->';
+const ADSENSE_LOADER_SRC_RE = /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i;
+const ADSENSE_LOADER_SCRIPT_RE =
+  /^[ \t]*<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=[^"']+["'][^>]*>\s*<\/script>\s*\n?/gim;
+const CHM_ENABLE_ADSENSE = parseBooleanFlag(process.env.CHM_ENABLE_ADSENSE);
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
@@ -376,6 +391,95 @@ const HOME_LOAN_SCHEMA_CONFIG = {
   },
 };
 
+function parseBooleanFlag(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+  const normalized = value.trim().toLowerCase();
+  return normalized === '1' || normalized === 'true';
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function indentBlock(block, indent) {
+  return block
+    .split('\n')
+    .map((line) => (line ? `${indent}${line}` : line))
+    .join('\n');
+}
+
+function extractMandatoryMatch(source, regex, errorMessage) {
+  const match = source.match(regex);
+  if (!match) {
+    throw new Error(errorMessage);
+  }
+  return match[0].trim();
+}
+
+function loadAdSenseSnippets() {
+  const adSenseSnippetSource = readFile(ADSENSE_SNIPPET_PATH);
+  const adUnitSnippetSource = readFile(AD_UNIT_SNIPPET_PATH);
+
+  const headLoaderScript = extractMandatoryMatch(
+    adSenseSnippetSource,
+    /<script\b[\s\S]*?<\/script>/i,
+    `Missing AdSense head loader script in ${ADSENSE_SNIPPET_PATH}`
+  );
+  if (!ADSENSE_LOADER_SRC_RE.test(headLoaderScript)) {
+    throw new Error(
+      `AdSense head snippet in ${ADSENSE_SNIPPET_PATH} does not contain the adsbygoogle.js loader`
+    );
+  }
+
+  const adSlotCommentMatch = adUnitSnippetSource.match(/<!--[\s\S]*?-->/i);
+  const adSlotComment = adSlotCommentMatch ? adSlotCommentMatch[0].trim() : '';
+  const adSlotInsTag = extractMandatoryMatch(
+    adUnitSnippetSource,
+    /<ins\b[\s\S]*?<\/ins>/i,
+    `Missing <ins class="adsbygoogle"> tag in ${AD_UNIT_SNIPPET_PATH}`
+  );
+  if (!/\badsbygoogle\b/i.test(adSlotInsTag)) {
+    throw new Error(`Ad unit snippet in ${AD_UNIT_SNIPPET_PATH} does not include class="adsbygoogle"`);
+  }
+
+  const scriptMatches = Array.from(adUnitSnippetSource.matchAll(/<script\b[\s\S]*?<\/script>/gi)).map(
+    (match) => match[0].trim()
+  );
+  const adPushScript = scriptMatches.find(
+    (scriptTag) => !/\bsrc\s*=/i.test(scriptTag) && /adsbygoogle/i.test(scriptTag)
+  );
+  if (!adPushScript) {
+    throw new Error(
+      `Missing inline adsbygoogle push script in ${AD_UNIT_SNIPPET_PATH}. Expected '(adsbygoogle = window.adsbygoogle || []).push({});'`
+    );
+  }
+
+  return {
+    headLoaderScript,
+    adSlotComment,
+    adSlotInsTag,
+    adPushScript,
+  };
+}
+
+const ADSENSE_SNIPPETS = loadAdSenseSnippets();
+const ADSENSE_HEAD_MANAGED_BLOCK = [
+  ADSENSE_HEAD_MARKER_START,
+  ADSENSE_SNIPPETS.headLoaderScript,
+  ADSENSE_HEAD_MARKER_END,
+].join('\n');
+const ADSENSE_SLOT_MANAGED_BLOCK = [
+  ADSENSE_SLOT_MARKER_START,
+  ADSENSE_SNIPPETS.adSlotComment,
+  ADSENSE_SNIPPETS.adSlotInsTag,
+  ADSENSE_SNIPPETS.adPushScript,
+  ADSENSE_SLOT_MARKER_END,
+]
+  .filter(Boolean)
+  .join('\n');
+
 function inferDesignFamily(categoryId, subcategoryId) {
   if (categoryId === 'loans' && DESIGN_FAMILIES.has(subcategoryId)) {
     return subcategoryId;
@@ -659,6 +763,98 @@ function readFile(filePath) {
 function writeFile(filePath, contents) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, contents);
+}
+
+function renderManagedHeadAdsenseBlock() {
+  if (!CHM_ENABLE_ADSENSE) {
+    return '';
+  }
+  return `${indentBlock(ADSENSE_HEAD_MANAGED_BLOCK, '    ')}\n`;
+}
+
+function renderManagedAdPanel(indent = '          ') {
+  return `${indent}<div class="ad-panel">\n${indentBlock(
+    ADSENSE_SLOT_MANAGED_BLOCK,
+    `${indent}  `
+  )}\n${indent}</div>`;
+}
+
+function stripManagedBlock(html, startMarker, endMarker) {
+  const blockPattern = new RegExp(
+    `^[ \\t]*${escapeRegExp(startMarker)}\\s*\\n[\\s\\S]*?^[ \\t]*${escapeRegExp(
+      endMarker
+    )}\\s*\\n?`,
+    'gm'
+  );
+  return html.replace(blockPattern, '');
+}
+
+function normalizeAdSenseHead(html) {
+  let normalized = stripManagedBlock(html, ADSENSE_HEAD_MARKER_START, ADSENSE_HEAD_MARKER_END);
+  normalized = normalized.replace(ADSENSE_LOADER_SCRIPT_RE, '');
+  normalized = normalized.replace(
+    /^[ \t]*<!-- Cloudflare Web Analytics -->/gm,
+    '    <!-- Cloudflare Web Analytics -->'
+  );
+
+  if (!CHM_ENABLE_ADSENSE) {
+    return normalized;
+  }
+
+  if (!/^[ \t]*<\/head>/im.test(normalized)) {
+    return normalized;
+  }
+
+  return normalized.replace(/^[ \t]*<\/head>/im, `${renderManagedHeadAdsenseBlock()}  </head>`);
+}
+
+function normalizeAdPanelSlots(html) {
+  if (!/class=["']ads-column["']/i.test(html)) {
+    return html;
+  }
+
+  return html.replace(
+    /(^[ \t]*)<div class="ad-panel"[^>]*>[\s\S]*?<\/div>/gm,
+    (match, indent = '') => renderManagedAdPanel(indent)
+  );
+}
+
+function collectHtmlFiles(rootDir) {
+  const htmlFiles = [];
+  const stack = [rootDir];
+
+  while (stack.length) {
+    const current = stack.pop();
+    const entries = fs.readdirSync(current, { withFileTypes: true });
+    entries.forEach((entry) => {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+        return;
+      }
+      if (entry.isFile() && path.extname(entry.name).toLowerCase() === '.html') {
+        htmlFiles.push(fullPath);
+      }
+    });
+  }
+
+  return htmlFiles;
+}
+
+function syncAdsenseAcrossPublicHtml() {
+  const htmlFiles = collectHtmlFiles(PUBLIC_DIR);
+  htmlFiles.forEach((filePath) => {
+    const currentHtml = readFile(filePath);
+    if (!/<!doctype html>/i.test(currentHtml)) {
+      return;
+    }
+
+    const withHead = normalizeAdSenseHead(currentHtml);
+    const withAdPanels = normalizeAdPanelSlots(withHead);
+    if (withAdPanels !== currentHtml) {
+      writeFile(filePath, withAdPanels);
+    }
+  });
 }
 
 function readRequiredFragment(filePath, fragmentName, calculatorId, routeArchetype) {
@@ -1088,6 +1284,8 @@ ${explanationTitleHtml}  ${explanationHtml}
           staticStructuredData
         )}</script>\n`
       : '';
+  const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  const adPanelHtml = renderManagedAdPanel('          ');
 
   return `<!doctype html>
 <html lang="en">
@@ -1110,7 +1308,7 @@ ${explanationTitleHtml}  ${explanationHtml}
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-${structuredDataScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
     <div class="page">
@@ -1124,7 +1322,7 @@ ${structuredDataScript}    <!-- Cloudflare Web Analytics --><script defer src='h
           ${calcContent}
         </section>
         <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">Ad Pane</div>
+${adPanelHtml}
         </section>
       </main>
       ${footerHtml}
@@ -1164,6 +1362,7 @@ function buildCalculatorIndex(categories) {
     150,
     160
   );
+  const adsenseHeadScript = renderManagedHeadAdsenseBlock();
 
   return `<!doctype html>
 <html lang="en">
@@ -1180,7 +1379,7 @@ function buildCalculatorIndex(categories) {
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body>
     <div class="page">
@@ -1207,7 +1406,8 @@ function buildGtepFooter() {
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -1485,6 +1685,7 @@ function main() {
     path.join(PUBLIC_DIR, 'sitemap', 'index.html'),
     buildGtepSitemap(navigation.categories)
   );
+  syncAdsenseAcrossPublicHtml();
 }
 
 main();

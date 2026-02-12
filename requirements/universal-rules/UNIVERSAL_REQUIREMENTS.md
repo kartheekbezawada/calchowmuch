@@ -7,7 +7,7 @@
 | Status | Authoritative (sole active governance file) |
 | Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
 | Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
-| Version | 3.1 (Archetype + design-family governance) |
+| Version | 3.2 (AdSense governance + controlled ad-slot standard) |
 | Last Updated | 2026-02-12 |
 
 This is the only active governance file under `requirements/universal-rules/`.
@@ -318,7 +318,45 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 11) Sitemap and Crawlability
+## 11) AdSense Governance
+
+### 11.1 AdSense Head Script (MANDATORY)
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-ADS-001 | Site-ready AdSense loader script must be injected into `<head>` for every full public HTML page generated or maintained by repository workflows when ads are enabled. | P0 |
+| UR-ADS-002 | AdSense loader script source must be centralized in shared generation/sync logic; page-level hardcoding is disallowed. | P0 |
+| UR-ADS-003 | The `adsbygoogle.js` loader must appear at most once per page. Duplicate loader tags are a BUILD/TEST/COMPLIANCE failure. | P0 |
+| UR-ADS-004 | Local/dev workflows must support deterministic disable mode so ad network requests can be prevented during non-production validation. | P0 |
+| UR-ADS-005 | Loader attributes (`async`, `src`, `crossorigin`) must match the canonical snippet source exactly; substitutions are disallowed. | P0 |
+
+### 11.2 Ad Pane Slot (MANDATORY on calculator pages)
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-ADS-010 | Calculator shell pages that include `.ads-column` must render a controlled `<ins class="adsbygoogle">` slot inside `.ads-column .ad-panel`. | P0 |
+| UR-ADS-011 | Placeholder text such as `Ad Pane` is not allowed on shell pages after generation/sync. | P0 |
+| UR-ADS-012 | The ad slot source (`<ins ...>` and inline `adsbygoogle.push`) must come from a shared reusable source in generation/sync logic. | P0 |
+| UR-ADS-013 | Mobile safety policy is mandatory: `.ads-column` is hidden at `max-width: 860px` unless a requirement explicitly overrides with evidence. | P1 |
+
+### 11.3 Controlled Injection Policy
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-ADS-020 | Auto Ads body injection is prohibited for calculator shell routes; use controlled slot rendering in `.ads-column` only. | P0 |
+| UR-ADS-021 | Body-level loader duplication from ad unit snippets is prohibited; only the head-managed loader is allowed. | P0 |
+| UR-ADS-022 | Ad script/slot normalization must be idempotent so repeated generation runs do not duplicate blocks. | P1 |
+
+### 11.4 Manual Smoke Validation
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-ADS-030 | Manual smoke evidence must confirm: loader in rendered `<head>` (enabled mode), slot element in `.ads-column .ad-panel`, and no loader request in disabled mode. | P1 |
+| UR-ADS-031 | Smoke notes for AdSense changes must be documented in iteration/compliance evidence when the change touches shell or generation logic. | P1 |
+
+---
+
+## 12) Sitemap and Crawlability
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
@@ -331,7 +369,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 12) Checklist Governance
+## 13) Checklist Governance
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
@@ -343,7 +381,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 13) Never-Do Rules
+## 14) Never-Do Rules
 
 | Rule ID | Never Do This | Severity |
 | --- | --- | --- |
@@ -356,7 +394,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 14) Definition of Done
+## 15) Definition of Done
 
 | Rule ID | Criterion | Required |
 | --- | --- | --- |
@@ -368,7 +406,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 15) Maintenance Protocol
+## 16) Maintenance Protocol
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
@@ -379,9 +417,9 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 16) Compatibility and Migration Map
+## 17) Compatibility and Migration Map
 
-### 16.1 Source Files Merged
+### 17.1 Source Files Merged
 
 - `requirements/universal-rules/WORKFLOW.md`
 - `requirements/universal-rules/SEO_RULES.md`
@@ -392,7 +430,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 - `requirements/universal-rules/calculation_pane_rules.md`
 - `requirements/universal-rules/explanation_pane_standard.md`
 
-### 16.2 Rule Family Mapping
+### 17.2 Rule Family Mapping
 
 | Old Rule ID / Family | New Rule ID Range | Source File | Semantic Status |
 | --- | --- | --- | --- |
@@ -409,30 +447,31 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | TEST-1.* and matrix rules | UR-TEST-001..035 | TESTING_RULES.md | merged/tightened |
 | HDR-* | UR-HDR-001..005 | HEADER_RULES.md | merged |
 | FTR-* | UR-FTR-001..005 | FOOTER_RULES.md | merged |
+| ADS / monetization slot governance | UR-ADS-001..031 | AdSense snippet policy + shell ad slot governance | new |
 | DOC-SITEMAP-* | UR-SMAP-001..006 | UNIVERSAL + FOOTER + SEO sources | unchanged/tightened |
 | CHK-* | UR-CHK-001..005 | universal/checklist governance | tightened |
 | NEVER-* | UR-NEVER-001..006 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
 | DOD-* | UR-DOD-001..005 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
 
-### 16.3 Legacy Reference Policy
+### 17.3 Legacy Reference Policy
 
 - Legacy rule IDs may appear in historical REQs/tests/tracker logs.
 - New work must cite only `UR-*` IDs.
 - Any active non-archive document referencing removed standalone rule files must be updated to this file.
 
-### 16.4 Migration Report Entry
+### 17.4 Migration Report Entry
 
 | Field | Value |
 | --- | --- |
 | Migration Date | 2026-02-12 |
 | Change Type | Universal governance consolidation + archetype/design-family contract |
 | Legacy Files Moved | `WORKFLOW.md`, `SEO_RULES.md`, `TESTING_RULES.md`, `THEME_RULES.md`, `HEADER_RULES.md`, `FOOTER_RULES.md`, `calculation_pane_rules.md`, `explanation_pane_standard.md` -> `requirements/Archive/universal-rules/` |
-| Rule ID Transition | Legacy families remapped to `UR-*` scheme per section 16.2; `UR-CALC-*` and `UR-EXP-*` applicability is now archetype-bound |
+| Rule ID Transition | Legacy families remapped to `UR-*` scheme per section 17.2; `UR-CALC-*` and `UR-EXP-*` applicability is now archetype-bound |
 | Active Governance File | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
 
 ---
 
-## 17) Reference Pointers
+## 18) Reference Pointers
 
 - Site copy: `requirements/site-structure/SITE_COPY.md`
 - Navigation hierarchy: `requirements/site-structure/calculator-hierarchy.md`
