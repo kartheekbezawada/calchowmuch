@@ -32,6 +32,10 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'car-loan': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'offset-calculator': {
     explanationHeading: '',
     paneLayout: 'single',
