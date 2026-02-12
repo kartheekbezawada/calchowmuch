@@ -36,6 +36,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'multiple-car-loan': {
+    title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
+    description:
+      'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.',
+    h1: 'Multiple Car Loan Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'offset-calculator': {
     explanationHeading: '',
     paneLayout: 'single',
