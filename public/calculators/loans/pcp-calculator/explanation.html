@@ -1,30 +1,209 @@
-<div id="pcp-explanation">
-  <h4>PCP Summary</h4>
+<div id="loan-mtg-explanation">
+  <h2>PCP Calculator - Payment Breakdown</h2>
   <p>
-    Financing <span data-pcp="financed"></span> with a deposit of
-    <span data-pcp="deposit"></span> at <span data-pcp="apr"></span> APR results in a monthly
-    payment of <span data-pcp="payment"></span>.
+    Based on a vehicle price of <span data-pcp="price">-</span> and a deposit of
+    <span data-pcp="deposit">-</span>, your estimated monthly PCP payment is
+    <span data-pcp="monthly-payment">-</span>.
   </p>
   <p>
-    The final payment is <span data-pcp="balloon"></span> (GFV + option fee). Total interest is
-    <span data-pcp="interest"></span> and total payable is <span data-pcp="total"></span>.
+    At <span data-pcp="apr">-</span> over <span data-pcp="term">-</span>, with GFV set to
+    <span data-pcp="gfv">-</span> and option fee of <span data-pcp="option-fee">-</span>, your
+    final payment is <span data-pcp="final-payment">-</span> and total payable is
+    <span data-pcp="total-payable">-</span>.
   </p>
-  <p>PCP keeps monthly payments lower by deferring a portion of the balance to the end.</p>
 
-  <div class="result-section">
-    <h4>Yearly Loan Snapshot</h4>
-    <div class="table-scroll" id="pcp-table-wrap" tabindex="0">
-      <table class="calculator-table" id="pcp-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-pcp="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-pcp="principal-share">-</strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-pcp="interest-share">-</strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid pcp-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-pcp="amount-financed-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>GFV</span>
+        <strong data-pcp="gfv-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Option Fee</span>
+        <strong data-pcp="option-fee-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-pcp="total-interest-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payable</span>
+        <strong data-pcp="total-payable-total">-</strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-pcp="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>PCP Tables</h3>
+        <div class="table-view-toggle pcp-table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="pcp-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="pcp-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="pcp-view-cost"
+            aria-pressed="false"
+          >
+            Cost Breakdown
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="pcp-table-monthly-wrap" data-glow="monthly" tabindex="0">
+      <table class="calculator-table" id="pcp-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="pcp-table-yearly-wrap" data-glow="yearly" tabindex="0">
+      <table class="calculator-table" id="pcp-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
             <th scope="col">Interest</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="pcp-table-body"></tbody>
+        <tbody id="pcp-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+
+    <div class="table-scroll is-hidden" id="pcp-table-cost-wrap" data-glow="cost" tabindex="0">
+      <table class="calculator-table pcp-cost-table" id="pcp-table-cost">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+            <th scope="col">Explanation</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-cost-body"></tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" colspan="2">Total Payable</th>
+            <td id="pcp-cost-total-payable">-</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How does a PCP calculator estimate monthly payment?</h4>
+        <p>It uses financed amount, APR, term, GFV, and option fee to estimate equal monthly installments.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is GFV in a PCP agreement?</h4>
+        <p>GFV is the deferred value due at the end if you choose to purchase the vehicle.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>How does option fee affect final payment?</h4>
+        <p>Final payment equals GFV plus option fee, so a higher fee raises the amount due at term end.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can deposit be entered as amount or percent?</h4>
+        <p>Yes. Use the deposit toggle to switch between absolute amount and percentage input.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Can term be switched between years and months?</h4>
+        <p>Yes. The term unit toggle converts values between years and months without recalculating until Calculate.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Does editing sliders recalculate immediately?</h4>
+        <p>No. Results and explanation values update only after clicking Calculate PCP.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why are PCP monthly payments usually lower?</h4>
+        <p>Part of the principal is deferred to the final payment, so less principal is repaid during monthly installments.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>What does total payable include in PCP?</h4>
+        <p>Total payable includes deposit, all monthly payments, and the final payment including option fee.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Can GFV and option fee exceed financed amount?</h4>
+        <p>No. Final payment is constrained so it cannot exceed the financed balance.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Are these PCP results lender-specific quotations?</h4>
+        <p>No. These are fixed-rate estimates and can differ from lender offers and contract terms.</p>
+      </div>
+    </div>
+  </section>
 </div>

@@ -194,19 +194,32 @@ export function calculateHirePurchase({ price, deposit, apr, termMonths, balloon
 }
 
 export function calculatePcp({ price, deposit, apr, termMonths, balloon, optionFee }) {
-  const finalPayment = Math.max(0, balloon) + Math.max(0, optionFee);
+  const vehiclePrice = Math.max(0, price);
+  const depositValue = Math.max(0, deposit);
+  const financed = Math.max(0, vehiclePrice - depositValue);
+  const optionFeeValue = clamp(Math.max(0, optionFee), 0, financed);
+  const gfvValue = clamp(Math.max(0, balloon), 0, Math.max(0, financed - optionFeeValue));
+  const finalPayment = gfvValue + optionFeeValue;
+
   const result = calculateHirePurchase({
-    price,
-    deposit,
+    price: vehiclePrice,
+    deposit: depositValue,
     apr,
     termMonths,
     balloon: finalPayment,
   });
 
+  const depositPercent = result.price > 0 ? (result.deposit / result.price) * 100 : 0;
+
   return {
     ...result,
-    balloon: result.balloon,
-    optionFee: Math.max(0, optionFee),
+    gfv: gfvValue,
+    optionFee: optionFeeValue,
+    finalPayment,
+    balloon: finalPayment,
+    financed: result.financed,
+    termMonths: result.termMonths,
+    depositPercent,
   };
 }
 

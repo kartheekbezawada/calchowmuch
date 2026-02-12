@@ -72,6 +72,12 @@ describe('auto loan utility calculations', () => {
 
     expect(result.monthlyPayment).toBeGreaterThan(0);
     expect(result.balloon).toBeGreaterThanOrEqual(0);
+    expect(result.gfv).toBeGreaterThanOrEqual(0);
+    expect(result.optionFee).toBeGreaterThanOrEqual(0);
+    expect(result.finalPayment).toBeCloseTo(result.gfv + result.optionFee, 6);
+    expect(result.financed).toBeCloseTo(result.price - result.deposit, 6);
+    expect(result.termMonths).toBe(36);
+    expect(result.depositPercent).toBeCloseTo((result.deposit / result.price) * 100, 6);
   });
 
   it('calculates lease payment with residual percent', () => {

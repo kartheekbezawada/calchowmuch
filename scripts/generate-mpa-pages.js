@@ -40,6 +40,22 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'pcp-calculator': {
+    title: 'PCP Calculator - Monthly Payment, GFV & Total Cost',
+    description:
+      'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.',
+    h1: 'PCP Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'leasing-calculator': {
+    title: 'Leasing Calculator - Monthly Payment, Residual & Total Cost',
+    description:
+      'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.',
+    h1: 'Leasing Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'multiple-car-loan': {
     title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
     description:

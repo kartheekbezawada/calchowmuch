@@ -1,43 +1,174 @@
 <div id="calc-pcp">
-  <div class="calculator-ui">
-    <p class="helper">Estimate PCP payments with a guaranteed future value (GFV) and option fee.</p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="PCP calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate PCP monthly installments, GFV final payment, and total payable with a premium
+            slider-driven flow.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pcp-price">Vehicle Price</label>
-        <input id="pcp-price" type="number" value="32000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-price">Vehicle Price</label>
+              <span class="slider-value" id="pcp-price-display">32,000</span>
+            </div>
+            <input id="pcp-price" type="range" value="32000" min="5000" max="150000" step="500" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-deposit">Deposit</label>
-        <input id="pcp-deposit" type="number" value="3000" min="0" step="0.01" />
-      </div>
+          <div class="input-row down-combined-left">
+            <label id="pcp-deposit-type-label">Down Payment Type</label>
+            <div
+              class="button-group"
+              role="group"
+              aria-labelledby="pcp-deposit-type-label"
+              data-button-group="pcp-deposit-type"
+            >
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="amount"
+                aria-pressed="true"
+              >
+                Amount
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="percent"
+                aria-pressed="false"
+              >
+                Percent
+              </button>
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-apr">APR (%)</label>
-        <input id="pcp-apr" type="number" value="5.9" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="pcp-deposit-value-label" for="pcp-deposit-value">Deposit Amount</label>
+              <span class="slider-value" id="pcp-deposit-display">3,000</span>
+            </div>
+            <input id="pcp-deposit-value" type="range" value="3000" min="0" max="150000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-term">Term (months)</label>
-        <input id="pcp-term" type="number" value="36" min="1" step="1" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-apr">APR (%)</label>
+              <span class="slider-value" id="pcp-apr-display">5.9%</span>
+            </div>
+            <input id="pcp-apr" type="range" value="5.9" min="0" max="25" step="0.1" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-gfv">GFV / Balloon</label>
-        <input id="pcp-gfv" type="number" value="15000" min="0" step="0.01" />
-      </div>
+          <div class="input-row down-combined-left">
+            <label id="pcp-term-unit-label">Term Unit</label>
+            <div
+              class="button-group"
+              role="group"
+              aria-labelledby="pcp-term-unit-label"
+              data-button-group="pcp-term-unit"
+            >
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="years"
+                aria-pressed="true"
+              >
+                Years
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="months"
+                aria-pressed="false"
+              >
+                Months
+              </button>
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-option-fee">Option Fee</label>
-        <input id="pcp-option-fee" type="number" value="100" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="pcp-term-label" for="pcp-term">Term (years)</label>
+              <span class="slider-value" id="pcp-term-display">4 yrs</span>
+            </div>
+            <input id="pcp-term" type="range" value="4" min="1" max="8" step="0.5" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-gfv">GFV / Balloon</label>
+              <span class="slider-value" id="pcp-gfv-display">15,000</span>
+            </div>
+            <input id="pcp-gfv" type="range" value="15000" min="0" max="150000" step="100" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-option-fee">Option Fee</label>
+              <span class="slider-value" id="pcp-option-fee-display">100</span>
+            </div>
+            <input id="pcp-option-fee" type="range" value="100" min="0" max="5000" step="10" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pcp-calc">
+              Calculate PCP
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="PCP scenario snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Monthly PCP Payment</p>
+            <div class="result mtg-result-card" id="pcp-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pcp-summary" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Vehicle Price</span>
+              <strong data-pcp="price">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Deposit</span>
+              <strong><span data-pcp="deposit">-</span> (<span data-pcp="deposit-percent">-</span>)</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Amount Financed</span>
+              <strong data-pcp="financed">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>APR</span>
+              <strong data-pcp="apr">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Term</span>
+              <strong data-pcp="term">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>GFV</span>
+              <strong data-pcp="gfv">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Option Fee</span>
+              <strong data-pcp="option-fee">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Final Payment</span>
+              <strong data-pcp="final-payment">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Interest</span>
+              <strong data-pcp="total-interest">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Payable</span>
+              <strong data-pcp="total-payable">-</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="pcp-calc">Calculate PCP</button>
-
-    <div class="result" id="pcp-result" aria-live="polite"></div>
-    <div class="result-detail" id="pcp-summary" aria-live="polite"></div>
   </div>
 </div>
 
