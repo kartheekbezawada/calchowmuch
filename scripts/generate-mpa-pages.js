@@ -36,6 +36,10 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'hire-purchase': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'multiple-car-loan': {
     title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
     description:
