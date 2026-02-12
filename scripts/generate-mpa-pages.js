@@ -44,7 +44,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'buy-to-let': {
-    title: 'Buy-to-Let Calculator (Yield, Cashflow & Coverage) | CalcHowMuch',
+    title: 'Buy-to-Let (Yield, Cashflow & Coverage) | CalcHowMuch',
     description:
       'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.',
     h1: 'Buy-to-Let Calculator',
