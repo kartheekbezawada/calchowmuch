@@ -335,7 +335,7 @@ All tables in the Explanation Pane (Scenario Summary and Results Table) MUST com
 Add the following clause into UNIVERSAL_REQUIREMENTS.md:
 
 EXPLANATION PANE RULE (MANDATORY):
-All calculators MUST implement the Explanation Pane exactly as defined in requirements/universal-rules/explanation_pane_standard.md, including:
+All calculators MUST implement the Explanation Pane exactly as defined in requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md, including:
 
 H2 Summary (dynamic, 2–3 lines; uses inputs + outputs)
 

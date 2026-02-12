@@ -1,47 +1,137 @@
 <div id="calc-cc-balance-transfer">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compare a balance transfer or installment plan with promo APR and a fixed payment.
-    </p>
+  <div class="calculator-ui cc-bt-ui">
+    <section class="cc-bt-hero" aria-label="Balance transfer planner">
+      <div class="cc-bt-form-panel">
+        <header class="cc-bt-heading">
+          <p class="cc-bt-kicker">Credit Card Strategy Planner</p>
+          <h2 class="cc-bt-title">Balance transfer planning with home-loan clarity.</h2>
+          <p class="helper">
+            Enter your transfer terms to estimate payoff months, total paid, interest, fees, and a
+            yearly payoff table.
+          </p>
+        </header>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="cc-bt-balance">Transfer Balance</label>
-        <input id="cc-bt-balance" type="number" value="6000" min="0" step="0.01" />
+        <div class="cc-bt-input-grid">
+          <div class="input-row">
+            <label for="cc-bt-balance">Transfer Balance</label>
+            <input
+              id="cc-bt-balance"
+              type="number"
+              value="6000"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-bt-fee">Transfer Fee (%)</label>
+            <input id="cc-bt-fee" type="number" value="3" min="0" step="0.1" inputmode="decimal" />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-bt-promo-apr">Promo APR (%)</label>
+            <input
+              id="cc-bt-promo-apr"
+              type="number"
+              value="0"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-bt-promo-months">Promo Months</label>
+            <input
+              id="cc-bt-promo-months"
+              type="number"
+              value="12"
+              min="0"
+              step="1"
+              inputmode="numeric"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
+            <input
+              id="cc-bt-post-apr"
+              type="number"
+              value="17.9"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="input-row">
+            <label for="cc-bt-payment">Monthly Payment</label>
+            <input
+              id="cc-bt-payment"
+              type="number"
+              value="250"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+            />
+          </div>
+        </div>
+
+        <div class="input-row action-row cc-bt-action-row">
+          <button class="calculator-button full-width" type="button" id="cc-bt-calc">
+            Calculate Balance Transfer
+          </button>
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="cc-bt-fee">Transfer Fee (%)</label>
-        <input id="cc-bt-fee" type="number" value="3" min="0" step="0.1" />
-      </div>
+      <aside class="cc-bt-preview-panel" aria-label="Balance transfer snapshot">
+        <div class="cc-bt-preview-main">
+          <p class="cc-bt-preview-label">Projected Outcome</p>
+          <div class="result cc-bt-result-card" id="cc-bt-result" aria-live="polite">
+            <p class="placeholder" id="cc-bt-placeholder">Enter values and click Calculate.</p>
+            <p class="form-error is-hidden" id="cc-bt-error" role="alert"></p>
+            <div class="cc-bt-results-list is-hidden" id="cc-bt-results-list"></div>
+          </div>
+          <div class="result-detail cc-bt-summary-card" id="cc-bt-summary" aria-live="polite">
+            Every run includes transfer fee + interest so comparisons stay fair.
+          </div>
+        </div>
 
-      <div class="input-row">
-        <label for="cc-bt-promo-apr">Promo APR (%)</label>
-        <input id="cc-bt-promo-apr" type="number" value="0" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="cc-bt-promo-months">Promo Months</label>
-        <input id="cc-bt-promo-months" type="number" value="12" min="0" step="1" />
-      </div>
-
-      <div class="input-row">
-        <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
-        <input id="cc-bt-post-apr" type="number" value="17.9" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="cc-bt-payment">Monthly Payment</label>
-        <input id="cc-bt-payment" type="number" value="250" min="0" step="0.01" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="cc-bt-calc">
-      Calculate Balance Transfer
-    </button>
-
-    <div class="result" id="cc-bt-result" aria-live="polite"></div>
-    <div class="result-detail" id="cc-bt-summary" aria-live="polite"></div>
+        <div class="cc-bt-snapshot-list">
+          <div class="cc-bt-snapshot-row">
+            <span>Transfer Balance</span>
+            <strong data-cc-bt="balance"></strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Fee</span>
+            <strong><span data-cc-bt="fee"></span> (<span data-cc-bt="fee-amount"></span>)</strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Starting Balance</span>
+            <strong data-cc-bt="starting-balance"></strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Promo Window</span>
+            <strong
+              ><span data-cc-bt="promo-months"></span> months @ <span data-cc-bt="promo-apr"></span
+            ></strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Post-Promo APR</span>
+            <strong data-cc-bt="post-apr"></strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Monthly Payment</span>
+            <strong data-cc-bt="payment"></strong>
+          </div>
+          <div class="cc-bt-snapshot-row">
+            <span>Estimated Payoff</span>
+            <strong><span data-cc-bt="months"></span> months</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 

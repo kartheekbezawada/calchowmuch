@@ -1,68 +1,167 @@
 <div id="loan-borrow-explanation">
-  <section class="bor-section bor-summary">
-    <h2>Borrowing Summary</h2>
-    <p data-bor="summary-text"></p>
-    <p class="bor-summary__note" data-bor="summary-note"></p>
-    <div class="bor-summary__answer" aria-live="polite">
-      <span class="bor-summary__label">Estimated Max Borrowing (final answer)</span>
-      <span class="bor-summary__value">See the scenario summary table below.</span>
+  <h2>How Much Can I Borrow</h2>
+  <p>
+    Lenders use a mix of income multiples and affordability checks to estimate how much you can
+    comfortably repay each month. They also stress test applications at higher interest rates to
+    ensure your budget could handle future rate increases.
+  </p>
+  <p>
+    When your income, expenses, debts, interest rate, or loan term change, your estimated borrowing
+    can change too. Different lenders apply different rules, so the amount you are approved for may
+    be higher or lower than this estimate.
+  </p>
+
+  <section class="bor-exp-section bor-exp-section--capacity">
+    <h3>Your Income Capacity</h3>
+    <div
+      class="bor-capacity-bar"
+      role="img"
+      aria-label="Monthly income capacity breakdown"
+    >
+      <div class="bor-capacity-segment bor-capacity-segment--expenses" data-bor="cap-expenses">
+        <span class="bor-capacity-text" data-bor="cap-expenses-text"></span>
+      </div>
+      <div class="bor-capacity-segment bor-capacity-segment--debts" data-bor="cap-debts">
+        <span class="bor-capacity-text" data-bor="cap-debts-text"></span>
+      </div>
+      <div class="bor-capacity-segment bor-capacity-segment--mortgage" data-bor="cap-mortgage">
+        <span class="bor-capacity-text" data-bor="cap-mortgage-text"></span>
+      </div>
+      <div class="bor-capacity-segment bor-capacity-segment--buffer" data-bor="cap-buffer">
+        <span class="bor-capacity-text" data-bor="cap-buffer-text"></span>
+      </div>
+    </div>
+    <div class="bor-capacity-legend">
+      <div class="bor-capacity-legend-item bor-capacity-legend-item--expenses">
+        <span>Expenses</span>
+        <strong data-bor="legend-expenses"></strong>
+      </div>
+      <div class="bor-capacity-legend-item bor-capacity-legend-item--debts">
+        <span>Debts</span>
+        <strong data-bor="legend-debts"></strong>
+      </div>
+      <div class="bor-capacity-legend-item bor-capacity-legend-item--mortgage">
+        <span>Mortgage</span>
+        <strong data-bor="legend-mortgage"></strong>
+      </div>
+      <div class="bor-capacity-legend-item bor-capacity-legend-item--buffer">
+        <span>Buffer</span>
+        <strong data-bor="legend-buffer"></strong>
+      </div>
     </div>
   </section>
 
-  <section class="bor-section bor-scenario">
-    <h3>Scenario Summary Table</h3>
-    <div class="table-scroll" id="bor-table-wrap" tabindex="0">
-      <table class="calculator-table" id="bor-table">
+  <section class="bor-exp-section bor-exp-section--scenarios">
+    <div class="bor-scenario-header">
+      <h3>Rate Scenarios</h3>
+    </div>
+    <div class="table-scroll" id="bor-scenario-wrap" tabindex="0">
+      <table class="calculator-table" id="bor-scenario-table">
         <thead>
           <tr>
-            <th scope="col">Category</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">What it means</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Max Borrow</th>
+            <th scope="col">Est. Monthly</th>
+            <th scope="col">Max Property</th>
           </tr>
         </thead>
-        <tbody id="bor-table-body"></tbody>
+        <tbody id="bor-scenario-body"></tbody>
       </table>
     </div>
   </section>
 
-  <section class="bor-section bor-explanation">
-    <h3>How lenders assess borrowing</h3>
-    <p>
-      Lenders use a mix of income multiples and affordability checks to estimate how much you
-      can comfortably repay each month. They also stress test applications at higher interest
-      rates to ensure your budget could handle future rate increases.
-    </p>
-    <p>
-      When your income, expenses, debts, interest rate, or loan term change, your estimated
-      borrowing can change too. Different lenders apply different rules, so the amount you are
-      approved for may be higher or lower than this estimate.
-    </p>
-  </section>
+  <section class="bor-exp-section bor-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>Is this a guaranteed amount I can borrow?</h4>
+        <p>
+          No. This is only an estimate. Final approval depends on your credit score, employment
+          stability, and the lender's own policies and affordability criteria.
+        </p>
+      </div>
 
-    <section class="bor-section bor-faq">
-      <h3>Frequently Asked Questions</h3>
-      <div class="bor-faq__item">
-        <p><strong>Is this a guaranteed amount I can borrow?</strong></p>
-        <p class="bor-faq__answer">No. This is only an estimate. Final approval depends on your credit score, employment stability, and the lender&#39;s policies.</p>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Why is my borrowing less than 5x my income?</h4>
+        <p>
+          Because lenders adjust for your monthly expenses, existing debt commitments, and interest
+          rate stress tests that simulate higher future rates.
+        </p>
       </div>
-      <div class="bor-faq__item">
-        <p><strong>Why is my borrowing less than 5x my income?</strong></p>
-        <p class="bor-faq__answer">Because lenders adjust for your expenses, existing debts, and interest rate stress tests.</p>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Can I borrow more with a longer loan term?</h4>
+        <p>
+          Often yes. A longer term lowers monthly payments and can increase affordability, but you
+          will pay significantly more interest over the life of the loan.
+        </p>
       </div>
-      <div class="bor-faq__item">
-        <p><strong>Can I borrow more with a longer loan term?</strong></p>
-        <p class="bor-faq__answer">Often yes - a longer term can lower monthly payments and increase affordability, but you will pay more interest overall.</p>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Do different lenders give different amounts?</h4>
+        <p>
+          Yes. Each lender has its own criteria for income multiples, expense allowances, and stress
+          test rates. Shopping around or using a broker can help.
+        </p>
       </div>
-      <div class="bor-faq__item">
-        <p><strong>Do different lenders give different amounts?</strong></p>
-        <p class="bor-faq__answer">Yes. Some lenders are more flexible with expenses or income multiples than others.</p>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What is an income multiple?</h4>
+        <p>
+          An income multiple is a simple multiplier applied to your annual salary. For example, at
+          4.5x on a 90,000 salary, the maximum loan would be 405,000.
+        </p>
       </div>
-      <div class="bor-faq__item">
-        <p><strong>Should I speak to a broker?</strong></p>
-        <p class="bor-faq__answer">If you are serious about buying, a broker can match you with the lender most likely to approve your application.</p>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>How does the payment-to-income method work?</h4>
+        <p>
+          It calculates the maximum monthly payment you can afford after subtracting expenses and
+          debts from your monthly income, then works backwards to find the loan amount.
+        </p>
       </div>
-    <p class="bor-faq__note">
-      Use this tool to understand your mortgage borrowing power, plan your deposit, and estimate how much house you can afford before applying.
-    </p>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Does a larger deposit increase how much I can borrow?</h4>
+        <p>
+          A deposit increases your total purchasing power but does not directly change the loan
+          amount. Lenders base borrowing on income and affordability, not deposit size.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Should I use gross or net income?</h4>
+        <p>
+          Gross income is typically used for income multiple calculations. Net monthly income is
+          more appropriate for payment-to-income checks as it reflects your actual take-home pay.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>How do interest rates affect my borrowing power?</h4>
+        <p>
+          Higher rates mean higher monthly payments for the same loan amount, which reduces the
+          maximum you can borrow. Even a 0.5% change can shift borrowing power significantly.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Should I speak to a mortgage broker?</h4>
+        <p>
+          If you are serious about buying, a broker can match you with the lender most likely to
+          approve your application and secure the best rate for your circumstances.
+        </p>
+      </div>
+    </div>
   </section>
 </div>

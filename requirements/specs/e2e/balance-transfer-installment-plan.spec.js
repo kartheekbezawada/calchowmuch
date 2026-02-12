@@ -4,6 +4,10 @@ test.describe('Balance Transfer Calculator', () => {
   test('BALTRANSFER-TEST-E2E-1: load, nav, calculate, verify results', async ({ page }) => {
     await page.goto('/loans/balance-transfer-installment-plan');
 
+    const centerPanels = page.locator('.center-column > .panel');
+    await expect(centerPanels).toHaveCount(1);
+    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Credit Card');
 
@@ -22,33 +26,38 @@ test.describe('Balance Transfer Calculator', () => {
     await expect(resultsList).not.toHaveClass(/is-hidden/);
 
     const results = resultsList.locator('.result-line');
-    await expect(results).toHaveCount(4);
-    await expect(results.nth(0)).toContainText('Payoff time');
+    await expect(results).toHaveCount(5);
+    await expect(results.nth(0)).toContainText('Estimated Payoff');
     await expect(results.nth(0)).toContainText('months');
-    await expect(results.nth(1)).toContainText('Total interest');
-    await expect(results.nth(2)).toContainText('Total fees');
-    await expect(results.nth(3)).toContainText('Total paid');
+    await expect(results.nth(1)).toContainText('Total Paid');
+    await expect(results.nth(2)).toContainText('Total Interest');
+    await expect(results.nth(3)).toContainText('Total Fees');
+    await expect(results.nth(4)).toContainText('Starting Balance');
 
     const tableRows = page.locator('#cc-bt-table-body tr');
     const rowCount = await tableRows.count();
     expect(rowCount).toBeGreaterThan(0);
   });
 
-  test('BALTRANSFER-TEST-E2E-2: input change resets results (UI-2.6)', async ({ page }) => {
+  test('BALTRANSFER-TEST-E2E-2: input change auto-recalculates projected outcome', async ({
+    page,
+  }) => {
     await page.goto('/loans/balance-transfer-installment-plan');
 
     await page.locator('#cc-bt-calc').click();
 
     const resultsList = page.locator('#cc-bt-results-list');
     await expect(resultsList).not.toHaveClass(/is-hidden/);
+    const firstResult = resultsList.locator('.result-line').first();
+    const firstTextBefore = (await firstResult.textContent()) || '';
 
     await page.locator('#cc-bt-balance').fill('8000');
 
-    await expect(resultsList).toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-bt-placeholder')).toBeVisible();
-
-    await page.locator('#cc-bt-calc').click();
     await expect(resultsList).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-bt-placeholder')).toHaveClass(/is-hidden/);
+    await expect
+      .poll(async () => ((await firstResult.textContent()) || '').trim())
+      .not.toBe(firstTextBefore.trim());
   });
 
   test('BALTRANSFER-TEST-E2E-3: explanation pane has 10 FAQ items', async ({ page }) => {

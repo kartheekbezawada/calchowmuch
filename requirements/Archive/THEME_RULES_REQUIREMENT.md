@@ -26,14 +26,14 @@
 - Calculator logic or functionality changes
 
 **Authority:** This requirement defines the canonical approach for theme tokens and global theme application.  
-**Change Type:** Layout/CSS (reference: TESTING_RULES.md)
+**Change Type:** Layout/CSS (reference: UNIVERSAL_REQUIREMENTS.md)
 
 ---
 
 ## Requirements
 
 ### THEME-UNIFIED-001 — Universal Theme Tokens
-- All color, typography, sizing, and component tokens must be defined in THEME_RULES.md
+- All color, typography, sizing, and component tokens must be defined in UNIVERSAL_REQUIREMENTS.md
 - All calculators and UI must use these tokens
 
 ### THEME-UNIFIED-002 — Premium-Dark Global Default
@@ -43,17 +43,17 @@
 - Visual appearance and performance must match or improve over previous implementation
 
 ### THEME-UNIFIED-003 — Reference and Build/Test Updates
-- All documentation, build configs, and references must point to THEME_RULES.md as the single source of truth
+- All documentation, build configs, and references must point to UNIVERSAL_REQUIREMENTS.md as the single source of truth
 - Archive/remove requirements/rules/premium_dark_theme_global_009.md after confirming this file covers its requirements
 
 ---
 
 ## Acceptance Criteria
-- THEME_RULES.md contains all universal tokens and global theme requirements
+- UNIVERSAL_REQUIREMENTS.md contains all universal tokens and global theme requirements
 - No per-page theme CSS links remain
 - Theme loads globally via base layout
 - All calculators/pages use the global premium-dark theme
-- All references and build/test configs point to THEME_RULES.md
+- All references and build/test configs point to UNIVERSAL_REQUIREMENTS.md
 - premium_dark_theme_global_009.md is archived/removed
 
 ---
@@ -66,4 +66,4 @@
 
 ## Notes
 - This requirement supersedes and replaces premium_dark_theme_global_009.md
-- THEME_RULES.md is now the canonical source for all theme requirements
+- UNIVERSAL_REQUIREMENTS.md is now the canonical source for all theme requirements

@@ -29,22 +29,32 @@ const downTypeGroup = document.querySelector('[data-button-group="mtg-down-type"
 const viewMonthlyButton = document.querySelector('#mtg-view-monthly');
 const viewYearlyButton = document.querySelector('#mtg-view-yearly');
 
-const explanationRoot = document.querySelector('#loan-mtg-explanation');
-const priceValue = explanationRoot?.querySelector('[data-mtg="price"]');
-const downPaymentValue = explanationRoot?.querySelector('[data-mtg="down-payment"]');
-const downPercentValue = explanationRoot?.querySelector('[data-mtg="down-percent"]');
-const loanAmountValue = explanationRoot?.querySelector('[data-mtg="loan-amount"]');
-const rateValue = explanationRoot?.querySelector('[data-mtg="rate"]');
-const termValue = explanationRoot?.querySelector('[data-mtg="term"]');
-const extraMonthlyValue = explanationRoot?.querySelector('[data-mtg="extra-monthly"]');
-const lumpSumValue = explanationRoot?.querySelector('[data-mtg="lump-sum"]');
-const escrowValue = explanationRoot?.querySelector('[data-mtg="escrow"]');
-const lifetimeSummary = explanationRoot?.querySelector('[data-mtg="lifetime-summary"]');
+const priceValue = document.querySelector('[data-mtg="price"]');
+const downPaymentValue = document.querySelector('[data-mtg="down-payment"]');
+const downPercentValue = document.querySelector('[data-mtg="down-percent"]');
+const loanAmountValue = document.querySelector('[data-mtg="loan-amount"]');
+const rateValue = document.querySelector('[data-mtg="rate"]');
+const termValue = document.querySelector('[data-mtg="term"]');
+const extraMonthlyValue = document.querySelector('[data-mtg="extra-monthly"]');
+const lumpSumValue = document.querySelector('[data-mtg="lump-sum"]');
+const escrowValue = document.querySelector('[data-mtg="escrow"]');
+const totalPaidValue = document.querySelector('[data-mtg="total-paid"]');
+const totalPrincipalValue = document.querySelector('[data-mtg="total-principal"]');
+const totalInterestValue = document.querySelector('[data-mtg="total-interest"]');
+const lifetimeSummary = document.querySelector('[data-mtg="lifetime-summary"]');
+const lifetimeDonut = document.querySelector('[data-mtg="lifetime-donut"]');
+const principalShareValue = document.querySelector('[data-mtg="principal-share"]');
+const interestShareValue = document.querySelector('[data-mtg="interest-share"]');
 
-const monthlyTableBody = explanationRoot?.querySelector('#mtg-table-monthly-body');
-const yearlyTableBody = explanationRoot?.querySelector('#mtg-table-yearly-body');
-const monthlyTableWrap = explanationRoot?.querySelector('#mtg-table-monthly-wrap');
-const yearlyTableWrap = explanationRoot?.querySelector('#mtg-table-yearly-wrap');
+const priceDisplay = document.querySelector('#mtg-price-display');
+const downDisplay = document.querySelector('#mtg-down-display');
+const termDisplay = document.querySelector('#mtg-term-display');
+const rateDisplay = document.querySelector('#mtg-rate-display');
+
+const monthlyTableBody = document.querySelector('#mtg-table-monthly-body');
+const yearlyTableBody = document.querySelector('#mtg-table-yearly-body');
+const monthlyTableWrap = document.querySelector('#mtg-table-monthly-wrap');
+const yearlyTableWrap = document.querySelector('#mtg-table-yearly-wrap');
 
 const downTypeButtons = setupButtonGroup(downTypeGroup, {
   defaultValue: 'amount',
@@ -80,14 +90,30 @@ function handleDownTypeChange(type) {
     downValueLabel.textContent = type === 'percent' ? 'Down Payment Percent' : 'Down Payment Amount';
   }
   if (downValueInput) {
-    downValueInput.setAttribute('placeholder', type === 'percent' ? '0.00' : '0');
+    if (type === 'percent') {
+      downValueInput.min = 0;
+      downValueInput.max = 99;
+      downValueInput.step = 1;
+    } else {
+      downValueInput.min = 0;
+      downValueInput.max = 2000000;
+      downValueInput.step = 5000;
+    }
   }
 
   lastDownType = type;
+  updateSliderDisplays();
 }
 
-function formatTableNumber(value) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+function formatMoney(value) {
+  return formatExplanationNumber(value);
+}
+
+function formatExplanationNumber(value) {
+  return formatNumber(value, {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+  });
 }
 
 function getMonthLabel(month, startDate) {
@@ -107,11 +133,11 @@ function renderMonthlyTable(schedule, startDate) {
       (entry) =>
         `<tr>
           <td>${getMonthLabel(entry.month, startDate)}</td>
-          <td>${formatTableNumber(entry.payment)}</td>
-          <td>${formatTableNumber(entry.principal)}</td>
-          <td>${formatTableNumber(entry.interest)}</td>
-          <td>${formatTableNumber(entry.extra)}</td>
-          <td>${formatTableNumber(entry.balance)}</td>
+          <td>${formatExplanationNumber(entry.payment)}</td>
+          <td>${formatExplanationNumber(entry.principal)}</td>
+          <td>${formatExplanationNumber(entry.interest)}</td>
+          <td>${formatExplanationNumber(entry.extra)}</td>
+          <td>${formatExplanationNumber(entry.balance)}</td>
         </tr>`
     )
     .join('');
@@ -126,32 +152,32 @@ function renderYearlyTable(yearly) {
       (entry) =>
         `<tr>
           <td>${entry.label}</td>
-          <td>${formatTableNumber(entry.payment)}</td>
-          <td>${formatTableNumber(entry.principal)}</td>
-          <td>${formatTableNumber(entry.interest)}</td>
-          <td>${formatTableNumber(entry.extra)}</td>
-          <td>${formatTableNumber(entry.balance)}</td>
+          <td>${formatExplanationNumber(entry.payment)}</td>
+          <td>${formatExplanationNumber(entry.principal)}</td>
+          <td>${formatExplanationNumber(entry.interest)}</td>
+          <td>${formatExplanationNumber(entry.extra)}</td>
+          <td>${formatExplanationNumber(entry.balance)}</td>
         </tr>`
     )
     .join('');
 }
 
 function updateExplanation(data) {
-  if (!explanationRoot || !data) {
+  if (!data) {
     return;
   }
 
   if (priceValue) {
-    priceValue.textContent = formatNumber(data.price);
+    priceValue.textContent = formatExplanationNumber(data.price);
   }
   if (downPaymentValue) {
-    downPaymentValue.textContent = formatNumber(data.downAmount);
+    downPaymentValue.textContent = formatExplanationNumber(data.downAmount);
   }
   if (downPercentValue) {
     downPercentValue.textContent = formatPercent(data.downPercent);
   }
   if (loanAmountValue) {
-    loanAmountValue.textContent = formatNumber(data.principal);
+    loanAmountValue.textContent = formatExplanationNumber(data.principal);
   }
   if (rateValue) {
     rateValue.textContent = formatPercent(data.annualRate);
@@ -163,33 +189,60 @@ function updateExplanation(data) {
   }
   if (extraMonthlyValue) {
     extraMonthlyValue.textContent =
-      data.extraMonthly > 0 ? `${formatNumber(data.extraMonthly)} per month` : 'None';
+      data.extraMonthly > 0 ? `${formatExplanationNumber(data.extraMonthly)} / month` : 'None';
   }
   if (lumpSumValue) {
     if (data.lumpSum > 0 && data.lumpSumMonth) {
-      lumpSumValue.textContent = `${formatNumber(data.lumpSum)} in month ${data.lumpSumMonth}`;
+      lumpSumValue.textContent = `${formatExplanationNumber(data.lumpSum)} in month ${data.lumpSumMonth}`;
     } else if (data.lumpSum > 0) {
-      lumpSumValue.textContent = formatNumber(data.lumpSum);
+      lumpSumValue.textContent = formatExplanationNumber(data.lumpSum);
     } else {
       lumpSumValue.textContent = 'None';
     }
   }
   if (escrowValue) {
     escrowValue.textContent =
-      data.escrowMonthly > 0 ? `${formatNumber(data.escrowMonthly)} per month` : 'None';
+      data.escrowMonthly > 0 ? `${formatExplanationNumber(data.escrowMonthly)} / month` : 'None';
+  }
+  if (totalPaidValue) {
+    totalPaidValue.textContent = formatExplanationNumber(data.overpayment.totalPayment);
+  }
+  if (totalPrincipalValue) {
+    totalPrincipalValue.textContent = formatExplanationNumber(data.overpayment.totalPrincipal);
+  }
+  if (totalInterestValue) {
+    totalInterestValue.textContent = formatExplanationNumber(data.overpayment.totalInterest);
+  }
+
+  const totalPayment = data.overpayment.totalPayment;
+  const principalShare =
+    totalPayment > 0 ? (data.overpayment.totalPrincipal / totalPayment) * 100 : 0;
+  const clampedPrincipalShare = Math.min(100, Math.max(0, principalShare));
+  const interestShare = Math.max(0, 100 - clampedPrincipalShare);
+
+  if (lifetimeDonut) {
+    lifetimeDonut.style.setProperty('--principal-share', `${clampedPrincipalShare}%`);
+  }
+  if (principalShareValue) {
+    principalShareValue.textContent = `${formatNumber(clampedPrincipalShare, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })}%`;
+  }
+  if (interestShareValue) {
+    interestShareValue.textContent = `${formatNumber(interestShare, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })}%`;
   }
 
   const interestSaved = Math.max(0, data.baseline.totalInterest - data.overpayment.totalInterest);
-  const payoffText = formatTerm(data.overpayment.months);
-  const payoffDate = data.startDate
-    ? formatMonthYear(addMonths(data.startDate, data.overpayment.months - 1))
-    : null;
 
   if (lifetimeSummary) {
     lifetimeSummary.textContent =
-      `Total paid is ${formatNumber(data.overpayment.totalPayment)}. ` +
-      `Total principal is ${formatNumber(data.overpayment.totalPrincipal)} ` +
-      `and total interest is ${formatNumber(data.overpayment.totalInterest)}.`;
+      `You pay ${formatExplanationNumber(data.overpayment.totalPayment)} in total, including ` +
+      `${formatExplanationNumber(data.overpayment.totalInterest)} in interest. ` +
+      `Extra payments currently save ${formatExplanationNumber(interestSaved)} versus the baseline schedule.`;
   }
 }
 
@@ -273,7 +326,7 @@ function calculate() {
   }
 
   if (downValueInput) {
-    downValueInput.value = downType === 'percent' ? downPercent.toFixed(2) : downAmount.toFixed(2);
+    downValueInput.value = downType === 'percent' ? Math.round(downPercent) : Math.round(downAmount);
   }
 
   const principal = price - downAmount;
@@ -390,7 +443,16 @@ function calculate() {
     yearlyOver,
   };
 
-  resultDiv.innerHTML = `<strong>Monthly Payment (Principal + Interest):</strong> ${formatNumber(payment)}`;
+  resultDiv.innerHTML =
+    '<strong>Monthly Payment (Principal + Interest)</strong>' +
+    `<span class="mtg-result-value">${formatMoney(payment)}</span>`;
+
+  const resultValue = resultDiv.querySelector('.mtg-result-value');
+  if (resultValue) {
+    resultValue.classList.remove('is-updated');
+    void resultValue.offsetWidth;
+    resultValue.classList.add('is-updated');
+  }
 
   const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
   const timeSaved = Math.max(0, baseline.months - overpayment.months);
@@ -400,12 +462,12 @@ function calculate() {
     : null;
   const escrowLine =
     escrowMonthly > 0
-      ? `Total monthly payment (PITI): ${formatNumber(payment + escrowMonthly)} ` +
-        `(taxes + insurance ${formatNumber(escrowMonthly)}/mo).`
+      ? `Total monthly payment (PITI): ${formatMoney(payment + escrowMonthly)} ` +
+        `(taxes + insurance ${formatMoney(escrowMonthly)}/mo).`
       : '';
   const extraLine =
     extraMonthly > 0 || lumpSum > 0
-      ? `Extra payments save ${formatNumber(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
+      ? `Extra payments save ${formatMoney(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
       : 'No extra payment applied.';
   const payoffLine = payoffDate ? `${payoffText} (ending ${payoffDate})` : payoffText;
 
@@ -419,10 +481,53 @@ function calculate() {
   renderYearlyTable(yearlyOver);
   updateExplanation(currentData);
   applyView(scheduleView);
-  refreshScheduleToggle();
 }
 
 handleDownTypeChange(lastDownType);
+
+function updateSliderFill(input) {
+  if (!input || input.type !== 'range') return;
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || 100;
+  const val = parseFloat(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (priceInput && priceDisplay) {
+    priceDisplay.textContent = formatNumber(Number(priceInput.value), {
+      maximumFractionDigits: 0,
+    });
+    updateSliderFill(priceInput);
+  }
+  if (downValueInput && downDisplay) {
+    const downType = downTypeButtons?.getValue() ?? 'amount';
+    if (downType === 'percent') {
+      downDisplay.textContent = `${downValueInput.value}%`;
+    } else {
+      downDisplay.textContent = formatNumber(Number(downValueInput.value), {
+        maximumFractionDigits: 0,
+      });
+    }
+    updateSliderFill(downValueInput);
+  }
+  if (termInput && termDisplay) {
+    termDisplay.textContent = `${termInput.value} yrs`;
+    updateSliderFill(termInput);
+  }
+  if (rateInput && rateDisplay) {
+    rateDisplay.textContent = `${rateInput.value}%`;
+    updateSliderFill(rateInput);
+  }
+}
+
+priceInput?.addEventListener('input', updateSliderDisplays);
+downValueInput?.addEventListener('input', updateSliderDisplays);
+termInput?.addEventListener('input', updateSliderDisplays);
+rateInput?.addEventListener('input', updateSliderDisplays);
+
+updateSliderDisplays();
 
 calculateButton?.addEventListener('click', calculate);
 

@@ -274,8 +274,6 @@ function runLighthouse({ url, preset, chromePath, outputPath, slugFolder }) {
     'lighthouse',
     url,
     '--only-categories=performance',
-    '--chrome-path',
-    chromePath,
     '--chrome-flags',
     chromeFlags,
     '--output=json',
@@ -286,6 +284,11 @@ function runLighthouse({ url, preset, chromePath, outputPath, slugFolder }) {
   if (preset === 'desktop') args.push('--preset=desktop');
 
   const run = spawnSync('npx', args, {
+    env: {
+      ...process.env,
+      // In WSL, Lighthouse may otherwise pick Windows Chrome and fail CDP attach.
+      CHROME_PATH: chromePath,
+    },
     encoding: 'utf8',
     timeout: 240000,
     maxBuffer: 8 * 1024 * 1024,

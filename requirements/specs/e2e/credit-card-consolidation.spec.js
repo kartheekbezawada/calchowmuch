@@ -1,7 +1,18 @@
 import { expect, test } from '@playwright/test';
 
+function setRangeValue(page, selector, value) {
+  return page.$eval(
+    selector,
+    (element, nextValue) => {
+      element.value = String(nextValue);
+      element.dispatchEvent(new Event('input', { bubbles: true }));
+    },
+    value
+  );
+}
+
 test.describe('Credit Card Consolidation Calculator', () => {
-  test('CONSOLIDATION-TEST-E2E-1: load, nav, form density, calculate, highlighted explanation', async ({
+  test('CONSOLIDATION-TEST-E2E-1: single-panel Home Loan UI with calculate, donut, and table toggle', async ({
     page,
   }) => {
     await page.goto('/loans/credit-card-consolidation');
@@ -14,82 +25,98 @@ test.describe('Credit Card Consolidation Calculator', () => {
     const leftActive = page.locator('.nav-item.is-active');
     await expect(leftActive).toHaveText('Card Consolidation');
 
-    await expect(page.locator('select')).toHaveCount(0);
-    await expect(page.locator('#calc-cc-con .input-grid')).toHaveCount(2);
+    const centerPanels = page.locator('.center-column > .panel');
+    await expect(centerPanels).toHaveCount(1);
+    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
 
-    await page.locator('#cc-con-balance').fill('12000');
-    await page.locator('#cc-con-apr').fill('19.5');
-    await page.locator('#cc-con-payment').fill('400');
-    await page.locator('#cc-con-new-apr').fill('10.5');
-    await page.locator('#cc-con-term').fill('3');
-    await page.locator('#cc-con-fees').fill('250');
+    await expect(page.locator('#calc-cc-con .slider-row')).toHaveCount(4);
+    await expect(page.locator('#calc-cc-con .advanced-options')).toHaveCount(1);
+    await expect(page.locator('#calc-cc-con .cc-con-preview-panel')).toHaveCount(1);
+    await expect(page.getByText('Estimated Consolidation Payment')).toHaveCount(0);
+    await expect(page.locator('#cc-con-result .cc-con-result-value')).toContainText(/[0-9]/);
+    await expect(page.locator('[data-cc-con="current-months"]').first()).not.toHaveText('—');
+
+    const yearlyWrap = page.locator('#cc-con-table-yearly-wrap');
+    const monthlyWrap = page.locator('#cc-con-table-monthly-wrap');
+    await expect(yearlyWrap).not.toHaveClass(/is-hidden/);
+    await expect(monthlyWrap).toHaveClass(/is-hidden/);
+
+    const yearlyPlaceholder = page.locator('#cc-con-table-yearly-body .cc-con-table-placeholder-row');
+    await expect(yearlyPlaceholder).toHaveCount(0);
+    expect(await page.locator('#cc-con-table-yearly-body tr').count()).toBeGreaterThan(1);
+
+    await setRangeValue(page, '#cc-con-balance', 15000);
+    await setRangeValue(page, '#cc-con-apr', 21.2);
+    await setRangeValue(page, '#cc-con-new-apr', 9.8);
+    await setRangeValue(page, '#cc-con-term', 4);
+
+    await page.locator('.advanced-options summary').click();
+    await page.locator('#cc-con-payment').fill('460');
+    await page.locator('#cc-con-fees').fill('300');
+
     await page.locator('#cc-con-calc').click();
 
-    const resultsList = page.locator('#cc-con-results-list');
-    await expect(resultsList).not.toHaveClass(/is-hidden/);
-    await expect(resultsList.locator('.result-line')).toHaveCount(2);
-    await expect(resultsList).toContainText('Monthly payment change');
-    await expect(resultsList).toContainText('Current payoff time');
+    await expect(page.locator('#cc-con-result')).toContainText('Monthly Consolidation Payment');
+    await expect(page.locator('#cc-con-result .cc-con-result-value')).toContainText(/[0-9]/);
+    await expect(page.locator('[data-cc-con="current-months"]').first()).not.toHaveText('—');
+    await expect(page.locator('[data-cc-con="principal-share"]').first()).toContainText('%');
 
-    const summary = page.locator('#cc-con-summary');
-    await expect(summary).not.toHaveClass(/is-hidden/);
-    await expect(summary).toContainText('Interest difference');
-    await expect(summary).toContainText('Total cost difference');
-    await expect(summary).toContainText('Consolidation payment');
+    const monthlyPlaceholder = page.locator('#cc-con-table-monthly-body .cc-con-table-placeholder-row');
+    await expect(monthlyPlaceholder).toHaveCount(0);
+    expect(await page.locator('#cc-con-table-monthly-body tr').count()).toBeGreaterThan(1);
 
-    const comparisonRows = page.locator('#cc-con-table-body tr');
-    await expect(comparisonRows).toHaveCount(2);
+    await page.locator('#cc-con-view-monthly').click();
+    await expect(monthlyWrap).not.toHaveClass(/is-hidden/);
+    await expect(yearlyWrap).toHaveClass(/is-hidden/);
 
-    const scenarioRows = page.locator('#cc-con-scenario-table tbody tr');
-    await expect(scenarioRows).toHaveCount(10);
+    await page.locator('#cc-con-view-yearly').click();
+    await expect(yearlyWrap).not.toHaveClass(/is-hidden/);
+    await expect(monthlyWrap).toHaveClass(/is-hidden/);
 
-    const highlightedValue = page.locator('#cc-con-explanation [data-cc-con="balance"]').first();
-    await expect(highlightedValue).not.toHaveText('—');
+    const stickyHeader = page.locator('#cc-con-table-yearly thead th').first();
+    await expect(stickyHeader).toHaveCSS('position', 'sticky');
+    await expect(stickyHeader).toHaveCSS('top', '0px');
 
-    const chipStyles = await highlightedValue.evaluate((el) => {
-      const computed = window.getComputedStyle(el);
-      return {
-        backgroundColor: computed.backgroundColor,
-        outlineStyle: computed.outlineStyle,
-        paddingLeft: computed.paddingLeft,
-      };
-    });
-    expect(chipStyles.backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
-    expect(chipStyles.outlineStyle).toBe('solid');
-    expect(Number.parseFloat(chipStyles.paddingLeft)).toBeGreaterThan(0);
+    await expect(page.locator('#cc-con-explanation .bor-faq-card')).toHaveCount(10);
   });
 
-  test('CONSOLIDATION-TEST-E2E-2: input change resets outputs until calculate click', async ({ page }) => {
+  test('CONSOLIDATION-TEST-E2E-2: input edit keeps side/table live and invalid input preserves last valid data', async ({
+    page,
+  }) => {
     await page.goto('/loans/credit-card-consolidation');
 
-    await page.locator('#cc-con-calc').click();
-    await expect(page.locator('#cc-con-results-list')).not.toHaveClass(/is-hidden/);
+    const currentMonthsValue = page.locator('[data-cc-con="current-months"]').first();
+    const yearlyPlaceholder = page.locator('#cc-con-table-yearly-body .cc-con-table-placeholder-row');
+    await expect(yearlyPlaceholder).toHaveCount(0);
 
-    await page.locator('#cc-con-payment').fill('450');
+    const beforeText = (await currentMonthsValue.textContent())?.trim() || '';
 
-    await expect(page.locator('#cc-con-placeholder')).toBeVisible();
-    await expect(page.locator('#cc-con-results-list')).toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-con-summary')).toHaveClass(/is-hidden/);
-    await expect(page.locator('[data-cc-con="current-months"]').first()).toHaveText('—');
-    await expect(page.locator('#cc-con-table-body .cc-con-table-placeholder-row')).toHaveCount(1);
+    await setRangeValue(page, '#cc-con-apr', 32.4);
+    const afterText = (await currentMonthsValue.textContent())?.trim() || '';
+    expect(afterText).not.toBe('—');
+    expect(afterText).not.toBe(beforeText);
+    await expect(yearlyPlaceholder).toHaveCount(0);
+    await expect(page.locator('#cc-con-result .cc-con-result-value')).toContainText(/[0-9]/);
 
-    await page.locator('#cc-con-calc').click();
-    await expect(page.locator('#cc-con-results-list')).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-con-summary')).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-con-table-body .cc-con-table-placeholder-row')).toHaveCount(0);
+    await page.locator('.advanced-options summary').click();
+    await page.locator('#cc-con-payment').fill('0');
+    await expect(page.locator('#cc-con-summary')).toContainText('Current payment must be greater than 0.');
+    await expect(currentMonthsValue).toHaveText(afterText);
+    await expect(yearlyPlaceholder).toHaveCount(0);
+    await expect(page.locator('#cc-con-result .cc-con-result-value')).toContainText(/[0-9]/);
   });
 
-  test('CONSOLIDATION-TEST-E2E-3: explanation pane contains required sections and 10 FAQs', async ({
+  test('CONSOLIDATION-TEST-E2E-3: explanation contains required rebuilt sections and 10 FAQs', async ({
     page,
   }) => {
     await page.goto('/loans/credit-card-consolidation');
 
     const explanation = page.locator('#cc-con-explanation');
     await expect(explanation.locator('h2')).toHaveText('Credit Card Consolidation Summary');
-    await expect(explanation).toContainText('Scenario Summary');
-    await expect(explanation).toContainText('Results Table (Cost Comparison)');
+    await expect(explanation).toContainText('Lifetime Totals');
+    await expect(explanation).toContainText('Amortization Table');
     await expect(explanation).toContainText('Explanation');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.cc-con-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.bor-faq-card')).toHaveCount(10);
   });
 });

@@ -6,6 +6,7 @@ import { JSDOM } from 'jsdom';
 const REPO_ROOT = process.cwd();
 const FINANCE_PUBLIC_DIR = path.join(REPO_ROOT, 'public', 'finance');
 const FINANCE_MODULES_DIR = path.join(REPO_ROOT, 'public', 'calculators', 'finance');
+const NAV_PATH = path.join(REPO_ROOT, 'public', 'config', 'navigation.json');
 
 function normalizeText(value) {
   return String(value || '')
@@ -89,6 +90,38 @@ function moduleContainsFaqSchema(moduleSource) {
   return hasSchemaTypeInModule(moduleSource, 'FAQPage') && /mainEntity/.test(moduleSource);
 }
 
+function normalizeRoutePath(url) {
+  const value = String(url || '').trim();
+  if (!value) {
+    return '/';
+  }
+  const withLeadingSlash = value.startsWith('/') ? value : `/${value}`;
+  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function getNavigationMetadataByPath() {
+  if (!fs.existsSync(NAV_PATH)) {
+    return new Map();
+  }
+
+  const navigation = JSON.parse(fs.readFileSync(NAV_PATH, 'utf8'));
+  const metadataByPath = new Map();
+
+  navigation.categories.forEach((category) => {
+    category.subcategories.forEach((subcategory) => {
+      subcategory.calculators.forEach((calculator) => {
+        const routePath = normalizeRoutePath(calculator.url);
+        metadataByPath.set(routePath, {
+          routeArchetype: calculator.routeArchetype ?? 'calc_exp',
+          designFamily: calculator.designFamily ?? 'neutral',
+        });
+      });
+    });
+  });
+
+  return metadataByPath;
+}
+
 function getFinanceSlugs() {
   if (!fs.existsSync(FINANCE_PUBLIC_DIR)) {
     return [];
@@ -104,9 +137,17 @@ function getFinanceSlugs() {
 describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () => {
   it('enforces static head schema + robots + JS FAQ parity + visible FAQ parity for /finance/*', () => {
     const slugs = getFinanceSlugs();
+    const metadataByPath = getNavigationMetadataByPath();
     expect(slugs.length).toBeGreaterThan(0);
 
     slugs.forEach((slug) => {
+      const routePath = normalizeRoutePath(`/finance/${slug}/`);
+      const routeMetadata = metadataByPath.get(routePath) ?? {
+        routeArchetype: 'calc_exp',
+        designFamily: 'neutral',
+      };
+      const hasExplanationPane =
+        routeMetadata.routeArchetype === 'calc_exp' || routeMetadata.routeArchetype === 'exp_only';
       const htmlPath = path.join(FINANCE_PUBLIC_DIR, slug, 'index.html');
       const modulePath = path.join(FINANCE_MODULES_DIR, slug, 'module.js');
 
@@ -150,6 +191,7 @@ describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () =>
       const visibleFaqPairs = extractVisibleFaqPairs(document);
       const staticFaqNodes = schemaNodesOfType(jsonLdNodes, 'FAQPage');
       const faqExistsInJs = moduleContainsFaqSchema(moduleSource);
+      const faqRequired = hasExplanationPane && visibleFaqPairs.length > 0;
 
       if (faqExistsInJs) {
         expect(
@@ -158,7 +200,7 @@ describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () =>
         ).toBeGreaterThan(0);
       }
 
-      if (visibleFaqPairs.length > 0) {
+      if (faqRequired) {
         expect(
           staticFaqNodes.length,
           `${slug}: visible FAQs exist, static FAQPage must exist exactly once in <head>`
@@ -169,6 +211,11 @@ describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () =>
           schemaFaqPairs,
           `${slug}: visible FAQ Q/A must match static FAQPage mainEntity`
         ).toEqual(visibleFaqPairs);
+      } else if (!hasExplanationPane) {
+        expect(
+          staticFaqNodes.length,
+          `${slug}: non-explanation archetype route must not require FAQPage`
+        ).toBeLessThanOrEqual(1);
       }
     });
   });

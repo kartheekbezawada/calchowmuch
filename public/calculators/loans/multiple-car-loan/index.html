@@ -1,41 +1,126 @@
 <div id="calc-multi-car-loan">
-  <div class="calculator-ui">
-    <p class="helper">Compare two car loans and see the combined monthly payment and interest.</p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Multiple car loan calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Compare two car loans side by side and estimate combined monthly payment, total
+            interest, and payoff horizon with the same premium calculator flow.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="multi-loan-a-amount">Loan A Amount</label>
-        <input id="multi-loan-a-amount" type="number" value="18000" min="0" step="0.01" />
-      </div>
-      <div class="input-row">
-        <label for="multi-loan-a-apr">Loan A APR (%)</label>
-        <input id="multi-loan-a-apr" type="number" value="5.8" min="0" step="0.01" />
-      </div>
-      <div class="input-row">
-        <label for="multi-loan-a-term">Loan A Term (years)</label>
-        <input id="multi-loan-a-term" type="number" value="4" min="1" step="1" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-a-amount">Loan A Amount</label>
+              <span class="slider-value" id="multi-loan-a-amount-display">18,000</span>
+            </div>
+            <input
+              id="multi-loan-a-amount"
+              type="range"
+              value="18000"
+              min="1000"
+              max="200000"
+              step="500"
+            />
+          </div>
 
-      <div class="input-row">
-        <label for="multi-loan-b-amount">Loan B Amount</label>
-        <input id="multi-loan-b-amount" type="number" value="12000" min="0" step="0.01" />
-      </div>
-      <div class="input-row">
-        <label for="multi-loan-b-apr">Loan B APR (%)</label>
-        <input id="multi-loan-b-apr" type="number" value="7.1" min="0" step="0.01" />
-      </div>
-      <div class="input-row">
-        <label for="multi-loan-b-term">Loan B Term (years)</label>
-        <input id="multi-loan-b-term" type="number" value="5" min="1" step="1" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-a-apr">Loan A APR (%)</label>
+              <span class="slider-value" id="multi-loan-a-apr-display">5.8%</span>
+            </div>
+            <input id="multi-loan-a-apr" type="range" value="5.8" min="0" max="30" step="0.1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-a-term">Loan A Term (years)</label>
+              <span class="slider-value" id="multi-loan-a-term-display">4 yrs</span>
+            </div>
+            <input id="multi-loan-a-term" type="range" value="4" min="1" max="8" step="1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-b-amount">Loan B Amount</label>
+              <span class="slider-value" id="multi-loan-b-amount-display">12,000</span>
+            </div>
+            <input
+              id="multi-loan-b-amount"
+              type="range"
+              value="12000"
+              min="1000"
+              max="200000"
+              step="500"
+            />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-b-apr">Loan B APR (%)</label>
+              <span class="slider-value" id="multi-loan-b-apr-display">7.1%</span>
+            </div>
+            <input id="multi-loan-b-apr" type="range" value="7.1" min="0" max="30" step="0.1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="multi-loan-b-term">Loan B Term (years)</label>
+              <span class="slider-value" id="multi-loan-b-term-display">5 yrs</span>
+            </div>
+            <input id="multi-loan-b-term" type="range" value="5" min="1" max="8" step="1" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="multi-loan-calc">
+              Calculate Multiple Car Loan
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="Multiple car loan snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Combined Monthly Payment</p>
+            <div class="result mtg-result-card" id="multi-loan-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="multi-loan-summary" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Loan A Payment</span>
+              <strong data-multi="loan-a-payment">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Loan B Payment</span>
+              <strong data-multi="loan-b-payment">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Combined Payment</span>
+              <strong data-multi="combined-payment">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Loan A Interest</span>
+              <strong data-multi="loan-a-interest">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Loan B Interest</span>
+              <strong data-multi="loan-b-interest">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Combined Interest</span>
+              <strong data-multi="combined-interest">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Combined Total Paid</span>
+              <strong data-multi="combined-total">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Payoff Horizon</span>
+              <strong data-multi="payoff-horizon">—</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="multi-loan-calc">
-      Compare Loans
-    </button>
-
-    <div class="result" id="multi-loan-result" aria-live="polite"></div>
-    <div class="result-detail" id="multi-loan-summary" aria-live="polite"></div>
   </div>
 </div>
 

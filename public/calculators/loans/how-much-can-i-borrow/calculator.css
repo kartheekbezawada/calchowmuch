@@ -1,187 +1,961 @@
+/* How Much Can I Borrow — Financial Capacity Dashboard */
+
 #calc-how-much-can-borrow {
   width: 100%;
 }
 
-#calc-how-much-can-borrow .calculator-ui--borrow {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.calc-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.calc-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.calc-row--pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-  align-items: flex-end;
-}
-
-.calc-row--pair .calc-field {
-  min-width: 0;
-}
-
-.row-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.calc-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.calc-field label {
-  font-weight: 600;
-  font-size: 0.81rem;
-}
-
-.calc-field input[type='number'] {
-  border-radius: 0.75rem;
-  padding: 0.675rem 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #0f172a;
-  color: #fff;
-  font-size: 0.86rem;
-}
-
-.calc-field--optional label::after {
-  content: ' (optional)';
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.slider-row {
-  margin-top: 0.5rem;
-}
-
-.slider-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.slider-input {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.slider-input input[type='range'] {
+#calculator-title {
   width: 100%;
-  appearance: none;
-  height: 7px;
-  border-radius: 9999px;
-  background: #1e293b;
-  cursor: pointer;
-  margin: 0;
-}
-
-.slider-input input[type='range']::-webkit-slider-thumb {
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.slider-input input[type='range']::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.slider-value {
-  font-size: 0.77rem;
-  font-weight: 600;
-  min-width: 54px;
-  text-align: right;
-}
-
-.deposit-field {
-  gap: 0.5rem;
+  margin: 0 auto 0.55rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
 }
 
 #calc-how-much-can-borrow .is-hidden {
-  display: none;
+  display: none !important;
 }
 
-#loan-borrow-explanation {
+#calc-how-much-can-borrow .borrow-ui {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- Hero: 2-column grid (form | result dashboard) --- */
+
+#calc-how-much-can-borrow .borrow-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: 1.5rem;
+  align-items: start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
 
-#loan-borrow-explanation .bor-section {
+#calc-how-much-can-borrow .borrow-form-panel {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+#calc-how-much-can-borrow .helper {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+/* --- Flowing form sections with subtle dividers --- */
+
+#calc-how-much-can-borrow .borrow-section {
+  --bor-accent-a: rgba(148, 163, 184, 0.2);
+  --bor-accent-b: rgba(148, 163, 184, 0.08);
+  display: grid;
+  gap: 1rem;
+  padding: 0.08rem 0 1rem;
+  position: relative;
+  isolation: isolate;
+}
+
+#calc-how-much-can-borrow .borrow-section::before {
+  content: '';
+  position: absolute;
+  top: -0.3rem;
+  right: -0.2rem;
+  left: -0.2rem;
+  height: calc(100% + 0.4rem);
+  border-radius: 1rem;
+  background:
+    radial-gradient(120% 70% at 0% 0%, var(--bor-accent-a), transparent 70%),
+    radial-gradient(120% 70% at 100% 100%, var(--bor-accent-b), transparent 72%);
+  opacity: 0.82;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#calc-how-much-can-borrow .borrow-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.08), rgba(148, 163, 184, 0.3), rgba(168, 85, 247, 0.18));
+}
+
+#calc-how-much-can-borrow .borrow-section--income {
+  --bor-accent-a: rgba(16, 185, 129, 0.14);
+  --bor-accent-b: rgba(20, 184, 166, 0.1);
+}
+
+#calc-how-much-can-borrow .borrow-section--loan {
+  --bor-accent-a: rgba(59, 130, 246, 0.15);
+  --bor-accent-b: rgba(6, 182, 212, 0.1);
+}
+
+#calc-how-much-can-borrow .borrow-section--strategy {
+  --bor-accent-a: rgba(139, 92, 246, 0.16);
+  --bor-accent-b: rgba(168, 85, 247, 0.1);
+}
+
+#calc-how-much-can-borrow .borrow-section:last-of-type {
+  padding-bottom: 0;
+}
+
+#calc-how-much-can-borrow .borrow-section:last-of-type::after {
+  content: none;
+}
+
+/* --- 2-column slider pairs --- */
+
+#calc-how-much-can-borrow .borrow-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.08rem;
+}
+
+#calc-how-much-can-borrow .borrow-section > .borrow-pair + .borrow-toggle-row,
+#calc-how-much-can-borrow .borrow-section > .borrow-toggle-row + .borrow-pair,
+#calc-how-much-can-borrow .borrow-section > .borrow-pair + .borrow-pair {
+  margin-top: 0.08rem;
+}
+
+/* --- Input & Label styling --- */
+
+#calc-how-much-can-borrow .input-row {
+  margin: 0;
   display: flex;
   flex-direction: column;
+  gap: 0.34rem;
+  min-width: 0;
+}
+
+#calc-how-much-can-borrow label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(226, 232, 240, 0.94);
+  line-height: 1.28;
+}
+
+#calc-how-much-can-borrow .row-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.72);
+}
+
+/* --- Slider styling --- */
+
+#calc-how-much-can-borrow .slider-row {
+  gap: 0.62rem;
+  padding: 0.12rem 0;
+}
+
+#calc-how-much-can-borrow .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.58rem;
+}
+
+/* --- Per-section slider value badges with colored glow --- */
+
+#calc-how-much-can-borrow .slider-value {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.72rem;
+  border-radius: 0.52rem;
+  background: rgba(15, 23, 42, 0.92);
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: border-color 0.25s ease, color 0.25s ease, text-shadow 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Income section — emerald glow */
+#calc-how-much-can-borrow .borrow-section--income .slider-value {
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #6ee7b7;
+  text-shadow:
+    0 0 8px rgba(110, 231, 183, 0.7),
+    0 0 20px rgba(110, 231, 183, 0.4),
+    0 0 40px rgba(16, 185, 129, 0.2);
+  box-shadow:
+    0 0 8px rgba(16, 185, 129, 0.2),
+    0 0 20px rgba(16, 185, 129, 0.08);
+}
+
+#calc-how-much-can-borrow .borrow-section--income .slider-row:hover .slider-value {
+  border-color: rgba(245, 158, 11, 0.55);
+  color: #fcd34d;
+  text-shadow:
+    0 0 8px rgba(252, 211, 77, 0.7),
+    0 0 20px rgba(252, 211, 77, 0.45),
+    0 0 40px rgba(245, 158, 11, 0.2);
+  box-shadow:
+    0 0 8px rgba(245, 158, 11, 0.2),
+    0 0 20px rgba(245, 158, 11, 0.08);
+}
+
+/* Outgoings pair — amber glow */
+#calc-how-much-can-borrow .borrow-pair--outgoings .slider-value {
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fcd34d;
+  text-shadow:
+    0 0 8px rgba(252, 211, 77, 0.7),
+    0 0 20px rgba(252, 211, 77, 0.4),
+    0 0 40px rgba(245, 158, 11, 0.2);
+  box-shadow:
+    0 0 8px rgba(245, 158, 11, 0.2),
+    0 0 20px rgba(245, 158, 11, 0.08);
+}
+
+#calc-how-much-can-borrow .borrow-pair--outgoings .slider-row:hover .slider-value {
+  border-color: rgba(244, 63, 94, 0.55);
+  color: #fda4af;
+  text-shadow:
+    0 0 8px rgba(253, 164, 175, 0.7),
+    0 0 20px rgba(253, 164, 175, 0.45),
+    0 0 40px rgba(244, 63, 94, 0.2);
+  box-shadow:
+    0 0 8px rgba(244, 63, 94, 0.2),
+    0 0 20px rgba(244, 63, 94, 0.08);
+}
+
+/* Loan section — blue glow */
+#calc-how-much-can-borrow .borrow-section--loan .slider-value {
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  color: #93c5fd;
+  text-shadow:
+    0 0 8px rgba(147, 197, 253, 0.7),
+    0 0 20px rgba(147, 197, 253, 0.4),
+    0 0 40px rgba(59, 130, 246, 0.2);
+  box-shadow:
+    0 0 8px rgba(59, 130, 246, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.08);
+}
+
+#calc-how-much-can-borrow .borrow-section--loan .slider-row:hover .slider-value {
+  border-color: rgba(6, 182, 212, 0.55);
+  color: #67e8f9;
+  text-shadow:
+    0 0 8px rgba(103, 232, 249, 0.7),
+    0 0 20px rgba(103, 232, 249, 0.45),
+    0 0 40px rgba(6, 182, 212, 0.2);
+  box-shadow:
+    0 0 8px rgba(6, 182, 212, 0.2),
+    0 0 20px rgba(6, 182, 212, 0.08);
+}
+
+/* Strategy section — violet glow */
+#calc-how-much-can-borrow .borrow-section--strategy .slider-value {
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  color: #c4b5fd;
+  text-shadow:
+    0 0 8px rgba(196, 181, 253, 0.7),
+    0 0 20px rgba(196, 181, 253, 0.4),
+    0 0 40px rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 0 8px rgba(139, 92, 246, 0.2),
+    0 0 20px rgba(139, 92, 246, 0.08);
+}
+
+#calc-how-much-can-borrow .borrow-section--strategy .slider-row:hover .slider-value {
+  border-color: rgba(168, 85, 247, 0.55);
+  color: #d8b4fe;
+  text-shadow:
+    0 0 8px rgba(216, 180, 254, 0.7),
+    0 0 20px rgba(216, 180, 254, 0.45),
+    0 0 40px rgba(168, 85, 247, 0.2);
+  box-shadow:
+    0 0 8px rgba(168, 85, 247, 0.2),
+    0 0 20px rgba(168, 85, 247, 0.08);
+}
+
+/* --- Range input: per-section track colors --- */
+
+#calc-how-much-can-borrow input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+/* Income section — emerald track */
+#calc-how-much-can-borrow .borrow-section--income input[type='range'] {
+  background: linear-gradient(
+    90deg,
+    #10b981 0%,
+    #14b8a6 var(--fill, 50%),
+    rgba(148, 163, 184, 0.14) var(--fill, 50%)
+  );
+}
+
+/* Outgoings pair — amber track */
+#calc-how-much-can-borrow .borrow-pair--outgoings input[type='range'] {
+  background: linear-gradient(
+    90deg,
+    #f59e0b 0%,
+    #f97316 var(--fill, 50%),
+    rgba(148, 163, 184, 0.14) var(--fill, 50%)
+  );
+}
+
+/* Loan section — blue track */
+#calc-how-much-can-borrow .borrow-section--loan input[type='range'] {
+  background: linear-gradient(
+    90deg,
+    #3b82f6 0%,
+    #06b6d4 var(--fill, 50%),
+    rgba(148, 163, 184, 0.14) var(--fill, 50%)
+  );
+}
+
+/* Strategy section — violet track */
+#calc-how-much-can-borrow .borrow-section--strategy input[type='range'] {
+  background: linear-gradient(
+    90deg,
+    #8b5cf6 0%,
+    #a855f7 var(--fill, 50%),
+    rgba(148, 163, 184, 0.14) var(--fill, 50%)
+  );
+}
+
+#calc-how-much-can-borrow input[type='range']:hover {
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.15);
+}
+
+#calc-how-much-can-borrow input[type='range']:focus-visible {
+  box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.35);
+}
+
+/* Thumb — webkit */
+#calc-how-much-can-borrow input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#calc-how-much-can-borrow input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  border-color: rgba(168, 85, 247, 0.7);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+#calc-how-much-can-borrow input[type='range']:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+
+/* Thumb — Firefox */
+#calc-how-much-can-borrow input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#calc-how-much-can-borrow input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.18);
+  border-color: rgba(168, 85, 247, 0.7);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+#calc-how-much-can-borrow input[type='range']::-moz-range-track {
+  height: 5px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+/* --- Toggle button groups --- */
+
+#calc-how-much-can-borrow .borrow-toggle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.52rem;
+  padding: 0.12rem 0 0.08rem;
+}
+
+#calc-how-much-can-borrow .button-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 3px;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.78);
+}
+
+#calc-how-much-can-borrow .button-group .calculator-button {
+  min-height: 32px;
+  padding: 0.36rem 0.72rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.76rem;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+#calc-how-much-can-borrow .button-group .calculator-button.is-active {
+  border-color: rgba(139, 92, 246, 0.82);
+  background: linear-gradient(140deg, rgba(139, 92, 246, 0.95), rgba(168, 85, 247, 0.82));
+  color: #fff;
+}
+
+#calc-how-much-can-borrow .button-group .calculator-button:not(.is-active):hover {
+  background: rgba(139, 92, 246, 0.12);
+  color: #e0e7ff;
+}
+
+/* --- Payment note --- */
+
+#calc-how-much-can-borrow .borrow-context-note {
+  margin: 0;
+  padding: 0.56rem 0.62rem;
+  border-radius: 0.65rem;
+  border: 1px dashed rgba(139, 92, 246, 0.6);
+  background: rgba(91, 33, 182, 0.16);
+  color: rgba(237, 233, 254, 0.95);
+  font-size: 0.77rem;
+  line-height: 1.35;
+}
+
+/* --- Calculate button --- */
+
+#calc-how-much-can-borrow .borrow-action-row {
+  margin-top: 0.35rem;
+}
+
+#calc-how-much-can-borrow .borrow-action-row .calculator-button {
+  min-height: 50px;
+  border-radius: 0.82rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: linear-gradient(140deg, rgba(139, 92, 246, 0.95), rgba(59, 130, 246, 0.85));
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  transition: box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+#calc-how-much-can-borrow .borrow-action-row .calculator-button:hover {
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
+  transform: translateY(-1px);
+}
+
+#calc-how-much-can-borrow .borrow-action-row .calculator-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* --- Result Dashboard --- */
+
+#calc-how-much-can-borrow .borrow-result-dashboard {
+  border-radius: 1.15rem;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
+  padding: 1.15rem;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  box-shadow:
+    0 4px 24px rgba(2, 6, 23, 0.45),
+    0 0 40px rgba(139, 92, 246, 0.06);
+}
+
+#calc-how-much-can-borrow .borrow-dashboard-label {
+  margin: 0;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(196, 181, 253, 0.94);
+  font-weight: 700;
+}
+
+/* --- 4 Metric cards: 2x2 grid --- */
+
+#calc-how-much-can-borrow .borrow-metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
 }
 
-#loan-borrow-explanation .bor-summary {
+#calc-how-much-can-borrow .borrow-metric {
+  border-radius: 0.85rem;
+  padding: 0.85rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.45));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  text-align: center;
+  display: grid;
+  gap: 0.35rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#calc-how-much-can-borrow .borrow-metric:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
+}
+
+#calc-how-much-can-borrow .borrow-metric--primary {
+  grid-column: 1 / -1;
+  padding: 1.15rem;
+  border-color: rgba(139, 92, 246, 0.25);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.65), rgba(49, 10, 101, 0.15));
+}
+
+#calc-how-much-can-borrow .borrow-metric--primary:hover {
+  box-shadow:
+    0 8px 32px rgba(139, 92, 246, 0.25),
+    0 0 60px rgba(139, 92, 246, 0.08);
+}
+
+#calc-how-much-can-borrow .borrow-metric__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.8);
+  font-weight: 600;
+}
+
+#calc-how-much-can-borrow .borrow-metric__value {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #e0e7ff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#calc-how-much-can-borrow .borrow-metric--primary .borrow-metric__value {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: #c4b5fd;
+  text-shadow:
+    0 0 20px rgba(139, 92, 246, 0.45),
+    0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+@keyframes bor-result-pop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#calc-how-much-can-borrow .borrow-metric__value.is-updated {
+  animation: bor-result-pop 0.4s ease-out;
+}
+
+/* --- Constraint tag --- */
+
+#calc-how-much-can-borrow .borrow-constraint-tag {
+  font-size: 0.76rem;
+  color: rgba(196, 181, 253, 0.88);
+  text-align: center;
+  padding: 0.42rem 0.62rem;
+  border-radius: 0.62rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+#calc-how-much-can-borrow .borrow-constraint-tag:empty {
+  display: none;
+}
+
+/* --- Error --- */
+
+#calc-how-much-can-borrow .borrow-error {
+  font-size: 0.82rem;
+  color: #fda4af;
+  text-align: center;
+  padding: 0.52rem 0.68rem;
+  border-radius: 0.65rem;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+#calc-how-much-can-borrow .borrow-error:empty {
+  display: none;
+}
+
+/* ================================================================
+   EXPLANATION PANEL
+   ================================================================ */
+
+#loan-borrow-explanation {
+  display: grid;
+  gap: 0.95rem;
+}
+
+#loan-borrow-explanation h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.97);
+  text-align: center;
+}
+
+#loan-borrow-explanation > p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+/* --- Explanation section cards --- */
+
+#loan-borrow-explanation .bor-exp-section {
+  display: grid;
+  gap: 0.72rem;
+  padding: 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+}
+
+#loan-borrow-explanation .bor-exp-section h3 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.94);
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#loan-borrow-explanation .bor-exp-section h3::after {
+  content: none;
+}
+
+/* --- Capacity bar: horizontal segmented income bar --- */
+
+#loan-borrow-explanation .bor-capacity-bar {
+  display: flex;
+  height: 48px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+#loan-borrow-explanation .bor-capacity-segment {
+  flex: 0 0 var(--seg-width, 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  min-width: 0;
+  overflow: hidden;
+  transition: flex-basis 0.6s ease, filter 0.3s ease;
+}
+
+#loan-borrow-explanation .bor-capacity-segment:hover {
+  filter: brightness(1.25);
+}
+
+#loan-borrow-explanation .bor-capacity-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.25rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#loan-borrow-explanation .bor-capacity-segment--expenses {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+}
+
+#loan-borrow-explanation .bor-capacity-segment--debts {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+#loan-borrow-explanation .bor-capacity-segment--mortgage {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+#loan-borrow-explanation .bor-capacity-segment--buffer {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* --- Capacity legend --- */
+
+#loan-borrow-explanation .bor-capacity-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.4rem 0.62rem;
+  border-radius: 0.62rem;
+  border: 1px solid transparent;
+  background: none;
+  cursor: default;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.18);
+  box-shadow: 0 2px 12px rgba(139, 92, 246, 0.08);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item--expenses::before {
+  background: #f43f5e;
+  box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item--debts::before {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item--mortgage::before {
+  background: #8b5cf6;
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item--buffer::before {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item span {
+  font-size: 0.74rem;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#loan-borrow-explanation .bor-capacity-legend-item strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  margin-left: 0.2rem;
+}
+
+/* --- Rate Scenarios table --- */
+
+#loan-borrow-explanation .bor-scenario-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.68rem;
+}
+
+#loan-borrow-explanation .table-scroll {
+  max-height: 318px;
+  overflow: auto;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(15, 23, 42, 0.62);
+}
+
+#loan-borrow-explanation .calculator-table {
+  min-width: 420px;
+  border-collapse: collapse;
+}
+
+#loan-borrow-explanation .calculator-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fde68a;
+  background: rgba(30, 41, 59, 0.98);
+}
+
+#loan-borrow-explanation .calculator-table th,
+#loan-borrow-explanation .calculator-table td {
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: 0.5rem;
+}
+
+#loan-borrow-explanation .calculator-table td {
+  font-size: 0.79rem;
+  color: rgba(226, 232, 240, 0.94);
+  white-space: nowrap;
+}
+
+#loan-borrow-explanation .calculator-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.36);
+}
+
+/* Highlighted current rate row */
+#loan-borrow-explanation .bor-scenario-highlight td {
+  font-weight: 700;
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+}
+
+/* --- FAQ: 2-column card grid with number badges --- */
+
+#loan-borrow-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+#loan-borrow-explanation .bor-faq-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(245, 158, 11, 0.45);
+  display: grid;
   gap: 0.4rem;
+  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.3s ease;
 }
 
-#loan-borrow-explanation .bor-summary h2 {
-  margin: 0 0 0.2rem;
+#loan-borrow-explanation .bor-faq-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
 }
 
-#loan-borrow-explanation .bor-summary [data-bor="summary-text"],
-#loan-borrow-explanation .bor-summary [data-bor="summary-note"] {
+#loan-borrow-explanation .bor-faq-number {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#loan-borrow-explanation .bor-faq-card h4 {
   margin: 0;
-  padding-left: 1rem;
+  font-size: 0.86rem;
+  line-height: 1.3;
+  color: rgba(226, 232, 240, 0.98);
 }
 
-#loan-borrow-explanation .bor-summary__answer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.75rem;
-  background: rgba(15, 23, 42, 0.45);
-}
-
-#loan-borrow-explanation .bor-summary__label {
-  font-weight: 600;
-}
-
-#loan-borrow-explanation .bor-table__highlight td {
-  font-weight: 600;
-}
-
-#loan-borrow-explanation .bor-faq__item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.75rem;
-  background: rgba(15, 23, 42, 0.45);
-}
-
-#loan-borrow-explanation .bor-faq__item p {
+#loan-borrow-explanation .bor-faq-card p {
   margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
 }
 
-#loan-borrow-explanation .bor-faq__answer {
-  padding-left: 1rem;
+/* ================================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-how-much-can-borrow .borrow-metric__value.is-updated {
+    animation: none;
+  }
+  #calc-how-much-can-borrow .borrow-action-row .calculator-button {
+    transition: none;
+  }
+  #loan-borrow-explanation .bor-capacity-segment {
+    transition: none;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================================ */
+
+@media (max-width: 1220px) {
+  #calc-how-much-can-borrow .borrow-hero {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-how-much-can-borrow .borrow-form-panel {
+    gap: 1.4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  #calc-how-much-can-borrow .borrow-pair {
+    grid-template-columns: 1fr;
+    gap: 0.82rem;
+  }
+
+  #calc-how-much-can-borrow .borrow-form-panel {
+    gap: 1.28rem;
+  }
+}
+
+@media (max-width: 720px) {
+  #calculator-title {
+    margin-bottom: 0.45rem;
+  }
+
+  #calc-how-much-can-borrow .borrow-section {
+    gap: 0.92rem;
+    padding-bottom: 0.92rem;
+  }
+
+  #calc-how-much-can-borrow .borrow-section:last-of-type {
+    padding-bottom: 0;
+  }
+
+  #calc-how-much-can-borrow .borrow-toggle-row {
+    padding-top: 0.08rem;
+  }
+
+  #calc-how-much-can-borrow .button-group .calculator-button {
+    flex: 1 1 auto;
+  }
+
+  #loan-borrow-explanation .bor-exp-section {
+    padding: 0.85rem;
+  }
+
+  #loan-borrow-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #loan-borrow-explanation .bor-capacity-bar {
+    height: 38px;
+  }
 }

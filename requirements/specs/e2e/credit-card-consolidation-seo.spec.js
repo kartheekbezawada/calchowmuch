@@ -17,7 +17,9 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
-    expect(await canonical.getAttribute('href')).toBe('https://calchowmuch.com/loans/credit-card-consolidation/');
+    expect(await canonical.getAttribute('href')).toBe(
+      'https://calchowmuch.com/loans/credit-card-consolidation/'
+    );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -34,10 +36,8 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
     expect(faqNode.mainEntity).toHaveLength(10);
 
-    const visibleQuestions = await page
-      .locator('#cc-con-explanation .cc-con-faq-item strong')
-      .allTextContents();
-    const normalizedVisibleQuestions = visibleQuestions.map((text) => text.replace(/^Q:\s*/, '').trim());
+    const visibleQuestions = await page.locator('#cc-con-explanation .bor-faq-card h4').allTextContents();
+    const normalizedVisibleQuestions = visibleQuestions.map((text) => text.trim());
     const schemaQuestions = faqNode.mainEntity.map((entry) => entry.name.trim());
     expect(schemaQuestions).toEqual(normalizedVisibleQuestions);
 

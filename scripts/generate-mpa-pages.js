@@ -15,7 +15,115 @@ const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
+const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
+const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
+const PANE_LAYOUTS = new Set(['single', 'split']);
 const CALCULATOR_OVERRIDES = {
+  'home-loan': {
+    title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
+    description:
+      'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.',
+    h1: 'Home Loan Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'how-much-can-i-borrow': {
+    title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
+    description:
+      'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+    h1: 'How Much Can I Borrow Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'remortgage-switching': {
+    title: 'Remortgage Calculator (Switching) | Break-even | CalcHowMuch',
+    description:
+      'Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.',
+    h1: 'Remortgage Calculator (Switching)',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'buy-to-let': {
+    title: 'Buy-to-Let (Yield, Cashflow & Coverage) | CalcHowMuch',
+    description:
+      'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.',
+    h1: 'Buy-to-Let Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'car-loan': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'hire-purchase': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'pcp-calculator': {
+    title: 'PCP Calculator - Monthly Payment, GFV & Total Cost',
+    description:
+      'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.',
+    h1: 'PCP Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'leasing-calculator': {
+    title: 'Leasing Calculator - Monthly Payment, Residual & Total Cost',
+    description:
+      'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.',
+    h1: 'Leasing Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'multiple-car-loan': {
+    title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
+    description:
+      'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.',
+    h1: 'Multiple Car Loan Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'offset-calculator': {
+    title: 'Offset Calculator | Interest Savings & Payoff | CalcHowMuch',
+    description:
+      'See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.',
+    h1: 'Offset Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'loan-to-value': {
+    title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
+    description:
+      'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
+    h1: 'Loan-to-Value (LTV) Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'interest-rate-change-calculator': {
+    title: 'Interest Rate Change Calculator | Rate Impact | CalcHowMuch',
+    description:
+      'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.',
+    h1: 'Interest Rate Change Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-minimum-payment': {
+    h1: 'Credit Card Minimum Payment',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-repayment-payoff': {
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'credit-card-consolidation': {
+    title: 'Credit Card Consolidation Calculator -- Compare & Save',
+    description:
+      'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
+    h1: 'Credit Card Consolidation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'overtime-hours-calculator': {
     title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
     description:
@@ -132,6 +240,202 @@ const CALCULATOR_OVERRIDES = {
   },
 };
 
+const HOME_LOAN_SCHEMA_CONFIG = {
+  'home-loan': {
+    breadcrumbLabel: 'Home Loan',
+    softwareName: 'Home Loan Calculator',
+    softwareDescription:
+      'Estimate monthly mortgage payments, amortization schedule, payoff timeline, and interest savings from extra payments.',
+    featureList: [
+      'Monthly mortgage payment estimate',
+      'Amortization schedule (monthly and yearly)',
+      'Principal versus interest split',
+      'Extra payment and lump-sum payoff impact',
+    ],
+    keywords: [
+      'home loan calculator',
+      'mortgage calculator',
+      'amortization schedule',
+      'monthly mortgage payment',
+      'extra payment mortgage',
+    ],
+  },
+  'how-much-can-i-borrow': {
+    breadcrumbLabel: 'How Much Can I Borrow',
+    softwareName: 'How Much Can I Borrow Calculator',
+    softwareDescription:
+      'Estimate your borrowing power using income multiples or payment-to-income affordability checks.',
+    featureList: [
+      'Income multiple borrowing estimate',
+      'Payment-to-income affordability mode',
+      'Maximum borrow and property budget',
+      'Rate and term scenario comparison',
+    ],
+    keywords: [
+      'how much can i borrow calculator',
+      'mortgage affordability calculator',
+      'income multiple mortgage',
+      'payment to income calculator',
+      'borrowing power calculator',
+    ],
+  },
+  'remortgage-switching': {
+    breadcrumbLabel: 'Remortgage / Switching',
+    softwareName: 'Remortgage Calculator (Switching)',
+    softwareDescription:
+      'Compare your current mortgage against a new rate and term to measure break-even and total savings.',
+    featureList: [
+      'Monthly and annual savings',
+      'Break-even month tracking',
+      '2 to 10 year horizon comparison',
+      'Monthly and yearly cost tables',
+    ],
+    keywords: [
+      'remortgage calculator',
+      'mortgage switching calculator',
+      'remortgage savings',
+      'mortgage break-even calculator',
+      'compare mortgage rates',
+    ],
+  },
+  'buy-to-let': {
+    breadcrumbLabel: 'Buy-to-Let Calculator',
+    softwareName: 'Buy-to-Let Calculator',
+    softwareDescription:
+      'Estimate rental yield, cashflow, and lender stress coverage for buy-to-let mortgage scenarios.',
+    featureList: [
+      'Gross and net rental yield',
+      'Monthly and annual cashflow',
+      'Stress coverage ratio',
+      'Interest-only versus repayment comparison',
+    ],
+    keywords: [
+      'buy-to-let calculator',
+      'rental yield calculator',
+      'buy-to-let cashflow calculator',
+      'stress coverage ratio',
+      'interest only mortgage calculator',
+    ],
+  },
+  'offset-calculator': {
+    breadcrumbLabel: 'Offset Calculator',
+    softwareName: 'Offset Calculator',
+    softwareDescription:
+      'Model how offset savings and monthly contributions reduce mortgage interest and payoff time.',
+    featureList: [
+      'Offset interest savings estimate',
+      'Effective mortgage balance tracking',
+      'Payoff timeline reduction',
+      'Monthly and yearly comparison tables',
+    ],
+    keywords: [
+      'offset calculator',
+      'offset mortgage calculator',
+      'offset savings interest',
+      'mortgage payoff calculator',
+      'effective balance calculator',
+    ],
+  },
+  'interest-rate-change-calculator': {
+    breadcrumbLabel: 'Interest Rate Change Calculator',
+    softwareName: 'Interest Rate Change Calculator',
+    softwareDescription:
+      'Compare payment and total interest impact when mortgage rates change now or after a selected period.',
+    featureList: [
+      'Current versus new rate comparison',
+      'Immediate or delayed rate-change timing',
+      'Monthly payment impact estimate',
+      'Total interest and cost difference',
+    ],
+    keywords: [
+      'interest rate change calculator',
+      'mortgage payment change',
+      'rate rise impact calculator',
+      'mortgage interest comparison',
+      'refinance impact calculator',
+    ],
+  },
+  'loan-to-value': {
+    breadcrumbLabel: 'Loan-to-Value (LTV) Calculator',
+    softwareName: 'Loan-to-Value (LTV) Calculator',
+    softwareDescription:
+      'Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.',
+    featureList: [
+      'Loan-to-value percentage calculator',
+      'Loan or deposit input modes',
+      'Risk band classification',
+      'Target LTV planning table',
+    ],
+    keywords: [
+      'loan to value calculator',
+      'ltv calculator',
+      'mortgage ltv bands',
+      'deposit percentage calculator',
+      'remortgage ltv',
+    ],
+  },
+};
+
+function inferDesignFamily(categoryId, subcategoryId) {
+  if (categoryId === 'loans' && DESIGN_FAMILIES.has(subcategoryId)) {
+    return subcategoryId;
+  }
+  return 'neutral';
+}
+
+function resolveCalculatorGovernance({ category, subcategory, calculator, override }) {
+  const routeArchetype = calculator.routeArchetype ?? 'calc_exp';
+  const inferredDesignFamily = inferDesignFamily(category.id, subcategory.id);
+  const designFamily = calculator.designFamily ?? inferredDesignFamily;
+  const overridePaneLayout = override?.paneLayout;
+
+  if (
+    calculator.paneLayout &&
+    overridePaneLayout &&
+    calculator.paneLayout !== overridePaneLayout
+  ) {
+    throw new Error(
+      `Conflicting paneLayout for ${calculator.id}: navigation=${calculator.paneLayout} override=${overridePaneLayout}`
+    );
+  }
+
+  let paneLayout = calculator.paneLayout ?? overridePaneLayout ?? 'split';
+
+  if (!ROUTE_ARCHETYPES.has(routeArchetype)) {
+    throw new Error(
+      `Unsupported routeArchetype "${routeArchetype}" for ${calculator.id}. Allowed: ${Array.from(
+        ROUTE_ARCHETYPES
+      ).join(', ')}`
+    );
+  }
+
+  if (!DESIGN_FAMILIES.has(designFamily)) {
+    throw new Error(
+      `Unsupported designFamily "${designFamily}" for ${calculator.id}. Allowed: ${Array.from(
+        DESIGN_FAMILIES
+      ).join(', ')}`
+    );
+  }
+
+  if (!PANE_LAYOUTS.has(paneLayout)) {
+    throw new Error(
+      `Unsupported paneLayout "${paneLayout}" for ${calculator.id}. Allowed: ${Array.from(
+        PANE_LAYOUTS
+      ).join(', ')}`
+    );
+  }
+
+  if (routeArchetype !== 'calc_exp') {
+    paneLayout = 'single';
+  }
+
+  calculator.routeArchetype = routeArchetype;
+  calculator.designFamily = designFamily;
+  calculator.paneLayout = paneLayout;
+
+  return { routeArchetype, designFamily, paneLayout };
+}
+
 function ensureLength(text, min, max) {
   let result = text.trim().replace(/\s+/g, ' ');
   const filler = ' - Free Tool';
@@ -166,6 +470,188 @@ function buildCanonical(pathname) {
   return `${SITE_URL}${withSlash}`;
 }
 
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+function normalizeHtmlText(value) {
+  return decodeHtmlEntities(String(value).replace(/<[^>]*>/g, ' '))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function extractTagText(html, tagName) {
+  const re = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+  const match = html.match(re);
+  return match ? normalizeHtmlText(match[1]) : '';
+}
+
+function extractCalculatorFaqEntries(explanationHtml, calculatorId) {
+  const cardRegex = /<(div|article)[^>]*class="[^"]*\bfaq-card\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/gi;
+  const entries = [];
+
+  for (const [, , cardHtml] of explanationHtml.matchAll(cardRegex)) {
+    const question = extractTagText(cardHtml, 'h4');
+    const answer = extractTagText(cardHtml, 'p');
+    if (!question || !answer) {
+      continue;
+    }
+    entries.push({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    });
+  }
+
+  if (entries.length < 4) {
+    throw new Error(
+      `Expected at least 4 FAQ entries for ${calculatorId}, extracted ${entries.length} from explanation.html`
+    );
+  }
+
+  if (calculatorId === 'home-loan' && entries.length !== 10) {
+    throw new Error(
+      `Expected 10 FAQ entries for ${calculatorId}, extracted ${entries.length} from explanation.html`
+    );
+  }
+
+  return entries;
+}
+
+function buildHomeLoanStructuredData({
+  calculatorId,
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  softwareName,
+  softwareDescription,
+  featureList = [],
+  keywords = [],
+}) {
+  const isHomeLoanRoot = calculatorId === 'home-loan';
+  const breadcrumbList = isHomeLoanRoot
+    ? [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Loans',
+          item: `${SITE_URL}/loans/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ]
+    : [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Home Loan',
+          item: `${SITE_URL}/loans/home-loan/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(featureList.length ? { featureList } : {}),
+        ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: breadcrumbList,
+      },
+    ],
+  };
+}
+
+function stringifyStructuredData(structuredData) {
+  return JSON.stringify(structuredData).replace(/<\/script/gi, '<\\/script');
+}
+
 function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
 }
@@ -173,6 +659,75 @@ function readFile(filePath) {
 function writeFile(filePath, contents) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, contents);
+}
+
+function readRequiredFragment(filePath, fragmentName, calculatorId, routeArchetype) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(
+      `Missing required ${fragmentName} fragment for ${calculatorId} (${routeArchetype}): ${filePath}`
+    );
+  }
+  return readFile(filePath);
+}
+
+function loadRouteFragments(fragmentDir, calculatorId, routeArchetype) {
+  const calculatorPath = path.join(fragmentDir, 'index.html');
+  const explanationPath = path.join(fragmentDir, 'explanation.html');
+  const contentPath = path.join(fragmentDir, 'content.html');
+
+  switch (routeArchetype) {
+    case 'calc_exp':
+      return {
+        calculatorHtml: readRequiredFragment(
+          calculatorPath,
+          'index.html',
+          calculatorId,
+          routeArchetype
+        ),
+        explanationHtml: readRequiredFragment(
+          explanationPath,
+          'explanation.html',
+          calculatorId,
+          routeArchetype
+        ),
+        contentHtml: '',
+      };
+    case 'calc_only':
+      return {
+        calculatorHtml: readRequiredFragment(
+          calculatorPath,
+          'index.html',
+          calculatorId,
+          routeArchetype
+        ),
+        explanationHtml: '',
+        contentHtml: '',
+      };
+    case 'exp_only':
+      return {
+        calculatorHtml: '',
+        explanationHtml: readRequiredFragment(
+          explanationPath,
+          'explanation.html',
+          calculatorId,
+          routeArchetype
+        ),
+        contentHtml: '',
+      };
+    case 'content_shell':
+      return {
+        calculatorHtml: '',
+        explanationHtml: '',
+        contentHtml: readRequiredFragment(
+          contentPath,
+          'content.html',
+          calculatorId,
+          routeArchetype
+        ),
+      };
+    default:
+      throw new Error(`Unsupported routeArchetype "${routeArchetype}" for ${calculatorId}`);
+  }
 }
 
 function findCalculatorDirs(rootDir) {
@@ -183,13 +738,17 @@ function findCalculatorDirs(rootDir) {
     const entries = fs.readdirSync(current, { withFileTypes: true });
     let hasIndex = false;
     let hasModule = false;
+    let hasExplanation = false;
+    let hasContent = false;
     for (const entry of entries) {
       if (entry.isFile()) {
         if (entry.name === 'index.html') hasIndex = true;
         if (entry.name === 'module.js') hasModule = true;
+        if (entry.name === 'explanation.html') hasExplanation = true;
+        if (entry.name === 'content.html') hasContent = true;
       }
     }
-    if (hasIndex && hasModule) {
+    if ((hasIndex || hasExplanation || hasContent) && (hasModule || hasContent)) {
       const id = path.basename(current);
       const relPath = path.relative(rootDir, current).replace(/\\/g, '/');
       if (!map.has(id)) {
@@ -214,8 +773,7 @@ const mathIcons = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
   calculus:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
-  log:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  log: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
   statistics:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg>',
   chevronDown:
@@ -264,14 +822,11 @@ function getTopNavItems(categories) {
 
 function buildTopNavHtml(categories, activeCategoryId, activeSubcategoryId) {
   const items = getTopNavItems(categories);
-  const activeId =
-    activeCategoryId === 'loans' ? `loans:${activeSubcategoryId}` : activeCategoryId;
+  const activeId = activeCategoryId === 'loans' ? `loans:${activeSubcategoryId}` : activeCategoryId;
 
   return items
     .map((item) => {
-      const icon = item.icon
-        ? `<span class="nav-icon" aria-hidden="true">${item.icon}</span>`
-        : '';
+      const icon = item.icon ? `<span class="nav-icon" aria-hidden="true">${item.icon}</span>` : '';
       const activeClass = item.id === activeId ? ' is-active' : '';
       return `<a class="top-nav-link${activeClass}" href="${item.href}">${icon}<span class="nav-label">${item.label}</span></a>`;
     })
@@ -373,14 +928,24 @@ function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, cal
     .join('');
 }
 
-function buildLeftNavHtml(categories, activeCategoryId, activeSubcategoryId, activeCalculatorId, calcLookup, mode) {
+function buildLeftNavHtml(
+  categories,
+  activeCategoryId,
+  activeSubcategoryId,
+  activeCalculatorId,
+  calcLookup,
+  mode
+) {
   if (!activeCategoryId && mode === 'home') {
     const sections = categories
       .map((category) => {
         const items = category.subcategories
           .map((subcategory) => {
             const calculators = subcategory.calculators
-              .map((calculator) => `<a class="nav-item" href="${calculator.url}">${calculator.name}</a>`)
+              .map(
+                (calculator) =>
+                  `<a class="nav-item" href="${calculator.url}">${calculator.name}</a>`
+              )
               .join('');
             return `
 <div class="nav-category" data-id="${subcategory.id}">
@@ -423,12 +988,26 @@ function buildPageHtml({
   calculatorTitle,
   calculatorHtml,
   explanationHtml,
+  contentHtml = '',
+  explanationHeading = 'Explanation',
+  paneLayout = 'split',
+  routeArchetype = 'calc_exp',
+  designFamily = 'neutral',
   includeHomeContent,
   pageType,
   calculatorRelPath,
+  staticStructuredData = null,
+  injectStaticStructuredData = false,
 }) {
-  const calcContent = includeHomeContent
-    ? `<div class="panel panel-scroll">
+  const explanationTitleHtml =
+    explanationHeading === '' || explanationHeading === null
+      ? ''
+      : `  <h3>${explanationHeading}</h3>\n`;
+
+  let calcContent = '';
+
+  if (includeHomeContent) {
+    calcContent = `<div class="panel panel-scroll">
   <h1 id="home-overview-title">Calculate How Much</h1>
   <p class="placeholder" id="home-overview-intro">
     Explore calculators by category using the top navigation. This page is a guide to
@@ -456,20 +1035,59 @@ function buildPageHtml({
     Results are estimates for planning purposes only. Always verify details with your
     lender, advisor, or official documentation.
   </p>
+</div>`;
+  } else if (routeArchetype === 'calc_exp') {
+    calcContent =
+      paneLayout === 'single'
+        ? `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  <div class="calculator-page-single">
+    ${calculatorHtml}
+${explanationTitleHtml}    ${explanationHtml}
+  </div>
 </div>`
-    : `<div class="panel panel-scroll">
+        : `<div class="panel panel-scroll">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   ${calculatorHtml}
 </div>
 <div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  ${explanationHtml}
+${explanationTitleHtml}  ${explanationHtml}
 </div>`;
+  } else if (routeArchetype === 'calc_only') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  <div class="calculator-page-single">
+    ${calculatorHtml}
+  </div>
+</div>`;
+  } else if (routeArchetype === 'exp_only') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+${explanationTitleHtml}  ${explanationHtml}
+</div>`;
+  } else if (routeArchetype === 'content_shell') {
+    calcContent = `<div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">${calculatorTitle}</h1>
+  ${contentHtml}
+</div>`;
+  } else {
+    throw new Error(`Unsupported routeArchetype "${routeArchetype}" while building ${canonical}`);
+  }
 
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
+  const routeArchetypeAttribute = routeArchetype
+    ? ` data-route-archetype="${routeArchetype}"`
+    : '';
+  const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
     : '';
+  const structuredDataScript =
+    injectStaticStructuredData && staticStructuredData
+      ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
+          staticStructuredData
+        )}</script>\n`
+      : '';
 
   return `<!doctype html>
 <html lang="en">
@@ -488,12 +1106,13 @@ function buildPageHtml({
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${OG_IMAGE}" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+${structuredDataScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body${bodyAttribute}>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
@@ -557,6 +1176,7 @@ function buildCalculatorIndex(categories) {
       content="${description}"
     />
     <link rel="canonical" href="${buildCanonical('/calculators/')}" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
@@ -587,7 +1207,7 @@ function buildGtepFooter() {
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -732,8 +1352,15 @@ function main() {
         if (!relPath) {
           throw new Error(`Unable to locate calculator folder for ${calculator.id}`);
         }
+        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const governance = resolveCalculatorGovernance({
+          category,
+          subcategory,
+          calculator,
+          override,
+        });
         calculator.url = `/${relPath}`;
-        calcLookup.set(calculator.id, { category, subcategory, calculator });
+        calcLookup.set(calculator.id, { category, subcategory, calculator, governance });
       });
     });
   });
@@ -748,8 +1375,14 @@ function main() {
       subcategory.calculators.forEach((calculator) => {
         const relPath = calculatorDirs.get(calculator.id);
         const fragmentDir = path.join(CALC_DIR, relPath);
-        const calculatorHtml = readFile(path.join(fragmentDir, 'index.html'));
-        const explanationHtml = readFile(path.join(fragmentDir, 'explanation.html'));
+        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const governance = resolveCalculatorGovernance({
+          category,
+          subcategory,
+          calculator,
+          override,
+        });
+        const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
         const topNavHtml = buildTopNavHtml(
           navigation.categories,
           category.id,
@@ -762,22 +1395,52 @@ function main() {
           calculator.id,
           calcLookup
         );
+        const pageTitle = override?.title ?? buildTitle(calculator.name);
+        const pageDescription = override?.description ?? buildDescription(calculator.name);
+        const pageCanonical = buildCanonical(calculator.url);
 
-        const override = CALCULATOR_OVERRIDES[calculator.id];
+        let staticStructuredData = null;
+        let injectStaticStructuredData = false;
+        const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
+        if (homeLoanSchemaConfig) {
+          const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+          staticStructuredData = buildHomeLoanStructuredData({
+            calculatorId: calculator.id,
+            title: pageTitle,
+            description: pageDescription,
+            canonical: pageCanonical,
+            faqEntries,
+            ...homeLoanSchemaConfig,
+          });
+          injectStaticStructuredData = true;
+        }
+
         const pageHtml = buildPageHtml({
-          title: override?.title ?? buildTitle(calculator.name),
-          description: override?.description ?? buildDescription(calculator.name),
-          canonical: buildCanonical(calculator.url),
+          title: pageTitle,
+          description: pageDescription,
+          canonical: pageCanonical,
           headerHtml,
           footerHtml,
           topNavHtml,
           leftNavHtml,
           calculatorTitle: override?.h1 ?? calculator.name,
-          calculatorHtml,
-          explanationHtml,
+          calculatorHtml: fragments.calculatorHtml,
+          explanationHtml: fragments.explanationHtml,
+          contentHtml: fragments.contentHtml,
+          explanationHeading: Object.prototype.hasOwnProperty.call(
+            override ?? {},
+            'explanationHeading'
+          )
+            ? override.explanationHeading
+            : 'Explanation',
+          paneLayout: governance.paneLayout,
+          routeArchetype: governance.routeArchetype,
+          designFamily: governance.designFamily,
           includeHomeContent: false,
           pageType: 'calculator',
-          calculatorRelPath: relPath,
+          calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
+          staticStructuredData,
+          injectStaticStructuredData,
         });
 
         const outputDir = path.join(PUBLIC_DIR, relPath);
@@ -787,14 +1450,7 @@ function main() {
   });
 
   const homeTopNav = buildTopNavHtml(navigation.categories, null, null);
-  const homeLeftNav = buildLeftNavHtml(
-    navigation.categories,
-    null,
-    null,
-    null,
-    calcLookup,
-    'home'
-  );
+  const homeLeftNav = buildLeftNavHtml(navigation.categories, null, null, null, calcLookup, 'home');
 
   const homeHtml = buildPageHtml({
     title: ensureLength('Calculate How Much | Free Online Calculators', 50, 60),
@@ -811,14 +1467,24 @@ function main() {
     calculatorTitle: '',
     calculatorHtml: '',
     explanationHtml: '',
+    contentHtml: '',
+    routeArchetype: 'content_shell',
+    designFamily: 'neutral',
+    paneLayout: 'single',
     includeHomeContent: true,
     pageType: 'home',
   });
 
   writeFile(path.join(PUBLIC_DIR, 'index.html'), homeHtml);
-  writeFile(path.join(PUBLIC_DIR, 'calculators', 'index.html'), buildCalculatorIndex(navigation.categories));
+  writeFile(
+    path.join(PUBLIC_DIR, 'calculators', 'index.html'),
+    buildCalculatorIndex(navigation.categories)
+  );
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
-  writeFile(path.join(PUBLIC_DIR, 'sitemap', 'index.html'), buildGtepSitemap(navigation.categories));
+  writeFile(
+    path.join(PUBLIC_DIR, 'sitemap', 'index.html'),
+    buildGtepSitemap(navigation.categories)
+  );
 }
 
 main();

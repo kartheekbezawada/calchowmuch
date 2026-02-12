@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
 import { calculateConsolidation } from '/assets/js/core/credit-card-utils.js';
 
@@ -10,11 +10,20 @@ const termInput = document.querySelector('#cc-con-term');
 const feesInput = document.querySelector('#cc-con-fees');
 const calculateButton = document.querySelector('#cc-con-calc');
 
-const placeholder = document.querySelector('#cc-con-placeholder');
-const errorMessage = document.querySelector('#cc-con-error');
-const resultsList = document.querySelector('#cc-con-results-list');
+const resultDiv = document.querySelector('#cc-con-result');
 const summaryDiv = document.querySelector('#cc-con-summary');
-const tableBody = document.querySelector('#cc-con-table-body');
+
+const balanceDisplay = document.querySelector('#cc-con-balance-display');
+const currentAprDisplay = document.querySelector('#cc-con-apr-display');
+const newAprDisplay = document.querySelector('#cc-con-new-apr-display');
+const termDisplay = document.querySelector('#cc-con-term-display');
+
+const monthlyTableBody = document.querySelector('#cc-con-table-monthly-body');
+const yearlyTableBody = document.querySelector('#cc-con-table-yearly-body');
+const monthlyTableWrap = document.querySelector('#cc-con-table-monthly-wrap');
+const yearlyTableWrap = document.querySelector('#cc-con-table-yearly-wrap');
+const viewMonthlyButton = document.querySelector('#cc-con-view-monthly');
+const viewYearlyButton = document.querySelector('#cc-con-view-yearly');
 
 const explanationSpans = Array.from(document.querySelectorAll('[data-cc-con]')).reduce((acc, el) => {
   const key = el.dataset.ccCon;
@@ -25,23 +34,11 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-cc-con]')).
   return acc;
 }, {});
 
-const INPUT_KEYS = [
-  'balance',
-  'current-apr',
-  'current-payment',
-  'new-apr',
-  'new-term',
-  'fees',
-  'scenario-balance',
-  'scenario-current-apr',
-  'scenario-current-payment',
-  'scenario-new-apr',
-  'scenario-new-term',
-  'scenario-fees',
-];
+const INPUT_KEYS = ['balance', 'current-apr', 'current-payment', 'new-apr', 'new-term', 'fees'];
 
 const OUTPUT_KEYS = [
   'current-months',
+  'con-months',
   'new-payment',
   'interest-diff',
   'total-diff',
@@ -52,11 +49,12 @@ const OUTPUT_KEYS = [
   'current-total',
   'con-interest',
   'con-total',
-  'con-months',
-  'scenario-current-months',
-  'scenario-new-payment',
-  'scenario-interest-diff',
-  'scenario-total-diff',
+  'principal-share',
+  'interest-share',
+  'total-paid',
+  'total-principal',
+  'total-interest',
+  'lifetime-summary',
 ];
 
 export const pageSchema = {
@@ -196,7 +194,10 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-let hasCalculated = false;
+let currentData = null;
+let lastValidData = null;
+let scheduleView = 'yearly';
+let lastValidMonthlyPayment = null;
 
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
@@ -227,6 +228,21 @@ function formatSignedAmount(value) {
   return `${sign}${formatAmount(Math.abs(value))}`;
 }
 
+function formatRateLabel(value) {
+  const safeValue = Number(value);
+  if (!Number.isFinite(safeValue)) {
+    return '—';
+  }
+  return `${formatNumber(safeValue, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 1,
+  })}%`;
+}
+
+function deriveTermMonths(termYears) {
+  return Math.max(1, Math.round(termYears * 12));
+}
+
 function readInputs() {
   return {
     balance: Number(balanceInput?.value),
@@ -239,7 +255,7 @@ function readInputs() {
 }
 
 function toCalcParams(values) {
-  const termMonths = Math.max(1, Math.round(values.termYears * 12));
+  const termMonths = deriveTermMonths(values.termYears);
   return {
     params: {
       balance: values.balance,
@@ -275,34 +291,83 @@ function validateInputs(values) {
   return null;
 }
 
-function clearError() {
-  if (!errorMessage) {
+function resolveScenario(values) {
+  const validationError = validateInputs(values);
+  if (validationError) {
+    return { data: null, error: validationError };
+  }
+
+  const { params } = toCalcParams(values);
+  const data = calculateConsolidation(params);
+  if (data.error) {
+    return { data: null, error: data.error };
+  }
+  return { data, error: null };
+}
+
+function cacheScenarioData(data) {
+  if (!data) {
     return;
   }
-  errorMessage.textContent = '';
-  errorMessage.classList.add('is-hidden');
+  lastValidData = data;
+  currentData = data;
+  lastValidMonthlyPayment = data.consolidation.monthlyPayment;
+}
+
+function renderMonthlyPaymentValue(value, options = {}) {
+  if (!resultDiv) {
+    return;
+  }
+
+  const shouldAnimate = Boolean(options.animate);
+  const safeValue = Number.isFinite(value) ? value : 0;
+
+  resultDiv.innerHTML =
+    '<strong>Monthly Consolidation Payment</strong>' +
+    `<span class="cc-con-result-value">${formatAmount(safeValue)}</span>`;
+
+  if (!shouldAnimate) {
+    return;
+  }
+
+  const resultValue = resultDiv.querySelector('.cc-con-result-value');
+  if (!resultValue) {
+    return;
+  }
+
+  resultValue.classList.remove('is-updated');
+  void resultValue.offsetWidth;
+  resultValue.classList.add('is-updated');
+}
+
+function refreshLiveMonthlyPayment(value, options = {}) {
+  renderMonthlyPaymentValue(value ?? lastValidMonthlyPayment, options);
+}
+
+function setInputSpans(values) {
+  const entries = {
+    balance: Number.isFinite(values.balance) ? formatAmount(values.balance) : '—',
+    'current-apr': Number.isFinite(values.currentApr) ? formatPercent(values.currentApr) : '—',
+    'current-payment': Number.isFinite(values.currentPayment)
+      ? formatAmount(values.currentPayment)
+      : '—',
+    'new-apr': Number.isFinite(values.consolidationApr) ? formatPercent(values.consolidationApr) : '—',
+    'new-term': Number.isFinite(values.termYears) ? formatMonths(deriveTermMonths(values.termYears)) : '—',
+    fees: Number.isFinite(values.fees) ? formatAmount(values.fees) : '—',
+  };
+
+  INPUT_KEYS.forEach((key) => {
+    setSpan(key, entries[key] ?? '—');
+  });
 }
 
 function setOutputPlaceholders() {
   OUTPUT_KEYS.forEach((key) => setSpan(key, '—'));
-}
 
-function setInputSpans(values, termMonths) {
-  const termLabel = formatMonths(termMonths);
-
-  setSpan('balance', formatAmount(values.balance));
-  setSpan('current-apr', formatPercent(values.currentApr));
-  setSpan('current-payment', formatAmount(values.currentPayment));
-  setSpan('new-apr', formatPercent(values.consolidationApr));
-  setSpan('new-term', termLabel);
-  setSpan('fees', formatAmount(values.fees));
-
-  setSpan('scenario-balance', formatAmount(values.balance));
-  setSpan('scenario-current-apr', formatPercent(values.currentApr));
-  setSpan('scenario-current-payment', formatAmount(values.currentPayment));
-  setSpan('scenario-new-apr', formatPercent(values.consolidationApr));
-  setSpan('scenario-new-term', termLabel);
-  setSpan('scenario-fees', formatAmount(values.fees));
+  const donut = (explanationSpans['lifetime-donut'] || [])[0];
+  if (donut) {
+    donut.style.setProperty('--principal-share', '0%');
+  }
 }
 
 function getRecommendation(data) {
@@ -329,10 +394,112 @@ function getRecommendation(data) {
   };
 }
 
+function aggregateYearlySchedule(schedule) {
+  const yearly = [];
+  schedule.forEach((entry) => {
+    const yearIndex = Math.ceil(entry.month / 12) - 1;
+    if (!yearly[yearIndex]) {
+      yearly[yearIndex] = {
+        year: yearIndex + 1,
+        payment: 0,
+        principal: 0,
+        interest: 0,
+        balance: entry.balance,
+      };
+    }
+    const record = yearly[yearIndex];
+    record.payment += entry.payment;
+    record.principal += entry.principal;
+    record.interest += entry.interest;
+    record.balance = entry.balance;
+  });
+
+  return yearly.filter(Boolean);
+}
+
+function renderMonthlyPlaceholder() {
+  if (!monthlyTableBody) {
+    return;
+  }
+  monthlyTableBody.innerHTML =
+    '<tr class="cc-con-table-placeholder-row"><td colspan="5">Run Calculate to populate monthly rows.</td></tr>';
+}
+
+function renderYearlyPlaceholder() {
+  if (!yearlyTableBody) {
+    return;
+  }
+  yearlyTableBody.innerHTML =
+    '<tr class="cc-con-table-placeholder-row"><td colspan="5">Run Calculate to populate yearly rows.</td></tr>';
+}
+
+function clearTableOutputs() {
+  renderMonthlyPlaceholder();
+  renderYearlyPlaceholder();
+}
+
+function renderMonthlyTable(schedule) {
+  if (!monthlyTableBody) {
+    return;
+  }
+
+  if (!schedule?.length) {
+    renderMonthlyPlaceholder();
+    return;
+  }
+
+  monthlyTableBody.innerHTML = schedule
+    .map(
+      (entry) =>
+        `<tr>
+          <td>${entry.month}</td>
+          <td>${formatAmount(entry.payment)}</td>
+          <td>${formatAmount(entry.principal)}</td>
+          <td>${formatAmount(entry.interest)}</td>
+          <td>${formatAmount(entry.balance)}</td>
+        </tr>`
+    )
+    .join('');
+}
+
+function renderYearlyTable(yearly) {
+  if (!yearlyTableBody) {
+    return;
+  }
+
+  if (!yearly?.length) {
+    renderYearlyPlaceholder();
+    return;
+  }
+
+  yearlyTableBody.innerHTML = yearly
+    .map(
+      (entry) =>
+        `<tr>
+          <td>${entry.year}</td>
+          <td>${formatAmount(entry.payment)}</td>
+          <td>${formatAmount(entry.principal)}</td>
+          <td>${formatAmount(entry.interest)}</td>
+          <td>${formatAmount(entry.balance)}</td>
+        </tr>`
+    )
+    .join('');
+}
+
+function applyView(view) {
+  const isMonthly = view === 'monthly';
+  monthlyTableWrap?.classList.toggle('is-hidden', !isMonthly);
+  yearlyTableWrap?.classList.toggle('is-hidden', isMonthly);
+
+  viewMonthlyButton?.classList.toggle('is-active', isMonthly);
+  viewYearlyButton?.classList.toggle('is-active', !isMonthly);
+}
+
 function setOutputSpans(data) {
   const recommendation = getRecommendation(data);
 
   setSpan('current-months', formatMonths(data.current.months));
+  setSpan('con-months', formatMonths(data.consolidation.months));
   setSpan('new-payment', formatAmount(data.consolidation.monthlyPayment));
   setSpan('interest-diff', formatSignedAmount(data.interestDifference));
   setSpan('total-diff', formatSignedAmount(data.totalDifference));
@@ -344,190 +511,187 @@ function setOutputSpans(data) {
   setSpan('current-total', formatAmount(data.current.totalPayment));
   setSpan('con-interest', formatAmount(data.consolidation.totalInterest));
   setSpan('con-total', formatAmount(data.consolidation.totalPayment));
-  setSpan('con-months', formatMonths(data.consolidation.months));
 
-  setSpan('scenario-current-months', formatMonths(data.current.months));
-  setSpan('scenario-new-payment', formatAmount(data.consolidation.monthlyPayment));
-  setSpan('scenario-interest-diff', formatSignedAmount(data.interestDifference));
-  setSpan('scenario-total-diff', formatSignedAmount(data.totalDifference));
+  setSpan('total-paid', formatAmount(data.consolidation.totalPayment));
+  setSpan('total-principal', formatAmount(data.consolidation.balance));
+  setSpan('total-interest', formatAmount(data.consolidation.totalInterest));
+
+  const totalPayment = data.consolidation.totalPayment;
+  const principalShare = totalPayment > 0 ? (data.consolidation.balance / totalPayment) * 100 : 0;
+  const clampedPrincipalShare = Math.min(100, Math.max(0, principalShare));
+  const interestShare = Math.max(0, 100 - clampedPrincipalShare);
+
+  const donut = (explanationSpans['lifetime-donut'] || [])[0];
+  if (donut) {
+    donut.style.setProperty('--principal-share', `${clampedPrincipalShare}%`);
+  }
+
+  setSpan(
+    'principal-share',
+    `${formatNumber(clampedPrincipalShare, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })}%`
+  );
+  setSpan(
+    'interest-share',
+    `${formatNumber(interestShare, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })}%`
+  );
+
+  setSpan(
+    'lifetime-summary',
+    `Consolidation totals ${formatAmount(data.consolidation.totalPayment)} paid, including ${formatAmount(
+      data.consolidation.totalInterest
+    )} interest. Compared with current cards, total difference is ${formatSignedAmount(
+      data.totalDifference
+    )}.`
+  );
 }
 
-function renderTablePlaceholder() {
-  if (!tableBody) {
-    return;
-  }
-  tableBody.innerHTML =
-    '<tr class="cc-con-table-placeholder-row"><td colspan="4">Run Calculate to populate comparison rows.</td></tr>';
-}
-
-function updateTable(data) {
-  if (!tableBody) {
-    return;
-  }
-  if (!data) {
-    renderTablePlaceholder();
-    return;
-  }
-
-  tableBody.innerHTML = `
-    <tr>
-      <td>Current Cards</td>
-      <td>${formatMonths(data.current.months)}</td>
-      <td>${formatAmount(data.current.totalInterest)}</td>
-      <td>${formatAmount(data.current.totalPayment)}</td>
-    </tr>
-    <tr>
-      <td>Consolidation</td>
-      <td>${formatMonths(data.consolidation.months)}</td>
-      <td>${formatAmount(data.consolidation.totalInterest)}</td>
-      <td>${formatAmount(data.consolidation.totalPayment)}</td>
-    </tr>
-  `;
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
-
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
+function setError(message) {
+  refreshLiveMonthlyPayment(lastValidMonthlyPayment);
   if (summaryDiv) {
-    summaryDiv.innerHTML = '';
+    summaryDiv.innerHTML = `<p class="form-error">${message}</p>`;
   }
-
-  updateTable(null);
 }
 
-function showError(message) {
-  if (errorMessage) {
-    errorMessage.textContent = message;
-    errorMessage.classList.remove('is-hidden');
-  }
-
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
-
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-  if (summaryDiv) {
-    summaryDiv.innerHTML = '';
-  }
-
-  setOutputPlaceholders();
-  updateTable(null);
-}
-
-function addResultLine(text) {
-  if (!resultsList) {
+function renderPreviewSummary(data) {
+  if (!summaryDiv) {
     return;
-  }
-  const line = document.createElement('div');
-  line.className = 'result-line';
-  line.textContent = text;
-  resultsList.appendChild(line);
-}
-
-function calculate() {
-  const values = readInputs();
-  const validationError = validateInputs(values);
-  if (validationError) {
-    showError(validationError);
-    return;
-  }
-
-  const { params, termMonths } = toCalcParams(values);
-  const data = calculateConsolidation(params);
-  if (data.error) {
-    showError(data.error);
-    return;
-  }
-
-  setInputSpans(values, termMonths);
-  setOutputSpans(data);
-
-  if (resultsList) {
-    resultsList.innerHTML = '';
   }
 
   const monthlyDirection =
-    data.monthlyDifference > 0.005
-      ? 'lower'
-      : data.monthlyDifference < -0.005
-        ? 'higher'
-        : 'unchanged';
+    data.monthlyDifference > 0.005 ? 'lower' : data.monthlyDifference < -0.005 ? 'higher' : 'about the same';
 
-  addResultLine(`Monthly payment change: ${formatSignedAmount(data.monthlyDifference)} (${monthlyDirection})`);
-  addResultLine(`Current payoff time: ${formatMonths(data.current.months)}`);
-
-  if (summaryDiv) {
-    summaryDiv.innerHTML =
-      `<p><strong>Interest difference:</strong> ${formatSignedAmount(data.interestDifference)}</p>` +
-      `<p><strong>Total cost difference:</strong> ${formatSignedAmount(data.totalDifference)}</p>` +
-      `<p><strong>Consolidation payment:</strong> ${formatCurrency(data.consolidation.monthlyPayment)}</p>`;
-  }
-
-  clearError();
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.remove('is-hidden');
-  summaryDiv?.classList.remove('is-hidden');
-
-  updateTable(data);
+  summaryDiv.innerHTML =
+    `<p><strong>Current payoff:</strong> ${formatMonths(data.current.months)}.</p>` +
+    `<p><strong>Consolidation payoff:</strong> ${formatMonths(data.consolidation.months)}.</p>` +
+    `<p><strong>Monthly change:</strong> ${formatSignedAmount(data.monthlyDifference)} (${monthlyDirection}).</p>`;
 }
 
-function resetAfterInputChange() {
-  if (!hasCalculated) {
+function renderLiveScenario(data, options = {}) {
+  if (!data) {
     return;
   }
 
-  setOutputPlaceholders();
-  showPlaceholder();
+  cacheScenarioData(data);
+  setOutputSpans(data);
+  renderMonthlyTable(data.consolidation.schedule);
+  const yearly = aggregateYearlySchedule(data.consolidation.schedule);
+  renderYearlyTable(yearly);
+  refreshLiveMonthlyPayment(data.consolidation.monthlyPayment, {
+    animate: Boolean(options.animatePayment),
+  });
+  renderPreviewSummary(data);
+  applyView(scheduleView);
+}
+
+function calculate(options = {}) {
+  const { animatePayment = true } = options;
+  const values = readInputs();
+  setInputSpans(values);
+  const { data, error } = resolveScenario(values);
+
+  if (error) {
+    setError(error);
+    return false;
+  }
+
+  renderLiveScenario(data, { animatePayment });
+  return true;
+}
+
+function handleLiveInputChange() {
+  const values = readInputs();
+  setInputSpans(values);
+  const { data, error } = resolveScenario(values);
+  if (data) {
+    renderLiveScenario(data, { animatePayment: false });
+    return;
+  }
+  if (error) {
+    setError(error);
+  }
+}
+
+function updateSliderFill(input) {
+  if (!input || input.type !== 'range') {
+    return;
+  }
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || 100;
+  const value = parseFloat(input.value) || 0;
+  const pct = ((value - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (balanceInput && balanceDisplay) {
+    balanceDisplay.textContent = formatNumber(Number(balanceInput.value), {
+      maximumFractionDigits: 0,
+    });
+    updateSliderFill(balanceInput);
+  }
+
+  if (currentAprInput && currentAprDisplay) {
+    currentAprDisplay.textContent = formatRateLabel(currentAprInput.value);
+    updateSliderFill(currentAprInput);
+  }
+
+  if (consolidationAprInput && newAprDisplay) {
+    newAprDisplay.textContent = formatRateLabel(consolidationAprInput.value);
+    updateSliderFill(consolidationAprInput);
+  }
+
+  if (termInput && termDisplay) {
+    termDisplay.textContent = `${termInput.value} yrs`;
+    updateSliderFill(termInput);
+  }
 }
 
 calculateButton?.addEventListener('click', () => {
-  hasCalculated = true;
-  calculate();
+  calculate({ animatePayment: true });
 });
 
-document.querySelectorAll('#calc-cc-con input').forEach((input) => {
-  input.addEventListener('input', resetAfterInputChange);
+viewMonthlyButton?.addEventListener('click', () => {
+  if (!currentData || scheduleView === 'monthly') {
+    return;
+  }
+  scheduleView = 'monthly';
+  applyView(scheduleView);
 });
 
-(function initializeExplanation() {
-  const values = readInputs();
-  const validationError = validateInputs(values);
+viewYearlyButton?.addEventListener('click', () => {
+  if (!currentData || scheduleView === 'yearly') {
+    return;
+  }
+  scheduleView = 'yearly';
+  applyView(scheduleView);
+});
 
+const allInputs = Array.from(document.querySelectorAll('#calc-cc-con input'));
+allInputs.forEach((input) => {
+  input.addEventListener('input', () => {
+    updateSliderDisplays();
+    handleLiveInputChange();
+  });
+});
+
+updateSliderDisplays();
+const initialValues = readInputs();
+setInputSpans(initialValues);
+const initialScenario = resolveScenario(initialValues);
+if (initialScenario.data) {
+  renderLiveScenario(initialScenario.data, { animatePayment: false });
+} else {
   setOutputPlaceholders();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
-
-  if (resultsList) {
-    resultsList.innerHTML = '';
+  clearTableOutputs();
+  refreshLiveMonthlyPayment(0);
+  applyView(scheduleView);
+  if (initialScenario.error) {
+    setError(initialScenario.error);
   }
-  if (summaryDiv) {
-    summaryDiv.innerHTML = '';
-  }
-
-  if (validationError) {
-    INPUT_KEYS.forEach((key) => setSpan(key, '—'));
-    updateTable(null);
-    return;
-  }
-
-  const { params, termMonths } = toCalcParams(values);
-  const data = calculateConsolidation(params);
-  if (data.error) {
-    INPUT_KEYS.forEach((key) => setSpan(key, '—'));
-    updateTable(null);
-    return;
-  }
-
-  setInputSpans(values, termMonths);
-  setOutputSpans(data);
-  updateTable(data);
-})();
+}

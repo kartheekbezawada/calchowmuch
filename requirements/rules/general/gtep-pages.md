@@ -58,7 +58,7 @@ Privacy | Terms & Conditions | Contact | FAQs | Sitemap
 
 3) Update Universal Requirements (Add Exclusion Clause)
 
-Update requirements/universal/UNIVERSAL_REQUIREMENTS.md with a new section:
+Update requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md with a new section:
 
 EXCL-1 — Excluded Page Types (P0)
 
@@ -76,7 +76,7 @@ Also update any existing rules that currently imply “all pages use calculator 
 
 Update:
 
-requirements/compliance/WORKFLOW.md and AGENTS.md to recognize GTEP as a supported page type and to ensure agents don’t “fix” these pages back into the calculator layout.
+requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md and AGENTS.md to recognize GTEP as a supported page type and to ensure agents don’t “fix” these pages back into the calculator layout.
 
 B) Implementation Requirement: Standalone HTML Sitemap Page
 1) Routing
