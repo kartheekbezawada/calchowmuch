@@ -1,985 +1,388 @@
-﻿## Universal Contract (Read First)
+# Universal Requirements — Single Source of Truth
 
-This file is the single source of truth for universal requirements. Rule IDs below remain authoritative.
+## Document Metadata
 
-How to read this file:
+| Field | Value |
+| --- | --- |
+| Status | Authoritative (sole active governance file) |
+| Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
+| Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
+| Version | 3.0 (Universal consolidation) |
+| Last Updated | 2026-02-12 |
 
-- Always read: Document Control (DC-*), Authority/Precedence (AP-*), Folder/URL integrity (FS-*, DOC-SITEMAP-*), and any P0 “Never” rules (NEVER-*).
-- Read other sections only when triggered by the change. Do not scan the whole document by default.
-- Use Rule IDs in all reviews, tracker notes, issues, and compliance evidence.
-
-
-
-## Section Loading Map (Trigger-Based)
-
-Always load (P0 core):
-
-- DC-* Document Control
-- AP-* Authority/Precedence
-- FS-* Folder structure contract
-- DOC-SITEMAP-* Sitemap coverage
-- NEVER-* Hard never-do rules
-
-Load only if triggered:
-
-- UI-* / UTBL-* / UIGRAPH-* when UI, tables, or graphs change
-- UI-EXP-PANE-STD when explanation pane structure/content changes (see `requirements/universal-rules/explanation_pane_standard.md`)
-- TEST-* when selecting or changing tests
-- SEO-* when URLs/metadata/content change
-- DIAG-* / AGENT-* only when diagnosing failures or environment issues
-
-
-
-
-**Use case:** Humans + LLM reviewers (Claude/Codex) must be able to cite an exact rule ID when something is violated.
-
----
-
-## Quick Reference â€” Rule ID Tables
-
-### Document Control
-
-
-| Rule ID | Requirement                                                       | Severity |
-| --------- | ------------------------------------------------------------------- | ---------- |
-| DC-0.1  | This file is the canonical universal requirements document        | P0       |
-| DC-0.2  | Rules apply to ALL calculators, ALL phases, ALL PRs               | P0       |
-| DC-0.3  | Review comments must reference rule IDs (e.g.,`UI-2.3`, `FS-3.1`) | P1       |
-| DC-0.4  | If older documents conflict, this file governs                    | P0       |
-
-### Product Intent
-
-
-| Rule ID | Requirement                                                                                           | Severity |
-| --------- | ------------------------------------------------------------------------------------------------------- | ---------- |
-| PI-1.1  | Modular, high-performance, SEO-friendly calculator platform                                           | P1       |
-| PI-1.2  | Target users: general users, students, financially conscious, search users                            | P2       |
-| PI-1.3  | Value: one calculator = one question, simple UI, static explanations, fast load, modular architecture | P1       |
-
-### Authority and Precedence
-
-
-| Rule ID | Requirement                                                       | Severity |
-| --------- | ------------------------------------------------------------------- | ---------- |
-| AP-2.1  | This file governs if anything conflicts                           | P0       |
-| AP-2.2  | Phase requirements add scope but must not violate universal rules | P0       |
-| AP-2.3  | Documentation must reflect actual repository state                | P1       |
-
-### Excluded Page Types
-
-
-| Rule ID | Requirement                                                                                                           | Severity |
-| --------- | ----------------------------------------------------------------------------------------------------------------------- | ---------- |
-| EXCL-1.1 | General Terms Excluded Pages (GTEP) must not use calculator shell layout regions (top nav, left nav, calc/explanation panes, ads). | P0       |
-| EXCL-1.2 | GTEP pages must be plain HTML-first and crawlable.                                                                     | P0       |
-| EXCL-1.3 | GTEP pages must have internal scrolling and must not depend on calculator navigation state.                           | P0       |
-| EXCL-1.4 | GTEP pages must not load calculator-specific JS modules.                                                               | P0       |
-
----
-
-## Table of Contents
-
-0. [Document Control](#0-document-control)
-1. [Product Intent](#1-product-intent)
-2. [Authority and Precedence](#2-authority-and-precedence)
-3. [Universal UI Contract](#3-universal-ui-contract)
-4. [Universal Layout and Architecture Boundaries](#4-universal-layout-and-architecture-boundaries)
-5. [Folder Structure Contract](#5-folder-structure-contract)
-6. [Coding Standards](#6-coding-standards)
-7. [Testing Standards](#7-testing-standards)
-8. [SEO and URL Rules](#8-seo-and-url-rules)
-9. [Inventory and Documentation Accuracy](#9-inventory-and-documentation-accuracy)
-10. [PR and Phase Workflow](#10-pr-and-phase-workflow)
-11. [Hard "Never Do" Rules](#11-hard-never-do-rules)
-12. [Definition of Done](#12-definition-of-done)
-13. [How to Report Violations](#13-how-to-report-violations)
-14. [Agent Diagnostic Command Requirements](#14-agent-diagnostic-command-requirements)
-15. [Agent Environment and Cache Policy](#15-agent-environment-and-cache-policy)
+This is the only active governance file under `requirements/universal-rules/`.
+All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
 ---
 
 ## 0) Document Control
 
-
-| Rule ID | Requirement                                                                                  |
-| --------- | ---------------------------------------------------------------------------------------------- |
-| DC-0.1  | **Single source of truth** â€” This file is the canonical universal requirements document |
-| DC-0.2  | **Applies everywhere** â€” These rules apply to ALL calculators, ALL phases, ALL PRs      |
-| DC-0.3  | **Rule IDs are mandatory** â€” Any review comment must reference one or more rule IDs     |
-| DC-0.4  | **Ignore duplicates elsewhere** â€” If older documents conflict, this file governs        |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-DC-001 | This file is the single source of truth for universal governance. | P0 |
+| UR-DC-002 | Rules apply to all calculator/public-route work unless explicitly scoped as excluded. | P0 |
+| UR-DC-003 | Rule IDs are mandatory in reviews, trackers, issues, and compliance evidence. | P1 |
+| UR-DC-004 | If older docs conflict, this file governs. | P0 |
 
 ---
 
-## 1) Product Intent
+## 1) FSM and State Machine (Merged Workflow)
 
+### 1.1 FSM Model
 
-| Rule ID | Requirement                                                                                                                                                      |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| PI-1.1  | **What this project is** â€” A modular, high-performance, SEO-friendly calculator platform answering real-world "How much?" questions using transparent logic |
-| PI-1.2  | **Target users** â€” general users, students/learners, financially conscious users, search users from long-tail intent                                        |
-| PI-1.3  | **Value proposition** â€” One calculator = one focused question; Simple UI; Static explanations build trust + SEO; Fast load times; Modular architecture      |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-001 | Required state flow is `REQ -> BUILD -> TEST -> SEO -> COMPLIANCE -> COMPLETE`. | P0 |
+| UR-FSM-002 | Invalid transitions must stop immediately. | P0 |
+| UR-FSM-003 | One active iteration file per build start event. | P0 |
+| UR-FSM-004 | Max iterations per build session is 25; limit breach must transition to ISSUE. | P0 |
+
+### 1.2 Build Trigger and Session Start
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-010 | BUILD starts only with human trigger: `EVT_START_BUILD REQ-YYYYMMDD-###` unless ADMIN override is active. | P0 |
+| UR-FSM-011 | BUILD must create/use exactly one ITER log and corresponding BUILD row. | P0 |
+| UR-FSM-012 | Build gates include lint/compile sanity before progressing to test execution. | P0 |
+
+### 1.3 Auto-Test Mode
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-020 | After BUILD PASS, required tests must start immediately without extra human confirmation. | P0 |
+| UR-FSM-021 | During BUILD in Auto-Test Mode, writing `testing_tracker.md` is allowed for executed tests. | P0 |
+| UR-FSM-022 | TEST FAIL returns to BUILD; TEST PASS advances to SEO or COMPLIANCE as applicable. | P0 |
+
+### 1.4 SEO and Compliance Gates
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-030 | SEO gate is required for all calculator/public-route-impacting changes. | P0 |
+| UR-FSM-031 | COMPLIANCE PASS requires BUILD PASS, TEST PASS, and SEO PASS/WAIVED/NA per policy. | P0 |
+| UR-FSM-032 | Exactly one compliance row per REQ is required for completion. | P0 |
+| UR-FSM-033 | No merge/release without COMPLIANCE PASS. | P0 |
+
+### 1.5 Allowed Files by State
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-040 | REQ state scope: AGENTS + this file + active requirement row(s). | P0 |
+| UR-FSM-041 | BUILD state scope: REQ scope + build tracker + active iter + affected implementation/test files. | P0 |
+| UR-FSM-042 | TEST state scope: BUILD scope + testing tracker + required test artifacts. | P0 |
+| UR-FSM-043 | SEO state scope: TEST scope + seo tracker + affected SEO artifacts. | P0 |
+| UR-FSM-044 | COMPLIANCE state scope: prior scope + compliance report row update. | P0 |
+
+### 1.6 Deterministic IDs
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FSM-050 | ID patterns are mandatory: `REQ-*`, `BUILD-*`, `TEST-*`, `ITER-*`, `ISSUE-*`; IDs must be unique and never reused. | P0 |
 
 ---
 
 ## 2) Authority and Precedence
 
-
-| Rule ID | Requirement                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------- |
-| AP-2.1  | **This file governs** â€” If anything conflicts, this document wins                                 |
-| AP-2.2  | **Universal vs Phase** â€” Phase requirements add new scope, but must not violate universal rules   |
-| AP-2.3  | **Repo truth beats assumptions** â€” Documentation and reviews must reflect actual repository state |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-AP-001 | AGENTS contract and this document are authoritative law. | P0 |
+| UR-AP-002 | This document governs implementation standards; AGENTS governs operating contract/roles/override semantics. | P0 |
+| UR-AP-003 | Tracker and documentation updates must reflect repository truth. | P1 |
 
 ---
 
-
-## 3) Universal UI Contract
-
-
-## UI & Interaction Principles
-
-
-**See also:** [Calculation Pane Rules — Form Density & Progressive Disclosure](calculation_pane_rules.md)
-
-### Traceability: Universal Requirements ↔ Calculation Pane Rules
-
-The detailed form-density, progressive-disclosure, and layout-stability contract for the Calculation Pane is defined in `calculation_pane_rules.md`. Treat that file as the single source of truth; avoid duplicating or drifting rule text here.
-
-### Form Density & Progressive Disclosure (Calculation Pane)
-
-The public calculation-pane form density and progressive-disclosure expectations are centralized in `requirements/universal-rules/calculation_pane_rules.md`. When reviewing or updating calculation panes, cite and follow that canonical file rather than restating the requirements here; this section remains to highlight the intent and traceability links.
-
-### 3.1 Theme Tokens
-
-
-| Rule ID | Category   | Token                  | Value                      |
-| --------- | ------------ | ------------------------ | ---------------------------- |
-| UI-1.1  | Colors     | Accent                 | `#2563eb`                  |
-| UI-1.1  | Colors     | Accent strong          | `#1d4ed8`                  |
-| UI-1.1  | Colors     | Backgrounds            | `#ffffff`                  |
-| UI-1.1  | Colors     | Borders                | `#e5e7eb`                  |
-| UI-1.1  | Colors     | Text                   | `#111827`                  |
-| UI-1.1  | Colors     | Muted text             | `#6b7280`                  |
-| UI-1.1  | Colors     | Secondary button bg    | `#e2e8f0`                  |
-| UI-1.1  | Colors     | Secondary button text  | `#1f2937`                  |
-| UI-1.1  | Colors     | Neutral pill bg        | `#f3f4f6`                  |
-| UI-1.2  | Typography | Body font              | `Trebuchet MS` stack       |
-| UI-1.2  | Typography | Display font (headers) | `Iowan Old Style` stack    |
-| UI-1.3  | Sizing     | Calculator input font  | `16px`                     |
-| UI-1.3  | Sizing     | Helper/label text      | `14px`                     |
-| UI-1.3  | Sizing     | Result text            | `18px`, `font-weight: 600` |
-
-### 3.2 Components
-
-
-| Rule ID | Requirement                                                                                                                                                        | Severity |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| UI-2.1  | Use shared button classes only (`.calculator-button`). Primary: accent bg, white text, `font-weight: 600`. Secondary: `#e2e8f0` bg, dark text. No custom palettes. | P0       |
-| UI-2.2  | Buttons must not wrap. Enforce`white-space: nowrap`.                                                                                                               | P1       |
-| UI-2.3  | Use shared input classes/tokens. Must have labels. Must validate all input.                                                                                        | P0       |
-| UI-2.4  | Input values limited to**12 characters**. For `type="text"`: use `maxlength="12"`. For `type="number"`: enforce via JS.                                            | P1       |
-| UI-2.5  | **No dropdowns** â€” `select` elements not allowed. Replace with button groups / segmented controls.                                                            | P0       |
-| UI-2.6  | **Button-only calculation trigger** â€” For calculators with a Calculate CTA, recomputation must happen only on CTA click after initial page-load baseline. Input edits must not auto-recalculate. | P0 |
-| UI-2.7  | **Dense multi-input mode contract** â€” For calculators with many inputs and mode switching, requirements must define control type, default mode, field visibility per mode, and dynamic-row layout parity. | P0 |
-
-### 3.2.1 Calculation Trigger Contract (UI-2.6)
-
-- Initial prefilled result state on page load is allowed.
-- After load, editing any input must not change calculation output until the user clicks the calculator's Calculate button.
-- Explanation pane dynamic values are part of the calculation output and must follow the same trigger rule.
-- Mode toggles and add/remove-row controls may change visibility/state, but must not trigger recomputation without Calculate click.
-
-### 3.2.2 Requirement Authoring Contract (UI-2.7)
-
-When a calculator requirement includes high input density, mode switching, or dynamic add/remove rows, the REQ must include an explicit "Calculation Pane Interaction Contract" with:
-- Mode control type and exact labels (`switch` or segmented `button-group`; no dropdown)
-- Default mode at page load
-- Field visibility map per mode (which controls show/hide)
-- Dynamic-row layout parity rule (rows added via Add Item must match initial row layout)
-- Trigger behavior contract (initial prefilled baseline allowed; post-load recomputation only on Calculate click)
-
-### 3.3 Layout Contract
-
-Applies to calculator shell pages only. GTEP pages are excluded per EXCL-1.
-
-
-| Rule ID | Requirement                                                                                                                            | Severity |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| UI-3.1  | **Fixed-height shell** â€” Layout must not exceed Basic Calculator baseline. Constrain to `100vh`.                                  | P0       |
-| UI-3.2  | **Internal scrolling** â€” Left nav, calculation pane, explanation pane must scroll internally.                                     | P0       |
-| UI-3.3  | **No horizontal scroll** â€” Common desktop widths must not introduce horizontal scroll.                                            | P1       |
-| UI-3.4  | **Frameless header + primary nav** â€” No bordered panel or background card.                                                        | P1       |
-| UI-3.5  | **Minimal footer links** â€” Link-only, 15px size, underline, minimal padding.                                                      | P2       |
-| UI-3.6  | **Clean navigation hierarchy** â€” Navigation elements without visual containers, button-only styling for optimal space utilization | P1       |
-
-### 3.4 Scrollbar Styling
-
-
-| Rule ID | Requirement                                                                                                                          | Value                 |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| UI-4.1  | Thumb color                                                                                                                          | `#94a3b8` (slate-400) |
-| UI-4.1  | Thumb hover                                                                                                                          | `#64748b` (slate-500) |
-| UI-4.1  | Track color                                                                                                                          | `#f1f5f9` (slate-100) |
-| UI-4.1  | Width                                                                                                                                | 8px                   |
-| UI-4.2  | **Always visible** â€” Use `overflow-y: scroll` and `scrollbar-gutter: stable`                                                    | P1                    |
-| UI-4.3  | **Styling** â€” WebKit: `::-webkit-scrollbar-*`. Firefox: `scrollbar-width: thin`, `scrollbar-color`. Thumb `border-radius: 4px`. | P2                    |
-
-### 3.5 Toggle Components
-
-
-| Rule ID | Requirement                                                                 | Severity |
-| --------- | ----------------------------------------------------------------------------- | ---------- |
-| UITGL-1 | Use explicit toggles (`switch` or segmented button-group), never dropdowns  | P0       |
-| UITGL-2 | Toggle state must be visually obvious                                       | P1       |
-| UITGL-3 | Toggles must not change page height or shell size                           | P0       |
-| UITGL-4 | Toggle interaction must update all dependent UI (tables, graphs, summaries) | P1       |
-| UITGL-5 | Default toggle state must be defined in the requirement and match implementation | P0    |
-| UITGL-6 | Toggle interactions may change visibility/state but must not recompute before Calculate click | P0 |
-
-### 3.6 Tables (Universal)
-
-**Scope:** ALL tables everywhere â€” calculation panes, explanation panes, amortization, comparison, summary. No exceptions.
-
-#### Table Structure
-
-
-| Rule ID       | Requirement                                                              | Severity |
-| --------------- | -------------------------------------------------------------------------- | ---------- |
-| UTBL-STRUCT-1 | Semantic HTML tables required:`<table>`, `<thead>`, `<tbody>`, `<tfoot>` | P0       |
-| UTBL-STRUCT-2 | Header row required inside`<thead>`                                      | P0       |
-| UTBL-STRUCT-3 | Totals/summaries MUST be in`<tfoot>`, not body rows                      | P1       |
-
-#### Table Borders
-
-
-| Rule ID       | Requirement                                            | Severity |
-| --------------- | -------------------------------------------------------- | ---------- |
-| UTBL-BORDER-1 | Full outer border on all four sides                    | P0       |
-| UTBL-BORDER-2 | Full grid lines between all columns and rows           | P0       |
-| UTBL-BORDER-3 | Grid lines visually consistent (no missing separators) | P1       |
-| UTBL-BORDER-4 | Excel-style layout, not "card" or "list"               | P1       |
-
-#### Table Scroll Behavior
-
-
-| Rule ID       | Requirement                                           | Severity |
-| --------------- | ------------------------------------------------------- | ---------- |
-| UTBL-SCROLL-1 | Every table wrapped in dedicated container            | P0       |
-| UTBL-SCROLL-2 | Vertical and horizontal scrollbars enabled by default | P0       |
-| UTBL-SCROLL-3 | Scrollbars visible even if content fits               | P1       |
-| UTBL-SCROLL-4 | Tables must never expand page height                  | P0       |
-
-#### Table Size & Containment
-
-
-| Rule ID     | Requirement                                         | Severity |
-| ------------- | ----------------------------------------------------- | ---------- |
-| UTBL-SIZE-1 | Tables must NOT control page layout                 | P0       |
-| UTBL-SIZE-2 | Table height constrained by parent pane             | P0       |
-| UTBL-SIZE-3 | Overflow:`overflow-x: scroll`, `overflow-y: scroll` | P1       |
-| UTBL-SIZE-4 | Readable at standard desktop widths                 | P1       |
-
-#### Table Header & Footer
-
-
-| Rule ID       | Requirement                                           | Severity |
-| --------------- | ------------------------------------------------------- | ---------- |
-| UTBL-HEADER-1 | Headers visually distinct from body rows              | P1       |
-| UTBL-HEADER-2 | Headers aligned with columns during horizontal scroll | P1       |
-| UTBL-HEADER-3 | Sticky headers allowed but must not overlap content   | P2       |
-| UTBL-FOOTER-1 | Footer rows (totals) visually distinct from body rows | P1       |
-
-#### Table Text Formatting
-
-
-| Rule ID     | Requirement                                                  | Value/Severity             |
-| ------------- | -------------------------------------------------------------- | ---------------------------- |
-| UTBL-TEXT-1 | No cell wrapping                                             | `white-space: nowrap` / P1 |
-| UTBL-TEXT-2 | Numeric columns right-aligned                                | P1                         |
-| UTBL-TEXT-3 | Concise, unambiguous headers                                 | P1                         |
-| UTBL-TEXT-4 | Body text 14-15px, headers 13-14px                           | P2                         |
-| UTBL-TEXT-5 | **No currency symbols** in cells â€” establish in headers | P1                         |
-| UTBL-TEXT-6 | Consistent decimal precision, padding`8px 12px` min          | P2                         |
-
-#### Table Visual Consistency
-
-
-| Rule ID      | Requirement                                     | Severity |
-| -------------- | ------------------------------------------------- | ---------- |
-| UTBL-STYLE-1 | All tables use same base styling                | P1       |
-| UTBL-STYLE-2 | No custom border styles outside universal theme | P0       |
-| UTBL-STYLE-3 | Match other components visually                 | P2       |
-
-#### Table Forbidden
-
-
-| Rule ID       | Forbidden Item                           | Severity |
-| --------------- | ------------------------------------------ | ---------- |
-| UTBL-FORBID-1 | List-style tables (rows without borders) | P0       |
-| UTBL-FORBID-2 | Plain text block tables                  | P0       |
-| UTBL-FORBID-3 | Tables relying on page scrolling         | P0       |
-| UTBL-FORBID-4 | Borderless data tables                   | P0       |
-
-#### Table Accessibility
-
-
-| Rule ID       | Requirement                                          | Severity |
-| --------------- | ------------------------------------------------------ | ---------- |
-| UTBL-ACCESS-1 | Keyboard-scrollable                                  | P1       |
-| UTBL-ACCESS-2 | Screen readers identify headers/data cells correctly | P1       |
-
-#### Table Pass/Fail Criteria
-
-
-| Condition                               | Result |
-| ----------------------------------------- | -------- |
-| Borders missing on any side             | FAIL   |
-| Grid lines missing between rows/columns | FAIL   |
-| Scrollbars not visible by default       | FAIL   |
-| Table expands page height               | FAIL   |
-| Headers/totals mixed into body rows     | FAIL   |
-| All UTBL-* rules pass                   | PASS   |
-
-### 3.7 Graphs and Visualizations
-
-
-| Rule ID   | Requirement                                       | Severity |
-| ----------- | --------------------------------------------------- | ---------- |
-| UIGRAPH-1 | Fixed-height container                            | P0       |
-| UIGRAPH-2 | Must not increase page height                     | P0       |
-| UIGRAPH-3 | Reactive to state changes (inputs, toggles)       | P1       |
-| UIGRAPH-4 | Horizontal scrolling allowed (`overflow-x: auto`) | P2       |
-| UIGRAPH-5 | X-axis and Y-axis labels required                 | P1       |
-| UIGRAPH-6 | Axis value markers at meaningful intervals        | P1       |
-| UIGRAPH-7 | Legend required for multiple data series          | P1       |
-
-### 3.8 Content Placement Rules
-
-
-| Rule ID   | Requirement                                                                                                                                                        | Severity |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| UIPLACE-1 | **Tables in Explanation Pane** â€” All data tables (results, comparisons, amortization) must be placed in Explanation Pane, never in Calculation Pane           | P0       |
-| UIPLACE-2 | **Graphs in Explanation Pane** â€” All graphs, charts, visualizations must be placed in Explanation Pane, never in Calculation Pane                             | P0       |
-| UIPLACE-3 | **Calculation Pane for Inputs/Results Only** â€” Calculation Pane limited to input fields, buttons, and simple result displays (single values, brief summaries) | P0       |
-| UIPLACE-4 | **Complex Output Segregation** â€” Multi-row tables, step-by-step breakdowns, detailed explanations belong in Explanation Pane                                  | P1       |
-| UIGRAPH-3 | Reactive to state changes (inputs, toggles)                                                                                                                        | P1       |
-| UIGRAPH-4 | Horizontal scrolling allowed (`overflow-x: auto`)                                                                                                                  | P2       |
-| UIGRAPH-5 | X-axis and Y-axis labels required                                                                                                                                  | P1       |
-| UIGRAPH-6 | Axis value markers at meaningful intervals                                                                                                                         | P1       |
-| UIGRAPH-7 | Legend required for multiple data series                                                                                                                           | P1       |
-
----
-
-## Navigation Architecture (Authoritative)
-
-- Calculator pages MUST be implemented as Multi-Page Application (MPA).
-- Calculator navigation MUST use standard `<a href>` links.
-- Full page reloads are REQUIRED when switching calculators.
-- SPA-style routing (hash routing, history.pushState, dynamic content swapping)
-  is NOT permitted for calculators.
-- Each calculator MUST be a standalone HTML document with its own ads,
-  metadata, and explanation content.
-
-### 3.9 Left Navigation Styling
-
-**Scope:** Applies to all calculator navigation items in the left navigation pane for Home Loan, Credit Cards, Auto Loans, and Time & Date categories.
-
-#### 3.9.1 Basic Navigation Styling
+## 3) MPA Navigation and Architecture
 
 | Rule ID | Requirement | Severity |
-| --------- | ----------------------------------------------------------------------------- | ---------- |
-| UI-NAV-1 | Inset border must be 2px thickness (increased from 1px) | P1 |
-| UI-NAV-2 | Left accent bar must be 4px width (increased from 3px) | P1 |
-| UI-NAV-3 | Hover effect must show 4px left border with stronger blue color | P1 |
-| UI-NAV-4 | Border opacity must be increased for better visibility | P1 |
-| UI-NAV-5 | Active state must use 2px border with 4px white left border | P1 |
+| --- | --- | --- |
+| UR-NAV-001 | Calculator navigation must use static `<a href>` links and full page reloads. | P0 |
+| UR-NAV-002 | SPA routing for calculator navigation is not allowed. | P0 |
+| UR-NAV-003 | Navigation hierarchy must align with `requirements/site-structure/calculator-hierarchy.md`. | P0 |
+| UR-NAV-004 | Live calculators must exist in `public/config/navigation.json` for nav visibility. | P0 |
+| UR-NAV-005 | Layout shell owns shared regions; calculator-specific compute logic must stay in calculator modules. | P0 |
+| UR-NAV-006 | Shared utility logic belongs in `/public/assets/js/core/`; avoid duplication in route modules. | P1 |
 
-**Implementation Details:**
-- Default state: `border: 2px solid rgba(102, 126, 234, 0.3)` with `border-left: 4px solid rgba(102, 126, 234, 0.5)`
-- Hover state: `border-left: 4px solid rgba(102, 126, 234, 0.9)` with subtle background tint
-- Active state: `border: 2px solid var(--accent-strong)` with `border-left: 4px solid #ffffff`
-- Smooth transitions on all border and background changes (0.15s ease)
-
-**Target Categories:** `home-loan`, `credit-cards`, `auto-loans`, `time-and-date`
-
-#### 3.9.2 Advanced Navigation Effects (Universal - All Categories)
-
-**Scope:** Applies to all navigation items in the left navigation pane across all calculator categories.
+### 3.1 Excluded Page Types (GTEP)
 
 | Rule ID | Requirement | Severity |
-| ---------- | ------------------------------------------------------------------------------------- | ---------- |
-| UI-NAV-6 | Edge glow animation must be present on left navigation sidebar right edge | P1 |
-| UI-NAV-7 | Ripple effect must trigger on navigation item click with 600ms duration | P1 |
-| UI-NAV-8 | Active navigation items must have animated gradient background (4s cycle) | P1 |
-| UI-NAV-9 | Active navigation items must have pulsing glow effect behind element (2s cycle) | P1 |
-| UI-NAV-10 | Hover state must show multi-layer shadows (3 layers with varying blur/opacity) | P1 |
-| UI-NAV-11 | Hover state must include 5px left border and 2px translateX transform | P1 |
-| UI-NAV-12 | All animations must respect prefers-reduced-motion for accessibility | P0 |
-| UI-NAV-13 | Expandable subcategory labels must remain fully visible (no ellipsis clipping) | P0 |
-| UI-NAV-14 | Expandable subcategory headers must support multi-line wrapping for long names | P1 |
-| UI-NAV-15 | Expand/collapse indicators (`+` / `-` or equivalent) must stay visible and aligned | P1 |
-| UI-NAV-16 | Expandable subcategory controls must use readable, high-contrast text sizing | P1 |
-| UI-NAV-17 | Right-side calculator search must return every live calculator and allow direct navigation | P0 |
-
-**Edge Glow Animation (UI-NAV-6):**
-- Position: Absolute positioned `::before` pseudo-element on `.left-nav`
-- Size: 2px width, 100% height, positioned at right edge
-- Gradient: Vertical gradient from transparent → blue (40%/60% opacity) → transparent
-- Animation: `edgeGlow` 3s ease-in-out infinite (opacity 0.3 → 1 → 0.3)
-- Purpose: Subtle visual indicator of navigation pane boundary
-
-**Ripple Effect (UI-NAV-7):**
-- Structure: `::after` pseudo-element on `.nav-item` with circular expansion
-- Trigger: JavaScript click event adds `.ripple` class
-- Animation: Width/height 0 → 300%, opacity 1 → 0 over 600ms
-- Background: `rgba(102, 126, 234, 0.3)`
-- Cleanup: Class removed after 600ms via setTimeout
-
-**Animated Gradient Background (UI-NAV-8):**
-- Active state gradient: `linear-gradient(135deg, rgba(102,126,234,0.9) 0%, rgba(79,70,229,0.95) 50%, rgba(102,126,234,0.9) 100%)`
-- Background size: `200% 200%` for smooth animation
-- Animation: `gradientShift` 4s ease infinite (background-position shift)
-- Enhanced shadow: Multi-layer box-shadow with glow effect
-
-**Pulsing Glow Effect (UI-NAV-9):**
-- Position: `::before` pseudo-element on `.nav-item.is-active` with `z-index: -1`
-- Size: Inset -2px (slightly larger than parent element)
-- Background: Gradient matching active state colors
-- Filter: `blur(8px)` for glow effect
-- Animation: `pulse` 2s ease-in-out infinite (opacity 0.4 → 0.8, scale 1 → 1.05)
-
-**Multi-Layer Hover Shadows (UI-NAV-10):**
-- Layer 1: `0 2px 4px rgba(0, 0, 0, 0.05)` (subtle depth)
-- Layer 2: `0 4px 8px rgba(102, 126, 234, 0.15)` (accent color diffusion)
-- Layer 3: `0 8px 16px rgba(102, 126, 234, 0.1)` (outer glow)
-- Background: `rgba(102, 126, 234, 0.08)` subtle tint on hover
-
-**Enhanced Hover Transform (UI-NAV-11):**
-- Border-left: 5px (increased from 4px) with `rgba(102, 126, 234, 0.7)`
-- Transform: `translateX(2px)` for subtle forward motion
-- Applies only to non-active items (`:hover:not(.is-active)`)
-
-**Accessibility Compliance (UI-NAV-12):**
-- All animations MUST be disabled when `prefers-reduced-motion: reduce` is detected
-- Affected elements: `.left-nav::before`, `.nav-item.is-active`, `.nav-item.is-active::before`
-- Fallback: Static styles maintained, only animation removed
-
-**Expandable Subcategory Readability (UI-NAV-13 to UI-NAV-16):**
-- Scope: ALL expandable left-nav subcategory headers across present and future calculator domains
-- Label text must not be truncated via `text-overflow: ellipsis` when expanded navigation is shown
-- Header labels must permit wrapping (at least up to two lines) for long category names
-- Indicator control must remain visible while labels wrap (no overlap, clipping, or hidden state)
-- Text sizing baseline for expandable subcategory headers should be at least `12px`, with clear contrast against background
-
-**Locked Visual Spec (Mandatory, No Guesswork):**
-- Applies to expandable Finance subcategory cards and any future equivalent pattern in other domains
-- Card container background: `linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.2) 100%)`
-- Card container border: `1px solid rgba(148, 163, 184, 0.28)`
-- Card container radius: `14px`
-- Card container padding: `10px 10px 8px`
-- Card container internal gap: `10px`
-- Toggle button background: `linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(59, 130, 246, 0.12))`
-- Toggle button hover background: `linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.16))`
-- Toggle button border: `1px solid rgba(96, 165, 250, 0.35)`
-- Toggle button radius: `10px`
-- Toggle button padding: `8px 10px`
-- Toggle label color: `#e2e8f0`
-- Toggle label font family: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif` (inherited from `--font-body`)
-- Toggle label font size: `12px`
-- Toggle label font weight: `700`
-- Toggle label letter spacing: `0.2px`
-- Toggle label transform: `none` (must not force uppercase)
-- Toggle label line-height: `1.25`
-- Toggle label clipping policy: `white-space: normal; overflow: visible; text-overflow: clip; padding-right: 6px`
-- Indicator (`+` / `-`) size: `22px` by `22px`
-- Indicator radius: `999px`
-- Indicator background: `rgba(15, 23, 42, 0.85)`
-- Indicator border: `1px solid rgba(148, 163, 184, 0.4)`
-- Indicator color: `#f8fafc`
-- Indicator font size: `14px`
-- Subcategory item stack gap: `7px`
-- Subcategory item background: `rgba(15, 23, 42, 0.45)`
-- Subcategory item border: `1px solid rgba(148, 163, 184, 0.25)`
-- Subcategory item left accent: `3px solid rgba(96, 165, 250, 0.55)`
-- Subcategory item radius: `10px`
-- Subcategory item font size: `13px`
-- Subcategory item hover border: `rgba(96, 165, 250, 0.55)`
-- Subcategory item hover left accent: `rgba(125, 211, 252, 0.95)`
-- Subcategory item hover background: `rgba(30, 64, 175, 0.3)`
-- Subcategory item hover shadow: `0 4px 10px rgba(30, 64, 175, 0.18)`
-- Active item border: `1px solid rgba(147, 197, 253, 0.9)`
-- Active item left accent: `3px solid #f8fafc`
-- Active item shadow: `0 8px 14px rgba(37, 99, 235, 0.26), 0 0 16px rgba(59, 130, 246, 0.3)`
-
-**Right-Side Calculator Search Coverage (UI-NAV-17):**
-- Scope: Right-hand global/header search control used to find calculators
-- Every live calculator must be searchable by name through this control
-- Search dataset source must be the same live navigation source of truth (`public/config/navigation.json`) to prevent drift
-- Selecting a result must navigate directly to that calculator URL in one action
-- Missing any live calculator in right-side search is a hard compliance failure
-
-**Keyframe Definitions:**
-```css
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-@keyframes edgeGlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
-}
-```
-
-**JavaScript Requirements:**
-- File: `/public/assets/js/core/mpa-nav.js`
-- Event: Click listener on all `.nav-item` elements
-- Action: Add `.ripple` class, remove after 600ms
-- Scope: Applies to all navigation items universally
+| --- | --- | --- |
+| UR-NAV-020 | GTEP pages are standalone HTML and must not use calculator shell panes. | P0 |
+| UR-NAV-021 | GTEP pages must not load calculator-specific JS modules. | P0 |
+| UR-NAV-022 | GTEP pages must remain crawlable with lightweight header/footer patterns. | P0 |
 
 ---
 
-## 4) Universal Layout and Architecture Boundaries
+## 4) Theme and UI Core
 
-### EXCL-1 Excluded Page Types (P0)
+### 4.1 Theme Tokens and Defaults
 
-| Rule ID  | Requirement                                                                                                  | Severity |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ---------- |
-| EXCL-1.1 | General Terms Excluded Pages (GTEP) must not use calculator shell layout regions (top nav, left nav, calc/explanation panes, ads). | P0       |
-| EXCL-1.2 | GTEP pages must be plain HTML-first and crawlable.                                                            | P0       |
-| EXCL-1.3 | GTEP pages must have internal scrolling and must not depend on calculator navigation state.                  | P0       |
-| EXCL-1.4 | GTEP pages must not load calculator-specific JS modules.                                                      | P0       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-UI-001 | Premium-dark is the global default theme for shell/content/calculator surfaces. | P0 |
+| UR-UI-002 | Shared theme tokens are mandatory; ad-hoc route palettes are not allowed. | P0 |
+| UR-UI-003 | Theme is loaded once globally via shared base stylesheet; per-page duplicate theme link tags are disallowed. | P0 |
 
-The UI rules below describe the **calculator container framework** for calculator pages only.
-GTEP pages are explicitly excluded per EXCL-1 and must not be forced into the calculator shell.
+### 4.2 Component and Input Rules
 
-### 4.1 Page Regions
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-UI-010 | Shared `.calculator-button` styles are mandatory for primary/secondary actions. | P0 |
+| UR-UI-011 | Inputs must have labels and deterministic validation. | P0 |
+| UR-UI-012 | Control dropdowns (`<select>`) are disallowed for calculator mode interactions. | P0 |
+| UR-UI-013 | Input values are constrained to 12 characters (via `maxlength` or JS validation by input type). | P1 |
 
+### 4.3 Trigger and Dense-Form Contract
 
-| Rule ID  | Region                      | Purpose                    |
-| ---------- | ----------------------------- | ---------------------------- |
-| ARCH-1.1 | Global Header               | Site-wide header           |
-| ARCH-1.1 | Primary Category Navigation | Domain switching           |
-| ARCH-1.1 | Left Navigation Pane        | Calculator selector        |
-| ARCH-1.1 | Main Calculation Pane       | Calculator inputs/results  |
-| ARCH-1.1 | Explanation Pane            | Static explanation content |
-| ARCH-1.1 | Right Monetization Panes    | Ads (stable containers)    |
-| ARCH-1.1 | Footer                      | Site-wide footer           |
-
-> **Header/Footer modules** — For the full rules that govern the global header and footer regions (rule IDs `HDR-*` and `FTR-*`), see `requirements/universal-rules/HEADER_RULES.md` and `requirements/universal-rules/FOOTER_RULES.md`.
-
-### 4.1.1 Pane Width Distribution (Universal Requirement)
-
-
-| Rule ID  | Requirement                                                                                                                                    | Severity |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
-| ARCH-1.2 | **Calculation Pane width reduction** â€” Main Calculation Pane must reduce width by 25% from its right edge                                 | P0       |
-| ARCH-1.3 | **Explanation Pane width increase** â€” Explanation Pane must increase width by 25% to occupy the space released by Calculation Pane        | P0       |
-| ARCH-1.4 | **Width transfer direction** â€” Width reduction must occur from Calculation Pane's right edge toward left; Explanation Pane grows leftward | P0       |
-| ARCH-1.5 | **Total width preserved** â€” Combined width of Calculation Pane + Explanation Pane must remain unchanged; only the split ratio changes     | P0       |
-| ARCH-1.6 | **Responsive behavior** â€” Width ratios must be maintained across all supported viewport widths                                            | P1       |
-| ARCH-1.9 | **Horizontal layout preservation** â€” No horizontal spacing or sizing changes during vertical optimizations                                | P0       |
-
-#### Pane Width Specification
-
-
-| Pane                  | Previous Ratio | New Ratio | Change          |
-| ----------------------- | ---------------- | ----------- | ----------------- |
-| Main Calculation Pane | 50%            | 37.5%     | -25% (relative) |
-| Explanation Pane      | 50%            | 62.5%     | +25% (relative) |
-
-#### Implementation Notes
-
-
-| Aspect                 | Requirement                                                       |
-| ------------------------ | ------------------------------------------------------------------- |
-| CSS Implementation     | Use`flex-basis`, `width`, or CSS Grid `fr` units to achieve ratio |
-| Breakpoint consistency | Ratio must apply at desktop widths (â‰¥1024px)                 |
-| No shell height change | Width redistribution must not affect page shell height (UI-3.1)   |
-| Internal scrolling     | Both panes must continue to scroll internally (UI-3.2)            |
-
-> **Header & footer details** — The header navigation styling and footer link layout are now governed by `requirements/universal-rules/HEADER_RULES.md` (`HDR-*` rules) and `requirements/universal-rules/FOOTER_RULES.md` (`FTR-*` rules). Those documents are the only authoritative sources for header/footer behavior and replace the previous ARCH-1.7/ARCH-1.8 content.
-
-### 4.2 Responsibility Boundaries
-
-
-| Rule ID  | Boundary          | Requirement                                                      | Severity |
-| ---------- | ------------------- | ------------------------------------------------------------------ | ---------- |
-| ARCH-2.1 | Layout Shell      | Contains header/footer/panes/ads. No calculator-specific logic.  | P0       |
-| ARCH-2.2 | Navigation        | Config-driven. No hard-coded calculator lists.                   | P0       |
-| ARCH-2.3 | Calculator Module | Owns inputs/compute/results/explanation.                         | P1       |
-| ARCH-2.4 | Shared Utilities  | Live in`/public/assets/js/core/`. No duplication in calculators. | P1       |
-| ARCH-2.5 | Ads Isolation     | Load async, no layout shift (CLS).                               | P1       |
-
-### 4.3 Navigation and Switching
-
-
-| Rule ID  | Requirement                                                                                                | Severity |
-| ---------- | ------------------------------------------------------------------------------------------------------------ | ---------- |
-| ARCH-3.1 | **Deep-linking** â€” Each calculator addressable by URL. Switching updates URL, title, meta, canonical. | P0       |
-| ARCH-3.2 | **One active calculator** â€” Only active calculator's UI + logic runs.                                 | P0       |
-
-### 4.4 Explanation Pane Rules
-
-
-| Rule ID          | Requirement                                                                            | Severity |
-| ------------------ | ---------------------------------------------------------------------------------------- | ---------- |
-| ARCH-4.1         | **Crawlable** â€” Explanation must exist as HTML, not injected. Use semantic H2/H3. | P0       |
-| ARCH-4.2         | **Multi-mode** â€” Show only active mode explanation.                               | P1       |
-| UI-EXP-CLARIFY-1 | Text, tables, graphs allowed but never change shell height.                            | P0       |
-
-### 4.5 Universal Domain Navigation
-
-
-| Rule ID     | Requirement                                                                                      | Severity |
-| ------------- | -------------------------------------------------------------------------------------------------- | ---------- |
-| UNAV-ROOT-1 | Domain buttons required (Math, Loans, Finance, etc.)                                             | P0       |
-| UNAV-ROOT-2 | Only one domain active at a time                                                                 | P1       |
-| UNAV-ROOT-3 | Domain activation replaces left nav, resets scroll, preserves shell height, no full reload       | P0       |
-| UNAV-ROOT-4 | No cross-domain navigation leakage                                                               | P1       |
-| UNAV-HIER-1 | Navigation matches`requirements/universal/calculator-hierarchy.md`                               | P0       |
-| UNAV-HIER-2 | Empty sections still render as headings                                                          | P2       |
-| UNAV-HIER-3 | Active calculators must be present in`public/config/navigation.json` to be visible in navigation | P0       |
-
-### 4.6 Navigation Scalability
-
-
-| Rule ID      | Constraint    | Limit                               | Severity |
-| -------------- | --------------- | ------------------------------------- | ---------- |
-| UNAV-SCALE-1 | Flat list     | Max 15 items                        | P1       |
-| UNAV-SCALE-2 | Category size | Max 25 calculators                  | P1       |
-| UNAV-SCALE-3 | Subdivision   | Required if > 25 calculators        | P1       |
-| UNAV-SCALE-4 | Search        | Required if domain > 30 calculators | P1       |
-
-### 4.7 Navigation Search
-
-
-| Rule ID       | Requirement                         | Severity |
-| --------------- | ------------------------------------- | ---------- |
-| UNAV-SEARCH-1 | Visible at top of navigation pane   | P1       |
-| UNAV-SEARCH-2 | Real-time filtering                 | P1       |
-| UNAV-SEARCH-3 | No auto-navigation                  | P1       |
-| UNAV-SEARCH-4 | Clear restores full navigation tree | P1       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-UI-020 | Button-only calculate behavior is mandatory after page-load baseline for calculators with explicit Calculate CTA. | P0 |
+| UR-UI-021 | Input edits/mode toggles/add-remove rows may change state/visibility but must not recompute before Calculate click. | P0 |
+| UR-UI-022 | Dense/multi-mode calculators require explicit mode control type, default mode, visibility mapping, and dynamic-row parity. | P0 |
 
 ---
 
-## 5) Folder Structure Contract
+## 5) Calculation Pane Contract
 
-### 5.1 Deploy Root
-
-
-| Rule ID | Requirement                                                        | Severity |
-| --------- | -------------------------------------------------------------------- | ---------- |
-| FS-1.1  | `/public` is deploy root. Everything served lives under `/public`. | P0       |
-
-### 5.2 Required Folders
-
-
-| Rule ID | Folder                       | Purpose                                                    | Severity |
-| --------- | ------------------------------ | ------------------------------------------------------------ | ---------- |
-| FS-2.1  | `/public/layout/`            | Shared page shell fragments. No calculator-specific logic. | P0       |
-| FS-2.2  | `/public/assets/`            | Site-wide assets                                           | P1       |
-| FS-2.2  | `/public/assets/css/`        | Shared CSS (base/layout/calculator UI)                     | P1       |
-| FS-2.2  | `/public/assets/js/core/`    | Shared JS utilities                                        | P1       |
-| FS-2.2  | `/public/assets/js/vendors/` | Third-party libs (versioned, load only if needed)          | P2       |
-| FS-2.3  | `/public/config/`            | Config-driven navigation (`navigation.json`)               | P0       |
-
-### 5.3 Calculator Folders
-
-
-| Rule ID | Requirement                                                                                                      | Severity |
-| --------- | ------------------------------------------------------------------------------------------------------------------ | ---------- |
-| FS-3.1  | Structure:`/public/calculators/<category>/<calculator-slug>/` with `index.html`, `module.js`, `explanation.html` | P0       |
-| FS-3.2  | Calculator folders must not import each other. No circular deps.                                                 | P0       |
-| FS-3.3  | Folder slugs:**lowercase**, **hyphen-separated** (e.g., `credit-card-payoff`)                                    | P1       |
-
-### 5.4 Indexing Files
-
-
-| Rule ID | Requirement                                                                              | Severity |
-| --------- | ------------------------------------------------------------------------------------------ | ---------- |
-| FS-4.1  | `/public/calculators/index.html` links to all active calculators                         | P1       |
-| FS-4.2  | `sitemap.xml` lists every active calculator URL. `robots.txt` doesn't block calculators. | P0       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-CALC-001 | Core required inputs must be accessible without mandatory pane scroll. | P0 |
+| UR-CALC-002 | Optional inputs must not block primary calculation completion. | P0 |
+| UR-CALC-003 | Progressive disclosure is required when input density exceeds comfortable first-view bounds. | P0 |
+| UR-CALC-004 | Density optimizations must preserve clarity, labels, and touch usability. | P0 |
+| UR-CALC-005 | Interaction must not cause unstable row shifts in core input region. | P0 |
+| UR-CALC-006 | Dynamic Add/Remove rows must preserve initial row structure parity. | P1 |
+| UR-CALC-007 | Calculation pane updates must satisfy ISS layout stability requirements when triggered by change type. | P1 |
 
 ---
 
-## 6) Coding Standards
+## 6) Explanation Pane Contract
 
-### 6.1 JavaScript
+### 6.1 Mandatory Structure
 
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-EXP-001 | Explanation section order is fixed: H2 Summary, H3 Scenario Summary, H3 Results Table, H3 Explanation, H3 FAQ. | P0 |
+| UR-EXP-002 | Only one H2 in explanation pane; all other pane section headings are H3. | P0 |
+| UR-EXP-003 | No extra heading levels/sections inside explanation pane unless explicitly approved by requirement. | P0 |
 
-| Rule ID | Requirement                                                                  | Severity |
-| --------- | ------------------------------------------------------------------------------ | ---------- |
-| CS-1.1  | Plain JavaScript (no TypeScript assumptions)                                 | P1       |
-| CS-1.2  | No duplicated utility logic â€” shared logic in`/public/assets/js/core/`  | P1       |
-| CS-1.3  | Validate all user inputs (empty, divide-by-zero)                             | P0       |
-| CS-1.4  | Safe error handling â€” no unhandled exceptions, return clear error state | P0       |
-| CS-1.5  | Avoid globals â€” scope to modules                                        | P1       |
+### 6.2 Dynamic Content and FAQ
 
-### 6.2 HTML
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-EXP-010 | Summary must be dynamic and reference meaningful inputs and outputs. | P0 |
+| UR-EXP-011 | Scenario and result tables must be output-driven, not static placeholders. | P0 |
+| UR-EXP-012 | Exactly 10 FAQs are required per calculator route unless requirement explicitly scopes otherwise. | P0 |
+| UR-EXP-013 | FAQ layout and text parity requirements must align with schema and visible content. | P0 |
 
+### 6.3 Table Baseline
 
-| Rule ID | Requirement                                                                 | Severity |
-| --------- | ----------------------------------------------------------------------------- | ---------- |
-| CS-2.1  | Unique`<title>`, unique meta description, exactly one `<h1>` per calculator | P0       |
-| CS-2.2  | Explanation is static HTML (crawlable, not injected)                        | P0       |
-| CS-2.3  | Semantic headings (H2/H3) in explanation pane                               | P1       |
-| CS-2.4  | Every input has a label for accessibility                                   | P1       |
-
-### 6.3 CSS
-
-
-| Rule ID | Requirement                                                                            | Severity |
-| --------- | ---------------------------------------------------------------------------------------- | ---------- |
-| CS-3.1  | Layout CSS in shared layout stylesheet. Calculator UI in shared calculator stylesheet. | P1       |
-| CS-3.2  | No inline styles in calculator HTML                                                    | P1       |
-| CS-3.3  | No duplicated CSS rules across calculator folders                                      | P2       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-EXP-020 | Explanation tables must use semantic HTML (`table/thead/tbody/tfoot`) and full grid consistency. | P0 |
+| UR-EXP-021 | Table styling must remain within shared theme/table standards; route-specific conflicting border systems are disallowed. | P0 |
 
 ---
 
-## 7) Testing Standards
+## 7) SEO Governance (P1-P5)
 
+### 7.1 P1 Critical SEO
 
-| Rule ID  | Requirement                                                                                                                                                                          | Severity |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| TEST-1.1 | All new calculator compute logic must have unit tests                                                                                                                                | P0       |
-| TEST-1.2 | Minimum**80% coverage** for new compute logic                                                                                                                                        | P1       |
-| TEST-1.3 | **ISS-001 regression check** â€” Verify no layout shifts, scrollbars visible, no navigation ping-pong                                                                             | P1       |
-| TEST-1.4 | Dependency/browser installs are one-time per environment; do not rerun`pnpm install` or `npx playwright install chromium` before every test run unless dependencies or cache changed | P1       |
-| TEST-1.5 | **Screenshot optimization** â€” Screenshots only on failure (`screenshot: 'only-on-failure'`). No routine visual regression screenshots in development.                           | P1       |
-| TEST-1.6 | **Trace optimization** â€” Traces only on failure (`trace: 'retain-on-failure'`). No routine trace collection during passing tests.                                               | P1       |
-| TEST-1.7 | **Resource efficiency** â€” Test execution should prioritize functional validation over visual artifact generation                                                                | P1       |
-| TEST-1.8 | **FAQ schema isolation guard (mandatory for calculator builds)** â€” Calculator routes must not receive global FAQ schema; exactly one `FAQPage` allowed per URL                 | P0       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-SEO-001 | Unique title (35-61 chars proxy), unique meta description (110-165 chars proxy), exactly one H1, canonical, viewport, lang, robots are mandatory. | P0 |
+| UR-SEO-002 | Robots tag must exist in static HTML source: `<meta name="robots" content="index,follow">`. | P0 |
+| UR-SEO-003 | Canonical must be absolute and use production canonical domain. | P0 |
 
-### Minimal Required Tests by Change Type
+### 7.2 P2 Structured Data and Social
 
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-SEO-010 | Calculator pages require WebPage + SoftwareApplication + BreadcrumbList + FAQPage schema as applicable. | P0 |
+| UR-SEO-011 | Three-place schema check is mandatory: static HTML JSON-LD, module metadata parity, and visible FAQ parity. | P0 |
+| UR-SEO-012 | Missing required schema type, parity mismatch, or invalid JSON-LD is a FAIL. | P0 |
 
-| Change Type                                 | Required Tests (per TEST-1.*)                                                                                                          | Optional/Deferred Tests                                  |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| Any change scope (general rule)             | Run E2E only for calculators you changed; untouched calculators do not need E2E unless it is a full release sweep                      | Full-sweep E2E is limited to 1 calculator per category   |
-| Calculator compute logic change             | Unit tests for compute logic (`{PREFIX}-TEST-U-*`) per `TEST-1.1`; meet `TEST-1.2` 80% coverage                                        | E2E only if UI/flow also changed                         |
-| Calculator UI/flow change                   | `*-TEST-E2E-LOAD`, `*-TEST-E2E-WORKFLOW` for affected calculators                                                                      | `*-TEST-E2E-NAV`, `*-TEST-E2E-MOBILE`, `*-TEST-E2E-A11Y` |
-| Graph/table change (calculator-scoped only) | Unit/integration test validating data mapping; DOM structure check for table semantics (thead/tbody/tfoot) or graph container presence | `*-TEST-E2E-WORKFLOW` only if user interaction changed   |
-| Layout/CSS/shared shell change              | `ISS-001` regression E2E check (no layout shifts, scrollbars visible, no nav ping-pong)                                                | Full E2E suite                                           |
-| Navigation/config change                    | `*-TEST-E2E-NAV` for affected domain + `ISS-001`                                                                                       | Full E2E suite                                           |
-| Accessibility-only change                   | `*-TEST-E2E-A11Y` for affected calculators                                                                                             | Full E2E suite                                           |
-| New calculator page                         | Unit + calculator E2E + calculator SEO E2E + FAQ schema isolation guard unit test (`npx vitest run tests/core/page-metadata-schema-guard.test.js`)                                | None                                                     |
-| No UI changes (pure logic)                  | Unit tests only (`TEST-1.1`, `TEST-1.2`)                                                                                               | E2E skip                                                 |
+### 7.3 P3/P4/P5 Governance
 
-Note: Full release sweep = run the full unit test suite plus E2E for only 1 representative calculator per category (not every calculator).
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-SEO-020 | P3 performance checks must be attempted for applicable changes; WAIVED allowed only under documented policy evidence. | P1 |
+| UR-SEO-021 | P4 accessibility/SEO overlap checks are mandatory where matrix requires. | P1 |
+| UR-SEO-022 | P5 infrastructure checks include sitemap/robots/canonical domain governance and redirect hygiene. | P0 |
 
----
+### 7.4 Deterministic PASS/FAIL
 
-## 8) SEO and URL Rules
-
-For Search Engine Optimization Rules (or) SEO and URL Rules, go and read SEO_RULES.MD file.Thats is Single Source of Truth
-
-## 9) Inventory and Documentation Accuracy
-
-
-| Rule ID | Requirement                                                                                                                       | Severity |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| DOC-1.1 | Documentation must list all calculator folders under`/public/calculators/`                                                        | P0       |
-| DOC-1.2 | Every calculator labeled: Active, Work-in-progress, or Deprecated                                                                 | P1       |
-| DOC-1.3 | No silent omission â€” unlisted folders must be acknowledged with status                                                       | P1       |
-| DOC-1.4 | Calculators are considered**live/visible** only when added to `public/config/navigation.json` and `public/calculators/index.html` | P0       |
-
-### 9.1 Sitemap Coverage (Build-Blocking)
-
-
-| Rule ID       | Requirement                                                                                                                                                   | Severity |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| DOC-SITEMAP-1 | **Mandatory sitemap coverage** â€” All live calculators MUST appear in the human-readable `/sitemap` page                                                  | P0       |
-| DOC-SITEMAP-2 | **Live calculator definition** â€” A calculator is LIVE if it appears in navigation or is directly accessible via a public URL                             | P0       |
-| DOC-SITEMAP-3 | **Sitemap source of truth** â€” Sitemap content must be derived from the same navigation source-of-truth (no hardcoded lists)                              | P0       |
-| DOC-SITEMAP-4 | **Build/compliance hard fail** â€” If any LIVE calculator is missing from the sitemap: BUILD = FAIL, TEST = FAIL, COMPLIANCE = FAIL. No waivers by default | P0       |
-| DOC-SITEMAP-5 | **REQ acceptance criterion** â€” Any new calculator REQ must include: “Calculator appears in the Sitemap page.” Missing this AC invalidates the REQ      | P0       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-SEO-030 | Required priority failure or missing required evidence is overall SEO FAIL. | P0 |
+| UR-SEO-031 | SEO results must be recorded in `requirements/compliance/seo_tracker.md`. | P0 |
 
 ---
 
-## 10) PR and Phase Workflow
+## 8) Testing Governance
 
-### 10.1 Required Reading Order
+### 8.1 Canonical Suites and Commands
 
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-TEST-001 | Unit tests: `npm run test`. | P0 |
+| UR-TEST-002 | E2E tests: `npm run test:e2e` (scope by affected routes). | P0 |
+| UR-TEST-003 | ISS-001 stability: `npm run test:iss001` when layout/shell impacted. | P1 |
+| UR-TEST-004 | FAQ schema guard must run for calculator builds where applicable. | P0 |
 
-| Rule ID | Actor  | Must Read                                                                              |
-| --------- | -------- | ---------------------------------------------------------------------------------------- |
-| WF-1.1  | Claude | 1. This Universal Requirements file 2. Phase tracker (`INDEX.MD`) 3. Active phase file |
-| WF-1.2  | Codex  | Same as Claude                                                                         |
+### 8.2 Change-Type Matrix
 
-### 10.2 Development Loop
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-TEST-010 | New calculator requires unit + route E2E + SEO checks + schema guard (+ ISS-001 when layout touched). | P0 |
+| UR-TEST-011 | Compute-only change requires unit coverage; E2E optional unless flow/UI changed. | P1 |
+| UR-TEST-012 | Navigation/shell change requires targeted nav E2E and ISS-001. | P0 |
+| UR-TEST-013 | Finance/Percentage trigger behavior changes require button-only regression spec evidence. | P0 |
 
+### 8.3 Evidence Recording
 
-| Rule ID | Step | Action                                 |
-| --------- | ------ | ---------------------------------------- |
-| WF-2.1  | 1    | Implement                              |
-| WF-2.1  | 2    | Evaluate vs requirements               |
-| WF-2.1  | 3    | Identify gaps                          |
-| WF-2.1  | 4    | Fix                                    |
-| WF-2.1  | 5    | Repeat until requirements + tests pass |
-
-### 10.3 After PR Merge
-
-
-| Rule ID | Requirement                                                                                          | Severity |
-| --------- | ------------------------------------------------------------------------------------------------------ | ---------- |
-| WF-3.1  | Update`INDEX.MD`: mark phase âœ…, progress 100%, add PR number, update current phase, update date | P1       |
-
----
-
-## 11) Hard "Never Do" Rules
-
-
-| Rule ID   | Never Do This                            | Severity |
-| ----------- | ------------------------------------------ | ---------- |
-| NEVER-1.1 | Delete data without soft-delete strategy | P0       |
-| NEVER-1.2 | Bypass authentication (if applicable)    | P0       |
-| NEVER-1.3 | Commit directly to`main`                 | P0       |
-| NEVER-1.4 | Ignore runtime or linting errors         | P0       |
-| NEVER-1.5 | Hardcode environment-specific values     | P0       |
-| NEVER-1.6 | Merge PRs that violate universal rules   | P0       |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-TEST-020 | Test execution evidence must be recorded in `testing_tracker.md` and iteration logs. | P0 |
+| UR-TEST-021 | Required-vs-executed coverage must be reflected in `compliance-report.md`. | P0 |
 
 ---
 
-## 12) Definition of Done
+## 9) Header Contract
 
-
-| Rule ID | Criterion                          | Required |
-| --------- | ------------------------------------ | ---------- |
-| DOD-1.1 | Code works as intended             | âœ…   |
-| DOD-1.2 | Unit tests pass                    | âœ…   |
-| DOD-1.3 | No runtime or lint errors          | âœ…   |
-| DOD-1.4 | Reviewed by Codex                  | âœ…   |
-| DOD-1.5 | PR approved + merged               | âœ…   |
-| DOD-1.6 | Phase tracker updated (`INDEX.MD`) | âœ…   |
-
-**If any item is missing, the task is NOT done.**
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-HDR-001 | Header must use semantic `<header role="banner">` above shell regions. | P0 |
+| UR-HDR-002 | Site title must link to root `/` and match canonical copy. | P0 |
+| UR-HDR-003 | Primary nav actions use static anchors and full reload behavior. | P0 |
+| UR-HDR-004 | Header search behavior must not auto-navigate on typing; deterministic filtering behavior only. | P0 |
+| UR-HDR-005 | Header must remain token-driven and preserve fixed shell height constraints. | P1 |
 
 ---
 
-## 13) How to Report Violations
+## 10) Footer Contract
 
-### Violation Template
-
-
-| Field             | Description                              |
-| ------------------- | ------------------------------------------ |
-| **Rule ID(s)**    | e.g.,`UI-2.5`, `FS-3.1`, `CS-1.3`        |
-| **Severity**      | P0 Block / P1 Fix / P2 Suggest           |
-| **Where**         | File path(s) + line(s) if possible       |
-| **What happened** | Short factual description                |
-| **Expected**      | Quote the requirement from this document |
-| **Proposed fix**  | Concrete action                          |
-
-### Severity Guidance
-
-
-| Severity   | When to Use                                                                                     |
-| ------------ | ------------------------------------------------------------------------------------------------- |
-| P0 Block   | Breaks non-negotiables: folder contract, security, page growth, no-dropdown rule, missing tests |
-| P1 Fix     | Validation gaps, duplicated utilities, SEO metadata not unique, explanation not crawlable       |
-| P2 Suggest | Naming, readability, minor refactors                                                            |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-FTR-001 | Footer uses semantic `<footer role="contentinfo">`. | P0 |
+| UR-FTR-002 | Footer includes canonical legal links (Privacy, Terms, Contact, FAQs, Sitemap) with static anchors. | P0 |
+| UR-FTR-003 | Footer must not create JS-driven nav duplication or additional panes. | P0 |
+| UR-FTR-004 | Footer links must appear on sitemap-covered routes and remain crawlable. | P1 |
+| UR-FTR-005 | Footer spacing/colors must follow shared theme tokens. | P1 |
 
 ---
 
-## 14) Agent Diagnostic Command Requirements
+## 11) Sitemap and Crawlability
 
-### 14.1 Approved Diagnostic Commands
-
-
-| Rule ID  | Requirement                            | Commands Allowed                                                     |
-| ---------- | ---------------------------------------- | ---------------------------------------------------------------------- |
-| DIAG-1.1 | **Read-only diagnostic commands only** | `rg`, `ls`, `cat`, `sed -n`                                          |
-| DIAG-1.2 | **No destructive operations**          | Agent must request explicit approval for any write/modify operations |
-| DIAG-1.3 | **Limited scope inspection**           | Restrict to approved paths only (see DIAG-1.4)                       |
-
-### 14.2 Approved Inspection Paths
-
-
-| Rule ID  | Path Category       | Allowed Paths                                              |
-| ---------- | --------------------- | ------------------------------------------------------------ |
-| DIAG-1.4 | Configuration Files | `playwright.config.js`, `package.json`, `vitest.config.js` |
-| DIAG-1.4 | Test Directories    | `tests/e2e/**`, `tests/calculators/**`, `tests/core/**`    |
-| DIAG-1.4 | Documentation       | `README.md`                                                |
-| DIAG-1.4 | Compliance Files    | `requirements/compliance/**` (all .md files)               |
-| DIAG-1.4 | Requirements        | `requirements/universal/UNIVERSAL_REQUIREMENTS.md`         |
-| DIAG-1.4 | Build Rules         | `requirements/build_rules/**/*.md`                         |
-
-### 14.3 Command Usage Guidelines
-
-
-| Rule ID  | Requirement           | Usage                                                                         |
-| ---------- | ----------------------- | ------------------------------------------------------------------------------- |
-| DIAG-2.1 | **File location**     | Use`rg` to locate configuration files and tests                               |
-| DIAG-2.2 | **Path confirmation** | Use`ls` to confirm directory structures and file existence                    |
-| DIAG-2.3 | **File inspection**   | Use`cat` or `sed -n` to read specific files for analysis                      |
-| DIAG-2.4 | **Scope limitation**  | Agent must not access paths outside approved list without explicit permission |
-
-### 14.4 Test Failure Diagnosis Process
-
-
-| Step | Action                | Command Pattern                                      |
-| ------ | ----------------------- | ------------------------------------------------------ |
-| 1    | Locate test files     | `rg "test|spec" --type js --type ts`                 |
-| 2    | Check configuration   | `cat playwright.config.js vitest.config.js`          |
-| 3    | Inspect failing tests | `cat tests/e2e/[specific-test].spec.js`              |
-| 4    | Review requirements   | `cat requirements/compliance/requirement_tracker.md` |
-
-### 14.5 Permission Request Format
-
-
-| Rule ID  | When Required                  | Format                                                                                    |
-| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------- |
-| DIAG-3.1 | **Additional commands needed** | Agent must explicitly request: "I need permission to use [command] to [specific purpose]" |
-| DIAG-3.2 | **Path expansion needed**      | Agent must request: "I need access to [specific path] to [diagnostic reason]"             |
-| DIAG-3.3 | **Write operations**           | Agent must request: "I need write permission to [file] to [specific fix]"                 |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-SMAP-001 | Every live calculator route must appear in human-readable `/sitemap/`. | P0 |
+| UR-SMAP-002 | Live route is any nav-visible or publicly reachable calculator URL. | P0 |
+| UR-SMAP-003 | Sitemap source must derive from shared route/navigation source-of-truth. | P0 |
+| UR-SMAP-004 | Missing live route in sitemap is hard FAIL for BUILD, TEST, COMPLIANCE. | P0 |
+| UR-SMAP-005 | New calculator requirements must include sitemap inclusion acceptance criterion. | P0 |
+| UR-SMAP-006 | `sitemap.xml` and `robots.txt` must preserve crawler access to live routes. | P0 |
 
 ---
 
-## 15) Agent Environment and Cache Policy
+## 12) Checklist Governance
 
-### 15.1 Cache Policy (Do Not Modify)
-
-
-| Rule ID   | Requirement                                                                                                                   | Severity |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| AGENT-1.1 | **Do not delete caches** â€” Playwright, npm, and pip caches must never be deleted                                         | P0       |
-| AGENT-1.2 | **Do not move caches into the repo** â€” Cache directories must remain outside versioned paths                             | P0       |
-| AGENT-1.3 | **Do not commit cache directories** â€” Cache folders are forbidden from git commits                                       | P0       |
-| AGENT-1.4 | **Do not override Playwright cache path** â€” `PLAYWRIGHT_BROWSERS_PATH` must not be set or changed                        | P1       |
-| AGENT-1.5 | **Assume browsers/deps are installed** â€” Do not reinstall Playwright browsers or dependencies unless explicitly required | P1       |
-| AGENT-1.6 | **No in-repo browser profiles** â€” Lighthouse/Chrome/Puppeteer `--user-data-dir` or profile output paths must never point inside the repository | P0 |
-| AGENT-1.7 | **No machine-specific `.gitignore` spam** â€” Do not add file-by-file absolute paths (for example `C:/Users/...` or `C:\\Users\\...`) for generated artifacts | P0 |
-| AGENT-1.8 | **Ignore rules must be generalized** â€” Use minimal wildcard ignores for generated tool artifacts, never enumerated per-file cache entries | P1 |
-| AGENT-1.9 | **Accidental artifact cleanup is mandatory** â€” If tool-generated profile/cache folders appear in repo, remove them in the same change that fixes ignore rules | P1 |
-
-**Cache locations (reference):**
-
-- Playwright browsers: `~/.cache/ms-playwright`
-- npm cache: `~/.npm`
-- pip cache: `~/.cache/pip`
-- Lighthouse/Chrome temporary profiles (WSL/Linux): `/tmp/lighthouse-*`, `/tmp/chrome-profile-*`
-
-### 15.2 Test Execution Environment
-
-
-| Rule ID   | Requirement                                                                                                          | Severity |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------- | ---------- |
-| AGENT-2.1 | **WSL-only test execution** â€” All tests must run inside WSL (Linux)                                             | P0       |
-| AGENT-2.2 | **Remote WSL VS Code** â€” Use VS Code Remote â€“ WSL when applicable                                          | P1       |
-| AGENT-2.3 | **No Windows-shell installs** â€” Do not run Playwright or npm installs from Windows shells                       | P0       |
-| AGENT-2.4 | **Cache issues stop-and-report** â€” If a cache issue is suspected, stop and report; do not attempt cache cleanup | P0       |
-| AGENT-2.5 | **WSL path normalization** â€” In WSL, writable output paths must be Linux paths (`/tmp`, `/home`, `/mnt/c/...`) and must not use raw `C:\\...` strings | P0 |
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-CHK-001 | Migration work must complete `requirements/compliance/calculator-migration-checklist.md`. | P0 |
+| UR-CHK-002 | New calculator work must complete `requirements/compliance/new-calculator-design-checklist.md`. | P0 |
+| UR-CHK-003 | Required checklist gates must include pass/fail and evidence artifacts. | P0 |
+| UR-CHK-004 | Missing required checklist evidence is a compliance failure. | P0 |
 
 ---
 
-**End of Universal Requirements Document**
+## 13) Never-Do Rules
 
-> For site copy and content requirements, see `requirements/universal/SITE_COPY.md`
-> Last Updated: 2026-02-08
+| Rule ID | Never Do This | Severity |
+| --- | --- | --- |
+| UR-NEVER-001 | Bypass required state gates and mark work complete anyway. | P0 |
+| UR-NEVER-002 | Merge/release with unresolved P0 governance violations. | P0 |
+| UR-NEVER-003 | Introduce SPA routing for calculator navigation. | P0 |
+| UR-NEVER-004 | Reintroduce calculator shell into GTEP pages. | P0 |
+| UR-NEVER-005 | Omit required tracker/compliance evidence for mandatory gates. | P0 |
+| UR-NEVER-006 | Commit machine-specific cache/profile/path artifacts in tracked governance files. | P0 |
+
+---
+
+## 14) Definition of Done
+
+| Rule ID | Criterion | Required |
+| --- | --- | --- |
+| UR-DOD-001 | Scope implemented and behavior aligned with this document. | Yes |
+| UR-DOD-002 | Required tests executed and recorded. | Yes |
+| UR-DOD-003 | SEO gate result valid (PASS/WAIVED/NA per policy) with evidence. | Yes |
+| UR-DOD-004 | Required checklists completed with evidence. | Yes |
+| UR-DOD-005 | Compliance report row finalized and consistent with executed evidence. | Yes |
+
+---
+
+## 15) Maintenance Protocol
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-MAINT-001 | New universal rules must be added only in this file; no new standalone universal rule files. | P0 |
+| UR-MAINT-002 | New rules must receive next available `UR-<SECTION>-<NNN>` ID in section order. | P1 |
+| UR-MAINT-003 | Any rule rename/re-number requires compatibility map update in this document. | P0 |
+| UR-MAINT-004 | Deprecated/legacy references must be resolved in the same change that introduces new canonical guidance. | P1 |
+
+---
+
+## 16) Compatibility and Migration Map
+
+### 16.1 Source Files Merged
+
+- `requirements/universal-rules/WORKFLOW.md`
+- `requirements/universal-rules/SEO_RULES.md`
+- `requirements/universal-rules/TESTING_RULES.md`
+- `requirements/universal-rules/THEME_RULES.md`
+- `requirements/universal-rules/HEADER_RULES.md`
+- `requirements/universal-rules/FOOTER_RULES.md`
+- `requirements/universal-rules/calculation_pane_rules.md`
+- `requirements/universal-rules/explanation_pane_standard.md`
+
+### 16.2 Rule Family Mapping
+
+| Old Rule ID / Family | New Rule ID Range | Source File | Semantic Status |
+| --- | --- | --- | --- |
+| DC-0.* | UR-DC-001..004 | UNIVERSAL_REQUIREMENTS.md (previous) | unchanged |
+| AP-2.* | UR-AP-001..003 | UNIVERSAL_REQUIREMENTS.md (previous) | unchanged |
+| NAV-MPA-* | UR-NAV-001..003 | UNIVERSAL_REQUIREMENTS.md (previous) | unchanged |
+| EXCL-1.* | UR-NAV-020..022 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
+| UI-2.5 / UI-2.6 / UI-2.7 | UR-UI-012 / UR-UI-020 / UR-UI-022 | UNIVERSAL + THEME + CALC sources | unchanged/tightened |
+| UUI-FDP-* + ISS-UI-FDP-* | UR-CALC-001..007 + UR-UI-020..022 | calculation_pane_rules.md | merged |
+| EXP-* + UTBL-* (explanation scope) | UR-EXP-001..021 | explanation_pane_standard.md | merged |
+| P1.*..P5.* (SEO families) | UR-SEO-001..031 | SEO_RULES.md | merged |
+| TEST-1.* and matrix rules | UR-TEST-001..021 | TESTING_RULES.md | merged |
+| HDR-* | UR-HDR-001..005 | HEADER_RULES.md | merged |
+| FTR-* | UR-FTR-001..005 | FOOTER_RULES.md | merged |
+| DOC-SITEMAP-* | UR-SMAP-001..006 | UNIVERSAL + FOOTER + SEO sources | unchanged/tightened |
+| CHK-* | UR-CHK-001..004 | universal/checklist governance | unchanged |
+| NEVER-* | UR-NEVER-001..006 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
+| DOD-* | UR-DOD-001..005 | UNIVERSAL_REQUIREMENTS.md (previous) | merged |
+
+### 16.3 Legacy Reference Policy
+
+- Legacy rule IDs may appear in historical REQs/tests/tracker logs.
+- New work must cite only `UR-*` IDs.
+- Any active non-archive document referencing removed standalone rule files must be updated to this file.
+
+### 16.4 Migration Report Entry
+
+| Field | Value |
+| --- | --- |
+| Migration Date | 2026-02-12 |
+| Change Type | Universal governance consolidation (single-file authority) |
+| Legacy Files Moved | `WORKFLOW.md`, `SEO_RULES.md`, `TESTING_RULES.md`, `THEME_RULES.md`, `HEADER_RULES.md`, `FOOTER_RULES.md`, `calculation_pane_rules.md`, `explanation_pane_standard.md` -> `requirements/Archive/universal-rules/` |
+| Rule ID Transition | Legacy families remapped to `UR-*` scheme per section 16.2 |
+| Active Governance File | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
+
+---
+
+## 17) Reference Pointers
+
+- Site copy: `requirements/site-structure/SITE_COPY.md`
+- Navigation hierarchy: `requirements/site-structure/calculator-hierarchy.md`
+- Compliance trackers: `requirements/compliance/`

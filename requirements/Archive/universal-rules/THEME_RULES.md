@@ -59,11 +59,11 @@
 
 ## Layout System Integration
 - All navigation panes, calculator shells, and content columns inherit the premium-dark tokens because the layout imports `theme-premium-dark.css` globally through `base.css` and the shared shell files.
-- When building new calculators or content shells, rely on `THEME_RULES.md` for colors/breakpoints and do not duplicate them in component-level CSS.
+- When building new calculators or content shells, rely on `UNIVERSAL_REQUIREMENTS.md` for colors/breakpoints and do not duplicate them in component-level CSS.
 - Verify that the theme is applied consistently across calculators, nav, and content before marking a change as complete.
 
 ## Build, Testing, and Documentation Updates
-- Reference `THEME_RULES.md` wherever documentation, build scripts, or release notes previously pointed to `requirements/rules/premium_dark_theme_global_009.md` or any other theme guidance file.
+- Reference `UNIVERSAL_REQUIREMENTS.md` wherever documentation, build scripts, or release notes previously pointed to `requirements/rules/premium_dark_theme_global_009.md` or any other theme guidance file.
 - Ensure the build process preserves cache versioning for `theme-premium-dark.css` (the current query string `v=20260127` is an example of the strategy).
 - Required tests for Layout/CSS changes (per `testing_requirements.md`) include the ISS-001 suite (`npm run test:iss001`). Run this suite after any theme update and log the results in `testing_tracker.md`.
 

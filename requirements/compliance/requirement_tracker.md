@@ -67,7 +67,7 @@
 Notes
 
 - Do not add per-REQ notes to this tracker for the Lighthouse `NO_FCP` issue.
-- For calculator pages in headless/no-GUI environments, record SEO-P3 as **WAIVED** with evidence in `seo_tracker.md` per `requirements/universal-rules/SEO_RULES.md`.
+- For calculator pages in headless/no-GUI environments, record SEO-P3 as **WAIVED** with evidence in `seo_tracker.md` per `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`.
 
 ---
 

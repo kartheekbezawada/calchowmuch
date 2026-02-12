@@ -13,7 +13,7 @@
 | FTR-1.1 | Footer markup must use `<footer role="contentinfo">` and appear as the last block before the closing `<body>` tag. | P0 |
 | FTR-1.2 | Footer must contain the canonical legal/navigational links (Privacy, Terms & Conditions, Contact, FAQs, Sitemap) in a single row of `<a>` elements. | P0 |
 | FTR-1.3 | Footer links must be static `<a>` tags with descriptive text, must not open new tabs (`target` omitted), and must include `rel="noopener"` when `target` is added for external resources. | P1 |
-| FTR-1.4 | Footer spacing must reuse premium-dark spacing tokens (`unit-spacing-4`/`unit-spacing-6`) and maintain the minimal footprint described in `requirements/universal-rules/THEME_RULES.md`. | P1 |
+| FTR-1.4 | Footer spacing must reuse premium-dark spacing tokens (`unit-spacing-4`/`unit-spacing-6`) and maintain the minimal footprint described in `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`. | P1 |
 | FTR-1.5 | Footer must never duplicate navigation panes or create additional JS-driven menus; keep the layout minimal so it does not hijack vertical space. | P0 |
 | FTR-1.6 | Footer links must appear on every sitemap-covered page; missing links trigger P1 SEO violations per `DOC-SITEMAP` and sitemap rules. | P1 |
 | FTR-1.7 | On GTEP pages the footer links are required for crawlability; these links should match the same order and text as the calculator shell footer. | P1 |
