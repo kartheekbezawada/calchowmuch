@@ -20,18 +20,34 @@ const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neu
 const PANE_LAYOUTS = new Set(['single', 'split']);
 const CALCULATOR_OVERRIDES = {
   'home-loan': {
+    title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
+    description:
+      'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.',
+    h1: 'Home Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'how-much-can-i-borrow': {
+    title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
+    description:
+      'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+    h1: 'How Much Can I Borrow Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'remortgage-switching': {
+    title: 'Remortgage Calculator (Switching) | Break-even | CalcHowMuch',
+    description:
+      'Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.',
+    h1: 'Remortgage Calculator (Switching)',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'buy-to-let': {
+    title: 'Buy-to-Let Calculator (Yield, Cashflow & Coverage) | CalcHowMuch',
+    description:
+      'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.',
+    h1: 'Buy-to-Let Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -68,17 +84,25 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'offset-calculator': {
+    title: 'Offset Calculator | Interest Savings & Payoff | CalcHowMuch',
+    description:
+      'See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.',
+    h1: 'Offset Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'loan-to-value': {
+    title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
+    description:
+      'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
+    h1: 'Loan-to-Value (LTV) Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'interest-rate-change-calculator': {
-    title: 'Interest Rate Change Calculator | Calculate How Much Online Calculator',
+    title: 'Interest Rate Change Calculator | Rate Impact | CalcHowMuch',
     description:
-      'Compare current and new mortgage rates to estimate monthly payment differences and total interest impact over your remaining term.',
+      'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.',
     h1: 'Interest Rate Change Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -216,6 +240,142 @@ const CALCULATOR_OVERRIDES = {
   },
 };
 
+const HOME_LOAN_SCHEMA_CONFIG = {
+  'home-loan': {
+    breadcrumbLabel: 'Home Loan',
+    softwareName: 'Home Loan Calculator',
+    softwareDescription:
+      'Estimate monthly mortgage payments, amortization schedule, payoff timeline, and interest savings from extra payments.',
+    featureList: [
+      'Monthly mortgage payment estimate',
+      'Amortization schedule (monthly and yearly)',
+      'Principal versus interest split',
+      'Extra payment and lump-sum payoff impact',
+    ],
+    keywords: [
+      'home loan calculator',
+      'mortgage calculator',
+      'amortization schedule',
+      'monthly mortgage payment',
+      'extra payment mortgage',
+    ],
+  },
+  'how-much-can-i-borrow': {
+    breadcrumbLabel: 'How Much Can I Borrow',
+    softwareName: 'How Much Can I Borrow Calculator',
+    softwareDescription:
+      'Estimate your borrowing power using income multiples or payment-to-income affordability checks.',
+    featureList: [
+      'Income multiple borrowing estimate',
+      'Payment-to-income affordability mode',
+      'Maximum borrow and property budget',
+      'Rate and term scenario comparison',
+    ],
+    keywords: [
+      'how much can i borrow calculator',
+      'mortgage affordability calculator',
+      'income multiple mortgage',
+      'payment to income calculator',
+      'borrowing power calculator',
+    ],
+  },
+  'remortgage-switching': {
+    breadcrumbLabel: 'Remortgage / Switching',
+    softwareName: 'Remortgage Calculator (Switching)',
+    softwareDescription:
+      'Compare your current mortgage against a new rate and term to measure break-even and total savings.',
+    featureList: [
+      'Monthly and annual savings',
+      'Break-even month tracking',
+      '2 to 10 year horizon comparison',
+      'Monthly and yearly cost tables',
+    ],
+    keywords: [
+      'remortgage calculator',
+      'mortgage switching calculator',
+      'remortgage savings',
+      'mortgage break-even calculator',
+      'compare mortgage rates',
+    ],
+  },
+  'buy-to-let': {
+    breadcrumbLabel: 'Buy-to-Let Calculator',
+    softwareName: 'Buy-to-Let Calculator',
+    softwareDescription:
+      'Estimate rental yield, cashflow, and lender stress coverage for buy-to-let mortgage scenarios.',
+    featureList: [
+      'Gross and net rental yield',
+      'Monthly and annual cashflow',
+      'Stress coverage ratio',
+      'Interest-only versus repayment comparison',
+    ],
+    keywords: [
+      'buy-to-let calculator',
+      'rental yield calculator',
+      'buy-to-let cashflow calculator',
+      'stress coverage ratio',
+      'interest only mortgage calculator',
+    ],
+  },
+  'offset-calculator': {
+    breadcrumbLabel: 'Offset Calculator',
+    softwareName: 'Offset Calculator',
+    softwareDescription:
+      'Model how offset savings and monthly contributions reduce mortgage interest and payoff time.',
+    featureList: [
+      'Offset interest savings estimate',
+      'Effective mortgage balance tracking',
+      'Payoff timeline reduction',
+      'Monthly and yearly comparison tables',
+    ],
+    keywords: [
+      'offset calculator',
+      'offset mortgage calculator',
+      'offset savings interest',
+      'mortgage payoff calculator',
+      'effective balance calculator',
+    ],
+  },
+  'interest-rate-change-calculator': {
+    breadcrumbLabel: 'Interest Rate Change Calculator',
+    softwareName: 'Interest Rate Change Calculator',
+    softwareDescription:
+      'Compare payment and total interest impact when mortgage rates change now or after a selected period.',
+    featureList: [
+      'Current versus new rate comparison',
+      'Immediate or delayed rate-change timing',
+      'Monthly payment impact estimate',
+      'Total interest and cost difference',
+    ],
+    keywords: [
+      'interest rate change calculator',
+      'mortgage payment change',
+      'rate rise impact calculator',
+      'mortgage interest comparison',
+      'refinance impact calculator',
+    ],
+  },
+  'loan-to-value': {
+    breadcrumbLabel: 'Loan-to-Value (LTV) Calculator',
+    softwareName: 'Loan-to-Value (LTV) Calculator',
+    softwareDescription:
+      'Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.',
+    featureList: [
+      'Loan-to-value percentage calculator',
+      'Loan or deposit input modes',
+      'Risk band classification',
+      'Target LTV planning table',
+    ],
+    keywords: [
+      'loan to value calculator',
+      'ltv calculator',
+      'mortgage ltv bands',
+      'deposit percentage calculator',
+      'remortgage ltv',
+    ],
+  },
+};
+
 function inferDesignFamily(categoryId, subcategoryId) {
   if (categoryId === 'loans' && DESIGN_FAMILIES.has(subcategoryId)) {
     return subcategoryId;
@@ -308,6 +468,188 @@ function buildCanonical(pathname) {
   const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
   const withSlash = normalized.endsWith('/') ? normalized : `${normalized}/`;
   return `${SITE_URL}${withSlash}`;
+}
+
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+function normalizeHtmlText(value) {
+  return decodeHtmlEntities(String(value).replace(/<[^>]*>/g, ' '))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function extractTagText(html, tagName) {
+  const re = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+  const match = html.match(re);
+  return match ? normalizeHtmlText(match[1]) : '';
+}
+
+function extractCalculatorFaqEntries(explanationHtml, calculatorId) {
+  const cardRegex = /<(div|article)[^>]*class="[^"]*\bfaq-card\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/gi;
+  const entries = [];
+
+  for (const [, , cardHtml] of explanationHtml.matchAll(cardRegex)) {
+    const question = extractTagText(cardHtml, 'h4');
+    const answer = extractTagText(cardHtml, 'p');
+    if (!question || !answer) {
+      continue;
+    }
+    entries.push({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    });
+  }
+
+  if (entries.length < 4) {
+    throw new Error(
+      `Expected at least 4 FAQ entries for ${calculatorId}, extracted ${entries.length} from explanation.html`
+    );
+  }
+
+  if (calculatorId === 'home-loan' && entries.length !== 10) {
+    throw new Error(
+      `Expected 10 FAQ entries for ${calculatorId}, extracted ${entries.length} from explanation.html`
+    );
+  }
+
+  return entries;
+}
+
+function buildHomeLoanStructuredData({
+  calculatorId,
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  softwareName,
+  softwareDescription,
+  featureList = [],
+  keywords = [],
+}) {
+  const isHomeLoanRoot = calculatorId === 'home-loan';
+  const breadcrumbList = isHomeLoanRoot
+    ? [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Loans',
+          item: `${SITE_URL}/loans/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ]
+    : [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Home Loan',
+          item: `${SITE_URL}/loans/home-loan/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(featureList.length ? { featureList } : {}),
+        ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: breadcrumbList,
+      },
+    ],
+  };
+}
+
+function stringifyStructuredData(structuredData) {
+  return JSON.stringify(structuredData).replace(/<\/script/gi, '<\\/script');
 }
 
 function readFile(filePath) {
@@ -654,6 +996,8 @@ function buildPageHtml({
   includeHomeContent,
   pageType,
   calculatorRelPath,
+  staticStructuredData = null,
+  injectStaticStructuredData = false,
 }) {
   const explanationTitleHtml =
     explanationHeading === '' || explanationHeading === null
@@ -738,6 +1082,12 @@ ${explanationTitleHtml}  ${explanationHtml}
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
     : '';
+  const structuredDataScript =
+    injectStaticStructuredData && staticStructuredData
+      ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
+          staticStructuredData
+        )}</script>\n`
+      : '';
 
   return `<!doctype html>
 <html lang="en">
@@ -760,7 +1110,7 @@ ${explanationTitleHtml}  ${explanationHtml}
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+${structuredDataScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
     <div class="page">
@@ -1045,11 +1395,30 @@ function main() {
           calculator.id,
           calcLookup
         );
+        const pageTitle = override?.title ?? buildTitle(calculator.name);
+        const pageDescription = override?.description ?? buildDescription(calculator.name);
+        const pageCanonical = buildCanonical(calculator.url);
+
+        let staticStructuredData = null;
+        let injectStaticStructuredData = false;
+        const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
+        if (homeLoanSchemaConfig) {
+          const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+          staticStructuredData = buildHomeLoanStructuredData({
+            calculatorId: calculator.id,
+            title: pageTitle,
+            description: pageDescription,
+            canonical: pageCanonical,
+            faqEntries,
+            ...homeLoanSchemaConfig,
+          });
+          injectStaticStructuredData = true;
+        }
 
         const pageHtml = buildPageHtml({
-          title: override?.title ?? buildTitle(calculator.name),
-          description: override?.description ?? buildDescription(calculator.name),
-          canonical: buildCanonical(calculator.url),
+          title: pageTitle,
+          description: pageDescription,
+          canonical: pageCanonical,
           headerHtml,
           footerHtml,
           topNavHtml,
@@ -1070,6 +1439,8 @@ function main() {
           includeHomeContent: false,
           pageType: 'calculator',
           calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
+          staticStructuredData,
+          injectStaticStructuredData,
         });
 
         const outputDir = path.join(PUBLIC_DIR, relPath);

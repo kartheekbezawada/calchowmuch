@@ -2,56 +2,11 @@ import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLtv } from '/assets/js/core/loan-utils.js';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
-const CALCULATOR_FAQ_SCHEMA = {
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What is LTV in a mortgage?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'LTV is the loan amount divided by property value, shown as a percentage. Lower LTV generally means lower lender risk and can improve available rates.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How can I improve my LTV?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'You can improve LTV by increasing your deposit, reducing the loan amount, or buying at a lower property value.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why do lenders care about LTV bands?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'LTV bands are used to price risk. As LTV rises, product availability typically narrows and rates can increase.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is 95%+ LTV considered risky?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Above 95% LTV, options are often limited and underwriting can be stricter because there is less borrower equity in the property.',
-      },
-    },
-  ],
-};
-
 const metadata = {
-  title: 'Loan-to-Value (LTV) Calculator - Mortgage Deposit & Risk Bands | CalcHowMuch',
+  title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
   description:
-    'Calculate mortgage loan-to-value (LTV) from property value, loan amount, or deposit. Instantly view lending bands, risk level, and target deposit amounts.',
+    'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
   canonical: 'https://calchowmuch.com/loans/loan-to-value/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
 setPageMetadata(metadata);

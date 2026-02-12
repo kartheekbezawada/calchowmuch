@@ -2,56 +2,11 @@ import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateBorrow, computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
-const CALCULATOR_FAQ_SCHEMA = {
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How is borrowing capacity calculated?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Borrowing capacity is calculated using either an income multiple (e.g., 4.5x your annual income) or a payment-to-income ratio that accounts for your monthly income, expenses, and debt payments.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the difference between income multiple and payment-to-income methods?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Income multiple uses a simple multiplier of your annual income, while payment-to-income calculates affordability based on your monthly cash flow after expenses and existing debts.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does a larger deposit increase how much I can borrow?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A larger deposit increases your total purchasing power but does not directly affect the loan amount you can borrow, which is determined by your income and affordability.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Should I use gross or net income for this calculation?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Gross income is typically used for income multiple methods, while net monthly income is more appropriate for payment-to-income calculations as it reflects your actual take-home pay.',
-      },
-    },
-  ],
-};
-
 const metadata = {
-  title: 'How Much Can I Borrow – Mortgage Affordability Calculator | CalcHowMuch',
+  title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
   description:
-    'Estimate how much you can borrow based on income, expenses, interest rate, term, deposit, and affordability method. Simple, fast, and free.',
-  canonical: 'https://calchowmuch.com/loans/how-much-can-i-borrow',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+    'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+  canonical: 'https://calchowmuch.com/loans/how-much-can-i-borrow/',
 };
 
 setPageMetadata(metadata);
