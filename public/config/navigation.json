@@ -11,17 +11,26 @@
             {
               "id": "basic",
               "name": "Basic Calculator",
-              "url": "/math/basic"
+              "url": "/math/basic",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "/percentage-calculators/percentage-increase"
+              "url": "/percentage-calculators/percentage-increase",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
-              "url": "/math/fraction-calculator"
+              "url": "/math/fraction-calculator",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -32,27 +41,42 @@
             {
               "id": "quadratic-equation",
               "name": "Quadratic Equation Solver",
-              "url": "/math/algebra/quadratic-equation"
+              "url": "/math/algebra/quadratic-equation",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "system-of-equations",
               "name": "System of Linear Equations",
-              "url": "/math/algebra/system-of-equations"
+              "url": "/math/algebra/system-of-equations",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "polynomial-operations",
               "name": "Polynomial Operations",
-              "url": "/math/algebra/polynomial-operations"
+              "url": "/math/algebra/polynomial-operations",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "factoring",
               "name": "Factoring Calculator",
-              "url": "/math/algebra/factoring"
+              "url": "/math/algebra/factoring",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "slope-distance",
               "name": "Slope & Distance Calculator",
-              "url": "/math/algebra/slope-distance"
+              "url": "/math/algebra/slope-distance",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -71,7 +95,10 @@
                 "sin",
                 "cos",
                 "tan"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "triangle-solver",
@@ -84,7 +111,10 @@
                 "AAS",
                 "SSA",
                 "triangle"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "trig-functions",
@@ -98,7 +128,10 @@
                 "csc",
                 "cot",
                 "graph"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "inverse-trig",
@@ -109,7 +142,10 @@
                 "arccos",
                 "arctan",
                 "inverse trig"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "law-of-sines-cosines",
@@ -119,7 +155,10 @@
                 "law of sines",
                 "law of cosines",
                 "triangle"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -138,7 +177,10 @@
                 "product rule",
                 "quotient rule",
                 "chain rule"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "integral",
@@ -151,7 +193,10 @@
                 "definite",
                 "indefinite",
                 "area under curve"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "limit",
@@ -163,7 +208,10 @@
                 "indeterminate",
                 "infinity",
                 "continuity"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "series-convergence",
@@ -176,7 +224,10 @@
                 "root test",
                 "integral test",
                 "comparison"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "critical-points",
@@ -189,7 +240,10 @@
                 "maximum",
                 "minimum",
                 "concavity"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -206,7 +260,10 @@
                 "natural log",
                 "e",
                 "logarithm"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "common-log",
@@ -217,7 +274,10 @@
                 "base 10",
                 "logarithm",
                 "change of base"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "log-properties",
@@ -228,7 +288,10 @@
                 "quotient rule",
                 "power rule",
                 "expansion"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "exponential-equations",
@@ -238,7 +301,10 @@
                 "a^x",
                 "logarithmic solution",
                 "exponential"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "log-scale",
@@ -249,7 +315,10 @@
                 "pH",
                 "Richter",
                 "logarithmic scale"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -260,47 +329,74 @@
             {
               "id": "mean-median-mode-range",
               "name": "Mean Median Mode Range Calculator",
-              "url": "/math/mean-median-mode-range"
+              "url": "/math/mean-median-mode-range",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "standard-deviation",
               "name": "Standard Deviation Calculator",
-              "url": "/math/standard-deviation"
+              "url": "/math/standard-deviation",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "statistics",
               "name": "Statistics Calculator",
-              "url": "/math/statistics"
+              "url": "/math/statistics",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "confidence-interval",
               "name": "Confidence Interval Calculator",
-              "url": "/math/confidence-interval"
+              "url": "/math/confidence-interval",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "z-score",
               "name": "Z-Score Calculator",
-              "url": "/math/z-score"
+              "url": "/math/z-score",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "sample-size",
               "name": "Sample Size Calculator",
-              "url": "/math/sample-size"
+              "url": "/math/sample-size",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "number-sequence",
               "name": "Number Sequence Calculator",
-              "url": "/math/number-sequence"
+              "url": "/math/number-sequence",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "permutation-combination",
               "name": "Permutation & Combination Calculator",
-              "url": "/math/permutation-combination"
+              "url": "/math/permutation-combination",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "probability",
               "name": "Probability Calculator",
-              "url": "/math/probability"
+              "url": "/math/probability",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "regression-analysis",
@@ -313,7 +409,10 @@
                 "r-squared",
                 "residuals",
                 "least squares"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "anova",
@@ -325,7 +424,10 @@
                 "analysis of variance",
                 "group comparison",
                 "eta-squared"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "hypothesis-testing",
@@ -338,7 +440,10 @@
                 "p-value",
                 "significance",
                 "null hypothesis"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "correlation",
@@ -350,7 +455,10 @@
                 "Kendall",
                 "correlation coefficient",
                 "scatter plot"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "distribution",
@@ -363,7 +471,10 @@
                 "F-distribution",
                 "CDF",
                 "quantile"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         }
@@ -389,37 +500,58 @@
                 "principal",
                 "interest",
                 "piti"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "how-much-can-i-borrow",
               "name": "How Much Can I Borrow",
-              "url": "/loans/how-much-can-i-borrow"
+              "url": "/loans/how-much-can-i-borrow",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "remortgage-switching",
               "name": "Remortgage / Switching",
-              "url": "/loans/remortgage-switching"
+              "url": "/loans/remortgage-switching",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "buy-to-let",
               "name": "Buy-to-Let Calculator",
-              "url": "/loans/buy-to-let"
+              "url": "/loans/buy-to-let",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "offset-calculator",
               "name": "Offset Calculator",
-              "url": "/loans/offset-calculator"
+              "url": "/loans/offset-calculator",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "interest-rate-change-calculator",
               "name": "Interest Rate Change Calculator",
-              "url": "/loans/interest-rate-change-calculator"
+              "url": "/loans/interest-rate-change-calculator",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             },
             {
               "id": "loan-to-value",
               "name": "Loan-to-Value (LTV) Calculator",
-              "url": "/loans/loan-to-value"
+              "url": "/loans/loan-to-value",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             }
           ]
         },
@@ -431,22 +563,34 @@
             {
               "id": "credit-card-repayment-payoff",
               "name": "Repayment",
-              "url": "/loans/credit-card-repayment-payoff"
+              "url": "/loans/credit-card-repayment-payoff",
+              "routeArchetype": "calc_exp",
+              "designFamily": "credit-cards",
+              "paneLayout": "single"
             },
             {
               "id": "credit-card-minimum-payment",
               "name": "Minimum Payment",
-              "url": "/loans/credit-card-minimum-payment"
+              "url": "/loans/credit-card-minimum-payment",
+              "routeArchetype": "calc_exp",
+              "designFamily": "credit-cards",
+              "paneLayout": "single"
             },
             {
               "id": "balance-transfer-installment-plan",
               "name": "Balance Transfer",
-              "url": "/loans/balance-transfer-installment-plan"
+              "url": "/loans/balance-transfer-installment-plan",
+              "routeArchetype": "calc_exp",
+              "designFamily": "credit-cards",
+              "paneLayout": "split"
             },
             {
               "id": "credit-card-consolidation",
               "name": "Card Consolidation",
-              "url": "/loans/credit-card-consolidation"
+              "url": "/loans/credit-card-consolidation",
+              "routeArchetype": "calc_exp",
+              "designFamily": "credit-cards",
+              "paneLayout": "single"
             }
           ]
         },
@@ -458,27 +602,42 @@
             {
               "id": "car-loan",
               "name": "Car Loan Calculator",
-              "url": "/loans/car-loan"
+              "url": "/loans/car-loan",
+              "routeArchetype": "calc_exp",
+              "designFamily": "auto-loans",
+              "paneLayout": "single"
             },
             {
               "id": "multiple-car-loan",
               "name": "Multiple Car Loan Calculator",
-              "url": "/loans/multiple-car-loan"
+              "url": "/loans/multiple-car-loan",
+              "routeArchetype": "calc_exp",
+              "designFamily": "auto-loans",
+              "paneLayout": "single"
             },
             {
               "id": "hire-purchase",
               "name": "Hire Purchase Calculator",
-              "url": "/loans/hire-purchase"
+              "url": "/loans/hire-purchase",
+              "routeArchetype": "calc_exp",
+              "designFamily": "auto-loans",
+              "paneLayout": "single"
             },
             {
               "id": "pcp-calculator",
               "name": "PCP Calculator",
-              "url": "/loans/pcp-calculator"
+              "url": "/loans/pcp-calculator",
+              "routeArchetype": "calc_exp",
+              "designFamily": "auto-loans",
+              "paneLayout": "single"
             },
             {
               "id": "leasing-calculator",
               "name": "Leasing Calculator",
-              "url": "/loans/leasing-calculator"
+              "url": "/loans/leasing-calculator",
+              "routeArchetype": "calc_exp",
+              "designFamily": "auto-loans",
+              "paneLayout": "single"
             }
           ]
         }
@@ -495,22 +654,34 @@
             {
               "id": "present-value",
               "name": "Present Value (PV)",
-              "url": "/finance/present-value"
+              "url": "/finance/present-value",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "future-value",
               "name": "Future Value (FV)",
-              "url": "/finance/future-value"
+              "url": "/finance/future-value",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "present-value-of-annuity",
               "name": "Present Value of Annuity",
-              "url": "/finance/present-value-of-annuity"
+              "url": "/finance/present-value-of-annuity",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "future-value-of-annuity",
               "name": "Future Value of Annuity",
-              "url": "/finance/future-value-of-annuity"
+              "url": "/finance/future-value-of-annuity",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -521,17 +692,26 @@
             {
               "id": "simple-interest",
               "name": "Simple Interest",
-              "url": "/finance/simple-interest"
+              "url": "/finance/simple-interest",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "compound-interest",
               "name": "Compound Interest",
-              "url": "/finance/compound-interest"
+              "url": "/finance/compound-interest",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "effective-annual-rate",
               "name": "Effective Annual Rate (EAR)",
-              "url": "/finance/effective-annual-rate"
+              "url": "/finance/effective-annual-rate",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         },
@@ -542,12 +722,18 @@
             {
               "id": "savings-goal",
               "name": "Savings Goal",
-              "url": "/finance/savings-goal"
+              "url": "/finance/savings-goal",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "investment-growth",
               "name": "Investment Growth",
-              "url": "/finance/investment-growth"
+              "url": "/finance/investment-growth",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         }
@@ -571,7 +757,10 @@
                 "wake up",
                 "bedtime",
                 "sleep cycles"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "wake-up-time-calculator",
@@ -582,7 +771,10 @@
                 "sleep cycles",
                 "bedtime",
                 "alarm"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "nap-time-calculator",
@@ -593,7 +785,10 @@
                 "power nap",
                 "afternoon nap",
                 "wake time"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "power-nap-calculator",
@@ -604,7 +799,10 @@
                 "nap length",
                 "wake time",
                 "micro nap"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "energy-based-nap-selector",
@@ -615,7 +813,10 @@
                 "quick nap",
                 "strong nap",
                 "full nap"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "work-hours-calculator",
@@ -626,7 +827,10 @@
                 "breaks",
                 "timesheet",
                 "shift"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "overtime-hours-calculator",
@@ -637,7 +841,10 @@
                 "regular hours",
                 "weekly hours",
                 "night shift"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "time-between-two-dates-calculator",
@@ -648,7 +855,10 @@
                 "days between",
                 "weeks between",
                 "months between"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "days-until-a-date-calculator",
@@ -659,7 +869,10 @@
                 "countdown",
                 "date difference",
                 "days left"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "countdown-timer-generator",
@@ -670,7 +883,10 @@
                 "timer",
                 "date and time",
                 "event countdown"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "age-calculator",
@@ -681,7 +897,10 @@
                 "birthday",
                 "years months days",
                 "date of birth"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "birthday-day-of-week",
@@ -692,7 +911,10 @@
                 "weekday",
                 "day of week",
                 "born on"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         }
@@ -715,7 +937,10 @@
                 "percentage change calculator",
                 "percent difference from a to b",
                 "how to calculate percent change"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-difference",
@@ -726,7 +951,10 @@
                 "percent difference calculator",
                 "symmetric percent difference",
                 "percentage difference formula"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-increase",
@@ -737,7 +965,10 @@
                 "percent increase calculator",
                 "percentage increase formula",
                 "how to calculate percentage increase"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-decrease",
@@ -748,7 +979,10 @@
                 "percent decrease calculator",
                 "percentage decrease formula",
                 "how to calculate percentage decrease"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-composition",
@@ -759,7 +993,10 @@
                 "share of total calculator",
                 "percent of total",
                 "percentage breakdown"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "reverse-percentage",
@@ -771,7 +1008,10 @@
                 "Y is X percent of what number",
                 "original price before discount",
                 "reverse percent formula"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percent-to-fraction-decimal",
@@ -783,7 +1023,10 @@
                 "percentage to fraction",
                 "percentage to decimal",
                 "convert percentage to fraction"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "what-percent-is-x-of-y",
@@ -795,7 +1038,10 @@
                 "percent of calculator",
                 "percentage of a number reverse",
                 "convert fraction to percent"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "percentage-of-a-number",
@@ -807,7 +1053,10 @@
                 "percent of a number calculator",
                 "calculate percentage",
                 "how to calculate x percent of y"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "commission-calculator",
@@ -818,7 +1067,10 @@
                 "sales commission",
                 "commission rate",
                 "tiered commission"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "discount-calculator",
@@ -830,7 +1082,10 @@
                 "price after discount",
                 "savings calculator",
                 "percent off"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "margin-calculator",
@@ -841,7 +1096,10 @@
                 "gross margin calculator",
                 "profit margin",
                 "selling price from margin"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             },
             {
               "id": "markup-calculator",
@@ -853,7 +1111,10 @@
                 "cost to price markup",
                 "basket markup calculator",
                 "weighted average markup"
-              ]
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "split"
             }
           ]
         }

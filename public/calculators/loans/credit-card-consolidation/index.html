@@ -1,54 +1,139 @@
 <div id="calc-cc-con">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compare paying your current credit cards separately versus consolidating into a fixed-rate loan.
-    </p>
+  <div class="calculator-ui cc-con-ui">
+    <section class="cc-con-hero" aria-label="Credit card consolidation calculator">
+      <div class="cc-con-form-panel">
+        <p class="helper">
+          Compare current credit card payoff versus a consolidation loan using the same premium
+          Home Loan calculator experience.
+        </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="cc-con-balance">Total Card Balance</label>
-        <input id="cc-con-balance" type="number" value="12000" min="0.01" step="0.01" inputmode="decimal" />
-      </div>
-
-      <div class="input-grid">
-        <div class="input-row">
-          <label for="cc-con-apr">Current Average APR (%)</label>
-          <input id="cc-con-apr" type="number" value="19.5" min="0" step="0.01" inputmode="decimal" />
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="cc-con-balance">Total Card Balance</label>
+            <span class="slider-value" id="cc-con-balance-display">12,000</span>
+          </div>
+          <input
+            id="cc-con-balance"
+            type="range"
+            value="12000"
+            min="500"
+            max="200000"
+            step="500"
+          />
         </div>
 
-        <div class="input-row">
-          <label for="cc-con-payment">Current Monthly Payment</label>
-          <input id="cc-con-payment" type="number" value="400" min="0.01" step="0.01" inputmode="decimal" />
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="cc-con-apr">Current Average APR (%)</label>
+            <span class="slider-value" id="cc-con-apr-display">19.5%</span>
+          </div>
+          <input id="cc-con-apr" type="range" value="19.5" min="0" max="40" step="0.1" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="cc-con-new-apr">Consolidation APR (%)</label>
+            <span class="slider-value" id="cc-con-new-apr-display">10.5%</span>
+          </div>
+          <input id="cc-con-new-apr" type="range" value="10.5" min="0" max="40" step="0.1" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="cc-con-term">Consolidation Term (years)</label>
+            <span class="slider-value" id="cc-con-term-display">3 yrs</span>
+          </div>
+          <input id="cc-con-term" type="range" value="3" min="1" max="10" step="1" />
+        </div>
+
+        <details class="advanced-options">
+          <summary>
+            <span class="advanced-summary-title">Advanced Options - Optional</span>
+            <span class="advanced-summary-pill" aria-hidden="true">
+              <span class="summary-state summary-state-expand">
+                <span class="summary-icon">+</span>
+                <span class="summary-text">Expand</span>
+              </span>
+              <span class="summary-state summary-state-close">
+                <span class="summary-icon">-</span>
+                <span class="summary-text">Close</span>
+              </span>
+            </span>
+          </summary>
+
+          <div class="advanced-stack">
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="cc-con-payment">Current Monthly Payment</label>
+                <input
+                  id="cc-con-payment"
+                  type="number"
+                  value="400"
+                  min="0.01"
+                  step="0.01"
+                  inputmode="decimal"
+                />
+              </div>
+              <div class="input-row">
+                <label for="cc-con-fees">Consolidation Fees</label>
+                <input
+                  id="cc-con-fees"
+                  type="number"
+                  value="250"
+                  min="0"
+                  step="0.01"
+                  inputmode="decimal"
+                />
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="input-row action-row cc-con-action-row">
+          <button class="calculator-button full-width" type="button" id="cc-con-calc">
+            Calculate Consolidation Plan
+          </button>
         </div>
       </div>
 
-      <div class="input-grid">
-        <div class="input-row">
-          <label for="cc-con-new-apr">Consolidation APR (%)</label>
-          <input id="cc-con-new-apr" type="number" value="10.5" min="0" step="0.01" inputmode="decimal" />
+      <aside class="cc-con-preview-panel" aria-label="Consolidation snapshot">
+        <div class="cc-con-preview-main">
+          <div class="result cc-con-result-card" id="cc-con-result" aria-live="polite"></div>
+          <div class="result-detail cc-con-summary-card" id="cc-con-summary" aria-live="polite"></div>
         </div>
 
-        <div class="input-row">
-          <label for="cc-con-term">Consolidation Term (years)</label>
-          <input id="cc-con-term" type="number" value="3" min="1" step="1" inputmode="decimal" />
+        <div class="cc-con-snapshot-list">
+          <div class="cc-con-snapshot-row">
+            <span>Current Payoff</span>
+            <strong data-cc-con="current-months">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Consolidation Payoff</span>
+            <strong data-cc-con="con-months">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Consolidation Payment</span>
+            <strong data-cc-con="new-payment">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Monthly Difference</span>
+            <strong data-cc-con="monthly-diff">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Interest Difference</span>
+            <strong data-cc-con="interest-diff">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Total Cost Difference</span>
+            <strong data-cc-con="total-diff">—</strong>
+          </div>
+          <div class="cc-con-snapshot-row">
+            <span>Recommendation</span>
+            <strong data-cc-con="recommendation">—</strong>
+          </div>
         </div>
-      </div>
-
-      <div class="input-row">
-        <label for="cc-con-fees">Consolidation Fees (optional)</label>
-        <input id="cc-con-fees" type="number" value="250" min="0" step="0.01" inputmode="decimal" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="cc-con-calc">Calculate</button>
-
-    <div class="result" id="cc-con-result" aria-live="polite">
-      <p class="placeholder" id="cc-con-placeholder">Enter values and click Calculate.</p>
-      <p class="form-error is-hidden" id="cc-con-error"></p>
-      <div class="cc-con-results-list is-hidden" id="cc-con-results-list"></div>
-    </div>
-
-    <div class="result-detail is-hidden" id="cc-con-summary" aria-live="polite"></div>
+      </aside>
+    </section>
   </div>
 </div>
 

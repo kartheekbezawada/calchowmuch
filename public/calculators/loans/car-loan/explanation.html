@@ -1,90 +1,147 @@
-<div id="car-explanation">
-  <h2>Car Loan Summary</h2>
+<div id="loan-mtg-explanation">
+  <h2>Car Loan - Payment Breakdown</h2>
   <p>
-    With a vehicle price of <span data-car="price"></span>, a down payment of
-    <span data-car="down"></span>, and a trade-in of <span data-car="trade"></span>, the amount
-    financed is <span data-car="financed"></span>.
+    A car loan payment includes principal plus interest over your selected term. Fees, sales tax,
+    and trade-in value all affect the financed amount and your EMI.
   </p>
   <p>
-    At <span data-car="apr"></span> APR over <span data-car="term"></span> years, the estimated monthly
-    payment is <span data-car="payment"></span>.
-  </p>
-  <p>
-    Total interest is <span data-car="interest"></span>, and total cost is
-    <span data-car="total-cost"></span>.
+    Use the table views to inspect repayment pace month-by-month or year-by-year and understand the
+    total cost impact.
   </p>
 
-  <h2>How this car loan calculator works</h2>
-  <p>
-    The calculator combines your price, trade-in, fees, and sales tax to estimate the amount you
-    finance. It then applies a standard amortization formula to compute monthly payments and the
-    year-by-year balance.
-  </p>
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-car="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-car="principal-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-car="interest-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-car="amount-financed-total"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-car="total-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payment</span>
+        <strong data-car="total-payment"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-car="lifetime-summary"></p>
+  </section>
 
-  <h2>Car loan formula</h2>
-  <p>
-    Amount financed = vehicle price - down payment - trade-in + fees + sales tax
-  </p>
-  <p>
-    Monthly payment is based on the financed amount, APR, and loan term using a fixed-rate
-    amortization schedule.
-  </p>
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Amortization Table</h3>
+        <div class="table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="car-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="car-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <h2>Inputs and assumptions</h2>
-  <ul>
-    <li>Vehicle price, down payment (amount or percent), and trade-in value.</li>
-    <li>Dealer fees and sales tax percentage.</li>
-    <li>APR and loan term in years.</li>
-  </ul>
-  <p>
-    Results are estimates. Tax rules and fees vary by location and lender, so use your lender's
-    final disclosures for exact numbers.
-  </p>
+    <div class="table-scroll is-hidden" id="car-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-monthly-body"></tbody>
+      </table>
+    </div>
 
-  <h2>Yearly loan snapshot</h2>
-  <p>
-    The table below shows a year-by-year view of payments, interest, and remaining balance so you
-    can see how the loan declines over time.
-  </p>
-  <div class="result-section">
-    <div class="table-scroll" id="car-table-wrap" tabindex="0">
-      <table class="calculator-table" id="car-table">
+    <div class="table-scroll" id="car-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
             <th scope="col">Interest</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="car-table-body"></tbody>
+        <tbody id="car-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
 
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <p><strong>How is the amount financed calculated?</strong></p>
-    <p>
-      It is the vehicle price minus down payment and trade-in, plus dealer fees and sales tax.
-    </p>
-  </div>
-  <div class="faq-item">
-    <p><strong>Does a larger down payment reduce monthly payments?</strong></p>
-    <p>
-      Yes. A larger down payment lowers the amount financed, which reduces monthly payment and
-      total interest.
-    </p>
-  </div>
-  <div class="faq-item">
-    <p><strong>What does total cost include?</strong></p>
-    <p>Total cost equals all monthly payments plus your down payment for the vehicle.</p>
-  </div>
-  <div class="faq-item">
-    <p><strong>How does sales tax affect the loan?</strong></p>
-    <p>
-      Sales tax increases the amount financed, which raises both monthly payment and total
-      interest.
-    </p>
-  </div>
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How is amount financed calculated?</h4>
+        <p>Amount financed = vehicle price - down payment - trade-in + dealer fees + sales tax.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What reduces monthly EMI the fastest?</h4>
+        <p>A larger down payment, lower APR, or shorter financed amount can reduce EMI materially.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Does extending tenure always help?</h4>
+        <p>Longer tenure lowers EMI but usually increases total interest paid over the full loan.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Why include dealer fees and tax?</h4>
+        <p>Both increase the financed balance, which raises payment and total interest.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Is this calculator lender-specific?</h4>
+        <p>No. Results are estimates based on fixed-rate amortization math.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I compare monthly vs yearly payoff quickly?</h4>
+        <p>Yes. Use the table toggle to switch between yearly summary and monthly detail.</p>
+      </div>
+    </div>
+  </section>
 </div>

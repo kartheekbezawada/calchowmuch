@@ -1,235 +1,141 @@
 <div id="loan-btl-explanation">
-  <!-- Dynamic Buy-to-Let Summary (H2) -->
-  <h2>Buy-to-Let Summary</h2>
-  <p class="btl-dynamic-summary">
-    Based on a property price of <span data-btl="price"></span> and monthly rent of
-    <span data-btl="rent"></span>, this estimate shows expected cashflow, yields, and stress
-    coverage under your selected mortgage terms. With a <span data-btl="mortgage-type-label"></span>
-    mortgage at <span data-btl="rate"></span>% over <span data-btl="term"></span> years, your
-    projected net monthly cashflow is <span data-btl="net-monthly"></span> and stress coverage is
-    <span data-btl="stress-coverage-percent"></span>%.
-  </p>
+  <section class="btl-exp-section btl-exp-section--summary">
+    <h2>Buy-to-Let Summary</h2>
+    <p class="btl-dynamic-summary">
+      Based on a property price of <span data-btl="price"></span> and monthly rent of
+      <span data-btl="rent"></span>, this estimate shows expected cashflow, yields, and stress
+      coverage under your selected mortgage terms. With a
+      <span data-btl="mortgage-type-label"></span> mortgage at <span data-btl="rate"></span>% over
+      <span data-btl="term"></span> years, your projected net monthly cashflow is
+      <span data-btl="net-monthly"></span> and stress coverage is
+      <span data-btl="stress-coverage-percent"></span>%.
+    </p>
+  </section>
 
-  <!-- Output Snapshot Table (H2) -->
-  <h2>Key Results</h2>
-  <div class="result-section">
-    <table class="calculator-table btl-output-table">
-      <thead>
-        <tr>
-          <th scope="col">Output</th>
-          <th scope="col">Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Monthly Mortgage Payment</td>
-          <td data-btl="mortgage-payment"></td>
-        </tr>
-        <tr>
-          <td>Net Monthly Cashflow</td>
-          <td data-btl="net-monthly"></td>
-        </tr>
-        <tr>
-          <td>Gross Yield</td>
-          <td data-btl="gross-yield"></td>
-        </tr>
-        <tr>
-          <td>Net Yield</td>
-          <td data-btl="net-yield"></td>
-        </tr>
-        <tr>
-          <td>Stress Coverage</td>
-          <td data-btl="stress-coverage"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <section class="btl-exp-section btl-exp-section--results">
+    <h2>Key Results</h2>
 
-  <!-- Input Summary Table (H3) -->
-  <h3>Calculation Inputs</h3>
-  <div class="result-section">
-    <table class="calculator-table btl-input-table">
-      <thead>
-        <tr>
-          <th scope="col">Input</th>
-          <th scope="col">Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Property Price</td>
-          <td data-btl="price"></td>
-        </tr>
-        <tr>
-          <td>Monthly Rent</td>
-          <td data-btl="rent"></td>
-        </tr>
-        <tr>
-          <td>Deposit Type</td>
-          <td data-btl="deposit-type"></td>
-        </tr>
-        <tr>
-          <td>Deposit Amount</td>
-          <td data-btl="deposit"></td>
-        </tr>
-        <tr>
-          <td>Deposit Percent</td>
-          <td data-btl="deposit-percent"></td>
-        </tr>
-        <tr>
-          <td>Loan Amount</td>
-          <td data-btl="loan"></td>
-        </tr>
-        <tr>
-          <td>LTV</td>
-          <td data-btl="ltv"></td>
-        </tr>
-        <tr>
-          <td>Interest Rate</td>
-          <td data-btl="rate"></td>
-        </tr>
-        <tr>
-          <td>Loan Term</td>
-          <td data-btl="term"></td>
-        </tr>
-        <tr>
-          <td>Mortgage Type</td>
-          <td data-btl="mortgage-type-label"></td>
-        </tr>
-        <tr>
-          <td>Rent Increase Enabled</td>
-          <td data-btl="rent-increase-enabled"></td>
-        </tr>
-        <tr class="is-hidden" id="btl-input-rent-increase-type-row">
-          <td>Rent Increase Type</td>
-          <td data-btl="rent-increase-type"></td>
-        </tr>
-        <tr class="is-hidden" id="btl-input-rent-increase-value-row">
-          <td>Rent Increase Value</td>
-          <td data-btl="rent-increase-value"></td>
-        </tr>
-        <tr class="is-hidden" id="btl-input-rent-increase-frequency-row">
-          <td>Rent Increase Frequency</td>
-          <td data-btl="rent-increase-frequency"></td>
-        </tr>
-        <tr>
-          <td>Vacancy Type</td>
-          <td data-btl="vacancy-type"></td>
-        </tr>
-        <tr>
-          <td>Vacancy Value</td>
-          <td data-btl="vacancy-value"></td>
-        </tr>
-        <tr>
-          <td>Letting Agent Fee</td>
-          <td data-btl="agent-fee"></td>
-        </tr>
-        <tr>
-          <td>Maintenance (Monthly)</td>
-          <td data-btl="maintenance"></td>
-        </tr>
-        <tr>
-          <td>Insurance / Service / Ground Rent (Monthly)</td>
-          <td data-btl="other-costs"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- FAQ Section (H3) -->
-  <h3>Frequently Asked Questions</h3>
-  <div class="result-section btl-faq">
-    <div class="faq-item">
-      <h4>What is a buy-to-let mortgage?</h4>
-      <p>
-        A buy-to-let mortgage is a loan designed for purchasing property to rent out to tenants
-        rather than for personal occupation. These mortgages typically require larger deposits
-        (usually 25% or more) and have different affordability criteria based on expected rental
-        income rather than just personal income.
-      </p>
+    <div class="btl-results-grid">
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Monthly Mortgage Payment</span>
+        <span class="btl-result-tile-value" data-btl="mortgage-payment"></span>
+      </article>
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Net Monthly Cashflow</span>
+        <span class="btl-result-tile-value" data-btl="net-monthly"></span>
+      </article>
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Annual Cashflow</span>
+        <span class="btl-result-tile-value" data-btl="net-annual"></span>
+      </article>
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Gross Yield</span>
+        <span class="btl-result-tile-value" data-btl="gross-yield"></span>
+      </article>
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Net Yield</span>
+        <span class="btl-result-tile-value" data-btl="net-yield"></span>
+      </article>
+      <article class="btl-result-tile">
+        <span class="btl-result-tile-label">Stress Coverage</span>
+        <span class="btl-result-tile-value" data-btl="stress-coverage"></span>
+      </article>
     </div>
 
-    <div class="faq-item">
-      <h4>How does a buy-to-let mortgage work?</h4>
-      <p>
-        You borrow money to purchase a rental property, make monthly mortgage payments, and collect
-        rent from tenants. The rental income should ideally cover the mortgage payment plus
-        additional costs (maintenance, insurance, letting fees, void periods). Any surplus is your
-        profit or cashflow.
-      </p>
-    </div>
+    <details class="btl-advanced-results-details">
+      <summary>
+        <span>Advanced Breakdown</span>
+        <span class="btl-adv-toggle-icon">+</span>
+      </summary>
+      <div class="btl-advanced-results-grid">
+        <div class="btl-adv-row"><span>Rent Increase</span><span data-btl="rent-increase-enabled"></span></div>
+        <div class="btl-adv-row is-hidden" id="btl-input-rent-increase-type-row"><span>Type</span><span data-btl="rent-increase-type"></span></div>
+        <div class="btl-adv-row is-hidden" id="btl-input-rent-increase-value-row"><span>Value</span><span data-btl="rent-increase-value"></span></div>
+        <div class="btl-adv-row is-hidden" id="btl-input-rent-increase-frequency-row"><span>Frequency</span><span data-btl="rent-increase-frequency"></span></div>
+        <div class="btl-adv-row"><span>Vacancy</span><span data-btl="vacancy-value"></span></div>
+        <div class="btl-adv-row"><span>Agent Fee</span><span data-btl="agent-fee"></span></div>
+        <div class="btl-adv-row"><span>Maintenance</span><span data-btl="maintenance"></span></div>
+        <div class="btl-adv-row"><span>Other Costs</span><span data-btl="other-costs"></span></div>
+      </div>
+    </details>
+  </section>
 
-    <div class="faq-item">
-      <h4>What deposit do I need for a buy-to-let mortgage?</h4>
-      <p>
-        Most lenders require a minimum deposit of 25% of the property value for buy-to-let
-        mortgages. Some lenders may accept 20%, but larger deposits (30-40%) often secure better
-        interest rates and loan terms.
-      </p>
+  <section class="btl-exp-section btl-exp-section--projection">
+    <h3>Cashflow Projection</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="calculator-table btl-projection-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Rent Income</th>
+            <th scope="col">Mortgage Cost</th>
+            <th scope="col">Other Costs</th>
+            <th scope="col">Net Cashflow</th>
+            <th scope="col">Cumulative</th>
+            <th scope="col">Increase Applied</th>
+          </tr>
+        </thead>
+        <tbody id="btl-table-body"></tbody>
+      </table>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <h4>Are buy-to-let interest rates higher than residential mortgages?</h4>
-      <p>
-        Yes, buy-to-let mortgage rates are typically higher than standard residential mortgages
-        because lenders consider them higher risk. The difference is usually between 0.5% to 1.5%
-        higher than equivalent residential rates.
-      </p>
-    </div>
+  <section class="btl-exp-section btl-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="btl-faq-grid">
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">01</span>
+        <h4>What is a buy-to-let mortgage?</h4>
+        <p>
+          A buy-to-let mortgage is a loan designed for purchasing property to rent out to tenants
+          rather than for personal occupation.
+        </p>
+      </article>
 
-    <div class="faq-item">
-      <h4>What is the rental coverage rule?</h4>
-      <p>
-        Most lenders require that the monthly rental income covers 125% to 145% of the monthly
-        mortgage payment (calculated on an interest-only basis). This buffer ensures you can still
-        afford the mortgage during void periods or if interest rates rise.
-      </p>
-    </div>
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">02</span>
+        <h4>How does a buy-to-let mortgage work?</h4>
+        <p>
+          You borrow to purchase a rental property, collect rent, and cover mortgage and operating
+          costs. Remaining surplus is net cashflow.
+        </p>
+      </article>
 
-    <div class="faq-item">
-      <h4>Can first-time buyers get a buy-to-let mortgage?</h4>
-      <p>
-        While possible, it's more difficult. Most lenders prefer borrowers who already own their own
-        home or have previous landlord experience. First-time landlords may face higher rates,
-        larger deposit requirements, or need to demonstrate significant rental income coverage.
-      </p>
-    </div>
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">03</span>
+        <h4>What deposit is usually required?</h4>
+        <p>
+          Most lenders expect a larger deposit than residential mortgages, often around 20-25% or
+          higher.
+        </p>
+      </article>
 
-    <div class="faq-item">
-      <h4>Can I live in my buy-to-let property?</h4>
-      <p>
-        No, buy-to-let mortgages are specifically for rental properties. Living in the property
-        would breach your mortgage terms. If you want to live in the property, you need a
-        residential mortgage instead.
-      </p>
-    </div>
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">04</span>
+        <h4>Why compare interest-only and repayment?</h4>
+        <p>
+          Interest-only usually improves monthly cashflow, while repayment builds equity faster but
+          increases monthly mortgage cost.
+        </p>
+      </article>
 
-    <div class="faq-item">
-      <h4>Do I need a separate income for a buy-to-let mortgage?</h4>
-      <p>
-        Many lenders require you to have a minimum personal income (often £25,000-£30,000 per year)
-        in addition to the expected rental income. This demonstrates you can cover mortgage payments
-        during void periods without relying solely on rent.
-      </p>
-    </div>
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">05</span>
+        <h4>What does stress coverage mean?</h4>
+        <p>
+          Stress coverage compares effective rent to mortgage cost, helping you gauge resilience
+          under tighter conditions.
+        </p>
+      </article>
 
-    <div class="faq-item">
-      <h4>What mortgage terms are available for buy-to-let?</h4>
-      <p>
-        Buy-to-let mortgages typically range from 5 to 35 years, though some lenders impose age
-        limits (e.g., the mortgage must be repaid by age 70 or 75). Shorter terms mean higher
-        monthly payments but less interest paid overall.
-      </p>
+      <article class="btl-faq-card">
+        <span class="btl-faq-number">06</span>
+        <h4>How should advanced options be used?</h4>
+        <p>
+          Use advanced assumptions to model vacancy, fees, maintenance, and rent growth for more
+          realistic planning outcomes.
+        </p>
+      </article>
     </div>
-
-    <div class="faq-item">
-      <h4>Should I choose interest-only or repayment?</h4>
-      <p>
-        Interest-only mortgages are popular for buy-to-let because they maximize monthly cashflow.
-        You only pay the interest each month, not the capital, which keeps payments lower. However,
-        you'll need a repayment strategy for the capital at the end of the term (usually selling the
-        property). Repayment mortgages build equity faster but reduce monthly cashflow.
-      </p>
-    </div>
-  </div>
+  </section>
 </div>

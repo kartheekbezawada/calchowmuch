@@ -15,12 +15,13 @@
     <meta name="twitter:title" content="Car Loan Calculator | Calculate How Much Online Calculator" />
     <meta name="twitter:description" content="Car Loan Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confi..." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="calculator">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans">
     <div class="page">
       <header class="site-header">
   <div class="site-header-inner">
@@ -91,89 +92,153 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Car Loan Calculator</h1>
-  <div id="calc-car-loan">
-  <div class="calculator-ui">
-    <p class="helper">
-      Estimate monthly payments and total cost after down payment, trade-in, fees, and sales tax.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-car-loan">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Car loan calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Enter your car loan inputs to estimate monthly EMI, total interest, and total payment
+            in the same premium calculator flow.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="car-price">Vehicle Price</label>
-        <input id="car-price" type="number" value="28000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-price">Vehicle Price</label>
+              <span class="slider-value" id="car-price-display">28,000</span>
+            </div>
+            <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
+          </div>
 
-      <div class="input-row">
-        <label id="car-down-label">Down Payment Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="car-down-label"
-          data-button-group="car-down-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="amount"
-            aria-pressed="true"
-          >
-            Amount
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="percent"
-            aria-pressed="false"
-          >
-            Percent
-          </button>
+          <div class="input-row down-combined-left">
+            <label id="car-down-label">Down Payment Type</label>
+            <div
+              class="button-group"
+              role="group"
+              aria-labelledby="car-down-label"
+              data-button-group="car-down-type"
+            >
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="amount"
+                aria-pressed="true"
+              >
+                Amount
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="percent"
+                aria-pressed="false"
+              >
+                Percent
+              </button>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="car-down-value-label" for="car-down-value">Down Payment Amount</label>
+              <span class="slider-value" id="car-down-display">3,000</span>
+            </div>
+            <input id="car-down-value" type="range" value="3000" min="0" max="150000" step="100" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-trade">Trade-in Value</label>
+              <span class="slider-value" id="car-trade-display">1,500</span>
+            </div>
+            <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-fees">Dealer Fees</label>
+              <span class="slider-value" id="car-fees-display">600</span>
+            </div>
+            <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-tax">Sales Tax (%)</label>
+              <span class="slider-value" id="car-tax-display">7%</span>
+            </div>
+            <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-term">Loan Term (years)</label>
+              <span class="slider-value" id="car-term-display">5 yrs</span>
+            </div>
+            <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-apr">Interest Rate (APR %)</label>
+              <span class="slider-value" id="car-apr-display">6.5%</span>
+            </div>
+            <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="car-calculate">
+              Calculate Car Loan
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row" id="car-down-amount-row">
-        <label for="car-down-amount">Down Payment</label>
-        <input id="car-down-amount" type="number" value="3000" min="0" step="0.01" />
-      </div>
+        <aside class="mtg-preview-panel" aria-label="Car loan scenario snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Monthly EMI</p>
+            <div class="result mtg-result-card" id="car-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite"></div>
+          </div>
 
-      <div class="input-row is-hidden" id="car-down-percent-row">
-        <label for="car-down-percent">Down Payment (%)</label>
-        <input id="car-down-percent" type="number" value="10" min="0" max="99.99" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="car-trade">Trade-in Value</label>
-        <input id="car-trade" type="number" value="1500" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="car-fees">Dealer Fees</label>
-        <input id="car-fees" type="number" value="600" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="car-tax">Sales Tax (%)</label>
-        <input id="car-tax" type="number" value="7" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="car-apr">APR (%)</label>
-        <input id="car-apr" type="number" value="6.5" min="0" step="0.01" />
-      </div>
-
-      <div class="input-row">
-        <label for="car-term">Loan Term (years)</label>
-        <input id="car-term" type="number" value="5" min="1" step="1" />
-      </div>
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Vehicle Price</span>
+              <strong data-car="price"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Down Payment</span>
+              <strong><span data-car="down-payment"></span> (<span data-car="down-percent"></span>)</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Trade-in Value</span>
+              <strong data-car="trade-in"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Dealer Fees</span>
+              <strong data-car="fees"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Sales Tax</span>
+              <strong data-car="tax"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Amount Financed</span>
+              <strong data-car="amount-financed"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-car="apr"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Loan Term</span>
+              <strong data-car="term"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="car-calc">
-      Calculate Car Loan
-    </button>
-
-    <div class="result" id="car-result" aria-live="polite"></div>
-    <div class="result-detail" id="car-summary" aria-live="polite"></div>
   </div>
 </div>
 
@@ -181,102 +246,155 @@
   @import url('/calculators/loans/car-loan/calculator.css');
 </style>
 
-<script type="module" src="/calculators/loans/car-loan/module.js"></script>
-
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="car-explanation">
-  <h2>Car Loan Summary</h2>
+    <div id="loan-mtg-explanation">
+  <h2>Car Loan - Payment Breakdown</h2>
   <p>
-    With a vehicle price of <span data-car="price"></span>, a down payment of
-    <span data-car="down"></span>, and a trade-in of <span data-car="trade"></span>, the amount
-    financed is <span data-car="financed"></span>.
+    A car loan payment includes principal plus interest over your selected term. Fees, sales tax,
+    and trade-in value all affect the financed amount and your EMI.
   </p>
   <p>
-    At <span data-car="apr"></span> APR over <span data-car="term"></span> years, the estimated monthly
-    payment is <span data-car="payment"></span>.
-  </p>
-  <p>
-    Total interest is <span data-car="interest"></span>, and total cost is
-    <span data-car="total-cost"></span>.
+    Use the table views to inspect repayment pace month-by-month or year-by-year and understand the
+    total cost impact.
   </p>
 
-  <h2>How this car loan calculator works</h2>
-  <p>
-    The calculator combines your price, trade-in, fees, and sales tax to estimate the amount you
-    finance. It then applies a standard amortization formula to compute monthly payments and the
-    year-by-year balance.
-  </p>
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-car="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-car="principal-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-car="interest-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-car="amount-financed-total"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-car="total-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payment</span>
+        <strong data-car="total-payment"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-car="lifetime-summary"></p>
+  </section>
 
-  <h2>Car loan formula</h2>
-  <p>
-    Amount financed = vehicle price - down payment - trade-in + fees + sales tax
-  </p>
-  <p>
-    Monthly payment is based on the financed amount, APR, and loan term using a fixed-rate
-    amortization schedule.
-  </p>
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Amortization Table</h3>
+        <div class="table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="car-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="car-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <h2>Inputs and assumptions</h2>
-  <ul>
-    <li>Vehicle price, down payment (amount or percent), and trade-in value.</li>
-    <li>Dealer fees and sales tax percentage.</li>
-    <li>APR and loan term in years.</li>
-  </ul>
-  <p>
-    Results are estimates. Tax rules and fees vary by location and lender, so use your lender's
-    final disclosures for exact numbers.
-  </p>
+    <div class="table-scroll is-hidden" id="car-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-monthly-body"></tbody>
+      </table>
+    </div>
 
-  <h2>Yearly loan snapshot</h2>
-  <p>
-    The table below shows a year-by-year view of payments, interest, and remaining balance so you
-    can see how the loan declines over time.
-  </p>
-  <div class="result-section">
-    <div class="table-scroll" id="car-table-wrap" tabindex="0">
-      <table class="calculator-table" id="car-table">
+    <div class="table-scroll" id="car-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
             <th scope="col">Interest</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="car-table-body"></tbody>
+        <tbody id="car-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
 
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <p><strong>How is the amount financed calculated?</strong></p>
-    <p>
-      It is the vehicle price minus down payment and trade-in, plus dealer fees and sales tax.
-    </p>
-  </div>
-  <div class="faq-item">
-    <p><strong>Does a larger down payment reduce monthly payments?</strong></p>
-    <p>
-      Yes. A larger down payment lowers the amount financed, which reduces monthly payment and
-      total interest.
-    </p>
-  </div>
-  <div class="faq-item">
-    <p><strong>What does total cost include?</strong></p>
-    <p>Total cost equals all monthly payments plus your down payment for the vehicle.</p>
-  </div>
-  <div class="faq-item">
-    <p><strong>How does sales tax affect the loan?</strong></p>
-    <p>
-      Sales tax increases the amount financed, which raises both monthly payment and total
-      interest.
-    </p>
-  </div>
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How is amount financed calculated?</h4>
+        <p>Amount financed = vehicle price - down payment - trade-in + dealer fees + sales tax.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What reduces monthly EMI the fastest?</h4>
+        <p>A larger down payment, lower APR, or shorter financed amount can reduce EMI materially.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Does extending tenure always help?</h4>
+        <p>Longer tenure lowers EMI but usually increases total interest paid over the full loan.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Why include dealer fees and tax?</h4>
+        <p>Both increase the financed balance, which raises payment and total interest.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Is this calculator lender-specific?</h4>
+        <p>No. Results are estimates based on fixed-rate amortization math.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I compare monthly vs yearly payoff quickly?</h4>
+        <p>Yes. Use the table toggle to switch between yearly summary and monthly detail.</p>
+      </div>
+    </div>
+  </section>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

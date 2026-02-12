@@ -1,29 +1,177 @@
-<div id="hp-explanation">
-  <h4>Hire Purchase Summary</h4>
+<div id="loan-mtg-explanation">
+  <h2>Hire Purchase - Payment Breakdown</h2>
   <p>
-    Financing <span data-hp="financed"></span> after a deposit of <span data-hp="deposit"></span> at
-    <span data-hp="apr"></span> APR results in a monthly payment of <span data-hp="payment"></span>.
+    Based on a vehicle price of <span data-hp="price">-</span> with a deposit of
+    <span data-hp="deposit">-</span>, your estimated monthly installment is
+    <span data-hp="monthly-payment">-</span>.
   </p>
   <p>
-    The final balloon payment is <span data-hp="balloon"></span>, with total interest of
-    <span data-hp="interest"></span> and total payable of <span data-hp="total"></span>.
+    At <span data-hp="apr">-</span> over <span data-hp="term">-</span>, this scenario includes
+    a final balloon payment of <span data-hp="balloon">-</span> and a total payable amount of
+    <span data-hp="total-payable">-</span>.
   </p>
-  <p>Balloon payments reduce monthly costs but leave a larger final balance.</p>
 
-  <div class="result-section">
-    <h4>Yearly Loan Snapshot</h4>
-    <div class="table-scroll" id="hp-table-wrap" tabindex="0">
-      <table class="calculator-table" id="hp-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-hp="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-hp="principal-share">-</strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-hp="interest-share">-</strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid hp-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-hp="amount-financed-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Final Balloon</span>
+        <strong data-hp="final-balloon-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-hp="total-interest">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payable</span>
+        <strong data-hp="total-payable">-</strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-hp="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Amortization Table</h3>
+        <div class="table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="hp-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="hp-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="hp-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="hp-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="hp-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="hp-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="hp-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
             <th scope="col">Interest</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="hp-table-body"></tbody>
+        <tbody id="hp-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How does a hire purchase calculator estimate monthly payment?</h4>
+        <p>It uses financed amount, APR, term, and final balloon to estimate equal monthly installments.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is amount financed in hire purchase?</h4>
+        <p>Amount financed is vehicle price minus deposit before interest is applied.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>How does a balloon payment affect monthly installments?</h4>
+        <p>A larger balloon usually lowers monthly installments but leaves more principal due at the end.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can balloon payment be higher than financed amount?</h4>
+        <p>No. Balloon is capped at the financed amount in this calculator.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Why does a longer term reduce monthly payment?</h4>
+        <p>Longer terms spread repayment across more months, but can increase total interest paid.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I switch between years and months for term input?</h4>
+        <p>Yes. Use the term unit toggle to enter duration in years or months.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Does changing input values recalculate automatically?</h4>
+        <p>No. Results update when you click the Calculate Hire Purchase button.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>What does total payable include?</h4>
+        <p>Total payable includes deposit, all monthly installments, and the final balloon payment.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this suitable for comparing different deposit scenarios?</h4>
+        <p>Yes. Adjust deposit and recalculate to compare installment and total payable tradeoffs.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Are these lender-specific repayments?</h4>
+        <p>No. These are fixed-rate estimates and may differ from lender disclosures and fees.</p>
+      </div>
+    </div>
+  </section>
 </div>

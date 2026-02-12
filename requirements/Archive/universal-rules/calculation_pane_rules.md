@@ -269,11 +269,11 @@ Calculators with add/remove row interactions must keep dynamic rows visually and
 ## 5) Placement & Wiring (Repo Contract)
 
 **File path (required):**
-- `requirements/universal-rules/calculation_pane_rules.md`
+- `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
 
 **Must be referenced from:**
 - `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` → UI & Interaction section (reference only; do not duplicate rules)
-- `requirements/universal-rules/TESTING_RULES.md` → UI regression category (Calculation Pane density + progressive disclosure)
+- `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` → UI regression category (Calculation Pane density + progressive disclosure)
 
 ---
 

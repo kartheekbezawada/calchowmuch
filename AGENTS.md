@@ -4,7 +4,7 @@ AGENTS.md — Agent Operating Contract (Entry Point)
 
 0. Cold Start Instruction (Read First)
 
-AGENTS.md and WORKFLOW.md are authoritative law.
+AGENTS.md and UNIVERSAL_REQUIREMENTS.md are authoritative law.
 
 Do not reinterpret rules.
 
@@ -12,7 +12,7 @@ Apply rules verbatim.
 
 Update ledgers with deltas only (no history, no archives).
 
-If this file conflicts with WORKFLOW.md, WORKFLOW.md takes precedence.
+If this file conflicts with UNIVERSAL_REQUIREMENTS.md, UNIVERSAL_REQUIREMENTS.md takes precedence.
 
 1. ADMIN ABSOLUTE OVERRIDE (CHECKED FIRST)
 Activation
@@ -43,7 +43,7 @@ Ignore build and test sequencing rules
 
 The agent must execute the HUMAN instruction immediately.
 
-ADMIN has absolute precedence over all other rules in this file and in WORKFLOW.md.
+ADMIN has absolute precedence over all other rules in this file and in UNIVERSAL_REQUIREMENTS.md.
 
 Hard Limits (Always Apply)
 
@@ -73,7 +73,7 @@ REQ → BUILD → TEST → SEO → COMPLIANCE
 
 Auto-Test Mode (Deterministic)
 
-- After a BUILD PASS, the Implementer MUST immediately run the required tests (per TESTING_RULES) without waiting for an additional human confirmation.
+- After a BUILD PASS, the Implementer MUST immediately run the required tests (per UR-TEST rules in UNIVERSAL_REQUIREMENTS.md) without waiting for an additional human confirmation.
 - In Auto-Test Mode, updating `testing_tracker.md` is permitted during the BUILD state as part of the single continuous BUILD→TEST execution.
 
 All workflow state is stored under requirements/compliance/
@@ -159,11 +159,7 @@ LAW (Authoritative — Do Not Reinterpret)
 
 AGENTS.md
 
-requirements/universal-rules/WORKFLOW.md
-
 requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
-
-requirements/universal-rules/explanation_pane_standard.md
 
 REFERENCE (Load Only When Relevant)
 
@@ -211,7 +207,7 @@ No calculator JavaScript
 
 7. Test Policy (Default Mode)
 
-testing_requirements.md is authoritative
+UNIVERSAL_REQUIREMENTS.md (UR-TEST section) is authoritative
 
 Select tests strictly by change type
 
@@ -226,7 +222,7 @@ Record required vs executed tests in compliance-report.md
 Auto-Test Mode note:
 
 - Implementer runs required tests immediately after BUILD PASS.
-- Implementer records executed tests in `testing_tracker.md` even if this occurs during BUILD, then proceeds to SEO/COMPLIANCE per WORKFLOW.
+- Implementer records executed tests in `testing_tracker.md` even if this occurs during BUILD, then proceeds to SEO/COMPLIANCE per UR-FSM rules in UNIVERSAL_REQUIREMENTS.md.
 
 8. Compliance Gate (Default Mode)
 

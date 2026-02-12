@@ -1,14 +1,64 @@
-<div id="multi-loan-explanation">
-  <h4>Multiple Loan Summary</h4>
+<div id="loan-mtg-explanation">
+  <h2>Multiple Car Loan - Combined Repayment Summary</h2>
   <p>
-    Loan A payment is <span data-multi="payment-a"></span> and Loan B payment is
-    <span data-multi="payment-b"></span>, resulting in a combined payment of
-    <span data-multi="payment-total"></span>.
+    Based on Loan A (
+    <span data-multi="loan-a-amount">—</span> at <span data-multi="loan-a-apr">—</span> for
+    <span data-multi="loan-a-term">—</span>) and Loan B (
+    <span data-multi="loan-b-amount">—</span> at <span data-multi="loan-b-apr">—</span> for
+    <span data-multi="loan-b-term">—</span>), your combined monthly payment is
+    <span data-multi="combined-payment">—</span>.
   </p>
-  <p>Total interest paid across both loans is <span data-multi="interest-total"></span>.</p>
+  <p>
+    Across both loans, total interest is <span data-multi="combined-interest">—</span> and total
+    paid is <span data-multi="combined-total">—</span> over
+    <span data-multi="payoff-horizon">—</span>.
+  </p>
 
-  <div class="result-section">
-    <h4>Loan Comparison</h4>
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-multi="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-multi="principal-share">—</strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-multi="interest-share">—</strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid multi-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Loan A Principal</span>
+        <strong data-multi="loan-a-principal">—</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Loan B Principal</span>
+        <strong data-multi="loan-b-principal">—</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-multi="total-interest">—</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payment</span>
+        <strong data-multi="total-payment">—</strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-multi="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--comparison">
+    <h3>Loan Comparison</h3>
     <div class="table-scroll" id="multi-loan-table-wrap" tabindex="0">
       <table class="calculator-table" id="multi-loan-table">
         <thead>
@@ -20,7 +70,152 @@
           </tr>
         </thead>
         <tbody id="multi-loan-table-body"></tbody>
+        <tfoot>
+          <tr class="multi-loan-table-total-row">
+            <th scope="row">Combined</th>
+            <td id="multi-loan-combined-payment">—</td>
+            <td id="multi-loan-combined-interest">—</td>
+            <td id="multi-loan-combined-total">—</td>
+          </tr>
+        </tfoot>
       </table>
     </div>
-  </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Combined Amortization Table</h3>
+        <div class="table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="multi-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="multi-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="multi-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="multi-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="multi-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="multi-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="multi-table-yearly">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="multi-table-yearly-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does this multiple car loan calculator compare?</h4>
+        <p>
+          It compares two auto loans at once and shows each payment, each total interest, and the
+          combined repayment totals.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How is the combined monthly payment calculated?</h4>
+        <p>It adds Loan A monthly payment and Loan B monthly payment for each month.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>How is combined total interest calculated?</h4>
+        <p>It adds total interest from both amortization schedules across their full terms.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can the two loans have different terms and APRs?</h4>
+        <p>Yes. Each loan has independent amount, APR, and term inputs.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What does payoff horizon mean in this view?</h4>
+        <p>
+          Payoff horizon is the longer of the two loan terms, which is when the combined balance
+          reaches zero.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Why does the monthly total drop later in the schedule?</h4>
+        <p>If one loan ends earlier, only the remaining loan payment is left for later months.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Does this include taxes, fees, or insurance?</h4>
+        <p>
+          No. This calculator models principal and interest only for each loan using fixed-rate
+          amortization.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Can this help decide whether to refinance one loan?</h4>
+        <p>
+          Yes. You can change one loan APR or term and compare the new combined totals against the
+          previous scenario.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this result lender-specific?</h4>
+        <p>
+          No. It is a general estimate using fixed-rate math, so exact lender disclosures may differ.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Can I view monthly and yearly payoff summaries?</h4>
+        <p>
+          Yes. Use the table toggle to switch between detailed monthly rows and yearly rollup rows.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

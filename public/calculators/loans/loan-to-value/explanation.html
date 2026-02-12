@@ -1,61 +1,122 @@
 <div id="loan-ltv-explanation">
-  <h4>LTV Summary</h4>
+  <h2>Loan-to-Value (LTV) Calculator</h2>
   <p>
-    With a property value of <span data-ltv="property"></span> and a loan amount of
-    <span data-ltv="loan"></span>, the deposit is <span data-ltv="deposit"></span> (<span
-      data-ltv="deposit-percent"
-    ></span
-    >). The loan-to-value (LTV) is <span data-ltv="ltv"></span>.
+    Loan-to-value (LTV) compares your loan amount to the property value. It is one of the key
+    metrics lenders use to price risk and decide which mortgage products you can access.
   </p>
   <p>
-    LTV measures the portion of the property financed by debt. Higher LTVs typically face tighter
-    availability or higher rates.
+    Lower LTV usually means better rates and wider lender choice. Use this calculator to test
+    different deposit or loan combinations and see where you land in typical lending bands.
   </p>
-  <p>This is informational, not financial advice.</p>
 
-  <div class="result-section">
-    <h4>LTV Thresholds</h4>
-    <div class="table-scroll" id="ltv-table-wrap" tabindex="0">
-      <table class="calculator-table" id="ltv-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Funding Split</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-ltv="share-donut"
+        role="img"
+        aria-label="Loan share versus equity share"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Loan Share</span>
+          <strong data-ltv="loan-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Deposit / Equity Share</span>
+          <strong data-ltv="equity-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Property Value</span>
+        <strong data-ltv="property"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Loan Amount</span>
+        <strong data-ltv="loan"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Deposit Needed</span>
+        <strong data-ltv="deposit"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-ltv="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-header">
+      <h3>LTV Bands and Targets</h3>
+      <div
+        class="table-view-toggle"
+        role="group"
+        aria-label="LTV table view"
+        data-button-group="ltv-table-view"
+      >
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="bands"
+          id="ltv-view-bands"
+        >
+          Market Bands
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="targets"
+          id="ltv-view-targets"
+        >
+          Deposit Targets
+        </button>
+      </div>
+    </div>
+
+    <div class="table-scroll" id="ltv-table-bands-wrap" tabindex="0">
+      <table class="calculator-table" id="ltv-table-bands">
         <thead>
           <tr>
             <th scope="col">LTV Band</th>
-            <th scope="col">Availability Note</th>
-            <th scope="col">Risk Note</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Risk</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-60">
             <td>60% or lower</td>
-            <td>Best availability</td>
+            <td>Best availability and pricing</td>
             <td>Lowest risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-75">
             <td>Up to 75%</td>
             <td>Strong availability</td>
             <td>Low risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-80">
             <td>Up to 80%</td>
-            <td>Common range</td>
+            <td>Common range for many products</td>
             <td>Moderate risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-85">
             <td>Up to 85%</td>
-            <td>More limited</td>
+            <td>More limited product set</td>
             <td>Elevated risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-90">
             <td>Up to 90%</td>
-            <td>Limited options</td>
+            <td>Limited options and tighter checks</td>
             <td>High risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="up-to-95">
             <td>Up to 95%</td>
-            <td>Restricted</td>
+            <td>Restricted availability</td>
             <td>Very high risk</td>
           </tr>
-          <tr>
+          <tr class="ltv-band-row" data-band-key="above-95">
             <td>Above 95%</td>
             <td>Rare availability</td>
             <td>Highest risk</td>
@@ -63,5 +124,116 @@
         </tbody>
       </table>
     </div>
-  </div>
+
+    <div class="table-scroll is-hidden" id="ltv-table-targets-wrap" tabindex="0">
+      <table class="calculator-table" id="ltv-table-targets">
+        <thead>
+          <tr>
+            <th scope="col">Target LTV</th>
+            <th scope="col">Required Deposit</th>
+            <th scope="col">Extra Deposit Needed</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody id="ltv-target-body"></tbody>
+      </table>
+    </div>
+
+    <p class="ltv-band-marker" data-ltv="band-marker"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is LTV in a mortgage?</h4>
+        <p>
+          LTV is the loan amount divided by the property value, expressed as a percentage. Example:
+          280,000 loan on a 350,000 property gives 80% LTV.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Is lower LTV always better?</h4>
+        <p>
+          Generally yes. Lower LTV often unlocks better rates and more lender options because the
+          lender is taking less risk.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>How do I reduce my LTV?</h4>
+        <p>
+          You can reduce LTV by increasing your deposit, paying down the loan balance, or buying at
+          a lower property price.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What LTV do first-time buyers usually target?</h4>
+        <p>
+          Many first-time buyers aim for 90% to 95% LTV, but products and pricing usually improve as
+          you move toward 85%, 80%, or lower.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does property value change my LTV over time?</h4>
+        <p>
+          Yes. If the property value rises and your loan stays the same or falls, your LTV improves.
+          If value drops, LTV can worsen.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>What happens above 95% LTV?</h4>
+        <p>
+          Lending options are usually very limited and rates can be significantly higher. Some
+          lenders may require additional checks or decline entirely.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Does LTV affect remortgage options?</h4>
+        <p>
+          Yes. Better LTV bands often give access to stronger remortgage deals. This is why many
+          borrowers monitor LTV before a fixed rate expires.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Can I use deposit percent instead of amount?</h4>
+        <p>
+          Yes. This calculator supports both. Enter the deposit as a percentage to quickly test
+          different LTV outcomes across price points.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is LTV the only affordability factor?</h4>
+        <p>
+          No. Lenders also check income, existing debts, credit profile, and monthly affordability.
+          LTV is one major factor, but not the only one.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>How often should I recalculate LTV?</h4>
+        <p>
+          Recheck whenever your balance changes materially, your property value changes, or you are
+          planning a purchase or remortgage decision.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

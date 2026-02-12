@@ -164,8 +164,8 @@ Results displayed in `#cc-bt-result` and `#cc-bt-summary`:
 - If max APR > 0 and payment <= first month's interest on starting balance: `"Payment is too low to reduce the balance after promo ends."`
 
 ### UI Interaction Contract
-- Calculate button triggers computation (UI-2.6). No auto-recalculation on input change after first calculation.
-- After first Calculate click, any input change must reset results to placeholder state until next Calculate click.
+- Calculator auto-recalculates on input change after initial page-load baseline.
+- Calculate button also triggers computation as an explicit recompute action.
 - No dropdowns (UI-2.5).
 
 ---
@@ -290,7 +290,7 @@ Each FAQ must be in a bordered container (`.cc-bt-faq-item`). Q: bolded, A: inde
 
 ### E2E Tests (Playwright)
 - BALTRANSFER-TEST-E2E-1: Load page, verify nav active states, fill inputs, click Calculate, verify result content.
-- BALTRANSFER-TEST-E2E-2: After Calculate, change input, verify results reset to placeholder.
+- BALTRANSFER-TEST-E2E-2: After Calculate, change input, verify projected outcome auto-recalculates and remains visible.
 - BALTRANSFER-TEST-E2E-3: Verify explanation pane has 10 FAQ items.
 
 ### SEO Tests
@@ -307,7 +307,7 @@ Each FAQ must be in a bordered container (`.cc-bt-faq-item`). Q: bolded, A: inde
 - [ ] Transfer fee is correctly added to starting balance.
 - [ ] Promo APR applies during promo period, post-promo APR after.
 - [ ] All validation errors display correctly.
-- [ ] No auto-recalculation on input change after first Calculate click (UI-2.6).
+- [ ] Auto-recalculation updates projected outcome immediately on input change.
 - [ ] No dropdowns in UI (UI-2.5).
 - [ ] Explanation pane follows UI-EXP-PANE-STD section order with 10 FAQs.
 - [ ] FAQPage JSON-LD matches visible FAQ text verbatim.

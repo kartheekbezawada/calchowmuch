@@ -15,12 +15,13 @@
     <meta name="twitter:title" content="Minimum Payment | Calculate How Much Online Calculator" />
     <meta name="twitter:description" content="Minimum Payment calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="calculator">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="credit-cards">
     <div class="page">
       <header class="site-header">
   <div class="site-header-inner">
@@ -91,60 +92,120 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Minimum Payment</h1>
-  <div id="calc-cc-min">
-  <div class="calculator-ui">
-    <p class="helper">
-      See the true cost of making minimum-only payments, including payoff time, first payment,
-      and total interest.
-    </p>
+          <div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">Credit Card Minimum Payment</h1>
+  <div class="calculator-page-single">
+    <div id="calc-cc-min">
+  <div class="calculator-ui cc-min-ui">
+    <section class="cc-min-hero" aria-label="Minimum payment planner">
+      <div class="cc-min-form-panel">
+        <header class="cc-min-heading">
+          <p class="cc-min-kicker">Credit Card Strategy Planner</p>
+          <h2 class="cc-min-headline">See the true cost of minimum-only payments.</h2>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="cc-min-balance">Card Balance</label>
-        <input
-          id="cc-min-balance"
-          type="number"
-          value="3200"
-          min="0.01"
-          step="0.01"
-          inputmode="decimal"
-        />
+          <p class="helper">
+            Enter your balance and issuer minimum rules to view payoff timeline, first payment,
+            yearly table, and total interest.
+          </p>
+        </header>
+
+        <div class="cc-min-input-grid">
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-min-balance">Card Balance</label>
+              <span class="slider-value" id="cc-min-balance-display">3,200</span>
+            </div>
+            <input id="cc-min-balance" type="range" value="3200" min="100" max="50000" step="100" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-min-apr">APR (%)</label>
+              <span class="slider-value" id="cc-min-apr-display">21.9%</span>
+            </div>
+            <input id="cc-min-apr" type="range" value="21.9" min="0" max="40" step="0.1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-min-rate">Minimum Payment Rate (%)</label>
+              <span class="slider-value" id="cc-min-rate-display">2.5%</span>
+            </div>
+            <input id="cc-min-rate" type="range" value="2.5" min="0" max="10" step="0.5" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-min-floor">Lowest Monthly Payment</label>
+              <span class="slider-value" id="cc-min-floor-display">25</span>
+            </div>
+            <input id="cc-min-floor" type="range" value="25" min="0" max="3200" step="1" />
+          </div>
+        </div>
+
+        <p class="cc-min-provider-note">
+          <em
+            >Note: Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary
+            by credit card provider. Check your provider's Terms &amp; Conditions for exact
+            values.</em
+          >
+        </p>
+
+        <div class="input-row action-row cc-min-action-row">
+          <button class="calculator-button full-width" type="button" id="cc-min-calc">
+            Calculate Minimum-Only Plan
+          </button>
+        </div>
       </div>
 
-      <div class="input-row">
-        <label for="cc-min-apr">APR (%)</label>
-        <input id="cc-min-apr" type="number" value="21.9" min="0" step="0.01" inputmode="decimal" />
-      </div>
+      <aside class="cc-min-preview-panel" aria-label="Minimum payment snapshot">
+        <div class="cc-min-preview-main">
+          <p class="cc-min-preview-label">Projected Outcome</p>
+          <div class="result cc-min-result-card" id="cc-min-result" aria-live="polite">
+            <p class="placeholder" id="cc-min-placeholder">Enter values and click Calculate.</p>
+            <p class="form-error is-hidden" id="cc-min-error"></p>
+            <div class="cc-min-results-list is-hidden" id="cc-min-results-list"></div>
+          </div>
 
-      <div class="input-row">
-        <label for="cc-min-rate">Minimum Payment Rate (%)</label>
-        <input id="cc-min-rate" type="number" value="2.5" min="0" step="0.1" inputmode="decimal" />
-      </div>
+          <p class="cc-min-preview-note">Loaded with default values and yearly table on first view.</p>
+        </div>
 
-      <div class="input-row">
-        <label for="cc-min-floor">Lowest Monthly Payment ($)</label>
-        <input id="cc-min-floor" type="number" value="25" min="0" step="0.01" inputmode="decimal" />
-      </div>
-    </div>
-
-    <p class="cc-min-provider-note">
-      <em
-        >Note: Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary by
-        credit card provider. Check your provider's Terms &amp; Conditions for exact values.</em
-      >
-    </p>
-
-    <button class="calculator-button full-width" type="button" id="cc-min-calc">Calculate</button>
-
-    <div class="result" id="cc-min-result" aria-live="polite">
-      <p class="placeholder" id="cc-min-placeholder">Enter values and click Calculate.</p>
-      <p class="form-error is-hidden" id="cc-min-error"></p>
-      <div class="cc-min-results-list is-hidden" id="cc-min-results-list"></div>
-    </div>
-
-    <div class="result-detail is-hidden" id="cc-min-summary" aria-live="polite"></div>
+        <div class="cc-min-snapshot-list">
+          <div class="cc-min-snapshot-row">
+            <span>Card Balance</span>
+            <strong><span data-cc-min="balance">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>APR</span>
+            <strong><span data-cc-min="apr">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>Minimum Rate</span>
+            <strong><span data-cc-min="rate">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>Payment Floor</span>
+            <strong><span data-cc-min="floor">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>First Payment</span>
+            <strong><span data-cc-min="first-payment">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>Payoff Time</span>
+            <strong><span data-cc-min="months">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>Total Interest</span>
+            <strong><span data-cc-min="interest">—</span></strong>
+          </div>
+          <div class="cc-min-snapshot-row">
+            <span>Total Paid</span>
+            <strong><span data-cc-min="total">—</span></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
@@ -152,157 +213,160 @@
   @import url('/calculators/loans/credit-card-minimum-payment/calculator.css');
 </style>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="cc-min-explanation" class="explanation-pane">
-  <h2 id="cc-min-summary-heading">Minimum Payment Payoff Summary</h2>
-  <p>
-    Based on a card balance of <span data-cc-min="balance">—</span>, APR of
-    <span data-cc-min="apr">—</span>, minimum payment rate of
-    <span data-cc-min="rate">—</span>, and lowest monthly payment (floor) of
-    <span data-cc-min="floor">—</span>, your first minimum payment is
-    <span data-cc-min="first-payment">—</span>.
-  </p>
-  <p>
-    At that minimum-payment pattern, payoff takes
-    <span data-cc-min="months">—</span> months, total interest is
-    <span data-cc-min="interest">—</span>, and total paid is
-    <span data-cc-min="total">—</span>.
-  </p>
-  <p>
-    Minimum payments decline as your balance falls, which usually extends payoff time and raises the
-    total interest cost.
-  </p>
+    <div id="cc-min-explanation" class="explanation-pane">
+  <section class="cc-min-exp-section cc-min-exp-intro">
+    <h2 id="cc-min-summary-heading">Minimum Payment Payoff Summary</h2>
+    <p>
+      Based on a card balance of <span data-cc-min="balance">—</span>, APR of
+      <span data-cc-min="apr">—</span>, minimum payment rate of <span data-cc-min="rate">—</span>,
+      and lowest monthly payment (floor) of <span data-cc-min="floor">—</span>, your first minimum
+      payment is <span data-cc-min="first-payment">—</span>.
+    </p>
+    <p>
+      At that minimum-payment pattern, payoff takes <span data-cc-min="months">—</span> months,
+      total interest is <span data-cc-min="interest">—</span>, and total paid is
+      <span data-cc-min="total">—</span>.
+    </p>
+    <p>
+      Minimum payments decline as your balance falls, which usually extends payoff time and raises
+      the total interest cost.
+    </p>
+  </section>
 
-  <h3 id="cc-min-results-heading">Results Table (Yearly Payoff Snapshot)</h3>
-  <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
-    <table class="calculator-table" id="cc-min-table">
-      <thead>
-        <tr>
-          <th scope="col">Year</th>
-          <th scope="col">Payments</th>
-          <th scope="col">Interest</th>
-          <th scope="col">Ending Balance</th>
-        </tr>
-      </thead>
-      <tbody id="cc-min-table-body">
-        <tr class="cc-min-table-placeholder-row">
-          <td colspan="4">Run Calculate to populate yearly payoff rows.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <section class="cc-min-exp-section">
+    <h3 id="cc-min-results-heading">Results Table (Yearly Payoff Snapshot)</h3>
+    <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-min-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="cc-min-table-body">
+          <tr class="cc-min-table-placeholder-row">
+            <td colspan="4">Run Calculate to populate yearly payoff rows.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h3 id="cc-min-explain-heading">Explanation</h3>
-  <p>
-    Your minimum payment is estimated each month as the greater of a percentage of the remaining
-    balance and a fixed lowest monthly payment (floor). In this scenario, the first minimum payment is
-    <span data-cc-min="first-payment">—</span>.
-  </p>
-  <p>
-    Because the percentage-based minimum shrinks as balance declines, principal reduction slows over
-    time. That is why this scenario takes <span data-cc-min="months">—</span> months and accumulates
-    <span data-cc-min="interest">—</span> in interest.
-  </p>
-  <p>
-    The lowest monthly payment (floor) keeps the minimum from dropping below <span data-cc-min="floor">—</span>,
-    which helps prevent the payment from becoming too small at low balances.
-  </p>
-  <p>
-    Paying only minimums can be much more expensive than using a fixed higher payment strategy.
-    Comparing this minimum-only total (<span data-cc-min="total">—</span>) against a fixed payment
-    plan helps you quantify the savings from faster payoff.
-  </p>
-  <p>
-    This estimate assumes fixed APR, no late fees, no annual fees, no new purchases, and on-time
-    monthly payments. Real card statements can differ if rates, fees, or spending behavior change.
-  </p>
+  <section class="cc-min-exp-section">
+    <h3 id="cc-min-explain-heading">Explanation</h3>
+    <p>
+      Your minimum payment is estimated each month as the greater of a percentage of the remaining
+      balance and a fixed lowest monthly payment (floor). In this scenario, the first minimum
+      payment is <span data-cc-min="first-payment">—</span>.
+    </p>
+    <p>
+      Because the percentage-based minimum shrinks as balance declines, principal reduction slows
+      over time. That is why this scenario takes <span data-cc-min="months">—</span> months and
+      accumulates <span data-cc-min="interest">—</span> in interest.
+    </p>
+    <p>
+      The lowest monthly payment (floor) keeps the minimum from dropping below
+      <span data-cc-min="floor">—</span>, which helps prevent the payment from becoming too small at
+      low balances.
+    </p>
+    <p>
+      Paying only minimums can be much more expensive than using a fixed higher payment strategy.
+      Comparing this minimum-only total (<span data-cc-min="total">—</span>) against a fixed payment
+      plan helps you quantify the savings from faster payoff.
+    </p>
+    <p>
+      This estimate assumes fixed APR, no late fees, no annual fees, no new purchases, and on-time
+      monthly payments. Real card statements can differ if rates, fees, or spending behavior change.
+    </p>
+  </section>
 
   <h3 id="cc-min-faq-heading">Frequently Asked Questions</h3>
+  <div class="cc-min-faq-grid">
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What is a credit card minimum payment?</strong></p>
+      <p class="faq-answer">
+        A: A credit card minimum payment is the lowest amount your issuer requires each month to
+        keep the account current and avoid late-payment penalties.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What is a credit card minimum payment?</strong></p>
-    <p class="faq-answer">
-      A: A credit card minimum payment is the lowest amount your issuer requires each month to keep
-      the account current and avoid late-payment penalties.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How is the minimum payment calculated?</strong></p>
+      <p class="faq-answer">
+        A: Issuers commonly set the minimum as a percentage of your balance with a lowest monthly
+        payment floor, and this calculator models that same structure month by month.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How is the minimum payment calculated?</strong></p>
-    <p class="faq-answer">
-      A: Issuers commonly set the minimum as a percentage of your balance with a lowest monthly
-      payment floor,
-      and this calculator models that same structure month by month.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Why does it take so long to pay off with minimum payments?</strong></p>
+      <p class="faq-answer">
+        A: Minimum payments usually decline as your balance drops, so less principal is reduced each
+        month while interest keeps accruing.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Why does it take so long to pay off with minimum payments?</strong></p>
-    <p class="faq-answer">
-      A: Minimum payments usually decline as your balance drops, so less principal is reduced each
-      month while interest keeps accruing.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What is the minimum payment trap?</strong></p>
+      <p class="faq-answer">
+        A: The minimum payment trap is when declining required payments make balances last for
+        years, causing much higher total interest costs.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What is the minimum payment trap?</strong></p>
-    <p class="faq-answer">
-      A: The minimum payment trap is when declining required payments make balances last for years,
-      causing much higher total interest costs.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How does the lowest monthly payment floor work?</strong></p>
+      <p class="faq-answer">
+        A: The lowest monthly payment floor is a fixed dollar amount that sets the smallest allowed
+        minimum payment even when the percentage-based amount becomes lower.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How does the lowest monthly payment floor work?</strong></p>
-    <p class="faq-answer">
-      A: The lowest monthly payment floor is a fixed dollar amount that sets the smallest allowed
-      minimum payment even when the percentage-based amount becomes lower.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What happens if I pay more than the minimum?</strong></p>
+      <p class="faq-answer">
+        A: Paying more than the minimum reduces principal faster, shortens payoff time, and lowers
+        total interest compared with minimum-only payments.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What happens if I pay more than the minimum?</strong></p>
-    <p class="faq-answer">
-      A: Paying more than the minimum reduces principal faster, shortens payoff time, and lowers
-      total interest compared with minimum-only payments.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Does the minimum payment rate vary by card issuer?</strong></p>
+      <p class="faq-answer">
+        A: Yes. Issuers can use different minimum payment formulas, percentages, and lowest payment
+        floors, so your monthly requirement can vary by card.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Does the minimum payment rate vary by card issuer?</strong></p>
-    <p class="faq-answer">
-      A: Yes. Issuers can use different minimum payment formulas, percentages, and lowest payment
-      floors, so your monthly requirement can vary by card.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Can my minimum payment ever go up?</strong></p>
+      <p class="faq-answer">
+        A: Yes. It can increase if your balance rises, your issuer changes terms, or fees and
+        penalty APR adjustments apply.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Can my minimum payment ever go up?</strong></p>
-    <p class="faq-answer">
-      A: Yes. It can increase if your balance rises, your issuer changes terms, or fees and penalty
-      APR adjustments apply.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Does this calculator include new purchases or fees?</strong></p>
+      <p class="faq-answer">
+        A: No. This model assumes no new purchases and no additional fees during payoff so you can
+        isolate the minimum-payment repayment path.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Does this calculator include new purchases or fees?</strong></p>
-    <p class="faq-answer">
-      A: No. This model assumes no new purchases and no additional fees during payoff so you can
-      isolate the minimum-payment repayment path.
-    </p>
-  </div>
-
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How can I estimate a faster payoff strategy?</strong></p>
-    <p class="faq-answer">
-      A: Compare the minimum-only outcome with a higher fixed monthly payment and use the difference
-      in months and interest to set a faster payoff target.
-    </p>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How can I estimate a faster payoff strategy?</strong></p>
+      <p class="faq-answer">
+        A: Compare the minimum-only outcome with a higher fixed monthly payment and use the
+        difference in months and interest to set a faster payoff target.
+      </p>
+    </div>
   </div>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

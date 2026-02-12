@@ -2,7 +2,7 @@
 
 > **Optimized for LLM Context Efficiency**  
 > **Parent:** `requirements/README.md` — see full folder structure  
-> **Related:** `requirements/universal/` — project rules (load first!)  
+> **Related:** `requirements/universal-rules/` — project rules (load first!)  
 > **Version:** 2.0  
 > **Last Updated:** 2026-01-22
 
@@ -42,7 +42,7 @@ LLM starts work on REQ-001:
 requirements/compliance/
 │
 ├── 📋 ALWAYS LOAD (small, essential)
-│   ├── WORKFLOW.md              ← Rules & state machine
+│   ├── ../universal-rules/UNIVERSAL_REQUIREMENTS.md ← Rules & state machine
 │   ├── lessons_learned.md       ← PATTERNS FROM PAST FAILURES
 │   ├── requirement_tracker.md   ← Active REQs only
 │   ├── build_tracker.md         ← Active builds only
@@ -75,10 +75,10 @@ requirements/compliance/
 
 ```python
 # Step 0: Load project rules (ALWAYS FIRST)
-load("../universal/UNIVERSAL_REQUIREMENTS.md")  # ~2000 tokens - P0 rules
+load("../universal-rules/UNIVERSAL_REQUIREMENTS.md")  # ~2000 tokens - P0 rules
 
 # Step 1: Understand workflow + past patterns
-load("WORKFLOW.md")              # ~150 lines - state machine
+load("../universal-rules/UNIVERSAL_REQUIREMENTS.md")  # ~150 lines - state machine
 load("lessons_learned.md")       # ~75 lines - past failure patterns
 load("requirement_tracker.md")   # ~50 lines - find active REQ
 load("build_tracker.md")         # ~30 lines - current status
@@ -156,8 +156,8 @@ REQ-20260122-001 (requirement_tracker.md)
 ## ✅ Quick Start for LLMs
 
 ```markdown
-1. Read ../universal/UNIVERSAL_REQUIREMENTS.md (P0 rules - FIRST!)
-2. Read WORKFLOW.md (understand state machine)
+1. Read ../universal-rules/UNIVERSAL_REQUIREMENTS.md (P0 rules - FIRST!)
+2. Read ../universal-rules/UNIVERSAL_REQUIREMENTS.md (understand state machine)
 3. Read lessons_learned.md (avoid past mistakes)
 4. Read requirement_tracker.md (find your REQ)
 5. Read build_tracker.md (find ITER_ID)

@@ -1,147 +1,152 @@
 <div id="cc-min-explanation" class="explanation-pane">
-  <h2 id="cc-min-summary-heading">Minimum Payment Payoff Summary</h2>
-  <p>
-    Based on a card balance of <span data-cc-min="balance">—</span>, APR of
-    <span data-cc-min="apr">—</span>, minimum payment rate of
-    <span data-cc-min="rate">—</span>, and lowest monthly payment (floor) of
-    <span data-cc-min="floor">—</span>, your first minimum payment is
-    <span data-cc-min="first-payment">—</span>.
-  </p>
-  <p>
-    At that minimum-payment pattern, payoff takes
-    <span data-cc-min="months">—</span> months, total interest is
-    <span data-cc-min="interest">—</span>, and total paid is
-    <span data-cc-min="total">—</span>.
-  </p>
-  <p>
-    Minimum payments decline as your balance falls, which usually extends payoff time and raises the
-    total interest cost.
-  </p>
+  <section class="cc-min-exp-section cc-min-exp-intro">
+    <h2 id="cc-min-summary-heading">Minimum Payment Payoff Summary</h2>
+    <p>
+      Based on a card balance of <span data-cc-min="balance">—</span>, APR of
+      <span data-cc-min="apr">—</span>, minimum payment rate of <span data-cc-min="rate">—</span>,
+      and lowest monthly payment (floor) of <span data-cc-min="floor">—</span>, your first minimum
+      payment is <span data-cc-min="first-payment">—</span>.
+    </p>
+    <p>
+      At that minimum-payment pattern, payoff takes <span data-cc-min="months">—</span> months,
+      total interest is <span data-cc-min="interest">—</span>, and total paid is
+      <span data-cc-min="total">—</span>.
+    </p>
+    <p>
+      Minimum payments decline as your balance falls, which usually extends payoff time and raises
+      the total interest cost.
+    </p>
+  </section>
 
-  <h3 id="cc-min-results-heading">Results Table (Yearly Payoff Snapshot)</h3>
-  <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
-    <table class="calculator-table" id="cc-min-table">
-      <thead>
-        <tr>
-          <th scope="col">Year</th>
-          <th scope="col">Payments</th>
-          <th scope="col">Interest</th>
-          <th scope="col">Ending Balance</th>
-        </tr>
-      </thead>
-      <tbody id="cc-min-table-body">
-        <tr class="cc-min-table-placeholder-row">
-          <td colspan="4">Run Calculate to populate yearly payoff rows.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <section class="cc-min-exp-section">
+    <h3 id="cc-min-results-heading">Results Table (Yearly Payoff Snapshot)</h3>
+    <div class="table-scroll" id="cc-min-table-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-min-table">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="cc-min-table-body">
+          <tr class="cc-min-table-placeholder-row">
+            <td colspan="4">Run Calculate to populate yearly payoff rows.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h3 id="cc-min-explain-heading">Explanation</h3>
-  <p>
-    Your minimum payment is estimated each month as the greater of a percentage of the remaining
-    balance and a fixed lowest monthly payment (floor). In this scenario, the first minimum payment is
-    <span data-cc-min="first-payment">—</span>.
-  </p>
-  <p>
-    Because the percentage-based minimum shrinks as balance declines, principal reduction slows over
-    time. That is why this scenario takes <span data-cc-min="months">—</span> months and accumulates
-    <span data-cc-min="interest">—</span> in interest.
-  </p>
-  <p>
-    The lowest monthly payment (floor) keeps the minimum from dropping below <span data-cc-min="floor">—</span>,
-    which helps prevent the payment from becoming too small at low balances.
-  </p>
-  <p>
-    Paying only minimums can be much more expensive than using a fixed higher payment strategy.
-    Comparing this minimum-only total (<span data-cc-min="total">—</span>) against a fixed payment
-    plan helps you quantify the savings from faster payoff.
-  </p>
-  <p>
-    This estimate assumes fixed APR, no late fees, no annual fees, no new purchases, and on-time
-    monthly payments. Real card statements can differ if rates, fees, or spending behavior change.
-  </p>
+  <section class="cc-min-exp-section">
+    <h3 id="cc-min-explain-heading">Explanation</h3>
+    <p>
+      Your minimum payment is estimated each month as the greater of a percentage of the remaining
+      balance and a fixed lowest monthly payment (floor). In this scenario, the first minimum
+      payment is <span data-cc-min="first-payment">—</span>.
+    </p>
+    <p>
+      Because the percentage-based minimum shrinks as balance declines, principal reduction slows
+      over time. That is why this scenario takes <span data-cc-min="months">—</span> months and
+      accumulates <span data-cc-min="interest">—</span> in interest.
+    </p>
+    <p>
+      The lowest monthly payment (floor) keeps the minimum from dropping below
+      <span data-cc-min="floor">—</span>, which helps prevent the payment from becoming too small at
+      low balances.
+    </p>
+    <p>
+      Paying only minimums can be much more expensive than using a fixed higher payment strategy.
+      Comparing this minimum-only total (<span data-cc-min="total">—</span>) against a fixed payment
+      plan helps you quantify the savings from faster payoff.
+    </p>
+    <p>
+      This estimate assumes fixed APR, no late fees, no annual fees, no new purchases, and on-time
+      monthly payments. Real card statements can differ if rates, fees, or spending behavior change.
+    </p>
+  </section>
 
   <h3 id="cc-min-faq-heading">Frequently Asked Questions</h3>
+  <div class="cc-min-faq-grid">
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What is a credit card minimum payment?</strong></p>
+      <p class="faq-answer">
+        A: A credit card minimum payment is the lowest amount your issuer requires each month to
+        keep the account current and avoid late-payment penalties.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What is a credit card minimum payment?</strong></p>
-    <p class="faq-answer">
-      A: A credit card minimum payment is the lowest amount your issuer requires each month to keep
-      the account current and avoid late-payment penalties.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How is the minimum payment calculated?</strong></p>
+      <p class="faq-answer">
+        A: Issuers commonly set the minimum as a percentage of your balance with a lowest monthly
+        payment floor, and this calculator models that same structure month by month.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How is the minimum payment calculated?</strong></p>
-    <p class="faq-answer">
-      A: Issuers commonly set the minimum as a percentage of your balance with a lowest monthly
-      payment floor,
-      and this calculator models that same structure month by month.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Why does it take so long to pay off with minimum payments?</strong></p>
+      <p class="faq-answer">
+        A: Minimum payments usually decline as your balance drops, so less principal is reduced each
+        month while interest keeps accruing.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Why does it take so long to pay off with minimum payments?</strong></p>
-    <p class="faq-answer">
-      A: Minimum payments usually decline as your balance drops, so less principal is reduced each
-      month while interest keeps accruing.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What is the minimum payment trap?</strong></p>
+      <p class="faq-answer">
+        A: The minimum payment trap is when declining required payments make balances last for
+        years, causing much higher total interest costs.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What is the minimum payment trap?</strong></p>
-    <p class="faq-answer">
-      A: The minimum payment trap is when declining required payments make balances last for years,
-      causing much higher total interest costs.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How does the lowest monthly payment floor work?</strong></p>
+      <p class="faq-answer">
+        A: The lowest monthly payment floor is a fixed dollar amount that sets the smallest allowed
+        minimum payment even when the percentage-based amount becomes lower.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How does the lowest monthly payment floor work?</strong></p>
-    <p class="faq-answer">
-      A: The lowest monthly payment floor is a fixed dollar amount that sets the smallest allowed
-      minimum payment even when the percentage-based amount becomes lower.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: What happens if I pay more than the minimum?</strong></p>
+      <p class="faq-answer">
+        A: Paying more than the minimum reduces principal faster, shortens payoff time, and lowers
+        total interest compared with minimum-only payments.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: What happens if I pay more than the minimum?</strong></p>
-    <p class="faq-answer">
-      A: Paying more than the minimum reduces principal faster, shortens payoff time, and lowers
-      total interest compared with minimum-only payments.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Does the minimum payment rate vary by card issuer?</strong></p>
+      <p class="faq-answer">
+        A: Yes. Issuers can use different minimum payment formulas, percentages, and lowest payment
+        floors, so your monthly requirement can vary by card.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Does the minimum payment rate vary by card issuer?</strong></p>
-    <p class="faq-answer">
-      A: Yes. Issuers can use different minimum payment formulas, percentages, and lowest payment
-      floors, so your monthly requirement can vary by card.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Can my minimum payment ever go up?</strong></p>
+      <p class="faq-answer">
+        A: Yes. It can increase if your balance rises, your issuer changes terms, or fees and
+        penalty APR adjustments apply.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Can my minimum payment ever go up?</strong></p>
-    <p class="faq-answer">
-      A: Yes. It can increase if your balance rises, your issuer changes terms, or fees and penalty
-      APR adjustments apply.
-    </p>
-  </div>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: Does this calculator include new purchases or fees?</strong></p>
+      <p class="faq-answer">
+        A: No. This model assumes no new purchases and no additional fees during payoff so you can
+        isolate the minimum-payment repayment path.
+      </p>
+    </div>
 
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: Does this calculator include new purchases or fees?</strong></p>
-    <p class="faq-answer">
-      A: No. This model assumes no new purchases and no additional fees during payoff so you can
-      isolate the minimum-payment repayment path.
-    </p>
-  </div>
-
-  <div class="faq-box cc-min-faq-item">
-    <p><strong>Q: How can I estimate a faster payoff strategy?</strong></p>
-    <p class="faq-answer">
-      A: Compare the minimum-only outcome with a higher fixed monthly payment and use the difference
-      in months and interest to set a faster payoff target.
-    </p>
+    <div class="faq-box cc-min-faq-item">
+      <p><strong>Q: How can I estimate a faster payoff strategy?</strong></p>
+      <p class="faq-answer">
+        A: Compare the minimum-only outcome with a higher fixed monthly payment and use the
+        difference in months and interest to set a faster payoff target.
+      </p>
+    </div>
   </div>
 </div>

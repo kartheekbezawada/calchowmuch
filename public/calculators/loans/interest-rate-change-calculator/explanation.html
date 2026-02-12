@@ -1,20 +1,94 @@
 <div id="loan-rate-change-explanation">
-  <h4>Rate Change Summary</h4>
+  <h2>Interest Rate Change - Payment Impact</h2>
   <p>
-    Current monthly payment is <span data-rate="current-payment"></span>. After the rate change, the
-    payment becomes <span data-rate="new-payment"></span>, a monthly difference of
-    <span data-rate="monthly-diff"></span> (about <span data-rate="annual-diff"></span> per year).
+    When a mortgage rate changes, payment and lifetime interest can shift materially even if the
+    remaining balance and term stay the same.
   </p>
   <p>
-    Over the remaining term, total interest changes from <span data-rate="interest-base"></span> to
-    <span data-rate="interest-new"></span>. Rate changes affect amortization because the interest
-    portion of each payment is recalculated on the remaining balance.
+    Use this view to compare baseline and new scenarios, inspect monthly and yearly payment
+    differences, and understand how total interest moves across the remaining term.
   </p>
 
-  <div class="result-section">
-    <h4>Yearly Comparison</h4>
-    <div class="table-scroll" id="rate-table-wrap" tabindex="0">
-      <table class="calculator-table" id="rate-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-rate="lifetime-donut"
+        role="img"
+        aria-label="Baseline versus new interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Baseline Share</span>
+          <strong data-rate="lt-baseline-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>New Scenario Share</span>
+          <strong data-rate="lt-new-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Baseline Interest</span>
+        <strong data-rate="lt-baseline-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>New Scenario Interest</span>
+        <strong data-rate="lt-new-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Interest Change</span>
+        <strong data-rate="lt-interest-change"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-rate="lt-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Rate Change Table</h3>
+        <div
+          class="table-view-toggle"
+          role="group"
+          aria-label="Table view selector"
+          data-button-group="rate-amortization-view"
+        >
+          <button class="calculator-button secondary" type="button" data-value="monthly" id="rate-view-monthly">
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="yearly"
+            id="rate-view-yearly"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="rate-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Baseline Payment</th>
+            <th scope="col">New Payment</th>
+            <th scope="col">Difference</th>
+          </tr>
+        </thead>
+        <tbody id="rate-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="rate-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="rate-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
@@ -26,8 +100,103 @@
             <th scope="col">Balance New</th>
           </tr>
         </thead>
-        <tbody id="rate-table-body"></tbody>
+        <tbody id="rate-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does this calculator compare?</h4>
+        <p>
+          It compares baseline mortgage payments and interest against a new rate scenario over your
+          remaining term.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Why can small rate moves matter so much?</h4>
+        <p>
+          Mortgage balances are large and terms are long, so even small rate differences can compound
+          into meaningful payment and interest changes.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What does Apply Immediately mean?</h4>
+        <p>
+          It assumes the new rate starts from month one of your remaining term, so all projected
+          payments use the updated rate.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What does After X Months mean?</h4>
+        <p>
+          It keeps the current rate for the selected months, then recalculates payment for the
+          remaining term at the new rate.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does this include taxes and insurance?</h4>
+        <p>
+          No. This tool focuses on principal and interest so you can isolate the effect of rate
+          changes on core mortgage cost.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can a lower rate reduce total interest?</h4>
+        <p>
+          Yes. If all else is unchanged, a lower rate generally reduces both monthly payment and total
+          interest paid.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can a higher rate increase total interest?</h4>
+        <p>
+          Yes. Higher rates typically raise monthly payment and can significantly increase lifetime
+          interest over the remaining term.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Why view both monthly and yearly tables?</h4>
+        <p>
+          Monthly view helps with timing and budget detail, while yearly view makes long-term trend
+          comparison easier.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this an official lender quote?</h4>
+        <p>
+          No. It is a planning estimate. Final lender terms may differ due to product rules, fees,
+          and underwriting.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>How should I use this to make decisions?</h4>
+        <p>
+          Run multiple new-rate and timing scenarios, then compare monthly affordability and lifetime
+          interest direction before choosing a strategy.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

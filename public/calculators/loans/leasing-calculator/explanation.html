@@ -1,30 +1,208 @@
-<div id="lease-explanation">
-  <h4>Lease Summary</h4>
+<div id="loan-mtg-explanation">
+  <h2>Leasing Calculator - Payment Breakdown</h2>
   <p>
-    With a vehicle price of <span data-lease="price"></span> and residual value of
-    <span data-lease="residual"></span>, the monthly lease payment is
-    <span data-lease="payment"></span>.
+    Based on vehicle price <span data-lease="price">-</span> with residual value of
+    <span data-lease="residual">-</span>, your estimated monthly lease payment is
+    <span data-lease="monthly-payment">-</span>.
   </p>
   <p>
-    The total lease cost over <span data-lease="months"></span> months is
-    <span data-lease="total"></span>, including the upfront payment.
+    At money factor <span data-lease="money-factor">-</span> over <span data-lease="term">-</span>,
+    total lease cost is <span data-lease="total-cost">-</span> including upfront payment of
+    <span data-lease="upfront">-</span>.
   </p>
-  <p>Residual value lowers monthly depreciation but leaves a higher end-of-term value.</p>
 
-  <div class="result-section">
-    <h4>Yearly Cost Snapshot</h4>
-    <div class="table-scroll" id="lease-table-wrap" tabindex="0">
-      <table class="calculator-table" id="lease-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-lease="lifetime-donut"
+        role="img"
+        aria-label="Depreciation vs finance charge breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Depreciation Share</span>
+          <strong data-lease="depreciation-share">-</strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Finance Charge Share</span>
+          <strong data-lease="finance-share">-</strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid lease-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Cap Cost</span>
+        <strong data-lease="cap-cost-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Residual Value</span>
+        <strong data-lease="residual-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Depreciation Cost</span>
+        <strong data-lease="depreciation-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Finance Charge</span>
+        <strong data-lease="finance-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Lease Cost</span>
+        <strong data-lease="total-cost-total">-</strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-lease="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Lease Tables</h3>
+        <div class="table-view-toggle lease-table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="lease-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="lease-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="lease-view-cost"
+            aria-pressed="false"
+          >
+            Cost Breakdown
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="lease-table-monthly-wrap" data-glow="monthly" tabindex="0">
+      <table class="calculator-table" id="lease-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Depreciation</th>
+            <th scope="col">Finance Charge</th>
+            <th scope="col">Cumulative Cost</th>
+          </tr>
+        </thead>
+        <tbody id="lease-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="lease-table-yearly-wrap" data-glow="yearly" tabindex="0">
+      <table class="calculator-table" id="lease-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
-            <th scope="col">Interest</th>
+            <th scope="col">Depreciation</th>
+            <th scope="col">Finance Charge</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="lease-table-body"></tbody>
+        <tbody id="lease-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+
+    <div class="table-scroll is-hidden" id="lease-table-cost-wrap" data-glow="cost" tabindex="0">
+      <table class="calculator-table lease-cost-table" id="lease-table-cost">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+            <th scope="col">Explanation</th>
+          </tr>
+        </thead>
+        <tbody id="lease-table-cost-body"></tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" colspan="2">Total Lease Cost</th>
+            <td id="lease-cost-total">-</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How does a leasing calculator estimate monthly payment?</h4>
+        <p>It combines monthly depreciation and finance charge using cap cost, residual, term, and money factor.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is residual value in a lease?</h4>
+        <p>Residual is the estimated vehicle value at lease end, used to determine depreciation portion.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Can I enter residual as amount or percent?</h4>
+        <p>Yes. Use the residual toggle to switch between amount and percent modes.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What does money factor represent?</h4>
+        <p>Money factor represents lease finance cost and is analogous to an interest rate factor.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>How does upfront payment affect lease cost?</h4>
+        <p>A higher upfront payment lowers cap cost, which can reduce monthly payment and finance charge.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can term be switched between years and months?</h4>
+        <p>Yes. Use the term unit toggle and recalculate to compare different lease durations.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Does the calculator recalculate while I drag sliders?</h4>
+        <p>No. Results and explanation update only when you click Calculate Lease.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Why can residual not exceed vehicle price?</h4>
+        <p>Residual above vehicle price would imply negative depreciation and unrealistic lease economics.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>What is included in total lease cost?</h4>
+        <p>Total lease cost includes upfront payment plus all monthly lease payments over the term.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Are these lender-specific lease quotes?</h4>
+        <p>No. These are model-based estimates and may differ from lender fees, taxes, and terms.</p>
+      </div>
+    </div>
+  </section>
 </div>

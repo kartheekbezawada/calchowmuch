@@ -1,22 +1,101 @@
 <div id="loan-offset-explanation">
-  <h4>Offset Summary</h4>
+  <h2>Offset Calculator - Savings Impact</h2>
   <p>
-    Effective interest-bearing balance is <span data-off="effective-balance"></span> based on offset
-    savings. Baseline monthly payment is <span data-off="payment"></span> and total interest falls
-    from <span data-off="interest-base"></span> to <span data-off="interest-offset"></span>. The
-    offset scenario keeps the same payment while reducing interest.
+    Offset savings reduce the interest-bearing balance while your mortgage payment stays anchored to
+    the baseline schedule. This helps more of each payment go toward principal.
   </p>
   <p>
-    Interest saved is <span data-off="interest-saved"></span> and payoff is shortened by
-    <span data-off="time-saved"></span>. Offset benefits depend on keeping savings in the offset
-    account. Partial/average mode applies 50% of the offset balance to approximate day-to-day swings
-    in savings.
+    Use the scenarios below to compare baseline versus offset outcomes, track interest saved over
+    time, and see how quickly the loan is paid down.
   </p>
 
-  <div class="result-section">
-    <h4>Yearly Offset Summary</h4>
-    <div class="table-scroll" id="off-table-wrap" tabindex="0">
-      <table class="calculator-table" id="off-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-off="lifetime-donut"
+        role="img"
+        aria-label="Interest saved versus remaining interest"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Interest Saved Share</span>
+          <strong data-off="interest-saved-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Remaining Interest Share</span>
+          <strong data-off="interest-remaining-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Baseline Interest</span>
+        <strong data-off="interest-base"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Offset Interest</span>
+        <strong data-off="interest-offset"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest Saved</span>
+        <strong data-off="interest-saved"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-off="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Offset Amortization Table</h3>
+        <div
+          class="table-view-toggle"
+          role="group"
+          aria-label="Table view selector"
+          data-button-group="off-amortization-view"
+        >
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="monthly"
+            id="off-view-monthly"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="yearly"
+            id="off-view-yearly"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="off-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="off-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Offset Balance</th>
+            <th scope="col">Baseline Interest</th>
+            <th scope="col">Offset Interest</th>
+            <th scope="col">Interest Saved</th>
+            <th scope="col">Loan Balance</th>
+          </tr>
+        </thead>
+        <tbody id="off-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="off-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="off-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
@@ -28,8 +107,102 @@
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="off-table-body"></tbody>
+        <tbody id="off-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does an offset account do?</h4>
+        <p>
+          It reduces the balance charged interest by linking savings to your mortgage, which lowers
+          interest while keeping your repayment schedule active.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Why does the payment stay the same in this model?</h4>
+        <p>
+          The calculator keeps baseline monthly payment fixed so savings show up as lower interest and
+          faster principal reduction.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is Full Offset mode?</h4>
+        <p>
+          Full mode applies the entire offset savings balance against mortgage balance for interest
+          calculations each month.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What is Partial / Average mode?</h4>
+        <p>
+          Partial mode applies 50% of savings to represent daily balance fluctuations in the offset
+          account.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>How does monthly contribution help?</h4>
+        <p>
+          Regular contribution grows the offset balance over time, increasing the amount shielded from
+          interest and improving savings.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>What does effective balance mean?</h4>
+        <p>
+          Effective balance is the estimated balance actually accruing interest after offset savings
+          are applied.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why compare monthly and yearly tables?</h4>
+        <p>
+          Monthly view shows precision and trend, while yearly view helps assess strategic savings over
+          a longer horizon.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Can offset savings reduce loan term?</h4>
+        <p>
+          Yes. Lower interest means more principal is repaid sooner, which can shorten payoff time.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Does this replace lender statements?</h4>
+        <p>
+          No. It is a planning model. Your lender’s compounding rules, product terms, and posting
+          timings may differ.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>How should I use this for decision-making?</h4>
+        <p>
+          Test several savings balances and contribution levels, then compare interest saved, payoff
+          time reduction, and yearly trend consistency.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

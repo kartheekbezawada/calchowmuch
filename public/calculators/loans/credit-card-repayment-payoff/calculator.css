@@ -1,24 +1,480 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
-/* FAQ boxes use shared .faq-box class from calculator.css */
+/* Credit Card Repayment - Home Loan inspired premium UI */
 
-[data-cc-payoff] {
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 8px;
-  background: rgba(59, 130, 246, 0.45);
-  outline: 1px solid rgba(59, 130, 246, 0.65);
-}
-
-#cc-payoff-yearly {
-  margin-bottom: 12px;
-}
-
-.cc-payoff-results-list {
+.calculator-page-single,
+.cc-payoff-page-single {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 1.3rem;
 }
 
-.result-line {
-  font-size: 0.95rem;
+#calc-cc-payoff .cc-payoff-ui {
+  display: grid;
+  gap: 1rem;
+}
+
+#calc-cc-payoff .cc-payoff-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 1.45rem;
+  align-items: start;
+}
+
+#calc-cc-payoff .cc-payoff-form-panel,
+#calc-cc-payoff .cc-payoff-preview-panel {
+  position: relative;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+  padding: 1.1rem;
+  overflow: hidden;
+}
+
+#calc-cc-payoff .cc-payoff-form-panel::before,
+#calc-cc-payoff .cc-payoff-preview-panel::before {
+  content: '';
+  position: absolute;
+  inset: -45% auto auto -35%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28), rgba(59, 130, 246, 0));
+}
+
+#calc-cc-payoff .cc-payoff-form-panel::after,
+#calc-cc-payoff .cc-payoff-preview-panel::after {
+  content: '';
+  position: absolute;
+  right: -70px;
+  bottom: -85px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.22), rgba(251, 146, 60, 0));
+}
+
+#calc-cc-payoff .cc-payoff-form-panel {
+  display: grid;
+  gap: 1.05rem;
+  box-shadow:
+    0 8px 26px rgba(2, 6, 23, 0.45),
+    0 0 44px rgba(59, 130, 246, 0.08);
+}
+
+#calc-cc-payoff .cc-payoff-form-panel .helper {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+#calc-cc-payoff .input-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+#calc-cc-payoff .input-row {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.34rem;
+  min-width: 0;
+}
+
+#calc-cc-payoff .input-row label {
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.96);
+  letter-spacing: 0.02em;
+}
+
+#calc-cc-payoff .input-row input[type='number'] {
+  width: 100%;
+  min-height: 40px;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+  background: rgba(15, 23, 42, 0.74);
+  color: rgba(248, 250, 252, 0.98);
+  padding: 0.42rem 0.72rem;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#calc-cc-payoff .input-row input[type='number']:hover {
+  border-color: rgba(125, 211, 252, 0.62);
+}
+
+#calc-cc-payoff .input-row input[type='number']:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.62);
+  outline-offset: 1px;
+  border-color: rgba(56, 189, 248, 0.86);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+  transform: translateY(-1px);
+}
+
+#calc-cc-payoff .cc-payoff-action-row {
+  margin-top: 0.2rem;
+}
+
+#calc-cc-payoff .cc-payoff-action-row .calculator-button {
+  min-height: 48px;
+  border-radius: 0.86rem;
+  border: 1px solid rgba(251, 191, 36, 0.62);
+  background: linear-gradient(130deg, rgba(249, 115, 22, 0.96), rgba(37, 99, 235, 0.9));
+  color: #fff;
+  font-size: 0.89rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.18s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+#calc-cc-payoff .cc-payoff-action-row .calculator-button:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.06);
+  box-shadow:
+    0 10px 28px rgba(2, 132, 199, 0.42),
+    0 0 22px rgba(251, 146, 60, 0.2);
+}
+
+#calc-cc-payoff .cc-payoff-action-row .calculator-button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(2, 132, 199, 0.3);
+}
+
+#calc-cc-payoff .cc-payoff-preview-panel {
+  display: grid;
+  gap: 0.95rem;
+  align-content: start;
+  box-shadow:
+    0 10px 30px rgba(2, 6, 23, 0.5),
+    0 0 46px rgba(56, 189, 248, 0.09);
+}
+
+#calc-cc-payoff .cc-payoff-preview-main {
+  border-radius: 0.96rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.56), rgba(30, 64, 175, 0.17));
+  padding: 0.94rem;
+  display: grid;
+  gap: 0.58rem;
+}
+
+#calc-cc-payoff .cc-payoff-preview-kicker {
+  margin: 0;
+  font-size: 0.71rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.95);
+  font-weight: 700;
+}
+
+#calc-cc-payoff #cc-payoff-result,
+#calc-cc-payoff #cc-payoff-summary {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+#calc-cc-payoff #cc-payoff-result {
+  min-height: 84px;
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+}
+
+#calc-cc-payoff #cc-payoff-result .placeholder {
+  margin: 0;
+  border-radius: 0.7rem;
+  border: 1px dashed rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.42);
+  color: rgba(203, 213, 225, 0.9);
+  font-size: 0.79rem;
+  line-height: 1.45;
+  padding: 0.62rem 0.68rem;
+}
+
+#calc-cc-payoff .form-error {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  border-radius: 0.68rem;
+  border: 1px solid rgba(248, 113, 113, 0.62);
+  background: rgba(127, 29, 29, 0.45);
+  color: #fecaca;
+  padding: 0.52rem 0.64rem;
+}
+
+#calc-cc-payoff .cc-payoff-results-list {
+  display: grid;
+  gap: 0.42rem;
+}
+
+#calc-cc-payoff .cc-payoff-results-list .result-line {
+  margin: 0;
+  border-radius: 0.62rem;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: linear-gradient(140deg, rgba(15, 23, 42, 0.52), rgba(30, 41, 59, 0.42));
+  padding: 0.46rem 0.58rem;
+  color: rgba(224, 242, 254, 0.97);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.38;
+  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#calc-cc-payoff .cc-payoff-results-list .result-line:hover {
+  transform: translateX(2px);
+  border-color: rgba(125, 211, 252, 0.52);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.14);
+}
+
+#calc-cc-payoff #cc-payoff-summary {
+  margin-top: 0.18rem;
+  color: rgba(191, 219, 254, 0.94);
+  font-size: 0.77rem;
+  line-height: 1.44;
+}
+
+#calc-cc-payoff #cc-payoff-summary p {
+  margin: 0;
+}
+
+#calc-cc-payoff .cc-payoff-snapshot-list {
+  margin: 0;
+  padding: 0.22rem 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+#calc-cc-payoff .cc-payoff-snapshot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding: 0.5rem 0;
+}
+
+#calc-cc-payoff .cc-payoff-snapshot-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-cc-payoff .cc-payoff-snapshot-row span {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.84);
+}
+
+#calc-cc-payoff .cc-payoff-snapshot-row strong {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  text-align: right;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+#cc-payoff-explanation {
+  display: grid;
+  gap: 0.92rem;
+}
+
+#cc-payoff-explanation h2 {
+  margin: 0;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.97);
+}
+
+#cc-payoff-explanation h3 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.94);
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#cc-payoff-explanation h3::after {
+  content: none;
+}
+
+#cc-payoff-explanation > p,
+#cc-payoff-explanation .cc-payoff-exp-section > p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.56;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+#cc-payoff-explanation .cc-payoff-exp-section {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.95rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+}
+
+#cc-payoff-explanation #cc-payoff-yearly {
+  margin-bottom: 0.02rem;
+}
+
+#cc-payoff-explanation .table-scroll {
+  max-height: 326px;
+  overflow: auto;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.62);
+}
+
+#cc-payoff-explanation .calculator-table {
+  min-width: 420px;
+  border-collapse: collapse;
+}
+
+#cc-payoff-explanation .calculator-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(30, 41, 59, 0.98);
+  color: #fde68a;
+  font-size: 0.73rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#cc-payoff-explanation .calculator-table th,
+#cc-payoff-explanation .calculator-table td {
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: 0.5rem;
+}
+
+#cc-payoff-explanation .calculator-table td {
+  font-size: 0.79rem;
+  color: rgba(226, 232, 240, 0.95);
+  white-space: nowrap;
+}
+
+#cc-payoff-explanation .calculator-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.34);
+}
+
+#cc-payoff-explanation .cc-payoff-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.66rem;
+}
+
+#cc-payoff-explanation .cc-payoff-faq-item {
+  margin: 0;
+  padding: 0.84rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-top: 2px solid rgba(245, 158, 11, 0.46);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.36));
+  display: grid;
+  gap: 0.4rem;
+  transition: transform 0.22s ease, border-color 0.26s ease, box-shadow 0.28s ease;
+}
+
+#cc-payoff-explanation .cc-payoff-faq-item:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.1);
+}
+
+#cc-payoff-explanation .cc-payoff-faq-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+#cc-payoff-explanation .cc-payoff-faq-item p strong {
+  color: rgba(226, 232, 240, 0.98);
+  font-size: 0.85rem;
+  line-height: 1.33;
+}
+
+#cc-payoff-explanation .cc-payoff-faq-item .faq-answer {
+  margin-left: 0.85rem;
+}
+
+#cc-payoff-explanation [data-cc-payoff] {
+  font-weight: 700;
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 8px;
+  line-height: 1.22;
+  white-space: nowrap;
+  background: rgba(59, 130, 246, 0.45);
+  outline: 1px solid rgba(59, 130, 246, 0.65);
+  color: rgba(226, 232, 240, 0.99);
+}
+
+@keyframes cc-payoff-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.22);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(56, 189, 248, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+#calc-cc-payoff .cc-payoff-action-row .calculator-button:not(:active):focus-visible {
+  animation: cc-payoff-pulse 1.2s ease-out;
+}
+
+@media (max-width: 1220px) {
+  #calc-cc-payoff .cc-payoff-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  #calc-cc-payoff .input-stack {
+    grid-template-columns: 1fr;
+  }
+
+  #cc-payoff-explanation .calculator-table {
+    min-width: 360px;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-cc-payoff .cc-payoff-form-panel,
+  #calc-cc-payoff .cc-payoff-preview-panel {
+    padding: 0.92rem;
+  }
+
+  #cc-payoff-explanation .cc-payoff-exp-section {
+    padding: 0.82rem;
+  }
+
+  #cc-payoff-explanation .cc-payoff-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-cc-payoff .cc-payoff-action-row .calculator-button,
+  #calc-cc-payoff .cc-payoff-results-list .result-line,
+  #cc-payoff-explanation .cc-payoff-faq-item {
+    transition: none;
+  }
+
+  #calc-cc-payoff .cc-payoff-action-row .calculator-button:focus-visible {
+    animation: none;
+  }
 }

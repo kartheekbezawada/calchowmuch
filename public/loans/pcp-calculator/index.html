@@ -2,25 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>PCP Calculator | Calculate How Much Online Calculator</title>
+    <title>PCP Calculator - Monthly Payment, GFV & Total Cost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="PCP Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="description" content="Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs." />
     <link rel="canonical" href="https://calchowmuch.com/loans/pcp-calculator/" />
-    <meta property="og:title" content="PCP Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="PCP Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="PCP Calculator - Monthly Payment, GFV & Total Cost" />
+    <meta property="og:description" content="Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loans/pcp-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PCP Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="PCP Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="PCP Calculator - Monthly Payment, GFV & Total Cost" />
+    <meta name="twitter:description" content="Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="calculator">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans">
     <div class="page">
       <header class="site-header">
   <div class="site-header-inner">
@@ -91,48 +92,180 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">PCP Calculator</h1>
-  <div id="calc-pcp">
-  <div class="calculator-ui">
-    <p class="helper">Estimate PCP payments with a guaranteed future value (GFV) and option fee.</p>
+  <div class="calculator-page-single">
+    <div id="calc-pcp">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="PCP calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate PCP monthly installments, GFV final payment, and total payable with a premium
+            slider-driven flow.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pcp-price">Vehicle Price</label>
-        <input id="pcp-price" type="number" value="32000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-price">Vehicle Price</label>
+              <span class="slider-value" id="pcp-price-display">32,000</span>
+            </div>
+            <input id="pcp-price" type="range" value="32000" min="5000" max="150000" step="500" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-deposit">Deposit</label>
-        <input id="pcp-deposit" type="number" value="3000" min="0" step="0.01" />
-      </div>
+          <div class="input-row down-combined-left">
+            <label id="pcp-deposit-type-label">Down Payment Type</label>
+            <div
+              class="button-group"
+              role="group"
+              aria-labelledby="pcp-deposit-type-label"
+              data-button-group="pcp-deposit-type"
+            >
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="amount"
+                aria-pressed="true"
+              >
+                Amount
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="percent"
+                aria-pressed="false"
+              >
+                Percent
+              </button>
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-apr">APR (%)</label>
-        <input id="pcp-apr" type="number" value="5.9" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="pcp-deposit-value-label" for="pcp-deposit-value">Deposit Amount</label>
+              <span class="slider-value" id="pcp-deposit-display">3,000</span>
+            </div>
+            <input id="pcp-deposit-value" type="range" value="3000" min="0" max="150000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-term">Term (months)</label>
-        <input id="pcp-term" type="number" value="36" min="1" step="1" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-apr">APR (%)</label>
+              <span class="slider-value" id="pcp-apr-display">5.9%</span>
+            </div>
+            <input id="pcp-apr" type="range" value="5.9" min="0" max="25" step="0.1" />
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-gfv">GFV / Balloon</label>
-        <input id="pcp-gfv" type="number" value="15000" min="0" step="0.01" />
-      </div>
+          <div class="input-row down-combined-left">
+            <label id="pcp-term-unit-label">Term Unit</label>
+            <div
+              class="button-group"
+              role="group"
+              aria-labelledby="pcp-term-unit-label"
+              data-button-group="pcp-term-unit"
+            >
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="years"
+                aria-pressed="true"
+              >
+                Years
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="months"
+                aria-pressed="false"
+              >
+                Months
+              </button>
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label for="pcp-option-fee">Option Fee</label>
-        <input id="pcp-option-fee" type="number" value="100" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="pcp-term-label" for="pcp-term">Term (years)</label>
+              <span class="slider-value" id="pcp-term-display">4 yrs</span>
+            </div>
+            <input id="pcp-term" type="range" value="4" min="1" max="8" step="0.5" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-gfv">GFV / Balloon</label>
+              <span class="slider-value" id="pcp-gfv-display">15,000</span>
+            </div>
+            <input id="pcp-gfv" type="range" value="15000" min="0" max="150000" step="100" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pcp-option-fee">Option Fee</label>
+              <span class="slider-value" id="pcp-option-fee-display">100</span>
+            </div>
+            <input id="pcp-option-fee" type="range" value="100" min="0" max="5000" step="10" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pcp-calc">
+              Calculate PCP
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="PCP scenario snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Monthly PCP Payment</p>
+            <div class="result mtg-result-card" id="pcp-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pcp-summary" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Vehicle Price</span>
+              <strong data-pcp="price">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Deposit</span>
+              <strong><span data-pcp="deposit">-</span> (<span data-pcp="deposit-percent">-</span>)</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Amount Financed</span>
+              <strong data-pcp="financed">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>APR</span>
+              <strong data-pcp="apr">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Term</span>
+              <strong data-pcp="term">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>GFV</span>
+              <strong data-pcp="gfv">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Option Fee</span>
+              <strong data-pcp="option-fee">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Final Payment</span>
+              <strong data-pcp="final-payment">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Interest</span>
+              <strong data-pcp="total-interest">-</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Payable</span>
+              <strong data-pcp="total-payable">-</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="pcp-calc">Calculate PCP</button>
-
-    <div class="result" id="pcp-result" aria-live="polite"></div>
-    <div class="result-detail" id="pcp-summary" aria-live="polite"></div>
   </div>
 </div>
 
@@ -140,40 +273,217 @@
   @import url('/calculators/loans/pcp-calculator/calculator.css');
 </style>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="pcp-explanation">
-  <h4>PCP Summary</h4>
+    <div id="loan-mtg-explanation">
+  <h2>PCP Calculator - Payment Breakdown</h2>
   <p>
-    Financing <span data-pcp="financed"></span> with a deposit of
-    <span data-pcp="deposit"></span> at <span data-pcp="apr"></span> APR results in a monthly
-    payment of <span data-pcp="payment"></span>.
+    Based on a vehicle price of <span data-pcp="price">-</span> and a deposit of
+    <span data-pcp="deposit">-</span>, your estimated monthly PCP payment is
+    <span data-pcp="monthly-payment">-</span>.
   </p>
   <p>
-    The final payment is <span data-pcp="balloon"></span> (GFV + option fee). Total interest is
-    <span data-pcp="interest"></span> and total payable is <span data-pcp="total"></span>.
+    At <span data-pcp="apr">-</span> over <span data-pcp="term">-</span>, with GFV set to
+    <span data-pcp="gfv">-</span> and option fee of <span data-pcp="option-fee">-</span>, your
+    final payment is <span data-pcp="final-payment">-</span> and total payable is
+    <span data-pcp="total-payable">-</span>.
   </p>
-  <p>PCP keeps monthly payments lower by deferring a portion of the balance to the end.</p>
 
-  <div class="result-section">
-    <h4>Yearly Loan Snapshot</h4>
-    <div class="table-scroll" id="pcp-table-wrap" tabindex="0">
-      <table class="calculator-table" id="pcp-table">
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-pcp="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-pcp="principal-share">-</strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-pcp="interest-share">-</strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid pcp-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-pcp="amount-financed-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>GFV</span>
+        <strong data-pcp="gfv-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Option Fee</span>
+        <strong data-pcp="option-fee-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-pcp="total-interest-total">-</strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payable</span>
+        <strong data-pcp="total-payable-total">-</strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-pcp="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>PCP Tables</h3>
+        <div class="table-view-toggle pcp-table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="pcp-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="pcp-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="pcp-view-cost"
+            aria-pressed="false"
+          >
+            Cost Breakdown
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="pcp-table-monthly-wrap" data-glow="monthly" tabindex="0">
+      <table class="calculator-table" id="pcp-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="pcp-table-yearly-wrap" data-glow="yearly" tabindex="0">
+      <table class="calculator-table" id="pcp-table-yearly">
         <thead>
           <tr>
             <th scope="col">Year</th>
             <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
             <th scope="col">Interest</th>
             <th scope="col">Ending Balance</th>
           </tr>
         </thead>
-        <tbody id="pcp-table-body"></tbody>
+        <tbody id="pcp-table-yearly-body"></tbody>
       </table>
     </div>
-  </div>
+
+    <div class="table-scroll is-hidden" id="pcp-table-cost-wrap" data-glow="cost" tabindex="0">
+      <table class="calculator-table pcp-cost-table" id="pcp-table-cost">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+            <th scope="col">Explanation</th>
+          </tr>
+        </thead>
+        <tbody id="pcp-table-cost-body"></tbody>
+        <tfoot>
+          <tr>
+            <th scope="row" colspan="2">Total Payable</th>
+            <td id="pcp-cost-total-payable">-</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How does a PCP calculator estimate monthly payment?</h4>
+        <p>It uses financed amount, APR, term, GFV, and option fee to estimate equal monthly installments.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is GFV in a PCP agreement?</h4>
+        <p>GFV is the deferred value due at the end if you choose to purchase the vehicle.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>How does option fee affect final payment?</h4>
+        <p>Final payment equals GFV plus option fee, so a higher fee raises the amount due at term end.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can deposit be entered as amount or percent?</h4>
+        <p>Yes. Use the deposit toggle to switch between absolute amount and percentage input.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Can term be switched between years and months?</h4>
+        <p>Yes. The term unit toggle converts values between years and months without recalculating until Calculate.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Does editing sliders recalculate immediately?</h4>
+        <p>No. Results and explanation values update only after clicking Calculate PCP.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why are PCP monthly payments usually lower?</h4>
+        <p>Part of the principal is deferred to the final payment, so less principal is repaid during monthly installments.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>What does total payable include in PCP?</h4>
+        <p>Total payable includes deposit, all monthly payments, and the final payment including option fee.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Can GFV and option fee exceed financed amount?</h4>
+        <p>No. Final payment is constrained so it cannot exceed the financed balance.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Are these PCP results lender-specific quotations?</h4>
+        <p>No. These are fixed-rate estimates and can differ from lender offers and contract terms.</p>
+      </div>
+    </div>
+  </section>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
 import { calculateMinimumPayment } from '/assets/js/core/credit-card-utils.js';
 
@@ -7,21 +7,27 @@ const aprInput = document.querySelector('#cc-min-apr');
 const rateInput = document.querySelector('#cc-min-rate');
 const floorInput = document.querySelector('#cc-min-floor');
 const calculateButton = document.querySelector('#cc-min-calc');
+const balanceDisplay = document.querySelector('#cc-min-balance-display');
+const aprDisplay = document.querySelector('#cc-min-apr-display');
+const rateDisplay = document.querySelector('#cc-min-rate-display');
+const floorDisplay = document.querySelector('#cc-min-floor-display');
 
 const placeholder = document.querySelector('#cc-min-placeholder');
 const errorMessage = document.querySelector('#cc-min-error');
 const resultsList = document.querySelector('#cc-min-results-list');
-const summaryDiv = document.querySelector('#cc-min-summary');
 const tableBody = document.querySelector('#cc-min-table-body');
 
-const explanationSpans = Array.from(document.querySelectorAll('[data-cc-min]')).reduce((acc, el) => {
-  const key = el.dataset.ccMin;
-  if (!acc[key]) {
-    acc[key] = [];
-  }
-  acc[key].push(el);
-  return acc;
-}, {});
+const explanationSpans = Array.from(document.querySelectorAll('[data-cc-min]')).reduce(
+  (acc, el) => {
+    const key = el.dataset.ccMin;
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(el);
+    return acc;
+  },
+  {}
+);
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -94,7 +100,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Minimum Payment Calculator True Cost of Minimums',
+  title: 'Credit Card Minimum Payment Calculator -- True Cost of Minimums',
   description:
     'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
   canonical: 'https://calchowmuch.com/loans/credit-card-minimum-payment/',
@@ -160,13 +166,87 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-let hasCalculated = false;
-
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
+}
+
+function formatSliderAmount(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  });
+}
+
+function updateSliderFill(input) {
+  if (!(input instanceof HTMLInputElement) || input.type !== 'range') {
+    return;
+  }
+
+  const min = Number(input.min || 0);
+  const max = Number(input.max || 100);
+  const value = Number(input.value);
+
+  if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min || !Number.isFinite(value)) {
+    input.style.setProperty('--fill', '50%');
+    return;
+  }
+
+  const percentage = ((value - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
+}
+
+function syncFloorMaxWithBalance() {
+  if (!balanceInput || !floorInput) {
+    return;
+  }
+
+  const balance = Number(balanceInput.value);
+  const fallbackMax = Number(balanceInput.max || 0);
+  const maxFloor = Number.isFinite(balance) && balance > 0 ? balance : fallbackMax;
+
+  floorInput.max = String(maxFloor);
+
+  const currentFloor = Number(floorInput.value);
+  if (Number.isFinite(currentFloor) && currentFloor > maxFloor) {
+    floorInput.value = String(maxFloor);
+  }
+}
+
+function updateSliderDisplays() {
+  const balance = Number(balanceInput?.value);
+  const apr = Number(aprInput?.value);
+  const rate = Number(rateInput?.value);
+  const floor = Number(floorInput?.value);
+
+  if (balanceDisplay) {
+    balanceDisplay.textContent = Number.isFinite(balance) ? formatSliderAmount(balance, 0) : '—';
+  }
+  if (aprDisplay) {
+    aprDisplay.textContent = Number.isFinite(apr) ? `${formatSliderAmount(apr, 1)}%` : '—';
+  }
+  if (rateDisplay) {
+    rateDisplay.textContent = Number.isFinite(rate) ? `${formatSliderAmount(rate, 1)}%` : '—';
+  }
+  if (floorDisplay) {
+    floorDisplay.textContent = Number.isFinite(floor) ? formatSliderAmount(floor, 0) : '—';
+  }
+}
+
+function syncSliderUI() {
+  syncFloorMaxWithBalance();
+  updateSliderDisplays();
+  [balanceInput, aprInput, rateInput, floorInput].forEach((input) => {
+    if (input) {
+      updateSliderFill(input);
+    }
+  });
+}
+
+function outcomeMarkup(months) {
+  return `<span class="metric-label">Estimated Payoff</span><strong class="metric-value metric-value-flashy">${formatNumber(months, { maximumFractionDigits: 0 })}<span class="metric-unit">months</span></strong>`;
 }
 
 function formatExplanationAmount(value) {
@@ -177,10 +257,13 @@ function formatExplanationAmount(value) {
 }
 
 function setInputSpans({ balance, apr, minRate, minPayment }) {
-  setSpan('balance', formatExplanationAmount(balance));
-  setSpan('apr', formatPercent(apr));
-  setSpan('rate', formatPercent(minRate, { maximumFractionDigits: 1 }));
-  setSpan('floor', formatExplanationAmount(minPayment));
+  setSpan('balance', Number.isFinite(balance) ? formatExplanationAmount(balance) : '—');
+  setSpan('apr', Number.isFinite(apr) ? formatPercent(apr) : '—');
+  setSpan(
+    'rate',
+    Number.isFinite(minRate) ? formatPercent(minRate, { maximumFractionDigits: 1 }) : '—'
+  );
+  setSpan('floor', Number.isFinite(minPayment) ? formatExplanationAmount(minPayment) : '—');
 }
 
 function setOutputPlaceholders() {
@@ -240,13 +323,9 @@ function showPlaceholder() {
   clearError();
   placeholder?.classList.remove('is-hidden');
   resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
 
   if (resultsList) {
     resultsList.innerHTML = '';
-  }
-  if (summaryDiv) {
-    summaryDiv.innerHTML = '';
   }
 
   renderTablePlaceholder();
@@ -260,13 +339,9 @@ function showError(message) {
 
   placeholder?.classList.add('is-hidden');
   resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
 
   if (resultsList) {
     resultsList.innerHTML = '';
-  }
-  if (summaryDiv) {
-    summaryDiv.innerHTML = '';
   }
 
   renderTablePlaceholder();
@@ -277,12 +352,23 @@ function addResultLine(text) {
     return;
   }
   const line = document.createElement('div');
-  line.className = 'result-line';
-  line.textContent = text;
+  line.className = 'result-line result-metric';
+  line.innerHTML = text;
   resultsList.appendChild(line);
 }
 
+function renderOutcomeCard(months) {
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
+  addResultLine(outcomeMarkup(months));
+  clearError();
+  placeholder?.classList.add('is-hidden');
+  resultsList?.classList.remove('is-hidden');
+}
+
 function readInputs() {
+  syncFloorMaxWithBalance();
   return {
     balance: Number(balanceInput?.value),
     apr: Number(aprInput?.value),
@@ -308,17 +394,27 @@ function validateInputs(values) {
 }
 
 function resetAfterInputChange() {
-  if (!hasCalculated) {
+  syncSliderUI();
+  const values = readInputs();
+  setInputSpans(values);
+
+  const validationError = validateInputs(values);
+  if (validationError) {
     return;
   }
 
-  const values = readInputs();
-  setInputSpans(values);
-  setOutputPlaceholders();
-  showPlaceholder();
+  const data = calculateMinimumPayment(values);
+  if (data.error) {
+    return;
+  }
+
+  renderOutcomeCard(data.months);
+  updateTable(data.yearly);
+  setOutputSpans(data);
 }
 
 function calculate() {
+  syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
 
@@ -336,32 +432,12 @@ function calculate() {
     return;
   }
 
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-
-  addResultLine(
-    `Payoff time: ${formatNumber(data.months, { maximumFractionDigits: 0 })} months`
-  );
-
-  if (summaryDiv) {
-    summaryDiv.innerHTML =
-      `<p><strong>Total interest:</strong> ${formatCurrency(data.totalInterest)}</p>` +
-      `<p><strong>Total paid:</strong> ${formatCurrency(data.totalPayment)}</p>` +
-      `<p><strong>First payment:</strong> ${formatCurrency(data.firstPayment)}</p>`;
-  }
-
-  clearError();
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.remove('is-hidden');
-  summaryDiv?.classList.remove('is-hidden');
-
+  renderOutcomeCard(data.months);
   updateTable(data.yearly);
   setOutputSpans(data);
 }
 
 calculateButton?.addEventListener('click', () => {
-  hasCalculated = true;
   calculate();
 });
 
@@ -370,34 +446,26 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 });
 
 (function initializeExplanation() {
+  syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
   setOutputPlaceholders();
 
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  summaryDiv?.classList.add('is-hidden');
-
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-  if (summaryDiv) {
-    summaryDiv.innerHTML = '';
-  }
-
   const validationError = validateInputs(values);
   if (validationError) {
+    showPlaceholder();
     renderTablePlaceholder();
     return;
   }
 
   const defaultData = calculateMinimumPayment(values);
   if (defaultData.error) {
+    showPlaceholder();
     renderTablePlaceholder();
     return;
   }
 
+  renderOutcomeCard(defaultData.months);
   updateTable(defaultData.yearly);
   setOutputSpans(defaultData);
 })();

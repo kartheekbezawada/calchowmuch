@@ -15,17 +15,14 @@ const errorMessage = document.querySelector('#cc-bt-error');
 const resultsList = document.querySelector('#cc-bt-results-list');
 const tableBody = document.querySelector('#cc-bt-table-body');
 
-const explanationSpans = Array.from(document.querySelectorAll('[data-cc-bt]')).reduce(
-  (acc, el) => {
-    const key = el.dataset.ccBt;
-    if (!acc[key]) {
-      acc[key] = [];
-    }
-    acc[key].push(el);
-    return acc;
-  },
-  {}
-);
+const explanationSpans = Array.from(document.querySelectorAll('[data-cc-bt]')).reduce((acc, el) => {
+  const key = el.dataset.ccBt;
+  if (!acc[key]) {
+    acc[key] = [];
+  }
+  acc[key].push(el);
+  return acc;
+}, {});
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -185,28 +182,11 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-let hasCalculated = false;
-
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function resetIfCalculated() {
-  if (hasCalculated && !resultsList?.classList.contains('is-hidden')) {
-    showPlaceholder();
-  }
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
 }
 
 function clearError() {
@@ -234,8 +214,8 @@ function addResultLine(text) {
     return;
   }
   const line = document.createElement('div');
-  line.className = 'result-line';
-  line.textContent = text;
+  line.className = 'result-line result-metric';
+  line.innerHTML = text;
   resultsList.appendChild(line);
 }
 
@@ -297,10 +277,21 @@ function calculate() {
     resultsList.innerHTML = '';
   }
 
-  addResultLine(`Payoff time: ${formatNumber(data.months, { maximumFractionDigits: 0 })} months`);
-  addResultLine(`Total interest: ${formatNumber(data.totalInterest)}`);
-  addResultLine(`Total fees: ${formatNumber(data.fee)}`);
-  addResultLine(`Total paid: ${formatNumber(data.totalPayment)}`);
+  addResultLine(
+    `<span class="metric-label">Estimated Payoff</span><strong class="metric-value">${formatNumber(data.months, { maximumFractionDigits: 0 })} months</strong>`
+  );
+  addResultLine(
+    `<span class="metric-label">Total Paid</span><strong class="metric-value">${formatNumber(data.totalPayment)}</strong>`
+  );
+  addResultLine(
+    `<span class="metric-label">Total Interest</span><strong class="metric-value">${formatNumber(data.totalInterest)}</strong>`
+  );
+  addResultLine(
+    `<span class="metric-label">Total Fees</span><strong class="metric-value">${formatNumber(data.fee)}</strong>`
+  );
+  addResultLine(
+    `<span class="metric-label">Starting Balance</span><strong class="metric-value">${formatNumber(data.startingBalance)}</strong>`
+  );
 
   clearError();
   placeholder?.classList.add('is-hidden');
@@ -318,42 +309,14 @@ function calculate() {
   });
 }
 
-calculateButton?.addEventListener('click', () => {
-  hasCalculated = true;
-  calculate();
-});
+calculateButton?.addEventListener('click', calculate);
 
 const inputs = document.querySelectorAll('#calc-cc-balance-transfer input');
 inputs.forEach((input) => {
-  input.addEventListener('input', () => resetIfCalculated());
+  input.addEventListener('input', calculate);
 });
 
-// Pre-fill explanation pane with default values
-(function prefillExplanation() {
-  const balance = Number(balanceInput?.value);
-  const transferFeePercent = Number(feeInput?.value);
-  const promoApr = Number(promoAprInput?.value);
-  const promoMonths = Number(promoMonthsInput?.value);
-  const postApr = Number(postAprInput?.value);
-  const monthlyPayment = Number(paymentInput?.value);
-  const data = calculateBalanceTransfer({
-    balance,
-    transferFeePercent,
-    promoApr,
-    promoMonths,
-    postApr,
-    monthlyPayment,
-  });
-  if (!data.error) {
-    updateTable(data.yearly);
-    updateExplanation({
-      ...data,
-      balance,
-      transferFeePercent,
-      promoApr,
-      promoMonths,
-      postApr,
-      monthlyPayment,
-    });
-  }
+// Show projected outcome immediately for the default scenario on first load.
+(function initializeDefaultOutcome() {
+  calculate();
 })();

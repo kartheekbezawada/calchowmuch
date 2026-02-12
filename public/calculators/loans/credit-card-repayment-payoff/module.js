@@ -193,21 +193,15 @@ function setSpan(key, value) {
 }
 
 function resetIfCalculated() {
-  if (hasCalculated && !resultsList?.classList.contains('is-hidden')) {
-    showPlaceholder();
+  if (hasCalculated) {
+    showProjectionResults();
   }
 }
 
-function showPlaceholder() {
+function showProjectionResults() {
   clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-  if (tableBody) {
-    tableBody.innerHTML = '';
-  }
+  placeholder?.classList.add('is-hidden');
+  resultsList?.classList.remove('is-hidden');
 }
 
 function clearError() {
@@ -293,14 +287,17 @@ function calculate() {
     resultsList.innerHTML = '';
   }
 
-  addResultLine(`Payoff time: ${formatNumber(data.months, { maximumFractionDigits: 0 })} months`);
-  addResultLine(`Total interest: ${formatNumber(data.totalInterest)}`);
-  addResultLine(`Total paid: ${formatNumber(data.totalPayment)}`);
-  addResultLine(`Monthly payment: ${formatNumber(data.monthlyPayment)}`);
+  addResultLine(`Current Balance: ${formatNumber(balance)}`);
+  addResultLine(`APR: ${formatPercent(apr)}`);
+  addResultLine(`Monthly Payment: ${formatNumber(monthlyPayment)}`);
+  addResultLine(`Extra Monthly: ${formatNumber(extraPayment)}`);
+  addResultLine(
+    `Estimated Payoff Time: ${formatNumber(data.months, { maximumFractionDigits: 0 })} months`
+  );
+  addResultLine(`Total Interest: ${formatNumber(data.totalInterest)}`);
+  addResultLine(`Total Paid: ${formatNumber(data.totalPayment)}`);
 
-  clearError();
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.remove('is-hidden');
+  showProjectionResults();
 
   updateTable(data.yearly);
   updateExplanation({ ...data, balance, apr, extraPayment });
@@ -316,15 +313,7 @@ inputs.forEach((input) => {
   input.addEventListener('input', () => resetIfCalculated());
 });
 
-// Pre-fill explanation pane with default values
+// Pre-fill explanation and projection values on page load
 (function prefillExplanation() {
-  const balance = Number(balanceInput?.value);
-  const apr = Number(aprInput?.value);
-  const monthlyPayment = Number(paymentInput?.value);
-  const extraPayment = Number(extraInput?.value);
-  const data = calculateCreditCardPayoff({ balance, apr, monthlyPayment, extraPayment });
-  if (!data.error) {
-    updateTable(data.yearly);
-    updateExplanation({ ...data, balance, apr, extraPayment });
-  }
+  calculate();
 })();

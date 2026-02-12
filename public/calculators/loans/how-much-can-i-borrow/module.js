@@ -1,61 +1,17 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
-import { hasMaxDigits } from '/assets/js/core/validate.js';
-import { calculateBorrow } from '/assets/js/core/loan-utils.js';
-
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
-const CALCULATOR_FAQ_SCHEMA = {
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How is borrowing capacity calculated?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Borrowing capacity is calculated using either an income multiple (e.g., 4.5x your annual income) or a payment-to-income ratio that accounts for your monthly income, expenses, and debt payments.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the difference between income multiple and payment-to-income methods?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Income multiple uses a simple multiplier of your annual income, while payment-to-income calculates affordability based on your monthly cash flow after expenses and existing debts.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does a larger deposit increase how much I can borrow?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'A larger deposit increases your total purchasing power but does not directly affect the loan amount you can borrow, which is determined by your income and affordability.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Should I use gross or net income for this calculation?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Gross income is typically used for income multiple methods, while net monthly income is more appropriate for payment-to-income calculations as it reflects your actual take-home pay.',
-      },
-    },
-  ],
-};
+import { calculateBorrow, computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
 
 const metadata = {
-  title: 'How Much Can I Borrow – Mortgage Affordability Calculator | CalcHowMuch',
+  title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
   description:
-    'Estimate how much you can borrow based on income, expenses, interest rate, term, deposit, and affordability method. Simple, fast, and free.',
-  canonical: 'https://calchowmuch.com/loans/how-much-can-i-borrow',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+    'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+  canonical: 'https://calchowmuch.com/loans/how-much-can-i-borrow/',
 };
 
 setPageMetadata(metadata);
+
+/* --- DOM references: calculator inputs --- */
 
 const grossIncomeInput = document.querySelector('#bor-gross-income');
 const netIncomeInput = document.querySelector('#bor-net-income');
@@ -65,88 +21,119 @@ const rateInput = document.querySelector('#bor-rate');
 const termInput = document.querySelector('#bor-term');
 const multipleInput = document.querySelector('#bor-multiple');
 const depositInput = document.querySelector('#bor-deposit');
+
+const grossIncomeDisplay = document.querySelector('#bor-gross-income-display');
+const netIncomeDisplay = document.querySelector('#bor-net-income-display');
+const expensesDisplay = document.querySelector('#bor-expenses-display');
+const debtsDisplay = document.querySelector('#bor-debts-display');
+const rateDisplay = document.querySelector('#bor-rate-display');
+const termDisplay = document.querySelector('#bor-term-display');
+const multipleDisplay = document.querySelector('#bor-multiple-display');
+const depositDisplay = document.querySelector('#bor-deposit-display');
+
+const multipleRow = document.querySelector('#bor-multiple-row');
+const paymentNoteRow = document.querySelector('#bor-payment-note-row');
 const calculateButton = document.querySelector('#bor-calculate');
-const resultDiv = document.querySelector('#bor-result');
-const summaryDiv = document.querySelector('#bor-summary');
-const formatBorrowCurrency = (value) => formatNumber(value, 'GBP');
 
 const incomeBasisGroup = document.querySelector('[data-button-group="bor-income-basis"]');
 const methodGroup = document.querySelector('[data-button-group="bor-method"]');
 
+/* --- DOM references: result dashboard --- */
 
-const sliderPalette = {
-  rate: { start: '#3b82f6', end: '#06b6d4' },
-  term: { start: '#10b981', end: '#059669' },
-  multiple: { start: '#f97316', end: '#dc2626' },
-  deposit: { start: '#8b5cf6', end: '#6366f1' },
-};
+const metricBorrow = document.querySelector('#bor-metric-borrow');
+const metricProperty = document.querySelector('#bor-metric-property');
+const metricPayment = document.querySelector('#bor-metric-payment');
+const metricDisposable = document.querySelector('#bor-metric-disposable');
+const constraintTag = document.querySelector('#bor-constraint');
+const errorDiv = document.querySelector('#bor-error');
 
-const sliderConfigs = [
-  {
-    element: rateInput,
-    displaySelector: '[data-slider-display="bor-rate"]',
-    format: (value) =>
-      `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`,
-    gradient: sliderPalette.rate,
-  },
-  {
-    element: termInput,
-    displaySelector: '[data-slider-display="bor-term"]',
-    format: (value) => `${formatNumber(value, { maximumFractionDigits: 0 })} yr`,
-    gradient: sliderPalette.term,
-  },
-  {
-    element: multipleInput,
-    displaySelector: '[data-slider-display="bor-multiple"]',
-    format: (value) =>
-      `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}x`,
-    gradient: sliderPalette.multiple,
-  },
-  {
-    element: depositInput,
-    displaySelector: '[data-slider-display="bor-deposit"]',
-    format: (value) => formatBorrowCurrency(value),
-    gradient: sliderPalette.deposit,
-  },
-];
+/* --- Format helpers (no currency symbols) --- */
 
-function applySliderGradient(slider, colors) {
-  if (!slider || !colors) {
-    return;
-  }
-  const min = Number(slider.min ?? 0);
-  const max = Number(slider.max ?? 100);
-  const value = Number(slider.value ?? 0);
-  const percent =
-    Number.isFinite(min) &&
-    Number.isFinite(max) &&
-    max > min
-      ? Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100))
-      : 0;
-
-  slider.style.background = `linear-gradient(90deg, ${colors.start} 0%, ${colors.end} ${percent}%, #1e293b ${percent}%, #1e293b 100%)`;
+function fmt(value) {
+  return formatNumber(value, { maximumFractionDigits: 0 });
 }
 
-function bindSlider({ element, displaySelector, format, gradient }) {
-  if (!element) {
-    return;
-  }
-  const display = document.querySelector(displaySelector);
-  const update = () => {
-    const numericValue = Number(element.value);
-    if (display) {
-      display.textContent = format(Number.isFinite(numericValue) ? numericValue : 0);
-    }
-    applySliderGradient(element, gradient);
-  };
-
-  element.addEventListener('input', update);
-  element.addEventListener('change', update);
-  update();
+function fmtDecimal(value) {
+  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-sliderConfigs.forEach(bindSlider);
+/* --- Slider fill management --- */
 
+function updateSliderFill(input) {
+  if (!input || input.type !== 'range') return;
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || 100;
+  const val = parseFloat(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (grossIncomeInput && grossIncomeDisplay) {
+    grossIncomeDisplay.textContent = fmt(Number(grossIncomeInput.value));
+    updateSliderFill(grossIncomeInput);
+  }
+  if (netIncomeInput && netIncomeDisplay) {
+    netIncomeDisplay.textContent = fmt(Number(netIncomeInput.value));
+    updateSliderFill(netIncomeInput);
+  }
+  if (expensesInput && expensesDisplay) {
+    expensesDisplay.textContent = fmt(Number(expensesInput.value));
+    updateSliderFill(expensesInput);
+  }
+  if (debtsInput && debtsDisplay) {
+    debtsDisplay.textContent = fmt(Number(debtsInput.value));
+    updateSliderFill(debtsInput);
+  }
+  if (rateInput && rateDisplay) {
+    rateDisplay.textContent = `${fmtDecimal(Number(rateInput.value))}%`;
+    updateSliderFill(rateInput);
+  }
+  if (termInput && termDisplay) {
+    termDisplay.textContent = `${termInput.value} yrs`;
+    updateSliderFill(termInput);
+  }
+  if (multipleInput && multipleDisplay) {
+    multipleDisplay.textContent = `${fmtDecimal(Number(multipleInput.value))}x`;
+    updateSliderFill(multipleInput);
+  }
+  if (depositInput && depositDisplay) {
+    depositDisplay.textContent = fmt(Number(depositInput.value));
+    updateSliderFill(depositInput);
+  }
+}
+
+/* Bind slider input events */
+[grossIncomeInput, netIncomeInput, expensesInput, debtsInput, rateInput, termInput, multipleInput, depositInput]
+  .filter(Boolean)
+  .forEach((input) => {
+    input.addEventListener('input', updateSliderDisplays);
+  });
+
+updateSliderDisplays();
+
+/* --- Toggle groups --- */
+
+const incomeBasisButtons = setupButtonGroup(incomeBasisGroup, {
+  defaultValue: 'gross',
+  onChange: () => calculate(),
+});
+
+const methodButtons = setupButtonGroup(methodGroup, {
+  defaultValue: 'income',
+  onChange: (value) => {
+    syncMethodRows(value);
+    calculate();
+  },
+});
+
+function syncMethodRows(method = methodButtons?.getValue() ?? 'income') {
+  const isIncomeMode = method === 'income';
+  multipleRow?.classList.toggle('is-hidden', !isIncomeMode);
+  paymentNoteRow?.classList.toggle('is-hidden', isIncomeMode);
+}
+
+/* --- Lazy-load explanation panel --- */
 
 function resolveExplanationRoot() {
   return (
@@ -156,15 +143,11 @@ function resolveExplanationRoot() {
 }
 
 let explanationRoot = null;
-let summaryTextValue = null;
-let summaryNoteValue = null;
-let tableBody = null;
+let scenarioBody = null;
 
 function cacheExplanationElements() {
   explanationRoot = resolveExplanationRoot();
-  summaryTextValue = explanationRoot?.querySelector('[data-bor="summary-text"]') ?? null;
-  summaryNoteValue = explanationRoot?.querySelector('[data-bor="summary-note"]') ?? null;
-  tableBody = explanationRoot?.querySelector('#bor-table-body') ?? null;
+  scenarioBody = explanationRoot?.querySelector('#bor-scenario-body') ?? null;
 }
 
 cacheExplanationElements();
@@ -193,207 +176,101 @@ async function ensureExplanation() {
   }
 }
 
-function enforceMaxLength(input) {
-  if (!input) {
-    return;
+/* --- Capacity bar update --- */
+
+function setSegment(dataKey, pct, amount) {
+  const segment = explanationRoot?.querySelector(`[data-bor="${dataKey}"]`);
+  const text = explanationRoot?.querySelector(`[data-bor="${dataKey}-text"]`);
+  if (segment) {
+    segment.style.setProperty('--seg-width', `${Math.max(0, pct).toFixed(1)}%`);
   }
-  input.addEventListener('input', () => {
-    const { value } = input;
-    if (value.length > 10) {
-      input.value = value.slice(0, 10);
-    }
-  });
+  if (text) {
+    text.textContent = pct >= 8 ? fmt(Math.round(amount)) : '';
+  }
 }
 
-[grossIncomeInput, netIncomeInput, expensesInput, debtsInput].forEach(enforceMaxLength);
+function updateCapacityBar(data) {
+  if (!explanationRoot) return;
 
-const incomeBasisButtons = setupButtonGroup(incomeBasisGroup, {
-  defaultValue: 'gross',
-  onChange: () => calculate(),
-});
+  const income = data.monthlyIncome;
+  if (income <= 0) return;
 
-const methodButtons = setupButtonGroup(methodGroup, {
-  defaultValue: 'income',
-  onChange: () => calculate(),
-});
+  const expPct = (data.expensesMonthly / income) * 100;
+  const debtPct = (data.debtMonthly / income) * 100;
+  const mortPct = (data.monthlyPayment / income) * 100;
+  const bufferPct = Math.max(0, 100 - expPct - debtPct - mortPct);
+
+  setSegment('cap-expenses', expPct, data.expensesMonthly);
+  setSegment('cap-debts', debtPct, data.debtMonthly);
+  setSegment('cap-mortgage', mortPct, data.monthlyPayment);
+  setSegment('cap-buffer', bufferPct, income - data.expensesMonthly - data.debtMonthly - data.monthlyPayment);
+
+  /* Legend values */
+  const setLegend = (key, value) => {
+    const el = explanationRoot?.querySelector(`[data-bor="legend-${key}"]`);
+    if (el) el.textContent = fmt(Math.round(value));
+  };
+  setLegend('expenses', data.expensesMonthly);
+  setLegend('debts', data.debtMonthly);
+  setLegend('mortgage', data.monthlyPayment);
+  setLegend('buffer', income - data.expensesMonthly - data.debtMonthly - data.monthlyPayment);
+}
+
+/* --- Scenario table --- */
+
+function renderScenarioTable(data) {
+  if (!scenarioBody) return;
+
+  const rows = (data.rateSeries || []).map((item) => {
+    const isCurrentRate = Math.abs(item.rate - data.interestRate) < 0.01;
+    const months = data.termYears * 12;
+    const payment = computeMonthlyPayment(data.maxBorrow, item.rate, months);
+    const property = item.value + Math.max(0, Number(data.deposit) || 0);
+
+    return `<tr${isCurrentRate ? ' class="bor-scenario-highlight"' : ''}>
+      <td>${fmtDecimal(item.rate)}%</td>
+      <td>${fmt(Math.round(item.value))}</td>
+      <td>${fmt(Math.round(payment))}</td>
+      <td>${fmt(Math.round(property))}</td>
+    </tr>`;
+  });
+
+  scenarioBody.innerHTML = rows.join('');
+}
+
+/* --- Result pop animation --- */
+
+function animateMetric(el) {
+  if (!el) return;
+  el.classList.remove('is-updated');
+  void el.offsetWidth;
+  el.classList.add('is-updated');
+}
+
+/* --- Clear / Error --- */
 
 function clearOutputs() {
-  if (tableBody) {
-    tableBody.innerHTML = '';
-  }
+  if (scenarioBody) scenarioBody.innerHTML = '';
+}
+
+function clearError() {
+  if (errorDiv) errorDiv.textContent = '';
 }
 
 function setError(message) {
-  if (resultDiv) {
-    resultDiv.textContent = message;
-  }
-  if (summaryDiv) {
-    summaryDiv.textContent = '';
-  }
+  if (errorDiv) errorDiv.textContent = message;
+  if (metricBorrow) metricBorrow.textContent = '\u2014';
+  if (metricProperty) metricProperty.textContent = '\u2014';
+  if (metricPayment) metricPayment.textContent = '\u2014';
+  if (metricDisposable) metricDisposable.textContent = '\u2014';
+  if (constraintTag) constraintTag.textContent = '';
   clearOutputs();
 }
 
-function updateExplanation(data) {
-  if (!explanationRoot) {
-    return;
-  }
-
-  const basisLabel = data.incomeBasis === 'net' ? 'net' : 'gross';
-  const methodLabel = data.method === 'income' ? 'income multiple' : 'payment-to-income';
-
-  if (summaryTextValue) {
-    summaryTextValue.textContent = `Using the ${basisLabel} income basis, this estimate considers your gross annual income, net monthly income, monthly expenses, monthly debt payments, the interest rate you selected, the loan term, and the ${methodLabel} affordability method.`;
-  }
-  if (summaryNoteValue) {
-    summaryNoteValue.textContent =
-      'This result is an estimate, not a guarantee. Lenders apply their own criteria, so final approvals can vary.';
-  }
-}
-
-function formatTableNumber(value, options = {}) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2, ...options });
-}
-
-function formatTableMoney(value) {
-  return formatTableNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function updateTable(data) {
-  if (!tableBody) {
-    return;
-  }
-
-  const rows = [
-    {
-      label: 'Gross Annual Income',
-      value: formatTableMoney(data.grossIncomeAnnual),
-      meaning: 'Total yearly income before tax.',
-    },
-    {
-      label: 'Net Monthly Income',
-      value: formatTableMoney(data.netIncomeMonthly),
-      meaning: 'Take-home income per month.',
-    },
-    {
-      label: 'Monthly Expenses',
-      value: formatTableMoney(data.expensesMonthly),
-      meaning: 'Regular monthly living costs.',
-    },
-    {
-      label: 'Monthly Debt Payments',
-      value: formatTableMoney(data.debtMonthly),
-      meaning: 'Existing debt commitments each month.',
-    },
-    {
-      label: 'Interest Rate (APR %)',
-      value: `${formatTableNumber(data.interestRate)}%`,
-      meaning: 'Rate used to estimate repayments.',
-    },
-    {
-      label: 'Loan Term',
-      value: `${formatNumber(data.termYears, { maximumFractionDigits: 0 })} years`,
-      meaning: 'Length of the mortgage.',
-    },
-    {
-      label: 'Affordability Method',
-      value: data.method === 'income' ? 'Income multiple' : 'Payment-to-income',
-      meaning: 'Approach used to estimate borrowing.',
-    },
-    {
-      label: 'Income Multiple',
-      value:
-        data.method === 'income'
-          ? `${formatNumber(data.incomeMultiple, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}x`
-          : 'Not used',
-      meaning: 'Multiplier applied to annual income.',
-    },
-  ];
-
-  if (data.deposit > 0) {
-    rows.push({
-      label: 'Deposit',
-      value: formatTableMoney(data.deposit),
-      meaning: 'Cash you plan to put down.',
-    });
-  }
-
-  rows.push({
-    label: 'Estimated Max Borrowing',
-    value: formatTableMoney(data.maxBorrow),
-    meaning: 'Estimated loan amount before lender review.',
-    highlight: true,
-  });
-
-  tableBody.innerHTML = rows
-    .map(
-      (row) => `
-        <tr${row.highlight ? ' class="bor-table__highlight"' : ''}>
-          <td>${row.label}</td>
-          <td>${row.value}</td>
-          <td>${row.meaning}</td>
-        </tr>`
-    )
-    .join('');
-}
-
-function formatSummaryLine(label, value) {
-  return `<p><strong>${label}</strong> ${value}</p>`;
-}
-
-function populateSummary(data, method) {
-  if (!summaryDiv) {
-    return;
-  }
-
-  const summaryLines = [];
-
-  summaryLines.push(
-    formatSummaryLine('Estimated payment:', formatBorrowCurrency(data.monthlyPayment))
-  );
-
-  if (method === 'income') {
-    summaryLines.push(
-      formatSummaryLine(
-        'Constraint:',
-        `Income multiple ${formatNumber(data.incomeMultiple, { maximumFractionDigits: 2 })}x`
-      )
-    );
-  } else {
-    summaryLines.push(
-      formatSummaryLine('Constraint:', `Payment-to-income cap ${formatBorrowCurrency(data.maxPayment)}`)
-    );
-  }
-
-  summaryLines.push(
-    formatSummaryLine('Monthly disposable:', formatBorrowCurrency(data.monthlyDisposable))
-  );
-
-  if (data.maxPropertyPrice) {
-    summaryLines.push(
-      formatSummaryLine('Max property price:', formatBorrowCurrency(data.maxPropertyPrice))
-    );
-  }
-
-  summaryDiv.innerHTML = summaryLines.join('');
-}
+/* --- Main calculate --- */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {
-    return;
-  }
-
-  resultDiv.textContent = '';
-  summaryDiv.textContent = '';
-  clearOutputs();
-
-  const inputsToValidate = [grossIncomeInput, netIncomeInput, expensesInput, debtsInput].filter(
-    Boolean
-  );
-  const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
-  if (invalidLength) {
-    setError('Inputs must be 10 digits or fewer.');
-    return;
-  }
+  clearError();
 
   const grossIncomeAnnual = Number(grossIncomeInput?.value);
   if (!Number.isFinite(grossIncomeAnnual) || grossIncomeAnnual <= 0) {
@@ -468,19 +345,41 @@ function calculate() {
     return;
   }
 
-  resultDiv.innerHTML = `<strong>Maximum Borrow:</strong> ${formatBorrowCurrency(data.maxBorrow)}`;
-
-  if (data.maxPropertyPrice) {
-    resultDiv.insertAdjacentHTML(
-      'beforeend',
-      `<p><strong>Max property price:</strong> ${formatBorrowCurrency(data.maxPropertyPrice)}</p>`
-    );
+  /* Populate 4 metric cards */
+  if (metricBorrow) {
+    metricBorrow.textContent = fmt(Math.round(data.maxBorrow));
+    animateMetric(metricBorrow);
+  }
+  if (metricProperty) {
+    const fallbackProperty = data.maxBorrow + Math.max(0, Number(deposit) || 0);
+    const propertyValue = Number.isFinite(data.maxPropertyPrice) ? data.maxPropertyPrice : fallbackProperty;
+    metricProperty.textContent = fmt(Math.round(propertyValue));
+    animateMetric(metricProperty);
+  }
+  if (metricPayment) {
+    metricPayment.textContent = fmt(Math.round(data.monthlyPayment));
+    animateMetric(metricPayment);
+  }
+  if (metricDisposable) {
+    metricDisposable.textContent = fmt(Math.round(data.monthlyDisposable));
+    animateMetric(metricDisposable);
   }
 
-  populateSummary(data, method);
-  updateExplanation(data);
-  updateTable(data);
+  /* Constraint tag */
+  if (constraintTag) {
+    if (method === 'income') {
+      constraintTag.textContent = `Income multiple ${fmtDecimal(data.incomeMultiple)}x`;
+    } else {
+      constraintTag.textContent = `Payment-to-income cap ${fmt(Math.round(data.maxPayment))}`;
+    }
+  }
+
+  /* Explanation: capacity bar + scenario table */
+  updateCapacityBar(data);
+  renderScenarioTable(data);
 }
+
+/* --- Button & init --- */
 
 calculateButton?.addEventListener('click', async () => {
   await ensureExplanation();
@@ -489,6 +388,7 @@ calculateButton?.addEventListener('click', async () => {
 
 async function initialize() {
   await ensureExplanation();
+  syncMethodRows();
   calculate();
 }
 

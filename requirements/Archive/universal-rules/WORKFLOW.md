@@ -1,4 +1,4 @@
-WORKFLOW.md — Finite State Machine (FSM)
+UNIVERSAL_REQUIREMENTS.md — Finite State Machine (FSM)
 ==================================================
 ## Cold Start Instruction (Read First)
 
@@ -34,7 +34,7 @@ Failure at any step may create an ISSUE.
 File Loading Rules (Critical) Always load
 =================================
    UNIVERSAL_REQUIREMENTS.md
-   WORKFLOW.md
+   UNIVERSAL_REQUIREMENTS.md
    AGENTS.md
 
    Notes on paths
@@ -44,24 +44,24 @@ File Loading Rules (Critical) Always load
 
 When Building a New Calculator (brand new calculator page)
 =========================================================
-   calculation_pane_rules.md for calculation pane
-   explanation_pane_standard.md for explanation pane
-   SEO_RULES.md for search engine optimization
-   TESTING_RULES.md
+   UNIVERSAL_REQUIREMENTS.md for calculation pane
+   UNIVERSAL_REQUIREMENTS.md for explanation pane
+   UNIVERSAL_REQUIREMENTS.md for search engine optimization
+   UNIVERSAL_REQUIREMENTS.md
 
 When Changing Calculation Pane or Updating a Calculation Pane
 ==========================================================
-   calculation_pane_rules.md for calculation pane
-   explanation_pane_standard.md for explanation pane
-   SEO_RULES.md for search engine optimization
-   TESTING_RULES.md
+   UNIVERSAL_REQUIREMENTS.md for calculation pane
+   UNIVERSAL_REQUIREMENTS.md for explanation pane
+   UNIVERSAL_REQUIREMENTS.md for search engine optimization
+   UNIVERSAL_REQUIREMENTS.md
 
 When Changing Explanation Pane or Updating an Explanation Pane
 ==========================================================
-   calculation_pane_rules.md for calculation pane
-   explanation_pane_standard.md for explanation pane
-   SEO_RULES.md for search engine optimization
-   TESTING_RULES.md
+   UNIVERSAL_REQUIREMENTS.md for calculation pane
+   UNIVERSAL_REQUIREMENTS.md for explanation pane
+   UNIVERSAL_REQUIREMENTS.md for search engine optimization
+   UNIVERSAL_REQUIREMENTS.md
 
 Never load
 ==========
@@ -76,29 +76,29 @@ Allowed Files by FSM State (Enforced)
 =====================================
    REQ:
    - AGENTS.md
-   - WORKFLOW.md
+   - UNIVERSAL_REQUIREMENTS.md
    - requirement_tracker.md (active rows only)
 
    BUILD:
    - AGENTS.md
-   - WORKFLOW.md
+   - UNIVERSAL_REQUIREMENTS.md
    - requirement_tracker.md (single active REQ row)
    - build_tracker.md
    - active ITER file
    - affected implementation files only
-   - TESTING_RULES.md (for Auto-Test Mode selection)
+   - UNIVERSAL_REQUIREMENTS.md (for Auto-Test Mode selection)
    - testing_tracker.md (Auto-Test Mode: permitted to record executed tests during BUILD)
    - affected test files only (when tests are executed during BUILD)
 
    TEST:
    - All BUILD files
-   - TESTING_RULES.md
+   - UNIVERSAL_REQUIREMENTS.md
    - testing_tracker.md
    - affected test files only
 
    SEO:
    - All TEST files
-   - SEO_RULES.md
+   - UNIVERSAL_REQUIREMENTS.md
    - seo_tracker.md
    - affected SEO artifacts only
 
@@ -146,7 +146,7 @@ State Definitions
 
    TEST
    ====
-      Select tests strictly via TESTING_RULES.md
+      Select tests strictly via UNIVERSAL_REQUIREMENTS.md
       Run required tests only
       Begin TEST execution immediately after BUILD PASS without waiting for another human confirmation.
       For calculator trigger-behavior changes, execute the relevant button-only trigger regression spec(s).
@@ -163,7 +163,7 @@ State Definitions
    SEO
    ====
       Required for all calculator-related REQs and any change affecting a public route.
-      Validate per SEO_RULES.md
+      Validate per UNIVERSAL_REQUIREMENTS.md
       Any Lighthouse/Chrome/Puppeteer run that uses a profile directory must set output/profile paths outside the repository (for example `/tmp/lighthouse-*`).
       Recommended WSL Lighthouse template (safe defaults):
       `CHROME_PATH="$(node -e "const { chromium } = require('playwright'); console.log(chromium.executablePath())")" && npx lighthouse "http://127.0.0.1:8002/<route>/" --only-categories=performance --chrome-path="$CHROME_PATH" --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage --user-data-dir=/tmp/lighthouse-$$" --output=json --output-path="test-results/seo/<slug>/lighthouse-performance.json"`
@@ -236,7 +236,7 @@ State Definitions
 
    Minimal Startup Checklist (Cold Start)
       Read AGENTS.md
-      Read WORKFLOW.md
+      Read UNIVERSAL_REQUIREMENTS.md
       Read requirement_tracker.md (Active only)
       Read build_tracker.md to find ITER
       Load that single ITER file
