@@ -582,7 +582,7 @@
               "url": "/loans/balance-transfer-installment-plan",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "credit-card-consolidation",

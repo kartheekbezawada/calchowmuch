@@ -1,79 +1,92 @@
-<div id="calc-cc-balance-transfer">
+<div id="calc-cc-bt">
   <div class="calculator-ui cc-bt-ui">
     <section class="cc-bt-hero" aria-label="Balance transfer planner">
       <div class="cc-bt-form-panel">
         <header class="cc-bt-heading">
-          <p class="cc-bt-kicker">Credit Card Strategy Planner</p>
-          <h2 class="cc-bt-title">Balance transfer planning with home-loan clarity.</h2>
-          <p class="helper">
-            Enter your transfer terms to estimate payoff months, total paid, interest, fees, and a
-            yearly payoff table.
-          </p>
+          <h2 class="cc-bt-headline">Balance transfer savings with promo timing clarity.</h2>
         </header>
 
         <div class="cc-bt-input-grid">
-          <div class="input-row">
-            <label for="cc-bt-balance">Transfer Balance</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-balance">Transfer Balance</label>
+              <span class="slider-value" id="cc-bt-balance-display">6,000</span>
+            </div>
             <input
               id="cc-bt-balance"
-              type="number"
+              type="range"
               value="6000"
-              min="0"
-              step="0.01"
-              inputmode="decimal"
+              min="100"
+              max="50000"
+              step="100"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-fee">Transfer Fee (%)</label>
-            <input id="cc-bt-fee" type="number" value="3" min="0" step="0.1" inputmode="decimal" />
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-fee">Transfer Fee (%)</label>
+              <span class="slider-value" id="cc-bt-fee-display">3.0%</span>
+            </div>
+            <input id="cc-bt-fee" type="range" value="3" min="0" max="8" step="0.1" />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-promo-apr">Promo APR (%)</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-promo-apr">Promo APR (%)</label>
+              <span class="slider-value" id="cc-bt-promo-apr-display">0.0%</span>
+            </div>
             <input
               id="cc-bt-promo-apr"
-              type="number"
+              type="range"
               value="0"
               min="0"
-              step="0.01"
-              inputmode="decimal"
+              max="30"
+              step="0.1"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-promo-months">Promo Months</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-promo-months">Promo Months</label>
+              <span class="slider-value" id="cc-bt-promo-months-display">12 mo</span>
+            </div>
             <input
               id="cc-bt-promo-months"
-              type="number"
+              type="range"
               value="12"
               min="0"
+              max="30"
               step="1"
-              inputmode="numeric"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
+              <span class="slider-value" id="cc-bt-post-apr-display">17.9%</span>
+            </div>
             <input
               id="cc-bt-post-apr"
-              type="number"
+              type="range"
               value="17.9"
               min="0"
-              step="0.01"
-              inputmode="decimal"
+              max="35"
+              step="0.1"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-payment">Monthly Payment</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-payment">Monthly Payment</label>
+              <span class="slider-value" id="cc-bt-payment-display">250</span>
+            </div>
             <input
               id="cc-bt-payment"
-              type="number"
+              type="range"
               value="250"
-              min="0"
-              step="0.01"
-              inputmode="decimal"
+              min="25"
+              max="2000"
+              step="5"
             />
           </div>
         </div>
@@ -93,41 +106,41 @@
             <p class="form-error is-hidden" id="cc-bt-error" role="alert"></p>
             <div class="cc-bt-results-list is-hidden" id="cc-bt-results-list"></div>
           </div>
-          <div class="result-detail cc-bt-summary-card" id="cc-bt-summary" aria-live="polite">
-            Every run includes transfer fee + interest so comparisons stay fair.
-          </div>
+          <p class="cc-bt-preview-note" id="cc-bt-summary">
+            Includes transfer fee, promo APR months, and post-promo carry cost in one outcome.
+          </p>
         </div>
 
-        <div class="cc-bt-snapshot-list">
+        <div class="cc-bt-snapshot-list" aria-label="Scenario snapshot">
           <div class="cc-bt-snapshot-row">
             <span>Transfer Balance</span>
-            <strong data-cc-bt="balance"></strong>
+            <strong data-cc-bt="balance">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
-            <span>Fee</span>
-            <strong><span data-cc-bt="fee"></span> (<span data-cc-bt="fee-amount"></span>)</strong>
+            <span>Transfer Fee</span>
+            <strong><span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>)</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Starting Balance</span>
-            <strong data-cc-bt="starting-balance"></strong>
+            <strong data-cc-bt="starting-balance">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Promo Window</span>
-            <strong
-              ><span data-cc-bt="promo-months"></span> months @ <span data-cc-bt="promo-apr"></span
-            ></strong>
+            <strong>
+              <span data-cc-bt="promo-months">—</span> @ <span data-cc-bt="promo-apr">—</span>
+            </strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Post-Promo APR</span>
-            <strong data-cc-bt="post-apr"></strong>
+            <strong data-cc-bt="post-apr">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Monthly Payment</span>
-            <strong data-cc-bt="payment"></strong>
+            <strong data-cc-bt="payment">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Estimated Payoff</span>
-            <strong><span data-cc-bt="months"></span> months</strong>
+            <strong><span data-cc-bt="months">—</span></strong>
           </div>
         </div>
       </aside>

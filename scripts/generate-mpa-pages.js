@@ -127,6 +127,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'balance-transfer-installment-plan': {
+    title: 'Balance Transfer Calculator – Savings with Promo APR & Fees',
+    description:
+      'Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline.',
+    h1: 'Balance Transfer Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'credit-card-repayment-payoff': {
     explanationHeading: '',
     paneLayout: 'single',

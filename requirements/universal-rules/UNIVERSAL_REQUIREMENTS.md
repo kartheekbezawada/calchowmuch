@@ -28,7 +28,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 
 ### 1) FSM and State Machine (Merged Workflow)
 
-### 1.1 FSM Model
+#### 1.1 FSM Model
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |

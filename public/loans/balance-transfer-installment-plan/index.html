@@ -2,18 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Balance Transfer | Calculate How Much Online Calculator</title>
+    <title>Balance Transfer Calculator – Savings with Promo APR & Fees</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Balance Transfer calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confiden..." />
+    <meta name="description" content="Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline." />
     <link rel="canonical" href="https://calchowmuch.com/loans/balance-transfer-installment-plan/" />
-    <meta property="og:title" content="Balance Transfer | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Balance Transfer calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confiden..." />
+    <meta property="og:title" content="Balance Transfer Calculator – Savings with Promo APR & Fees" />
+    <meta property="og:description" content="Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loans/balance-transfer-installment-plan/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Balance Transfer | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Balance Transfer calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confiden..." />
+    <meta name="twitter:title" content="Balance Transfer Calculator – Savings with Promo APR & Fees" />
+    <meta name="twitter:description" content="Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
@@ -92,84 +92,98 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Balance Transfer</h1>
-  <div id="calc-cc-balance-transfer">
+          <div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">Balance Transfer Calculator</h1>
+  <div class="calculator-page-single">
+    <div id="calc-cc-bt">
   <div class="calculator-ui cc-bt-ui">
     <section class="cc-bt-hero" aria-label="Balance transfer planner">
       <div class="cc-bt-form-panel">
         <header class="cc-bt-heading">
-          <p class="cc-bt-kicker">Credit Card Strategy Planner</p>
-          <h2 class="cc-bt-title">Balance transfer planning with home-loan clarity.</h2>
-          <p class="helper">
-            Enter your transfer terms to estimate payoff months, total paid, interest, fees, and a
-            yearly payoff table.
-          </p>
+          <h2 class="cc-bt-headline">Balance transfer savings with promo timing clarity.</h2>
         </header>
 
         <div class="cc-bt-input-grid">
-          <div class="input-row">
-            <label for="cc-bt-balance">Transfer Balance</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-balance">Transfer Balance</label>
+              <span class="slider-value" id="cc-bt-balance-display">6,000</span>
+            </div>
             <input
               id="cc-bt-balance"
-              type="number"
+              type="range"
               value="6000"
-              min="0"
-              step="0.01"
-              inputmode="decimal"
+              min="100"
+              max="50000"
+              step="100"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-fee">Transfer Fee (%)</label>
-            <input id="cc-bt-fee" type="number" value="3" min="0" step="0.1" inputmode="decimal" />
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-fee">Transfer Fee (%)</label>
+              <span class="slider-value" id="cc-bt-fee-display">3.0%</span>
+            </div>
+            <input id="cc-bt-fee" type="range" value="3" min="0" max="8" step="0.1" />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-promo-apr">Promo APR (%)</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-promo-apr">Promo APR (%)</label>
+              <span class="slider-value" id="cc-bt-promo-apr-display">0.0%</span>
+            </div>
             <input
               id="cc-bt-promo-apr"
-              type="number"
+              type="range"
               value="0"
               min="0"
-              step="0.01"
-              inputmode="decimal"
+              max="30"
+              step="0.1"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-promo-months">Promo Months</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-promo-months">Promo Months</label>
+              <span class="slider-value" id="cc-bt-promo-months-display">12 mo</span>
+            </div>
             <input
               id="cc-bt-promo-months"
-              type="number"
+              type="range"
               value="12"
               min="0"
+              max="30"
               step="1"
-              inputmode="numeric"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-post-apr">Post-Promo APR (%)</label>
+              <span class="slider-value" id="cc-bt-post-apr-display">17.9%</span>
+            </div>
             <input
               id="cc-bt-post-apr"
-              type="number"
+              type="range"
               value="17.9"
               min="0"
-              step="0.01"
-              inputmode="decimal"
+              max="35"
+              step="0.1"
             />
           </div>
 
-          <div class="input-row">
-            <label for="cc-bt-payment">Monthly Payment</label>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="cc-bt-payment">Monthly Payment</label>
+              <span class="slider-value" id="cc-bt-payment-display">250</span>
+            </div>
             <input
               id="cc-bt-payment"
-              type="number"
+              type="range"
               value="250"
-              min="0"
-              step="0.01"
-              inputmode="decimal"
+              min="25"
+              max="2000"
+              step="5"
             />
           </div>
         </div>
@@ -189,41 +203,41 @@
             <p class="form-error is-hidden" id="cc-bt-error" role="alert"></p>
             <div class="cc-bt-results-list is-hidden" id="cc-bt-results-list"></div>
           </div>
-          <div class="result-detail cc-bt-summary-card" id="cc-bt-summary" aria-live="polite">
-            Every run includes transfer fee + interest so comparisons stay fair.
-          </div>
+          <p class="cc-bt-preview-note" id="cc-bt-summary">
+            Includes transfer fee, promo APR months, and post-promo carry cost in one outcome.
+          </p>
         </div>
 
-        <div class="cc-bt-snapshot-list">
+        <div class="cc-bt-snapshot-list" aria-label="Scenario snapshot">
           <div class="cc-bt-snapshot-row">
             <span>Transfer Balance</span>
-            <strong data-cc-bt="balance"></strong>
+            <strong data-cc-bt="balance">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
-            <span>Fee</span>
-            <strong><span data-cc-bt="fee"></span> (<span data-cc-bt="fee-amount"></span>)</strong>
+            <span>Transfer Fee</span>
+            <strong><span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>)</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Starting Balance</span>
-            <strong data-cc-bt="starting-balance"></strong>
+            <strong data-cc-bt="starting-balance">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Promo Window</span>
-            <strong
-              ><span data-cc-bt="promo-months"></span> months @ <span data-cc-bt="promo-apr"></span
-            ></strong>
+            <strong>
+              <span data-cc-bt="promo-months">—</span> @ <span data-cc-bt="promo-apr">—</span>
+            </strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Post-Promo APR</span>
-            <strong data-cc-bt="post-apr"></strong>
+            <strong data-cc-bt="post-apr">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Monthly Payment</span>
-            <strong data-cc-bt="payment"></strong>
+            <strong data-cc-bt="payment">—</strong>
           </div>
           <div class="cc-bt-snapshot-row">
             <span>Estimated Payoff</span>
-            <strong><span data-cc-bt="months"></span> months</strong>
+            <strong><span data-cc-bt="months">—</span></strong>
           </div>
         </div>
       </aside>
@@ -235,30 +249,95 @@
   @import url('/calculators/loans/balance-transfer-installment-plan/calculator.css');
 </style>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="cc-bt-explanation" class="cc-bt-explanation">
+    <div id="cc-bt-explanation" class="cc-bt-explanation">
   <section class="cc-bt-exp-section cc-bt-exp-intro">
     <h2>Balance Transfer Summary</h2>
     <p>
-      A transfer balance of <span data-cc-bt="balance"></span> with a fee of
-      <span data-cc-bt="fee"></span> starts at <span data-cc-bt="starting-balance"></span>.
+      A transfer balance of <span data-cc-bt="balance">—</span> with a one-time fee of
+      <span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>) starts at
+      <span data-cc-bt="starting-balance">—</span>.
     </p>
     <p>
-      With a promo APR of <span data-cc-bt="promo-apr"></span> for
-      <span data-cc-bt="promo-months"></span> months and a post-promo APR of
-      <span data-cc-bt="post-apr"></span>, a payment of <span data-cc-bt="payment"></span> clears
-      the balance in <span data-cc-bt="months"></span> months.
+      With <span data-cc-bt="promo-months">—</span> at <span data-cc-bt="promo-apr">—</span>
+      and a post-promo APR of <span data-cc-bt="post-apr">—</span>, paying
+      <span data-cc-bt="payment">—</span> monthly is projected to clear the balance in
+      <span data-cc-bt="months">—</span>.
     </p>
     <p>
-      Total interest paid is <span data-cc-bt="interest"></span> and total fees are
-      <span data-cc-bt="fees"></span>.
+      Estimated total interest is <span data-cc-bt="interest">—</span> and total paid is
+      <span data-cc-bt="total-paid">—</span>.
     </p>
   </section>
 
   <section class="cc-bt-exp-section">
-    <h3>Yearly Payoff Snapshot</h3>
+    <h3>Scenario Summary</h3>
+    <div class="table-scroll" id="cc-bt-scenario-wrap" tabindex="0">
+      <table class="calculator-table" id="cc-bt-scenario-table">
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Value</th>
+            <th scope="col">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transfer Balance</td>
+            <td><span data-cc-bt="balance">—</span></td>
+            <td>Input</td>
+          </tr>
+          <tr>
+            <td>Transfer Fee</td>
+            <td><span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>)</td>
+            <td>Input/Output</td>
+          </tr>
+          <tr>
+            <td>Starting Balance</td>
+            <td><span data-cc-bt="starting-balance">—</span></td>
+            <td>Output</td>
+          </tr>
+          <tr>
+            <td>Promo APR</td>
+            <td><span data-cc-bt="promo-apr">—</span></td>
+            <td>Input</td>
+          </tr>
+          <tr>
+            <td>Promo Period</td>
+            <td><span data-cc-bt="promo-months">—</span></td>
+            <td>Input</td>
+          </tr>
+          <tr>
+            <td>Post-Promo APR</td>
+            <td><span data-cc-bt="post-apr">—</span></td>
+            <td>Input</td>
+          </tr>
+          <tr>
+            <td>Monthly Payment</td>
+            <td><span data-cc-bt="payment">—</span></td>
+            <td>Input</td>
+          </tr>
+          <tr>
+            <td>Payoff Time</td>
+            <td><span data-cc-bt="months">—</span></td>
+            <td>Output</td>
+          </tr>
+          <tr>
+            <td>Total Interest</td>
+            <td><span data-cc-bt="interest">—</span></td>
+            <td>Output</td>
+          </tr>
+          <tr>
+            <td>Total Paid</td>
+            <td><span data-cc-bt="total-paid">—</span></td>
+            <td>Output</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="cc-bt-exp-section">
+    <h3>Results Table (Yearly Payoff Snapshot)</h3>
     <div class="table-scroll" id="cc-bt-table-wrap" tabindex="0">
       <table class="calculator-table" id="cc-bt-table">
         <thead>
@@ -274,90 +353,110 @@
     </div>
   </section>
 
+  <section class="cc-bt-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      A balance transfer moves debt to a card with a temporary lower APR, often 0%, to reduce
+      interest while you pay down principal faster.
+    </p>
+    <p>
+      The transfer fee is added upfront, so your true starting point is
+      <span data-cc-bt="starting-balance">—</span>, not just the transferred balance.
+    </p>
+    <p>
+      If your payment does not clear the balance during the promo window, the remaining amount
+      starts accruing at <span data-cc-bt="post-apr">—</span>, which can sharply raise total cost.
+    </p>
+    <p>
+      This estimate assumes fixed APR inputs, consistent monthly payments, no missed payments, and
+      no new purchases added to the transfer card.
+    </p>
+  </section>
+
   <h3 id="cc-bt-faq-heading">Frequently Asked Questions</h3>
   <div class="cc-bt-faq-grid">
     <div class="faq-box cc-bt-faq-item">
       <p><strong>Q: What is a credit card balance transfer?</strong></p>
       <p class="faq-answer">
-        A: A balance transfer moves existing card debt to another card, usually to get a lower APR
-        or promotional APR period.
+        A: A balance transfer moves your existing credit card debt from one card to another,
+        typically to take advantage of a lower interest rate or a promotional 0% APR period.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: How is the transfer fee applied?</strong></p>
+      <p><strong>Q: How does a balance transfer fee work?</strong></p>
       <p class="faq-answer">
-        A: The transfer fee is typically charged once as a percentage of the transferred balance and
-        is added to your starting balance.
+        A: Most balance transfer cards charge a one-time fee, usually 3-5% of the transferred
+        amount, and this fee is added to the new card balance immediately.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: Why does promo APR matter so much?</strong></p>
+      <p><strong>Q: What is a promotional APR period?</strong></p>
       <p class="faq-answer">
-        A: A lower promo APR reduces interest during the promo window, which means more of each
-        payment goes to principal.
+        A: A promotional APR period is a limited time where transferred debt accrues at a reduced
+        APR, often 0%, so more of each payment goes to principal.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: What happens after promo months end?</strong></p>
+      <p><strong>Q: What happens after the promo APR expires?</strong></p>
       <p class="faq-answer">
-        A: Any remaining balance starts accruing interest at the post-promo APR, which can increase
-        the total payoff cost.
+        A: Any remaining balance starts accruing interest at the regular post-promo APR, which can
+        increase monthly interest and extend payoff time.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: How do I know if a transfer is worth it?</strong></p>
+      <p><strong>Q: Is a balance transfer worth the fee?</strong></p>
       <p class="faq-answer">
-        A: Compare total paid (interest + fee + principal) with and without transfer offers; a
-        transfer is generally better when fee cost is lower than interest savings.
+        A: It is usually worth it when interest savings during the promo period are greater than the
+        transfer fee and any post-promo interest on the leftover balance.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: Can I pay off before promo expires?</strong></p>
+      <p><strong>Q: How do I calculate if I can pay off before the promo ends?</strong></p>
       <p class="faq-answer">
-        A: Divide the starting balance (including fee) by promo months and compare that number to
-        your monthly payment.
+        A: Divide your starting balance (including fee) by promo months. If that value is at or
+        below your monthly payment, you can likely finish before the promo expires.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: Does this include new card purchases?</strong></p>
+      <p><strong>Q: Can I transfer a balance between cards from the same issuer?</strong></p>
       <p class="faq-answer">
-        A: No. This scenario assumes no new purchases and focuses only on repaying the transferred
-        balance.
+        A: Most issuers do not allow transfers between their own cards. Transfers usually must go to
+        a card issued by a different provider.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: Why can payoff months differ from rough estimates?</strong></p>
+      <p><strong>Q: Does this calculator account for new purchases on the transfer card?</strong></p>
       <p class="faq-answer">
-        A: Monthly interest compounding, fee-loaded starting balance, and post-promo APR timing all
-        affect the final payoff month count.
+        A: No. It models repayment of the transferred balance only and assumes no new purchases are
+        added during payoff.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: Can I compare multiple offers with this?</strong></p>
+      <p><strong>Q: What APR applies to the remaining balance after the promo period?</strong></p>
       <p class="faq-answer">
-        A: Yes. Run each offer with its own fee, promo APR, promo months, and post-promo APR, then
-        compare total paid and payoff time.
+        A: The post-promo APR applies to any remaining balance once the promotional period ends.
       </p>
     </div>
 
     <div class="faq-box cc-bt-faq-item">
-      <p><strong>Q: What assumptions does this calculator use?</strong></p>
+      <p><strong>Q: How do I compare multiple balance transfer offers?</strong></p>
       <p class="faq-answer">
-        A: It assumes fixed APR inputs, consistent monthly payment, on-time payments, and no
-        additional fees beyond the transfer fee.
+        A: Run each offer with its own fee, promo APR, promo months, and post-promo APR, then
+        compare payoff months and total paid to identify the lower-cost option.
       </p>
     </div>
   </div>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">
