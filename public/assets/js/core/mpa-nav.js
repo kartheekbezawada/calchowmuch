@@ -1,3 +1,5 @@
+import '/assets/js/core/mobile-nav.js';
+
 const standardToggles = document.querySelectorAll('.nav-category-toggle');
 standardToggles.forEach((toggle) => {
   toggle.addEventListener('click', () => {

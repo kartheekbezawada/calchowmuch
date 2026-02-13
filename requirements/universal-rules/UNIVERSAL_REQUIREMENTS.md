@@ -7,8 +7,8 @@
 | Status | Authoritative (sole active governance file) |
 | Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
 | Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
-| Version | 3.2 (AdSense governance + controlled ad-slot standard) |
-| Last Updated | 2026-02-12 |
+| Version | 3.3 (AdSense governance + controlled ad-slot standard + mobile nav requirements) |
+| Last Updated | 2026-02-13 |
 
 This is the only active governance file under `requirements/universal-rules/`.
 All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
@@ -109,7 +109,15 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-NAV-021 | GTEP pages must not load calculator-specific JS modules. | P0 |
 | UR-NAV-022 | GTEP pages must remain crawlable with lightweight header/footer patterns. | P0 |
 
-### 3.2 Route Archetype and Metadata Contract
+### 3.2 Mobile Responsiveness and Navigation
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-NAV-025 | Mobile navigation (< 860px) must use a hamburger menu pattern with a slide-out drawer or overlay. | P0 |
+| UR-NAV-026 | The mobile menu toggle must be accessible in the top header and visible on all mobile pages. | P0 |
+| UR-NAV-027 | The left navigation sidebar must be hidden by default on mobile and only appear when toggled. | P0 |
+| UR-NAV-028 | Opening the mobile menu must add a backdrop that closes the menu when clicked (click-outside behavior). | P0 |
+
+### 3.3 Route Archetype and Metadata Contract
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
@@ -121,7 +129,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-NAV-035 | Page generation must emit `data-route-archetype` and `data-design-family` on `<body>`. | P0 |
 | UR-NAV-036 | Fragment loading is archetype-bound: `calc_exp` requires `index.html` + `explanation.html`; `calc_only` requires `index.html`; `exp_only` requires `explanation.html`; `content_shell` requires `content.html`. | P0 |
 
-### 3.3 Archetype Behavior Matrix
+### 3.4 Archetype Behavior Matrix
 
 | Archetype | Calculation Pane | Explanation Pane | Allowed `paneLayout` |
 | --- | --- | --- | --- |
