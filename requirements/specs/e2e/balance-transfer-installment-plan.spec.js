@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
 
+async function setSliderValue(page, selector, value) {
+  await page.locator(selector).evaluate((el, nextValue) => {
+    el.value = String(nextValue);
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }, value);
+}
+
 test.describe('Balance Transfer Calculator', () => {
   test('BALTRANSFER-TEST-E2E-1: load, nav, calculate, verify results', async ({ page }) => {
     await page.goto('/loans/balance-transfer-installment-plan');
@@ -14,12 +22,19 @@ test.describe('Balance Transfer Calculator', () => {
     const leftActive = page.locator('.nav-item.is-active');
     await expect(leftActive).toHaveText('Balance Transfer');
 
-    await page.locator('#cc-bt-balance').fill('6000');
-    await page.locator('#cc-bt-fee').fill('3');
-    await page.locator('#cc-bt-promo-apr').fill('0');
-    await page.locator('#cc-bt-promo-months').fill('12');
-    await page.locator('#cc-bt-post-apr').fill('17.9');
-    await page.locator('#cc-bt-payment').fill('250');
+    await expect(page.locator('#cc-bt-balance')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-bt-fee')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-bt-promo-apr')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-bt-promo-months')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-bt-post-apr')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#cc-bt-payment')).toHaveAttribute('type', 'range');
+
+    await setSliderValue(page, '#cc-bt-balance', 6000);
+    await setSliderValue(page, '#cc-bt-fee', 3);
+    await setSliderValue(page, '#cc-bt-promo-apr', 0);
+    await setSliderValue(page, '#cc-bt-promo-months', 12);
+    await setSliderValue(page, '#cc-bt-post-apr', 17.9);
+    await setSliderValue(page, '#cc-bt-payment', 250);
     await page.locator('#cc-bt-calc').click();
 
     const resultsList = page.locator('#cc-bt-results-list');
@@ -51,7 +66,7 @@ test.describe('Balance Transfer Calculator', () => {
     const firstResult = resultsList.locator('.result-line').first();
     const firstTextBefore = (await firstResult.textContent()) || '';
 
-    await page.locator('#cc-bt-balance').fill('8000');
+    await setSliderValue(page, '#cc-bt-balance', 8000);
 
     await expect(resultsList).not.toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-bt-placeholder')).toHaveClass(/is-hidden/);
