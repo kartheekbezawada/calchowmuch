@@ -6,9 +6,7 @@ export default defineConfig({
     environment: 'jsdom',
     exclude: [
       '**/node_modules/**',
-      '**/tests/e2e/**',
-      '**/requirements/specs/calculators/**',
-      '**/requirements/specs/e2e/**'
+      '**/tests_specs/**/e2e/**'
     ],
     coverage: {
       provider: 'v8',
@@ -20,7 +18,7 @@ export default defineConfig({
         'public/assets/js/core/ui.js',
         'public/assets/js/core/expression-parser.js',
         '**/node_modules/**',
-        '**/tests/**'
+        '**/tests_specs/**'
       ],
       thresholds: {
         lines: 80,

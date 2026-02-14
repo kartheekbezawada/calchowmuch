@@ -1,8 +1,9 @@
 
-#### Copy and paste the ad unit code in between the <body></body> tags of your pages. Place this code where you want an ad to appear. Do this for each individual ad unit, on every page.
+#### Canonical ad slot snippet source (body slot only)
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
-     crossorigin="anonymous"></script>
+This file provides the controlled ad slot block used by shared generation/sync workflows.
+Do not add the AdSense loader here; loader is head-managed once per page from the canonical head snippet source.
+
 <!-- Right_Pane_Responsive -->
 <ins class="adsbygoogle"
      style="display:block"

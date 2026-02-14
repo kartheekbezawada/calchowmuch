@@ -68,18 +68,15 @@ The project uses layered testing:
 
 ### Test Types and Locations
 
-- Unit/core tests:
-  - `tests/core/**/*.test.js`
-- E2E route specs:
-  - `requirements/specs/e2e/**/*.spec.js`
-- Playwright calculator specs:
-  - `requirements/specs/calculators/**/*.spec.js`
-- ISS tests:
-  - `requirements/specs/e2e/iss-design-001.spec.js`
-  - `requirements/specs/e2e/iss/**/*.spec.js`
-- Static SEO schema guard:
-  - `tests/core/page-metadata-schema-guard.test.js`
-  - `tests/core/finance-static-schema-source-parity.test.js`
+All tests live under `tests_specs/` categorized by calculator domain:
+
+- Unit tests: `tests_specs/{category}/unit/*.test.js`
+- E2E specs: `tests_specs/{category}/e2e/*.spec.js`
+- ISS tests: `tests_specs/infrastructure/e2e/iss-design-001.spec.js`, `tests_specs/infrastructure/e2e/iss/`
+- CWV guard: `tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js`
+- Schema guards: `tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js`, `tests_specs/finance/unit/finance-static-schema-source-parity.test.js`
+
+Categories: `loans`, `credit-cards`, `finance`, `percentage`, `math`, `time-and-date`, `sleep-and-nap`, `infrastructure`
 
 ### Test Commands
 
@@ -127,16 +124,12 @@ Governance source:
 
 ## Compliance and Tracking
 
-Execution/compliance records are maintained under:
+Release governance follows the document chain:
 
-- `requirements/compliance/`
-- Key files include:
-  - `requirement_tracker.md`
-  - `build_tracker.md`
-  - `testing_tracker.md`
-  - `seo_tracker.md`
-  - `compliance-report.md`
-  - `Audit.md`
+- `requirements/compliance/requirement_tracker.md` — REQ lifecycle
+- `requirements/universal-rules/RELEASE_CHECKLIST.md` — pre-release gate
+- `requirements/universal-rules/RELEASE_SIGNOFF.md` — per-release evidence
+- `requirements/universal-rules/Release Sign-Off Master Table.md` — historical ledger
 
 ## Chromium and WSL Notes
 

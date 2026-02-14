@@ -77,23 +77,43 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | **INP** | | GSC CWV / RUM | |
 | **CLS** | | GSC CWV / RUM | |
 
-## 5) Ads Stability Verification (CLS Zero-Tolerance)
+## 5) Global CWV Regression Guard (Automated WSL)
 
-### 5.1 Ad slot contract verification
+### 5.1 Guard Results
+
+| Scope | Routes Checked | Violations | Highest Normal LCP (ms) | Highest Stress LCP (ms) | Highest Normal INP Proxy (ms) | Highest Stress INP Proxy (ms) | Highest Normal CLS | Highest Stress CLS | Highest Single Shift | Status (Pass/Fail) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **All calculators (`public/config/navigation.json`)** | | | | | | | | | | |
+
+- [ ] Command executed: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
+- [ ] Evidence attached: `test-results/performance/cls-guard-all-calculators.json`
+
+### 5.2 Root Cause Analysis (If Failed/Warned)
+*If any page triggered a warning (> 0.05) or fail (> 0.10), document the cause:*
+
+- [ ] Late CSS / FOUC
+- [ ] Webfont Swap
+- [ ] Component Resize
+- [ ] Dynamic Injection
+
+## 6) Ads Stability Verification (CLS Zero-Tolerance)
+
+### 6.1 Ad slot contract verification
 
 | Page | Slot(s) Verified | Reserved Space (Y/N) | No Layout Shift (Y/N) | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | `<page-1>` | | | | |
 | `<page-2>` | | | | |
 
-### 5.2 Load order verification
+### 6.2 Load order verification
 
 - [ ] Ads did not block initial render
 - [ ] Ads loaded after initial render and idle/interaction
 - [ ] No slot height changes after ad fill
 - [ ] No overlap with inputs/results on mobile
+- [ ] Exactly one AdSense loader in rendered `<head>`; no body-level loader duplication from ad unit snippets
 
-## 6) Manual Regression Scenarios (Pass/Fail)
+## 7) Manual Regression Scenarios (Pass/Fail)
 
 | Scenario | Pass/Fail | Notes |
 | :--- | :--- | :--- |
@@ -105,7 +125,57 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | Deep-link opens only correct subcategory | | |
 | Ads appear with zero CLS | | |
 
-## 7) Exceptions & Follow-Up Tickets
+## 8) SERP Readiness Verification (All Calculators)
+
+### 8.1 Metadata & Canonical Verification
+
+Verify on all calculator pages touched in this release + 2–3 untouched sample pages.
+
+| Page | `<title>` Unique (Y/N) | Meta Desc Intent-Aligned (Y/N) | Canonical Correct (Y/N) | No Duplicate Metas (Y/N) | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `<page-1>` | | | | | |
+| `<page-2>` | | | | | |
+| `<page-3>` | | | | | |
+
+### 8.2 Structured Data Verification
+
+| Page | Schema Bundle Correct (Y/N) | Validates Rich Results Test (Y/N) | JSON-LD Matches Visible Content (Y/N) | No Duplicate FAQPage (Y/N) | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `<page-1>` | | | | | |
+| `<page-2>` | | | | | |
+| `<page-3>` | | | | | |
+
+**Safe schema set:** `WebPage`, `SoftwareApplication`, `FAQPage` (when visible), `BreadcrumbList`.
+
+### 8.3 Content Indexability Checklist
+
+- [ ] Explanation section present in initial HTML (all calculator pages)
+- [ ] FAQs present in initial HTML (all calculator pages with FAQs)
+- [ ] Key formulas present in initial HTML (where applicable)
+- [ ] Primary headings (H1, H2) present in initial HTML
+- [ ] No critical content gated behind JS rendering, tabs, or user interaction
+
+### 8.4 Internal Linking Verification
+
+- [ ] Category → calculator links present and crawlable
+- [ ] Calculator → parent category link present
+- [ ] Calculator → related calculators links present
+- [ ] Calculator → reverse/comparison calculator links present (where applicable)
+- [ ] All internal links are in HTML (not JS-injected)
+
+### 8.5 Intent Coverage Verification
+
+- [ ] Primary intent reflected in title, H1, opening paragraph, and meta description
+- [ ] Secondary intents addressed via explanation, scenario tables, FAQ, or related links
+- [ ] Long-tail coverage via natural language phrasing (no keyword stuffing)
+
+### 8.6 Scenario Content (Finance / Percentage Only)
+
+- [ ] Scenario tables or worked examples present
+- [ ] What-if exploratory prompts present in initial HTML
+- [ ] N/A (pure math calculator — skip)
+
+## 9) Exceptions & Follow-Up Tickets
 
 List any allowed exceptions (must not include CLS or interaction lag).
 
@@ -113,14 +183,14 @@ List any allowed exceptions (must not include CLS or interaction lag).
 | :--- | :--- | :--- | :--- | :--- |
 | | LOW / MED | | | |
 
-## 8) Final Sign-Off
+## 10) Final Sign-Off
 
-### 8.1 Release decision
+### 10.1 Release decision
 
 - [ ] **APPROVED** (all HARD gates passed)
 - [ ] **REJECTED** (HARD blocker found)
 
-### 8.2 Signatures
+### 10.2 Signatures
 
 | Role | Name | Date (UTC) | Signature/Note |
 | :--- | :--- | :--- | :--- |
