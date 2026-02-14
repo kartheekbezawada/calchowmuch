@@ -205,8 +205,66 @@
 
 /* FAQ grid — 2 columns */
 #tsg-explanation .bor-faq-grid {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
 }
+
+/* FAQ Card Base (bor-faq-card) */
+#tsg-explanation .bor-faq-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    border-top: 2px solid rgba(245, 158, 11, 0.6);
+    /* Amber top border */
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#tsg-explanation .bor-faq-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* Number Circle */
+#tsg-explanation .bor-faq-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+/* Question Heading */
+#tsg-explanation .bor-faq-card h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.4;
+}
+
+/* Answer Text */
+#tsg-explanation .bor-faq-card p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
 
 @media (max-width: 640px) {
     #tsg-explanation .bor-faq-grid {

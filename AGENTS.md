@@ -4,7 +4,7 @@ AGENTS.md — Agent Operating Contract (Entry Point)
 
 0. Cold Start Instruction (Read First)
 
-AGENTS.md and UNIVERSAL_REQUIREMENTS.md are authoritative law.
+AGENTS.md, UNIVERSAL_REQUIREMENTS.md, and Project Bible.md are authoritative law.
 
 Do not reinterpret rules.
 
@@ -12,7 +12,7 @@ Apply rules verbatim.
 
 Update ledgers with deltas only (no history, no archives).
 
-If this file conflicts with UNIVERSAL_REQUIREMENTS.md, UNIVERSAL_REQUIREMENTS.md takes precedence.
+If this file conflicts with UNIVERSAL_REQUIREMENTS.md, UNIVERSAL_REQUIREMENTS.md takes precedence. Project Bible.md governs strategy/design intent.
 
 1. ADMIN ABSOLUTE OVERRIDE (CHECKED FIRST)
 Activation
@@ -160,6 +160,8 @@ LAW (Authoritative — Do Not Reinterpret)
 AGENTS.md
 
 requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
+
+requirements/universal-rules/Project Bible.md
 
 REFERENCE (Load Only When Relevant)
 

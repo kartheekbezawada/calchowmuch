@@ -1,159 +1,164 @@
-<div id="ig-explanation" class="mtg-exp-section">
-  <h4>Investment Growth & Future Value</h4>
-  <p>
-    Calculate the future value of your investments using compound interest and regular contributions.
-    Use this tool to forecast wealth accumulation, retirement savings, or long-term financial goals.
-  </p>
+<div id="ig-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Investment Growth — Results Breakdown</h2>
+    <p>
+      An investment growth calculator estimates how much an investment could be worth in the future
+      based on an expected annual return, time horizon, and optional recurring contributions.
+      This investment calculator shows your future value, total contributions, and total growth,
+      and can optionally estimate inflation-adjusted ("real") value to understand purchasing power.
+    </p>
 
-  <!-- Key Insights Box -->
-  <div class="ig-insight-box">
-    <p><strong>Compound Interest Power:</strong> Your money grows faster over time because you earn interest on both
-      your principal and previous interest.</p>
-    <p><strong>Consistency Matters:</strong> Regular monthly contributions significantly boost your final balance, often
-      more than a slightly higher return rate.</p>
-    <p><strong>Inflation Reality:</strong> Always consider inflation. A million dollars in 20 years won't buy what it
-      does today.</p>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="ig-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Value</th>
+              <th scope="col" class="ig-how-col">What it means</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Future Value</td>
+              <td data-ig="future-value" class="highlight-val"></td>
+              <td class="ig-how-col">Total value at end of period</td>
+            </tr>
+            <tr>
+              <td>Total Contributions</td>
+              <td data-ig="total-contributions"></td>
+              <td class="ig-how-col">Principal + all deposits</td>
+            </tr>
+            <tr>
+              <td>Total Interest Earned</td>
+              <td data-ig="total-gains" class="highlight-gain"></td>
+              <td class="ig-how-col">Pure profit from compound growth</td>
+            </tr>
+            <tr id="ig-inflation-row">
+              <td>Inflation Adjusted</td>
+              <td data-ig="inflation-adjusted"></td>
+              <td class="ig-how-col">Purchasing power in today's money</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Return on Investment</td>
+              <td colspan="2" style="font-weight:400; font-style:italic;">
+                Invested <strong data-ig="initial" style="color:#e0f2fe"></strong> over <strong data-ig="time"
+                  style="color:#e0f2fe"></strong> at <strong data-ig="return-rate" style="color:#e0f2fe"></strong>
+                annual
+                return.
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h4>Growth Summary</h4>
-  <div class="result-table-wrapper">
-    <table class="ig-results-table">
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Value</th>
-          <th class="ig-how-col">What it means</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value</td>
-          <td data-ig="future-value" class="highlight-val"></td>
-          <td class="ig-how-col">Total value at end of period</td>
-        </tr>
-        <tr>
-          <td>Total Contributions</td>
-          <td data-ig="total-contributions"></td>
-          <td class="ig-how-col">Principal + all monthly deposits</td>
-        </tr>
-        <tr>
-          <td>Total Interest Earned</td>
-          <td data-ig="total-gains" class="highlight-gain"></td>
-          <td class="ig-how-col">Pure profit from compound growth</td>
-        </tr>
-        <tr id="ig-inflation-row">
-          <td>Inflation Adjusted</td>
-          <td data-ig="inflation-adjusted"></td>
-          <td class="ig-how-col">Purchasing power in today's money</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Return on Investment</td>
-          <td colspan="2" style="font-weight:400; font-style:italic;">
-            Invested <strong data-ig="initial" style="color:#e0f2fe"></strong> over <strong data-ig="time"
-              style="color:#e0f2fe"></strong> at <strong data-ig="return-rate" style="color:#e0f2fe"></strong> annual
-            return.
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        Investment growth is commonly estimated using compound growth assumptions, where returns
+        can build on prior returns over time. Your time horizon and expected annual return are the
+        largest drivers of long-term outcomes.
+      </p>
+      <p>
+        If you add regular contributions, the final balance can increase significantly because
+        each contribution may also earn returns over the remaining period.
+      </p>
+      <p>
+        If you include inflation, the calculator can estimate a "real" future value, which helps
+        you understand what the ending balance may be worth in today's purchasing power.
+      </p>
 
-  <h4>How It Works</h4>
-  <ul class="ig-explanation-list">
-    <li><strong>Initial Investment:</strong> The starting amount you invest today.</li>
-    <li><strong>Expected Return:</strong> The annual percentage growth rate (historically 7-10% for stocks).</li>
-    <li><strong>Contributions:</strong> Money added regularly (e.g., monthly from your paycheck).</li>
-    <li><strong>Compounding:</strong> Frequency at which earnings are reinvested (Daily to Annually).</li>
-  </ul>
+      <ul class="ig-explanation-list">
+        <li><strong>Initial Investment:</strong> The starting amount you invest today.</li>
+        <li><strong>Expected Return:</strong> The annual percentage growth rate (historically 7-10% for stocks).</li>
+        <li><strong>Contributions:</strong> Money added regularly (e.g., monthly from your paycheck).</li>
+        <li><strong>Compounding:</strong> Frequency at which earnings are reinvested (Daily to Annually).</li>
+      </ul>
 
-  <h4>The Future Value Formula</h4>
-  <div class="ig-formula-block">
-    FV = P × (1 + r)ⁿ + PMT × [((1 + r)ⁿ - 1) / r]
-  </div>
-  <ul class="ig-formula-steps">
-    <li><span data-ig="formula-fv">FV</span> = Future Value</li>
-    <li><span data-ig="formula-p">P</span> = Principal (Initial Investment)</li>
-    <li><span data-ig="formula-pmt">PMT</span> = Monthly Contribution</li>
-    <li><span data-ig="formula-r">r</span> = Periodic Interest Rate (Annual Rate / Periods per Year)</li>
-    <li><span data-ig="formula-n">n</span> = Total Number of Periods (Years × Periods per Year)</li>
-  </ul>
+      <h4>The Future Value Formula</h4>
+      <div class="ig-formula-block">
+        FV = P × (1 + r)ⁿ + PMT × [((1 + r)ⁿ - 1) / r]
+      </div>
+      <ul class="ig-formula-steps">
+        <li><span data-ig="formula-fv">FV</span> = Future Value</li>
+        <li><span data-ig="formula-p">P</span> = Principal (Initial Investment)</li>
+        <li><span data-ig="formula-pmt">PMT</span> = Monthly Contribution</li>
+        <li><span data-ig="formula-r">r</span> = Periodic Interest Rate (Annual Rate / Periods per Year)</li>
+        <li><span data-ig="formula-n">n</span> = Total Number of Periods (Years × Periods per Year)</li>
+      </ul>
+    </section>
 
-  <!-- FAQ Section -->
-  <div class="faq-section">
-    <h3>Frequently Asked Questions</h3>
-    <div class="faq-grid bor-faq-grid">
-      <div class="faq-box">
-        <strong>What is investment growth?</strong>
-        <div class="faq-answer">
-          Investment growth refers to the increase in value of an asset or portfolio over time, driven by compound
-          interest, capital appreciation, and reinvested dividends.
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is an investment growth calculator?</h4>
+          <p>An investment growth calculator estimates the future value of an investment based on expected return, time,
+            and contributions.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>How do you calculate investment growth over time?</h4>
+          <p>You apply compound growth assumptions using an expected annual return and the investment period, and add
+            contributions if applicable.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What is future value in investing?</h4>
+          <p>Future value is the estimated amount your investment could grow to after a set time period.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How do monthly contributions affect investment growth?</h4>
+          <p>Monthly contributions can increase the final balance because added deposits may also earn returns over
+            time.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What does expected annual return mean?</h4>
+          <p>It is the assumed average yearly growth rate used for forecasting.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Does compounding frequency matter for investment growth?</h4>
+          <p>Yes. More frequent compounding can slightly increase estimated growth under the same annual return
+            assumption.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">07</span>
+          <h4>Can this calculator estimate investment returns?</h4>
+          <p>Yes. It estimates future value and total growth based on the return rate you enter.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">08</span>
+          <h4>What is inflation-adjusted future value?</h4>
+          <p>It estimates your ending balance in today's purchasing power after accounting for inflation.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">09</span>
+          <h4>What happens if the return rate is 0%?</h4>
+          <p>Future value equals the initial investment plus total contributions.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">10</span>
+          <h4>Is this investment growth estimate guaranteed?</h4>
+          <p>No. It is a projection based on assumptions and actual market returns can vary.</p>
         </div>
       </div>
-      <div class="faq-box">
-        <strong>How does inflation affect my investment?</strong>
-        <div class="faq-answer">
-          Inflation erodes purchasing power. If your investment grows by 7% but inflation is 3%, your "real" return is
-          approximately 4%.
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>What is a realistic rate of return?</strong>
-        <div class="faq-answer">
-          The S&P 500 has historically returned about 10% annually related interest. Adjusted for inflation, this is
-          often cited as 7%. Bonds typically return less (3-5%).
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>Why is compounding frequency important?</strong>
-        <div class="faq-answer">
-          More frequent compounding (e.g., monthly vs. annually) means your interest earns interest sooner, resulting in
-          a slightly higher future value.
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>Should I contribute monthly or annually?</strong>
-        <div class="faq-answer">
-          Monthly contributions are generally better because your money starts working for you sooner, rather than
-          sitting in a checking account waiting for an annual deposit.
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>Does this calculate taxes?</strong>
-        <div class="faq-answer">
-          No. This calculator shows pre-tax growth. Investment gains may be subject to capital gains tax depending on
-          the account type (e.g., brokerage vs. Roth IRA).
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>What is the Rule of 72?</strong>
-        <div class="faq-answer">
-          It's a quick way to estimate doubling time. Divide 72 by your interest rate. At 7% return, money doubles in
-          roughly 10.2 years (72 ÷ 7).
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>What happens if the market drops?</strong>
-        <div class="faq-answer">
-          This calculator assumes a constant average return. Real markets fluctuate (volatility). Over long periods (10+
-          years), volatility tends to smooth out towards the average.
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>Can I use this for retirement planning?</strong>
-        <div class="faq-answer">
-          Yes! It's perfect for estimating how much your 401(k) or IRA might be worth at retirement based on your
-          current savings rate.
-        </div>
-      </div>
-      <div class="faq-box">
-        <strong>What is "Time to Double"?</strong>
-        <div class="faq-answer">
-          The time it takes for your investment to double in value. At 10%, it's about 7.2 years. At 5%, it's about 14.4
-          years.
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
 </div>

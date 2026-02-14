@@ -9,6 +9,44 @@
         </p>
 
         <section class="mtg-exp-section">
+            <h3>Scenario Summary</h3>
+            <table class="msn-results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Savings Goal</td>
+                        <td><span data-msn="goal"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Current Savings</td>
+                        <td><span data-msn="current"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Time Period</td>
+                        <td><span data-msn="time-period"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Interest Rate</td>
+                        <td><span data-msn="rate"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Compounding Frequency</td>
+                        <td><span data-msn="compounding"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Contribution Timing</td>
+                        <td><span data-msn="timing"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="mtg-exp-section">
             <h3>Results Table</h3>
             <div class="table-scroll" tabindex="0">
                 <table class="msn-results-table">
@@ -20,32 +58,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Savings Goal</td>
-                            <td><span data-msn="goal"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Current Savings</td>
-                            <td><span data-msn="current"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Time Period</td>
-                            <td><span data-msn="time-period"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Interest Rate</td>
-                            <td><span data-msn="rate"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Compounding</td>
-                            <td><span data-msn="compounding"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Contribution Timing</td>
-                            <td><span data-msn="timing"></span></td>
-                        </tr>
-                        <tr>
                             <td>Required Monthly Savings</td>
-                            <td><span data-msn="monthly-savings"></span></td>
+                            <td><span data-msn="monthly-savings" class="highlight-val"></span></td>
                         </tr>
                         <tr>
                             <td>Total Contributions</td>
@@ -53,7 +67,7 @@
                         </tr>
                         <tr>
                             <td>Total Interest Earned</td>
-                            <td><span data-msn="total-interest"></span></td>
+                            <td><span data-msn="total-interest" class="highlight-gain"></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -87,7 +101,7 @@
                 FV = P(1 + r/n)<sup>nt</sup> + PMT &times; [(1 + r/n)<sup>nt</sup> &minus; 1] / (r/n)
             </p>
             <p>Where:</p>
-            <ol class="msn-formula-steps">
+            <ul class="msn-formula-steps">
                 <li><strong>FV</strong> = Savings Goal (<span data-msn="goal"></span>)</li>
                 <li><strong>P</strong> = Current Savings (<span data-msn="current"></span>)</li>
                 <li><strong>PMT</strong> = Required Monthly Savings (solved for)</li>
@@ -95,7 +109,7 @@
                 <li><strong>n</strong> = Compounding Frequency (<span data-msn="compounding"></span> &rarr; <span
                         data-msn="periods-per-year"></span> times/year)</li>
                 <li><strong>t</strong> = Time Period (<span data-msn="time-period"></span>)</li>
-            </ol>
+            </ul>
             <p>
                 The calculator iteratively narrows down the exact monthly savings amount needed
                 so that the final balance meets or exceeds your goal.
@@ -169,7 +183,7 @@
             <div class="bor-faq-grid">
                 <div class="bor-faq-card">
                     <span class="bor-faq-number">01</span>
-                    <h4>How much do I need to save each month to reach 25000 in 3 years?</h4>
+                    <h4>How much do I need to save each month to reach 25,000 in 3 years?</h4>
                     <p>It depends on your current savings, interest rate, and compounding settings.
                         Enter your values above to get a personalized monthly savings figure.</p>
                 </div>
@@ -199,14 +213,14 @@
                     <span class="bor-faq-number">05</span>
                     <h4>Is saving at the beginning of the month better?</h4>
                     <p>Yes. Beginning-of-month contributions start earning interest immediately for that
-                        period, giving you a slight advantage and requiring marginally less monthly savings.</p>
+                        period, requiring marginally less monthly savings.</p>
                 </div>
 
                 <div class="bor-faq-card">
                     <span class="bor-faq-number">06</span>
                     <h4>What happens if I shorten my time frame?</h4>
                     <p>A shorter time frame means less time for compounding, so the required monthly
-                        savings increases. Extending time even slightly can significantly reduce monthly pressure.</p>
+                        savings increases.</p>
                 </div>
 
                 <div class="bor-faq-card">
@@ -227,14 +241,14 @@
                     <span class="bor-faq-number">09</span>
                     <h4>What if my investment returns vary each year?</h4>
                     <p>This calculator uses a fixed annual rate for simplicity. In practice, variable
-                        returns may change outcomes — use a conservative estimate for reliability.</p>
+                        returns may change outcomes — use a conservative estimate.</p>
                 </div>
 
                 <div class="bor-faq-card">
                     <span class="bor-faq-number">10</span>
                     <h4>Is it better to increase time or increase monthly savings?</h4>
-                    <p>Both work, but increasing time benefits from compounding effects. If possible,
-                        starting earlier is more powerful than increasing your monthly contribution.</p>
+                    <p>Both work, but increasing time benefits from compounding effects. Starting earlier is
+                        more powerful than increasing your monthly contribution.</p>
                 </div>
             </div>
         </section>
