@@ -425,6 +425,183 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'remortgage ltv',
     ],
   },
+  'monthly-savings-needed': {
+    breadcrumbLabel: 'Monthly Savings Needed',
+    softwareName: 'Monthly Savings Needed Calculator',
+    softwareDescription:
+      'Calculate required monthly savings to reach a financial goal with compound interest.',
+    featureList: [
+      'Required monthly savings calculation',
+      'Total contributions breakdown',
+      'Total interest earned',
+      'Compounding frequency options',
+    ],
+    keywords: [
+      'monthly savings calculator',
+      'savings goal calculator',
+      'how much to save',
+      'investment calculator',
+    ],
+  },
+  'compound-interest': {
+    breadcrumbLabel: 'Compound Interest',
+    softwareName: 'Compound Interest Calculator',
+    softwareDescription:
+      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.',
+    featureList: [
+      'Ending balance estimate',
+      'Total interest earned',
+      'Compounding frequency toggle',
+      'Yearly contribution slider',
+    ],
+    keywords: [
+      'compound interest calculator',
+      'interest calculator',
+      'investment growth',
+      'savings calculator',
+    ],
+  },
+  'time-to-savings-goal': {
+    breadcrumbLabel: 'Time to Savings Goal',
+    softwareName: 'Time to Savings Goal Calculator',
+    softwareDescription:
+      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding.',
+    featureList: [
+      'Time to goal estimate',
+      'Total interest earned',
+      'Total accumulated balance',
+      'Compounding frequency options',
+    ],
+    keywords: [
+      'time to savings goal',
+      'savings calculator',
+      'goal calculator',
+      'how long to save',
+    ],
+  },
+  'effective-annual-rate': {
+    breadcrumbLabel: 'Effective Annual Rate',
+    softwareName: 'Effective Annual Rate Calculator',
+    softwareDescription:
+      'Convert a nominal interest rate into an effective annual rate using compounding frequency.',
+    featureList: [
+      'Nominal to EAR conversion',
+      'Compounding frequency options',
+      'Difference highlight',
+    ],
+    keywords: [
+      'effective annual rate calculator',
+      'ear calculator',
+      'nominal vs effective',
+      'interest rate converter',
+    ],
+  },
+  'future-value': {
+    breadcrumbLabel: 'Future Value (FV)',
+    softwareName: 'Future Value (FV) Calculator',
+    softwareDescription:
+      'Calculate how much your money could grow over time using interest rate and compounding.',
+    featureList: [
+      'Future value estimate',
+      'Total growth breakdown',
+      'Regular contributions',
+      'Compounding frequency options',
+    ],
+    keywords: [
+      'future value calculator',
+      'fv calculator',
+      'time value of money',
+      'investment growth',
+    ],
+  },
+  'future-value-of-annuity': {
+    breadcrumbLabel: 'Future Value of Annuity',
+    softwareName: 'Future Value of Annuity Calculator',
+    softwareDescription:
+      'Calculate the future value of an annuity and compare ordinary annuity vs annuity due.',
+    featureList: [
+      'Ordinary vs Annuity Due',
+      'Future value estimate',
+      'Total interest earned',
+      'Payment frequency calculation',
+    ],
+    keywords: [
+      'future value of annuity calculator',
+      'fva calculator',
+      'annuity calculator',
+      'time value of money',
+    ],
+  },
+  'investment-growth': {
+    breadcrumbLabel: 'Investment Growth',
+    softwareName: 'Investment Growth Calculator',
+    softwareDescription:
+      'Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.',
+    featureList: [
+      'Investment growth projection',
+      'Inflation adjustment',
+      'Monthly contribution',
+      'Total gains breakdown',
+    ],
+    keywords: [
+      'investment calculator',
+      'growth calculator',
+      'compound interest',
+      'inflation adjusted return',
+    ],
+  },
+  'present-value': {
+    breadcrumbLabel: 'Present Value (PV)',
+    softwareName: 'Present Value (PV) Calculator',
+    softwareDescription:
+      'Calculate the present value of future cash using discount rate and time.',
+    featureList: [
+      'Present value estimate',
+      'Discount lost breakdown',
+      'Compounding options',
+    ],
+    keywords: [
+      'present value calculator',
+      'pv calculator',
+      'discount rate calculator',
+      'time value of money',
+    ],
+  },
+  'present-value-of-annuity': {
+    breadcrumbLabel: 'Present Value of Annuity',
+    softwareName: 'Present Value of Annuity Calculator',
+    softwareDescription:
+      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due.',
+    featureList: [
+      'Ordinary vs Annuity Due',
+      'Present value estimate',
+      'Discount saved breakdown',
+    ],
+    keywords: [
+      'present value of annuity calculator',
+      'pva calculator',
+      'annuity value',
+      'time value of money',
+    ],
+  },
+  'simple-interest': {
+    breadcrumbLabel: 'Simple Interest',
+    softwareName: 'Simple Interest Calculator',
+    softwareDescription:
+      'Calculate simple interest to find total interest and ending amount using principal, rate, and time.',
+    featureList: [
+      'Total interest calculation',
+      'Ending amount estimate',
+      'Time unit toggle',
+      'Interest basis toggle',
+    ],
+    keywords: [
+      'simple interest calculator',
+      'interest calculator',
+      'loan interest',
+      'ending balance',
+    ],
+  },
 };
 
 function parseBooleanFlag(value) {
