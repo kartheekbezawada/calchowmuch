@@ -119,8 +119,9 @@ Agent runs **all applicable tests** immediately after build. No waiting for huma
 
 Agent logs the release evidence:
 
-- Fill out `RELEASE_SIGNOFF.md` with all test results, CWV data, SERP verification
-- Add one row to `Release Sign-Off Master Table.md`
+- Create `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` from the template in `RELEASE_SIGNOFF.md`
+- Fill it out with all test results, CWV data, SERP verification
+- Add one row to `Release Sign-Off Master Table.md` linking to the sign-off file
 
 ### Step 5 — Ready to Release
 
@@ -153,7 +154,7 @@ The human reviews and merges the code. The agent does **not** merge.
 ## 4. Document Chain
 
 ```
-Requirement → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md → Release Sign-Off Master Table.md
+Requirement → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md (template) → release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md → Release Sign-Off Master Table.md
 ```
 
 | Step | Document | Purpose |
@@ -161,7 +162,8 @@ Requirement → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECK
 | 1 | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` | How it must be built (rules & constraints) |
 | 2 | `requirements/universal-rules/Project Bible.md` | Why — strategy, design intent, SERP system |
 | 3 | `requirements/universal-rules/RELEASE_CHECKLIST.md` | Pre-release gate — every item must pass |
-| 4 | `requirements/universal-rules/RELEASE_SIGNOFF.md` | Per-release evidence — filled out for each release |
+| 4a | `requirements/universal-rules/RELEASE_SIGNOFF.md` | Template — copy for each release |
+| 4b | `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` | Per-release evidence — one file per release |
 | 5 | `requirements/universal-rules/Release Sign-Off Master Table.md` | Historical record — one row per release |
 
 ### LAW (Authoritative — Do Not Reinterpret)
@@ -205,7 +207,7 @@ The agent runs **all applicable tests** as part of the factory pipeline. No cher
 - **ISS-001** — when layout/shell is impacted
 - **FAQ schema guard** — when calculator has FAQ content
 
-All test evidence goes into `RELEASE_SIGNOFF.md`.
+All test evidence goes into `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (created from `RELEASE_SIGNOFF.md` template).
 
 ---
 
@@ -216,7 +218,7 @@ A release is ready **only when**:
 | Gate | Document | Required Status |
 |------|----------|----------------|
 | All tests pass | `RELEASE_CHECKLIST.md` | Every HARD item passes |
-| Evidence recorded | `RELEASE_SIGNOFF.md` | Filled out with all test results |
+| Evidence recorded | `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` | Created from template, filled with all test results |
 | History logged | `Release Sign-Off Master Table.md` | One row added for this release |
 | Human informed | — | Agent says "Ready to merge" |
 
