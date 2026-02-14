@@ -1,0 +1,246 @@
+@import url('/calculators/loans/car-loan/calculator.css');
+
+/* ── Time to Savings Goal — overrides (mirrors CI/EAR pattern) ── */
+
+/* Toggle rows */
+#calc-time-to-savings-goal .pv-toggle-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#calc-time-to-savings-goal .pv-toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    min-width: 120px;
+}
+
+#calc-time-to-savings-goal .pv-toggle-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(191, 219, 254, 0.88);
+}
+
+#calc-time-to-savings-goal .pv-toggle-group .button-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.18rem;
+    padding: 3px;
+    border-radius: 9999px;
+    border: 1px solid rgba(148, 163, 184, 0.36);
+    background: rgba(15, 23, 42, 0.78);
+}
+
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button {
+    min-height: 30px;
+    padding: 0.3rem 0.62rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: rgba(191, 219, 254, 0.92);
+    font-size: 0.72rem;
+    font-weight: 600;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button.is-active {
+    border-color: rgba(56, 189, 248, 0.82);
+    background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+    color: #fff;
+}
+
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button:not(.is-active):hover {
+    background: rgba(59, 130, 246, 0.12);
+    color: #e0f2fe;
+}
+
+/* Glassmorphism preview card */
+#calc-time-to-savings-goal #calc-home-loan .mtg-preview-main {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
+    border: 1px solid rgba(191, 219, 254, 0.34);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 14px 28px rgba(2, 6, 23, 0.35);
+    backdrop-filter: blur(8px) saturate(125%);
+    -webkit-backdrop-filter: blur(8px) saturate(125%);
+}
+
+#calc-time-to-savings-goal #calc-home-loan .mtg-preview-main .mtg-preview-label {
+    letter-spacing: 0.08em;
+    color: rgba(219, 234, 254, 0.96);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+#calc-time-to-savings-goal #calc-home-loan .mtg-result-card .mtg-result-value {
+    text-shadow:
+        0 0 18px rgba(125, 211, 252, 0.45),
+        0 0 34px rgba(56, 189, 248, 0.24);
+    font-weight: 800;
+}
+
+/* Results table */
+#tsg-explanation .tsg-results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tsg-explanation .tsg-results-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fde68a;
+    background: rgba(30, 41, 59, 0.98);
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+#tsg-explanation .tsg-results-table td {
+    font-size: 0.8rem;
+    color: rgba(226, 232, 240, 0.94);
+    padding: 0.58rem 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    line-height: 1.4;
+}
+
+#tsg-explanation .tsg-results-table tbody tr:nth-child(even) {
+    background: rgba(30, 41, 59, 0.36);
+}
+
+#tsg-explanation .tsg-results-table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+#tsg-explanation .tsg-results-table tfoot td {
+    font-weight: 700;
+    color: #e0f2fe;
+    background: linear-gradient(160deg, rgba(37, 99, 235, 0.15), rgba(14, 165, 233, 0.1));
+    border-top: 2px solid rgba(56, 189, 248, 0.4);
+    font-size: 0.84rem;
+}
+
+#tsg-explanation .tsg-results-table .tsg-how-col {
+    font-size: 0.74rem;
+    color: rgba(148, 163, 184, 0.88);
+    font-style: italic;
+}
+
+/* Explanation bullet list */
+#tsg-explanation .tsg-explanation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+#tsg-explanation .tsg-explanation-list li {
+    position: relative;
+    padding-left: 1.3rem;
+    line-height: 1.65;
+    font-size: 0.88rem;
+    color: rgba(226, 232, 240, 0.94);
+}
+
+#tsg-explanation .tsg-explanation-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: rgba(56, 189, 248, 0.85);
+    font-weight: 700;
+}
+
+#tsg-explanation .tsg-explanation-list li [data-tsg] {
+    font-weight: 700;
+    color: #7dd3fc;
+}
+
+/* Formula block */
+#tsg-explanation .tsg-formula-block {
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 0.8rem;
+    margin: 0.35rem auto 0.35rem;
+    border-radius: 10px;
+    max-width: 480px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #e0f2fe;
+    text-shadow: 0 0 12px rgba(125, 211, 252, 0.3);
+}
+
+/* Formula steps */
+#tsg-explanation .tsg-formula-steps {
+    padding-left: 1.5rem;
+    margin: 0.35rem 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+#tsg-explanation .tsg-formula-steps li {
+    line-height: 1.65;
+    font-size: 0.86rem;
+    color: rgba(226, 232, 240, 0.92);
+}
+
+#tsg-explanation .tsg-formula-steps li [data-tsg] {
+    font-weight: 700;
+    color: #7dd3fc;
+}
+
+/* FAQ grid — 2 columns */
+#tsg-explanation .bor-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+    #tsg-explanation .bor-faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #calc-time-to-savings-goal .pv-toggle-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Key insight callout */
+#tsg-explanation .tsg-insight-box {
+    margin: 0.6rem 0;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.08));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+#tsg-explanation .tsg-insight-box p {
+    margin: 0.2rem 0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: rgba(226, 232, 240, 0.94);
+}
+
+/* Explanation section spacing */
+#tsg-explanation .mtg-exp-section h4 {
+    margin: 0.6rem 0 0.15rem;
+    font-size: 0.92rem;
+}
+
+#tsg-explanation .mtg-exp-section p {
+    margin: 0.25rem 0;
+}

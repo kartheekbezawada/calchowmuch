@@ -80,132 +80,179 @@
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content">
-<div class="nav-category" data-id="time-value-of-money">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Time Value of Money</span>
-    <span class="nav-category-indicator">-</span>
+          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
+<div class="fin-nav-group" data-fin-subcategory="time-value-of-money">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">⏳</span>
+    <span class="fin-nav-toggle-label">Time Value of Money</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/present-value"><span class="fin-nav-item-icon" aria-hidden="true">📉</span>Present Value (PV)</a><a class="fin-nav-item" href="/finance/future-value"><span class="fin-nav-item-icon" aria-hidden="true">📈</span>Future Value (FV)</a><a class="fin-nav-item" href="/finance/present-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Present Value of Annuity</a><a class="fin-nav-item" href="/finance/future-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">💹</span>Future Value of Annuity</a>
   </div>
 </div>
-<div class="nav-category" data-id="interest-and-growth">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Interest & Growth</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group" data-fin-subcategory="interest-and-growth">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">📈</span>
+    <span class="fin-nav-toggle-label">Interest & Growth</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/simple-interest">Simple Interest</a><a class="nav-item" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/simple-interest"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Simple Interest</a><a class="fin-nav-item" href="/finance/compound-interest"><span class="fin-nav-item-icon" aria-hidden="true">♻️</span>Compound Interest</a><a class="fin-nav-item" href="/finance/effective-annual-rate"><span class="fin-nav-item-icon" aria-hidden="true">🔄</span>Effective Annual Rate (EAR)</a>
   </div>
 </div>
-<div class="nav-category" data-id="investments-and-savings">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Investments & Savings</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group is-expanded" data-fin-subcategory="investments-and-savings">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">💰</span>
+    <span class="fin-nav-toggle-label">Investments & Savings</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/savings-goal">Savings Goal</a><a class="nav-item is-active" href="/finance/investment-growth">Investment Growth</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item is-active" href="/finance/investment-growth"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Investment Growth</a><a class="fin-nav-item" href="/finance/time-to-savings-goal"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Time to Savings Goal</a><a class="fin-nav-item" href="/finance/monthly-savings-needed"><span class="fin-nav-item-icon" aria-hidden="true">🏦</span>Monthly Savings Needed</a>
   </div>
-</div></div>
+</div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Investment Growth Calculator</h1>
-  <div id="calc-investment-growth">
-  <div class="calculator-ui">
-    <h2>Investment Growth Calculator</h2>
-    <p class="helper">
-      Estimate investment growth over time using an expected annual return. Optional monthly contributions and inflation adjustment.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-investment-growth">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Investment growth calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate investment growth over time using expected annual return, optional monthly
+            contributions, and inflation adjustment.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ig-initial">Initial Investment</label>
-        <input id="ig-initial" type="number" value="10000" min="0" step="100" />
-      </div>
+          <!-- Dual-column slider grid -->
+          <div class="ig-slider-grid">
 
-      <div class="input-row">
-        <label for="ig-return">Expected Annual Return (%)</label>
-        <input id="ig-return" type="number" value="7" min="0" step="0.01" />
-      </div>
+            <!-- Initial Investment -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-initial">Initial Investment</label>
+                <span class="slider-value" id="ig-initial-display">$10,000</span>
+              </div>
+              <input id="ig-initial" type="range" value="10000" min="0" max="500000" step="500" />
+            </div>
 
-      <div class="input-row">
-        <label for="ig-time">Time Period</label>
-        <input id="ig-time" type="number" value="10" min="0" step="1" />
-      </div>
+            <!-- Expected Annual Return -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-return">Expected Annual Return (%)</label>
+                <span class="slider-value" id="ig-return-display">7%</span>
+              </div>
+              <input id="ig-return" type="range" value="7" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label id="ig-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ig-period-type-label"
-          data-button-group="ig-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+            <!-- Time Period (Years) -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-years">Years</label>
+                <span class="slider-value" id="ig-years-display">10</span>
+              </div>
+              <input id="ig-years" type="range" value="10" min="0" max="50" step="1" />
+            </div>
+
+            <!-- Time Period (Months) -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-months">Months</label>
+                <span class="slider-value" id="ig-months-display">0</span>
+              </div>
+              <input id="ig-months" type="range" value="0" min="0" max="11" step="1" />
+            </div>
+
+            <!-- Monthly Contribution -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-contribution">Monthly Contribution</label>
+                <span class="slider-value" id="ig-contribution-display">$500</span>
+              </div>
+              <input id="ig-contribution" type="range" value="500" min="0" max="20000" step="50" />
+            </div>
+
+            <!-- Inflation Rate -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-inflation">Inflation Rate (%)</label>
+                <span class="slider-value" id="ig-inflation-display">0%</span>
+              </div>
+              <input id="ig-inflation" type="range" value="0" min="0" max="15" step="0.1" />
+            </div>
+          </div>
+
+          <!-- Compounding Frequency -->
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding Frequency</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="ig-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="monthly"
+                  aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi-Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="annual"
+                  aria-pressed="false">Annually</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="ig-calc">
+              Calculate Investment Growth
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="ig-compounding-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ig-compounding-label"
-          data-button-group="ig-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
-            Monthly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
-            Daily
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="Investment growth result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Future Value</p>
+            <div class="result mtg-result-card" id="ig-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="ig-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Initial Investment</span>
+              <strong data-ig="snap-initial"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annual Return</span>
+              <strong data-ig="snap-return"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-ig="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Monthly Contribution</span>
+              <strong data-ig="snap-contribution"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-ig="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Contributions</span>
+              <strong data-ig="snap-total-contributions"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Gains</span>
+              <strong data-ig="snap-total-gains"></strong>
+            </div>
+            <div class="mtg-snapshot-row" id="ig-snap-inflation-row" style="display:none">
+              <span>Inflation-Adjusted</span>
+              <strong data-ig="snap-inflation"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="ig-optional-toggle"
-      aria-expanded="false"
-      aria-controls="ig-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="ig-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label for="ig-contribution">Monthly Contribution</label>
-        <input id="ig-contribution" type="number" value="0" min="0" step="50" />
-      </div>
-      <div class="input-row">
-        <label for="ig-inflation">Inflation Rate (% per year)</label>
-        <input id="ig-inflation" type="number" value="0" min="0" step="0.1" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="ig-calc">
-      Calculate Investment Growth
-    </button>
-
-    <div class="result" id="ig-result" aria-live="polite"></div>
-    <div class="result-detail" id="ig-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
@@ -214,165 +261,167 @@
 </style>
 
 <script type="module" src="/calculators/finance/investment-growth/module.js"></script>
-
-</div>
-<div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="ig-explanation" class="explanation-pane">
-  <h2>Summary</h2>
+    <div id="ig-explanation" class="mtg-exp-section">
+  <h4>Investment Growth & Future Value</h4>
   <p>
-    Based on your initial investment of <span data-ig="initial"></span> at an expected annual return of
-    <span data-ig="return-rate"></span> compounded <span data-ig="frequency"></span> over
-    <span data-ig="time"></span>, your estimated future value is <span data-ig="future-value"></span>.
-    This means you could gain <span data-ig="total-gains"></span> on your investment over the period.
+    Calculate the future value of your investments using compound interest and regular contributions.
+    Use this tool to forecast wealth accumulation, retirement savings, or long-term financial goals.
   </p>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Initial Investment</td>
-          <td><span data-ig="initial"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Expected Annual Return</td>
-          <td><span data-ig="return-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Compounding Frequency</td>
-          <td><span data-ig="frequency"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Time Period</td>
-          <td><span data-ig="time"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Future Value</td>
-          <td><span data-ig="future-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
+  <!-- Key Insights Box -->
+  <div class="ig-insight-box">
+    <p><strong>Compound Interest Power:</strong> Your money grows faster over time because you earn interest on both
+      your principal and previous interest.</p>
+    <p><strong>Consistency Matters:</strong> Regular monthly contributions significantly boost your final balance, often
+      more than a slightly higher return rate.</p>
+    <p><strong>Inflation Reality:</strong> Always consider inflation. A million dollars in 20 years won't buy what it
+      does today.</p>
   </div>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
+  <h4>Growth Summary</h4>
+  <div class="result-table-wrapper">
+    <table class="ig-results-table">
       <thead>
         <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
+          <th>Metric</th>
+          <th>Value</th>
+          <th class="ig-how-col">What it means</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Future Value</td>
-          <td><span data-ig="future-value"></span></td>
-          <td>Currency</td>
-          <td>Estimated ending investment value</td>
-        </tr>
-        <tr>
-          <td>Total Gains</td>
-          <td><span data-ig="total-gains"></span></td>
-          <td>Currency</td>
-          <td>Growth earned on your investment</td>
+          <td data-ig="future-value" class="highlight-val"></td>
+          <td class="ig-how-col">Total value at end of period</td>
         </tr>
         <tr>
           <td>Total Contributions</td>
-          <td><span data-ig="total-contributions"></span></td>
-          <td>Currency</td>
-          <td>Sum of all monthly contributions</td>
+          <td data-ig="total-contributions"></td>
+          <td class="ig-how-col">Principal + all monthly deposits</td>
         </tr>
-        <tr id="ig-inflation-row" class="is-hidden">
-          <td>Inflation-Adjusted Value</td>
-          <td><span data-ig="inflation-adjusted"></span></td>
-          <td>Currency</td>
-          <td>Future value in today's purchasing power</td>
+        <tr>
+          <td>Total Interest Earned</td>
+          <td data-ig="total-gains" class="highlight-gain"></td>
+          <td class="ig-how-col">Pure profit from compound growth</td>
+        </tr>
+        <tr id="ig-inflation-row">
+          <td>Inflation Adjusted</td>
+          <td data-ig="inflation-adjusted"></td>
+          <td class="ig-how-col">Purchasing power in today's money</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td>Initial Investment</td>
-          <td><span data-ig="initial"></span></td>
-          <td>Currency</td>
-          <td>Starting amount invested</td>
+          <td>Return on Investment</td>
+          <td colspan="2" style="font-weight:400; font-style:italic;">
+            Invested <strong data-ig="initial" style="color:#e0f2fe"></strong> over <strong data-ig="time"
+              style="color:#e0f2fe"></strong> at <strong data-ig="return-rate" style="color:#e0f2fe"></strong> annual
+            return.
+          </td>
         </tr>
       </tfoot>
     </table>
   </div>
 
-  <h3>Explanation</h3>
-  <p>
-    Investment growth uses compound returns to estimate how your money could grow over time.
-    The longer your time horizon and the higher your expected return, the greater the potential growth.
-  </p>
-  <p>
-    In your scenario, an initial investment of <span data-ig="initial"></span> at
-    <span data-ig="return-rate"></span> compounded <span data-ig="frequency"></span> produces an
-    estimated future value of <span data-ig="future-value"></span>, with
-    <span data-ig="total-gains"></span> in total gains. Monthly contributions and compounding
-    frequency both influence the final balance.
-  </p>
+  <h4>How It Works</h4>
+  <ul class="ig-explanation-list">
+    <li><strong>Initial Investment:</strong> The starting amount you invest today.</li>
+    <li><strong>Expected Return:</strong> The annual percentage growth rate (historically 7-10% for stocks).</li>
+    <li><strong>Contributions:</strong> Money added regularly (e.g., monthly from your paycheck).</li>
+    <li><strong>Compounding:</strong> Frequency at which earnings are reinvested (Daily to Annually).</li>
+  </ul>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is an investment growth calculator?</strong></p>
-    <p class="faq-answer">A: An investment growth calculator estimates the future value of an investment based on expected return, time, and contributions.</p>
+  <h4>The Future Value Formula</h4>
+  <div class="ig-formula-block">
+    FV = P × (1 + r)ⁿ + PMT × [((1 + r)ⁿ - 1) / r]
   </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate investment growth over time?</strong></p>
-    <p class="faq-answer">A: You apply compound growth assumptions using an expected annual return and the investment period, and add contributions if applicable.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is future value in investing?</strong></p>
-    <p class="faq-answer">A: Future value is the estimated amount your investment could grow to after a set time period.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do monthly contributions affect investment growth?</strong></p>
-    <p class="faq-answer">A: Monthly contributions can increase the final balance because added deposits may also earn returns over time.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What does expected annual return mean?</strong></p>
-    <p class="faq-answer">A: It is the assumed average yearly growth rate used for forecasting.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Does compounding frequency matter for investment growth?</strong></p>
-    <p class="faq-answer">A: Yes. More frequent compounding can slightly increase estimated growth under the same annual return assumption.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can this calculator estimate investment returns?</strong></p>
-    <p class="faq-answer">A: Yes. It estimates future value and total growth based on the return rate you enter.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is inflation-adjusted future value?</strong></p>
-    <p class="faq-answer">A: It estimates your ending balance in today's purchasing power after accounting for inflation.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the return rate is 0%?</strong></p>
-    <p class="faq-answer">A: Future value equals the initial investment plus total contributions.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is this investment growth estimate guaranteed?</strong></p>
-    <p class="faq-answer">A: No. It is a projection based on assumptions and actual market returns can vary.</p>
+  <ul class="ig-formula-steps">
+    <li><span data-ig="formula-fv">FV</span> = Future Value</li>
+    <li><span data-ig="formula-p">P</span> = Principal (Initial Investment)</li>
+    <li><span data-ig="formula-pmt">PMT</span> = Monthly Contribution</li>
+    <li><span data-ig="formula-r">r</span> = Periodic Interest Rate (Annual Rate / Periods per Year)</li>
+    <li><span data-ig="formula-n">n</span> = Total Number of Periods (Years × Periods per Year)</li>
+  </ul>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-grid bor-faq-grid">
+      <div class="faq-box">
+        <strong>What is investment growth?</strong>
+        <div class="faq-answer">
+          Investment growth refers to the increase in value of an asset or portfolio over time, driven by compound
+          interest, capital appreciation, and reinvested dividends.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>How does inflation affect my investment?</strong>
+        <div class="faq-answer">
+          Inflation erodes purchasing power. If your investment grows by 7% but inflation is 3%, your "real" return is
+          approximately 4%.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>What is a realistic rate of return?</strong>
+        <div class="faq-answer">
+          The S&P 500 has historically returned about 10% annually related interest. Adjusted for inflation, this is
+          often cited as 7%. Bonds typically return less (3-5%).
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>Why is compounding frequency important?</strong>
+        <div class="faq-answer">
+          More frequent compounding (e.g., monthly vs. annually) means your interest earns interest sooner, resulting in
+          a slightly higher future value.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>Should I contribute monthly or annually?</strong>
+        <div class="faq-answer">
+          Monthly contributions are generally better because your money starts working for you sooner, rather than
+          sitting in a checking account waiting for an annual deposit.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>Does this calculate taxes?</strong>
+        <div class="faq-answer">
+          No. This calculator shows pre-tax growth. Investment gains may be subject to capital gains tax depending on
+          the account type (e.g., brokerage vs. Roth IRA).
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>What is the Rule of 72?</strong>
+        <div class="faq-answer">
+          It's a quick way to estimate doubling time. Divide 72 by your interest rate. At 7% return, money doubles in
+          roughly 10.2 years (72 ÷ 7).
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>What happens if the market drops?</strong>
+        <div class="faq-answer">
+          This calculator assumes a constant average return. Real markets fluctuate (volatility). Over long periods (10+
+          years), volatility tends to smooth out towards the average.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>Can I use this for retirement planning?</strong>
+        <div class="faq-answer">
+          Yes! It's perfect for estimating how much your 401(k) or IRA might be worth at retirement based on your
+          current savings rate.
+        </div>
+      </div>
+      <div class="faq-box">
+        <strong>What is "Time to Double"?</strong>
+        <div class="faq-answer">
+          The time it takes for your investment to double in value. At 10%, it's about 7.2 years. At 5%, it's about 14.4
+          years.
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

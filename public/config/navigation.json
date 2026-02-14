@@ -703,7 +703,7 @@
               "url": "/finance/compound-interest",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "effective-annual-rate",
@@ -711,7 +711,7 @@
               "url": "/finance/effective-annual-rate",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         },
@@ -720,20 +720,28 @@
           "name": "Investments & Savings",
           "calculators": [
             {
-              "id": "savings-goal",
-              "name": "Savings Goal",
-              "url": "/finance/savings-goal",
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "split"
-            },
-            {
               "id": "investment-growth",
               "name": "Investment Growth",
               "url": "/finance/investment-growth",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
+            },
+            {
+              "id": "time-to-savings-goal",
+              "name": "Time to Savings Goal",
+              "url": "/finance/time-to-savings-goal",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "monthly-savings-needed",
+              "name": "Monthly Savings Needed",
+              "url": "/finance/monthly-savings-needed",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
             }
           ]
         }

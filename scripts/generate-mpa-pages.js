@@ -216,12 +216,24 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.',
     h1: 'Effective Annual Rate Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'time-to-savings-goal': {
+    title: 'Time to Savings Goal Calculator – CalcHowMuch',
+    description:
+      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding. Plan your path to financial goals.',
+    h1: 'Time to Savings Goal Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'compound-interest': {
     title: 'Compound Interest Calculator – CalcHowMuch',
     description:
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions.',
+      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports annual, semi-annual, and quarterly compounding.',
     h1: 'Compound Interest Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'simple-interest': {
     title: 'Simple Interest Calculator – CalcHowMuch',
@@ -1095,6 +1107,61 @@ function buildMathNav(category, activeCalculatorId, calcLookup) {
   return `<div class="math-nav-container">${categoriesHtml}</div>`;
 }
 
+const FINANCE_SUBCATEGORY_ICONS = {
+  'time-value-of-money': '⏳',
+  'interest-and-growth': '📈',
+  'investments-and-savings': '💰',
+};
+
+const FINANCE_CALCULATOR_ICONS = {
+  'present-value': '📉',
+  'future-value': '📈',
+  'present-value-of-annuity': '📊',
+  'future-value-of-annuity': '💹',
+  'simple-interest': '➕',
+  'compound-interest': '♻️',
+  'effective-annual-rate': '🔄',
+  'investment-growth': '📊',
+  'time-to-savings-goal': '🎯',
+  'monthly-savings-needed': '🏦',
+};
+
+const FIN_NAV_CHEVRON_SVG = '<svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+function buildFinanceNav(category, activeCalculatorId, calcLookup) {
+  const activeEntry = calcLookup.get(activeCalculatorId);
+  const activeSubcategoryId = activeEntry?.subcategory?.id ?? null;
+
+  const groupsHtml = category.subcategories
+    .map((subcategory) => {
+      const isExpanded = subcategory.id === activeSubcategoryId;
+      const subcategoryIcon = FINANCE_SUBCATEGORY_ICONS[subcategory.id] || '📁';
+
+      const itemsHtml = subcategory.calculators
+        .map((calculator) => {
+          const isActive = calculator.id === activeCalculatorId;
+          const calcIcon = FINANCE_CALCULATOR_ICONS[calculator.id] || '🔢';
+          return `<a class="fin-nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}"><span class="fin-nav-item-icon" aria-hidden="true">${calcIcon}</span>${calculator.name}</a>`;
+        })
+        .join('');
+
+      return `
+<div class="fin-nav-group${isExpanded ? ' is-expanded' : ''}" data-fin-subcategory="${subcategory.id}">
+  <button type="button" class="fin-nav-toggle" aria-expanded="${isExpanded}">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">${subcategoryIcon}</span>
+    <span class="fin-nav-toggle-label">${subcategory.name}</span>
+    <span class="fin-nav-chevron">${FIN_NAV_CHEVRON_SVG}</span>
+  </button>
+  <div class="fin-nav-items">
+    ${itemsHtml}
+  </div>
+</div>`;
+    })
+    .join('');
+
+  return `<div class="fin-nav-container" data-fin-nav="true">${groupsHtml}</div>`;
+}
+
 function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup) {
   if (category.id === 'percentage-calculators') {
     const calculators = category.subcategories.flatMap((subcategory) => subcategory.calculators);
@@ -1192,6 +1259,10 @@ function buildLeftNavHtml(
 
   if (category.id === 'math') {
     return buildMathNav(category, activeCalculatorId, calcLookup);
+  }
+
+  if (category.id === 'finance') {
+    return buildFinanceNav(category, activeCalculatorId, calcLookup);
   }
 
   return buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup);
