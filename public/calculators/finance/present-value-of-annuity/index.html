@@ -1,104 +1,121 @@
 <div id="calc-present-value-of-annuity">
-  <div class="calculator-ui">
-    <h2>Present Value of Annuity Calculator (Ordinary & Due)</h2>
-    <p class="helper">
-      Estimate the present value of a series of regular payments and compare ordinary annuity vs annuity due.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Present value of annuity calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the present value of a series of regular payments. Compare ordinary
+            annuity vs annuity due. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pva-payment">Payment Amount (PMT)</label>
-        <input id="pva-payment" type="number" value="500" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pva-payment">Payment Amount (PMT)</label>
+              <span class="slider-value" id="pva-pmt-display">500</span>
+            </div>
+            <input id="pva-payment" type="range" value="500" min="10" max="50000" step="10" />
+          </div>
 
-      <div class="input-row">
-        <label for="pva-discount-rate">Discount Rate (%)</label>
-        <input id="pva-discount-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pva-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pva-rate-display">5%</span>
+              </div>
+              <input id="pva-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="pva-periods">Number of Periods</label>
-        <input id="pva-periods" type="number" value="10" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pva-periods">Number of Periods</label>
+                <span class="slider-value" id="pva-periods-display">10</span>
+              </div>
+              <input id="pva-periods" type="range" value="10" min="1" max="60" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="pva-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-period-type-label"
-          data-button-group="pva-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="pva-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Annuity Type</span>
+              <div class="button-group" role="group" aria-label="Annuity type" data-button-group="pva-annuity-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="ordinary"
+                  aria-pressed="true">Ordinary</button>
+                <button class="calculator-button secondary" type="button" data-value="due"
+                  aria-pressed="false">Due</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="pva-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pva-calc">
+              Calculate PV of Annuity
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="pva-annuity-type-label">Annuity Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-annuity-type-label"
-          data-button-group="pva-annuity-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="ordinary"
-            aria-pressed="true"
-          >
-            Ordinary
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
-            Due
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="PV of annuity result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated PV of Annuity</p>
+            <div class="result mtg-result-card" id="pva-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pva-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Payment (PMT)</span>
+              <strong data-pva="snap-payment"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Discount Rate</span>
+              <strong data-pva="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Periods</span>
+              <strong data-pva="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annuity Type</span>
+              <strong data-pva="snap-annuity-type"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-pva="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-pva="snap-effective-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-pva="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="pva-optional-toggle"
-      aria-expanded="false"
-      aria-controls="pva-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="pva-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="pva-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-compound-label"
-          data-button-group="pva-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="pva-calc">
-      Calculate Present Value of Annuity
-    </button>
-
-    <div class="result" id="pva-result" aria-live="polite"></div>
-    <div class="result-detail" id="pva-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

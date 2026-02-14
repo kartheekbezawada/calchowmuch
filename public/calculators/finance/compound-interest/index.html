@@ -1,93 +1,109 @@
 <div id="calc-compound-interest">
-  <div class="calculator-ui">
-    <h2>Compound Interest Calculator</h2>
-    <p class="helper">
-      Estimate your ending balance, total interest earned, and growth over time using compound interest.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Compound interest calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate your ending balance, total interest earned, and growth over time
+            using compound interest. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ci-principal">Initial Principal</label>
-        <input id="ci-principal" type="number" value="10000" min="0" step="100" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ci-principal">Initial Principal (P)</label>
+              <span class="slider-value" id="ci-principal-display">10,000</span>
+            </div>
+            <input id="ci-principal" type="range" value="10000" min="100" max="1000000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="ci-rate">Annual Interest Rate (%)</label>
-        <input id="ci-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ci-rate">Annual Interest Rate (%)</label>
+                <span class="slider-value" id="ci-rate-display">5%</span>
+              </div>
+              <input id="ci-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="ci-time">Time Period</label>
-        <input id="ci-time" type="number" value="10" min="0" step="1" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ci-time">Time Period (Years)</label>
+                <span class="slider-value" id="ci-time-display">10 yrs</span>
+              </div>
+              <input id="ci-time" type="range" value="10" min="1" max="50" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="ci-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ci-period-type-label"
-          data-button-group="ci-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ci-contribution">Regular Contribution - Yearly</label>
+              <span class="slider-value" id="ci-contrib-display">0</span>
+            </div>
+            <input id="ci-contribution" type="range" value="0" min="0" max="10000" step="50" />
+          </div>
+
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="ci-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="ci-calc">
+              Calculate Compound Interest
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="ci-compounding-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ci-compounding-label"
-          data-button-group="ci-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
-            Monthly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
-            Daily
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="Compound interest result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Ending Balance</p>
+            <div class="result mtg-result-card" id="ci-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="ci-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Principal (P)</span>
+              <strong data-ci="snap-principal"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-ci="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-ci="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-ci="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Contribution / Period</span>
+              <strong data-ci="snap-contribution"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-ci="snap-periodic-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Periods</span>
+              <strong data-ci="snap-total-periods"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="ci-optional-toggle"
-      aria-expanded="false"
-      aria-controls="ci-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="ci-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label for="ci-contribution">Regular Contribution (per period)</label>
-        <input id="ci-contribution" type="number" value="0" min="0" step="50" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="ci-calc">
-      Calculate Compound Interest
-    </button>
-
-    <div class="result" id="ci-result" aria-live="polite"></div>
-    <div class="result-detail" id="ci-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

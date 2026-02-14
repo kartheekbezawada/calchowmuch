@@ -1,97 +1,140 @@
 <div id="calc-investment-growth">
-  <div class="calculator-ui">
-    <h2>Investment Growth Calculator</h2>
-    <p class="helper">
-      Estimate investment growth over time using an expected annual return. Optional monthly contributions and inflation adjustment.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Investment growth calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate investment growth over time using expected annual return, optional monthly
+            contributions, and inflation adjustment.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ig-initial">Initial Investment</label>
-        <input id="ig-initial" type="number" value="10000" min="0" step="100" />
-      </div>
+          <!-- Dual-column slider grid -->
+          <div class="ig-slider-grid">
 
-      <div class="input-row">
-        <label for="ig-return">Expected Annual Return (%)</label>
-        <input id="ig-return" type="number" value="7" min="0" step="0.01" />
-      </div>
+            <!-- Initial Investment -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-initial">Initial Investment</label>
+                <span class="slider-value" id="ig-initial-display">$10,000</span>
+              </div>
+              <input id="ig-initial" type="range" value="10000" min="0" max="500000" step="500" />
+            </div>
 
-      <div class="input-row">
-        <label for="ig-time">Time Period</label>
-        <input id="ig-time" type="number" value="10" min="0" step="1" />
-      </div>
+            <!-- Expected Annual Return -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-return">Expected Annual Return (%)</label>
+                <span class="slider-value" id="ig-return-display">7%</span>
+              </div>
+              <input id="ig-return" type="range" value="7" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label id="ig-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ig-period-type-label"
-          data-button-group="ig-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+            <!-- Time Period (Years) -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-years">Years</label>
+                <span class="slider-value" id="ig-years-display">10</span>
+              </div>
+              <input id="ig-years" type="range" value="10" min="0" max="50" step="1" />
+            </div>
+
+            <!-- Time Period (Months) -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-months">Months</label>
+                <span class="slider-value" id="ig-months-display">0</span>
+              </div>
+              <input id="ig-months" type="range" value="0" min="0" max="11" step="1" />
+            </div>
+
+            <!-- Monthly Contribution -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-contribution">Monthly Contribution</label>
+                <span class="slider-value" id="ig-contribution-display">$500</span>
+              </div>
+              <input id="ig-contribution" type="range" value="500" min="0" max="20000" step="50" />
+            </div>
+
+            <!-- Inflation Rate -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ig-inflation">Inflation Rate (%)</label>
+                <span class="slider-value" id="ig-inflation-display">0%</span>
+              </div>
+              <input id="ig-inflation" type="range" value="0" min="0" max="15" step="0.1" />
+            </div>
+          </div>
+
+          <!-- Compounding Frequency -->
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding Frequency</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="ig-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="monthly"
+                  aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi-Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="annual"
+                  aria-pressed="false">Annually</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="ig-calc">
+              Calculate Investment Growth
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="ig-compounding-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ig-compounding-label"
-          data-button-group="ig-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">
-            Monthly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
-            Daily
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="Investment growth result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Future Value</p>
+            <div class="result mtg-result-card" id="ig-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="ig-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Initial Investment</span>
+              <strong data-ig="snap-initial"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annual Return</span>
+              <strong data-ig="snap-return"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-ig="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Monthly Contribution</span>
+              <strong data-ig="snap-contribution"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-ig="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Contributions</span>
+              <strong data-ig="snap-total-contributions"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Gains</span>
+              <strong data-ig="snap-total-gains"></strong>
+            </div>
+            <div class="mtg-snapshot-row" id="ig-snap-inflation-row" style="display:none">
+              <span>Inflation-Adjusted</span>
+              <strong data-ig="snap-inflation"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="ig-optional-toggle"
-      aria-expanded="false"
-      aria-controls="ig-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="ig-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label for="ig-contribution">Monthly Contribution</label>
-        <input id="ig-contribution" type="number" value="0" min="0" step="50" />
-      </div>
-      <div class="input-row">
-        <label for="ig-inflation">Inflation Rate (% per year)</label>
-        <input id="ig-inflation" type="number" value="0" min="0" step="0.1" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="ig-calc">
-      Calculate Investment Growth
-    </button>
-
-    <div class="result" id="ig-result" aria-live="polite"></div>
-    <div class="result-detail" id="ig-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

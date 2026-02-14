@@ -29,7 +29,8 @@
     <div class="header-left">
       <a class="brand-logo" href="/" aria-label="Home">
         <span class="brand-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
             <rect x="4" y="2.5" width="16" height="19" rx="3" />
             <line x1="8" y1="6.5" x2="16" y2="6.5" />
             <line x1="9" y1="10" x2="9" y2="10.01" />
@@ -44,6 +45,11 @@
           </svg>
         </span>
       </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
       <div class="brand-block">
         <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
         <a class="brand-badge" href="/loans/home-loan">
@@ -60,24 +66,18 @@
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
       <div class="header-search">
         <span class="header-search-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
             <circle cx="11" cy="11" r="7" />
             <line x1="16.5" y1="16.5" x2="21" y2="21" />
           </svg>
         </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input id="global-calculator-search" class="header-search-input" type="search" placeholder="Search calculators…"
+          autocomplete="off" spellcheck="false" />
       </div>
     </div>
   </div>
 </header>
-
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
@@ -104,9 +104,10 @@
           Estimate your maximum affordable loan using income multiples or a payment-to-income cap.
         </p>
 
-        <section class="borrow-section borrow-section--income" aria-label="Income and outgoings inputs">
+        <section class="borrow-section" aria-label="Income and outgoings inputs">
 
-          <div class="borrow-pair">
+          <!-- Row 1: Income & Deposit -->
+          <div class="input-grid-2-col">
             <div class="input-row slider-row">
               <div class="slider-header">
                 <label for="bor-gross-income">Gross Annual Income</label>
@@ -114,38 +115,18 @@
               </div>
               <input id="bor-gross-income" type="range" value="90000" min="0" max="500000" step="1000" />
             </div>
+
             <div class="input-row slider-row">
               <div class="slider-header">
-                <label for="bor-net-income">Net Monthly Income</label>
-                <span class="slider-value" id="bor-net-income-display">5,000</span>
+                <label for="bor-deposit">Deposit Amount</label>
+                <span class="slider-value" id="bor-deposit-display">0</span>
               </div>
-              <input id="bor-net-income" type="range" value="5000" min="0" max="25000" step="100" />
+              <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
             </div>
           </div>
 
-          <div class="input-row borrow-toggle-row">
-            <span class="row-label" id="bor-income-basis-label">Income Basis</span>
-            <div
-              class="button-group"
-              role="group"
-              aria-labelledby="bor-income-basis-label"
-              data-button-group="bor-income-basis"
-            >
-              <button
-                class="calculator-button secondary is-active"
-                type="button"
-                data-value="gross"
-                aria-pressed="true"
-              >
-                Gross
-              </button>
-              <button class="calculator-button secondary" type="button" data-value="net" aria-pressed="false">
-                Net
-              </button>
-            </div>
-          </div>
-
-          <div class="borrow-pair borrow-pair--outgoings">
+          <!-- Row 2: Expenses & Debts -->
+          <div class="input-grid-2-col">
             <div class="input-row slider-row">
               <div class="slider-header">
                 <label for="bor-expenses">Monthly Expenses</label>
@@ -153,6 +134,7 @@
               </div>
               <input id="bor-expenses" type="range" value="1200" min="0" max="15000" step="50" />
             </div>
+
             <div class="input-row slider-row">
               <div class="slider-header">
                 <label for="bor-debts">Monthly Debt Payments</label>
@@ -163,9 +145,9 @@
           </div>
         </section>
 
-        <section class="borrow-section borrow-section--loan" aria-label="Loan setup inputs">
-
-          <div class="borrow-pair">
+        <section class="borrow-section" aria-label="Loan setup inputs">
+          <!-- Row 3: Rate & Term -->
+          <div class="input-grid-2-col">
             <div class="input-row slider-row">
               <div class="slider-header">
                 <label for="bor-rate">Interest Rate (APR %)</label>
@@ -173,6 +155,7 @@
               </div>
               <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
             </div>
+
             <div class="input-row slider-row">
               <div class="slider-header">
                 <label for="bor-term">Loan Term (years)</label>
@@ -181,52 +164,14 @@
               <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
             </div>
           </div>
-        </section>
 
-        <section class="borrow-section borrow-section--strategy" aria-label="Borrowing strategy inputs">
-
-          <div class="input-row borrow-toggle-row">
-            <span class="row-label" id="bor-method-label">Affordability Method</span>
-            <div
-              class="button-group"
-              role="group"
-              aria-labelledby="bor-method-label"
-              data-button-group="bor-method"
-            >
-              <button
-                class="calculator-button secondary is-active"
-                type="button"
-                data-value="income"
-                aria-pressed="true"
-              >
-                Income Multiple
-              </button>
-              <button class="calculator-button secondary" type="button" data-value="payment" aria-pressed="false">
-                Payment-to-Income
-              </button>
-            </div>
-          </div>
-
-          <div class="borrow-pair" id="bor-strategy-pair">
-            <div class="input-row slider-row" id="bor-multiple-row">
-              <div class="slider-header">
-                <label for="bor-multiple">Income Multiple</label>
-                <span class="slider-value" id="bor-multiple-display">4.5x</span>
-              </div>
-              <input id="bor-multiple" type="range" value="4.5" min="1" max="10" step="0.1" />
-            </div>
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-deposit">Deposit</label>
-                <span class="slider-value" id="bor-deposit-display">0</span>
-              </div>
-              <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
-            </div>
-          </div>
+          <!-- Hidden inputs for logic compatibility -->
+          <input type="hidden" id="bor-net-income" value="0">
+          <input type="hidden" id="bor-multiple" value="4.5">
 
           <div class="borrow-payment-note is-hidden" id="bor-payment-note-row" aria-live="polite">
             <p class="borrow-context-note">
-              Payment-to-Income uses your monthly income, expenses, and debts to estimate an affordable payment cap.
+              Calculates borrowing power based on income multiplier (4.5x) and affordability checks.
             </p>
           </div>
         </section>
@@ -270,27 +215,32 @@
 <style>
   @import url('/calculators/loans/how-much-can-i-borrow/calculator.css');
 </style>
-
     <div id="loan-borrow-explanation">
-  <h2>How Much Can I Borrow</h2>
-  <p>
-    Lenders use a mix of income multiples and affordability checks to estimate how much you can
-    comfortably repay each month. They also stress test applications at higher interest rates to
-    ensure your budget could handle future rate increases.
-  </p>
-  <p>
-    When your income, expenses, debts, interest rate, or loan term change, your estimated borrowing
-    can change too. Different lenders apply different rules, so the amount you are approved for may
-    be higher or lower than this estimate.
-  </p>
+  <div class="bor-intro-text">
+    <h3>About This Estimate</h3>
+    <ol>
+      <li>
+        Lenders use a mix of income multiples and affordability checks to estimate how much you can
+        comfortably repay each month.
+      </li>
+      <li>
+        They also stress test applications at higher interest rates to ensure your budget could handle
+        future rate increases.
+      </li>
+      <li>
+        When your income, expenses, debts, interest rate, or loan term change, your estimated borrowing
+        can change too.
+      </li>
+      <li>
+        Different lenders apply different rules, so the amount you are approved for may be higher or
+        lower than this estimate.
+      </li>
+    </ol>
+  </div>
 
   <section class="bor-exp-section bor-exp-section--capacity">
     <h3>Your Income Capacity</h3>
-    <div
-      class="bor-capacity-bar"
-      role="img"
-      aria-label="Monthly income capacity breakdown"
-    >
+    <div class="bor-capacity-bar" role="img" aria-label="Monthly income capacity breakdown">
       <div class="bor-capacity-segment bor-capacity-segment--expenses" data-bor="cap-expenses">
         <span class="bor-capacity-text" data-bor="cap-expenses-text"></span>
       </div>
@@ -438,7 +388,6 @@
     </div>
   </section>
 </div>
-
   </div>
 </div>
         </section>

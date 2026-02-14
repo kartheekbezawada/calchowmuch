@@ -1,35 +1,45 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatCurrency, formatPercent } from '/assets/js/core/format.js';
+import { formatCurrency, formatPercent, formatNumber } from '/assets/js/core/format.js';
 import { calculateInvestmentGrowth } from '/assets/js/core/time-value-utils.js';
 
 const initialInput = document.querySelector('#ig-initial');
+const initialDisplay = document.querySelector('#ig-initial-display');
+
 const returnInput = document.querySelector('#ig-return');
-const timeInput = document.querySelector('#ig-time');
+const returnDisplay = document.querySelector('#ig-return-display');
+
+const yearsInput = document.querySelector('#ig-years');
+const yearsDisplay = document.querySelector('#ig-years-display');
+
+const monthsInput = document.querySelector('#ig-months');
+const monthsDisplay = document.querySelector('#ig-months-display');
+
 const contributionInput = document.querySelector('#ig-contribution');
+const contributionDisplay = document.querySelector('#ig-contribution-display');
+
 const inflationInput = document.querySelector('#ig-inflation');
+const inflationDisplay = document.querySelector('#ig-inflation-display');
+
 const calculateButton = document.querySelector('#ig-calc');
 const resultOutput = document.querySelector('#ig-result');
 const resultDetail = document.querySelector('#ig-result-detail');
-const optionalToggle = document.querySelector('#ig-optional-toggle');
-const optionalSection = document.querySelector('#ig-optional-section');
 
-const periodTypeGroup = document.querySelector('[data-button-group="ig-period-type"]');
 const compoundingGroup = document.querySelector('[data-button-group="ig-compounding"]');
 
-const explanationRoot = document.querySelector('#ig-explanation');
-const inflationRow = explanationRoot ? explanationRoot.querySelector('#ig-inflation-row') : null;
-const valueTargets = explanationRoot
-  ? {
-      initial: explanationRoot.querySelectorAll('[data-ig="initial"]'),
-      returnRate: explanationRoot.querySelectorAll('[data-ig="return-rate"]'),
-      frequency: explanationRoot.querySelectorAll('[data-ig="frequency"]'),
-      time: explanationRoot.querySelectorAll('[data-ig="time"]'),
-      futureValue: explanationRoot.querySelectorAll('[data-ig="future-value"]'),
-      totalGains: explanationRoot.querySelectorAll('[data-ig="total-gains"]'),
-      totalContributions: explanationRoot.querySelectorAll('[data-ig="total-contributions"]'),
-      inflationAdjusted: explanationRoot.querySelectorAll('[data-ig="inflation-adjusted"]'),
-    }
-  : null;
+// Snapshot elements
+const snapInitial = document.querySelector('[data-ig="snap-initial"]');
+const snapReturn = document.querySelector('[data-ig="snap-return"]');
+const snapTime = document.querySelector('[data-ig="snap-time"]');
+const snapContribution = document.querySelector('[data-ig="snap-contribution"]');
+const snapCompounding = document.querySelector('[data-ig="snap-compounding"]');
+const snapTotalContributions = document.querySelector('[data-ig="snap-total-contributions"]');
+const snapTotalGains = document.querySelector('[data-ig="snap-total-gains"]');
+const snapInflation = document.querySelector('[data-ig="snap-inflation"]');
+const snapInflationRow = document.querySelector('#ig-snap-inflation-row');
+
+// Helper to remove currency symbol
+const formatMoney = (val) => formatNumber(val, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const formatInput = (val) => formatNumber(val, { maximumFractionDigits: 0 });
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -41,91 +51,91 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is an investment growth calculator?',
+      name: 'What is investment growth?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An investment growth calculator estimates the future value of an investment based on expected return, time, and contributions.',
+        text: 'Investment growth refers to the increase in value of an investment over time due to compound interest and additional contributions.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do you calculate investment growth over time?',
+      name: 'How does compound interest work?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You apply compound growth assumptions using an expected annual return and the investment period, and add contributions if applicable.',
+        text: 'Compound interest allows you to earn interest on both your initial principal and the accumulated interest from previous periods, accelerating growth.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is future value in investing?',
+      name: 'Why does inflation matter?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Future value is the estimated amount your investment could grow to after a set time period.',
+        text: 'Inflation reduces the purchasing power of money over time. Adjusting for inflation gives you a realistic view of your investment\'s future real value.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do monthly contributions affect investment growth?',
+      name: 'What is a good rate of return?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Monthly contributions can increase the final balance because added deposits may also earn returns over time.',
+        text: 'Historically, the stock market has returned about 7-10% annually before inflation. However, returns vary by asset class and risk tolerance.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What does expected annual return mean?',
+      name: 'How often should I contribute?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It is the assumed average yearly growth rate used for forecasting.',
+        text: 'Regular contributions (e.g., monthly) take advantage of dollar-cost averaging and maximize the time your money has to grow.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does compounding frequency matter for investment growth?',
+      name: 'Does compounding frequency affect the result?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. More frequent compounding can slightly increase estimated growth under the same annual return assumption.',
+        text: 'Yes. The more frequently interest is compounded (e.g., monthly vs. annually), the faster your investment grows.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can this calculator estimate investment returns?',
+      name: 'What is the future value formula?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. It estimates future value and total growth based on the return rate you enter.',
+        text: 'FV = PV * (1 + r)^n + PMT * [((1 + r)^n - 1) / r], where PV is present value, r is periodic rate, n is number of periods, and PMT is contribution.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is inflation-adjusted future value?',
+      name: 'Can I lose money investing?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It estimates your ending balance in today\'s purchasing power after accounting for inflation.',
+        text: 'Yes, all investments carry risk. This calculator assumes a constant positive rate of return, but actual markets fluctuate.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if the return rate is 0%?',
+      name: 'How do taxes impact growth?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Future value equals the initial investment plus total contributions.',
+        text: 'Taxes on gains (capital gains) or income can reduce your net return. This calculator shows pre-tax growth unless you adjust the return rate.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is this investment growth estimate guaranteed?',
+      name: 'What is the rule of 72?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. It is a projection based on assumptions and actual market returns can vary.',
+        text: 'The Rule of 72 is a shortcut to estimate how long it takes to double your money: divide 72 by the annual return rate.',
       },
     },
   ],
 };
 
 const metadata = {
-  title: 'Investment Growth Calculator \u2013 CalcHowMuch',
+  title: 'Investment Growth Calculator - Estimate Future Value',
   description:
-    'Estimate investment growth over time. Calculate future value, total contributions, and gains using expected annual return. Optional inflation.',
+    'Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.',
   canonical: 'https://calchowmuch.com/finance/investment-growth/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -136,8 +146,7 @@ const metadata = {
         '@type': 'WebPage',
         name: 'Investment Growth Calculator',
         url: 'https://calchowmuch.com/finance/investment-growth/',
-        description:
-          'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return.',
+        description: 'Estimate future investment value with compound interest and contributions.',
         inLanguage: 'en',
       },
       {
@@ -185,206 +194,123 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const periodTypeButtons = setupButtonGroup(periodTypeGroup, {
-  defaultValue: 'years',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'monthly',
   onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
+    calculate();
   },
 });
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+function updateSnapshots(data) {
+  if (!snapInitial) return;
 
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
+  snapInitial.textContent = formatInput(data.initialInvestment);
+  snapReturn.textContent = formatPercent(data.expectedReturn);
+  snapTime.textContent = data.timeDisplay;
+  snapContribution.textContent = formatInput(data.monthlyContribution);
+  snapCompounding.textContent = data.compoundingLabel;
 
-setOptionalVisibility(false);
+  // Animate large numbers
+  snapTotalContributions.textContent = formatMoney(data.totalContributions);
+  snapTotalGains.textContent = formatMoney(data.totalGains);
 
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
-  });
-}
-
-function updateTargets(targets, value) {
-  if (!targets) {
-    return;
-  }
-  targets.forEach((node) => {
-    node.textContent = value;
-  });
-}
-
-function updateExplanation({ initial, returnRate, frequency, time, futureValue, totalGains, totalContributions, inflationAdjusted }) {
-  if (!valueTargets) {
-    return;
-  }
-  updateTargets(valueTargets.initial, initial);
-  updateTargets(valueTargets.returnRate, returnRate);
-  updateTargets(valueTargets.frequency, frequency);
-  updateTargets(valueTargets.time, time);
-  updateTargets(valueTargets.futureValue, futureValue);
-  updateTargets(valueTargets.totalGains, totalGains);
-  updateTargets(valueTargets.totalContributions, totalContributions);
-  updateTargets(valueTargets.inflationAdjusted, inflationAdjusted || 'N/A');
-
-  if (inflationRow) {
-    const show = inflationAdjusted && inflationAdjusted !== 'N/A';
-    inflationRow.classList.toggle('is-hidden', !show);
+  if (data.inflationAdjustedFV !== null && data.inflationAdjustedFV !== undefined) {
+    snapInflationRow.style.display = 'flex';
+    snapInflation.textContent = formatMoney(data.inflationAdjustedFV);
+  } else {
+    snapInflationRow.style.display = 'none';
+    snapInflation.textContent = '';
   }
 }
 
 function showError(message) {
   if (resultOutput) {
-    resultOutput.textContent = message;
+    resultOutput.innerHTML = `<span style="color: #ef4444; font-size: 1.5rem;">${message}</span>`;
   }
   if (resultDetail) {
     resultDetail.textContent = '';
   }
-
-  updateExplanation({
-    initial: 'N/A',
-    returnRate: 'N/A',
-    frequency: 'N/A',
-    time: 'N/A',
-    futureValue: 'N/A',
-    totalGains: 'N/A',
-    totalContributions: 'N/A',
-    inflationAdjusted: 'N/A',
-  });
 }
 
 function calculate() {
-  const initialInvestment = Number.parseFloat(initialInput?.value ?? '');
-  const expectedReturn = Number.parseFloat(returnInput?.value ?? '');
-  const timePeriod = Number.parseFloat(timeInput?.value ?? '');
-  const monthlyContribution = Number.parseFloat(contributionInput?.value ?? '0');
-  const inflationRate = Number.parseFloat(inflationInput?.value ?? '0');
-  const periodType = periodTypeButtons?.getValue() ?? 'years';
-  const compounding = compoundingButtons?.getValue() ?? 'monthly';
+  const initialInvestment = Number.parseFloat(initialInput.value);
+  const expectedReturn = Number.parseFloat(returnInput.value);
+  const years = Number.parseFloat(yearsInput.value);
+  const months = Number.parseFloat(monthsInput.value);
+  const monthlyContribution = Number.parseFloat(contributionInput.value);
+  const inflationRate = Number.parseFloat(inflationInput.value);
+  const compounding = compoundingButtons.getValue();
 
-  if (!Number.isFinite(initialInvestment)) {
-    showError('Enter a valid initial investment amount.');
-    return;
-  }
+  // Update displays with NO currency symbol
+  initialDisplay.textContent = formatInput(initialInvestment);
+  returnDisplay.textContent = formatPercent(expectedReturn);
+  yearsDisplay.textContent = years;
+  monthsDisplay.textContent = months;
+  contributionDisplay.textContent = formatInput(monthlyContribution);
+  inflationDisplay.textContent = formatPercent(inflationRate);
 
-  if (initialInvestment < 0) {
-    showError('Initial investment must be zero or greater.');
-    return;
-  }
+  const totalYears = years + (months / 12);
 
-  if (!Number.isFinite(expectedReturn)) {
-    showError('Enter a valid expected annual return.');
-    return;
-  }
-
-  if (expectedReturn < 0) {
-    showError('Expected return must be zero or greater.');
-    return;
-  }
-
-  if (!Number.isFinite(timePeriod) || timePeriod < 0) {
-    showError('Enter a valid time period.');
-    return;
-  }
-
-  if (!Number.isFinite(monthlyContribution) || monthlyContribution < 0) {
-    showError('Monthly contribution must be zero or greater.');
-    return;
-  }
-
-  if (!Number.isFinite(inflationRate) || inflationRate < 0) {
-    showError('Inflation rate must be zero or greater.');
-    return;
-  }
+  // Only calculate if we have some time period, even if it's 0 (start value)
+  if (totalYears < 0) return;
 
   const result = calculateInvestmentGrowth({
     initialInvestment,
     expectedReturn,
-    timePeriod,
-    periodType,
+    timePeriod: totalYears,
+    periodType: 'years',
     compounding,
     monthlyContribution,
     inflationRate,
   });
 
   if (!result) {
-    showError('Check your values and try again.');
+    showError('Invalid input values');
     return;
   }
 
-  hasCalculated = true;
-
-  const periodLabel = periodType === 'months' ? 'months' : 'years';
-  const timeDisplay = `${timePeriod} ${periodLabel}`;
-
   if (resultOutput) {
-    resultOutput.textContent = `Future Value: ${formatCurrency(result.futureValue)}`;
+    resultOutput.textContent = formatMoney(result.futureValue);
   }
 
   let detailHtml =
-    `<p><strong>Total Gains:</strong> ${formatCurrency(result.totalGains)}</p>` +
-    `<p><strong>Total Contributions:</strong> ${formatCurrency(result.totalContributions)}</p>` +
-    `<p><strong>Compounding:</strong> ${result.compoundingLabel}</p>`;
+    `<p><strong>Total Contributions:</strong> ${formatMoney(result.totalContributions)}</p>` +
+    `<p><strong>Total Interest Earned:</strong> ${formatMoney(result.totalGains)}</p>`;
 
   if (result.inflationAdjustedFV !== null) {
-    detailHtml += `<p><strong>Inflation-Adjusted Value:</strong> ${formatCurrency(result.inflationAdjustedFV)}</p>`;
+    detailHtml += `<p class="mt-2 text-sm text-blue-200">Inflation Adjusted: ${formatMoney(result.inflationAdjustedFV)}</p>`;
   }
 
   if (resultDetail) {
     resultDetail.innerHTML = detailHtml;
   }
 
-  const inflationAdjustedDisplay = result.inflationAdjustedFV !== null
-    ? formatCurrency(result.inflationAdjustedFV)
-    : null;
+  const timeLabel = months > 0
+    ? `${years} yr ${months} mo`
+    : `${years} years`;
 
-  updateExplanation({
-    initial: formatCurrency(initialInvestment),
-    returnRate: formatPercent(expectedReturn),
-    frequency: result.compoundingLabel,
-    time: timeDisplay,
-    futureValue: formatCurrency(result.futureValue),
-    totalGains: formatCurrency(result.totalGains),
-    totalContributions: formatCurrency(result.totalContributions),
-    inflationAdjusted: inflationAdjustedDisplay,
+  updateSnapshots({
+    initialInvestment,
+    expectedReturn,
+    timeDisplay: timeLabel,
+    monthlyContribution,
+    compoundingLabel: result.compoundingLabel,
+    totalContributions: result.totalContributions,
+    totalGains: result.totalGains,
+    inflationAdjustedFV: result.inflationAdjustedFV
   });
 }
+
+// Event Listeners for Sliders
+[initialInput, returnInput, yearsInput, monthsInput, contributionInput, inflationInput].forEach(input => {
+  if (input) {
+    input.addEventListener('input', calculate);
+  }
+});
 
 if (calculateButton) {
   calculateButton.addEventListener('click', calculate);
 }
 
-[initialInput, returnInput, timeInput, contributionInput, inflationInput].forEach((input) => {
-  if (input) {
-    input.addEventListener('input', () => {
-      if (liveUpdatesEnabled && hasCalculated) {
-        calculate();
-      }
-    });
-  }
-});
-
-if (initialInput) {
-  calculate();
-}
+// Initial calculation
+calculate();

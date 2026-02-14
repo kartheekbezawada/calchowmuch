@@ -1,35 +1,66 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { calculateFutureValue, resolveCompounding } from '/assets/js/core/time-value-utils.js';
 
-const presentValueInput = document.querySelector('#fv-present-value');
-const interestRateInput = document.querySelector('#fv-interest-rate');
-const timePeriodInput = document.querySelector('#fv-time-period');
-const regularContributionInput = document.querySelector('#fv-regular-contribution');
+/* ── DOM refs: calculator inputs ── */
+const pvInput = document.querySelector('#fv-present-value');
+const rateInput = document.querySelector('#fv-interest-rate');
+const timeInput = document.querySelector('#fv-time-period');
+const contribInput = document.querySelector('#fv-regular-contribution');
 const calculateButton = document.querySelector('#fv-calc');
-const resultOutput = document.querySelector('#fv-result');
-const resultDetail = document.querySelector('#fv-result-detail');
-const optionalToggle = document.querySelector('#fv-optional-toggle');
-const optionalSection = document.querySelector('#fv-optional-section');
+const resultDiv = document.querySelector('#fv-result');
+const summaryDiv = document.querySelector('#fv-result-detail');
 
-const periodGroup = document.querySelector('[data-button-group="fv-period-type"]');
-const compoundingGroup = document.querySelector('[data-button-group="fv-compounding"]');
+/* ── DOM refs: slider value displays ── */
+const pvDisplay = document.querySelector('#fv-pv-display');
+const rateDisplay = document.querySelector('#fv-rate-display');
+const timeDisplay = document.querySelector('#fv-time-display');
+const contribDisplay = document.querySelector('#fv-contrib-display');
 
+/* ── DOM refs: snapshot rows ── */
+const snapPv = document.querySelector('[data-fv="snap-pv"]');
+const snapRate = document.querySelector('[data-fv="snap-rate"]');
+const snapTime = document.querySelector('[data-fv="snap-time"]');
+const snapCompounding = document.querySelector('[data-fv="snap-compounding"]');
+const snapContribution = document.querySelector('[data-fv="snap-contribution"]');
+const snapPeriods = document.querySelector('[data-fv="snap-periods"]');
+const snapPeriodicRate = document.querySelector('[data-fv="snap-periodic-rate"]');
+
+/* ── DOM refs: explanation targets ── */
 const explanationRoot = document.querySelector('#fv-explanation');
 const valueTargets = explanationRoot
   ? {
-      presentValue: explanationRoot.querySelectorAll('[data-fv="present-value"]'),
-      interestRate: explanationRoot.querySelectorAll('[data-fv="interest-rate"]'),
-      timePeriod: explanationRoot.querySelectorAll('[data-fv="time-period"]'),
-      compoundingFrequency: explanationRoot.querySelectorAll('[data-fv="compounding-frequency"]'),
-      futureValue: explanationRoot.querySelectorAll('[data-fv="future-value"]'),
-      totalContributions: explanationRoot.querySelectorAll('[data-fv="total-contributions"]'),
-      totalGrowth: explanationRoot.querySelectorAll('[data-fv="total-growth"]'),
-      totalPeriods: explanationRoot.querySelectorAll('[data-fv="total-periods"]'),
-      regularContribution: explanationRoot.querySelectorAll('[data-fv="regular-contribution"]'),
-    }
+    presentValue: explanationRoot.querySelectorAll('[data-fv="present-value"]'),
+    interestRate: explanationRoot.querySelectorAll('[data-fv="interest-rate"]'),
+    timePeriod: explanationRoot.querySelectorAll('[data-fv="time-period"]'),
+    compoundingFrequency: explanationRoot.querySelectorAll('[data-fv="compounding-frequency"]'),
+    futureValue: explanationRoot.querySelectorAll('[data-fv="future-value"]'),
+    totalContributions: explanationRoot.querySelectorAll('[data-fv="total-contributions"]'),
+    totalGrowth: explanationRoot.querySelectorAll('[data-fv="total-growth"]'),
+    totalPeriods: explanationRoot.querySelectorAll('[data-fv="total-periods"]'),
+    regularContribution: explanationRoot.querySelectorAll('[data-fv="regular-contribution"]'),
+    appliedRate: explanationRoot.querySelectorAll('[data-fv="applied-rate"]'),
+    appliedRateDecimal: explanationRoot.querySelectorAll('[data-fv="applied-rate-decimal"]'),
+    formulaGrowthFactor: explanationRoot.querySelectorAll('[data-fv="formula-growth-factor"]'),
+    periodsPerYear: explanationRoot.querySelectorAll('[data-fv="periods-per-year"]'),
+  }
   : null;
 
+/* ── Button groups ── */
+const periodGroup = document.querySelector('[data-button-group="fv-period-type"]');
+const compoundingGroup = document.querySelector('[data-button-group="fv-compounding"]');
+
+const periodButtons = setupButtonGroup(periodGroup, {
+  defaultValue: 'years',
+  onChange() { calculate(); },
+});
+
+const compoundingButtons = setupButtonGroup(compoundingGroup, {
+  defaultValue: 'annual',
+  onChange() { calculate(); },
+});
+
+/* ── SEO / Schema ── */
 export const pageSchema = {
   calculatorFAQ: true,
   globalFAQ: false,
@@ -43,7 +74,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is future value (FV)?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Future value is the amount your money will be worth at a future date after earning interest or growth.',
+        text: 'Future value is the amount your money will be worth at a future date after earning interest or growth over time.',
       },
     },
     {
@@ -51,7 +82,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How is future value different from present value?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Present value is today’s worth of money, while future value shows what it grows into over time.',
+        text: 'Present value is today\'s worth of money, while future value shows what it grows into over time through compounding.',
       },
     },
     {
@@ -59,7 +90,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What interest rate should I use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Use an expected return rate based on savings, investments, or inflation assumptions.',
+        text: 'Use an expected return rate based on savings accounts, investments, or inflation assumptions relevant to your goal.',
       },
     },
     {
@@ -67,15 +98,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How does compounding affect future value?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'More frequent compounding increases growth by earning interest on interest.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does time period matter for future value?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, longer time periods significantly increase future value due to compounding.',
+        text: 'More frequent compounding increases growth because interest is earned on previously accumulated interest more often.',
       },
     },
     {
@@ -83,15 +106,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What are regular contributions?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Regular contributions are additional amounts added periodically to increase total savings.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is future value useful for retirement planning?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, it helps estimate how current savings may grow by retirement.',
+        text: 'Regular contributions are additional amounts added each period that also earn compound interest, accelerating growth.',
       },
     },
     {
@@ -99,23 +114,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can future value decrease over time?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'With a positive interest rate, future value increases; negative rates reduce growth.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What happens if the interest rate is zero?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The future value equals the present value plus any contributions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is this calculator suitable for savings and investments?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, it can be used for savings goals, investments, education funds, and retirement planning.',
+        text: 'With a positive interest rate, future value always increases. Only negative rates or withdrawals would reduce it.',
       },
     },
   ],
@@ -149,31 +148,14 @@ const metadata = {
           'Calculate future value using present value, growth rate, time period, compounding frequency, and optional regular contributions.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Finance',
-            item: 'https://calchowmuch.com/finance/',
-          },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
           {
             '@type': 'ListItem',
             position: 3,
@@ -188,135 +170,73 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const periodButtons = setupButtonGroup(periodGroup, {
-  defaultValue: 'years',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
+/* ── Helpers ── */
 
-const compoundingButtons = setupButtonGroup(compoundingGroup, {
-  defaultValue: 'annual',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
-
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
-
-setOptionalVisibility(false);
-
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
+function fmt(value, opts = {}) {
+  return formatNumber(value, {
+    minimumFractionDigits: opts.minimumFractionDigits ?? 2,
+    maximumFractionDigits: opts.maximumFractionDigits ?? 2,
+    ...opts,
   });
 }
 
-function readInputValue(input) {
-  if (!input) {
-    return NaN;
+function setSliderFill(input) {
+  if (!input) return;
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 100;
+  const val = Number(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (pvInput && pvDisplay) {
+    setSliderFill(pvInput);
+    pvDisplay.textContent = fmt(Number(pvInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
-  return Number.parseFloat(input.value);
-}
-
-function formatCurrencyValue(value) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function formatPercentValue(value, maximumFractionDigits = 2) {
-  return `${formatNumber(value, { maximumFractionDigits })}%`;
+  if (rateInput && rateDisplay) {
+    setSliderFill(rateInput);
+    rateDisplay.textContent = `${Number(rateInput.value)}%`;
+  }
+  if (timeInput && timeDisplay) {
+    setSliderFill(timeInput);
+    const periodType = periodButtons?.getValue() ?? 'years';
+    timeDisplay.textContent = `${Number(timeInput.value)} ${periodType === 'months' ? 'mo' : 'yrs'}`;
+  }
+  if (contribInput && contribDisplay) {
+    setSliderFill(contribInput);
+    contribDisplay.textContent = fmt(Number(contribInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
 }
 
 function updateTargets(targets, value) {
-  if (!targets) {
-    return;
-  }
+  if (!targets) return;
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
-function updateExplanation({
-  presentValue,
-  interestRate,
-  timePeriod,
-  compoundingFrequency,
-  futureValue,
-  totalContributions,
-  totalGrowth,
-  totalPeriods,
-  regularContribution,
-}) {
-  if (!valueTargets) {
-    return;
-  }
-
-  updateTargets(valueTargets.presentValue, presentValue);
-  updateTargets(valueTargets.interestRate, interestRate);
-  updateTargets(valueTargets.timePeriod, timePeriod);
-  updateTargets(valueTargets.compoundingFrequency, compoundingFrequency);
-  updateTargets(valueTargets.futureValue, futureValue);
-  updateTargets(valueTargets.totalContributions, totalContributions);
-  updateTargets(valueTargets.totalGrowth, totalGrowth);
-  updateTargets(valueTargets.totalPeriods, totalPeriods);
-  updateTargets(valueTargets.regularContribution, regularContribution);
+function setError(message) {
+  if (resultDiv) resultDiv.textContent = message;
+  if (summaryDiv) summaryDiv.textContent = '';
 }
 
-function showError(message) {
-  if (resultOutput) {
-    resultOutput.textContent = message;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
-  updateExplanation({
-    presentValue: '—',
-    interestRate: '—',
-    timePeriod: '—',
-    compoundingFrequency: '—',
-    futureValue: '—',
-    totalContributions: '—',
-    totalGrowth: '—',
-    totalPeriods: '—',
-    regularContribution: '—',
-  });
-}
+/* ── Core calculate ── */
 
 function calculate() {
-  const pv = readInputValue(presentValueInput);
-  const rate = readInputValue(interestRateInput);
-  const period = readInputValue(timePeriodInput);
-  const contribution = readInputValue(regularContributionInput) || 0;
+  if (!resultDiv || !summaryDiv) return;
+
+  const pv = Number(pvInput?.value);
+  const rate = Number(rateInput?.value);
+  const period = Number(timeInput?.value);
+  const contribution = Number(contribInput?.value) || 0;
   const periodType = periodButtons?.getValue() ?? 'years';
   const compounding = compoundingButtons?.getValue() ?? 'annual';
   const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(pv) || !Number.isFinite(rate) || !Number.isFinite(period)) {
-    showError('Enter valid numbers for present value, interest rate, and time period.');
-    return;
-  }
-
-  if (pv < 0 || rate < 0 || period < 0 || contribution < 0) {
-    showError('Values must be zero or greater.');
-    return;
-  }
+  if (!Number.isFinite(pv) || pv < 0) { setError('Present value must be 0 or more.'); return; }
+  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
+  if (!Number.isFinite(period) || period < 0) { setError('Time period must be 0 or more.'); return; }
 
   const result = calculateFutureValue({
     presentValue: pv,
@@ -327,65 +247,77 @@ function calculate() {
     regularContribution: contribution,
   });
 
-  if (!result) {
-    showError('Check your inputs. Interest rate must be above -100%.');
-    return;
+  if (!result) { setError('Check your inputs.'); return; }
+
+  const appliedRatePct = result.periodicRate * 100;
+  const totalPeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });
+  const pvStr = fmt(pv);
+  const rateStr = formatPercent(rate);
+  const timeStr = `${fmt(period, { maximumFractionDigits: 2 })} ${periodType === 'months' ? 'months' : 'years'}`;
+  const compoundingStr = compoundingInfo.label;
+  const fvStr = fmt(result.futureValue);
+  const appliedRateStr = fmt(appliedRatePct, { maximumFractionDigits: 4 });
+  const contribStr = fmt(contribution);
+  const totalContribStr = fmt(result.totalContributions);
+  const totalGrowthStr = fmt(result.totalGrowth);
+
+  /* Formula walkthrough values */
+  const appliedRateDecimal = result.periodicRate;
+  const growthFactor = Math.pow(1 + appliedRateDecimal, result.totalPeriods);
+  const periodsPerYear = compoundingInfo.periodsPerYear;
+
+  const appliedRateDecimalStr = fmt(appliedRateDecimal, { maximumFractionDigits: 6 });
+  const growthFactorStr = fmt(growthFactor, { maximumFractionDigits: 6 });
+  const periodsPerYearStr = String(periodsPerYear);
+
+  /* Preview panel */
+  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${fvStr}</span>`;
+  const valueEl = resultDiv.querySelector('.mtg-result-value');
+  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+
+  summaryDiv.innerHTML =
+    `<p><strong>Total growth:</strong> ${totalGrowthStr}</p>` +
+    `<p><strong>Contributions:</strong> ${totalContribStr}</p>` +
+    `<p><strong>Compounding:</strong> ${compoundingStr}</p>`;
+
+  /* Snapshot rows */
+  if (snapPv) snapPv.textContent = pvStr;
+  if (snapRate) snapRate.textContent = rateStr;
+  if (snapTime) snapTime.textContent = timeStr;
+  if (snapCompounding) snapCompounding.textContent = compoundingStr;
+  if (snapContribution) snapContribution.textContent = contribStr;
+  if (snapPeriods) snapPeriods.textContent = totalPeriodsStr;
+  if (snapPeriodicRate) snapPeriodicRate.textContent = `${appliedRateStr}%`;
+
+  /* Explanation targets */
+  if (valueTargets) {
+    updateTargets(valueTargets.presentValue, pvStr);
+    updateTargets(valueTargets.interestRate, rateStr);
+    updateTargets(valueTargets.timePeriod, timeStr);
+    updateTargets(valueTargets.compoundingFrequency, compoundingStr);
+    updateTargets(valueTargets.futureValue, fvStr);
+    updateTargets(valueTargets.totalContributions, totalContribStr);
+    updateTargets(valueTargets.totalGrowth, totalGrowthStr);
+    updateTargets(valueTargets.totalPeriods, totalPeriodsStr);
+    updateTargets(valueTargets.regularContribution, contribStr);
+    updateTargets(valueTargets.appliedRate, appliedRateStr);
+    updateTargets(valueTargets.appliedRateDecimal, appliedRateDecimalStr);
+    updateTargets(valueTargets.formulaGrowthFactor, growthFactorStr);
+    updateTargets(valueTargets.periodsPerYear, periodsPerYearStr);
   }
-
-  hasCalculated = true;
-
-  const totalPeriodsDisplay = formatNumber(result.totalPeriods, { maximumFractionDigits: 2 });
-  const presentValueDisplay = formatCurrencyValue(pv);
-  const interestRateDisplay = formatPercentValue(rate, 2);
-  const timePeriodDisplay = `${formatNumber(period, { maximumFractionDigits: 2 })} ${
-    periodType === 'months' ? 'months' : 'years'
-  }`;
-  const compoundingDisplay = compoundingInfo.label;
-  const futureValueDisplay = formatCurrencyValue(result.futureValue);
-  const totalContributionsDisplay = formatCurrencyValue(result.totalContributions);
-  const totalGrowthDisplay = formatCurrencyValue(result.totalGrowth);
-  const regularContributionDisplay = formatCurrencyValue(contribution);
-
-  if (resultOutput) {
-    resultOutput.textContent = `Future Value: ${futureValueDisplay}`;
-  }
-
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Total contributions:</strong> ${totalContributionsDisplay}</p>` +
-      `<p><strong>Total growth:</strong> ${totalGrowthDisplay}</p>` +
-      `<p><strong>Effective periods:</strong> ${totalPeriodsDisplay}</p>` +
-      `<p><strong>Compounding frequency:</strong> ${compoundingDisplay}</p>`;
-  }
-
-  updateExplanation({
-    presentValue: presentValueDisplay,
-    interestRate: interestRateDisplay,
-    timePeriod: timePeriodDisplay,
-    compoundingFrequency: compoundingDisplay,
-    futureValue: futureValueDisplay,
-    totalContributions: totalContributionsDisplay,
-    totalGrowth: totalGrowthDisplay,
-    totalPeriods: totalPeriodsDisplay,
-    regularContribution: regularContributionDisplay,
-  });
 }
 
-if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
-}
+/* ── Event wiring ── */
 
-[presentValueInput, interestRateInput, timePeriodInput, regularContributionInput].forEach((input) => {
-  if (!input) {
-    return;
-  }
-  input.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
+[pvInput, rateInput, timeInput, contribInput].forEach((input) => {
+  input?.addEventListener('input', () => {
+    updateSliderDisplays();
+    calculate();
   });
 });
 
-if (presentValueInput && interestRateInput && timePeriodInput) {
-  calculate();
-}
+calculateButton?.addEventListener('click', calculate);
+
+/* ── Init ── */
+updateSliderDisplays();
+calculate();

@@ -1,38 +1,73 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import {
   calculateFutureValueOfAnnuity,
   resolveCompounding,
 } from '/assets/js/core/time-value-utils.js';
 
-const paymentInput = document.querySelector('#fva-payment');
-const interestRateInput = document.querySelector('#fva-interest-rate');
+/* ── DOM refs: calculator inputs ── */
+const pmtInput = document.querySelector('#fva-payment');
+const rateInput = document.querySelector('#fva-interest-rate');
 const periodsInput = document.querySelector('#fva-periods');
 const calculateButton = document.querySelector('#fva-calc');
-const resultOutput = document.querySelector('#fva-result');
-const resultDetail = document.querySelector('#fva-result-detail');
-const optionalToggle = document.querySelector('#fva-optional-toggle');
-const optionalSection = document.querySelector('#fva-optional-section');
+const resultDiv = document.querySelector('#fva-result');
+const summaryDiv = document.querySelector('#fva-result-detail');
 
+/* ── DOM refs: slider value displays ── */
+const pmtDisplay = document.querySelector('#fva-pmt-display');
+const rateDisplay = document.querySelector('#fva-rate-display');
+const periodsDisplay = document.querySelector('#fva-periods-display');
+
+/* ── DOM refs: snapshot rows ── */
+const snapPayment = document.querySelector('[data-fva="snap-payment"]');
+const snapRate = document.querySelector('[data-fva="snap-rate"]');
+const snapPeriods = document.querySelector('[data-fva="snap-periods"]');
+const snapAnnuityType = document.querySelector('[data-fva="snap-annuity-type"]');
+const snapCompounding = document.querySelector('[data-fva="snap-compounding"]');
+const snapEffectivePeriods = document.querySelector('[data-fva="snap-effective-periods"]');
+const snapPeriodicRate = document.querySelector('[data-fva="snap-periodic-rate"]');
+
+/* ── DOM refs: explanation targets ── */
+const explanationRoot = document.querySelector('#fva-explanation');
+const valueTargets = explanationRoot
+  ? {
+    paymentAmount: explanationRoot.querySelectorAll('[data-fva="payment-amount"]'),
+    interestRate: explanationRoot.querySelectorAll('[data-fva="interest-rate"]'),
+    periodCount: explanationRoot.querySelectorAll('[data-fva="period-count"]'),
+    annuityType: explanationRoot.querySelectorAll('[data-fva="annuity-type"]'),
+    compoundingFrequency: explanationRoot.querySelectorAll('[data-fva="compounding-frequency"]'),
+    futureValue: explanationRoot.querySelectorAll('[data-fva="future-value"]'),
+    totalPayments: explanationRoot.querySelectorAll('[data-fva="total-payments"]'),
+    totalInterest: explanationRoot.querySelectorAll('[data-fva="total-interest"]'),
+    effectivePeriods: explanationRoot.querySelectorAll('[data-fva="effective-periods"]'),
+    appliedRate: explanationRoot.querySelectorAll('[data-fva="applied-rate"]'),
+    appliedRateDecimal: explanationRoot.querySelectorAll('[data-fva="applied-rate-decimal"]'),
+    formulaAnnuityFactor: explanationRoot.querySelectorAll('[data-fva="formula-annuity-factor"]'),
+    periodsPerYear: explanationRoot.querySelectorAll('[data-fva="periods-per-year"]'),
+  }
+  : null;
+
+/* ── Button groups ── */
 const periodGroup = document.querySelector('[data-button-group="fva-period-type"]');
 const annuityGroup = document.querySelector('[data-button-group="fva-annuity-type"]');
 const compoundingGroup = document.querySelector('[data-button-group="fva-compounding"]');
 
-const explanationRoot = document.querySelector('#fva-explanation');
-const valueTargets = explanationRoot
-  ? {
-      paymentAmount: explanationRoot.querySelectorAll('[data-fva="payment-amount"]'),
-      interestRate: explanationRoot.querySelectorAll('[data-fva="interest-rate"]'),
-      periodCount: explanationRoot.querySelectorAll('[data-fva="period-count"]'),
-      annuityType: explanationRoot.querySelectorAll('[data-fva="annuity-type"]'),
-      futureValue: explanationRoot.querySelectorAll('[data-fva="future-value"]'),
-      totalPayments: explanationRoot.querySelectorAll('[data-fva="total-payments"]'),
-      totalInterest: explanationRoot.querySelectorAll('[data-fva="total-interest"]'),
-      effectivePeriods: explanationRoot.querySelectorAll('[data-fva="effective-periods"]'),
-      appliedRate: explanationRoot.querySelectorAll('[data-fva="applied-rate"]'),
-    }
-  : null;
+const periodButtons = setupButtonGroup(periodGroup, {
+  defaultValue: 'years',
+  onChange() { calculate(); },
+});
 
+const annuityButtons = setupButtonGroup(annuityGroup, {
+  defaultValue: 'ordinary',
+  onChange() { calculate(); },
+});
+
+const compoundingButtons = setupButtonGroup(compoundingGroup, {
+  defaultValue: 'annual',
+  onChange() { calculate(); },
+});
+
+/* ── SEO / Schema ── */
 export const pageSchema = {
   calculatorFAQ: true,
   globalFAQ: false,
@@ -46,47 +81,31 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the future value of an annuity?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The future value of an annuity is the total value of a series of regular payments at a future date after earning interest over time.',
+        text: 'It is the total accumulated value of a series of regular payments at a future date after earning compound interest over time.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the difference between an ordinary annuity and an annuity due?',
+      name: 'What is the difference between ordinary annuity and annuity due?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'In an ordinary annuity, payments are made at the end of each period, while in an annuity due, payments are made at the beginning of each period.',
+        text: 'Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a higher future value because payments compound longer.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why is the future value of an annuity due higher?',
+      name: 'Why is the FV of annuity due higher?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An annuity due has a higher future value because payments are invested earlier and earn interest for a longer time.',
+        text: 'Because each payment is invested one period earlier, it earns compound interest for a longer time than an ordinary annuity.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do you calculate the future value of an ordinary annuity?',
+      name: 'What interest rate should I use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The future value of an ordinary annuity is calculated by compounding each payment made at the end of each period using the interest rate.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How do you calculate the future value of an annuity due?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The future value of an annuity due is calculated by adjusting the ordinary annuity future value to account for payments made at the beginning of each period.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What interest rate should be used in future value calculations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The interest rate should reflect expected investment returns, savings rates, or long-term growth assumptions.',
+        text: 'Use a rate reflecting expected investment returns, savings rates, or long-term growth assumptions relevant to your financial plan.',
       },
     },
     {
@@ -94,15 +113,15 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is the future value of annuity useful for retirement planning?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, it is commonly used to estimate how regular retirement contributions will grow over time.',
+        text: 'Yes, it is commonly used to estimate how regular 401(k), IRA, or pension contributions will grow over your working years.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can this calculator be used for monthly contributions?',
+      name: 'Can I use this for monthly contributions?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, the calculator supports monthly, quarterly, and annual contribution periods.',
+        text: 'Yes, the calculator supports monthly, quarterly, semi-annual, and annual payment and compounding periods.',
       },
     },
     {
@@ -110,22 +129,38 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What happens if the interest rate is zero?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'If the interest rate is zero, the future value of the annuity equals the total amount of all contributions.',
+        text: 'If the rate is zero, the future value equals the total of all payments — no interest is earned and the annuity factor equals the number of periods.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is future value of annuity used for investment planning?',
+      name: 'How does compounding frequency affect results?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, it is widely used to evaluate savings plans, investment strategies, and long-term financial goals.',
+        text: 'More frequent compounding (e.g. monthly vs annual) increases the future value because interest is reinvested more often within each year.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this the same as a simple savings calculator?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It is similar but specifically models equal periodic payments. A savings calculator may include an initial lump sum (present value) as well.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use FVA for investment planning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, it is widely used to evaluate savings plans, SIP investments, education funds, and long-term financial goals.',
       },
     },
   ],
 };
 
 const metadata = {
-  title: 'Future Value of Annuity Calculator Ordinary & Due',
+  title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
   description:
     'Calculate the future value of an annuity and compare ordinary annuity vs annuity due using payment amount, interest rate, and number of periods.',
   canonical: 'https://calchowmuch.com/finance/future-value-of-annuity/',
@@ -136,7 +171,7 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Future Value of Annuity Calculator Ordinary & Due',
+        name: 'Future Value of Annuity Calculator (Ordinary & Due)',
         url: 'https://calchowmuch.com/finance/future-value-of-annuity/',
         description:
           'Calculate the future value of an annuity. Compare ordinary annuity and annuity due using payment amount, interest rate, and number of periods.',
@@ -153,31 +188,14 @@ const metadata = {
           'Free future value of annuity calculator for ordinary annuity and annuity due. Calculates FV using payment amount, rate, and timing.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Finance',
-            item: 'https://calchowmuch.com/finance/',
-          },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
           {
             '@type': 'ListItem',
             position: 3,
@@ -192,148 +210,72 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const periodButtons = setupButtonGroup(periodGroup, {
-  defaultValue: 'years',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
+/* ── Helpers ── */
 
-const annuityButtons = setupButtonGroup(annuityGroup, {
-  defaultValue: 'ordinary',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-const compoundingButtons = setupButtonGroup(compoundingGroup, {
-  defaultValue: '',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
-
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
-
-setOptionalVisibility(false);
-
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
+function fmt(value, opts = {}) {
+  return formatNumber(value, {
+    minimumFractionDigits: opts.minimumFractionDigits ?? 2,
+    maximumFractionDigits: opts.maximumFractionDigits ?? 2,
+    ...opts,
   });
 }
 
-function readInputValue(input) {
-  if (!input) {
-    return NaN;
+function setSliderFill(input) {
+  if (!input) return;
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 100;
+  const val = Number(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (pmtInput && pmtDisplay) {
+    setSliderFill(pmtInput);
+    pmtDisplay.textContent = fmt(Number(pmtInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
-  return Number.parseFloat(input.value);
-}
-
-function formatCurrencyValue(value) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function formatPercentValue(value, maximumFractionDigits = 2) {
-  return `${formatNumber(value, { maximumFractionDigits })}%`;
+  if (rateInput && rateDisplay) {
+    setSliderFill(rateInput);
+    rateDisplay.textContent = `${Number(rateInput.value)}%`;
+  }
+  if (periodsInput && periodsDisplay) {
+    setSliderFill(periodsInput);
+    const periodType = periodButtons?.getValue() ?? 'years';
+    periodsDisplay.textContent = `${Number(periodsInput.value)} ${periodType === 'months' ? 'mo' : 'yrs'}`;
+  }
 }
 
 function updateTargets(targets, value) {
-  if (!targets) {
-    return;
-  }
+  if (!targets) return;
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
-function updateExplanation({
-  paymentAmount,
-  interestRate,
-  periodCount,
-  annuityType,
-  futureValue,
-  totalPayments,
-  totalInterest,
-  effectivePeriods,
-  appliedRate,
-}) {
-  if (!valueTargets) {
-    return;
-  }
-
-  updateTargets(valueTargets.paymentAmount, paymentAmount);
-  updateTargets(valueTargets.interestRate, interestRate);
-  updateTargets(valueTargets.periodCount, periodCount);
-  updateTargets(valueTargets.annuityType, annuityType);
-  updateTargets(valueTargets.futureValue, futureValue);
-  updateTargets(valueTargets.totalPayments, totalPayments);
-  updateTargets(valueTargets.totalInterest, totalInterest);
-  updateTargets(valueTargets.effectivePeriods, effectivePeriods);
-  updateTargets(valueTargets.appliedRate, appliedRate);
+function setError(message) {
+  if (resultDiv) resultDiv.textContent = message;
+  if (summaryDiv) summaryDiv.textContent = '';
 }
 
-function showError(message) {
-  if (resultOutput) {
-    resultOutput.textContent = message;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
-  updateExplanation({
-    paymentAmount: 'N/A',
-    interestRate: 'N/A',
-    periodCount: 'N/A',
-    annuityType: 'N/A',
-    futureValue: 'N/A',
-    totalPayments: 'N/A',
-    totalInterest: 'N/A',
-    effectivePeriods: 'N/A',
-    appliedRate: 'N/A',
-  });
-}
+/* ── Core calculate ── */
 
 function calculate() {
-  const payment = readInputValue(paymentInput);
-  const rate = readInputValue(interestRateInput);
-  const periods = readInputValue(periodsInput);
+  if (!resultDiv || !summaryDiv) return;
+
+  const pmt = Number(pmtInput?.value);
+  const rate = Number(rateInput?.value);
+  const periods = Number(periodsInput?.value);
   const periodType = periodButtons?.getValue() ?? 'years';
   const annuityType = annuityButtons?.getValue() ?? 'ordinary';
-  const compoundingValue = compoundingButtons?.getValue() ?? '';
-  const compounding = compoundingValue ? compoundingValue : null;
-  const compoundingInfo = compounding ? resolveCompounding(compounding) : null;
+  const compounding = compoundingButtons?.getValue() ?? 'annual';
+  const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(payment) || !Number.isFinite(rate) || !Number.isFinite(periods)) {
-    showError('Enter valid numbers for payment amount, interest rate, and periods.');
-    return;
-  }
-
-  if (payment < 0 || rate < 0 || periods < 0) {
-    showError('Values must be zero or greater.');
-    return;
-  }
+  if (!Number.isFinite(pmt) || pmt < 0) { setError('Payment must be 0 or more.'); return; }
+  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
+  if (!Number.isFinite(periods) || periods < 0) { setError('Periods must be 0 or more.'); return; }
 
   const result = calculateFutureValueOfAnnuity({
-    payment,
+    payment: pmt,
     interestRate: rate,
     periods,
     periodType,
@@ -341,72 +283,85 @@ function calculate() {
     annuityType,
   });
 
-  if (!result) {
-    showError('Check your inputs. Interest rate must be above -100%.');
-    return;
+  if (!result) { setError('Check your inputs.'); return; }
+
+  const appliedRatePct = result.periodicRate * 100;
+  const effectivePeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });
+  const pmtStr = fmt(pmt);
+  const rateStr = formatPercent(rate);
+  const periodsStr = `${fmt(periods, { maximumFractionDigits: 2 })} ${periodType === 'months' ? 'months' : 'years'}`;
+  const annuityTypeStr = annuityType === 'due' ? 'Annuity Due' : 'Ordinary Annuity';
+  const compoundingStr = compoundingInfo.label;
+  const fvStr = fmt(result.futureValue);
+  const appliedRateStr = fmt(appliedRatePct, { maximumFractionDigits: 4 });
+  const totalPaymentsStr = fmt(result.totalPayments);
+  const totalInterestStr = fmt(result.totalInterest);
+
+  /* Formula walkthrough values */
+  const appliedRateDecimal = result.periodicRate;
+  let annuityFactor = 0;
+  if (appliedRateDecimal !== 0 && result.totalPeriods > 0) {
+    annuityFactor = (Math.pow(1 + appliedRateDecimal, result.totalPeriods) - 1) / appliedRateDecimal;
+  } else if (result.totalPeriods > 0) {
+    annuityFactor = result.totalPeriods;
   }
-
-  hasCalculated = true;
-
-  const paymentDisplay = formatCurrencyValue(payment);
-  const interestRateDisplay = formatPercentValue(rate, 2);
-  const periodDisplay = `${formatNumber(periods, { maximumFractionDigits: 2 })} ${
-    periodType === 'months' ? 'months' : 'years'
-  }`;
-  const annuityTypeDisplay = annuityType === 'due' ? 'Annuity Due' : 'Ordinary Annuity';
-  const compoundingDisplay = compoundingInfo
-    ? compoundingInfo.label
-    : periodType === 'months'
-      ? 'Per month'
-      : 'Per year';
-  const futureValueDisplay = formatCurrencyValue(result.futureValue);
-  const totalPaymentsDisplay = formatCurrencyValue(result.totalPayments);
-  const totalInterestDisplay = formatCurrencyValue(result.totalInterest);
-  const effectivePeriodsDisplay = formatNumber(result.totalPeriods, { maximumFractionDigits: 2 });
-  const appliedRateDisplay = formatNumber(result.periodicRate * 100, { maximumFractionDigits: 4 });
-
-  if (resultOutput) {
-    resultOutput.textContent = `Future Value of Annuity: ${futureValueDisplay}`;
+  if (annuityType === 'due') {
+    annuityFactor *= (1 + appliedRateDecimal);
   }
+  const periodsPerYear = result.periodsPerYear;
 
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Annuity type:</strong> ${annuityTypeDisplay}</p>` +
-      `<p><strong>Total payments:</strong> ${totalPaymentsDisplay}</p>` +
-      `<p><strong>Total interest earned:</strong> ${totalInterestDisplay}</p>` +
-      `<p><strong>Effective periods:</strong> ${effectivePeriodsDisplay}</p>` +
-      `<p><strong>Applied rate per period:</strong> ${appliedRateDisplay}%</p>` +
-      `<p><strong>Compounding frequency:</strong> ${compoundingDisplay}</p>`;
+  const appliedRateDecimalStr = fmt(appliedRateDecimal, { maximumFractionDigits: 6 });
+  const annuityFactorStr = fmt(annuityFactor, { maximumFractionDigits: 6 });
+  const periodsPerYearStr = String(periodsPerYear);
+
+  /* Preview panel */
+  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${fvStr}</span>`;
+  const valueEl = resultDiv.querySelector('.mtg-result-value');
+  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+
+  summaryDiv.innerHTML =
+    `<p><strong>Type:</strong> ${annuityTypeStr}</p>` +
+    `<p><strong>Total payments:</strong> ${totalPaymentsStr}</p>` +
+    `<p><strong>Interest earned:</strong> ${totalInterestStr}</p>`;
+
+  /* Snapshot rows */
+  if (snapPayment) snapPayment.textContent = pmtStr;
+  if (snapRate) snapRate.textContent = rateStr;
+  if (snapPeriods) snapPeriods.textContent = periodsStr;
+  if (snapAnnuityType) snapAnnuityType.textContent = annuityTypeStr;
+  if (snapCompounding) snapCompounding.textContent = compoundingStr;
+  if (snapEffectivePeriods) snapEffectivePeriods.textContent = effectivePeriodsStr;
+  if (snapPeriodicRate) snapPeriodicRate.textContent = `${appliedRateStr}%`;
+
+  /* Explanation targets */
+  if (valueTargets) {
+    updateTargets(valueTargets.paymentAmount, pmtStr);
+    updateTargets(valueTargets.interestRate, rateStr);
+    updateTargets(valueTargets.periodCount, periodsStr);
+    updateTargets(valueTargets.annuityType, annuityTypeStr);
+    updateTargets(valueTargets.compoundingFrequency, compoundingStr);
+    updateTargets(valueTargets.futureValue, fvStr);
+    updateTargets(valueTargets.totalPayments, totalPaymentsStr);
+    updateTargets(valueTargets.totalInterest, totalInterestStr);
+    updateTargets(valueTargets.effectivePeriods, effectivePeriodsStr);
+    updateTargets(valueTargets.appliedRate, appliedRateStr);
+    updateTargets(valueTargets.appliedRateDecimal, appliedRateDecimalStr);
+    updateTargets(valueTargets.formulaAnnuityFactor, annuityFactorStr);
+    updateTargets(valueTargets.periodsPerYear, periodsPerYearStr);
   }
-
-  updateExplanation({
-    paymentAmount: paymentDisplay,
-    interestRate: interestRateDisplay,
-    periodCount: periodDisplay,
-    annuityType: annuityTypeDisplay,
-    futureValue: futureValueDisplay,
-    totalPayments: totalPaymentsDisplay,
-    totalInterest: totalInterestDisplay,
-    effectivePeriods: effectivePeriodsDisplay,
-    appliedRate: appliedRateDisplay,
-  });
 }
 
-if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
-}
+/* ── Event wiring ── */
 
-[paymentInput, interestRateInput, periodsInput].forEach((input) => {
-  if (!input) {
-    return;
-  }
-  input.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
+[pmtInput, rateInput, periodsInput].forEach((input) => {
+  input?.addEventListener('input', () => {
+    updateSliderDisplays();
+    calculate();
   });
 });
 
-if (paymentInput && interestRateInput && periodsInput) {
-  calculate();
-}
+calculateButton?.addEventListener('click', calculate);
+
+/* ── Init ── */
+updateSliderDisplays();
+calculate();

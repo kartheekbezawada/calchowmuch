@@ -28,7 +28,8 @@
     <div class="header-left">
       <a class="brand-logo" href="/" aria-label="Home">
         <span class="brand-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
             <rect x="4" y="2.5" width="16" height="19" rx="3" />
             <line x1="8" y1="6.5" x2="16" y2="6.5" />
             <line x1="9" y1="10" x2="9" y2="10.01" />
@@ -43,6 +44,11 @@
           </svg>
         </span>
       </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
       <div class="brand-block">
         <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
         <a class="brand-badge" href="/loans/home-loan">
@@ -59,160 +65,175 @@
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
       <div class="header-search">
         <span class="header-search-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
             <circle cx="11" cy="11" r="7" />
             <line x1="16.5" y1="16.5" x2="21" y2="21" />
           </svg>
         </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input id="global-calculator-search" class="header-search-input" type="search" placeholder="Search calculators…"
+          autocomplete="off" spellcheck="false" />
       </div>
     </div>
   </div>
 </header>
-
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content">
-<div class="nav-category" data-id="time-value-of-money">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Time Value of Money</span>
-    <span class="nav-category-indicator">-</span>
+          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
+<div class="fin-nav-group is-expanded" data-fin-subcategory="time-value-of-money">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">⏳</span>
+    <span class="fin-nav-toggle-label">Time Value of Money</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item is-active" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/present-value"><span class="fin-nav-item-icon" aria-hidden="true">📉</span>Present Value (PV)</a><a class="fin-nav-item" href="/finance/future-value"><span class="fin-nav-item-icon" aria-hidden="true">📈</span>Future Value (FV)</a><a class="fin-nav-item" href="/finance/present-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Present Value of Annuity</a><a class="fin-nav-item is-active" href="/finance/future-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">💹</span>Future Value of Annuity</a>
   </div>
 </div>
-<div class="nav-category" data-id="interest-and-growth">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Interest & Growth</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group" data-fin-subcategory="interest-and-growth">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">📈</span>
+    <span class="fin-nav-toggle-label">Interest & Growth</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/simple-interest">Simple Interest</a><a class="nav-item" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/simple-interest"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Simple Interest</a><a class="fin-nav-item" href="/finance/compound-interest"><span class="fin-nav-item-icon" aria-hidden="true">♻️</span>Compound Interest</a><a class="fin-nav-item" href="/finance/effective-annual-rate"><span class="fin-nav-item-icon" aria-hidden="true">🔄</span>Effective Annual Rate (EAR)</a>
   </div>
 </div>
-<div class="nav-category" data-id="investments-and-savings">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Investments & Savings</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group" data-fin-subcategory="investments-and-savings">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">💰</span>
+    <span class="fin-nav-toggle-label">Investments & Savings</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/savings-goal">Savings Goal</a><a class="nav-item" href="/finance/investment-growth">Investment Growth</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/investment-growth"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Investment Growth</a><a class="fin-nav-item" href="/finance/time-to-savings-goal"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Time to Savings Goal</a><a class="fin-nav-item" href="/finance/monthly-savings-needed"><span class="fin-nav-item-icon" aria-hidden="true">🏦</span>Monthly Savings Needed</a>
   </div>
-</div></div>
+</div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Future Value of Annuity Calculator</h1>
-  <div id="calc-future-value-of-annuity">
-  <div class="calculator-ui">
-    <h2>Future Value of Annuity Calculator (Ordinary & Due)</h2>
-    <p class="helper">
-      Estimate the future value of a series of regular payments and compare ordinary annuity vs annuity due.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-future-value-of-annuity">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Future value of annuity calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the future value of a series of regular payments. Compare ordinary
+            annuity vs annuity due. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="fva-payment">Payment Amount (PMT)</label>
-        <input id="fva-payment" type="number" value="500" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fva-payment">Payment Amount (PMT)</label>
+              <span class="slider-value" id="fva-pmt-display">500</span>
+            </div>
+            <input id="fva-payment" type="range" value="500" min="10" max="50000" step="10" />
+          </div>
 
-      <div class="input-row">
-        <label for="fva-interest-rate">Interest Rate (%)</label>
-        <input id="fva-interest-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-interest-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="fva-rate-display">5%</span>
+              </div>
+              <input id="fva-interest-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="fva-periods">Number of Periods</label>
-        <input id="fva-periods" type="number" value="10" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-periods">Number of Periods</label>
+                <span class="slider-value" id="fva-periods-display">10</span>
+              </div>
+              <input id="fva-periods" type="range" value="10" min="1" max="60" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="fva-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-period-type-label"
-          data-button-group="fva-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="fva-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Annuity Type</span>
+              <div class="button-group" role="group" aria-label="Annuity type" data-button-group="fva-annuity-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="ordinary"
+                  aria-pressed="true">Ordinary</button>
+                <button class="calculator-button secondary" type="button" data-value="due"
+                  aria-pressed="false">Due</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="fva-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="fva-calc">
+              Calculate FV of Annuity
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="fva-annuity-type-label">Annuity Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-annuity-type-label"
-          data-button-group="fva-annuity-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="ordinary"
-            aria-pressed="true"
-          >
-            Ordinary
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
-            Due
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="FV of annuity result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated FV of Annuity</p>
+            <div class="result mtg-result-card" id="fva-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="fva-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Payment (PMT)</span>
+              <strong data-fva="snap-payment"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-fva="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Periods</span>
+              <strong data-fva="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annuity Type</span>
+              <strong data-fva="snap-annuity-type"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-fva="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-fva="snap-effective-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-fva="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="fva-optional-toggle"
-      aria-expanded="false"
-      aria-controls="fva-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="fva-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="fva-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-compound-label"
-          data-button-group="fva-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="fva-calc">
-      Calculate Future Value of Annuity
-    </button>
-
-    <div class="result" id="fva-result" aria-live="polite"></div>
-    <div class="result-detail" id="fva-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
@@ -221,270 +242,241 @@
 </style>
 
 <script type="module" src="/calculators/finance/future-value-of-annuity/module.js"></script>
+    <div id="fva-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Future Value of Annuity — Results Breakdown</h2>
+    <p>
+      The future value of an annuity tells you how much a series of regular payments will
+      be worth at a future date after earning compound interest. The results below show
+      exactly how your inputs translate into the accumulated total.
+    </p>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="fva-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your payment amount of <span data-fva="payment-amount"></span>, an interest rate of
-    <span data-fva="interest-rate"></span>, and <span data-fva="period-count"></span>, the future value of the annuity is
-    <span data-fva="future-value"></span>.
-    This calculation reflects an <span data-fva="annuity-type"></span> with an applied rate of
-    <span data-fva="applied-rate"></span> percent per period over <span data-fva="effective-periods"></span> effective
-    periods.
-    This future value of annuity calculator shows the accumulated value of regular payments with compound interest.
-  </p>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="fva-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Payment Amount (PMT)</td>
+              <td><span data-fva="payment-amount"></span></td>
+              <td class="fva-how-col">The fixed amount invested or saved each period</td>
+            </tr>
+            <tr>
+              <td>Interest Rate</td>
+              <td><span data-fva="interest-rate"></span></td>
+              <td class="fva-how-col">Annual rate at which each payment grows</td>
+            </tr>
+            <tr>
+              <td>Periods</td>
+              <td><span data-fva="period-count"></span></td>
+              <td class="fva-how-col">Number of periods over which payments are made</td>
+            </tr>
+            <tr>
+              <td>Annuity Type</td>
+              <td><span data-fva="annuity-type"></span></td>
+              <td class="fva-how-col">Whether payments are made at start or end of period</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-fva="compounding-frequency"></span></td>
+              <td class="fva-how-col">How often the interest rate compounds per year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-fva="effective-periods"></span></td>
+              <td class="fva-how-col">Total number of compounding periods used</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-fva="applied-rate"></span>%</td>
+              <td class="fva-how-col">Interest rate applied in each compounding period</td>
+            </tr>
+            <tr>
+              <td>Total Payments</td>
+              <td><span data-fva="total-payments"></span></td>
+              <td class="fva-how-col">Sum of all payments without interest</td>
+            </tr>
+            <tr>
+              <td>Total Interest Earned</td>
+              <td><span data-fva="total-interest"></span></td>
+              <td class="fva-how-col">Interest earned on top of your contributions</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>FV of Annuity</td>
+              <td><span data-fva="future-value"></span></td>
+              <td class="fva-how-col">Total accumulated value at the end of term</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-fva="payment-amount"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Interest Rate</td>
-          <td><span data-fva="interest-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Number of Periods</td>
-          <td><span data-fva="period-count"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-fva="annuity-type"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Future Value of Annuity</td>
-          <td><span data-fva="future-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        The future value of an annuity projects a stream of equal payments into their
+        accumulated worth at a future date. Here's how your inputs drive the result.
+      </p>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-fva="payment-amount"></span></td>
-          <td>Currency</td>
-          <td>Regular payment each period</td>
-        </tr>
-        <tr>
-          <td>Total Payments</td>
-          <td><span data-fva="total-payments"></span></td>
-          <td>Currency</td>
-          <td>Sum of all payments</td>
-        </tr>
-        <tr>
-          <td>Total Interest Earned</td>
-          <td><span data-fva="total-interest"></span></td>
-          <td>Currency</td>
-          <td>Interest earned over term</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-fva="annuity-type"></span></td>
-          <td>N/A</td>
-          <td>Ordinary or due timing</td>
-        </tr>
-        <tr>
-          <td>Interest Rate per Period</td>
-          <td><span data-fva="applied-rate"></span></td>
-          <td>Percent</td>
-          <td>Rate applied each period</td>
-        </tr>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-fva="effective-periods"></span></td>
-          <td>Periods</td>
-          <td>Total payment periods</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Future Value of Annuity</td>
-          <td><span data-fva="future-value"></span></td>
-          <td>Currency</td>
-          <td>Accumulated value at end</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+      <ul class="fva-explanation-list">
+        <li>
+          <strong>Payment Amount (PMT):</strong>
+          Each period you contribute <span data-fva="payment-amount"></span>. This is the fixed
+          cash flow that earns compound interest over the remaining term.
+        </li>
+        <li>
+          <strong>Interest Rate:</strong>
+          A <span data-fva="interest-rate"></span> annual interest rate determines how fast
+          each payment grows. Higher rates mean more compound interest.
+        </li>
+        <li>
+          <strong>Periods:</strong>
+          Payments continue for <span data-fva="period-count"></span>. Earlier payments
+          compound for more periods, earning significantly more interest.
+        </li>
+        <li>
+          <strong>Annuity Type:</strong>
+          You selected <span data-fva="annuity-type"></span>. Ordinary annuities pay at
+          the end of each period; annuity due pays at the beginning, giving a higher future value.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-fva="compounding-frequency"></span> compounding, the annual rate is
+          split into <span data-fva="effective-periods"></span> effective periods, each at
+          <span data-fva="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Interest Earned:</strong>
+          Your total contributions of <span data-fva="total-payments"></span> grow by
+          <span data-fva="total-interest"></span> in interest, reaching
+          <span data-fva="future-value"></span> at maturity.
+        </li>
+      </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    The future value of annuity calculations project a stream of payments into their accumulated value at a future date.
-    Your FV of annuity estimate of <span data-fva="future-value"></span> is based on total payments of
-    <span data-fva="total-payments"></span> spread over <span data-fva="effective-periods"></span> effective periods,
-    earning <span data-fva="total-interest"></span> in total interest.
-  </p>
-  <p>
-    Selecting annuity due assumes payments are made at the beginning of each period, which increases the future value
-    compared with an ordinary annuity because each payment earns interest for one extra period. The future value of
-    annuity formula compounds each payment using the applied rate per period of
-    <span data-fva="applied-rate"></span> percent.
-  </p>
-  <p><strong>Ordinary annuity vs annuity due comparison:</strong></p>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Feature</th>
-          <th scope="col">Ordinary Annuity</th>
-          <th scope="col">Annuity Due</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Timing</td>
-          <td>End of each period</td>
-          <td>Beginning of each period</td>
-        </tr>
-        <tr>
-          <td>First Payment Occurs</td>
-          <td>After first period</td>
-          <td>Immediately</td>
-        </tr>
-        <tr>
-          <td>Future Value</td>
-          <td>Lower</td>
-          <td>Higher</td>
-        </tr>
-        <tr>
-          <td>Compounding</td>
-          <td>Less compounding applied</td>
-          <td>More compounding applied</td>
-        </tr>
-        <tr>
-          <td>Common Examples</td>
-          <td>Retirement contributions, savings</td>
-          <td>Rent prepayments, lease payments</td>
-        </tr>
-        <tr>
-          <td>Formula Basis</td>
-          <td>Standard annuity FV calculation</td>
-          <td>Ordinary annuity FV adjusted for timing</td>
-        </tr>
-        <tr>
-          <td>Cash Flow Timing</td>
-          <td>Later</td>
-          <td>Earlier</td>
-        </tr>
-        <tr>
-          <td>Typical Use Case</td>
-          <td>Savings plans and investments</td>
-          <td>Leases and advance payments</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Summary</td>
-          <td>Payments invested later</td>
-          <td>Payments invested sooner</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <p>
-    Use this future value of annuity example to compare scenarios for ordinary annuity and annuity due payments.
-  </p>
+      <h4>How the Formula Works</h4>
+      <p>The future value of an ordinary annuity formula is:</p>
+      <p class="fva-formula-block">
+        FVA = PMT &times; [((1+r)<sup>n</sup> &minus; 1) &divide; r]
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="fva-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-fva="interest-rate"></span> &divide;
+          <span data-fva="periods-per-year"></span> compounding periods per year
+          = <span data-fva="applied-rate"></span>% per period
+          (as a decimal: <span data-fva="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-fva="effective-periods"></span> total compounding periods.
+        </li>
+        <li>
+          <strong>Build the annuity factor:</strong>
+          [(1 + <span data-fva="applied-rate-decimal"></span>)<sup><span data-fva="effective-periods"></span></sup>
+          &minus; 1]
+          &divide; <span data-fva="applied-rate-decimal"></span>
+          = <span data-fva="formula-annuity-factor"></span>.
+        </li>
+        <li>
+          <strong>Multiply by payment:</strong>
+          <span data-fva="payment-amount"></span> &times;
+          <span data-fva="formula-annuity-factor"></span>
+          = <strong><span data-fva="future-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        For an annuity due, the result is multiplied by (1 + r) because each payment
+        is invested one period earlier, earning extra compound interest.
+      </p>
+    </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is the future value of an annuity?</strong></p>
-    <p class="faq-answer">
-      A: The future value of an annuity is the total value of a series of regular payments at a future date after earning
-      interest over time.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the difference between an ordinary annuity and an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: In an ordinary annuity, payments are made at the end of each period, while in an annuity due, payments are made
-      at the beginning of each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why is the future value of an annuity due higher?</strong></p>
-    <p class="faq-answer">
-      A: An annuity due has a higher future value because payments are invested earlier and earn interest for a longer
-      time.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the future value of an ordinary annuity?</strong></p>
-    <p class="faq-answer">
-      A: The future value of an ordinary annuity is calculated by compounding each payment made at the end of each period
-      using the interest rate.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the future value of an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: The future value of an annuity due is calculated by adjusting the ordinary annuity future value to account for
-      payments made at the beginning of each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What interest rate should be used in future value calculations?</strong></p>
-    <p class="faq-answer">
-      A: The interest rate should reflect expected investment returns, savings rates, or long-term growth assumptions.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is the future value of annuity useful for retirement planning?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is commonly used to estimate how regular retirement contributions will grow over time.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can this calculator be used for monthly contributions?</strong></p>
-    <p class="faq-answer">
-      A: Yes, the calculator supports monthly, quarterly, and annual contribution periods.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the interest rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: If the interest rate is zero, the future value of the annuity equals the total amount of all contributions.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is future value of annuity used for investment planning?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is widely used to evaluate savings plans, investment strategies, and long-term financial goals.
-    </p>
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is the future value of an annuity?</h4>
+          <p>It is the total accumulated value of a series of regular payments at a future date after earning
+            compound interest over time.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Ordinary annuity vs annuity due?</h4>
+          <p>Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a
+            higher future value because payments compound longer.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>Why is the FV of annuity due higher?</h4>
+          <p>Because each payment is invested one period earlier, it earns compound interest for a longer time
+            than an ordinary annuity.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>What interest rate should I use?</h4>
+          <p>Use a rate reflecting expected investment returns, savings rates, or long-term growth assumptions
+            relevant to your financial plan.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>Is this useful for retirement planning?</h4>
+          <p>Yes, it is commonly used to estimate how regular 401(k), IRA, or pension contributions will grow
+            over your working years.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Can I use this for monthly contributions?</h4>
+          <p>Yes, the calculator supports monthly, quarterly, semi-annual, and annual payment and compounding
+            periods.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">07</span>
+          <h4>What happens if the interest rate is zero?</h4>
+          <p>If the rate is zero, the future value equals the total of all payments — no interest is earned and
+            the annuity factor equals the number of periods.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">08</span>
+          <h4>How does compounding frequency affect results?</h4>
+          <p>More frequent compounding (e.g. monthly vs annual) increases the future value because interest is
+            reinvested more often within each year.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">09</span>
+          <h4>Is this the same as a simple savings calculator?</h4>
+          <p>It's similar but specifically models equal periodic payments. A savings calculator may include an
+            initial lump sum (present value) as well.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">10</span>
+          <h4>Can I use FVA for investment planning?</h4>
+          <p>Yes, it is widely used to evaluate savings plans, SIP investments, education funds, and long-term
+            financial goals.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
-
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

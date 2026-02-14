@@ -1,175 +1,184 @@
 <div id="pv-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your inputs of a future value of <span data-pv="future-value"></span>, a discount rate
-    of <span data-pv="discount-rate"></span>, and a time period of
-    <span data-pv="time-period"></span>, your estimated present value is
-    <span data-pv="present-value"></span>.
-    This suggests that the future amount is worth about <span data-pv="present-value"></span>
-    today when discounted at <span data-pv="applied-rate"></span> percent per period with
-    <span data-pv="compounding-frequency"></span> compounding.
-  </p>
+  <div id="loan-mtg-explanation">
+    <h2>Present Value — Results Breakdown</h2>
+    <p>
+      Present value tells you what a future sum of money is worth today after discounting it at a
+      given rate. The results below show exactly how your inputs translate into today's value.
+    </p>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value</td>
-          <td><span data-pv="future-value"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Discount Rate</td>
-          <td><span data-pv="discount-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Time Period</td>
-          <td><span data-pv="time-period"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Compounding Frequency</td>
-          <td><span data-pv="compounding-frequency"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value</td>
-          <td><span data-pv="present-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pv-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody id="pv-results-body">
+            <tr>
+              <td>Future Value (FV)</td>
+              <td><span data-pv="future-value"></span></td>
+              <td class="pv-how-col">The amount you expect to receive in the future</td>
+            </tr>
+            <tr>
+              <td>Discount Rate</td>
+              <td><span data-pv="discount-rate"></span></td>
+              <td class="pv-how-col">Annual rate used to discount the future amount</td>
+            </tr>
+            <tr>
+              <td>Time Period</td>
+              <td><span data-pv="time-period"></span></td>
+              <td class="pv-how-col">How long until you receive the future amount</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-pv="compounding-frequency"></span></td>
+              <td class="pv-how-col">How often the discount rate is applied each year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-pv="effective-periods"></span></td>
+              <td class="pv-how-col">Total number of compounding periods used</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-pv="applied-rate"></span>%</td>
+              <td class="pv-how-col">Discount rate applied in each compounding period</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Present Value (PV)</td>
+              <td><span data-pv="present-value"></span></td>
+              <td class="pv-how-col">What the future amount is worth in today's money</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value (FV)</td>
-          <td><span data-pv="future-value"></span></td>
-          <td>Currency</td>
-          <td>Amount received in the future</td>
-        </tr>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-pv="effective-periods"></span></td>
-          <td>Periods</td>
-          <td>Total compounding periods</td>
-        </tr>
-        <tr>
-          <td>Applied Rate per Period</td>
-          <td><span data-pv="applied-rate"></span></td>
-          <td>Percent</td>
-          <td>Discount rate each period</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value (PV)</td>
-          <td><span data-pv="present-value"></span></td>
-          <td>Currency</td>
-          <td>Value of future money today</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        Present value (PV) converts a future amount into today's value so you can compare
+        financial options on a like-for-like basis. Below is a breakdown of how your inputs
+        translate into the result.
+      </p>
 
-  <h3>Explanation</h3>
-  <p>
-    Present value converts a future amount into today's value so you can compare options on a
-    like-for-like basis. In your results, the present value of
-    <span data-pv="present-value"></span> is driven by an applied rate per period of
-    <span data-pv="applied-rate"></span> percent and <span data-pv="effective-periods"></span>
-    effective periods.
-  </p>
-  <p>
-    Higher applied rates or more periods lower the present value, while lower rates or fewer
-    periods increase it.
-  </p>
+      <ul class="pv-explanation-list">
+        <li>
+          <strong>Future Value (FV):</strong>
+          You expect to receive <span data-pv="future-value"></span> at the end of the period.
+          This is the starting point of the discounting process.
+        </li>
+        <li>
+          <strong>Discount Rate:</strong>
+          A <span data-pv="discount-rate"></span> annual discount rate represents the cost of
+          capital, expected inflation, or the opportunity cost of not having the money today.
+        </li>
+        <li>
+          <strong>Time Period:</strong>
+          The money arrives in <span data-pv="time-period"></span>. The longer the wait, the more
+          the future amount is discounted because each additional period compounds the reduction.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-pv="compounding-frequency"></span> compounding, the annual discount rate
+          is split into <span data-pv="effective-periods"></span> effective periods, each at a
+          rate of <span data-pv="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Discount Lost:</strong>
+          The difference between the future value and the present value is
+          <span data-pv="formula-discount-lost"></span>. This represents the time-value cost —
+          the amount "lost" by not having the money today.
+        </li>
+      </ul>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is present value (PV)?</strong></p>
-    <p class="faq-answer">
-      A: Present value is the current worth of a future amount of money after accounting for the
-      time value of money.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why is present value lower than future value?</strong></p>
-    <p class="faq-answer">
-      A: Because money today can earn returns, a future amount is discounted to reflect lost
-      earning potential.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What discount rate should I use?</strong></p>
-    <p class="faq-answer">
-      A: Use a rate that reflects inflation, investment returns, or the opportunity cost relevant
-      to your decision.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How does the time period affect present value?</strong></p>
-    <p class="faq-answer">
-      A: Longer time periods increase discounting, which lowers the present value of a future
-      amount.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is compounding frequency?</strong></p>
-    <p class="faq-answer">
-      A: It defines how often the discount rate is applied, such as annually or monthly.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is present value used in investment decisions?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is commonly used to evaluate investments, loans, pensions, and future cash flows.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can present value be higher than future value?</strong></p>
-    <p class="faq-answer">
-      A: No, with a positive discount rate, present value will always be lower than future value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Does inflation affect present value?</strong></p>
-    <p class="faq-answer">
-      A: Yes, higher inflation increases discounting and reduces present value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the discount rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: The present value equals the future value because no discounting is applied.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is this calculator suitable for loans and savings?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it can be used for loans, savings goals, investments, and any future cash amount.
-    </p>
+      <h4>How the Formula Works</h4>
+      <p>The present value formula is:</p>
+      <p class="pv-formula-block">
+        PV = FV &divide; (1 + r)<sup>n</sup>
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="pv-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-pv="discount-rate"></span> &divide;
+          <span data-pv="effective-periods-per-year"></span> compounding periods per year
+          = <span data-pv="applied-rate"></span>% per period
+          (as a decimal: <span data-pv="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-pv="time-period"></span> &times;
+          <span data-pv="effective-periods-per-year"></span> compounding periods per year
+          = <span data-pv="effective-periods"></span> total periods.
+        </li>
+        <li>
+          <strong>Build the denominator:</strong>
+          (1 + <span data-pv="applied-rate-decimal"></span>)<sup><span data-pv="effective-periods"></span></sup>
+          = <span data-pv="formula-denominator"></span>.
+        </li>
+        <li>
+          <strong>Divide to get PV:</strong>
+          <span data-pv="future-value"></span> &divide;
+          <span data-pv="formula-denominator"></span>
+          = <strong><span data-pv="present-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        Higher discount rates or longer time horizons increase the denominator, which
+        lowers the present value. Conversely, lower rates or shorter periods bring PV
+        closer to the original future value.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is present value (PV)?</h4>
+          <p>Present value is the current worth of a future amount of money after accounting for the time value of
+            money.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Why is present value lower than future value?</h4>
+          <p>Because money today can earn returns, a future amount is discounted to reflect lost earning potential.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What discount rate should I use?</h4>
+          <p>Use a rate that reflects inflation, investment returns, or the opportunity cost relevant to your decision.
+          </p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does the time period affect present value?</h4>
+          <p>Longer time periods increase discounting, which lowers the present value of a future amount.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What is compounding frequency?</h4>
+          <p>It defines how often the discount rate is applied — annually, quarterly, or monthly — affecting precision.
+          </p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Can present value be higher than future value?</h4>
+          <p>No, with a positive discount rate the present value will always be lower than the future value.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

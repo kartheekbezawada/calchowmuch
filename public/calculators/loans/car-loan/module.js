@@ -14,8 +14,6 @@ const calculateButton = document.querySelector('#car-calculate');
 const resultDiv = document.querySelector('#car-result');
 const summaryDiv = document.querySelector('#car-summary');
 
-const downTypeGroup = document.querySelector('[data-button-group="car-down-type"]');
-
 const priceDisplay = document.querySelector('#car-price-display');
 const downDisplay = document.querySelector('#car-down-display');
 const tradeDisplay = document.querySelector('#car-trade-display');
@@ -106,14 +104,6 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const downTypeButtons = setupButtonGroup(downTypeGroup, {
-  defaultValue: 'amount',
-  onChange: (value) => {
-    handleDownTypeChange(value);
-    calculate();
-  },
-});
-
 function formatValue(value, options = {}) {
   return formatNumber(value, {
     minimumFractionDigits: 0,
@@ -134,16 +124,13 @@ function setSliderFill(input) {
 }
 
 function updateSliderDisplays() {
-  const downType = downTypeButtons?.getValue() ?? 'amount';
+  const downType = 'amount';
 
   if (priceDisplay && priceInput) {
     priceDisplay.textContent = formatValue(Number(priceInput.value));
   }
   if (downDisplay && downValueInput) {
-    downDisplay.textContent =
-      downType === 'percent'
-        ? formatPercent(Number(downValueInput.value))
-        : formatValue(Number(downValueInput.value));
+    downDisplay.textContent = formatValue(Number(downValueInput.value));
   }
   if (tradeDisplay && tradeInput) {
     tradeDisplay.textContent = formatValue(Number(tradeInput.value));
@@ -162,45 +149,6 @@ function updateSliderDisplays() {
   }
 
   [priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach(setSliderFill);
-}
-
-function handleDownTypeChange(type) {
-  const price = Number(priceInput?.value);
-  const currentValue = Number(downValueInput?.value);
-
-  if (
-    downValueInput &&
-    Number.isFinite(currentValue) &&
-    currentValue >= 0 &&
-    Number.isFinite(price) &&
-    price > 0 &&
-    lastDownType !== type
-  ) {
-    if (type === 'percent' && lastDownType === 'amount') {
-      downValueInput.value = ((currentValue / price) * 100).toFixed(2);
-    } else if (type === 'amount' && lastDownType === 'percent') {
-      downValueInput.value = ((currentValue / 100) * price).toFixed(2);
-    }
-  }
-
-  if (downValueLabel) {
-    downValueLabel.textContent = type === 'percent' ? 'Down Payment Percent' : 'Down Payment Amount';
-  }
-
-  if (downValueInput) {
-    if (type === 'percent') {
-      downValueInput.min = '0';
-      downValueInput.max = '99.99';
-      downValueInput.step = '0.1';
-    } else {
-      downValueInput.min = '0';
-      downValueInput.max = String(Math.max(0, Number(priceInput?.value || 0)));
-      downValueInput.step = '100';
-    }
-  }
-
-  lastDownType = type;
-  updateSliderDisplays();
 }
 
 function clearOutputs() {
@@ -372,7 +320,7 @@ function calculate() {
   const taxRate = Number(taxInput?.value);
   const apr = Number(aprInput?.value);
   const termYears = Number(termInput?.value);
-  const downType = downTypeButtons?.getValue() ?? 'amount';
+  const downType = 'amount';
 
   if (!Number.isFinite(price) || price <= 0) {
     setError('Vehicle price must be greater than 0.');
@@ -407,21 +355,13 @@ function calculate() {
     return;
   }
 
-  if (downType === 'percent') {
-    if (downRaw >= 100) {
-      setError('Down payment percent must be less than 100.');
-      return;
-    }
-    downPaymentPercent = downRaw;
-    downPaymentAmount = (price * downPaymentPercent) / 100;
-  } else {
-    if (downRaw >= price) {
-      setError('Down payment amount must be less than vehicle price.');
-      return;
-    }
-    downPaymentAmount = downRaw;
-    downPaymentPercent = price > 0 ? (downPaymentAmount / price) * 100 : 0;
+  if (downRaw >= price) {
+    setError('Down payment amount must be less than vehicle price.');
+    return;
   }
+  downPaymentAmount = downRaw;
+  downPaymentPercent = price > 0 ? (downPaymentAmount / price) * 100 : 0;
+
 
   const data = calculateCarLoan({
     price,
@@ -453,7 +393,7 @@ function calculate() {
 
 [priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (input === priceInput && downTypeButtons?.getValue() !== 'percent' && downValueInput) {
+    if (input === priceInput && downValueInput) {
       downValueInput.max = String(Math.max(0, Number(priceInput.value)));
       if (Number(downValueInput.value) > Number(downValueInput.max)) {
         downValueInput.value = downValueInput.max;
@@ -467,7 +407,6 @@ viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));
 viewYearlyButton?.addEventListener('click', () => applyView('yearly'));
 calculateButton?.addEventListener('click', calculate);
 
-handleDownTypeChange('amount');
 updateSliderDisplays();
 applyView('yearly');
 calculate();

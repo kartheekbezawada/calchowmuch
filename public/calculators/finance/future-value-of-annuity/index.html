@@ -1,104 +1,121 @@
 <div id="calc-future-value-of-annuity">
-  <div class="calculator-ui">
-    <h2>Future Value of Annuity Calculator (Ordinary & Due)</h2>
-    <p class="helper">
-      Estimate the future value of a series of regular payments and compare ordinary annuity vs annuity due.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Future value of annuity calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the future value of a series of regular payments. Compare ordinary
+            annuity vs annuity due. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="fva-payment">Payment Amount (PMT)</label>
-        <input id="fva-payment" type="number" value="500" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fva-payment">Payment Amount (PMT)</label>
+              <span class="slider-value" id="fva-pmt-display">500</span>
+            </div>
+            <input id="fva-payment" type="range" value="500" min="10" max="50000" step="10" />
+          </div>
 
-      <div class="input-row">
-        <label for="fva-interest-rate">Interest Rate (%)</label>
-        <input id="fva-interest-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-interest-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="fva-rate-display">5%</span>
+              </div>
+              <input id="fva-interest-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="fva-periods">Number of Periods</label>
-        <input id="fva-periods" type="number" value="10" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-periods">Number of Periods</label>
+                <span class="slider-value" id="fva-periods-display">10</span>
+              </div>
+              <input id="fva-periods" type="range" value="10" min="1" max="60" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="fva-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-period-type-label"
-          data-button-group="fva-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="fva-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Annuity Type</span>
+              <div class="button-group" role="group" aria-label="Annuity type" data-button-group="fva-annuity-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="ordinary"
+                  aria-pressed="true">Ordinary</button>
+                <button class="calculator-button secondary" type="button" data-value="due"
+                  aria-pressed="false">Due</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="fva-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="fva-calc">
+              Calculate FV of Annuity
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="fva-annuity-type-label">Annuity Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-annuity-type-label"
-          data-button-group="fva-annuity-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="ordinary"
-            aria-pressed="true"
-          >
-            Ordinary
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
-            Due
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="FV of annuity result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated FV of Annuity</p>
+            <div class="result mtg-result-card" id="fva-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="fva-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Payment (PMT)</span>
+              <strong data-fva="snap-payment"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-fva="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Periods</span>
+              <strong data-fva="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annuity Type</span>
+              <strong data-fva="snap-annuity-type"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-fva="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-fva="snap-effective-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-fva="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="fva-optional-toggle"
-      aria-expanded="false"
-      aria-controls="fva-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="fva-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="fva-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fva-compound-label"
-          data-button-group="fva-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="fva-calc">
-      Calculate Future Value of Annuity
-    </button>
-
-    <div class="result" id="fva-result" aria-live="polite"></div>
-    <div class="result-detail" id="fva-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
