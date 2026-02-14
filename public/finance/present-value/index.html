@@ -110,287 +110,305 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Present Value Calculator</h1>
-  <div id="calc-present-value">
-  <div class="calculator-ui">
-    <p class="helper">
-      Estimate the present value of a future amount using a discount rate and time period.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-present-value">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Present value calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the present value of a future amount using a discount rate, time period, and
+            compounding frequency. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pv-future-value">Future Value (FV)</label>
-        <input id="pv-future-value" type="number" value="10000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pv-future-value">Future Value (FV)</label>
+              <span class="slider-value" id="pv-fv-display">10,000</span>
+            </div>
+            <input id="pv-future-value" type="range" value="10000" min="100" max="500000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="pv-discount-rate">Discount Rate (%)</label>
-        <input id="pv-discount-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pv-rate-display">5%</span>
+              </div>
+              <input id="pv-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="pv-time-period">Time Period</label>
-        <input id="pv-time-period" type="number" value="3" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-time-period">Time Period</label>
+                <span class="slider-value" id="pv-time-display">3 yrs</span>
+              </div>
+              <input id="pv-time-period" type="range" value="3" min="1" max="50" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="pv-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pv-period-type-label"
-          data-button-group="pv-period-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="years"
-            aria-pressed="true"
-          >
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="pv-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="pv-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pv-calc">
+              Calculate Present Value
+            </button>
+          </div>
         </div>
-      </div>
+
+        <aside class="mtg-preview-panel" aria-label="Present value result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Present Value</p>
+            <div class="result mtg-result-card" id="pv-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pv-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Future Value</span>
+              <strong data-pv="snap-fv"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Discount Rate</span>
+              <strong data-pv="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-pv="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-pv="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-pv="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-pv="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="pv-optional-toggle"
-      aria-expanded="false"
-      aria-controls="pv-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="pv-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="pv-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pv-compound-label"
-          data-button-group="pv-compounding"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="annual"
-            aria-pressed="true"
-          >
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="pv-calc">
-      Calculate Present Value
-    </button>
-
-    <div class="result" id="pv-result" aria-live="polite"></div>
-    <div class="result-detail" id="pv-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/finance/present-value/calculator.css');
 </style>
+    <div id="pv-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Present Value — Results Breakdown</h2>
+    <p>
+      Present value tells you what a future sum of money is worth today after discounting it at a
+      given rate. The results below show exactly how your inputs translate into today's value.
+    </p>
 
-<script type="module" src="/calculators/finance/present-value/module.js"></script>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pv-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody id="pv-results-body">
+            <tr>
+              <td>Future Value (FV)</td>
+              <td><span data-pv="future-value"></span></td>
+              <td class="pv-how-col">The amount you expect to receive in the future</td>
+            </tr>
+            <tr>
+              <td>Discount Rate</td>
+              <td><span data-pv="discount-rate"></span></td>
+              <td class="pv-how-col">Annual rate used to discount the future amount</td>
+            </tr>
+            <tr>
+              <td>Time Period</td>
+              <td><span data-pv="time-period"></span></td>
+              <td class="pv-how-col">How long until you receive the future amount</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-pv="compounding-frequency"></span></td>
+              <td class="pv-how-col">How often the discount rate is applied each year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-pv="effective-periods"></span></td>
+              <td class="pv-how-col">Total number of compounding periods used</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-pv="applied-rate"></span>%</td>
+              <td class="pv-how-col">Discount rate applied in each compounding period</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Present Value (PV)</td>
+              <td><span data-pv="present-value"></span></td>
+              <td class="pv-how-col">What the future amount is worth in today's money</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        Present value (PV) converts a future amount into today's value so you can compare
+        financial options on a like-for-like basis. Below is a breakdown of how your inputs
+        translate into the result.
+      </p>
+
+      <ul class="pv-explanation-list">
+        <li>
+          <strong>Future Value (FV):</strong>
+          You expect to receive <span data-pv="future-value"></span> at the end of the period.
+          This is the starting point of the discounting process.
+        </li>
+        <li>
+          <strong>Discount Rate:</strong>
+          A <span data-pv="discount-rate"></span> annual discount rate represents the cost of
+          capital, expected inflation, or the opportunity cost of not having the money today.
+        </li>
+        <li>
+          <strong>Time Period:</strong>
+          The money arrives in <span data-pv="time-period"></span>. The longer the wait, the more
+          the future amount is discounted because each additional period compounds the reduction.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-pv="compounding-frequency"></span> compounding, the annual discount rate
+          is split into <span data-pv="effective-periods"></span> effective periods, each at a
+          rate of <span data-pv="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Discount Lost:</strong>
+          The difference between the future value and the present value is
+          <span data-pv="formula-discount-lost"></span>. This represents the time-value cost —
+          the amount "lost" by not having the money today.
+        </li>
+      </ul>
+
+      <h4>How the Formula Works</h4>
+      <p>The present value formula is:</p>
+      <p class="pv-formula-block">
+        PV = FV &divide; (1 + r)<sup>n</sup>
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="pv-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-pv="discount-rate"></span> &divide;
+          <span data-pv="effective-periods-per-year"></span> compounding periods per year
+          = <span data-pv="applied-rate"></span>% per period
+          (as a decimal: <span data-pv="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-pv="time-period"></span> &times;
+          <span data-pv="effective-periods-per-year"></span> compounding periods per year
+          = <span data-pv="effective-periods"></span> total periods.
+        </li>
+        <li>
+          <strong>Build the denominator:</strong>
+          (1 + <span data-pv="applied-rate-decimal"></span>)<sup><span data-pv="effective-periods"></span></sup>
+          = <span data-pv="formula-denominator"></span>.
+        </li>
+        <li>
+          <strong>Divide to get PV:</strong>
+          <span data-pv="future-value"></span> &divide;
+          <span data-pv="formula-denominator"></span>
+          = <strong><span data-pv="present-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        Higher discount rates or longer time horizons increase the denominator, which
+        lowers the present value. Conversely, lower rates or shorter periods bring PV
+        closer to the original future value.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is present value (PV)?</h4>
+          <p>Present value is the current worth of a future amount of money after accounting for the time value of
+            money.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Why is present value lower than future value?</h4>
+          <p>Because money today can earn returns, a future amount is discounted to reflect lost earning potential.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What discount rate should I use?</h4>
+          <p>Use a rate that reflects inflation, investment returns, or the opportunity cost relevant to your decision.
+          </p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does the time period affect present value?</h4>
+          <p>Longer time periods increase discounting, which lowers the present value of a future amount.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What is compounding frequency?</h4>
+          <p>It defines how often the discount rate is applied — annually, quarterly, or monthly — affecting precision.
+          </p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Can present value be higher than future value?</h4>
+          <p>No, with a positive discount rate the present value will always be lower than the future value.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="pv-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your inputs of a future value of <span data-pv="future-value"></span>, a discount rate
-    of <span data-pv="discount-rate"></span>, and a time period of
-    <span data-pv="time-period"></span>, your estimated present value is
-    <span data-pv="present-value"></span>.
-    This suggests that the future amount is worth about <span data-pv="present-value"></span>
-    today when discounted at <span data-pv="applied-rate"></span> percent per period with
-    <span data-pv="compounding-frequency"></span> compounding.
-  </p>
-
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value</td>
-          <td><span data-pv="future-value"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Discount Rate</td>
-          <td><span data-pv="discount-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Time Period</td>
-          <td><span data-pv="time-period"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Compounding Frequency</td>
-          <td><span data-pv="compounding-frequency"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value</td>
-          <td><span data-pv="present-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
   </div>
-
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value (FV)</td>
-          <td><span data-pv="future-value"></span></td>
-          <td>Currency</td>
-          <td>Amount received in the future</td>
-        </tr>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-pv="effective-periods"></span></td>
-          <td>Periods</td>
-          <td>Total compounding periods</td>
-        </tr>
-        <tr>
-          <td>Applied Rate per Period</td>
-          <td><span data-pv="applied-rate"></span></td>
-          <td>Percent</td>
-          <td>Discount rate each period</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value (PV)</td>
-          <td><span data-pv="present-value"></span></td>
-          <td>Currency</td>
-          <td>Value of future money today</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-  <h3>Explanation</h3>
-  <p>
-    Present value converts a future amount into today's value so you can compare options on a
-    like-for-like basis. In your results, the present value of
-    <span data-pv="present-value"></span> is driven by an applied rate per period of
-    <span data-pv="applied-rate"></span> percent and <span data-pv="effective-periods"></span>
-    effective periods.
-  </p>
-  <p>
-    Higher applied rates or more periods lower the present value, while lower rates or fewer
-    periods increase it.
-  </p>
-
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is present value (PV)?</strong></p>
-    <p class="faq-answer">
-      A: Present value is the current worth of a future amount of money after accounting for the
-      time value of money.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why is present value lower than future value?</strong></p>
-    <p class="faq-answer">
-      A: Because money today can earn returns, a future amount is discounted to reflect lost
-      earning potential.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What discount rate should I use?</strong></p>
-    <p class="faq-answer">
-      A: Use a rate that reflects inflation, investment returns, or the opportunity cost relevant
-      to your decision.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How does the time period affect present value?</strong></p>
-    <p class="faq-answer">
-      A: Longer time periods increase discounting, which lowers the present value of a future
-      amount.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is compounding frequency?</strong></p>
-    <p class="faq-answer">
-      A: It defines how often the discount rate is applied, such as annually or monthly.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is present value used in investment decisions?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is commonly used to evaluate investments, loans, pensions, and future cash flows.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can present value be higher than future value?</strong></p>
-    <p class="faq-answer">
-      A: No, with a positive discount rate, present value will always be lower than future value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Does inflation affect present value?</strong></p>
-    <p class="faq-answer">
-      A: Yes, higher inflation increases discounting and reduces present value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the discount rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: The present value equals the future value because no discounting is applied.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is this calculator suitable for loans and savings?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it can be used for loans, savings goals, investments, and any future cash amount.
-    </p>
-  </div>
-</div>
-
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

@@ -1,99 +1,120 @@
 <div id="calc-future-value">
-  <div class="calculator-ui">
-    <p class="helper">
-      Estimate how much your money can grow using interest rate, time period, and optional regular contributions.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Future value calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate how much your money can grow using interest rate, time period, and
+            compounding frequency. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="fv-present-value">Present Value (PV)</label>
-        <input id="fv-present-value" type="number" value="10000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fv-present-value">Present Value (PV)</label>
+              <span class="slider-value" id="fv-pv-display">10,000</span>
+            </div>
+            <input id="fv-present-value" type="range" value="10000" min="100" max="500000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="fv-interest-rate">Interest / Growth Rate (%)</label>
-        <input id="fv-interest-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fv-interest-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="fv-rate-display">5%</span>
+              </div>
+              <input id="fv-interest-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="fv-time-period">Time Period</label>
-        <input id="fv-time-period" type="number" value="3" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fv-time-period">Time Period</label>
+                <span class="slider-value" id="fv-time-display">3 yrs</span>
+              </div>
+              <input id="fv-time-period" type="range" value="3" min="1" max="50" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="fv-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fv-period-type-label"
-          data-button-group="fv-period-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="years"
-            aria-pressed="true"
-          >
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fv-regular-contribution">Regular Contribution</label>
+              <span class="slider-value" id="fv-contrib-display">0</span>
+            </div>
+            <input id="fv-regular-contribution" type="range" value="0" min="0" max="10000" step="50" />
+          </div>
+
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="fv-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="fv-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="fv-calc">
+              Calculate Future Value
+            </button>
+          </div>
         </div>
-      </div>
+
+        <aside class="mtg-preview-panel" aria-label="Future value result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Future Value</p>
+            <div class="result mtg-result-card" id="fv-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="fv-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Present Value</span>
+              <strong data-fv="snap-pv"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-fv="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-fv="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-fv="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Contribution / Period</span>
+              <strong data-fv="snap-contribution"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-fv="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-fv="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="fv-optional-toggle"
-      aria-expanded="false"
-      aria-controls="fv-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="fv-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="fv-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="fv-compound-label"
-          data-button-group="fv-compounding"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="annual"
-            aria-pressed="true"
-          >
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label for="fv-regular-contribution">Regular Contribution</label>
-        <input id="fv-regular-contribution" type="number" value="0" min="0" step="0.01" />
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="fv-calc">
-      Calculate Future Value
-    </button>
-
-    <div class="result" id="fv-result" aria-live="polite"></div>
-    <div class="result-detail" id="fv-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

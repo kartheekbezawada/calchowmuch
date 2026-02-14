@@ -1,37 +1,73 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import {
   calculatePresentValueOfAnnuity,
   resolveCompounding,
 } from '/assets/js/core/time-value-utils.js';
 
-const paymentInput = document.querySelector('#pva-payment');
-const discountRateInput = document.querySelector('#pva-discount-rate');
+/* ── DOM refs: calculator inputs ── */
+const pmtInput = document.querySelector('#pva-payment');
+const rateInput = document.querySelector('#pva-discount-rate');
 const periodsInput = document.querySelector('#pva-periods');
 const calculateButton = document.querySelector('#pva-calc');
-const resultOutput = document.querySelector('#pva-result');
-const resultDetail = document.querySelector('#pva-result-detail');
-const optionalToggle = document.querySelector('#pva-optional-toggle');
-const optionalSection = document.querySelector('#pva-optional-section');
+const resultDiv = document.querySelector('#pva-result');
+const summaryDiv = document.querySelector('#pva-result-detail');
 
+/* ── DOM refs: slider value displays ── */
+const pmtDisplay = document.querySelector('#pva-pmt-display');
+const rateDisplay = document.querySelector('#pva-rate-display');
+const periodsDisplay = document.querySelector('#pva-periods-display');
+
+/* ── DOM refs: snapshot rows ── */
+const snapPayment = document.querySelector('[data-pva="snap-payment"]');
+const snapRate = document.querySelector('[data-pva="snap-rate"]');
+const snapPeriods = document.querySelector('[data-pva="snap-periods"]');
+const snapAnnuityType = document.querySelector('[data-pva="snap-annuity-type"]');
+const snapCompounding = document.querySelector('[data-pva="snap-compounding"]');
+const snapEffectivePeriods = document.querySelector('[data-pva="snap-effective-periods"]');
+const snapPeriodicRate = document.querySelector('[data-pva="snap-periodic-rate"]');
+
+/* ── DOM refs: explanation targets ── */
+const explanationRoot = document.querySelector('#pva-explanation');
+const valueTargets = explanationRoot
+  ? {
+    paymentAmount: explanationRoot.querySelectorAll('[data-pva="payment-amount"]'),
+    discountRate: explanationRoot.querySelectorAll('[data-pva="discount-rate"]'),
+    periodCount: explanationRoot.querySelectorAll('[data-pva="period-count"]'),
+    annuityType: explanationRoot.querySelectorAll('[data-pva="annuity-type"]'),
+    compoundingFrequency: explanationRoot.querySelectorAll('[data-pva="compounding-frequency"]'),
+    presentValue: explanationRoot.querySelectorAll('[data-pva="present-value"]'),
+    totalPayments: explanationRoot.querySelectorAll('[data-pva="total-payments"]'),
+    effectivePeriods: explanationRoot.querySelectorAll('[data-pva="effective-periods"]'),
+    appliedRate: explanationRoot.querySelectorAll('[data-pva="applied-rate"]'),
+    appliedRateDecimal: explanationRoot.querySelectorAll('[data-pva="applied-rate-decimal"]'),
+    formulaAnnuityFactor: explanationRoot.querySelectorAll('[data-pva="formula-annuity-factor"]'),
+    formulaDiscountSaved: explanationRoot.querySelectorAll('[data-pva="formula-discount-saved"]'),
+    periodsPerYear: explanationRoot.querySelectorAll('[data-pva="periods-per-year"]'),
+  }
+  : null;
+
+/* ── Button groups ── */
 const periodGroup = document.querySelector('[data-button-group="pva-period-type"]');
 const annuityGroup = document.querySelector('[data-button-group="pva-annuity-type"]');
 const compoundingGroup = document.querySelector('[data-button-group="pva-compounding"]');
 
-const explanationRoot = document.querySelector('#pva-explanation');
-const valueTargets = explanationRoot
-  ? {
-      paymentAmount: explanationRoot.querySelectorAll('[data-pva="payment-amount"]'),
-      discountRate: explanationRoot.querySelectorAll('[data-pva="discount-rate"]'),
-      periodCount: explanationRoot.querySelectorAll('[data-pva="period-count"]'),
-      annuityType: explanationRoot.querySelectorAll('[data-pva="annuity-type"]'),
-      presentValue: explanationRoot.querySelectorAll('[data-pva="present-value"]'),
-      totalPayments: explanationRoot.querySelectorAll('[data-pva="total-payments"]'),
-      effectivePeriods: explanationRoot.querySelectorAll('[data-pva="effective-periods"]'),
-      appliedRate: explanationRoot.querySelectorAll('[data-pva="applied-rate"]'),
-    }
-  : null;
+const periodButtons = setupButtonGroup(periodGroup, {
+  defaultValue: 'years',
+  onChange() { calculate(); },
+});
 
+const annuityButtons = setupButtonGroup(annuityGroup, {
+  defaultValue: 'ordinary',
+  onChange() { calculate(); },
+});
+
+const compoundingButtons = setupButtonGroup(compoundingGroup, {
+  defaultValue: 'annual',
+  onChange() { calculate(); },
+});
+
+/* ── SEO / Schema ── */
 export const pageSchema = {
   calculatorFAQ: true,
   globalFAQ: false,
@@ -45,63 +81,31 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the present value of an annuity?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The present value of an annuity (PV of annuity) is the value today of a series of regular future payments, discounted using a specific interest or discount rate.',
+        text: 'It is today\'s value of a series of equal future payments, discounted using a specific interest or discount rate.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the difference between an ordinary annuity and an annuity due?',
+      name: 'What is the difference between ordinary annuity and annuity due?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'In an ordinary annuity, payments occur at the end of each period, while in an annuity due, payments occur at the beginning of each period, and this annuity due calculator compares both.',
+        text: 'Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a higher present value.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why is the present value of an annuity due higher than an ordinary annuity?',
+      name: 'What discount rate should I use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An annuity due has a higher present value because payments are received earlier and are discounted for fewer periods.',
+        text: 'Use a rate reflecting interest rates, investment returns, inflation, or borrowing costs relevant to the cash flow.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do you calculate the present value of an ordinary annuity?',
+      name: 'Is PV of annuity useful for loans and mortgages?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The present value of ordinary annuity is calculated by discounting each payment made at the end of each period back to today; the PV ordinary annuity calculator applies that discount each period.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How do you calculate the present value of an annuity due?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The present value of annuity due is calculated by adjusting the ordinary annuity present value to account for payments made at the beginning of each period.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What discount rate should be used for annuity calculations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The discount rate should reflect interest rates, investment returns, inflation expectations, or borrowing costs relevant to the cash flow.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is the present value of annuity used for loans and mortgages?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, present value of annuity calculations are commonly used to value loan repayments, mortgages, and lease payments.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can this calculator be used for monthly annuity payments?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes, the calculator supports monthly, quarterly, and annual payment periods depending on the selected settings, so you can estimate PV of annuity with monthly payments.',
+        text: 'Yes, PV of annuity calculations are commonly used to value loan repayments, mortgages, and lease payments.',
       },
     },
     {
@@ -109,22 +113,22 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What happens if the discount rate is zero?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'If the discount rate is zero, the present value of the annuity equals the total amount of all payments.',
+        text: 'If the rate is zero, the present value equals the total of all payments — no discounting is applied.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is the present value of annuity useful for retirement planning?',
+      name: 'Is this useful for retirement planning?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, it is widely used to estimate the value of pensions, retirement income streams, and long-term annuity payments.',
+        text: 'Yes, it helps estimate the value of pensions, retirement income streams, and long-term annuity payments.',
       },
     },
   ],
 };
 
 const metadata = {
-  title: 'Present Value of Annuity Calculator Ordinary & Due',
+  title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
   description:
     'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
   canonical: 'https://calchowmuch.com/finance/present-value-of-annuity/',
@@ -135,7 +139,7 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Present Value of Annuity Calculator Ordinary & Due',
+        name: 'Present Value of Annuity Calculator (Ordinary & Due)',
         url: 'https://calchowmuch.com/finance/present-value-of-annuity/',
         description:
           'Calculate the present value of an annuity. Compare ordinary annuity and annuity due using payment amount, discount rate, and number of periods.',
@@ -152,31 +156,14 @@ const metadata = {
           'Free present value of annuity calculator for ordinary annuity and annuity due. Calculates PV using payment amount, rate, and timing.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Finance',
-            item: 'https://calchowmuch.com/finance/',
-          },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
           {
             '@type': 'ListItem',
             position: 3,
@@ -191,145 +178,72 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const periodButtons = setupButtonGroup(periodGroup, {
-  defaultValue: 'years',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
+/* ── Helpers ── */
 
-const annuityButtons = setupButtonGroup(annuityGroup, {
-  defaultValue: 'ordinary',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-const compoundingButtons = setupButtonGroup(compoundingGroup, {
-  defaultValue: '',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
-
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
-
-setOptionalVisibility(false);
-
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
+function fmt(value, opts = {}) {
+  return formatNumber(value, {
+    minimumFractionDigits: opts.minimumFractionDigits ?? 2,
+    maximumFractionDigits: opts.maximumFractionDigits ?? 2,
+    ...opts,
   });
 }
 
-function readInputValue(input) {
-  if (!input) {
-    return NaN;
+function setSliderFill(input) {
+  if (!input) return;
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 100;
+  const val = Number(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (pmtInput && pmtDisplay) {
+    setSliderFill(pmtInput);
+    pmtDisplay.textContent = fmt(Number(pmtInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
-  return Number.parseFloat(input.value);
-}
-
-function formatCurrencyValue(value) {
-  return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-function formatPercentValue(value, maximumFractionDigits = 2) {
-  return `${formatNumber(value, { maximumFractionDigits })}%`;
+  if (rateInput && rateDisplay) {
+    setSliderFill(rateInput);
+    rateDisplay.textContent = `${Number(rateInput.value)}%`;
+  }
+  if (periodsInput && periodsDisplay) {
+    setSliderFill(periodsInput);
+    const periodType = periodButtons?.getValue() ?? 'years';
+    periodsDisplay.textContent = `${Number(periodsInput.value)} ${periodType === 'months' ? 'mo' : 'yrs'}`;
+  }
 }
 
 function updateTargets(targets, value) {
-  if (!targets) {
-    return;
-  }
+  if (!targets) return;
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
-function updateExplanation({
-  paymentAmount,
-  discountRate,
-  periodCount,
-  annuityType,
-  presentValue,
-  totalPayments,
-  effectivePeriods,
-  appliedRate,
-}) {
-  if (!valueTargets) {
-    return;
-  }
-
-  updateTargets(valueTargets.paymentAmount, paymentAmount);
-  updateTargets(valueTargets.discountRate, discountRate);
-  updateTargets(valueTargets.periodCount, periodCount);
-  updateTargets(valueTargets.annuityType, annuityType);
-  updateTargets(valueTargets.presentValue, presentValue);
-  updateTargets(valueTargets.totalPayments, totalPayments);
-  updateTargets(valueTargets.effectivePeriods, effectivePeriods);
-  updateTargets(valueTargets.appliedRate, appliedRate);
+function setError(message) {
+  if (resultDiv) resultDiv.textContent = message;
+  if (summaryDiv) summaryDiv.textContent = '';
 }
 
-function showError(message) {
-  if (resultOutput) {
-    resultOutput.textContent = message;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
-  updateExplanation({
-    paymentAmount: 'N/A',
-    discountRate: 'N/A',
-    periodCount: 'N/A',
-    annuityType: 'N/A',
-    presentValue: 'N/A',
-    totalPayments: 'N/A',
-    effectivePeriods: 'N/A',
-    appliedRate: 'N/A',
-  });
-}
+/* ── Core calculate ── */
 
 function calculate() {
-  const payment = readInputValue(paymentInput);
-  const rate = readInputValue(discountRateInput);
-  const periods = readInputValue(periodsInput);
+  if (!resultDiv || !summaryDiv) return;
+
+  const pmt = Number(pmtInput?.value);
+  const rate = Number(rateInput?.value);
+  const periods = Number(periodsInput?.value);
   const periodType = periodButtons?.getValue() ?? 'years';
   const annuityType = annuityButtons?.getValue() ?? 'ordinary';
-  const compoundingValue = compoundingButtons?.getValue() ?? '';
-  const compounding = compoundingValue ? compoundingValue : null;
-  const compoundingInfo = compounding ? resolveCompounding(compounding) : null;
+  const compounding = compoundingButtons?.getValue() ?? 'annual';
+  const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(payment) || !Number.isFinite(rate) || !Number.isFinite(periods)) {
-    showError('Enter valid numbers for payment amount, discount rate, and periods.');
-    return;
-  }
-
-  if (payment < 0 || rate < 0 || periods < 0) {
-    showError('Values must be zero or greater.');
-    return;
-  }
+  if (!Number.isFinite(pmt) || pmt < 0) { setError('Payment must be 0 or more.'); return; }
+  if (!Number.isFinite(rate) || rate < 0) { setError('Discount rate must be 0 or more.'); return; }
+  if (!Number.isFinite(periods) || periods < 0) { setError('Periods must be 0 or more.'); return; }
 
   const result = calculatePresentValueOfAnnuity({
-    payment,
+    payment: pmt,
     discountRate: rate,
     periods,
     periodType,
@@ -337,69 +251,86 @@ function calculate() {
     annuityType,
   });
 
-  if (!result) {
-    showError('Check your inputs. Discount rate must be above -100%.');
-    return;
+  if (!result) { setError('Check your inputs.'); return; }
+
+  const appliedRatePct = result.periodicRate * 100;
+  const effectivePeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });
+  const pmtStr = fmt(pmt);
+  const rateStr = formatPercent(rate);
+  const periodsStr = `${fmt(periods, { maximumFractionDigits: 2 })} ${periodType === 'months' ? 'months' : 'years'}`;
+  const annuityTypeStr = annuityType === 'due' ? 'Annuity Due' : 'Ordinary Annuity';
+  const compoundingStr = compoundingInfo.label;
+  const pvStr = fmt(result.presentValue);
+  const appliedRateStr = fmt(appliedRatePct, { maximumFractionDigits: 4 });
+  const totalPaymentsStr = fmt(result.totalPayments);
+
+  /* Formula walkthrough values */
+  const appliedRateDecimal = result.periodicRate;
+  let annuityFactor = 0;
+  if (appliedRateDecimal !== 0 && result.totalPeriods > 0) {
+    annuityFactor = (1 - Math.pow(1 + appliedRateDecimal, -result.totalPeriods)) / appliedRateDecimal;
+  } else if (result.totalPeriods > 0) {
+    annuityFactor = result.totalPeriods;
   }
-
-  hasCalculated = true;
-
-  const paymentDisplay = formatCurrencyValue(payment);
-  const discountRateDisplay = formatPercentValue(rate, 2);
-  const periodDisplay = `${formatNumber(periods, { maximumFractionDigits: 2 })} ${
-    periodType === 'months' ? 'months' : 'years'
-  }`;
-  const annuityTypeDisplay = annuityType === 'due' ? 'Annuity Due' : 'Ordinary Annuity';
-  const compoundingDisplay = compoundingInfo
-    ? compoundingInfo.label
-    : periodType === 'months'
-      ? 'Per month'
-      : 'Per year';
-  const presentValueDisplay = formatCurrencyValue(result.presentValue);
-  const totalPaymentsDisplay = formatCurrencyValue(result.totalPayments);
-  const effectivePeriodsDisplay = formatNumber(result.totalPeriods, { maximumFractionDigits: 2 });
-  const appliedRateDisplay = formatNumber(result.periodicRate * 100, { maximumFractionDigits: 4 });
-
-  if (resultOutput) {
-    resultOutput.textContent = `Present Value of Annuity: ${presentValueDisplay}`;
+  if (annuityType === 'due') {
+    annuityFactor *= (1 + appliedRateDecimal);
   }
+  const discountSaved = result.totalPayments - result.presentValue;
+  const periodsPerYear = result.periodsPerYear;
 
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Annuity type:</strong> ${annuityTypeDisplay}</p>` +
-      `<p><strong>Total payments:</strong> ${totalPaymentsDisplay}</p>` +
-      `<p><strong>Effective periods:</strong> ${effectivePeriodsDisplay}</p>` +
-      `<p><strong>Applied rate per period:</strong> ${appliedRateDisplay}%</p>` +
-      `<p><strong>Compounding frequency:</strong> ${compoundingDisplay}</p>`;
+  const appliedRateDecimalStr = fmt(appliedRateDecimal, { maximumFractionDigits: 6 });
+  const annuityFactorStr = fmt(annuityFactor, { maximumFractionDigits: 6 });
+  const discountSavedStr = fmt(discountSaved);
+  const periodsPerYearStr = String(periodsPerYear);
+
+  /* Preview panel */
+  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${pvStr}</span>`;
+  const valueEl = resultDiv.querySelector('.mtg-result-value');
+  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+
+  summaryDiv.innerHTML =
+    `<p><strong>Type:</strong> ${annuityTypeStr}</p>` +
+    `<p><strong>Total payments:</strong> ${totalPaymentsStr}</p>` +
+    `<p><strong>Discount saved:</strong> ${discountSavedStr}</p>`;
+
+  /* Snapshot rows */
+  if (snapPayment) snapPayment.textContent = pmtStr;
+  if (snapRate) snapRate.textContent = rateStr;
+  if (snapPeriods) snapPeriods.textContent = periodsStr;
+  if (snapAnnuityType) snapAnnuityType.textContent = annuityTypeStr;
+  if (snapCompounding) snapCompounding.textContent = compoundingStr;
+  if (snapEffectivePeriods) snapEffectivePeriods.textContent = effectivePeriodsStr;
+  if (snapPeriodicRate) snapPeriodicRate.textContent = `${appliedRateStr}%`;
+
+  /* Explanation targets */
+  if (valueTargets) {
+    updateTargets(valueTargets.paymentAmount, pmtStr);
+    updateTargets(valueTargets.discountRate, rateStr);
+    updateTargets(valueTargets.periodCount, periodsStr);
+    updateTargets(valueTargets.annuityType, annuityTypeStr);
+    updateTargets(valueTargets.compoundingFrequency, compoundingStr);
+    updateTargets(valueTargets.presentValue, pvStr);
+    updateTargets(valueTargets.totalPayments, totalPaymentsStr);
+    updateTargets(valueTargets.effectivePeriods, effectivePeriodsStr);
+    updateTargets(valueTargets.appliedRate, appliedRateStr);
+    updateTargets(valueTargets.appliedRateDecimal, appliedRateDecimalStr);
+    updateTargets(valueTargets.formulaAnnuityFactor, annuityFactorStr);
+    updateTargets(valueTargets.formulaDiscountSaved, discountSavedStr);
+    updateTargets(valueTargets.periodsPerYear, periodsPerYearStr);
   }
-
-  updateExplanation({
-    paymentAmount: paymentDisplay,
-    discountRate: discountRateDisplay,
-    periodCount: periodDisplay,
-    annuityType: annuityTypeDisplay,
-    presentValue: presentValueDisplay,
-    totalPayments: totalPaymentsDisplay,
-    effectivePeriods: effectivePeriodsDisplay,
-    appliedRate: appliedRateDisplay,
-  });
 }
 
-if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
-}
+/* ── Event wiring ── */
 
-[paymentInput, discountRateInput, periodsInput].forEach((input) => {
-  if (!input) {
-    return;
-  }
-  input.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
+[pmtInput, rateInput, periodsInput].forEach((input) => {
+  input?.addEventListener('input', () => {
+    updateSliderDisplays();
+    calculate();
   });
 });
 
-if (paymentInput && discountRateInput && periodsInput) {
-  calculate();
-}
+calculateButton?.addEventListener('click', calculate);
+
+/* ── Init ── */
+updateSliderDisplays();
+calculate();

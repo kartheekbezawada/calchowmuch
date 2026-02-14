@@ -1,173 +1,207 @@
 <div id="fv-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your inputs for starting amount of <span data-fv="present-value"></span>, interest rate of
-    <span data-fv="interest-rate"></span>, and time period of <span data-fv="time-period"></span>, this calculator
-    estimates a future value of <span data-fv="future-value"></span>.
-    The result shows how much your money could grow over time through compound interest and optional regular
-    contributions of <span data-fv="regular-contribution"></span>.
-    This helps you plan savings, investments, and long-term financial goals.
-  </p>
+  <div id="loan-mtg-explanation">
+    <h2>Future Value — Results Breakdown</h2>
+    <p>
+      Future value tells you how much your money today can grow over time through compound
+      interest and optional regular contributions. The results below show exactly how your
+      inputs translate into future wealth.
+    </p>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Present Value</td>
-          <td><span data-fv="present-value"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Interest Rate</td>
-          <td><span data-fv="interest-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Time Period</td>
-          <td><span data-fv="time-period"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Compounding Frequency</td>
-          <td><span data-fv="compounding-frequency"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Future Value</td>
-          <td><span data-fv="future-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="fv-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Present Value (PV)</td>
+              <td><span data-fv="present-value"></span></td>
+              <td class="fv-how-col">The amount you start with today</td>
+            </tr>
+            <tr>
+              <td>Interest Rate</td>
+              <td><span data-fv="interest-rate"></span></td>
+              <td class="fv-how-col">Annual growth rate applied to your money</td>
+            </tr>
+            <tr>
+              <td>Time Period</td>
+              <td><span data-fv="time-period"></span></td>
+              <td class="fv-how-col">How long your money has to grow</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-fv="compounding-frequency"></span></td>
+              <td class="fv-how-col">How often interest is applied each year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-fv="total-periods"></span></td>
+              <td class="fv-how-col">Total number of compounding periods</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-fv="applied-rate"></span>%</td>
+              <td class="fv-how-col">Interest rate applied in each compounding period</td>
+            </tr>
+            <tr>
+              <td>Regular Contribution</td>
+              <td><span data-fv="regular-contribution"></span></td>
+              <td class="fv-how-col">Amount added each compounding period</td>
+            </tr>
+            <tr>
+              <td>Total Contributions</td>
+              <td><span data-fv="total-contributions"></span></td>
+              <td class="fv-how-col">Sum of all periodic additions over time</td>
+            </tr>
+            <tr>
+              <td>Total Growth</td>
+              <td><span data-fv="total-growth"></span></td>
+              <td class="fv-how-col">Interest earned on principal and contributions</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Future Value (FV)</td>
+              <td><span data-fv="future-value"></span></td>
+              <td class="fv-how-col">What your money will be worth in the future</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Future Value (FV)</td>
-          <td><span data-fv="future-value"></span></td>
-          <td>Currency</td>
-          <td>Value of money in future</td>
-        </tr>
-        <tr>
-          <td>Present Value (PV)</td>
-          <td><span data-fv="present-value"></span></td>
-          <td>Currency</td>
-          <td>Starting amount</td>
-        </tr>
-        <tr>
-          <td>Total Contributions</td>
-          <td><span data-fv="total-contributions"></span></td>
-          <td>Currency</td>
-          <td>Money added over time</td>
-        </tr>
-        <tr>
-          <td>Total Growth</td>
-          <td><span data-fv="total-growth"></span></td>
-          <td>Currency</td>
-          <td>Interest earned</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-fv="total-periods"></span></td>
-          <td>Periods</td>
-          <td>Total compounding periods</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        Future value (FV) shows how much money today can grow over time when interest is
+        applied repeatedly. Below is a breakdown of how your inputs produce the result.
+      </p>
 
-  <h3>Explanation</h3>
-  <p>
-    Future value represents how much money today can grow over time when interest or growth is applied. Because
-    returns compound, growth accelerates as both the original amount and accumulated interest earn returns.
-  </p>
-  <p>
-    In this calculation, your present value grows using the selected interest rate, compounding frequency, and time
-    period. Higher rates or longer periods increase future value, while lower rates or shorter periods reduce it.
-  </p>
+      <ul class="fv-explanation-list">
+        <li>
+          <strong>Present Value (PV):</strong>
+          You start with <span data-fv="present-value"></span> today. This is the principal
+          that earns interest over the entire time horizon.
+        </li>
+        <li>
+          <strong>Interest Rate:</strong>
+          A <span data-fv="interest-rate"></span> annual growth rate represents the expected
+          return on savings, investments, or the inflation-adjusted rate of appreciation.
+        </li>
+        <li>
+          <strong>Time Period:</strong>
+          Your money grows for <span data-fv="time-period"></span>. Longer horizons produce
+          dramatically higher future values because compound interest accelerates over time.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-fv="compounding-frequency"></span> compounding, the annual rate is
+          split into <span data-fv="total-periods"></span> effective periods, each at a rate
+          of <span data-fv="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Contributions:</strong>
+          You add <span data-fv="regular-contribution"></span> each period, totalling
+          <span data-fv="total-contributions"></span> over the full horizon. Contributions
+          also earn compound interest.
+        </li>
+        <li>
+          <strong>Total Growth:</strong>
+          The interest earned on both principal and contributions is
+          <span data-fv="total-growth"></span> — this is the power of compounding.
+        </li>
+      </ul>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is future value (FV)?</strong></p>
-    <p class="faq-answer">
-      A: Future value is the amount your money will be worth at a future date after earning interest or growth.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How is future value different from present value?</strong></p>
-    <p class="faq-answer">
-      A: Present value is today’s worth of money, while future value shows what it grows into over time.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What interest rate should I use?</strong></p>
-    <p class="faq-answer">
-      A: Use an expected return rate based on savings, investments, or inflation assumptions.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How does compounding affect future value?</strong></p>
-    <p class="faq-answer">
-      A: More frequent compounding increases growth by earning interest on interest.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Does time period matter for future value?</strong></p>
-    <p class="faq-answer">
-      A: Yes, longer time periods significantly increase future value due to compounding.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What are regular contributions?</strong></p>
-    <p class="faq-answer">
-      A: Regular contributions are additional amounts added periodically to increase total savings.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is future value useful for retirement planning?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it helps estimate how current savings may grow by retirement.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can future value decrease over time?</strong></p>
-    <p class="faq-answer">
-      A: With a positive interest rate, future value increases; negative rates reduce growth.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the interest rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: The future value equals the present value plus any contributions.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is this calculator suitable for savings and investments?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it can be used for savings goals, investments, education funds, and retirement planning.
-    </p>
+      <h4>How the Formula Works</h4>
+      <p>The future value formula is:</p>
+      <p class="fv-formula-block">
+        FV = PV &times; (1 + r)<sup>n</sup>
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="fv-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-fv="interest-rate"></span> &divide;
+          <span data-fv="periods-per-year"></span> compounding periods per year
+          = <span data-fv="applied-rate"></span>% per period
+          (as a decimal: <span data-fv="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-fv="time-period"></span> &times;
+          <span data-fv="periods-per-year"></span> compounding periods per year
+          = <span data-fv="total-periods"></span> total periods.
+        </li>
+        <li>
+          <strong>Build the growth factor:</strong>
+          (1 + <span data-fv="applied-rate-decimal"></span>)<sup><span data-fv="total-periods"></span></sup>
+          = <span data-fv="formula-growth-factor"></span>.
+        </li>
+        <li>
+          <strong>Multiply to get FV:</strong>
+          <span data-fv="present-value"></span> &times;
+          <span data-fv="formula-growth-factor"></span>
+          = <strong><span data-fv="future-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        Higher interest rates or longer time horizons increase the growth factor, which
+        raises the future value. Conversely, lower rates or shorter periods produce a
+        smaller future value closer to the original principal.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is future value (FV)?</h4>
+          <p>Future value is the amount your money will be worth at a future date after earning interest or growth
+            over time.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>How is future value different from present value?</h4>
+          <p>Present value is today's worth of money, while future value shows what it grows into over time through
+            compounding.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What interest rate should I use?</h4>
+          <p>Use an expected return rate based on savings accounts, investments, or inflation assumptions relevant to
+            your goal.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does compounding affect future value?</h4>
+          <p>More frequent compounding increases growth because interest is earned on previously accumulated interest
+            more often.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What are regular contributions?</h4>
+          <p>Regular contributions are additional amounts added each period that also earn compound interest,
+            accelerating growth.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Can future value decrease over time?</h4>
+          <p>With a positive interest rate, future value always increases. Only negative rates or withdrawals would
+            reduce it.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

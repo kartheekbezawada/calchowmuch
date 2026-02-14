@@ -657,7 +657,7 @@
               "url": "/finance/present-value",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "future-value",
@@ -665,7 +665,7 @@
               "url": "/finance/future-value",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "present-value-of-annuity",
@@ -673,7 +673,7 @@
               "url": "/finance/present-value-of-annuity",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "future-value-of-annuity",
@@ -681,7 +681,7 @@
               "url": "/finance/future-value-of-annuity",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         },
@@ -695,7 +695,7 @@
               "url": "/finance/simple-interest",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "compound-interest",

@@ -176,24 +176,40 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
     h1: 'Present Value Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'future-value': {
     title: 'Future Value (FV) Calculator – CalcHowMuch',
     description:
       'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
     h1: 'Future Value Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'present-value-of-annuity': {
     title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
     description:
       'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
     h1: 'Present Value of Annuity Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'future-value-of-annuity': {
     title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
     description:
       'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
     h1: 'Future Value of Annuity Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'simple-interest': {
+    title: 'Simple Interest Calculator – CalcHowMuch',
+    description:
+      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+    h1: 'Simple Interest Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'effective-annual-rate': {
     title: 'Effective Annual Rate (EAR) Calculator – CalcHowMuch',
@@ -654,45 +670,45 @@ function buildHomeLoanStructuredData({
   const isHomeLoanRoot = calculatorId === 'home-loan';
   const breadcrumbList = isHomeLoanRoot
     ? [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Loans',
-          item: `${SITE_URL}/loans/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: breadcrumbLabel,
-          item: canonical,
-        },
-      ]
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${SITE_URL}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Loans',
+        item: `${SITE_URL}/loans/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: breadcrumbLabel,
+        item: canonical,
+      },
+    ]
     : [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: `${SITE_URL}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Home Loan',
-          item: `${SITE_URL}/loans/home-loan/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: breadcrumbLabel,
-          item: canonical,
-        },
-      ];
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${SITE_URL}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Home Loan',
+        item: `${SITE_URL}/loans/home-loan/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: breadcrumbLabel,
+        item: canonical,
+      },
+    ];
 
   return {
     '@context': 'https://schema.org',
@@ -1289,8 +1305,8 @@ ${explanationTitleHtml}  ${explanationHtml}
   const structuredDataScript =
     injectStaticStructuredData && staticStructuredData
       ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
-          staticStructuredData
-        )}</script>\n`
+        staticStructuredData
+      )}</script>\n`
       : '';
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
