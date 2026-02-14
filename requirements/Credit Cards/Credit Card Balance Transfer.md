@@ -67,7 +67,7 @@ Located in: `public/config/navigation.json` under `categories[1].subcategories[1
 | Calculator CSS   | `public/calculators/loans/balance-transfer-installment-plan/calculator.css` |
 | Explanation HTML | `public/calculators/loans/balance-transfer-installment-plan/explanation.html` |
 | Shared Utils     | `public/assets/js/core/credit-card-utils.js`                  |
-| Unit Tests       | `requirements/specs/loans/credit-card-utils.test.js`           |
+| Unit Tests       | `tests_specs/credit-cards/unit/credit-card-utils.test.js`           |
 
 ---
 
@@ -281,7 +281,7 @@ Each FAQ must be in a bordered container (`.cc-bt-faq-item`). Q: bolded, A: inde
 ## 10) Testing
 
 ### Unit Tests
-- Existing tests in `requirements/specs/loans/credit-card-utils.test.js` cover `calculateBalanceTransfer()`.
+- Existing tests in `tests_specs/credit-cards/unit/credit-card-utils.test.js` cover `calculateBalanceTransfer()`.
 - Verify: fee = balance * feePercent / 100, startingBalance = balance + fee.
 - Verify: months > 0, totalInterest >= 0.
 - Edge case: 0% promo APR for full payoff period = 0 interest.

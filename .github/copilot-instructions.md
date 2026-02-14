@@ -46,9 +46,9 @@ npm run test:e2e      # Playwright e2e tests (requires server on :8000)
 npm run test:coverage # 80% threshold required
 ```
 
-**Unit tests**: `tests/core/` and `tests/loans/` mirror `public/assets/js/core/`. Use Vitest with jsdom environment.
+**Unit tests**: `tests_specs/{category}/unit/` — Vitest with jsdom environment. Categorized by calculator domain (loans, finance, math, percentage, etc.).
 
-**E2E tests**: `tests/e2e/` with Playwright. Tests verify layout stability (no page bounce during navigation).
+**E2E tests**: `tests_specs/{category}/e2e/` — Playwright. Tests verify user journeys, SEO metadata, and layout stability.
 
 ## UI Constraints
 
