@@ -35,7 +35,8 @@ flowchart TD
         end
 
         subgraph LOG["Step 4 — LOG"]
-            L1["Fill RELEASE_SIGNOFF.md"]
+            L1["Create RELEASE_SIGNOFF_{ID}.md
+from template"]
             L2["Add row to Master Table"]
         end
 
@@ -82,15 +83,17 @@ flowchart LR
     UR["UNIVERSAL_REQUIREMENTS.md\n(Highest authority)"]
     PB["Project Bible.md\n(Strategy & design)"]
     RC["RELEASE_CHECKLIST.md\n(Pass/fail gates)"]
-    RS["RELEASE_SIGNOFF.md\n(Per-release evidence)"]
+    RS["RELEASE_SIGNOFF.md\n(Template)"]
+    RSF["release-signoffs/\nRELEASE_SIGNOFF_{ID}.md\n(Per-release evidence)"]
     MT["Release Sign-Off\nMaster Table.md\n(Historical record)"]
 
-    UR --> PB --> RC --> RS --> MT
+    UR --> PB --> RC --> RS --> RSF --> MT
 
     style UR fill:#fef2f2,stroke:#dc2626,stroke-width:2px
     style PB fill:#fef9c3,stroke:#ca8a04,stroke-width:2px
     style RC fill:#fce7f3,stroke:#db2777,stroke-width:2px
     style RS fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px
+    style RSF fill:#dbeafe,stroke:#2563eb,stroke-width:2px
     style MT fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
 ```
 

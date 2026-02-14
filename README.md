@@ -128,7 +128,8 @@ Release governance follows the document chain:
 
 - `requirements/compliance/requirement_tracker.md` — REQ lifecycle
 - `requirements/universal-rules/RELEASE_CHECKLIST.md` — pre-release gate
-- `requirements/universal-rules/RELEASE_SIGNOFF.md` — per-release evidence
+- `requirements/universal-rules/RELEASE_SIGNOFF.md` — release sign-off template
+- `requirements/universal-rules/release-signoffs/` — per-release evidence files
 - `requirements/universal-rules/Release Sign-Off Master Table.md` — historical ledger
 
 ## Chromium and WSL Notes

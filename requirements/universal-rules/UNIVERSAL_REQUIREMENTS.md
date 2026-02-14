@@ -50,7 +50,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
 | UR-FSM-020 | After BUILD PASS, required tests must start immediately without extra human confirmation. | P0 |
-| UR-FSM-021 | During BUILD in Auto-Test Mode, writing test evidence to `RELEASE_SIGNOFF.md` (Section 4) is allowed. | P0 |
+| UR-FSM-021 | During BUILD in Auto-Test Mode, writing test evidence to `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (Section 4) is allowed. | P0 |
 | UR-FSM-022 | TEST FAIL returns to BUILD; TEST PASS advances to SEO or COMPLIANCE as applicable. | P0 |
 
 ### 1.4 SEO and Compliance Gates
@@ -365,7 +365,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
 | UR-SEO-030 | Required priority failure or missing required evidence is overall SEO FAIL. | P0 |
-| UR-SEO-031 | SEO results must be recorded in `RELEASE_SIGNOFF.md` (Section 8: SERP Readiness Verification). | P0 |
+| UR-SEO-031 | SEO results must be recorded in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (Section 8: SERP Readiness Verification). | P0 |
 
 ---
 
@@ -396,8 +396,8 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-TEST-020 | Test execution evidence must be recorded in `RELEASE_SIGNOFF.md` (Section 4: Performance & CWV Results). | P0 |
-| UR-TEST-021 | Required-vs-executed coverage must be reflected in `RELEASE_SIGNOFF.md` (Section 5: Global CWV Regression Guard). | P0 |
+| UR-TEST-020 | Test execution evidence must be recorded in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (Section 4: Performance & CWV Results). | P0 |
+| UR-TEST-021 | Required-vs-executed coverage must be reflected in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (Section 5: Global CWV Regression Guard). | P0 |
 
 ### 8.4 Archetype Test Matrix
 
@@ -442,10 +442,10 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-ADS-001 | Site-ready AdSense loader script must be injected into `<head>` for every full public HTML page generated or maintained by repository workflows when ads are enabled. | P0 |
+| UR-ADS-001 | Site-ready AdSense loader script must be injected into `<head>` for every full public HTML page generated or maintained by repository workflows. Injection is unconditional — the code is always present in source HTML. Ads only render on approved production domains (Google AdSense domain verification). | P0 |
 | UR-ADS-002 | AdSense loader script source must be centralized in shared generation/sync logic; page-level hardcoding is disallowed. | P0 |
 | UR-ADS-003 | The `adsbygoogle.js` loader must appear at most once per page. Duplicate loader tags are a BUILD/TEST/COMPLIANCE failure. | P0 |
-| UR-ADS-004 | Local/dev workflows must support deterministic disable mode so ad network requests can be prevented during non-production validation. | P0 |
+| UR-ADS-004 | AdSense code is always present in generated HTML. Ads do not render locally because Google AdSense only serves ads on approved production domains. The `CHM_ENABLE_ADSENSE` environment variable is deprecated and no longer gates injection. | P0 |
 | UR-ADS-005 | Loader attributes (`async`, `src`, `crossorigin`) must match the canonical snippet source exactly; substitutions are disallowed. | P0 |
 
 ### 11.2 Ad Pane Slot (MANDATORY on calculator pages)
@@ -470,7 +470,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-ADS-030 | Manual smoke evidence must confirm: loader in rendered `<head>` (enabled mode), slot element in `.ads-column .ad-panel`, and no loader request in disabled mode. | P1 |
+| UR-ADS-030 | Manual smoke evidence must confirm: loader in rendered `<head>` (always present), slot element in `.ads-column .ad-panel` (always present). Ads only render on production domain. | P1 |
 | UR-ADS-031 | Smoke notes for AdSense changes must be documented in iteration/compliance evidence when the change touches shell or generation logic. | P1 |
 
 ---

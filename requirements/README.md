@@ -15,7 +15,8 @@ requirements/
 │   ├── UNIVERSAL_REQUIREMENTS.md   ← P0: Master rules, UI contract, standards
 │   ├── Project Bible.md            ← Strategy, design intent, SERP system
 │   ├── RELEASE_CHECKLIST.md        ← Pre-release pass/fail gate
-│   ├── RELEASE_SIGNOFF.md          ← Per-release evidence template
+│   ├── RELEASE_SIGNOFF.md          ← Release sign-off template (copy per release)
+│   ├── release-signoffs/           ← Per-release evidence files (RELEASE_SIGNOFF_{RELEASE_ID}.md)
 │   └── Release Sign-Off Master Table.md ← Cumulative release ledger
 │
 ├── compliance/                     ← TRACKING & WORKFLOW
@@ -39,7 +40,7 @@ requirements/
 ## Document Chain
 
 ```
-Requirement Tracker → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md → Release Sign-Off Master Table.md
+Requirement Tracker → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md (template) → release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md → Release Sign-Off Master Table.md
 ```
 
 ---
@@ -67,7 +68,7 @@ requirements/universal-rules/RELEASE_CHECKLIST.md
 | File | When to Load |
 |------|--------------|
 | `Project Bible.md` | Strategy/design intent questions |
-| `RELEASE_SIGNOFF.md` | Filling out release evidence |
+| `RELEASE_SIGNOFF.md` | Template for release sign-off evidence |
 | `iterations/ITER-*.md` | Only for current REQ's session |
 | `testing_requirements.md` | When selecting tests |
 | `seo_requirements.md` | When SEO validation needed |
@@ -84,6 +85,6 @@ requirements/universal-rules/RELEASE_CHECKLIST.md
 | Start a build | `compliance/requirement_tracker.md` |
 | Avoid past mistakes | `compliance/lessons_learned.md` |
 | Check what must pass | `universal-rules/RELEASE_CHECKLIST.md` |
-| Record release evidence | `universal-rules/RELEASE_SIGNOFF.md` |
+| Record release evidence | `universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` |
 
 **REQ Authoring Note:** For calculators with many inputs, mode toggles, or dynamic rows, requirements must include an explicit Calculation Pane Interaction Contract (control type, default mode, per-mode visibility, row parity, button-only trigger behavior).

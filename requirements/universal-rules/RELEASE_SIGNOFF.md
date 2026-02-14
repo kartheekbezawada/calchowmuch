@@ -1,6 +1,44 @@
-# Release Checklist — Sign-Off Section
+# Release Sign-Off Template
 
-Copy/paste this section at the bottom of the release checklist file for each release candidate.
+> **This file is a TEMPLATE only.** Do not write release evidence here.
+>
+> For each release, create a new file:
+> `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`
+>
+> Example: `RELEASE_SIGNOFF_REL-20260214-001.md`
+
+---
+
+## Naming Convention
+
+```
+RELEASE_SIGNOFF_REL-YYYYMMDD-###.md
+```
+
+- `YYYYMMDD` — release date (UTC)
+- `###` — sequential release number for that day (001, 002, etc.)
+
+## Storage Location
+
+```
+requirements/universal-rules/release-signoffs/
+├── RELEASE_SIGNOFF_REL-20260214-001.md
+├── RELEASE_SIGNOFF_REL-20260215-001.md
+└── ...
+```
+
+## Workflow
+
+1. Copy the template sections below into a new file named `RELEASE_SIGNOFF_{RELEASE_ID}.md`
+2. Fill out all sections with evidence
+3. Add a summary row to `Release Sign-Off Master Table.md` linking to the sign-off file
+4. Inform human: "Ready to merge"
+
+---
+
+## Template — Copy Below This Line
+
+---
 
 ## 1) Release Identity
 
@@ -24,7 +62,7 @@ Copy/paste this section at the bottom of the release checklist file for each rel
 | Calculator (Top Traffic) | `/<category>/<calculator-1>/` | Must include ads + FAQ + results |
 | Calculator (Top Traffic) | `/<category>/<calculator-2>/` | Must include mode toggles if any |
 | Calculator (Heavy Table) | `/<category>/<calculator-3>/` | Must include scenario table/schedule |
-| Calculator (New / Modified) | `/<category>/<calculator-changed>/` | This release’s main target |
+| Calculator (New / Modified) | `/<category>/<calculator-changed>/` | This release's main target |
 
 ### 2.2 Optional extra coverage (recommended)
 
@@ -83,13 +121,12 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 | Scope | Routes Checked | Violations | Highest Normal LCP (ms) | Highest Stress LCP (ms) | Highest Normal INP Proxy (ms) | Highest Stress INP Proxy (ms) | Highest Normal CLS | Highest Stress CLS | Highest Single Shift | Status (Pass/Fail) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **All calculators (`public/config/navigation.json`)** | | | | | | | | | | |
+| **All calculators** | | | | | | | | | | |
 
 - [ ] Command executed: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
 - [ ] Evidence attached: `test-results/performance/cls-guard-all-calculators.json`
 
 ### 5.2 Root Cause Analysis (If Failed/Warned)
-*If any page triggered a warning (> 0.05) or fail (> 0.10), document the cause:*
 
 - [ ] Late CSS / FOUC
 - [ ] Webfont Swap
@@ -118,7 +155,7 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | Scenario | Pass/Fail | Notes |
 | :--- | :--- | :--- |
 | First load has no visible jump | | |
-| Slider drag remains smooth (5–10 seconds) | | |
+| Slider drag remains smooth (5-10 seconds) | | |
 | Fast typing has no lag | | |
 | Mode toggle causes no layout shift | | |
 | Nav expand/collapse causes no main content shift | | |
@@ -128,8 +165,6 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 ## 8) SERP Readiness Verification (All Calculators)
 
 ### 8.1 Metadata & Canonical Verification
-
-Verify on all calculator pages touched in this release + 2–3 untouched sample pages.
 
 | Page | `<title>` Unique (Y/N) | Meta Desc Intent-Aligned (Y/N) | Canonical Correct (Y/N) | No Duplicate Metas (Y/N) | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -157,10 +192,10 @@ Verify on all calculator pages touched in this release + 2–3 untouched sample 
 
 ### 8.4 Internal Linking Verification
 
-- [ ] Category → calculator links present and crawlable
-- [ ] Calculator → parent category link present
-- [ ] Calculator → related calculators links present
-- [ ] Calculator → reverse/comparison calculator links present (where applicable)
+- [ ] Category -> calculator links present and crawlable
+- [ ] Calculator -> parent category link present
+- [ ] Calculator -> related calculators links present
+- [ ] Calculator -> reverse/comparison calculator links present (where applicable)
 - [ ] All internal links are in HTML (not JS-injected)
 
 ### 8.5 Intent Coverage Verification
@@ -173,11 +208,9 @@ Verify on all calculator pages touched in this release + 2–3 untouched sample 
 
 - [ ] Scenario tables or worked examples present
 - [ ] What-if exploratory prompts present in initial HTML
-- [ ] N/A (pure math calculator — skip)
+- [ ] N/A (pure math calculator - skip)
 
 ## 9) Exceptions & Follow-Up Tickets
-
-List any allowed exceptions (must not include CLS or interaction lag).
 
 | Exception | Severity | Ticket ID | Owner | Due Date |
 | :--- | :--- | :--- | :--- | :--- |
@@ -188,6 +221,7 @@ List any allowed exceptions (must not include CLS or interaction lag).
 ### 10.1 Release decision
 
 - [ ] **APPROVED** (all HARD gates passed)
+- [ ] **CONDITIONAL PASS** (SOFT issues only, documented above)
 - [ ] **REJECTED** (HARD blocker found)
 
 ### 10.2 Signatures
