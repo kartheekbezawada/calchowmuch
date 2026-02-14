@@ -118,6 +118,7 @@ For every ad placement:
   - idle window OR first meaningful interaction
 - [ ] Ad scripts are not render-blocking.
 - [ ] Exactly one AdSense loader exists in `<head>` and no ad unit/body snippet duplicates the loader.
+- [ ] Ad implementation matches canonical snippet sources: `requirements/universal-rules/AdSense code snippet.md` (head loader) and `requirements/universal-rules/Ad Unit Code.md` (body slot only).
 
 ### D3) Placement stability
 - [ ] No “auto” placements that dynamically add new slots in unpredictable places.
