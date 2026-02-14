@@ -195,6 +195,7 @@
 | E2E | `npm run test:e2e` | UI/flow changes |
 | SEO | `npm run test:e2e -- requirements/specs/e2e/*-seo.spec.js` | New pages |
 | ISS-001 | `npm run test:iss001` | Layout/CSS |
+| CWV Guard (All Calculators) | `npm run test:cwv:all` (`test:cls:all` alias) | Pre-release for calculator/public-route changes |
 
 Full matrix: `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
 

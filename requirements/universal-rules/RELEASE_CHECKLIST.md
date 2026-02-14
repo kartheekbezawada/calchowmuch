@@ -66,22 +66,23 @@ Run Lighthouse locally (mobile profile) on key pages:
 - [ ] No large blocking tasks around first interaction.
 - [ ] Above-the-fold content renders quickly (no ad-induced delay).
 
-### C3) Core Web Vitals Regression — CLS Guard (Global & Automated)
+### C3) Core Web Vitals Regression — CWV Guard (Global & Automated)
 
 **Objective**: Prevent layout instability on critical pages before release.
 
-**Critical Page Scope**:
-- All Finance Calculators
-- All Loan Calculators
-- Home Page
-- Top Traffic Math Calculators
+**Route Scope (Mandatory)**:
+- All calculator routes from `public/config/navigation.json`
 
 **Release Policy (Automated Lab Checks):**
 1.  **HARD FAIL** (Release Blocked):
-    - Any critical page **CLS > 0.10**.
+  - Any calculator route **CLS > 0.10**.
     - Any single layout shift contribution **> 0.05**.
+  - Any calculator route **LCP > 2.5s**.
+  - Any calculator route **INP proxy > 200ms**.
 2.  **SOFT WARNING** (Investigation Required):
     - CLS between **0.05** and **0.10**.
+  - LCP between **2.0s** and **2.5s**.
+  - INP proxy between **150ms** and **200ms**.
     - New layout shift contributor appears vs baseline.
 
 **Baseline Tracking (Phase 7):**
@@ -93,6 +94,8 @@ Run Lighthouse locally (mobile profile) on key pages:
 - Must run in two modes:
     - **Mode A (Normal)**: Standard load.
     - **Mode B (Stress)**: Slow CSS, Slow Fonts, CPU Throttle.
+- Required command: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
+- Required evidence artifact: `test-results/performance/cls-guard-all-calculators.json`
 
 **Root Cause Analysis Heuristics** (If Guard Fails):
 - [ ] Late CSS load / FOUC?
@@ -114,6 +117,7 @@ For every ad placement:
   - initial render, AND
   - idle window OR first meaningful interaction
 - [ ] Ad scripts are not render-blocking.
+- [ ] Exactly one AdSense loader exists in `<head>` and no ad unit/body snippet duplicates the loader.
 
 ### D3) Placement stability
 - [ ] No “auto” placements that dynamically add new slots in unpredictable places.

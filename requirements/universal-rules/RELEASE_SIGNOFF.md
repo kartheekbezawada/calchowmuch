@@ -77,16 +77,16 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | **INP** | | GSC CWV / RUM | |
 | **CLS** | | GSC CWV / RUM | |
 
-## 5) Global CLS Regression Guard (Automated WSL)
+## 5) Global CWV Regression Guard (Automated WSL)
 
 ### 5.1 Guard Results
 
-| Page Type | Normal CLS | Stress CLS | Baseline Delta | Status (Pass/Fail) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Finance (Critical)** | | | | |
-| **Loan (Critical)** | | | | |
-| **Math (Top)** | | | | |
-| **Home** | | | | |
+| Scope | Routes Checked | Violations | Highest Normal LCP (ms) | Highest Stress LCP (ms) | Highest Normal INP Proxy (ms) | Highest Stress INP Proxy (ms) | Highest Normal CLS | Highest Stress CLS | Highest Single Shift | Status (Pass/Fail) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **All calculators (`public/config/navigation.json`)** | | | | | | | | | | |
+
+- [ ] Command executed: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
+- [ ] Evidence attached: `test-results/performance/cls-guard-all-calculators.json`
 
 ### 5.2 Root Cause Analysis (If Failed/Warned)
 *If any page triggered a warning (> 0.05) or fail (> 0.10), document the cause:*
@@ -111,6 +111,7 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 - [ ] Ads loaded after initial render and idle/interaction
 - [ ] No slot height changes after ad fill
 - [ ] No overlap with inputs/results on mobile
+- [ ] Exactly one AdSense loader in rendered `<head>`; no body-level loader duplication from ad unit snippets
 
 ## 7) Manual Regression Scenarios (Pass/Fail)
 

@@ -272,6 +272,8 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | UR-TEST-002 | E2E tests: `npm run test:e2e` (scope by affected routes). | P0 |
 | UR-TEST-003 | ISS-001 stability: `npm run test:iss001` when layout/shell impacted. | P1 |
 | UR-TEST-004 | FAQ schema guard must run for calculator builds where applicable. | P0 |
+| UR-TEST-005 | Global CWV guard must run before calculator/public-route releases: `npm run test:cwv:all` (or `npm run test:cls:all` alias). Any route check above CLS 0.10, single-shift 0.05, LCP 2500ms, or INP proxy 200ms is TEST FAIL. | P0 |
+| UR-TEST-006 | CWV guard evidence artifact is mandatory at `test-results/performance/cls-guard-all-calculators.json` and must include normal + stress mode results. | P0 |
 
 ### 8.2 Change-Type Matrix
 
@@ -281,6 +283,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | UR-TEST-011 | Compute-only change requires unit coverage; E2E optional unless flow/UI changed. | P1 |
 | UR-TEST-012 | Navigation/shell change requires targeted nav E2E and ISS-001. | P0 |
 | UR-TEST-013 | Finance/Percentage trigger behavior changes require button-only regression spec evidence. | P0 |
+| UR-TEST-014 | Any release touching calculator/public routes must include all-calculator CWV guard evidence artifact from `test-results/performance/cls-guard-all-calculators.json`. | P0 |
 
 ### 8.3 Evidence Recording
 
@@ -354,6 +357,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | UR-ADS-020 | Auto Ads body injection is prohibited for calculator shell routes; use controlled slot rendering in `.ads-column` only. | P0 |
 | UR-ADS-021 | Body-level loader duplication from ad unit snippets is prohibited; only the head-managed loader is allowed. | P0 |
 | UR-ADS-022 | Ad script/slot normalization must be idempotent so repeated generation runs do not duplicate blocks. | P1 |
+| UR-ADS-023 | `requirements/universal-rules/AdSense code snippet.md` and `requirements/universal-rules/Ad Unit Code.md` are implementation snippet sources only; they must not include instructions that override UR-ADS governance. | P1 |
 
 ### 11.4 Manual Smoke Validation
 
