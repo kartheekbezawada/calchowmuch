@@ -100,95 +100,108 @@
   <div class="calculator-ui remo-ui">
     <section class="remo-hero" aria-label="Remortgage switching calculator">
       <div class="remo-form-panel">
-        <section class="remo-input-group" aria-label="Current mortgage inputs">
-          <p class="remo-group-label">Current Mortgage</p>
-          <div class="remo-input-grid remo-input-grid--three">
-            <div class="input-row">
-              <label for="remo-balance">Current Balance</label>
-              <input id="remo-balance" type="number" value="220000" min="0" step="0.01" maxlength="10" />
+
+        <section class="remo-section" aria-label="Current Mortgage">
+          <div class="input-grid-2-col">
+            <!-- Balance -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="remo-balance">Current Balance</label>
+                <span class="slider-value" id="remo-balance-display">220,000</span>
+              </div>
+              <input id="remo-balance" type="range" min="0" max="1000000" step="1000" value="220000" />
             </div>
-            <div class="input-row">
-              <label for="remo-current-rate">Current Rate (APR %)</label>
-              <input id="remo-current-rate" type="number" value="6" min="0" step="0.01" maxlength="10" />
+
+            <!-- Rate -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="remo-current-rate">Current Rate (%)</label>
+                <span class="slider-value" id="remo-current-rate-display">6.00%</span>
+              </div>
+              <input id="remo-current-rate" type="range" min="0" max="15" step="0.05" value="6.00" />
             </div>
-            <div class="input-row">
-              <label for="remo-term">Remaining Term (years)</label>
-              <input id="remo-term" type="number" value="20" min="1" step="1" maxlength="10" />
+
+            <!-- Term -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="remo-term">Remaining Term</label>
+                <span class="slider-value" id="remo-term-display">20 yrs</span>
+              </div>
+              <input id="remo-term" type="range" min="1" max="40" step="1" value="20" />
             </div>
           </div>
         </section>
 
-        <section class="remo-input-group" aria-label="New deal inputs">
-          <div class="remo-input-grid remo-input-grid--two">
-            <div class="input-row">
-              <label for="remo-new-rate">New Rate (APR %)</label>
-              <input id="remo-new-rate" type="number" value="5" min="0" step="0.01" maxlength="10" />
+        <section class="remo-section" aria-label="New Deal">
+          <div class="input-grid-2-col">
+            <!-- New Rate -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="remo-new-rate">New Rate (%)</label>
+                <span class="slider-value" id="remo-new-rate-display">5.00%</span>
+              </div>
+              <input id="remo-new-rate" type="range" min="0" max="15" step="0.05" value="5.00" />
             </div>
-            <div class="input-row">
-              <label for="remo-new-term">New Term (years)</label>
-              <input id="remo-new-term" type="number" value="20" min="1" step="1" maxlength="10" />
+
+            <!-- New Term -->
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="remo-new-term">New Term</label>
+                <span class="slider-value" id="remo-new-term-display">20 yrs</span>
+              </div>
+              <input id="remo-new-term" type="range" min="1" max="40" step="1" value="20" />
             </div>
           </div>
         </section>
 
-        <section class="remo-input-group remo-horizon-group" aria-label="Comparison horizon selector">
-          <div class="remo-horizon-head">
-            <strong id="remo-horizon-display">5 years</strong>
-          </div>
-          <div class="remo-horizon-slider-wrap">
-            <input
-              id="remo-horizon-years"
-              type="range"
-              min="2"
-              max="10"
-              step="1"
-              value="5"
-              list="remo-horizon-ticks"
-            />
-            <datalist id="remo-horizon-ticks">
-              <option value="2"></option>
-              <option value="3"></option>
-              <option value="4"></option>
-              <option value="5"></option>
-              <option value="6"></option>
-              <option value="7"></option>
-              <option value="8"></option>
-              <option value="9"></option>
-              <option value="10"></option>
-            </datalist>
-            <div class="remo-horizon-tick-row" aria-hidden="true">
-              <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+        <section class="remo-section" aria-labelledby="section-horizon">
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="remo-horizon-years">Horizon (Years)</label>
+              <span class="slider-value" id="remo-horizon-display">5 years</span>
             </div>
+            <input id="remo-horizon-years" type="range" min="2" max="10" step="1" value="5" />
           </div>
         </section>
 
-        <div class="input-row action-row remo-action-row">
-          <button class="calculator-button full-width" type="button" id="remo-calculate">Calculate</button>
+        <div class="input-row action-row remo-action-row" style="margin-top: 2rem;">
+          <button class="calculator-button full-width" type="button" id="remo-calculate">
+            Calculate Savings
+          </button>
         </div>
       </div>
 
       <aside class="remo-result-dashboard" aria-label="Switching summary">
         <p class="remo-dashboard-label">Switching Snapshot</p>
+
         <div class="remo-metric-grid">
-          <article class="remo-metric remo-metric--primary">
+          <!-- Monthly Saving (Primary) -->
+          <div class="remo-metric remo-metric--primary">
             <span class="remo-metric__label">Monthly Saving</span>
             <span class="remo-metric__value" id="remo-metric-monthly" aria-live="polite">—</span>
-          </article>
-          <article class="remo-metric">
+          </div>
+
+          <!-- Annual Saving -->
+          <div class="remo-metric">
             <span class="remo-metric__label">Annual Saving</span>
             <span class="remo-metric__value" id="remo-metric-annual" aria-live="polite">—</span>
-          </article>
-          <article class="remo-metric">
-            <span class="remo-metric__label">Break-even</span>
+          </div>
+
+          <!-- Break Even -->
+          <div class="remo-metric">
+            <span class="remo-metric__label">Break-Even</span>
             <span class="remo-metric__value" id="remo-metric-break-even" aria-live="polite">—</span>
-          </article>
-          <article class="remo-metric">
+          </div>
+
+          <!-- Total Saving -->
+          <div class="remo-metric">
             <span class="remo-metric__label">Total Saving</span>
             <span class="remo-metric__value" id="remo-metric-total" aria-live="polite">—</span>
-          </article>
+          </div>
         </div>
-        <p class="remo-result-note" id="remo-result-note" aria-live="polite">
-          Press calculate to compare your current and new cost paths.
+
+        <p class="remo-result-note" id="remo-result-note" aria-live="polite" style="margin-top: 1.5rem;">
+          Press calculate to compared your current and new cost paths.
         </p>
         <div class="remo-error" id="remo-error" aria-live="polite"></div>
       </aside>
@@ -199,7 +212,6 @@
 <style>
   @import url('/calculators/loans/remortgage-switching/calculator.css');
 </style>
-
     <div id="loan-remortgage-explanation">
   <p class="remo-exp-summary" id="remo-exp-summary" aria-live="polite">
     Set your inputs and click calculate to compare cumulative costs over your selected horizon.
