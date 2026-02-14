@@ -29,7 +29,8 @@ const ADSENSE_SLOT_MARKER_END = '<!-- CHM_AD_SLOT_END -->';
 const ADSENSE_LOADER_SRC_RE = /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i;
 const ADSENSE_LOADER_SCRIPT_RE =
   /^[ \t]*<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=[^"']+["'][^>]*>\s*<\/script>\s*\n?/gim;
-const CHM_ENABLE_ADSENSE = parseBooleanFlag(process.env.CHM_ENABLE_ADSENSE);
+// CHM_ENABLE_ADSENSE is deprecated — AdSense code is always injected.
+// Ads only render on approved production domains via Google AdSense domain verification.
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
@@ -979,9 +980,6 @@ function writeFile(filePath, contents) {
 }
 
 function renderManagedHeadAdsenseBlock() {
-  if (!CHM_ENABLE_ADSENSE) {
-    return '';
-  }
   return `${indentBlock(ADSENSE_HEAD_MANAGED_BLOCK, '    ')}\n`;
 }
 
@@ -1009,10 +1007,6 @@ function normalizeAdSenseHead(html) {
     /^[ \t]*<!-- Cloudflare Web Analytics -->/gm,
     '    <!-- Cloudflare Web Analytics -->'
   );
-
-  if (!CHM_ENABLE_ADSENSE) {
-    return normalized;
-  }
 
   if (!/^[ \t]*<\/head>/im.test(normalized)) {
     return normalized;
