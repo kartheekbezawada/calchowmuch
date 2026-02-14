@@ -50,7 +50,7 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
 | UR-FSM-020 | After BUILD PASS, required tests must start immediately without extra human confirmation. | P0 |
-| UR-FSM-021 | During BUILD in Auto-Test Mode, writing `testing_tracker.md` is allowed for executed tests. | P0 |
+| UR-FSM-021 | During BUILD in Auto-Test Mode, writing test evidence to `RELEASE_SIGNOFF.md` (Section 4) is allowed. | P0 |
 | UR-FSM-022 | TEST FAIL returns to BUILD; TEST PASS advances to SEO or COMPLIANCE as applicable. | P0 |
 
 ### 1.4 SEO and Compliance Gates
@@ -260,7 +260,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
 | UR-SEO-030 | Required priority failure or missing required evidence is overall SEO FAIL. | P0 |
-| UR-SEO-031 | SEO results must be recorded in `requirements/compliance/seo_tracker.md`. | P0 |
+| UR-SEO-031 | SEO results must be recorded in `RELEASE_SIGNOFF.md` (Section 8: SERP Readiness Verification). | P0 |
 
 ---
 
@@ -291,8 +291,8 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-TEST-020 | Test execution evidence must be recorded in `testing_tracker.md` and iteration logs. | P0 |
-| UR-TEST-021 | Required-vs-executed coverage must be reflected in `compliance-report.md`. | P0 |
+| UR-TEST-020 | Test execution evidence must be recorded in `RELEASE_SIGNOFF.md` (Section 4: Performance & CWV Results). | P0 |
+| UR-TEST-021 | Required-vs-executed coverage must be reflected in `RELEASE_SIGNOFF.md` (Section 5: Global CWV Regression Guard). | P0 |
 
 ### 8.4 Archetype Test Matrix
 

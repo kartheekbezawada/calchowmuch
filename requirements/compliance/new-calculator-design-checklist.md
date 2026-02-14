@@ -109,9 +109,9 @@ Use this exact format for every checklist run.
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| NEW-I1 | P0 | UR-FSM-011, UR-TEST-020 | Check build/testing trackers | Build and required tests are logged with correct IDs/statuses | Tracker row refs |
-| NEW-I2 | P0 | UR-SEO-031 | Check `seo_tracker.md` | SEO status and evidence are recorded (PASS/WAIVED/NA only per policy) | Tracker row ref |
-| NEW-I3 | P0 | UR-FSM-032, UR-DOD-005 | Check compliance report | Exactly one compliance row exists for the REQ and reflects execution truth | Compliance row ref |
+| NEW-I1 | P0 | UR-FSM-011, UR-TEST-020 | Check `RELEASE_SIGNOFF.md` Sections 4–5 | Build and test evidence recorded in release sign-off | Sign-off sections |
+| NEW-I2 | P0 | UR-SEO-031 | Check `RELEASE_SIGNOFF.md` Section 8 | SERP readiness verified (metadata, schema, indexability) | Sign-off section |
+| NEW-I3 | P0 | UR-FSM-032, UR-DOD-005 | Check `Release Sign-Off Master Table.md` | One row exists for this release with APPROVED status | Master table row |
 | NEW-I4 | P0 | UR-CHK-003..005 | Verify checklist completion quality | All required gates contain pass/fail, artifacts, and `N/A` rationale where used | Completed checklist artifact |
 
 ## Hard Fail Conditions

@@ -104,9 +104,9 @@ Use this exact format for every checklist run.
 
 | Check ID | Severity | Source Rule(s) | Verification Method | Pass Criteria | Evidence Artifact |
 | --- | --- | --- | --- | --- | --- |
-| MIG-I1 | P0 | UR-FSM-011, UR-TEST-020 | Check `build_tracker.md` and `testing_tracker.md` | Build and required tests are recorded with correct IDs/statuses | Tracker row refs |
-| MIG-I2 | P0 | UR-SEO-031 | Check `seo_tracker.md` | SEO status is PASS/WAIVED/NA with required evidence | Tracker row ref |
-| MIG-I3 | P0 | UR-FSM-032, UR-DOD-005 | Check `compliance-report.md` | Exactly one compliance row exists for REQ and reflects executed evidence | Compliance row ref |
+| MIG-I1 | P0 | UR-FSM-011, UR-TEST-020 | Check `RELEASE_SIGNOFF.md` Sections 4–5 | Build and test evidence recorded in release sign-off | Sign-off sections |
+| MIG-I2 | P0 | UR-SEO-031 | Check `RELEASE_SIGNOFF.md` Section 8 | SERP readiness verified (metadata, schema, indexability) | Sign-off section |
+| MIG-I3 | P0 | UR-FSM-032, UR-DOD-005 | Check `Release Sign-Off Master Table.md` | One row exists for this release with APPROVED status | Master table row |
 | MIG-I4 | P0 | UR-CHK-003..005 | Verify checklist quality gate | Checklist includes pass/fail, artifacts, screenshot evidence, and required omission rationales | Completed checklist artifact |
 
 ## Hard Fail Conditions

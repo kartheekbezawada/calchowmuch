@@ -127,16 +127,12 @@ Governance source:
 
 ## Compliance and Tracking
 
-Execution/compliance records are maintained under:
+Release governance follows the document chain:
 
-- `requirements/compliance/`
-- Key files include:
-  - `requirement_tracker.md`
-  - `build_tracker.md`
-  - `testing_tracker.md`
-  - `seo_tracker.md`
-  - `compliance-report.md`
-  - `Audit.md`
+- `requirements/compliance/requirement_tracker.md` — REQ lifecycle
+- `requirements/universal-rules/RELEASE_CHECKLIST.md` — pre-release gate
+- `requirements/universal-rules/RELEASE_SIGNOFF.md` — per-release evidence
+- `requirements/universal-rules/Release Sign-Off Master Table.md` — historical ledger
 
 ## Chromium and WSL Notes
 

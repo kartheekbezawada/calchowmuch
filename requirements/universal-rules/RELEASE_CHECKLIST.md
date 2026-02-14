@@ -151,24 +151,99 @@ Test these manually on mobile + desktop:
 - [ ] Landing directly on a calculator URL expands only the correct subcategory.
 - [ ] Expand/collapse does not shift the main content pane.
 
-## G) Observability (Post-Release Verification) — Required
+## I) SERP Readiness — Must Pass (All Calculators)
+
+Applies to **every calculator page** touched in this release AND a sample of untouched pages to guard against shared-layout regressions. Derived from Project Bible §8 (SERP-Ready System).
+
+### I1) Metadata Integrity
+- [ ] Every calculator page has a **unique, keyword-aligned `<title>`** (no two pages share the same title).
+- [ ] Every calculator page has a **meta description tightly aligned to primary search intent**.
+- [ ] Every calculator page has a **single, clean canonical URL** matching the served page.
+- [ ] No duplicate or conflicting meta tags on any page.
+
+### I2) Structured Data Hygiene
+- [ ] JSON-LD is **page-scoped only** (no global schema injected across all pages).
+- [ ] No duplicate `FAQPage` schema output on any page.
+- [ ] JSON-LD content **matches visible page content exactly** (FAQ answers, descriptions).
+- [ ] Schema validates in **Google Rich Results Test** (no errors).
+- [ ] Only the safe schema set is used: `WebPage`, `SoftwareApplication`, `FAQPage` (when visible), `BreadcrumbList`.
+- [ ] No `HowTo`, `Review`, `AggregateRating`, or `Product` schema types unless supported by visible content.
+
+### I3) Content Indexability
+- [ ] **Explanation section** is present in initial HTML (not JS-injected).
+- [ ] **FAQs** are present in initial HTML (not JS-rendered).
+- [ ] **Key formulas** (if applicable) are present in initial HTML.
+- [ ] **Primary headings** (H1, H2) are present in initial HTML.
+- [ ] Page is **fully crawlable without JavaScript execution**.
+- [ ] No critical content gated behind tabs, hydration, or user interaction.
+
+### I4) Internal Linking Architecture
+- [ ] Category page links to each calculator page within it.
+- [ ] Each calculator links back to its **parent category**.
+- [ ] Each calculator links to **closely related calculators**.
+- [ ] Each calculator links to **reverse/comparison variants** (when applicable).
+- [ ] All internal links are **visible in HTML** (not JS-injected late).
+
+### I5) Intent Coverage
+- [ ] **Primary intent** is reflected in: title, H1, opening paragraph, and meta description.
+- [ ] **3–5 secondary intents** are addressed via explanation sections, scenario tables, FAQ coverage, or related calculator links.
+- [ ] **Long-tail variants** are naturally covered through varied phrasing, structured headings, and natural language explanations.
+- [ ] No keyword stuffing.
+
+### I6) Scenario & What-If Content (Finance / Percentage Cluster Only)
+- [ ] Scenario summary tables or worked examples are present.
+- [ ] Step-by-step breakdowns or practical interpretation text are included.
+- [ ] "What-if" exploratory prompts are present in initial HTML (e.g., "What if the rate increases?").
+
+*Skip I6 for pure math calculators that have no finance/percentage context.*
+
+### I7) SERP Readiness Gate (Pass/Fail — Hard Block)
+
+A page is SERP-ready **only if all** of the following are true:
+
+- [ ] Metadata is unique and intent-aligned
+- [ ] Canonical is correct
+- [ ] No duplicate schema output
+- [ ] JSON-LD is page-scoped and valid
+- [ ] Explanation and FAQs exist in initial HTML
+- [ ] Internal links are present and crawlable
+- [ ] Primary + secondary intents are clearly covered
+- [ ] Scenario content exists (finance/percentage cluster)
+- [ ] Related/reverse calculators are linked where applicable
+- [ ] Page renders cleanly on mobile without CLS issues
+
+**Failure of any mandatory item blocks release.**
+
+## J) Observability (Post-Release Verification) — Required
 
 Within 24–72 hours (or next available CWV/rum cycle):
 - [ ] Check Search Console CWV:
-  - no new “poor” URL groups
+  - no new "poor" URL groups
   - no CLS regression group created
 - [ ] Check RUM dashboard (if enabled):
   - LCP distribution stable
   - INP stable
   - CLS stable
+- [ ] Check Search Console **Indexing**:
+  - no new "Excluded" or "Error" pages
+  - no soft 404 regressions
+  - indexed vs submitted gap stable
+- [ ] Check Search Console **Enhancements**:
+  - no new structured data errors/warnings
+  - FAQ rich results still appearing (if applicable)
 
-## H) Release Decision Rules
+## K) Release Decision Rules
 
 ### HARD blockers (do not release)
 1. Any CLS regression above 0.1 on representative devices/tests
 2. Ads causing visible layout shift
 3. Input lag/jank that affects interaction (INP risk)
 4. Render blocked by ads or non-essential scripts
+5. Missing or duplicate `<title>` / meta description on any calculator page
+6. Broken or incorrect canonical URL
+7. JSON-LD schema not matching visible page content
+8. Explanation or FAQ content missing from initial HTML (JS-only rendering)
+9. Duplicate `FAQPage` schema output on any page
 
 ### SOFT signals (can release with a follow-up ticket)
 1. Slight Lighthouse score dip but no CWV proxy regressions

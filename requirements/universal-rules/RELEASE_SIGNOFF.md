@@ -125,7 +125,57 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | Deep-link opens only correct subcategory | | |
 | Ads appear with zero CLS | | |
 
-## 8) Exceptions & Follow-Up Tickets
+## 8) SERP Readiness Verification (All Calculators)
+
+### 8.1 Metadata & Canonical Verification
+
+Verify on all calculator pages touched in this release + 2–3 untouched sample pages.
+
+| Page | `<title>` Unique (Y/N) | Meta Desc Intent-Aligned (Y/N) | Canonical Correct (Y/N) | No Duplicate Metas (Y/N) | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `<page-1>` | | | | | |
+| `<page-2>` | | | | | |
+| `<page-3>` | | | | | |
+
+### 8.2 Structured Data Verification
+
+| Page | Schema Bundle Correct (Y/N) | Validates Rich Results Test (Y/N) | JSON-LD Matches Visible Content (Y/N) | No Duplicate FAQPage (Y/N) | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `<page-1>` | | | | | |
+| `<page-2>` | | | | | |
+| `<page-3>` | | | | | |
+
+**Safe schema set:** `WebPage`, `SoftwareApplication`, `FAQPage` (when visible), `BreadcrumbList`.
+
+### 8.3 Content Indexability Checklist
+
+- [ ] Explanation section present in initial HTML (all calculator pages)
+- [ ] FAQs present in initial HTML (all calculator pages with FAQs)
+- [ ] Key formulas present in initial HTML (where applicable)
+- [ ] Primary headings (H1, H2) present in initial HTML
+- [ ] No critical content gated behind JS rendering, tabs, or user interaction
+
+### 8.4 Internal Linking Verification
+
+- [ ] Category → calculator links present and crawlable
+- [ ] Calculator → parent category link present
+- [ ] Calculator → related calculators links present
+- [ ] Calculator → reverse/comparison calculator links present (where applicable)
+- [ ] All internal links are in HTML (not JS-injected)
+
+### 8.5 Intent Coverage Verification
+
+- [ ] Primary intent reflected in title, H1, opening paragraph, and meta description
+- [ ] Secondary intents addressed via explanation, scenario tables, FAQ, or related links
+- [ ] Long-tail coverage via natural language phrasing (no keyword stuffing)
+
+### 8.6 Scenario Content (Finance / Percentage Only)
+
+- [ ] Scenario tables or worked examples present
+- [ ] What-if exploratory prompts present in initial HTML
+- [ ] N/A (pure math calculator — skip)
+
+## 9) Exceptions & Follow-Up Tickets
 
 List any allowed exceptions (must not include CLS or interaction lag).
 
@@ -133,14 +183,14 @@ List any allowed exceptions (must not include CLS or interaction lag).
 | :--- | :--- | :--- | :--- | :--- |
 | | LOW / MED | | | |
 
-## 9) Final Sign-Off
+## 10) Final Sign-Off
 
-### 9.1 Release decision
+### 10.1 Release decision
 
 - [ ] **APPROVED** (all HARD gates passed)
 - [ ] **REJECTED** (HARD blocker found)
 
-### 9.2 Signatures
+### 10.2 Signatures
 
 | Role | Name | Date (UTC) | Signature/Note |
 | :--- | :--- | :--- | :--- |
