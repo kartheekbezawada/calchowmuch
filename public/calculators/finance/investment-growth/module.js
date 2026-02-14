@@ -51,82 +51,82 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is investment growth?',
+      name: 'What is an investment growth calculator?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Investment growth refers to the increase in value of an investment over time due to compound interest and additional contributions.',
+        text: 'An investment growth calculator estimates the future value of an investment based on expected return, time, and contributions.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does compound interest work?',
+      name: 'How do you calculate investment growth over time?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Compound interest allows you to earn interest on both your initial principal and the accumulated interest from previous periods, accelerating growth.',
+        text: 'You apply compound growth assumptions using an expected annual return and the investment period, and add contributions if applicable.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why does inflation matter?',
+      name: 'What is future value in investing?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Inflation reduces the purchasing power of money over time. Adjusting for inflation gives you a realistic view of your investment\'s future real value.',
+        text: 'Future value is the estimated amount your investment could grow to after a set time period.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is a good rate of return?',
+      name: 'How do monthly contributions affect investment growth?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Historically, the stock market has returned about 7-10% annually before inflation. However, returns vary by asset class and risk tolerance.',
+        text: 'Monthly contributions can increase the final balance because added deposits may also earn returns over time.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How often should I contribute?',
+      name: 'What does expected annual return mean?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Regular contributions (e.g., monthly) take advantage of dollar-cost averaging and maximize the time your money has to grow.',
+        text: 'It is the assumed average yearly growth rate used for forecasting.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does compounding frequency affect the result?',
+      name: 'Does compounding frequency matter for investment growth?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The more frequently interest is compounded (e.g., monthly vs. annually), the faster your investment grows.',
+        text: 'Yes. More frequent compounding can slightly increase estimated growth under the same annual return assumption.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the future value formula?',
+      name: 'Can this calculator estimate investment returns?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'FV = PV * (1 + r)^n + PMT * [((1 + r)^n - 1) / r], where PV is present value, r is periodic rate, n is number of periods, and PMT is contribution.',
+        text: 'Yes. It estimates future value and total growth based on the return rate you enter.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I lose money investing?',
+      name: 'What is inflation-adjusted future value?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, all investments carry risk. This calculator assumes a constant positive rate of return, but actual markets fluctuate.',
+        text: 'It estimates your ending balance in today\'s purchasing power after accounting for inflation.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do taxes impact growth?',
+      name: 'What happens if the return rate is 0%?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Taxes on gains (capital gains) or income can reduce your net return. This calculator shows pre-tax growth unless you adjust the return rate.',
+        text: 'Future value equals the initial investment plus total contributions.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the rule of 72?',
+      name: 'Is this investment growth estimate guaranteed?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The Rule of 72 is a shortcut to estimate how long it takes to double your money: divide 72 by the annual return rate.',
+        text: 'No. It is a projection based on assumptions and actual market returns can vary.',
       },
     },
   ],

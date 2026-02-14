@@ -73,82 +73,82 @@ const CALCULATOR_FAQ_SCHEMA = {
     mainEntity: [
         {
             '@type': 'Question',
-            name: 'How long will it take me to save 25,000?',
+            name: 'What is a savings goal calculator?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'It depends on your current savings, monthly contributions, and interest rate. Enter your values to get a personalized timeline estimate.',
+                text: 'A savings goal calculator estimates how long it will take to reach a target amount or how much you need to save each month to reach it.',
             },
         },
         {
             '@type': 'Question',
-            name: 'How does interest reduce the time needed to reach my savings goal?',
+            name: 'How do I calculate how much to save per month?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Interest compounds on your balance, meaning your money earns money. Even a modest rate can shave months or years off your timeline.',
+                text: 'You can divide the remaining amount needed by the number of months, and optionally include interest to account for compounding growth.',
             },
         },
         {
             '@type': 'Question',
-            name: 'Does starting with existing savings shorten the timeline?',
+            name: 'How do I calculate how long it will take to reach my savings goal?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Yes. The more you already have, the less you need to save. Plus, a larger starting balance earns more interest from day one.',
+                text: 'Use your goal amount, current savings, and monthly contribution to estimate the number of months needed, optionally including interest.',
             },
         },
         {
             '@type': 'Question',
-            name: 'What difference does compounding frequency make?',
+            name: 'Does interest make it easier to reach a savings goal?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'More frequent compounding means interest is reinvested sooner, slightly accelerating your path to the goal.',
+                text: 'Yes. Interest can increase your balance over time, reducing the monthly amount needed or shortening the time to goal.',
             },
         },
         {
             '@type': 'Question',
-            name: 'Is contributing at the beginning of the month better?',
+            name: 'What compounding frequency should I use?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Yes. Beginning-of-month contributions start earning interest immediately for that period, giving you a slight advantage.',
+                text: 'Use the frequency that matches your account, such as monthly, quarterly, or annually.',
             },
         },
         {
             '@type': 'Question',
-            name: 'What happens if I increase my monthly savings slightly?',
+            name: 'What if my current savings is already higher than my goal?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Even small increases can dramatically shorten your savings timeline, especially at higher interest rates.',
+                text: 'Then your time to goal is zero because you have already reached the target.',
             },
         },
         {
             '@type': 'Question',
-            name: 'How much faster does 5% growth reach my goal compared to 0%?',
+            name: 'What happens if my monthly contribution is zero?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Significantly faster. For a 25,000 goal with 500/month contributions, 5% interest can cut the timeline by several months.',
+                text: 'If your goal is higher than your current savings, you will not reach it without contributions or interest growth.',
             },
         },
         {
             '@type': 'Question',
-            name: 'Why does the timeline shrink significantly at higher interest rates?',
+            name: 'Is this a savings goal calculator with interest?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Compounding is exponential — higher rates amplify growth more the longer you save.',
+                text: 'Yes. You can add an annual interest rate and compounding frequency to include interest growth.',
             },
         },
         {
             '@type': 'Question',
-            name: 'Can this calculator be used for house deposit planning?',
+            name: 'Can this help me plan for a house deposit or emergency fund?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Absolutely. Set your goal to the deposit amount, enter your current savings and monthly contributions, and see how long until you can buy.',
+                text: 'Yes. You can use it for any target amount, including an emergency fund, house deposit, or holiday budget.',
             },
         },
         {
             '@type': 'Question',
-            name: 'Should I focus more on increasing contributions or increasing return?',
+            name: 'Why do results change when I choose beginning vs end of month contributions?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'For shorter timelines, increasing contributions has more impact. For longer timelines, a higher return rate benefits from compounding effects.',
+                text: 'Contributing at the beginning gives money more time to earn interest, which can slightly reduce the time to goal or the required monthly savings.',
             },
         },
     ],

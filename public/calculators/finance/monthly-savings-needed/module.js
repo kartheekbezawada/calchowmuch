@@ -79,7 +79,7 @@ const CALCULATOR_FAQ_SCHEMA = {
             name: 'How much do I need to save each month to reach 25,000 in 3 years?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'It depends on your current savings, interest rate, and compounding settings. Enter your values to get a personalized monthly savings figure.',
+                text: 'It depends on your current savings, interest rate, and compounding settings. Enter your values above to get a personalized monthly savings figure.',
             },
         },
         {
@@ -95,7 +95,7 @@ const CALCULATOR_FAQ_SCHEMA = {
             name: 'What if I already have some savings?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Existing savings reduce the gap to your goal. The more you start with, the less you need to save monthly.',
+                text: 'Existing savings reduce the gap to your goal. The more you start with, the less you need to save monthly — plus your starting balance earns interest from day one.',
             },
         },
         {
@@ -103,7 +103,7 @@ const CALCULATOR_FAQ_SCHEMA = {
             name: 'How does compounding frequency affect required savings?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'More frequent compounding means interest is reinvested sooner, slightly reducing the monthly savings required to reach the same goal.',
+                text: 'More frequent compounding (monthly vs annually) means interest is reinvested sooner, slightly reducing the monthly savings required to reach the same goal.',
             },
         },
         {
