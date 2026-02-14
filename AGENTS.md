@@ -8,15 +8,14 @@
 
 0. [Cold Start Instruction](#0-cold-start-instruction)
 1. [ADMIN Absolute Override](#1-admin-absolute-override)
-2. [Deterministic Workflow (Default Mode)](#2-deterministic-workflow-default-mode)
-3. [Actors (Strict Roles)](#3-actors-strict-roles)
-4. [How Work Starts](#4-how-work-starts)
-5. [File Classification](#5-file-classification)
-6. [Calculator Architecture Rules](#6-calculator-architecture-rules)
-7. [Test Policy](#7-test-policy)
-8. [Compliance Gate](#8-compliance-gate)
-9. [Sitemap Rule (P0)](#9-sitemap-rule-p0)
-10. [Enforcement Summary](#10-enforcement-summary)
+2. [Factory Pipeline (Build → Test → Release)](#2-factory-pipeline-build--test--release)
+3. [Actors](#3-actors)
+4. [Document Chain](#4-document-chain)
+5. [Calculator Architecture Rules](#5-calculator-architecture-rules)
+6. [Test Policy](#6-test-policy)
+7. [Release Gate](#7-release-gate)
+8. [Sitemap Rule (P0)](#8-sitemap-rule-p0)
+9. [Enforcement Summary](#9-enforcement-summary)
 
 ---
 
@@ -75,108 +74,107 @@ Even in ADMIN Mode, the agent must not:
 
 ---
 
-## 2. Deterministic Workflow (Default Mode)
+## 2. Factory Pipeline (Build → Test → Release)
 
-When ADMIN Mode is **not** active, this repository uses a deterministic finite-state machine (FSM) to ship calculator changes with traceability.
-
-### Document Chain
+> Like a factory line: requirement comes in → build it → test it → log it → ship it.
 
 ```
-Requirement Tracker → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md → Release Sign-Off Master Table.md
+REQUIREMENT → BUILD → TEST → LOG → READY TO RELEASE
+```
+
+### Step 1 — Requirement In
+
+Human provides the requirement (what to build). The agent reads:
+
+- `UNIVERSAL_REQUIREMENTS.md` — how to build it
+- `Project Bible.md` — why (design intent, SERP strategy)
+- Calculator-specific rules if applicable
+
+### Step 2 — Build
+
+Agent implements the change:
+
+- Code the calculator / fix / feature
+- Follow all architecture rules (MPA, no SPA, `<a href>` navigation)
+- Ensure sitemap coverage for any new public route
+
+### Step 3 — Test (All Gates)
+
+Agent runs **all applicable tests** immediately after build. No waiting for human confirmation.
+
+| Test Category | What It Covers | Command |
+|---------------|----------------|---------|
+| Lint | Code quality | `npm run lint` |
+| Unit tests | Calculator logic | `npm run test` |
+| E2E tests | Route + UI flow | `npm run test:e2e` (scoped to affected routes) |
+| CWV guard | CLS ≤ 0.10, LCP ≤ 2.5s, INP ≤ 200ms | `npm run test:cwv:all` |
+| SERP readiness | Metadata, schema, indexability, internal links, intent coverage | `RELEASE_CHECKLIST.md` Section I |
+| SEO P1–P5 | Title/meta (P1), schema (P2), Lighthouse (P3), accessibility (P4), infra (P5) | Per UR-SEO rules |
+| ISS-001 | Shell/layout stability | `npm run test:iss001` (when layout touched) |
+| FAQ schema guard | FAQ schema matches visible content | Per UR-TEST-004 |
+
+**If any test fails → fix and re-test. Do not proceed until all pass.**
+
+### Step 4 — Log
+
+Agent logs the release evidence:
+
+- Fill out `RELEASE_SIGNOFF.md` with all test results, CWV data, SERP verification
+- Add one row to `Release Sign-Off Master Table.md`
+
+### Step 5 — Ready to Release
+
+Agent informs the human:
+
+> **"All tests pass. Release sign-off complete. Ready to merge."**
+
+The human reviews and merges the code. The agent does **not** merge.
+
+---
+
+## 3. Actors
+
+### HUMAN
+
+- Provides requirements
+- Reviews and merges code
+- Has final release authority
+
+### AGENT (Copilot / Codex / Claude Code)
+
+- Builds the requirement
+- Runs all tests (SERP, performance, P1–P5, unit, E2E, CWV)
+- Fills out release sign-off evidence
+- Informs human when ready to merge
+- Must **not** merge code
+
+---
+
+## 4. Document Chain
+
+```
+Requirement → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md → Release Sign-Off Master Table.md
 ```
 
 | Step | Document | Purpose |
 |------|----------|---------|
-| 1 | `requirements/compliance/requirement_tracker.md` | Captures what needs to be done (REQ lifecycle) |
-| 2 | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` | Defines how it must be built (rules & constraints) |
-| 3 | `requirements/universal-rules/Project Bible.md` | Defines why — strategy, design intent, SERP system |
-| 4 | `requirements/universal-rules/RELEASE_CHECKLIST.md` | Pre-release gate — every item must pass before release |
-| 5 | `requirements/universal-rules/RELEASE_SIGNOFF.md` | Per-release evidence — filled out for each release candidate |
-| 6 | `requirements/universal-rules/Release Sign-Off Master Table.md` | Historical record — one row per release, cumulative sign-off ledger |
-
-### Rules
-
-- All workflow state is stored under `requirements/compliance/`
-- Invalid transitions must **stop immediately**
-- No exceptions unless ADMIN Mode is explicitly active
-
----
-
-## 3. Actors (Strict Roles)
-
-### HUMAN
-
-- Triggers builds
-- Runs local build and test commands
-- Opens pull requests
-- Must **not** write release sign-off docs unless explicitly instructed
-
-### COPILOT (Requirements Agent)
-
-- Creates requirements
-- Assigns REQ IDs
-- Writes or updates calculator rules
-- Creates SEO placeholders
-- Must **never** build, test, or update release sign-off docs
-
-### CODEX / Claude Code (Implementer Agent)
-
-- Implements code changes
-- Runs build and test steps
-- Fills out `RELEASE_SIGNOFF.md` evidence
-- Prepares pull requests
-- Must **not** create new requirements
-- Must **not** start work without an explicit trigger
-
-> Codex and Claude Code are equivalent implementers.
-
----
-
-## 4. How Work Starts
-
-### Step 1 — Create Requirement (Copilot)
-
-**User command:**
-
-```
-Copilot: create requirement for <X>
-```
-
-**Copilot must:**
-
-1. Add a new REQ row in `requirement_tracker.md` (Status: `NEW`)
-2. Add or update calculator rules
-3. Add SEO placeholders if applicable
-4. **Stop** — must not build or test
-
-### Step 2 — Start Implementation (Human)
-
-**User command:**
-
-```
-EVT_START_BUILD REQ-YYYYMMDD-###
-```
-
-**Rules:**
-
-- **Without ADMIN:** Codex must refuse to proceed without this trigger
-- **With ADMIN:** Codex must proceed immediately and ignore this requirement
-
----
-
-## 5. File Classification
+| 1 | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` | How it must be built (rules & constraints) |
+| 2 | `requirements/universal-rules/Project Bible.md` | Why — strategy, design intent, SERP system |
+| 3 | `requirements/universal-rules/RELEASE_CHECKLIST.md` | Pre-release gate — every item must pass |
+| 4 | `requirements/universal-rules/RELEASE_SIGNOFF.md` | Per-release evidence — filled out for each release |
+| 5 | `requirements/universal-rules/Release Sign-Off Master Table.md` | Historical record — one row per release |
 
 ### LAW (Authoritative — Do Not Reinterpret)
 
 | File | Purpose |
 |------|---------|
 | `AGENTS.md` | Agent operating contract |
-| `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` | Universal rules (highest authority) |
-| `requirements/universal-rules/Project Bible.md` | Strategy / design intent |
+| `UNIVERSAL_REQUIREMENTS.md` | Universal rules (highest authority) |
+| `Project Bible.md` | Strategy / design intent |
 
 ---
 
-## 6. Calculator Architecture Rules
+## 5. Calculator Architecture Rules
 
 > **Always enforced** — regardless of FSM state or ADMIN mode.
 
@@ -193,33 +191,40 @@ EVT_START_BUILD REQ-YYYYMMDD-###
 
 ---
 
-## 7. Test Policy
+## 6. Test Policy
 
-> **Default Mode only.** `UNIVERSAL_REQUIREMENTS.md` (UR-TEST section) is authoritative.
+> `UNIVERSAL_REQUIREMENTS.md` (UR-TEST section) is authoritative.
 
-- Select tests **strictly by change type**
-- Prefer **unit tests**
-- Scope E2E tests to **affected calculators only**
-- Do not run full E2E for single-calculator changes
-- Record test evidence in `RELEASE_SIGNOFF.md` (Section 4)
+The agent runs **all applicable tests** as part of the factory pipeline. No cherry-picking.
+
+- **Unit tests** — every calculator must have logic coverage
+- **E2E tests** — scoped to affected routes (not full suite for single-calculator changes)
+- **CWV guard** — all calculator routes, normal + stress mode
+- **SERP readiness** — metadata, schema, indexability, internal links (per `RELEASE_CHECKLIST.md` Section I)
+- **SEO P1–P5** — per the UR-SEO matrix in `UNIVERSAL_REQUIREMENTS.md`
+- **ISS-001** — when layout/shell is impacted
+- **FAQ schema guard** — when calculator has FAQ content
+
+All test evidence goes into `RELEASE_SIGNOFF.md`.
 
 ---
 
-## 8. Compliance Gate
+## 7. Release Gate
 
-A release is complete **only when**:
+A release is ready **only when**:
 
 | Gate | Document | Required Status |
 |------|----------|----------------|
-| Pre-release checks | `RELEASE_CHECKLIST.md` | All HARD items pass |
-| Per-release evidence | `RELEASE_SIGNOFF.md` | Filled out and APPROVED |
-| Historical record | `Release Sign-Off Master Table.md` | One row added for this release |
+| All tests pass | `RELEASE_CHECKLIST.md` | Every HARD item passes |
+| Evidence recorded | `RELEASE_SIGNOFF.md` | Filled out with all test results |
+| History logged | `Release Sign-Off Master Table.md` | One row added for this release |
+| Human informed | — | Agent says "Ready to merge" |
 
-**No merge or release without a completed sign-off.**
+**Human merges. Agent does not merge.**
 
 ---
 
-## 9. Sitemap Rule (P0)
+## 8. Sitemap Rule (P0)
 
 > **Always enforced.** Priority zero — no exceptions.
 
@@ -234,15 +239,15 @@ Missing sitemap coverage is a **hard failure** for: BUILD, TEST, and COMPLIANCE.
 
 ---
 
-## 10. Enforcement Summary
+## 9. Enforcement Summary
 
 | Principle | Rule |
 |-----------|------|
-| Default behavior | Strict, deterministic, auditable |
+| Default behavior | Build → Test → Log → Ready to merge |
 | ADMIN Mode | Explicit, manual, absolute |
 | Silence | ≠ permission |
 | Keyword `ADMIN` | Immediate human control |
 
 ### One-Line Intent
 
-> **Copilot defines work. Human authorizes work. Codex executes work. ADMIN overrides everything.**
+> **Requirement comes in. Agent builds, tests, and logs. Human merges. ADMIN overrides everything.**

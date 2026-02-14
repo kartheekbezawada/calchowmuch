@@ -7,7 +7,7 @@
 | Status | Authoritative (sole active governance file) |
 | Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
 | Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
-| Version | 3.4 (GTEP + Privacy/Terms canonical policy consolidation) |
+| Version | 3.5 (Design token reference defaults + layout hard-lock) |
 | Last Updated | 2026-02-14 |
 
 This is the only active governance file under `requirements/universal-rules/`.
@@ -169,11 +169,116 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-UI-021 | Input edits/mode toggles/add-remove rows may change state/visibility but must not recompute before Calculate click. | P0 |
 | UR-UI-022 | Dense/multi-mode calculators require explicit mode control type, default mode, visibility mapping, and dynamic-row parity. | P0 |
 
-### 4.4 New Design Philosophy and Design Families
+### 4.4 Design Token Reference Defaults (General Information)
+
+> **Note:** The values below are current reference defaults for the premium-dark theme. Individual calculator requirements may specify different values. These are **not mandatory fixed values** — they document the current baseline only.
+
+#### 4.4.1 Theme Flag
+
+The active theme is controlled via a `data-theme` attribute on `<html>` or `<body>`. The current default is `data-theme="premium-dark"`. Requirements may introduce alternative themes gated behind this flag.
+
+#### 4.4.2 Color Palette (Reference Defaults)
+
+| Token Category | Key Tokens | Example Values |
+| --- | --- | --- |
+| Primary Brand | `--color-blue-600`, `--color-cyan-600` | `#2563eb`, `#0891b2` |
+| Semantic | `--color-green-500`, `--color-orange-500`, `--color-red-500`, `--color-violet-500` | `#10b981`, `#f97316`, `#dc2626`, `#8b5cf6` |
+| Slate (Backgrounds & Text) | `--color-slate-50` through `--color-slate-950` | `#f8fafc` → `#020617` |
+| Dark Backgrounds | `--color-blue-900`, `--color-blue-950` | `#1e3a8a`, `#172554` |
+
+#### 4.4.3 Gradients (Reference Defaults)
+
+| Token | Purpose | Example Value |
+| --- | --- | --- |
+| `--gradient-bg-main` | Page background | `linear-gradient(to bottom right, slate-900, blue-950, slate-900)` |
+| `--gradient-bg-card` | Pane/card surface | `linear-gradient(to bottom right, rgba(30,41,59,0.8), rgba(15,23,42,0.8))` |
+| `--gradient-brand-primary` | Brand accent | `linear-gradient(to right, blue-600, cyan-600)` |
+| `--gradient-input-*` | Input accent per type | blue, green, orange, violet variants |
+| `--gradient-result-card` | Result display | `linear-gradient(to bottom right, blue-600, cyan-600)` |
+
+#### 4.4.4 Shadows (Reference Defaults)
+
+| Token | Purpose |
+| --- | --- |
+| `--shadow-sm` through `--shadow-2xl` | Standard elevation scale (6 levels) |
+| `--shadow-glow-blue`, `--shadow-glow-cyan` | Brand glow effects for active/focus states |
+
+#### 4.4.5 Typography (Reference Defaults)
+
+| Property | Token Range | Values |
+| --- | --- | --- |
+| Font Family | `--font-sans` | System stack: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif` |
+| Font Sizes | `--text-xs` through `--text-6xl` | `0.75rem` (12px) → `3.75rem` (60px) |
+| Font Weights | `--font-normal` through `--font-black` | 400 → 900 |
+| Line Heights | `--leading-none` through `--leading-loose` | 1 → 2 |
+
+#### 4.4.6 Spacing and Radius (Reference Defaults)
+
+| Property | Token Range | Values |
+| --- | --- | --- |
+| Spacing | `--space-1` through `--space-20` | `0.25rem` (4px) → `5rem` (80px) |
+| Border Radius | `--radius-none` through `--radius-full` | `0` → `9999px` |
+
+#### 4.4.7 Layout Dimensions (Reference Defaults)
+
+| Token | Value | Purpose |
+| --- | --- | --- |
+| `--container-max-width` | `1800px` | Max content width |
+| `--header-height` | `72px` | Top bar height |
+| `--category-nav-height` | `60px` | Category navigation bar |
+| `--footer-height` | `48px` | Footer height |
+| `--gap-between-panes` | `10px` | Gap between footer and content |
+| Grid columns | `2 / 3 / 5 / 2` (of 12) | Left nav / Calc pane / Explanation pane / Ads pane |
+
+#### 4.4.8 Z-Index Scale (Reference Defaults)
+
+| Token | Value | Purpose |
+| --- | --- | --- |
+| `--z-base` | 0 | Default stacking |
+| `--z-dropdown` | 10 | Dropdown menus |
+| `--z-sticky` | 20 | Sticky elements |
+| `--z-fixed` | 30 | Fixed headers |
+| `--z-modal` | 40 | Modals |
+| `--z-popover` | 50 | Popovers |
+| `--z-tooltip` | 60 | Tooltips |
+
+#### 4.4.9 Component Token Defaults (Reference Only)
+
+| Component | Key Tokens |
+| --- | --- |
+| Slider | Track height `8px`, thumb size `20px`, track color `slate-800` |
+| Input | Padding `1rem × 0.75rem`, radius `0.75rem` (xl) |
+| Button | Padding `1.5rem × 1rem`, radius `0.75rem` (xl) |
+| Card | Padding `1.5rem`, radius `1.5rem` (3xl) |
+| Table | Cell padding `1rem × 0.75rem` |
+
+#### 4.4.10 Transitions (Reference Defaults)
+
+| Token | Duration | Easing |
+| --- | --- | --- |
+| `--transition-fast` | 150ms | `cubic-bezier(0.4, 0, 0.2, 1)` |
+| `--transition-base` | 300ms | `cubic-bezier(0.4, 0, 0.2, 1)` |
+| `--transition-slow` | 500ms | `cubic-bezier(0.4, 0, 0.2, 1)` |
+
+#### 4.4.11 Layout Hard-Lock During Theme-Only Changes
+
+When a change is scoped to theme/visual-only (no functional changes), the following are absolute constraints:
+
+- Grid column definitions (pane spans) must remain identical
+- Pane container heights must remain identical
+- `overflow-y` scroll regions must not change
+- Header/footer heights must remain identical
+- Existing DOM structure for pane containers must not be reshaped
+
+If a theme change causes pane width/height/scroll behavior differences, revert and restyle using only CSS tokens/classes.
+
+---
+
+### 4.5 Design Philosophy and Design Families
 
 | Rule ID | Requirement | Severity |
 | --- | --- | --- |
-| UR-UI-030 | New design philosophy is mandatory: high-impact visual identity, simple interaction model, smooth motion, and glassmorphism-like depth via shared tokens/components. | P0 |
+| UR-UI-030 | Design philosophy is mandatory: high-impact visual identity, simple interaction model, smooth motion, and glassmorphism-like depth via shared tokens/components. | P0 |
 | UR-UI-031 | `designFamily` controls accent style and micro-visual language, while shared shell structure and usability standards remain unchanged. | P0 |
 | UR-UI-032 | Family-level styling must be token-driven; route CSS must not hardcode conflicting palette systems that bypass shared tokens. | P0 |
 | UR-UI-033 | `home-loan`, `auto-loans`, and `credit-cards` families may vary accent and card treatments, but must preserve accessibility, readability, and deterministic layout behavior. | P0 |
