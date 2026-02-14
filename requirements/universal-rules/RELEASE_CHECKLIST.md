@@ -66,7 +66,41 @@ Run Lighthouse locally (mobile profile) on key pages:
 - [ ] No large blocking tasks around first interaction.
 - [ ] Above-the-fold content renders quickly (no ad-induced delay).
 
-## D) Ad Slot Contract — Must Pass (CLS Zero-Tolerance)
+### C3) Core Web Vitals Regression — CLS Guard (Global & Automated)
+
+**Objective**: Prevent layout instability on critical pages before release.
+
+**Critical Page Scope**:
+- All Finance Calculators
+- All Loan Calculators
+- Home Page
+- Top Traffic Math Calculators
+
+**Release Policy (Automated Lab Checks):**
+1.  **HARD FAIL** (Release Blocked):
+    - Any critical page **CLS > 0.10**.
+    - Any single layout shift contribution **> 0.05**.
+2.  **SOFT WARNING** (Investigation Required):
+    - CLS between **0.05** and **0.10**.
+    - New layout shift contributor appears vs baseline.
+
+**Baseline Tracking (Phase 7):**
+- **Storage**: Last known good CLS stored in `tests/performance/baselines.json`.
+- **Regression Policy**: Flag any **> 20% increase** in CLS vs baseline, even if total score is under threshold.
+
+**Execution Mode**:
+- Must run in **WSL** (Linux environment).
+- Must run in two modes:
+    - **Mode A (Normal)**: Standard load.
+    - **Mode B (Stress)**: Slow CSS, Slow Fonts, CPU Throttle.
+
+**Root Cause Analysis Heuristics** (If Guard Fails):
+- [ ] Late CSS load / FOUC?
+- [ ] Webfont metric swap?
+- [ ] Slider/component resize post-mount?
+- [ ] Breakpoint/class toggles after hydration?
+- [ ] Image/icon missing reserved dimensions?
+- [ ] Ad container collapse?
 
 ### D1) Slot reservation
 For every ad placement:

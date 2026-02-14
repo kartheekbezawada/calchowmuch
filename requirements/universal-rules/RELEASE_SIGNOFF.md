@@ -77,23 +77,42 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | **INP** | | GSC CWV / RUM | |
 | **CLS** | | GSC CWV / RUM | |
 
-## 5) Ads Stability Verification (CLS Zero-Tolerance)
+## 5) Global CLS Regression Guard (Automated WSL)
 
-### 5.1 Ad slot contract verification
+### 5.1 Guard Results
+
+| Page Type | Normal CLS | Stress CLS | Baseline Delta | Status (Pass/Fail) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Finance (Critical)** | | | | |
+| **Loan (Critical)** | | | | |
+| **Math (Top)** | | | | |
+| **Home** | | | | |
+
+### 5.2 Root Cause Analysis (If Failed/Warned)
+*If any page triggered a warning (> 0.05) or fail (> 0.10), document the cause:*
+
+- [ ] Late CSS / FOUC
+- [ ] Webfont Swap
+- [ ] Component Resize
+- [ ] Dynamic Injection
+
+## 6) Ads Stability Verification (CLS Zero-Tolerance)
+
+### 6.1 Ad slot contract verification
 
 | Page | Slot(s) Verified | Reserved Space (Y/N) | No Layout Shift (Y/N) | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | `<page-1>` | | | | |
 | `<page-2>` | | | | |
 
-### 5.2 Load order verification
+### 6.2 Load order verification
 
 - [ ] Ads did not block initial render
 - [ ] Ads loaded after initial render and idle/interaction
 - [ ] No slot height changes after ad fill
 - [ ] No overlap with inputs/results on mobile
 
-## 6) Manual Regression Scenarios (Pass/Fail)
+## 7) Manual Regression Scenarios (Pass/Fail)
 
 | Scenario | Pass/Fail | Notes |
 | :--- | :--- | :--- |
@@ -105,7 +124,7 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 | Deep-link opens only correct subcategory | | |
 | Ads appear with zero CLS | | |
 
-## 7) Exceptions & Follow-Up Tickets
+## 8) Exceptions & Follow-Up Tickets
 
 List any allowed exceptions (must not include CLS or interaction lag).
 
@@ -113,14 +132,14 @@ List any allowed exceptions (must not include CLS or interaction lag).
 | :--- | :--- | :--- | :--- | :--- |
 | | LOW / MED | | | |
 
-## 8) Final Sign-Off
+## 9) Final Sign-Off
 
-### 8.1 Release decision
+### 9.1 Release decision
 
 - [ ] **APPROVED** (all HARD gates passed)
 - [ ] **REJECTED** (HARD blocker found)
 
-### 8.2 Signatures
+### 9.2 Signatures
 
 | Role | Name | Date (UTC) | Signature/Note |
 | :--- | :--- | :--- | :--- |
