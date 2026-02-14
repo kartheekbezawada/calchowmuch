@@ -1,79 +1,103 @@
 <div id="calc-simple-interest">
-  <div class="calculator-ui">
-    <h2>Simple Interest Calculator</h2>
-    <p class="helper">
-      Calculate total simple interest and ending amount from principal, rate, and time.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Simple interest calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Calculate total simple interest and ending amount from principal, rate, and
+            time. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="si-principal">Principal Amount (P)</label>
-        <input id="si-principal" type="number" value="10000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="si-principal">Principal Amount (P)</label>
+              <span class="slider-value" id="si-principal-display">10,000</span>
+            </div>
+            <input id="si-principal" type="range" value="10000" min="100" max="1000000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="si-rate">Interest Rate (%)</label>
-        <input id="si-rate" type="number" value="6" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="si-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="si-rate-display">6%</span>
+              </div>
+              <input id="si-rate" type="range" value="6" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="si-time">Time Period</label>
-        <input id="si-time" type="number" value="3" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="si-time">Time Period</label>
+                <span class="slider-value" id="si-time-display">3</span>
+              </div>
+              <input id="si-time" type="range" value="3" min="1" max="60" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="si-time-unit-label">Time Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="si-time-unit-label"
-          data-button-group="si-time-unit"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Time Unit</span>
+              <div class="button-group" role="group" aria-label="Time unit" data-button-group="si-time-unit">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Interest Basis</span>
+              <div class="button-group" role="group" aria-label="Interest basis" data-button-group="si-basis">
+                <button class="calculator-button secondary is-active" type="button" data-value="per-year"
+                  aria-pressed="true">Per Year</button>
+                <button class="calculator-button secondary" type="button" data-value="per-month"
+                  aria-pressed="false">Per Month</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="si-calc">
+              Calculate Simple Interest
+            </button>
+          </div>
         </div>
-      </div>
+
+        <aside class="mtg-preview-panel" aria-label="Simple interest result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Ending Amount</p>
+            <div class="result mtg-result-card" id="si-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="si-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Principal (P)</span>
+              <strong data-si="snap-principal"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-si="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-si="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Basis</span>
+              <strong data-si="snap-basis"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time in Years</span>
+              <strong data-si="snap-years"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Interest</span>
+              <strong data-si="snap-interest"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="si-optional-toggle"
-      aria-expanded="false"
-      aria-controls="si-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="si-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="si-basis-label">Interest Basis</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="si-basis-label"
-          data-button-group="si-basis"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="per-year" aria-pressed="true">
-            Per Year
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="per-month" aria-pressed="false">
-            Per Month
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="si-calc">
-      Calculate Simple Interest
-    </button>
-
-    <div class="result" id="si-result" aria-live="polite"></div>
-    <div class="result-detail" id="si-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

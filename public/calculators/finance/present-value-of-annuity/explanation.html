@@ -1,256 +1,200 @@
 <div id="pva-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your payment amount of <span data-pva="payment-amount"></span>, a discount rate of
-    <span data-pva="discount-rate"></span>, and <span data-pva="period-count"></span>, the present value of the annuity is
-    <span data-pva="present-value"></span>.
-    This calculation reflects an <span data-pva="annuity-type"></span> with an applied rate of
-    <span data-pva="applied-rate"></span> percent per period over <span data-pva="effective-periods"></span> effective
-    periods.
-    This annuity present value calculator shows the lump-sum present value of annuity payments in today's terms.
-  </p>
+  <div id="loan-mtg-explanation">
+    <h2>Present Value of Annuity — Results Breakdown</h2>
+    <p>
+      The present value of an annuity tells you what a series of regular future payments
+      is worth today. The results below show exactly how your inputs translate into
+      today's lump-sum equivalent.
+    </p>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-pva="payment-amount"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Discount Rate</td>
-          <td><span data-pva="discount-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Number of Periods</td>
-          <td><span data-pva="period-count"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-pva="annuity-type"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value of Annuity</td>
-          <td><span data-pva="present-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pva-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Payment Amount (PMT)</td>
+              <td><span data-pva="payment-amount"></span></td>
+              <td class="pva-how-col">The fixed amount paid or received each period</td>
+            </tr>
+            <tr>
+              <td>Discount Rate</td>
+              <td><span data-pva="discount-rate"></span></td>
+              <td class="pva-how-col">Annual rate used to discount each payment</td>
+            </tr>
+            <tr>
+              <td>Periods</td>
+              <td><span data-pva="period-count"></span></td>
+              <td class="pva-how-col">Number of periods over which payments occur</td>
+            </tr>
+            <tr>
+              <td>Annuity Type</td>
+              <td><span data-pva="annuity-type"></span></td>
+              <td class="pva-how-col">Whether payments arrive at start or end of period</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-pva="compounding-frequency"></span></td>
+              <td class="pva-how-col">How often the discount rate is applied per year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-pva="effective-periods"></span></td>
+              <td class="pva-how-col">Total number of compounding periods used</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-pva="applied-rate"></span>%</td>
+              <td class="pva-how-col">Discount rate applied in each compounding period</td>
+            </tr>
+            <tr>
+              <td>Total Payments</td>
+              <td><span data-pva="total-payments"></span></td>
+              <td class="pva-how-col">Sum of all payments without discounting</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>PV of Annuity</td>
+              <td><span data-pva="present-value"></span></td>
+              <td class="pva-how-col">What all future payments are worth today</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-pva="payment-amount"></span></td>
-          <td>Currency</td>
-          <td>Regular payment each period</td>
-        </tr>
-        <tr>
-          <td>Total Payments</td>
-          <td><span data-pva="total-payments"></span></td>
-          <td>Currency</td>
-          <td>Sum of all payments</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-pva="annuity-type"></span></td>
-          <td>N/A</td>
-          <td>Ordinary or due timing</td>
-        </tr>
-        <tr>
-          <td>Discount Rate per Period</td>
-          <td><span data-pva="applied-rate"></span></td>
-          <td>Percent</td>
-          <td>Rate applied each period</td>
-        </tr>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-pva="effective-periods"></span></td>
-          <td>Periods</td>
-          <td>Total payment periods</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value of Annuity</td>
-          <td><span data-pva="present-value"></span></td>
-          <td>Currency</td>
-          <td>Value of payments today</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        The present value of an annuity converts a stream of equal future payments into a
+        single lump sum in today's dollars. Here's how your inputs drive the result.
+      </p>
 
-  <h3>Explanation</h3>
-  <p>
-    The present value of annuity calculations translate a stream of payments into today's dollars.
-    Your PV of annuity estimate of <span data-pva="present-value"></span> is based on total payments of
-    <span data-pva="total-payments"></span> spread over <span data-pva="effective-periods"></span> effective periods.
-  </p>
-  <p>
-    Selecting annuity due assumes payments arrive at the beginning of each period, which increases the present value
-    compared with an ordinary annuity. If you are wondering how to calculate present value of annuity, the present
-    value of annuity formula discounts each payment using the applied rate per period of
-    <span data-pva="applied-rate"></span> percent.
-  </p>
-  <p><strong>Ordinary annuity vs annuity due comparison:</strong></p>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Feature</th>
-          <th scope="col">Ordinary Annuity</th>
-          <th scope="col">Annuity Due</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Timing</td>
-          <td>End of each period</td>
-          <td>Beginning of each period</td>
-        </tr>
-        <tr>
-          <td>First Payment Occurs</td>
-          <td>After first period</td>
-          <td>Immediately</td>
-        </tr>
-        <tr>
-          <td>Present Value</td>
-          <td>Lower</td>
-          <td>Higher</td>
-        </tr>
-        <tr>
-          <td>Discounting</td>
-          <td>More discounting applied</td>
-          <td>Less discounting applied</td>
-        </tr>
-        <tr>
-          <td>Common Examples</td>
-          <td>Loan repayments, bond coupons</td>
-          <td>Rent, lease payments, insurance premiums</td>
-        </tr>
-        <tr>
-          <td>Formula Basis</td>
-          <td>Standard annuity PV calculation</td>
-          <td>Ordinary annuity PV adjusted for timing</td>
-        </tr>
-        <tr>
-          <td>Cash Flow Timing</td>
-          <td>Later</td>
-          <td>Earlier</td>
-        </tr>
-        <tr>
-          <td>Typical Use Case</td>
-          <td>Loans and investments</td>
-          <td>Leases and pensions</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Summary</td>
-          <td>Payments arrive later</td>
-          <td>Payments arrive sooner</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <p>
-    Use this annuity present value example to compare scenarios for ordinary annuity and annuity due payments.
-  </p>
+      <ul class="pva-explanation-list">
+        <li>
+          <strong>Payment Amount (PMT):</strong>
+          Each period you receive <span data-pva="payment-amount"></span>. This is the fixed
+          cash flow being discounted back to the present.
+        </li>
+        <li>
+          <strong>Discount Rate:</strong>
+          A <span data-pva="discount-rate"></span> annual discount rate reflects the cost of
+          capital or the return you'd earn if you had the money today.
+        </li>
+        <li>
+          <strong>Periods:</strong>
+          Payments continue for <span data-pva="period-count"></span>. More periods
+          mean more payments, but each additional payment is discounted more heavily.
+        </li>
+        <li>
+          <strong>Annuity Type:</strong>
+          You selected <span data-pva="annuity-type"></span>. Ordinary annuities pay at
+          the end of each period; annuity due pays at the beginning, giving a higher present value.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-pva="compounding-frequency"></span> compounding, the annual rate is
+          split into <span data-pva="effective-periods"></span> effective periods, each at
+          <span data-pva="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Discount Saved:</strong>
+          The total undiscounted payments of <span data-pva="total-payments"></span> are reduced
+          to <span data-pva="present-value"></span> — a difference of
+          <span data-pva="formula-discount-saved"></span> due to the time value of money.
+        </li>
+      </ul>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is the present value of an annuity?</strong></p>
-    <p class="faq-answer">
-      A: The present value of an annuity (PV of annuity) is the value today of a series of regular future payments,
-      discounted using a specific interest or discount rate.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the difference between an ordinary annuity and an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: In an ordinary annuity, payments occur at the end of each period, while in an annuity due, payments occur at
-      the beginning of each period, and this annuity due calculator compares both.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why is the present value of an annuity due higher than an ordinary annuity?</strong></p>
-    <p class="faq-answer">
-      A: An annuity due has a higher present value because payments are received earlier and are discounted for fewer
-      periods.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the present value of an ordinary annuity?</strong></p>
-    <p class="faq-answer">
-      A: The present value of ordinary annuity is calculated by discounting each payment made at the end of each period
-      back to today; the PV ordinary annuity calculator applies that discount each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the present value of an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: The present value of annuity due is calculated by adjusting the ordinary annuity present value to account for
-      payments made at the beginning of each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What discount rate should be used for annuity calculations?</strong></p>
-    <p class="faq-answer">
-      A: The discount rate should reflect interest rates, investment returns, inflation expectations, or borrowing
-      costs relevant to the cash flow.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is the present value of annuity used for loans and mortgages?</strong></p>
-    <p class="faq-answer">
-      A: Yes, present value of annuity calculations are commonly used to value loan repayments, mortgages, and lease
-      payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can this calculator be used for monthly annuity payments?</strong></p>
-    <p class="faq-answer">
-      A: Yes, the calculator supports monthly, quarterly, and annual payment periods depending on the selected
-      settings, so you can estimate PV of annuity with monthly payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the discount rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: If the discount rate is zero, the present value of the annuity equals the total amount of all payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is the present value of annuity useful for retirement planning?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is widely used to estimate the value of pensions, retirement income streams, and long-term annuity
-      payments.
-    </p>
+      <h4>How the Formula Works</h4>
+      <p>The present value of an ordinary annuity formula is:</p>
+      <p class="pva-formula-block">
+        PVA = PMT &times; [(1 &minus; (1+r)<sup>&minus;n</sup>) &divide; r]
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="pva-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-pva="discount-rate"></span> &divide;
+          <span data-pva="periods-per-year"></span> compounding periods per year
+          = <span data-pva="applied-rate"></span>% per period
+          (as a decimal: <span data-pva="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-pva="effective-periods"></span> total compounding periods.
+        </li>
+        <li>
+          <strong>Build the annuity factor:</strong>
+          [1 &minus; (1 + <span data-pva="applied-rate-decimal"></span>)<sup>&minus;<span
+              data-pva="effective-periods"></span></sup>]
+          &divide; <span data-pva="applied-rate-decimal"></span>
+          = <span data-pva="formula-annuity-factor"></span>.
+        </li>
+        <li>
+          <strong>Multiply by payment:</strong>
+          <span data-pva="payment-amount"></span> &times;
+          <span data-pva="formula-annuity-factor"></span>
+          = <strong><span data-pva="present-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        For an annuity due, the result is multiplied by (1 + r) because each payment
+        arrives one period earlier, reducing total discounting.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is the present value of an annuity?</h4>
+          <p>It is today's value of a series of equal future payments, discounted using a specific interest or
+            discount rate.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Ordinary annuity vs annuity due?</h4>
+          <p>Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a
+            higher present value.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What discount rate should I use?</h4>
+          <p>Use a rate reflecting interest rates, investment returns, inflation, or borrowing costs relevant to
+            the cash flow.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>Is this useful for loans and mortgages?</h4>
+          <p>Yes, PV of annuity calculations are commonly used to value loan repayments, mortgages, and lease
+            payments.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What happens if the discount rate is zero?</h4>
+          <p>If the rate is zero, the present value equals the total of all payments — no discounting is applied.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Is this useful for retirement planning?</h4>
+          <p>Yes, it helps estimate the value of pensions, retirement income streams, and long-term annuity
+            payments.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

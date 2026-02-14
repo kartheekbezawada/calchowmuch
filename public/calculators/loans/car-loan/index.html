@@ -16,79 +16,54 @@
             <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
           </div>
 
-          <div class="input-row down-combined-left">
-            <label id="car-down-label">Down Payment Type</label>
-            <div
-              class="button-group"
-              role="group"
-              aria-labelledby="car-down-label"
-              data-button-group="car-down-type"
-            >
-              <button
-                class="calculator-button secondary is-active"
-                type="button"
-                data-value="amount"
-                aria-pressed="true"
-              >
-                Amount
-              </button>
-              <button
-                class="calculator-button secondary"
-                type="button"
-                data-value="percent"
-                aria-pressed="false"
-              >
-                Percent
-              </button>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="car-down-value-label" for="car-down-value">Down Payment</label>
+                <span class="slider-value" id="car-down-display">3,000</span>
+              </div>
+              <input id="car-down-value" type="range" value="3000" min="0" max="150000" step="100" />
             </div>
-          </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label id="car-down-value-label" for="car-down-value">Down Payment Amount</label>
-              <span class="slider-value" id="car-down-display">3,000</span>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-trade">Trade-in Value</label>
+                <span class="slider-value" id="car-trade-display">1,500</span>
+              </div>
+              <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
             </div>
-            <input id="car-down-value" type="range" value="3000" min="0" max="150000" step="100" />
-          </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-trade">Trade-in Value</label>
-              <span class="slider-value" id="car-trade-display">1,500</span>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-fees">Dealer Fees</label>
+                <span class="slider-value" id="car-fees-display">600</span>
+              </div>
+              <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
             </div>
-            <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
-          </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-fees">Dealer Fees</label>
-              <span class="slider-value" id="car-fees-display">600</span>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-tax">Sales Tax (%)</label>
+                <span class="slider-value" id="car-tax-display">7%</span>
+              </div>
+              <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
             </div>
-            <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
-          </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-tax">Sales Tax (%)</label>
-              <span class="slider-value" id="car-tax-display">7%</span>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-term">Loan Term (years)</label>
+                <span class="slider-value" id="car-term-display">5 yrs</span>
+              </div>
+              <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
             </div>
-            <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
-          </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-term">Loan Term (years)</label>
-              <span class="slider-value" id="car-term-display">5 yrs</span>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-apr">Interest Rate (APR %)</label>
+                <span class="slider-value" id="car-apr-display">6.5%</span>
+              </div>
+              <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
             </div>
-            <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-apr">Interest Rate (APR %)</label>
-              <span class="slider-value" id="car-apr-display">6.5%</span>
-            </div>
-            <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
           </div>
 
           <div class="input-row action-row mtg-action-row">

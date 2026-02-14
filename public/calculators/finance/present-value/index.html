@@ -1,99 +1,111 @@
 <div id="calc-present-value">
-  <div class="calculator-ui">
-    <p class="helper">
-      Estimate the present value of a future amount using a discount rate and time period.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Present value calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the present value of a future amount using a discount rate, time period, and
+            compounding frequency. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pv-future-value">Future Value (FV)</label>
-        <input id="pv-future-value" type="number" value="10000" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pv-future-value">Future Value (FV)</label>
+              <span class="slider-value" id="pv-fv-display">10,000</span>
+            </div>
+            <input id="pv-future-value" type="range" value="10000" min="100" max="500000" step="100" />
+          </div>
 
-      <div class="input-row">
-        <label for="pv-discount-rate">Discount Rate (%)</label>
-        <input id="pv-discount-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pv-rate-display">5%</span>
+              </div>
+              <input id="pv-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="pv-time-period">Time Period</label>
-        <input id="pv-time-period" type="number" value="3" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-time-period">Time Period</label>
+                <span class="slider-value" id="pv-time-display">3 yrs</span>
+              </div>
+              <input id="pv-time-period" type="range" value="3" min="1" max="50" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="pv-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pv-period-type-label"
-          data-button-group="pv-period-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="years"
-            aria-pressed="true"
-          >
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="pv-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="pv-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pv-calc">
+              Calculate Present Value
+            </button>
+          </div>
         </div>
-      </div>
+
+        <aside class="mtg-preview-panel" aria-label="Present value result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Present Value</p>
+            <div class="result mtg-result-card" id="pv-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pv-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Future Value</span>
+              <strong data-pv="snap-fv"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Discount Rate</span>
+              <strong data-pv="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Time Period</span>
+              <strong data-pv="snap-time"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-pv="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-pv="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-pv="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="pv-optional-toggle"
-      aria-expanded="false"
-      aria-controls="pv-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="pv-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="pv-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pv-compound-label"
-          data-button-group="pv-compounding"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="annual"
-            aria-pressed="true"
-          >
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">
-            Semi-Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="pv-calc">
-      Calculate Present Value
-    </button>
-
-    <div class="result" id="pv-result" aria-live="polite"></div>
-    <div class="result-detail" id="pv-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/finance/present-value/calculator.css');
 </style>
-
-<script type="module" src="/calculators/finance/present-value/module.js"></script>

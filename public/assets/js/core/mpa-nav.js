@@ -1,3 +1,5 @@
+import '/assets/js/core/mobile-nav.js';
+
 const standardToggles = document.querySelectorAll('.nav-category-toggle');
 standardToggles.forEach((toggle) => {
   toggle.addEventListener('click', () => {
@@ -14,6 +16,30 @@ standardToggles.forEach((toggle) => {
     }
   });
 });
+
+/* ── Finance accordion ── */
+const finNavContainer = document.querySelector('[data-fin-nav="true"]');
+if (finNavContainer) {
+  const finGroups = finNavContainer.querySelectorAll('.fin-nav-group');
+  finGroups.forEach((group) => {
+    const toggle = group.querySelector('.fin-nav-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', () => {
+      const wasExpanded = group.classList.contains('is-expanded');
+      /* Accordion: close all */
+      finGroups.forEach((g) => {
+        g.classList.remove('is-expanded');
+        const t = g.querySelector('.fin-nav-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+      /* Toggle clicked one */
+      if (!wasExpanded) {
+        group.classList.add('is-expanded');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
 
 const mathToggles = document.querySelectorAll('.math-nav-category-toggle');
 mathToggles.forEach((toggle) => {
@@ -126,9 +152,11 @@ if (searchInput && leftNavContent) {
   const normalize = (value) => value.trim().toLowerCase();
   const standardCategories = Array.from(leftNavContent.querySelectorAll('.nav-category'));
   const mathCategories = Array.from(leftNavContent.querySelectorAll('.math-nav-category'));
+  const finGroups = Array.from(leftNavContent.querySelectorAll('.fin-nav-group'));
   const allItems = [
     ...leftNavContent.querySelectorAll('.nav-item'),
     ...leftNavContent.querySelectorAll('.math-nav-item'),
+    ...leftNavContent.querySelectorAll('.fin-nav-item'),
   ];
 
   const resetSearch = () => {
@@ -138,6 +166,9 @@ if (searchInput && leftNavContent) {
     });
     mathCategories.forEach((category) => {
       category.classList.remove('is-hidden', 'is-search-open');
+    });
+    finGroups.forEach((group) => {
+      group.classList.remove('is-hidden', 'is-search-open');
     });
   };
 
@@ -177,6 +208,20 @@ if (searchInput && leftNavContent) {
       });
       category.classList.toggle('is-search-open', hasMatch);
       category.classList.toggle('is-hidden', !hasMatch);
+    });
+
+    finGroups.forEach((group) => {
+      const items = Array.from(group.querySelectorAll('.fin-nav-item'));
+      let hasMatch = false;
+      items.forEach((item) => {
+        const match = normalize(item.textContent).includes(query);
+        item.classList.toggle('is-hidden', !match);
+        if (match) {
+          hasMatch = true;
+        }
+      });
+      group.classList.toggle('is-search-open', hasMatch);
+      group.classList.toggle('is-hidden', !hasMatch);
     });
   };
 

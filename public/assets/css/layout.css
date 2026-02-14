@@ -324,14 +324,12 @@ body .site-header .header-search-icon {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(102, 126, 234, 0.4) 20%,
-    rgba(102, 126, 234, 0.6) 50%,
-    rgba(102, 126, 234, 0.4) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(102, 126, 234, 0.4) 20%,
+      rgba(102, 126, 234, 0.6) 50%,
+      rgba(102, 126, 234, 0.4) 80%,
+      transparent 100%);
   opacity: 0.45;
   pointer-events: none;
 }
@@ -413,97 +411,223 @@ body .site-header .header-search-icon {
   gap: 8px;
 }
 
-/* Finance subcategory cards: clearer grouping and hierarchy */
-.nav-category[data-id='time-value-of-money'],
-.nav-category[data-id='interest-and-growth'],
-.nav-category[data-id='investments-and-savings'] {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.2) 100%);
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  border-radius: 14px;
-  padding: 10px 10px 8px;
+/* ── Finance Premium Nav — glassmorphism accordion ── */
+
+.fin-nav-container {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.nav-category[data-id='time-value-of-money'] .nav-category-toggle,
-.nav-category[data-id='interest-and-growth'] .nav-category-toggle,
-.nav-category[data-id='investments-and-savings'] .nav-category-toggle {
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(59, 130, 246, 0.12));
-  border: 1px solid rgba(96, 165, 250, 0.35);
-  color: #e2e8f0;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0.2px;
-  align-items: flex-start;
+/* ── Category Group ── */
+.fin-nav-group {
+  border-radius: 12px;
+  transition: background 0.22s ease, box-shadow 0.22s ease;
 }
 
-.nav-category[data-id='time-value-of-money'] .nav-category-label,
-.nav-category[data-id='interest-and-growth'] .nav-category-label,
-.nav-category[data-id='investments-and-savings'] .nav-category-label {
+.fin-nav-group.is-expanded {
+  background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
+  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  box-shadow:
+    0 0 8px rgba(56, 189, 248, 0.3),
+    inset 0 0 5px rgba(56, 189, 248, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Toggle Button ── */
+.fin-nav-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease,
+    padding-left 0.15s ease;
+}
+
+.fin-nav-toggle:hover {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(59, 130, 246, 0.1);
+  box-shadow:
+    0 0 24px rgba(0, 120, 255, 0.35),
+    0 0 48px rgba(59, 130, 246, 0.12);
+  padding-left: 18px;
+}
+
+.fin-nav-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Subcategory icon */
+.fin-nav-toggle-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Label — allow wrapping so full text is always visible */
+.fin-nav-toggle-label {
+  flex: 1;
+  text-align: left;
   white-space: normal;
   overflow: visible;
-  text-overflow: clip;
-  line-height: 1.25;
-  padding-right: 6px;
+  line-height: 1.3;
 }
 
-.nav-category[data-id='time-value-of-money'] .nav-category-toggle:hover,
-.nav-category[data-id='interest-and-growth'] .nav-category-toggle:hover,
-.nav-category[data-id='investments-and-savings'] .nav-category-toggle:hover {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.16));
-}
-
-.nav-category[data-id='time-value-of-money'] .nav-category-indicator,
-.nav-category[data-id='interest-and-growth'] .nav-category-indicator,
-.nav-category[data-id='investments-and-savings'] .nav-category-indicator {
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
+/* ── Chevron Arrow ── */
+.fin-nav-chevron {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1.5px solid rgba(96, 165, 250, 0.65);
+  color: #7dd3fc;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 10px rgba(56, 189, 248, 0.35),
+    0 0 20px rgba(59, 130, 246, 0.15);
+  transition:
+    transform 0.2s ease,
+    background 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.fin-nav-chevron-svg {
+  width: 15px;
+  height: 15px;
+}
+
+.fin-nav-group.is-expanded .fin-nav-chevron {
+  transform: rotate(90deg);
+  background: rgba(37, 99, 235, 0.4);
+  border-color: rgba(125, 211, 252, 1);
+  color: #bae6fd;
+  box-shadow:
+    0 0 16px rgba(56, 189, 248, 0.65),
+    0 0 32px rgba(59, 130, 246, 0.35),
+    0 0 48px rgba(96, 165, 250, 0.15);
+}
+
+.fin-nav-toggle:hover .fin-nav-chevron {
+  border-color: rgba(125, 211, 252, 1);
+  color: #bae6fd;
+  box-shadow:
+    0 0 14px rgba(56, 189, 248, 0.55),
+    0 0 30px rgba(59, 130, 246, 0.25);
+}
+
+/* ── Items Container — animated expand/collapse ── */
+.fin-nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 8px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.22s ease,
+    opacity 0.15s ease,
+    padding 0.22s ease;
+}
+
+.fin-nav-group.is-expanded .fin-nav-items {
+  max-height: 600px;
+  opacity: 1;
+  padding: 6px 8px 10px;
+}
+
+/* ── Calculator Item (Pill) ── */
+.fin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.35);
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.12s ease,
+    color 0.12s ease;
+}
+
+.fin-nav-item-icon {
   font-size: 14px;
   line-height: 1;
+  flex-shrink: 0;
 }
 
-.nav-category[data-id='time-value-of-money'] .nav-category-items,
-.nav-category[data-id='interest-and-growth'] .nav-category-items,
-.nav-category[data-id='investments-and-savings'] .nav-category-items {
-  gap: 7px;
+.fin-nav-item:hover {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
+  border-color: rgba(96, 165, 250, 0.5);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+  transform: scale(1.02);
+  color: #e0f2fe;
 }
 
-.nav-category[data-id='time-value-of-money'] .nav-item,
-.nav-category[data-id='interest-and-growth'] .nav-item,
-.nav-category[data-id='investments-and-savings'] .nav-item {
-  border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  border-left: 3px solid rgba(96, 165, 250, 0.55);
-  background: rgba(15, 23, 42, 0.45);
-  font-size: 13px;
-}
-
-.nav-category[data-id='time-value-of-money'] .nav-item:hover:not(.is-active),
-.nav-category[data-id='interest-and-growth'] .nav-item:hover:not(.is-active),
-.nav-category[data-id='investments-and-savings'] .nav-item:hover:not(.is-active) {
-  border-color: rgba(96, 165, 250, 0.55);
-  border-left-color: rgba(125, 211, 252, 0.95);
-  background: rgba(30, 64, 175, 0.3);
-  box-shadow: 0 4px 10px rgba(30, 64, 175, 0.18);
-}
-
-.nav-category[data-id='time-value-of-money'] .nav-item.is-active,
-.nav-category[data-id='interest-and-growth'] .nav-item.is-active,
-.nav-category[data-id='investments-and-savings'] .nav-item.is-active {
-  border: 1px solid rgba(147, 197, 253, 0.9);
+.fin-nav-item.is-active {
+  border: 1px solid rgba(147, 197, 253, 0.8);
   border-left: 3px solid #f8fafc;
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.85) 0%,
+      rgba(79, 70, 229, 0.9) 50%,
+      rgba(102, 126, 234, 0.85) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  color: #ffffff;
+  font-weight: 600;
   box-shadow:
-    0 8px 14px rgba(37, 99, 235, 0.26),
-    0 0 16px rgba(59, 130, 246, 0.3);
+    0 6px 12px rgba(102, 126, 234, 0.22),
+    0 0 14px rgba(59, 130, 246, 0.25);
+}
+
+.fin-nav-item.is-active:hover {
+  transform: none;
+}
+
+/* Search integration */
+.fin-nav-item.is-hidden {
+  display: none;
+}
+
+#left-nav-content.is-searching .fin-nav-group {
+  background: transparent;
+  box-shadow: none;
+}
+
+#left-nav-content.is-searching .fin-nav-group .fin-nav-items {
+  max-height: 600px;
+  opacity: 1;
+  padding: 6px 8px 10px;
+}
+
+#left-nav-content.is-searching .fin-nav-group.is-hidden {
+  display: none;
 }
 
 .nav-category.is-collapsed .nav-category-items {
@@ -573,12 +697,10 @@ body .site-header .header-search-icon {
 }
 
 .left-nav .nav-item.is-active {
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.9) 0%,
-    rgba(79, 70, 229, 0.95) 50%,
-    rgba(102, 126, 234, 0.9) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.9) 0%,
+      rgba(79, 70, 229, 0.95) 50%,
+      rgba(102, 126, 234, 0.9) 100%);
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #ffffff;
@@ -805,19 +927,24 @@ body .site-header .header-search-icon {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -825,19 +952,23 @@ body .site-header .header-search-icon {
 }
 
 @keyframes edgeGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .page,
   .site-header,
   .top-nav,
-  .layout-main > * {
+  .layout-main>* {
     animation: none;
   }
 
@@ -1062,12 +1193,10 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item.is-active {
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.9) 0%,
-    rgba(79, 70, 229, 0.95) 50%,
-    rgba(102, 126, 234, 0.9) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.9) 0%,
+      rgba(79, 70, 229, 0.95) 50%,
+      rgba(102, 126, 234, 0.9) 100%);
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #ffffff;
@@ -1078,15 +1207,69 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item.is-active:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.9) 0%,
-    rgba(79, 70, 229, 0.95) 50%,
-    rgba(102, 126, 234, 0.9) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.9) 0%,
+      rgba(79, 70, 229, 0.95) 50%,
+      rgba(102, 126, 234, 0.9) 100%);
   color: #ffffff;
 }
 
 .math-nav-item.is-hidden {
   display: none;
+}
+
+/* Mobile Navigation Drawer */
+.mobile-menu-toggle {
+  display: none;
+  /* Desktop default */
+  background: transparent;
+  border: none;
+  color: var(--header-text);
+  padding: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+@media (max-width: 860px) {
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left-nav {
+    position: fixed;
+    top: 72px;
+    /* Below header */
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background: var(--shell-bg);
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid var(--shell-border);
+    margin-left: 0;
+    padding-bottom: 2rem;
+  }
+
+  .left-nav.is-mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Overlay backdrop */
+  .left-nav.is-mobile-open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: -100vw;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+    pointer-events: auto;
+  }
 }

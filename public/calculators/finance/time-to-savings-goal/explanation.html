@@ -1,0 +1,254 @@
+<div id="tsg-explanation" class="explanation-pane">
+    <div id="loan-mtg-explanation">
+        <h2>Time to Savings Goal — Results Breakdown</h2>
+        <p>
+            This calculator estimates how long it will take to reach your savings target
+            based on your current savings, monthly contributions, interest rate, and
+            compounding settings. It answers the powerful question:
+            <em>"When will I finally reach my financial goal?"</em>
+        </p>
+
+        <section class="mtg-exp-section">
+            <h3>Results Table</h3>
+            <div class="table-scroll" tabindex="0">
+                <table class="tsg-results-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Metric</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">How It Works</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Savings Goal</td>
+                            <td><span data-tsg="goal"></span></td>
+                            <td class="tsg-how-col">Your target savings amount</td>
+                        </tr>
+                        <tr>
+                            <td>Current Savings</td>
+                            <td><span data-tsg="current"></span></td>
+                            <td class="tsg-how-col">What you already have saved</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Contribution</td>
+                            <td><span data-tsg="contribution"></span></td>
+                            <td class="tsg-how-col">Amount saved each month</td>
+                        </tr>
+                        <tr>
+                            <td>Interest Rate</td>
+                            <td><span data-tsg="rate"></span></td>
+                            <td class="tsg-how-col">Annual interest rate on savings</td>
+                        </tr>
+                        <tr>
+                            <td>Compounding</td>
+                            <td><span data-tsg="compounding"></span></td>
+                            <td class="tsg-how-col">How often interest is applied</td>
+                        </tr>
+                        <tr>
+                            <td>Contribution Timing</td>
+                            <td><span data-tsg="timing"></span></td>
+                            <td class="tsg-how-col">When contributions are added each period</td>
+                        </tr>
+                        <tr>
+                            <td>Estimated Months Required</td>
+                            <td><span data-tsg="months-required"></span></td>
+                            <td class="tsg-how-col">Total months to reach the goal</td>
+                        </tr>
+                        <tr>
+                            <td>Estimated Years</td>
+                            <td><span data-tsg="years-decimal"></span></td>
+                            <td class="tsg-how-col">Months converted to years</td>
+                        </tr>
+                        <tr>
+                            <td>Total Contributions</td>
+                            <td><span data-tsg="total-contributions"></span></td>
+                            <td class="tsg-how-col">Sum of all monthly deposits</td>
+                        </tr>
+                        <tr>
+                            <td>Total Interest Earned</td>
+                            <td><span data-tsg="total-interest"></span></td>
+                            <td class="tsg-how-col">Interest gained through compounding</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Final Balance</td>
+                            <td><span data-tsg="final-balance"></span></td>
+                            <td class="tsg-how-col">Balance when goal is reached</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <section class="mtg-exp-section">
+            <h3>How the Formula Works</h3>
+
+            <h4>Without Interest</h4>
+            <p>If the interest rate is 0%, the time calculation is straightforward:</p>
+            <p class="tsg-formula-block">
+                Time = (Goal &minus; Current Savings) &divide; Monthly Contribution
+            </p>
+            <p>
+                With your values: (<span data-tsg="goal"></span> &minus;
+                <span data-tsg="current"></span>) &divide;
+                <span data-tsg="contribution"></span>.
+            </p>
+
+            <h4>With Compound Interest</h4>
+            <p>When interest is involved, the future value formula for an annuity is used:</p>
+            <p class="tsg-formula-block">
+                FV = P(1 + r/n)<sup>nt</sup> + PMT &times; [(1 + r/n)<sup>nt</sup> &minus; 1] / (r/n)
+            </p>
+            <p>Where:</p>
+            <ol class="tsg-formula-steps">
+                <li><strong>P</strong> = Current Savings (<span data-tsg="current"></span>)</li>
+                <li><strong>PMT</strong> = Monthly Contribution (<span data-tsg="contribution"></span>)</li>
+                <li><strong>r</strong> = Annual Interest Rate (<span data-tsg="rate"></span>)</li>
+                <li><strong>n</strong> = Compounding Frequency (<span data-tsg="compounding"></span> &rarr; <span
+                        data-tsg="periods-per-year"></span> times/year)</li>
+                <li><strong>t</strong> = Time in years (solved iteratively)</li>
+            </ol>
+            <p>
+                The calculator solves for <strong>t</strong> numerically using an iteration method,
+                stepping forward period by period until the balance reaches or exceeds the goal.
+            </p>
+        </section>
+
+        <section class="mtg-exp-section">
+            <h3>Explanation</h3>
+            <p>
+                This tool estimates how long it will take to build wealth based on your current
+                savings, monthly discipline, and the growth power of compounding.
+            </p>
+
+            <ul class="tsg-explanation-list">
+                <li>
+                    <strong>Starting Point:</strong>
+                    You currently have <span data-tsg="current"></span> saved
+                    toward a goal of <span data-tsg="goal"></span>. That means you
+                    need to accumulate an additional <span data-tsg="gap"></span>.
+                </li>
+                <li>
+                    <strong>Monthly Discipline:</strong>
+                    Contributing <span data-tsg="contribution"></span> each month
+                    builds your balance steadily. Consistency is more powerful than
+                    windfall deposits.
+                </li>
+                <li>
+                    <strong>Compounding Effect:</strong>
+                    At <span data-tsg="rate"></span> with <span data-tsg="compounding"></span>
+                    compounding, your savings earn interest that itself earns interest, accelerating
+                    growth over time.
+                </li>
+                <li>
+                    <strong>Contribution Timing:</strong>
+                    <span data-tsg="timing"></span> contributions mean each deposit
+                    compounds differently. Beginning-of-month deposits accelerate growth
+                    slightly compared to end-of-month.
+                </li>
+                <li>
+                    <strong>Timeline Result:</strong>
+                    Based on these inputs, reaching your goal of
+                    <span data-tsg="goal"></span> takes approximately
+                    <span data-tsg="time-result"></span>.
+                </li>
+            </ul>
+
+            <h4>Key Wealth Insight</h4>
+            <div class="tsg-insight-box">
+                <p>
+                    ✦ Earlier contributions compound longer — starting today is always better
+                    than starting next month.
+                </p>
+                <p>
+                    ✦ Beginning-of-month contributions accelerate growth compared to
+                    end-of-month timing.
+                </p>
+                <p>
+                    ✦ Higher compounding frequency reduces the required time to reach your goal.
+                </p>
+                <p>
+                    ✦ Even small interest rates significantly reduce the timeline when paired
+                    with consistent contributions.
+                </p>
+            </div>
+        </section>
+
+        <section class="mtg-exp-section mtg-exp-section--faq">
+            <h3>Frequently Asked Questions</h3>
+            <div class="bor-faq-grid">
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">01</span>
+                    <h4>How long will it take me to save 25,000?</h4>
+                    <p>It depends on your current savings, monthly contributions, and interest rate.
+                        Enter your values above to get a personalized timeline estimate.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">02</span>
+                    <h4>How does interest reduce the time needed to reach my savings goal?</h4>
+                    <p>Interest compounds on your balance, meaning your money earns money. Even a
+                        modest rate can shave months or years off your timeline.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">03</span>
+                    <h4>Does starting with existing savings shorten the timeline?</h4>
+                    <p>Yes. The more you already have, the less you need to save. Plus, a larger
+                        starting balance earns more interest from day one.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">04</span>
+                    <h4>What difference does compounding frequency make?</h4>
+                    <p>More frequent compounding (monthly vs annually) means interest is reinvested
+                        sooner, slightly accelerating your path to the goal.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">05</span>
+                    <h4>Is contributing at the beginning of the month better?</h4>
+                    <p>Yes. Beginning-of-month contributions start earning interest immediately for
+                        that period, giving you a slight advantage over end-of-month timing.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">06</span>
+                    <h4>What happens if I increase my monthly savings slightly?</h4>
+                    <p>Even small increases — like 50 or 100 per month — can dramatically shorten
+                        your savings timeline, especially at higher interest rates.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">07</span>
+                    <h4>How much faster does 5% growth reach my goal compared to 0%?</h4>
+                    <p>Significantly faster. For a 25,000 goal with 500/month contributions, 5%
+                        interest can cut the timeline by several months compared to no interest.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">08</span>
+                    <h4>Why does the timeline shrink significantly at higher interest rates?</h4>
+                    <p>Compounding is exponential — higher rates amplify growth more the longer
+                        you save. The effect becomes more dramatic as the rate increases.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">09</span>
+                    <h4>Can this calculator be used for house deposit planning?</h4>
+                    <p>Absolutely. Set your goal to the deposit amount, enter your current savings
+                        and monthly contributions, and see how long until you can buy.</p>
+                </div>
+
+                <div class="bor-faq-card">
+                    <span class="bor-faq-number">10</span>
+                    <h4>Should I focus more on increasing contributions or increasing return?</h4>
+                    <p>For shorter timelines, increasing contributions has more impact. For longer
+                        timelines, a higher return rate benefits from compounding effects.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

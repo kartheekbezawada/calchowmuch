@@ -1,33 +1,59 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber } from '/assets/js/core/format.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { calculateSimpleInterest } from '/assets/js/core/time-value-utils.js';
 
+/* ── DOM refs: calculator inputs ── */
 const principalInput = document.querySelector('#si-principal');
 const rateInput = document.querySelector('#si-rate');
 const timeInput = document.querySelector('#si-time');
 const calculateButton = document.querySelector('#si-calc');
-const resultOutput = document.querySelector('#si-result');
-const resultDetail = document.querySelector('#si-result-detail');
-const optionalToggle = document.querySelector('#si-optional-toggle');
-const optionalSection = document.querySelector('#si-optional-section');
+const resultDiv = document.querySelector('#si-result');
+const summaryDiv = document.querySelector('#si-result-detail');
 
-const timeUnitGroup = document.querySelector('[data-button-group="si-time-unit"]');
-const basisGroup = document.querySelector('[data-button-group="si-basis"]');
+/* ── DOM refs: slider value displays ── */
+const principalDisplay = document.querySelector('#si-principal-display');
+const rateDisplay = document.querySelector('#si-rate-display');
+const timeDisplay = document.querySelector('#si-time-display');
 
+/* ── DOM refs: snapshot rows ── */
+const snapPrincipal = document.querySelector('[data-si="snap-principal"]');
+const snapRate = document.querySelector('[data-si="snap-rate"]');
+const snapTime = document.querySelector('[data-si="snap-time"]');
+const snapBasis = document.querySelector('[data-si="snap-basis"]');
+const snapYears = document.querySelector('[data-si="snap-years"]');
+const snapInterest = document.querySelector('[data-si="snap-interest"]');
+
+/* ── DOM refs: explanation targets ── */
 const explanationRoot = document.querySelector('#si-explanation');
 const valueTargets = explanationRoot
   ? {
-      principal: explanationRoot.querySelectorAll('[data-si="principal"]'),
-      rate: explanationRoot.querySelectorAll('[data-si="rate"]'),
-      time: explanationRoot.querySelectorAll('[data-si="time"]'),
-      timeUnit: explanationRoot.querySelectorAll('[data-si="time-unit"]'),
-      basis: explanationRoot.querySelectorAll('[data-si="basis"]'),
-      totalInterest: explanationRoot.querySelectorAll('[data-si="total-interest"]'),
-      endingAmount: explanationRoot.querySelectorAll('[data-si="ending-amount"]'),
-      years: explanationRoot.querySelectorAll('[data-si="years"]'),
-    }
+    principal: explanationRoot.querySelectorAll('[data-si="principal"]'),
+    rate: explanationRoot.querySelectorAll('[data-si="rate"]'),
+    time: explanationRoot.querySelectorAll('[data-si="time"]'),
+    timeUnit: explanationRoot.querySelectorAll('[data-si="time-unit"]'),
+    basis: explanationRoot.querySelectorAll('[data-si="basis"]'),
+    totalInterest: explanationRoot.querySelectorAll('[data-si="total-interest"]'),
+    endingAmount: explanationRoot.querySelectorAll('[data-si="ending-amount"]'),
+    years: explanationRoot.querySelectorAll('[data-si="years"]'),
+    rateDecimal: explanationRoot.querySelectorAll('[data-si="rate-decimal"]'),
+  }
   : null;
 
+/* ── Button groups ── */
+const timeUnitGroup = document.querySelector('[data-button-group="si-time-unit"]');
+const basisGroup = document.querySelector('[data-button-group="si-basis"]');
+
+const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
+  defaultValue: 'years',
+  onChange() { calculate(); },
+});
+
+const basisButtons = setupButtonGroup(basisGroup, {
+  defaultValue: 'per-year',
+  onChange() { calculate(); },
+});
+
+/* ── SEO / Schema ── */
 export const pageSchema = {
   calculatorFAQ: true,
   globalFAQ: false,
@@ -41,7 +67,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is simple interest?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Simple interest is interest calculated only on the original principal amount.',
+        text: 'Simple interest is interest calculated only on the original principal amount — it never compounds on previously earned interest.',
       },
     },
     {
@@ -49,23 +75,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the simple interest formula?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A common formula is I = P × r × t, where P is principal, r is rate, and t is time.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How do you calculate simple interest?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Multiply the principal by the rate and the time period to get total interest.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the ending amount with simple interest?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The ending amount is A = P + I, which is principal plus total interest.',
+        text: 'I = P × r × t, where P is principal, r is the rate as a decimal, and t is time in years (or months if using per-month basis).',
       },
     },
     {
@@ -73,15 +83,15 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the difference between simple and compound interest?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Simple interest applies only to principal, while compound interest applies to principal plus accumulated interest.',
+        text: 'Simple interest applies only to the principal, growing linearly. Compound interest earns interest on both principal and accumulated interest, growing exponentially.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I use this for a simple interest loan calculation?',
+      name: 'Can I use this for loans?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. It can estimate interest owed on loans that use simple interest.',
+        text: 'Yes. Many short-term loans, auto loans, and personal loans use simple interest. This calculator estimates the total interest owed.',
       },
     },
     {
@@ -89,31 +99,47 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does simple interest grow linearly?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. With a fixed rate, simple interest increases at a constant amount over time.',
+        text: 'Yes. With a fixed rate the interest earned each period is the same, producing a straight-line growth pattern.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do I calculate simple interest for months?',
+      name: 'How do I calculate interest for months?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Convert months to years by dividing by 12, then apply the same formula.',
+        text: 'Set the time unit to Months. The calculator converts months to years by dividing by 12, then applies the standard formula.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if the interest rate is 0%?',
+      name: 'What happens if the rate is 0%?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Total interest is zero and the ending amount equals the principal.',
+        text: 'Total interest is zero and the ending amount equals the principal — your money neither grows nor shrinks.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is simple interest common for long-term investing?',
+      name: 'What is Interest Basis?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Generally no. Long-term investing more often involves compounding, but simple interest is useful for quick comparisons.',
+        text: 'Per Year treats the entered rate as an annual rate. Per Month treats it as a monthly rate, which dramatically changes the result over longer periods.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is simple interest used for savings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Rarely for long-term savings — most savings accounts compound. But simple interest is useful for quick comparisons and short-term estimates.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'When should I use simple interest?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Use it for short-term loans, quick estimates, certificates of deposit with simple interest, and educational comparisons.',
       },
     },
   ],
@@ -148,31 +174,14 @@ const metadata = {
           'Free simple interest calculator to compute total interest and ending amount using principal, rate, and time.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Finance',
-            item: 'https://calchowmuch.com/finance/',
-          },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
           {
             '@type': 'ListItem',
             position: 3,
@@ -187,109 +196,67 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
-  defaultValue: 'years',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
+/* ── Helpers ── */
 
-const basisButtons = setupButtonGroup(basisGroup, {
-  defaultValue: 'per-year',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
-
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
-
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
-
-setOptionalVisibility(false);
-
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
+function fmt(value, opts = {}) {
+  return formatNumber(value, {
+    minimumFractionDigits: opts.minimumFractionDigits ?? 2,
+    maximumFractionDigits: opts.maximumFractionDigits ?? 2,
+    ...opts,
   });
 }
 
-function updateTargets(targets, value) {
-  if (!targets) {
-    return;
+function setSliderFill(input) {
+  if (!input) return;
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 100;
+  const val = Number(input.value) || 0;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', `${pct}%`);
+}
+
+function updateSliderDisplays() {
+  if (principalInput && principalDisplay) {
+    setSliderFill(principalInput);
+    principalDisplay.textContent = fmt(Number(principalInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
+  if (rateInput && rateDisplay) {
+    setSliderFill(rateInput);
+    rateDisplay.textContent = `${Number(rateInput.value)}%`;
+  }
+  if (timeInput && timeDisplay) {
+    setSliderFill(timeInput);
+    const timeUnit = timeUnitButtons?.getValue() ?? 'years';
+    timeDisplay.textContent = `${Number(timeInput.value)} ${timeUnit === 'months' ? 'mo' : 'yrs'}`;
+  }
+}
+
+function updateTargets(targets, value) {
+  if (!targets) return;
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
-function formatCurrency(value) {
-  return `$${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+function setError(message) {
+  if (resultDiv) resultDiv.textContent = message;
+  if (summaryDiv) summaryDiv.textContent = '';
 }
 
-function formatPercent(value) {
-  return `${formatNumber(value, { maximumFractionDigits: 4 })}%`;
-}
-
-function updateExplanation(values) {
-  if (!valueTargets) {
-    return;
-  }
-
-  updateTargets(valueTargets.principal, values.principal);
-  updateTargets(valueTargets.rate, values.rate);
-  updateTargets(valueTargets.time, values.time);
-  updateTargets(valueTargets.timeUnit, values.timeUnit);
-  updateTargets(valueTargets.basis, values.basis);
-  updateTargets(valueTargets.totalInterest, values.totalInterest);
-  updateTargets(valueTargets.endingAmount, values.endingAmount);
-  updateTargets(valueTargets.years, values.years);
-}
-
-function showError(message) {
-  if (resultOutput) {
-    resultOutput.textContent = message;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
-  updateExplanation({
-    principal: 'N/A',
-    rate: 'N/A',
-    time: 'N/A',
-    timeUnit: 'N/A',
-    basis: 'N/A',
-    totalInterest: 'N/A',
-    endingAmount: 'N/A',
-    years: 'N/A',
-  });
-}
+/* ── Core calculate ── */
 
 function calculate() {
-  const principal = Number.parseFloat(principalInput?.value ?? '');
-  const rate = Number.parseFloat(rateInput?.value ?? '');
-  const timePeriod = Number.parseFloat(timeInput?.value ?? '');
+  if (!resultDiv || !summaryDiv) return;
+
+  const principal = Number(principalInput?.value);
+  const rate = Number(rateInput?.value);
+  const timePeriod = Number(timeInput?.value);
   const timeUnit = timeUnitButtons?.getValue() ?? 'years';
   const interestBasis = basisButtons?.getValue() ?? 'per-year';
 
-  if (!Number.isFinite(principal) || !Number.isFinite(rate) || !Number.isFinite(timePeriod)) {
-    showError('Enter valid principal, rate, and time values.');
-    return;
-  }
+  if (!Number.isFinite(principal) || principal < 0) { setError('Principal must be 0 or more.'); return; }
+  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
+  if (!Number.isFinite(timePeriod) || timePeriod < 0) { setError('Time must be 0 or more.'); return; }
 
   const result = calculateSimpleInterest({
     principal,
@@ -299,43 +266,60 @@ function calculate() {
     interestBasis,
   });
 
-  if (!result) {
-    showError('Principal, rate, and time must be zero or greater.');
-    return;
-  }
+  if (!result) { setError('Check your inputs.'); return; }
 
-  if (resultOutput) {
-    resultOutput.textContent = `Total interest: ${formatCurrency(result.totalInterest)}`;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = `Ending amount: ${formatCurrency(result.endingAmount)}`;
-  }
+  const principalStr = fmt(result.principal);
+  const rateStr = formatPercent(result.rate);
+  const timeStr = fmt(result.timePeriod, { maximumFractionDigits: 2 });
+  const timeUnitStr = result.timeUnit === 'months' ? 'Months' : 'Years';
+  const basisStr = result.interestBasis === 'per-month' ? 'Per Month' : 'Per Year';
+  const yearsStr = fmt(result.years, { maximumFractionDigits: 4 });
+  const rateDecimalStr = fmt(result.rate / 100, { maximumFractionDigits: 6 });
+  const totalInterestStr = fmt(result.totalInterest);
+  const endingAmountStr = fmt(result.endingAmount);
 
-  updateExplanation({
-    principal: formatCurrency(result.principal),
-    rate: formatPercent(result.rate),
-    time: formatNumber(result.timePeriod, { maximumFractionDigits: 4 }),
-    timeUnit: result.timeUnit === 'months' ? 'Months' : 'Years',
-    basis: result.interestBasis === 'per-month' ? 'Per Month' : 'Per Year',
-    totalInterest: formatCurrency(result.totalInterest),
-    endingAmount: formatCurrency(result.endingAmount),
-    years: formatNumber(result.years, { maximumFractionDigits: 6 }),
-  });
+  /* Preview panel — show ending amount as the hero number */
+  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${endingAmountStr}</span>`;
+  const valueEl = resultDiv.querySelector('.mtg-result-value');
+  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
 
-  hasCalculated = true;
+  summaryDiv.innerHTML =
+    `<p><strong>Total interest:</strong> ${totalInterestStr}</p>` +
+    `<p><strong>Principal:</strong> ${principalStr}</p>`;
+
+  /* Snapshot rows */
+  if (snapPrincipal) snapPrincipal.textContent = principalStr;
+  if (snapRate) snapRate.textContent = rateStr;
+  if (snapTime) snapTime.textContent = `${timeStr} ${timeUnitStr.toLowerCase()}`;
+  if (snapBasis) snapBasis.textContent = basisStr;
+  if (snapYears) snapYears.textContent = yearsStr;
+  if (snapInterest) snapInterest.textContent = totalInterestStr;
+
+  /* Explanation targets */
+  if (valueTargets) {
+    updateTargets(valueTargets.principal, principalStr);
+    updateTargets(valueTargets.rate, rateStr);
+    updateTargets(valueTargets.time, timeStr);
+    updateTargets(valueTargets.timeUnit, timeUnitStr.toLowerCase());
+    updateTargets(valueTargets.basis, basisStr);
+    updateTargets(valueTargets.totalInterest, totalInterestStr);
+    updateTargets(valueTargets.endingAmount, endingAmountStr);
+    updateTargets(valueTargets.years, yearsStr);
+    updateTargets(valueTargets.rateDecimal, rateDecimalStr);
+  }
 }
+
+/* ── Event wiring ── */
+
+[principalInput, rateInput, timeInput].forEach((input) => {
+  input?.addEventListener('input', () => {
+    updateSliderDisplays();
+    calculate();
+  });
+});
 
 calculateButton?.addEventListener('click', calculate);
 
-updateExplanation({
-  principal: '$10,000.00',
-  rate: '6%',
-  time: '3',
-  timeUnit: 'Years',
-  basis: 'Per Year',
-  totalInterest: '$1,800.00',
-  endingAmount: '$11,800.00',
-  years: '3',
-});
-
+/* ── Init ── */
+updateSliderDisplays();
 calculate();

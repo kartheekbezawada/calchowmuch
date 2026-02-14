@@ -28,7 +28,8 @@
     <div class="header-left">
       <a class="brand-logo" href="/" aria-label="Home">
         <span class="brand-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
             <rect x="4" y="2.5" width="16" height="19" rx="3" />
             <line x1="8" y1="6.5" x2="16" y2="6.5" />
             <line x1="9" y1="10" x2="9" y2="10.01" />
@@ -43,6 +44,11 @@
           </svg>
         </span>
       </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
       <div class="brand-block">
         <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
         <a class="brand-badge" href="/loans/home-loan">
@@ -59,160 +65,175 @@
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
       <div class="header-search">
         <span class="header-search-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
             <circle cx="11" cy="11" r="7" />
             <line x1="16.5" y1="16.5" x2="21" y2="21" />
           </svg>
         </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input id="global-calculator-search" class="header-search-input" type="search" placeholder="Search calculators…"
+          autocomplete="off" spellcheck="false" />
       </div>
     </div>
   </div>
 </header>
-
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link is-active" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content">
-<div class="nav-category" data-id="time-value-of-money">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Time Value of Money</span>
-    <span class="nav-category-indicator">-</span>
+          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
+<div class="fin-nav-group is-expanded" data-fin-subcategory="time-value-of-money">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">⏳</span>
+    <span class="fin-nav-toggle-label">Time Value of Money</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/present-value">Present Value (PV)</a><a class="nav-item" href="/finance/future-value">Future Value (FV)</a><a class="nav-item is-active" href="/finance/present-value-of-annuity">Present Value of Annuity</a><a class="nav-item" href="/finance/future-value-of-annuity">Future Value of Annuity</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/present-value"><span class="fin-nav-item-icon" aria-hidden="true">📉</span>Present Value (PV)</a><a class="fin-nav-item" href="/finance/future-value"><span class="fin-nav-item-icon" aria-hidden="true">📈</span>Future Value (FV)</a><a class="fin-nav-item is-active" href="/finance/present-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Present Value of Annuity</a><a class="fin-nav-item" href="/finance/future-value-of-annuity"><span class="fin-nav-item-icon" aria-hidden="true">💹</span>Future Value of Annuity</a>
   </div>
 </div>
-<div class="nav-category" data-id="interest-and-growth">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Interest & Growth</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group" data-fin-subcategory="interest-and-growth">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">📈</span>
+    <span class="fin-nav-toggle-label">Interest & Growth</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/simple-interest">Simple Interest</a><a class="nav-item" href="/finance/compound-interest">Compound Interest</a><a class="nav-item" href="/finance/effective-annual-rate">Effective Annual Rate (EAR)</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/simple-interest"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Simple Interest</a><a class="fin-nav-item" href="/finance/compound-interest"><span class="fin-nav-item-icon" aria-hidden="true">♻️</span>Compound Interest</a><a class="fin-nav-item" href="/finance/effective-annual-rate"><span class="fin-nav-item-icon" aria-hidden="true">🔄</span>Effective Annual Rate (EAR)</a>
   </div>
 </div>
-<div class="nav-category" data-id="investments-and-savings">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Investments & Savings</span>
-    <span class="nav-category-indicator">-</span>
+<div class="fin-nav-group" data-fin-subcategory="investments-and-savings">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">💰</span>
+    <span class="fin-nav-toggle-label">Investments & Savings</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/finance/savings-goal">Savings Goal</a><a class="nav-item" href="/finance/investment-growth">Investment Growth</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/finance/investment-growth"><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Investment Growth</a><a class="fin-nav-item" href="/finance/time-to-savings-goal"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Time to Savings Goal</a><a class="fin-nav-item" href="/finance/monthly-savings-needed"><span class="fin-nav-item-icon" aria-hidden="true">🏦</span>Monthly Savings Needed</a>
   </div>
-</div></div>
+</div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Present Value of Annuity Calculator</h1>
-  <div id="calc-present-value-of-annuity">
-  <div class="calculator-ui">
-    <h2>Present Value of Annuity Calculator (Ordinary & Due)</h2>
-    <p class="helper">
-      Estimate the present value of a series of regular payments and compare ordinary annuity vs annuity due.
-    </p>
+  <div class="calculator-page-single">
+    <div id="calc-present-value-of-annuity">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Present value of annuity calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate the present value of a series of regular payments. Compare ordinary
+            annuity vs annuity due. Adjust the sliders to see results update instantly.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pva-payment">Payment Amount (PMT)</label>
-        <input id="pva-payment" type="number" value="500" min="0" step="0.01" />
-      </div>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pva-payment">Payment Amount (PMT)</label>
+              <span class="slider-value" id="pva-pmt-display">500</span>
+            </div>
+            <input id="pva-payment" type="range" value="500" min="10" max="50000" step="10" />
+          </div>
 
-      <div class="input-row">
-        <label for="pva-discount-rate">Discount Rate (%)</label>
-        <input id="pva-discount-rate" type="number" value="5" min="0" step="0.01" />
-      </div>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pva-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pva-rate-display">5%</span>
+              </div>
+              <input id="pva-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
 
-      <div class="input-row">
-        <label for="pva-periods">Number of Periods</label>
-        <input id="pva-periods" type="number" value="10" min="0" step="0.01" />
-      </div>
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pva-periods">Number of Periods</label>
+                <span class="slider-value" id="pva-periods-display">10</span>
+              </div>
+              <input id="pva-periods" type="range" value="10" min="1" max="60" step="1" />
+            </div>
+          </div>
 
-      <div class="input-row">
-        <label id="pva-period-type-label">Period Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-period-type-label"
-          data-button-group="pva-period-type"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="years" aria-pressed="true">
-            Years
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="months" aria-pressed="false">
-            Months
-          </button>
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Period</span>
+              <div class="button-group" role="group" aria-label="Period type" data-button-group="pva-period-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="years"
+                  aria-pressed="true">Years</button>
+                <button class="calculator-button secondary" type="button" data-value="months"
+                  aria-pressed="false">Months</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Annuity Type</span>
+              <div class="button-group" role="group" aria-label="Annuity type" data-button-group="pva-annuity-type">
+                <button class="calculator-button secondary is-active" type="button" data-value="ordinary"
+                  aria-pressed="true">Ordinary</button>
+                <button class="calculator-button secondary" type="button" data-value="due"
+                  aria-pressed="false">Due</button>
+              </div>
+            </div>
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" aria-label="Compounding frequency"
+                data-button-group="pva-compounding">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual"
+                  aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual"
+                  aria-pressed="false">Semi</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly"
+                  aria-pressed="false">Qtr</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly"
+                  aria-pressed="false">Monthly</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pva-calc">
+              Calculate PV of Annuity
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="pva-annuity-type-label">Annuity Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-annuity-type-label"
-          data-button-group="pva-annuity-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="ordinary"
-            aria-pressed="true"
-          >
-            Ordinary
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="due" aria-pressed="false">
-            Due
-          </button>
-        </div>
-      </div>
+        <aside class="mtg-preview-panel" aria-label="PV of annuity result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated PV of Annuity</p>
+            <div class="result mtg-result-card" id="pva-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="pva-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Payment (PMT)</span>
+              <strong data-pva="snap-payment"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Discount Rate</span>
+              <strong data-pva="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Periods</span>
+              <strong data-pva="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Annuity Type</span>
+              <strong data-pva="snap-annuity-type"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-pva="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Effective Periods</span>
+              <strong data-pva="snap-effective-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-pva="snap-periodic-rate"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button
-      class="calculator-button secondary"
-      type="button"
-      id="pva-optional-toggle"
-      aria-expanded="false"
-      aria-controls="pva-optional-section"
-    >
-      Show Optional Inputs
-    </button>
-
-    <div class="input-stack is-hidden" id="pva-optional-section" aria-hidden="true" hidden>
-      <div class="input-row">
-        <label id="pva-compound-label">Compounding Frequency</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="pva-compound-label"
-          data-button-group="pva-compounding"
-        >
-          <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">
-            Annual
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">
-            Quarterly
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">
-            Monthly
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="pva-calc">
-      Calculate Present Value of Annuity
-    </button>
-
-    <div class="result" id="pva-result" aria-live="polite"></div>
-    <div class="result-detail" id="pva-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
@@ -221,267 +242,207 @@
 </style>
 
 <script type="module" src="/calculators/finance/present-value-of-annuity/module.js"></script>
+    <div id="pva-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Present Value of Annuity — Results Breakdown</h2>
+    <p>
+      The present value of an annuity tells you what a series of regular future payments
+      is worth today. The results below show exactly how your inputs translate into
+      today's lump-sum equivalent.
+    </p>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="pva-explanation" class="explanation-pane">
-  <h2>Summary</h2>
-  <p>
-    Based on your payment amount of <span data-pva="payment-amount"></span>, a discount rate of
-    <span data-pva="discount-rate"></span>, and <span data-pva="period-count"></span>, the present value of the annuity is
-    <span data-pva="present-value"></span>.
-    This calculation reflects an <span data-pva="annuity-type"></span> with an applied rate of
-    <span data-pva="applied-rate"></span> percent per period over <span data-pva="effective-periods"></span> effective
-    periods.
-    This annuity present value calculator shows the lump-sum present value of annuity payments in today's terms.
-  </p>
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pva-results-table">
+          <thead>
+            <tr>
+              <th scope="col">What It Means</th>
+              <th scope="col">Your Value</th>
+              <th scope="col">How It Works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Payment Amount (PMT)</td>
+              <td><span data-pva="payment-amount"></span></td>
+              <td class="pva-how-col">The fixed amount paid or received each period</td>
+            </tr>
+            <tr>
+              <td>Discount Rate</td>
+              <td><span data-pva="discount-rate"></span></td>
+              <td class="pva-how-col">Annual rate used to discount each payment</td>
+            </tr>
+            <tr>
+              <td>Periods</td>
+              <td><span data-pva="period-count"></span></td>
+              <td class="pva-how-col">Number of periods over which payments occur</td>
+            </tr>
+            <tr>
+              <td>Annuity Type</td>
+              <td><span data-pva="annuity-type"></span></td>
+              <td class="pva-how-col">Whether payments arrive at start or end of period</td>
+            </tr>
+            <tr>
+              <td>Compounding</td>
+              <td><span data-pva="compounding-frequency"></span></td>
+              <td class="pva-how-col">How often the discount rate is applied per year</td>
+            </tr>
+            <tr>
+              <td>Effective Periods</td>
+              <td><span data-pva="effective-periods"></span></td>
+              <td class="pva-how-col">Total number of compounding periods used</td>
+            </tr>
+            <tr>
+              <td>Rate Per Period</td>
+              <td><span data-pva="applied-rate"></span>%</td>
+              <td class="pva-how-col">Discount rate applied in each compounding period</td>
+            </tr>
+            <tr>
+              <td>Total Payments</td>
+              <td><span data-pva="total-payments"></span></td>
+              <td class="pva-how-col">Sum of all payments without discounting</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>PV of Annuity</td>
+              <td><span data-pva="present-value"></span></td>
+              <td class="pva-how-col">What all future payments are worth today</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-pva="payment-amount"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Discount Rate</td>
-          <td><span data-pva="discount-rate"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Number of Periods</td>
-          <td><span data-pva="period-count"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-pva="annuity-type"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value of Annuity</td>
-          <td><span data-pva="present-value"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <section class="mtg-exp-section">
+      <h3>Explanation</h3>
+      <p>
+        The present value of an annuity converts a stream of equal future payments into a
+        single lump sum in today's dollars. Here's how your inputs drive the result.
+      </p>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Amount</td>
-          <td><span data-pva="payment-amount"></span></td>
-          <td>Currency</td>
-          <td>Regular payment each period</td>
-        </tr>
-        <tr>
-          <td>Total Payments</td>
-          <td><span data-pva="total-payments"></span></td>
-          <td>Currency</td>
-          <td>Sum of all payments</td>
-        </tr>
-        <tr>
-          <td>Annuity Type</td>
-          <td><span data-pva="annuity-type"></span></td>
-          <td>N/A</td>
-          <td>Ordinary or due timing</td>
-        </tr>
-        <tr>
-          <td>Discount Rate per Period</td>
-          <td><span data-pva="applied-rate"></span></td>
-          <td>Percent</td>
-          <td>Rate applied each period</td>
-        </tr>
-        <tr>
-          <td>Effective Periods</td>
-          <td><span data-pva="effective-periods"></span></td>
-          <td>Periods</td>
-          <td>Total payment periods</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Present Value of Annuity</td>
-          <td><span data-pva="present-value"></span></td>
-          <td>Currency</td>
-          <td>Value of payments today</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+      <ul class="pva-explanation-list">
+        <li>
+          <strong>Payment Amount (PMT):</strong>
+          Each period you receive <span data-pva="payment-amount"></span>. This is the fixed
+          cash flow being discounted back to the present.
+        </li>
+        <li>
+          <strong>Discount Rate:</strong>
+          A <span data-pva="discount-rate"></span> annual discount rate reflects the cost of
+          capital or the return you'd earn if you had the money today.
+        </li>
+        <li>
+          <strong>Periods:</strong>
+          Payments continue for <span data-pva="period-count"></span>. More periods
+          mean more payments, but each additional payment is discounted more heavily.
+        </li>
+        <li>
+          <strong>Annuity Type:</strong>
+          You selected <span data-pva="annuity-type"></span>. Ordinary annuities pay at
+          the end of each period; annuity due pays at the beginning, giving a higher present value.
+        </li>
+        <li>
+          <strong>Compounding:</strong>
+          With <span data-pva="compounding-frequency"></span> compounding, the annual rate is
+          split into <span data-pva="effective-periods"></span> effective periods, each at
+          <span data-pva="applied-rate"></span>% per period.
+        </li>
+        <li>
+          <strong>Discount Saved:</strong>
+          The total undiscounted payments of <span data-pva="total-payments"></span> are reduced
+          to <span data-pva="present-value"></span> — a difference of
+          <span data-pva="formula-discount-saved"></span> due to the time value of money.
+        </li>
+      </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    The present value of annuity calculations translate a stream of payments into today's dollars.
-    Your PV of annuity estimate of <span data-pva="present-value"></span> is based on total payments of
-    <span data-pva="total-payments"></span> spread over <span data-pva="effective-periods"></span> effective periods.
-  </p>
-  <p>
-    Selecting annuity due assumes payments arrive at the beginning of each period, which increases the present value
-    compared with an ordinary annuity. If you are wondering how to calculate present value of annuity, the present
-    value of annuity formula discounts each payment using the applied rate per period of
-    <span data-pva="applied-rate"></span> percent.
-  </p>
-  <p><strong>Ordinary annuity vs annuity due comparison:</strong></p>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Feature</th>
-          <th scope="col">Ordinary Annuity</th>
-          <th scope="col">Annuity Due</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Payment Timing</td>
-          <td>End of each period</td>
-          <td>Beginning of each period</td>
-        </tr>
-        <tr>
-          <td>First Payment Occurs</td>
-          <td>After first period</td>
-          <td>Immediately</td>
-        </tr>
-        <tr>
-          <td>Present Value</td>
-          <td>Lower</td>
-          <td>Higher</td>
-        </tr>
-        <tr>
-          <td>Discounting</td>
-          <td>More discounting applied</td>
-          <td>Less discounting applied</td>
-        </tr>
-        <tr>
-          <td>Common Examples</td>
-          <td>Loan repayments, bond coupons</td>
-          <td>Rent, lease payments, insurance premiums</td>
-        </tr>
-        <tr>
-          <td>Formula Basis</td>
-          <td>Standard annuity PV calculation</td>
-          <td>Ordinary annuity PV adjusted for timing</td>
-        </tr>
-        <tr>
-          <td>Cash Flow Timing</td>
-          <td>Later</td>
-          <td>Earlier</td>
-        </tr>
-        <tr>
-          <td>Typical Use Case</td>
-          <td>Loans and investments</td>
-          <td>Leases and pensions</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Summary</td>
-          <td>Payments arrive later</td>
-          <td>Payments arrive sooner</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-  <p>
-    Use this annuity present value example to compare scenarios for ordinary annuity and annuity due payments.
-  </p>
+      <h4>How the Formula Works</h4>
+      <p>The present value of an ordinary annuity formula is:</p>
+      <p class="pva-formula-block">
+        PVA = PMT &times; [(1 &minus; (1+r)<sup>&minus;n</sup>) &divide; r]
+      </p>
+      <p>Substituting your values step by step:</p>
+      <ol class="pva-formula-steps">
+        <li>
+          <strong>Identify the per-period rate (r):</strong>
+          <span data-pva="discount-rate"></span> &divide;
+          <span data-pva="periods-per-year"></span> compounding periods per year
+          = <span data-pva="applied-rate"></span>% per period
+          (as a decimal: <span data-pva="applied-rate-decimal"></span>).
+        </li>
+        <li>
+          <strong>Determine the number of periods (n):</strong>
+          <span data-pva="effective-periods"></span> total compounding periods.
+        </li>
+        <li>
+          <strong>Build the annuity factor:</strong>
+          [1 &minus; (1 + <span data-pva="applied-rate-decimal"></span>)<sup>&minus;<span
+              data-pva="effective-periods"></span></sup>]
+          &divide; <span data-pva="applied-rate-decimal"></span>
+          = <span data-pva="formula-annuity-factor"></span>.
+        </li>
+        <li>
+          <strong>Multiply by payment:</strong>
+          <span data-pva="payment-amount"></span> &times;
+          <span data-pva="formula-annuity-factor"></span>
+          = <strong><span data-pva="present-value"></span></strong>.
+        </li>
+      </ol>
+      <p>
+        For an annuity due, the result is multiplied by (1 + r) because each payment
+        arrives one period earlier, reducing total discounting.
+      </p>
+    </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is the present value of an annuity?</strong></p>
-    <p class="faq-answer">
-      A: The present value of an annuity (PV of annuity) is the value today of a series of regular future payments,
-      discounted using a specific interest or discount rate.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the difference between an ordinary annuity and an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: In an ordinary annuity, payments occur at the end of each period, while in an annuity due, payments occur at
-      the beginning of each period, and this annuity due calculator compares both.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why is the present value of an annuity due higher than an ordinary annuity?</strong></p>
-    <p class="faq-answer">
-      A: An annuity due has a higher present value because payments are received earlier and are discounted for fewer
-      periods.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the present value of an ordinary annuity?</strong></p>
-    <p class="faq-answer">
-      A: The present value of ordinary annuity is calculated by discounting each payment made at the end of each period
-      back to today; the PV ordinary annuity calculator applies that discount each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate the present value of an annuity due?</strong></p>
-    <p class="faq-answer">
-      A: The present value of annuity due is calculated by adjusting the ordinary annuity present value to account for
-      payments made at the beginning of each period.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What discount rate should be used for annuity calculations?</strong></p>
-    <p class="faq-answer">
-      A: The discount rate should reflect interest rates, investment returns, inflation expectations, or borrowing
-      costs relevant to the cash flow.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is the present value of annuity used for loans and mortgages?</strong></p>
-    <p class="faq-answer">
-      A: Yes, present value of annuity calculations are commonly used to value loan repayments, mortgages, and lease
-      payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can this calculator be used for monthly annuity payments?</strong></p>
-    <p class="faq-answer">
-      A: Yes, the calculator supports monthly, quarterly, and annual payment periods depending on the selected
-      settings, so you can estimate PV of annuity with monthly payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the discount rate is zero?</strong></p>
-    <p class="faq-answer">
-      A: If the discount rate is zero, the present value of the annuity equals the total amount of all payments.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is the present value of annuity useful for retirement planning?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it is widely used to estimate the value of pensions, retirement income streams, and long-term annuity
-      payments.
-    </p>
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>What is the present value of an annuity?</h4>
+          <p>It is today's value of a series of equal future payments, discounted using a specific interest or
+            discount rate.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Ordinary annuity vs annuity due?</h4>
+          <p>Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a
+            higher present value.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What discount rate should I use?</h4>
+          <p>Use a rate reflecting interest rates, investment returns, inflation, or borrowing costs relevant to
+            the cash flow.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>Is this useful for loans and mortgages?</h4>
+          <p>Yes, PV of annuity calculations are commonly used to value loan repayments, mortgages, and lease
+            payments.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>What happens if the discount rate is zero?</h4>
+          <p>If the rate is zero, the present value equals the total of all payments — no discounting is applied.</p>
+        </div>
+
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>Is this useful for retirement planning?</h4>
+          <p>Yes, it helps estimate the value of pensions, retirement income streams, and long-term annuity
+            payments.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
-
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

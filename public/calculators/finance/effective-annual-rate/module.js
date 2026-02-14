@@ -1,30 +1,50 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber } from '/assets/js/core/format.js';
-import {
-  calculateEffectiveAnnualRate,
-  resolveCompounding,
-} from '/assets/js/core/time-value-utils.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { calculateEffectiveAnnualRate } from '/assets/js/core/time-value-utils.js';
 
+/* ── DOM refs: calculator inputs ── */
 const nominalRateInput = document.querySelector('#ear-nominal-rate');
-const customPeriodsInput = document.querySelector('#ear-custom-periods');
 const calculateButton = document.querySelector('#ear-calc');
-const resultOutput = document.querySelector('#ear-result');
-const resultDetail = document.querySelector('#ear-result-detail');
-const optionalToggle = document.querySelector('#ear-optional-toggle');
-const optionalSection = document.querySelector('#ear-optional-section');
+const resultDiv = document.querySelector('#ear-result');
+const summaryDiv = document.querySelector('#ear-result-detail');
 
-const frequencyGroup = document.querySelector('[data-button-group="ear-frequency"]');
+/* ── DOM refs: slider value display ── */
+const rateDisplay = document.querySelector('#ear-rate-display');
 
+/* ── DOM refs: snapshot rows ── */
+const snapNominal = document.querySelector('[data-ear="snap-nominal"]');
+const snapCompounding = document.querySelector('[data-ear="snap-compounding"]');
+const snapPeriods = document.querySelector('[data-ear="snap-periods"]');
+const snapPeriodicRate = document.querySelector('[data-ear="snap-periodic-rate"]');
+const snapDifference = document.querySelector('[data-ear="snap-difference"]');
+
+/* ── DOM refs: explanation targets ── */
 const explanationRoot = document.querySelector('#ear-explanation');
 const valueTargets = explanationRoot
   ? {
-      nominalRate: explanationRoot.querySelectorAll('[data-ear="nominal-rate"]'),
-      frequency: explanationRoot.querySelectorAll('[data-ear="frequency"]'),
-      periods: explanationRoot.querySelectorAll('[data-ear="periods"]'),
-      earRate: explanationRoot.querySelectorAll('[data-ear="ear-rate"]'),
-    }
+    nominalRate: explanationRoot.querySelectorAll('[data-ear="nominal-rate"]'),
+    frequency: explanationRoot.querySelectorAll('[data-ear="frequency"]'),
+    periods: explanationRoot.querySelectorAll('[data-ear="periods"]'),
+    earRate: explanationRoot.querySelectorAll('[data-ear="ear-rate"]'),
+    periodicRate: explanationRoot.querySelectorAll('[data-ear="periodic-rate"]'),
+    periodicRateDecimal: explanationRoot.querySelectorAll('[data-ear="periodic-rate-decimal"]'),
+    nominalDecimal: explanationRoot.querySelectorAll('[data-ear="nominal-decimal"]'),
+    onePlusRate: explanationRoot.querySelectorAll('[data-ear="one-plus-rate"]'),
+    growthFactor: explanationRoot.querySelectorAll('[data-ear="growth-factor"]'),
+    earDecimal: explanationRoot.querySelectorAll('[data-ear="ear-decimal"]'),
+    difference: explanationRoot.querySelectorAll('[data-ear="difference"]'),
+  }
   : null;
 
+/* ── Button groups ── */
+const frequencyGroup = document.querySelector('[data-button-group="ear-frequency"]');
+
+const frequencyButtons = setupButtonGroup(frequencyGroup, {
+  defaultValue: 'annual',
+  onChange() { calculate(); },
+});
+
+/* ── SEO / Schema ── */
 export const pageSchema = {
   calculatorFAQ: true,
   globalFAQ: false,
@@ -35,42 +55,34 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is the effective annual rate (EAR)?',
+      name: 'What is the Effective Annual Rate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The effective annual rate is the true annual interest rate after accounting for compounding.',
+        text: 'EAR is the true annual interest rate after accounting for compounding. It shows the real cost of borrowing or real return on savings.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How is EAR different from a nominal interest rate?',
+      name: 'How is EAR different from a nominal rate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Nominal rates do not include compounding effects, while EAR does.',
+        text: 'A nominal rate is the stated headline percentage. EAR includes the effect of compounding, making it higher or equal if compounded annually.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why is EAR higher than the nominal rate?',
+      name: 'What is the EAR formula?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Because interest compounds multiple times per year.',
+        text: 'EAR = (1 + r/n)^n − 1, where r is the nominal rate as a decimal and n is the number of compounding periods per year.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do you calculate the effective annual rate?',
+      name: 'Why does compounding frequency matter?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'By applying the EAR formula using the nominal rate and compounding frequency.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What does compounding frequency mean?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It refers to how often interest is added to the balance each year.',
+        text: 'More frequent compounding means interest is reinvested sooner, producing a higher effective rate from the same nominal rate.',
       },
     },
     {
@@ -78,39 +90,47 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is EAR the same as APR?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. APR may exclude compounding, while EAR always includes it.',
+        text: 'No. APR typically does not include compounding effects, while EAR always does.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can EAR be used for loan comparison?',
+      name: 'Can I compare loans using EAR?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. EAR provides an accurate basis for comparing loans.',
+        text: 'Yes. Converting all loan rates to EAR lets you compare them on equal footing.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does monthly compounding increase EAR?',
+      name: 'When does EAR equal the nominal rate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. More frequent compounding increases EAR.',
+        text: 'When interest compounds only once per year (annually). With annual compounding there is no additional compounding effect.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if interest compounds daily?',
+      name: 'How does quarterly vs annual compounding compare?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Daily compounding produces a higher EAR than monthly or annual compounding.',
+        text: 'Quarterly compounding produces a slightly higher EAR than annual because interest is reinvested 4 times instead of once.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is EAR useful for savings and investments?',
+      name: 'Is EAR useful for savings accounts?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. It reflects the real annual return on interest-bearing accounts.',
+        text: 'Yes. EAR tells you the true annual return on savings, helping you pick the best account regardless of stated rates.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if the nominal rate is 0%?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If the nominal rate is 0%, the EAR is also 0% — no interest means no compounding effect.',
       },
     },
   ],
@@ -138,33 +158,21 @@ const metadata = {
         '@type': 'SoftwareApplication',
         name: 'Effective Annual Rate Calculator',
         applicationCategory: 'FinanceApplication',
+        applicationSubCategory: 'Interest & Growth Calculator',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance/effective-annual-rate/',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
+        description:
+          'Free EAR calculator. Convert nominal rates to effective annual rates for accurate comparisons.',
+        browserRequirements: 'Requires JavaScript enabled',
+        softwareVersion: '1.0',
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Finance',
-            item: 'https://calchowmuch.com/finance/',
-          },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
           {
             '@type': 'ListItem',
             position: 3,
@@ -179,154 +187,134 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-const frequencyButtons = setupButtonGroup(frequencyGroup, {
-  defaultValue: 'monthly',
-  onChange: () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  },
-});
+/* ── Helpers ── */
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
-
-function setOptionalVisibility(expanded) {
-  if (!optionalSection || !optionalToggle) {
-    return;
-  }
-  optionalSection.classList.toggle('is-hidden', !expanded);
-  optionalSection.hidden = !expanded;
-  optionalSection.setAttribute('aria-hidden', String(!expanded));
-  optionalToggle.setAttribute('aria-expanded', String(expanded));
-  optionalToggle.textContent = expanded ? 'Hide Optional Inputs' : 'Show Optional Inputs';
-}
-
-setOptionalVisibility(false);
-
-if (optionalToggle) {
-  optionalToggle.addEventListener('click', () => {
-    const expanded = optionalToggle.getAttribute('aria-expanded') === 'true';
-    setOptionalVisibility(!expanded);
+function fmt(value, opts = {}) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+    ...opts,
   });
 }
 
-function formatPercent(value, maxFraction = 4) {
-  return `${formatNumber(value, { maximumFractionDigits: maxFraction })}%`;
+function fmtPct(value, maxFraction = 4) {
+  return formatPercent(value, { maximumFractionDigits: maxFraction });
+}
+
+function setSliderFill(input) {
+  if (!input) return;
+  const min = Number(input.min || 0);
+  const max = Number(input.max || 100);
+  const value = Number(input.value);
+  const pct = max > min ? ((value - min) / (max - min)) * 100 : 0;
+  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, pct))}%`);
+}
+
+function updateSliderDisplays() {
+  if (nominalRateInput && rateDisplay) {
+    setSliderFill(nominalRateInput);
+    rateDisplay.textContent = `${Number(nominalRateInput.value)}%`;
+  }
 }
 
 function updateTargets(targets, value) {
-  if (!targets) {
-    return;
-  }
+  if (!targets) return;
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
-function updateExplanation({ nominalRate, frequency, periods, earRate }) {
-  if (!valueTargets) {
-    return;
-  }
-  updateTargets(valueTargets.nominalRate, nominalRate);
-  updateTargets(valueTargets.frequency, frequency);
-  updateTargets(valueTargets.periods, periods);
-  updateTargets(valueTargets.earRate, earRate);
+function setError(message) {
+  if (resultDiv) resultDiv.textContent = message;
+  if (summaryDiv) summaryDiv.textContent = '';
 }
 
-function showError(message) {
-  if (resultOutput) {
-    resultOutput.textContent = message;
-  }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
-
-  updateExplanation({
-    nominalRate: 'N/A',
-    frequency: 'N/A',
-    periods: 'N/A',
-    earRate: 'N/A',
-  });
-}
+/* ── Core calculate ── */
 
 function calculate() {
-  const nominalRate = Number.parseFloat(nominalRateInput?.value ?? '');
-  const selectedFrequency = frequencyButtons?.getValue() ?? 'monthly';
-  const customPeriodsRaw = customPeriodsInput?.value?.trim() ?? '';
-  const customPeriods = customPeriodsRaw === '' ? null : Number.parseFloat(customPeriodsRaw);
+  if (!resultDiv || !summaryDiv) return;
+  try {
 
-  if (!Number.isFinite(nominalRate)) {
-    showError('Enter a valid nominal interest rate.');
-    return;
-  }
+    const nominalRate = Number(nominalRateInput?.value);
+    const compounding = frequencyButtons?.getValue() ?? 'annual';
 
-  if (nominalRate < 0) {
-    showError('Nominal interest rate must be zero or greater.');
-    return;
-  }
+    if (!Number.isFinite(nominalRate) || nominalRate < 0) { setError('Rate must be 0 or more.'); return; }
 
-  if (customPeriods !== null && (!Number.isFinite(customPeriods) || customPeriods <= 0)) {
-    showError('Custom compounding periods must be greater than zero.');
-    return;
-  }
+    const result = calculateEffectiveAnnualRate({
+      nominalRate,
+      compounding,
+    });
 
-  const result = calculateEffectiveAnnualRate({
-    nominalRate,
-    compounding: selectedFrequency,
-    customPeriods,
-  });
+    if (!result) { setError('Check your inputs.'); return; }
 
-  if (!result) {
-    showError('Check your values and try again.');
-    return;
-  }
+    /* Derived values */
+    const earPct = result.effectiveAnnualRate * 100;
+    const nominalDecimal = nominalRate / 100;
+    const periodicRateDecimal = nominalDecimal / result.periodsPerYear;
+    const periodicRatePct = periodicRateDecimal * 100;
+    const onePlusRate = 1 + periodicRateDecimal;
+    const growthFactor = Math.pow(onePlusRate, result.periodsPerYear);
+    const differencePct = earPct - nominalRate;
 
-  hasCalculated = true;
+    /* Formatted strings */
+    const nominalStr = fmtPct(nominalRate, 2);
+    const earStr = fmtPct(earPct, 4);
+    const compoundingStr = result.compoundingLabel;
+    const periodsStr = String(result.periodsPerYear);
+    const periodicRateStr = fmtPct(periodicRatePct, 4);
+    const periodicRateDecimalStr = fmt(periodicRateDecimal, { maximumFractionDigits: 6 });
+    const nominalDecimalStr = fmt(nominalDecimal, { maximumFractionDigits: 4 });
+    const onePlusRateStr = fmt(onePlusRate, { maximumFractionDigits: 6 });
+    const growthFactorStr = fmt(growthFactor, { maximumFractionDigits: 6 });
+    const earDecimalStr = fmt(result.effectiveAnnualRate, { maximumFractionDigits: 6 });
+    const differenceStr = fmtPct(differencePct, 4);
 
-  const effectiveRatePercent = result.effectiveAnnualRate * 100;
-  const periodsDisplay = formatNumber(result.periodsPerYear, { maximumFractionDigits: 2 });
-  const frequencyDisplay = customPeriods !== null ? 'Custom' : result.compoundingLabel;
+    /* Preview panel */
+    resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${earStr}</span>`;
+    const valueEl = resultDiv.querySelector('.mtg-result-value');
+    if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
 
-  if (resultOutput) {
-    resultOutput.textContent = `Effective Annual Rate (EAR): ${formatPercent(effectiveRatePercent, 4)}`;
-  }
+    summaryDiv.innerHTML =
+      `<p><strong>Nominal rate:</strong> ${nominalStr}</p>` +
+      `<p><strong>Compounding:</strong> ${compoundingStr}</p>` +
+      `<p><strong>Difference:</strong> +${differenceStr}</p>`;
 
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Nominal rate used:</strong> ${formatPercent(nominalRate, 2)}</p>` +
-      `<p><strong>Compounding frequency:</strong> ${frequencyDisplay}</p>` +
-      `<p><strong>Compounding periods per year:</strong> ${periodsDisplay}</p>`;
-  }
+    /* Snapshot rows */
+    if (snapNominal) snapNominal.textContent = nominalStr;
+    if (snapCompounding) snapCompounding.textContent = compoundingStr;
+    if (snapPeriods) snapPeriods.textContent = periodsStr;
+    if (snapPeriodicRate) snapPeriodicRate.textContent = periodicRateStr;
+    if (snapDifference) snapDifference.textContent = `+${differenceStr}`;
 
-  updateExplanation({
-    nominalRate: formatPercent(nominalRate, 2),
-    frequency: frequencyDisplay,
-    periods: periodsDisplay,
-    earRate: formatPercent(effectiveRatePercent, 4),
-  });
-}
-
-if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
-}
-
-if (nominalRateInput) {
-  nominalRateInput.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
+    /* Explanation targets */
+    if (valueTargets) {
+      updateTargets(valueTargets.nominalRate, nominalStr);
+      updateTargets(valueTargets.frequency, compoundingStr);
+      updateTargets(valueTargets.periods, periodsStr);
+      updateTargets(valueTargets.earRate, earStr);
+      updateTargets(valueTargets.periodicRate, periodicRateStr);
+      updateTargets(valueTargets.periodicRateDecimal, periodicRateDecimalStr);
+      updateTargets(valueTargets.nominalDecimal, nominalDecimalStr);
+      updateTargets(valueTargets.onePlusRate, onePlusRateStr);
+      updateTargets(valueTargets.growthFactor, growthFactorStr);
+      updateTargets(valueTargets.earDecimal, earDecimalStr);
+      updateTargets(valueTargets.difference, differenceStr);
     }
-  });
+
+  } catch (err) {
+    console.error('[EAR Calculator] calculate():', err);
+  }
 }
 
-if (customPeriodsInput) {
-  customPeriodsInput.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  });
-}
+/* ── Event wiring ── */
 
-if (nominalRateInput) {
+nominalRateInput?.addEventListener('input', () => {
+  updateSliderDisplays();
   calculate();
-}
+});
+
+calculateButton?.addEventListener('click', calculate);
+
+/* ── Init ── */
+updateSliderDisplays();
+calculate();
