@@ -607,7 +607,7 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 - `SITE_TITLE` is the primary site title in header navigation and must not include the domain name.
 - `SITE_TAGLINE` appears directly below site title on homepage shell and remains single-line (wrapping only on small screens).
-- Canonical test evidence location: `requirements/specs/e2e/iss-design-001.spec.js`.
+- Canonical test evidence location: `tests_specs/infrastructure/e2e/iss-design-001.spec.js`.
 
 ---
 

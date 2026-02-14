@@ -67,7 +67,7 @@ Located in: `public/config/navigation.json` under `categories[1].subcategories[1
 | Calculator CSS   | `public/calculators/loans/credit-card-consolidation/calculator.css` |
 | Explanation HTML | `public/calculators/loans/credit-card-consolidation/explanation.html` |
 | Shared Utils     | `public/assets/js/core/credit-card-utils.js`                  |
-| Unit Tests       | `requirements/specs/loans/credit-card-utils.test.js`           |
+| Unit Tests       | `tests_specs/credit-cards/unit/credit-card-utils.test.js`           |
 
 ---
 
@@ -299,7 +299,7 @@ Each FAQ must be in a bordered container (`.cc-con-faq-item`). Q: bolded, A: ind
 ## 10) Testing
 
 ### Unit Tests
-- Existing tests in `requirements/specs/loans/credit-card-utils.test.js` cover `calculateConsolidation()`.
+- Existing tests in `tests_specs/credit-cards/unit/credit-card-utils.test.js` cover `calculateConsolidation()`.
 - Verify: current.months > 0, consolidation.monthlyPayment > 0, interestDifference is defined.
 - Edge case: consolidation worse than current (negative savings).
 - Edge case: fees = 0.

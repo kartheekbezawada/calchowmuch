@@ -67,7 +67,7 @@ Located in: `public/config/navigation.json` under `categories[1].subcategories[1
 | Calculator CSS | `public/calculators/loans/credit-card-repayment-payoff/calculator.css` |
 | Explanation HTML | `public/calculators/loans/credit-card-repayment-payoff/explanation.html` |
 | Shared Utils | `public/assets/js/core/credit-card-utils.js` |
-| Unit Tests | `requirements/specs/loans/credit-card-utils.test.js` |
+| Unit Tests | `tests_specs/credit-cards/unit/credit-card-utils.test.js` |
 
 ---
 
@@ -269,7 +269,7 @@ Each FAQ must be in a bordered container using the shared `.faq-box` class from 
 ## 10) Testing
 
 ### Unit Tests
-- Existing tests in `requirements/specs/loans/credit-card-utils.test.js` cover `calculateCreditCardPayoff()`.
+- Existing tests in `tests_specs/credit-cards/unit/credit-card-utils.test.js` cover `calculateCreditCardPayoff()`.
 - Verify: payoff months > 0, total interest > 0, total payment > balance.
 - Edge case: payment too low returns error.
 - Edge case: APR = 0 returns payoff with 0 interest.

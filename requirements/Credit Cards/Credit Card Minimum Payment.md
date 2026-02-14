@@ -67,7 +67,7 @@ Located in: `public/config/navigation.json` under `categories[1].subcategories[1
 | Calculator CSS   | `public/calculators/loans/credit-card-minimum-payment/calculator.css` |
 | Explanation HTML | `public/calculators/loans/credit-card-minimum-payment/explanation.html` |
 | Shared Utils     | `public/assets/js/core/credit-card-utils.js`                  |
-| Unit Tests       | `requirements/specs/loans/credit-card-utils.test.js`           |
+| Unit Tests       | `tests_specs/credit-cards/unit/credit-card-utils.test.js`           |
 
 ---
 
@@ -278,7 +278,7 @@ Each FAQ must be in a bordered container (`.cc-min-faq-item`). Q: bolded, A: ind
 ## 10) Testing
 
 ### Unit Tests
-- Existing tests in `requirements/specs/loans/credit-card-utils.test.js` cover `calculateMinimumPayment()`.
+- Existing tests in `tests_specs/credit-cards/unit/credit-card-utils.test.js` cover `calculateMinimumPayment()`.
 - Verify: firstPayment > 0, months > 0, totalInterest > 0.
 - Edge case: payment too low returns error.
 - Edge case: APR = 0 returns payoff with 0 interest.
@@ -333,7 +333,7 @@ Each FAQ must be in a bordered container (`.cc-min-faq-item`). Q: bolded, A: ind
 - `calculator-title` expected text: `public/loans/credit-card-minimum-payment/index.html`
 - `cc-min-floor` label text: `public/loans/credit-card-minimum-payment/index.html`
 - Provider note presence: `public/loans/credit-card-minimum-payment/index.html`
-- Absence of `Scenario Summary` contract in explanation behavior: `requirements/specs/e2e/credit-card-minimum-payment.spec.js`
+- Absence of `Scenario Summary` contract in explanation behavior: `tests_specs/credit-cards/e2e/credit-card-minimum-payment.spec.js`
 - Prefilled yearly table behavior: `public/calculators/loans/credit-card-minimum-payment/module.js`
 - Currency-neutral explanation chips: `public/calculators/loans/credit-card-minimum-payment/module.js`
 
