@@ -7,8 +7,8 @@
 | Status | Authoritative (sole active governance file) |
 | Scope | All public routes, calculator modules, shared shell, SEO/testing/release gates |
 | Canonical Path | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` |
-| Version | 3.3 (AdSense governance + controlled ad-slot standard + mobile nav requirements) |
-| Last Updated | 2026-02-13 |
+| Version | 3.4 (GTEP + Privacy/Terms canonical policy consolidation) |
+| Last Updated | 2026-02-14 |
 
 This is the only active governance file under `requirements/universal-rules/`.
 All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
@@ -108,6 +108,8 @@ All previously separate rule modules are merged here and re-numbered with the `U
 | UR-NAV-020 | GTEP pages are standalone HTML and must not use calculator shell panes. | P0 |
 | UR-NAV-021 | GTEP pages must not load calculator-specific JS modules. | P0 |
 | UR-NAV-022 | GTEP pages must remain crawlable with lightweight header/footer patterns. | P0 |
+| UR-NAV-023 | GTEP included routes are `/sitemap/`, `/privacy/`, `/terms-and-conditions/`, `/contact-us/`, `/faqs/`; these routes are explicitly excluded from calculator-shell requirements. | P0 |
+| UR-NAV-024 | GTEP pages must use single-column content-first layout with no top category nav, no left nav, no calc pane, no explanation pane, and no ad pane. | P0 |
 
 ### 3.2 Mobile Responsiveness and Navigation
 | Rule ID | Requirement | Severity |
@@ -483,9 +485,111 @@ Applicability: applies only to archetypes that include an explanation pane (`cal
 
 ---
 
-## 18) Reference Pointers
+## 18) Site Copy Contract
 
-- Site copy: `requirements/site-structure/SITE_COPY.md`
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-COPY-001 | Universal site copy values are defined in this section and must be used verbatim in user-facing UI copy locations. | P0 |
+| UR-COPY-002 | Rewording, punctuation changes, or casing changes for governed copy are disallowed unless this section is updated in the same change. | P0 |
+| UR-COPY-003 | Governed copy changes require matching test updates and evidence references in applicable E2E suites. | P1 |
+
+### 18.1 Canonical Verbatim Values
+
+- `SITE_TITLE`: `Calculate How Much`
+- `SITE_TAGLINE`: `Calculate how much you need, spend, afford.`
+
+### 18.2 Usage Contract
+
+- `SITE_TITLE` is the primary site title in header navigation and must not include the domain name.
+- `SITE_TAGLINE` appears directly below site title on homepage shell and remains single-line (wrapping only on small screens).
+- Canonical test evidence location: `requirements/specs/e2e/iss-design-001.spec.js`.
+
+---
+
+## 19) Reference Pointers
+
 - Navigation hierarchy: `requirements/site-structure/calculator-hierarchy.md`
 - Compliance trackers: `requirements/compliance/`
 - MPA generator: `scripts/generate-mpa-pages.js`
+
+---
+
+## 20) GTEP Canonical Contract
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-GTEP-001 | GTEP pages are plain HTML-first pages and must not depend on calculator navigation state. | P0 |
+| UR-GTEP-002 | GTEP pages must include unique `<title>`, unique meta description, one `<h1>`, canonical URL, and robots index/follow. | P0 |
+| UR-GTEP-003 | GTEP pages must include simple footer legal links: Privacy, Terms & Conditions, Contact, FAQs, Sitemap. | P0 |
+| UR-GTEP-004 | HTML sitemap content must be generated from `public/config/navigation.json` and include canonical calculator links grouped by category/subcategory. | P0 |
+| UR-GTEP-005 | GTEP routes must not load ad pane containers or calculator runtime scripts. | P0 |
+
+### 20.1 Required GTEP Route Set
+
+- `/sitemap/`
+- `/privacy/`
+- `/terms-and-conditions/`
+- `/contact-us/`
+- `/faqs/`
+
+### 20.2 GTEP Testing Contract
+
+- Required E2E assertions for each route above: no calculator shell regions, no ads pane, `<h1>` exists, footer legal links exist.
+- Required SEO assertions: unique metadata + canonical + crawlability.
+
+---
+
+## 21) Privacy Policy Canonical Content Contract
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-PRIV-001 | `/privacy/` content is governed by this section; legal-policy text must preserve meaning and section intent unless this section is updated. | P0 |
+| UR-PRIV-002 | Privacy policy must clearly disclose Cloudflare infrastructure processing and AdSense advertising/cookie usage. | P0 |
+| UR-PRIV-003 | Privacy policy must explicitly state no account/login requirement for calculator usage and no personal-data sale. | P0 |
+| UR-PRIV-004 | Privacy policy must include EEA/UK/Switzerland consent obligations for advertising cookies/personalisation where legally required. | P0 |
+
+### 21.1 Canonical Privacy Sections (must be present)
+
+1. Effective date declaration.
+2. Scope: independent project site; calculators/info pages.
+3. What we do/do not do (no account/login required; no personal-data sale).
+4. Third-party services: Cloudflare delivery/security + Google AdSense advertising.
+5. Advertising cookies and ad personalisation disclosures.
+6. Consent obligations for EEA/UK/Switzerland.
+7. Analytics disclosure (Cloudflare-level analytics/aggregated usage context).
+8. Calculator input warning (do not submit sensitive personal data).
+9. Data sharing boundaries (operational providers only).
+10. Retention statement (provider/config dependent).
+11. User choices (browser controls, consent controls, Ads Settings).
+12. Policy update clause.
+13. Liability/no-guarantees note limited by applicable law.
+
+---
+
+## 22) Terms & Conditions Canonical Content Contract
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-TERM-001 | `/terms-and-conditions/` content is governed by this section; legal-policy text must preserve meaning and section intent unless this section is updated. | P0 |
+| UR-TERM-002 | Terms must include clear disclaimer that calculator outputs are estimates and not professional advice. | P0 |
+| UR-TERM-003 | Terms must include as-is service disclaimer, liability limitation carve-out language, and third-party provider disclaimers. | P0 |
+| UR-TERM-004 | Terms must include ad/consent disclosures aligned with Google AdSense and privacy-policy linkage. | P0 |
+
+### 22.1 Canonical Terms Sections (must be present)
+
+1. Effective date declaration.
+2. Acceptance of terms for site usage.
+3. Site purpose and mutability notice.
+4. No professional advice.
+5. Calculator estimate-only disclaimer.
+6. As-is / as-available disclaimer.
+7. Liability limitation with non-excludable liability carve-out.
+8. Advertising and third-party ad technology disclosures.
+9. EEA/UK/Switzerland consent notice obligations.
+10. Privacy/cookies + Cloudflare processing reference.
+11. External links disclaimer.
+12. Acceptable use constraints.
+13. Intellectual property statement.
+14. Indemnity clause.
+15. Change-to-terms clause.
+16. Governing law/jurisdiction statement.
