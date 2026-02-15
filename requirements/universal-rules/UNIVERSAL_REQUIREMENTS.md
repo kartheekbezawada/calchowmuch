@@ -286,6 +286,23 @@ If a theme change causes pane width/height/scroll behavior differences, revert a
 | UR-UI-035 | Design-family evidence must include token/class proof plus screenshot references in iteration/compliance artifacts. | P1 |
 | UR-UI-036 | Design family must not change MPA behavior, semantic landmarks, or required keyboard/focus behavior. | P0 |
 
+### 4.6 CSS Architecture and Loading Rules
+
+> **Context**: The `home-loan` design family provides shared UI layout rules (~1000 lines) used by 16+ calculators across loans and finance categories. These rules live in a single shared file. Calculator-specific CSS files contain only page-level overrides.
+
+| Rule ID | Requirement | Severity |
+| --- | --- | --- |
+| UR-CSS-001 | `@import` is **prohibited** in all calculator CSS files (`public/calculators/**/*.css`). Enforced by `npm run lint:css-import`. | P0 |
+| UR-CSS-002 | Shared design-family layout rules must be loaded from `/assets/css/shared-calculator-ui.css` via a `<link>` tag — never via `@import` in another CSS file. | P0 |
+| UR-CSS-003 | The MPA generator (`scripts/generate-mpa-pages.js`) manages the `<link>` for `shared-calculator-ui.css`; calculator source HTML files must NOT add their own `<link>` or `@import` for it. | P0 |
+| UR-CSS-004 | Per-calculator `calculator.css` files must contain **only page-specific overrides** — not duplicated shared rules. If a rule applies to 2+ calculators, it belongs in `shared-calculator-ui.css`. | P0 |
+| UR-CSS-005 | CSS loading order for generated pages: `theme-premium-dark.css` → `base.css` → `layout.css` → `calculator.css` → `shared-calculator-ui.css` → per-calculator `calculator.css` (via `<style>@import</style>` in source HTML). All loaded as flat `<link>` tags — no CSS-to-CSS `@import` chains. | P0 |
+| UR-CSS-006 | When creating a new calculator that uses the `home-loan` design family (i.e., uses `.home-loan-ui`, `#calc-home-loan`, `.mtg-hero`, `.mtg-form-panel` classes): **do NOT copy CSS from another calculator**. The shared rules are already provided by `shared-calculator-ui.css`. Only write overrides in the new calculator's `calculator.css`. | P0 |
+| UR-CSS-007 | Render-blocking CSS budget: ≤ 5 `<link rel="stylesheet">` tags in `<head>`. Any additional CSS must use async loading (preload+swap or media=print trick). | P1 |
+| UR-CSS-008 | `npm run validate` pipeline includes `lint:css-import` — any `@import` in calculator CSS is a hard build failure. | P0 |
+
+> **Why these rules exist**: A 3-deep CSS `@import` waterfall (`finance/*.css → car-loan/calculator.css → home-loan/calculator.css`) caused CLS 0.479 on 15 calculator pages (4.8× over Google's threshold). This was caused by AI agents copying CSS files that contained `@import` when told to "use Home Loan theme as example." See `known_issues.md` KI-013 for the full incident report.
+
 ---
 
 ## 5) Calculation Pane Contract

@@ -7,8 +7,8 @@ import {
   aggregateYearly,
   buildMonthlySeries,
   buildYearlySeries,
-} from '../../public/assets/js/core/home-loan-utils.js';
-import { computeMonthlyPayment } from '../../public/assets/js/core/loan-utils.js';
+} from '../../../public/assets/js/core/home-loan-utils.js';
+import { computeMonthlyPayment } from '../../../public/assets/js/core/loan-utils.js';
 
 /**
  * HOME-LOAN-TEST-U-1 - Home Loan Calculator Unit Tests
