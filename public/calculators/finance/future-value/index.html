@@ -1,11 +1,56 @@
+<style>
+  #calc-future-value {
+    width: 100%;
+  }
+
+  #calc-future-value .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-future-value .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-future-value .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-future-value .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-future-value .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-future-value .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-future-value .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-future-value">
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Future value calculator">
         <div class="mtg-form-panel">
           <p class="helper">
-            Estimate how much your money can grow using interest rate, time period, and
-            compounding frequency. Adjust the sliders to see results update instantly.
+            Estimate how much your money can grow using interest rate, time period, and compounding
+            frequency. Adjust the sliders to see results update instantly.
           </p>
 
           <div class="input-row slider-row">
@@ -13,7 +58,14 @@
               <label for="fv-present-value">Present Value (PV)</label>
               <span class="slider-value" id="fv-pv-display">10,000</span>
             </div>
-            <input id="fv-present-value" type="range" value="10000" min="100" max="500000" step="100" />
+            <input
+              id="fv-present-value"
+              type="range"
+              value="10000"
+              min="100"
+              max="500000"
+              step="100"
+            />
           </div>
 
           <div class="input-grid-2-col">
@@ -39,31 +91,83 @@
               <label for="fv-regular-contribution">Regular Contribution</label>
               <span class="slider-value" id="fv-contrib-display">0</span>
             </div>
-            <input id="fv-regular-contribution" type="range" value="0" min="0" max="10000" step="50" />
+            <input
+              id="fv-regular-contribution"
+              type="range"
+              value="0"
+              min="0"
+              max="10000"
+              step="50"
+            />
           </div>
 
           <div class="pv-toggle-row">
             <div class="pv-toggle-group">
               <span class="pv-toggle-label">Period</span>
-              <div class="button-group" role="group" aria-label="Period type" data-button-group="fv-period-type">
-                <button class="calculator-button secondary is-active" type="button" data-value="years"
-                  aria-pressed="true">Years</button>
-                <button class="calculator-button secondary" type="button" data-value="months"
-                  aria-pressed="false">Months</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Period type"
+                data-button-group="fv-period-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
               </div>
             </div>
             <div class="pv-toggle-group">
               <span class="pv-toggle-label">Compounding</span>
-              <div class="button-group" role="group" aria-label="Compounding frequency"
-                data-button-group="fv-compounding">
-                <button class="calculator-button secondary is-active" type="button" data-value="annual"
-                  aria-pressed="true">Annual</button>
-                <button class="calculator-button secondary" type="button" data-value="semiannual"
-                  aria-pressed="false">Semi</button>
-                <button class="calculator-button secondary" type="button" data-value="quarterly"
-                  aria-pressed="false">Qtr</button>
-                <button class="calculator-button secondary" type="button" data-value="monthly"
-                  aria-pressed="false">Monthly</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="fv-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semi
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Qtr
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
               </div>
             </div>
           </div>
@@ -78,38 +182,44 @@
         <aside class="mtg-preview-panel" aria-label="Future value result snapshot">
           <div class="mtg-preview-main">
             <p class="mtg-preview-label">Estimated Future Value</p>
-            <div class="result mtg-result-card" id="fv-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="fv-result-detail" aria-live="polite"></div>
+            <div class="result mtg-result-card" id="fv-result" aria-live="polite">
+              <span class="mtg-result-value">11,576.25</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="fv-result-detail" aria-live="polite">
+              <p><strong>Total growth:</strong> 1,576.25</p>
+              <p><strong>Contributions:</strong> 0.00</p>
+              <p><strong>Compounding:</strong> Annual</p>
+            </div>
           </div>
 
           <div class="mtg-snapshot-list">
             <div class="mtg-snapshot-row">
               <span>Present Value</span>
-              <strong data-fv="snap-pv"></strong>
+              <strong data-fv="snap-pv">10,000.00</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Interest Rate</span>
-              <strong data-fv="snap-rate"></strong>
+              <strong data-fv="snap-rate">5%</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Time Period</span>
-              <strong data-fv="snap-time"></strong>
+              <strong data-fv="snap-time">3.00 years</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Compounding</span>
-              <strong data-fv="snap-compounding"></strong>
+              <strong data-fv="snap-compounding">Annual</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Contribution / Period</span>
-              <strong data-fv="snap-contribution"></strong>
+              <strong data-fv="snap-contribution">0.00</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Effective Periods</span>
-              <strong data-fv="snap-periods"></strong>
+              <strong data-fv="snap-periods">3</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Rate Per Period</span>
-              <strong data-fv="snap-periodic-rate"></strong>
+              <strong data-fv="snap-periodic-rate">5.00%</strong>
             </div>
           </div>
         </aside>

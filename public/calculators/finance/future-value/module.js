@@ -30,20 +30,20 @@ const snapPeriodicRate = document.querySelector('[data-fv="snap-periodic-rate"]'
 const explanationRoot = document.querySelector('#fv-explanation');
 const valueTargets = explanationRoot
   ? {
-    presentValue: explanationRoot.querySelectorAll('[data-fv="present-value"]'),
-    interestRate: explanationRoot.querySelectorAll('[data-fv="interest-rate"]'),
-    timePeriod: explanationRoot.querySelectorAll('[data-fv="time-period"]'),
-    compoundingFrequency: explanationRoot.querySelectorAll('[data-fv="compounding-frequency"]'),
-    futureValue: explanationRoot.querySelectorAll('[data-fv="future-value"]'),
-    totalContributions: explanationRoot.querySelectorAll('[data-fv="total-contributions"]'),
-    totalGrowth: explanationRoot.querySelectorAll('[data-fv="total-growth"]'),
-    totalPeriods: explanationRoot.querySelectorAll('[data-fv="total-periods"]'),
-    regularContribution: explanationRoot.querySelectorAll('[data-fv="regular-contribution"]'),
-    appliedRate: explanationRoot.querySelectorAll('[data-fv="applied-rate"]'),
-    appliedRateDecimal: explanationRoot.querySelectorAll('[data-fv="applied-rate-decimal"]'),
-    formulaGrowthFactor: explanationRoot.querySelectorAll('[data-fv="formula-growth-factor"]'),
-    periodsPerYear: explanationRoot.querySelectorAll('[data-fv="periods-per-year"]'),
-  }
+      presentValue: explanationRoot.querySelectorAll('[data-fv="present-value"]'),
+      interestRate: explanationRoot.querySelectorAll('[data-fv="interest-rate"]'),
+      timePeriod: explanationRoot.querySelectorAll('[data-fv="time-period"]'),
+      compoundingFrequency: explanationRoot.querySelectorAll('[data-fv="compounding-frequency"]'),
+      futureValue: explanationRoot.querySelectorAll('[data-fv="future-value"]'),
+      totalContributions: explanationRoot.querySelectorAll('[data-fv="total-contributions"]'),
+      totalGrowth: explanationRoot.querySelectorAll('[data-fv="total-growth"]'),
+      totalPeriods: explanationRoot.querySelectorAll('[data-fv="total-periods"]'),
+      regularContribution: explanationRoot.querySelectorAll('[data-fv="regular-contribution"]'),
+      appliedRate: explanationRoot.querySelectorAll('[data-fv="applied-rate"]'),
+      appliedRateDecimal: explanationRoot.querySelectorAll('[data-fv="applied-rate-decimal"]'),
+      formulaGrowthFactor: explanationRoot.querySelectorAll('[data-fv="formula-growth-factor"]'),
+      periodsPerYear: explanationRoot.querySelectorAll('[data-fv="periods-per-year"]'),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -52,12 +52,16 @@ const compoundingGroup = document.querySelector('[data-button-group="fv-compound
 
 const periodButtons = setupButtonGroup(periodGroup, {
   defaultValue: 'years',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -82,7 +86,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How is future value different from present value?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Present value is today\'s worth of money, while future value shows what it grows into over time through compounding.',
+        text: "Present value is today's worth of money, while future value shows what it grows into over time through compounding.",
       },
     },
     {
@@ -117,13 +121,45 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'With a positive interest rate, future value always increases. Only negative rates or withdrawals would reduce it.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What happens if interest rate is 0%?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At 0% interest, future value equals present value plus total contributions because there is no growth from compounding.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I calculate future value in months?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Switching period type to months lets you model shorter horizons with the same compound growth method.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do contributions benefit from compounding?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Contributions added each period can also earn interest, which increases total future value over time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this calculator suitable for savings goals?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. It is useful for estimating savings and investment growth under fixed-rate assumptions.',
+      },
+    },
   ],
 };
 
 const metadata = {
   title: 'Future Value (FV) Calculator – CalcHowMuch',
   description:
-    'Calculate how much your money could grow over time using interest rate and compounding. Fast, accurate Future Value calculator with clear results.',
+    'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
   canonical: 'https://calchowmuch.com/finance/future-value/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -134,7 +170,8 @@ const metadata = {
         '@type': 'WebPage',
         name: 'Future Value (FV) Calculator',
         url: 'https://calchowmuch.com/finance/future-value/',
-        description: 'Estimate the future value of money using growth rate, time period, and compounding.',
+        description:
+          'Estimate the future value of money using growth rate, time period, and compounding.',
         inLanguage: 'en',
       },
       {
@@ -155,7 +192,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -192,7 +234,10 @@ function setSliderFill(input) {
 function updateSliderDisplays() {
   if (pvInput && pvDisplay) {
     setSliderFill(pvInput);
-    pvDisplay.textContent = fmt(Number(pvInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    pvDisplay.textContent = fmt(Number(pvInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
   if (rateInput && rateDisplay) {
     setSliderFill(rateInput);
@@ -205,7 +250,10 @@ function updateSliderDisplays() {
   }
   if (contribInput && contribDisplay) {
     setSliderFill(contribInput);
-    contribDisplay.textContent = fmt(Number(contribInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    contribDisplay.textContent = fmt(Number(contribInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
 }
 
@@ -234,9 +282,18 @@ function calculate() {
   const compounding = compoundingButtons?.getValue() ?? 'annual';
   const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(pv) || pv < 0) { setError('Present value must be 0 or more.'); return; }
-  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
-  if (!Number.isFinite(period) || period < 0) { setError('Time period must be 0 or more.'); return; }
+  if (!Number.isFinite(pv) || pv < 0) {
+    setError('Present value must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(rate) || rate < 0) {
+    setError('Interest rate must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(period) || period < 0) {
+    setError('Time period must be 0 or more.');
+    return;
+  }
 
   const result = calculateFutureValue({
     presentValue: pv,
@@ -247,7 +304,10 @@ function calculate() {
     regularContribution: contribution,
   });
 
-  if (!result) { setError('Check your inputs.'); return; }
+  if (!result) {
+    setError('Check your inputs.');
+    return;
+  }
 
   const appliedRatePct = result.periodicRate * 100;
   const totalPeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });

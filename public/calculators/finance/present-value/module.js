@@ -28,18 +28,20 @@ const snapPeriodicRate = document.querySelector('[data-pv="snap-periodic-rate"]'
 const explanationRoot = document.querySelector('#pv-explanation');
 const valueTargets = explanationRoot
   ? {
-    futureValue: explanationRoot.querySelectorAll('[data-pv="future-value"]'),
-    discountRate: explanationRoot.querySelectorAll('[data-pv="discount-rate"]'),
-    timePeriod: explanationRoot.querySelectorAll('[data-pv="time-period"]'),
-    compoundingFrequency: explanationRoot.querySelectorAll('[data-pv="compounding-frequency"]'),
-    presentValue: explanationRoot.querySelectorAll('[data-pv="present-value"]'),
-    effectivePeriods: explanationRoot.querySelectorAll('[data-pv="effective-periods"]'),
-    appliedRate: explanationRoot.querySelectorAll('[data-pv="applied-rate"]'),
-    formulaDenominator: explanationRoot.querySelectorAll('[data-pv="formula-denominator"]'),
-    formulaDiscountLost: explanationRoot.querySelectorAll('[data-pv="formula-discount-lost"]'),
-    appliedRateDecimal: explanationRoot.querySelectorAll('[data-pv="applied-rate-decimal"]'),
-    effectivePeriodsPerYear: explanationRoot.querySelectorAll('[data-pv="effective-periods-per-year"]'),
-  }
+      futureValue: explanationRoot.querySelectorAll('[data-pv="future-value"]'),
+      discountRate: explanationRoot.querySelectorAll('[data-pv="discount-rate"]'),
+      timePeriod: explanationRoot.querySelectorAll('[data-pv="time-period"]'),
+      compoundingFrequency: explanationRoot.querySelectorAll('[data-pv="compounding-frequency"]'),
+      presentValue: explanationRoot.querySelectorAll('[data-pv="present-value"]'),
+      effectivePeriods: explanationRoot.querySelectorAll('[data-pv="effective-periods"]'),
+      appliedRate: explanationRoot.querySelectorAll('[data-pv="applied-rate"]'),
+      formulaDenominator: explanationRoot.querySelectorAll('[data-pv="formula-denominator"]'),
+      formulaDiscountLost: explanationRoot.querySelectorAll('[data-pv="formula-discount-lost"]'),
+      appliedRateDecimal: explanationRoot.querySelectorAll('[data-pv="applied-rate-decimal"]'),
+      effectivePeriodsPerYear: explanationRoot.querySelectorAll(
+        '[data-pv="effective-periods-per-year"]'
+      ),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -113,13 +115,45 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'No, with a positive discount rate, present value will always be lower than future value.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What happens when the discount rate is 0%?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At a 0% discount rate, present value equals future value because no discounting is applied.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I calculate PV using months instead of years?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Switch the period type to months to model shorter time horizons with the same formula.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does compounding frequency change present value?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. More frequent compounding changes the per-period rate and total periods, which can change PV.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this calculator for single future cash flows?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. This PV calculator discounts one future amount; annuity calculators are used for recurring cash flows.',
+      },
+    },
   ],
 };
 
 const metadata = {
   title: 'Present Value (PV) Calculator – CalcHowMuch',
   description:
-    'Calculate the present value of future cash using discount rate and time. Fast, accurate PV calculator with clear steps and examples.',
+    'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
   canonical: 'https://calchowmuch.com/finance/present-value/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -130,7 +164,8 @@ const metadata = {
         '@type': 'WebPage',
         name: 'Present Value (PV) Calculator',
         url: 'https://calchowmuch.com/finance/present-value/',
-        description: 'Estimate the present value of future money using discount rate and time period.',
+        description:
+          'Estimate the present value of future money using discount rate and time period.',
         inLanguage: 'en',
       },
       {
@@ -151,7 +186,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -196,7 +236,10 @@ function updateSliderDisplays() {
   }
   if (timeDisplay && timeInput) {
     const v = Number(timeInput.value);
-    timeDisplay.textContent = periodType === 'months' ? `${fmt(v, { maximumFractionDigits: 0 })} mo` : `${fmt(v, { maximumFractionDigits: 0 })} yrs`;
+    timeDisplay.textContent =
+      periodType === 'months'
+        ? `${fmt(v, { maximumFractionDigits: 0 })} mo`
+        : `${fmt(v, { maximumFractionDigits: 0 })} yrs`;
   }
 
   [fvInput, rateInput, timeInput].forEach(setSliderFill);
@@ -226,9 +269,18 @@ function calculate() {
   const compounding = compoundingButtons?.getValue() ?? 'annual';
   const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(fv) || fv < 0) { setError('Future value must be 0 or more.'); return; }
-  if (!Number.isFinite(rate) || rate < 0) { setError('Discount rate must be 0 or more.'); return; }
-  if (!Number.isFinite(period) || period < 0) { setError('Time period must be 0 or more.'); return; }
+  if (!Number.isFinite(fv) || fv < 0) {
+    setError('Future value must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(rate) || rate < 0) {
+    setError('Discount rate must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(period) || period < 0) {
+    setError('Time period must be 0 or more.');
+    return;
+  }
 
   const result = calculatePresentValue({
     futureValue: fv,
@@ -238,7 +290,10 @@ function calculate() {
     compounding,
   });
 
-  if (!result) { setError('Check your inputs.'); return; }
+  if (!result) {
+    setError('Check your inputs.');
+    return;
+  }
 
   const appliedRatePct = result.periodicRate * 100;
   const totalPeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });

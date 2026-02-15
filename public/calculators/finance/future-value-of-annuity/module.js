@@ -31,20 +31,20 @@ const snapPeriodicRate = document.querySelector('[data-fva="snap-periodic-rate"]
 const explanationRoot = document.querySelector('#fva-explanation');
 const valueTargets = explanationRoot
   ? {
-    paymentAmount: explanationRoot.querySelectorAll('[data-fva="payment-amount"]'),
-    interestRate: explanationRoot.querySelectorAll('[data-fva="interest-rate"]'),
-    periodCount: explanationRoot.querySelectorAll('[data-fva="period-count"]'),
-    annuityType: explanationRoot.querySelectorAll('[data-fva="annuity-type"]'),
-    compoundingFrequency: explanationRoot.querySelectorAll('[data-fva="compounding-frequency"]'),
-    futureValue: explanationRoot.querySelectorAll('[data-fva="future-value"]'),
-    totalPayments: explanationRoot.querySelectorAll('[data-fva="total-payments"]'),
-    totalInterest: explanationRoot.querySelectorAll('[data-fva="total-interest"]'),
-    effectivePeriods: explanationRoot.querySelectorAll('[data-fva="effective-periods"]'),
-    appliedRate: explanationRoot.querySelectorAll('[data-fva="applied-rate"]'),
-    appliedRateDecimal: explanationRoot.querySelectorAll('[data-fva="applied-rate-decimal"]'),
-    formulaAnnuityFactor: explanationRoot.querySelectorAll('[data-fva="formula-annuity-factor"]'),
-    periodsPerYear: explanationRoot.querySelectorAll('[data-fva="periods-per-year"]'),
-  }
+      paymentAmount: explanationRoot.querySelectorAll('[data-fva="payment-amount"]'),
+      interestRate: explanationRoot.querySelectorAll('[data-fva="interest-rate"]'),
+      periodCount: explanationRoot.querySelectorAll('[data-fva="period-count"]'),
+      annuityType: explanationRoot.querySelectorAll('[data-fva="annuity-type"]'),
+      compoundingFrequency: explanationRoot.querySelectorAll('[data-fva="compounding-frequency"]'),
+      futureValue: explanationRoot.querySelectorAll('[data-fva="future-value"]'),
+      totalPayments: explanationRoot.querySelectorAll('[data-fva="total-payments"]'),
+      totalInterest: explanationRoot.querySelectorAll('[data-fva="total-interest"]'),
+      effectivePeriods: explanationRoot.querySelectorAll('[data-fva="effective-periods"]'),
+      appliedRate: explanationRoot.querySelectorAll('[data-fva="applied-rate"]'),
+      appliedRateDecimal: explanationRoot.querySelectorAll('[data-fva="applied-rate-decimal"]'),
+      formulaAnnuityFactor: explanationRoot.querySelectorAll('[data-fva="formula-annuity-factor"]'),
+      periodsPerYear: explanationRoot.querySelectorAll('[data-fva="periods-per-year"]'),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -54,17 +54,23 @@ const compoundingGroup = document.querySelector('[data-button-group="fva-compoun
 
 const periodButtons = setupButtonGroup(periodGroup, {
   defaultValue: 'years',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 const annuityButtons = setupButtonGroup(annuityGroup, {
   defaultValue: 'ordinary',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -162,7 +168,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
   description:
-    'Calculate the future value of an annuity and compare ordinary annuity vs annuity due using payment amount, interest rate, and number of periods.',
+    'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
   canonical: 'https://calchowmuch.com/finance/future-value-of-annuity/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -195,7 +201,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -232,7 +243,10 @@ function setSliderFill(input) {
 function updateSliderDisplays() {
   if (pmtInput && pmtDisplay) {
     setSliderFill(pmtInput);
-    pmtDisplay.textContent = fmt(Number(pmtInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    pmtDisplay.textContent = fmt(Number(pmtInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
   if (rateInput && rateDisplay) {
     setSliderFill(rateInput);
@@ -270,9 +284,18 @@ function calculate() {
   const compounding = compoundingButtons?.getValue() ?? 'annual';
   const compoundingInfo = resolveCompounding(compounding);
 
-  if (!Number.isFinite(pmt) || pmt < 0) { setError('Payment must be 0 or more.'); return; }
-  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
-  if (!Number.isFinite(periods) || periods < 0) { setError('Periods must be 0 or more.'); return; }
+  if (!Number.isFinite(pmt) || pmt < 0) {
+    setError('Payment must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(rate) || rate < 0) {
+    setError('Interest rate must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(periods) || periods < 0) {
+    setError('Periods must be 0 or more.');
+    return;
+  }
 
   const result = calculateFutureValueOfAnnuity({
     payment: pmt,
@@ -283,7 +306,10 @@ function calculate() {
     annuityType,
   });
 
-  if (!result) { setError('Check your inputs.'); return; }
+  if (!result) {
+    setError('Check your inputs.');
+    return;
+  }
 
   const appliedRatePct = result.periodicRate * 100;
   const effectivePeriodsStr = fmt(result.totalPeriods, { maximumFractionDigits: 2 });
@@ -301,12 +327,13 @@ function calculate() {
   const appliedRateDecimal = result.periodicRate;
   let annuityFactor = 0;
   if (appliedRateDecimal !== 0 && result.totalPeriods > 0) {
-    annuityFactor = (Math.pow(1 + appliedRateDecimal, result.totalPeriods) - 1) / appliedRateDecimal;
+    annuityFactor =
+      (Math.pow(1 + appliedRateDecimal, result.totalPeriods) - 1) / appliedRateDecimal;
   } else if (result.totalPeriods > 0) {
     annuityFactor = result.totalPeriods;
   }
   if (annuityType === 'due') {
-    annuityFactor *= (1 + appliedRateDecimal);
+    annuityFactor *= 1 + appliedRateDecimal;
   }
   const periodsPerYear = result.periodsPerYear;
 

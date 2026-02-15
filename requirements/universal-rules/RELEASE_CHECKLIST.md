@@ -1,302 +1,539 @@
-# Release Checklist — Performance + Mobile + CWV + Ads (Release Gate)
+Release Checklist — Performance + Mobile + CWV + Ads (Release Gate)
 
-Use this checklist for every change that touches: layout, CSS, JS, nav, calculators, explanation pane, ads, fonts, or shared components.
+Use this checklist for any change touching layout, CSS, JS, navigation, calculators, explanation/FAQ, ads, fonts, or shared UI components.
 
-## A) Pre-Release (Dev) — Must Pass
+A) Pre-Release (Dev) — Must Pass
+A1) Above-the-fold rendering order
 
-### A1) Rendering order (above-the-fold)
+Calculator UI renders immediately; ads must never block first render.
 
-- [ ] Calculator UI renders without waiting for ad scripts.
-- [ ] Initial results (or initial state) are visible immediately after first render.
-- [ ] No runtime injection adds content above the fold after load (especially ads/nav).
-- [ ] No `@import` chains in any render-blocking CSS file (grep all `.css` files in `public/assets/css/` for `@import`). Theme/dependency CSS must be loaded as separate `<link>` tags for parallel download. _(See known_issues.md KI-010)_
-- [ ] Render-blocking CSS count is ≤ 3 files. Any additional CSS must use async loading (preload+swap or media=print trick). _(See known_issues.md KI-011)_
+Initial state/results visible without waiting for:
 
-### A1b) CSS architecture (new calculators)
+ad scripts
 
-- [ ] New calculator's `calculator.css` does **not** contain `@import` (run `npm run lint:css-import`).
-- [ ] New calculator's `calculator.css` contains **only page-specific overrides** — no duplicated rules from `shared-calculator-ui.css` or another calculator's CSS.
-- [ ] If using home-loan design family (`.home-loan-ui`, `.mtg-hero`, `.mtg-form-panel`): confirmed that `shared-calculator-ui.css` provides the shared layout rules — no need to copy CSS from another calculator.
-- [ ] Source calculator HTML (`public/calculators/.../index.html`) does **not** add a `<link>` or `@import` for `shared-calculator-ui.css` — the MPA generator handles this automatically.
-- [ ] `npm run validate` passes (includes `lint:css-import` guard). _(See UNIVERSAL_REQUIREMENTS UR-CSS-001..008)_
+late CSS
 
-### A2) Layout stability (CLS control)
+JS hydration
 
-- [ ] No visible layout shift when:
-  - fonts load
-  - results/table appear
-  - FAQs render
-  - nav expands/collapses
-  - ads load
-- [ ] All ad slots have reserved space at every breakpoint (see Section D).
+No runtime injection adds new content above the fold after load (ads/nav/banners).
 
-### A3) JavaScript discipline (INP protection)
+A2) CSS architecture (systemic CLS prevention)
 
-- [ ] No heavy computation on slider/input events (no long tasks on interaction path).
-- [ ] Non-essential scripts are deferred/lazy-loaded.
-- [ ] Interaction remains smooth during rapid slider drags and fast typing.
+Hard rules
 
-### A4) Caching readiness
+No runtime CSS @import anywhere (including calculator-specific CSS).
 
-- [ ] Static assets are long-TTL cached (versioned/immutable where applicable).
-- [ ] HTML caching strategy is configured to maintain high cache hit without serving stale critical content.
-- [ ] Cache headers verified for: HTML, CSS, JS, fonts, images.
+Must pass: npm run lint:css-import
 
-## B) Mobile & Tablet Release Checks — Must Pass
+Shared UI styles must be delivered via direct <link> in <head>, not via importing another calculator’s CSS.
 
-### B1) Layout & navigation
+Per-calculator CSS must contain only page-specific overrides (no copying shared library rules).
 
-- [ ] Mobile uses single-column calculator layout.
-- [ ] Burger navigation works and does not cause main content CLS when opened/closed.
-- [ ] Tap targets meet usability: spacing, size, clear highlight for expand/collapse.
+Critical layout rule
 
-### B2) Inputs on mobile
+Layout-critical selectors (hero/grid/form panel/slider rows) must be present in the earliest CSS applied before first paint so the page does not “snap” later.
 
-- [ ] Numeric inputs use numeric keyboard where relevant.
-- [ ] min/max/step present where applicable.
-- [ ] No input jank: slider drag remains responsive.
+Render-blocking guidance (not a hard file-count gate)
 
-### B3) Ads on mobile
+Do not introduce new blocking CSS unless justified as layout-critical.
 
-- [ ] Ads do not overlap inputs/results.
-- [ ] Ads do not push content unexpectedly.
-- [ ] Ads do not change height after render (no late resizing causing CLS).
+If DevTools shows “render-blocking resources,” confirm:
 
-## C) Performance Metrics (Budgets) — Must Pass
+no waterfall chain exists
 
-### C1) Field targets (release intent)
+total blocking CSS remains small
 
-Target CWV thresholds (75th percentile):
+layout is stable (CLS clean)
 
-- **LCP** ≤ 2.5s
-- **INP** ≤ 200ms
-- **CLS** ≤ 0.1
+Keep a note of blocking CSS list in sign-off (see Section H).
 
-_Note: Field metrics update after release; pre-release must use lab proxies and known regressions prevention._
+A3) Layout stability (CLS control)
 
-### C2) Lab gates (pre-release)
+No visible layout shift when:
 
-Run Lighthouse locally (mobile profile) on key pages:
+results/tables appear
 
-- Category hub page
-- 2–3 top calculators
-- One heavy explanation/table calculator
+FAQs/explanation render
 
-**Checks:**
+nav opens/closes
 
-- [ ] No CLS warnings or obvious layout shifts in filmstrip.
-- [ ] No large blocking tasks around first interaction.
-- [ ] Above-the-fold content renders quickly (no ad-induced delay).
-- [ ] **Lighthouse "Eliminate render-blocking resources" audit reviewed** — every CSS/JS file listed must be justified as critical or converted to async. Do not skip this audit even if CLS guard passes. _(See known_issues.md KI-010/011)_
-- [ ] **Lighthouse "Render-blocking requests" count** documented in sign-off (target: ≤ 3 CSS files).
+ads load
 
-### C3) Core Web Vitals Regression — CWV Guard (Global & Automated)
+images/icons appear
 
-**Objective**: Prevent layout instability on critical pages before release.
+Any layout changes must use reserved space (placeholders/min-height) to avoid shifts.
 
-**Route Scope (Mandatory)**:
+A4) JavaScript discipline (INP protection)
 
-- All calculator routes from `public/config/navigation.json`
+No heavy computation on input/slider events.
 
-**Release Policy (Automated Lab Checks):**
+No long tasks on the interaction path.
 
-1.  **HARD FAIL** (Release Blocked):
+Non-essential scripts are deferred/lazy-loaded.
 
-- Any calculator route **CLS > 0.10**.
-  - Any single layout shift contribution **> 0.05**.
-- Any calculator route **LCP > 2.5s**.
-- Any calculator route **INP proxy > 200ms**.
+Rapid slider drags + fast typing remain smooth.
 
-2.  **SOFT WARNING** (Investigation Required):
-    - CLS between **0.05** and **0.10**.
+A5) Caching readiness (Cloudflare + browser)
 
-- LCP between **2.0s** and **2.5s**.
-- INP proxy between **150ms** and **200ms**.
-  - New layout shift contributor appears vs baseline.
+Static assets (CSS/JS/images/fonts) are cacheable long-term using versioning (query string or hashed filenames).
 
-3.  **LCP STRESS MARGIN WARNING** (NEW):
-    - Any calculator route with stress LCP **> 2300ms** triggers a WARNING even if under 2500ms threshold. This provides a 200ms safety margin against production variance. If triggered, investigate render-blocking CSS count and @import chains before signing off. _(Added after KI-006/010 — a page passing at 2448ms had a fragile CSS architecture that only became visible via DevTools trace)_
+Add/verify Cache-Control for static assets supports long caching; use immutable where appropriate.
 
-**Baseline Tracking (Phase 7):**
+HTML caching rules do not serve stale critical content.
 
-- **Storage**: Last known good CLS stored in `tests/performance/baselines.json`.
-- **Regression Policy**: Flag any **> 20% increase** in CLS vs baseline, even if total score is under threshold.
+B) Mobile & Tablet Release Checks — Must Pass
+B1) Layout & navigation
 
-**Execution Mode**:
+Mobile is single-column calculator layout.
 
-- Must run in **WSL** (Linux environment).
-- Must run in two modes:
-  - **Mode A (Normal)**: Standard load.
-  - **Mode B (Stress)**: Slow CSS, Slow Fonts, CPU Throttle.
-- Required command: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
-- Required evidence artifact: `test-results/performance/cls-guard-all-calculators.json`
+Burger/left navigation does not cause CLS when opened/closed.
 
-**Root Cause Analysis Heuristics** (If Guard Fails):
+Tap targets are usable: spacing, size, and clear expand/collapse affordance.
 
-- [ ] Late CSS load / FOUC?
-- [ ] Webfont metric swap?
-- [ ] Slider/component resize post-mount?
-- [ ] Breakpoint/class toggles after hydration?
-- [ ] Image/icon missing reserved dimensions?
-- [ ] Ad container collapse?
+B2) Inputs on mobile
 
-### D1) Slot reservation
+Numeric inputs show numeric keyboard where relevant.
 
-For every ad placement:
+min/max/step present where applicable.
 
-- [ ] Slot container has min-height reserved per breakpoint.
-- [ ] Slot container is present in initial layout (not injected later above fold).
-- [ ] Slot container does not collapse to 0 height.
-- [ ] If no ad fills, slot still preserves layout (or collapses only below fold with no CLS impact).
+No input jank under rapid interaction.
 
-### D2) Load timing
+B3) Ads on mobile
 
-- [ ] Ads load after:
-  - initial render, AND
-  - idle window OR first meaningful interaction
-- [ ] Ad scripts are not render-blocking.
-- [ ] Exactly one AdSense loader exists in `<head>` and no ad unit/body snippet duplicates the loader.
-- [ ] Ad implementation matches canonical snippet sources: `requirements/universal-rules/AdSense code snippet.md` (head loader) and `requirements/universal-rules/Ad Unit Code.md` (body slot only).
+Ads do not overlap inputs/results.
 
-### D3) Placement stability
+Ads do not push content unexpectedly.
 
-- [ ] No “auto” placements that dynamically add new slots in unpredictable places.
-- [ ] No ad refresh behavior that changes slot height.
-- [ ] Sticky ad behavior (if any) does not cover inputs or cause layout shift.
+Ads do not resize after render in a way that causes CLS.
 
-## E) Animation & Visual Effects — Must Pass
+C) Performance Metrics — Must Pass
+C1) Field targets (release intent)
 
-- [ ] Animations only use opacity and transform.
-- [ ] No animation uses layout properties (height/width/top/left) that can cause reflow.
-- [ ] Glassmorphism above fold is lightweight (no large blur on big surfaces).
-- [ ] Hover effects do not trigger layout changes.
+Google CWV thresholds (P75 field):
 
-## F) Regression Scenarios — Must Pass
+LCP ≤ 2.5s
 
-Test these manually on mobile + desktop:
+INP ≤ 200ms
 
-### F1) First load
+CLS ≤ 0.10
 
-- [ ] Page loads with no visible jump.
-- [ ] Results render without pushing content unexpectedly.
-- [ ] Ads appear without shifting content.
+Note: field metrics update later; pre-release relies on lab gates + regression prevention.
 
-### F2) User interaction
+C2) Lab gates (pre-release)
 
-- [ ] Rapid slider drag for 5–10 seconds: no lag, no freezing.
-- [ ] Fast typing in numeric fields: no input delay.
-- [ ] Toggling month/year or modes: no layout jump, no reflow flicker.
+Run two lab modes on key pages:
 
-### F3) Navigation behavior
+Desktop (no throttling): sanity check
 
-- [ ] Left nav: subcategories collapsed by default.
-- [ ] Landing directly on a calculator URL expands only the correct subcategory.
-- [ ] Expand/collapse does not shift the main content pane.
+Mobile simulation (CPU throttle + slow network): release-relevant
 
-## I) SERP Readiness — Must Pass (All Calculators)
+Checks:
 
-Applies to **every calculator page** touched in this release AND a sample of untouched pages to guard against shared-layout regressions. Derived from Project Bible §8 (SERP-Ready System).
+No visible layout shifts in filmstrip/trace.
 
-### I1) Metadata Integrity
+No long tasks near first interaction.
 
-- [ ] Every calculator page has a **unique, keyword-aligned `<title>`** (no two pages share the same title).
-- [ ] Every calculator page has a **meta description tightly aligned to primary search intent**.
-- [ ] Every calculator page has a **single, clean canonical URL** matching the served page.
-- [ ] No duplicate or conflicting meta tags on any page.
+Above-the-fold content renders quickly without ad-induced delay.
 
-### I2) Structured Data Hygiene
+DevTools “render-blocking resources” is reviewed: anything listed must be:
 
-- [ ] JSON-LD is **page-scoped only** (no global schema injected across all pages).
-- [ ] No duplicate `FAQPage` schema output on any page.
-- [ ] JSON-LD content **matches visible page content exactly** (FAQ answers, descriptions).
-- [ ] Schema validates in **Google Rich Results Test** (no errors).
-- [ ] Only the safe schema set is used: `WebPage`, `SoftwareApplication`, `FAQPage` (when visible), `BreadcrumbList`.
-- [ ] No `HowTo`, `Review`, `AggregateRating`, or `Product` schema types unless supported by visible content.
+truly layout-critical, or
 
-### I3) Content Indexability
+moved off the critical path.
 
-- [ ] **Explanation section** is present in initial HTML (not JS-injected).
-- [ ] **FAQs** are present in initial HTML (not JS-rendered).
-- [ ] **Key formulas** (if applicable) are present in initial HTML.
-- [ ] **Primary headings** (H1, H2) are present in initial HTML.
-- [ ] Page is **fully crawlable without JavaScript execution**.
-- [ ] No critical content gated behind tabs, hydration, or user interaction.
+D) CWV Guard (Global Automated Gate) — Mandatory
+D1) Route scope
 
-### I4) Internal Linking Architecture
+All calculator routes from navigation config (global coverage).
 
-- [ ] Category page links to each calculator page within it.
-- [ ] Each calculator links back to its **parent category**.
-- [ ] Each calculator links to **closely related calculators**.
-- [ ] Each calculator links to **reverse/comparison variants** (when applicable).
-- [ ] All internal links are **visible in HTML** (not JS-injected late).
+D2) Execution
 
-### I5) Intent Coverage
+Must run in WSL/Linux.
 
-- [ ] **Primary intent** is reflected in: title, H1, opening paragraph, and meta description.
-- [ ] **3–5 secondary intents** are addressed via explanation sections, scenario tables, FAQ coverage, or related calculator links.
-- [ ] **Long-tail variants** are naturally covered through varied phrasing, structured headings, and natural language explanations.
-- [ ] No keyword stuffing.
+Must run two modes:
 
-### I6) Scenario & What-If Content (Finance / Percentage Cluster Only)
+Normal
 
-- [ ] Scenario summary tables or worked examples are present.
-- [ ] Step-by-step breakdowns or practical interpretation text are included.
-- [ ] "What-if" exploratory prompts are present in initial HTML (e.g., "What if the rate increases?").
+Stress (slow CSS/fonts + CPU throttle)
 
-_Skip I6 for pure math calculators that have no finance/percentage context._
+Required command: npm run test:cwv:all
 
-### I7) SERP Readiness Gate (Pass/Fail — Hard Block)
+Required artifact: test-results/performance/cls-guard-all-calculators.json
 
-A page is SERP-ready **only if all** of the following are true:
+D3) Release policy
 
-- [ ] Metadata is unique and intent-aligned
-- [ ] Canonical is correct
-- [ ] No duplicate schema output
-- [ ] JSON-LD is page-scoped and valid
-- [ ] Explanation and FAQs exist in initial HTML
-- [ ] Internal links are present and crawlable
-- [ ] Primary + secondary intents are clearly covered
-- [ ] Scenario content exists (finance/percentage cluster)
-- [ ] Related/reverse calculators are linked where applicable
-- [ ] Page renders cleanly on mobile without CLS issues
+HARD FAIL (blocks release)
 
-**Failure of any mandatory item blocks release.**
+Any route CLS > 0.10
 
-## J) Observability (Post-Release Verification) — Required
+Any single shift > 0.05
 
-Within 24–72 hours (or next available CWV/rum cycle):
+Any route LCP > 2.5s
 
-- [ ] Check Search Console CWV:
-  - no new "poor" URL groups
-  - no CLS regression group created
-- [ ] Check RUM dashboard (if enabled):
-  - LCP distribution stable
-  - INP stable
-  - CLS stable
-- [ ] Check Search Console **Indexing**:
-  - no new "Excluded" or "Error" pages
-  - no soft 404 regressions
-  - indexed vs submitted gap stable
-- [ ] Check Search Console **Enhancements**:
-  - no new structured data errors/warnings
-  - FAQ rich results still appearing (if applicable)
+Any route INP proxy > 200ms
 
-## K) Release Decision Rules
+SOFT WARNING (investigate before sign-off)
 
-### HARD blockers (do not release)
+CLS 0.05–0.10
 
-1. Any CLS regression above 0.1 on representative devices/tests
-2. Ads causing visible layout shift
-3. Input lag/jank that affects interaction (INP risk)
-4. Render blocked by ads or non-essential scripts
-5. Missing or duplicate `<title>` / meta description on any calculator page
-6. Broken or incorrect canonical URL
-7. JSON-LD schema not matching visible page content
-8. Explanation or FAQ content missing from initial HTML (JS-only rendering)
-9. Duplicate `FAQPage` schema output on any page
+LCP 2.0–2.5s
 
-### SOFT signals (can release with a follow-up ticket)
+INP proxy 150–200ms
 
-1. Slight Lighthouse score dip but no CWV proxy regressions
-2. Minor visual polish issues that do not affect CWV
-3. Non-critical asset caching improvements pending
+New CLS contributor vs baseline
+
+Stress safety margin warning
+
+Stress LCP > 2300ms ⇒ warning (fragility risk). Investigate critical-path CSS and late layout rules.
+
+D4) Baseline regression policy
+
+Track last-known-good metrics.
+
+Flag >20% CLS increase vs baseline even if still under threshold.
+
+D5) Root-cause heuristics if guard fails
+
+Late CSS load / FOUC?
+
+Breakpoint/class toggles after load?
+
+Component/slider resize post-mount?
+
+Missing reserved dimensions?
+
+Ad container collapse/resize?
+
+E) Ads (Must Pass)
+E1) Slot reservation
+
+Each slot reserves min-height per breakpoint.
+
+Slot container exists in initial layout (not injected above fold later).
+
+Slot does not collapse to 0 height.
+
+No-fill behavior must not cause layout shifts.
+
+E2) Load timing and correctness
+
+Ads load after initial render (idle window or first meaningful interaction).
+
+Ad scripts are not render-blocking.
+
+Exactly one AdSense loader in <head>. No duplicate loaders.
+
+Slot code matches canonical snippets.
+
+E3) Placement stability
+
+No unpredictable auto placements that insert above fold.
+
+No refresh behavior that changes slot height.
+
+Sticky ads (if any) do not cover inputs or cause CLS.
+
+F) Animation & Visual Effects — Must Pass
+
+Animations use only opacity/transform.
+
+No layout-property animations (height/width/top/left).
+
+Heavy blur/glass effects above fold must be lightweight.
+
+G) Manual Regression Scenarios — Must Pass
+G1) First load
+
+No visible jump.
+
+Results render without pushing content unexpectedly.
+
+Ads appear without shifting content.
+
+G2) Interaction
+
+Rapid slider drag 5–10 seconds: no lag/freezing.
+
+Fast typing: no input delay.
+
+Mode toggles: no layout snap/reflow flicker.
+
+G3) Navigation
+
+Subcategories collapsed by default.
+
+Direct landing expands only the correct subcategory.
+
+Expand/collapse does not shift main content pane.
+
+H) Sign-off Evidence (Required)
+
+Record in the release sign-off:
+
+CWV guard artifact summary (Normal + Stress for affected routes)
+
+A screenshot or note of DevTools “render-blocking resources” review (why each critical resource is justified)
+
+Any SOFT warnings + decision notes
+
+I) SERP Readiness — Must Pass
+I1) Metadata integrity
+
+Unique, intent-aligned title and meta description per calculator.
+
+Correct canonical.
+
+No duplicate/conflicting meta tags.
+
+I2) Structured data hygiene
+
+JSON-LD is page-scoped only (no global schema injection).
+
+No duplicate FAQPage output.
+
+Schema matches visible content.
+
+Validate in Rich Results Test.
+
+I3) Content indexability
+
+Explanation + FAQs present in initial HTML (not JS-only).
+
+Headings and formulas present in HTML.
+
+Crawlable without JS.
+
+I4) Internal linking
+
+Category links to calculators; calculators link back to category.
+
+Related calculators linked.
+
+Links visible in HTML.
+
+I5) Intent coverage
+
+Primary intent reflected in title/H1/intro/meta.
+
+Secondary intents covered via explanation/scenarios/FAQs.
+
+No keyword stuffing.
+
+J) Observability (Post-Release) — Required
+
+Within 24–72 hours:
+
+Search Console indexing/coverage stable (no new errors/excluded spikes).
+
+Enhancements stable (no new structured data errors).
+
+Within the next CWV field window (CrUX/Search Console CWV refresh cycles):
+
+Confirm no new “poor” CWV groups created.
+
+Track P75 mobile CWV trend (this is the SEO truth).
+
+K) Release Decision Rules
+
+HARD blockers (do not release)
+
+CWV guard hard fail.
+
+Ads cause visible layout shift.
+
+Interaction jank (INP risk).
+
+Render blocked by ads/non-essential scripts.
+
+Metadata/canonical/schema integrity failures.
+
+Explanation/FAQ missing from initial HTML.
+
+Duplicate FAQ schema.
+
+SOFT signals (release allowed with follow-up ticket)
+
+Minor Lighthouse score dip with no CWV regressions.
+
+Minor visual polish issues not affecting CWV.
+
+Non-critical caching improvements pending (e.g., immutable header refinement).
+
+
+🎯 Elite Performance Checklist — Calculator Pages
+Objective
+
+Improve stress-mode LCP margin for calculator pages without over-engineering the CSS architecture.
+
+A) Investigation — Must Be Performed
+A1) LCP identification
+
+ Identify the current LCP element from Performance trace.
+
+ Confirm the LCP element belongs to the expected hero/calculator area.
+
+ Record the selector/text of the LCP element in the sign-off.
+
+Pass condition: LCP element is deterministic and above-the-fold.
+
+A2) Paint readiness timing
+
+ Measure when the hero/calculator container first becomes paintable.
+
+ Verify the container does not depend on late CSS or JS.
+
+ Confirm no “flash then snap” behavior in filmstrip.
+
+Pass condition: hero appears fully styled on first paint.
+
+A3) Layout-critical CSS delivery
+
+ All layout-critical rules (hero/grid/form/slider layout) are present in earliest CSS.
+
+ No runtime CSS @import anywhere.
+
+ No CSS dependency chains reintroduced.
+
+ Shared UI CSS is loaded via direct <link> (not via another calculator).
+
+Pass condition: no layout snap after CSS arrival.
+
+A4) Style recalculation safety
+
+ Confirm no late style recalculation delays hero render.
+
+ Verify no class toggles or JS mutations affect above-the-fold layout.
+
+ Ensure hero container size is stable on first layout pass.
+
+Pass condition: no expensive style/layout work before LCP.
+
+A5) Main-thread pre-LCP audit
+
+ Check Performance trace for long tasks before LCP.
+
+ Ensure calculator logic does not run heavy computation on load.
+
+ Confirm slider/input initialization does not trigger forced layout loops.
+
+ Defer non-essential scripts until after first paint or idle.
+
+Pass condition: no long tasks before LCP.
+
+B) Rendering Optimization — Above-the-Fold Efficiency
+B1) Hero/LCP container efficiency
+
+ Above-the-fold calculator container has minimal style complexity.
+
+ Hero text/container is not hidden then revealed later.
+
+ Hero has stable height and spacing from first paint.
+
+ No large layout recalculation occurs before LCP.
+
+Goal: earlier LCP paint.
+
+B2) Slider and input safety
+
+ Sliders do not trigger expensive layout work on first render.
+
+ Input components do not resize containers post-mount.
+
+ No forced reflow patterns (read → write → read) during init.
+
+Goal: avoid hidden layout cost.
+
+C) Network & Delivery Checks
+C1) CSS integrity
+
+ CSS files are cache-friendly and versioned.
+
+ No accidental CSS dependency chains exist.
+
+ Render-blocking CSS list reviewed and justified.
+
+ Total blocking CSS remains small and parallelizable.
+
+C2) Script discipline
+
+ No third-party scripts run before first paint.
+
+ Ads and analytics are deferred appropriately.
+
+ No synchronous third-party work blocks render.
+
+C3) HTML readiness
+
+ HTML response is cache-friendly and stable.
+
+ Above-the-fold content is present in initial HTML.
+
+ No JS-required content for primary calculator UI.
+
+D) Stress Mode Validation — Mandatory
+
+Run:
+
+Mode A: Normal
+
+Mode B: Stress (CPU throttle + slow network)
+
+D1) Hard pass criteria
+
+ LCP ≤ 2500 ms
+
+ CLS ≤ 0.05
+
+ INP proxy ≤ 200 ms
+
+ No new render-blocking regressions
+
+D2) Safety margin target (recommended)
+
+ Stress LCP ≤ 2300 ms (preferred buffer)
+
+If between 2300–2500 ms → investigate but may pass.
+
+E) Explicit Anti-Overengineering Rules (Do Not Violate)
+
+Claude must NOT:
+
+ Merge all CSS into one file
+
+ Introduce a bundler pipeline
+
+ Add blanket preload hacks
+
+ Inline large CSS blocks blindly
+
+ Optimize desktop at the expense of mobile
+
+ Reintroduce CSS sharing via @import
+
+F) Final Sign-Off Evidence
+
+For each affected calculator:
+
+ LCP element recorded
+
+ Stress metrics recorded
+
+ Render-blocking review completed
+
+ No visual regressions above the fold
+
+ CWV guard artifact attached
+
+🟢 Final Position
+
+This checklist now focuses purely on:
+
+render pipeline health
+
+layout determinism
+
+main-thread discipline
+
+stress LCP margin
+
+…and leaves visual design freedom (including glassmorphism) fully under your control.

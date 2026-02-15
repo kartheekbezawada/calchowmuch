@@ -1,3 +1,48 @@
+<style>
+  #calc-hire-purchase {
+    width: 100%;
+  }
+
+  #calc-hire-purchase .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-hire-purchase .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-hire-purchase .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-hire-purchase .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-hire-purchase .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-hire-purchase .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-hire-purchase .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-hire-purchase">
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
@@ -85,42 +130,51 @@
         <aside class="mtg-preview-panel" aria-label="Hire purchase scenario snapshot">
           <div class="mtg-preview-main">
             <p class="mtg-preview-label">Estimated Monthly Payment</p>
-            <div class="result mtg-result-card" id="hp-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite"></div>
+            <div class="result mtg-result-card" id="hp-result" aria-live="polite">
+              <span class="mtg-result-value">518.69</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite">
+              <p><strong>Amount Financed:</strong> 22,000</p>
+              <p><strong>Total Interest:</strong> 2,897.14</p>
+              <p><strong>Total Payable:</strong> 26,897.14</p>
+            </div>
           </div>
 
           <div class="mtg-snapshot-list">
             <div class="mtg-snapshot-row">
               <span>Vehicle Price</span>
-              <strong data-hp="price">-</strong>
+              <strong data-hp="price">24,000</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Deposit</span>
-              <strong><span data-hp="deposit">-</span> (<span data-hp="deposit-percent">-</span>)</strong>
+              <strong
+                ><span data-hp="deposit">2,000</span> (<span data-hp="deposit-percent">8.33%</span
+                >)</strong
+              >
             </div>
             <div class="mtg-snapshot-row">
               <span>Amount Financed</span>
-              <strong data-hp="financed">-</strong>
+              <strong data-hp="financed">22,000</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>APR</span>
-              <strong data-hp="apr">-</strong>
+              <strong data-hp="apr">6.2%</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Term</span>
-              <strong data-hp="term">-</strong>
+              <strong data-hp="term">4 years (48 months)</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Final Balloon</span>
-              <strong data-hp="balloon">-</strong>
+              <strong data-hp="balloon">0</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Total Interest</span>
-              <strong data-hp="total-interest">-</strong>
+              <strong data-hp="total-interest">2,897.14</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Total Payable</span>
-              <strong data-hp="total-payable">-</strong>
+              <strong data-hp="total-payable">26,897.14</strong>
             </div>
           </div>
         </aside>
