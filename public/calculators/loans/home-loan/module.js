@@ -87,7 +87,8 @@ function handleDownTypeChange(type) {
   }
 
   if (downValueLabel) {
-    downValueLabel.textContent = type === 'percent' ? 'Down Payment Percent' : 'Down Payment Amount';
+    downValueLabel.textContent =
+      type === 'percent' ? 'Down Payment Percent' : 'Down Payment Amount';
   }
   if (downValueInput) {
     if (type === 'percent') {
@@ -326,7 +327,8 @@ function calculate() {
   }
 
   if (downValueInput) {
-    downValueInput.value = downType === 'percent' ? Math.round(downPercent) : Math.round(downAmount);
+    downValueInput.value =
+      downType === 'percent' ? Math.round(downPercent) : Math.round(downAmount);
   }
 
   const principal = price - downAmount;
@@ -450,8 +452,9 @@ function calculate() {
   const resultValue = resultDiv.querySelector('.mtg-result-value');
   if (resultValue) {
     resultValue.classList.remove('is-updated');
-    void resultValue.offsetWidth;
-    resultValue.classList.add('is-updated');
+    requestAnimationFrame(() => {
+      resultValue.classList.add('is-updated');
+    });
   }
 
   const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
