@@ -66,7 +66,9 @@
   padding: 0.42rem 0.68rem;
   font-size: 0.84rem;
   line-height: 1.2;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #calc-offset-calculator input[type='number']:hover,
@@ -113,7 +115,11 @@
   box-shadow:
     0 0 8px rgba(34, 197, 94, 0.2),
     0 0 20px rgba(34, 197, 94, 0.08);
-  transition: border-color 0.25s ease, color 0.25s ease, text-shadow 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 #calc-offset-calculator .slider-row:hover .slider-value {
@@ -164,13 +170,18 @@
   border: 2px solid rgba(34, 197, 94, 0.5);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
   cursor: grab;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }
 
 #calc-offset-calculator input[type='range']::-webkit-slider-thumb:hover {
   transform: scale(1.18);
   border-color: rgba(251, 113, 133, 0.7);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(251, 113, 133, 0.2);
+  box-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(251, 113, 133, 0.2);
 }
 
 #calc-offset-calculator input[type='range']:active::-webkit-slider-thumb {
@@ -186,13 +197,18 @@
   border: 2px solid rgba(34, 197, 94, 0.5);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
   cursor: grab;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }
 
 #calc-offset-calculator input[type='range']::-moz-range-thumb:hover {
   transform: scale(1.18);
   border-color: rgba(251, 113, 133, 0.7);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(251, 113, 133, 0.2);
+  box-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(251, 113, 133, 0.2);
 }
 
 #calc-offset-calculator input[type='range']::-moz-range-track {
@@ -227,7 +243,10 @@
   color: rgba(191, 219, 254, 0.92);
   font-size: 0.76rem;
   font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 #calc-offset-calculator .down-combined-left .calculator-button.is-active {
@@ -260,7 +279,9 @@
   color: rgba(224, 242, 254, 0.98);
   font-size: 0.78rem;
   font-weight: 700;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 #calc-offset-calculator .advanced-options summary:hover {
@@ -338,7 +359,9 @@
   border-radius: 0.82rem;
   font-size: 0.88rem;
   font-weight: 700;
-  transition: box-shadow 0.25s ease, transform 0.15s ease;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
 }
 
 #calc-offset-calculator .mtg-action-row .calculator-button:hover {
@@ -415,7 +438,9 @@
     0 0 20px rgba(125, 211, 252, 0.35),
     0 0 40px rgba(59, 130, 246, 0.15);
   letter-spacing: -0.02em;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 @keyframes mtg-result-pop {
@@ -552,7 +577,9 @@
   background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
   position: relative;
   cursor: pointer;
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
 }
 
 #loan-offset-explanation .mtg-lifetime-donut:hover {
@@ -587,7 +614,10 @@
   border: 1px solid transparent;
   background: none;
   cursor: default;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 #loan-offset-explanation .mtg-lifetime-legend-item:hover {
@@ -646,7 +676,11 @@
   background: none;
   border-bottom: 1px solid rgba(148, 163, 184, 0.08);
   cursor: default;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 
 #loan-offset-explanation .mtg-lifetime-card:last-child {
@@ -766,7 +800,10 @@
   border-top: 2px solid rgba(245, 158, 11, 0.45);
   display: grid;
   gap: 0.4rem;
-  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
 }
 
 #loan-offset-explanation .bor-faq-card:hover {

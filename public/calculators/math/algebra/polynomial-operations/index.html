@@ -1,14 +1,44 @@
 <div id="calc-polynomial">
   <div class="calculator-ui">
-    <p class="helper">Perform operations on polynomials: addition, subtraction, multiplication, division</p>
+    <p class="helper">
+      Perform operations on polynomials: addition, subtraction, multiplication, division
+    </p>
 
     <div class="operation-selector">
       <label>Operation:</label>
       <div class="button-group" role="group" data-button-group="poly-operation">
-        <button class="calculator-button secondary is-active" type="button" data-value="add" aria-pressed="true">Add</button>
-        <button class="calculator-button secondary" type="button" data-value="subtract" aria-pressed="false">Subtract</button>
-        <button class="calculator-button secondary" type="button" data-value="multiply" aria-pressed="false">Multiply</button>
-        <button class="calculator-button secondary" type="button" data-value="divide" aria-pressed="false">Divide</button>
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="add"
+          aria-pressed="true"
+        >
+          Add
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="subtract"
+          aria-pressed="false"
+        >
+          Subtract
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="multiply"
+          aria-pressed="false"
+        >
+          Multiply
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="divide"
+          aria-pressed="false"
+        >
+          Divide
+        </button>
       </div>
     </div>
 
@@ -23,7 +53,7 @@
           maxlength="60"
         />
       </div>
-      
+
       <div class="polynomial-input">
         <label for="poly2">Polynomial 2 (e.g., x^2 - 2x + 4)</label>
         <input

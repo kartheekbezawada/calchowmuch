@@ -22,18 +22,18 @@ const snapDifference = document.querySelector('[data-ear="snap-difference"]');
 const explanationRoot = document.querySelector('#ear-explanation');
 const valueTargets = explanationRoot
   ? {
-    nominalRate: explanationRoot.querySelectorAll('[data-ear="nominal-rate"]'),
-    frequency: explanationRoot.querySelectorAll('[data-ear="frequency"]'),
-    periods: explanationRoot.querySelectorAll('[data-ear="periods"]'),
-    earRate: explanationRoot.querySelectorAll('[data-ear="ear-rate"]'),
-    periodicRate: explanationRoot.querySelectorAll('[data-ear="periodic-rate"]'),
-    periodicRateDecimal: explanationRoot.querySelectorAll('[data-ear="periodic-rate-decimal"]'),
-    nominalDecimal: explanationRoot.querySelectorAll('[data-ear="nominal-decimal"]'),
-    onePlusRate: explanationRoot.querySelectorAll('[data-ear="one-plus-rate"]'),
-    growthFactor: explanationRoot.querySelectorAll('[data-ear="growth-factor"]'),
-    earDecimal: explanationRoot.querySelectorAll('[data-ear="ear-decimal"]'),
-    difference: explanationRoot.querySelectorAll('[data-ear="difference"]'),
-  }
+      nominalRate: explanationRoot.querySelectorAll('[data-ear="nominal-rate"]'),
+      frequency: explanationRoot.querySelectorAll('[data-ear="frequency"]'),
+      periods: explanationRoot.querySelectorAll('[data-ear="periods"]'),
+      earRate: explanationRoot.querySelectorAll('[data-ear="ear-rate"]'),
+      periodicRate: explanationRoot.querySelectorAll('[data-ear="periodic-rate"]'),
+      periodicRateDecimal: explanationRoot.querySelectorAll('[data-ear="periodic-rate-decimal"]'),
+      nominalDecimal: explanationRoot.querySelectorAll('[data-ear="nominal-decimal"]'),
+      onePlusRate: explanationRoot.querySelectorAll('[data-ear="one-plus-rate"]'),
+      growthFactor: explanationRoot.querySelectorAll('[data-ear="growth-factor"]'),
+      earDecimal: explanationRoot.querySelectorAll('[data-ear="ear-decimal"]'),
+      difference: explanationRoot.querySelectorAll('[data-ear="difference"]'),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -41,7 +41,9 @@ const frequencyGroup = document.querySelector('[data-button-group="ear-frequency
 
 const frequencyButtons = setupButtonGroup(frequencyGroup, {
   defaultValue: 'annual',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -172,7 +174,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -234,18 +241,23 @@ function setError(message) {
 function calculate() {
   if (!resultDiv || !summaryDiv) return;
   try {
-
     const nominalRate = Number(nominalRateInput?.value);
     const compounding = frequencyButtons?.getValue() ?? 'annual';
 
-    if (!Number.isFinite(nominalRate) || nominalRate < 0) { setError('Rate must be 0 or more.'); return; }
+    if (!Number.isFinite(nominalRate) || nominalRate < 0) {
+      setError('Rate must be 0 or more.');
+      return;
+    }
 
     const result = calculateEffectiveAnnualRate({
       nominalRate,
       compounding,
     });
 
-    if (!result) { setError('Check your inputs.'); return; }
+    if (!result) {
+      setError('Check your inputs.');
+      return;
+    }
 
     /* Derived values */
     const earPct = result.effectiveAnnualRate * 100;
@@ -300,7 +312,6 @@ function calculate() {
       updateTargets(valueTargets.earDecimal, earDecimalStr);
       updateTargets(valueTargets.difference, differenceStr);
     }
-
   } catch (err) {
     console.error('[EAR Calculator] calculate():', err);
   }

@@ -8,7 +8,7 @@ import {
   getReferenceAngleDegrees,
   getSpecialAngleInfo,
   solveTriangle,
-} from '../../public/assets/js/core/trigonometry.js';
+} from '../../../public/assets/js/core/trigonometry.js';
 
 /**
  * TRIG-TEST-U-1 - Unit circle calculator tests

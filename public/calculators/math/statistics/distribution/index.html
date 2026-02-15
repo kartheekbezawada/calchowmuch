@@ -1,6 +1,8 @@
 <div id="calc-distribution">
   <div class="calculator-ui">
-    <p class="helper">Calculate probabilities and quantiles for common probability distributions.</p>
+    <p class="helper">
+      Calculate probabilities and quantiles for common probability distributions.
+    </p>
 
     <div class="input-stack">
       <div class="input-row">
@@ -16,7 +18,9 @@
       <div class="input-row">
         <label>Calculation Type</label>
         <div class="button-group" role="group" data-button-group="dist-calc-type">
-          <button class="calculator-button secondary is-active" data-value="cdf">P(X &le; x)</button>
+          <button class="calculator-button secondary is-active" data-value="cdf">
+            P(X &le; x)
+          </button>
           <button class="calculator-button secondary" data-value="quantile">Quantile</button>
           <button class="calculator-button secondary" data-value="pdf">PDF</button>
         </div>
@@ -33,21 +37,21 @@
         </div>
       </div>
 
-      <div id="dist-t-params" style="display: none;">
+      <div id="dist-t-params" style="display: none">
         <div class="input-row">
           <label for="dist-t-df">Degrees of Freedom</label>
           <input id="dist-t-df" type="number" value="10" min="1" step="1" />
         </div>
       </div>
 
-      <div id="dist-chi-params" style="display: none;">
+      <div id="dist-chi-params" style="display: none">
         <div class="input-row">
           <label for="dist-chi-df">Degrees of Freedom</label>
           <input id="dist-chi-df" type="number" value="5" min="1" step="1" />
         </div>
       </div>
 
-      <div id="dist-f-params" style="display: none;">
+      <div id="dist-f-params" style="display: none">
         <div class="input-row">
           <label for="dist-f-df1">Numerator df (d1)</label>
           <input id="dist-f-df1" type="number" value="5" min="1" step="1" />
@@ -63,7 +67,7 @@
         <input id="dist-x" type="number" value="1.96" step="any" />
       </div>
 
-      <div class="input-row" id="dist-p-row" style="display: none;">
+      <div class="input-row" id="dist-p-row" style="display: none">
         <label for="dist-p">Probability (p)</label>
         <input id="dist-p" type="number" value="0.95" step="0.01" min="0.001" max="0.999" />
       </div>

@@ -30,8 +30,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use this for past dates?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. If the date is in the past, the calculator shows how many days have passed since then.',
+        text: 'Yes. If the date is in the past, the calculator shows how many days have passed since then.',
       },
     },
     {

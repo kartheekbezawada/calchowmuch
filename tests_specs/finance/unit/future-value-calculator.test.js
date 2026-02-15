@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateFutureValue } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateFutureValue } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Future Value Calculator - FV-TEST-U-1: annual compounding', () => {
   it('should calculate future value with annual compounding', () => {

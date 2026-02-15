@@ -2,9 +2,9 @@
   <div id="loan-mtg-explanation">
     <h2>Future Value of Annuity — Results Breakdown</h2>
     <p>
-      The future value of an annuity tells you how much a series of regular payments will
-      be worth at a future date after earning compound interest. The results below show
-      exactly how your inputs translate into the accumulated total.
+      The future value of an annuity tells you how much a series of regular payments will be worth
+      at a future date after earning compound interest. The results below show exactly how your
+      inputs translate into the accumulated total.
     </p>
 
     <section class="mtg-exp-section">
@@ -79,35 +79,35 @@
     <section class="mtg-exp-section">
       <h3>Explanation</h3>
       <p>
-        The future value of an annuity projects a stream of equal payments into their
-        accumulated worth at a future date. Here's how your inputs drive the result.
+        The future value of an annuity projects a stream of equal payments into their accumulated
+        worth at a future date. Here's how your inputs drive the result.
       </p>
 
       <ul class="fva-explanation-list">
         <li>
           <strong>Payment Amount (PMT):</strong>
-          Each period you contribute <span data-fva="payment-amount"></span>. This is the fixed
-          cash flow that earns compound interest over the remaining term.
+          Each period you contribute <span data-fva="payment-amount"></span>. This is the fixed cash
+          flow that earns compound interest over the remaining term.
         </li>
         <li>
           <strong>Interest Rate:</strong>
-          A <span data-fva="interest-rate"></span> annual interest rate determines how fast
-          each payment grows. Higher rates mean more compound interest.
+          A <span data-fva="interest-rate"></span> annual interest rate determines how fast each
+          payment grows. Higher rates mean more compound interest.
         </li>
         <li>
           <strong>Periods:</strong>
-          Payments continue for <span data-fva="period-count"></span>. Earlier payments
-          compound for more periods, earning significantly more interest.
+          Payments continue for <span data-fva="period-count"></span>. Earlier payments compound for
+          more periods, earning significantly more interest.
         </li>
         <li>
           <strong>Annuity Type:</strong>
-          You selected <span data-fva="annuity-type"></span>. Ordinary annuities pay at
-          the end of each period; annuity due pays at the beginning, giving a higher future value.
+          You selected <span data-fva="annuity-type"></span>. Ordinary annuities pay at the end of
+          each period; annuity due pays at the beginning, giving a higher future value.
         </li>
         <li>
           <strong>Compounding:</strong>
-          With <span data-fva="compounding-frequency"></span> compounding, the annual rate is
-          split into <span data-fva="effective-periods"></span> effective periods, each at
+          With <span data-fva="compounding-frequency"></span> compounding, the annual rate is split
+          into <span data-fva="effective-periods"></span> effective periods, each at
           <span data-fva="applied-rate"></span>% per period.
         </li>
         <li>
@@ -120,17 +120,15 @@
 
       <h4>How the Formula Works</h4>
       <p>The future value of an ordinary annuity formula is:</p>
-      <p class="fva-formula-block">
-        FVA = PMT &times; [((1+r)<sup>n</sup> &minus; 1) &divide; r]
-      </p>
+      <p class="fva-formula-block">FVA = PMT &times; [((1+r)<sup>n</sup> &minus; 1) &divide; r]</p>
       <p>Substituting your values step by step:</p>
       <ol class="fva-formula-steps">
         <li>
           <strong>Identify the per-period rate (r):</strong>
           <span data-fva="interest-rate"></span> &divide;
-          <span data-fva="periods-per-year"></span> compounding periods per year
-          = <span data-fva="applied-rate"></span>% per period
-          (as a decimal: <span data-fva="applied-rate-decimal"></span>).
+          <span data-fva="periods-per-year"></span> compounding periods per year =
+          <span data-fva="applied-rate"></span>% per period (as a decimal:
+          <span data-fva="applied-rate-decimal"></span>).
         </li>
         <li>
           <strong>Determine the number of periods (n):</strong>
@@ -138,10 +136,11 @@
         </li>
         <li>
           <strong>Build the annuity factor:</strong>
-          [(1 + <span data-fva="applied-rate-decimal"></span>)<sup><span data-fva="effective-periods"></span></sup>
-          &minus; 1]
-          &divide; <span data-fva="applied-rate-decimal"></span>
-          = <span data-fva="formula-annuity-factor"></span>.
+          [(1 + <span data-fva="applied-rate-decimal"></span>)<sup
+            ><span data-fva="effective-periods"></span
+          ></sup>
+          &minus; 1] &divide; <span data-fva="applied-rate-decimal"></span> =
+          <span data-fva="formula-annuity-factor"></span>.
         </li>
         <li>
           <strong>Multiply by payment:</strong>
@@ -151,8 +150,8 @@
         </li>
       </ol>
       <p>
-        For an annuity due, the result is multiplied by (1 + r) because each payment
-        is invested one period earlier, earning extra compound interest.
+        For an annuity due, the result is multiplied by (1 + r) because each payment is invested one
+        period earlier, earning extra compound interest.
       </p>
     </section>
 
@@ -162,71 +161,91 @@
         <div class="bor-faq-card">
           <span class="bor-faq-number">01</span>
           <h4>What is the future value of an annuity?</h4>
-          <p>It is the total accumulated value of a series of regular payments at a future date after earning
-            compound interest over time.</p>
+          <p>
+            It is the total accumulated value of a series of regular payments at a future date after
+            earning compound interest over time.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">02</span>
           <h4>What is the difference between ordinary annuity and annuity due?</h4>
-          <p>Ordinary annuities pay at the end of each period. Annuity due pays at the beginning, resulting in a
-            higher future value because payments compound longer.</p>
+          <p>
+            Ordinary annuities pay at the end of each period. Annuity due pays at the beginning,
+            resulting in a higher future value because payments compound longer.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">03</span>
           <h4>Why is the FV of annuity due higher?</h4>
-          <p>Because each payment is invested one period earlier, it earns compound interest for a longer time
-            than an ordinary annuity.</p>
+          <p>
+            Because each payment is invested one period earlier, it earns compound interest for a
+            longer time than an ordinary annuity.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">04</span>
           <h4>What interest rate should I use?</h4>
-          <p>Use a rate reflecting expected investment returns, savings rates, or long-term growth assumptions
-            relevant to your financial plan.</p>
+          <p>
+            Use a rate reflecting expected investment returns, savings rates, or long-term growth
+            assumptions relevant to your financial plan.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">05</span>
           <h4>Is the future value of annuity useful for retirement planning?</h4>
-          <p>Yes, it is commonly used to estimate how regular 401(k), IRA, or pension contributions will grow
-            over your working years.</p>
+          <p>
+            Yes, it is commonly used to estimate how regular 401(k), IRA, or pension contributions
+            will grow over your working years.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">06</span>
           <h4>Can I use this for monthly contributions?</h4>
-          <p>Yes, the calculator supports monthly, quarterly, semi-annual, and annual payment and compounding
-            periods.</p>
+          <p>
+            Yes, the calculator supports monthly, quarterly, semi-annual, and annual payment and
+            compounding periods.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">07</span>
           <h4>What happens if the interest rate is zero?</h4>
-          <p>If the rate is zero, the future value equals the total of all payments — no interest is earned and
-            the annuity factor equals the number of periods.</p>
+          <p>
+            If the rate is zero, the future value equals the total of all payments — no interest is
+            earned and the annuity factor equals the number of periods.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">08</span>
           <h4>How does compounding frequency affect results?</h4>
-          <p>More frequent compounding (e.g. monthly vs annual) increases the future value because interest is
-            reinvested more often within each year.</p>
+          <p>
+            More frequent compounding (e.g. monthly vs annual) increases the future value because
+            interest is reinvested more often within each year.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">09</span>
           <h4>Is this the same as a simple savings calculator?</h4>
-          <p>It's similar but specifically models equal periodic payments. A savings calculator may include an
-            initial lump sum (present value) as well.</p>
+          <p>
+            It's similar but specifically models equal periodic payments. A savings calculator may
+            include an initial lump sum (present value) as well.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">10</span>
           <h4>Can I use FVA for investment planning?</h4>
-          <p>Yes, it is widely used to evaluate savings plans, SIP investments, education funds, and long-term
-            financial goals.</p>
+          <p>
+            Yes, it is widely used to evaluate savings plans, SIP investments, education funds, and
+            long-term financial goals.
+          </p>
         </div>
       </div>
     </section>

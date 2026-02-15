@@ -1,6 +1,8 @@
 <div id="calc-overtime-hours">
   <div class="calculator-ui">
-    <p class="helper">Calculate regular and overtime hours for single shifts, split shifts, or weekly cycles.</p>
+    <p class="helper">
+      Calculate regular and overtime hours for single shifts, split shifts, or weekly cycles.
+    </p>
 
     <div class="input-row">
       <label id="overtime-mode-label">Mode</label>
@@ -10,13 +12,28 @@
         aria-labelledby="overtime-mode-label"
         data-button-group="overtime-mode"
       >
-        <button class="calculator-button secondary is-active" type="button" data-value="single" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="single"
+          aria-pressed="true"
+        >
           Single Shift
         </button>
-        <button class="calculator-button secondary" type="button" data-value="split" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="split"
+          aria-pressed="false"
+        >
           Split Shift
         </button>
-        <button class="calculator-button secondary" type="button" data-value="weekly" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="weekly"
+          aria-pressed="false"
+        >
           Weekly Shift
         </button>
       </div>
@@ -30,13 +47,28 @@
         aria-labelledby="overtime-rule-label"
         data-button-group="overtime-rule"
       >
-        <button class="calculator-button secondary" type="button" data-value="daily" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="daily"
+          aria-pressed="false"
+        >
           Daily
         </button>
-        <button class="calculator-button secondary is-active" type="button" data-value="weekly" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="weekly"
+          aria-pressed="true"
+        >
           Weekly
         </button>
-        <button class="calculator-button secondary" type="button" data-value="both" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="both"
+          aria-pressed="false"
+        >
           Daily + Weekly
         </button>
       </div>
@@ -45,11 +77,25 @@
     <div class="input-grid">
       <div class="input-row">
         <label for="overtime-daily-limit">Daily regular limit (hours)</label>
-        <input id="overtime-daily-limit" type="number" min="0" max="24" step="0.5" inputmode="decimal" />
+        <input
+          id="overtime-daily-limit"
+          type="number"
+          min="0"
+          max="24"
+          step="0.5"
+          inputmode="decimal"
+        />
       </div>
       <div class="input-row">
         <label for="overtime-weekly-limit">Weekly regular limit (hours)</label>
-        <input id="overtime-weekly-limit" type="number" min="0" max="168" step="0.5" inputmode="decimal" />
+        <input
+          id="overtime-weekly-limit"
+          type="number"
+          min="0"
+          max="168"
+          step="0.5"
+          inputmode="decimal"
+        />
       </div>
     </div>
 
@@ -61,16 +107,36 @@
         aria-labelledby="overtime-rounding-label"
         data-button-group="overtime-rounding"
       >
-        <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="0"
+          aria-pressed="true"
+        >
           None
         </button>
-        <button class="calculator-button secondary" type="button" data-value="5" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="5"
+          aria-pressed="false"
+        >
           Nearest 5 minutes
         </button>
-        <button class="calculator-button secondary" type="button" data-value="10" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="10"
+          aria-pressed="false"
+        >
           Nearest 10 minutes
         </button>
-        <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="15"
+          aria-pressed="false"
+        >
           Nearest 15 minutes
         </button>
       </div>
@@ -84,13 +150,46 @@
         aria-labelledby="overtime-break-label"
         data-button-group="overtime-break"
       >
-        <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">0</button>
-        <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-        <button class="calculator-button secondary is-active" type="button" data-value="30" aria-pressed="true">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="0"
+          aria-pressed="false"
+        >
+          0
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="15"
+          aria-pressed="false"
+        >
+          15
+        </button>
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="30"
+          aria-pressed="true"
+        >
           30
         </button>
-        <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-        <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="45"
+          aria-pressed="false"
+        >
+          45
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="60"
+          aria-pressed="false"
+        >
+          60
+        </button>
       </div>
     </div>
 
@@ -190,15 +289,62 @@
           aria-labelledby="overtime-week-start-label"
           data-button-group="overtime-week-start"
         >
-          <button class="calculator-button secondary is-active" type="button" data-value="1" aria-pressed="true">
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="1"
+            aria-pressed="true"
+          >
             Mon
           </button>
-          <button class="calculator-button secondary" type="button" data-value="2" aria-pressed="false">Tue</button>
-          <button class="calculator-button secondary" type="button" data-value="3" aria-pressed="false">Wed</button>
-          <button class="calculator-button secondary" type="button" data-value="4" aria-pressed="false">Thu</button>
-          <button class="calculator-button secondary" type="button" data-value="5" aria-pressed="false">Fri</button>
-          <button class="calculator-button secondary" type="button" data-value="6" aria-pressed="false">Sat</button>
-          <button class="calculator-button secondary" type="button" data-value="0" aria-pressed="false">Sun</button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="2"
+            aria-pressed="false"
+          >
+            Tue
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="3"
+            aria-pressed="false"
+          >
+            Wed
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="4"
+            aria-pressed="false"
+          >
+            Thu
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="5"
+            aria-pressed="false"
+          >
+            Fri
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="6"
+            aria-pressed="false"
+          >
+            Sat
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="0"
+            aria-pressed="false"
+          >
+            Sun
+          </button>
         </div>
       </div>
       <div class="input-row">
@@ -236,13 +382,46 @@
             data-button-group="overtime-weekly-0-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -274,13 +453,46 @@
             data-button-group="overtime-weekly-1-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -312,13 +524,46 @@
             data-button-group="overtime-weekly-2-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -350,13 +595,46 @@
             data-button-group="overtime-weekly-3-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -388,13 +666,46 @@
             data-button-group="overtime-weekly-4-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -426,13 +737,46 @@
             data-button-group="overtime-weekly-5-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
@@ -464,19 +808,54 @@
             data-button-group="overtime-weekly-6-break"
             data-weekly-break
           >
-            <button class="calculator-button secondary is-active" type="button" data-value="0" aria-pressed="true">
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="0"
+              aria-pressed="true"
+            >
               0
             </button>
-            <button class="calculator-button secondary" type="button" data-value="15" aria-pressed="false">15</button>
-            <button class="calculator-button secondary" type="button" data-value="30" aria-pressed="false">30</button>
-            <button class="calculator-button secondary" type="button" data-value="45" aria-pressed="false">45</button>
-            <button class="calculator-button secondary" type="button" data-value="60" aria-pressed="false">60</button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="15"
+              aria-pressed="false"
+            >
+              15
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="30"
+              aria-pressed="false"
+            >
+              30
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="45"
+              aria-pressed="false"
+            >
+              45
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="60"
+              aria-pressed="false"
+            >
+              60
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <button class="calculator-button full-width" type="button" id="overtime-calculate">Calculate</button>
+    <button class="calculator-button full-width" type="button" id="overtime-calculate">
+      Calculate
+    </button>
 
     <div class="result" id="overtime-results" aria-live="polite">
       <p class="placeholder" id="overtime-placeholder">Enter your times and click Calculate.</p>

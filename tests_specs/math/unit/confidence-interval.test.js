@@ -3,7 +3,7 @@ import {
   calculateProportionCI,
   calculateMeanCI,
   Z_VALUES,
-} from '../../public/assets/js/core/stats.js';
+} from '../../../public/assets/js/core/stats.js';
 
 /**
  * CI-TEST-U-1 - Confidence Interval Unit Tests

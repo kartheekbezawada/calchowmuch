@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add, subtract, multiply, divide } from '../../public/assets/js/core/math.js';
+import { add, subtract, multiply, divide } from '../../../public/assets/js/core/math.js';
 
 /**
  * BASIC-TEST-U-1 - Basic Calculator Unit Tests

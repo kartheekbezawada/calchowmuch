@@ -7,7 +7,7 @@ import {
   probabilityAndIndependent,
   probabilityFromOutcomes,
   probabilityOrIndependent,
-} from '../../public/assets/js/core/stats.js';
+} from '../../../public/assets/js/core/stats.js';
 
 /**
  * PROB-TEST-U-1 - Basic probability operations

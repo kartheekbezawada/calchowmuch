@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateExactAge } from '../../public/assets/js/core/date-diff-utils.js';
+import { calculateExactAge } from '../../../public/assets/js/core/date-diff-utils.js';
 
 describe('Age Calculator - calendar-aware exact age', () => {
   it('should calculate exact age using calendar months and days', () => {

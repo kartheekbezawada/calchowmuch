@@ -66,7 +66,7 @@ class SeriesAnalyzer {
         const ratio = a_n1 / a_n;
         ratios.push(ratio);
 
-        this.steps.push(`  n = ${n}: |a_${n+1}| / |a_${n}| = ${ratio.toFixed(6)}`);
+        this.steps.push(`  n = ${n}: |a_${n + 1}| / |a_${n}| = ${ratio.toFixed(6)}`);
       } catch (e) {
         continue;
       }
@@ -76,7 +76,7 @@ class SeriesAnalyzer {
       return {
         conclusion: 'inconclusive',
         limit: null,
-        explanation: 'Unable to compute ratios'
+        explanation: 'Unable to compute ratios',
       };
     }
 
@@ -120,7 +120,7 @@ class SeriesAnalyzer {
 
         if (a_n === 0) continue;
 
-        const root = Math.pow(a_n, 1/n);
+        const root = Math.pow(a_n, 1 / n);
         roots.push(root);
 
         this.steps.push(`  n = ${n}: ⁿ√|a_${n}| = ${root.toFixed(6)}`);
@@ -133,7 +133,7 @@ class SeriesAnalyzer {
       return {
         conclusion: 'inconclusive',
         limit: null,
-        explanation: 'Unable to compute roots'
+        explanation: 'Unable to compute roots',
       };
     }
 
@@ -184,7 +184,7 @@ class SeriesAnalyzer {
     if (terms.length < 2) {
       return {
         conclusion: 'inconclusive',
-        explanation: 'Unable to compute enough terms for comparison'
+        explanation: 'Unable to compute enough terms for comparison',
       };
     }
 
@@ -197,7 +197,7 @@ class SeriesAnalyzer {
     if (a1 === 0 || a2 === 0) {
       return {
         conclusion: 'inconclusive',
-        explanation: 'Terms are zero, cannot compare'
+        explanation: 'Terms are zero, cannot compare',
       };
     }
 
@@ -223,7 +223,9 @@ class SeriesAnalyzer {
     }
 
     this.steps.push('\n' + explanation);
-    this.steps.push('\nNote: This is an estimated comparison. Use ratio or root test for definitive results.');
+    this.steps.push(
+      '\nNote: This is an estimated comparison. Use ratio or root test for definitive results.'
+    );
 
     return { conclusion, explanation, p, steps: this.steps };
   }
@@ -243,7 +245,7 @@ class SeriesAnalyzer {
       return {
         ...ratioResult,
         test: 'Ratio Test',
-        steps: this.steps
+        steps: this.steps,
       };
     }
 
@@ -257,7 +259,7 @@ class SeriesAnalyzer {
       return {
         ...rootResult,
         test: 'Root Test',
-        steps: this.steps
+        steps: this.steps,
       };
     }
 
@@ -271,7 +273,7 @@ class SeriesAnalyzer {
     return {
       ...compResult,
       test: 'Comparison Test (Estimated)',
-      steps: this.steps
+      steps: this.steps,
     };
   }
 }
@@ -289,9 +291,9 @@ export function initSeriesConvergenceCalculator() {
   if (!calculateBtn) return;
 
   // Test button selection
-  testButtons.forEach(btn => {
+  testButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      testButtons.forEach(b => b.classList.remove('active'));
+      testButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       currentTest = btn.dataset.test;
     });
@@ -330,8 +332,12 @@ export function initSeriesConvergenceCalculator() {
       }
 
       // Display result with appropriate styling
-      const conclusionClass = result.conclusion === 'converges' ? 'converges' :
-                             result.conclusion === 'diverges' ? 'diverges' : 'inconclusive';
+      const conclusionClass =
+        result.conclusion === 'converges'
+          ? 'converges'
+          : result.conclusion === 'diverges'
+            ? 'diverges'
+            : 'inconclusive';
       const conclusionText = result.conclusion.toUpperCase();
 
       resultDiv.innerHTML = `

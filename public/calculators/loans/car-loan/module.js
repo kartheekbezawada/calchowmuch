@@ -148,7 +148,9 @@ function updateSliderDisplays() {
     termDisplay.textContent = `${formatValue(Number(termInput.value), { maximumFractionDigits: 0 })} yrs`;
   }
 
-  [priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach(setSliderFill);
+  [priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach(
+    setSliderFill
+  );
 }
 
 function clearOutputs() {
@@ -362,7 +364,6 @@ function calculate() {
   downPaymentAmount = downRaw;
   downPaymentPercent = price > 0 ? (downPaymentAmount / price) * 100 : 0;
 
-
   const data = calculateCarLoan({
     price,
     downPaymentType: downType,
@@ -391,17 +392,19 @@ function calculate() {
   applyView(scheduleView);
 }
 
-[priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (input === priceInput && downValueInput) {
-      downValueInput.max = String(Math.max(0, Number(priceInput.value)));
-      if (Number(downValueInput.value) > Number(downValueInput.max)) {
-        downValueInput.value = downValueInput.max;
+[priceInput, downValueInput, tradeInput, feesInput, taxInput, aprInput, termInput].forEach(
+  (input) => {
+    input?.addEventListener('input', () => {
+      if (input === priceInput && downValueInput) {
+        downValueInput.max = String(Math.max(0, Number(priceInput.value)));
+        if (Number(downValueInput.value) > Number(downValueInput.max)) {
+          downValueInput.value = downValueInput.max;
+        }
       }
-    }
-    updateSliderDisplays();
-  });
-});
+      updateSliderDisplays();
+    });
+  }
+);
 
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));
 viewYearlyButton?.addEventListener('click', () => applyView('yearly'));

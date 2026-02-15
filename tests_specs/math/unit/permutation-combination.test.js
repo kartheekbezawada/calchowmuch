@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { factorial, permutation, combination } from '../../public/assets/js/core/stats.js';
+import { factorial, permutation, combination } from '../../../public/assets/js/core/stats.js';
 
 /**
  * PERM-TEST-U-1 - Permutation and combination calculations

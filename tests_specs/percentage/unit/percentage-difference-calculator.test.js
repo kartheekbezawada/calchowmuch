@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculatePercentageDifference } from '../../public/assets/js/core/math.js';
+import { calculatePercentageDifference } from '../../../public/assets/js/core/math.js';
 
 describe('Percentage Difference Calculator - PDIFF-TEST-U-1: symmetric calculation', () => {
   it('calculates percent difference using average baseline', () => {

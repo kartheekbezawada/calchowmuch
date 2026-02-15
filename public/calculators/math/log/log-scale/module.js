@@ -28,8 +28,14 @@ const scaleMetadata = {
     description: 'Switch between decibel, pH, and Richter scale units.',
     step: [
       { '@type': 'HowToStep', text: 'Choose a log scale type and provide the required value.' },
-      { '@type': 'HowToStep', text: 'Click Convert to see the logarithmic result and supporting details.' },
-      { '@type': 'HowToStep', text: 'Use the detail panel to review the formulas used by each scale.' },
+      {
+        '@type': 'HowToStep',
+        text: 'Click Convert to see the logarithmic result and supporting details.',
+      },
+      {
+        '@type': 'HowToStep',
+        text: 'Use the detail panel to review the formulas used by each scale.',
+      },
     ],
   },
 };
@@ -89,7 +95,13 @@ typeSelect?.addEventListener('change', () => {
 });
 
 calculateBtn?.addEventListener('click', updateResults);
-for (const input of [amplitudeInput, referenceInput, concentrationInput, magnitudeInput, richterReferenceInput]) {
+for (const input of [
+  amplitudeInput,
+  referenceInput,
+  concentrationInput,
+  magnitudeInput,
+  richterReferenceInput,
+]) {
   input?.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
       updateResults();

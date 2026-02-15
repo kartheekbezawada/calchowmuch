@@ -98,7 +98,8 @@
   margin-bottom: 8px;
 }
 
-#limit-explanation-pane ul, #limit-explanation-pane ol {
+#limit-explanation-pane ul,
+#limit-explanation-pane ol {
   padding-left: 25px;
 }
 

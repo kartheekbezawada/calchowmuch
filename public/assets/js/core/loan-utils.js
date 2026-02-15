@@ -383,9 +383,7 @@ export function calculateBuyToLet({
     year: entry.year,
     value: entry.netCashflow,
   }));
-  const cashflowSeriesWithIncrease = rentIncreaseEnabled
-    ? cashflowSeries
-    : cashflowSeriesBaseline;
+  const cashflowSeriesWithIncrease = rentIncreaseEnabled ? cashflowSeries : cashflowSeriesBaseline;
 
   return {
     price,

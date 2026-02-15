@@ -20,9 +20,15 @@ class SymbolicIntegrator {
     let match;
 
     while ((match = regex.exec(expr)) !== null) {
-      const coef = match[1] ? (match[1] === '+' || match[1] === '' ? 1 : match[1] === '-' ? -1 : parseFloat(match[1])) : 1;
+      const coef = match[1]
+        ? match[1] === '+' || match[1] === ''
+          ? 1
+          : match[1] === '-'
+            ? -1
+            : parseFloat(match[1])
+        : 1;
       const variable = match[2] || '';
-      const exponent = match[3] ? parseFloat(match[3]) : (variable ? 1 : 0);
+      const exponent = match[3] ? parseFloat(match[3]) : variable ? 1 : 0;
 
       if (coef !== 0) {
         terms.push({ coef, variable, exponent });
@@ -41,7 +47,7 @@ class SymbolicIntegrator {
     return {
       type: 'polynomial',
       coef: coef / (exponent + 1),
-      exponent: exponent + 1
+      exponent: exponent + 1,
     };
   }
 
@@ -147,7 +153,7 @@ class SymbolicIntegrator {
     return {
       integral: result,
       steps: this.steps,
-      terms: integrals
+      terms: integrals,
     };
   }
 
@@ -186,9 +192,9 @@ export function initIntegralCalculator() {
   if (!calculateBtn) return;
 
   // Mode switching
-  modeButtons.forEach(btn => {
+  modeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      modeButtons.forEach(b => b.classList.remove('active'));
+      modeButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       currentMode = btn.dataset.mode;
 
@@ -246,7 +252,6 @@ export function initIntegralCalculator() {
           <pre>${result.steps.join('\n')}</pre>
         </div>
       `;
-
     } catch (error) {
       resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
       stepsDiv.innerHTML = '';

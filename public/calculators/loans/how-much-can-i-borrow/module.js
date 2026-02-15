@@ -180,9 +180,9 @@ function updateCapacityBar(data) {
   if (income <= 0) {
     // Clear segments if income is zero or invalid
     const segments = root.querySelectorAll('[data-bor^="cap-"]');
-    segments.forEach(el => el.style.setProperty('--seg-width', '0%'));
+    segments.forEach((el) => el.style.setProperty('--seg-width', '0%'));
     const texts = root.querySelectorAll('[data-bor$="-text"]');
-    texts.forEach(el => el.textContent = '');
+    texts.forEach((el) => (el.textContent = ''));
     return;
   }
 
@@ -197,7 +197,10 @@ function updateCapacityBar(data) {
   setSeg('cap-debts', data.debtMonthly, income);
   setSeg('cap-mortgage', data.monthlyPayment, income);
 
-  const buffer = Math.max(0, income - data.expensesMonthly - data.debtMonthly - data.monthlyPayment);
+  const buffer = Math.max(
+    0,
+    income - data.expensesMonthly - data.debtMonthly - data.monthlyPayment
+  );
   setSeg('cap-buffer', buffer, income);
 
   // Legend
@@ -216,7 +219,7 @@ function renderScenarioTable(data) {
   const tbody = root?.querySelector('#bor-scenario-body');
   if (!tbody || !data.rateSeries) return;
 
-  const rows = data.rateSeries.map(item => {
+  const rows = data.rateSeries.map((item) => {
     const isCurrent = Math.abs(item.rate - data.interestRate) < 0.01;
     // recalculate for table consistency
     const payment = computeMonthlyPayment(item.value, item.rate, data.termYears * 12); // item.value is maxBorrow at that rate
@@ -284,7 +287,16 @@ function calculate() {
       return;
     }
 
-    console.log('Calculating Borrow Power:', { grossIncomeAnnual, netIncomeMonthly, expensesMonthly, debtMonthly, interestRate, termYears, incomeMultiple, deposit });
+    console.log('Calculating Borrow Power:', {
+      grossIncomeAnnual,
+      netIncomeMonthly,
+      expensesMonthly,
+      debtMonthly,
+      interestRate,
+      termYears,
+      incomeMultiple,
+      deposit,
+    });
 
     const data = calculateBorrow({
       grossIncomeAnnual,
@@ -304,7 +316,9 @@ function calculate() {
     }
 
     if (data.hasAffordabilityGap) {
-      setError('Not affordable: expenses and debts exceed income, or remaining disposable income is too low.');
+      setError(
+        'Not affordable: expenses and debts exceed income, or remaining disposable income is too low.'
+      );
       return;
     }
 
@@ -314,7 +328,9 @@ function calculate() {
       animateMetric(metricBorrow);
     }
     if (metricProperty) {
-      const propertyValue = Number.isFinite(data.maxPropertyPrice) ? data.maxPropertyPrice : (data.maxBorrow + deposit);
+      const propertyValue = Number.isFinite(data.maxPropertyPrice)
+        ? data.maxPropertyPrice
+        : data.maxBorrow + deposit;
       metricProperty.textContent = fmt(Math.round(propertyValue));
       animateMetric(metricProperty);
     }
@@ -334,7 +350,7 @@ function calculate() {
       // We can infer:
       const maxByMultiple = grossIncomeAnnual * incomeMultiple;
       // Check if maxBorrow is significantly less than what the multiple would allow
-      const isAffordabilityConstrained = data.maxBorrow < (maxByMultiple * 0.99); // 1% buffer for floating point
+      const isAffordabilityConstrained = data.maxBorrow < maxByMultiple * 0.99; // 1% buffer for floating point
       if (isAffordabilityConstrained) {
         constraintTag.textContent = `Limit determined by monthly budget (affordability)`;
       } else {
@@ -345,7 +361,6 @@ function calculate() {
     /* Explanation: capacity bar + scenario table */
     updateCapacityBar(data);
     renderScenarioTable(data);
-
   } catch (err) {
     console.error('Borrow Calc Error:', err);
     setError('An error occurred during calculation. Please check your inputs.');

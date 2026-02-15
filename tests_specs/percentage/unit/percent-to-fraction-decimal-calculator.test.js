@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculatePercentToFractionDecimal } from '../../public/assets/js/core/math.js';
+import { calculatePercentToFractionDecimal } from '../../../public/assets/js/core/math.js';
 
 describe('Percent to Fraction/Decimal - PTFD-TEST-U-1: core conversion', () => {
   it('converts 12.5% to 0.125 and 1/8', () => {

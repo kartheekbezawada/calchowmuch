@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { zScore } from '../../public/assets/js/core/stats.js';
+import { zScore } from '../../../public/assets/js/core/stats.js';
 
 /**
  * ZSCORE-TEST-U-1 - Z-Score Unit Tests

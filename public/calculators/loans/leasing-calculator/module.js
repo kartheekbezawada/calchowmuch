@@ -60,7 +60,8 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What is residual value in a lease?',
-    answer: 'Residual is the estimated vehicle value at lease end, used to determine depreciation portion.',
+    answer:
+      'Residual is the estimated vehicle value at lease end, used to determine depreciation portion.',
   },
   {
     question: 'Can I enter residual as amount or percent?',
@@ -68,7 +69,8 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What does money factor represent?',
-    answer: 'Money factor represents lease finance cost and is analogous to an interest rate factor.',
+    answer:
+      'Money factor represents lease finance cost and is analogous to an interest rate factor.',
   },
   {
     question: 'How does upfront payment affect lease cost?',
@@ -85,15 +87,18 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Why can residual not exceed vehicle price?',
-    answer: 'Residual above vehicle price would imply negative depreciation and unrealistic lease economics.',
+    answer:
+      'Residual above vehicle price would imply negative depreciation and unrealistic lease economics.',
   },
   {
     question: 'What is included in total lease cost?',
-    answer: 'Total lease cost includes upfront payment plus all monthly lease payments over the term.',
+    answer:
+      'Total lease cost includes upfront payment plus all monthly lease payments over the term.',
   },
   {
     question: 'Are these lender-specific lease quotes?',
-    answer: 'No. These are model-based estimates and may differ from lender fees, taxes, and terms.',
+    answer:
+      'No. These are model-based estimates and may differ from lender fees, taxes, and terms.',
   },
 ];
 
@@ -300,8 +305,10 @@ function handleTermUnitChange(unit) {
 
   const previousUnit = lastTermUnit;
   const rawValue = Number(termInput.value);
-  const safeRawValue = Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 3 : 36;
-  const currentMonths = previousUnit === 'years' ? Math.round(safeRawValue * 12) : Math.round(safeRawValue);
+  const safeRawValue =
+    Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 3 : 36;
+  const currentMonths =
+    previousUnit === 'years' ? Math.round(safeRawValue * 12) : Math.round(safeRawValue);
 
   if (termLabel) {
     termLabel.textContent = unit === 'years' ? 'Lease Term (years)' : 'Lease Term (months)';
@@ -382,7 +389,8 @@ function renderMonthlyTable(data) {
     return;
   }
 
-  const depreciationPerMonth = data.termMonths > 0 ? (data.capCost - data.residual) / data.termMonths : 0;
+  const depreciationPerMonth =
+    data.termMonths > 0 ? (data.capCost - data.residual) / data.termMonths : 0;
   const financePerMonth = data.monthlyPayment - depreciationPerMonth;
 
   monthlyTableBody.innerHTML = (data.schedule || [])
@@ -513,7 +521,8 @@ function updatePreview(data) {
 
 function updateExplanation(data) {
   const totalRecurring = Math.max(0, data.totalLeaseCost - data.upfrontPayment);
-  const depreciationShare = totalRecurring > 0 ? (data.depreciationTotal / totalRecurring) * 100 : 0;
+  const depreciationShare =
+    totalRecurring > 0 ? (data.depreciationTotal / totalRecurring) * 100 : 0;
   const clampedDepreciation = Math.min(100, Math.max(0, depreciationShare));
   const financeShare = Math.max(0, 100 - clampedDepreciation);
 
@@ -577,7 +586,11 @@ function validateAndNormalizeInputs() {
     return { error: 'Upfront payment must be less than vehicle price.' };
   }
 
-  const { residualValue, residualPercent } = resolveResidualValues(price, residualType, rawResidual);
+  const { residualValue, residualPercent } = resolveResidualValues(
+    price,
+    residualType,
+    rawResidual
+  );
 
   if (residualType === 'percent' && rawResidual >= 100) {
     return { error: 'Residual percent must be less than 100.' };

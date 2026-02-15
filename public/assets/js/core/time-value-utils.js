@@ -386,7 +386,12 @@ export function calculateSavingsGoal({
       ? null
       : Number(targetTime);
 
-  if (!Number.isFinite(goal) || !Number.isFinite(current) || !Number.isFinite(monthly) || !Number.isFinite(rate)) {
+  if (
+    !Number.isFinite(goal) ||
+    !Number.isFinite(current) ||
+    !Number.isFinite(monthly) ||
+    !Number.isFinite(rate)
+  ) {
     return null;
   }
 

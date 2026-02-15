@@ -56,7 +56,8 @@
   margin-bottom: 8px;
 }
 
-#deriv-explanation-pane ul, #deriv-explanation-pane ol {
+#deriv-explanation-pane ul,
+#deriv-explanation-pane ol {
   padding-left: 25px;
 }
 

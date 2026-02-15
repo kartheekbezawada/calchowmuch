@@ -17,10 +17,7 @@ function formatCoefficientValue(value, precision = 4) {
 }
 
 function normalizeInput(input) {
-  return input
-    .replace(/\s+/g, '')
-    .replace(/−/g, '-')
-    .replace(/X/g, 'x');
+  return input.replace(/\s+/g, '').replace(/−/g, '-').replace(/X/g, 'x');
 }
 
 export function parsePolynomial(input) {
@@ -137,11 +134,13 @@ export function formatPolynomial(coeffs, options = {}) {
     if (degree === 0) {
       term = formatCoefficientValue(absCoeff, precision);
     } else if (degree === 1) {
-      term = absCoeff === 1 ? variable : `${formatCoefficientValue(absCoeff, precision)}${variable}`;
+      term =
+        absCoeff === 1 ? variable : `${formatCoefficientValue(absCoeff, precision)}${variable}`;
     } else {
-      term = absCoeff === 1
-        ? `${variable}^${degree}`
-        : `${formatCoefficientValue(absCoeff, precision)}${variable}^${degree}`;
+      term =
+        absCoeff === 1
+          ? `${variable}^${degree}`
+          : `${formatCoefficientValue(absCoeff, precision)}${variable}^${degree}`;
     }
 
     if (parts.length === 0) {
@@ -274,11 +273,12 @@ export function solveSystem2x2(a11, a12, b1, a21, a22, b2) {
     const ratio1 = Math.abs(a21) > EPSILON ? a11 / a21 : null;
     const ratio2 = Math.abs(a22) > EPSILON ? a12 / a22 : null;
     const ratio3 = Math.abs(b2) > EPSILON ? b1 / b2 : null;
-    const isDependent = ratio1 !== null
-      && ratio2 !== null
-      && ratio3 !== null
-      && Math.abs(ratio1 - ratio2) < EPSILON
-      && Math.abs(ratio1 - ratio3) < EPSILON;
+    const isDependent =
+      ratio1 !== null &&
+      ratio2 !== null &&
+      ratio3 !== null &&
+      Math.abs(ratio1 - ratio2) < EPSILON &&
+      Math.abs(ratio1 - ratio3) < EPSILON;
     return {
       type: isDependent ? 'infinite' : 'none',
       determinant,
@@ -295,23 +295,19 @@ export function solveSystem2x2(a11, a12, b1, a21, a22, b2) {
 }
 
 export function solveSystem3x3(a11, a12, a13, b1, a21, a22, a23, b2, a31, a32, a33, b3) {
-  const determinant = a11 * (a22 * a33 - a23 * a32)
-    - a12 * (a21 * a33 - a23 * a31)
-    + a13 * (a21 * a32 - a22 * a31);
+  const determinant =
+    a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
 
   if (Math.abs(determinant) < EPSILON) {
     return { type: 'none', determinant };
   }
 
-  const detX = b1 * (a22 * a33 - a23 * a32)
-    - a12 * (b2 * a33 - a23 * b3)
-    + a13 * (b2 * a32 - a22 * b3);
-  const detY = a11 * (b2 * a33 - a23 * b3)
-    - b1 * (a21 * a33 - a23 * a31)
-    + a13 * (a21 * b3 - b2 * a31);
-  const detZ = a11 * (a22 * b3 - b2 * a32)
-    - a12 * (a21 * b3 - b2 * a31)
-    + b1 * (a21 * a32 - a22 * a31);
+  const detX =
+    b1 * (a22 * a33 - a23 * a32) - a12 * (b2 * a33 - a23 * b3) + a13 * (b2 * a32 - a22 * b3);
+  const detY =
+    a11 * (b2 * a33 - a23 * b3) - b1 * (a21 * a33 - a23 * a31) + a13 * (a21 * b3 - b2 * a31);
+  const detZ =
+    a11 * (a22 * b3 - b2 * a32) - a12 * (a21 * b3 - b2 * a31) + b1 * (a21 * a32 - a22 * a31);
 
   return {
     type: 'unique',
@@ -527,7 +523,12 @@ export function factorByGrouping(coeffs) {
   const b = arr[2];
   const c = arr[1];
   const d = arr[0];
-  if (!Number.isInteger(a) || !Number.isInteger(b) || !Number.isInteger(c) || !Number.isInteger(d)) {
+  if (
+    !Number.isInteger(a) ||
+    !Number.isInteger(b) ||
+    !Number.isInteger(c) ||
+    !Number.isInteger(d)
+  ) {
     return null;
   }
 
@@ -566,7 +567,8 @@ export function formatPowerFactor(factor) {
   if (factor.constant === 0) {
     return `(${coeffText}${powerText})`;
   }
-  const constantText = factor.constant > 0 ? ` + ${factor.constant}` : ` - ${Math.abs(factor.constant)}`;
+  const constantText =
+    factor.constant > 0 ? ` + ${factor.constant}` : ` - ${Math.abs(factor.constant)}`;
   return `(${coeffText}${powerText}${constantText})`;
 }
 

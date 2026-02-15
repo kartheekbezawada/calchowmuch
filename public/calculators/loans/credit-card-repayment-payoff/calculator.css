@@ -101,7 +101,10 @@
   padding: 0.42rem 0.72rem;
   font-size: 0.88rem;
   line-height: 1.25;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 #calc-cc-payoff .input-row input[type='number']:hover {
@@ -129,7 +132,10 @@
   font-size: 0.89rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  transition: transform 0.18s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
 #calc-cc-payoff .cc-payoff-action-row .calculator-button:hover {
@@ -224,7 +230,10 @@
   font-size: 0.8rem;
   font-weight: 600;
   line-height: 1.38;
-  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 #calc-cc-payoff .cc-payoff-results-list .result-line:hover {
@@ -382,7 +391,10 @@
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.36));
   display: grid;
   gap: 0.4rem;
-  transition: transform 0.22s ease, border-color 0.26s ease, box-shadow 0.28s ease;
+  transition:
+    transform 0.22s ease,
+    border-color 0.26s ease,
+    box-shadow 0.28s ease;
 }
 
 #cc-payoff-explanation .cc-payoff-faq-item:hover {

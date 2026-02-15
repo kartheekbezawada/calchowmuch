@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculatePresentValue } from '../../public/assets/js/core/time-value-utils.js';
+import { calculatePresentValue } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Present Value Calculator - PV-TEST-U-1: annual compounding', () => {
   it('should calculate present value with annual compounding', () => {

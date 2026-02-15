@@ -27,8 +27,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Why do months and days give different answers?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.',
+        text: 'Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.',
       },
     },
     {
@@ -44,8 +43,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What happens if the end date is before the start date?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'The calculator will show an error and ask you to choose an end date that is after the start date.',
+        text: 'The calculator will show an error and ask you to choose an end date that is after the start date.',
       },
     },
     {
@@ -53,8 +51,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does daylight saving time affect the result?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'It can affect results in Date & time mode, because a day can be 23 or 25 hours when clocks change.',
+        text: 'It can affect results in Date & time mode, because a day can be 23 or 25 hours when clocks change.',
       },
     },
   ],
@@ -106,8 +103,7 @@ const metadata = {
   title: 'Time Between Two Dates Calculator – Date Difference',
   description:
     'Calculate the time between two dates and times. Get the difference in days, weeks, months, hours, and minutes with clear results.',
-  canonical:
-    'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
+  canonical: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -296,14 +292,34 @@ function showResults(result, includeTime) {
   clearError();
   resultsList.innerHTML = '';
 
-  addResultRow('total-days', 'Total days', formatNumber(result.totalDays, { maximumFractionDigits: 2 }));
-  addResultRow('total-weeks', 'Total weeks', formatNumber(result.totalWeeks, { maximumFractionDigits: 2 }));
+  addResultRow(
+    'total-days',
+    'Total days',
+    formatNumber(result.totalDays, { maximumFractionDigits: 2 })
+  );
+  addResultRow(
+    'total-weeks',
+    'Total weeks',
+    formatNumber(result.totalWeeks, { maximumFractionDigits: 2 })
+  );
   addResultRow('years-months', 'Years and months', formatYearsMonths(result.years, result.months));
-  addResultRow('total-months', 'Total months', formatNumber(result.totalMonths, { maximumFractionDigits: 0 }));
+  addResultRow(
+    'total-months',
+    'Total months',
+    formatNumber(result.totalMonths, { maximumFractionDigits: 0 })
+  );
 
   if (includeTime) {
-    addResultRow('total-hours', 'Total hours', formatNumber(result.totalHours, { maximumFractionDigits: 2 }));
-    addResultRow('total-minutes', 'Total minutes', formatNumber(result.totalMinutes, { maximumFractionDigits: 0 }));
+    addResultRow(
+      'total-hours',
+      'Total hours',
+      formatNumber(result.totalHours, { maximumFractionDigits: 2 })
+    );
+    addResultRow(
+      'total-minutes',
+      'Total minutes',
+      formatNumber(result.totalMinutes, { maximumFractionDigits: 0 })
+    );
   }
 
   placeholder.classList.add('is-hidden');
@@ -313,11 +329,7 @@ function showResults(result, includeTime) {
 function calculate() {
   const mode = modeButtons?.getValue() ?? 'date';
   const includeTime = mode === 'datetime';
-  const startDateTime = buildDateTime(
-    startDateInput?.value,
-    startTimeInput?.value,
-    includeTime
-  );
+  const startDateTime = buildDateTime(startDateInput?.value, startTimeInput?.value, includeTime);
   const endDateTime = buildDateTime(endDateInput?.value, endTimeInput?.value, includeTime);
 
   if (!startDateTime || !endDateTime) {

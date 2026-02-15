@@ -95,9 +95,7 @@ function updateMemoryIndicator() {
   }
   if (memoryValueDisplay) {
     memoryValueDisplay.textContent =
-      memoryValue !== 0
-        ? `Memory: ${formatNumber(memoryValue, { maximumFractionDigits: 4 })}`
-        : '';
+      memoryValue !== 0 ? `Memory: ${formatNumber(memoryValue, { maximumFractionDigits: 4 })}` : '';
   }
 }
 

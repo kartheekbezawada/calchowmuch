@@ -35,9 +35,10 @@ function calculate() {
   const y2 = toNumber(y2Input.value, 0);
 
   const props = calculateSlopeDistance(x1, y1, x2, y2);
-  const slopeText = props.slope === null
-    ? 'Undefined (vertical line)'
-    : formatNumber(props.slope, { maximumFractionDigits: 6 });
+  const slopeText =
+    props.slope === null
+      ? 'Undefined (vertical line)'
+      : formatNumber(props.slope, { maximumFractionDigits: 6 });
 
   const distanceText = formatNumber(props.distance, { maximumFractionDigits: 6 });
   const midpointText = `(${formatNumber(props.midpoint.x, { maximumFractionDigits: 6 })}, ${formatNumber(props.midpoint.y, { maximumFractionDigits: 6 })})`;

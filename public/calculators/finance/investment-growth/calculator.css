@@ -64,7 +64,10 @@
   color: rgba(191, 219, 254, 0.92);
   font-size: 0.72rem;
   font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
   cursor: pointer;
 }
 
@@ -235,7 +238,10 @@
   border-top: 2px solid rgba(245, 158, 11, 0.45);
   display: grid;
   gap: 0.4rem;
-  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
 }
 
 #ig-explanation .bor-faq-card:hover {
@@ -298,7 +304,10 @@
 
 /* 1. Electrifying Input Rows */
 #calc-investment-growth .input-row.slider-row {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.25s ease,
+    box-shadow 0.25s ease;
   border-radius: 12px;
   border: 1px solid transparent;
 }
@@ -362,7 +371,12 @@ input[type='range']::-webkit-slider-thumb:hover {
 
 /* 5. Result Table Hover */
 #ig-explanation .ig-results-table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.05),
+    rgba(59, 130, 246, 0.15),
+    rgba(59, 130, 246, 0.05)
+  );
   transform: scale(1.01);
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

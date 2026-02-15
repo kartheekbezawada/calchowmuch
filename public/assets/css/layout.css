@@ -324,12 +324,14 @@ body .site-header .header-search-icon {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg,
-      transparent 0%,
-      rgba(102, 126, 234, 0.4) 20%,
-      rgba(102, 126, 234, 0.6) 50%,
-      rgba(102, 126, 234, 0.4) 80%,
-      transparent 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.4) 20%,
+    rgba(102, 126, 234, 0.6) 50%,
+    rgba(102, 126, 234, 0.4) 80%,
+    transparent 100%
+  );
   opacity: 0.45;
   pointer-events: none;
 }
@@ -422,7 +424,9 @@ body .site-header .header-search-icon {
 /* ── Category Group ── */
 .fin-nav-group {
   border-radius: 12px;
-  transition: background 0.22s ease, box-shadow 0.22s ease;
+  transition:
+    background 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
 .fin-nav-group.is-expanded {
@@ -593,10 +597,12 @@ body .site-header .header-search-icon {
 .fin-nav-item.is-active {
   border: 1px solid rgba(147, 197, 253, 0.8);
   border-left: 3px solid #f8fafc;
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.85) 0%,
-      rgba(79, 70, 229, 0.9) 50%,
-      rgba(102, 126, 234, 0.85) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.85) 0%,
+    rgba(79, 70, 229, 0.9) 50%,
+    rgba(102, 126, 234, 0.85) 100%
+  );
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #ffffff;
@@ -685,7 +691,10 @@ body .site-header .header-search-icon {
   border-radius: 50%;
   background: rgba(102, 126, 234, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    opacity 0.6s ease;
   opacity: 0;
   pointer-events: none;
 }
@@ -697,10 +706,12 @@ body .site-header .header-search-icon {
 }
 
 .left-nav .nav-item.is-active {
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.9) 0%,
-      rgba(79, 70, 229, 0.95) 50%,
-      rgba(102, 126, 234, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #ffffff;
@@ -739,10 +750,10 @@ body .site-header .header-search-icon {
 }
 
 /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
-.nav-category[data-id="home-loan"] .nav-item,
-.nav-category[data-id="credit-cards"] .nav-item,
-.nav-category[data-id="auto-loans"] .nav-item,
-.nav-category[data-id="time-and-date"] .nav-item {
+.nav-category[data-id='home-loan'] .nav-item,
+.nav-category[data-id='credit-cards'] .nav-item,
+.nav-category[data-id='auto-loans'] .nav-item,
+.nav-category[data-id='time-and-date'] .nav-item {
   border: 2px solid rgba(102, 126, 234, 0.3);
   border-left: 4px solid rgba(102, 126, 234, 0.5);
   transition:
@@ -752,19 +763,19 @@ body .site-header .header-search-icon {
     border-left-color 0.15s ease;
 }
 
-.nav-category[data-id="home-loan"] .nav-item:hover,
-.nav-category[data-id="credit-cards"] .nav-item:hover,
-.nav-category[data-id="auto-loans"] .nav-item:hover,
-.nav-category[data-id="time-and-date"] .nav-item:hover {
+.nav-category[data-id='home-loan'] .nav-item:hover,
+.nav-category[data-id='credit-cards'] .nav-item:hover,
+.nav-category[data-id='auto-loans'] .nav-item:hover,
+.nav-category[data-id='time-and-date'] .nav-item:hover {
   border-left: 4px solid rgba(102, 126, 234, 0.9);
   border-color: rgba(102, 126, 234, 0.4);
   background: rgba(102, 126, 234, 0.1);
 }
 
-.nav-category[data-id="home-loan"] .nav-item.is-active,
-.nav-category[data-id="credit-cards"] .nav-item.is-active,
-.nav-category[data-id="auto-loans"] .nav-item.is-active,
-.nav-category[data-id="time-and-date"] .nav-item.is-active {
+.nav-category[data-id='home-loan'] .nav-item.is-active,
+.nav-category[data-id='credit-cards'] .nav-item.is-active,
+.nav-category[data-id='auto-loans'] .nav-item.is-active,
+.nav-category[data-id='time-and-date'] .nav-item.is-active {
   border: 2px solid var(--accent-strong);
   border-left: 4px solid #ffffff;
 }
@@ -938,7 +949,6 @@ body .site-header .header-search-icon {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 0.4;
@@ -952,7 +962,6 @@ body .site-header .header-search-icon {
 }
 
 @keyframes edgeGlow {
-
   0%,
   100% {
     opacity: 0.3;
@@ -964,11 +973,10 @@ body .site-header .header-search-icon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .page,
   .site-header,
   .top-nav,
-  .layout-main>* {
+  .layout-main > * {
     animation: none;
   }
 
@@ -1193,10 +1201,12 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item.is-active {
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.9) 0%,
-      rgba(79, 70, 229, 0.95) 50%,
-      rgba(102, 126, 234, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #ffffff;
@@ -1207,10 +1217,12 @@ body .site-header .header-search-icon {
 }
 
 .math-nav-item.is-active:hover {
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.9) 0%,
-      rgba(79, 70, 229, 0.95) 50%,
-      rgba(102, 126, 234, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
   color: #ffffff;
 }
 

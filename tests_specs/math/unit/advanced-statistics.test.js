@@ -38,7 +38,7 @@ import {
   spearmanCorrelation,
   kendallCorrelation,
   correlationMatrix,
-} from '../../public/assets/js/core/advanced-statistics.js';
+} from '../../../public/assets/js/core/advanced-statistics.js';
 
 // ============================================================================
 // DISTRIBUTION FUNCTIONS TESTS

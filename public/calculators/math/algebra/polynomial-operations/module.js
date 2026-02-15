@@ -10,9 +10,12 @@ import {
   subtractPolynomials,
 } from '/assets/js/core/algebra.js';
 
-const operationGroup = setupButtonGroup(document.querySelector('[data-button-group="poly-operation"]'), {
-  defaultValue: 'add',
-});
+const operationGroup = setupButtonGroup(
+  document.querySelector('[data-button-group="poly-operation"]'),
+  {
+    defaultValue: 'add',
+  }
+);
 const poly1Input = document.querySelector('#poly1');
 const poly2Input = document.querySelector('#poly2');
 const calculateButton = document.querySelector('#calculate-poly');

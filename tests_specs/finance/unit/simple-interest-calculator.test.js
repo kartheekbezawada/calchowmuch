@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateSimpleInterest } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateSimpleInterest } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Simple Interest Calculator - SI-TEST-U-1: yearly basis', () => {
   it('calculates simple interest using yearly rate and years', () => {

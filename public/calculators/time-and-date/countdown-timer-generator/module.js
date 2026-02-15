@@ -308,9 +308,21 @@ function showResults(countdown, target, isComplete = false) {
   addResultRow('hours', 'Hours', formatNumber(countdown.hours, { maximumFractionDigits: 0 }));
   addResultRow('minutes', 'Minutes', formatNumber(countdown.minutes, { maximumFractionDigits: 0 }));
   addResultRow('seconds', 'Seconds', formatNumber(countdown.seconds, { maximumFractionDigits: 0 }));
-  addResultRow('total-hours', 'Total hours', formatNumber(countdown.totalHours, { maximumFractionDigits: 2 }));
-  addResultRow('total-minutes', 'Total minutes', formatNumber(countdown.totalMinutes, { maximumFractionDigits: 0 }));
-  addResultRow('total-seconds', 'Total seconds', formatNumber(countdown.totalSeconds, { maximumFractionDigits: 0 }));
+  addResultRow(
+    'total-hours',
+    'Total hours',
+    formatNumber(countdown.totalHours, { maximumFractionDigits: 2 })
+  );
+  addResultRow(
+    'total-minutes',
+    'Total minutes',
+    formatNumber(countdown.totalMinutes, { maximumFractionDigits: 0 })
+  );
+  addResultRow(
+    'total-seconds',
+    'Total seconds',
+    formatNumber(countdown.totalSeconds, { maximumFractionDigits: 0 })
+  );
 
   if (statusMessage) {
     statusMessage.textContent = isComplete

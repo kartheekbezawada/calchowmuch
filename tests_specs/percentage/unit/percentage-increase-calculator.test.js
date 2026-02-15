@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { percentageChange } from '../../public/assets/js/core/math.js';
+import { percentageChange } from '../../../public/assets/js/core/math.js';
 
 describe('Percentage Increase Calculator - PINC-TEST-U-1: core formula', () => {
   it('calculates increase from 80 to 100 as 25%', () => {

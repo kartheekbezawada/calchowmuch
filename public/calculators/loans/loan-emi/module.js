@@ -294,7 +294,6 @@ function updateExplanation(data, view) {
   }
 }
 
-
 function applyView(view) {
   if (!currentData) {
     return;

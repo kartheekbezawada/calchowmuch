@@ -77,8 +77,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the difference between regular hours and overtime hours?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.',
+        text: 'Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.',
       },
     },
     {
@@ -86,8 +85,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Which overtime rule should I choose?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly.',
+        text: 'Use the rule that matches your timesheet policy. If you only have a weekly limit, choose Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily + Weekly.',
       },
     },
     {
@@ -95,8 +93,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How does “Daily + Weekly” avoid double counting overtime?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once.',
+        text: 'The calculator computes daily overtime and weekly overtime, then uses the larger overtime result as the final overtime amount so overtime is counted once.',
       },
     },
     {
@@ -104,8 +101,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I calculate overtime for split shifts?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule.',
+        text: 'Yes. Split shifts add segments together for the day, subtract the break once, and then apply the overtime rule.',
       },
     },
     {
@@ -121,8 +117,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is night overtime in this calculator?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates.',
+        text: 'Night overtime is a classification of overtime that occurs during your night window. It does not calculate pay rates.',
       },
     },
     {
@@ -130,8 +125,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does this calculator round time the way my employer does?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ.',
+        text: 'It can. Choose the rounding option that matches your policy. If your employer uses a different rounding method, results may differ.',
       },
     },
     {
@@ -139,8 +133,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I set a custom week like Sunday–Saturday or Friday–Thursday?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week.',
+        text: 'Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the rest of your week.',
       },
     },
     {
@@ -156,8 +149,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How are breaks handled in overtime calculations?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Unpaid break minutes are subtracted from total worked time before overtime is calculated. This means breaks reduce your paid hours but do not change when overtime starts.',
+        text: 'Unpaid break minutes are subtracted from total worked time before overtime is calculated. This means breaks reduce your paid hours but do not change when overtime starts.',
       },
     },
   ],
@@ -340,7 +332,10 @@ function setResultSummary({
   setPlaceholder('total-decimal', totalDecimal);
   setPlaceholder('break-minutes', String(breakMinutes));
   setPlaceholder('night-hhmm', nightMinutes !== null ? formatHHMM(nightMinutes) : '—');
-  setPlaceholder('night-ot-hhmm', nightOvertimeMinutes !== null ? formatHHMM(nightOvertimeMinutes) : '—');
+  setPlaceholder(
+    'night-ot-hhmm',
+    nightOvertimeMinutes !== null ? formatHHMM(nightOvertimeMinutes) : '—'
+  );
 }
 
 function updateModeVisibility(mode) {
@@ -601,7 +596,12 @@ function calculateWeekly(helpers) {
     if (!hasAny) {
       return;
     }
-    const segment = buildSegmentsFromInputs(row.startInput, row.endInput, row.nextDayInput, helpers.roundingInterval);
+    const segment = buildSegmentsFromInputs(
+      row.startInput,
+      row.endInput,
+      row.nextDayInput,
+      helpers.roundingInterval
+    );
     if (!segment) {
       dayTotals.push({ error: true });
       return;
@@ -612,11 +612,17 @@ function calculateWeekly(helpers) {
       return;
     }
     const dayTotal = segment.minutes - breakMinutes;
-    let dayNightMinutes = helpers.nightEnabled ? computeNightMinutes([segment], helpers.nightWindow) : 0;
+    let dayNightMinutes = helpers.nightEnabled
+      ? computeNightMinutes([segment], helpers.nightWindow)
+      : 0;
     if (helpers.nightEnabled && segment.minutes > 0 && breakMinutes > 0) {
       dayNightMinutes = Math.round(dayNightMinutes * (dayTotal / segment.minutes));
     }
-    dayTotals.push({ minutes: dayTotal, label: row.label?.textContent ?? 'Day', nightMinutes: dayNightMinutes });
+    dayTotals.push({
+      minutes: dayTotal,
+      label: row.label?.textContent ?? 'Day',
+      nightMinutes: dayNightMinutes,
+    });
     totalMinutes += dayTotal;
     totalBreakMinutes += breakMinutes;
     nightMinutes += dayNightMinutes;
@@ -679,7 +685,9 @@ function calculate({ showErrors = true } = {}) {
   const resolvedStartIndex = Number.isNaN(weekStartIndex) ? 1 : weekStartIndex;
   const weekStartDate = parseDateInput(weekStartDateInput?.value ?? '');
   const weekRangeLabel =
-    mode === 'weekly' && weekStartDate ? buildWeekRangeLabel(weekStartDate, resolvedStartIndex) : '—';
+    mode === 'weekly' && weekStartDate
+      ? buildWeekRangeLabel(weekStartDate, resolvedStartIndex)
+      : '—';
 
   updateWeekLabels();
 

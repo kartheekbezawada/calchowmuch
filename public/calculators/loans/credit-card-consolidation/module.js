@@ -25,14 +25,17 @@ const yearlyTableWrap = document.querySelector('#cc-con-table-yearly-wrap');
 const viewMonthlyButton = document.querySelector('#cc-con-view-monthly');
 const viewYearlyButton = document.querySelector('#cc-con-view-yearly');
 
-const explanationSpans = Array.from(document.querySelectorAll('[data-cc-con]')).reduce((acc, el) => {
-  const key = el.dataset.ccCon;
-  if (!acc[key]) {
-    acc[key] = [];
-  }
-  acc[key].push(el);
-  return acc;
-}, {});
+const explanationSpans = Array.from(document.querySelectorAll('[data-cc-con]')).reduce(
+  (acc, el) => {
+    const key = el.dataset.ccCon;
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(el);
+    return acc;
+  },
+  {}
+);
 
 const INPUT_KEYS = ['balance', 'current-apr', 'current-payment', 'new-apr', 'new-term', 'fees'];
 
@@ -351,8 +354,12 @@ function setInputSpans(values) {
     'current-payment': Number.isFinite(values.currentPayment)
       ? formatAmount(values.currentPayment)
       : '—',
-    'new-apr': Number.isFinite(values.consolidationApr) ? formatPercent(values.consolidationApr) : '—',
-    'new-term': Number.isFinite(values.termYears) ? formatMonths(deriveTermMonths(values.termYears)) : '—',
+    'new-apr': Number.isFinite(values.consolidationApr)
+      ? formatPercent(values.consolidationApr)
+      : '—',
+    'new-term': Number.isFinite(values.termYears)
+      ? formatMonths(deriveTermMonths(values.termYears))
+      : '—',
     fees: Number.isFinite(values.fees) ? formatAmount(values.fees) : '—',
   };
 
@@ -564,7 +571,11 @@ function renderPreviewSummary(data) {
   }
 
   const monthlyDirection =
-    data.monthlyDifference > 0.005 ? 'lower' : data.monthlyDifference < -0.005 ? 'higher' : 'about the same';
+    data.monthlyDifference > 0.005
+      ? 'lower'
+      : data.monthlyDifference < -0.005
+        ? 'higher'
+        : 'about the same';
 
   summaryDiv.innerHTML =
     `<p><strong>Current payoff:</strong> ${formatMonths(data.current.months)}.</p>` +
