@@ -1,11 +1,56 @@
+<style>
+  #calc-simple-interest {
+    width: 100%;
+  }
+
+  #calc-simple-interest .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-simple-interest .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-simple-interest .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-simple-interest .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-simple-interest .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-simple-interest .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-simple-interest .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-simple-interest">
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Simple interest calculator">
         <div class="mtg-form-panel">
           <p class="helper">
-            Calculate total simple interest and ending amount from principal, rate, and
-            time. Adjust the sliders to see results update instantly.
+            Calculate total simple interest and ending amount from principal, rate, and time. Adjust
+            the sliders to see results update instantly.
           </p>
 
           <div class="input-row slider-row">
@@ -13,7 +58,14 @@
               <label for="si-principal">Principal Amount (P)</label>
               <span class="slider-value" id="si-principal-display">10,000</span>
             </div>
-            <input id="si-principal" type="range" value="10000" min="100" max="1000000" step="100" />
+            <input
+              id="si-principal"
+              type="range"
+              value="10000"
+              min="100"
+              max="1000000"
+              step="100"
+            />
           </div>
 
           <div class="input-grid-2-col">
@@ -37,20 +89,54 @@
           <div class="pv-toggle-row">
             <div class="pv-toggle-group">
               <span class="pv-toggle-label">Time Unit</span>
-              <div class="button-group" role="group" aria-label="Time unit" data-button-group="si-time-unit">
-                <button class="calculator-button secondary is-active" type="button" data-value="years"
-                  aria-pressed="true">Years</button>
-                <button class="calculator-button secondary" type="button" data-value="months"
-                  aria-pressed="false">Months</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Time unit"
+                data-button-group="si-time-unit"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
               </div>
             </div>
             <div class="pv-toggle-group">
               <span class="pv-toggle-label">Interest Basis</span>
-              <div class="button-group" role="group" aria-label="Interest basis" data-button-group="si-basis">
-                <button class="calculator-button secondary is-active" type="button" data-value="per-year"
-                  aria-pressed="true">Per Year</button>
-                <button class="calculator-button secondary" type="button" data-value="per-month"
-                  aria-pressed="false">Per Month</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Interest basis"
+                data-button-group="si-basis"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="per-year"
+                  aria-pressed="true"
+                >
+                  Per Year
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="per-month"
+                  aria-pressed="false"
+                >
+                  Per Month
+                </button>
               </div>
             </div>
           </div>
@@ -64,35 +150,39 @@
 
         <aside class="mtg-preview-panel" aria-label="Simple interest result snapshot">
           <div class="mtg-preview-main">
-            <p class="mtg-preview-label">Estimated Ending Amount</p>
-            <div class="result mtg-result-card" id="si-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="si-result-detail" aria-live="polite"></div>
+            <p class="mtg-preview-label">Estimated Total Interest</p>
+            <div class="result mtg-result-card" id="si-result" aria-live="polite">
+              <span class="mtg-result-value">1,800.00</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="si-result-detail" aria-live="polite">
+              <p><strong>Ending amount:</strong> 11,800.00</p>
+            </div>
           </div>
 
           <div class="mtg-snapshot-list">
             <div class="mtg-snapshot-row">
               <span>Principal (P)</span>
-              <strong data-si="snap-principal"></strong>
+              <strong data-si="snap-principal">10,000.00</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Interest Rate</span>
-              <strong data-si="snap-rate"></strong>
+              <strong data-si="snap-rate">6%</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Time Period</span>
-              <strong data-si="snap-time"></strong>
+              <strong data-si="snap-time">3.00 years</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Interest Basis</span>
-              <strong data-si="snap-basis"></strong>
+              <strong data-si="snap-basis">Per Year</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Time in Years</span>
-              <strong data-si="snap-years"></strong>
+              <strong data-si="snap-years">3.00</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Total Interest</span>
-              <strong data-si="snap-interest"></strong>
+              <strong data-si="snap-interest">1,800.00</strong>
             </div>
           </div>
         </aside>

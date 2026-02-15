@@ -1,8 +1,106 @@
+<style>
+  #calc-remortgage-switching {
+    width: 100%;
+  }
+
+  #calc-remortgage-switching .remo-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  #calc-remortgage-switching .remo-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 1rem;
+    align-items: start;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  #calc-remortgage-switching .remo-form-panel {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  #calc-remortgage-switching .remo-section {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  #calc-remortgage-switching .input-grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.25rem;
+  }
+
+  #calc-remortgage-switching .input-row.slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  #calc-remortgage-switching .slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #calc-remortgage-switching .remo-result-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  #calc-remortgage-switching .remo-metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  #calc-remortgage-switching .remo-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  #calc-remortgage-switching .remo-metric--primary {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 900px) {
+    #calc-remortgage-switching .remo-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    #calc-remortgage-switching .remo-metric-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #calc-remortgage-switching .input-grid-2-col {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
 <div id="calc-remortgage-switching">
   <div class="calculator-ui remo-ui">
     <section class="remo-hero" aria-label="Remortgage switching calculator">
       <div class="remo-form-panel">
-
         <section class="remo-section" aria-label="Current Mortgage">
           <div class="input-grid-2-col">
             <!-- Balance -->
@@ -11,7 +109,14 @@
                 <label for="remo-balance">Current Balance</label>
                 <span class="slider-value" id="remo-balance-display">220,000</span>
               </div>
-              <input id="remo-balance" type="range" min="0" max="1000000" step="1000" value="220000" />
+              <input
+                id="remo-balance"
+                type="range"
+                min="0"
+                max="1000000"
+                step="1000"
+                value="220000"
+              />
             </div>
 
             <!-- Rate -->
@@ -20,7 +125,14 @@
                 <label for="remo-current-rate">Current Rate (%)</label>
                 <span class="slider-value" id="remo-current-rate-display">6.00%</span>
               </div>
-              <input id="remo-current-rate" type="range" min="0" max="15" step="0.05" value="6.00" />
+              <input
+                id="remo-current-rate"
+                type="range"
+                min="0"
+                max="15"
+                step="0.05"
+                value="6.00"
+              />
             </div>
 
             <!-- Term -->
@@ -66,7 +178,7 @@
           </div>
         </section>
 
-        <div class="input-row action-row remo-action-row" style="margin-top: 2rem;">
+        <div class="input-row action-row remo-action-row" style="margin-top: 2rem">
           <button class="calculator-button full-width" type="button" id="remo-calculate">
             Calculate Savings
           </button>
@@ -80,30 +192,37 @@
           <!-- Monthly Saving (Primary) -->
           <div class="remo-metric remo-metric--primary">
             <span class="remo-metric__label">Monthly Saving</span>
-            <span class="remo-metric__value" id="remo-metric-monthly" aria-live="polite">—</span>
+            <span class="remo-metric__value" id="remo-metric-monthly" aria-live="polite">124</span>
           </div>
 
           <!-- Annual Saving -->
           <div class="remo-metric">
             <span class="remo-metric__label">Annual Saving</span>
-            <span class="remo-metric__value" id="remo-metric-annual" aria-live="polite">—</span>
+            <span class="remo-metric__value" id="remo-metric-annual" aria-live="polite">1,491</span>
           </div>
 
           <!-- Break Even -->
           <div class="remo-metric">
             <span class="remo-metric__label">Break-Even</span>
-            <span class="remo-metric__value" id="remo-metric-break-even" aria-live="polite">—</span>
+            <span class="remo-metric__value" id="remo-metric-break-even" aria-live="polite"
+              >Month 1</span
+            >
           </div>
 
           <!-- Total Saving -->
           <div class="remo-metric">
             <span class="remo-metric__label">Total Saving</span>
-            <span class="remo-metric__value" id="remo-metric-total" aria-live="polite">—</span>
+            <span class="remo-metric__value" id="remo-metric-total" aria-live="polite">7,455</span>
           </div>
         </div>
 
-        <p class="remo-result-note" id="remo-result-note" aria-live="polite" style="margin-top: 1.5rem;">
-          Press calculate to compared your current and new cost paths.
+        <p
+          class="remo-result-note"
+          id="remo-result-note"
+          aria-live="polite"
+          style="margin-top: 1.5rem"
+        >
+          You save 124/mo by switching.
         </p>
         <div class="remo-error" id="remo-error" aria-live="polite"></div>
       </aside>

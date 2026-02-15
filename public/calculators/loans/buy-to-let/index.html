@@ -1,3 +1,85 @@
+<style>
+  #calc-buy-to-let {
+    width: 100%;
+  }
+
+  #calc-buy-to-let .btl-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 0.78rem;
+  }
+
+  #calc-buy-to-let .btl-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  #calc-buy-to-let .btl-form-panel {
+    display: grid;
+    gap: 0.94rem;
+    align-content: start;
+  }
+
+  #calc-buy-to-let .input-row {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  #calc-buy-to-let .slider-row {
+    gap: 0.52rem;
+  }
+
+  #calc-buy-to-let .slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  #calc-buy-to-let .btl-preview-panel {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  #calc-buy-to-let .btl-preview-main {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  #calc-buy-to-let .btl-result-card {
+    margin: 0;
+    min-height: 64px;
+  }
+
+  #calc-buy-to-let .btl-key-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  #calc-buy-to-let .btl-metric-card {
+    display: grid;
+    gap: 0.2rem;
+    align-content: start;
+    padding: 0.75rem;
+    border-radius: 0.72rem;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-buy-to-let .btl-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-buy-to-let">
   <div class="calculator-ui btl-ui">
     <section class="btl-hero" aria-label="Buy-to-let calculator">
@@ -71,14 +153,7 @@
               <label for="btl-deposit-percent">Deposit Percent (%)</label>
               <span class="slider-value" id="btl-deposit-percent-display">20.0%</span>
             </div>
-            <input
-              id="btl-deposit-percent"
-              type="range"
-              value="20"
-              min="0"
-              max="99.9"
-              step="0.1"
-            />
+            <input id="btl-deposit-percent" type="range" value="20" min="0" max="99.9" step="0.1" />
           </div>
         </div>
 
@@ -330,30 +405,30 @@
         <div class="btl-preview-main">
           <p class="btl-preview-label">Estimated Net Monthly Cashflow</p>
           <div class="result btl-result-card" id="btl-result" aria-live="polite">
-            <span class="btl-hero-value"></span>
+            <span class="btl-hero-value">80.33</span>
           </div>
         </div>
 
         <div class="btl-key-metrics" id="btl-key-metrics" aria-live="polite">
           <div class="btl-metric-card">
             <span class="btl-metric-label">Monthly Mortgage</span>
-            <span class="btl-metric-value" data-btl="mortgage-payment"></span>
+            <span class="btl-metric-value" data-btl="mortgage-payment">916.67</span>
           </div>
           <div class="btl-metric-card">
             <span class="btl-metric-label">Annual Cashflow</span>
-            <span class="btl-metric-value" data-btl="net-annual"></span>
+            <span class="btl-metric-value" data-btl="net-annual">964</span>
           </div>
           <div class="btl-metric-card">
             <span class="btl-metric-label">Gross Yield</span>
-            <span class="btl-metric-value" data-btl="gross-yield"></span>
+            <span class="btl-metric-value" data-btl="gross-yield">6.72%</span>
           </div>
           <div class="btl-metric-card">
             <span class="btl-metric-label">Net Yield</span>
-            <span class="btl-metric-value" data-btl="net-yield"></span>
+            <span class="btl-metric-value" data-btl="net-yield">0.39%</span>
           </div>
           <div class="btl-metric-card">
             <span class="btl-metric-label">Stress Coverage</span>
-            <span class="btl-metric-value" data-btl="stress-coverage"></span>
+            <span class="btl-metric-value" data-btl="stress-coverage">1.45</span>
           </div>
         </div>
       </aside>

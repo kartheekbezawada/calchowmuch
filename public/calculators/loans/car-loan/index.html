@@ -1,11 +1,56 @@
+<style>
+  #calc-car-loan {
+    width: 100%;
+  }
+
+  #calc-car-loan .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-car-loan .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-car-loan .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-car-loan .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-car-loan .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-car-loan .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-car-loan .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-car-loan">
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Car loan calculator">
         <div class="mtg-form-panel">
           <p class="helper">
-            Enter your car loan inputs to estimate monthly EMI, total interest, and total payment
-            in the same premium calculator flow.
+            Enter your car loan inputs to estimate monthly EMI, total interest, and total payment in
+            the same premium calculator flow.
           </p>
 
           <div class="input-row slider-row">
@@ -22,7 +67,14 @@
                 <label id="car-down-value-label" for="car-down-value">Down Payment</label>
                 <span class="slider-value" id="car-down-display">3,000</span>
               </div>
-              <input id="car-down-value" type="range" value="3000" min="0" max="150000" step="100" />
+              <input
+                id="car-down-value"
+                type="range"
+                value="3000"
+                min="0"
+                max="150000"
+                step="100"
+              />
             </div>
 
             <div class="input-row slider-row">
@@ -76,42 +128,52 @@
         <aside class="mtg-preview-panel" aria-label="Car loan scenario snapshot">
           <div class="mtg-preview-main">
             <p class="mtg-preview-label">Estimated Monthly EMI</p>
-            <div class="result mtg-result-card" id="car-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite"></div>
+            <div class="result mtg-result-card" id="car-result" aria-live="polite">
+              <span class="mtg-result-value">507.84</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite">
+              <p><strong>Amount Financed:</strong> 25,955</p>
+              <p><strong>Total Interest:</strong> 4,515.36</p>
+              <p><strong>Total Payment:</strong> 30,470.36</p>
+            </div>
           </div>
 
           <div class="mtg-snapshot-list">
             <div class="mtg-snapshot-row">
               <span>Vehicle Price</span>
-              <strong data-car="price"></strong>
+              <strong data-car="price">28,000</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Down Payment</span>
-              <strong><span data-car="down-payment"></span> (<span data-car="down-percent"></span>)</strong>
+              <strong
+                ><span data-car="down-payment">3,000</span> (<span data-car="down-percent"
+                  >10.71%</span
+                >)</strong
+              >
             </div>
             <div class="mtg-snapshot-row">
               <span>Trade-in Value</span>
-              <strong data-car="trade-in"></strong>
+              <strong data-car="trade-in">1,500</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Dealer Fees</span>
-              <strong data-car="fees"></strong>
+              <strong data-car="fees">600</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Sales Tax</span>
-              <strong data-car="tax"></strong>
+              <strong data-car="tax">1,855</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Amount Financed</span>
-              <strong data-car="amount-financed"></strong>
+              <strong data-car="amount-financed">25,955</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Interest Rate</span>
-              <strong data-car="apr"></strong>
+              <strong data-car="apr">6.5%</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Loan Term</span>
-              <strong data-car="term"></strong>
+              <strong data-car="term">5 years</strong>
             </div>
           </div>
         </aside>

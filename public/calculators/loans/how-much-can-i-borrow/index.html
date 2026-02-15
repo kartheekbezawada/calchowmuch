@@ -1,3 +1,37 @@
+<style>
+  #calc-how-much-can-borrow {
+    width: 100%;
+  }
+
+  #calc-how-much-can-borrow .borrow-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  #calc-how-much-can-borrow .borrow-form-panel {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
+  }
+
+  #calc-how-much-can-borrow .borrow-result-dashboard {
+    min-height: 328px;
+  }
+
+  #calc-how-much-can-borrow .borrow-metric__value {
+    display: inline-block;
+    min-height: 1.5em;
+  }
+
+  @media (max-width: 900px) {
+    #calc-how-much-can-borrow .borrow-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-how-much-can-borrow">
   <div class="calculator-ui borrow-ui">
     <section class="borrow-hero" aria-label="Borrowing power calculator">
@@ -7,7 +41,6 @@
         </p>
 
         <section class="borrow-section" aria-label="Income and outgoings inputs">
-
           <!-- Row 1: Income & Deposit -->
           <div class="input-grid-2-col">
             <div class="input-row slider-row">
@@ -15,7 +48,14 @@
                 <label for="bor-gross-income">Gross Annual Income</label>
                 <span class="slider-value" id="bor-gross-income-display">90,000</span>
               </div>
-              <input id="bor-gross-income" type="range" value="90000" min="0" max="500000" step="1000" />
+              <input
+                id="bor-gross-income"
+                type="range"
+                value="90000"
+                min="0"
+                max="500000"
+                step="1000"
+              />
             </div>
 
             <div class="input-row slider-row">
@@ -68,8 +108,8 @@
           </div>
 
           <!-- Hidden inputs for logic compatibility -->
-          <input type="hidden" id="bor-net-income" value="0">
-          <input type="hidden" id="bor-multiple" value="4.5">
+          <input type="hidden" id="bor-net-income" value="0" />
+          <input type="hidden" id="bor-multiple" value="4.5" />
 
           <div class="borrow-payment-note is-hidden" id="bor-payment-note-row" aria-live="polite">
             <p class="borrow-context-note">
@@ -91,23 +131,33 @@
         <div class="borrow-metric-grid">
           <div class="borrow-metric borrow-metric--primary">
             <span class="borrow-metric__label">Maximum Borrow</span>
-            <span class="borrow-metric__value" id="bor-metric-borrow" aria-live="polite">—</span>
+            <span class="borrow-metric__value" id="bor-metric-borrow" aria-live="polite"
+              >275,400</span
+            >
           </div>
           <div class="borrow-metric borrow-metric--property">
             <span class="borrow-metric__label">Max Property</span>
-            <span class="borrow-metric__value" id="bor-metric-property" aria-live="polite">—</span>
+            <span class="borrow-metric__value" id="bor-metric-property" aria-live="polite"
+              >275,400</span
+            >
           </div>
           <div class="borrow-metric borrow-metric--payment">
             <span class="borrow-metric__label">Est. Monthly</span>
-            <span class="borrow-metric__value" id="bor-metric-payment" aria-live="polite">—</span>
+            <span class="borrow-metric__value" id="bor-metric-payment" aria-live="polite"
+              >1,860</span
+            >
           </div>
           <div class="borrow-metric borrow-metric--disposable">
             <span class="borrow-metric__label">Disposable</span>
-            <span class="borrow-metric__value" id="bor-metric-disposable" aria-live="polite">—</span>
+            <span class="borrow-metric__value" id="bor-metric-disposable" aria-live="polite"
+              >3,600</span
+            >
           </div>
         </div>
 
-        <div class="borrow-constraint-tag" id="bor-constraint" aria-live="polite"></div>
+        <div class="borrow-constraint-tag" id="bor-constraint" aria-live="polite">
+          Limit determined by monthly budget (affordability)
+        </div>
         <div class="borrow-error" id="bor-error" aria-live="polite"></div>
       </aside>
     </section>

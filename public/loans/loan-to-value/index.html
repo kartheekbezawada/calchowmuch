@@ -4,16 +4,25 @@
     <meta charset="utf-8" />
     <title>Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels." />
+    <meta
+      name="description"
+      content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels."
+    />
     <link rel="canonical" href="https://calchowmuch.com/loans/loan-to-value/" />
     <meta property="og:title" content="Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch" />
-    <meta property="og:description" content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels." />
+    <meta
+      property="og:description"
+      content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loans/loan-to-value/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch" />
-    <meta name="twitter:description" content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels." />
+    <meta
+      name="twitter:description"
+      content="Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels."
+    />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
@@ -21,528 +30,931 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
-    <script type="application/ld+json" data-static-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loans/loan-to-value/#webpage","name":"Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch","url":"https://calchowmuch.com/loans/loan-to-value/","description":"Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loans/loan-to-value/#softwareapplication","name":"Loan-to-Value (LTV) Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loans/loan-to-value/","description":"Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Loan-to-value percentage calculator","Loan or deposit input modes","Risk band classification","Target LTV planning table"],"keywords":"loan to value calculator, ltv calculator, mortgage ltv bands, deposit percentage calculator, remortgage ltv","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loans/loan-to-value/#faq","mainEntity":[{"@type":"Question","name":"What is LTV in a mortgage?","acceptedAnswer":{"@type":"Answer","text":"LTV is the loan amount divided by the property value, expressed as a percentage. Example: 280,000 loan on a 350,000 property gives 80% LTV."}},{"@type":"Question","name":"Is lower LTV always better?","acceptedAnswer":{"@type":"Answer","text":"Generally yes. Lower LTV often unlocks better rates and more lender options because the lender is taking less risk."}},{"@type":"Question","name":"How do I reduce my LTV?","acceptedAnswer":{"@type":"Answer","text":"You can reduce LTV by increasing your deposit, paying down the loan balance, or buying at a lower property price."}},{"@type":"Question","name":"What LTV do first-time buyers usually target?","acceptedAnswer":{"@type":"Answer","text":"Many first-time buyers aim for 90% to 95% LTV, but products and pricing usually improve as you move toward 85%, 80%, or lower."}},{"@type":"Question","name":"Does property value change my LTV over time?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the property value rises and your loan stays the same or falls, your LTV improves. If value drops, LTV can worsen."}},{"@type":"Question","name":"What happens above 95% LTV?","acceptedAnswer":{"@type":"Answer","text":"Lending options are usually very limited and rates can be significantly higher. Some lenders may require additional checks or decline entirely."}},{"@type":"Question","name":"Does LTV affect remortgage options?","acceptedAnswer":{"@type":"Answer","text":"Yes. Better LTV bands often give access to stronger remortgage deals. This is why many borrowers monitor LTV before a fixed rate expires."}},{"@type":"Question","name":"Can I use deposit percent instead of amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. This calculator supports both. Enter the deposit as a percentage to quickly test different LTV outcomes across price points."}},{"@type":"Question","name":"Is LTV the only affordability factor?","acceptedAnswer":{"@type":"Answer","text":"No. Lenders also check income, existing debts, credit profile, and monthly affordability. LTV is one major factor, but not the only one."}},{"@type":"Question","name":"How often should I recalculate LTV?","acceptedAnswer":{"@type":"Answer","text":"Recheck whenever your balance changes materially, your property value changes, or you are planning a purchase or remortgage decision."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loans/loan-to-value/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Loan-to-Value (LTV) Calculator","item":"https://calchowmuch.com/loans/loan-to-value/"}]}]}</script>
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+    <script type="application/ld+json" data-static-ld="true">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://calchowmuch.com/#website",
+            "url": "https://calchowmuch.com/",
+            "name": "CalcHowMuch",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://calchowmuch.com/#organization",
+            "name": "CalcHowMuch",
+            "url": "https://calchowmuch.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://calchowmuch.com/loans/loan-to-value/#webpage",
+            "name": "Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch",
+            "url": "https://calchowmuch.com/loans/loan-to-value/",
+            "description": "Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.",
+            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
+            "publisher": { "@id": "https://calchowmuch.com/#organization" },
+            "inLanguage": "en",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://calchowmuch.com/loans/loan-to-value/#softwareapplication",
+            "name": "Loan-to-Value (LTV) Calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "url": "https://calchowmuch.com/loans/loan-to-value/",
+            "description": "Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.",
+            "inLanguage": "en",
+            "provider": { "@id": "https://calchowmuch.com/#organization" },
+            "featureList": [
+              "Loan-to-value percentage calculator",
+              "Loan or deposit input modes",
+              "Risk band classification",
+              "Target LTV planning table"
+            ],
+            "keywords": "loan to value calculator, ltv calculator, mortgage ltv bands, deposit percentage calculator, remortgage ltv",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://calchowmuch.com/loans/loan-to-value/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is LTV in a mortgage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LTV is the loan amount divided by the property value, expressed as a percentage. Example: 280,000 loan on a 350,000 property gives 80% LTV."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is lower LTV always better?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Generally yes. Lower LTV often unlocks better rates and more lender options because the lender is taking less risk."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I reduce my LTV?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can reduce LTV by increasing your deposit, paying down the loan balance, or buying at a lower property price."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What LTV do first-time buyers usually target?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Many first-time buyers aim for 90% to 95% LTV, but products and pricing usually improve as you move toward 85%, 80%, or lower."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does property value change my LTV over time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. If the property value rises and your loan stays the same or falls, your LTV improves. If value drops, LTV can worsen."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens above 95% LTV?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lending options are usually very limited and rates can be significantly higher. Some lenders may require additional checks or decline entirely."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does LTV affect remortgage options?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Better LTV bands often give access to stronger remortgage deals. This is why many borrowers monitor LTV before a fixed rate expires."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use deposit percent instead of amount?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. This calculator supports both. Enter the deposit as a percentage to quickly test different LTV outcomes across price points."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is LTV the only affordability factor?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Lenders also check income, existing debts, credit profile, and monthly affordability. LTV is one major factor, but not the only one."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How often should I recalculate LTV?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Recheck whenever your balance changes materially, your property value changes, or you are planning a purchase or remortgage decision."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://calchowmuch.com/loans/loan-to-value/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://calchowmuch.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Home Loan",
+                "item": "https://calchowmuch.com/loans/home-loan/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Loan-to-Value (LTV) Calculator",
+                "item": "https://calchowmuch.com/loans/loan-to-value/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
     <!-- CHM_ADSENSE_HEAD_START -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
-         crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
+      crossorigin="anonymous"
+    ></script>
     <!-- CHM_ADSENSE_HEAD_END -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="home-loan">
     <div class="page">
       <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-            stroke-linejoin="round">
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loans/home-loan">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-            stroke-linejoin="round">
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input id="global-calculator-search" class="header-search-input" type="search" placeholder="Search calculators…"
-          autocomplete="off" spellcheck="false" />
-      </div>
-    </div>
-  </div>
-</header>
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a><a class="top-nav-link is-active" href="/loans/home-loan"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/loans/car-loan"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance/present-value"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change"><span class="nav-label">Percentage Calculators</span></a></nav>
+        <div class="site-header-inner">
+          <div class="header-left">
+            <a class="brand-logo" href="/" aria-label="Home">
+              <span class="brand-logo-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="4" y="2.5" width="16" height="19" rx="3" />
+                  <line x1="8" y1="6.5" x2="16" y2="6.5" />
+                  <line x1="9" y1="10" x2="9" y2="10.01" />
+                  <line x1="12" y1="10" x2="12" y2="10.01" />
+                  <line x1="15" y1="10" x2="15" y2="10.01" />
+                  <line x1="9" y1="13.5" x2="9" y2="13.51" />
+                  <line x1="12" y1="13.5" x2="12" y2="13.51" />
+                  <line x1="15" y1="13.5" x2="15" y2="13.51" />
+                  <line x1="9" y1="17" x2="9" y2="17.01" />
+                  <line x1="12" y1="17" x2="12" y2="17.01" />
+                  <line x1="15" y1="17" x2="15" y2="17.01" />
+                </svg>
+              </span>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            </button>
+            <div class="brand-block">
+              <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+              <a class="brand-badge" href="/loans/home-loan">
+                <span class="brand-badge-icon" aria-hidden="true">✦</span>
+                <span>Premium Calculator Suite</span>
+              </a>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="header-title">Calculate How Much</div>
+            <div class="header-subtitle">Quick calculations for everyday numbers</div>
+          </div>
+          <div class="header-right" role="search">
+            <label class="sr-only" for="global-calculator-search">Search calculators</label>
+            <div class="header-search">
+              <span class="header-search-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="16.5" y1="16.5" x2="21" y2="21" />
+                </svg>
+              </span>
+              <input
+                id="global-calculator-search"
+                class="header-search-input"
+                type="search"
+                placeholder="Search calculators…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+      <nav class="top-nav" aria-label="Category navigation">
+        <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
+        ><a class="top-nav-link is-active" href="/loans/home-loan"
+          ><span class="nav-icon" aria-hidden="true">🏠</span
+          ><span class="nav-label">Home Loan</span></a
+        ><a class="top-nav-link" href="/loans/credit-card-repayment-payoff"
+          ><span class="nav-icon" aria-hidden="true">💳</span
+          ><span class="nav-label">Credit Cards</span></a
+        ><a class="top-nav-link" href="/loans/car-loan"
+          ><span class="nav-icon" aria-hidden="true">🚗</span
+          ><span class="nav-label">Auto Loans</span></a
+        ><a class="top-nav-link" href="/finance/present-value"
+          ><span class="nav-label">Finance</span></a
+        ><a class="top-nav-link" href="/time-and-date/sleep-time-calculator"
+          ><span class="nav-icon" aria-hidden="true">🕒</span
+          ><span class="nav-label">Time & Date</span></a
+        ><a class="top-nav-link" href="/percentage-calculators/percent-change"
+          ><span class="nav-label">Percentage Calculators</span></a
+        >
+      </nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content">
-<div class="nav-category" data-id="home-loan">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Home</span>
-    <span class="nav-category-indicator">-</span>
-  </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/loans/home-loan">Home Loan</a><a class="nav-item" href="/loans/how-much-can-i-borrow">How Much Can I Borrow</a><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a><a class="nav-item" href="/loans/interest-rate-change-calculator">Interest Rate Change Calculator</a><a class="nav-item is-active" href="/loans/loan-to-value">Loan-to-Value (LTV) Calculator</a>
-  </div>
-</div></div>
+            <div class="nav-category" data-id="home-loan">
+              <button type="button" class="nav-category-toggle" aria-expanded="true">
+                <span class="nav-category-label">Home</span>
+                <span class="nav-category-indicator">-</span>
+              </button>
+              <div class="nav-category-items">
+                <a class="nav-item" href="/loans/home-loan">Home Loan</a
+                ><a class="nav-item" href="/loans/how-much-can-i-borrow">How Much Can I Borrow</a
+                ><a class="nav-item" href="/loans/remortgage-switching">Remortgage / Switching</a
+                ><a class="nav-item" href="/loans/buy-to-let">Buy-to-Let Calculator</a
+                ><a class="nav-item" href="/loans/offset-calculator">Offset Calculator</a
+                ><a class="nav-item" href="/loans/interest-rate-change-calculator"
+                  >Interest Rate Change Calculator</a
+                ><a class="nav-item is-active" href="/loans/loan-to-value"
+                  >Loan-to-Value (LTV) Calculator</a
+                >
+              </div>
+            </div>
+          </div>
         </aside>
         <section class="center-column">
           <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Loan-to-Value (LTV) Calculator</h1>
-  <div class="calculator-page-single">
-    <div id="calc-loan-to-value">
-  <div class="calculator-ui home-loan-ui ltv-ui">
-    <section class="mtg-hero" aria-label="Loan-to-value calculator">
-      <div class="mtg-form-panel">
-        <p class="helper">
-          Set your property value and enter either the loan amount or deposit to instantly see your
-          loan-to-value (LTV) band and lending risk level.
-        </p>
+            <h1 id="calculator-title">Loan-to-Value (LTV) Calculator</h1>
+            <div class="calculator-page-single">
+              <style>
+                .calculator-page-single {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1.25rem;
+                }
 
-        <div class="input-row slider-row">
-          <div class="slider-header">
-            <label for="ltv-property">Property Value</label>
-            <span class="slider-value" id="ltv-property-display">350,000</span>
+                #calc-loan-to-value .is-hidden {
+                  display: none;
+                }
+
+                #calc-loan-to-value .home-loan-ui {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1rem;
+                }
+
+                #calc-loan-to-value .mtg-hero {
+                  display: grid;
+                  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+                  gap: 1.5rem;
+                  align-items: start;
+                  padding: 0;
+                  border: 0;
+                  border-radius: 0;
+                  background: none;
+                }
+
+                #calc-loan-to-value .mtg-form-panel {
+                  display: grid;
+                  gap: 1.65rem;
+                  align-content: start;
+                }
+
+                #calc-loan-to-value .input-row {
+                  margin: 0;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.34rem;
+                  min-width: 0;
+                }
+
+                #calc-loan-to-value .slider-row {
+                  gap: 0.52rem;
+                }
+
+                #calc-loan-to-value .slider-header {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  gap: 0.5rem;
+                }
+
+                #calc-loan-to-value .mtg-action-row .calculator-button {
+                  min-height: 50px;
+                }
+
+                #calc-loan-to-value .mtg-preview-panel {
+                  display: grid;
+                  gap: 1rem;
+                  align-content: start;
+                  padding: 1.15rem;
+                  border-radius: 1.15rem;
+                }
+
+                #calc-loan-to-value .mtg-preview-main {
+                  display: grid;
+                  gap: 0.65rem;
+                  padding: 1rem;
+                  border-radius: 0.95rem;
+                }
+
+                #calc-loan-to-value .mtg-result-card,
+                #calc-loan-to-value .mtg-summary-card {
+                  margin: 0;
+                  padding: 0;
+                  border: 0;
+                }
+
+                #calc-loan-to-value .mtg-summary-card {
+                  min-height: 96px;
+                }
+
+                #calc-loan-to-value .mtg-snapshot-list {
+                  margin: 0;
+                  padding: 0.35rem 0;
+                  display: grid;
+                  gap: 0.1rem;
+                }
+
+                #calc-loan-to-value .mtg-snapshot-row {
+                  display: flex;
+                  align-items: baseline;
+                  justify-content: space-between;
+                  gap: 0.72rem;
+                  padding: 0.55rem 0;
+                }
+
+                #calc-loan-to-value .down-combined-left .button-group {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.2rem;
+                  padding: 3px;
+                  border-radius: 9999px;
+                }
+
+                #calc-loan-to-value .down-combined-left .calculator-button {
+                  min-height: 32px;
+                  padding: 0.36rem 0.72rem;
+                  border-radius: 9999px;
+                }
+
+                @media (max-width: 1220px) {
+                  #calc-loan-to-value .mtg-hero {
+                    grid-template-columns: 1fr;
+                  }
+                }
+
+                @media (max-width: 900px) {
+                  #calc-loan-to-value .advanced-pair {
+                    grid-template-columns: 1fr;
+                  }
+                }
+              </style>
+
+              <div id="calc-loan-to-value">
+                <div class="calculator-ui home-loan-ui ltv-ui">
+                  <section class="mtg-hero" aria-label="Loan-to-value calculator">
+                    <div class="mtg-form-panel">
+                      <p class="helper">
+                        Set your property value and enter either the loan amount or deposit to
+                        instantly see your loan-to-value (LTV) band and lending risk level.
+                      </p>
+
+                      <div class="input-row slider-row">
+                        <div class="slider-header">
+                          <label for="ltv-property">Property Value</label>
+                          <span class="slider-value" id="ltv-property-display">350,000</span>
+                        </div>
+                        <input
+                          id="ltv-property"
+                          type="range"
+                          value="350000"
+                          min="50000"
+                          max="3000000"
+                          step="5000"
+                        />
+                      </div>
+
+                      <div class="input-row down-combined-left">
+                        <label id="ltv-mode-label">Input Mode</label>
+                        <div
+                          class="button-group"
+                          role="group"
+                          aria-labelledby="ltv-mode-label"
+                          data-button-group="ltv-mode"
+                        >
+                          <button
+                            class="calculator-button secondary is-active"
+                            type="button"
+                            data-value="loan"
+                            aria-pressed="true"
+                          >
+                            Loan Amount
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="deposit"
+                            aria-pressed="false"
+                          >
+                            Deposit
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="input-row slider-row" id="ltv-loan-row">
+                        <div class="slider-header">
+                          <label for="ltv-loan">Loan Amount</label>
+                          <span class="slider-value" id="ltv-loan-display">280,000</span>
+                        </div>
+                        <input
+                          id="ltv-loan"
+                          type="range"
+                          value="280000"
+                          min="0"
+                          max="3000000"
+                          step="5000"
+                        />
+                      </div>
+
+                      <div class="input-row down-combined-left is-hidden" id="ltv-deposit-type-row">
+                        <label id="ltv-deposit-type-label">Deposit Type</label>
+                        <div
+                          class="button-group"
+                          role="group"
+                          aria-labelledby="ltv-deposit-type-label"
+                          data-button-group="ltv-deposit-type"
+                        >
+                          <button
+                            class="calculator-button secondary is-active"
+                            type="button"
+                            data-value="amount"
+                            aria-pressed="true"
+                          >
+                            Amount
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="percent"
+                            aria-pressed="false"
+                          >
+                            Percent
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="input-row slider-row is-hidden" id="ltv-deposit-amount-row">
+                        <div class="slider-header">
+                          <label for="ltv-deposit-amount">Deposit Amount</label>
+                          <span class="slider-value" id="ltv-deposit-amount-display">70,000</span>
+                        </div>
+                        <input
+                          id="ltv-deposit-amount"
+                          type="range"
+                          value="70000"
+                          min="0"
+                          max="3000000"
+                          step="5000"
+                        />
+                      </div>
+
+                      <div class="input-row slider-row is-hidden" id="ltv-deposit-percent-row">
+                        <div class="slider-header">
+                          <label for="ltv-deposit-percent">Deposit Percent</label>
+                          <span class="slider-value" id="ltv-deposit-percent-display">20.0%</span>
+                        </div>
+                        <input
+                          id="ltv-deposit-percent"
+                          type="range"
+                          value="20"
+                          min="0"
+                          max="99.9"
+                          step="0.1"
+                        />
+                      </div>
+
+                      <div class="input-row action-row mtg-action-row">
+                        <button
+                          class="calculator-button full-width"
+                          type="button"
+                          id="ltv-calculate"
+                        >
+                          Calculate LTV
+                        </button>
+                      </div>
+                    </div>
+
+                    <aside class="mtg-preview-panel" aria-label="LTV snapshot">
+                      <div class="mtg-preview-main">
+                        <p class="mtg-preview-label">Current LTV Position</p>
+                        <div class="result mtg-result-card" id="ltv-result" aria-live="polite">
+                          <strong>Current LTV</strong>
+                          <span class="mtg-result-value ltv-result-value">80%</span>
+                        </div>
+                        <div
+                          class="result-detail mtg-summary-card"
+                          id="ltv-summary"
+                          aria-live="polite"
+                        >
+                          <p><strong>Band:</strong> Up to 80%</p>
+                          <p><strong>Risk Level:</strong> Moderate</p>
+                          <p>You are within a commonly available LTV range.</p>
+                        </div>
+                      </div>
+
+                      <div class="mtg-snapshot-list">
+                        <div class="mtg-snapshot-row">
+                          <span>Property Value</span>
+                          <strong data-ltv="snapshot-property">350,000</strong>
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>Loan Amount</span>
+                          <strong data-ltv="snapshot-loan">280,000</strong>
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>Deposit</span>
+                          <strong
+                            ><span data-ltv="snapshot-deposit">70,000</span> (<span
+                              data-ltv="snapshot-deposit-percent"
+                              >20%</span
+                            >)</strong
+                          >
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>LTV</span>
+                          <strong data-ltv="snapshot-ltv">80%</strong>
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>Band</span>
+                          <strong data-ltv="snapshot-bucket">Up to 80%</strong>
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>Risk Level</span>
+                          <strong
+                            ><span
+                              class="ltv-risk-pill"
+                              data-ltv="snapshot-risk"
+                              data-tone="moderate"
+                              >Moderate</span
+                            ></strong
+                          >
+                        </div>
+                        <div class="mtg-snapshot-row">
+                          <span>Status</span>
+                          <strong
+                            ><span class="ltv-status-pill" data-ltv="snapshot-high-risk"
+                              >Within Typical Range</span
+                            ></strong
+                          >
+                        </div>
+                      </div>
+                    </aside>
+                  </section>
+                </div>
+              </div>
+
+              <style>
+                @import url('/calculators/loans/loan-to-value/calculator.css');
+              </style>
+
+              <div id="loan-ltv-explanation">
+                <h2>Loan-to-Value (LTV) Calculator</h2>
+                <p>
+                  Loan-to-value (LTV) compares your loan amount to the property value. It is one of
+                  the key metrics lenders use to price risk and decide which mortgage products you
+                  can access.
+                </p>
+                <p>
+                  Lower LTV usually means better rates and wider lender choice. Use this calculator
+                  to test different deposit or loan combinations and see where you land in typical
+                  lending bands.
+                </p>
+
+                <section class="mtg-exp-section mtg-exp-section--lifetime">
+                  <div class="mtg-lifetime-header">
+                    <h3>Funding Split</h3>
+                  </div>
+                  <div class="mtg-lifetime-visual">
+                    <div
+                      class="mtg-lifetime-donut"
+                      data-ltv="share-donut"
+                      style="--principal-share: 80%"
+                      role="img"
+                      aria-label="Loan share versus equity share"
+                    ></div>
+                    <div class="mtg-lifetime-legend">
+                      <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+                        <span>Loan Share</span>
+                        <strong data-ltv="loan-share">80%</strong>
+                      </div>
+                      <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+                        <span>Deposit / Equity Share</span>
+                        <strong data-ltv="equity-share">20%</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mtg-lifetime-grid">
+                    <article class="mtg-lifetime-card">
+                      <span>Property Value</span>
+                      <strong data-ltv="property">350,000</strong>
+                    </article>
+                    <article class="mtg-lifetime-card">
+                      <span>Loan Amount</span>
+                      <strong data-ltv="loan">280,000</strong>
+                    </article>
+                    <article class="mtg-lifetime-card">
+                      <span>Deposit Needed</span>
+                      <strong data-ltv="deposit">70,000</strong>
+                    </article>
+                  </div>
+                  <p class="mtg-lifetime-summary" data-ltv="lifetime-summary">
+                    At 80% LTV, 20% of the property value is funded by deposit/equity. Common
+                    mortgage band with balanced pricing and access.
+                  </p>
+                </section>
+
+                <section class="mtg-exp-section mtg-exp-section--amortization">
+                  <div class="amortization-header">
+                    <h3>LTV Bands and Targets</h3>
+                    <div
+                      class="table-view-toggle"
+                      role="group"
+                      aria-label="LTV table view"
+                      data-button-group="ltv-table-view"
+                    >
+                      <button
+                        class="calculator-button secondary is-active"
+                        type="button"
+                        data-value="bands"
+                        id="ltv-view-bands"
+                      >
+                        Market Bands
+                      </button>
+                      <button
+                        class="calculator-button secondary"
+                        type="button"
+                        data-value="targets"
+                        id="ltv-view-targets"
+                      >
+                        Deposit Targets
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="table-scroll" id="ltv-table-bands-wrap" tabindex="0">
+                    <table class="calculator-table" id="ltv-table-bands">
+                      <thead>
+                        <tr>
+                          <th scope="col">LTV Band</th>
+                          <th scope="col">Availability</th>
+                          <th scope="col">Risk</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="ltv-band-row" data-band-key="up-to-60">
+                          <td>60% or lower</td>
+                          <td>Best availability and pricing</td>
+                          <td>Lowest risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="up-to-75">
+                          <td>Up to 75%</td>
+                          <td>Strong availability</td>
+                          <td>Low risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="up-to-80">
+                          <td>Up to 80%</td>
+                          <td>Common range for many products</td>
+                          <td>Moderate risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="up-to-85">
+                          <td>Up to 85%</td>
+                          <td>More limited product set</td>
+                          <td>Elevated risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="up-to-90">
+                          <td>Up to 90%</td>
+                          <td>Limited options and tighter checks</td>
+                          <td>High risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="up-to-95">
+                          <td>Up to 95%</td>
+                          <td>Restricted availability</td>
+                          <td>Very high risk</td>
+                        </tr>
+                        <tr class="ltv-band-row" data-band-key="above-95">
+                          <td>Above 95%</td>
+                          <td>Rare availability</td>
+                          <td>Highest risk</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="table-scroll is-hidden" id="ltv-table-targets-wrap" tabindex="0">
+                    <table class="calculator-table" id="ltv-table-targets">
+                      <thead>
+                        <tr>
+                          <th scope="col">Target LTV</th>
+                          <th scope="col">Required Deposit</th>
+                          <th scope="col">Extra Deposit Needed</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="ltv-target-body"></tbody>
+                    </table>
+                  </div>
+
+                  <p class="ltv-band-marker" data-ltv="band-marker">
+                    Current position: 80% (Up to 80%). Common mortgage band with balanced pricing
+                    and access.
+                  </p>
+                </section>
+
+                <section class="mtg-exp-section mtg-exp-section--faq">
+                  <h3>Frequently Asked Questions</h3>
+                  <div class="bor-faq-grid">
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">01</span>
+                      <h4>What is LTV in a mortgage?</h4>
+                      <p>
+                        LTV is the loan amount divided by the property value, expressed as a
+                        percentage. Example: 280,000 loan on a 350,000 property gives 80% LTV.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">02</span>
+                      <h4>Is lower LTV always better?</h4>
+                      <p>
+                        Generally yes. Lower LTV often unlocks better rates and more lender options
+                        because the lender is taking less risk.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">03</span>
+                      <h4>How do I reduce my LTV?</h4>
+                      <p>
+                        You can reduce LTV by increasing your deposit, paying down the loan balance,
+                        or buying at a lower property price.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">04</span>
+                      <h4>What LTV do first-time buyers usually target?</h4>
+                      <p>
+                        Many first-time buyers aim for 90% to 95% LTV, but products and pricing
+                        usually improve as you move toward 85%, 80%, or lower.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">05</span>
+                      <h4>Does property value change my LTV over time?</h4>
+                      <p>
+                        Yes. If the property value rises and your loan stays the same or falls, your
+                        LTV improves. If value drops, LTV can worsen.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">06</span>
+                      <h4>What happens above 95% LTV?</h4>
+                      <p>
+                        Lending options are usually very limited and rates can be significantly
+                        higher. Some lenders may require additional checks or decline entirely.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">07</span>
+                      <h4>Does LTV affect remortgage options?</h4>
+                      <p>
+                        Yes. Better LTV bands often give access to stronger remortgage deals. This
+                        is why many borrowers monitor LTV before a fixed rate expires.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">08</span>
+                      <h4>Can I use deposit percent instead of amount?</h4>
+                      <p>
+                        Yes. This calculator supports both. Enter the deposit as a percentage to
+                        quickly test different LTV outcomes across price points.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">09</span>
+                      <h4>Is LTV the only affordability factor?</h4>
+                      <p>
+                        No. Lenders also check income, existing debts, credit profile, and monthly
+                        affordability. LTV is one major factor, but not the only one.
+                      </p>
+                    </div>
+
+                    <div class="bor-faq-card">
+                      <span class="bor-faq-number">10</span>
+                      <h4>How often should I recalculate LTV?</h4>
+                      <p>
+                        Recheck whenever your balance changes materially, your property value
+                        changes, or you are planning a purchase or remortgage decision.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
           </div>
-          <input
-            id="ltv-property"
-            type="range"
-            value="350000"
-            min="50000"
-            max="3000000"
-            step="5000"
-          />
-        </div>
-
-        <div class="input-row down-combined-left">
-          <label id="ltv-mode-label">Input Mode</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="ltv-mode-label"
-            data-button-group="ltv-mode"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="loan"
-              aria-pressed="true"
-            >
-              Loan Amount
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="deposit"
-              aria-pressed="false"
-            >
-              Deposit
-            </button>
-          </div>
-        </div>
-
-        <div class="input-row slider-row" id="ltv-loan-row">
-          <div class="slider-header">
-            <label for="ltv-loan">Loan Amount</label>
-            <span class="slider-value" id="ltv-loan-display">280,000</span>
-          </div>
-          <input id="ltv-loan" type="range" value="280000" min="0" max="3000000" step="5000" />
-        </div>
-
-        <div class="input-row down-combined-left is-hidden" id="ltv-deposit-type-row">
-          <label id="ltv-deposit-type-label">Deposit Type</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="ltv-deposit-type-label"
-            data-button-group="ltv-deposit-type"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="amount"
-              aria-pressed="true"
-            >
-              Amount
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="percent"
-              aria-pressed="false"
-            >
-              Percent
-            </button>
-          </div>
-        </div>
-
-        <div class="input-row slider-row is-hidden" id="ltv-deposit-amount-row">
-          <div class="slider-header">
-            <label for="ltv-deposit-amount">Deposit Amount</label>
-            <span class="slider-value" id="ltv-deposit-amount-display">70,000</span>
-          </div>
-          <input
-            id="ltv-deposit-amount"
-            type="range"
-            value="70000"
-            min="0"
-            max="3000000"
-            step="5000"
-          />
-        </div>
-
-        <div class="input-row slider-row is-hidden" id="ltv-deposit-percent-row">
-          <div class="slider-header">
-            <label for="ltv-deposit-percent">Deposit Percent</label>
-            <span class="slider-value" id="ltv-deposit-percent-display">20.0%</span>
-          </div>
-          <input id="ltv-deposit-percent" type="range" value="20" min="0" max="99.9" step="0.1" />
-        </div>
-
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="ltv-calculate">
-            Calculate LTV
-          </button>
-        </div>
-      </div>
-
-      <aside class="mtg-preview-panel" aria-label="LTV snapshot">
-        <div class="mtg-preview-main">
-          <p class="mtg-preview-label">Current LTV Position</p>
-          <div class="result mtg-result-card" id="ltv-result" aria-live="polite"></div>
-          <div class="result-detail mtg-summary-card" id="ltv-summary" aria-live="polite"></div>
-        </div>
-
-        <div class="mtg-snapshot-list">
-          <div class="mtg-snapshot-row">
-            <span>Property Value</span>
-            <strong data-ltv="snapshot-property"></strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Loan Amount</span>
-            <strong data-ltv="snapshot-loan"></strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Deposit</span>
-            <strong
-              ><span data-ltv="snapshot-deposit"></span> (<span
-                data-ltv="snapshot-deposit-percent"
-              ></span
-              >)</strong
-            >
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>LTV</span>
-            <strong data-ltv="snapshot-ltv"></strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Band</span>
-            <strong data-ltv="snapshot-bucket"></strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Risk Level</span>
-            <strong><span class="ltv-risk-pill" data-ltv="snapshot-risk"></span></strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Status</span>
-            <strong><span class="ltv-status-pill" data-ltv="snapshot-high-risk"></span></strong>
-          </div>
-        </div>
-      </aside>
-    </section>
-  </div>
-</div>
-
-<style>
-  @import url('/calculators/loans/loan-to-value/calculator.css');
-</style>
-
-    <div id="loan-ltv-explanation">
-  <h2>Loan-to-Value (LTV) Calculator</h2>
-  <p>
-    Loan-to-value (LTV) compares your loan amount to the property value. It is one of the key
-    metrics lenders use to price risk and decide which mortgage products you can access.
-  </p>
-  <p>
-    Lower LTV usually means better rates and wider lender choice. Use this calculator to test
-    different deposit or loan combinations and see where you land in typical lending bands.
-  </p>
-
-  <section class="mtg-exp-section mtg-exp-section--lifetime">
-    <div class="mtg-lifetime-header">
-      <h3>Funding Split</h3>
-    </div>
-    <div class="mtg-lifetime-visual">
-      <div
-        class="mtg-lifetime-donut"
-        data-ltv="share-donut"
-        role="img"
-        aria-label="Loan share versus equity share"
-      ></div>
-      <div class="mtg-lifetime-legend">
-        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
-          <span>Loan Share</span>
-          <strong data-ltv="loan-share"></strong>
-        </div>
-        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
-          <span>Deposit / Equity Share</span>
-          <strong data-ltv="equity-share"></strong>
-        </div>
-      </div>
-    </div>
-    <div class="mtg-lifetime-grid">
-      <article class="mtg-lifetime-card">
-        <span>Property Value</span>
-        <strong data-ltv="property"></strong>
-      </article>
-      <article class="mtg-lifetime-card">
-        <span>Loan Amount</span>
-        <strong data-ltv="loan"></strong>
-      </article>
-      <article class="mtg-lifetime-card">
-        <span>Deposit Needed</span>
-        <strong data-ltv="deposit"></strong>
-      </article>
-    </div>
-    <p class="mtg-lifetime-summary" data-ltv="lifetime-summary"></p>
-  </section>
-
-  <section class="mtg-exp-section mtg-exp-section--amortization">
-    <div class="amortization-header">
-      <h3>LTV Bands and Targets</h3>
-      <div
-        class="table-view-toggle"
-        role="group"
-        aria-label="LTV table view"
-        data-button-group="ltv-table-view"
-      >
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="bands"
-          id="ltv-view-bands"
-        >
-          Market Bands
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="targets"
-          id="ltv-view-targets"
-        >
-          Deposit Targets
-        </button>
-      </div>
-    </div>
-
-    <div class="table-scroll" id="ltv-table-bands-wrap" tabindex="0">
-      <table class="calculator-table" id="ltv-table-bands">
-        <thead>
-          <tr>
-            <th scope="col">LTV Band</th>
-            <th scope="col">Availability</th>
-            <th scope="col">Risk</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ltv-band-row" data-band-key="up-to-60">
-            <td>60% or lower</td>
-            <td>Best availability and pricing</td>
-            <td>Lowest risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="up-to-75">
-            <td>Up to 75%</td>
-            <td>Strong availability</td>
-            <td>Low risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="up-to-80">
-            <td>Up to 80%</td>
-            <td>Common range for many products</td>
-            <td>Moderate risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="up-to-85">
-            <td>Up to 85%</td>
-            <td>More limited product set</td>
-            <td>Elevated risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="up-to-90">
-            <td>Up to 90%</td>
-            <td>Limited options and tighter checks</td>
-            <td>High risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="up-to-95">
-            <td>Up to 95%</td>
-            <td>Restricted availability</td>
-            <td>Very high risk</td>
-          </tr>
-          <tr class="ltv-band-row" data-band-key="above-95">
-            <td>Above 95%</td>
-            <td>Rare availability</td>
-            <td>Highest risk</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-scroll is-hidden" id="ltv-table-targets-wrap" tabindex="0">
-      <table class="calculator-table" id="ltv-table-targets">
-        <thead>
-          <tr>
-            <th scope="col">Target LTV</th>
-            <th scope="col">Required Deposit</th>
-            <th scope="col">Extra Deposit Needed</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody id="ltv-target-body"></tbody>
-      </table>
-    </div>
-
-    <p class="ltv-band-marker" data-ltv="band-marker"></p>
-  </section>
-
-  <section class="mtg-exp-section mtg-exp-section--faq">
-    <h3>Frequently Asked Questions</h3>
-    <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
-        <h4>What is LTV in a mortgage?</h4>
-        <p>
-          LTV is the loan amount divided by the property value, expressed as a percentage. Example:
-          280,000 loan on a 350,000 property gives 80% LTV.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
-        <h4>Is lower LTV always better?</h4>
-        <p>
-          Generally yes. Lower LTV often unlocks better rates and more lender options because the
-          lender is taking less risk.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>How do I reduce my LTV?</h4>
-        <p>
-          You can reduce LTV by increasing your deposit, paying down the loan balance, or buying at
-          a lower property price.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
-        <h4>What LTV do first-time buyers usually target?</h4>
-        <p>
-          Many first-time buyers aim for 90% to 95% LTV, but products and pricing usually improve as
-          you move toward 85%, 80%, or lower.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>Does property value change my LTV over time?</h4>
-        <p>
-          Yes. If the property value rises and your loan stays the same or falls, your LTV improves.
-          If value drops, LTV can worsen.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
-        <h4>What happens above 95% LTV?</h4>
-        <p>
-          Lending options are usually very limited and rates can be significantly higher. Some
-          lenders may require additional checks or decline entirely.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>Does LTV affect remortgage options?</h4>
-        <p>
-          Yes. Better LTV bands often give access to stronger remortgage deals. This is why many
-          borrowers monitor LTV before a fixed rate expires.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>Can I use deposit percent instead of amount?</h4>
-        <p>
-          Yes. This calculator supports both. Enter the deposit as a percentage to quickly test
-          different LTV outcomes across price points.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
-        <h4>Is LTV the only affordability factor?</h4>
-        <p>
-          No. Lenders also check income, existing debts, credit profile, and monthly affordability.
-          LTV is one major factor, but not the only one.
-        </p>
-      </div>
-
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
-        <h4>How often should I recalculate LTV?</h4>
-        <p>
-          Recheck whenever your balance changes materially, your property value changes, or you are
-          planning a purchase or remortgage decision.
-        </p>
-      </div>
-    </div>
-  </section>
-</div>
-
-  </div>
-</div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">
           <div class="ad-panel">
             <!-- CHM_AD_SLOT_START -->
             <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <ins
+              class="adsbygoogle"
+              style="display: block"
+              data-ad-client="ca-pub-1063975431106361"
+              data-ad-slot="3901083802"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+              (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
             <!-- CHM_AD_SLOT_END -->
           </div>
         </section>
       </main>
       <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faqs/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap/">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
-</footer>
-
+        <a href="/privacy/">Privacy</a>
+        <span class="footer-divider">|</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <span class="footer-divider">|</span>
+        <a href="/contact-us/">Contact</a>
+        <span class="footer-divider">|</span>
+        <a href="/faqs/">FAQs</a>
+        <span class="footer-divider">|</span>
+        <a href="/sitemap/">Sitemap</a>
+        <span class="footer-divider">|</span>
+        <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      </footer>
     </div>
     <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/loans/loan-to-value/module.js"></script>
