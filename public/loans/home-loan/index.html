@@ -689,55 +689,57 @@
                     <aside class="mtg-preview-panel" aria-label="Mortgage scenario snapshot">
                       <div class="mtg-preview-main">
                         <p class="mtg-preview-label">Estimated Monthly Payment</p>
-                        <div
-                          class="result mtg-result-card"
-                          id="mtg-result"
-                          aria-live="polite"
-                        ></div>
+                        <div class="result mtg-result-card" id="mtg-result" aria-live="polite">
+                          <strong>Monthly Payment (Principal + Interest)</strong>
+                          <span class="mtg-result-value">2,022.62</span>
+                        </div>
                         <div
                           class="result-detail mtg-summary-card"
                           id="mtg-summary"
                           aria-live="polite"
-                        ></div>
+                        >
+                          <p><strong>Payoff with extras:</strong> 30 years.</p>
+                          <p>No extra payment applied.</p>
+                        </div>
                       </div>
 
                       <div class="mtg-snapshot-list">
                         <div class="mtg-snapshot-row">
                           <span>Home Price</span>
-                          <strong data-mtg="price"></strong>
+                          <strong data-mtg="price">400,000</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Down Payment</span>
                           <strong
-                            ><span data-mtg="down-payment"></span> (<span
+                            ><span data-mtg="down-payment">80,000</span> (<span
                               data-mtg="down-percent"
-                            ></span
+                              >20%</span
                             >)</strong
                           >
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Loan Amount</span>
-                          <strong data-mtg="loan-amount"></strong>
+                          <strong data-mtg="loan-amount">320,000</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Interest Rate</span>
-                          <strong data-mtg="rate"></strong>
+                          <strong data-mtg="rate">6.5%</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Loan Term</span>
-                          <strong data-mtg="term"></strong>
+                          <strong data-mtg="term">30 years</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Extra Monthly</span>
-                          <strong data-mtg="extra-monthly"></strong>
+                          <strong data-mtg="extra-monthly">None</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Lump Sum</span>
-                          <strong data-mtg="lump-sum"></strong>
+                          <strong data-mtg="lump-sum">None</strong>
                         </div>
                         <div class="mtg-snapshot-row">
                           <span>Taxes + Insurance</span>
-                          <strong data-mtg="escrow"></strong>
+                          <strong data-mtg="escrow">None</strong>
                         </div>
                       </div>
                     </aside>

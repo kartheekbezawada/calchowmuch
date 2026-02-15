@@ -1,3 +1,126 @@
+<style>
+  #calc-interest-rate-change {
+    width: 100%;
+  }
+
+  #calc-interest-rate-change .is-hidden {
+    display: none;
+  }
+
+  #calc-interest-rate-change .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-interest-rate-change .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  #calc-interest-rate-change .mtg-form-panel {
+    display: grid;
+    gap: 1.65rem;
+    align-content: start;
+  }
+
+  #calc-interest-rate-change .input-row {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.34rem;
+    min-width: 0;
+  }
+
+  #calc-interest-rate-change .slider-row {
+    gap: 0.52rem;
+  }
+
+  #calc-interest-rate-change .slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  #calc-interest-rate-change .mtg-action-row .calculator-button {
+    min-height: 50px;
+  }
+
+  #calc-interest-rate-change .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.15rem;
+    border-radius: 1.15rem;
+  }
+
+  #calc-interest-rate-change .mtg-preview-main {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1rem;
+    border-radius: 0.95rem;
+  }
+
+  #calc-interest-rate-change .mtg-result-card,
+  #calc-interest-rate-change .mtg-summary-card {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #calc-interest-rate-change .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  #calc-interest-rate-change .mtg-snapshot-list {
+    margin: 0;
+    padding: 0.35rem 0;
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  #calc-interest-rate-change .mtg-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.72rem;
+    padding: 0.55rem 0;
+  }
+
+  #calc-interest-rate-change .down-combined-left .button-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 3px;
+    border-radius: 9999px;
+  }
+
+  #calc-interest-rate-change .down-combined-left .calculator-button {
+    min-height: 32px;
+    padding: 0.36rem 0.72rem;
+    border-radius: 9999px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-interest-rate-change .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #calc-interest-rate-change .advanced-pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-interest-rate-change">
   <div class="calculator-ui home-loan-ui">
     <section class="mtg-hero" aria-label="Interest rate change calculator">
@@ -11,7 +134,14 @@
             <label for="rate-balance">Loan Balance</label>
             <span class="slider-value" id="rate-balance-display">250,000</span>
           </div>
-          <input id="rate-balance" type="range" value="250000" min="10000" max="2000000" step="5000" />
+          <input
+            id="rate-balance"
+            type="range"
+            value="250000"
+            min="10000"
+            max="2000000"
+            step="5000"
+          />
         </div>
 
         <div class="input-row slider-row">
@@ -54,7 +184,12 @@
             >
               Apply Immediately
             </button>
-            <button class="calculator-button secondary" type="button" data-value="after" aria-pressed="false">
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="after"
+              aria-pressed="false"
+            >
               After X Months
             </button>
           </div>
@@ -78,42 +213,50 @@
       <aside class="mtg-preview-panel" aria-label="Rate change scenario snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Updated Monthly Payment</p>
-          <div class="result mtg-result-card" id="rate-result" aria-live="polite"></div>
-          <div class="result-detail mtg-summary-card" id="rate-summary" aria-live="polite"></div>
+          <div class="result mtg-result-card" id="rate-result" aria-live="polite">
+            <strong>New Monthly Payment</strong>
+            <span class="mtg-result-value">1,688.02</span>
+            <p class="mtg-result-sub">Baseline payment: 1,461.48</p>
+          </div>
+          <div class="result-detail mtg-summary-card" id="rate-summary" aria-live="polite">
+            <p><strong>Monthly difference:</strong> 226.54</p>
+            <p><strong>Annual difference:</strong> 2,718.51</p>
+            <p><strong>Total interest change:</strong> 67,962.84</p>
+          </div>
         </div>
 
         <div class="mtg-snapshot-list">
           <div class="mtg-snapshot-row">
             <span>Current Payment</span>
-            <strong data-rate="snap-current-payment"></strong>
+            <strong data-rate="snap-current-payment">1,461.48</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>New Payment</span>
-            <strong data-rate="snap-new-payment"></strong>
+            <strong data-rate="snap-new-payment">1,688.02</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Monthly Difference</span>
-            <strong data-rate="snap-monthly-diff"></strong>
+            <strong data-rate="snap-monthly-diff">226.54</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Annual Difference</span>
-            <strong data-rate="snap-annual-diff"></strong>
+            <strong data-rate="snap-annual-diff">2,718.51</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Baseline Interest</span>
-            <strong data-rate="snap-interest-base"></strong>
+            <strong data-rate="snap-interest-base">188,442.53</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>New Interest</span>
-            <strong data-rate="snap-interest-new"></strong>
+            <strong data-rate="snap-interest-new">256,405.37</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Interest Change</span>
-            <strong data-rate="snap-interest-change"></strong>
+            <strong data-rate="snap-interest-change">67,962.84</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Timing</span>
-            <strong data-rate="snap-timing"></strong>
+            <strong data-rate="snap-timing">Apply Immediately</strong>
           </div>
         </div>
       </aside>

@@ -1,3 +1,128 @@
+<style>
+  .calculator-page-single {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  #calc-loan-to-value .is-hidden {
+    display: none;
+  }
+
+  #calc-loan-to-value .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-loan-to-value .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  #calc-loan-to-value .mtg-form-panel {
+    display: grid;
+    gap: 1.65rem;
+    align-content: start;
+  }
+
+  #calc-loan-to-value .input-row {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.34rem;
+    min-width: 0;
+  }
+
+  #calc-loan-to-value .slider-row {
+    gap: 0.52rem;
+  }
+
+  #calc-loan-to-value .slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  #calc-loan-to-value .mtg-action-row .calculator-button {
+    min-height: 50px;
+  }
+
+  #calc-loan-to-value .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.15rem;
+    border-radius: 1.15rem;
+  }
+
+  #calc-loan-to-value .mtg-preview-main {
+    display: grid;
+    gap: 0.65rem;
+    padding: 1rem;
+    border-radius: 0.95rem;
+  }
+
+  #calc-loan-to-value .mtg-result-card,
+  #calc-loan-to-value .mtg-summary-card {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #calc-loan-to-value .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  #calc-loan-to-value .mtg-snapshot-list {
+    margin: 0;
+    padding: 0.35rem 0;
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  #calc-loan-to-value .mtg-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.72rem;
+    padding: 0.55rem 0;
+  }
+
+  #calc-loan-to-value .down-combined-left .button-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 3px;
+    border-radius: 9999px;
+  }
+
+  #calc-loan-to-value .down-combined-left .calculator-button {
+    min-height: 32px;
+    padding: 0.36rem 0.72rem;
+    border-radius: 9999px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-loan-to-value .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #calc-loan-to-value .advanced-pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-loan-to-value">
   <div class="calculator-ui home-loan-ui ltv-ui">
     <section class="mtg-hero" aria-label="Loan-to-value calculator">
@@ -117,43 +242,58 @@
       <aside class="mtg-preview-panel" aria-label="LTV snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Current LTV Position</p>
-          <div class="result mtg-result-card" id="ltv-result" aria-live="polite"></div>
-          <div class="result-detail mtg-summary-card" id="ltv-summary" aria-live="polite"></div>
+          <div class="result mtg-result-card" id="ltv-result" aria-live="polite">
+            <strong>Current LTV</strong>
+            <span class="mtg-result-value ltv-result-value">80%</span>
+          </div>
+          <div class="result-detail mtg-summary-card" id="ltv-summary" aria-live="polite">
+            <p><strong>Band:</strong> Up to 80%</p>
+            <p><strong>Risk Level:</strong> Moderate</p>
+            <p>You are within a commonly available LTV range.</p>
+          </div>
         </div>
 
         <div class="mtg-snapshot-list">
           <div class="mtg-snapshot-row">
             <span>Property Value</span>
-            <strong data-ltv="snapshot-property"></strong>
+            <strong data-ltv="snapshot-property">350,000</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Loan Amount</span>
-            <strong data-ltv="snapshot-loan"></strong>
+            <strong data-ltv="snapshot-loan">280,000</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Deposit</span>
             <strong
-              ><span data-ltv="snapshot-deposit"></span> (<span
+              ><span data-ltv="snapshot-deposit">70,000</span> (<span
                 data-ltv="snapshot-deposit-percent"
-              ></span
+                >20%</span
               >)</strong
             >
           </div>
           <div class="mtg-snapshot-row">
             <span>LTV</span>
-            <strong data-ltv="snapshot-ltv"></strong>
+            <strong data-ltv="snapshot-ltv">80%</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Band</span>
-            <strong data-ltv="snapshot-bucket"></strong>
+            <strong data-ltv="snapshot-bucket">Up to 80%</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Risk Level</span>
-            <strong><span class="ltv-risk-pill" data-ltv="snapshot-risk"></span></strong>
+            <strong
+              ><span class="ltv-risk-pill" data-ltv="snapshot-risk" data-tone="moderate"
+                >Moderate</span
+              ></strong
+            >
           </div>
           <div class="mtg-snapshot-row">
             <span>Status</span>
-            <strong><span class="ltv-status-pill" data-ltv="snapshot-high-risk"></span></strong>
+            <strong
+              ><span class="ltv-status-pill" data-ltv="snapshot-high-risk"
+                >Within Typical Range</span
+              ></strong
+            >
           </div>
         </div>
       </aside>

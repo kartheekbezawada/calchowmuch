@@ -1,3 +1,48 @@
+<style>
+  #calc-lease {
+    width: 100%;
+  }
+
+  #calc-lease .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-lease .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-lease .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-lease .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-lease .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-lease .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-lease .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <div id="calc-lease">
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
@@ -45,10 +90,19 @@
 
           <div class="input-row slider-row">
             <div class="slider-header">
-              <label id="lease-residual-value-label" for="lease-residual-value">Residual Amount</label>
+              <label id="lease-residual-value-label" for="lease-residual-value"
+                >Residual Amount</label
+              >
               <span class="slider-value" id="lease-residual-display">15,000</span>
             </div>
-            <input id="lease-residual-value" type="range" value="15000" min="0" max="150000" step="100" />
+            <input
+              id="lease-residual-value"
+              type="range"
+              value="15000"
+              min="0"
+              max="150000"
+              step="100"
+            />
           </div>
 
           <div class="input-row down-combined-left">
@@ -112,42 +166,52 @@
         <aside class="mtg-preview-panel" aria-label="Lease scenario snapshot">
           <div class="mtg-preview-main">
             <p class="mtg-preview-label">Estimated Monthly Lease Payment</p>
-            <div class="result mtg-result-card" id="lease-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="lease-summary" aria-live="polite"></div>
+            <div class="result mtg-result-card" id="lease-result" aria-live="polite">
+              <span class="mtg-result-value">470.7</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="lease-summary" aria-live="polite">
+              <p><strong>Cap Cost:</strong> 28,500</p>
+              <p><strong>Finance Charge:</strong> 3,445.2</p>
+              <p><strong>Total Lease Cost:</strong> 18,445.2</p>
+            </div>
           </div>
 
           <div class="mtg-snapshot-list">
             <div class="mtg-snapshot-row">
               <span>Vehicle Price</span>
-              <strong data-lease="price">-</strong>
+              <strong data-lease="price">30,000</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Residual</span>
-              <strong><span data-lease="residual">-</span> (<span data-lease="residual-percent">-</span>)</strong>
+              <strong
+                ><span data-lease="residual">15,000</span> (<span data-lease="residual-percent"
+                  >50%</span
+                >)</strong
+              >
             </div>
             <div class="mtg-snapshot-row">
               <span>Cap Cost</span>
-              <strong data-lease="cap-cost">-</strong>
+              <strong data-lease="cap-cost">28,500</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Term</span>
-              <strong data-lease="term">-</strong>
+              <strong data-lease="term">3 years (36 months)</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Money Factor</span>
-              <strong data-lease="money-factor">-</strong>
+              <strong data-lease="money-factor">0.0022</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Upfront Payment</span>
-              <strong data-lease="upfront">-</strong>
+              <strong data-lease="upfront">1,500</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Monthly Payment</span>
-              <strong data-lease="monthly-payment">-</strong>
+              <strong data-lease="monthly-payment">470.7</strong>
             </div>
             <div class="mtg-snapshot-row">
               <span>Total Lease Cost</span>
-              <strong data-lease="total-cost">-</strong>
+              <strong data-lease="total-cost">18,445.2</strong>
             </div>
           </div>
         </aside>

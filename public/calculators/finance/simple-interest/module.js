@@ -27,16 +27,16 @@ const snapInterest = document.querySelector('[data-si="snap-interest"]');
 const explanationRoot = document.querySelector('#si-explanation');
 const valueTargets = explanationRoot
   ? {
-    principal: explanationRoot.querySelectorAll('[data-si="principal"]'),
-    rate: explanationRoot.querySelectorAll('[data-si="rate"]'),
-    time: explanationRoot.querySelectorAll('[data-si="time"]'),
-    timeUnit: explanationRoot.querySelectorAll('[data-si="time-unit"]'),
-    basis: explanationRoot.querySelectorAll('[data-si="basis"]'),
-    totalInterest: explanationRoot.querySelectorAll('[data-si="total-interest"]'),
-    endingAmount: explanationRoot.querySelectorAll('[data-si="ending-amount"]'),
-    years: explanationRoot.querySelectorAll('[data-si="years"]'),
-    rateDecimal: explanationRoot.querySelectorAll('[data-si="rate-decimal"]'),
-  }
+      principal: explanationRoot.querySelectorAll('[data-si="principal"]'),
+      rate: explanationRoot.querySelectorAll('[data-si="rate"]'),
+      time: explanationRoot.querySelectorAll('[data-si="time"]'),
+      timeUnit: explanationRoot.querySelectorAll('[data-si="time-unit"]'),
+      basis: explanationRoot.querySelectorAll('[data-si="basis"]'),
+      totalInterest: explanationRoot.querySelectorAll('[data-si="total-interest"]'),
+      endingAmount: explanationRoot.querySelectorAll('[data-si="ending-amount"]'),
+      years: explanationRoot.querySelectorAll('[data-si="years"]'),
+      rateDecimal: explanationRoot.querySelectorAll('[data-si="rate-decimal"]'),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -45,12 +45,16 @@ const basisGroup = document.querySelector('[data-button-group="si-basis"]');
 
 const timeUnitButtons = setupButtonGroup(timeUnitGroup, {
   defaultValue: 'years',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 const basisButtons = setupButtonGroup(basisGroup, {
   defaultValue: 'per-year',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -181,7 +185,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -218,7 +227,10 @@ function setSliderFill(input) {
 function updateSliderDisplays() {
   if (principalInput && principalDisplay) {
     setSliderFill(principalInput);
-    principalDisplay.textContent = fmt(Number(principalInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    principalDisplay.textContent = fmt(Number(principalInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
   if (rateInput && rateDisplay) {
     setSliderFill(rateInput);
@@ -254,9 +266,18 @@ function calculate() {
   const timeUnit = timeUnitButtons?.getValue() ?? 'years';
   const interestBasis = basisButtons?.getValue() ?? 'per-year';
 
-  if (!Number.isFinite(principal) || principal < 0) { setError('Principal must be 0 or more.'); return; }
-  if (!Number.isFinite(rate) || rate < 0) { setError('Interest rate must be 0 or more.'); return; }
-  if (!Number.isFinite(timePeriod) || timePeriod < 0) { setError('Time must be 0 or more.'); return; }
+  if (!Number.isFinite(principal) || principal < 0) {
+    setError('Principal must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(rate) || rate < 0) {
+    setError('Interest rate must be 0 or more.');
+    return;
+  }
+  if (!Number.isFinite(timePeriod) || timePeriod < 0) {
+    setError('Time must be 0 or more.');
+    return;
+  }
 
   const result = calculateSimpleInterest({
     principal,
@@ -266,7 +287,10 @@ function calculate() {
     interestBasis,
   });
 
-  if (!result) { setError('Check your inputs.'); return; }
+  if (!result) {
+    setError('Check your inputs.');
+    return;
+  }
 
   const principalStr = fmt(result.principal);
   const rateStr = formatPercent(result.rate);
@@ -278,14 +302,12 @@ function calculate() {
   const totalInterestStr = fmt(result.totalInterest);
   const endingAmountStr = fmt(result.endingAmount);
 
-  /* Preview panel — show ending amount as the hero number */
-  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${endingAmountStr}</span>`;
+  /* Preview panel — show total interest as the hero number */
+  resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${totalInterestStr}</span>`;
   const valueEl = resultDiv.querySelector('.mtg-result-value');
   if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
 
-  summaryDiv.innerHTML =
-    `<p><strong>Total interest:</strong> ${totalInterestStr}</p>` +
-    `<p><strong>Principal:</strong> ${principalStr}</p>`;
+  summaryDiv.innerHTML = `<p><strong>Ending amount:</strong> ${endingAmountStr}</p>`;
 
   /* Snapshot rows */
   if (snapPrincipal) snapPrincipal.textContent = principalStr;
