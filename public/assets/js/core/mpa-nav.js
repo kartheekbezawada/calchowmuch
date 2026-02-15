@@ -23,14 +23,14 @@ if (finNavContainer) {
   const finGroups = finNavContainer.querySelectorAll('.fin-nav-group');
   finGroups.forEach((group) => {
     const toggle = group.querySelector('.fin-nav-toggle');
-    if (!toggle) return;
+    if (!toggle) { return; }
     toggle.addEventListener('click', () => {
       const wasExpanded = group.classList.contains('is-expanded');
       /* Accordion: close all */
       finGroups.forEach((g) => {
         g.classList.remove('is-expanded');
         const t = g.querySelector('.fin-nav-toggle');
-        if (t) t.setAttribute('aria-expanded', 'false');
+        if (t) { t.setAttribute('aria-expanded', 'false'); }
       });
       /* Toggle clicked one */
       if (!wasExpanded) {

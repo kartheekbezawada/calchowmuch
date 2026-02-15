@@ -26,7 +26,8 @@ const ADSENSE_HEAD_MARKER_START = '<!-- CHM_ADSENSE_HEAD_START -->';
 const ADSENSE_HEAD_MARKER_END = '<!-- CHM_ADSENSE_HEAD_END -->';
 const ADSENSE_SLOT_MARKER_START = '<!-- CHM_AD_SLOT_START -->';
 const ADSENSE_SLOT_MARKER_END = '<!-- CHM_AD_SLOT_END -->';
-const ADSENSE_LOADER_SRC_RE = /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i;
+const ADSENSE_LOADER_SRC_RE =
+  /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i;
 const ADSENSE_LOADER_SCRIPT_RE =
   /^[ \t]*<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=[^"']+["'][^>]*>\s*<\/script>\s*\n?/gim;
 // CHM_ENABLE_ADSENSE is deprecated — AdSense code is always injected.
@@ -473,12 +474,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'Total accumulated balance',
       'Compounding frequency options',
     ],
-    keywords: [
-      'time to savings goal',
-      'savings calculator',
-      'goal calculator',
-      'how long to save',
-    ],
+    keywords: ['time to savings goal', 'savings calculator', 'goal calculator', 'how long to save'],
   },
   'effective-annual-rate': {
     breadcrumbLabel: 'Effective Annual Rate',
@@ -554,13 +550,8 @@ const HOME_LOAN_SCHEMA_CONFIG = {
   'present-value': {
     breadcrumbLabel: 'Present Value (PV)',
     softwareName: 'Present Value (PV) Calculator',
-    softwareDescription:
-      'Calculate the present value of future cash using discount rate and time.',
-    featureList: [
-      'Present value estimate',
-      'Discount lost breakdown',
-      'Compounding options',
-    ],
+    softwareDescription: 'Calculate the present value of future cash using discount rate and time.',
+    featureList: ['Present value estimate', 'Discount lost breakdown', 'Compounding options'],
     keywords: [
       'present value calculator',
       'pv calculator',
@@ -573,11 +564,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     softwareName: 'Present Value of Annuity Calculator',
     softwareDescription:
       'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due.',
-    featureList: [
-      'Ordinary vs Annuity Due',
-      'Present value estimate',
-      'Discount saved breakdown',
-    ],
+    featureList: ['Ordinary vs Annuity Due', 'Present value estimate', 'Discount saved breakdown'],
     keywords: [
       'present value of annuity calculator',
       'pva calculator',
@@ -655,12 +642,14 @@ function loadAdSenseSnippets() {
     `Missing <ins class="adsbygoogle"> tag in ${AD_UNIT_SNIPPET_PATH}`
   );
   if (!/\badsbygoogle\b/i.test(adSlotInsTag)) {
-    throw new Error(`Ad unit snippet in ${AD_UNIT_SNIPPET_PATH} does not include class="adsbygoogle"`);
+    throw new Error(
+      `Ad unit snippet in ${AD_UNIT_SNIPPET_PATH} does not include class="adsbygoogle"`
+    );
   }
 
-  const scriptMatches = Array.from(adUnitSnippetSource.matchAll(/<script\b[\s\S]*?<\/script>/gi)).map(
-    (match) => match[0].trim()
-  );
+  const scriptMatches = Array.from(
+    adUnitSnippetSource.matchAll(/<script\b[\s\S]*?<\/script>/gi)
+  ).map((match) => match[0].trim());
   const adPushScript = scriptMatches.find(
     (scriptTag) => !/\bsrc\s*=/i.test(scriptTag) && /adsbygoogle/i.test(scriptTag)
   );
@@ -707,11 +696,7 @@ function resolveCalculatorGovernance({ category, subcategory, calculator, overri
   const designFamily = calculator.designFamily ?? inferredDesignFamily;
   const overridePaneLayout = override?.paneLayout;
 
-  if (
-    calculator.paneLayout &&
-    overridePaneLayout &&
-    calculator.paneLayout !== overridePaneLayout
-  ) {
+  if (calculator.paneLayout && overridePaneLayout && calculator.paneLayout !== overridePaneLayout) {
     throw new Error(
       `Conflicting paneLayout for ${calculator.id}: navigation=${calculator.paneLayout} override=${overridePaneLayout}`
     );
@@ -860,45 +845,45 @@ function buildHomeLoanStructuredData({
   const isHomeLoanRoot = calculatorId === 'home-loan';
   const breadcrumbList = isHomeLoanRoot
     ? [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${SITE_URL}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Loans',
-        item: `${SITE_URL}/loans/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: breadcrumbLabel,
-        item: canonical,
-      },
-    ]
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Loans',
+          item: `${SITE_URL}/loans/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ]
     : [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${SITE_URL}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Home Loan',
-        item: `${SITE_URL}/loans/home-loan/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: breadcrumbLabel,
-        item: canonical,
-      },
-    ];
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Home Loan',
+          item: `${SITE_URL}/loans/home-loan/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ];
 
   return {
     '@context': 'https://schema.org',
@@ -1297,7 +1282,8 @@ const FINANCE_CALCULATOR_ICONS = {
   'monthly-savings-needed': '🏦',
 };
 
-const FIN_NAV_CHEVRON_SVG = '<svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+const FIN_NAV_CHEVRON_SVG =
+  '<svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
 
 function buildFinanceNav(category, activeCalculatorId, calcLookup) {
   const activeEntry = calcLookup.get(activeCalculatorId);
@@ -1537,9 +1523,7 @@ ${explanationTitleHtml}  ${explanationHtml}
   }
 
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
-  const routeArchetypeAttribute = routeArchetype
-    ? ` data-route-archetype="${routeArchetype}"`
-    : '';
+  const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
@@ -1547,8 +1531,8 @@ ${explanationTitleHtml}  ${explanationHtml}
   const structuredDataScript =
     injectStaticStructuredData && staticStructuredData
       ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
-        staticStructuredData
-      )}</script>\n`
+          staticStructuredData
+        )}</script>\n`
       : '';
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
@@ -1571,9 +1555,11 @@ ${explanationTitleHtml}  ${explanationHtml}
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${OG_IMAGE}" />
     <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
+    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />
 ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
@@ -1642,6 +1628,7 @@ function buildCalculatorIndex(categories) {
     />
     <link rel="canonical" href="${buildCanonical('/calculators/')}" />
     <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
@@ -1673,7 +1660,7 @@ function buildGtepFooter() {
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -1836,10 +1823,17 @@ function main() {
   const headerHtml = readFile(HEADER_PATH);
   const footerHtml = readFile(FOOTER_PATH);
 
+  // Pages with manual performance optimizations — do not overwrite during generation
+  const MANUAL_PAGES = new Set(['loans/home-loan']);
+
   navigation.categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
       subcategory.calculators.forEach((calculator) => {
         const relPath = calculatorDirs.get(calculator.id);
+        if (MANUAL_PAGES.has(relPath)) {
+          console.log(`  SKIP (manual): ${relPath}`);
+          return;
+        }
         const fragmentDir = path.join(CALC_DIR, relPath);
         const override = CALCULATOR_OVERRIDES[calculator.id];
         const governance = resolveCalculatorGovernance({

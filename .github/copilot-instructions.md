@@ -17,6 +17,24 @@
 
 **Calculator hierarchy**: Follow `requirements/universal/calculator-hierarchy.md` for navigation structure. Categories: Math, Loans. Each calculator maps to exactly one leaf item.
 
+## CSS Architecture (CRITICAL)
+
+**NEVER use `@import` in calculator CSS files.** This is a P0 rule (UR-CSS-001). A 3-deep `@import` chain once caused CLS 0.479 on 15 pages.
+
+**Shared layout CSS**: Calculators using the home-loan design family (`.home-loan-ui`, `.mtg-hero`, `.mtg-form-panel`, `#calc-home-loan`) get shared layout rules automatically from `/assets/css/shared-calculator-ui.css` — the MPA generator adds this `<link>` to every page. Do NOT copy CSS from another calculator's `calculator.css`.
+
+**Per-calculator CSS**: Each calculator's `calculator.css` should contain ONLY page-specific overrides. If a rule applies to 2+ calculators, it belongs in `shared-calculator-ui.css`.
+
+**CSS loading order** (managed by MPA generator):
+1. `theme-premium-dark.css` (blocking)
+2. `base.css` (blocking)
+3. `layout.css` (blocking)
+4. `calculator.css` (blocking)
+5. `shared-calculator-ui.css` (blocking)
+6. Per-calculator `calculator.css` (via `<style>@import</style>` in source HTML — this single-hop HTML-level import is acceptable)
+
+**When prompted "use Home Loan theme as example"**: This means use the `.home-loan-ui` class and HTML structure — NOT copy CSS files. The CSS is already shared.
+
 ## Code Patterns
 
 **Calculator HTML structure** - See `public/calculators/loans/loan-emi/index.html`:
