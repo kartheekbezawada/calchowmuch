@@ -18,6 +18,10 @@
 | KI-007 | base.css @import chain adds ~380ms | HIGH | RESOLVED | `<link rel="preload">` for theme-premium-dark.css |
 | KI-008 | Title too long (61 chars, limit 60) | LOW | RESOLVED | Shortened to 53 chars |
 | KI-009 | No visible parent category link | MEDIUM | RESOLVED | Added breadcrumb nav above H1 |
+| KI-010 | @import in base.css causes CSS waterfall for all pages | HIGH | RESOLVED | Removed @import, added theme as direct `<link>` |
+| KI-011 | Global calculator.css render-blocking on home-loan | MEDIUM | RESOLVED | Made async via preload+swap (critical CSS inlined) |
+| KI-012 | MPA generator overwrites manually-optimized pages | HIGH | RESOLVED | Added MANUAL_PAGES skip set in generator |
+| KI-013 | 3-deep CSS @import waterfall causes CLS 0.479 on 15 pages | CRITICAL | RESOLVED | Extracted shared CSS, removed all @import chains, added lint guard |
 
 ---
 
@@ -149,3 +153,81 @@ This tells the browser to start fetching `theme-premium-dark.css` immediately in
 </nav>
 ```
 This provides both a visible breadcrumb trail for users and crawlable internal links for search engines.
+
+---
+
+### KI-010 — @import in base.css Causes CSS Waterfall for All Pages (HIGH COMPUTATION COST)
+
+> **⚠️ This is a systemic fix affecting ALL pages. Do NOT revert without understanding the full impact.**
+
+**The Problem**: `public/assets/css/base.css` had `@import url('/assets/css/theme-premium-dark.css')` as its first line. CSS `@import` is sequential — the browser must download and parse `base.css` before it discovers and starts fetching `theme-premium-dark.css`. On slow networks (3G with 4× CPU throttle), this waterfall added ~380ms to the critical rendering path, pushing LCP dangerously close to or beyond the 2500ms threshold.
+
+**Tests**: CLS guard stress mode — `CLS_GUARD_ROUTE_INCLUDE="/loans/home-loan/" npx playwright test cls-guard-all-calculators`
+
+**How the issue is resolved**: Three coordinated changes:
+
+1. **Removed `@import` from `public/assets/css/base.css`** — replaced with a comment explaining the new loading pattern.
+
+2. **Updated `scripts/generate-mpa-pages.js`** — all 3 template functions (calculator pages, calculators index, GTEP pages) now emit `<link rel="stylesheet" href="/assets/css/theme-premium-dark.css">` as a direct `<link>` before `base.css`. This enables parallel download.
+
+3. **Added `MANUAL_PAGES` skip set** in the generator (see KI-012) to prevent overwriting manually-optimized pages like home-loan.
+
+**Result**: LCP stress dropped from ~2900ms (before any optimization) to 2432ms. The @import waterfall is completely eliminated for all pages site-wide.
+
+---
+
+### KI-011 — Global calculator.css Render-Blocking on Home-Loan Page
+
+**The Problem**: `/assets/css/calculator.css` (the shared global calculator stylesheet) was loaded as a render-blocking `<link rel="stylesheet">` in the home-loan page `<head>`. Combined with 3 other blocking CSS files, this pushed LCP higher under stress conditions.
+
+**Tests**: CLS guard stress mode + Chrome DevTools Performance panel (Lighthouse "Render blocking requests" audit).
+
+**How the issue is resolved**: Changed from blocking to async using the preload+swap pattern in `public/loans/home-loan/index.html`:
+```html
+<link rel="preload" href="/assets/css/calculator.css?v=20260127" as="style"
+      onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" /></noscript>
+```
+This works because the critical calculator layout rules (`.calculator-page-single`, `.home-loan-ui`, `.mtg-hero`, button groups, input rows, etc.) are already inlined in the `<style>` block. The global calculator.css provides non-critical shared component styling that can load async without causing CLS.
+
+**Important**: This optimization is only safe for pages that have inlined critical CSS. Other generated pages still load calculator.css as render-blocking.
+
+---
+
+### KI-012 — MPA Generator Overwrites Manually-Optimized Pages
+
+**The Problem**: Running `node scripts/generate-mpa-pages.js` unconditionally regenerates ALL calculator pages, including `loans/home-loan`. Since the home-loan page has manual performance optimizations (inlined critical CSS, async loading patterns, breadcrumb nav, shortened title, etc.), the generator overwrites all of these with the default template.
+
+**Tests**: Discovered when running the generator to update theme CSS links — the home-loan page was overwritten and lost all optimizations.
+
+**How the issue is resolved**: Added a `MANUAL_PAGES` skip set in `scripts/generate-mpa-pages.js`:
+```javascript
+const MANUAL_PAGES = new Set(['loans/home-loan']);
+```
+Pages in this set are logged as `SKIP (manual)` during generation and their `index.html` is not overwritten. When adding new manually-optimized pages in the future, add their relative path to this set.
+
+**Warning**: If the generator template changes (e.g., new navigation structure, new ad slots, new schema), manually-maintained pages must be updated by hand to match.
+
+---
+
+### KI-013 — 3-Deep CSS @import Waterfall Causes CLS 0.479 on 15 Pages
+
+**The Problem**: Cloudflare field data showed CLS P75 = 0.479 on `/finance/present-value/` (4.8× over Google's 0.10 threshold). Root cause: a 3-deep CSS `@import` waterfall chain: `finance/*/calculator.css → car-loan/calculator.css → home-loan/calculator.css`. The browser couldn't discover the 911-line home-loan CSS until after downloading two intermediate files, adding ~1500ms on 3G connections. This caused the `.mtg-hero` grid layout to arrive late, snapping the form from full-width to 2-column grid — a massive visible layout shift. 15 calculator pages (10 finance + 5 loan) were affected.
+
+**Tests**: `npm run test:cwv:all` (CLS guard on all 87 routes, normal + stress modes)
+
+**How the issue was resolved**:
+1. Created `/assets/css/shared-calculator-ui.css` (~1000 lines) — contains all shared home-loan UI rules + car-loan's reusable slider/grid rules scoped to `.home-loan-ui`
+2. Stubbed `home-loan/calculator.css` to empty (file kept for no-404 on existing links)
+3. Removed `@import` from all 15 calculator CSS files (5 loan, 10 finance)
+4. Updated MPA generator to add `<link>` for shared CSS on all generated pages
+5. Updated home-loan manual page with blocking shared CSS `<link>`
+6. Added `npm run lint:css-import` guard to prevent future @import usage
+7. Added guard to `validate` pipeline
+
+**Post-fix CLS results** (all 16 affected routes):
+- Normal mode: CLS 0.000 on 11/16 routes, max CLS 0.011 (car-loan)
+- Stress mode (4× CPU, 3G): max CLS 0.014 (time-to-savings-goal)
+- Present-value specifically: CLS 0.000 (normal), 0.003 (stress) — down from field 0.479
+
+**Visual regression accepted**: Finance calculators lost car-loan's `#calc-home-loan .mtg-form-panel { gap: 1.25rem }` override, falling back to home-loan's default `gap: 1.65rem`. This is a negligible spacing difference, not CLS-related.

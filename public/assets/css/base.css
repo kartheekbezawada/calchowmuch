@@ -1,7 +1,9 @@
-@import url('/assets/css/theme-premium-dark.css?v=20260127');
+/* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+   instead of @import, to eliminate sequential CSS waterfall.
+   See known_issues.md KI-007 / KI-010. */
 
 :root {
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-family: var(--font-body);
   /* Typography scale (Tailwind-inspired) */
   --text-4xl: 2.25rem;

@@ -38,28 +38,28 @@ requirements/universal-rules/release-signoffs/
 
 > Every section below maps 1:1 to `RELEASE_CHECKLIST.md`. The mapping column shows which checklist section(s) each sign-off section captures evidence for.
 
-| Sign-Off § | Captures Evidence For (Checklist §) |
-|:---|:---|
-| 1 — Release Identity | (meta — no checklist equivalent) |
-| 2 — Pages Tested | C2 Lab gates scope |
-| 3 — Device & Browser Matrix | B1, B2, B3 mobile/tablet coverage |
-| 4 — Pre-Release: Rendering & JS Discipline | A1 Rendering order, A3 JS discipline |
-| 5 — Pre-Release: Layout Stability (CLS) | A2 Layout stability |
-| 6 — Pre-Release: Caching Readiness | A4 Caching readiness |
-| 7 — Performance & CWV Results | C1 Field targets, C2 Lab gates |
-| 8 — Global CWV Regression Guard | C3 CWV Guard |
-| 9 — Ads: Slot Reservation | D1 Slot reservation |
-| 10 — Ads: Load Timing | D2 Load timing |
-| 11 — Ads: Placement Stability | D3 Placement stability |
-| 12 — Ads: Mobile Verification | B3 Ads on mobile |
-| 13 — Animation & Visual Effects | E Animation |
-| 14 — Mobile & Tablet Verification | B1 Layout/nav, B2 Inputs |
-| 15 — Manual Regression Scenarios | F1 First load, F2 Interaction, F3 Navigation |
-| 16 — SERP Readiness | I1–I7 full SERP |
-| 17 — Observability (Post-Release) | J Post-release verification |
-| 18 — Release Decision | K Decision rules |
-| 19 — Exceptions | (follow-up tracking) |
-| 20 — Final Sign-Off | (approval gate) |
+| Sign-Off §                                 | Captures Evidence For (Checklist §)          |
+| :----------------------------------------- | :------------------------------------------- |
+| 1 — Release Identity                       | (meta — no checklist equivalent)             |
+| 2 — Pages Tested                           | C2 Lab gates scope                           |
+| 3 — Device & Browser Matrix                | B1, B2, B3 mobile/tablet coverage            |
+| 4 — Pre-Release: Rendering & JS Discipline | A1 Rendering order, A3 JS discipline         |
+| 5 — Pre-Release: Layout Stability (CLS)    | A2 Layout stability                          |
+| 6 — Pre-Release: Caching Readiness         | A4 Caching readiness                         |
+| 7 — Performance & CWV Results              | C1 Field targets, C2 Lab gates               |
+| 8 — Global CWV Regression Guard            | C3 CWV Guard                                 |
+| 9 — Ads: Slot Reservation                  | D1 Slot reservation                          |
+| 10 — Ads: Load Timing                      | D2 Load timing                               |
+| 11 — Ads: Placement Stability              | D3 Placement stability                       |
+| 12 — Ads: Mobile Verification              | B3 Ads on mobile                             |
+| 13 — Animation & Visual Effects            | E Animation                                  |
+| 14 — Mobile & Tablet Verification          | B1 Layout/nav, B2 Inputs                     |
+| 15 — Manual Regression Scenarios           | F1 First load, F2 Interaction, F3 Navigation |
+| 16 — SERP Readiness                        | I1–I7 full SERP                              |
+| 17 — Observability (Post-Release)          | J Post-release verification                  |
+| 18 — Release Decision                      | K Decision rules                             |
+| 19 — Exceptions                            | (follow-up tracking)                         |
+| 20 — Final Sign-Off                        | (approval gate)                              |
 
 ---
 
@@ -69,15 +69,15 @@ requirements/universal-rules/release-signoffs/
 
 ## 1) Release Identity
 
-| Field | Value |
-| :--- | :--- |
-| **Release ID** | REL-YYYYMMDD-### |
-| **Release Type** | UI / Logic / SEO / Performance / Ads / Nav / Other |
-| **Branch / Tag** | `<git-branch-or-tag>` |
-| **Commit SHA** | `<commit-sha>` |
-| **Environment Tested** | Localhost / Preview / Staging / Production |
-| **Release Owner** | `<name>` |
-| **Date (UTC)** | YYYY-MM-DD |
+| Field                  | Value                                              |
+| :--------------------- | :------------------------------------------------- |
+| **Release ID**         | REL-YYYYMMDD-###                                   |
+| **Release Type**       | UI / Logic / SEO / Performance / Ads / Nav / Other |
+| **Branch / Tag**       | `<git-branch-or-tag>`                              |
+| **Commit SHA**         | `<commit-sha>`                                     |
+| **Environment Tested** | Localhost / Preview / Staging / Production         |
+| **Release Owner**      | `<name>`                                           |
+| **Date (UTC)**         | YYYY-MM-DD                                         |
 
 ---
 
@@ -87,20 +87,20 @@ requirements/universal-rules/release-signoffs/
 
 ### 2.1 Mandatory coverage (minimum)
 
-| Page Type | Slug / URL Path | Notes |
-| :--- | :--- | :--- |
-| Category Hub | `/finance/` (example) | Must include left-nav + internal links |
-| Calculator (Top Traffic) | `/<category>/<calculator-1>/` | Must include ads + FAQ + results |
-| Calculator (Top Traffic) | `/<category>/<calculator-2>/` | Must include mode toggles if any |
-| Calculator (Heavy Table) | `/<category>/<calculator-3>/` | Must include scenario table/schedule |
-| Calculator (New / Modified) | `/<category>/<calculator-changed>/` | This release's main target |
+| Page Type                   | Slug / URL Path                     | Notes                                  |
+| :-------------------------- | :---------------------------------- | :------------------------------------- |
+| Category Hub                | `/finance/` (example)               | Must include left-nav + internal links |
+| Calculator (Top Traffic)    | `/<category>/<calculator-1>/`       | Must include ads + FAQ + results       |
+| Calculator (Top Traffic)    | `/<category>/<calculator-2>/`       | Must include mode toggles if any       |
+| Calculator (Heavy Table)    | `/<category>/<calculator-3>/`       | Must include scenario table/schedule   |
+| Calculator (New / Modified) | `/<category>/<calculator-changed>/` | This release's main target             |
 
 ### 2.2 Optional extra coverage (recommended)
 
-| Page Type | Slug / URL Path | Notes |
-| :--- | :--- | :--- |
+| Page Type                       | Slug / URL Path             | Notes                                  |
+| :------------------------------ | :-------------------------- | :------------------------------------- |
 | Landing from Google (deep link) | `/<category>/<calculator>/` | Validate correct subcategory auto-open |
-| One non-finance page | `/privacy/` or `/about/` | Ensure shared layout stable |
+| One non-finance page            | `/privacy/` or `/about/`    | Ensure shared layout stable            |
 
 ---
 
@@ -110,23 +110,23 @@ requirements/universal-rules/release-signoffs/
 
 ### 3.1 Desktop
 
-| Device | OS | Browser | Version | Tested (Y/N) |
-| :--- | :--- | :--- | :--- | :--- |
-| Desktop/Laptop | Windows | Chrome | Latest | |
-| Desktop/Laptop | macOS | Safari | Latest | |
+| Device         | OS      | Browser | Version | Tested (Y/N) |
+| :------------- | :------ | :------ | :------ | :----------- |
+| Desktop/Laptop | Windows | Chrome  | Latest  |              |
+| Desktop/Laptop | macOS   | Safari  | Latest  |              |
 
 ### 3.2 Mobile
 
-| Device | OS | Browser | Version | Tested (Y/N) |
-| :--- | :--- | :--- | :--- | :--- |
-| Phone | Android | Chrome | Latest | |
-| iPhone | iOS | Safari | Latest | |
+| Device | OS      | Browser | Version | Tested (Y/N) |
+| :----- | :------ | :------ | :------ | :----------- |
+| Phone  | Android | Chrome  | Latest  |              |
+| iPhone | iOS     | Safari  | Latest  |              |
 
 ### 3.3 Tablet (if layout differs)
 
-| Device | OS | Browser | Version | Tested (Y/N) |
-| :--- | :--- | :--- | :--- | :--- |
-| iPad | iOS/iPadOS | Safari | Latest | |
+| Device | OS         | Browser | Version | Tested (Y/N) |
+| :----- | :--------- | :------ | :------ | :----------- |
+| iPad   | iOS/iPadOS | Safari  | Latest  |              |
 
 ---
 
@@ -139,6 +139,15 @@ requirements/universal-rules/release-signoffs/
 - [ ] Calculator UI renders without waiting for ad scripts
 - [ ] Initial results (or initial state) are visible immediately after first render
 - [ ] No runtime injection adds content above the fold after load (especially ads/nav)
+- [ ] No `@import` chains in any render-blocking CSS file (grep `public/assets/css/` for `@import`). Theme/dependency CSS must be loaded as separate `<link>` tags for parallel download. _(Ref: known_issues.md KI-010)_
+- [ ] Render-blocking CSS count is ≤ 3 files. Any additional CSS must use async loading (preload+swap or media=print trick). _(Ref: known_issues.md KI-011)_
+
+### 4.2 CSS Discipline Evidence — Checklist A1
+
+| Page       | Blocking CSS Count | @import Chains Found (Y/N) | Async CSS Files | Notes |
+| :--------- | :----------------- | :------------------------- | :-------------- | :---- |
+| `<page-1>` |                    |                            |                 |       |
+| `<page-2>` |                    |                            |                 |       |
 
 ### 4.2 JavaScript discipline (INP protection) — Checklist A3
 
@@ -166,15 +175,15 @@ requirements/universal-rules/release-signoffs/
 
 > Maps to: **Checklist A4**
 
-| Check | Pass/Fail | Evidence / Notes |
-| :--- | :--- | :--- |
-| Static assets are long-TTL cached (versioned/immutable) | | |
-| HTML caching strategy configured (high cache hit, no stale critical content) | | |
-| Cache headers verified for HTML | | |
-| Cache headers verified for CSS | | |
-| Cache headers verified for JS | | |
-| Cache headers verified for fonts | | |
-| Cache headers verified for images | | |
+| Check                                                                        | Pass/Fail | Evidence / Notes |
+| :--------------------------------------------------------------------------- | :-------- | :--------------- |
+| Static assets are long-TTL cached (versioned/immutable)                      |           |                  |
+| HTML caching strategy configured (high cache hit, no stale critical content) |           |                  |
+| Cache headers verified for HTML                                              |           |                  |
+| Cache headers verified for CSS                                               |           |                  |
+| Cache headers verified for JS                                                |           |                  |
+| Cache headers verified for fonts                                             |           |                  |
+| Cache headers verified for images                                            |           |                  |
 
 ---
 
@@ -186,25 +195,32 @@ requirements/universal-rules/release-signoffs/
 
 Run Lighthouse on the pages listed in §2. Record results below.
 
-| Page | LCP (s) | CLS | INP/TBT Proxy | CLS Warnings in Filmstrip (Y/N) | Blocking Tasks (Y/N) | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<page-1>` | | | | | | |
-| `<page-2>` | | | | | | |
-| `<page-3>` | | | | | | |
+| Page       | LCP (s) | CLS | INP/TBT Proxy | CLS Warnings in Filmstrip (Y/N) | Blocking Tasks (Y/N) | Notes |
+| :--------- | :------ | :-- | :------------ | :------------------------------ | :------------------- | :---- |
+| `<page-1>` |         |     |               |                                 |                      |       |
+| `<page-2>` |         |     |               |                                 |                      |       |
+| `<page-3>` |         |     |               |                                 |                      |       |
 
 - [ ] No CLS warnings or obvious layout shifts in filmstrip (C2)
 - [ ] No large blocking tasks around first interaction (C2)
 - [ ] Above-the-fold content renders quickly — no ad-induced delay (C2)
+- [ ] **Lighthouse "Eliminate render-blocking resources" audit reviewed** — every CSS/JS file listed must be justified as critical or converted to async _(Ref: known_issues.md KI-010/011)_
+- [ ] **Render-blocking request count** documented below (target: ≤ 3 CSS files)
+
+| Page       | Render-Blocking CSS Files | Render-Blocking JS Files | "Eliminate render-blocking" Est. Savings | Notes |
+| :--------- | :------------------------ | :----------------------- | :--------------------------------------- | :---- |
+| `<page-1>` |                           |                          |                                          |       |
+| `<page-2>` |                           |                          |                                          |       |
 
 ### 7.2 Field Metrics Snapshot (If available)
 
 If this is a production follow-up or you have RUM/CrUX snapshots:
 
-| Metric | P75 Value | Threshold | Pass/Fail | Source | URL Group / Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **LCP** | | ≤ 2.5s | | GSC CWV / RUM | |
-| **INP** | | ≤ 200ms | | GSC CWV / RUM | |
-| **CLS** | | ≤ 0.10 | | GSC CWV / RUM | |
+| Metric  | P75 Value | Threshold | Pass/Fail | Source        | URL Group / Notes |
+| :------ | :-------- | :-------- | :-------- | :------------ | :---------------- |
+| **LCP** |           | ≤ 2.5s    |           | GSC CWV / RUM |                   |
+| **INP** |           | ≤ 200ms   |           | GSC CWV / RUM |                   |
+| **CLS** |           | ≤ 0.10    |           | GSC CWV / RUM |                   |
 
 ---
 
@@ -214,9 +230,9 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 ### 8.1 Guard Results
 
-| Scope | Routes Checked | Violations | Highest Normal LCP (ms) | Highest Stress LCP (ms) | Highest Normal INP Proxy (ms) | Highest Stress INP Proxy (ms) | Highest Normal CLS | Highest Stress CLS | Highest Single Shift | Status (Pass/Fail) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **All calculators** | | | | | | | | | | |
+| Scope               | Routes Checked | Violations | Highest Normal LCP (ms) | Highest Stress LCP (ms) | Highest Normal INP Proxy (ms) | Highest Stress INP Proxy (ms) | Highest Normal CLS | Highest Stress CLS | Highest Single Shift | Status (Pass/Fail) |
+| :------------------ | :------------- | :--------- | :---------------------- | :---------------------- | :---------------------------- | :---------------------------- | :----------------- | :----------------- | :------------------- | :----------------- |
+| **All calculators** |                |            |                         |                         |                               |                               |                    |                    |                      |                    |
 
 - [ ] Command executed: `npm run test:cwv:all` (or `npm run test:cls:all` alias)
 - [ ] Evidence attached: `test-results/performance/cls-guard-all-calculators.json`
@@ -232,6 +248,17 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 - [ ] Image/icon missing reserved dimensions
 - [ ] Ad container collapse
 - [ ] Dynamic injection
+- [ ] **@import chain in render-blocking CSS** _(Ref: known_issues.md KI-010)_
+- [ ] **Too many render-blocking CSS files (> 3)** _(Ref: known_issues.md KI-011)_
+
+### 8.3 LCP Stress Margin Check
+
+> Any stress LCP > 2300ms triggers a WARNING (200ms safety margin). Investigate render-blocking CSS count and @import chains before signing off. _(Added after KI-006/010)_
+
+| Page       | Stress LCP (ms) | Margin to 2500ms | Status (OK / WARNING / FAIL) | Notes |
+| :--------- | :-------------- | :--------------- | :--------------------------- | :---- |
+| `<page-1>` |                 |                  |                              |       |
+| `<page-2>` |                 |                  |                              |       |
 
 ---
 
@@ -239,10 +266,10 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 > Maps to: **Checklist D1**
 
-| Page | Slot ID | min-height Reserved per Breakpoint (Y/N) | Present in Initial Layout (Y/N) | No Collapse to 0 Height (Y/N) | No-Fill Preserves Layout (Y/N) | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<page-1>` | | | | | | |
-| `<page-2>` | | | | | | |
+| Page       | Slot ID | min-height Reserved per Breakpoint (Y/N) | Present in Initial Layout (Y/N) | No Collapse to 0 Height (Y/N) | No-Fill Preserves Layout (Y/N) | Notes |
+| :--------- | :------ | :--------------------------------------- | :------------------------------ | :---------------------------- | :----------------------------- | :---- |
+| `<page-1>` |         |                                          |                                 |                               |                                |       |
+| `<page-2>` |         |                                          |                                 |                               |                                |       |
 
 ---
 
@@ -273,10 +300,10 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 > Maps to: **Checklist B3**
 
-| Page | Ads Overlap Inputs/Results (Y/N) | Ads Push Content Unexpectedly (Y/N) | Ads Change Height After Render (Y/N) | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| `<page-1>` | | | | |
-| `<page-2>` | | | | |
+| Page       | Ads Overlap Inputs/Results (Y/N) | Ads Push Content Unexpectedly (Y/N) | Ads Change Height After Render (Y/N) | Notes |
+| :--------- | :------------------------------- | :---------------------------------- | :----------------------------------- | :---- |
+| `<page-1>` |                                  |                                     |                                      |       |
+| `<page-2>` |                                  |                                     |                                      |       |
 
 - [ ] Ads do not overlap inputs/results
 - [ ] Ads do not push content unexpectedly
@@ -319,27 +346,27 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 ### 15.1 First Load — Checklist F1
 
-| Scenario | Pass/Fail | Notes |
-| :--- | :--- | :--- |
-| Page loads with no visible jump | | |
-| Results render without pushing content unexpectedly | | |
-| Ads appear without shifting content | | |
+| Scenario                                            | Pass/Fail | Notes |
+| :-------------------------------------------------- | :-------- | :---- |
+| Page loads with no visible jump                     |           |       |
+| Results render without pushing content unexpectedly |           |       |
+| Ads appear without shifting content                 |           |       |
 
 ### 15.2 User Interaction — Checklist F2
 
-| Scenario | Pass/Fail | Notes |
-| :--- | :--- | :--- |
-| Rapid slider drag for 5–10 seconds: no lag, no freezing | | |
-| Fast typing in numeric fields: no input delay | | |
-| Toggling month/year or modes: no layout jump, no reflow flicker | | |
+| Scenario                                                        | Pass/Fail | Notes |
+| :-------------------------------------------------------------- | :-------- | :---- |
+| Rapid slider drag for 5–10 seconds: no lag, no freezing         |           |       |
+| Fast typing in numeric fields: no input delay                   |           |       |
+| Toggling month/year or modes: no layout jump, no reflow flicker |           |       |
 
 ### 15.3 Navigation Behavior — Checklist F3
 
-| Scenario | Pass/Fail | Notes |
-| :--- | :--- | :--- |
-| Left nav: subcategories collapsed by default | | |
-| Landing directly on calculator URL expands only correct subcategory | | |
-| Expand/collapse does not shift main content pane | | |
+| Scenario                                                            | Pass/Fail | Notes |
+| :------------------------------------------------------------------ | :-------- | :---- |
+| Left nav: subcategories collapsed by default                        |           |       |
+| Landing directly on calculator URL expands only correct subcategory |           |       |
+| Expand/collapse does not shift main content pane                    |           |       |
 
 ---
 
@@ -349,19 +376,19 @@ If this is a production follow-up or you have RUM/CrUX snapshots:
 
 ### 16.1 Metadata & Canonical Verification — Checklist I1
 
-| Page | `<title>` Unique (Y/N) | Meta Desc Intent-Aligned (Y/N) | Canonical Correct (Y/N) | No Duplicate Metas (Y/N) | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `<page-1>` | | | | | |
-| `<page-2>` | | | | | |
-| `<page-3>` | | | | | |
+| Page       | `<title>` Unique (Y/N) | Meta Desc Intent-Aligned (Y/N) | Canonical Correct (Y/N) | No Duplicate Metas (Y/N) | Notes |
+| :--------- | :--------------------- | :----------------------------- | :---------------------- | :----------------------- | :---- |
+| `<page-1>` |                        |                                |                         |                          |       |
+| `<page-2>` |                        |                                |                         |                          |       |
+| `<page-3>` |                        |                                |                         |                          |       |
 
 ### 16.2 Structured Data Verification — Checklist I2
 
-| Page | Schema Bundle Correct (Y/N) | Validates Rich Results Test (Y/N) | JSON-LD Matches Visible Content (Y/N) | No Duplicate FAQPage (Y/N) | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `<page-1>` | | | | | |
-| `<page-2>` | | | | | |
-| `<page-3>` | | | | | |
+| Page       | Schema Bundle Correct (Y/N) | Validates Rich Results Test (Y/N) | JSON-LD Matches Visible Content (Y/N) | No Duplicate FAQPage (Y/N) | Notes |
+| :--------- | :-------------------------- | :-------------------------------- | :------------------------------------ | :------------------------- | :---- |
+| `<page-1>` |                             |                                   |                                       |                            |       |
+| `<page-2>` |                             |                                   |                                       |                            |       |
+| `<page-3>` |                             |                                   |                                       |                            |       |
 
 **Safe schema set:** `WebPage`, `SoftwareApplication`, `FAQPage` (when visible), `BreadcrumbList`.
 
@@ -470,9 +497,9 @@ A page is SERP-ready **only if all** of the following are true:
 
 ## 19) Exceptions & Follow-Up Tickets
 
-| Exception | Severity | Ticket ID | Owner | Due Date |
-| :--- | :--- | :--- | :--- | :--- |
-| | LOW / MED | | | |
+| Exception | Severity  | Ticket ID | Owner | Due Date |
+| :-------- | :-------- | :-------- | :---- | :------- |
+|           | LOW / MED |           |       |          |
 
 ---
 
@@ -486,7 +513,7 @@ A page is SERP-ready **only if all** of the following are true:
 
 ### 20.2 Signatures
 
-| Role | Name | Date (UTC) | Signature/Note |
-| :--- | :--- | :--- | :--- |
-| Release Owner | | | |
-| Reviewer (optional) | | | |
+| Role                | Name | Date (UTC) | Signature/Note |
+| :------------------ | :--- | :--------- | :------------- |
+| Release Owner       |      |            |                |
+| Reviewer (optional) |      |            |                |
