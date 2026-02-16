@@ -44,6 +44,10 @@ const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'monthly-savings-needed',
+  'time-to-savings-goal',
+  'investment-growth',
+  'effective-annual-rate',
   'compound-interest',
   'simple-interest',
   'present-value',
@@ -258,12 +262,6 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
     h1: 'Simple Interest Calculator',
-  },
-  'savings-goal': {
-    title: 'Savings Goal Calculator – CalcHowMuch',
-    description:
-      'Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding.',
-    h1: 'Savings Goal Calculator',
   },
   'investment-growth': {
     title: 'Investment Growth Calculator \u2013 CalcHowMuch',

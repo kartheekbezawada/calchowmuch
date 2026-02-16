@@ -41,9 +41,6 @@ const frequencyGroup = document.querySelector('[data-button-group="ear-frequency
 
 const frequencyButtons = setupButtonGroup(frequencyGroup, {
   defaultValue: 'annual',
-  onChange() {
-    calculate();
-  },
 });
 
 /* ── SEO / Schema ── */
@@ -192,7 +189,9 @@ const metadata = {
   },
 };
 
-setPageMetadata(metadata);
+if (!document.querySelector('script[data-static-ld="true"]')) {
+  setPageMetadata(metadata);
+}
 
 /* ── Helpers ── */
 
@@ -321,11 +320,9 @@ function calculate() {
 
 nominalRateInput?.addEventListener('input', () => {
   updateSliderDisplays();
-  calculate();
 });
 
 calculateButton?.addEventListener('click', calculate);
 
 /* ── Init ── */
 updateSliderDisplays();
-calculate();

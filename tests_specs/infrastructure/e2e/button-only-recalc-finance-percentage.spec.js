@@ -8,7 +8,6 @@ const FINANCE_ROUTES = [
   '/finance/simple-interest',
   '/finance/compound-interest',
   '/finance/effective-annual-rate',
-  '/finance/savings-goal',
   '/finance/investment-growth',
 ];
 

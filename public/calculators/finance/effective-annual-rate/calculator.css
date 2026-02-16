@@ -1,5 +1,11 @@
 /* ── EAR-specific overrides (mirrors CI/PV calculator.css) ── */
 
+/* Reduce initial layout/paint cost by deferring below-the-fold explanation rendering */
+#ear-explanation {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 2200px;
+}
+
 /* Toggle row */
 #calc-effective-annual-rate .pv-toggle-row {
   display: flex;

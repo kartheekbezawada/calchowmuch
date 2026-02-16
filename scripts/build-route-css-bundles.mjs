@@ -61,6 +61,30 @@ const CRITICAL_SELECTOR_HINTS = [
 
 const PILOT_ROUTES = [
   {
+    calculatorId: 'monthly-savings-needed',
+    route: '/finance/monthly-savings-needed/',
+    relPath: 'finance/monthly-savings-needed',
+    routeCss: 'calculators/finance/monthly-savings-needed/calculator.css',
+  },
+  {
+    calculatorId: 'time-to-savings-goal',
+    route: '/finance/time-to-savings-goal/',
+    relPath: 'finance/time-to-savings-goal',
+    routeCss: 'calculators/finance/time-to-savings-goal/calculator.css',
+  },
+  {
+    calculatorId: 'investment-growth',
+    route: '/finance/investment-growth/',
+    relPath: 'finance/investment-growth',
+    routeCss: 'calculators/finance/investment-growth/calculator.css',
+  },
+  {
+    calculatorId: 'effective-annual-rate',
+    route: '/finance/effective-annual-rate/',
+    relPath: 'finance/effective-annual-rate',
+    routeCss: 'calculators/finance/effective-annual-rate/calculator.css',
+  },
+  {
     calculatorId: 'compound-interest',
     route: '/finance/compound-interest/',
     relPath: 'finance/compound-interest',
