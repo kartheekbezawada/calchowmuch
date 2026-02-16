@@ -33,9 +33,40 @@
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <link rel="preload" href="/assets/css/layout.css?v=20260127" as="style" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/layout.css?v=20260127"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/assets/css/layout.css?v=20260127" /></noscript>
+    <link rel="preload" href="/assets/css/calculator.css?v=20260127" as="style" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/calculator.css?v=20260127"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" /></noscript>
+    <link rel="preload" href="/assets/css/shared-calculator-ui.css?v=20260127" as="style" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/shared-calculator-ui.css?v=20260127"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    </noscript>
+    <link rel="preload" href="/calculators/loans/car-loan/calculator.css" as="style" />
+    <link
+      rel="stylesheet"
+      href="/calculators/loans/car-loan/calculator.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/calculators/loans/car-loan/calculator.css" /></noscript>
 
     <!-- Cloudflare Web Analytics -->
     <script
@@ -406,9 +437,6 @@
                 </div>
               </div>
 
-              <style>
-                @import url('/calculators/loans/car-loan/calculator.css');
-              </style>
 
               <div id="loan-mtg-explanation">
                 <h2>Car Loan - Payment Breakdown</h2>
