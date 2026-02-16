@@ -211,7 +211,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-002 (P0):** E2E: `npm run test:e2e`.
 - **UR-TEST-003 (P1):** ISS-001: `npm run test:iss001` (layout stability).
 - **UR-TEST-004 (P0):** FAQ schema guard.
-- **UR-TEST-005 (P0):** Global CWV Guard: `npm run test:cwv:all`. (Fail if: CLS > 0.10, LCP > 2.5s).
+- **UR-TEST-005 (P0):** CWV Guard: `test:cwv:target` (Targeted) or `test:cwv:all` (Global). (Fail if: CLS > 0.10, LCP > 2.5s).
 - **UR-TEST-006 (P0):** Artifact: `test-results/performance/cls-guard-all-calculators.json`.
 
 ### 8.2 Change-Type Matrix
@@ -219,7 +219,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-011 (P1):** Compute: Unit. E2E optional.
 - **UR-TEST-012 (P0):** Nav/Shell: Nav E2E + ISS-001.
 - **UR-TEST-013 (P0):** Finance/Trigger: Button-only regression.
-- **UR-TEST-014 (P0):** Any Release: All-calc CWV guard.
+- **UR-TEST-014 (P0):** Feature Release: Targeted CWV guard (`TARGET={scope}`). Global Release: All-calc CWV guard.
 
 ### 8.3 Evidence Recording
 - **UR-TEST-020 (P0):** Record execution evidence in Release Sign-off.

@@ -101,13 +101,22 @@
 
 ---
 
-## D) CWV Guard (Global Automated Gate) — Mandatory
+## D) CWV Guard (Automated Performance Gate) — Mandatory
 
-### D1) Route scope
-- [ ] All calculator routes from `public/config/navigation.json`.
+### D1) Define Scope (Targeted Testing)
+> [!IMPORTANT]
+> **Default Behavior:** Only test the specific calculator(s) or subcategory being modified. Do NOT touch unrelated calculators.
+>
+> *   **Single Calculator:** `TARGET=finance/present-value`
+> *   **Subcategory:** `TARGET=finance`
+> *   **Full Site:** `TARGET=all` (Only for global infrastructure changes)
 
 ### D2) Execution
-- [ ] **Command:** `npm run test:cwv:all`.
+- [ ] **Run Targeted Test:**
+    ```bash
+    TARGET={scope} npm run test:cwv:target
+    ```
+    *(Example: `TARGET=finance npm run test:cwv:target`)*
 - [ ] **Artifact:** `test-results/performance/cls-guard-all-calculators.json`.
 
 ### D3) Release policy
