@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <script type="application/ld+json" data-static-ld="true">
       {
         "@context": "https://schema.org",
@@ -302,6 +303,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link is-active" href="/loans/home-loan"
@@ -348,12 +350,6 @@
             <h1 id="calculator-title">Interest Rate Change Calculator</h1>
             <div class="calculator-page-single">
               <style>
-                .calculator-page-single {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 1.25rem;
-                }
-
                 #calc-interest-rate-change {
                   width: 100%;
                 }
@@ -475,6 +471,7 @@
                   }
                 }
               </style>
+
               <div id="calc-interest-rate-change">
                 <div class="calculator-ui home-loan-ui">
                   <section class="mtg-hero" aria-label="Interest rate change calculator">
@@ -665,39 +662,35 @@
                     <div
                       class="mtg-lifetime-donut"
                       data-rate="lifetime-donut"
-                      style="--principal-share: 42.36111493922553%"
                       role="img"
                       aria-label="Baseline versus new interest breakdown"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Baseline Share</span>
-                        <strong data-rate="lt-baseline-share">42.4%</strong>
+                        <strong data-rate="lt-baseline-share"></strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>New Scenario Share</span>
-                        <strong data-rate="lt-new-share">57.6%</strong>
+                        <strong data-rate="lt-new-share"></strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Baseline Interest</span>
-                      <strong data-rate="lt-baseline-interest">188,442.53</strong>
+                      <strong data-rate="lt-baseline-interest"></strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>New Scenario Interest</span>
-                      <strong data-rate="lt-new-interest">256,405.37</strong>
+                      <strong data-rate="lt-new-interest"></strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Interest Change</span>
-                      <strong data-rate="lt-interest-change">67,962.84</strong>
+                      <strong data-rate="lt-interest-change"></strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-rate="lt-summary">
-                    The new scenario increases lifetime interest by 67,962.84 versus the baseline
-                    schedule.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-rate="lt-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--amortization">
@@ -757,233 +750,7 @@
                           <th scope="col">Balance New</th>
                         </tr>
                       </thead>
-                      <tbody id="rate-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>12,382.93</td>
-                          <td>16,128.47</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>244,845.23</td>
-                          <td>245,872.25</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>12,119.21</td>
-                          <td>15,852.02</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>239,426.74</td>
-                          <td>241,468.06</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>11,841.99</td>
-                          <td>15,557.07</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>233,731.02</td>
-                          <td>236,768.91</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>11,550.58</td>
-                          <td>15,242.36</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>227,743.9</td>
-                          <td>231,755.05</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>11,244.27</td>
-                          <td>14,906.57</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>221,450.47</td>
-                          <td>226,405.41</td>
-                        </tr>
-                        <tr>
-                          <td>6</td>
-                          <td>10,922.29</td>
-                          <td>14,548.29</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>214,835.06</td>
-                          <td>220,697.49</td>
-                        </tr>
-                        <tr>
-                          <td>7</td>
-                          <td>10,583.83</td>
-                          <td>14,166.02</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>207,881.19</td>
-                          <td>214,607.3</td>
-                        </tr>
-                        <tr>
-                          <td>8</td>
-                          <td>10,228.06</td>
-                          <td>13,758.15</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>200,571.54</td>
-                          <td>208,109.23</td>
-                        </tr>
-                        <tr>
-                          <td>9</td>
-                          <td>9,854.08</td>
-                          <td>13,322.96</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>192,887.92</td>
-                          <td>201,175.98</td>
-                        </tr>
-                        <tr>
-                          <td>10</td>
-                          <td>9,460.97</td>
-                          <td>12,858.63</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>184,811.19</td>
-                          <td>193,778.4</td>
-                        </tr>
-                        <tr>
-                          <td>11</td>
-                          <td>9,047.75</td>
-                          <td>12,363.2</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>176,321.24</td>
-                          <td>185,885.39</td>
-                        </tr>
-                        <tr>
-                          <td>12</td>
-                          <td>8,613.39</td>
-                          <td>11,834.59</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>167,396.93</td>
-                          <td>177,463.76</td>
-                        </tr>
-                        <tr>
-                          <td>13</td>
-                          <td>8,156.8</td>
-                          <td>11,270.58</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>158,016.03</td>
-                          <td>168,478.13</td>
-                        </tr>
-                        <tr>
-                          <td>14</td>
-                          <td>7,676.86</td>
-                          <td>10,668.8</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>148,155.19</td>
-                          <td>158,890.71</td>
-                        </tr>
-                        <tr>
-                          <td>15</td>
-                          <td>7,172.36</td>
-                          <td>10,026.71</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>137,789.85</td>
-                          <td>148,661.2</td>
-                        </tr>
-                        <tr>
-                          <td>16</td>
-                          <td>6,642.05</td>
-                          <td>9,341.62</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>126,894.19</td>
-                          <td>137,746.61</td>
-                        </tr>
-                        <tr>
-                          <td>17</td>
-                          <td>6,084.61</td>
-                          <td>8,610.65</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>115,441.1</td>
-                          <td>126,101.04</td>
-                        </tr>
-                        <tr>
-                          <td>18</td>
-                          <td>5,498.65</td>
-                          <td>7,830.72</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>103,402.05</td>
-                          <td>113,675.55</td>
-                        </tr>
-                        <tr>
-                          <td>19</td>
-                          <td>4,882.7</td>
-                          <td>6,998.57</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>90,747.05</td>
-                          <td>100,417.9</td>
-                        </tr>
-                        <tr>
-                          <td>20</td>
-                          <td>4,235.25</td>
-                          <td>6,110.68</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>77,444.6</td>
-                          <td>86,272.37</td>
-                        </tr>
-                        <tr>
-                          <td>21</td>
-                          <td>3,554.67</td>
-                          <td>5,163.32</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>63,461.57</td>
-                          <td>71,179.48</td>
-                        </tr>
-                        <tr>
-                          <td>22</td>
-                          <td>2,839.27</td>
-                          <td>4,152.53</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>48,763.14</td>
-                          <td>55,075.79</td>
-                        </tr>
-                        <tr>
-                          <td>23</td>
-                          <td>2,087.27</td>
-                          <td>3,074.03</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>33,312.72</td>
-                          <td>37,893.6</td>
-                        </tr>
-                        <tr>
-                          <td>24</td>
-                          <td>1,296.8</td>
-                          <td>1,923.31</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>17,071.82</td>
-                          <td>19,560.7</td>
-                        </tr>
-                        <tr>
-                          <td>25</td>
-                          <td>465.89</td>
-                          <td>695.52</td>
-                          <td>17,537.7</td>
-                          <td>20,256.21</td>
-                          <td>0</td>
-                          <td>0</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="rate-table-yearly-body"></tbody>
                     </table>
                   </div>
                 </section>

@@ -88,7 +88,14 @@
               "id": "unit-circle",
               "name": "Unit Circle Calculator",
               "url": "/math/trigonometry/unit-circle",
-              "keywords": ["unit circle", "reference angle", "quadrant", "sin", "cos", "tan"],
+              "keywords": [
+                "unit circle",
+                "reference angle",
+                "quadrant",
+                "sin",
+                "cos",
+                "tan"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -97,7 +104,14 @@
               "id": "triangle-solver",
               "name": "Triangle Solver",
               "url": "/math/trigonometry/triangle-solver",
-              "keywords": ["SSS", "SAS", "ASA", "AAS", "SSA", "triangle"],
+              "keywords": [
+                "SSS",
+                "SAS",
+                "ASA",
+                "AAS",
+                "SSA",
+                "triangle"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -106,7 +120,15 @@
               "id": "trig-functions",
               "name": "Trigonometric Functions",
               "url": "/math/trigonometry/trig-functions",
-              "keywords": ["sin", "cos", "tan", "sec", "csc", "cot", "graph"],
+              "keywords": [
+                "sin",
+                "cos",
+                "tan",
+                "sec",
+                "csc",
+                "cot",
+                "graph"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -115,7 +137,12 @@
               "id": "inverse-trig",
               "name": "Inverse Trig Functions",
               "url": "/math/trigonometry/inverse-trig",
-              "keywords": ["arcsin", "arccos", "arctan", "inverse trig"],
+              "keywords": [
+                "arcsin",
+                "arccos",
+                "arctan",
+                "inverse trig"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -124,7 +151,11 @@
               "id": "law-of-sines-cosines",
               "name": "Law of Sines/Cosines Calculator",
               "url": "/math/trigonometry/law-of-sines-cosines",
-              "keywords": ["law of sines", "law of cosines", "triangle"],
+              "keywords": [
+                "law of sines",
+                "law of cosines",
+                "triangle"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -171,7 +202,13 @@
               "id": "limit",
               "name": "Limit Calculator",
               "url": "/math/calculus/limit",
-              "keywords": ["limit", "lhopital", "indeterminate", "infinity", "continuity"],
+              "keywords": [
+                "limit",
+                "lhopital",
+                "indeterminate",
+                "infinity",
+                "continuity"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -218,7 +255,12 @@
               "id": "natural-log",
               "name": "Natural Log Calculator",
               "url": "/math/log/natural-log",
-              "keywords": ["ln", "natural log", "e", "logarithm"],
+              "keywords": [
+                "ln",
+                "natural log",
+                "e",
+                "logarithm"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -227,7 +269,12 @@
               "id": "common-log",
               "name": "Common Log Calculator",
               "url": "/math/log/common-log",
-              "keywords": ["log", "base 10", "logarithm", "change of base"],
+              "keywords": [
+                "log",
+                "base 10",
+                "logarithm",
+                "change of base"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -236,7 +283,12 @@
               "id": "log-properties",
               "name": "Logarithm Properties",
               "url": "/math/log/log-properties",
-              "keywords": ["product rule", "quotient rule", "power rule", "expansion"],
+              "keywords": [
+                "product rule",
+                "quotient rule",
+                "power rule",
+                "expansion"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -245,7 +297,11 @@
               "id": "exponential-equations",
               "name": "Exponential Equations Solver",
               "url": "/math/log/exponential-equations",
-              "keywords": ["a^x", "logarithmic solution", "exponential"],
+              "keywords": [
+                "a^x",
+                "logarithmic solution",
+                "exponential"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -254,7 +310,12 @@
               "id": "log-scale",
               "name": "Log Scale Converter",
               "url": "/math/log/log-scale",
-              "keywords": ["decibel", "pH", "Richter", "logarithmic scale"],
+              "keywords": [
+                "decibel",
+                "pH",
+                "Richter",
+                "logarithmic scale"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -699,7 +760,12 @@
               "id": "sleep-time-calculator",
               "name": "Sleep Time Calculator",
               "url": "/time-and-date/sleep-time-calculator",
-              "keywords": ["sleep", "wake up", "bedtime", "sleep cycles"],
+              "keywords": [
+                "sleep",
+                "wake up",
+                "bedtime",
+                "sleep cycles"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -708,7 +774,12 @@
               "id": "wake-up-time-calculator",
               "name": "Wake-Up Time Calculator",
               "url": "/time-and-date/wake-up-time-calculator",
-              "keywords": ["wake up", "sleep cycles", "bedtime", "alarm"],
+              "keywords": [
+                "wake up",
+                "sleep cycles",
+                "bedtime",
+                "alarm"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -717,7 +788,12 @@
               "id": "nap-time-calculator",
               "name": "Nap Time Calculator",
               "url": "/time-and-date/nap-time-calculator",
-              "keywords": ["nap", "power nap", "afternoon nap", "wake time"],
+              "keywords": [
+                "nap",
+                "power nap",
+                "afternoon nap",
+                "wake time"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -726,7 +802,12 @@
               "id": "power-nap-calculator",
               "name": "Power Nap Calculator",
               "url": "/time-and-date/power-nap-calculator",
-              "keywords": ["power nap", "nap length", "wake time", "micro nap"],
+              "keywords": [
+                "power nap",
+                "nap length",
+                "wake time",
+                "micro nap"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -735,7 +816,12 @@
               "id": "energy-based-nap-selector",
               "name": "Energy-Based Nap Selector",
               "url": "/time-and-date/energy-based-nap-selector",
-              "keywords": ["energy nap", "quick nap", "strong nap", "full nap"],
+              "keywords": [
+                "energy nap",
+                "quick nap",
+                "strong nap",
+                "full nap"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -744,7 +830,12 @@
               "id": "work-hours-calculator",
               "name": "Work Hours Calculator",
               "url": "/time-and-date/work-hours-calculator",
-              "keywords": ["hours worked", "breaks", "timesheet", "shift"],
+              "keywords": [
+                "hours worked",
+                "breaks",
+                "timesheet",
+                "shift"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -753,7 +844,12 @@
               "id": "overtime-hours-calculator",
               "name": "Overtime Hours Calculator",
               "url": "/time-and-date/overtime-hours-calculator",
-              "keywords": ["overtime", "regular hours", "weekly hours", "night shift"],
+              "keywords": [
+                "overtime",
+                "regular hours",
+                "weekly hours",
+                "night shift"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -762,7 +858,12 @@
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
               "url": "/time-and-date/time-between-two-dates-calculator",
-              "keywords": ["date difference", "days between", "weeks between", "months between"],
+              "keywords": [
+                "date difference",
+                "days between",
+                "weeks between",
+                "months between"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -771,7 +872,12 @@
               "id": "days-until-a-date-calculator",
               "name": "Days Until a Date Calculator",
               "url": "/time-and-date/days-until-a-date-calculator",
-              "keywords": ["days until", "countdown", "date difference", "days left"],
+              "keywords": [
+                "days until",
+                "countdown",
+                "date difference",
+                "days left"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -780,7 +886,12 @@
               "id": "countdown-timer-generator",
               "name": "Countdown Timer Generator",
               "url": "/time-and-date/countdown-timer-generator",
-              "keywords": ["countdown", "timer", "date and time", "event countdown"],
+              "keywords": [
+                "countdown",
+                "timer",
+                "date and time",
+                "event countdown"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -789,7 +900,12 @@
               "id": "age-calculator",
               "name": "Age Calculator",
               "url": "/time-and-date/age-calculator",
-              "keywords": ["age", "birthday", "years months days", "date of birth"],
+              "keywords": [
+                "age",
+                "birthday",
+                "years months days",
+                "date of birth"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -798,7 +914,12 @@
               "id": "birthday-day-of-week",
               "name": "Birthday Day-of-Week",
               "url": "/time-and-date/birthday-day-of-week",
-              "keywords": ["birthday", "weekday", "day of week", "born on"],
+              "keywords": [
+                "birthday",
+                "weekday",
+                "day of week",
+                "born on"
+              ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"

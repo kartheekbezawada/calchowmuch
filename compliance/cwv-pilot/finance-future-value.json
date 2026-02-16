@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-02-16T17:40:22.261Z",
+  "thresholds": {
+    "clsP0": 0.1,
+    "singleShiftP0": 0.05,
+    "lcpP0Ms": 2500,
+    "inpProxyP0Ms": 200
+  },
+  "routeCount": 1,
+  "modeCountPerRoute": 2,
+  "totalChecks": 2,
+  "violationCount": 0,
+  "violations": [],
+  "results": [
+    {
+      "route": "/finance/future-value/",
+      "mode": "normal",
+      "status": 200,
+      "cls": 0,
+      "maxShift": 0,
+      "lcp": 172,
+      "inpProxy": 80,
+      "entries": []
+    },
+    {
+      "route": "/finance/future-value/",
+      "mode": "stress",
+      "status": 200,
+      "cls": 0.007,
+      "maxShift": 0.007,
+      "lcp": 704,
+      "inpProxy": 64,
+      "entries": [
+        {
+          "value": 0.0000056293951547634035,
+          "startTime": 1489.6000000014901,
+          "sources": [
+            {
+              "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",
+              "previousRect": {
+                "x": 1064.765625,
+                "y": 634.984375,
+                "width": 8,
+                "height": 18.015625,
+                "top": 634.984375,
+                "right": 1072.765625,
+                "bottom": 653,
+                "left": 1064.765625
+              },
+              "currentRect": {
+                "x": 1045.203125,
+                "y": 634.984375,
+                "width": 28,
+                "height": 18.015625,
+                "top": 634.984375,
+                "right": 1073.203125,
+                "bottom": 653,
+                "left": 1045.203125
+              }
+            }
+          ]
+        },
+        {
+          "value": 0.00701838445258921,
+          "startTime": 1723,
+          "sources": [
+            {
+              "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",
+              "previousRect": {
+                "x": 1112.734375,
+                "y": 18,
+                "width": 227.265625,
+                "height": 38,
+                "top": 18,
+                "right": 1340,
+                "bottom": 56,
+                "left": 1112.734375
+              },
+              "currentRect": {
+                "x": 1020,
+                "y": 18,
+                "width": 320,
+                "height": 38,
+                "top": 18,
+                "right": 1340,
+                "bottom": 56,
+                "left": 1020
+              }
+            },
+            {
+              "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#fv-explanation.explanation-pane",
+              "previousRect": {
+                "x": 273,
+                "y": 724.984375,
+                "width": 819,
+                "height": 147.015625,
+                "top": 724.984375,
+                "right": 1092,
+                "bottom": 872,
+                "left": 273
+              },
+              "currentRect": {
+                "x": 273,
+                "y": 744.984375,
+                "width": 819,
+                "height": 127.015625,
+                "top": 744.984375,
+                "right": 1092,
+                "bottom": 872,
+                "left": 273
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

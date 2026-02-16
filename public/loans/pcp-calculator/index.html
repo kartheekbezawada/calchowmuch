@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -126,6 +127,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -446,17 +448,16 @@
               <div id="loan-mtg-explanation">
                 <h2>PCP Calculator - Payment Breakdown</h2>
                 <p>
-                  Based on a vehicle price of <span data-pcp="price">32,000</span> and a deposit of
-                  <span data-pcp="deposit">3,000</span>, your estimated monthly PCP payment is
-                  <span data-pcp="monthly-payment">400.05</span>.
+                  Based on a vehicle price of <span data-pcp="price">-</span> and a deposit of
+                  <span data-pcp="deposit">-</span>, your estimated monthly PCP payment is
+                  <span data-pcp="monthly-payment">-</span>.
                 </p>
                 <p>
-                  At <span data-pcp="apr">5.9%</span> over
-                  <span data-pcp="term">4 years (48 months)</span>, with GFV set to
-                  <span data-pcp="gfv">15,000</span> and option fee of
-                  <span data-pcp="option-fee">100</span>, your final payment is
-                  <span data-pcp="final-payment">15,100</span> and total payable is
-                  <span data-pcp="total-payable">37,302.24</span>.
+                  At <span data-pcp="apr">-</span> over <span data-pcp="term">-</span>, with GFV set
+                  to <span data-pcp="gfv">-</span> and option fee of
+                  <span data-pcp="option-fee">-</span>, your final payment is
+                  <span data-pcp="final-payment">-</span> and total payable is
+                  <span data-pcp="total-payable">-</span>.
                 </p>
 
                 <section class="mtg-exp-section mtg-exp-section--lifetime">
@@ -469,45 +470,41 @@
                       data-pcp="lifetime-donut"
                       role="img"
                       aria-label="Principal vs interest breakdown"
-                      style="--principal-share: 85.8%"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Principal Share</span>
-                        <strong data-pcp="principal-share">85.8%</strong>
+                        <strong data-pcp="principal-share">-</strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>Interest Share</span>
-                        <strong data-pcp="interest-share">14.2%</strong>
+                        <strong data-pcp="interest-share">-</strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid pcp-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Amount Financed</span>
-                      <strong data-pcp="amount-financed-total">29,000</strong>
+                      <strong data-pcp="amount-financed-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>GFV</span>
-                      <strong data-pcp="gfv-total">15,000</strong>
+                      <strong data-pcp="gfv-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Option Fee</span>
-                      <strong data-pcp="option-fee-total">100</strong>
+                      <strong data-pcp="option-fee-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Interest</span>
-                      <strong data-pcp="total-interest-total">5,302.24</strong>
+                      <strong data-pcp="total-interest-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Payable</span>
-                      <strong data-pcp="total-payable-total">37,302.24</strong>
+                      <strong data-pcp="total-payable-total">-</strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-pcp="lifetime-summary">
-                    You finance 29,000 with GFV of 15,000 and pay 5,302.24 in interest over the full
-                    PCP schedule.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-pcp="lifetime-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--amortization">
@@ -583,36 +580,7 @@
                           <th scope="col">Ending Balance</th>
                         </tr>
                       </thead>
-                      <tbody id="pcp-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>4,800.56</td>
-                          <td>3,174.49</td>
-                          <td>1,626.07</td>
-                          <td>25,825.51</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>4,800.56</td>
-                          <td>3,366.94</td>
-                          <td>1,433.62</td>
-                          <td>22,458.57</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>4,800.56</td>
-                          <td>3,571.05</td>
-                          <td>1,229.51</td>
-                          <td>18,887.53</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>4,800.56</td>
-                          <td>3,787.53</td>
-                          <td>1,013.03</td>
-                          <td>15,100</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="pcp-table-yearly-body"></tbody>
                     </table>
                   </div>
 
@@ -630,37 +598,11 @@
                           <th scope="col">Explanation</th>
                         </tr>
                       </thead>
-                      <tbody id="pcp-table-cost-body">
-                        <tr>
-                          <th scope="row">Amount Financed</th>
-                          <td>29,000</td>
-                          <td>Price minus deposit before interest.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">GFV (Deferred Principal)</th>
-                          <td>15,000</td>
-                          <td>Deferred amount due at term end.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Option Fee</th>
-                          <td>100</td>
-                          <td>Added to final payment if purchased.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Total Interest</th>
-                          <td>5,302.24</td>
-                          <td>Interest paid across installments.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Deposit Paid Upfront</th>
-                          <td>3,000</td>
-                          <td>Initial contribution at agreement start.</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="pcp-table-cost-body"></tbody>
                       <tfoot>
                         <tr>
                           <th scope="row" colspan="2">Total Payable</th>
-                          <td id="pcp-cost-total-payable">37,302.24</td>
+                          <td id="pcp-cost-total-payable">-</td>
                         </tr>
                       </tfoot>
                     </table>

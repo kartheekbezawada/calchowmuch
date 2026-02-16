@@ -53,6 +53,7 @@ const compoundingGroup = document.querySelector('[data-button-group="fv-compound
 const periodButtons = setupButtonGroup(periodGroup, {
   defaultValue: 'years',
   onChange() {
+    hydrateOnUserIntent();
     calculate();
   },
 });
@@ -60,6 +61,7 @@ const periodButtons = setupButtonGroup(periodGroup, {
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
   onChange() {
+    hydrateOnUserIntent();
     calculate();
   },
 });
@@ -222,6 +224,13 @@ function fmt(value, opts = {}) {
   });
 }
 
+function setTextIfChanged(node, nextValue) {
+  if (!node) return;
+  if (node.textContent !== nextValue) {
+    node.textContent = nextValue;
+  }
+}
+
 function setSliderFill(input) {
   if (!input) return;
   const min = Number(input.min) || 0;
@@ -234,34 +243,41 @@ function setSliderFill(input) {
 function updateSliderDisplays() {
   if (pvInput && pvDisplay) {
     setSliderFill(pvInput);
-    pvDisplay.textContent = fmt(Number(pvInput.value), {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
+    setTextIfChanged(
+      pvDisplay,
+      fmt(Number(pvInput.value), {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+    );
   }
   if (rateInput && rateDisplay) {
     setSliderFill(rateInput);
-    rateDisplay.textContent = `${Number(rateInput.value)}%`;
+    setTextIfChanged(rateDisplay, `${Number(rateInput.value)}%`);
   }
   if (timeInput && timeDisplay) {
     setSliderFill(timeInput);
     const periodType = periodButtons?.getValue() ?? 'years';
-    timeDisplay.textContent = `${Number(timeInput.value)} ${periodType === 'months' ? 'mo' : 'yrs'}`;
+    setTextIfChanged(
+      timeDisplay,
+      `${Number(timeInput.value)} ${periodType === 'months' ? 'mo' : 'yrs'}`
+    );
   }
   if (contribInput && contribDisplay) {
     setSliderFill(contribInput);
-    contribDisplay.textContent = fmt(Number(contribInput.value), {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
+    setTextIfChanged(
+      contribDisplay,
+      fmt(Number(contribInput.value), {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+    );
   }
 }
 
 function updateTargets(targets, value) {
   if (!targets) return;
-  targets.forEach((node) => {
-    node.textContent = value;
-  });
+  targets.forEach((node) => setTextIfChanged(node, value));
 }
 
 function setError(message) {
@@ -371,13 +387,70 @@ function calculate() {
 
 [pvInput, rateInput, timeInput, contribInput].forEach((input) => {
   input?.addEventListener('input', () => {
+    hydrateOnUserIntent();
     updateSliderDisplays();
     calculate();
   });
 });
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => {
+  hydrateOnUserIntent();
+  calculate();
+});
+
+let hydrated = false;
+let idleHydrationHandle = null;
+
+function hydrateOnUserIntent() {
+  cancelIdleHydration();
+  hydrateInitialState();
+}
+
+function hydrateInitialState() {
+  if (hydrated) {
+    return;
+  }
+  hydrated = true;
+  updateSliderDisplays();
+  calculate();
+}
+
+function cancelIdleHydration() {
+  if (idleHydrationHandle === null) {
+    return;
+  }
+  if (typeof window !== 'undefined' && typeof window.cancelIdleCallback === 'function') {
+    window.cancelIdleCallback(idleHydrationHandle);
+  } else {
+    clearTimeout(idleHydrationHandle);
+  }
+  idleHydrationHandle = null;
+}
+
+function scheduleIdleHydration() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  if (typeof window.requestIdleCallback === 'function') {
+    idleHydrationHandle = window.requestIdleCallback(
+      () => {
+        idleHydrationHandle = null;
+        hydrateInitialState();
+      },
+      { timeout: 3200 }
+    );
+    return;
+  }
+  idleHydrationHandle = window.setTimeout(() => {
+    idleHydrationHandle = null;
+    hydrateInitialState();
+  }, 2800);
+}
+
+window.addEventListener('pointerdown', hydrateOnUserIntent, { once: true, passive: true });
+window.addEventListener('touchstart', hydrateOnUserIntent, { once: true, passive: true });
+window.addEventListener('keydown', hydrateOnUserIntent, { once: true });
+window.addEventListener('focusin', hydrateOnUserIntent, { once: true });
 
 /* ── Init ── */
-updateSliderDisplays();
-calculate();
+scheduleIdleHydration();

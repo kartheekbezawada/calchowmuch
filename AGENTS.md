@@ -110,3 +110,21 @@
 - **Default:** Pipeline (Build->Checklist->Sign-off->Ready).
 - **ADMIN:** Explicit override.
 - **Silence:** ≠ Permission.
+
+---
+
+## 10. Scope Control Checklist (Mandatory)
+
+Before any implementation:
+- **Declare scope:** list target calculator(s), routes, and files.
+- **Confirm scope:** get explicit HUMAN confirmation.
+
+If tests fail outside declared scope:
+- **Stop and ask:** modify test or expand scope.
+- **Do not** change other calculators without approval.
+
+For UX changes:
+- **Approval required** before adding/changing inputs or controls.
+
+If file list changes mid-work:
+- **Re-confirm** scope with HUMAN before editing additional files.

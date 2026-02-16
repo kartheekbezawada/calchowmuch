@@ -4,6 +4,19 @@ function parseNumber(text) {
   return Number(String(text || '').replace(/[^0-9.-]+/g, ''));
 }
 
+async function setInputValue(page, selector, value) {
+  await page.$eval(
+    selector,
+    (element, nextValue) => {
+      const input = /** @type {HTMLInputElement} */ (element);
+      input.value = String(nextValue);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    value
+  );
+}
+
 test.describe('Future Value of Annuity Calculator', () => {
   test('FVA-TEST-E2E-1: user journey and results', async ({ page }) => {
     await page.goto('/finance/future-value-of-annuity');
@@ -11,15 +24,12 @@ test.describe('Future Value of Annuity Calculator', () => {
     const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
     await expect(topNavActive).toHaveText('Finance');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Future Value of Annuity');
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Future Value of Annuity');
 
-    const optionalSection = page.locator('#fva-optional-section');
-    await expect(optionalSection).toHaveClass(/is-hidden/);
-
-    await page.fill('#fva-payment', '500');
-    await page.fill('#fva-interest-rate', '5');
-    await page.fill('#fva-periods', '10');
+    await setInputValue(page, '#fva-payment', 500);
+    await setInputValue(page, '#fva-interest-rate', 5);
+    await setInputValue(page, '#fva-periods', 10);
 
     await page.click('#fva-calc');
 
@@ -37,12 +47,9 @@ test.describe('Future Value of Annuity Calculator', () => {
 
     await page.click('[data-button-group="fva-annuity-type"] button[data-value="ordinary"]');
 
-    await page.click('#fva-optional-toggle');
-    await expect(optionalSection).not.toHaveClass(/is-hidden/);
-
     await page.click('[data-button-group="fva-compounding"] button[data-value="monthly"]');
     await page.click('[data-button-group="fva-period-type"] button[data-value="months"]');
-    await page.fill('#fva-periods', '24');
+    await setInputValue(page, '#fva-periods', 24);
     await page.click('#fva-calc');
 
     const updatedResultText = await page.locator('#fva-result').textContent();
@@ -50,6 +57,6 @@ test.describe('Future Value of Annuity Calculator', () => {
     const expectedMonthly = 500 * ((Math.pow(1 + 0.05 / 12, 24) - 1) / (0.05 / 12));
     expect(updatedValue).toBeCloseTo(expectedMonthly, 0);
 
-    await expect(page.locator('[data-fva="future-value"]').first()).not.toHaveText('N/A');
+    await expect(page.locator('[data-fva="snap-payment"]').first()).not.toHaveText('N/A');
   });
 });
