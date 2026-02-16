@@ -2,332 +2,433 @@
 
 > [!IMPORTANT]
 > **Goal: 1 Million Unique Users / Month | 5 Million Page Views / Month | AdSense Revenue | Zero Google Penalties**
->
-> This is the single release gate. Every change touching layout, CSS, JS, navigation, calculators, explanation/FAQ, ads, fonts, or shared UI components **must pass every HARD item** before merge.
 
-> [!NOTE]
-> **Authoritative references:**
-> - `UNIVERSAL_REQUIREMENTS.md` — rule IDs (UR-CSS-xxx, UR-SEO-xxx, UR-TEST-xxx)
-> - `Project Bible.md` — strategy, design intent, AdSense safety
-> - `AGENTS.md` — agent operating contract, document chain
-> - Sign-off: `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`
+RELEASE CHECKLIST — CalcHowMuch.com (TOP 1% DOMINANCE EDITION)
 
----
+Purpose: One release gate for every change that can impact SEO, Core Web Vitals, AdSense, or UX stability.
+Rule: Every HARD item must pass before merge/release.
 
-## A) Pre-Release (Dev) — Must Pass
+0) Release Header (REQUIRED)
 
-## A0) Scope Control — Must Pass
+Release ID: RELEASE-YYYYMMDD-XXX
 
-- [ ] **Scope declared upfront**: list exact calculator(s)/routes and files to be edited before any code changes.
-- [ ] **No silent scope expansion**: if a test fails outside scope, stop and ask whether to modify the test or expand scope.
+Owner: {NAME}
+
+Date: {YYYY-MM-DD}
+
+Change Type (pick one): SINGLE_CALCULATOR | CATEGORY | GLOBAL_SHARED | INFRA
+
+Primary Target Route (MANDATORY): {ROUTE_SLUG}
+Example: /finance/present-value-of-annuity/
+
+1) HARD vs SOFT Policy (DO NOT EDIT)
+HARD (Blocks Release)
+
+If any HARD item fails → STOP → fix → re-run gates.
+
+SOFT (Release Allowed With Follow-up)
+
+SOFT items can ship only if:
+
+No HARD failures exist, AND
+
+The SOFT item is recorded in sign-off with a follow-up ticket.
+
+2) Scope Rules (MANDATORY)
+2.1 Scope declaration
+
+ HARD: List exact routes affected (1+), plus exact files to be changed before coding.
+
+ HARD: If the file list changes, scope must be re-declared in the PR/agent log.
+
+2.2 Scope expansion rule
+
+ HARD: If a failure occurs outside declared scope, do NOT widen scope silently.
+
+Either fix only if it is a shared root cause introduced by this change, OR
+
+Raise a follow-up ticket.
 - [ ] **UI changes require approval**: new inputs/controls/UX elements must be approved before implementation.
 - [ ] **File change preview**: confirm intended file list before edits; if it changes, re-confirm.
 
-### A1) Above-the-fold rendering order
-- [ ] Calculator UI renders immediately; ads must never block first render.
-- [ ] Initial state/results visible without waiting for ad scripts, late CSS, or JS hydration.
-- [ ] No runtime injection adds new content above the fold after load (ads/nav/banners).
-- [ ] Above-the-fold content is present in initial HTML — no JS-required content for primary calculator UI.
-
-### A2) CSS architecture (systemic CLS prevention)
-> [!WARNING]
-> **Hard rules:**
-> - No runtime CSS `@import` anywhere. Must pass: `npm run lint:css-import`.
-> - Shared UI styles delivered via direct `<link>` in `<head>`, not via `@import`. (UR-CSS-002)
-> - Per-calculator CSS contains only page-specific overrides. (UR-CSS-004)
-> - Do NOT copy CSS from another calculator. Shared rules come from `shared-calculator-ui.css`. (UR-CSS-006)
-
-**Critical layout rule:**
-- [ ] Layout-critical selectors (hero/grid/form panel/slider rows) must be present in earliest CSS.
-
-**Render-blocking guidance:**
-- [ ] Total blocking CSS budget: **≤ 5** `<link rel="stylesheet">` tags in `<head>`. (UR-CSS-007)
-- [ ] Record blocking CSS list in sign-off (Section N).
-
-### A3) Layout stability (CLS control)
-- [ ] No visible layout shift when results/tables appear, FAQs/explanation render, nav opens/closes, ads load, or images/icons appear.
-- [ ] Use reserved space (placeholders/min-height) to avoid shifts.
-- [ ] Ad slot no-fill behavior must not cause layout shifts.
-
-### A4) JavaScript discipline (INP protection)
-- [ ] No heavy computation on input/slider events.
-- [ ] No long tasks (>50ms) on the interaction path.
-- [ ] Non-essential scripts are deferred/lazy-loaded.
-- [ ] Rapid slider drags + fast typing remain smooth (test for 5–10s).
-
-### A5) Caching readiness (Cloudflare + browser)
-- [ ] Static assets are cacheable long-term using versioning.
-- [ ] `Cache-Control` for static assets supports long caching; use `immutable` where appropriate.
-
----
-
-## B) Mobile & Tablet Release Checks — Must Pass
-
-> [!NOTE]
-> **Mobile-first indexing:** mobile failures directly harm ranking.
-
-### B1) Layout & navigation (375px / 768px)
-- [ ] Mobile is single-column calculator layout.
-- [ ] Burger/left navigation does not cause CLS.
-- [ ] Tap targets are usable (≥48×48px) with adequate spacing.
-- [ ] No horizontal overflow on any calculator page.
-
-### B2) Inputs on mobile
-- [ ] Numeric inputs show numeric keyboard (`inputmode="decimal"`/`numeric`).
-- [ ] `min`/`max`/`step` provided where applicable.
-
-### B3) Ads on mobile
-- [ ] **No ads above the calculator H1 on mobile.** (Hard rule)
-- [ ] Ads do not overlap inputs/results or interactive elements.
-- [ ] Ads do not resize after render in ways that cause CLS.
-
----
-
-## C) Performance Metrics — Must Pass
-
-> [!TIP]
-> Pre-release: lab gates + regression prevention. Field (CrUX) data is authoritative after rollout.
-
-### C1) Field targets (P75 — ranking-impacting)
-
-| Metric | Good (P75) | Warning | Fail |
-| :--- | :--- | :--- | :--- |
-| **LCP** | ≤ 2.5s | 2.5–4s | > 4s |
-| **FCP** | ≤ 1.8s | 1.8–3s | > 3s |
-| **INP** | ≤ 200ms | 200–500ms | > 500ms |
-| **CLS** | ≤ 0.10 | 0.10–0.25 | > 0.25 |
-
-### C2) Lab gates (pre-release)
-- [ ] **Desktop:** (1280×720, no throttling).
-- [ ] **Mobile:** (375×667, CPU 4×, Slow 3G).
-
-**Checks:**
-- [ ] No visible layout shifts in filmstrip/trace.
-- [ ] No long tasks near first interaction.
-- [ ] Justify any resource on the critical path in DevTools.
-
----
-
-## D) CWV Guard (Automated Performance Gate) — Mandatory
-
-### D1) Define Scope (Targeted Testing)
-> [!IMPORTANT]
-> **Default Behavior:** Only test the specific calculator(s) or subcategory being modified. Do NOT touch unrelated calculators.
->
-> *   **Single Calculator:** `TARGET=finance/present-value`
-> *   **Subcategory:** `TARGET=finance`
-> *   **Full Site:** `TARGET=all` (Only for global infrastructure changes)
-
-### D2) Execution
-- [ ] **Run Targeted Test:**
-    ```bash
-    TARGET={scope} npm run test:cwv:target
-    ```
-    *(Example: `TARGET=finance npm run test:cwv:target`)*
-- [ ] **Artifact:** `test-results/performance/cls-guard-all-calculators.json`.
+3) TESTING POLICY — DEFAULT = ONE CALCULATOR (MANDATORY)
 
-### D3) Release policy
-| Metric | HARD FAIL (Blocks Release) | SOFT WARNING (Investigate) |
-| :--- | :--- | :--- |
-| **CLS** | > 0.10 | 0.05 – 0.10 |
-| **Single Shift**| > 0.05 | - |
-| **LCP** | > 2500ms | 2000 – 2500ms |
-| **INP Proxy** | > 200ms | 150 – 200ms |
-| **Mobile FCP** | > 1800ms | 1500 – 1800ms |
+Goal: Avoid universal tests touching every calculator.
+Default: Test exactly one calculator route — the route you changed.
 
-### D4) Baseline regression policy
-- [ ] Flag >20% CLS increase vs baseline.
-- [ ] Flag median LCP > 30% above site median.
+3.1 Required test scope selection (pick one)
 
----
+A) SINGLE_CALCULATOR (default, 95% of changes)
 
-## E) Ads & AdSense Compliance — Must Pass
+Scope = exactly 1 route: {ROUTE_SLUG}
 
-> [!CAUTION]
-> AdSense policy violations will suspend revenue. Treat as critical.
+B) CATEGORY (only if changes affect multiple calculators in one category)
 
-### E1) Slot reservation (CLS prevention)
-- [ ] Each ad slot reserves `min-height` per breakpoint.
-- [ ] Slot never collapses to 0 height on load/no-fill.
+Scope = CATEGORY_SET:{category} (e.g., finance)
 
-### E2) Load timing & correctness
-- [ ] Ads load after initial calculator render (`requestIdleCallback`).
-- [ ] Exactly one AdSense loader `<script>` in `<head>`.
+C) GLOBAL_SHARED (only if shared shell/CSS/JS changes affect multiple categories)
 
-### E3) AdSense policy (hard rules)
-- [ ] No ads above H1 on mobile.
-- [ ] Max one ad unit visible above the fold on mobile.
-- [ ] No ads that mimic calculator UI or overlap inputs/results.
+Scope = GOLDEN_SET (fixed small set of representative routes)
 
----
+D) INFRA (only for build tooling, caching, deployments)
 
-## F) Animation & Visual Effects — Must Pass
-- [ ] Use only `opacity`/`transform` for animations.
-- [ ] No layout-property animations (`height`/`width`/`top`/`left`).
-- [ ] Respect `prefers-reduced-motion`.
+Scope = GOLDEN_SET + 1 real page from top-traffic category
 
----
+3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
-## G) Manual Regression Scenarios — Must Pass
+ HARD: Performance tests must not crawl every calculator by default.
 
-### G1) First load
-- [ ] No visible jump or FOUC.
-- [ ] Calculator usable within 3s on throttled mobile.
+ HARD: If the test harness currently touches all calculators automatically, it must be refactored to accept an explicit route list.
 
-### G2) Interaction
-- [ ] Rapid slider drag (5–10s): no lag.
-- [ ] Mode toggles: no layout snap/reflow flicker.
+3.3 Implementation requirement for test scripts (HARD)
 
-### G3) Navigation
-- [ ] Subcategories collapsed by default.
-- [ ] Navigation uses full-page `<a href>` links.
+ HARD: npm run test:cwv must require an explicit target input:
 
----
+TARGET_ROUTE=/finance/present-value-of-annuity/ (single)
 
-## H) Accessibility — Must Pass
-- [ ] Keyboard navigable (Tab/Shift+Tab/Enter/Space).
-- [ ] `aria-live="polite"` on result containers.
-- [ ] No `<select>` dropdowns for mode toggles — use button groups.
-- [ ] Usable at 200% zoom without horizontal overflow.
+TARGET_SET=finance (category)
 
----
+TARGET_SET=golden (global shared)
 
-## I) SERP Readiness — Must Pass
+If no target is provided → FAIL FAST.
 
-### I1) Metadata integrity
-- [ ] Unique `<title>` (35–61 chars) and `<meta name="description">` (110–165 chars).
-- [ ] Exactly one `<h1>` per page.
-- [ ] Correct absolute canonical URL.
+3.4 Golden Set (GLOBAL_SHARED) — fixed list (REQUIRED)
 
-### I2) Structured data hygiene
-- [ ] Required schema: `WebPage`, `SoftwareApplication`, `BreadcrumbList`.
-- [ ] FAQ three-place parity: JSON-LD ↔ module metadata ↔ visible FAQ.
-- [ ] Validate via Rich Results Test.
+Define a small representative set (10–20 max) that covers:
 
-### I3) Content indexability
-- [ ] Explanation + FAQs in initial HTML (not JS-only).
-- [ ] Page crawlable without JS.
+2-column calculator UI
 
-### I4) Sitemap coverage (P0)
-- [ ] Every route appears in `public/sitemap.xml`.
-- [ ] Run `node scripts/generate-sitemap.js` after route changes.
+1-column mobile layout
 
----
-
-## J) Content Quality — Must Pass
-- [ ] Explanation section present (formula, inputs, interpretation).
-- [ ] At least one worked example or scenario table.
-- [ ] FAQ section with 3+ realistic user questions.
-
----
-
-## K) Security & Trust — Must Pass
-- [ ] Site served over HTTPS; no mixed content.
-- [ ] Privacy policy, terms, and contact pages exist and are linked.
-
----
-
-## L) CWV Guard — Test Commands (must pass)
-- `npm run validate` — runs lint + lint:css-import + test + format:check.
-- `npm run test:cwv:all` — CWV guard for all calculator routes.
-- `npm run test:iss001` — Layout/shell stability.
+slider-heavy calculator
 
----
+table-heavy results
 
-## M) Observability (Post-Release)
-- [ ] 24–72 hours: Search Console coverage stable.
-- [ ] Monthly: monitor AdSense policy center.
+long FAQ page
 
----
+at least one page per major category
 
-## N) Sign-off Evidence — Required
+Store at: compliance/golden_routes.json
 
-Record in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`:
-1. CWV guard artifact summary.
-2. FCP/LCP/CLS/INP (mobile + desktop) per affected calculator.
-3. DevTools "render-blocking resources" review.
-4. LCP element selector/text.
-5. Stress-mode trace screenshots.
-6. SEO verification results.
+4) Pre-Release Command Gate (MANDATORY)
 
----
+ HARD: npm run validate passes (lint + format + unit tests + css-import lint).
 
-## O) Release Decision Rules
+ HARD: No runtime CSS @import anywhere.
 
-**HARD blockers (DO NOT RELEASE):**
-- [ ] CWV guard hard fail.
-- [ ] Ads violate AdSense/Better Ads rules or cause layout shifts.
-- [ ] Interaction jank (INP risk).
-- [ ] Metadata/canonical/schema integrity failures.
-- [ ] Explanation/FAQ missing from initial HTML.
+5) CRITICAL RENDERING PATH GUARD — HARD (TOP 1% RULE)
 
-**SOFT signals (Release allowed with follow-up):**
-- [ ] Minor Lighthouse dip with no CWV regressions.
-- [ ] Minor visual polish issues.
+Objective: Calculator hero and primary inputs must render immediately without waiting for external CSS.
 
----
+5.1 Blocking CSS Budget — STRICT
 
-## Elite Performance Checklist — Calculator Pages (Addendum)
+ HARD: Preferred blocking stylesheets: 0
 
-### X1) Render-Blocking Optimization (Hard Requirement)
-**Objective:** Eliminate all render-blocking resources that delay First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
+ HARD: Maximum blocking stylesheets: 1
 
-#### [ ] 1. Inline Critical CSS
-*   **Action:** Extract essential CSS required to render the "Above-the-Fold" content (Header, Hero Section, Calculator Inputs).
-*   **Implementation:** Place this CSS directly into the `<head>` within a `<style>...</style>` block.
-*   **Must Include:**
-    *   CSS Variables (`:root { ... }` from `theme-*.css`).
-    *   CSS Resets (`* { box-sizing: border-box }` from `base.css`).
-    *   Layout Skeleton (`.page`, `.site-header`, `.layout-main` from `layout.css`).
-    *   Hero/Input Styles (`.calculator-ui`, `.mtg-hero` from `shared-calculator-ui.css`).
-    *   Typography for H1/H2 visible on load.
-    *   **Verify:** The page looks "correct" (layout-wise) even if you disable external stylesheets.
+ HARD: Emergency ceiling: 2 (requires written justification + screenshots)
 
-#### [ ] 2. Defer Non-Critical Stylesheets
-*   **Action:** Load all other CSS files asynchronously to prevent render blocking.
-*   **Pattern:** Use the following HTML pattern for *every* external stylesheet that isn't critical:
-    ```html
-    <link rel="stylesheet" href="/path/to/style.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="/path/to/style.css"></noscript>
-    ```
-*   **Files to Defer:** `layout.css` (full), `shared-calculator-ui.css` (full), `base.css`, `theme-premium-dark.css`.
+If >2 blocking CSS files → HARD FAIL
 
-#### [ ] 3. Eliminate `@import`
-*   **Action:** Search for `@import` in all CSS files using `grep -r "@import" public/assets/css`.
-*   **Why:** `@import` causes sequential network requests (chains), delaying render.
-*   **Fix:** Replace any `@import` with standard `<link>` tags in HTML or inline the rules directly.
+5.2 Blocking time budget (Mobile lab)
 
-#### [ ] 4. Preload Hygiene
-*   **Action:** Use `<link rel="preload">` for high-priority resources discovered later in the waterfall.
-*   **Targets:**
-    *   Critical Fonts (e.g., `inter-v12-latin-700.woff2` if used in H1/Hero).
-    *   Hero Images (if LCP element is an image).
-*   **Code:** `<link rel="preload" href="..." as="font" type="font/woff2" crossorigin>`
+ HARD: Total blocking CSS (download + parse) ≤ 800ms
 
-### X2) Stress Validation (Mobile + Desktop)
-**Objective:** Verify performance under constrained conditions to simulate real-world low-end devices.
+ HARD: 800–1000ms allowed only with justification + mitigation plan
 
-#### [ ] 1. Configure DevTools
-*   Open Chrome DevTools (`F12`).
-*   Go to **Performance** tab.
-*   Click **Capture Settings** (Gear icon at top right of pane).
-*   **Network:** Set to `Slow 3G`.
-*   **CPU:** Set to `4x slowdown`.
+ HARD: >1000ms → HARD FAIL
 
-#### [ ] 2. Run Test & Analyze
-*   Start profiling (Reload button).
-*   Wait for profile to finish (~10-15s).
-*   Locate **LCP** marker in the "Timings" track. Hover to read the exact time.
+5.3 Mandatory Critical CSS Inlining
 
-#### [ ] 3. Success Criteria
-*   **Elite Target:** Stress LCP ≤ **2.5s**.
-*   **Acceptable:** Stress LCP ≤ **3.0s** (Only if Normal LCP < 1.0s).
-*   **Fail:** Stress LCP > 3.0s (Requires optimization).
+ HARD: Inline critical above-the-fold CSS inside <head><style>...</style></head>
 
-#### [ ] 4. Documentation
-*   Record the exact Stress LCP value (e.g., "2.64s") in the release sign-off document.
+ HARD: Page remains structurally correct if external CSS is disabled (header + hero + calculator shell still usable)
 
----
+ HARD: No blank screen waiting for CSS
 
-## Summary
-Every item protects search traffic, revenue, and user trust. Follow strictly.
+ HARD: No FOUC that changes layout geometry of hero/inputs
+
+Critical CSS MUST include only:
+
+:root variables needed above fold
+
+base reset required for layout geometry
+
+header shell structure
+
+calculator hero/container + input-row skeleton
+
+H1 typography above the fold
+
+Critical CSS MUST NOT include:
+
+full theme styling
+
+FAQ/explanation/footer styles
+
+hover effects, animations
+
+below-the-fold layout rules
+
+5.4 Non-critical CSS Deferral — mandatory pattern
+
+All non-critical CSS must use:
+
+<link rel="stylesheet" href="/path/to/style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/path/to/style.css"></noscript>
+
+5.5 Render-blocking detection gate (DevTools/Lighthouse)
+
+ HARD: No unexpected render-blocking requests besides allowed blocking CSS
+
+ HARD: No CSS dependency chains
+
+ HARD: Lighthouse “Eliminate render-blocking resources” estimated savings:
+
+>800ms → HARD FAIL
+
+300–800ms → SOFT (must investigate)
+
+<300ms → OK
+
+6) Layout Stability Guard (CLS) — HARD
+
+ HARD: No visible layout shift during:
+
+initial load
+
+results/table render
+
+FAQ/explanation render
+
+nav open/close
+
+ad fill/no-fill
+
+font load
+
+ HARD: Reserve space using min-height/placeholders for:
+
+ad slots
+
+result tables
+
+explanation + FAQ sections (if they expand)
+
+icons/images
+
+Release thresholds (target):
+
+ HARD: CLS ≤ 0.10 (P75 target)
+
+ HARD: Any single shift > 0.05 → HARD FAIL
+
+7) Interaction Guard (INP risk) — HARD
+
+ HARD: No long tasks (>50ms) on input/slider interaction path
+
+ HARD: Slider drag stress test (10 seconds) remains smooth
+
+ HARD: No layout thrash on input events
+
+ HARD: Non-essential scripts deferred/lazy-loaded
+
+8) Performance Targets — HARD (LAB GATE)
+8.1 Mobile lab profile (required)
+
+Device: 375×667
+
+CPU: 4× slowdown
+
+Network: Slow 3G
+
+8.2 Desktop lab profile (required)
+
+1280×720, no throttling
+
+8.3 Pass/Fail thresholds (lab proxy)
+
+ HARD: LCP ≤ 2500ms
+
+ HARD: Mobile FCP ≤ 1800ms
+
+ HARD: INP proxy ≤ 200ms
+
+ HARD: CLS ≤ 0.10
+
+9) CWV Guard Automation — HARD (SCOPED ONLY)
+9.1 Run scoped CWV guard
+
+ HARD: TARGET_ROUTE={route} npm run test:cwv:target
+
+Produces: test-results/performance/cls-guard.json
+
+9.2 Regression rules
+
+ HARD: CLS regression >20% vs baseline for the same route → FAIL
+
+ HARD: LCP regression >30% vs baseline → FAIL
+
+9.3 Full-site runs (optional, never default)
+
+ SOFT/OPTIONAL: npm run test:cwv:all
+
+Only allowed if change type = INFRA and release owner requests it.
+
+10) Ads & AdSense Compliance — HARD
+10.1 Slot reservation (CLS prevention)
+
+ HARD: Each ad slot has breakpoint-specific min-height
+
+ HARD: Slot never collapses to 0 height on load/no-fill
+
+ HARD: Ad scripts load after initial calculator render (idle)
+
+10.2 Mobile policy
+
+ HARD: No ads above the calculator H1 on mobile
+
+ HARD: Max 1 ad visible above-the-fold on mobile
+
+ HARD: Ads never overlap inputs/results or controls
+
+10.3 Loader correctness
+
+ HARD: Exactly one AdSense loader script in <head>
+
+11) Mobile & Tablet UX — HARD
+11.1 Layout
+
+ HARD: Mobile = single column calculator layout
+
+ HARD: No horizontal overflow at 375px or 768px
+
+ HARD: Tap targets ≥ 48×48px
+
+11.2 Inputs
+
+ HARD: Numeric inputs use inputmode="decimal"/numeric
+
+ HARD: min/max/step present where applicable
+
+11.3 Navigation
+
+ HARD: Subcategories collapsed by default
+
+ HARD: Direct-entry page opens only its own category/subcategory
+
+ HARD: Nav toggle causes zero CLS
+
+12) Accessibility — HARD
+
+ HARD: Keyboard navigable (Tab/Shift+Tab/Enter/Space)
+
+ HARD: Visible focus states
+
+ HARD: Results container uses aria-live="polite"
+
+ HARD: Works at 200% zoom without horizontal overflow
+
+13) SERP Readiness — HARD
+13.1 Metadata integrity
+
+ HARD: Unique <title> and <meta name="description">
+
+ HARD: Exactly one <h1>
+
+ HARD: Correct absolute canonical URL
+
+13.2 Structured data hygiene
+
+ HARD: Required JSON-LD present:
+
+WebPage
+
+SoftwareApplication
+
+BreadcrumbList
+
+ HARD: FAQ parity (3-way match):
+
+visible FAQ
+
+JSON-LD FAQ
+
+module metadata FAQ (if applicable)
+
+13.3 Indexability
+
+ HARD: Explanation + FAQs exist in initial HTML (not JS-only)
+
+ HARD: Page crawlable without JS
+
+13.4 Sitemap
+
+ HARD: Route present in public/sitemap.xml
+
+ HARD: Regenerate sitemap after route changes
+
+14) Security & Trust — HARD
+
+ HARD: HTTPS only, no mixed content
+
+ HARD: Privacy/Terms/Contact pages exist and are linked
+
+15) Post-Release Monitoring — REQUIRED
+
+Within 24–72 hours:
+
+ HARD: Search Console coverage stable
+
+ HARD: No indexing anomalies for the released route(s)
+
+ SOFT: Monitor AdSense policy center
+
+16) Sign-off Evidence — REQUIRED
+
+Create: release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md
+
+Must include:
+
+Target scope chosen (single/category/golden) + justification
+
+Routes tested list (exact)
+
+Blocking CSS count + time (mobile)
+
+Lighthouse render-blocking savings (ms)
+
+LCP element selector + value (mobile + desktop)
+
+CLS value + any shift screenshots if present
+
+CWV guard artifact summary
+
+Ads validation notes (mobile policy + no CLS)
+
+SERP validation notes (canonical + schema + FAQ parity)
+
+17) Release Decision Rules (FINAL)
+HARD BLOCKERS (DO NOT RELEASE)
+
+Any HARD checkbox unchecked
+
+CLS > 0.10 or single shift > 0.05
+
+LCP > 2500ms (lab proxy) for target route
+
+Render-blocking savings >800ms
+
+Ads violate mobile policy or cause CLS
+
+Missing explanation/FAQ in initial HTML
+
+Test scope not explicitly declared
+
+SOFT SIGNALS (Release allowed)
+
+Minor Lighthouse dip with no CWV regressions
+
+Minor visual polish issues not impacting layout geometry
+
+Non-critical warnings recorded with follow-up ticket
