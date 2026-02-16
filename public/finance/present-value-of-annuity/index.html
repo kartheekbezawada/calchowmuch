@@ -31,11 +31,17 @@
     />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css"
+      />
+    </noscript>
+
     <script type="application/ld+json" data-static-ld="true">
       {
         "@context": "https://schema.org",
@@ -266,6 +272,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -314,10 +321,9 @@
                   ><a class="fin-nav-item" href="/finance/future-value"
                     ><span class="fin-nav-item-icon" aria-hidden="true">📈</span>Future Value
                     (FV)</a
-                  ><a
-                    class="fin-nav-item nav-item is-active"
-                    href="/finance/present-value-of-annuity"
-                    >Present Value of Annuity</a
+                  ><a class="fin-nav-item is-active" href="/finance/present-value-of-annuity"
+                    ><span class="fin-nav-item-icon" aria-hidden="true">📊</span>Present Value of
+                    Annuity</a
                   ><a class="fin-nav-item" href="/finance/future-value-of-annuity"
                     ><span class="fin-nav-item-icon" aria-hidden="true">💹</span>Future Value of
                     Annuity</a
@@ -380,6 +386,8 @@
                   ><a class="fin-nav-item" href="/finance/monthly-savings-needed"
                     ><span class="fin-nav-item-icon" aria-hidden="true">🏦</span>Monthly Savings
                     Needed</a
+                  ><a class="fin-nav-item" href="/finance/savings-goal"
+                    ><span class="fin-nav-item-icon" aria-hidden="true">🔢</span>Savings Goal</a
                   >
                 </div>
               </div>
@@ -390,51 +398,6 @@
           <div class="panel panel-scroll panel-span-all">
             <h1 id="calculator-title">Present Value of Annuity Calculator</h1>
             <div class="calculator-page-single">
-              <style>
-                #calc-present-value-of-annuity {
-                  width: 100%;
-                }
-
-                #calc-present-value-of-annuity .home-loan-ui {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 1rem;
-                }
-
-                #calc-present-value-of-annuity .mtg-hero {
-                  display: grid;
-                  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-                  gap: 1.5rem;
-                  align-items: start;
-                }
-
-                #calc-present-value-of-annuity .mtg-form-panel {
-                  display: grid;
-                  gap: 1rem;
-                  align-content: start;
-                }
-
-                #calc-present-value-of-annuity .mtg-preview-panel {
-                  display: grid;
-                  gap: 1rem;
-                  align-content: start;
-                }
-
-                #calc-present-value-of-annuity .mtg-result-card {
-                  min-height: 44px;
-                }
-
-                #calc-present-value-of-annuity .mtg-summary-card {
-                  min-height: 96px;
-                }
-
-                @media (max-width: 1220px) {
-                  #calc-present-value-of-annuity .mtg-hero {
-                    grid-template-columns: 1fr;
-                  }
-                }
-              </style>
-
               <div id="calc-present-value-of-annuity">
                 <div id="calc-home-loan">
                   <div class="calculator-ui home-loan-ui">
@@ -650,14 +613,6 @@
                 </div>
               </div>
 
-              <style>
-                @import url('/calculators/finance/present-value-of-annuity/calculator.css');
-              </style>
-
-              <script
-                type="module"
-                src="/calculators/finance/present-value-of-annuity/module.js"
-              ></script>
               <div id="pva-explanation" class="explanation-pane">
                 <div id="loan-mtg-explanation">
                   <h2>Present Value of Annuity — Results Breakdown</h2>
@@ -681,57 +636,57 @@
                         <tbody>
                           <tr>
                             <td>Payment Amount (PMT)</td>
-                            <td><span data-pva="payment-amount">500.00</span></td>
+                            <td><span data-pva="payment-amount"></span></td>
                             <td class="pva-how-col">
                               The fixed amount paid or received each period
                             </td>
                           </tr>
                           <tr>
                             <td>Discount Rate</td>
-                            <td><span data-pva="discount-rate">5%</span></td>
+                            <td><span data-pva="discount-rate"></span></td>
                             <td class="pva-how-col">Annual rate used to discount each payment</td>
                           </tr>
                           <tr>
                             <td>Periods</td>
-                            <td><span data-pva="period-count">10.00 years</span></td>
+                            <td><span data-pva="period-count"></span></td>
                             <td class="pva-how-col">Number of periods over which payments occur</td>
                           </tr>
                           <tr>
                             <td>Annuity Type</td>
-                            <td><span data-pva="annuity-type">Ordinary Annuity</span></td>
+                            <td><span data-pva="annuity-type"></span></td>
                             <td class="pva-how-col">
                               Whether payments arrive at start or end of period
                             </td>
                           </tr>
                           <tr>
                             <td>Compounding</td>
-                            <td><span data-pva="compounding-frequency">Annual</span></td>
+                            <td><span data-pva="compounding-frequency"></span></td>
                             <td class="pva-how-col">
                               How often the discount rate is applied per year
                             </td>
                           </tr>
                           <tr>
                             <td>Effective Periods</td>
-                            <td><span data-pva="effective-periods">10.00</span></td>
+                            <td><span data-pva="effective-periods"></span></td>
                             <td class="pva-how-col">Total number of compounding periods used</td>
                           </tr>
                           <tr>
                             <td>Rate Per Period</td>
-                            <td><span data-pva="applied-rate">5.00</span>%</td>
+                            <td><span data-pva="applied-rate"></span>%</td>
                             <td class="pva-how-col">
                               Discount rate applied in each compounding period
                             </td>
                           </tr>
                           <tr>
                             <td>Total Payments</td>
-                            <td><span data-pva="total-payments">5,000.00</span></td>
+                            <td><span data-pva="total-payments"></span></td>
                             <td class="pva-how-col">Sum of all payments without discounting</td>
                           </tr>
                         </tbody>
                         <tfoot>
                           <tr>
                             <td>PV of Annuity</td>
-                            <td><span data-pva="present-value">3,860.87</span></td>
+                            <td><span data-pva="present-value"></span></td>
                             <td class="pva-how-col">What all future payments are worth today</td>
                           </tr>
                         </tfoot>
@@ -750,40 +705,38 @@
                     <ul class="pva-explanation-list">
                       <li>
                         <strong>Payment Amount (PMT):</strong>
-                        Each period you receive <span data-pva="payment-amount">500.00</span>. This
-                        is the fixed cash flow being discounted back to the present.
+                        Each period you receive <span data-pva="payment-amount"></span>. This is the
+                        fixed cash flow being discounted back to the present.
                       </li>
                       <li>
                         <strong>Discount Rate:</strong>
-                        A <span data-pva="discount-rate">5%</span> annual discount rate reflects the
+                        A <span data-pva="discount-rate"></span> annual discount rate reflects the
                         cost of capital or the return you'd earn if you had the money today.
                       </li>
                       <li>
                         <strong>Periods:</strong>
-                        Payments continue for <span data-pva="period-count">10.00 years</span>. More
-                        periods mean more payments, but each additional payment is discounted more
-                        heavily.
+                        Payments continue for <span data-pva="period-count"></span>. More periods
+                        mean more payments, but each additional payment is discounted more heavily.
                       </li>
                       <li>
                         <strong>Annuity Type:</strong>
-                        You selected <span data-pva="annuity-type">Ordinary Annuity</span>. Ordinary
-                        annuities pay at the end of each period; annuity due pays at the beginning,
-                        giving a higher present value.
+                        You selected <span data-pva="annuity-type"></span>. Ordinary annuities pay
+                        at the end of each period; annuity due pays at the beginning, giving a
+                        higher present value.
                       </li>
                       <li>
                         <strong>Compounding:</strong>
-                        With <span data-pva="compounding-frequency">Annual</span> compounding, the
-                        annual rate is split into
-                        <span data-pva="effective-periods">10.00</span> effective periods, each at
-                        <span data-pva="applied-rate">5.00</span>% per period.
+                        With <span data-pva="compounding-frequency"></span> compounding, the annual
+                        rate is split into <span data-pva="effective-periods"></span> effective
+                        periods, each at <span data-pva="applied-rate"></span>% per period.
                       </li>
                       <li>
                         <strong>Discount Saved:</strong>
                         The total undiscounted payments of
-                        <span data-pva="total-payments">5,000.00</span> are reduced to
-                        <span data-pva="present-value">3,860.87</span> — a difference of
-                        <span data-pva="formula-discount-saved">1,139.13</span> due to the time
-                        value of money.
+                        <span data-pva="total-payments"></span> are reduced to
+                        <span data-pva="present-value"></span> — a difference of
+                        <span data-pva="formula-discount-saved"></span> due to the time value of
+                        money.
                       </li>
                     </ul>
 
@@ -796,28 +749,27 @@
                     <ol class="pva-formula-steps">
                       <li>
                         <strong>Identify the per-period rate (r):</strong>
-                        <span data-pva="discount-rate">5%</span> &divide;
-                        <span data-pva="periods-per-year">1</span> compounding periods per year =
-                        <span data-pva="applied-rate">5.00</span>% per period (as a decimal:
-                        <span data-pva="applied-rate-decimal">0.05</span>).
+                        <span data-pva="discount-rate"></span> &divide;
+                        <span data-pva="periods-per-year"></span> compounding periods per year =
+                        <span data-pva="applied-rate"></span>% per period (as a decimal:
+                        <span data-pva="applied-rate-decimal"></span>).
                       </li>
                       <li>
                         <strong>Determine the number of periods (n):</strong>
-                        <span data-pva="effective-periods">10.00</span> total compounding periods.
+                        <span data-pva="effective-periods"></span> total compounding periods.
                       </li>
                       <li>
                         <strong>Build the annuity factor:</strong>
-                        [1 &minus; (1 + <span data-pva="applied-rate-decimal">0.05</span>)<sup
-                          >&minus;<span data-pva="effective-periods">10.00</span></sup
-                        >] &divide; <span data-pva="applied-rate-decimal">0.05</span> =
-                        <span data-pva="formula-annuity-factor">7.721735</span>.
+                        [1 &minus; (1 + <span data-pva="applied-rate-decimal"></span>)<sup
+                          >&minus;<span data-pva="effective-periods"></span></sup
+                        >] &divide; <span data-pva="applied-rate-decimal"></span> =
+                        <span data-pva="formula-annuity-factor"></span>.
                       </li>
                       <li>
                         <strong>Multiply by payment:</strong>
-                        <span data-pva="payment-amount">500.00</span> &times;
-                        <span data-pva="formula-annuity-factor">7.721735</span>
-                        = <strong><span data-pva="present-value">3,860.87</span></strong
-                        >.
+                        <span data-pva="payment-amount"></span> &times;
+                        <span data-pva="formula-annuity-factor"></span>
+                        = <strong><span data-pva="present-value"></span></strong>.
                       </li>
                     </ol>
                     <p>
@@ -880,42 +832,6 @@
                         <p>
                           Yes, it helps estimate the value of pensions, retirement income streams,
                           and long-term annuity payments.
-                        </p>
-                      </div>
-
-                      <div class="bor-faq-card">
-                        <span class="bor-faq-number">07</span>
-                        <h4>Can I switch between years and months?</h4>
-                        <p>
-                          Yes, use the period toggle to model either annual or monthly cash-flow
-                          timelines.
-                        </p>
-                      </div>
-
-                      <div class="bor-faq-card">
-                        <span class="bor-faq-number">08</span>
-                        <h4>How does compounding frequency affect PVA?</h4>
-                        <p>
-                          More frequent compounding changes per-period rates and periods, which
-                          changes the annuity factor and PV.
-                        </p>
-                      </div>
-
-                      <div class="bor-faq-card">
-                        <span class="bor-faq-number">09</span>
-                        <h4>Does annuity due always have a higher PV?</h4>
-                        <p>
-                          Usually yes, because each payment is discounted for one less period
-                          compared with ordinary annuity.
-                        </p>
-                      </div>
-
-                      <div class="bor-faq-card">
-                        <span class="bor-faq-number">10</span>
-                        <h4>Is this calculator suitable for lease and pension valuation?</h4>
-                        <p>
-                          Yes, it is suitable for valuing fixed periodic payment streams under a
-                          chosen discount rate.
                         </p>
                       </div>
                     </div>

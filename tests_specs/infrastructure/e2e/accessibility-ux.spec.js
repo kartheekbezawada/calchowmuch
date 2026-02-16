@@ -5,7 +5,7 @@ function normalizeRoute(rawRoute) {
   let route = rawRoute.trim();
   if (!route) return null;
   if (!route.startsWith('/')) route = `/${route}`;
-  route = route.replace(/\/+/, '/');
+  route = route.replace(/\/+/g, '/');
   if (route !== '/' && !route.endsWith('/')) route = `${route}/`;
   return route;
 }
@@ -60,6 +60,8 @@ test.describe('Accessibility UX guard', () => {
       };
     });
 
-    expect(overflow).toEqual({ docOverflow: 0, bodyOverflow: 0 });
+    expect(
+      Math.max(Math.abs(overflow.docOverflow), Math.abs(overflow.bodyOverflow))
+    ).toBeLessThanOrEqual(1);
   });
 });

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <script type="application/ld+json" data-static-ld="true">
       {
         "@context": "https://schema.org",
@@ -293,6 +294,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -368,8 +370,8 @@
                   ></span>
                 </button>
                 <div class="fin-nav-items">
-                  <a class="fin-nav-item nav-item is-active" href="/finance/simple-interest"
-                    >Simple Interest</a
+                  <a class="fin-nav-item is-active" href="/finance/simple-interest"
+                    ><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Simple Interest</a
                   ><a class="fin-nav-item" href="/finance/compound-interest"
                     ><span class="fin-nav-item-icon" aria-hidden="true">♻️</span>Compound
                     Interest</a
@@ -406,6 +408,8 @@
                   ><a class="fin-nav-item" href="/finance/monthly-savings-needed"
                     ><span class="fin-nav-item-icon" aria-hidden="true">🏦</span>Monthly Savings
                     Needed</a
+                  ><a class="fin-nav-item" href="/finance/savings-goal"
+                    ><span class="fin-nav-item-icon" aria-hidden="true">🔢</span>Savings Goal</a
                   >
                 </div>
               </div>
@@ -625,6 +629,7 @@
               </style>
 
               <script type="module" src="/calculators/finance/simple-interest/module.js"></script>
+
               <h3>Explanation</h3>
               <div id="si-explanation" class="explanation-pane">
                 <div id="loan-mtg-explanation">
@@ -649,53 +654,50 @@
                         <tbody>
                           <tr>
                             <td>Principal Amount (P)</td>
-                            <td><span data-si="principal">10,000.00</span></td>
+                            <td><span data-si="principal"></span></td>
                             <td class="si-how-col">
                               The starting amount on which interest is calculated
                             </td>
                           </tr>
                           <tr>
                             <td>Interest Rate</td>
-                            <td><span data-si="rate">6%</span></td>
+                            <td><span data-si="rate"></span></td>
                             <td class="si-how-col">
                               Annual (or monthly) rate applied to the principal
                             </td>
                           </tr>
                           <tr>
                             <td>Time Period</td>
-                            <td>
-                              <span data-si="time">3.00</span>
-                              <span data-si="time-unit">years</span>
-                            </td>
+                            <td><span data-si="time"></span> <span data-si="time-unit"></span></td>
                             <td class="si-how-col">Duration over which interest accrues</td>
                           </tr>
                           <tr>
                             <td>Interest Basis</td>
-                            <td><span data-si="basis">Per Year</span></td>
+                            <td><span data-si="basis"></span></td>
                             <td class="si-how-col">
                               Whether the rate is applied per year or per month
                             </td>
                           </tr>
                           <tr>
                             <td>Time in Years</td>
-                            <td><span data-si="years">3.00</span></td>
+                            <td><span data-si="years"></span></td>
                             <td class="si-how-col">Normalized duration used in the formula</td>
                           </tr>
                           <tr>
                             <td>Rate as Decimal</td>
-                            <td><span data-si="rate-decimal">0.06</span></td>
+                            <td><span data-si="rate-decimal"></span></td>
                             <td class="si-how-col">Rate ÷ 100, used directly in the formula</td>
                           </tr>
                           <tr>
                             <td>Total Interest (I)</td>
-                            <td><span data-si="total-interest">1,800.00</span></td>
+                            <td><span data-si="total-interest"></span></td>
                             <td class="si-how-col">Interest earned or owed over the full term</td>
                           </tr>
                         </tbody>
                         <tfoot>
                           <tr>
                             <td>Ending Amount (A)</td>
-                            <td><span data-si="ending-amount">11,800.00</span></td>
+                            <td><span data-si="ending-amount"></span></td>
                             <td class="si-how-col">Principal + Total Interest = final balance</td>
                           </tr>
                         </tfoot>
@@ -714,37 +716,35 @@
                     <ul class="si-explanation-list">
                       <li>
                         <strong>Principal (P):</strong>
-                        You start with <span data-si="principal">10,000.00</span>. This is the base
-                        amount on which interest is calculated every period.
+                        You start with <span data-si="principal"></span>. This is the base amount on
+                        which interest is calculated every period.
                       </li>
                       <li>
                         <strong>Interest Rate:</strong>
-                        A <span data-si="rate">6%</span> rate is applied
-                        <span data-si="basis">Per Year</span>. Higher rates mean more interest
-                        earned (or owed) per period.
+                        A <span data-si="rate"></span> rate is applied
+                        <span data-si="basis"></span>. Higher rates mean more interest earned (or
+                        owed) per period.
                       </li>
                       <li>
                         <strong>Time Period:</strong>
-                        Interest accrues over <span data-si="time">3.00</span>
-                        <span data-si="time-unit">years</span>, which equals
-                        <span data-si="years">3.00</span> years.
+                        Interest accrues over <span data-si="time"></span>
+                        <span data-si="time-unit"></span>, which equals
+                        <span data-si="years"></span> years.
                       </li>
                       <li>
                         <strong>Interest Basis:</strong>
-                        The rate is treated as <span data-si="basis">Per Year</span>. When set to
-                        "Per Month," the rate multiplies the number of months rather than years.
+                        The rate is treated as <span data-si="basis"></span>. When set to "Per
+                        Month," the rate multiplies the number of months rather than years.
                       </li>
                       <li>
                         <strong>Total Interest:</strong>
-                        Applying the formula yields
-                        <span data-si="total-interest">1,800.00</span> in interest. Because there is
-                        no compounding, growth is constant each period.
+                        Applying the formula yields <span data-si="total-interest"></span> in
+                        interest. Because there is no compounding, growth is constant each period.
                       </li>
                       <li>
                         <strong>Ending Amount:</strong>
-                        Adding interest to principal gives
-                        <span data-si="ending-amount">11,800.00</span>. Unlike compound interest,
-                        this grows in a straight line.
+                        Adding interest to principal gives <span data-si="ending-amount"></span>.
+                        Unlike compound interest, this grows in a straight line.
                       </li>
                     </ul>
 
@@ -756,27 +756,26 @@
                     <ol class="si-formula-steps">
                       <li>
                         <strong>Convert the rate to a decimal (r):</strong>
-                        <span data-si="rate">6%</span> &divide; 100 =
-                        <span data-si="rate-decimal">0.06</span>.
+                        <span data-si="rate"></span> &divide; 100 =
+                        <span data-si="rate-decimal"></span>.
                       </li>
                       <li>
                         <strong>Determine time in years (t):</strong>
-                        <span data-si="time">3.00</span> <span data-si="time-unit">years</span> =
-                        <span data-si="years">3.00</span> years.
+                        <span data-si="time"></span> <span data-si="time-unit"></span> =
+                        <span data-si="years"></span> years.
                       </li>
                       <li>
                         <strong>Multiply:</strong>
-                        <span data-si="principal">10,000.00</span> &times;
-                        <span data-si="rate-decimal">0.06</span> &times;
-                        <span data-si="years">3.00</span>
-                        = <span data-si="total-interest">1,800.00</span> total interest.
+                        <span data-si="principal"></span> &times;
+                        <span data-si="rate-decimal"></span> &times;
+                        <span data-si="years"></span>
+                        = <span data-si="total-interest"></span> total interest.
                       </li>
                       <li>
                         <strong>Add to principal:</strong>
-                        <span data-si="principal">10,000.00</span> +
-                        <span data-si="total-interest">1,800.00</span>
-                        = <strong><span data-si="ending-amount">11,800.00</span></strong
-                        >.
+                        <span data-si="principal"></span> +
+                        <span data-si="total-interest"></span>
+                        = <strong><span data-si="ending-amount"></span></strong>.
                       </li>
                     </ol>
                   </section>

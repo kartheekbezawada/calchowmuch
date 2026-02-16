@@ -27,6 +27,8 @@
     "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
     "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
     "audit:local-seo": "node scripts/local-seo-performance-audit.mjs",
+    "build:css:route-bundles": "node scripts/build-route-css-bundles.mjs",
+    "verify:css:route-bundles": "node scripts/build-route-css-bundles.mjs --verify",
     "serve": "python -m http.server 8000 --directory public",
     "validate": "npm run lint && npm run lint:css-import && npm run test && npm run format:check"
   },

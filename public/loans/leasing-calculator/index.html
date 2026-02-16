@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -132,6 +133,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -442,15 +444,15 @@
               <div id="loan-mtg-explanation">
                 <h2>Leasing Calculator - Payment Breakdown</h2>
                 <p>
-                  Based on vehicle price <span data-lease="price">30,000</span> with residual value
-                  of <span data-lease="residual">15,000</span>, your estimated monthly lease payment
-                  is <span data-lease="monthly-payment">470.7</span>.
+                  Based on vehicle price <span data-lease="price">-</span> with residual value of
+                  <span data-lease="residual">-</span>, your estimated monthly lease payment is
+                  <span data-lease="monthly-payment">-</span>.
                 </p>
                 <p>
-                  At money factor <span data-lease="money-factor">0.0022</span> over
-                  <span data-lease="term">3 years (36 months)</span>, total lease cost is
-                  <span data-lease="total-cost">18,445.2</span> including upfront payment of
-                  <span data-lease="upfront">1,500</span>.
+                  At money factor <span data-lease="money-factor">-</span> over
+                  <span data-lease="term">-</span>, total lease cost is
+                  <span data-lease="total-cost">-</span> including upfront payment of
+                  <span data-lease="upfront">-</span>.
                 </p>
 
                 <section class="mtg-exp-section mtg-exp-section--lifetime">
@@ -463,45 +465,41 @@
                       data-lease="lifetime-donut"
                       role="img"
                       aria-label="Depreciation vs finance charge breakdown"
-                      style="--principal-share: 79.7%"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Depreciation Share</span>
-                        <strong data-lease="depreciation-share">79.7%</strong>
+                        <strong data-lease="depreciation-share">-</strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>Finance Charge Share</span>
-                        <strong data-lease="finance-share">20.3%</strong>
+                        <strong data-lease="finance-share">-</strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid lease-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Cap Cost</span>
-                      <strong data-lease="cap-cost-total">28,500</strong>
+                      <strong data-lease="cap-cost-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Residual Value</span>
-                      <strong data-lease="residual-total">15,000</strong>
+                      <strong data-lease="residual-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Depreciation Cost</span>
-                      <strong data-lease="depreciation-total">13,500</strong>
+                      <strong data-lease="depreciation-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Finance Charge</span>
-                      <strong data-lease="finance-total">3,445.2</strong>
+                      <strong data-lease="finance-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Lease Cost</span>
-                      <strong data-lease="total-cost-total">18,445.2</strong>
+                      <strong data-lease="total-cost-total">-</strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-lease="lifetime-summary">
-                    Estimated depreciation is 13,500 and finance charge is 3,445.2 across the full
-                    lease term.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-lease="lifetime-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--amortization">
@@ -577,29 +575,7 @@
                           <th scope="col">Ending Balance</th>
                         </tr>
                       </thead>
-                      <tbody id="lease-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>5,648.4</td>
-                          <td>4,500</td>
-                          <td>1,148.4</td>
-                          <td>15,000</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>5,648.4</td>
-                          <td>4,500</td>
-                          <td>1,148.4</td>
-                          <td>15,000</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>5,648.4</td>
-                          <td>4,500</td>
-                          <td>1,148.4</td>
-                          <td>15,000</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="lease-table-yearly-body"></tbody>
                     </table>
                   </div>
 
@@ -617,42 +593,11 @@
                           <th scope="col">Explanation</th>
                         </tr>
                       </thead>
-                      <tbody id="lease-table-cost-body">
-                        <tr>
-                          <th scope="row">Vehicle Price</th>
-                          <td>30,000</td>
-                          <td>Starting MSRP / negotiated vehicle value.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Residual Value</th>
-                          <td>15,000</td>
-                          <td>Estimated vehicle value at lease end.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Cap Cost</th>
-                          <td>28,500</td>
-                          <td>Price minus upfront payment considered financed.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Depreciation Cost</th>
-                          <td>13,500</td>
-                          <td>Total value consumed over lease term.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Finance Charge</th>
-                          <td>3,445.2</td>
-                          <td>Total financing component across lease term.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Upfront Payment</th>
-                          <td>1,500</td>
-                          <td>Amount paid at lease start.</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="lease-table-cost-body"></tbody>
                       <tfoot>
                         <tr>
                           <th scope="row" colspan="2">Total Lease Cost</th>
-                          <td id="lease-cost-total">18,445.2</td>
+                          <td id="lease-cost-total">-</td>
                         </tr>
                       </tfoot>
                     </table>

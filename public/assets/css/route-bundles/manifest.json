@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-02-16T15:53:10.420Z",
+  "routes": {
+    "/finance/present-value/": {
+      "calculatorId": "present-value",
+      "relPath": "finance/present-value",
+      "href": "/assets/css/route-bundles/finance-present-value.556be6da.css",
+      "hash": "556be6da",
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/present-value/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-present-value.556be6da.css"
+    },
+    "/finance/future-value/": {
+      "calculatorId": "future-value",
+      "relPath": "finance/future-value",
+      "href": "/assets/css/route-bundles/finance-future-value.4ae3d18e.css",
+      "hash": "4ae3d18e",
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/future-value/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-future-value.4ae3d18e.css"
+    },
+    "/finance/future-value-of-annuity/": {
+      "calculatorId": "future-value-of-annuity",
+      "relPath": "finance/future-value-of-annuity",
+      "href": "/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css",
+      "hash": "6720900d",
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/future-value-of-annuity/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css"
+    },
+    "/finance/present-value-of-annuity/": {
+      "calculatorId": "present-value-of-annuity",
+      "relPath": "finance/present-value-of-annuity",
+      "href": "/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css",
+      "hash": "f40b1695",
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/present-value-of-annuity/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css"
+    }
+  }
+}

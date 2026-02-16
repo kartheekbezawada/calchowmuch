@@ -25,6 +25,66 @@
   gap: 1rem;
 }
 
+/* ── Finance time-value route overrides (pilot bundle source) ── */
+
+#calc-present-value,
+#calc-future-value,
+#calc-present-value-of-annuity,
+#calc-future-value-of-annuity {
+  width: 100%;
+}
+
+#calc-present-value .home-loan-ui,
+#calc-future-value .home-loan-ui,
+#calc-present-value-of-annuity .home-loan-ui,
+#calc-future-value-of-annuity .home-loan-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#calc-present-value .mtg-hero,
+#calc-future-value .mtg-hero,
+#calc-present-value-of-annuity .mtg-hero,
+#calc-future-value-of-annuity .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-present-value .mtg-form-panel,
+#calc-future-value .mtg-form-panel,
+#calc-present-value-of-annuity .mtg-form-panel,
+#calc-future-value-of-annuity .mtg-form-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+#calc-present-value .mtg-preview-panel,
+#calc-future-value .mtg-preview-panel,
+#calc-present-value-of-annuity .mtg-preview-panel,
+#calc-future-value-of-annuity .mtg-preview-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+#calc-present-value .mtg-result-card,
+#calc-future-value .mtg-result-card,
+#calc-present-value-of-annuity .mtg-result-card,
+#calc-future-value-of-annuity .mtg-result-card {
+  min-height: 44px;
+}
+
+#calc-present-value .mtg-summary-card,
+#calc-future-value .mtg-summary-card,
+#calc-present-value-of-annuity .mtg-summary-card,
+#calc-future-value-of-annuity .mtg-summary-card {
+  min-height: 96px;
+}
+
 /* ── Hero grid (form + preview) ── */
 
 #calc-home-loan .mtg-hero {

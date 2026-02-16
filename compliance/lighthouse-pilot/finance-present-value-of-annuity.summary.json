@@ -1,0 +1,23 @@
+{
+  "url": "http://localhost:8000/finance/present-value-of-annuity/",
+  "route": "/finance/present-value-of-annuity/",
+  "generatedAt": "2026-02-16T16:01:38.389Z",
+  "categories": {
+    "performance": 94,
+    "accessibility": 96,
+    "bestPractices": 79
+  },
+  "metrics": {
+    "lcpMs": 2619.88945,
+    "cls": 0.0017953939081847864,
+    "inpMs": 138,
+    "renderBlockingSavingsMs": 300,
+    "lcpElementSelector": "div.calculator-ui > section.mtg-hero > div.mtg-form-panel > p.helper"
+  },
+  "security": {
+    "isOnHttpsScore": 1,
+    "mixedContentFound": false,
+    "mixedContentOffenders": []
+  },
+  "warnings": []
+}

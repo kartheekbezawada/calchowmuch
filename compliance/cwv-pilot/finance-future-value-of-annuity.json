@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-02-16T16:02:32.645Z",
+  "thresholds": {
+    "clsP0": 0.1,
+    "singleShiftP0": 0.05,
+    "lcpP0Ms": 2500,
+    "inpProxyP0Ms": 200
+  },
+  "routeCount": 1,
+  "modeCountPerRoute": 2,
+  "totalChecks": 2,
+  "violationCount": 0,
+  "violations": [],
+  "results": [
+    {
+      "route": "/finance/future-value-of-annuity/",
+      "mode": "normal",
+      "status": 200,
+      "cls": 0,
+      "maxShift": 0,
+      "lcp": 164,
+      "inpProxy": 72,
+      "entries": []
+    },
+    {
+      "route": "/finance/future-value-of-annuity/",
+      "mode": "stress",
+      "status": 200,
+      "cls": 0.0008,
+      "maxShift": 0.0005,
+      "lcp": 1376,
+      "inpProxy": 80,
+      "entries": [
+        {
+          "value": 0.0005080142657591804,
+          "startTime": 1542,
+          "sources": [
+            {
+              "selector": "body>div.page>nav.top-nav>a.top-nav-link.is-active>span.nav-label",
+              "previousRect": {
+                "x": 571.953125,
+                "y": 84.203125,
+                "width": 51,
+                "height": 19.59375,
+                "top": 84.203125,
+                "right": 622.953125,
+                "bottom": 103.796875,
+                "left": 571.953125
+              },
+              "currentRect": {
+                "x": 591.75,
+                "y": 84.203125,
+                "width": 51,
+                "height": 19.59375,
+                "top": 84.203125,
+                "right": 642.75,
+                "bottom": 103.796875,
+                "left": 591.75
+              }
+            },
+            {
+              "selector": "html>body>div.page>nav.top-nav>a.top-nav-link",
+              "previousRect": {
+                "x": 652.765625,
+                "y": 75,
+                "width": 144.28125,
+                "height": 38,
+                "top": 75,
+                "right": 797.046875,
+                "bottom": 113,
+                "left": 652.765625
+              },
+              "currentRect": {
+                "x": 690.359375,
+                "y": 75,
+                "width": 144.28125,
+                "height": 38,
+                "top": 75,
+                "right": 834.640625,
+                "bottom": 113,
+                "left": 690.359375
+              }
+            },
+            {
+              "selector": "html>body>div.page>nav.top-nav>a.top-nav-link",
+              "previousRect": {
+                "x": 809.046875,
+                "y": 75,
+                "width": 183.53125,
+                "height": 38,
+                "top": 75,
+                "right": 992.578125,
+                "bottom": 113,
+                "left": 809.046875
+              },
+              "currentRect": {
+                "x": 846.640625,
+                "y": 75,
+                "width": 134.0625,
+                "height": 38,
+                "top": 75,
+                "right": 980.703125,
+                "bottom": 113,
+                "left": 846.640625
+              }
+            }
+          ]
+        },
+        {
+          "value": 0.0003169457740710956,
+          "startTime": 1775.699999999255,
+          "sources": [
+            {
+              "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#fva-periods-display.slider-value",
+              "previousRect": {
+                "x": 633.59375,
+                "y": 329.546875,
+                "width": 137,
+                "height": 130,
+                "top": 329.546875,
+                "right": 770.59375,
+                "bottom": 459.546875,
+                "left": 633.59375
+              },
+              "currentRect": {
+                "x": 607.984375,
+                "y": 329.546875,
+                "width": 162,
+                "height": 133,
+                "top": 329.546875,
+                "right": 769.984375,
+                "bottom": 462.546875,
+                "left": 607.984375
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

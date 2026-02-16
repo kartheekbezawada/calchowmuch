@@ -1,0 +1,23 @@
+{
+  "url": "http://localhost:8000/finance/future-value/",
+  "route": "/finance/future-value/",
+  "generatedAt": "2026-02-16T16:01:10.975Z",
+  "categories": {
+    "performance": 95,
+    "accessibility": 96,
+    "bestPractices": 79
+  },
+  "metrics": {
+    "lcpMs": 2695.2794999999996,
+    "cls": 0,
+    "inpMs": 100,
+    "renderBlockingSavingsMs": 450,
+    "lcpElementSelector": "div.mtg-form-panel > div.input-row > div.slider-header > span#fv-pv-display"
+  },
+  "security": {
+    "isOnHttpsScore": 1,
+    "mixedContentFound": false,
+    "mixedContentOffenders": []
+  },
+  "warnings": []
+}

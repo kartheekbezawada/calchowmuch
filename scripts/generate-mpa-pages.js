@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +18,13 @@ const ADSENSE_SNIPPET_PATH = path.join(
   'AdSense code snippet.md'
 );
 const AD_UNIT_SNIPPET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'Ad Unit Code.md');
+const ROUTE_BUNDLE_MANIFEST_PATH = path.join(
+  PUBLIC_DIR,
+  'assets',
+  'css',
+  'route-bundles',
+  'manifest.json'
+);
 
 const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
@@ -35,6 +43,12 @@ const ADSENSE_LOADER_SCRIPT_RE =
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
+const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'present-value',
+  'future-value',
+  'future-value-of-annuity',
+  'present-value-of-annuity',
+]);
 const CALCULATOR_OVERRIDES = {
   'home-loan': {
     title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
@@ -964,6 +978,54 @@ function writeFile(filePath, contents) {
   fs.writeFileSync(filePath, contents);
 }
 
+function normalizeRoutePath(routePath) {
+  if (!routePath || typeof routePath !== 'string') {
+    return null;
+  }
+  let normalized = routePath.trim();
+  if (!normalized) {
+    return null;
+  }
+  if (!normalized.startsWith('/')) {
+    normalized = `/${normalized}`;
+  }
+  normalized = normalized.replace(/\/+/g, '/');
+  if (!normalized.endsWith('/')) {
+    normalized = `${normalized}/`;
+  }
+  return normalized;
+}
+
+function buildFinanceRouteBundles() {
+  execSync('node scripts/build-route-css-bundles.mjs', {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
+}
+
+function readRouteBundleManifest() {
+  if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH)) {
+    throw new Error(`Missing route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
+  }
+  const manifest = JSON.parse(readFile(ROUTE_BUNDLE_MANIFEST_PATH));
+  if (!manifest || typeof manifest !== 'object' || !manifest.routes) {
+    throw new Error(`Invalid route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
+  }
+  return manifest;
+}
+
+function resolveRouteBundleHref(manifest, routePath) {
+  const normalizedRoute = normalizeRoutePath(routePath);
+  if (!normalizedRoute) {
+    return null;
+  }
+  const entry = manifest.routes[normalizedRoute];
+  if (!entry || typeof entry.href !== 'string') {
+    return null;
+  }
+  return entry.href;
+}
+
 function renderManagedHeadAdsenseBlock() {
   return `${indentBlock(ADSENSE_HEAD_MANAGED_BLOCK, '    ')}\n`;
 }
@@ -1444,6 +1506,7 @@ function buildPageHtml({
   includeHomeContent,
   pageType,
   calculatorRelPath,
+  cssBundleHref = null,
   staticStructuredData = null,
   injectStaticStructuredData = false,
 }) {
@@ -1534,6 +1597,9 @@ ${explanationTitleHtml}  ${explanationHtml}
           staticStructuredData
         )}</script>\n`
       : '';
+  const cssLinksHtml = cssBundleHref
+    ? `    <link rel="stylesheet" href="${cssBundleHref}" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleHref}" />\n    </noscript>\n`
+    : `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
 
@@ -1555,11 +1621,7 @@ ${explanationTitleHtml}  ${explanationHtml}
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${OG_IMAGE}" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />
+${cssLinksHtml} 
 ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
   <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
@@ -1796,6 +1858,8 @@ ${urlItems}
 function main() {
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
+  buildFinanceRouteBundles();
+  const routeBundleManifest = readRouteBundleManifest();
 
   const calcLookup = new Map();
   navigation.categories.forEach((category) => {
@@ -1858,6 +1922,13 @@ function main() {
         const pageTitle = override?.title ?? buildTitle(calculator.name);
         const pageDescription = override?.description ?? buildDescription(calculator.name);
         const pageCanonical = buildCanonical(calculator.url);
+        const cssBundleHref = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+          ? resolveRouteBundleHref(routeBundleManifest, calculator.url)
+          : null;
+
+        if (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !cssBundleHref) {
+          throw new Error(`Missing route CSS bundle href for ${calculator.id} (${calculator.url})`);
+        }
 
         let staticStructuredData = null;
         let injectStaticStructuredData = false;
@@ -1899,6 +1970,7 @@ function main() {
           includeHomeContent: false,
           pageType: 'calculator',
           calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
+          cssBundleHref,
           staticStructuredData,
           injectStaticStructuredData,
         });

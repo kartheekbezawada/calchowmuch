@@ -1,6 +1,7 @@
 # Universal Requirements — Single Source of Truth
 
 ## Document Metadata
+
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
@@ -12,6 +13,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ---
 
 ## 0) Document Control
+
 - **UR-DC-001 (P0):** This file is the single source of truth for universal governance.
 - **UR-DC-002 (P0):** Rules apply to all calculator/public-route work unless explicitly scoped as excluded.
 - **UR-DC-003 (P1):** Rule IDs are mandatory in reviews, trackers, issues, and compliance evidence.
@@ -22,24 +24,28 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ## 1) Factory Pipeline (Simplified Workflow)
 
 ### 1.1 Core Pipeline
+
 - **UR-FLOW-001 (P0):** Architecture is a linear pipeline: `REQUIREMENT -> BUILD -> RELEASE CHECKLIST -> RELEASE SIGN-OFF -> READY`.
 - **UR-FLOW-002 (P0):** The complex FSM (`REQ->BUILD->TEST->SEO->COMPLIANCE`) is deprecated.
 - **UR-FLOW-003 (P0):** Human provides requirement; Agent performs Build -> Checklist -> Sign-off; Human merges.
 - **UR-FLOW-004 (P0):** Visual workflow definitions are in `WORKFLOW_DIAGRAMS.md`.
 
 ### 1.2 Step Definitions
+
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
 - **UR-FLOW-011 (P0): Release Checklist:** Execute ALL gates (`lint`, `unit`, `e2e`, `cwv:all`, `iss-001`) per `RELEASE_CHECKLIST.md`.
 - **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` and update Master Table per `RELEASE_SIGNOFF.md`.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
 ### 1.3 ADMIN Override
+
 - **UR-FLOW-020 (P0):** Keyword `ADMIN` in message supersedes all workflow constraints.
 - **UR-FLOW-021 (P0):** ADMIN mode skips gates but must not violate platform safety/security.
 
 ---
 
 ## 2) Authority and Precedence
+
 - **UR-AP-001 (P0):** AGENTS contract and this document are authoritative law.
 - **UR-AP-002 (P0):** This document governs implementation standards; AGENTS governs operating contract/roles/override semantics.
 - **UR-AP-003 (P1):** Tracker and documentation updates must reflect repository truth.
@@ -47,6 +53,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ---
 
 ## 3) MPA Navigation and Architecture
+
 - **UR-NAV-001 (P0):** Calculator navigation must use static `<a href>` links and full page reloads.
 - **UR-NAV-002 (P0):** SPA routing for calculator navigation is not allowed.
 - **UR-NAV-003 (P0):** Navigation hierarchy must align with `requirements/site-structure/calculator-hierarchy.md`.
@@ -55,6 +62,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-006 (P1):** Shared utility logic belongs in `/public/assets/js/core/`; avoid duplication in route modules.
 
 ### 3.1 Excluded Page Types (GTEP)
+
 - **UR-NAV-020 (P0):** GTEP pages are standalone HTML and must not use calculator shell panes.
 - **UR-NAV-021 (P0):** GTEP pages must not load calculator-specific JS modules.
 - **UR-NAV-022 (P0):** GTEP pages must remain crawlable with lightweight header/footer patterns.
@@ -62,12 +70,14 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-024 (P0):** GTEP pages must use single-column content-first layout with no top category nav, no left nav, no calc pane, no explanation pane, and no ad pane.
 
 ### 3.2 Mobile Responsiveness and Navigation
+
 - **UR-NAV-025 (P0):** Mobile navigation (< 860px) must use a hamburger menu pattern with a slide-out drawer or overlay.
 - **UR-NAV-026 (P0):** The mobile menu toggle must be accessible in the top header and visible on all mobile pages.
 - **UR-NAV-027 (P0):** The left navigation sidebar must be hidden by default on mobile and only appear when toggled.
 - **UR-NAV-028 (P0):** Opening the mobile menu must add a backdrop that closes the menu when clicked (click-outside behavior).
 
 ### 3.3 Route Archetype and Metadata Contract
+
 - **UR-NAV-030 (P0):** Every calculator route entry in `public/config/navigation.json` must declare `routeArchetype`, `designFamily`, and `paneLayout`.
 - **UR-NAV-031 (P0):** Allowed `routeArchetype` values are `calc_exp`, `calc_only`, `exp_only`, `content_shell`.
 - **UR-NAV-032 (P0):** Allowed `designFamily` values are `home-loan`, `auto-loans`, `credit-cards`, `neutral`.
@@ -77,6 +87,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-036 (P0):** Fragment loading is archetype-bound: `calc_exp` requires `index.html` + `explanation.html`; `calc_only` requires `index.html`; `exp_only` requires `explanation.html`; `content_shell` requires `content.html`.
 
 ### 3.4 Archetype Behavior Matrix
+
 - **`calc_exp`:** Calc Pane (Req) + Exp Pane (Req). Layout: `single` or `split`.
 - **`calc_only`:** Calc Pane (Req) + Exp Pane (Omitted). Layout: `single`.
 - **`exp_only`:** Calc Pane (Omitted) + Exp Pane (Req). Layout: `single`.
@@ -87,22 +98,26 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ## 4) Theme and UI Core
 
 ### 4.1 Theme Tokens and Defaults
+
 - **UR-UI-001 (P0):** Premium-dark is the global default theme for shell/content/calculator surfaces.
 - **UR-UI-002 (P0):** Shared theme tokens are mandatory; ad-hoc route palettes are not allowed.
 - **UR-UI-003 (P0):** Theme is loaded once globally via shared base stylesheet; per-page duplicate theme link tags are disallowed.
 
 ### 4.2 Component and Input Rules
+
 - **UR-UI-010 (P0):** Shared `.calculator-button` styles are mandatory for primary/secondary actions.
 - **UR-UI-011 (P0):** Inputs must have labels and deterministic validation.
 - **UR-UI-012 (P0):** Control dropdowns (`<select>`) are disallowed for calculator mode interactions.
 - **UR-UI-013 (P1):** Input values are constrained to 12 characters (via `maxlength` or JS validation by input type).
 
 ### 4.3 Trigger and Dense-Form Contract
+
 - **UR-UI-020 (P0):** Button-only calculate behavior is mandatory after page-load baseline for calculators with explicit Calculate CTA.
 - **UR-UI-021 (P0):** Input edits/mode toggles/add-remove rows may change state/visibility but must not recompute before Calculate click.
 - **UR-UI-022 (P0):** Dense/multi-mode calculators require explicit mode control type, default mode, visibility mapping, and dynamic-row parity.
 
 ### 4.4 Design Token Reference Defaults
+
 > **Note:** Values below are reference defaults. Individual calculator requirements may specify different values.
 
 - **Theme Flag:** `data-theme="premium-dark"` on `<html>`/`<body>`.
@@ -111,10 +126,10 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **Slate:** `--color-slate-50` to `--color-slate-950`.
 - **Dark Backgrounds:** `--color-blue-900`, `--color-blue-950`.
 - **Gradients:**
-    - Page: `--gradient-bg-main` (slate-900 mixed)
-    - Card: `--gradient-bg-card` (glass)
-    - Brand: `--gradient-brand-primary` (blue->cyan)
-    - Result: `--gradient-result-card`
+  - Page: `--gradient-bg-main` (slate-900 mixed)
+  - Card: `--gradient-bg-card` (glass)
+  - Brand: `--gradient-brand-primary` (blue->cyan)
+  - Result: `--gradient-result-card`
 - **Shadows:** `--shadow-sm` ... `--shadow-2xl`; `--shadow-glow-blue/cyan`.
 - **Typography:** `--font-sans` (System stack); `--text-xs` to `--text-6xl`; `--font-normal` (400) to `--font-black` (900).
 - **Spacing:** `--space-1` (4px) to `--space-20` (80px).
@@ -125,10 +140,12 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **Transitions:** Fast(150ms), Base(300ms), Slow(500ms).
 
 #### 4.4.11 Layout Hard-Lock During Theme-Only Changes
+
 - **Constraints:** Grid column definitions, pane heights, `overflow-y` regions, header/footer heights, and DOM structure MUST remain identical.
 - **Fix:** If visual changes break layout, revert and restyle using only CSS tokens.
 
 ### 4.5 Design Philosophy and Design Families
+
 - **UR-UI-030 (P0):** High-impact visual identity, simple interaction model, smooth motion, glassmorphism.
 - **UR-UI-031 (P0):** `designFamily` controls accent/micro-visuals; shared shell structure remains unchanged.
 - **UR-UI-032 (P0):** Family styling must be token-driven; no hardcoded conflicting palettes.
@@ -138,19 +155,23 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-UI-036 (P0):** Design family must not change MPA behavior, semantic landmarks, or keyboard/focus behavior.
 
 ### 4.6 CSS Architecture and Loading Rules
+
 - **UR-CSS-001 (P0):** `@import` is **prohibited** in all calculator CSS files. Enforced by `npm run lint:css-import`.
-- **UR-CSS-002 (P0):** Shared layout rules must be loaded from `/assets/css/shared-calculator-ui.css` via `<link>`, never `@import`.
-- **UR-CSS-003 (P0):** Generator manages shared links; source HTML must NOT add them.
+- **UR-CSS-002 (P0):** Shared layout rules must be sourced from `/assets/css/shared-calculator-ui.css`; delivery may be direct `<link>` or generated route bundle, never `@import`.
+- **UR-CSS-003 (P0):** Generator manages shared CSS delivery links (direct shared link or route bundle); source HTML must NOT add shared CSS links/imports.
 - **UR-CSS-004 (P0):** `calculator.css` contains **only page-specific overrides**.
-- **UR-CSS-005 (P0):** Load Order: `theme` -> `base` -> `layout` -> `calc` -> `shared-ui` -> `style`.
+- **UR-CSS-005 (P0):** CSS load/concat order must remain: `theme` -> `base` -> `layout` -> `calc` -> `shared-ui` -> `style`.
 - **UR-CSS-006 (P0):** Do NOT copy CSS from other calculators (e.g., Home Loan). Use shared rules + overrides.
-- **UR-CSS-007 (P1):** Blocking budget: ≤ 5 `<link>` tags.
+- **UR-CSS-007 (P1):** Blocking budget: ≤ 5 `<link>` tags for standard routes; approved route-bundle routes require exactly 1 blocking stylesheet link.
 - **UR-CSS-008 (P0):** `npm run validate` fails on any `@import`.
+- **UR-CSS-009 (P1):** Route-bundle manifests must map route -> hashed CSS output and declare ordered source files used to build each bundle.
 
 ---
 
 ## 5) Calculation Pane Contract
+
 Applicability: `calc_exp`, `calc_only`.
+
 - **UR-CALC-001 (P0):** Core inputs accessible without mandatory scroll.
 - **UR-CALC-002 (P0):** Optional inputs must not block primary completion.
 - **UR-CALC-003 (P0):** Progressive disclosure required for high density.
@@ -162,20 +183,24 @@ Applicability: `calc_exp`, `calc_only`.
 ---
 
 ## 6) Explanation Pane Contract
+
 Applicability: `calc_exp`, `exp_only`.
 
 ### 6.1 Mandatory Structure
+
 - **UR-EXP-001 (P0):** Order: H2 Summary, H3 Scenario, H3 Results, H3 Expl, H3 FAQ.
 - **UR-EXP-002 (P0):** Only one H2 (Summary); others are H3.
 - **UR-EXP-003 (P0):** No extra heading levels/sections without approval.
 
 ### 6.2 Dynamic Content and FAQ
+
 - **UR-EXP-010 (P0):** Summary must be dynamic (inputs/outputs).
 - **UR-EXP-011 (P0):** Tables must be output-driven, not static.
 - **UR-EXP-012 (P0):** Default FAQ baseline: 10 items.
 - **UR-EXP-013 (P0):** FAQ layout/text must align with schema.
 
 ### 6.3 Table Baseline
+
 - **UR-EXP-020 (P0):** Use semantic HTML (`table/thead/tbody/tfoot`) and full grid consistency.
 - **UR-EXP-021 (P0):** Styling must align with shared theme; no conflicting borders.
 
@@ -184,21 +209,25 @@ Applicability: `calc_exp`, `exp_only`.
 ## 7) SEO Governance (P1-P5)
 
 ### 7.1 P1 Critical SEO
+
 - **UR-SEO-001 (P0):** Unique title (35-61ch), meta description (110-165ch), one H1, canonical, viewport, lang, robots.
 - **UR-SEO-002 (P0):** Static HTML Robots: `<meta name="robots" content="index,follow">`.
 - **UR-SEO-003 (P0):** Canonical must be absolute and production domain.
 
 ### 7.2 P2 Structured Data and Social
+
 - **UR-SEO-010 (P0):** Schema: `WebPage` + `SoftwareApplication` + `BreadcrumbList`. `FAQPage` if FAQs exist.
 - **UR-SEO-011 (P0):** FAQ 3-way parity: JSON-LD <-> Meta <-> Visible.
 - **UR-SEO-012 (P0):** Schema types or validation failure is FAIL.
 
 ### 7.3 P3/P4/P5 Governance
+
 - **UR-SEO-020 (P1):** P3 performance checks mandatory (WAIVED requires strict policy).
 - **UR-SEO-021 (P1):** P4 accessibility/SEO overlap checks mandatory.
 - **UR-SEO-022 (P0):** P5 infrastructure (sitemap/redirects) mandatory.
 
 ### 7.4 Deterministic PASS/FAIL
+
 - **UR-SEO-030 (P0):** Priority failure/missing evidence = SEO FAIL.
 - **UR-SEO-031 (P0):** SEO results must be recorded in Release Sign-off.
 
@@ -207,6 +236,7 @@ Applicability: `calc_exp`, `exp_only`.
 ## 8) Testing Governance
 
 ### 8.1 Canonical Suites
+
 - **UR-TEST-001 (P0):** Unit: `npm run test`.
 - **UR-TEST-002 (P0):** E2E: `npm run test:e2e`.
 - **UR-TEST-003 (P1):** ISS-001: `npm run test:iss001` (layout stability).
@@ -215,6 +245,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-006 (P0):** Artifact: `test-results/performance/cls-guard-all-calculators.json`.
 
 ### 8.2 Change-Type Matrix
+
 - **UR-TEST-010 (P0):** New Calc: Unit + Route E2E + SEO + Schema + ISS-001.
 - **UR-TEST-011 (P1):** Compute: Unit. E2E optional.
 - **UR-TEST-012 (P0):** Nav/Shell: Nav E2E + ISS-001.
@@ -222,10 +253,12 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-014 (P0):** Feature Release: Targeted CWV guard (`TARGET={scope}`). Global Release: All-calc CWV guard.
 
 ### 8.3 Evidence Recording
+
 - **UR-TEST-020 (P0):** Record execution evidence in Release Sign-off.
 - **UR-TEST-021 (P0):** Record coverage (Required vs Executed).
 
 ### 8.4 Archetype Test Matrix
+
 - **UR-TEST-030 (P0):** `calc_exp`: E2E, SEO, Schema, Unit.
 - **UR-TEST-031 (P0):** `calc_only`: E2E, Trigger, SEO. Exp N/A.
 - **UR-TEST-032 (P0):** `exp_only`: Content assertions, SEO. Calc N/A.
@@ -236,6 +269,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 9) Header Contract
+
 - **UR-HDR-001 (P0):** Semantic `<header role="banner">`.
 - **UR-HDR-002 (P0):** Site title links to `/`, matches canonical.
 - **UR-HDR-003 (P0):** Primary nav: static anchors, full reload.
@@ -245,6 +279,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 10) Footer Contract
+
 - **UR-FTR-001 (P0):** Semantic `<footer role="contentinfo">`.
 - **UR-FTR-002 (P0):** Canonical legal links (Privacy, Terms, Contact, FAQs, Sitemap).
 - **UR-FTR-003 (P0):** No JS-driven nav.
@@ -256,6 +291,7 @@ Applicability: `calc_exp`, `exp_only`.
 ## 11) AdSense Governance
 
 ### 11.1 AdSense Head Script (MANDATORY)
+
 - **UR-ADS-001 (P0):** Loader injected into `<head>` unconditionally.
 - **UR-ADS-002 (P0):** Loader centralized in shared generation logic.
 - **UR-ADS-003 (P0):** Max one loader per page.
@@ -263,24 +299,28 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-ADS-005 (P0):** Attributes must match canonical snippet.
 
 ### 11.2 Ad Pane Slot (MANDATORY)
+
 - **UR-ADS-010 (P0):** `.ads-column` must render controlled `<ins>` slot.
 - **UR-ADS-011 (P0):** No placeholder text.
 - **UR-ADS-012 (P0):** Slot source from shared reusable logic.
 - **UR-ADS-013 (P1):** Mobile safety: `.ads-column` hidden at max-width 860px (unless overridden).
 
 ### 11.3 Controlled Injection Policy
+
 - **UR-ADS-020 (P0):** Auto Ads body injection PROHIBITED for calculator shell.
 - **UR-ADS-021 (P0):** No body-level loader duplication.
 - **UR-ADS-022 (P1):** Injection must be idempotent.
 - **UR-ADS-023 (P1):** Snippet docs are for reference only.
 
 ### 11.4 Manual Smoke Validation
+
 - **UR-ADS-030 (P1):** Confirm: Loader in `<head>`, Slot in `.ads-column`.
 - **UR-ADS-031 (P1):** Document smoke notes for shell changes.
 
 ---
 
 ## 12) Sitemap and Crawlability
+
 - **UR-SMAP-001 (P0):** Live calc routes must contain human-readable `/sitemap/`.
 - **UR-SMAP-002 (P0):** Live = nav-visible or publicly reachable.
 - **UR-SMAP-003 (P0):** Source from shared nav.
@@ -291,6 +331,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 13) Checklist Governance
+
 - **UR-CHK-001 (P0):** Migration work: `calculator-migration-checklist.md`.
 - **UR-CHK-002 (P0):** New Calc work: `new-calculator-design-checklist.md`.
 - **UR-CHK-003 (P0):** Gates must include evidence.
@@ -300,6 +341,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 14) Never-Do Rules
+
 - **UR-NEVER-001 (P0):** Bypass required gates.
 - **UR-NEVER-002 (P0):** Merge with P0 violations.
 - **UR-NEVER-003 (P0):** Introduce SPA routing for calcs.
@@ -310,6 +352,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 15) Definition of Done
+
 - **UR-DOD-001:** Implementation aligned with UR info.
 - **UR-DOD-002:** Tests executed/recorded.
 - **UR-DOD-003:** SEO gate PASS/WAIVED.
@@ -319,6 +362,7 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 16) Maintenance Protocol
+
 - **UR-MAINT-001 (P0):** New rules added ONLY here.
 - **UR-MAINT-002 (P1):** Use next available ID.
 - **UR-MAINT-003 (P0):** Renames require map update.
@@ -327,35 +371,39 @@ Applicability: `calc_exp`, `exp_only`.
 ---
 
 ## 17) Compatibility and Migration Map
+
 **Merged:** Workflow, SEO, Testing, Theme, Header, Footer, Calc Pane, Expl Pane.
 
-- **DC-0.*** -> **UR-DC*
-- **AP-2.*** -> **UR-AP*
-- **NAV-MPA** -> **UR-NAV*
-- **EXCL/UI/UUI** -> **UR-NAV/UR-UI/UR-CALC*
-- **EXP/UTBL** -> **UR-EXP*
-- **P1..P5** -> **UR-SEO*
-- **TEST-1** -> **UR-TEST*
-- **HDR/FTR** -> **UR-HDR/UR-FTR*
-- **ADS** -> **UR-ADS*
-- **DOC/CHK/NEVER/DOD** -> **UR-SMAP/UR-CHK/UR-NEVER/UR-DOD*
+- **DC-0.\*** -> \*_UR-DC_
+- **AP-2.\*** -> \*_UR-AP_
+- **NAV-MPA** -> \*_UR-NAV_
+- **EXCL/UI/UUI** -> \*_UR-NAV/UR-UI/UR-CALC_
+- **EXP/UTBL** -> \*_UR-EXP_
+- **P1..P5** -> \*_UR-SEO_
+- **TEST-1** -> \*_UR-TEST_
+- **HDR/FTR** -> \*_UR-HDR/UR-FTR_
+- **ADS** -> \*_UR-ADS_
+- **DOC/CHK/NEVER/DOD** -> \*_UR-SMAP/UR-CHK/UR-NEVER/UR-DOD_
 
 Use only `UR-*` IDs for new work.
 
 ---
 
 ## 18) Site Copy Contract
+
 - **UR-COPY-001 (P0):** Values defined here are verbatim.
 - **UR-COPY-002 (P0):** No punctuation/casing changes.
 - **UR-COPY-003 (P1):** Changes require test updates.
 
 **Canonical Values:**
+
 - `SITE_TITLE`: `Calculate How Much`
 - `SITE_TAGLINE`: `Calculate how much you need, spend, afford.`
 
 ---
 
 ## 19) Reference Pointers
+
 - **Nav:** `requirements/site-structure/calculator-hierarchy.md`
 - **Comp:** `requirements/compliance/`
 - **Gen:** `scripts/generate-mpa-pages.js`
@@ -363,6 +411,7 @@ Use only `UR-*` IDs for new work.
 ---
 
 ## 20) GTEP Canonical Contract
+
 - **UR-GTEP-001 (P0):** Plain HTML, no calc state.
 - **UR-GTEP-002 (P0):** Unique Title/Desc, H1, Canonical, Robots.
 - **UR-GTEP-003 (P0):** Simple footer legal links.
@@ -375,6 +424,7 @@ Use only `UR-*` IDs for new work.
 ---
 
 ## 21) Privacy Policy Canonical Content Contract
+
 - **UR-PRIV-001 (P0):** Content governed here (preserve meaning).
 - **UR-PRIV-002 (P0):** Disclose Cloudflare + AdSense.
 - **UR-PRIV-003 (P0):** No account needed, no data sale.
@@ -385,6 +435,7 @@ Use only `UR-*` IDs for new work.
 ---
 
 ## 22) Terms & Conditions Canonical Content Contract
+
 - **UR-TERM-001 (P0):** Content governed here.
 - **UR-TERM-002 (P0):** Estimates only; not prof advice.
 - **UR-TERM-003 (P0):** As-is, liability, 3rd party disclaimers.
