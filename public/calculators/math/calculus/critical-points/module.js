@@ -33,7 +33,7 @@ class CriticalPointsFinder {
   findCriticalPoints(xMin, xMax, numSamples = 200) {
     this.steps.push('=== FINDING CRITICAL POINTS ===');
     this.steps.push(`Function: f(x) = ${this.funcExpr}`);
-    this.steps.push('\nStep 1: Computing first derivative f\'(x)');
+    this.steps.push("\nStep 1: Computing first derivative f'(x)");
 
     const criticalPoints = [];
     const step = (xMax - xMin) / numSamples;
@@ -53,13 +53,16 @@ class CriticalPointsFinder {
           const currentSign = Math.sign(deriv);
 
           // If derivative crosses zero or is very close to zero
-          if (Math.abs(deriv) < 0.01 || (prevDerivSign !== 0 && currentSign !== 0 && prevDerivSign !== currentSign)) {
+          if (
+            Math.abs(deriv) < 0.01 ||
+            (prevDerivSign !== 0 && currentSign !== 0 && prevDerivSign !== currentSign)
+          ) {
             // Refine the location using Newton's method
             const refinedX = this.refineZero(prevX, x);
 
             if (refinedX !== null) {
               // Check if this is a new critical point (not too close to existing ones)
-              const isDuplicate = criticalPoints.some(cp => Math.abs(cp.x - refinedX) < 0.1);
+              const isDuplicate = criticalPoints.some((cp) => Math.abs(cp.x - refinedX) < 0.1);
 
               if (!isDuplicate) {
                 const fx = this.evaluateFunction(this.funcExpr, refinedX);
@@ -71,7 +74,6 @@ class CriticalPointsFinder {
 
         prevDerivSign = Math.sign(deriv);
         prevX = x;
-
       } catch (e) {
         continue;
       }
@@ -144,7 +146,6 @@ class CriticalPointsFinder {
             classification = 'Local Minimum (First Derivative Test)';
             symbol = 'MIN';
           }
-
         } else if (secondDeriv > 0) {
           classification = 'Local Minimum';
           symbol = 'MIN';
@@ -162,14 +163,13 @@ class CriticalPointsFinder {
           ...cp,
           secondDeriv,
           classification,
-          symbol
+          symbol,
         });
-
       } catch (e) {
         classified.push({
           ...cp,
           classification: 'Error',
-          symbol: '?'
+          symbol: '?',
         });
       }
     }
@@ -180,7 +180,7 @@ class CriticalPointsFinder {
   // Find inflection points (where f''(x) = 0)
   findInflectionPoints(xMin, xMax, numSamples = 200) {
     this.steps.push('\n=== FINDING INFLECTION POINTS ===');
-    this.steps.push('Looking for points where concavity changes (f\'\'(x) = 0)');
+    this.steps.push("Looking for points where concavity changes (f''(x) = 0)");
 
     const inflectionPoints = [];
     const step = (xMax - xMin) / numSamples;
@@ -200,12 +200,15 @@ class CriticalPointsFinder {
         if (prevSecondDerivSign !== null) {
           const currentSign = Math.sign(secondDeriv);
 
-          if (Math.abs(secondDeriv) < 0.01 || (prevSecondDerivSign !== 0 && currentSign !== 0 && prevSecondDerivSign !== currentSign)) {
+          if (
+            Math.abs(secondDeriv) < 0.01 ||
+            (prevSecondDerivSign !== 0 && currentSign !== 0 && prevSecondDerivSign !== currentSign)
+          ) {
             // Found potential inflection point
             const fx = this.evaluateFunction(this.funcExpr, x);
 
             // Check if not too close to existing points
-            const isDuplicate = inflectionPoints.some(ip => Math.abs(ip.x - x) < 0.2);
+            const isDuplicate = inflectionPoints.some((ip) => Math.abs(ip.x - x) < 0.2);
 
             if (!isDuplicate) {
               inflectionPoints.push({ x, y: fx });
@@ -214,7 +217,6 @@ class CriticalPointsFinder {
         }
 
         prevSecondDerivSign = Math.sign(secondDeriv);
-
       } catch (e) {
         continue;
       }
@@ -248,7 +250,7 @@ class CriticalPointsFinder {
     return {
       criticalPoints: classified,
       inflectionPoints,
-      steps: this.steps
+      steps: this.steps,
     };
   }
 }
@@ -296,10 +298,11 @@ export function initCriticalPointsCalculator() {
         html += '<div class="result-box critical-points">';
         html += '<h5>Critical Points:</h5>';
         html += '<table class="points-table">';
-        html += '<tr><th>x</th><th>f(x)</th><th>f\'\'(x)</th><th>Type</th></tr>';
+        html += "<tr><th>x</th><th>f(x)</th><th>f''(x)</th><th>Type</th></tr>";
 
-        result.criticalPoints.forEach(cp => {
-          const rowClass = cp.symbol === 'MAX' ? 'maximum' : cp.symbol === 'MIN' ? 'minimum' : 'inconclusive';
+        result.criticalPoints.forEach((cp) => {
+          const rowClass =
+            cp.symbol === 'MAX' ? 'maximum' : cp.symbol === 'MIN' ? 'minimum' : 'inconclusive';
           html += `<tr class="${rowClass}">`;
           html += `<td>${cp.x.toFixed(4)}</td>`;
           html += `<td>${cp.y.toFixed(4)}</td>`;
@@ -320,7 +323,7 @@ export function initCriticalPointsCalculator() {
         html += '<table class="points-table">';
         html += '<tr><th>x</th><th>f(x)</th></tr>';
 
-        result.inflectionPoints.forEach(ip => {
+        result.inflectionPoints.forEach((ip) => {
           html += '<tr>';
           html += `<td>${ip.x.toFixed(4)}</td>`;
           html += `<td>${ip.y.toFixed(4)}</td>`;
@@ -339,7 +342,6 @@ export function initCriticalPointsCalculator() {
           <pre>${result.steps.join('\n')}</pre>
         </div>
       `;
-
     } catch (error) {
       resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
       stepsDiv.innerHTML = '';

@@ -68,14 +68,14 @@ function calculate() {
     sequenceInfo = analyzeSequence(terms);
   } else if (mode === 'arithmetic') {
     const difference = detectArithmeticSequence(terms);
-    sequenceInfo = difference === null
-      ? { type: 'neither' }
-      : { type: 'arithmetic', firstTerm: terms[0], difference };
+    sequenceInfo =
+      difference === null
+        ? { type: 'neither' }
+        : { type: 'arithmetic', firstTerm: terms[0], difference };
   } else {
     const ratio = detectGeometricSequence(terms);
-    sequenceInfo = ratio === null
-      ? { type: 'neither' }
-      : { type: 'geometric', firstTerm: terms[0], ratio };
+    sequenceInfo =
+      ratio === null ? { type: 'neither' } : { type: 'geometric', firstTerm: terms[0], ratio };
   }
 
   if (sequenceInfo.type === 'invalid' || sequenceInfo.type === 'neither') {
@@ -84,11 +84,12 @@ function calculate() {
   }
 
   const opts = { maximumFractionDigits: 4 };
-  const sequenceType = sequenceInfo.type === 'constant'
-    ? 'Constant'
-    : sequenceInfo.type === 'geometric'
-      ? 'Geometric'
-      : 'Arithmetic';
+  const sequenceType =
+    sequenceInfo.type === 'constant'
+      ? 'Constant'
+      : sequenceInfo.type === 'geometric'
+        ? 'Geometric'
+        : 'Arithmetic';
   const a1 = sequenceInfo.firstTerm;
   const difference = sequenceInfo.difference ?? 0;
   const ratio = sequenceInfo.ratio ?? 1;
@@ -96,9 +97,7 @@ function calculate() {
   const nthTerm = useGeometric
     ? nthTermGeometric(a1, ratio, n)
     : nthTermArithmetic(a1, difference, n);
-  const sum = useGeometric
-    ? sumGeometric(a1, ratio, n)
-    : sumArithmetic(a1, difference, n);
+  const sum = useGeometric ? sumGeometric(a1, ratio, n) : sumArithmetic(a1, difference, n);
 
   if (!Number.isFinite(nthTerm) || !Number.isFinite(sum)) {
     resultDiv.textContent = 'Result is too large or invalid. Try smaller values.';
@@ -106,7 +105,12 @@ function calculate() {
   }
 
   const paramValue = useGeometric ? ratio : difference;
-  const preview = generateSequenceTerms(a1, paramValue, k, useGeometric ? 'geometric' : 'arithmetic');
+  const preview = generateSequenceTerms(
+    a1,
+    paramValue,
+    k,
+    useGeometric ? 'geometric' : 'arithmetic'
+  );
   const previewStr = preview.map((term) => formatNumber(term, opts)).join(', ');
 
   resultDiv.innerHTML = `
@@ -115,9 +119,7 @@ function calculate() {
   `;
 
   const patternLabel = useGeometric ? 'Common ratio (r)' : 'Common difference (d)';
-  const formula = useGeometric
-    ? 'a_n = a1 × r^(n-1)'
-    : 'a_n = a1 + (n-1) × d';
+  const formula = useGeometric ? 'a_n = a1 × r^(n-1)' : 'a_n = a1 + (n-1) × d';
 
   detailDiv.innerHTML = `
     <p><strong>First term (a1):</strong> ${formatNumber(a1, opts)}</p>

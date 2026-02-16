@@ -70,16 +70,17 @@ function beta(a, b) {
  * @returns {number} Incomplete beta function value
  */
 function incompleteBeta(x, a, b) {
-  if (x === 0) {return 0;}
-  if (x === 1) {return 1;}
+  if (x === 0) {
+    return 0;
+  }
+  if (x === 1) {
+    return 1;
+  }
 
   const maxIterations = 200;
   const epsilon = 1e-10;
 
-  const bt =
-    Math.exp(
-      a * Math.log(x) + b * Math.log(1 - x) - Math.log(a) - Math.log(beta(a, b))
-    );
+  const bt = Math.exp(a * Math.log(x) + b * Math.log(1 - x) - Math.log(a) - Math.log(beta(a, b)));
 
   if (x < (a + 1) / (a + b + 2)) {
     return bt * betaContinuedFraction(x, a, b, maxIterations, epsilon);
@@ -97,7 +98,9 @@ function betaContinuedFraction(x, a, b, maxIterations, epsilon) {
   let c = 1;
   let d = 1 - (qab * x) / qap;
 
-  if (Math.abs(d) < 1e-30) {d = 1e-30;}
+  if (Math.abs(d) < 1e-30) {
+    d = 1e-30;
+  }
   d = 1 / d;
   let h = d;
 
@@ -105,22 +108,32 @@ function betaContinuedFraction(x, a, b, maxIterations, epsilon) {
     const m2 = 2 * m;
     let aa = (m * (b - m) * x) / ((qam + m2) * (a + m2));
     d = 1 + aa * d;
-    if (Math.abs(d) < 1e-30) {d = 1e-30;}
+    if (Math.abs(d) < 1e-30) {
+      d = 1e-30;
+    }
     c = 1 + aa / c;
-    if (Math.abs(c) < 1e-30) {c = 1e-30;}
+    if (Math.abs(c) < 1e-30) {
+      c = 1e-30;
+    }
     d = 1 / d;
     h *= d * c;
 
     aa = (-(a + m) * (qab + m) * x) / ((a + m2) * (qap + m2));
     d = 1 + aa * d;
-    if (Math.abs(d) < 1e-30) {d = 1e-30;}
+    if (Math.abs(d) < 1e-30) {
+      d = 1e-30;
+    }
     c = 1 + aa / c;
-    if (Math.abs(c) < 1e-30) {c = 1e-30;}
+    if (Math.abs(c) < 1e-30) {
+      c = 1e-30;
+    }
     d = 1 / d;
     const del = d * c;
     h *= del;
 
-    if (Math.abs(del - 1) < epsilon) {break;}
+    if (Math.abs(del - 1) < epsilon) {
+      break;
+    }
   }
   return h;
 }
@@ -132,8 +145,12 @@ function betaContinuedFraction(x, a, b, maxIterations, epsilon) {
  * @returns {number} Regularized incomplete gamma value
  */
 function regularizedGammaP(a, x) {
-  if (x < 0 || a <= 0) {return NaN;}
-  if (x === 0) {return 0;}
+  if (x < 0 || a <= 0) {
+    return NaN;
+  }
+  if (x === 0) {
+    return 0;
+  }
 
   if (x < a + 1) {
     return gammaSeries(a, x);
@@ -154,7 +171,9 @@ function gammaSeries(a, x) {
   for (let n = 1; n <= maxIterations; n++) {
     del *= x / (a + n);
     sum += del;
-    if (Math.abs(del) < Math.abs(sum) * epsilon) {break;}
+    if (Math.abs(del) < Math.abs(sum) * epsilon) {
+      break;
+    }
   }
 
   return sum * Math.exp(-x + a * Math.log(x) - Math.log(gamma(a)));
@@ -176,13 +195,19 @@ function gammaContinuedFraction(a, x) {
     const an = -i * (i - a);
     b += 2;
     d = an * d + b;
-    if (Math.abs(d) < 1e-30) {d = 1e-30;}
+    if (Math.abs(d) < 1e-30) {
+      d = 1e-30;
+    }
     c = b + an / c;
-    if (Math.abs(c) < 1e-30) {c = 1e-30;}
+    if (Math.abs(c) < 1e-30) {
+      c = 1e-30;
+    }
     d = 1 / d;
     const del = d * c;
     h *= del;
-    if (Math.abs(del - 1) < epsilon) {break;}
+    if (Math.abs(del - 1) < epsilon) {
+      break;
+    }
   }
 
   return Math.exp(-x + a * Math.log(x) - Math.log(gamma(a))) * h;
@@ -218,7 +243,9 @@ export function normalCdf(x) {
  * @returns {number} CDF value
  */
 export function normalCdfCustom(x, mu, sigma) {
-  if (sigma <= 0) {return null;}
+  if (sigma <= 0) {
+    return null;
+  }
   return normalCdf((x - mu) / sigma);
 }
 
@@ -229,25 +256,24 @@ export function normalCdfCustom(x, mu, sigma) {
  * @returns {number} Z-score corresponding to p
  */
 export function normalQuantile(p) {
-  if (p <= 0 || p >= 1) {return null;}
+  if (p <= 0 || p >= 1) {
+    return null;
+  }
 
   // Rational approximation for lower region
   const a = [
-    -3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2,
-    1.383577518672690e2, -3.066479806614716e1, 2.506628277459239e0,
+    -3.969683028665376e1, 2.209460984245205e2, -2.759285104469687e2, 1.38357751867269e2,
+    -3.066479806614716e1, 2.506628277459239,
   ];
   const b = [
-    -5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2,
-    6.680131188771972e1, -1.328068155288572e1,
+    -5.447609879822406e1, 1.615858368580409e2, -1.556989798598866e2, 6.680131188771972e1,
+    -1.328068155288572e1,
   ];
   const c = [
-    -7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838e0,
-    -2.549732539343734e0, 4.374664141464968e0, 2.938163982698783e0,
+    -7.784894002430293e-3, -3.223964580411365e-1, -2.400758277161838, -2.549732539343734,
+    4.374664141464968, 2.938163982698783,
   ];
-  const d = [
-    7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996e0,
-    3.754408661907416e0,
-  ];
+  const d = [7.784695709041462e-3, 3.224671290700398e-1, 2.445134137142996, 3.754408661907416];
 
   const pLow = 0.02425;
   const pHigh = 1 - pLow;
@@ -283,7 +309,9 @@ export function normalQuantile(p) {
  * @returns {number} PDF value
  */
 export function tPdf(t, df) {
-  if (df <= 0) {return null;}
+  if (df <= 0) {
+    return null;
+  }
   const coef = gamma((df + 1) / 2) / (Math.sqrt(df * Math.PI) * gamma(df / 2));
   return coef * Math.pow(1 + (t * t) / df, -(df + 1) / 2);
 }
@@ -295,7 +323,9 @@ export function tPdf(t, df) {
  * @returns {number} CDF value P(T <= t)
  */
 export function tCdf(t, df) {
-  if (df <= 0) {return null;}
+  if (df <= 0) {
+    return null;
+  }
   const x = df / (df + t * t);
   const ib = 0.5 * incompleteBeta(x, df / 2, 0.5);
   return t >= 0 ? 1 - ib : ib;
@@ -309,7 +339,9 @@ export function tCdf(t, df) {
  * @returns {number} t-value corresponding to p
  */
 export function tQuantile(p, df) {
-  if (p <= 0 || p >= 1 || df <= 0) {return null;}
+  if (p <= 0 || p >= 1 || df <= 0) {
+    return null;
+  }
 
   // Initial guess using normal approximation
   let t = normalQuantile(p);
@@ -318,10 +350,14 @@ export function tQuantile(p, df) {
   for (let i = 0; i < 10; i++) {
     const cdf = tCdf(t, df);
     const pdf = tPdf(t, df);
-    if (pdf === 0) {break;}
+    if (pdf === 0) {
+      break;
+    }
     const delta = (cdf - p) / pdf;
     t -= delta;
-    if (Math.abs(delta) < 1e-10) {break;}
+    if (Math.abs(delta) < 1e-10) {
+      break;
+    }
   }
 
   return t;
@@ -334,8 +370,12 @@ export function tQuantile(p, df) {
  * @returns {number} PDF value
  */
 export function chiSquarePdf(x, df) {
-  if (x < 0 || df <= 0) {return 0;}
-  if (x === 0) {return df === 2 ? 0.5 : 0;}
+  if (x < 0 || df <= 0) {
+    return 0;
+  }
+  if (x === 0) {
+    return df === 2 ? 0.5 : 0;
+  }
   const k = df / 2;
   return (Math.pow(x, k - 1) * Math.exp(-x / 2)) / (Math.pow(2, k) * gamma(k));
 }
@@ -347,7 +387,9 @@ export function chiSquarePdf(x, df) {
  * @returns {number} CDF value P(X <= x)
  */
 export function chiSquareCdf(x, df) {
-  if (x < 0 || df <= 0) {return 0;}
+  if (x < 0 || df <= 0) {
+    return 0;
+  }
   return regularizedGammaP(df / 2, x / 2);
 }
 
@@ -358,21 +400,31 @@ export function chiSquareCdf(x, df) {
  * @returns {number} Chi-square value corresponding to p
  */
 export function chiSquareQuantile(p, df) {
-  if (p <= 0 || p >= 1 || df <= 0) {return null;}
+  if (p <= 0 || p >= 1 || df <= 0) {
+    return null;
+  }
 
   // Initial guess
   let x = df * Math.pow(1 - 2 / (9 * df) + normalQuantile(p) * Math.sqrt(2 / (9 * df)), 3);
-  if (x < 0) {x = 0.1;}
+  if (x < 0) {
+    x = 0.1;
+  }
 
   // Newton-Raphson refinement
   for (let i = 0; i < 20; i++) {
     const cdf = chiSquareCdf(x, df);
     const pdf = chiSquarePdf(x, df);
-    if (pdf === 0) {break;}
+    if (pdf === 0) {
+      break;
+    }
     const delta = (cdf - p) / pdf;
     x -= delta;
-    if (x < 0) {x = 0.01;}
-    if (Math.abs(delta) < 1e-10) {break;}
+    if (x < 0) {
+      x = 0.01;
+    }
+    if (Math.abs(delta) < 1e-10) {
+      break;
+    }
   }
 
   return x;
@@ -386,8 +438,12 @@ export function chiSquareQuantile(p, df) {
  * @returns {number} PDF value
  */
 export function fPdf(x, d1, d2) {
-  if (x < 0 || d1 <= 0 || d2 <= 0) {return 0;}
-  if (x === 0) {return d1 < 2 ? Infinity : d1 === 2 ? 1 : 0;}
+  if (x < 0 || d1 <= 0 || d2 <= 0) {
+    return 0;
+  }
+  if (x === 0) {
+    return d1 < 2 ? Infinity : d1 === 2 ? 1 : 0;
+  }
 
   const num = Math.pow(d1 * x, d1) * Math.pow(d2, d2);
   const den = Math.pow(d1 * x + d2, d1 + d2);
@@ -402,7 +458,9 @@ export function fPdf(x, d1, d2) {
  * @returns {number} CDF value P(F <= x)
  */
 export function fCdf(x, d1, d2) {
-  if (x < 0 || d1 <= 0 || d2 <= 0) {return 0;}
+  if (x < 0 || d1 <= 0 || d2 <= 0) {
+    return 0;
+  }
   return incompleteBeta((d1 * x) / (d1 * x + d2), d1 / 2, d2 / 2);
 }
 
@@ -414,7 +472,9 @@ export function fCdf(x, d1, d2) {
  * @returns {number} F-value corresponding to p
  */
 export function fQuantile(p, d1, d2) {
-  if (p <= 0 || p >= 1 || d1 <= 0 || d2 <= 0) {return null;}
+  if (p <= 0 || p >= 1 || d1 <= 0 || d2 <= 0) {
+    return null;
+  }
 
   // Initial guess
   let f = 1;
@@ -423,11 +483,17 @@ export function fQuantile(p, d1, d2) {
   for (let i = 0; i < 30; i++) {
     const cdf = fCdf(f, d1, d2);
     const pdf = fPdf(f, d1, d2);
-    if (pdf === 0 || !isFinite(pdf)) {break;}
+    if (pdf === 0 || !isFinite(pdf)) {
+      break;
+    }
     const delta = (cdf - p) / pdf;
     f -= delta;
-    if (f < 0.001) {f = 0.001;}
-    if (Math.abs(delta) < 1e-10) {break;}
+    if (f < 0.001) {
+      f = 0.001;
+    }
+    if (Math.abs(delta) < 1e-10) {
+      break;
+    }
   }
 
   return f;
@@ -441,8 +507,12 @@ export function fQuantile(p, d1, d2) {
  * @returns {number} Probability P(X = k)
  */
 export function binomialPmf(k, n, p) {
-  if (!Number.isInteger(k) || !Number.isInteger(n) || k < 0 || n < 0 || k > n) {return 0;}
-  if (p < 0 || p > 1) {return 0;}
+  if (!Number.isInteger(k) || !Number.isInteger(n) || k < 0 || n < 0 || k > n) {
+    return 0;
+  }
+  if (p < 0 || p > 1) {
+    return 0;
+  }
 
   // Use log to avoid overflow for large n
   let logCoeff = 0;
@@ -461,10 +531,16 @@ export function binomialPmf(k, n, p) {
  * @returns {number} Probability P(X <= k)
  */
 export function binomialCdf(k, n, p) {
-  if (!Number.isInteger(n) || n < 0 || p < 0 || p > 1) {return null;}
+  if (!Number.isInteger(n) || n < 0 || p < 0 || p > 1) {
+    return null;
+  }
   k = Math.floor(k);
-  if (k < 0) {return 0;}
-  if (k >= n) {return 1;}
+  if (k < 0) {
+    return 0;
+  }
+  if (k >= n) {
+    return 1;
+  }
 
   let sum = 0;
   for (let i = 0; i <= k; i++) {
@@ -480,7 +556,9 @@ export function binomialCdf(k, n, p) {
  * @returns {number} Probability P(X = k)
  */
 export function poissonPmf(k, lambda) {
-  if (!Number.isInteger(k) || k < 0 || lambda < 0) {return 0;}
+  if (!Number.isInteger(k) || k < 0 || lambda < 0) {
+    return 0;
+  }
 
   // Use log to avoid overflow
   let logProb = k * Math.log(lambda) - lambda;
@@ -498,9 +576,13 @@ export function poissonPmf(k, lambda) {
  * @returns {number} Probability P(X <= k)
  */
 export function poissonCdf(k, lambda) {
-  if (lambda < 0) {return null;}
+  if (lambda < 0) {
+    return null;
+  }
   k = Math.floor(k);
-  if (k < 0) {return 0;}
+  if (k < 0) {
+    return 0;
+  }
 
   let sum = 0;
   for (let i = 0; i <= k; i++) {
@@ -540,7 +622,9 @@ export function linearRegression(x, y) {
     ssYY += dy * dy;
   }
 
-  if (ssXX === 0) {return null;}
+  if (ssXX === 0) {
+    return null;
+  }
 
   const slope = ssXY / ssXX;
   const intercept = yMean - slope * xMean;
@@ -622,7 +706,9 @@ export function polynomialRegression(x, y, degree = 2) {
 
   // Solve normal equations: (X'X)^-1 X'y
   const coefficients = solveNormalEquations(X, y);
-  if (!coefficients) {return null;}
+  if (!coefficients) {
+    return null;
+  }
 
   // Calculate predicted values
   const predicted = x.map((xi) => {
@@ -704,7 +790,9 @@ function solveNormalEquations(X, y) {
     }
     [A[i], A[maxRow]] = [A[maxRow], A[i]];
 
-    if (Math.abs(A[i][i]) < 1e-12) {return null;}
+    if (Math.abs(A[i][i]) < 1e-12) {
+      return null;
+    }
 
     // Eliminate
     for (let k = i + 1; k < m; k++) {
@@ -741,7 +829,9 @@ export function exponentialRegression(x, y) {
 
   // Filter positive y values
   const validIndices = y.map((yi, i) => (yi > 0 ? i : -1)).filter((i) => i >= 0);
-  if (validIndices.length < 2) {return null;}
+  if (validIndices.length < 2) {
+    return null;
+  }
 
   const xValid = validIndices.map((i) => x[i]);
   const yValid = validIndices.map((i) => y[i]);
@@ -749,7 +839,9 @@ export function exponentialRegression(x, y) {
 
   // Linear regression on log-transformed data
   const linReg = linearRegression(xValid, logY);
-  if (!linReg) {return null;}
+  if (!linReg) {
+    return null;
+  }
 
   const a = Math.exp(linReg.intercept);
   const b = linReg.slope;
@@ -788,7 +880,9 @@ export function logarithmicRegression(x, y) {
 
   // Filter positive x values
   const validIndices = x.map((xi, i) => (xi > 0 ? i : -1)).filter((i) => i >= 0);
-  if (validIndices.length < 2) {return null;}
+  if (validIndices.length < 2) {
+    return null;
+  }
 
   const xValid = validIndices.map((i) => x[i]);
   const yValid = validIndices.map((i) => y[i]);
@@ -796,7 +890,9 @@ export function logarithmicRegression(x, y) {
 
   // Linear regression on log-transformed x
   const linReg = linearRegression(logX, yValid);
-  if (!linReg) {return null;}
+  if (!linReg) {
+    return null;
+  }
 
   const a = linReg.intercept;
   const b = linReg.slope;
@@ -832,8 +928,12 @@ export function logarithmicRegression(x, y) {
  * @returns {Object|null} ANOVA results or null if invalid input
  */
 export function oneWayAnova(groups) {
-  if (!Array.isArray(groups) || groups.length < 2) {return null;}
-  if (groups.some((g) => !Array.isArray(g) || g.length < 1)) {return null;}
+  if (!Array.isArray(groups) || groups.length < 2) {
+    return null;
+  }
+  if (groups.some((g) => !Array.isArray(g) || g.length < 1)) {
+    return null;
+  }
 
   const k = groups.length; // Number of groups
   const groupMeans = groups.map((g) => mean(g));
@@ -911,7 +1011,9 @@ export function oneWayAnova(groups) {
  */
 export function tukeyHSD(groups, alpha = 0.05) {
   const anovaResult = oneWayAnova(groups);
-  if (!anovaResult) {return null;}
+  if (!anovaResult) {
+    return null;
+  }
 
   const { msw, dfWithin, groupMeans, groupSizes, k } = anovaResult;
   const comparisons = [];
@@ -924,7 +1026,7 @@ export function tukeyHSD(groups, alpha = 0.05) {
   for (let i = 0; i < k; i++) {
     for (let j = i + 1; j < k; j++) {
       const meanDiff = Math.abs(groupMeans[i] - groupMeans[j]);
-      const se = Math.sqrt(msw * (1 / groupSizes[i] + 1 / groupSizes[j]) / 2);
+      const se = Math.sqrt((msw * (1 / groupSizes[i] + 1 / groupSizes[j])) / 2);
       const q = meanDiff / se;
       const significant = q > qCritical;
 
@@ -965,14 +1067,18 @@ function getQCritical(alpha, k, _df) {
  * @returns {Object|null} Test results or null if invalid input
  */
 export function oneSampleTTest(sample, mu0, alternative = 'two-sided') {
-  if (!Array.isArray(sample) || sample.length < 2) {return null;}
+  if (!Array.isArray(sample) || sample.length < 2) {
+    return null;
+  }
 
   const n = sample.length;
   const sampleMean = mean(sample);
   const sampleStd = standardDeviation(sample, true);
   const se = sampleStd / Math.sqrt(n);
 
-  if (se === 0) {return null;}
+  if (se === 0) {
+    return null;
+  }
 
   const tStatistic = (sampleMean - mu0) / se;
   const df = n - 1;
@@ -1021,8 +1127,12 @@ export function oneSampleTTest(sample, mu0, alternative = 'two-sided') {
  * @returns {Object|null} Test results or null if invalid input
  */
 export function twoSampleTTest(sample1, sample2, alternative = 'two-sided', equalVariance = false) {
-  if (!Array.isArray(sample1) || !Array.isArray(sample2)) {return null;}
-  if (sample1.length < 2 || sample2.length < 2) {return null;}
+  if (!Array.isArray(sample1) || !Array.isArray(sample2)) {
+    return null;
+  }
+  if (sample1.length < 2 || sample2.length < 2) {
+    return null;
+  }
 
   const n1 = sample1.length;
   const n2 = sample2.length;
@@ -1047,7 +1157,9 @@ export function twoSampleTTest(sample1, sample2, alternative = 'two-sided', equa
     df = num / den;
   }
 
-  if (se === 0) {return null;}
+  if (se === 0) {
+    return null;
+  }
 
   const tStatistic = (mean1 - mean2) / se;
 
@@ -1097,8 +1209,12 @@ export function twoSampleTTest(sample1, sample2, alternative = 'two-sided', equa
  * @returns {Object|null} Test results or null if invalid input
  */
 export function pairedTTest(sample1, sample2, alternative = 'two-sided') {
-  if (!Array.isArray(sample1) || !Array.isArray(sample2)) {return null;}
-  if (sample1.length !== sample2.length || sample1.length < 2) {return null;}
+  if (!Array.isArray(sample1) || !Array.isArray(sample2)) {
+    return null;
+  }
+  if (sample1.length !== sample2.length || sample1.length < 2) {
+    return null;
+  }
 
   const differences = sample1.map((v, i) => v - sample2[i]);
   return oneSampleTTest(differences, 0, alternative);
@@ -1113,7 +1229,9 @@ export function pairedTTest(sample1, sample2, alternative = 'two-sided') {
  * @returns {Object|null} Test results or null if invalid input
  */
 export function zTest(sample, mu0, sigma, alternative = 'two-sided') {
-  if (!Array.isArray(sample) || sample.length < 1 || sigma <= 0) {return null;}
+  if (!Array.isArray(sample) || sample.length < 1 || sigma <= 0) {
+    return null;
+  }
 
   const n = sample.length;
   const sampleMean = mean(sample);
@@ -1157,9 +1275,15 @@ export function zTest(sample, mu0, sigma, alternative = 'two-sided') {
  * @returns {Object|null} Test results or null if invalid input
  */
 export function chiSquareGoodnessOfFit(observed, expected) {
-  if (!Array.isArray(observed) || !Array.isArray(expected)) {return null;}
-  if (observed.length !== expected.length || observed.length < 2) {return null;}
-  if (expected.some((e) => e <= 0)) {return null;}
+  if (!Array.isArray(observed) || !Array.isArray(expected)) {
+    return null;
+  }
+  if (observed.length !== expected.length || observed.length < 2) {
+    return null;
+  }
+  if (expected.some((e) => e <= 0)) {
+    return null;
+  }
 
   const k = observed.length;
   let chiSquare = 0;
@@ -1190,9 +1314,13 @@ export function chiSquareGoodnessOfFit(observed, expected) {
  * @returns {Object|null} Test results or null if invalid input
  */
 export function chiSquareIndependence(contingencyTable) {
-  if (!Array.isArray(contingencyTable) || contingencyTable.length < 2) {return null;}
+  if (!Array.isArray(contingencyTable) || contingencyTable.length < 2) {
+    return null;
+  }
   const cols = contingencyTable[0].length;
-  if (cols < 2 || contingencyTable.some((row) => row.length !== cols)) {return null;}
+  if (cols < 2 || contingencyTable.some((row) => row.length !== cols)) {
+    return null;
+  }
 
   const rows = contingencyTable.length;
   const rowTotals = contingencyTable.map((row) => sum(row));
@@ -1203,7 +1331,9 @@ export function chiSquareIndependence(contingencyTable) {
   }
 
   const grandTotal = sum(rowTotals);
-  if (grandTotal === 0) {return null;}
+  if (grandTotal === 0) {
+    return null;
+  }
 
   // Calculate expected frequencies
   const expected = [];
@@ -1274,7 +1404,9 @@ export function pearsonCorrelation(x, y) {
     ssYY += dy * dy;
   }
 
-  if (ssXX === 0 || ssYY === 0) {return { r: NaN, pValue: NaN, n };}
+  if (ssXX === 0 || ssYY === 0) {
+    return { r: NaN, pValue: NaN, n };
+  }
 
   const r = ssXY / Math.sqrt(ssXX * ssYY);
 
@@ -1413,12 +1545,16 @@ export function kendallCorrelation(x, y) {
  * @returns {Object|null} Correlation matrix or null if invalid input
  */
 export function correlationMatrix(data) {
-  if (!Array.isArray(data) || data.length < 2) {return null;}
+  if (!Array.isArray(data) || data.length < 2) {
+    return null;
+  }
 
   const k = data.length;
   const n = data[0].length;
 
-  if (data.some((d) => d.length !== n)) {return null;}
+  if (data.some((d) => d.length !== n)) {
+    return null;
+  }
 
   const matrix = [];
   const pValues = [];

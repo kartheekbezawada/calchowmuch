@@ -18,7 +18,7 @@ import {
   solveSystem3x3,
   subtractPolynomials,
   multiplyPolynomials,
-} from '../../public/assets/js/core/algebra.js';
+} from '../../../public/assets/js/core/algebra.js';
 
 /**
  * ALG-TEST-U-1 - Quadratic solver unit tests

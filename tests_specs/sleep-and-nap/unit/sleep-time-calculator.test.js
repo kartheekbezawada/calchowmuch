@@ -5,7 +5,7 @@ import {
   SLEEP_CYCLES,
   CYCLE_MINUTES,
   FALL_ASLEEP_MINUTES,
-} from '../../public/assets/js/core/sleep-utils.js';
+} from '../../../public/assets/js/core/sleep-utils.js';
 
 describe('Sleep Time Calculator - SLEEP-TEST-U-1: Calculation Logic', () => {
   it('should calculate bedtimes for wake-up mode (6:00 AM)', () => {

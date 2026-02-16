@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateInvestmentGrowth } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateInvestmentGrowth } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Investment Growth Calculator - IG-TEST-U-1: basic growth', () => {
   it('should calculate future value with monthly compounding', () => {

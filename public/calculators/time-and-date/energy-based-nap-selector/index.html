@@ -1,8 +1,8 @@
 <div id="calc-energy-nap">
   <div class="calculator-ui">
     <p class="helper">
-      Choose your energy goal and start time to get a deterministic nap duration, wake-up time,
-      and two alternatives.
+      Choose your energy goal and start time to get a deterministic nap duration, wake-up time, and
+      two alternatives.
     </p>
 
     <div class="input-row">
@@ -13,13 +13,28 @@
         aria-labelledby="energy-goal-label"
         data-button-group="energy-goal"
       >
-        <button class="calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="quick"
+          aria-pressed="false"
+        >
           Quick
         </button>
-        <button class="calculator-button secondary" type="button" data-value="strong" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="strong"
+          aria-pressed="false"
+        >
           Strong
         </button>
-        <button class="calculator-button secondary is-active" type="button" data-value="full" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="full"
+          aria-pressed="true"
+        >
           Full
         </button>
       </div>
@@ -29,11 +44,15 @@
       <label for="energy-nap-start-time">Nap start time</label>
       <div class="input-with-button">
         <input id="energy-nap-start-time" type="time" />
-        <button class="calculator-button secondary" type="button" id="energy-nap-use-now">Use now</button>
+        <button class="calculator-button secondary" type="button" id="energy-nap-use-now">
+          Use now
+        </button>
       </div>
     </div>
 
-    <button class="calculator-button full-width" type="button" id="energy-nap-calculate">Calculate</button>
+    <button class="calculator-button full-width" type="button" id="energy-nap-calculate">
+      Calculate
+    </button>
 
     <div class="result" id="energy-nap-results" aria-live="polite">
       <p class="placeholder" id="energy-nap-placeholder">

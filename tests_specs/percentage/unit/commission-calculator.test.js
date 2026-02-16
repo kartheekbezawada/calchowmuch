@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateCommission } from '../../public/assets/js/core/math.js';
+import { calculateCommission } from '../../../public/assets/js/core/math.js';
 
 describe('Commission Calculator - COMM-TEST-U-1: flat commission', () => {
   it('calculates commission and effective rate for flat mode', () => {

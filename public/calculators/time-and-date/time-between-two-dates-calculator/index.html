@@ -1,6 +1,8 @@
 <div id="calc-date-diff">
   <div class="calculator-ui">
-    <p class="helper">Measure the exact time between two dates, including calendar months and years.</p>
+    <p class="helper">
+      Measure the exact time between two dates, including calendar months and years.
+    </p>
 
     <div class="input-row">
       <label id="date-diff-mode-label">Mode</label>
@@ -10,10 +12,20 @@
         aria-labelledby="date-diff-mode-label"
         data-button-group="date-diff-mode"
       >
-        <button class="calculator-button secondary is-active" type="button" data-value="date" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="date"
+          aria-pressed="true"
+        >
           Dates only
         </button>
-        <button class="calculator-button secondary" type="button" data-value="datetime" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="datetime"
+          aria-pressed="false"
+        >
           Date &amp; time
         </button>
       </div>
@@ -41,7 +53,9 @@
       </div>
     </div>
 
-    <button class="calculator-button full-width" type="button" id="date-diff-calculate">Calculate</button>
+    <button class="calculator-button full-width" type="button" id="date-diff-calculate">
+      Calculate
+    </button>
 
     <div class="result" id="date-diff-results" aria-live="polite">
       <p class="placeholder" id="date-diff-placeholder">Select dates and click Calculate.</p>
@@ -55,4 +69,7 @@
   @import url('/calculators/time-and-date/time-between-two-dates-calculator/calculator.css');
 </style>
 
-<script type="module" src="/calculators/time-and-date/time-between-two-dates-calculator/module.js"></script>
+<script
+  type="module"
+  src="/calculators/time-and-date/time-between-two-dates-calculator/module.js"
+></script>

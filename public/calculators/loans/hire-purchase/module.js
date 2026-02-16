@@ -56,7 +56,8 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How does a balloon payment affect monthly installments?',
-    answer: 'A larger balloon usually lowers monthly installments but leaves more principal due at the end.',
+    answer:
+      'A larger balloon usually lowers monthly installments but leaves more principal due at the end.',
   },
   {
     question: 'Can balloon payment be higher than financed amount?',
@@ -64,7 +65,8 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Why does a longer term reduce monthly payment?',
-    answer: 'Longer terms spread repayment across more months, but can increase total interest paid.',
+    answer:
+      'Longer terms spread repayment across more months, but can increase total interest paid.',
   },
   {
     question: 'Can I switch between years and months for term input?',
@@ -76,11 +78,13 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What does total payable include?',
-    answer: 'Total payable includes deposit, all monthly installments, and the final balloon payment.',
+    answer:
+      'Total payable includes deposit, all monthly installments, and the final balloon payment.',
   },
   {
     question: 'Is this suitable for comparing different deposit scenarios?',
-    answer: 'Yes. Adjust deposit and recalculate to compare installment and total payable tradeoffs.',
+    answer:
+      'Yes. Adjust deposit and recalculate to compare installment and total payable tradeoffs.',
   },
   {
     question: 'Are these lender-specific repayments?',
@@ -158,7 +162,9 @@ function resolveTermMonths() {
     return Number.NaN;
   }
   const unit = getCurrentTermUnit();
-  return unit === 'years' ? Math.max(1, Math.round(rawTerm * 12)) : Math.max(1, Math.round(rawTerm));
+  return unit === 'years'
+    ? Math.max(1, Math.round(rawTerm * 12))
+    : Math.max(1, Math.round(rawTerm));
 }
 
 function syncDependentRanges() {
@@ -218,8 +224,10 @@ function handleTermUnitChange(unit) {
 
   const previousUnit = lastTermUnit;
   const rawValue = Number(termInput.value);
-  const validRawValue = Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 4 : 48;
-  const currentMonths = previousUnit === 'years' ? Math.round(validRawValue * 12) : Math.round(validRawValue);
+  const validRawValue =
+    Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 4 : 48;
+  const currentMonths =
+    previousUnit === 'years' ? Math.round(validRawValue * 12) : Math.round(validRawValue);
 
   if (termLabel) {
     termLabel.textContent = unit === 'years' ? 'Term (years)' : 'Term (months)';

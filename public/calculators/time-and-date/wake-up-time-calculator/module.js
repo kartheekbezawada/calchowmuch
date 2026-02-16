@@ -131,7 +131,8 @@ const STRUCTURED_DATA = {
       '@type': 'WebPage',
       name: 'Wake-Up Time Calculator',
       url: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
-      description: 'Calculate wake-up times using 90-minute sleep cycles and a fixed 15-minute fall-asleep buffer.',
+      description:
+        'Calculate wake-up times using 90-minute sleep cycles and a fixed 15-minute fall-asleep buffer.',
       inLanguage: 'en',
     },
     {
@@ -140,7 +141,8 @@ const STRUCTURED_DATA = {
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
-      description: 'Free wake-up calculator to estimate ideal wake times after 4, 5, or 6 sleep cycles.',
+      description:
+        'Free wake-up calculator to estimate ideal wake times after 4, 5, or 6 sleep cycles.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'CalcHowMuch' },
     },
@@ -377,7 +379,8 @@ function showResults(recommendations) {
 
 function updateExplanation(mode, selectedDate, sleepStart, recommendations) {
   const modeLabel = mode === 'bed' ? 'Bedtime mode' : 'Fall-asleep mode';
-  const primary = recommendations.find((rec) => rec.cycles === 5) ?? recommendations[1] ?? recommendations[0];
+  const primary =
+    recommendations.find((rec) => rec.cycles === 5) ?? recommendations[1] ?? recommendations[0];
   const earliest = recommendations[0];
   const latest = recommendations[recommendations.length - 1];
 

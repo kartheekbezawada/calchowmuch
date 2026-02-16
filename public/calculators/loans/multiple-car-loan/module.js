@@ -73,8 +73,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Why does the monthly total drop later in the schedule?',
-    answer:
-      'If one loan ends earlier, only the remaining loan payment is left for later months.',
+    answer: 'If one loan ends earlier, only the remaining loan payment is left for later months.',
   },
   {
     question: 'Does this include taxes, fees, or insurance?',

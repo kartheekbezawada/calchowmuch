@@ -295,7 +295,10 @@ function renderBreakdownRows(rows) {
 
   rows.forEach((row) => {
     const tr = document.createElement('tr');
-    const tierLabel = row.to === null ? `Above ${formatCurrency(row.from)}` : `${formatCurrency(row.from)} to ${formatCurrency(row.to)}`;
+    const tierLabel =
+      row.to === null
+        ? `Above ${formatCurrency(row.from)}`
+        : `${formatCurrency(row.from)} to ${formatCurrency(row.to)}`;
     tr.innerHTML = `
       <td>${tierLabel}</td>
       <td>${formatCurrency(row.sales)}</td>
@@ -337,7 +340,11 @@ function calculate() {
     }
     result = calculateCommission({ sales, mode: 'tiered', tiers });
     ratesText = tiers
-      .map((tier) => (tier.upTo === null ? `Above last: ${formatPercent(tier.rate)}` : `Up to ${formatCurrency(tier.upTo)}: ${formatPercent(tier.rate)}`))
+      .map((tier) =>
+        tier.upTo === null
+          ? `Above last: ${formatPercent(tier.rate)}`
+          : `Up to ${formatCurrency(tier.upTo)}: ${formatPercent(tier.rate)}`
+      )
       .join(' | ');
   }
 

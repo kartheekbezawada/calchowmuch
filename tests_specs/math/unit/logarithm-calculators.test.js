@@ -7,7 +7,7 @@ import {
   logPowerRule,
   solveSimpleExponential,
   convertLogScaleValue,
-} from '../../public/assets/js/core/logarithm.js';
+} from '../../../public/assets/js/core/logarithm.js';
 
 // LOG-TEST-U-1: Natural log precision
 describe('LOG-TEST-U-1: Natural log calculations', () => {

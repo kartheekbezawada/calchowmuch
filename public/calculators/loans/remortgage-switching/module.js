@@ -158,7 +158,7 @@ function setError(msg) {
     errorDiv.style.display = 'block';
   }
   // Reset metrics
-  [metricMonthly, metricAnnual, metricBreakEven, metricTotal].forEach(el => {
+  [metricMonthly, metricAnnual, metricBreakEven, metricTotal].forEach((el) => {
     if (el) el.textContent = '\u2014';
   });
 }
@@ -181,7 +181,10 @@ function calculate() {
     const horizon = Number(horizonInput?.value) || 5;
 
     // Validation
-    if (balance <= 0) { setError('Balance must be uniform positive.'); return; }
+    if (balance <= 0) {
+      setError('Balance must be uniform positive.');
+      return;
+    }
 
     const inputs = {
       balance,
@@ -193,20 +196,31 @@ function calculate() {
       currentPayment: 0, // calc internally
       newFees: 0,
       exitFees: 0,
-      legalFees: 0
+      legalFees: 0,
     };
 
     const data = calculateRemortgage(inputs);
     if (!data) throw new Error('No data returned');
 
     // Update Outputs
-    if (metricMonthly) { metricMonthly.textContent = fmtCurrency(data.monthlyDifference); animateMetric(metricMonthly); }
-    if (metricAnnual) { metricAnnual.textContent = fmtCurrency(data.annualDifference); animateMetric(metricAnnual); }
+    if (metricMonthly) {
+      metricMonthly.textContent = fmtCurrency(data.monthlyDifference);
+      animateMetric(metricMonthly);
+    }
+    if (metricAnnual) {
+      metricAnnual.textContent = fmtCurrency(data.annualDifference);
+      animateMetric(metricAnnual);
+    }
     if (metricBreakEven) {
-      metricBreakEven.textContent = data.breakEvenMonth ? `Month ${data.breakEvenMonth}` : 'Outside horizon';
+      metricBreakEven.textContent = data.breakEvenMonth
+        ? `Month ${data.breakEvenMonth}`
+        : 'Outside horizon';
       animateMetric(metricBreakEven);
     }
-    if (metricTotal) { metricTotal.textContent = fmtCurrency(data.totalSavings); animateMetric(metricTotal); }
+    if (metricTotal) {
+      metricTotal.textContent = fmtCurrency(data.totalSavings);
+      animateMetric(metricTotal);
+    }
 
     if (resultNote) {
       const isSaving = data.monthlyDifference > 0;
@@ -219,7 +233,6 @@ function calculate() {
     if (data.costSeries) {
       renderTables(data.costSeries);
     }
-
   } catch (e) {
     console.error(e);
     setError('Calculation error. Please check inputs.');
@@ -227,13 +240,15 @@ function calculate() {
 }
 
 /* --- Initialization --- */
-[balanceInput, currentRateInput, termInput, newRateInput, newTermInput, horizonInput].forEach(input => {
-  if (!input) return;
-  input.addEventListener('input', () => {
-    updateSliderDisplays();
-    calculate();
-  });
-});
+[balanceInput, currentRateInput, termInput, newRateInput, newTermInput, horizonInput].forEach(
+  (input) => {
+    if (!input) return;
+    input.addEventListener('input', () => {
+      updateSliderDisplays();
+      calculate();
+    });
+  }
+);
 
 calculateButton?.addEventListener('click', calculate);
 
@@ -241,5 +256,3 @@ calculateButton?.addEventListener('click', calculate);
 updateSliderDisplays();
 toggleTableView('yearly');
 calculate();
-
-

@@ -48,7 +48,11 @@ export function calculateSleepRecommendations({ mode, date }) {
   });
 }
 
-export function calculateWakeUpRecommendations({ mode, date, latencyMinutes = FALL_ASLEEP_MINUTES }) {
+export function calculateWakeUpRecommendations({
+  mode,
+  date,
+  latencyMinutes = FALL_ASLEEP_MINUTES,
+}) {
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
     return [];
   }

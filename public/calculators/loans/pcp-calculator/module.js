@@ -98,7 +98,8 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Are these PCP results lender-specific quotations?',
-    answer: 'No. These are fixed-rate estimates and can differ from lender offers and contract terms.',
+    answer:
+      'No. These are fixed-rate estimates and can differ from lender offers and contract terms.',
   },
 ];
 
@@ -184,7 +185,9 @@ function resolveTermMonths() {
   }
 
   const unit = getCurrentTermUnit();
-  return unit === 'years' ? Math.max(1, Math.round(rawTerm * 12)) : Math.max(1, Math.round(rawTerm));
+  return unit === 'years'
+    ? Math.max(1, Math.round(rawTerm * 12))
+    : Math.max(1, Math.round(rawTerm));
 }
 
 function resolveDepositAmountAndPercent(price, depositType, rawDeposit) {
@@ -323,8 +326,10 @@ function handleTermUnitChange(unit) {
 
   const previousUnit = lastTermUnit;
   const rawValue = Number(termInput.value);
-  const safeRawValue = Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 4 : 48;
-  const currentMonths = previousUnit === 'years' ? Math.round(safeRawValue * 12) : Math.round(safeRawValue);
+  const safeRawValue =
+    Number.isFinite(rawValue) && rawValue > 0 ? rawValue : previousUnit === 'years' ? 4 : 48;
+  const currentMonths =
+    previousUnit === 'years' ? Math.round(safeRawValue * 12) : Math.round(safeRawValue);
 
   if (termLabel) {
     termLabel.textContent = unit === 'years' ? 'Term (years)' : 'Term (months)';
@@ -592,7 +597,11 @@ function validateAndNormalizeInputs() {
     return { error: 'Option fee must be 0 or more.' };
   }
 
-  const { depositAmount, depositPercent } = resolveDepositAmountAndPercent(price, depositType, rawDeposit);
+  const { depositAmount, depositPercent } = resolveDepositAmountAndPercent(
+    price,
+    depositType,
+    rawDeposit
+  );
 
   if (depositAmount >= price) {
     return { error: 'Deposit must be less than vehicle price.' };
@@ -684,7 +693,12 @@ function calculate() {
 
 [priceInput, depositInput, aprInput, termInput, gfvInput, optionFeeInput].forEach((input) => {
   input?.addEventListener('input', () => {
-    if (input === priceInput || input === depositInput || input === gfvInput || input === optionFeeInput) {
+    if (
+      input === priceInput ||
+      input === depositInput ||
+      input === gfvInput ||
+      input === optionFeeInput
+    ) {
       syncDependentRanges();
     }
     updateSliderDisplays();

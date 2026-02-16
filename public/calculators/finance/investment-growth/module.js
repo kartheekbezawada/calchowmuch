@@ -38,7 +38,8 @@ const snapInflation = document.querySelector('[data-ig="snap-inflation"]');
 const snapInflationRow = document.querySelector('#ig-snap-inflation-row');
 
 // Helper to remove currency symbol
-const formatMoney = (val) => formatNumber(val, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const formatMoney = (val) =>
+  formatNumber(val, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const formatInput = (val) => formatNumber(val, { maximumFractionDigits: 0 });
 
 export const pageSchema = {
@@ -110,7 +111,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is inflation-adjusted future value?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It estimates your ending balance in today\'s purchasing power after accounting for inflation.',
+        text: "It estimates your ending balance in today's purchasing power after accounting for inflation.",
       },
     },
     {
@@ -249,7 +250,7 @@ function calculate() {
   contributionDisplay.textContent = formatInput(monthlyContribution);
   inflationDisplay.textContent = formatPercent(inflationRate);
 
-  const totalYears = years + (months / 12);
+  const totalYears = years + months / 12;
 
   // Only calculate if we have some time period, even if it's 0 (start value)
   if (totalYears < 0) return;
@@ -285,9 +286,7 @@ function calculate() {
     resultDetail.innerHTML = detailHtml;
   }
 
-  const timeLabel = months > 0
-    ? `${years} yr ${months} mo`
-    : `${years} years`;
+  const timeLabel = months > 0 ? `${years} yr ${months} mo` : `${years} years`;
 
   updateSnapshots({
     initialInvestment,
@@ -297,16 +296,18 @@ function calculate() {
     compoundingLabel: result.compoundingLabel,
     totalContributions: result.totalContributions,
     totalGains: result.totalGains,
-    inflationAdjustedFV: result.inflationAdjustedFV
+    inflationAdjustedFV: result.inflationAdjustedFV,
   });
 }
 
 // Event Listeners for Sliders
-[initialInput, returnInput, yearsInput, monthsInput, contributionInput, inflationInput].forEach(input => {
-  if (input) {
-    input.addEventListener('input', calculate);
+[initialInput, returnInput, yearsInput, monthsInput, contributionInput, inflationInput].forEach(
+  (input) => {
+    if (input) {
+      input.addEventListener('input', calculate);
+    }
   }
-});
+);
 
 if (calculateButton) {
   calculateButton.addEventListener('click', calculate);

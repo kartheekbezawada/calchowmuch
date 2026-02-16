@@ -133,7 +133,8 @@ export function drawLogCurve(canvas, base = Math.E, highlightX = 1) {
   const safeX = Math.max(xMin, Math.min(highlightX, xMax));
   const highlightY = Math.log(safeX) / Math.log(base);
   const highlightXPos = margin + ((safeX - xMin) / (xMax - xMin)) * (width - 2 * margin);
-  const highlightYPos = height - margin - ((highlightY - yMin) / (yMax - yMin)) * (height - 2 * margin);
+  const highlightYPos =
+    height - margin - ((highlightY - yMin) / (yMax - yMin)) * (height - 2 * margin);
 
   ctx.strokeStyle = '#dc2626';
   ctx.lineWidth = 1;

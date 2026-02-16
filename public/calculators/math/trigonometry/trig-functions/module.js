@@ -1,11 +1,7 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import {
-  computeTrigValues,
-  degToRad,
-  getSpecialAngleInfo,
-} from '/assets/js/core/trigonometry.js';
+import { computeTrigValues, degToRad, getSpecialAngleInfo } from '/assets/js/core/trigonometry.js';
 
 const angleInput = document.querySelector('#trig-angle');
 const angleUnitGroup = document.querySelector('[data-button-group="trig-angle-unit"]');
@@ -30,7 +26,8 @@ const trigFunctionsMetadata = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: 'Graph trigonometric functions',
-    description: 'Enter an angle, adjust amplitude and period, and analyze sin/cos/tan/sec/csc/cot outputs.',
+    description:
+      'Enter an angle, adjust amplitude and period, and analyze sin/cos/tan/sec/csc/cot outputs.',
     step: [
       {
         '@type': 'HowToStep',

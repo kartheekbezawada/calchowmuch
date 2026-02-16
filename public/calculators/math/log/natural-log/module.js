@@ -18,7 +18,8 @@ const naturalLogMetadata = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: 'Natural log calculator',
-    description: 'Enter any positive number and see its natural logarithm with a chart and explanation.',
+    description:
+      'Enter any positive number and see its natural logarithm with a chart and explanation.',
     step: [
       { '@type': 'HowToStep', text: 'Provide a positive value for x.' },
       { '@type': 'HowToStep', text: 'Adjust the precision and compute ln(x).' },

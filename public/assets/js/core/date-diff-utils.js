@@ -63,8 +63,7 @@ export function calculateCalendarDiff(start, end) {
 
   const startTimeTotal =
     start.getHours() * MINUTES_PER_HOUR + start.getMinutes() + start.getSeconds() / 60;
-  const endTimeTotal =
-    end.getHours() * MINUTES_PER_HOUR + end.getMinutes() + end.getSeconds() / 60;
+  const endTimeTotal = end.getHours() * MINUTES_PER_HOUR + end.getMinutes() + end.getSeconds() / 60;
 
   const endBeforeStartInMonth =
     endDay < startDay || (endDay === startDay && endTimeTotal < startTimeTotal);
@@ -85,11 +84,7 @@ export function calculateDaysUntil(targetDate, referenceDate = new Date()) {
     return null;
   }
 
-  const targetUtc = Date.UTC(
-    targetDate.getFullYear(),
-    targetDate.getMonth(),
-    targetDate.getDate()
-  );
+  const targetUtc = Date.UTC(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
   const referenceUtc = Date.UTC(
     referenceDate.getFullYear(),
     referenceDate.getMonth(),
@@ -189,14 +184,14 @@ export function calculateExactAge(birthDate, asOfDate) {
   const asOf = createClampedDate(asOfDate.getFullYear(), asOfDate.getMonth(), asOfDate.getDate());
 
   let years = asOf.getFullYear() - birth.getFullYear();
-  let anniversary = createClampedDate(birth.getFullYear() + years, birth.getMonth(), birth.getDate());
+  let anniversary = createClampedDate(
+    birth.getFullYear() + years,
+    birth.getMonth(),
+    birth.getDate()
+  );
   if (anniversary > asOf) {
     years -= 1;
-    anniversary = createClampedDate(
-      birth.getFullYear() + years,
-      birth.getMonth(),
-      birth.getDate()
-    );
+    anniversary = createClampedDate(birth.getFullYear() + years, birth.getMonth(), birth.getDate());
   }
 
   let months = asOf.getMonth() - anniversary.getMonth();

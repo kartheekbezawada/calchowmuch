@@ -20,9 +20,15 @@ class SymbolicDifferentiator {
     let match;
 
     while ((match = regex.exec(expr)) !== null) {
-      const coef = match[1] ? (match[1] === '+' || match[1] === '' ? 1 : match[1] === '-' ? -1 : parseFloat(match[1])) : 1;
+      const coef = match[1]
+        ? match[1] === '+' || match[1] === ''
+          ? 1
+          : match[1] === '-'
+            ? -1
+            : parseFloat(match[1])
+        : 1;
       const variable = match[2] || '';
-      const exponent = match[3] ? parseFloat(match[3]) : (variable ? 1 : 0);
+      const exponent = match[3] ? parseFloat(match[3]) : variable ? 1 : 0;
 
       if (coef !== 0) {
         terms.push({ coef, variable, exponent });
@@ -37,7 +43,7 @@ class SymbolicDifferentiator {
     if (exponent === 0) return { coef: 0, exponent: 0 };
     return {
       coef: coef * exponent,
-      exponent: exponent - 1
+      exponent: exponent - 1,
     };
   }
 
@@ -143,7 +149,7 @@ class SymbolicDifferentiator {
         return {
           derivative: result,
           steps: allSteps,
-          terms: derivatives
+          terms: derivatives,
         };
       }
     }
@@ -209,7 +215,6 @@ export function initDerivativeCalculator() {
           <pre>${result.steps.join('\n')}</pre>
         </div>
       `;
-
     } catch (error) {
       resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
       stepsDiv.innerHTML = '';

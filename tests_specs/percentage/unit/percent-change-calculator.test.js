@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { percentageChange } from '../../public/assets/js/core/math.js';
+import { percentageChange } from '../../../public/assets/js/core/math.js';
 
 describe('Percent Change Calculator - PCHG-TEST-U-1: increase/decrease/no-change', () => {
   it('returns positive percent for increase', () => {

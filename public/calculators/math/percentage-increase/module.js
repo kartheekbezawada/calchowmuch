@@ -134,9 +134,7 @@ function calculateChange() {
     const detail =
       direction === 'no change'
         ? `No change from the starting value. ${formula}`
-        : `That is a ${direction} of ${safeFormatNumber(
-            diff
-          )} from the starting value. ${formula}`;
+        : `That is a ${direction} of ${safeFormatNumber(diff)} from the starting value. ${formula}`;
     setResult(`Result: ${signedPercent}`, detail);
   }
 

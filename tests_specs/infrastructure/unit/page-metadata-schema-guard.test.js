@@ -19,7 +19,7 @@ afterEach(() => {
 describe('UI schema guard for FAQPage injection', () => {
   it('does not require FAQPage when no FAQ schema flag is enabled', async () => {
     setupDom('/finance/simple-interest/');
-    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     setPageMetadata({
       structuredData: {
@@ -41,7 +41,7 @@ describe('UI schema guard for FAQPage injection', () => {
 
   it('injects calculator FAQ schema on calculator routes', async () => {
     setupDom('/finance/simple-interest/');
-    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     setPageMetadata({
       structuredData: {
@@ -67,7 +67,7 @@ describe('UI schema guard for FAQPage injection', () => {
 
   it('rejects global FAQ schema on non-FAQ routes', async () => {
     setupDom('/finance/simple-interest/');
-    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>
       setPageMetadata({
@@ -86,7 +86,7 @@ describe('UI schema guard for FAQPage injection', () => {
 
   it('allows global FAQ schema on /faq/', async () => {
     setupDom('/faq/');
-    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     setPageMetadata({
       structuredData: { '@context': 'https://schema.org', '@type': 'WebPage' },
@@ -109,7 +109,7 @@ describe('UI schema guard for FAQPage injection', () => {
 
   it('rejects duplicate FAQPage schema on a single URL', async () => {
     setupDom('/finance/simple-interest/');
-    const { setPageMetadata } = await import('../../public/assets/js/core/ui.js');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>
       setPageMetadata({

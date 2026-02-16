@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateFutureValueOfAnnuity } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateFutureValueOfAnnuity } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Future Value of Annuity - FVA-TEST-U-1: ordinary annuity', () => {
   it('should calculate FV for an ordinary annuity with annual compounding', () => {

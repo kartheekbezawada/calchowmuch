@@ -160,14 +160,18 @@ function updateSnapshot(data, changeTiming) {
       ? `After ${formatWhole(Number(changeMonthsInput?.value ?? 0))} months`
       : 'Apply Immediately';
 
-  if (snapshotCurrentPayment) snapshotCurrentPayment.textContent = formatMoney(data.baselinePayment);
+  if (snapshotCurrentPayment)
+    snapshotCurrentPayment.textContent = formatMoney(data.baselinePayment);
   if (snapshotNewPayment) snapshotNewPayment.textContent = formatMoney(data.newPayment);
   if (snapshotMonthlyDiff) snapshotMonthlyDiff.textContent = formatMoney(data.monthlyDifference);
   if (snapshotAnnualDiff) snapshotAnnualDiff.textContent = formatMoney(data.annualDifference);
-  if (snapshotInterestBase) snapshotInterestBase.textContent = formatMoney(data.totalInterestBaseline);
+  if (snapshotInterestBase)
+    snapshotInterestBase.textContent = formatMoney(data.totalInterestBaseline);
   if (snapshotInterestNew) snapshotInterestNew.textContent = formatMoney(data.totalInterestNew);
   if (snapshotInterestChange) {
-    snapshotInterestChange.textContent = formatMoney(data.totalInterestNew - data.totalInterestBaseline);
+    snapshotInterestChange.textContent = formatMoney(
+      data.totalInterestNew - data.totalInterestBaseline
+    );
   }
   if (snapshotTiming) snapshotTiming.textContent = changeText;
 }
@@ -351,7 +355,10 @@ function calculate() {
 
 calculateButton?.addEventListener('click', calculate);
 
-changeMonthsRow?.classList.toggle('is-hidden', (timingButtons?.getValue() ?? 'immediate') !== 'after');
+changeMonthsRow?.classList.toggle(
+  'is-hidden',
+  (timingButtons?.getValue() ?? 'immediate') !== 'after'
+);
 updateSliderDisplays();
 applyView(tableViewButtons?.getValue() ?? 'yearly');
 calculate();

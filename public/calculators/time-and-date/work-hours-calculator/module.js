@@ -61,8 +61,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Why do I see both HH:MM and decimal hours?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll.',
+        text: 'Different systems use different formats. HH:MM is easier to read, while decimal hours are often used for payroll.',
       },
     },
     {
@@ -70,8 +69,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does it round time?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
+        text: 'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
       },
     },
     {
@@ -79,8 +77,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How do I calculate split shifts with two work periods?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break.',
+        text: 'Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break.',
       },
     },
     {
@@ -96,8 +93,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I calculate weekly work hours for multiple days?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions.',
+        text: 'Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions.',
       },
     },
     {
@@ -113,8 +109,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does this calculator include overtime pay rules?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'No. It calculates worked time only. Overtime pay policies depend on employer and local regulations.',
+        text: 'No. It calculates worked time only. Overtime pay policies depend on employer and local regulations.',
       },
     },
     {
@@ -122,8 +117,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use this for timesheets and payroll prep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules.',
+        text: 'Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules.',
       },
     },
   ],
@@ -477,7 +471,9 @@ function calculateSplit() {
       ? formatTimeRange(split2StartInput?.value ?? '', split2EndInput?.value ?? '')
       : 'Not used',
     overnightLabel:
-      splitNextDayInput?.checked || split2NextDayInput?.checked ? 'Yes (one or more segments)' : 'No',
+      splitNextDayInput?.checked || split2NextDayInput?.checked
+        ? 'Yes (one or more segments)'
+        : 'No',
   };
 }
 
@@ -488,13 +484,26 @@ function calculateWeekly() {
     const endValue = row.endInput?.value ?? '';
     const hasAny = Boolean(startValue || endValue);
     if (!hasAny) {
-      days.push({ label: row.label, start: null, end: null, endsNextDay: row.nextDayInput?.checked, breakMinutes: 0 });
+      days.push({
+        label: row.label,
+        start: null,
+        end: null,
+        endsNextDay: row.nextDayInput?.checked,
+        breakMinutes: 0,
+      });
       return;
     }
     const start = parseTimeString(startValue);
     const end = parseTimeString(endValue);
     if (!start || !end) {
-      days.push({ label: row.label, start: null, end: null, endsNextDay: row.nextDayInput?.checked, breakMinutes: 0, error: true });
+      days.push({
+        label: row.label,
+        start: null,
+        end: null,
+        endsNextDay: row.nextDayInput?.checked,
+        breakMinutes: 0,
+        error: true,
+      });
       return;
     }
     const breakMinutes = getBreakMinutes(row.breakGroup, 0);
@@ -520,7 +529,9 @@ function calculateWeekly() {
     return { error: 'Check that end times are valid and breaks do not exceed worked minutes.' };
   }
 
-  const dailyLines = filledDays.map((day, index) => `${day.label}: ${formatHHMM(totals.dailyMinutes[index])}`);
+  const dailyLines = filledDays.map(
+    (day, index) => `${day.label}: ${formatHHMM(totals.dailyMinutes[index])}`
+  );
 
   return {
     mode: 'weekly',

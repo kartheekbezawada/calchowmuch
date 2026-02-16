@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateSavingsGoal } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateSavingsGoal } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Savings Goal Calculator - SG-TEST-U-1: time to goal mode', () => {
   it('calculates months to goal with zero interest', () => {

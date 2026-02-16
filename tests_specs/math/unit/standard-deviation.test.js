@@ -4,7 +4,7 @@ import {
   variance,
   standardDeviation,
   parseDataset,
-} from '../../public/assets/js/core/stats.js';
+} from '../../../public/assets/js/core/stats.js';
 
 /**
  * SD-TEST-U-1 - Standard Deviation Unit Tests

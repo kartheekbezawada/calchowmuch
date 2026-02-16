@@ -94,7 +94,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What date format does the calculator accept?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The calculator uses your browser\'s native date picker, which follows your system\'s locale settings for date format.',
+        text: "The calculator uses your browser's native date picker, which follows your system's locale settings for date format.",
       },
     },
   ],

@@ -5,7 +5,7 @@ import {
   nthTermGeometric,
   sumArithmetic,
   sumGeometric,
-} from '../../public/assets/js/core/stats.js';
+} from '../../../public/assets/js/core/stats.js';
 
 /**
  * SEQ-TEST-U-1 - Sequence detection tests

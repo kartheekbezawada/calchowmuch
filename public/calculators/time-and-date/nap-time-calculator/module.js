@@ -38,8 +38,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Why do I sometimes feel worse after a nap?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.',
+        text: 'If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.',
       },
     },
     {
@@ -47,8 +46,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Will napping ruin my sleep at night?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.',
+        text: 'Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.',
       },
     },
     {
@@ -86,7 +84,8 @@ const STRUCTURED_DATA = {
       applicationCategory: 'HealthApplication',
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
-      description: 'Free nap time calculator to find ideal nap lengths and suggested wake-up times.',
+      description:
+        'Free nap time calculator to find ideal nap lengths and suggested wake-up times.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'CalcHowMuch' },
     },

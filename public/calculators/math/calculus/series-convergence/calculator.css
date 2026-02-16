@@ -105,7 +105,8 @@
   margin-bottom: 8px;
 }
 
-#series-explanation-pane ul, #series-explanation-pane ol {
+#series-explanation-pane ul,
+#series-explanation-pane ol {
   padding-left: 25px;
 }
 

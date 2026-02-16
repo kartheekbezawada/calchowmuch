@@ -4,7 +4,7 @@ import {
   parseTimeString,
   getNapType,
   DEFAULT_NAP_TYPE,
-} from '../../public/assets/js/core/nap-utils.js';
+} from '../../../public/assets/js/core/nap-utils.js';
 
 describe('Nap Time Calculator - NAP-TEST-U-1: nap type defaults', () => {
   it('should fall back to the default nap type', () => {

@@ -92,7 +92,9 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #94a3b8;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
 #calc-how-much-can-borrow .slider-value {
@@ -127,14 +129,24 @@
   width: 100%;
   height: 6px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 var(--fill), rgba(30, 41, 59, 0.8) var(--fill));
+  background: linear-gradient(
+    90deg,
+    #06b6d4 0%,
+    #3b82f6 var(--fill),
+    rgba(30, 41, 59, 0.8) var(--fill)
+  );
 }
 
 #calc-how-much-can-borrow input[type='range']::-moz-range-track {
   width: 100%;
   height: 6px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 var(--fill), rgba(30, 41, 59, 0.8) var(--fill));
+  background: linear-gradient(
+    90deg,
+    #06b6d4 0%,
+    #3b82f6 var(--fill),
+    rgba(30, 41, 59, 0.8) var(--fill)
+  );
 }
 
 /* Glowing Thumb */
@@ -147,8 +159,13 @@
   border: 2px solid #3b82f6;
   margin-top: -8px;
   /* Center thumb */
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 20px rgba(6, 182, 212, 0.4);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  box-shadow:
+    0 0 10px rgba(59, 130, 246, 0.6),
+    0 0 20px rgba(6, 182, 212, 0.4);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
   cursor: grab;
 }
 
@@ -158,15 +175,22 @@
   border-radius: 50%;
   background: #fff;
   border: 2px solid #3b82f6;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 20px rgba(6, 182, 212, 0.4);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  box-shadow:
+    0 0 10px rgba(59, 130, 246, 0.6),
+    0 0 20px rgba(6, 182, 212, 0.4);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
   cursor: grab;
   border: none;
 }
 
 #calc-how-much-can-borrow input[type='range']:hover::-webkit-slider-thumb {
   transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(6, 182, 212, 0.6);
+  box-shadow:
+    0 0 15px rgba(59, 130, 246, 0.8),
+    0 0 30px rgba(6, 182, 212, 0.6);
   border-color: #06b6d4;
 }
 
@@ -178,7 +202,9 @@
 
 #calc-how-much-can-borrow input[type='range']:hover::-moz-range-thumb {
   transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(6, 182, 212, 0.6);
+  box-shadow:
+    0 0 15px rgba(59, 130, 246, 0.8),
+    0 0 30px rgba(6, 182, 212, 0.6);
   border-color: #06b6d4;
 }
 
@@ -239,7 +265,9 @@
   /* Blue tint border */
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.15), 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 25px rgba(59, 130, 246, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.3);
   /* Glow */
   display: flex;
   flex-direction: column;
@@ -271,7 +299,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .borrow-metric:hover {
@@ -346,7 +376,6 @@
   color: #38bdf8;
 }
 
-
 /* ================================================================
    EXPLANATION PANEL
    ================================================================ */
@@ -364,7 +393,7 @@
   text-align: center;
 }
 
-#loan-borrow-explanation>p {
+#loan-borrow-explanation > p {
   margin: 0;
   font-size: 0.84rem;
   line-height: 1.55;
@@ -417,7 +446,9 @@
   color: #fff;
   min-width: 0;
   overflow: hidden;
-  transition: flex-basis 0.6s ease, filter 0.3s ease;
+  transition:
+    flex-basis 0.6s ease,
+    filter 0.3s ease;
 }
 
 #loan-borrow-explanation .bor-capacity-segment:hover {
@@ -465,7 +496,10 @@
   border: 1px solid transparent;
   background: none;
   cursor: default;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 #loan-borrow-explanation .bor-capacity-legend-item:hover {
@@ -587,7 +621,10 @@
   border-top: 2px solid rgba(245, 158, 11, 0.45);
   display: grid;
   gap: 0.4rem;
-  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
 }
 
 #loan-borrow-explanation .bor-faq-card:hover {

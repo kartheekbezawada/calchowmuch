@@ -92,7 +92,8 @@ const metadata = {
         '@type': 'WebPage',
         name: 'Find Percentage of a Number Calculator',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number/',
-        description: 'Calculate what X% of Y is instantly using our free Find Percentage of a Number calculator.',
+        description:
+          'Calculate what X% of Y is instantly using our free Find Percentage of a Number calculator.',
         inLanguage: 'en',
       },
       {
@@ -101,7 +102,8 @@ const metadata = {
         applicationCategory: 'EducationalApplication',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number/',
-        description: 'Free calculator to find what X percent of Y is using a simple percentage formula.',
+        description:
+          'Free calculator to find what X percent of Y is using a simple percentage formula.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

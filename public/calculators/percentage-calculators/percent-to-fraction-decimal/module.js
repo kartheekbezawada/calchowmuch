@@ -93,7 +93,8 @@ const metadata = {
         '@type': 'WebPage',
         name: 'Percent to Fraction & Decimal Converter',
         url: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal/',
-        description: 'Convert any percentage to a decimal and simplified fraction instantly using our free percent converter.',
+        description:
+          'Convert any percentage to a decimal and simplified fraction instantly using our free percent converter.',
         inLanguage: 'en',
       },
       {
@@ -102,7 +103,8 @@ const metadata = {
         applicationCategory: 'EducationalApplication',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal/',
-        description: 'Free percent to fraction and percent to decimal converter that outputs simplified fractions and decimals with steps.',
+        description:
+          'Free percent to fraction and percent to decimal converter that outputs simplified fractions and decimals with steps.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

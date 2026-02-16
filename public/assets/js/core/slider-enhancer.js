@@ -115,7 +115,7 @@ export function initSliderEnhancer() {
     }
 
     const label = row.querySelector('label');
-    const labelText = label ? label.textContent ?? '' : '';
+    const labelText = label ? (label.textContent ?? '') : '';
 
     const slider = buildSlider(input, labelText);
     const wrapper = document.createElement('div');

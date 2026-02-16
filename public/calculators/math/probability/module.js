@@ -57,7 +57,11 @@ function updateVisibility() {
   probARow.style.display = ['and', 'or', 'conditional', 'bayes'].includes(mode) ? '' : 'none';
   probBRow.style.display = ['and', 'or', 'conditional', 'bayes'].includes(mode) ? '' : 'none';
   orTypeRow.style.display = mode === 'or' ? '' : 'none';
-  probJointRow.style.display = (mode === 'or' && (orTypeButtons?.getValue() ?? 'independent') === 'inclusive') || mode === 'conditional' ? '' : 'none';
+  probJointRow.style.display =
+    (mode === 'or' && (orTypeButtons?.getValue() ?? 'independent') === 'inclusive') ||
+    mode === 'conditional'
+      ? ''
+      : 'none';
   probBGivenARow.style.display = mode === 'bayes' ? '' : 'none';
   probNRow.style.display = mode === 'distribution' ? '' : 'none';
   probKRow.style.display = mode === 'distribution' ? '' : 'none';

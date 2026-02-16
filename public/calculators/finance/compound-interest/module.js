@@ -30,22 +30,24 @@ const snapTotalPeriods = document.querySelector('[data-ci="snap-total-periods"]'
 const explanationRoot = document.querySelector('#ci-explanation');
 const valueTargets = explanationRoot
   ? {
-    principal: explanationRoot.querySelectorAll('[data-ci="principal"]'),
-    rate: explanationRoot.querySelectorAll('[data-ci="rate"]'),
-    frequency: explanationRoot.querySelectorAll('[data-ci="frequency"]'),
-    time: explanationRoot.querySelectorAll('[data-ci="time"]'),
-    endingBalance: explanationRoot.querySelectorAll('[data-ci="ending-balance"]'),
-    totalInterest: explanationRoot.querySelectorAll('[data-ci="total-interest"]'),
-    totalContributions: explanationRoot.querySelectorAll('[data-ci="total-contributions"]'),
-    contributionPerPeriod: explanationRoot.querySelectorAll('[data-ci="contribution-per-period"]'),
-    periodicRate: explanationRoot.querySelectorAll('[data-ci="periodic-rate"]'),
-    periodicRateDecimal: explanationRoot.querySelectorAll('[data-ci="periodic-rate-decimal"]'),
-    totalPeriods: explanationRoot.querySelectorAll('[data-ci="total-periods"]'),
-    periodsPerYear: explanationRoot.querySelectorAll('[data-ci="periods-per-year"]'),
-    yearsValue: explanationRoot.querySelectorAll('[data-ci="years-value"]'),
-    growthFactor: explanationRoot.querySelectorAll('[data-ci="growth-factor"]'),
-    principalGrowth: explanationRoot.querySelectorAll('[data-ci="principal-growth"]'),
-  }
+      principal: explanationRoot.querySelectorAll('[data-ci="principal"]'),
+      rate: explanationRoot.querySelectorAll('[data-ci="rate"]'),
+      frequency: explanationRoot.querySelectorAll('[data-ci="frequency"]'),
+      time: explanationRoot.querySelectorAll('[data-ci="time"]'),
+      endingBalance: explanationRoot.querySelectorAll('[data-ci="ending-balance"]'),
+      totalInterest: explanationRoot.querySelectorAll('[data-ci="total-interest"]'),
+      totalContributions: explanationRoot.querySelectorAll('[data-ci="total-contributions"]'),
+      contributionPerPeriod: explanationRoot.querySelectorAll(
+        '[data-ci="contribution-per-period"]'
+      ),
+      periodicRate: explanationRoot.querySelectorAll('[data-ci="periodic-rate"]'),
+      periodicRateDecimal: explanationRoot.querySelectorAll('[data-ci="periodic-rate-decimal"]'),
+      totalPeriods: explanationRoot.querySelectorAll('[data-ci="total-periods"]'),
+      periodsPerYear: explanationRoot.querySelectorAll('[data-ci="periods-per-year"]'),
+      yearsValue: explanationRoot.querySelectorAll('[data-ci="years-value"]'),
+      growthFactor: explanationRoot.querySelectorAll('[data-ci="growth-factor"]'),
+      principalGrowth: explanationRoot.querySelectorAll('[data-ci="principal-growth"]'),
+    }
   : null;
 
 /* ── Button groups ── */
@@ -53,7 +55,9 @@ const compoundingGroup = document.querySelector('[data-button-group="ci-compound
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
-  onChange() { calculate(); },
+  onChange() {
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -184,7 +188,12 @@ const metadata = {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
-          { '@type': 'ListItem', position: 2, name: 'Finance', item: 'https://calchowmuch.com/finance/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: 'https://calchowmuch.com/finance/',
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -221,7 +230,10 @@ function setSliderFill(input) {
 function updateSliderDisplays() {
   if (principalInput && principalDisplay) {
     setSliderFill(principalInput);
-    principalDisplay.textContent = fmt(Number(principalInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    principalDisplay.textContent = fmt(Number(principalInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
   if (rateInput && rateDisplay) {
     setSliderFill(rateInput);
@@ -233,7 +245,10 @@ function updateSliderDisplays() {
   }
   if (contributionInput && contribDisplay) {
     setSliderFill(contributionInput);
-    contribDisplay.textContent = fmt(Number(contributionInput.value), { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    contribDisplay.textContent = fmt(Number(contributionInput.value), {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
 }
 
@@ -254,17 +269,28 @@ function setError(message) {
 function calculate() {
   if (!resultDiv || !summaryDiv) return;
   try {
-
     const principal = Number(principalInput?.value);
     const annualRate = Number(rateInput?.value);
     const timePeriod = Number(timeInput?.value);
     const contribution = Number(contributionInput?.value ?? 0);
     const compounding = compoundingButtons?.getValue() ?? 'annual';
 
-    if (!Number.isFinite(principal) || principal < 0) { setError('Principal must be 0 or more.'); return; }
-    if (!Number.isFinite(annualRate) || annualRate < 0) { setError('Rate must be 0 or more.'); return; }
-    if (!Number.isFinite(timePeriod) || timePeriod < 0) { setError('Time must be 0 or more.'); return; }
-    if (!Number.isFinite(contribution) || contribution < 0) { setError('Contribution must be 0 or more.'); return; }
+    if (!Number.isFinite(principal) || principal < 0) {
+      setError('Principal must be 0 or more.');
+      return;
+    }
+    if (!Number.isFinite(annualRate) || annualRate < 0) {
+      setError('Rate must be 0 or more.');
+      return;
+    }
+    if (!Number.isFinite(timePeriod) || timePeriod < 0) {
+      setError('Time must be 0 or more.');
+      return;
+    }
+    if (!Number.isFinite(contribution) || contribution < 0) {
+      setError('Contribution must be 0 or more.');
+      return;
+    }
 
     const result = calculateCompoundInterest({
       principal,
@@ -275,7 +301,10 @@ function calculate() {
       contribution,
     });
 
-    if (!result) { setError('Check your inputs.'); return; }
+    if (!result) {
+      setError('Check your inputs.');
+      return;
+    }
 
     const periodicRatePct = result.periodicRate * 100;
     const principalStr = fmt(principal);
