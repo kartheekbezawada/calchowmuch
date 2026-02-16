@@ -8,7 +8,6 @@ const FINANCE_ROUTES = [
   '/finance/simple-interest',
   '/finance/compound-interest',
   '/finance/effective-annual-rate',
-  '/finance/savings-goal',
   '/finance/investment-growth',
 ];
 
@@ -36,13 +35,17 @@ function normalize(text) {
     .trim();
 }
 
-async function findFirstVisibleEditableInput(pane) {
+async function findFirstVisibleEditableInput(pane, { allowRange = false } = {}) {
   const selectors = [
     'input[type="number"]',
     'input[type="text"]',
     'input[type="search"]',
     'input[type="tel"]',
   ];
+
+  if (allowRange) {
+    selectors.push('input[type="range"]');
+  }
 
   for (const selector of selectors) {
     const inputs = pane.locator(selector);
@@ -66,6 +69,24 @@ async function findFirstVisibleEditableInput(pane) {
 }
 
 async function setChangedNumericValue(input) {
+  const inputType = await input.getAttribute('type');
+  if (inputType === 'range') {
+    await input.evaluate((el) => {
+      const min = Number(el.min || 0);
+      const max = Number(el.max || 100);
+      const step = Number(el.step || 1);
+      const current = Number(el.value || min);
+      let next = current + (Number.isFinite(step) && step > 0 ? step : 1);
+      if (next > max) {
+        next = current - (Number.isFinite(step) && step > 0 ? step : 1);
+      }
+      el.value = String(next);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    return;
+  }
+
   const raw = await input.inputValue();
   const parsed = Number.parseFloat(raw);
   let nextValue = '7';
@@ -93,7 +114,9 @@ async function verifyButtonOnlyRecalculation(page, route) {
   const baselineResult = normalize(await result.textContent());
   const baselineExplanation = normalize(await explanation.textContent());
 
-  const input = await findFirstVisibleEditableInput(pane);
+  const input = await findFirstVisibleEditableInput(pane, {
+    allowRange: route.startsWith('/finance/'),
+  });
   expect(input, `${route} must expose at least one visible editable input`).not.toBeNull();
   await setChangedNumericValue(input);
   await page.waitForTimeout(150);

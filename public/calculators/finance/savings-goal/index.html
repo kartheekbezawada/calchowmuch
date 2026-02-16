@@ -1,0 +1,227 @@
+<div id="calc-savings-goal">
+  <div class="calculator-ui">
+    <section class="sg-hero" aria-label="Savings Goal Calculator">
+      <div class="sg-form-panel">
+        <p class="helper">
+          Calculate how long to reach a savings goal or how much you need to save each month.
+        </p>
+
+        <!-- Mode Toggle -->
+        <div class="input-row toggle-row">
+          <label class="toggle-label">Calculate:</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-label="Calculation Mode"
+            data-button-group="sg-mode"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="time-to-goal"
+              aria-pressed="true"
+            >
+              Time to Goal
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="monthly-needed"
+              aria-pressed="false"
+            >
+              Monthly Savings Needed
+            </button>
+          </div>
+        </div>
+
+        <!-- Savings Goal Amount -->
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="sg-goal">Savings Goal Amount</label>
+            <span class="slider-value" id="sg-goal-display">25,000</span>
+          </div>
+          <input id="sg-goal" type="range" value="25000" min="1000" max="1000000" step="500" />
+        </div>
+
+        <!-- Current Savings -->
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="sg-current">Current Savings</label>
+            <span class="slider-value" id="sg-current-display">5,000</span>
+          </div>
+          <input id="sg-current" type="range" value="5000" min="0" max="1000000" step="500" />
+        </div>
+
+        <!-- Monthly Contribution (Time to Goal Mode) -->
+        <div class="input-row slider-row" id="sg-contribution-row">
+          <div class="slider-header">
+            <label for="sg-contribution">Monthly Contribution</label>
+            <span class="slider-value" id="sg-contribution-display">500</span>
+          </div>
+          <input id="sg-contribution" type="range" value="500" min="10" max="20000" step="10" />
+        </div>
+
+        <!-- Target Time (Monthly Savings Needed Mode) - Hidden by default -->
+        <div class="input-row slider-row hidden" id="sg-time-row">
+          <div class="slider-header">
+            <label for="sg-time">Target Time</label>
+            <span class="slider-value" id="sg-time-display">3 Years</span>
+          </div>
+          <!-- Toggle for Years/Months -->
+          <div
+            class="button-group micro-group"
+            role="group"
+            aria-label="Time Unit"
+            data-button-group="sg-time-unit"
+            style="margin-bottom: 0.5rem"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="years"
+              aria-pressed="true"
+            >
+              Years
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="months"
+              aria-pressed="false"
+            >
+              Months
+            </button>
+          </div>
+          <input id="sg-time" type="range" value="3" min="1" max="50" step="1" />
+        </div>
+
+        <!-- Annual Interest Rate -->
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="sg-rate">Annual Interest Rate (APY %)</label>
+            <span class="slider-value" id="sg-rate-display">0%</span>
+          </div>
+          <input id="sg-rate" type="range" value="0" min="0" max="20" step="0.1" />
+        </div>
+
+        <!-- Advanced Options Toggle -->
+        <details class="advanced-options">
+          <summary>Advanced Options</summary>
+
+          <!-- Compounding Frequency -->
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding Frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="sg-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="true"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="false"
+                >
+                  Annually
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contribution Timing -->
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Contribution Timing</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Contribution timing"
+                data-button-group="sg-timing"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="end"
+                  aria-pressed="true"
+                >
+                  End
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="beginning"
+                  aria-pressed="false"
+                >
+                  Beginning
+                </button>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="input-row action-row">
+          <button class="calculator-button full-width" type="button" id="sg-calc">Calculate</button>
+        </div>
+      </div>
+
+      <aside class="sg-preview-panel" aria-label="Result snapshot">
+        <div class="sg-preview-main">
+          <p class="sg-preview-label" id="sg-result-label">Estimated Time to Goal</p>
+          <div class="result sg-result-card" id="sg-result" aria-live="polite"></div>
+          <div class="result-detail" id="sg-result-sub" aria-live="polite"></div>
+        </div>
+
+        <div class="sg-snapshot-list">
+          <div class="sg-snapshot-row">
+            <span>Goal Amount</span>
+            <strong data-sg="snap-goal"></strong>
+          </div>
+          <div class="sg-snapshot-row">
+            <span>Current Savings</span>
+            <strong data-sg="snap-current"></strong>
+          </div>
+          <div class="sg-snapshot-row" id="snap-row-contribution">
+            <span>Monthly Contribution</span>
+            <strong data-sg="snap-contribution"></strong>
+          </div>
+          <div class="sg-snapshot-row hidden" id="snap-row-time">
+            <span>Target Time</span>
+            <strong data-sg="snap-time"></strong>
+          </div>
+          <div class="sg-snapshot-row">
+            <span>Final Balance</span>
+            <strong data-sg="snap-final"></strong>
+          </div>
+          <div class="sg-snapshot-row">
+            <span>Total Interest</span>
+            <strong data-sg="snap-interest"></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance/savings-goal/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/savings-goal/module.js"></script>

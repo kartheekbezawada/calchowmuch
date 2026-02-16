@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <script type="application/ld+json" data-static-ld="true">
       {
         "@context": "https://schema.org",
@@ -261,6 +262,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link is-active" href="/loans/home-loan"
@@ -307,12 +309,6 @@
             <h1 id="calculator-title">Buy-to-Let Calculator</h1>
             <div class="calculator-page-single">
               <style>
-                .calculator-page-single {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 1.25rem;
-                }
-
                 #calc-buy-to-let {
                   width: 100%;
                 }
@@ -393,6 +389,7 @@
                   }
                 }
               </style>
+
               <div id="calc-buy-to-let">
                 <div class="calculator-ui btl-ui">
                   <section class="btl-hero" aria-label="Buy-to-let calculator">
@@ -794,14 +791,13 @@
                 <section class="btl-exp-section btl-exp-section--summary">
                   <h2>Buy-to-Let Summary</h2>
                   <p class="btl-dynamic-summary">
-                    Based on a property price of <span data-btl="price">250,000</span> and monthly
-                    rent of <span data-btl="rent">1,400</span>, this estimate shows expected
-                    cashflow, yields, and stress coverage under your selected mortgage terms. With a
-                    <span data-btl="mortgage-type-label">Interest-Only</span> mortgage at
-                    <span data-btl="rate">5.5</span>% over <span data-btl="term">25</span> years,
-                    your projected net monthly cashflow is
-                    <span data-btl="net-monthly">80.33</span> and stress coverage is
-                    <span data-btl="stress-coverage-percent">145.09</span>%.
+                    Based on a property price of <span data-btl="price"></span> and monthly rent of
+                    <span data-btl="rent"></span>, this estimate shows expected cashflow, yields,
+                    and stress coverage under your selected mortgage terms. With a
+                    <span data-btl="mortgage-type-label"></span> mortgage at
+                    <span data-btl="rate"></span>% over <span data-btl="term"></span> years, your
+                    projected net monthly cashflow is <span data-btl="net-monthly"></span> and
+                    stress coverage is <span data-btl="stress-coverage-percent"></span>%.
                   </p>
                 </section>
 
@@ -811,27 +807,27 @@
                   <div class="btl-results-grid">
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Monthly Mortgage Payment</span>
-                      <span class="btl-result-tile-value" data-btl="mortgage-payment">916.67</span>
+                      <span class="btl-result-tile-value" data-btl="mortgage-payment"></span>
                     </article>
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Net Monthly Cashflow</span>
-                      <span class="btl-result-tile-value" data-btl="net-monthly">80.33</span>
+                      <span class="btl-result-tile-value" data-btl="net-monthly"></span>
                     </article>
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Annual Cashflow</span>
-                      <span class="btl-result-tile-value" data-btl="net-annual">964</span>
+                      <span class="btl-result-tile-value" data-btl="net-annual"></span>
                     </article>
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Gross Yield</span>
-                      <span class="btl-result-tile-value" data-btl="gross-yield">6.72%</span>
+                      <span class="btl-result-tile-value" data-btl="gross-yield"></span>
                     </article>
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Net Yield</span>
-                      <span class="btl-result-tile-value" data-btl="net-yield">0.39%</span>
+                      <span class="btl-result-tile-value" data-btl="net-yield"></span>
                     </article>
                     <article class="btl-result-tile">
                       <span class="btl-result-tile-label">Stress Coverage</span>
-                      <span class="btl-result-tile-value" data-btl="stress-coverage">1.45</span>
+                      <span class="btl-result-tile-value" data-btl="stress-coverage"></span>
                     </article>
                   </div>
 
@@ -842,7 +838,7 @@
                     </summary>
                     <div class="btl-advanced-results-grid">
                       <div class="btl-adv-row">
-                        <span>Rent Increase</span><span data-btl="rent-increase-enabled">No</span>
+                        <span>Rent Increase</span><span data-btl="rent-increase-enabled"></span>
                       </div>
                       <div class="btl-adv-row is-hidden" id="btl-input-rent-increase-type-row">
                         <span>Type</span><span data-btl="rent-increase-type"></span>
@@ -854,16 +850,16 @@
                         <span>Frequency</span><span data-btl="rent-increase-frequency"></span>
                       </div>
                       <div class="btl-adv-row">
-                        <span>Vacancy</span><span data-btl="vacancy-value">5%</span>
+                        <span>Vacancy</span><span data-btl="vacancy-value"></span>
                       </div>
                       <div class="btl-adv-row">
-                        <span>Agent Fee</span><span data-btl="agent-fee">10%</span>
+                        <span>Agent Fee</span><span data-btl="agent-fee"></span>
                       </div>
                       <div class="btl-adv-row">
-                        <span>Maintenance</span><span data-btl="maintenance">120</span>
+                        <span>Maintenance</span><span data-btl="maintenance"></span>
                       </div>
                       <div class="btl-adv-row">
-                        <span>Other Costs</span><span data-btl="other-costs">80</span>
+                        <span>Other Costs</span><span data-btl="other-costs"></span>
                       </div>
                     </div>
                   </details>
@@ -884,233 +880,7 @@
                           <th scope="col">Increase Applied</th>
                         </tr>
                       </thead>
-                      <tbody id="btl-table-body">
-                        <tr>
-                          <td>1</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>964.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>1,928.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>2,892.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>3,856.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>4,820.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>6</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>5,784.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>7</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>6,748.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>8</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>7,712.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>9</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>8,676.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>10</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>9,640.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>11</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>10,604.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>12</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>11,568.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>13</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>12,532.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>14</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>13,496.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>15</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>14,460.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>16</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>15,424.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>17</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>16,388.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>18</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>17,352.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>19</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>18,316.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>20</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>19,280.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>21</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>20,244.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>22</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>21,208.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>23</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>22,172.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>24</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>23,136.00</td>
-                          <td>—</td>
-                        </tr>
-                        <tr>
-                          <td>25</td>
-                          <td>15,960.00</td>
-                          <td>11,000.00</td>
-                          <td>3,996.00</td>
-                          <td>964.00</td>
-                          <td>24,100.00</td>
-                          <td>—</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="btl-table-body"></tbody>
                     </table>
                   </div>
                 </section>

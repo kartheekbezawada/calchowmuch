@@ -44,10 +44,12 @@
   --accent-strong: #06b6d4;
 
   --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-  --gradient-bg-main: linear-gradient(to bottom right,
-      var(--color-slate-900),
-      #172554,
-      var(--color-slate-900));
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
   --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
 }
 

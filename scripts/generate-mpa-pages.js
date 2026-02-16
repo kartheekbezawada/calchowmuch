@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +18,13 @@ const ADSENSE_SNIPPET_PATH = path.join(
   'AdSense code snippet.md'
 );
 const AD_UNIT_SNIPPET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'Ad Unit Code.md');
+const ROUTE_BUNDLE_MANIFEST_PATH = path.join(
+  PUBLIC_DIR,
+  'assets',
+  'css',
+  'route-bundles',
+  'manifest.json'
+);
 
 const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
@@ -35,6 +43,18 @@ const ADSENSE_LOADER_SCRIPT_RE =
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
+const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'monthly-savings-needed',
+  'time-to-savings-goal',
+  'investment-growth',
+  'effective-annual-rate',
+  'compound-interest',
+  'simple-interest',
+  'present-value',
+  'future-value',
+  'future-value-of-annuity',
+  'present-value-of-annuity',
+]);
 const CALCULATOR_OVERRIDES = {
   'home-loan': {
     title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
@@ -242,12 +262,6 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
     h1: 'Simple Interest Calculator',
-  },
-  'savings-goal': {
-    title: 'Savings Goal Calculator – CalcHowMuch',
-    description:
-      'Plan your savings goal. Calculate how long it will take to reach a target amount or how much you need to save per month. Optional interest and compounding.',
-    h1: 'Savings Goal Calculator',
   },
   'investment-growth': {
     title: 'Investment Growth Calculator \u2013 CalcHowMuch',
@@ -591,6 +605,56 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     ],
   },
 };
+
+function getArgValue(flag) {
+  const index = process.argv.indexOf(flag);
+  if (index === -1) {
+    return null;
+  }
+  return process.argv[index + 1] || null;
+}
+
+function hasFlag(flag) {
+  return process.argv.includes(flag);
+}
+
+function normalizeRoute(rawRoute) {
+  if (!rawRoute || typeof rawRoute !== 'string') {
+    return null;
+  }
+  let route = rawRoute.trim();
+  if (!route) {
+    return null;
+  }
+  if (!route.startsWith('/')) {
+    route = `/${route}`;
+  }
+  route = route.replace(/\/+/g, '/');
+  if (route !== '/' && !route.endsWith('/')) {
+    route = `${route}/`;
+  }
+  return route;
+}
+
+function parseGenerationScope() {
+  const targetRoute = normalizeRoute(process.env.TARGET_ROUTE || getArgValue('--route'));
+  const targetCalcId = (process.env.TARGET_CALC_ID || getArgValue('--calc-id') || '').trim() || null;
+  const fullSite = process.env.GENERATE_ALL_ROUTES === '1' || hasFlag('--all');
+
+  if (fullSite && (targetRoute || targetCalcId)) {
+    throw new Error(
+      'Invalid scope: use either full-site mode (--all / GENERATE_ALL_ROUTES=1) or a scoped target (--route / TARGET_ROUTE or --calc-id / TARGET_CALC_ID), not both.'
+    );
+  }
+
+  if (!fullSite && !targetRoute && !targetCalcId) {
+    throw new Error(
+      'Safe mode: this generator requires explicit scope. Use TARGET_ROUTE=/path/ (or --route /path/), TARGET_CALC_ID=<id> (or --calc-id <id>), or opt into full-site regeneration with --all (or GENERATE_ALL_ROUTES=1).'
+    );
+  }
+
+  return { targetRoute, targetCalcId, fullSite };
+}
 
 function parseBooleanFlag(value) {
   if (typeof value !== 'string') {
@@ -962,6 +1026,54 @@ function readFile(filePath) {
 function writeFile(filePath, contents) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, contents);
+}
+
+function normalizeRoutePath(routePath) {
+  if (!routePath || typeof routePath !== 'string') {
+    return null;
+  }
+  let normalized = routePath.trim();
+  if (!normalized) {
+    return null;
+  }
+  if (!normalized.startsWith('/')) {
+    normalized = `/${normalized}`;
+  }
+  normalized = normalized.replace(/\/+/g, '/');
+  if (!normalized.endsWith('/')) {
+    normalized = `${normalized}/`;
+  }
+  return normalized;
+}
+
+function buildFinanceRouteBundles() {
+  execSync('node scripts/build-route-css-bundles.mjs', {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
+}
+
+function readRouteBundleManifest() {
+  if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH)) {
+    throw new Error(`Missing route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
+  }
+  const manifest = JSON.parse(readFile(ROUTE_BUNDLE_MANIFEST_PATH));
+  if (!manifest || typeof manifest !== 'object' || !manifest.routes) {
+    throw new Error(`Invalid route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
+  }
+  return manifest;
+}
+
+function resolveRouteBundleEntry(manifest, routePath) {
+  const normalizedRoute = normalizeRoutePath(routePath);
+  if (!normalizedRoute) {
+    return null;
+  }
+  const entry = manifest.routes[normalizedRoute];
+  if (!entry || typeof entry !== 'object') {
+    return null;
+  }
+  return entry;
 }
 
 function renderManagedHeadAdsenseBlock() {
@@ -1444,6 +1556,8 @@ function buildPageHtml({
   includeHomeContent,
   pageType,
   calculatorRelPath,
+  cssBundleConfig = null,
+  topNavStatic = false,
   staticStructuredData = null,
   injectStaticStructuredData = false,
 }) {
@@ -1525,15 +1639,19 @@ ${explanationTitleHtml}  ${explanationHtml}
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
+  const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
     : '';
   const structuredDataScript =
     injectStaticStructuredData && staticStructuredData
-      ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
+      ? `    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
           staticStructuredData
         )}</script>\n`
       : '';
+  const cssLinksHtml = cssBundleConfig
+    ? `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n    </noscript>\n`
+    : `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
 
@@ -1555,14 +1673,10 @@ ${explanationTitleHtml}  ${explanationHtml}
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${OG_IMAGE}" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />
+${cssLinksHtml} 
 ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
@@ -1794,10 +1908,14 @@ ${urlItems}
 }
 
 function main() {
+  const scope = parseGenerationScope();
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
+  buildFinanceRouteBundles();
+  const routeBundleManifest = readRouteBundleManifest();
 
   const calcLookup = new Map();
+  const allCalculatorEntries = [];
   navigation.categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
       subcategory.calculators.forEach((calculator) => {
@@ -1813,12 +1931,32 @@ function main() {
           override,
         });
         calculator.url = `/${relPath}`;
-        calcLookup.set(calculator.id, { category, subcategory, calculator, governance });
+        const entry = { category, subcategory, calculator, governance, relPath };
+        calcLookup.set(calculator.id, entry);
+        allCalculatorEntries.push(entry);
       });
     });
   });
 
-  writeFile(NAV_PATH, JSON.stringify(navigation, null, 2) + '\n');
+  if (scope.fullSite) {
+    writeFile(NAV_PATH, JSON.stringify(navigation, null, 2) + '\n');
+  }
+
+  const selectedEntries = scope.fullSite
+    ? allCalculatorEntries
+    : allCalculatorEntries.filter((entry) => {
+        const routeMatch = scope.targetRoute
+          ? normalizeRoute(entry.calculator.url) === scope.targetRoute
+          : true;
+        const calcMatch = scope.targetCalcId ? entry.calculator.id === scope.targetCalcId : true;
+        return routeMatch && calcMatch;
+      });
+
+  if (!selectedEntries.length) {
+    throw new Error(
+      `No calculators matched the requested scope (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
+    );
+  }
 
   const headerHtml = readFile(HEADER_PATH);
   const footerHtml = readFile(FOOTER_PATH);
@@ -1826,88 +1964,114 @@ function main() {
   // Pages with manual performance optimizations — do not overwrite during generation
   const MANUAL_PAGES = new Set(['loans/home-loan']);
 
-  navigation.categories.forEach((category) => {
-    category.subcategories.forEach((subcategory) => {
-      subcategory.calculators.forEach((calculator) => {
-        const relPath = calculatorDirs.get(calculator.id);
-        if (MANUAL_PAGES.has(relPath)) {
-          console.log(`  SKIP (manual): ${relPath}`);
-          return;
-        }
-        const fragmentDir = path.join(CALC_DIR, relPath);
-        const override = CALCULATOR_OVERRIDES[calculator.id];
-        const governance = resolveCalculatorGovernance({
-          category,
-          subcategory,
-          calculator,
-          override,
-        });
-        const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
-        const topNavHtml = buildTopNavHtml(
-          navigation.categories,
-          category.id,
-          category.id === 'loans' ? subcategory.id : null
-        );
-        const leftNavHtml = buildLeftNavHtml(
-          navigation.categories,
-          category.id,
-          category.id === 'loans' ? subcategory.id : null,
-          calculator.id,
-          calcLookup
-        );
-        const pageTitle = override?.title ?? buildTitle(calculator.name);
-        const pageDescription = override?.description ?? buildDescription(calculator.name);
-        const pageCanonical = buildCanonical(calculator.url);
+  selectedEntries.forEach((entry) => {
+    const { category, subcategory, calculator, governance, relPath } = entry;
+    if (MANUAL_PAGES.has(relPath)) {
+      console.log(`  SKIP (manual): ${relPath}`);
+      return;
+    }
+    const fragmentDir = path.join(CALC_DIR, relPath);
+    const override = CALCULATOR_OVERRIDES[calculator.id];
+    const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
+    const topNavHtml = buildTopNavHtml(
+      navigation.categories,
+      category.id,
+      category.id === 'loans' ? subcategory.id : null
+    );
+    const leftNavHtml = buildLeftNavHtml(
+      navigation.categories,
+      category.id,
+      category.id === 'loans' ? subcategory.id : null,
+      calculator.id,
+      calcLookup
+    );
+    const pageTitle = override?.title ?? buildTitle(calculator.name);
+    const pageDescription = override?.description ?? buildDescription(calculator.name);
+    const pageCanonical = buildCanonical(calculator.url);
+    const routeBundleEntry = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+      ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
+      : null;
+    let cssBundleConfig = null;
+    const topNavStatic = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
 
-        let staticStructuredData = null;
-        let injectStaticStructuredData = false;
-        const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
-        if (homeLoanSchemaConfig) {
-          const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
-          staticStructuredData = buildHomeLoanStructuredData({
-            calculatorId: calculator.id,
-            title: pageTitle,
-            description: pageDescription,
-            canonical: pageCanonical,
-            faqEntries,
-            ...homeLoanSchemaConfig,
-          });
-          injectStaticStructuredData = true;
-        }
+    if (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
+      throw new Error(`Missing route CSS bundle entry for ${calculator.id} (${calculator.url})`);
+    }
 
-        const pageHtml = buildPageHtml({
-          title: pageTitle,
-          description: pageDescription,
-          canonical: pageCanonical,
-          headerHtml,
-          footerHtml,
-          topNavHtml,
-          leftNavHtml,
-          calculatorTitle: override?.h1 ?? calculator.name,
-          calculatorHtml: fragments.calculatorHtml,
-          explanationHtml: fragments.explanationHtml,
-          contentHtml: fragments.contentHtml,
-          explanationHeading: Object.prototype.hasOwnProperty.call(
-            override ?? {},
-            'explanationHeading'
-          )
-            ? override.explanationHeading
-            : 'Explanation',
-          paneLayout: governance.paneLayout,
-          routeArchetype: governance.routeArchetype,
-          designFamily: governance.designFamily,
-          includeHomeContent: false,
-          pageType: 'calculator',
-          calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
-          staticStructuredData,
-          injectStaticStructuredData,
-        });
+    if (routeBundleEntry) {
+      const deferredHref = routeBundleEntry.deferredHref || routeBundleEntry.href;
+      const criticalCssHref = routeBundleEntry.criticalCss;
+      if (!deferredHref || typeof deferredHref !== 'string') {
+        throw new Error(`Missing route bundle deferredHref for ${calculator.id} (${calculator.url})`);
+      }
+      if (!criticalCssHref || typeof criticalCssHref !== 'string') {
+        throw new Error(`Missing route bundle criticalCss for ${calculator.id} (${calculator.url})`);
+      }
 
-        const outputDir = path.join(PUBLIC_DIR, relPath);
-        writeFile(path.join(outputDir, 'index.html'), pageHtml);
+      const criticalCssPath = path.join(PUBLIC_DIR, criticalCssHref.replace(/^\//, ''));
+      if (!fs.existsSync(criticalCssPath)) {
+        throw new Error(`Missing critical CSS artifact for ${calculator.id}: ${criticalCssPath}`);
+      }
+
+      cssBundleConfig = {
+        deferredHref,
+        criticalCss: readFile(criticalCssPath).trim(),
+      };
+    }
+
+    let staticStructuredData = null;
+    let injectStaticStructuredData = false;
+    const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
+    if (homeLoanSchemaConfig) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildHomeLoanStructuredData({
+        calculatorId: calculator.id,
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        ...homeLoanSchemaConfig,
       });
+      injectStaticStructuredData = true;
+    }
+
+    const pageHtml = buildPageHtml({
+      title: pageTitle,
+      description: pageDescription,
+      canonical: pageCanonical,
+      headerHtml,
+      footerHtml,
+      topNavHtml,
+      leftNavHtml,
+      calculatorTitle: override?.h1 ?? calculator.name,
+      calculatorHtml: fragments.calculatorHtml,
+      explanationHtml: fragments.explanationHtml,
+      contentHtml: fragments.contentHtml,
+      explanationHeading: Object.prototype.hasOwnProperty.call(override ?? {}, 'explanationHeading')
+        ? override.explanationHeading
+        : 'Explanation',
+      paneLayout: governance.paneLayout,
+      routeArchetype: governance.routeArchetype,
+      designFamily: governance.designFamily,
+      includeHomeContent: false,
+      pageType: 'calculator',
+      calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
+      cssBundleConfig,
+      topNavStatic,
+      staticStructuredData,
+      injectStaticStructuredData,
     });
+
+    const outputDir = path.join(PUBLIC_DIR, relPath);
+    writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
+
+  if (!scope.fullSite) {
+    console.log(
+      `Scoped generation complete for ${selectedEntries.length} route(s) (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
+    );
+    return;
+  }
 
   const homeTopNav = buildTopNavHtml(navigation.categories, null, null);
   const homeLeftNav = buildLeftNavHtml(navigation.categories, null, null, null, calcLookup, 'home');

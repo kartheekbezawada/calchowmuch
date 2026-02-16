@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -132,6 +133,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -407,6 +409,7 @@
               <style>
                 @import url('/calculators/loans/car-loan/calculator.css');
               </style>
+
               <div id="loan-mtg-explanation">
                 <h2>Car Loan - Payment Breakdown</h2>
                 <p>
@@ -426,38 +429,35 @@
                     <div
                       class="mtg-lifetime-donut"
                       data-car="lifetime-donut"
-                      style="--principal-share: 85.2%"
                       role="img"
                       aria-label="Principal vs interest breakdown"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Principal Share</span>
-                        <strong data-car="principal-share">85.2%</strong>
+                        <strong data-car="principal-share"></strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>Interest Share</span>
-                        <strong data-car="interest-share">14.8%</strong>
+                        <strong data-car="interest-share"></strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Amount Financed</span>
-                      <strong data-car="amount-financed-total">25,955</strong>
+                      <strong data-car="amount-financed-total"></strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Interest</span>
-                      <strong data-car="total-interest">4,515.36</strong>
+                      <strong data-car="total-interest"></strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Payment</span>
-                      <strong data-car="total-payment">30,470.36</strong>
+                      <strong data-car="total-payment"></strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-car="lifetime-summary">
-                    You finance 25,955 and pay 4,515.36 in interest over the full schedule.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-car="lifetime-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--amortization">
@@ -511,43 +511,7 @@
                           <th scope="col">Ending Balance</th>
                         </tr>
                       </thead>
-                      <tbody id="car-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>6,094.07</td>
-                          <td>4,540.69</td>
-                          <td>1,553.38</td>
-                          <td>21,414.31</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>6,094.07</td>
-                          <td>4,844.79</td>
-                          <td>1,249.29</td>
-                          <td>16,569.52</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>6,094.07</td>
-                          <td>5,169.25</td>
-                          <td>924.82</td>
-                          <td>11,400.27</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>6,094.07</td>
-                          <td>5,515.45</td>
-                          <td>578.63</td>
-                          <td>5,884.83</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>6,094.07</td>
-                          <td>5,884.83</td>
-                          <td>209.25</td>
-                          <td>0.00</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="car-table-yearly-body"></tbody>
                     </table>
                   </div>
                 </section>

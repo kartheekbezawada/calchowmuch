@@ -37,8 +37,12 @@ It serves calculators across finance, loans, math, percentage, and time/date cat
   - `npm install`
 - Serve static site locally:
   - `python3 -m http.server 8000 --directory public`
-- Regenerate MPA pages/navigation outputs:
-  - `node scripts/generate-mpa-pages.js`
+- Regenerate one route safely (default workflow):
+  - `TARGET_ROUTE=/finance/simple-interest/ node scripts/generate-mpa-pages.js`
+- Regenerate one calculator by id:
+  - `TARGET_CALC_ID=simple-interest node scripts/generate-mpa-pages.js`
+- Full-site regeneration (explicit opt-in only):
+  - `node scripts/generate-mpa-pages.js --all`
 - Lint JS:
   - `npm run lint`
 - Format check:

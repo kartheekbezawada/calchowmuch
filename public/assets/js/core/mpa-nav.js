@@ -84,65 +84,68 @@ const topNavDisplayOverrides = new Map([
   ['Percentage', { label: 'Percentage', leftIcon: '%' }],
 ]);
 
-const topNavLinks = document.querySelectorAll('.top-nav .top-nav-link');
-topNavLinks.forEach((link) => {
-  const label = link.querySelector('.nav-label');
-  if (!label) {
-    return;
-  }
+const skipTopNavMutation = document.body?.dataset.topNavStatic === 'true';
+if (!skipTopNavMutation) {
+  const topNavLinks = document.querySelectorAll('.top-nav .top-nav-link');
+  topNavLinks.forEach((link) => {
+    const label = link.querySelector('.nav-label');
+    if (!label) {
+      return;
+    }
 
-  const normalizedLabel = label.textContent.replace(/\s+/g, ' ').trim();
-  const override = topNavDisplayOverrides.get(normalizedLabel);
-  if (!override) {
-    return;
-  }
+    const normalizedLabel = label.textContent.replace(/\s+/g, ' ').trim();
+    const override = topNavDisplayOverrides.get(normalizedLabel);
+    if (!override) {
+      return;
+    }
 
-  link
-    .querySelectorAll(
-      '.nav-icon[data-generated="top-nav"], .nav-icon-right[data-generated="top-nav"], .nav-icon'
-    )
-    .forEach((iconNode) => {
-      const iconText = iconNode.textContent ? iconNode.textContent.trim() : '';
-      if (
-        iconNode.getAttribute('data-generated') === 'top-nav' ||
-        iconText === '💹' ||
-        iconText === '📊'
-      ) {
-        iconNode.remove();
+    link
+      .querySelectorAll(
+        '.nav-icon[data-generated="top-nav"], .nav-icon-right[data-generated="top-nav"], .nav-icon'
+      )
+      .forEach((iconNode) => {
+        const iconText = iconNode.textContent ? iconNode.textContent.trim() : '';
+        if (
+          iconNode.getAttribute('data-generated') === 'top-nav' ||
+          iconText === '💹' ||
+          iconText === '📊'
+        ) {
+          iconNode.remove();
+        }
+      });
+
+    label.textContent = override.label;
+
+    if (override.leftIcon) {
+      let leftIcon = link.querySelector('.nav-icon:not(.nav-icon-right)');
+      if (!leftIcon) {
+        leftIcon = document.createElement('span');
+        leftIcon.className = 'nav-icon';
+        leftIcon.setAttribute('aria-hidden', 'true');
+        leftIcon.setAttribute('data-generated', 'top-nav');
+        link.insertBefore(leftIcon, label);
       }
-    });
-
-  label.textContent = override.label;
-
-  if (override.leftIcon) {
-    let leftIcon = link.querySelector('.nav-icon:not(.nav-icon-right)');
-    if (!leftIcon) {
-      leftIcon = document.createElement('span');
-      leftIcon.className = 'nav-icon';
-      leftIcon.setAttribute('aria-hidden', 'true');
-      leftIcon.setAttribute('data-generated', 'top-nav');
-      link.insertBefore(leftIcon, label);
+      leftIcon.textContent = override.leftIcon;
     }
-    leftIcon.textContent = override.leftIcon;
-  }
 
-  if (override.rightIcon) {
-    let rightIcon = link.querySelector('.nav-icon-right');
-    if (!rightIcon) {
-      rightIcon = document.createElement('span');
-      rightIcon.className = 'nav-icon nav-icon-right';
-      rightIcon.setAttribute('aria-hidden', 'true');
-      rightIcon.setAttribute('data-generated', 'top-nav');
-      label.insertAdjacentElement('afterend', rightIcon);
+    if (override.rightIcon) {
+      let rightIcon = link.querySelector('.nav-icon-right');
+      if (!rightIcon) {
+        rightIcon = document.createElement('span');
+        rightIcon.className = 'nav-icon nav-icon-right';
+        rightIcon.setAttribute('aria-hidden', 'true');
+        rightIcon.setAttribute('data-generated', 'top-nav');
+        label.insertAdjacentElement('afterend', rightIcon);
+      }
+      rightIcon.textContent = override.rightIcon;
+    } else {
+      const existingRightIcon = link.querySelector('.nav-icon-right');
+      if (existingRightIcon && existingRightIcon.getAttribute('data-generated') === 'top-nav') {
+        existingRightIcon.remove();
+      }
     }
-    rightIcon.textContent = override.rightIcon;
-  } else {
-    const existingRightIcon = link.querySelector('.nav-icon-right');
-    if (existingRightIcon && existingRightIcon.getAttribute('data-generated') === 'top-nav') {
-      existingRightIcon.remove();
-    }
-  }
-});
+  });
+}
 
 // Add ripple effect to nav items on click
 const navItems = document.querySelectorAll('.nav-item');

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -126,6 +127,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -398,19 +400,19 @@
                 <h2>Multiple Car Loan - Combined Repayment Summary</h2>
                 <p>
                   Based on Loan A (
-                  <span data-multi="loan-a-amount">18,000</span> at
-                  <span data-multi="loan-a-apr">5.8%</span> for
-                  <span data-multi="loan-a-term">4 years</span>) and Loan B (
-                  <span data-multi="loan-b-amount">12,000</span> at
-                  <span data-multi="loan-b-apr">7.1%</span> for
-                  <span data-multi="loan-b-term">5 years</span>), your combined monthly payment is
-                  <span data-multi="combined-payment">659.26</span>.
+                  <span data-multi="loan-a-amount">—</span> at
+                  <span data-multi="loan-a-apr">—</span> for
+                  <span data-multi="loan-a-term">—</span>) and Loan B (
+                  <span data-multi="loan-b-amount">—</span> at
+                  <span data-multi="loan-b-apr">—</span> for
+                  <span data-multi="loan-b-term">—</span>), your combined monthly payment is
+                  <span data-multi="combined-payment">—</span>.
                 </p>
                 <p>
                   Across both loans, total interest is
-                  <span data-multi="combined-interest">4,502.79</span> and total paid is
-                  <span data-multi="combined-total">34,502.79</span> over
-                  <span data-multi="payoff-horizon">60 months</span>.
+                  <span data-multi="combined-interest">—</span> and total paid is
+                  <span data-multi="combined-total">—</span> over
+                  <span data-multi="payoff-horizon">—</span>.
                 </p>
 
                 <section class="mtg-exp-section mtg-exp-section--lifetime">
@@ -421,42 +423,39 @@
                     <div
                       class="mtg-lifetime-donut"
                       data-multi="lifetime-donut"
-                      style="--principal-share: 86.94921761490474%"
                       role="img"
                       aria-label="Principal vs interest breakdown"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Principal Share</span>
-                        <strong data-multi="principal-share">86.9%</strong>
+                        <strong data-multi="principal-share">—</strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>Interest Share</span>
-                        <strong data-multi="interest-share">13.1%</strong>
+                        <strong data-multi="interest-share">—</strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid multi-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Loan A Principal</span>
-                      <strong data-multi="loan-a-principal">18,000</strong>
+                      <strong data-multi="loan-a-principal">—</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Loan B Principal</span>
-                      <strong data-multi="loan-b-principal">12,000</strong>
+                      <strong data-multi="loan-b-principal">—</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Interest</span>
-                      <strong data-multi="total-interest">4,502.79</strong>
+                      <strong data-multi="total-interest">—</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Payment</span>
-                      <strong data-multi="total-payment">34,502.79</strong>
+                      <strong data-multi="total-payment">—</strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-multi="lifetime-summary">
-                    Combined principal is 30,000 and total interest is 4,502.79 across both loans.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-multi="lifetime-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--comparison">
@@ -471,26 +470,13 @@
                           <th scope="col">Total Paid</th>
                         </tr>
                       </thead>
-                      <tbody id="multi-loan-table-body">
-                        <tr>
-                          <th scope="row">Loan A</th>
-                          <td>421.08</td>
-                          <td>2,211.93</td>
-                          <td>20,211.93</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Loan B</th>
-                          <td>238.18</td>
-                          <td>2,290.86</td>
-                          <td>14,290.86</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="multi-loan-table-body"></tbody>
                       <tfoot>
                         <tr class="multi-loan-table-total-row">
                           <th scope="row">Combined</th>
-                          <td id="multi-loan-combined-payment">659.26</td>
-                          <td id="multi-loan-combined-interest">4,502.79</td>
-                          <td id="multi-loan-combined-total">34,502.79</td>
+                          <td id="multi-loan-combined-payment">—</td>
+                          <td id="multi-loan-combined-interest">—</td>
+                          <td id="multi-loan-combined-total">—</td>
                         </tr>
                       </tfoot>
                     </table>
@@ -548,43 +534,7 @@
                           <th scope="col">Ending Balance</th>
                         </tr>
                       </thead>
-                      <tbody id="multi-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>7,911.16</td>
-                          <td>6,190.05</td>
-                          <td>1,721.10</td>
-                          <td>23,809.95</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>7,911.16</td>
-                          <td>6,587.36</td>
-                          <td>1,323.80</td>
-                          <td>17,222.59</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>7,911.16</td>
-                          <td>7,010.43</td>
-                          <td>900.73</td>
-                          <td>10,212.17</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>7,911.16</td>
-                          <td>7,460.95</td>
-                          <td>450.21</td>
-                          <td>2,751.22</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>2,858.17</td>
-                          <td>2,751.22</td>
-                          <td>106.95</td>
-                          <td>0.00</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="multi-table-yearly-body"></tbody>
                     </table>
                   </div>
                 </section>

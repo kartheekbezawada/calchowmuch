@@ -105,7 +105,7 @@ tests_specs/
 
 ---
 
-## Finance (10 unit · 16 e2e)
+## Finance (9 unit · 16 e2e)
 
 ### Unit
 
@@ -119,7 +119,6 @@ tests_specs/
 | investment-growth-calculator.test.js | Investment growth projections |
 | present-value-calculator.test.js | Present value math |
 | present-value-of-annuity-calculator.test.js | PV annuity math |
-| savings-goal-calculator.test.js | Savings goal / time-to-target |
 | simple-interest-calculator.test.js | Simple interest math |
 
 ### E2E

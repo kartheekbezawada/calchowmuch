@@ -9,6 +9,7 @@
 | :--- | :--- |
 | **Release ID** | |
 | **Release Type** | |
+| **Scope (Global/Target)** | |
 | **Branch / Tag** | |
 | **Commit SHA** | |
 | **Environment** | |
@@ -31,7 +32,7 @@
 | **B3** | **Mobile Ads** | • **No ads above H1** (Hard Rule)<br>• No overlap with UI | |
 | **C1** | **Field Metrics** | • LCP ≤ 2.5s<br>• CLS ≤ 0.10<br>• INP ≤ 200ms | |
 | **C2** | **Lab Gates** | • No filmstrip shifts<br>• No long tasks near start | |
-| **D1-D4**| **CWV Guard** | • `npm run test:cwv:all` passed<br>• No regression >20% | |
+| **D1-D4**| **CWV Guard** | • `npm run test:cwv:target` (or all) passed<br>• No regression >20% | |
 | **E1** | **Ad Slots** | • Reserved `min-height`<br>• Non-collapsing | |
 | **E2** | **Ad Loading** | • Lazy loaded (requestIdleCallback)<br>• Single loader script | |
 | **E3** | **Ad Policy** | • No policy violations (AdSense)<br>• No misleading placement | |

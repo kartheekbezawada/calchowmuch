@@ -208,6 +208,13 @@ Pages in this set are logged as `SKIP (manual)` during generation and their `ind
 
 **Warning**: If the generator template changes (e.g., new navigation structure, new ad slots, new schema), manually-maintained pages must be updated by hand to match.
 
+**Current safe operation (2026-02-16 update)**:
+- `scripts/generate-mpa-pages.js` now runs in safe mode by default and requires explicit scope:
+  - `TARGET_ROUTE=/path/ node scripts/generate-mpa-pages.js`, or
+  - `TARGET_CALC_ID=<id> node scripts/generate-mpa-pages.js`
+- Full-site regeneration is explicit opt-in only:
+  - `node scripts/generate-mpa-pages.js --all` (or `GENERATE_ALL_ROUTES=1`)
+
 ---
 
 ### KI-013 — 3-Deep CSS @import Waterfall Causes CLS 0.479 on 15 Pages

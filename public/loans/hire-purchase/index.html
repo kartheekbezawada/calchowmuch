@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -132,6 +133,7 @@
           </div>
         </div>
       </header>
+
       <nav class="top-nav" aria-label="Category navigation">
         <a class="top-nav-link" href="/math/basic"><span class="nav-label">Math</span></a
         ><a class="top-nav-link" href="/loans/home-loan"
@@ -393,15 +395,14 @@
               <div id="loan-mtg-explanation">
                 <h2>Hire Purchase - Payment Breakdown</h2>
                 <p>
-                  Based on a vehicle price of <span data-hp="price">24,000</span> with a deposit of
-                  <span data-hp="deposit">2,000</span>, your estimated monthly installment is
-                  <span data-hp="monthly-payment">518.69</span>.
+                  Based on a vehicle price of <span data-hp="price">-</span> with a deposit of
+                  <span data-hp="deposit">-</span>, your estimated monthly installment is
+                  <span data-hp="monthly-payment">-</span>.
                 </p>
                 <p>
-                  At <span data-hp="apr">6.2%</span> over
-                  <span data-hp="term">4 years (48 months)</span>, this scenario includes a final
-                  balloon payment of <span data-hp="balloon">0</span> and a total payable amount of
-                  <span data-hp="total-payable">26,897.14</span>.
+                  At <span data-hp="apr">-</span> over <span data-hp="term">-</span>, this scenario
+                  includes a final balloon payment of <span data-hp="balloon">-</span> and a total
+                  payable amount of <span data-hp="total-payable">-</span>.
                 </p>
 
                 <section class="mtg-exp-section mtg-exp-section--lifetime">
@@ -412,42 +413,39 @@
                     <div
                       class="mtg-lifetime-donut"
                       data-hp="lifetime-donut"
-                      style="--principal-share: 89.22805892538445%"
                       role="img"
                       aria-label="Principal vs interest breakdown"
                     ></div>
                     <div class="mtg-lifetime-legend">
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
                         <span>Principal Share</span>
-                        <strong data-hp="principal-share">89.2%</strong>
+                        <strong data-hp="principal-share">-</strong>
                       </div>
                       <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
                         <span>Interest Share</span>
-                        <strong data-hp="interest-share">10.8%</strong>
+                        <strong data-hp="interest-share">-</strong>
                       </div>
                     </div>
                   </div>
                   <div class="mtg-lifetime-grid hp-lifetime-grid">
                     <article class="mtg-lifetime-card">
                       <span>Amount Financed</span>
-                      <strong data-hp="amount-financed-total">22,000</strong>
+                      <strong data-hp="amount-financed-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Final Balloon</span>
-                      <strong data-hp="final-balloon-total">0</strong>
+                      <strong data-hp="final-balloon-total">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Interest</span>
-                      <strong data-hp="total-interest">2,897.14</strong>
+                      <strong data-hp="total-interest">-</strong>
                     </article>
                     <article class="mtg-lifetime-card">
                       <span>Total Payable</span>
-                      <strong data-hp="total-payable">26,897.14</strong>
+                      <strong data-hp="total-payable">-</strong>
                     </article>
                   </div>
-                  <p class="mtg-lifetime-summary" data-hp="lifetime-summary">
-                    You finance 22,000 with a balloon of 0 and pay 2,897.14 in interest overall.
-                  </p>
+                  <p class="mtg-lifetime-summary" data-hp="lifetime-summary"></p>
                 </section>
 
                 <section class="mtg-exp-section mtg-exp-section--amortization">
@@ -501,36 +499,7 @@
                           <th scope="col">Ending Balance</th>
                         </tr>
                       </thead>
-                      <tbody id="hp-table-yearly-body">
-                        <tr>
-                          <td>1</td>
-                          <td>6,224.28</td>
-                          <td>5,000.80</td>
-                          <td>1,223.48</td>
-                          <td>16,999.20</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>6,224.28</td>
-                          <td>5,319.82</td>
-                          <td>904.47</td>
-                          <td>11,679.38</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>6,224.28</td>
-                          <td>5,659.18</td>
-                          <td>565.10</td>
-                          <td>6,020.20</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>6,224.28</td>
-                          <td>6,020.20</td>
-                          <td>204.09</td>
-                          <td>0.00</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="hp-table-yearly-body"></tbody>
                     </table>
                   </div>
                 </section>
