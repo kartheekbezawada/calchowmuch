@@ -101,6 +101,11 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  #calc-future-value-of-annuity .pv-toggle-group .calculator-button {
+    min-height: 48px;
+    padding: 0.55rem 0.9rem;
+  }
 }
 
 /* Results table */

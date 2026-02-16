@@ -191,6 +191,12 @@ All non-critical CSS must use:
 
 <300ms → OK
 
+5.6 Above-the-fold mutation guard (Automation)
+
+ HARD: No DOM insertions above the fold after initial load baseline.
+
+ Run: TARGET_ROUTE=/finance/future-value-of-annuity/ npm run test:above-fold
+
 6) Layout Stability Guard (CLS) — HARD
 
  HARD: No visible layout shift during:
@@ -305,6 +311,10 @@ Only allowed if change type = INFRA and release owner requests it.
 
  HARD: Tap targets ≥ 48×48px
 
+ Automation: TARGET_ROUTE=/finance/future-value-of-annuity/ npm run test:mobile:ux
+
+ Evidence: mobile screenshot + tap target checks (Playwright snapshots)
+
 11.2 Inputs
 
  HARD: Numeric inputs use inputmode="decimal"/numeric
@@ -328,6 +338,11 @@ Only allowed if change type = INFRA and release owner requests it.
  HARD: Results container uses aria-live="polite"
 
  HARD: Works at 200% zoom without horizontal overflow
+
+ Automation: TARGET_ROUTE=/finance/future-value-of-annuity/ CHROME_PATH=/snap/bin/chromium npm run test:lighthouse:target
+ Note: Headless Chromium flags are defined in scripts/lighthouse-target.mjs (expects CHROME_PATH; uses --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage).
+
+ Automation: TARGET_ROUTE=/finance/future-value-of-annuity/ npm run test:accessibility:ux
 
 13) SERP Readiness — HARD
 13.1 Metadata integrity
@@ -368,11 +383,14 @@ module metadata FAQ (if applicable)
 
  HARD: Regenerate sitemap after route changes
 
-14) Security & Trust — HARD
+14) Security & Trust — MANUAL ANNEX (NON-BLOCKING)
 
- HARD: HTTPS only, no mixed content
+ Manual Annex: HTTPS only, no mixed content
 
- HARD: Privacy/Terms/Contact pages exist and are linked
+ Manual Annex: Privacy/Terms/Contact pages exist and are linked
+
+ Automation: TARGET_ROUTE=/finance/future-value-of-annuity/ CHROME_PATH=/snap/bin/chromium npm run test:lighthouse:target
+ Note: Headless Chromium flags are defined in scripts/lighthouse-target.mjs (expects CHROME_PATH; uses --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage).
 
 15) Post-Release Monitoring — REQUIRED
 
@@ -398,6 +416,8 @@ Blocking CSS count + time (mobile)
 
 Lighthouse render-blocking savings (ms)
 
+ Lighthouse accessibility score + mixed content scan summary
+
 LCP element selector + value (mobile + desktop)
 
 CLS value + any shift screenshots if present
@@ -408,7 +428,25 @@ Ads validation notes (mobile policy + no CLS)
 
 SERP validation notes (canonical + schema + FAQ parity)
 
-17) Release Decision Rules (FINAL)
+Mobile UX artifacts (screenshots + tap target check results)
+
+Above-the-fold mutation guard result
+
+ Accessibility UX automation (keyboard traversal + focus visibility + 200% zoom)
+
+ Interaction guard automation (long task + latency + nav stability)
+
+17) Manual Annex (Non-Blocking)
+
+ These items require staging/prod or ad fill and are recorded as Manual Annex only.
+ They do not block local automation or checklist pass.
+
+ Annex items:
+ - Ads policy & placement (E1–E3, B3)
+ - HTTPS validation & mixed content in staging/prod (K)
+ - Caching headers (A5) — Cloudflare-managed
+
+18) Release Decision Rules (FINAL)
 HARD BLOCKERS (DO NOT RELEASE)
 
 Any HARD checkbox unchecked

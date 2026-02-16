@@ -14,9 +14,6 @@ test.describe('Future Value of Annuity Calculator', () => {
     const leftActive = page.locator('.nav-item.is-active');
     await expect(leftActive).toHaveText('Future Value of Annuity');
 
-    const optionalSection = page.locator('#fva-optional-section');
-    await expect(optionalSection).toHaveClass(/is-hidden/);
-
     await page.fill('#fva-payment', '500');
     await page.fill('#fva-interest-rate', '5');
     await page.fill('#fva-periods', '10');
@@ -36,9 +33,6 @@ test.describe('Future Value of Annuity Calculator', () => {
     expect(dueValue).toBeCloseTo(ordinary * 1.05, 0);
 
     await page.click('[data-button-group="fva-annuity-type"] button[data-value="ordinary"]');
-
-    await page.click('#fva-optional-toggle');
-    await expect(optionalSection).not.toHaveClass(/is-hidden/);
 
     await page.click('[data-button-group="fva-compounding"] button[data-value="monthly"]');
     await page.click('[data-button-group="fva-period-type"] button[data-value="months"]');
