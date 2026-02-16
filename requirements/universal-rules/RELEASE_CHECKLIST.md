@@ -16,6 +16,13 @@
 
 ## A) Pre-Release (Dev) — Must Pass
 
+## A0) Scope Control — Must Pass
+
+- [ ] **Scope declared upfront**: list exact calculator(s)/routes and files to be edited before any code changes.
+- [ ] **No silent scope expansion**: if a test fails outside scope, stop and ask whether to modify the test or expand scope.
+- [ ] **UI changes require approval**: new inputs/controls/UX elements must be approved before implementation.
+- [ ] **File change preview**: confirm intended file list before edits; if it changes, re-confirm.
+
 ### A1) Above-the-fold rendering order
 - [ ] Calculator UI renders immediately; ads must never block first render.
 - [ ] Initial state/results visible without waiting for ad scripts, late CSS, or JS hydration.
