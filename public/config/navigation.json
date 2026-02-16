@@ -681,6 +681,14 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
+            },
+            {
+              "id": "savings-goal",
+              "name": "Savings Goal",
+              "url": "/finance/savings-goal",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
             }
           ]
         }

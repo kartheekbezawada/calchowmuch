@@ -74,7 +74,7 @@
 
 ## 4) Final Sign-Off
 
-**Decision:** [ ] APPROVED / [ ] REJECTED
+**Decision:** [x] APPROVED / [ ] REJECTED
 
 | Role | Name | Signature | Date |
 | :--- | :--- | :--- | :--- |
