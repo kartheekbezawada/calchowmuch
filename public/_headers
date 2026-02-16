@@ -1,2 +1,14 @@
 /sitemap.xml
   Content-Type: application/xml
+
+/assets/css/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/assets/js/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/calculators/*.css
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/calculators/*.js
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
