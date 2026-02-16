@@ -1,255 +1,112 @@
 # AGENTS.md — Agent Operating Contract
 
-> Entry point for all agent behavior. Read this file first.
+> **Entry Point:** Read this first. Apply rules verbatim. Do not reinterpret.
 
----
-
-## Table of Contents
-
-0. [Cold Start Instruction](#0-cold-start-instruction)
-1. [ADMIN Absolute Override](#1-admin-absolute-override)
-2. [Factory Pipeline (Build → Test → Release)](#2-factory-pipeline-build--test--release)
-3. [Actors](#3-actors)
-4. [Document Chain](#4-document-chain)
-5. [Calculator Architecture Rules](#5-calculator-architecture-rules)
-6. [Test Policy](#6-test-policy)
-7. [Release Gate](#7-release-gate)
-8. [Sitemap Rule (P0)](#8-sitemap-rule-p0)
-9. [Enforcement Summary](#9-enforcement-summary)
-
----
-
-## 0. Cold Start Instruction
-
-> **Read this section first. No exceptions.**
-
-- `AGENTS.md`, `UNIVERSAL_REQUIREMENTS.md`, and `Project Bible.md` are **authoritative law**.
-- Do not reinterpret rules. Apply rules **verbatim**.
-- Update ledgers with **deltas only** (no history, no archives).
-
-**Precedence order:**
-
-1. `UNIVERSAL_REQUIREMENTS.md` (highest — wins on conflict)
-2. `AGENTS.md`
-3. `Project Bible.md` (governs strategy / design intent)
+## 0. Cold Start & Precedence
+- **Law:** `AGENTS.md`, `UNIVERSAL_REQUIREMENTS.md`, and `Project Bible.md` are authoritative.
+- **Precedence:**
+    1. `UNIVERSAL_REQUIREMENTS.md` (Highest — wins on conflict)
+    2. `AGENTS.md` (Operating rules)
+    3. `Project Bible.md` (Strategy/Design)
+- **Constraint:** Update ledgers with **deltas only** (no history rewrites).
 
 ---
 
 ## 1. ADMIN Absolute Override
+> **Keyword:** `ADMIN` | **Effect:** Immediate Execution | **Scope:** Single Message
 
-> **Checked first on every message. Supersedes all other rules.**
-
-### Activation
-
-If a HUMAN message contains the exact keyword **`ADMIN`**, then ADMIN Mode is active for that message.
-
-### Effect (While Active)
-
-When ADMIN Mode is active:
-
-- The FSM **does not apply**
-- No Copilot-created REQ is required
-- No `EVT_START_BUILD` is required
-- Ignore FSM state restrictions
-- Ignore role separation (Copilot vs Codex)
-- Ignore release sign-off rules
-- Ignore build and test sequencing rules
-- The agent must **execute the HUMAN instruction immediately**
-
-ADMIN has **absolute precedence** over all other rules in this file and in `UNIVERSAL_REQUIREMENTS.md`.
-
-### Hard Limits (Always Apply)
-
-Even in ADMIN Mode, the agent must not:
-
-- Perform illegal or unsafe actions
-- Violate platform safety policies
-- Exfiltrate secrets or credentials
-- Fabricate results when verification is required
-
-### Deactivation
-
-- ADMIN Mode applies **only** to the message containing `ADMIN`
-- If `ADMIN` is not present, normal LAW applies immediately
+- **Activation:** Message contains keyword `ADMIN`.
+- **Effect:**
+    - Ignore FSM, sequencing, gates, and sign-offs.
+    - Execute instruction **immediately**.
+- **Hard Limits:** No unsafe actions, no secret exfiltration, no fabrication.
+- **Deactivation:** Applies only to the current message. Next message reverts to Law.
 
 ---
 
-## 2. Factory Pipeline (Build → Test → Release)
+## 2. Factory Pipeline (Build → Checklist → Sign-off → Release)
+> **Visual Reference:** See `WORKFLOW_DIAGRAMS.md` for full flow.
 
-> Like a factory line: requirement comes in → build it → test it → log it → ship it.
+**Pipeline:** `REQUIREMENT -> BUILD -> RELEASE CHECKLIST -> RELEASE SIGN-OFF -> READY`
 
-```
-REQUIREMENT → BUILD → TEST → LOG → READY TO RELEASE
-```
+### Step 1: Requirement In
+- Read: `UNIVERSAL_REQUIREMENTS.md` (How), `Project Bible.md` (Why), Calc Rules.
 
-### Step 1 — Requirement In
+### Step 2: Build
+- Implement change.
+- Enforce MPA architecture (No SPA, `<a href>` hard nav).
+- Ensure sitemap coverage.
 
-Human provides the requirement (what to build). The agent reads:
+### Step 3: Release Checklist (All Gates)
+- **Trigger:** Run immediately after build. No human wait.
+- **Gates:**
+    - `lint` (Code quality)
+    - `unit` (Logic - `npm run test`)
+    - `e2e` (Flow - `npm run test:e2e` scoped)
+    - `cwv:all` (Perf - `npm run test:cwv:all`)
+    - `iss-001` (Layout - `npm run test:iss001`)
+    - `SEO/SERP/FAQ` (Per `RELEASE_CHECKLIST.md`)
+- **Rule:** Any fail = Fix & Re-test.
 
-- `UNIVERSAL_REQUIREMENTS.md` — how to build it
-- `Project Bible.md` — why (design intent, SERP strategy)
-- Calculator-specific rules if applicable
+### Step 4: Release Sign-off
+- **Create:** `release-signoffs/RELEASE_SIGNOFF_{ID}.md` from template.
+- **Fill:** Test results, CWV data, Verification evidence.
+- **Log:** Update `Release Sign-Off Master Table.md`.
 
-### Step 2 — Build
-
-Agent implements the change:
-
-- Code the calculator / fix / feature
-- Follow all architecture rules (MPA, no SPA, `<a href>` navigation)
-- Ensure sitemap coverage for any new public route
-
-### Step 3 — Test (All Gates)
-
-Agent runs **all applicable tests** immediately after build. No waiting for human confirmation.
-
-| Test Category | What It Covers | Command |
-|---------------|----------------|---------|
-| Lint | Code quality | `npm run lint` |
-| Unit tests | Calculator logic | `npm run test` |
-| E2E tests | Route + UI flow | `npm run test:e2e` (scoped to affected routes) |
-| CWV guard | CLS ≤ 0.10, LCP ≤ 2.5s, INP ≤ 200ms | `npm run test:cwv:all` |
-| SERP readiness | Metadata, schema, indexability, internal links, intent coverage | `RELEASE_CHECKLIST.md` Section I |
-| SEO P1–P5 | Title/meta (P1), schema (P2), Lighthouse (P3), accessibility (P4), infra (P5) | Per UR-SEO rules |
-| ISS-001 | Shell/layout stability | `npm run test:iss001` (when layout touched) |
-| FAQ schema guard | FAQ schema matches visible content | Per UR-TEST-004 |
-
-**If any test fails → fix and re-test. Do not proceed until all pass.**
-
-### Step 4 — Log
-
-Agent logs the release evidence:
-
-- Create `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` from the template in `RELEASE_SIGNOFF.md`
-- Fill it out with all test results, CWV data, SERP verification
-- Add one row to `Release Sign-Off Master Table.md` linking to the sign-off file
-
-### Step 5 — Ready to Release
-
-Agent informs the human:
-
-> **"All tests pass. Release sign-off complete. Ready to merge."**
-
-The human reviews and merges the code. The agent does **not** merge.
+### Step 5: Ready
+- **Action:** Inform human "Ready to merge".
+- **Constraint:** Agent does **NOT** merge.
 
 ---
 
 ## 3. Actors
-
-### HUMAN
-
-- Provides requirements
-- Reviews and merges code
-- Has final release authority
-
-### AGENT (Copilot / Codex / Claude Code)
-
-- Builds the requirement
-- Runs all tests (SERP, performance, P1–P5, unit, E2E, CWV)
-- Fills out release sign-off evidence
-- Informs human when ready to merge
-- Must **not** merge code
+- **HUMAN:** Provides requirements, Reviews code, Merges code (Final Authority).
+- **AGENT:** Builds, Runs Checklist, Creates Sign-off, Confirms Ready. **Never merges.**
 
 ---
 
 ## 4. Document Chain
+`Req -> UNIVERSAL_REQUIREMENTS -> Project Bible -> RELEASE_CHECKLIST -> RELEASE_SIGNOFF -> Master Table`
 
-```
-Requirement → UNIVERSAL_REQUIREMENTS.md → Project Bible.md → RELEASE_CHECKLIST.md → RELEASE_SIGNOFF.md (template) → release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md → Release Sign-Off Master Table.md
-```
-
-| Step | Document | Purpose |
-|------|----------|---------|
-| 1 | `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` | How it must be built (rules & constraints) |
-| 2 | `requirements/universal-rules/Project Bible.md` | Why — strategy, design intent, SERP system |
-| 3 | `requirements/universal-rules/RELEASE_CHECKLIST.md` | Pre-release gate — every item must pass |
-| 4a | `requirements/universal-rules/RELEASE_SIGNOFF.md` | Template — copy for each release |
-| 4b | `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` | Per-release evidence — one file per release |
-| 5 | `requirements/universal-rules/Release Sign-Off Master Table.md` | Historical record — one row per release |
-
-### LAW (Authoritative — Do Not Reinterpret)
-
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Agent operating contract |
-| `UNIVERSAL_REQUIREMENTS.md` | Universal rules (highest authority) |
-| `Project Bible.md` | Strategy / design intent |
+- **UNIVERSAL_REQUIREMENTS.md:** The "How" (Rules).
+- **Project Bible.md:** The "Why" (Strategy).
+- **RELEASE_CHECKLIST.md:** Pre-release Gate.
+- **RELEASE_SIGNOFF.md:** Template for evidence.
 
 ---
 
 ## 5. Calculator Architecture Rules
-
-> **Always enforced** — regardless of FSM state or ADMIN mode.
-
-- All calculators use **MPA** by default
-- No SPA routing for calculator navigation
-- Navigation must be `<a href>` with **full page reloads**
-
-### GTEP Pages
-
-- Standalone HTML only
-- No calculator shell
-- No nav panes
-- No calculator JavaScript
+- **MPA Default:** All calculators use Multi-Page Architecture.
+- **No SPA:** Calculator nav must be full page reloads.
+- **GTEP Pages:** Standalone HTML, No Calculator Shell/Scripts/Panes.
 
 ---
 
 ## 6. Test Policy
+> Authority: `UNIVERSAL_REQUIREMENTS.md` (UR-TEST)
 
-> `UNIVERSAL_REQUIREMENTS.md` (UR-TEST section) is authoritative.
-
-The agent runs **all applicable tests** as part of the factory pipeline. No cherry-picking.
-
-- **Unit tests** — every calculator must have logic coverage
-- **E2E tests** — scoped to affected routes (not full suite for single-calculator changes)
-- **CWV guard** — all calculator routes, normal + stress mode
-- **SERP readiness** — metadata, schema, indexability, internal links (per `RELEASE_CHECKLIST.md` Section I)
-- **SEO P1–P5** — per the UR-SEO matrix in `UNIVERSAL_REQUIREMENTS.md`
-- **ISS-001** — when layout/shell is impacted
-- **FAQ schema guard** — when calculator has FAQ content
-
-All test evidence goes into `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` (created from `RELEASE_SIGNOFF.md` template).
+- **Execution:** Run **all applicable tests**. No cherry-picking.
+- **Scope:** Unit (All), E2E (Affected), CWV (All Calcs), SEO (P1-P5), ISS-001 (Layout).
+- **Evidence:** Must be recorded in `release-signoffs/RELEASE_SIGNOFF_{ID}.md`.
 
 ---
 
 ## 7. Release Gate
-
-A release is ready **only when**:
-
-| Gate | Document | Required Status |
-|------|----------|----------------|
-| All tests pass | `RELEASE_CHECKLIST.md` | Every HARD item passes |
-| Evidence recorded | `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` | Created from template, filled with all test results |
-| History logged | `Release Sign-Off Master Table.md` | One row added for this release |
-| Human informed | — | Agent says "Ready to merge" |
-
-**Human merges. Agent does not merge.**
+**Release Condition:**
+1.  **Checklist:** Every HARD item passes.
+2.  **Evidence:** Sign-off file created & filled.
+3.  **Log:** Master table updated.
+4.  **Ready:** Agent confirms.
 
 ---
 
 ## 8. Sitemap Rule (P0)
-
-> **Always enforced.** Priority zero — no exceptions.
-
-Any calculator that is:
-
-- Visible in navigation, **or**
-- Reachable via a public URL
-
-**must appear in the sitemap.**
-
-Missing sitemap coverage is a **hard failure** for: BUILD, TEST, and COMPLIANCE.
+- **Rule:** Visible nav OR public URL = **Must be in sitemap**.
+- **Failure:** Missing sitemap = Hard Fail for Build/Test/Compliance.
 
 ---
 
 ## 9. Enforcement Summary
-
-| Principle | Rule |
-|-----------|------|
-| Default behavior | Build → Test → Log → Ready to merge |
-| ADMIN Mode | Explicit, manual, absolute |
-| Silence | ≠ permission |
-| Keyword `ADMIN` | Immediate human control |
-
-### One-Line Intent
-
-> **Requirement comes in. Agent builds, tests, and logs. Human merges. ADMIN overrides everything.**
+- **Default:** Pipeline (Build->Checklist->Sign-off->Ready).
+- **ADMIN:** Explicit override.
+- **Silence:** ≠ Permission.

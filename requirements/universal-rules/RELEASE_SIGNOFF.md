@@ -49,7 +49,16 @@
 
 ---
 
-## 3) Evidence & Metrics
+## 3) 🏆 Elite Performance (Addendum)
+
+| ID | Category | Criteria | Result |
+| :--- | :--- | :--- | :--- |
+| **X1** | **Investigate** | • LCP Element identified<br>• Mobile FCP ≤ 1.8s | |
+| **X2** | **Stress Test** | • CPU 4× / Slow 3G<br>• Stress LCP ≤ 2.3s | |
+
+---
+
+## 4) Evidence & Metrics
 
 ### Performance (Mobile Lab)
 | Metric | Value | Status |

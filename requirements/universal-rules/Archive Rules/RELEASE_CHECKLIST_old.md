@@ -1,4 +1,4 @@
-# Release Checklist — CalcHowMuch.com
+# 🚀 Release Checklist — CalcHowMuch.com
 
 > [!IMPORTANT]
 > **Goal: 1 Million Unique Users / Month | 5 Million Page Views / Month | AdSense Revenue | Zero Google Penalties**
@@ -14,7 +14,28 @@
 
 ---
 
-## A) Pre-Release (Dev) — Must Pass
+## 📑 Table of Contents
+
+- [A) Pre-Release (Dev) — Must Pass](#a-pre-release-dev--must-pass)
+- [B) Mobile & Tablet Release Checks](#b-mobile--tablet-release-checks--must-pass)
+- [C) Performance Metrics](#c-performance-metrics--must-pass)
+- [D) CWV Guard (Global Automated Gate)](#d-cwv-guard-global-automated-gate--mandatory)
+- [E) Ads & AdSense Compliance](#e-ads--adsense-compliance--must-pass)
+- [F) Animation & Visual Effects](#f-animation--visual-effects--must-pass)
+- [G) Manual Regression Scenarios](#g-manual-regression-scenarios--must-pass)
+- [H) Accessibility](#h-accessibility--must-pass)
+- [I) SERP Readiness](#i-serp-readiness--must-pass)
+- [J) Content Quality](#j-content-quality--must-pass)
+- [K) Security & Trust](#k-security--trust--must-pass)
+- [L) CWV Guard — Test Commands](#l-cwv-guard--test-commands-must-pass)
+- [M) Observability (Post-Release)](#m-observability-post-release)
+- [N) Sign-off Evidence](#n-sign-off-evidence--required)
+- [O) Release Decision Rules](#o-release-decision-rules)
+- [Elite Performance Checklist (Addendum)](#elite-performance-checklist--calculator-pages-addendum)
+
+---
+
+## 🛠️ A) Pre-Release (Dev) — Must Pass
 
 ### A1) Above-the-fold rendering order
 - [ ] Calculator UI renders immediately; ads must never block first render.
@@ -22,7 +43,7 @@
 - [ ] No runtime injection adds new content above the fold after load (ads/nav/banners).
 - [ ] Above-the-fold content is present in initial HTML — no JS-required content for primary calculator UI.
 
-### A2) CSS architecture (systemic CLS prevention)
+### A2) CSS architecture (systemic CLS prevention) — refs: UR-CSS-001..008
 > [!WARNING]
 > **Hard rules:**
 > - No runtime CSS `@import` anywhere. Must pass: `npm run lint:css-import`.
@@ -54,7 +75,7 @@
 
 ---
 
-## B) Mobile & Tablet Release Checks — Must Pass
+## 📱 B) Mobile & Tablet Release Checks — Must Pass
 
 > [!NOTE]
 > **Mobile-first indexing:** mobile failures directly harm ranking.
@@ -69,14 +90,14 @@
 - [ ] Numeric inputs show numeric keyboard (`inputmode="decimal"`/`numeric`).
 - [ ] `min`/`max`/`step` provided where applicable.
 
-### B3) Ads on mobile
+### B3) Ads on mobile — refs: Project Bible §17
 - [ ] **No ads above the calculator H1 on mobile.** (Hard rule)
 - [ ] Ads do not overlap inputs/results or interactive elements.
 - [ ] Ads do not resize after render in ways that cause CLS.
 
 ---
 
-## C) Performance Metrics — Must Pass
+## 📊 C) Performance Metrics — Must Pass
 
 > [!TIP]
 > Pre-release: lab gates + regression prevention. Field (CrUX) data is authoritative after rollout.
@@ -101,7 +122,10 @@
 
 ---
 
-## D) CWV Guard (Global Automated Gate) — Mandatory
+## 🛡️ D) CWV Guard (Global Automated Gate) — Mandatory
+
+> [!NOTE]
+> refs: UR-TEST-005, UR-TEST-006, UR-TEST-014
 
 ### D1) Route scope
 - [ ] All calculator routes from `public/config/navigation.json`.
@@ -125,7 +149,7 @@
 
 ---
 
-## E) Ads & AdSense Compliance — Must Pass
+## 💰 E) Ads & AdSense Compliance — Must Pass
 
 > [!CAUTION]
 > AdSense policy violations will suspend revenue. Treat as critical.
@@ -145,14 +169,14 @@
 
 ---
 
-## F) Animation & Visual Effects — Must Pass
+## ✨ F) Animation & Visual Effects — Must Pass
 - [ ] Use only `opacity`/`transform` for animations.
 - [ ] No layout-property animations (`height`/`width`/`top`/`left`).
 - [ ] Respect `prefers-reduced-motion`.
 
 ---
 
-## G) Manual Regression Scenarios — Must Pass
+## 🔍 G) Manual Regression Scenarios — Must Pass
 
 ### G1) First load
 - [ ] No visible jump or FOUC.
@@ -168,7 +192,7 @@
 
 ---
 
-## H) Accessibility — Must Pass
+## ♿ H) Accessibility — Must Pass
 - [ ] Keyboard navigable (Tab/Shift+Tab/Enter/Space).
 - [ ] `aria-live="polite"` on result containers.
 - [ ] No `<select>` dropdowns for mode toggles — use button groups.
@@ -176,7 +200,10 @@
 
 ---
 
-## I) SERP Readiness — Must Pass
+## 🌐 I) SERP Readiness — Must Pass
+
+> [!NOTE]
+> refs: UR-SEO-001..031
 
 ### I1) Metadata integrity
 - [ ] Unique `<title>` (35–61 chars) and `<meta name="description">` (110–165 chars).
@@ -198,33 +225,33 @@
 
 ---
 
-## J) Content Quality — Must Pass
+## ✍️ J) Content Quality — Must Pass
 - [ ] Explanation section present (formula, inputs, interpretation).
 - [ ] At least one worked example or scenario table.
 - [ ] FAQ section with 3+ realistic user questions.
 
 ---
 
-## K) Security & Trust — Must Pass
+## 🔒 K) Security & Trust — Must Pass
 - [ ] Site served over HTTPS; no mixed content.
 - [ ] Privacy policy, terms, and contact pages exist and are linked.
 
 ---
 
-## L) CWV Guard — Test Commands (must pass)
+## ⌨️ L) CWV Guard — Test Commands (must pass)
 - `npm run validate` — runs lint + lint:css-import + test + format:check.
 - `npm run test:cwv:all` — CWV guard for all calculator routes.
 - `npm run test:iss001` — Layout/shell stability.
 
 ---
 
-## M) Observability (Post-Release)
+## 👁️ M) Observability (Post-Release)
 - [ ] 24–72 hours: Search Console coverage stable.
 - [ ] Monthly: monitor AdSense policy center.
 
 ---
 
-## N) Sign-off Evidence — Required
+## ✅ N) Sign-off Evidence — Required
 
 Record in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`:
 1. CWV guard artifact summary.
@@ -236,7 +263,7 @@ Record in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`:
 
 ---
 
-## O) Release Decision Rules
+## 🛑 O) Release Decision Rules
 
 **HARD blockers (DO NOT RELEASE):**
 - [ ] CWV guard hard fail.
@@ -251,7 +278,7 @@ Record in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`:
 
 ---
 
-## Elite Performance Checklist — Calculator Pages (Addendum)
+## 🏆 Elite Performance Checklist — Calculator Pages (Addendum)
 
 ### X1) Render-Blocking Optimization (Hard Requirement)
 **Objective:** Eliminate all render-blocking resources that delay First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
@@ -313,5 +340,5 @@ Record in `release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`:
 
 ---
 
-## Summary
+## 📝 Summary
 Every item protects search traffic, revenue, and user trust. Follow strictly.
