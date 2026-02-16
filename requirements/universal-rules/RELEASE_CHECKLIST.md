@@ -49,6 +49,8 @@ Either fix only if it is a shared root cause introduced by this change, OR
 
 Raise a follow-up ticket.
 
+HARD: MPA generation must be scope-targeted by default (`TARGET_ROUTE` or `TARGET_CALC_ID`). Full-site generation is allowed only with explicit release intent (`--all` / `GENERATE_ALL_ROUTES=1`).
+
 - [ ] **UI changes require approval**: new inputs/controls/UX elements must be approved before implementation.
 - [ ] **File change preview**: confirm intended file list before edits; if it changes, re-confirm.
 

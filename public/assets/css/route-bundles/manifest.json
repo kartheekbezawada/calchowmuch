@@ -1,6 +1,50 @@
 {
-  "generatedAt": "2026-02-16T17:37:35.145Z",
+  "generatedAt": "2026-02-16T18:27:32.821Z",
   "routes": {
+    "/finance/compound-interest/": {
+      "calculatorId": "compound-interest",
+      "relPath": "finance/compound-interest",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/finance-compound-interest.d7fa9f76.css",
+      "deferredHref": "/assets/css/route-bundles/finance-compound-interest.d7fa9f76.css",
+      "criticalCss": "/assets/css/route-bundles/finance-compound-interest.critical.44b2fcad.css",
+      "hash": "d7fa9f76",
+      "criticalHash": "44b2fcad",
+      "fullBytes": 79889,
+      "criticalBytes": 66543,
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/compound-interest/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-compound-interest.d7fa9f76.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-compound-interest.critical.44b2fcad.css"
+    },
+    "/finance/simple-interest/": {
+      "calculatorId": "simple-interest",
+      "relPath": "finance/simple-interest",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/finance-simple-interest.51fd2540.css",
+      "deferredHref": "/assets/css/route-bundles/finance-simple-interest.51fd2540.css",
+      "criticalCss": "/assets/css/route-bundles/finance-simple-interest.critical.78fcd58d.css",
+      "hash": "51fd2540",
+      "criticalHash": "78fcd58d",
+      "fullBytes": 79937,
+      "criticalBytes": 66519,
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/layout.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/finance/simple-interest/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/finance-simple-interest.51fd2540.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-simple-interest.critical.78fcd58d.css"
+    },
     "/finance/present-value/": {
       "calculatorId": "present-value",
       "relPath": "finance/present-value",

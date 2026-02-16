@@ -61,6 +61,18 @@ const CRITICAL_SELECTOR_HINTS = [
 
 const PILOT_ROUTES = [
   {
+    calculatorId: 'compound-interest',
+    route: '/finance/compound-interest/',
+    relPath: 'finance/compound-interest',
+    routeCss: 'calculators/finance/compound-interest/calculator.css',
+  },
+  {
+    calculatorId: 'simple-interest',
+    route: '/finance/simple-interest/',
+    relPath: 'finance/simple-interest',
+    routeCss: 'calculators/finance/simple-interest/calculator.css',
+  },
+  {
     calculatorId: 'present-value',
     route: '/finance/present-value/',
     relPath: 'finance/present-value',
