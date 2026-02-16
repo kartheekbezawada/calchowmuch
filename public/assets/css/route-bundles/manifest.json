@@ -1,11 +1,17 @@
 {
-  "generatedAt": "2026-02-16T15:53:10.420Z",
+  "generatedAt": "2026-02-16T17:37:35.145Z",
   "routes": {
     "/finance/present-value/": {
       "calculatorId": "present-value",
       "relPath": "finance/present-value",
+      "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/finance-present-value.556be6da.css",
+      "deferredHref": "/assets/css/route-bundles/finance-present-value.556be6da.css",
+      "criticalCss": "/assets/css/route-bundles/finance-present-value.critical.3374e94c.css",
       "hash": "556be6da",
+      "criticalHash": "3374e94c",
+      "fullBytes": 79994,
+      "criticalBytes": 66611,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -14,13 +20,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance/present-value/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-present-value.556be6da.css"
+      "outputFile": "public/assets/css/route-bundles/finance-present-value.556be6da.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-present-value.critical.3374e94c.css"
     },
     "/finance/future-value/": {
       "calculatorId": "future-value",
       "relPath": "finance/future-value",
+      "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/finance-future-value.4ae3d18e.css",
+      "deferredHref": "/assets/css/route-bundles/finance-future-value.4ae3d18e.css",
+      "criticalCss": "/assets/css/route-bundles/finance-future-value.critical.427376fa.css",
       "hash": "4ae3d18e",
+      "criticalHash": "427376fa",
+      "fullBytes": 80009,
+      "criticalBytes": 66598,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -29,13 +42,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance/future-value/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-future-value.4ae3d18e.css"
+      "outputFile": "public/assets/css/route-bundles/finance-future-value.4ae3d18e.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-future-value.critical.427376fa.css"
     },
     "/finance/future-value-of-annuity/": {
       "calculatorId": "future-value-of-annuity",
       "relPath": "finance/future-value-of-annuity",
+      "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css",
+      "deferredHref": "/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css",
+      "criticalCss": "/assets/css/route-bundles/finance-future-value-of-annuity.critical.baa55d3f.css",
       "hash": "6720900d",
+      "criticalHash": "baa55d3f",
+      "fullBytes": 80207,
+      "criticalBytes": 66745,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -44,13 +64,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance/future-value-of-annuity/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css"
+      "outputFile": "public/assets/css/route-bundles/finance-future-value-of-annuity.6720900d.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-future-value-of-annuity.critical.baa55d3f.css"
     },
     "/finance/present-value-of-annuity/": {
       "calculatorId": "present-value-of-annuity",
       "relPath": "finance/present-value-of-annuity",
+      "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css",
+      "deferredHref": "/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css",
+      "criticalCss": "/assets/css/route-bundles/finance-present-value-of-annuity.critical.4ba46f25.css",
       "hash": "f40b1695",
+      "criticalHash": "4ba46f25",
+      "fullBytes": 80197,
+      "criticalBytes": 66758,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -59,7 +86,8 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance/present-value-of-annuity/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css"
+      "outputFile": "public/assets/css/route-bundles/finance-present-value-of-annuity.f40b1695.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-present-value-of-annuity.critical.4ba46f25.css"
     }
   }
 }

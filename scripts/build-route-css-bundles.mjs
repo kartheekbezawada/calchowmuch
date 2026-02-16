@@ -20,6 +20,45 @@ const BASE_SOURCES = [
   'assets/css/shared-calculator-ui.css',
 ];
 
+const CRITICAL_FULL_SOURCES = new Set(['assets/css/layout.css', 'assets/css/calculator.css']);
+const CRITICAL_SELECTOR_HINTS = [
+  ':root',
+  'html',
+  'body',
+  '.page',
+  '.site-header',
+  '.top-nav',
+  '.layout-main',
+  '.left-nav',
+  '.center-column',
+  '.panel',
+  '.panel-scroll',
+  '#calc-home-loan',
+  '.calculator-ui',
+  '.home-loan-ui',
+  '.mtg-hero',
+  '.mtg-form-panel',
+  '.mtg-preview-panel',
+  '.mtg-preview-main',
+  '.mtg-result-card',
+  '.mtg-result-value',
+  '.mtg-summary-card',
+  '.input-row',
+  '.input-grid-2-col',
+  '.slider-row',
+  '.slider-header',
+  '.slider-value',
+  '.pv-toggle-row',
+  '.pv-toggle-group',
+  '.pv-toggle-label',
+  '.button-group',
+  '.calculator-button',
+  '.mtg-action-row',
+  '.helper',
+  '.brand-logo',
+  '.mobile-menu-toggle',
+];
+
 const PILOT_ROUTES = [
   {
     calculatorId: 'present-value',
@@ -63,14 +102,208 @@ function readRequired(relPath) {
   return fs.readFileSync(absPath, 'utf8');
 }
 
-function removeStaleBundles(slug, keepFile) {
+function removeStaleBundles(slug, keepFiles) {
+  const keepSet = new Set(keepFiles);
   const names = fs.existsSync(OUTPUT_DIR) ? fs.readdirSync(OUTPUT_DIR) : [];
   names.forEach((name) => {
-    if (!name.startsWith(`${slug}.`) || !name.endsWith('.css') || name === keepFile) {
+    if (!name.startsWith(`${slug}.`) || !name.endsWith('.css') || keepSet.has(name)) {
       return;
     }
     fs.rmSync(path.join(OUTPUT_DIR, name), { force: true });
   });
+}
+
+function skipComment(source, index, end = source.length) {
+  if (source[index] === '/' && source[index + 1] === '*') {
+    const closeIndex = source.indexOf('*/', index + 2);
+    if (closeIndex === -1 || closeIndex >= end) {
+      return end;
+    }
+    return closeIndex + 2;
+  }
+  return index;
+}
+
+function parseCssRules(source) {
+  const rules = [];
+  let i = 0;
+
+  while (i < source.length) {
+    i = skipComment(source, i);
+    if (i >= source.length) {
+      break;
+    }
+
+    while (i < source.length && /\s/.test(source[i])) {
+      i += 1;
+      i = skipComment(source, i);
+    }
+    if (i >= source.length) {
+      break;
+    }
+
+    const preludeStart = i;
+    let quote = null;
+    while (i < source.length) {
+      i = skipComment(source, i);
+      if (i >= source.length) {
+        break;
+      }
+      const char = source[i];
+      if (quote) {
+        if (char === '\\') {
+          i += 2;
+          continue;
+        }
+        if (char === quote) {
+          quote = null;
+        }
+        i += 1;
+        continue;
+      }
+      if (char === '"' || char === "'") {
+        quote = char;
+        i += 1;
+        continue;
+      }
+      if (char === '{' || char === ';') {
+        break;
+      }
+      i += 1;
+    }
+
+    const prelude = source.slice(preludeStart, i).trim();
+    if (!prelude) {
+      i += 1;
+      continue;
+    }
+
+    if (source[i] === ';') {
+      rules.push({ type: 'at', prelude: `${prelude};` });
+      i += 1;
+      continue;
+    }
+
+    if (source[i] !== '{') {
+      break;
+    }
+
+    i += 1;
+    const bodyStart = i;
+    let depth = 1;
+    quote = null;
+
+    while (i < source.length && depth > 0) {
+      i = skipComment(source, i);
+      if (i >= source.length) {
+        break;
+      }
+      const char = source[i];
+      if (quote) {
+        if (char === '\\') {
+          i += 2;
+          continue;
+        }
+        if (char === quote) {
+          quote = null;
+        }
+        i += 1;
+        continue;
+      }
+      if (char === '"' || char === "'") {
+        quote = char;
+        i += 1;
+        continue;
+      }
+      if (char === '{') {
+        depth += 1;
+      } else if (char === '}') {
+        depth -= 1;
+      }
+      i += 1;
+    }
+
+    const bodyEnd = Math.max(bodyStart, i - 1);
+    const body = source.slice(bodyStart, bodyEnd);
+    const isGroupRule = prelude.startsWith('@media') || prelude.startsWith('@supports');
+
+    if (isGroupRule) {
+      rules.push({
+        type: 'group',
+        prelude,
+        children: parseCssRules(body),
+      });
+    } else {
+      rules.push({ type: 'style', prelude, body: body.trim() });
+    }
+  }
+
+  return rules;
+}
+
+function isCriticalPrelude(prelude) {
+  const normalized = prelude.toLowerCase();
+  if (
+    normalized === '*' ||
+    normalized.startsWith('*,') ||
+    normalized.startsWith('*::before') ||
+    normalized.startsWith('*::after')
+  ) {
+    return true;
+  }
+  return CRITICAL_SELECTOR_HINTS.some((hint) => normalized.includes(hint.toLowerCase()));
+}
+
+function renderCriticalRules(rules, indent = '') {
+  const rendered = [];
+
+  rules.forEach((rule) => {
+    if (rule.type === 'style') {
+      if (!isCriticalPrelude(rule.prelude)) {
+        return;
+      }
+      if (!rule.body) {
+        return;
+      }
+      rendered.push(`${indent}${rule.prelude} {\n${indent}  ${rule.body}\n${indent}}`);
+      return;
+    }
+
+    if (rule.type === 'group') {
+      const childRendered = renderCriticalRules(rule.children, `${indent}  `);
+      if (!childRendered.trim()) {
+        return;
+      }
+      rendered.push(`${indent}${rule.prelude} {\n${childRendered}\n${indent}}`);
+    }
+  });
+
+  return rendered.join('\n\n');
+}
+
+function buildCriticalCss(sources) {
+  const sections = [];
+
+  sources.forEach((relPath) => {
+    const raw = readRequired(relPath).trim();
+    if (!raw) {
+      return;
+    }
+
+    let criticalChunk = '';
+    if (CRITICAL_FULL_SOURCES.has(relPath)) {
+      criticalChunk = raw;
+    } else {
+      const parsed = parseCssRules(raw);
+      criticalChunk = renderCriticalRules(parsed).trim();
+    }
+
+    if (criticalChunk) {
+      sections.push(`/* critical source: ${toWebPath(relPath)} */\n${criticalChunk}`);
+    }
+  });
+
+  return sections.join('\n\n');
 }
 
 function buildBundles() {
@@ -85,21 +318,41 @@ function buildBundles() {
     const bundledCss = sources
       .map((relPath) => `/* source: ${toWebPath(relPath)} */\n${readRequired(relPath).trim()}`)
       .join('\n\n');
-    const hash = crypto.createHash('sha256').update(bundledCss).digest('hex').slice(0, 8);
-    const slug = toRouteSlug(routeConfig.route);
-    const fileName = `${slug}.${hash}.css`;
-    const outputPath = path.join(OUTPUT_DIR, fileName);
+    const criticalCss = buildCriticalCss(sources);
 
-    removeStaleBundles(slug, fileName);
-    fs.writeFileSync(outputPath, `${bundledCss}\n`, 'utf8');
+    if (!criticalCss.trim()) {
+      throw new Error(`Critical CSS extraction produced empty output for ${routeConfig.route}`);
+    }
+
+    const hash = crypto.createHash('sha256').update(bundledCss).digest('hex').slice(0, 8);
+    const criticalHash = crypto.createHash('sha256').update(criticalCss).digest('hex').slice(0, 8);
+
+    const slug = toRouteSlug(routeConfig.route);
+    const bundleFileName = `${slug}.${hash}.css`;
+    const criticalFileName = `${slug}.critical.${criticalHash}.css`;
+
+    removeStaleBundles(slug, [bundleFileName, criticalFileName]);
+
+    const bundleOutputPath = path.join(OUTPUT_DIR, bundleFileName);
+    const criticalOutputPath = path.join(OUTPUT_DIR, criticalFileName);
+
+    fs.writeFileSync(bundleOutputPath, `${bundledCss}\n`, 'utf8');
+    fs.writeFileSync(criticalOutputPath, `${criticalCss}\n`, 'utf8');
 
     manifest.routes[routeConfig.route] = {
       calculatorId: routeConfig.calculatorId,
       relPath: routeConfig.relPath,
-      href: `/assets/css/route-bundles/${fileName}`,
+      mode: 'inline-critical-deferred-bundle',
+      href: `/assets/css/route-bundles/${bundleFileName}`,
+      deferredHref: `/assets/css/route-bundles/${bundleFileName}`,
+      criticalCss: `/assets/css/route-bundles/${criticalFileName}`,
       hash,
+      criticalHash,
+      fullBytes: Buffer.byteLength(bundledCss, 'utf8'),
+      criticalBytes: Buffer.byteLength(criticalCss, 'utf8'),
       sources: sources.map(toWebPath),
-      outputFile: `public/assets/css/route-bundles/${fileName}`,
+      outputFile: `public/assets/css/route-bundles/${bundleFileName}`,
+      criticalOutputFile: `public/assets/css/route-bundles/${criticalFileName}`,
     };
   });
 
@@ -128,13 +381,23 @@ function verifyBundles() {
       throw new Error(`Manifest calculatorId mismatch for ${routeConfig.route}`);
     }
 
-    if (!entry.href || !entry.href.startsWith('/assets/css/route-bundles/')) {
-      throw new Error(`Manifest href invalid for ${routeConfig.route}`);
+    if (!entry.deferredHref || !entry.deferredHref.startsWith('/assets/css/route-bundles/')) {
+      throw new Error(`Manifest deferredHref invalid for ${routeConfig.route}`);
     }
 
-    const bundleAbsPath = path.join(PUBLIC_DIR, entry.href.replace(/^\//, ''));
+    if (!entry.criticalCss || !entry.criticalCss.startsWith('/assets/css/route-bundles/')) {
+      throw new Error(`Manifest criticalCss invalid for ${routeConfig.route}`);
+    }
+
+    const bundleAbsPath = path.join(PUBLIC_DIR, entry.deferredHref.replace(/^\//, ''));
+    const criticalAbsPath = path.join(PUBLIC_DIR, entry.criticalCss.replace(/^\//, ''));
+
     if (!fs.existsSync(bundleAbsPath)) {
       throw new Error(`Bundle file missing for ${routeConfig.route}: ${bundleAbsPath}`);
+    }
+
+    if (!fs.existsSync(criticalAbsPath)) {
+      throw new Error(`Critical CSS file missing for ${routeConfig.route}: ${criticalAbsPath}`);
     }
 
     const expectedSources = [...BASE_SOURCES, routeConfig.routeCss].map(toWebPath);

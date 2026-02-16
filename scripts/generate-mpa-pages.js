@@ -1014,16 +1014,16 @@ function readRouteBundleManifest() {
   return manifest;
 }
 
-function resolveRouteBundleHref(manifest, routePath) {
+function resolveRouteBundleEntry(manifest, routePath) {
   const normalizedRoute = normalizeRoutePath(routePath);
   if (!normalizedRoute) {
     return null;
   }
   const entry = manifest.routes[normalizedRoute];
-  if (!entry || typeof entry.href !== 'string') {
+  if (!entry || typeof entry !== 'object') {
     return null;
   }
-  return entry.href;
+  return entry;
 }
 
 function renderManagedHeadAdsenseBlock() {
@@ -1506,7 +1506,8 @@ function buildPageHtml({
   includeHomeContent,
   pageType,
   calculatorRelPath,
-  cssBundleHref = null,
+  cssBundleConfig = null,
+  topNavStatic = false,
   staticStructuredData = null,
   injectStaticStructuredData = false,
 }) {
@@ -1588,17 +1589,18 @@ ${explanationTitleHtml}  ${explanationHtml}
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
+  const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
   const calculatorScript = calculatorRelPath
     ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
     : '';
   const structuredDataScript =
     injectStaticStructuredData && staticStructuredData
-      ? `    <script type="application/ld+json" data-static-ld="true">${stringifyStructuredData(
+      ? `    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
           staticStructuredData
         )}</script>\n`
       : '';
-  const cssLinksHtml = cssBundleHref
-    ? `    <link rel="stylesheet" href="${cssBundleHref}" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleHref}" />\n    </noscript>\n`
+  const cssLinksHtml = cssBundleConfig
+    ? `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n    </noscript>\n`
     : `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
@@ -1624,7 +1626,7 @@ ${explanationTitleHtml}  ${explanationHtml}
 ${cssLinksHtml} 
 ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
   </head>
-  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
@@ -1922,12 +1924,41 @@ function main() {
         const pageTitle = override?.title ?? buildTitle(calculator.name);
         const pageDescription = override?.description ?? buildDescription(calculator.name);
         const pageCanonical = buildCanonical(calculator.url);
-        const cssBundleHref = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
-          ? resolveRouteBundleHref(routeBundleManifest, calculator.url)
+        const routeBundleEntry = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+          ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
           : null;
+        let cssBundleConfig = null;
+        const topNavStatic = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
 
-        if (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !cssBundleHref) {
-          throw new Error(`Missing route CSS bundle href for ${calculator.id} (${calculator.url})`);
+        if (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
+          throw new Error(`Missing route CSS bundle entry for ${calculator.id} (${calculator.url})`);
+        }
+
+        if (routeBundleEntry) {
+          const deferredHref = routeBundleEntry.deferredHref || routeBundleEntry.href;
+          const criticalCssHref = routeBundleEntry.criticalCss;
+          if (!deferredHref || typeof deferredHref !== 'string') {
+            throw new Error(
+              `Missing route bundle deferredHref for ${calculator.id} (${calculator.url})`
+            );
+          }
+          if (!criticalCssHref || typeof criticalCssHref !== 'string') {
+            throw new Error(
+              `Missing route bundle criticalCss for ${calculator.id} (${calculator.url})`
+            );
+          }
+
+          const criticalCssPath = path.join(PUBLIC_DIR, criticalCssHref.replace(/^\//, ''));
+          if (!fs.existsSync(criticalCssPath)) {
+            throw new Error(
+              `Missing critical CSS artifact for ${calculator.id}: ${criticalCssPath}`
+            );
+          }
+
+          cssBundleConfig = {
+            deferredHref,
+            criticalCss: readFile(criticalCssPath).trim(),
+          };
         }
 
         let staticStructuredData = null;
@@ -1970,7 +2001,8 @@ function main() {
           includeHomeContent: false,
           pageType: 'calculator',
           calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
-          cssBundleHref,
+          cssBundleConfig,
+          topNavStatic,
           staticStructuredData,
           injectStaticStructuredData,
         });

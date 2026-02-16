@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-16T16:02:45.135Z",
+  "generatedAt": "2026-02-16T17:40:49.249Z",
   "thresholds": {
     "clsP0": 0.1,
     "singleShiftP0": 0.05,
@@ -18,97 +18,97 @@
       "status": 200,
       "cls": 0,
       "maxShift": 0,
-      "lcp": 160,
-      "inpProxy": 80,
+      "lcp": 204,
+      "inpProxy": 104,
       "entries": []
     },
     {
       "route": "/finance/present-value-of-annuity/",
       "mode": "stress",
       "status": 200,
-      "cls": 0.0008,
-      "maxShift": 0.0005,
-      "lcp": 1336,
-      "inpProxy": 48,
+      "cls": 0.0073,
+      "maxShift": 0.007,
+      "lcp": 648,
+      "inpProxy": 104,
       "entries": [
         {
-          "value": 0.0005080142657591804,
-          "startTime": 1520.5,
+          "value": 0.00701838445258921,
+          "startTime": 1533.800000000745,
           "sources": [
             {
-              "selector": "body>div.page>nav.top-nav>a.top-nav-link.is-active>span.nav-label",
+              "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",
               "previousRect": {
-                "x": 571.953125,
-                "y": 84.203125,
-                "width": 51,
-                "height": 19.59375,
-                "top": 84.203125,
-                "right": 622.953125,
-                "bottom": 103.796875,
-                "left": 571.953125
+                "x": 1112.734375,
+                "y": 18,
+                "width": 227.265625,
+                "height": 38,
+                "top": 18,
+                "right": 1340,
+                "bottom": 56,
+                "left": 1112.734375
               },
               "currentRect": {
-                "x": 591.75,
-                "y": 84.203125,
-                "width": 51,
-                "height": 19.59375,
-                "top": 84.203125,
-                "right": 642.75,
-                "bottom": 103.796875,
-                "left": 591.75
+                "x": 1020,
+                "y": 18,
+                "width": 320,
+                "height": 38,
+                "top": 18,
+                "right": 1340,
+                "bottom": 56,
+                "left": 1020
               }
             },
             {
-              "selector": "html>body>div.page>nav.top-nav>a.top-nav-link",
+              "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#pva-explanation.explanation-pane",
               "previousRect": {
-                "x": 652.765625,
-                "y": 75,
-                "width": 144.28125,
-                "height": 38,
-                "top": 75,
-                "right": 797.046875,
-                "bottom": 113,
-                "left": 652.765625
+                "x": 273,
+                "y": 724.984375,
+                "width": 819,
+                "height": 147.015625,
+                "top": 724.984375,
+                "right": 1092,
+                "bottom": 872,
+                "left": 273
               },
               "currentRect": {
-                "x": 690.359375,
-                "y": 75,
-                "width": 144.28125,
-                "height": 38,
-                "top": 75,
-                "right": 834.640625,
-                "bottom": 113,
-                "left": 690.359375
+                "x": 273,
+                "y": 744.984375,
+                "width": 819,
+                "height": 127.015625,
+                "top": 744.984375,
+                "right": 1092,
+                "bottom": 872,
+                "left": 273
               }
             },
             {
-              "selector": "html>body>div.page>nav.top-nav>a.top-nav-link",
+              "selector": "div.calculator-page-single>div#pva-explanation.explanation-pane>div#loan-mtg-explanation>section.mtg-exp-section>div.table-scroll",
               "previousRect": {
-                "x": 809.046875,
-                "y": 75,
-                "width": 183.53125,
-                "height": 38,
-                "top": 75,
-                "right": 992.578125,
-                "bottom": 113,
-                "left": 809.046875
+                "x": 273,
+                "y": 866.890625,
+                "width": 819,
+                "height": 5.109375,
+                "top": 866.890625,
+                "right": 1092,
+                "bottom": 872,
+                "left": 273
               },
               "currentRect": {
-                "x": 846.640625,
-                "y": 75,
-                "width": 134.0625,
-                "height": 38,
-                "top": 75,
-                "right": 980.703125,
-                "bottom": 113,
-                "left": 846.640625
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
               }
             }
           ]
         },
         {
           "value": 0.0003169457740710956,
-          "startTime": 1747,
+          "startTime": 1686.4000000022352,
           "sources": [
             {
               "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#pva-periods-display.slider-value",

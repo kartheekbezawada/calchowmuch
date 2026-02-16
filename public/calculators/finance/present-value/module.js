@@ -50,12 +50,18 @@ const compoundingGroup = document.querySelector('[data-button-group="pv-compound
 
 const periodButtons = setupButtonGroup(periodGroup, {
   defaultValue: 'years',
-  onChange: () => calculate(),
+  onChange: () => {
+    hydrateOnUserIntent();
+    calculate();
+  },
 });
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
-  onChange: () => calculate(),
+  onChange: () => {
+    hydrateOnUserIntent();
+    calculate();
+  },
 });
 
 /* ── SEO / Schema ── */
@@ -216,6 +222,13 @@ function fmt(value, opts = {}) {
   });
 }
 
+function setTextIfChanged(node, nextValue) {
+  if (!node) return;
+  if (node.textContent !== nextValue) {
+    node.textContent = nextValue;
+  }
+}
+
 function setSliderFill(input) {
   if (!input) return;
   const min = Number(input.min || 0);
@@ -229,17 +242,19 @@ function updateSliderDisplays() {
   const periodType = periodButtons?.getValue() ?? 'years';
 
   if (fvDisplay && fvInput) {
-    fvDisplay.textContent = fmt(Number(fvInput.value));
+    setTextIfChanged(fvDisplay, fmt(Number(fvInput.value)));
   }
   if (rateDisplay && rateInput) {
-    rateDisplay.textContent = formatPercent(Number(rateInput.value));
+    setTextIfChanged(rateDisplay, formatPercent(Number(rateInput.value)));
   }
   if (timeDisplay && timeInput) {
     const v = Number(timeInput.value);
-    timeDisplay.textContent =
+    setTextIfChanged(
+      timeDisplay,
       periodType === 'months'
         ? `${fmt(v, { maximumFractionDigits: 0 })} mo`
-        : `${fmt(v, { maximumFractionDigits: 0 })} yrs`;
+        : `${fmt(v, { maximumFractionDigits: 0 })} yrs`
+    );
   }
 
   [fvInput, rateInput, timeInput].forEach(setSliderFill);
@@ -248,7 +263,9 @@ function updateSliderDisplays() {
 function updateTargets(targets, value) {
   if (!targets) return;
   targets.forEach((node) => {
-    node.textContent = value;
+    if (node.textContent !== value) {
+      node.textContent = value;
+    }
   });
 }
 
@@ -352,13 +369,70 @@ function calculate() {
 
 [fvInput, rateInput, timeInput].forEach((input) => {
   input?.addEventListener('input', () => {
+    hydrateOnUserIntent();
     updateSliderDisplays();
     calculate();
   });
 });
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => {
+  hydrateOnUserIntent();
+  calculate();
+});
+
+let hydrated = false;
+let idleHydrationHandle = null;
+
+function hydrateOnUserIntent() {
+  cancelIdleHydration();
+  hydrateInitialState();
+}
+
+function hydrateInitialState() {
+  if (hydrated) {
+    return;
+  }
+  hydrated = true;
+  updateSliderDisplays();
+  calculate();
+}
+
+function cancelIdleHydration() {
+  if (idleHydrationHandle === null) {
+    return;
+  }
+  if (typeof window !== 'undefined' && typeof window.cancelIdleCallback === 'function') {
+    window.cancelIdleCallback(idleHydrationHandle);
+  } else {
+    clearTimeout(idleHydrationHandle);
+  }
+  idleHydrationHandle = null;
+}
+
+function scheduleIdleHydration() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  if (typeof window.requestIdleCallback === 'function') {
+    idleHydrationHandle = window.requestIdleCallback(
+      () => {
+        idleHydrationHandle = null;
+        hydrateInitialState();
+      },
+      { timeout: 3200 }
+    );
+    return;
+  }
+  idleHydrationHandle = window.setTimeout(() => {
+    idleHydrationHandle = null;
+    hydrateInitialState();
+  }, 2800);
+}
+
+window.addEventListener('pointerdown', hydrateOnUserIntent, { once: true, passive: true });
+window.addEventListener('touchstart', hydrateOnUserIntent, { once: true, passive: true });
+window.addEventListener('keydown', hydrateOnUserIntent, { once: true });
+window.addEventListener('focusin', hydrateOnUserIntent, { once: true });
 
 /* ── Init ── */
-updateSliderDisplays();
-calculate();
+scheduleIdleHydration();

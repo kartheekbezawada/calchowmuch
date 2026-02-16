@@ -129,8 +129,9 @@ HARD: Preferred blocking stylesheets: 0
 
 HARD: Maximum blocking stylesheets: 1
 
-HARD: Approved route-bundle pilot routes must use exactly 1 blocking CSS request
-(`/assets/css/route-bundles/<route>.<hash>.css`).
+HARD: Approved route-bundle pilot routes must use inline critical CSS + deferred full bundle.
+Blocking CSS count target: 0.
+Fallback allowance: 1 tiny blocking critical stylesheet only (with justification).
 
 Approved finance route-bundle pilot routes:
 
@@ -190,14 +191,18 @@ For non-bundle routes, all non-critical CSS must use:
 <link rel="stylesheet" href="/path/to/style.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/path/to/style.css"></noscript>
 
-For approved route-bundle pilot routes, emit one blocking bundle stylesheet link and no deferred
-bundle link.
+For approved route-bundle pilot routes, emit:
+
+- inline critical CSS block (`<style data-route-critical="true">`)
+- deferred full route bundle link (`media="print"` + `onload`)
+- `<noscript>` blocking fallback for the full bundle
 
 5.5 Render-blocking detection gate (DevTools/Lighthouse)
 
 HARD: No unexpected render-blocking requests besides allowed blocking CSS
 
-HARD: For route-bundle pilot routes, render-blocking CSS count must be exactly 1.
+HARD: For route-bundle pilot routes in inline-critical mode, render-blocking CSS count must be 0
+(or 1 tiny blocking critical stylesheet when fallback mode is documented).
 
 HARD: No CSS dependency chains
 

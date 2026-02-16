@@ -1,17 +1,17 @@
 {
   "url": "http://localhost:8000/finance/present-value/",
   "route": "/finance/present-value/",
-  "generatedAt": "2026-02-16T16:00:57.668Z",
+  "generatedAt": "2026-02-16T17:37:57.122Z",
   "categories": {
-    "performance": 93,
+    "performance": 92,
     "accessibility": 96,
     "bestPractices": 79
   },
   "metrics": {
-    "lcpMs": 2762.4945,
+    "lcpMs": 3085.5701,
     "cls": 0,
-    "inpMs": 145,
-    "renderBlockingSavingsMs": 450,
+    "inpMs": 105,
+    "renderBlockingSavingsMs": 0,
     "lcpElementSelector": "div.mtg-form-panel > div.input-row > div.slider-header > span#pv-fv-display"
   },
   "security": {
