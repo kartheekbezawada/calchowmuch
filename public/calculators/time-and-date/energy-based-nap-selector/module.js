@@ -10,7 +10,9 @@ import {
 const startTimeInput = document.querySelector('#energy-nap-start-time');
 const useNowButton = document.querySelector('#energy-nap-use-now');
 const calculateButton = document.querySelector('#energy-nap-calculate');
-const goalButtons = Array.from(document.querySelectorAll('[data-button-group="energy-goal"] button'));
+const goalButtons = Array.from(
+  document.querySelectorAll('[data-button-group="energy-goal"] button')
+);
 const placeholder = document.querySelector('#energy-nap-placeholder');
 const errorMessage = document.querySelector('#energy-nap-error');
 const primaryCard = document.querySelector('#energy-nap-primary');
@@ -30,8 +32,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How are Quick, Strong, and Full goals mapped?',
-    answer:
-      'Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes.',
+    answer: 'Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes.',
   },
   {
     question: 'Why does the recommendation change at night?',
@@ -60,13 +61,11 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Does the calculator set an alarm for me?',
-    answer:
-      'No. It gives wake-up times that you can use to set an alarm manually.',
+    answer: 'No. It gives wake-up times that you can use to set an alarm manually.',
   },
   {
     question: 'Will changing inputs recalculate instantly?',
-    answer:
-      'No. After page load, results update only when you click Calculate.',
+    answer: 'No. After page load, results update only when you click Calculate.',
   },
   {
     question: 'Is this tool medical advice?',
@@ -347,7 +346,11 @@ function calculate() {
     if (!altWake) {
       return;
     }
-    addAlternativeRow(ENERGY_NAP_GOALS[goal].label, formatTimeDisplay(altWake.hours, altWake.minutes), minutes);
+    addAlternativeRow(
+      ENERGY_NAP_GOALS[goal].label,
+      formatTimeDisplay(altWake.hours, altWake.minutes),
+      minutes
+    );
   });
 
   const result = {

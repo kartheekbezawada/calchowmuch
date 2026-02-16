@@ -2,9 +2,8 @@
   <div id="loan-mtg-explanation">
     <h2>Effective Annual Rate — Results Breakdown</h2>
     <p>
-      The Effective Annual Rate (EAR) converts a stated nominal interest rate
-      into the true annual rate after compounding. It lets you compare financial
-      products on an apples-to-apples basis.
+      The Effective Annual Rate (EAR) converts a stated nominal interest rate into the true annual
+      rate after compounding. It lets you compare financial products on an apples-to-apples basis.
     </p>
 
     <section class="mtg-exp-section">
@@ -64,46 +63,44 @@
     <section class="mtg-exp-section">
       <h3>Explanation</h3>
       <p>
-        A nominal rate tells you the headline number — but it doesn't tell the full
-        story. Compounding means interest earns interest, and the more frequently it
-        compounds, the higher the true annual cost or return.
+        A nominal rate tells you the headline number — but it doesn't tell the full story.
+        Compounding means interest earns interest, and the more frequently it compounds, the higher
+        the true annual cost or return.
       </p>
 
       <ul class="ear-explanation-list">
         <li>
           <strong>Nominal Rate:</strong>
-          Your stated rate of <span data-ear="nominal-rate"></span> is the advertised
-          annual percentage. It does not account for compounding effects.
+          Your stated rate of <span data-ear="nominal-rate"></span> is the advertised annual
+          percentage. It does not account for compounding effects.
         </li>
         <li>
           <strong>Compounding Frequency:</strong>
-          With <span data-ear="frequency"></span> compounding, interest is calculated
-          and reinvested <span data-ear="periods"></span> times per year.
+          With <span data-ear="frequency"></span> compounding, interest is calculated and reinvested
+          <span data-ear="periods"></span> times per year.
         </li>
         <li>
           <strong>Rate Per Period:</strong>
-          The nominal rate is divided into <span data-ear="periods"></span> equal
-          portions, giving <span data-ear="periodic-rate"></span> per period.
+          The nominal rate is divided into <span data-ear="periods"></span> equal portions, giving
+          <span data-ear="periodic-rate"></span> per period.
         </li>
         <li>
           <strong>Growth Factor:</strong>
-          Compounding <span data-ear="periods"></span> times produces a growth factor
-          of <span data-ear="growth-factor"></span>. This is how much 1 unit of
-          currency grows in one year.
+          Compounding <span data-ear="periods"></span> times produces a growth factor of
+          <span data-ear="growth-factor"></span>. This is how much 1 unit of currency grows in one
+          year.
         </li>
         <li>
           <strong>EAR Result:</strong>
           Your effective annual rate is <span data-ear="ear-rate"></span>, which is
-          <span data-ear="difference"></span> higher than the nominal rate. This is
-          the true cost or return over one year.
+          <span data-ear="difference"></span> higher than the nominal rate. This is the true cost or
+          return over one year.
         </li>
       </ul>
 
       <h4>How the Formula Works</h4>
       <p>The EAR formula is:</p>
-      <p class="ear-formula-block">
-        EAR = (1 + r/n)<sup>n</sup> &minus; 1
-      </p>
+      <p class="ear-formula-block">EAR = (1 + r/n)<sup>n</sup> &minus; 1</p>
       <p>Where r = nominal annual rate (as a decimal), n = compounding periods per year.</p>
       <p>Substituting your values step by step:</p>
       <ol class="ear-formula-steps">
@@ -120,19 +117,18 @@
         </li>
         <li>
           <strong>Add 1:</strong>
-          1 + <span data-ear="periodic-rate-decimal"></span>
-          = <span data-ear="one-plus-rate"></span>.
+          1 + <span data-ear="periodic-rate-decimal"></span> =
+          <span data-ear="one-plus-rate"></span>.
         </li>
         <li>
           <strong>Raise to the power of n:</strong>
-          <span data-ear="one-plus-rate"></span><sup><span data-ear="periods"></span></sup>
-          = <span data-ear="growth-factor"></span>.
+          <span data-ear="one-plus-rate"></span><sup><span data-ear="periods"></span></sup> =
+          <span data-ear="growth-factor"></span>.
         </li>
         <li>
           <strong>Subtract 1:</strong>
-          <span data-ear="growth-factor"></span> &minus; 1
-          = <span data-ear="ear-decimal"></span>
-          = <strong><span data-ear="ear-rate"></span></strong>.
+          <span data-ear="growth-factor"></span> &minus; 1 = <span data-ear="ear-decimal"></span> =
+          <strong><span data-ear="ear-rate"></span></strong>.
         </li>
       </ol>
     </section>
@@ -143,71 +139,91 @@
         <div class="bor-faq-card">
           <span class="bor-faq-number">01</span>
           <h4>What is the Effective Annual Rate?</h4>
-          <p>EAR is the true annual interest rate after accounting for compounding. It shows
-            the real cost of borrowing or real return on savings.</p>
+          <p>
+            EAR is the true annual interest rate after accounting for compounding. It shows the real
+            cost of borrowing or real return on savings.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">02</span>
           <h4>How is EAR different from a nominal rate?</h4>
-          <p>A nominal rate is the stated headline percentage. EAR includes the effect of
-            compounding, making it higher (or equal, if compounded annually).</p>
+          <p>
+            A nominal rate is the stated headline percentage. EAR includes the effect of
+            compounding, making it higher (or equal, if compounded annually).
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">03</span>
           <h4>What is the EAR formula?</h4>
-          <p>EAR = (1 + r/n)^n − 1, where r is the nominal rate as a decimal and n is the
-            number of compounding periods per year.</p>
+          <p>
+            EAR = (1 + r/n)^n − 1, where r is the nominal rate as a decimal and n is the number of
+            compounding periods per year.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">04</span>
           <h4>Why does compounding frequency matter?</h4>
-          <p>More frequent compounding means interest is reinvested sooner, producing a higher
-            effective rate from the same nominal rate.</p>
+          <p>
+            More frequent compounding means interest is reinvested sooner, producing a higher
+            effective rate from the same nominal rate.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">05</span>
           <h4>Is EAR the same as APR?</h4>
-          <p>No. APR (Annual Percentage Rate) typically does not include compounding effects,
-            while EAR always does. EAR gives a more accurate picture.</p>
+          <p>
+            No. APR (Annual Percentage Rate) typically does not include compounding effects, while
+            EAR always does. EAR gives a more accurate picture.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">06</span>
           <h4>Can I compare loans using EAR?</h4>
-          <p>Yes. Converting all loan rates to EAR lets you compare them on equal footing,
-            regardless of how each lender states their rate.</p>
+          <p>
+            Yes. Converting all loan rates to EAR lets you compare them on equal footing, regardless
+            of how each lender states their rate.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">07</span>
           <h4>When does EAR equal the nominal rate?</h4>
-          <p>When interest compounds only once per year (annually). With annual compounding,
-            there's no additional compounding effect.</p>
+          <p>
+            When interest compounds only once per year (annually). With annual compounding, there's
+            no additional compounding effect.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">08</span>
           <h4>How does quarterly vs annual compounding compare?</h4>
-          <p>Quarterly compounding produces a slightly higher EAR than annual because interest
-            is reinvested 4 times instead of once.</p>
+          <p>
+            Quarterly compounding produces a slightly higher EAR than annual because interest is
+            reinvested 4 times instead of once.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">09</span>
           <h4>Is EAR useful for savings accounts?</h4>
-          <p>Absolutely. EAR tells you the true annual return on your savings, helping you
-            pick the best account regardless of stated rates.</p>
+          <p>
+            Absolutely. EAR tells you the true annual return on your savings, helping you pick the
+            best account regardless of stated rates.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">10</span>
           <h4>What if the nominal rate is 0%?</h4>
-          <p>If the nominal rate is 0%, the EAR is also 0% — no interest means no
-            compounding effect, regardless of frequency.</p>
+          <p>
+            If the nominal rate is 0%, the EAR is also 0% — no interest means no compounding effect,
+            regardless of frequency.
+          </p>
         </div>
       </div>
     </section>

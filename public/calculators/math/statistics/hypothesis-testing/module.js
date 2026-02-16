@@ -17,7 +17,9 @@ export function initHypothesisCalculator() {
   const alternativeRow = document.querySelector('#hyp-alternative-row');
 
   const testTypeButtons = document.querySelectorAll('[data-button-group="hyp-test-type"] button');
-  const alternativeButtons = document.querySelectorAll('[data-button-group="hyp-alternative"] button');
+  const alternativeButtons = document.querySelectorAll(
+    '[data-button-group="hyp-alternative"] button'
+  );
   const alphaButtons = document.querySelectorAll('[data-button-group="hyp-alpha"] button');
 
   let selectedTestType = 'one-sample-t';
@@ -127,7 +129,8 @@ export function initHypothesisCalculator() {
           observedParsed.data.length < 2 ||
           observedParsed.data.length !== expectedParsed.data.length
         ) {
-          resultDiv.textContent = 'Observed and expected must have the same number of values (at least 2).';
+          resultDiv.textContent =
+            'Observed and expected must have the same number of values (at least 2).';
           return;
         }
 
@@ -142,8 +145,7 @@ export function initHypothesisCalculator() {
       return;
     }
 
-    const significant =
-      result.pValue !== undefined && result.pValue < selectedAlpha;
+    const significant = result.pValue !== undefined && result.pValue < selectedAlpha;
     const statName = selectedTestType === 'chi-square' ? 'Chi-Square' : 't';
     const statValue = selectedTestType === 'chi-square' ? result.chiSquare : result.tStatistic;
 

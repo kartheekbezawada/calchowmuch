@@ -126,11 +126,8 @@ function calculate() {
   const resultStr = result.toString();
   const scientific = toScientificNotation(result);
 
-  const modeLabel = mode === 'permutation'
-    ? 'Permutation'
-    : mode === 'combination'
-      ? 'Combination'
-      : 'Factorial';
+  const modeLabel =
+    mode === 'permutation' ? 'Permutation' : mode === 'combination' ? 'Combination' : 'Factorial';
   resultDiv.innerHTML = `<strong>${modeLabel} ${label}:</strong> ${resultStr}${scientific ? ` (${scientific})` : ''}`;
 
   detailDiv.innerHTML = `
@@ -138,11 +135,13 @@ function calculate() {
     <p><strong>n:</strong> ${n} (total items)</p>
     ${mode === 'factorial' ? '' : `<p><strong>r:</strong> ${r} (items to ${mode === 'permutation' ? 'arrange' : 'choose'})</p>`}
     ${detailLines}
-    <p><strong>Example use:</strong> ${mode === 'permutation'
-    ? 'arranging rankings'
-    : mode === 'combination'
-      ? 'selecting a committee'
-      : 'counting ordered arrangements of all items'}</p>
+    <p><strong>Example use:</strong> ${
+      mode === 'permutation'
+        ? 'arranging rankings'
+        : mode === 'combination'
+          ? 'selecting a committee'
+          : 'counting ordered arrangements of all items'
+    }</p>
   `;
 }
 

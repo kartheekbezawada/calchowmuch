@@ -264,7 +264,10 @@ function setInputSpans(values) {
   setSpan('fee-amount', formatNumber(feeAmount));
   setSpan('starting-balance', formatNumber(values.balance + feeAmount));
   setSpan('promo-apr', formatPercent(values.promoApr, { maximumFractionDigits: 1 }));
-  setSpan('promo-months', `${formatNumber(values.promoMonths, { maximumFractionDigits: 0 })} months`);
+  setSpan(
+    'promo-months',
+    `${formatNumber(values.promoMonths, { maximumFractionDigits: 0 })} months`
+  );
   setSpan('post-apr', formatPercent(values.postApr, { maximumFractionDigits: 1 }));
   setSpan('payment', formatNumber(values.monthlyPayment));
 }
@@ -302,7 +305,8 @@ function showError(message) {
     resultsList.innerHTML = '';
   }
   if (summaryNote) {
-    summaryNote.textContent = 'Adjust inputs and recalculate to see a valid balance-transfer scenario.';
+    summaryNote.textContent =
+      'Adjust inputs and recalculate to see a valid balance-transfer scenario.';
   }
 }
 
@@ -326,7 +330,8 @@ function updateTable(yearly) {
   }
 
   if (!Array.isArray(yearly) || yearly.length === 0) {
-    tableBody.innerHTML = '<tr><td colspan="4">Run Calculate to populate yearly payoff rows.</td></tr>';
+    tableBody.innerHTML =
+      '<tr><td colspan="4">Run Calculate to populate yearly payoff rows.</td></tr>';
     return;
   }
 

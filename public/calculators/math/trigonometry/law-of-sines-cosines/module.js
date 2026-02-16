@@ -26,7 +26,8 @@ const lawTrigMetadata = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: 'Use the Law of Sines and Cosines',
-    description: 'Provide known sides or angles and apply the appropriate trig law to find the rest.',
+    description:
+      'Provide known sides or angles and apply the appropriate trig law to find the rest.',
     step: [
       {
         '@type': 'HowToStep',

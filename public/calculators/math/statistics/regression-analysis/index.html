@@ -1,16 +1,22 @@
 <div id="calc-regression">
   <div class="calculator-ui">
-    <p class="helper">Perform regression analysis on your data with R-squared and residual analysis.</p>
+    <p class="helper">
+      Perform regression analysis on your data with R-squared and residual analysis.
+    </p>
 
     <div class="input-stack">
       <div class="input-row">
         <label for="reg-x-data">X Values (Independent Variable)</label>
-        <textarea id="reg-x-data" rows="2" placeholder="Enter X values separated by commas">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea>
+        <textarea id="reg-x-data" rows="2" placeholder="Enter X values separated by commas">
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
+        >
       </div>
 
       <div class="input-row">
         <label for="reg-y-data">Y Values (Dependent Variable)</label>
-        <textarea id="reg-y-data" rows="2" placeholder="Enter Y values separated by commas">2.1, 4.2, 5.8, 8.1, 10.3, 11.9, 14.2, 16.1, 17.8, 20.2</textarea>
+        <textarea id="reg-y-data" rows="2" placeholder="Enter Y values separated by commas">
+2.1, 4.2, 5.8, 8.1, 10.3, 11.9, 14.2, 16.1, 17.8, 20.2</textarea
+        >
       </div>
 
       <div class="input-row">
@@ -23,7 +29,7 @@
         </div>
       </div>
 
-      <div class="input-row" id="reg-degree-row" style="display: none;">
+      <div class="input-row" id="reg-degree-row" style="display: none">
         <label for="reg-degree">Polynomial Degree</label>
         <input id="reg-degree" type="number" value="2" min="2" max="5" step="1" />
       </div>

@@ -10,7 +10,7 @@ import {
   variance,
   standardDeviation,
   parseDataset,
-} from '../../public/assets/js/core/stats.js';
+} from '../../../public/assets/js/core/stats.js';
 
 /**
  * STATS-TEST-U-1 - Comprehensive Statistics Unit Tests

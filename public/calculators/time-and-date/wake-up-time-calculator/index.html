@@ -10,10 +10,20 @@
         aria-labelledby="wake-mode-label"
         data-button-group="wake-mode"
       >
-        <button class="calculator-button secondary is-active" type="button" data-value="sleep" aria-pressed="true">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="sleep"
+          aria-pressed="true"
+        >
           I plan to fall asleep at...
         </button>
-        <button class="calculator-button secondary" type="button" data-value="bed" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="bed"
+          aria-pressed="false"
+        >
           I plan to go to bed at...
         </button>
       </div>
@@ -40,7 +50,9 @@
       <input id="wake-latency" type="number" min="15" max="15" step="1" inputmode="numeric" />
     </div>
 
-    <button class="calculator-button full-width" type="button" id="wake-calculate">Calculate</button>
+    <button class="calculator-button full-width" type="button" id="wake-calculate">
+      Calculate
+    </button>
 
     <div class="result" id="wake-results" aria-live="polite">
       <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>

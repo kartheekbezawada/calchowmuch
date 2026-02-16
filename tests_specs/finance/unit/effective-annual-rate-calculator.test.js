@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateEffectiveAnnualRate } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateEffectiveAnnualRate } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Effective Annual Rate Calculator - EAR-TEST-U-1: preset frequency', () => {
   it('should calculate EAR for monthly compounding', () => {

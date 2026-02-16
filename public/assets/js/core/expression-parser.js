@@ -11,10 +11,10 @@ export class ExpressionParser {
       tan: Math.tan,
       sqrt: Math.sqrt,
       ln: Math.log,
-      log: value => Math.log10(value),
+      log: (value) => Math.log10(value),
       exp: Math.exp,
       abs: Math.abs,
-      neg: value => -value
+      neg: (value) => -value,
     };
 
     this.precedence = {
@@ -22,11 +22,11 @@ export class ExpressionParser {
       '*': 3,
       '/': 3,
       '+': 2,
-      '-': 2
+      '-': 2,
     };
 
     this.rightAssociative = {
-      '^': true
+      '^': true,
     };
   }
 
@@ -92,7 +92,7 @@ export class ExpressionParser {
     const output = [];
     const operators = [];
 
-    const isFunction = id => Object.keys(this.functionsMap).includes(id);
+    const isFunction = (id) => Object.keys(this.functionsMap).includes(id);
 
     let previousToken = null;
 
@@ -112,9 +112,9 @@ export class ExpressionParser {
         const isUnaryMinus =
           token.value === '-' &&
           (previousToken === null ||
-            (previousToken.type === 'operator' ||
-              (previousToken.type === 'parenthesis' && previousToken.value === '(') ||
-              previousToken.type === 'function'));
+            previousToken.type === 'operator' ||
+            (previousToken.type === 'parenthesis' && previousToken.value === '(') ||
+            previousToken.type === 'function');
 
         if (isUnaryMinus) {
           operators.push({ type: 'function', value: 'neg' });

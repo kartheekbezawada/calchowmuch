@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculatePercentageOfNumber } from '../../public/assets/js/core/math.js';
+import { calculatePercentageOfNumber } from '../../../public/assets/js/core/math.js';
 
 describe('Find Percentage of a Number - PON-TEST-U-1: core formula', () => {
   it('calculates 20% of 50 as 10', () => {

@@ -5,7 +5,7 @@ import {
   SLEEP_CYCLES,
   CYCLE_MINUTES,
   FALL_ASLEEP_MINUTES,
-} from '../../public/assets/js/core/sleep-utils.js';
+} from '../../../public/assets/js/core/sleep-utils.js';
 
 describe('Wake-Up Time Calculator - WAKEUP-TEST-U-1: Calculation Logic', () => {
   it('should calculate wake times for fall-asleep mode (11:30 PM)', () => {

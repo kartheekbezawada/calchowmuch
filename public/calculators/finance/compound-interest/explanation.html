@@ -2,9 +2,9 @@
   <div id="loan-mtg-explanation">
     <h2>Compound Interest — Results Breakdown</h2>
     <p>
-      Compound interest calculates interest on both the initial principal and on
-      previously accumulated interest — causing your money to grow exponentially.
-      The results below show exactly how your inputs translate into the ending balance.
+      Compound interest calculates interest on both the initial principal and on previously
+      accumulated interest — causing your money to grow exponentially. The results below show
+      exactly how your inputs translate into the ending balance.
     </p>
 
     <section class="mtg-exp-section">
@@ -79,16 +79,15 @@
     <section class="mtg-exp-section">
       <h3>Explanation</h3>
       <p>
-        Compound interest is the most powerful force in personal finance — interest
-        earns interest, creating exponential growth. Here's how your inputs drive
-        the result.
+        Compound interest is the most powerful force in personal finance — interest earns interest,
+        creating exponential growth. Here's how your inputs drive the result.
       </p>
 
       <ul class="ci-explanation-list">
         <li>
           <strong>Principal (P):</strong>
-          You start with <span data-ci="principal"></span>. This is the seed amount
-          that begins earning compound interest immediately.
+          You start with <span data-ci="principal"></span>. This is the seed amount that begins
+          earning compound interest immediately.
         </li>
         <li>
           <strong>Interest Rate:</strong>
@@ -99,20 +98,20 @@
         <li>
           <strong>Time Period:</strong>
           Interest compounds over <span data-ci="time"></span>, resulting in
-          <span data-ci="total-periods"></span> total compounding periods. Longer
-          durations dramatically amplify growth.
+          <span data-ci="total-periods"></span> total compounding periods. Longer durations
+          dramatically amplify growth.
         </li>
         <li>
           <strong>Compounding Frequency:</strong>
-          With <span data-ci="frequency"></span> compounding, interest is calculated
-          and reinvested <span data-ci="periods-per-year"></span> times per year.
-          More frequent compounding yields slightly higher returns.
+          With <span data-ci="frequency"></span> compounding, interest is calculated and reinvested
+          <span data-ci="periods-per-year"></span> times per year. More frequent compounding yields
+          slightly higher returns.
         </li>
         <li>
           <strong>Contributions:</strong>
           Adding <span data-ci="contribution-per-period"></span> each period totals
-          <span data-ci="total-contributions"></span> in contributions. Each
-          contribution also earns compound interest for the remaining term.
+          <span data-ci="total-contributions"></span> in contributions. Each contribution also earns
+          compound interest for the remaining term.
         </li>
         <li>
           <strong>Ending Balance:</strong>
@@ -125,28 +124,29 @@
 
       <h4>How the Formula Works</h4>
       <p>The compound interest formula (without contributions) is:</p>
-      <p class="ci-formula-block">
-        A = P &times; (1 + r/n)<sup>n&times;t</sup>
+      <p class="ci-formula-block">A = P &times; (1 + r/n)<sup>n&times;t</sup></p>
+      <p>
+        Where P = principal, r = annual rate, n = compounding periods per year, t = time in years.
       </p>
-      <p>Where P = principal, r = annual rate, n = compounding periods per year, t = time in years.</p>
       <p>Substituting your values step by step:</p>
       <ol class="ci-formula-steps">
         <li>
           <strong>Per-period rate (r/n):</strong>
           <span data-ci="rate"></span> &divide;
           <span data-ci="periods-per-year"></span>
-          = <span data-ci="periodic-rate"></span>% per period
-          (as a decimal: <span data-ci="periodic-rate-decimal"></span>).
+          = <span data-ci="periodic-rate"></span>% per period (as a decimal:
+          <span data-ci="periodic-rate-decimal"></span>).
         </li>
         <li>
           <strong>Total periods (n×t):</strong>
-          <span data-ci="periods-per-year"></span> &times;
-          <span data-ci="years-value"></span> years
+          <span data-ci="periods-per-year"></span> &times; <span data-ci="years-value"></span> years
           = <span data-ci="total-periods"></span> total periods.
         </li>
         <li>
           <strong>Growth factor:</strong>
-          (1 + <span data-ci="periodic-rate-decimal"></span>)<sup><span data-ci="total-periods"></span></sup>
+          (1 + <span data-ci="periodic-rate-decimal"></span>)<sup
+            ><span data-ci="total-periods"></span
+          ></sup>
           = <span data-ci="growth-factor"></span>.
         </li>
         <li>
@@ -157,9 +157,8 @@
         </li>
         <li>
           <strong>Add contributions (if any):</strong>
-          <span data-ci="principal-growth"></span> +
-          contribution growth
-          = <strong><span data-ci="ending-balance"></span></strong>.
+          <span data-ci="principal-growth"></span> + contribution growth =
+          <strong><span data-ci="ending-balance"></span></strong>.
         </li>
       </ol>
     </section>
@@ -170,71 +169,91 @@
         <div class="bor-faq-card">
           <span class="bor-faq-number">01</span>
           <h4>What is compound interest?</h4>
-          <p>Compound interest is interest calculated on both the initial principal and the accumulated
-            interest from prior periods, creating exponential growth.</p>
+          <p>
+            Compound interest is interest calculated on both the initial principal and the
+            accumulated interest from prior periods, creating exponential growth.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">02</span>
           <h4>What is the compound interest formula?</h4>
-          <p>A = P × (1 + r/n)^(n×t), where P is principal, r is annual rate, n is compounding periods
-            per year, and t is time in years.</p>
+          <p>
+            A = P × (1 + r/n)^(n×t), where P is principal, r is annual rate, n is compounding
+            periods per year, and t is time in years.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">03</span>
           <h4>What is the difference between simple and compound interest?</h4>
-          <p>Simple interest grows linearly on principal only. Compound interest grows exponentially because
-            it earns interest on both principal and accumulated interest.</p>
+          <p>
+            Simple interest grows linearly on principal only. Compound interest grows exponentially
+            because it earns interest on both principal and accumulated interest.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">04</span>
           <h4>Does compounding frequency matter?</h4>
-          <p>Yes. More frequent compounding (e.g. quarterly vs annual) produces a slightly higher ending
-            balance at the same nominal rate because interest is reinvested sooner.</p>
+          <p>
+            Yes. More frequent compounding (e.g. quarterly vs annual) produces a slightly higher
+            ending balance at the same nominal rate because interest is reinvested sooner.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">05</span>
           <h4>How do contributions affect the result?</h4>
-          <p>Regular contributions increase the base that earns interest. Each contribution compounds for
-            the remaining term, significantly boosting the final balance.</p>
+          <p>
+            Regular contributions increase the base that earns interest. Each contribution compounds
+            for the remaining term, significantly boosting the final balance.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">06</span>
           <h4>Can I use this for savings planning?</h4>
-          <p>Yes. Enter your initial deposit, expected rate, time horizon, and regular savings amount to
-            estimate your future balance.</p>
+          <p>
+            Yes. Enter your initial deposit, expected rate, time horizon, and regular savings amount
+            to estimate your future balance.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">07</span>
           <h4>What happens if the rate is 0%?</h4>
-          <p>The ending balance equals the principal plus total contributions — no interest is earned and
-            growth is purely from the money you put in.</p>
+          <p>
+            The ending balance equals the principal plus total contributions — no interest is earned
+            and growth is purely from the money you put in.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">08</span>
           <h4>Why is compound interest called the eighth wonder?</h4>
-          <p>Because small amounts grow into large sums over long periods. The exponential nature means
-            your money accelerates its growth the longer it compounds.</p>
+          <p>
+            Because small amounts grow into large sums over long periods. The exponential nature
+            means your money accelerates its growth the longer it compounds.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">09</span>
           <h4>Is this useful for loan calculations?</h4>
-          <p>It shows how debt grows under compounding. For loans, the ending balance represents the total
-            amount owed if no payments are made.</p>
+          <p>
+            It shows how debt grows under compounding. For loans, the ending balance represents the
+            total amount owed if no payments are made.
+          </p>
         </div>
 
         <div class="bor-faq-card">
           <span class="bor-faq-number">10</span>
           <h4>What is the Rule of 72?</h4>
-          <p>A quick shortcut: divide 72 by the annual interest rate to estimate how many years it takes
-            for your money to double with compound interest.</p>
+          <p>
+            A quick shortcut: divide 72 by the annual interest rate to estimate how many years it
+            takes for your money to double with compound interest.
+          </p>
         </div>
       </div>
     </section>

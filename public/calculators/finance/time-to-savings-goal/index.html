@@ -1,133 +1,175 @@
 <div id="calc-time-to-savings-goal">
-    <div id="calc-home-loan">
-        <div class="calculator-ui home-loan-ui">
-            <section class="mtg-hero" aria-label="Time to savings goal calculator">
-                <div class="mtg-form-panel">
-                    <p class="helper">
-                        Estimate how long it will take to reach a savings target using regular contributions and
-                        optional interest.
-                    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Time to savings goal calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Estimate how long it will take to reach a savings target using regular contributions and
+            optional interest.
+          </p>
 
-                    <!-- Savings Goal Amount -->
-                    <div class="input-row slider-row">
-                        <div class="slider-header">
-                            <label for="tsg-goal">Savings Goal Amount</label>
-                            <span class="slider-value" id="tsg-goal-display">25,000</span>
-                        </div>
-                        <input id="tsg-goal" type="range" value="25000" min="1000" max="1000000" step="500" />
-                    </div>
+          <!-- Savings Goal Amount -->
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-goal">Savings Goal Amount</label>
+              <span class="slider-value" id="tsg-goal-display">25,000</span>
+            </div>
+            <input id="tsg-goal" type="range" value="25000" min="1000" max="1000000" step="500" />
+          </div>
 
-                    <!-- Current Savings -->
-                    <div class="input-row slider-row">
-                        <div class="slider-header">
-                            <label for="tsg-current">Current Savings</label>
-                            <span class="slider-value" id="tsg-current-display">5,000</span>
-                        </div>
-                        <input id="tsg-current" type="range" value="5000" min="0" max="1000000" step="500" />
-                    </div>
+          <!-- Current Savings -->
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-current">Current Savings</label>
+              <span class="slider-value" id="tsg-current-display">5,000</span>
+            </div>
+            <input id="tsg-current" type="range" value="5000" min="0" max="1000000" step="500" />
+          </div>
 
-                    <!-- Monthly Contribution -->
-                    <div class="input-row slider-row">
-                        <div class="slider-header">
-                            <label for="tsg-contribution">Monthly Contribution</label>
-                            <span class="slider-value" id="tsg-contribution-display">500</span>
-                        </div>
-                        <input id="tsg-contribution" type="range" value="500" min="10" max="20000" step="10" />
-                    </div>
+          <!-- Monthly Contribution -->
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-contribution">Monthly Contribution</label>
+              <span class="slider-value" id="tsg-contribution-display">500</span>
+            </div>
+            <input id="tsg-contribution" type="range" value="500" min="10" max="20000" step="10" />
+          </div>
 
-                    <!-- Annual Interest Rate -->
-                    <div class="input-row slider-row">
-                        <div class="slider-header">
-                            <label for="tsg-rate">Annual Interest Rate (%)</label>
-                            <span class="slider-value" id="tsg-rate-display">3%</span>
-                        </div>
-                        <input id="tsg-rate" type="range" value="3" min="0" max="20" step="0.1" />
-                    </div>
+          <!-- Annual Interest Rate -->
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-rate">Annual Interest Rate (%)</label>
+              <span class="slider-value" id="tsg-rate-display">3%</span>
+            </div>
+            <input id="tsg-rate" type="range" value="3" min="0" max="20" step="0.1" />
+          </div>
 
-                    <!-- Compounding Frequency -->
-                    <div class="pv-toggle-row">
-                        <div class="pv-toggle-group">
-                            <span class="pv-toggle-label">Compounding Frequency</span>
-                            <div class="button-group" role="group" aria-label="Compounding frequency"
-                                data-button-group="tsg-compounding">
-                                <button class="calculator-button secondary" type="button" data-value="monthly"
-                                    aria-pressed="false">Monthly</button>
-                                <button class="calculator-button secondary" type="button" data-value="quarterly"
-                                    aria-pressed="false">Quarterly</button>
-                                <button class="calculator-button secondary is-active" type="button" data-value="annual"
-                                    aria-pressed="true">Annually</button>
-                            </div>
-                        </div>
+          <!-- Compounding Frequency -->
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding Frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="tsg-compounding"
+              >
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annually
+                </button>
+              </div>
+            </div>
 
-                        <!-- Contribution Timing -->
-                        <div class="pv-toggle-group">
-                            <span class="pv-toggle-label">Contribution Timing</span>
-                            <div class="button-group" role="group" aria-label="Contribution timing"
-                                data-button-group="tsg-timing">
-                                <button class="calculator-button secondary is-active" type="button" data-value="end"
-                                    aria-pressed="true">End of Month</button>
-                                <button class="calculator-button secondary" type="button" data-value="beginning"
-                                    aria-pressed="false">Beginning</button>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Contribution Timing -->
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Contribution Timing</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Contribution timing"
+                data-button-group="tsg-timing"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="end"
+                  aria-pressed="true"
+                >
+                  End of Month
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="beginning"
+                  aria-pressed="false"
+                >
+                  Beginning
+                </button>
+              </div>
+            </div>
+          </div>
 
-                    <div class="input-row action-row mtg-action-row">
-                        <button class="calculator-button full-width" type="button" id="tsg-calc">
-                            Calculate Time to Goal
-                        </button>
-                    </div>
-                </div>
-
-                <aside class="mtg-preview-panel" aria-label="Time to goal result snapshot">
-                    <div class="mtg-preview-main">
-                        <p class="mtg-preview-label">Estimated Time to Reach Goal</p>
-                        <div class="result mtg-result-card" id="tsg-result" aria-live="polite"></div>
-                        <div class="result-detail mtg-summary-card" id="tsg-result-detail" aria-live="polite"></div>
-                    </div>
-
-                    <div class="mtg-snapshot-list">
-                        <div class="mtg-snapshot-row">
-                            <span>Savings Goal</span>
-                            <strong data-tsg="snap-goal"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Current Savings</span>
-                            <strong data-tsg="snap-current"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Monthly Contribution</span>
-                            <strong data-tsg="snap-contribution"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Interest Rate</span>
-                            <strong data-tsg="snap-rate"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Compounding</span>
-                            <strong data-tsg="snap-compounding"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Timing</span>
-                            <strong data-tsg="snap-timing"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Total Contributions</span>
-                            <strong data-tsg="snap-contributions"></strong>
-                        </div>
-                        <div class="mtg-snapshot-row">
-                            <span>Total Interest Earned</span>
-                            <strong data-tsg="snap-interest"></strong>
-                        </div>
-                    </div>
-                </aside>
-            </section>
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="tsg-calc">
+              Calculate Time to Goal
+            </button>
+          </div>
         </div>
+
+        <aside class="mtg-preview-panel" aria-label="Time to goal result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Time to Reach Goal</p>
+            <div class="result mtg-result-card" id="tsg-result" aria-live="polite"></div>
+            <div
+              class="result-detail mtg-summary-card"
+              id="tsg-result-detail"
+              aria-live="polite"
+            ></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Savings Goal</span>
+              <strong data-tsg="snap-goal"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Current Savings</span>
+              <strong data-tsg="snap-current"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Monthly Contribution</span>
+              <strong data-tsg="snap-contribution"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-tsg="snap-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-tsg="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Timing</span>
+              <strong data-tsg="snap-timing"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Contributions</span>
+              <strong data-tsg="snap-contributions"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Interest Earned</span>
+              <strong data-tsg="snap-interest"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
+  </div>
 </div>
 
 <style>
-    @import url('/calculators/finance/time-to-savings-goal/calculator.css');
+  @import url('/calculators/finance/time-to-savings-goal/calculator.css');
 </style>
 
 <script type="module" src="/calculators/finance/time-to-savings-goal/module.js"></script>

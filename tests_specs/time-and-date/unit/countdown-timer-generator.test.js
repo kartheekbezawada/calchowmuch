@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateCountdown } from '../../public/assets/js/core/date-diff-utils.js';
+import { calculateCountdown } from '../../../public/assets/js/core/date-diff-utils.js';
 
 describe('Countdown Timer Generator', () => {
   it('should calculate countdown breakdown for a future target', () => {

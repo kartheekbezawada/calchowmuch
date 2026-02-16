@@ -108,7 +108,8 @@
   margin-bottom: 8px;
 }
 
-#cp-explanation-pane ul, #cp-explanation-pane ol {
+#cp-explanation-pane ul,
+#cp-explanation-pane ol {
   padding-left: 25px;
 }
 

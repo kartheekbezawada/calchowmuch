@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateMargin } from '../../public/assets/js/core/math.js';
+import { calculateMargin } from '../../../public/assets/js/core/math.js';
 
 describe('Margin Calculator - MARG-TEST-U-1: cost + price mode', () => {
   it('calculates gross margin and profit from cost and price', () => {

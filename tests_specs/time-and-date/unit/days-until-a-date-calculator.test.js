@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateDaysUntil } from '../../public/assets/js/core/date-diff-utils.js';
+import { calculateDaysUntil } from '../../../public/assets/js/core/date-diff-utils.js';
 
 describe('Days Until a Date Calculator', () => {
   it('should calculate days until a future date', () => {

@@ -90,8 +90,7 @@ export function getEnergyNapRecommendation(goal, startTime, isExplicitGoal = fal
       effectiveGoal: selectedGoal,
       recommendedMinutes: ENERGY_NAP_GOALS[selectedGoal].minutes,
       timeBucket: bucket,
-      warning:
-        'A full 90-minute nap late at night may delay bedtime and reduce sleep quality.',
+      warning: 'A full 90-minute nap late at night may delay bedtime and reduce sleep quality.',
       overridden: false,
     };
   }

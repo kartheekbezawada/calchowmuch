@@ -4,8 +4,8 @@
       <section class="mtg-hero" aria-label="Compound interest calculator">
         <div class="mtg-form-panel">
           <p class="helper">
-            Estimate your ending balance, total interest earned, and growth over time
-            using compound interest. Adjust the sliders to see results update instantly.
+            Estimate your ending balance, total interest earned, and growth over time using compound
+            interest. Adjust the sliders to see results update instantly.
           </p>
 
           <div class="input-row slider-row">
@@ -13,7 +13,14 @@
               <label for="ci-principal">Initial Principal (P)</label>
               <span class="slider-value" id="ci-principal-display">10,000</span>
             </div>
-            <input id="ci-principal" type="range" value="10000" min="100" max="1000000" step="100" />
+            <input
+              id="ci-principal"
+              type="range"
+              value="10000"
+              min="100"
+              max="1000000"
+              step="100"
+            />
           </div>
 
           <div class="input-grid-2-col">
@@ -45,14 +52,36 @@
           <div class="pv-toggle-row">
             <div class="pv-toggle-group">
               <span class="pv-toggle-label">Compounding</span>
-              <div class="button-group" role="group" aria-label="Compounding frequency"
-                data-button-group="ci-compounding">
-                <button class="calculator-button secondary is-active" type="button" data-value="annual"
-                  aria-pressed="true">Annual</button>
-                <button class="calculator-button secondary" type="button" data-value="semiannual"
-                  aria-pressed="false">Semi</button>
-                <button class="calculator-button secondary" type="button" data-value="quarterly"
-                  aria-pressed="false">Qtr</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="ci-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semi
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Qtr
+                </button>
               </div>
             </div>
           </div>
@@ -68,7 +97,11 @@
           <div class="mtg-preview-main">
             <p class="mtg-preview-label">Estimated Ending Balance</p>
             <div class="result mtg-result-card" id="ci-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="ci-result-detail" aria-live="polite"></div>
+            <div
+              class="result-detail mtg-summary-card"
+              id="ci-result-detail"
+              aria-live="polite"
+            ></div>
           </div>
 
           <div class="mtg-snapshot-list">

@@ -246,7 +246,7 @@ function buildGuardedStructuredData(metadata) {
     return baseStructuredData;
   }
 
-  const pathname = typeof window !== 'undefined' ? window.location?.pathname ?? '' : '';
+  const pathname = typeof window !== 'undefined' ? (window.location?.pathname ?? '') : '';
   const isFaqPath = pathname === '/faq' || pathname === '/faq/';
   if (schemaFlags.globalFAQ && !isFaqPath) {
     throw new Error(`Invalid schema flags: globalFAQ is true on non-FAQ path (${pathname}).`);
@@ -261,7 +261,10 @@ function buildGuardedStructuredData(metadata) {
       ? globalFAQSchema
       : null;
 
-  const merged = mergeStructuredDataWithFaq({ base: baseStructuredData, faqSchema: selectedFaqSchema });
+  const merged = mergeStructuredDataWithFaq({
+    base: baseStructuredData,
+    faqSchema: selectedFaqSchema,
+  });
   const faqCount = countFaqPages(merged);
   if (faqCount > 1) {
     throw new Error(`Invalid structured data: found ${faqCount} FAQPage schemas on one URL.`);

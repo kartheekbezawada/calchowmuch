@@ -136,7 +136,9 @@
   letter-spacing: 0.01em;
   color: #5b6573;
   line-height: 1.3;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .calculator-ui .mode-switch-label.is-active {
@@ -211,7 +213,9 @@
   font-weight: 700;
   letter-spacing: 0.01em;
   color: #5b6573;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 #calc-percentage-composition .composition-mode-label.is-active {

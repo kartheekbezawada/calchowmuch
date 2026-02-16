@@ -3,7 +3,7 @@ import {
   getTimeBucket,
   getEnergyNapRecommendation,
   ENERGY_NAP_GOALS,
-} from '../../public/assets/js/core/nap-utils.js';
+} from '../../../public/assets/js/core/nap-utils.js';
 
 describe('Energy-Based Nap Selector - ENAP-TEST-U-1: deterministic mappings', () => {
   it('maps Quick to 15 minutes', () => {

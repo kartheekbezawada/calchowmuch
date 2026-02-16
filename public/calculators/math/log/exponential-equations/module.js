@@ -20,11 +20,15 @@ const expMetadata = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
     name: 'Exponential equation solver',
-    description: 'Find x when a base raised to a linearly shifted power equals a target, using natural logarithms.',
+    description:
+      'Find x when a base raised to a linearly shifted power equals a target, using natural logarithms.',
     step: [
       { '@type': 'HowToStep', text: 'Enter the base, target value, multiplier, and shift.' },
       { '@type': 'HowToStep', text: 'Compute the logarithmic solution for x.' },
-      { '@type': 'HowToStep', text: 'Check the exponential graph to see where the curve crosses the target height.' },
+      {
+        '@type': 'HowToStep',
+        text: 'Check the exponential graph to see where the curve crosses the target height.',
+      },
     ],
   },
 };
@@ -37,7 +41,12 @@ function showMessage(message) {
 }
 
 function updateResults() {
-  if (!hasMaxDigits(baseInput.value, 12) || !hasMaxDigits(targetInput.value, 12) || !hasMaxDigits(multiplierInput.value, 12) || !hasMaxDigits(shiftInput.value, 12)) {
+  if (
+    !hasMaxDigits(baseInput.value, 12) ||
+    !hasMaxDigits(targetInput.value, 12) ||
+    !hasMaxDigits(multiplierInput.value, 12) ||
+    !hasMaxDigits(shiftInput.value, 12)
+  ) {
     showMessage('Inputs are limited to 12 digits.');
     return;
   }

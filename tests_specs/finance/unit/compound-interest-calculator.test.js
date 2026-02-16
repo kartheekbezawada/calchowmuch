@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateCompoundInterest } from '../../public/assets/js/core/time-value-utils.js';
+import { calculateCompoundInterest } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Compound Interest Calculator - CI-TEST-U-1: basic compound interest', () => {
   it('should calculate compound interest with monthly compounding', () => {

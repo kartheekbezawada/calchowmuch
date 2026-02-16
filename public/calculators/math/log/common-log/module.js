@@ -1,10 +1,7 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
-import {
-  calculateLogBase,
-  calculateLogChangeOfBase,
-} from '/assets/js/core/logarithm.js';
+import { calculateLogBase, calculateLogChangeOfBase } from '/assets/js/core/logarithm.js';
 
 const valueInput = document.querySelector('#log-value');
 const baseSelect = document.querySelector('#log-base');
@@ -100,9 +97,12 @@ function updateResults() {
       maximumFractionDigits: 4,
     })}(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(change.fromValue, {
       maximumFractionDigits: 6,
-    })}, log_10(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(change.toValue, {
-      maximumFractionDigits: 6,
-    })}.`;
+    })}, log_10(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(
+      change.toValue,
+      {
+        maximumFractionDigits: 6,
+      }
+    )}.`;
   }
 }
 

@@ -2,11 +2,13 @@
   <section>
     <h3>What Is Series Convergence?</h3>
     <p>
-      An infinite series is the sum of an infinite sequence of terms: Σa<sub>n</sub> = a<sub>1</sub> + a<sub>2</sub> + a<sub>3</sub> + ...
-      The series converges if the sequence of partial sums approaches a finite limit. Otherwise, it diverges.
+      An infinite series is the sum of an infinite sequence of terms: Σa<sub>n</sub> = a<sub>1</sub>
+      + a<sub>2</sub> + a<sub>3</sub> + ... The series converges if the sequence of partial sums
+      approaches a finite limit. Otherwise, it diverges.
     </p>
     <p>
-      Understanding convergence is crucial in calculus, analysis, and applications ranging from physics to computer science.
+      Understanding convergence is crucial in calculus, analysis, and applications ranging from
+      physics to computer science.
     </p>
   </section>
 
@@ -23,12 +25,12 @@
       <li><strong>If L = 1:</strong> The test is inconclusive</li>
     </ul>
     <p><strong>Best for:</strong> Series with factorials, exponentials, or powers of n</p>
-    <p><strong>Example:</strong> For Σn!/n<sup>n</sup>, the ratio test quickly determines convergence</p>
+    <p>
+      <strong>Example:</strong> For Σn!/n<sup>n</sup>, the ratio test quickly determines convergence
+    </p>
 
     <h4>Root Test (Cauchy Root Test)</h4>
-    <p>
-      For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> <sup>n</sup>√|a<sub>n</sub>|:
-    </p>
+    <p>For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> <sup>n</sup>√|a<sub>n</sub>|:</p>
     <ul>
       <li><strong>If L &lt; 1:</strong> The series converges absolutely</li>
       <li><strong>If L &gt; 1:</strong> The series diverges</li>
@@ -38,13 +40,20 @@
     <p><strong>Example:</strong> For Σ(n/(n+1))<sup>n</sup>, the root test is ideal</p>
 
     <h4>Comparison Test</h4>
-    <p>
-      Compare your series Σa<sub>n</sub> with a known series Σb<sub>n</sub>:
-    </p>
+    <p>Compare your series Σa<sub>n</sub> with a known series Σb<sub>n</sub>:</p>
     <ul>
-      <li><strong>Direct Comparison:</strong> If 0 ≤ a<sub>n</sub> ≤ b<sub>n</sub> and Σb<sub>n</sub> converges, then Σa<sub>n</sub> converges</li>
-      <li><strong>Direct Comparison:</strong> If a<sub>n</sub> ≥ b<sub>n</sub> ≥ 0 and Σb<sub>n</sub> diverges, then Σa<sub>n</sub> diverges</li>
-      <li><strong>Limit Comparison:</strong> If lim<sub>n→∞</sub> (a<sub>n</sub>/b<sub>n</sub>) = L where 0 &lt; L &lt; ∞, then both series converge or both diverge</li>
+      <li>
+        <strong>Direct Comparison:</strong> If 0 ≤ a<sub>n</sub> ≤ b<sub>n</sub> and Σb<sub>n</sub>
+        converges, then Σa<sub>n</sub> converges
+      </li>
+      <li>
+        <strong>Direct Comparison:</strong> If a<sub>n</sub> ≥ b<sub>n</sub> ≥ 0 and Σb<sub>n</sub>
+        diverges, then Σa<sub>n</sub> diverges
+      </li>
+      <li>
+        <strong>Limit Comparison:</strong> If lim<sub>n→∞</sub> (a<sub>n</sub>/b<sub>n</sub>) = L
+        where 0 &lt; L &lt; ∞, then both series converge or both diverge
+      </li>
     </ul>
     <p><strong>Common comparison series:</strong></p>
     <ul>
@@ -84,11 +93,16 @@
 
   <section>
     <h3>Worked Example</h3>
-    <p><strong>Determine if Σn/2<sup>n</sup> converges using the ratio test</strong></p>
+    <p>
+      <strong>Determine if Σn/2<sup>n</sup> converges using the ratio test</strong>
+    </p>
     <ol>
       <li>General term: a<sub>n</sub> = n/2<sup>n</sup></li>
       <li>Next term: a<sub>n+1</sub> = (n+1)/2<sup>n+1</sup></li>
-      <li>Compute ratio: |a<sub>n+1</sub>/a<sub>n</sub>| = [(n+1)/2<sup>n+1</sup>] / [n/2<sup>n</sup>] = (n+1)/(2n)</li>
+      <li>
+        Compute ratio: |a<sub>n+1</sub>/a<sub>n</sub>| = [(n+1)/2<sup>n+1</sup>] / [n/2<sup>n</sup>]
+        = (n+1)/(2n)
+      </li>
       <li>Take limit: L = lim<sub>n→∞</sub> (n+1)/(2n) = 1/2</li>
       <li>Since L = 1/2 &lt; 1, the series <strong>converges</strong> by the ratio test</li>
     </ol>

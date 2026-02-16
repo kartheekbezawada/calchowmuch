@@ -36,8 +36,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is a sleep cycle?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
+        text: 'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
       },
     },
     {
@@ -45,8 +44,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is 6 hours of sleep enough?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Six hours is roughly 4 cycles. Some people manage short-term, but many perform better with 7+ hours consistently.',
+        text: 'Six hours is roughly 4 cycles. Some people manage short-term, but many perform better with 7+ hours consistently.',
       },
     },
     {
@@ -54,8 +52,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Why are multiple sleep times shown?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'The calculator shows options for 4, 5, and 6 cycles so you can choose a schedule that fits your day.',
+        text: 'The calculator shows options for 4, 5, and 6 cycles so you can choose a schedule that fits your day.',
       },
     },
     {
@@ -63,8 +60,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Why might I still feel tired after following the suggestions?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt, or sleep disorders can affect how rested you feel.',
+        text: 'Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt, or sleep disorders can affect how rested you feel.',
       },
     },
     {
@@ -72,8 +68,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does this calculator account for time to fall asleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. When calculating bedtimes, it adds a 15-minute buffer to allow time to fall asleep before the first sleep cycle begins.',
+        text: 'Yes. When calculating bedtimes, it adds a 15-minute buffer to allow time to fall asleep before the first sleep cycle begins.',
       },
     },
     {
@@ -81,8 +76,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use this calculator if I work night shifts?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. Enter your target wake-up or fall-asleep time regardless of the hour. The calculator handles cross-day rollover and works for any schedule.',
+        text: 'Yes. Enter your target wake-up or fall-asleep time regardless of the hour. The calculator handles cross-day rollover and works for any schedule.',
       },
     },
     {
@@ -90,8 +84,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What happens if I wake up in the middle of a sleep cycle?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Waking during deep sleep can cause sleep inertia, a temporary feeling of grogginess and reduced alertness that may last several minutes.',
+        text: 'Waking during deep sleep can cause sleep inertia, a temporary feeling of grogginess and reduced alertness that may last several minutes.',
       },
     },
     {
@@ -99,8 +92,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Should I go to bed at the same time every night?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'A consistent bedtime helps regulate your body clock and can improve sleep quality over time. The calculator can help you find a schedule to stick to.',
+        text: 'A consistent bedtime helps regulate your body clock and can improve sleep quality over time. The calculator can help you find a schedule to stick to.',
       },
     },
     {
@@ -108,8 +100,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is it better to get 4 or 5 sleep cycles?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Five cycles (about 7.5 hours) is generally better for most adults. Four cycles (about 6 hours) may leave you short on rest unless time is limited.',
+        text: 'Five cycles (about 7.5 hours) is generally better for most adults. Four cycles (about 6 hours) may leave you short on rest unless time is limited.',
       },
     },
   ],

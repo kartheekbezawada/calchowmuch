@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculatePresentValueOfAnnuity } from '../../public/assets/js/core/time-value-utils.js';
+import { calculatePresentValueOfAnnuity } from '../../../public/assets/js/core/time-value-utils.js';
 
 describe('Present Value of Annuity - PVA-TEST-U-1: ordinary annuity', () => {
   it('should calculate PV for an ordinary annuity with annual compounding', () => {

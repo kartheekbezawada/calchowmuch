@@ -235,7 +235,7 @@ export function initDistributionCalculator() {
           <h4>Common Critical Values</h4>
       `;
 
-      const alphas = [0.10, 0.05, 0.025, 0.01, 0.005];
+      const alphas = [0.1, 0.05, 0.025, 0.01, 0.005];
       for (const alpha of alphas) {
         let critValue;
         switch (selectedDistType) {

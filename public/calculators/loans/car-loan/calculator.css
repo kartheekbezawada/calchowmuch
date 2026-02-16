@@ -72,17 +72,23 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 50%;
   background: #ffffff;
   /* Neon Glow */
-  box-shadow: 0 0 15px rgba(79, 172, 254, 0.6), 0 0 5px rgba(0, 242, 254, 0.8);
+  box-shadow:
+    0 0 15px rgba(79, 172, 254, 0.6),
+    0 0 5px rgba(0, 242, 254, 0.8);
   cursor: pointer;
   border: 2px solid #4facfe;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.2s ease;
   margin-top: -1px;
   /* Align if needed */
 }
 
 input[type='range']::-webkit-slider-thumb:hover {
   transform: scale(1.3);
-  box-shadow: 0 0 25px rgba(79, 172, 254, 0.8), 0 0 10px rgba(0, 242, 254, 1);
+  box-shadow:
+    0 0 25px rgba(79, 172, 254, 0.8),
+    0 0 10px rgba(0, 242, 254, 1);
   background: #f0f9ff;
 }
 
@@ -93,7 +99,9 @@ input[type='range']::-webkit-slider-thumb:active {
 
 /* Hover Interaction on Row */
 .input-row.slider-row {
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
   padding: 8px;
   /* Add padding for hover area */
   border-radius: 8px;

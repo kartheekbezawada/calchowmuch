@@ -171,7 +171,8 @@ function updateLifetime(data) {
   const offsetInterest = data.offset.totalInterest;
   const savedInterest = data.interestSaved;
 
-  const savedShare = baselineInterest > 0 ? Math.min(100, Math.max(0, (savedInterest / baselineInterest) * 100)) : 0;
+  const savedShare =
+    baselineInterest > 0 ? Math.min(100, Math.max(0, (savedInterest / baselineInterest) * 100)) : 0;
   const remainingShare = Math.max(0, 100 - savedShare);
 
   if (lifetimeDonut) {

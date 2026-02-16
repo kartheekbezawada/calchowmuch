@@ -51,7 +51,13 @@ export function overlapMinutes(startA, endA, startB, endB) {
   return Math.max(0, Math.min(endA, endB) - Math.max(startA, startB));
 }
 
-export function getNightOverlapMinutes(startMinutes, endMinutes, nightStart, nightEnd, crossesMidnight) {
+export function getNightOverlapMinutes(
+  startMinutes,
+  endMinutes,
+  nightStart,
+  nightEnd,
+  crossesMidnight
+) {
   let total = 0;
   let currentStart = startMinutes;
   while (currentStart < endMinutes) {
@@ -84,7 +90,11 @@ export function splitWeeklyOvertime(totalMinutes, weeklyLimitMinutes) {
   return { regular, overtime };
 }
 
-export function splitDailyWeeklyOvertime(dailyOvertimeMinutes, weeklyOvertimeMinutes, totalMinutes) {
+export function splitDailyWeeklyOvertime(
+  dailyOvertimeMinutes,
+  weeklyOvertimeMinutes,
+  totalMinutes
+) {
   const overtime = Math.max(dailyOvertimeMinutes, weeklyOvertimeMinutes);
   return { overtime, regular: Math.max(0, totalMinutes - overtime) };
 }

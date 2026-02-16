@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   calculateCalendarDiff,
   calculateTimeBetweenDates,
-} from '../../public/assets/js/core/date-diff-utils.js';
+} from '../../../public/assets/js/core/date-diff-utils.js';
 
 describe('Time Between Two Dates - Dates only mode', () => {
   it('should calculate day and week totals correctly', () => {

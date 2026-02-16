@@ -28,10 +28,16 @@ class LimitCalculator {
     let approachValue;
     let isInfinity = false;
 
-    if (typeof a === 'string' && (a.toLowerCase() === 'inf' || a.toLowerCase() === 'infinity' || a === '∞')) {
+    if (
+      typeof a === 'string' &&
+      (a.toLowerCase() === 'inf' || a.toLowerCase() === 'infinity' || a === '∞')
+    ) {
       isInfinity = true;
       approachValue = Infinity;
-    } else if (typeof a === 'string' && (a.toLowerCase() === '-inf' || a.toLowerCase() === '-infinity' || a === '-∞')) {
+    } else if (
+      typeof a === 'string' &&
+      (a.toLowerCase() === '-inf' || a.toLowerCase() === '-infinity' || a === '-∞')
+    ) {
       isInfinity = true;
       approachValue = -Infinity;
     } else {
@@ -61,7 +67,7 @@ class LimitCalculator {
         continuous: true,
         leftLimit: directValue,
         rightLimit: directValue,
-        form: 'direct'
+        form: 'direct',
       };
     }
 
@@ -110,7 +116,7 @@ class LimitCalculator {
       continuous: false,
       leftLimit,
       rightLimit,
-      form: isNaN(directValue) ? 'indeterminate' : 'undefined'
+      form: isNaN(directValue) ? 'indeterminate' : 'undefined',
     };
   }
 
@@ -139,8 +145,8 @@ class LimitCalculator {
     this.steps.push('Calculating limit at infinity using large values...\n');
 
     const sign = infinity > 0 ? 1 : -1;
-    const values = [100, 1000, 10000, 100000].map(v => v * sign);
-    const results = values.map(v => this.evaluateFunction(expr, v));
+    const values = [100, 1000, 10000, 100000].map((v) => v * sign);
+    const results = values.map((v) => this.evaluateFunction(expr, v));
 
     this.steps.push('Sample values:');
     values.forEach((v, i) => {
@@ -165,7 +171,7 @@ class LimitCalculator {
       value: limitValue,
       exists: isFinite(limitValue),
       continuous: false,
-      form: 'infinity'
+      form: 'infinity',
     };
   }
 }
@@ -183,9 +189,9 @@ export function initLimitCalculator() {
   if (!calculateBtn) return;
 
   // Direction switching
-  directionButtons.forEach(btn => {
+  directionButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      directionButtons.forEach(b => b.classList.remove('active'));
+      directionButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       currentDirection = btn.dataset.direction;
     });
@@ -225,7 +231,11 @@ export function initLimitCalculator() {
           </div>
         `;
 
-        if (currentDirection === 'both' && isFinite(result.leftLimit) && isFinite(result.rightLimit)) {
+        if (
+          currentDirection === 'both' &&
+          isFinite(result.leftLimit) &&
+          isFinite(result.rightLimit)
+        ) {
           resultHTML += `
             <p class="info-text">Left limit: ${result.leftLimit.toFixed(6)}</p>
             <p class="info-text">Right limit: ${result.rightLimit.toFixed(6)}</p>
@@ -243,7 +253,6 @@ export function initLimitCalculator() {
           <pre>${calculator.steps.join('\n')}</pre>
         </div>
       `;
-
     } catch (error) {
       resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
       stepsDiv.innerHTML = '';

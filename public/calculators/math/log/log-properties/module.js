@@ -86,17 +86,17 @@ function updateResults() {
 
   resultDiv.innerHTML = `
     <p><strong>Product rule:</strong> log_${formatNumber(base)}(${formatNumber(x)} × ${formatNumber(y)}) = ${formatNumber(
-    product,
-    { maximumFractionDigits: 6 }
-  )}</p>
+      product,
+      { maximumFractionDigits: 6 }
+    )}</p>
     <p><strong>Quotient rule:</strong> log_${formatNumber(base)}(${formatNumber(num)} / ${formatNumber(den)}) = ${formatNumber(
-    quotient,
-    { maximumFractionDigits: 6 }
-  )}</p>
+      quotient,
+      { maximumFractionDigits: 6 }
+    )}</p>
     <p><strong>Power rule:</strong> log_${formatNumber(base)}(${formatNumber(powValue)}^{${formatNumber(
-    exponent,
-    { maximumFractionDigits: 3 }
-  )}}) = ${formatNumber(power, { maximumFractionDigits: 6 })}</p>
+      exponent,
+      { maximumFractionDigits: 3 }
+    )}}) = ${formatNumber(power, { maximumFractionDigits: 6 })}</p>
   `;
 
   detailDiv.innerHTML = `Product rule: log_${formatNumber(base)}(${formatNumber(x)} × ${formatNumber(y)}) = log_${formatNumber(base)}(${formatNumber(
@@ -108,7 +108,15 @@ function updateResults() {
 }
 
 calculateBtn?.addEventListener('click', updateResults);
-for (const input of [baseInput, productX, productY, quotientNumerator, quotientDenominator, powerValue, powerExponent]) {
+for (const input of [
+  baseInput,
+  productX,
+  productY,
+  quotientNumerator,
+  quotientDenominator,
+  powerValue,
+  powerExponent,
+]) {
   input?.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
       updateResults();

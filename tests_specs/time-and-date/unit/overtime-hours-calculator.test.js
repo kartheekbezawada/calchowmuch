@@ -11,7 +11,7 @@ import {
   splitDailyOvertime,
   splitDailyWeeklyOvertime,
   splitWeeklyOvertime,
-} from '../../public/assets/js/core/overtime-utils.js';
+} from '../../../public/assets/js/core/overtime-utils.js';
 
 describe('Overtime Hours Calculator - OVERTIME-TEST-U-1: basic shifts', () => {
   it('should compute same-day shift with break', () => {

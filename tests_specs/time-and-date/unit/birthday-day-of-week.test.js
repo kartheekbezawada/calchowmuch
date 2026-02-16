@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   calculateBirthdayWeekdays,
   getWeekdayName,
-} from '../../public/assets/js/core/date-diff-utils.js';
+} from '../../../public/assets/js/core/date-diff-utils.js';
 
 describe('Birthday Day-of-Week Calculator', () => {
   it('should calculate birth weekday and target-year weekday', () => {

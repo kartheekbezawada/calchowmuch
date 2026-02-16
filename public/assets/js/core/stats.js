@@ -308,7 +308,12 @@ export function calculateProportionCI(phatPercent, n, z) {
  * @returns {{ lower: number, upper: number, se: number, me: number }|null} Confidence interval bounds, standard error, and margin of error, or null if invalid input
  */
 export function calculateMeanCI(xbar, sigma, n, z) {
-  if (typeof xbar !== 'number' || typeof sigma !== 'number' || typeof n !== 'number' || typeof z !== 'number') {
+  if (
+    typeof xbar !== 'number' ||
+    typeof sigma !== 'number' ||
+    typeof n !== 'number' ||
+    typeof z !== 'number'
+  ) {
     return null;
   }
   if (!Number.isFinite(xbar) || sigma <= 0 || n <= 0 || z <= 0) {
@@ -396,22 +401,27 @@ export function sumGeometric(a1, r, n) {
   if (nearlyEqual(r, 1)) {
     return a1 * n;
   }
-  return a1 * (1 - Math.pow(r, n)) / (1 - r);
+  return (a1 * (1 - Math.pow(r, n))) / (1 - r);
 }
 
 export function generateSequenceTerms(a1, param, count, type) {
   const terms = [];
   for (let i = 1; i <= count; i++) {
-    const term = type === 'geometric'
-      ? nthTermGeometric(a1, param, i)
-      : nthTermArithmetic(a1, param, i);
+    const term =
+      type === 'geometric' ? nthTermGeometric(a1, param, i) : nthTermArithmetic(a1, param, i);
     terms.push(term);
   }
   return terms;
 }
 
 export function probabilityFromOutcomes(favorable, total) {
-  if (!Number.isFinite(favorable) || !Number.isFinite(total) || total <= 0 || favorable < 0 || favorable > total) {
+  if (
+    !Number.isFinite(favorable) ||
+    !Number.isFinite(total) ||
+    total <= 0 ||
+    favorable < 0 ||
+    favorable > total
+  ) {
     return null;
   }
   return favorable / total;
@@ -477,7 +487,7 @@ function erf(x) {
   const a5 = 1.061405429;
   const p = 0.3275911;
   const t = 1 / (1 + p * absX);
-  const y = 1 - (((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t) * Math.exp(-absX * absX);
+  const y = 1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-absX * absX);
   return sign * y;
 }
 

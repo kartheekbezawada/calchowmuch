@@ -115,8 +115,7 @@ const STRUCTURED_DATA = {
       '@type': 'WebPage',
       name: 'Power Nap Calculator',
       url: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
-      description:
-        'Find the best wake-up time for power naps of 10, 20, 30, 60, or 90 minutes.',
+      description: 'Find the best wake-up time for power naps of 10, 20, 30, 60, or 90 minutes.',
       inLanguage: 'en',
     },
     {

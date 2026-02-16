@@ -6,7 +6,7 @@ import {
   formatDecimalHours,
   formatHHMM,
   parseTimeString,
-} from '../../public/assets/js/core/work-hours-utils.js';
+} from '../../../public/assets/js/core/work-hours-utils.js';
 
 describe('Work Hours Calculator - WORK-TEST-U-1: time parsing', () => {
   it('should parse valid time strings', () => {

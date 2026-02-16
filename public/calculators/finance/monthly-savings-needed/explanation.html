@@ -1,256 +1,273 @@
 <div id="msn-explanation" class="explanation-pane">
-    <div id="loan-mtg-explanation">
-        <h2>Monthly Savings Needed — Results Breakdown</h2>
+  <div id="loan-mtg-explanation">
+    <h2>Monthly Savings Needed — Results Breakdown</h2>
+    <p>
+      This calculator answers a critical financial planning question:
+      <em>"How much must I save each month to reach my target on time?"</em>
+      It balances your time horizon, starting capital, expected growth, and contribution timing to
+      give you an actionable monthly number.
+    </p>
+
+    <section class="mtg-exp-section">
+      <h3>Scenario Summary</h3>
+      <table class="msn-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Savings Goal</td>
+            <td><span data-msn="goal"></span></td>
+          </tr>
+          <tr>
+            <td>Current Savings</td>
+            <td><span data-msn="current"></span></td>
+          </tr>
+          <tr>
+            <td>Time Period</td>
+            <td><span data-msn="time-period"></span></td>
+          </tr>
+          <tr>
+            <td>Interest Rate</td>
+            <td><span data-msn="rate"></span></td>
+          </tr>
+          <tr>
+            <td>Compounding Frequency</td>
+            <td><span data-msn="compounding"></span></td>
+          </tr>
+          <tr>
+            <td>Contribution Timing</td>
+            <td><span data-msn="timing"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="msn-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Required Monthly Savings</td>
+              <td><span data-msn="monthly-savings" class="highlight-val"></span></td>
+            </tr>
+            <tr>
+              <td>Total Contributions</td>
+              <td><span data-msn="total-contributions"></span></td>
+            </tr>
+            <tr>
+              <td>Total Interest Earned</td>
+              <td><span data-msn="total-interest" class="highlight-gain"></span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Final Balance</td>
+              <td><span data-msn="final-balance"></span></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>How the Formula Works</h3>
+
+      <h4>Without Interest</h4>
+      <p>If the interest rate is 0%, the required savings is straightforward:</p>
+      <p class="msn-formula-block">PMT = (Goal &minus; Current Savings) &divide; Total Months</p>
+      <p>
+        With your values: (<span data-msn="goal"></span> &minus; <span data-msn="current"></span>)
+        &divide; <span data-msn="total-months"></span> months.
+      </p>
+
+      <h4>With Compound Interest</h4>
+      <p>
+        When interest is involved, the calculator uses a binary search to solve for PMT in the
+        future value formula:
+      </p>
+      <p class="msn-formula-block">
+        FV = P(1 + r/n)<sup>nt</sup> + PMT &times; [(1 + r/n)<sup>nt</sup> &minus; 1] / (r/n)
+      </p>
+      <p>Where:</p>
+      <ul class="msn-formula-steps">
+        <li><strong>FV</strong> = Savings Goal (<span data-msn="goal"></span>)</li>
+        <li><strong>P</strong> = Current Savings (<span data-msn="current"></span>)</li>
+        <li><strong>PMT</strong> = Required Monthly Savings (solved for)</li>
+        <li><strong>r</strong> = Annual Interest Rate (<span data-msn="rate"></span>)</li>
+        <li>
+          <strong>n</strong> = Compounding Frequency (<span data-msn="compounding"></span> &rarr;
+          <span data-msn="periods-per-year"></span> times/year)
+        </li>
+        <li><strong>t</strong> = Time Period (<span data-msn="time-period"></span>)</li>
+      </ul>
+      <p>
+        The calculator iteratively narrows down the exact monthly savings amount needed so that the
+        final balance meets or exceeds your goal.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>What This Calculator Shows</h3>
+      <p>
+        This tool reframes savings planning from "Can I reach my goal?" to "What monthly discipline
+        guarantees success?" It creates clarity, control, and actionable numbers.
+      </p>
+
+      <ul class="msn-explanation-list">
+        <li>
+          <strong>Starting Point:</strong>
+          You currently have <span data-msn="current"></span> saved toward a goal of
+          <span data-msn="goal"></span>. That means you need to accumulate an additional
+          <span data-msn="gap"></span>.
+        </li>
+        <li>
+          <strong>Time Horizon:</strong>
+          With <span data-msn="time-period"></span> to reach your goal, your savings window
+          determines how aggressive your monthly contributions must be.
+        </li>
+        <li>
+          <strong>Compounding Effect:</strong>
+          At <span data-msn="rate"></span> with <span data-msn="compounding"></span>
+          compounding, your savings earn interest that itself earns interest, reducing the savings
+          burden over time.
+        </li>
+        <li>
+          <strong>Contribution Timing:</strong>
+          <span data-msn="timing"></span> contributions mean each deposit compounds differently.
+          Beginning-of-month deposits slightly reduce the required monthly savings.
+        </li>
+        <li>
+          <strong>Monthly Discipline:</strong>
+          Based on these inputs, you need to save
+          <span data-msn="monthly-savings"></span> per month to reach <span data-msn="goal"></span>.
+        </li>
+      </ul>
+
+      <h4>Wealth Planning Insight</h4>
+      <div class="msn-insight-box">
         <p>
-            This calculator answers a critical financial planning question:
-            <em>"How much must I save each month to reach my target on time?"</em>
-            It balances your time horizon, starting capital, expected growth, and contribution timing
-            to give you an actionable monthly number.
+          ✦ Longer time reduces required monthly savings — starting earlier dramatically lowers
+          monthly pressure.
         </p>
+        <p>
+          ✦ Higher interest reduces the savings burden — even modest returns compound significantly
+          over time.
+        </p>
+        <p>
+          ✦ Starting earlier dramatically lowers monthly pressure — time is your greatest
+          wealth-building ally.
+        </p>
+        <p>
+          ✦ Beginning-of-month contributions slightly reduce required savings compared to
+          end-of-month timing.
+        </p>
+      </div>
+    </section>
 
-        <section class="mtg-exp-section">
-            <h3>Scenario Summary</h3>
-            <table class="msn-results-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Category</th>
-                        <th scope="col">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Savings Goal</td>
-                        <td><span data-msn="goal"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Current Savings</td>
-                        <td><span data-msn="current"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Time Period</td>
-                        <td><span data-msn="time-period"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Interest Rate</td>
-                        <td><span data-msn="rate"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Compounding Frequency</td>
-                        <td><span data-msn="compounding"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Contribution Timing</td>
-                        <td><span data-msn="timing"></span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>How much do I need to save each month to reach 25,000 in 3 years?</h4>
+          <p>
+            It depends on your current savings, interest rate, and compounding settings. Enter your
+            values above to get a personalized monthly savings figure.
+          </p>
+        </div>
 
-        <section class="mtg-exp-section">
-            <h3>Results Table</h3>
-            <div class="table-scroll" tabindex="0">
-                <table class="msn-results-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Metric</th>
-                            <th scope="col">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Required Monthly Savings</td>
-                            <td><span data-msn="monthly-savings" class="highlight-val"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Total Contributions</td>
-                            <td><span data-msn="total-contributions"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Total Interest Earned</td>
-                            <td><span data-msn="total-interest" class="highlight-gain"></span></td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>Final Balance</td>
-                            <td><span data-msn="final-balance"></span></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </section>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Does interest reduce the required monthly savings amount?</h4>
+          <p>
+            Yes. Interest compounds on your balance, meaning your money earns money. Even a modest
+            rate can noticeably reduce how much you need to save each month.
+          </p>
+        </div>
 
-        <section class="mtg-exp-section">
-            <h3>How the Formula Works</h3>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What if I already have some savings?</h4>
+          <p>
+            Existing savings reduce the gap to your goal. The more you start with, the less you need
+            to save monthly — plus your starting balance earns interest from day one.
+          </p>
+        </div>
 
-            <h4>Without Interest</h4>
-            <p>If the interest rate is 0%, the required savings is straightforward:</p>
-            <p class="msn-formula-block">
-                PMT = (Goal &minus; Current Savings) &divide; Total Months
-            </p>
-            <p>
-                With your values: (<span data-msn="goal"></span> &minus;
-                <span data-msn="current"></span>) &divide;
-                <span data-msn="total-months"></span> months.
-            </p>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does compounding frequency affect required savings?</h4>
+          <p>
+            More frequent compounding (monthly vs annually) means interest is reinvested sooner,
+            slightly reducing the monthly savings required to reach the same goal.
+          </p>
+        </div>
 
-            <h4>With Compound Interest</h4>
-            <p>When interest is involved, the calculator uses a binary search to solve for PMT in the future value
-                formula:</p>
-            <p class="msn-formula-block">
-                FV = P(1 + r/n)<sup>nt</sup> + PMT &times; [(1 + r/n)<sup>nt</sup> &minus; 1] / (r/n)
-            </p>
-            <p>Where:</p>
-            <ul class="msn-formula-steps">
-                <li><strong>FV</strong> = Savings Goal (<span data-msn="goal"></span>)</li>
-                <li><strong>P</strong> = Current Savings (<span data-msn="current"></span>)</li>
-                <li><strong>PMT</strong> = Required Monthly Savings (solved for)</li>
-                <li><strong>r</strong> = Annual Interest Rate (<span data-msn="rate"></span>)</li>
-                <li><strong>n</strong> = Compounding Frequency (<span data-msn="compounding"></span> &rarr; <span
-                        data-msn="periods-per-year"></span> times/year)</li>
-                <li><strong>t</strong> = Time Period (<span data-msn="time-period"></span>)</li>
-            </ul>
-            <p>
-                The calculator iteratively narrows down the exact monthly savings amount needed
-                so that the final balance meets or exceeds your goal.
-            </p>
-        </section>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>Is saving at the beginning of the month better?</h4>
+          <p>
+            Yes. Beginning-of-month contributions start earning interest immediately for that
+            period, requiring marginally less monthly savings.
+          </p>
+        </div>
 
-        <section class="mtg-exp-section">
-            <h3>What This Calculator Shows</h3>
-            <p>
-                This tool reframes savings planning from "Can I reach my goal?" to
-                "What monthly discipline guarantees success?" It creates clarity, control, and
-                actionable numbers.
-            </p>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>What happens if I shorten my time frame?</h4>
+          <p>
+            A shorter time frame means less time for compounding, so the required monthly savings
+            increases.
+          </p>
+        </div>
 
-            <ul class="msn-explanation-list">
-                <li>
-                    <strong>Starting Point:</strong>
-                    You currently have <span data-msn="current"></span> saved
-                    toward a goal of <span data-msn="goal"></span>. That means you
-                    need to accumulate an additional <span data-msn="gap"></span>.
-                </li>
-                <li>
-                    <strong>Time Horizon:</strong>
-                    With <span data-msn="time-period"></span> to reach your goal,
-                    your savings window determines how aggressive your monthly contributions
-                    must be.
-                </li>
-                <li>
-                    <strong>Compounding Effect:</strong>
-                    At <span data-msn="rate"></span> with <span data-msn="compounding"></span>
-                    compounding, your savings earn interest that itself earns interest, reducing
-                    the savings burden over time.
-                </li>
-                <li>
-                    <strong>Contribution Timing:</strong>
-                    <span data-msn="timing"></span> contributions mean each deposit
-                    compounds differently. Beginning-of-month deposits slightly reduce the
-                    required monthly savings.
-                </li>
-                <li>
-                    <strong>Monthly Discipline:</strong>
-                    Based on these inputs, you need to save
-                    <span data-msn="monthly-savings"></span> per month to reach
-                    <span data-msn="goal"></span>.
-                </li>
-            </ul>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">07</span>
+          <h4>How much difference does 5 percent growth make?</h4>
+          <p>
+            At 5% annual growth, your savings benefit from meaningful compound interest. For longer
+            time horizons, this can reduce your required monthly savings substantially.
+          </p>
+        </div>
 
-            <h4>Wealth Planning Insight</h4>
-            <div class="msn-insight-box">
-                <p>
-                    ✦ Longer time reduces required monthly savings — starting earlier dramatically
-                    lowers monthly pressure.
-                </p>
-                <p>
-                    ✦ Higher interest reduces the savings burden — even modest returns compound
-                    significantly over time.
-                </p>
-                <p>
-                    ✦ Starting earlier dramatically lowers monthly pressure — time is your greatest
-                    wealth-building ally.
-                </p>
-                <p>
-                    ✦ Beginning-of-month contributions slightly reduce required savings compared
-                    to end-of-month timing.
-                </p>
-            </div>
-        </section>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">08</span>
+          <h4>Can this calculator help plan a house deposit?</h4>
+          <p>
+            Absolutely. Set your goal to the deposit amount, enter your current savings and time
+            frame, and see exactly how much per month you need to save.
+          </p>
+        </div>
 
-        <section class="mtg-exp-section mtg-exp-section--faq">
-            <h3>Frequently Asked Questions</h3>
-            <div class="bor-faq-grid">
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">01</span>
-                    <h4>How much do I need to save each month to reach 25,000 in 3 years?</h4>
-                    <p>It depends on your current savings, interest rate, and compounding settings.
-                        Enter your values above to get a personalized monthly savings figure.</p>
-                </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">09</span>
+          <h4>What if my investment returns vary each year?</h4>
+          <p>
+            This calculator uses a fixed annual rate for simplicity. In practice, variable returns
+            may change outcomes — use a conservative estimate.
+          </p>
+        </div>
 
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">02</span>
-                    <h4>Does interest reduce the required monthly savings amount?</h4>
-                    <p>Yes. Interest compounds on your balance, meaning your money earns money. Even a modest
-                        rate can noticeably reduce how much you need to save each month.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">03</span>
-                    <h4>What if I already have some savings?</h4>
-                    <p>Existing savings reduce the gap to your goal. The more you start with, the
-                        less you need to save monthly — plus your starting balance earns interest from day one.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">04</span>
-                    <h4>How does compounding frequency affect required savings?</h4>
-                    <p>More frequent compounding (monthly vs annually) means interest is reinvested sooner,
-                        slightly reducing the monthly savings required to reach the same goal.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">05</span>
-                    <h4>Is saving at the beginning of the month better?</h4>
-                    <p>Yes. Beginning-of-month contributions start earning interest immediately for that
-                        period, requiring marginally less monthly savings.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">06</span>
-                    <h4>What happens if I shorten my time frame?</h4>
-                    <p>A shorter time frame means less time for compounding, so the required monthly
-                        savings increases.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">07</span>
-                    <h4>How much difference does 5 percent growth make?</h4>
-                    <p>At 5% annual growth, your savings benefit from meaningful compound interest.
-                        For longer time horizons, this can reduce your required monthly savings substantially.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">08</span>
-                    <h4>Can this calculator help plan a house deposit?</h4>
-                    <p>Absolutely. Set your goal to the deposit amount, enter your current savings and
-                        time frame, and see exactly how much per month you need to save.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">09</span>
-                    <h4>What if my investment returns vary each year?</h4>
-                    <p>This calculator uses a fixed annual rate for simplicity. In practice, variable
-                        returns may change outcomes — use a conservative estimate.</p>
-                </div>
-
-                <div class="bor-faq-card">
-                    <span class="bor-faq-number">10</span>
-                    <h4>Is it better to increase time or increase monthly savings?</h4>
-                    <p>Both work, but increasing time benefits from compounding effects. Starting earlier is
-                        more powerful than increasing your monthly contribution.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">10</span>
+          <h4>Is it better to increase time or increase monthly savings?</h4>
+          <p>
+            Both work, but increasing time benefits from compounding effects. Starting earlier is
+            more powerful than increasing your monthly contribution.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
