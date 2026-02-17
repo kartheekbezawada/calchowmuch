@@ -534,12 +534,10 @@
       .header-title {
         font-size: var(--text-2xl);
         font-weight: var(--font-semibold);
-        color: #ffffff;
-        text-shadow:
-          0 0 10px rgba(255, 255, 255, 0.85),
-          0 0 22px rgba(255, 255, 255, 0.55),
-          0 0 34px rgba(110, 231, 183, 0.3);
-        letter-spacing: 0.01em;
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3274,9 +3272,9 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/finance-investment-growth.9f33ceae.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/finance-investment-growth.cad76314.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/finance-investment-growth.9f33ceae.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/finance-investment-growth.cad76314.css" />
     </noscript>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance/investment-growth/#webpage","name":"Investment Growth Calculator – CalcHowMuch","url":"https://calchowmuch.com/finance/investment-growth/","description":"Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance/investment-growth/#softwareapplication","name":"Investment Growth Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance/investment-growth/","description":"Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Investment growth projection","Inflation adjustment","Monthly contribution","Total gains breakdown"],"keywords":"investment calculator, growth calculator, compound interest, inflation adjusted return","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance/investment-growth/#faq","mainEntity":[{"@type":"Question","name":"What is an investment growth calculator?","acceptedAnswer":{"@type":"Answer","text":"An investment growth calculator estimates the future value of an investment based on expected return, time, and contributions."}},{"@type":"Question","name":"How do you calculate investment growth over time?","acceptedAnswer":{"@type":"Answer","text":"You apply compound growth assumptions using an expected annual return and the investment period, and add contributions if applicable."}},{"@type":"Question","name":"What is future value in investing?","acceptedAnswer":{"@type":"Answer","text":"Future value is the estimated amount your investment could grow to after a set time period."}},{"@type":"Question","name":"How do monthly contributions affect investment growth?","acceptedAnswer":{"@type":"Answer","text":"Monthly contributions can increase the final balance because added deposits may also earn returns over time."}},{"@type":"Question","name":"What does expected annual return mean?","acceptedAnswer":{"@type":"Answer","text":"It is the assumed average yearly growth rate used for forecasting."}},{"@type":"Question","name":"Does compounding frequency matter for investment growth?","acceptedAnswer":{"@type":"Answer","text":"Yes. More frequent compounding can slightly increase estimated growth under the same annual return assumption."}},{"@type":"Question","name":"Can this calculator estimate investment returns?","acceptedAnswer":{"@type":"Answer","text":"Yes. It estimates future value and total growth based on the return rate you enter."}},{"@type":"Question","name":"What is inflation-adjusted future value?","acceptedAnswer":{"@type":"Answer","text":"It estimates your ending balance in today's purchasing power after accounting for inflation."}},{"@type":"Question","name":"What happens if the return rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"Future value equals the initial investment plus total contributions."}},{"@type":"Question","name":"Is this investment growth estimate guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. It is a projection based on assumptions and actual market returns can vary."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance/investment-growth/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Investment Growth","item":"https://calchowmuch.com/finance/investment-growth/"}]}]}</script>
@@ -3336,7 +3334,8 @@
       </div>
     </div>
     <div class="header-center">
-      <div class="header-title">Quick Calculations for Every Day Numbers</div>
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
     </div>
     <div class="header-right" role="search">
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
@@ -3576,12 +3575,6 @@
     </div>
   </div>
 </div>
-
-<style>
-  @import url('/calculators/finance/investment-growth/calculator.css');
-</style>
-
-<script type="module" src="/calculators/finance/investment-growth/module.js"></script>
 
   <h3>Explanation</h3>
     <div id="ig-explanation" class="explanation-pane">
