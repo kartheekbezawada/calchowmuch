@@ -16,7 +16,8 @@ Owner: {NAME}
 
 Date: {YYYY-MM-DD}
 
-Change Type (pick one): SINGLE_CALCULATOR | CATEGORY | GLOBAL_SHARED | INFRA
+Change Type (pick one): CLUSTER_ROUTE | CLUSTER_SHARED | IMMUTABLE_CORE | INFRA
+Legacy alias accepted during transition: SINGLE_CALCULATOR -> CLUSTER_ROUTE, CATEGORY -> CLUSTER_ROUTE, GLOBAL_SHARED -> CLUSTER_SHARED
 
 Primary Target Route (MANDATORY): {ROUTE_SLUG}
 Example: /finance/present-value-of-annuity/
@@ -54,6 +55,22 @@ HARD: MPA generation must be scope-targeted by default (`TARGET_ROUTE` or `TARGE
 - [ ] **UI changes require approval**: new inputs/controls/UX elements must be approved before implementation.
 - [ ] **File change preview**: confirm intended file list before edits; if it changes, re-confirm.
 
+2.3 Cluster Isolation Governance Checks (HARD)
+
+HARD: Ownership validation passes (`config/clusters/route-ownership.json`): every released route appears exactly once with valid owner and calculator identity.
+
+HARD: HTML isolation fence passes for released routes: only owner-cluster assets (`/assets/clusters/<owner>/...`) plus immutable core (`/assets/core/v{n}/...`) are referenced.
+
+HARD: Import graph guard passes: JS/CSS imports must not escape owner cluster scope except immutable core.
+
+HARD: Manifest integrity passes: every referenced asset exists and resolves under allowed prefixes only.
+
+HARD: Global navigation parity passes: required global destination fields in `clusters/<cluster-id>/config/navigation.json` match policy spec.
+
+HARD: Rollback contract presence passes for all changed routes: `activeOwnerClusterId`, `previousOwnerClusterId`, `rollbackTag`.
+
+HARD: New cluster/category onboarding must include full contract compliance (`config/clusters/cluster-registry.json`, route ownership entries, cluster nav, cluster asset manifest, isolation fence evidence).
+
 3. TESTING POLICY — DEFAULT = ONE CALCULATOR (MANDATORY)
 
 Goal: Avoid universal tests touching every calculator.
@@ -69,7 +86,7 @@ B) CATEGORY (only if changes affect multiple calculators in one category)
 
 Scope = CATEGORY_SET:{category} (e.g., finance)
 
-C) GLOBAL_SHARED (only if shared shell/CSS/JS changes affect multiple categories)
+C) CLUSTER_SHARED (only if one change intentionally affects multiple routes/clusters via approved shared contract updates)
 
 Scope = GOLDEN_SET (fixed small set of representative routes)
 
@@ -91,11 +108,11 @@ TARGET_ROUTE=/finance/present-value-of-annuity/ (single)
 
 TARGET_SET=finance (category)
 
-TARGET_SET=golden (global shared)
+TARGET_SET=golden (cluster shared)
 
 If no target is provided → FAIL FAST.
 
-3.4 Golden Set (GLOBAL_SHARED) — fixed list (REQUIRED)
+3.4 Golden Set (CLUSTER_SHARED) — fixed list (REQUIRED)
 
 Define a small representative set (10–20 max) that covers:
 
@@ -112,6 +129,49 @@ long FAQ page
 at least one page per major category
 
 Store at: compliance/golden_routes.json
+
+3.5 Lighthouse Mode Matrix (MANDATORY)
+
+HARD: The selected Lighthouse mode must be declared in release evidence and must match policy.
+
+FAST Gate (PR default)
+
+- `LH_MODE=fast`
+- `LH_CATEGORIES=performance`
+- `LH_RUNS=1`
+- `LH_SCAN_MIXED_CONTENT=0`
+- `LH_ASSUME_SERVER_RUNNING=1`
+
+STABLE Pre-release
+
+- `LH_MODE=stable`
+- `LH_CATEGORIES=performance`
+- `LH_RUNS=3`
+- `LH_WARMUP_RUN=1`
+- `LH_SCAN_MIXED_CONTENT=0`
+
+FULL Weekly Audit (track-only)
+
+- `LH_MODE=full`
+- `LH_CATEGORIES=performance,accessibility,best-practices`
+- `LH_RUNS=1`
+- `LH_SCAN_MIXED_CONTENT=1`
+
+HARD: `requirements/universal-rules/lighthouse_policy.json` is the canonical runtime policy source.
+
+3.6 Test Tooling Diff-Discipline Checks (HARD for tooling changes)
+
+Applicable when change touches Lighthouse/CWV tooling, policy wiring, or test execution scripts.
+
+HARD: Changes must be small-diff (no broad refactor/restructure/renames) unless explicitly approved in scope.
+
+HARD: New behavior must be env-flag-driven and default-safe, with no implicit release gate behavior drift.
+
+HARD: Release evidence must declare selected mode and optional flags used (`LH_SCAN_MIXED_CONTENT`, `LH_ASSUME_SERVER_RUNNING`, `LH_WARMUP_RUN`, `LH_DESKTOP_THROTTLING`).
+
+HARD: `stable` pre-release mode requires `LH_RUNS=3` with median aggregation.
+
+SOFT: Include before/after runtime note for target route(s) when efficiency-oriented tooling changes are introduced.
 
 4. Pre-Release Command Gate (MANDATORY)
 
@@ -277,6 +337,14 @@ Network: Slow 3G
 
 1280×720, no throttling
 
+8.2.1 Lighthouse execution policy (required)
+
+HARD (Mobile): Explicit `--form-factor=mobile` and `--throttling-method=devtools` required.
+
+HARD (Desktop default): Native desktop preset policy with `--form-factor=desktop` and `--screenEmulation.disabled`.
+
+HARD (Desktop override): `LH_DESKTOP_THROTTLING=devtools` is allowed only when documented in sign-off evidence.
+
 8.3 Pass/Fail thresholds (lab proxy)
 
 HARD: LCP ≤ 2500ms
@@ -294,6 +362,10 @@ HARD: TARGET_ROUTE={route} npm run test:cwv:target
 
 Produces: test-results/performance/cls-guard.json
 
+HARD: PR gates must pass exactly one `TARGET_ROUTE` or policy-approved `GOLDEN_SET` routes.
+
+HARD: Full-site Lighthouse/CWV scans are disallowed in PR gates by default.
+
 9.2 Regression rules
 
 HARD: CLS regression >20% vs baseline for the same route → FAIL
@@ -305,6 +377,12 @@ HARD: LCP regression >30% vs baseline → FAIL
 SOFT/OPTIONAL: npm run test:cwv:all
 
 Only allowed if change type = INFRA and release owner requests it.
+
+9.4 Weekly FULL audit handling (track-only)
+
+SOFT: Weekly FULL audit failures create/update tracking issue using policy noise controls.
+
+SOFT: Weekly FULL audit failures are non-blocking for release unless separately promoted to HARD by human decision.
 
 10. Ads & AdSense Compliance — HARD
     10.1 Slot reservation (CLS prevention)
@@ -326,6 +404,15 @@ HARD: Ads never overlap inputs/results or controls
 10.3 Loader correctness
 
 HARD: Exactly one AdSense loader script in <head>
+
+HARD: Loader snippet must match canonical contract:
+`<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361" crossorigin="anonymous"></script>`
+
+HARD: Body ad unit snippet must match controlled contract:
+`<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1063975431106361" data-ad-slot="3901083802" data-ad-format="auto" data-full-width-responsive="true"></ins>`
+and slot activation `(adsbygoogle = window.adsbygoogle || []).push({});` must execute once per slot.
+
+HARD: Canonical snippet rationale files are archived under `requirements/universal-rules/Archive Rules/`; release validation must enforce governance contracts, not ad-hoc snippet variants.
 
 11. Mobile & Tablet UX — HARD
     11.1 Layout
@@ -453,6 +540,10 @@ CWV guard artifact summary
 
 Ads validation notes (mobile policy + no CLS)
 
+AdSense loader snippet compliance proof (head snippet exact-match evidence)
+
+Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activation)
+
 SERP validation notes (canonical + schema + FAQ parity)
 
 Mobile UX artifacts (screenshots + tap target check results)
@@ -462,6 +553,22 @@ Above-the-fold mutation guard result
 Accessibility UX automation (keyboard traversal + focus visibility + 200% zoom)
 
 Interaction guard automation (long task + latency + nav stability)
+
+Lighthouse mode used (`fast` | `stable` | `full`)
+
+`LH_RUNS` value
+
+Aggregation type (`single` | `median`)
+
+Desktop policy mode (`native` | `devtools-override`)
+
+Resolved policy snapshot (`runPolicy.resolved`) from Lighthouse summary
+
+Test-tooling small-diff compliance declaration (required when tooling files changed)
+
+Optional Lighthouse flags used (`LH_SCAN_MIXED_CONTENT`, `LH_ASSUME_SERVER_RUNNING`, `LH_WARMUP_RUN`, `LH_DESKTOP_THROTTLING`)
+
+HARD: Missing any Lighthouse governance evidence field above = checklist failure.
 
 17. Manual Annex (Non-Blocking)
 
@@ -491,6 +598,8 @@ Missing explanation/FAQ in initial HTML
 
 Test scope not explicitly declared
 
+Missing Lighthouse governance evidence fields (`lighthouseMode`, `lhRuns`, `aggregationType`, `desktopPolicyMode`, `runPolicy.resolved`)
+
 SOFT SIGNALS (Release allowed)
 
 Minor Lighthouse dip with no CWV regressions
@@ -498,3 +607,5 @@ Minor Lighthouse dip with no CWV regressions
 Minor visual polish issues not impacting layout geometry
 
 Non-critical warnings recorded with follow-up ticket
+
+Weekly FULL audit track-only issue open with no active HARD gate regression in release scope

@@ -1,0 +1,155 @@
+name: Weekly Full Audit (Track Only)
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  weekly-full-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Verify Route Bundles
+        run: npm run verify:css:route-bundles
+
+      - name: Run Weekly FULL Audit (Track-Only)
+        id: weekly_audit
+        continue-on-error: true
+        env:
+          LH_MODE: full
+          LH_SCAN_MIXED_CONTENT: 1
+          LH_RUNS: 1
+        run: npm run test:lcp:loans
+
+      - name: Evaluate Noise Control Thresholds
+        id: noise
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const policyPath = path.join(process.cwd(), 'requirements', 'universal-rules', 'lighthouse_policy.json');
+          const reportPath = path.join(process.cwd(), 'test-results', 'performance', 'lcp-budgets-loans.json');
+          const outputPath = process.env.GITHUB_OUTPUT;
+
+          const policy = JSON.parse(fs.readFileSync(policyPath, 'utf8'));
+          const noise = policy?.weeklyAuditPolicy?.noiseControl || {};
+
+          let report = null;
+          if (fs.existsSync(reportPath)) {
+            report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+          }
+
+          const failures = Number(report?.failures || 0);
+          const thresholdMultiplier = 1 + (Number(noise.lcpRegressionPercent || 0) / 100);
+
+          const severeLcpBreaches = Array.isArray(report?.results)
+            ? report.results.filter((row) => {
+                if (!row || typeof row.lcpMs !== 'number' || typeof row.thresholdMs !== 'number') {
+                  return false;
+                }
+                return row.lcpMs > row.thresholdMs * thresholdMultiplier;
+              }).length
+            : 0;
+
+          const hasReport = Boolean(report);
+          const consecutiveRequired = Number(noise.consecutiveFailuresRequired || 2);
+          const shouldCreateIssue = !hasReport || failures >= consecutiveRequired || severeLcpBreaches > 0;
+
+          const lines = [
+            `has_report=${hasReport ? '1' : '0'}`,
+            `failures=${failures}`,
+            `severe_lcp_breaches=${severeLcpBreaches}`,
+            `should_create_issue=${shouldCreateIssue ? '1' : '0'}`,
+            `report_path=test-results/performance/lcp-budgets-loans.json`
+          ];
+
+          fs.appendFileSync(outputPath, `${lines.join('\n')}\n`);
+          NODE
+
+      - name: Upload Weekly Audit Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-full-audit-artifacts
+          path: |
+            test-results/lighthouse/**
+            test-results/performance/lcp-budgets-loans.json
+          if-no-files-found: warn
+
+      - name: Create/Update Weekly Audit Tracking Issue
+        if: steps.noise.outputs.should_create_issue == '1'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Weekly Full Audit Tracker';
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const failures = '${{ steps.noise.outputs.failures }}';
+            const severe = '${{ steps.noise.outputs.severe_lcp_breaches }}';
+            const hasReport = '${{ steps.noise.outputs.has_report }}';
+            const reportPath = '${{ steps.noise.outputs.report_path }}';
+
+            const body = [
+              'Weekly FULL audit triggered issue creation based on policy noise controls.',
+              '',
+              `- Date: ${new Date().toISOString()}`,
+              `- Has report: ${hasReport === '1' ? 'yes' : 'no'}`,
+              `- Profile failures: ${failures}`,
+              `- Severe LCP breaches: ${severe}`,
+              `- Report: ${reportPath}`,
+              '',
+              'This is track-only governance (non-blocking release).'
+            ].join('\n');
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open',
+              labels: 'weekly-audit',
+              per_page: 100,
+            });
+
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: ['weekly-audit', 'performance', 'track-only'],
+              });
+            }
+
+      - name: Weekly Audit Completion
+        if: always()
+        run: |
+          echo "Weekly full audit completed in track-only mode."
+          echo "Failures: ${{ steps.noise.outputs.failures }}"
+          echo "Severe LCP breaches: ${{ steps.noise.outputs.severe_lcp_breaches }}"

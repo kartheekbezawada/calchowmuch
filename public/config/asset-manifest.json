@@ -1,0 +1,439 @@
+{
+  "version": 1,
+  "strategy": "loans-first-strict-route-isolation",
+  "routes": {
+    "/loans/how-much-can-i-borrow/": {
+      "route": "/loans/how-much-can-i-borrow/",
+      "calculatorId": "how-much-can-i-borrow",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/how-much-can-i-borrow/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/remortgage-switching/": {
+      "route": "/loans/remortgage-switching/",
+      "calculatorId": "remortgage-switching",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/remortgage-switching/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/buy-to-let/": {
+      "route": "/loans/buy-to-let/",
+      "calculatorId": "buy-to-let",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-buy-to-let.c1532170.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/buy-to-let/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/offset-calculator/": {
+      "route": "/loans/offset-calculator/",
+      "calculatorId": "offset-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-offset-calculator.87be7715.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/offset-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/interest-rate-change-calculator/": {
+      "route": "/loans/interest-rate-change-calculator/",
+      "calculatorId": "interest-rate-change-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/interest-rate-change-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/loan-to-value/": {
+      "route": "/loans/loan-to-value/",
+      "calculatorId": "loan-to-value",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/loan-to-value/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/credit-card-repayment-payoff/": {
+      "route": "/loans/credit-card-repayment-payoff/",
+      "calculatorId": "credit-card-repayment-payoff",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/loans-credit-card-repayment-payoff.4a811c66.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-credit-card-repayment-payoff.critical.3e5bbc8e.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/credit-card-repayment-payoff/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/loans/credit-card-minimum-payment/": {
+      "route": "/loans/credit-card-minimum-payment/",
+      "calculatorId": "credit-card-minimum-payment",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/loans-credit-card-minimum-payment.575fd96c.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-credit-card-minimum-payment.critical.8f1b7348.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/credit-card-minimum-payment/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/loans/balance-transfer-installment-plan/": {
+      "route": "/loans/balance-transfer-installment-plan/",
+      "calculatorId": "balance-transfer-installment-plan",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/loans-balance-transfer-installment-plan.e1826d95.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-balance-transfer-installment-plan.critical.09f748ab.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/balance-transfer-installment-plan/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/loans/credit-card-consolidation/": {
+      "route": "/loans/credit-card-consolidation/",
+      "calculatorId": "credit-card-consolidation",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/loans-credit-card-consolidation.badbe2c8.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-credit-card-consolidation.critical.898f8d55.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/credit-card-consolidation/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/loans/car-loan/": {
+      "route": "/loans/car-loan/",
+      "calculatorId": "car-loan",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-car-loan.e80c8568.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-car-loan.critical.dfec91a3.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/car-loan/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/multiple-car-loan/": {
+      "route": "/loans/multiple-car-loan/",
+      "calculatorId": "multiple-car-loan",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-multiple-car-loan.33436fb9.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-multiple-car-loan.critical.dfec91a3.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/multiple-car-loan/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/hire-purchase/": {
+      "route": "/loans/hire-purchase/",
+      "calculatorId": "hire-purchase",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-hire-purchase.38a648e7.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-hire-purchase.critical.dfec91a3.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/hire-purchase/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/pcp-calculator/": {
+      "route": "/loans/pcp-calculator/",
+      "calculatorId": "pcp-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-pcp-calculator.4dfe739d.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-pcp-calculator.critical.a10784a0.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/pcp-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/leasing-calculator/": {
+      "route": "/loans/leasing-calculator/",
+      "calculatorId": "leasing-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/loans-leasing-calculator.718b534c.css"
+        ],
+        "critical": "/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/leasing-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/loans/home-loan/": {
+      "route": "/loans/home-loan/",
+      "calculatorId": "home-loan",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/core-shell.css?v=20260127"
+        ],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loans/home-loan/module.js"
+        ]
+      },
+      "options": {
+        "generationMode": "manual",
+        "topNavStatic": true,
+        "rationale": "Manual performance optimizations are maintained route-locally."
+      }
+    }
+  }
+}

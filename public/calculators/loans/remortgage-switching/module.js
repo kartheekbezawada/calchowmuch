@@ -25,6 +25,7 @@ const metricBreakEven = document.querySelector('#remo-metric-break-even');
 const metricTotal = document.querySelector('#remo-metric-total');
 const resultNote = document.querySelector('#remo-result-note');
 const errorDiv = document.querySelector('#remo-error');
+const explanationSummary = document.querySelector('#remo-exp-summary');
 
 /* --- Table Elements --- */
 const monthlyWrap = document.querySelector('#remo-table-monthly-wrap');
@@ -182,7 +183,11 @@ function calculate() {
 
     // Validation
     if (balance <= 0) {
-      setError('Balance must be uniform positive.');
+      setError('Current balance must be greater than 0.');
+      return;
+    }
+    if (term <= 1 || newTerm <= 1) {
+      setError('Loan term must be at least 1 year.');
       return;
     }
 
@@ -214,7 +219,7 @@ function calculate() {
     if (metricBreakEven) {
       metricBreakEven.textContent = data.breakEvenMonth
         ? `Month ${data.breakEvenMonth}`
-        : 'Outside horizon';
+        : 'Not within horizon';
       animateMetric(metricBreakEven);
     }
     if (metricTotal) {
@@ -227,6 +232,11 @@ function calculate() {
       resultNote.textContent = isSaving
         ? `You save ${fmtCurrency(data.monthlyDifference)}/mo by switching.`
         : `Switching costs you ${fmtCurrency(Math.abs(data.monthlyDifference))}/mo more.`;
+    }
+    if (explanationSummary) {
+      explanationSummary.textContent = `Over ${horizon} years, switching changes total cost by ${fmtCurrency(
+        data.totalSavings
+      )}.`;
     }
 
     // Update Table

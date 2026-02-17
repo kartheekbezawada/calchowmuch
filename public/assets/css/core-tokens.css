@@ -1,0 +1,67 @@
+/* Core shared design tokens for isolated route bundles. */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}

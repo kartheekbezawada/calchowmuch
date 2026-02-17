@@ -1,5 +1,5 @@
 import { formatNumber } from '/assets/js/core/format.js';
-import { setPageMetadata } from '/assets/js/core/ui.js';
+import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateBorrow, computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
 
 const metadata = {
@@ -32,15 +32,14 @@ const expensesDisplay = document.querySelector('#bor-expenses-display');
 const debtsDisplay = document.querySelector('#bor-debts-display');
 const rateDisplay = document.querySelector('#bor-rate-display');
 const termDisplay = document.querySelector('#bor-term-display');
-// const multipleDisplay = document.querySelector('#bor-multiple-display'); // Hidden/Unused in logic now
+const multipleDisplay = document.querySelector('#bor-multiple-display');
 const depositDisplay = document.querySelector('#bor-deposit-display');
 
-// const multipleRow = document.querySelector('#bor-multiple-row'); // Removed from DOM
-// const paymentNoteRow = document.querySelector('#bor-payment-note-row'); // Removed from DOM
+const multipleRow = document.querySelector('#bor-multiple-row');
+const paymentNoteRow = document.querySelector('#bor-payment-note-row');
 const calculateButton = document.querySelector('#bor-calculate');
 
-// const incomeBasisGroup = null; // Removed from DOM
-// const methodGroup = null; // Removed from DOM
+const methodGroup = document.querySelector('[data-button-group="bor-method"]');
 
 /* --- DOM references: result dashboard --- */
 
@@ -94,6 +93,10 @@ function updateSliderDisplays() {
     termDisplay.textContent = `${termInput.value} yrs`;
     updateSliderFill(termInput);
   }
+  if (multipleInput && multipleDisplay) {
+    multipleDisplay.textContent = `${fmtDecimal(Number(multipleInput.value))}x`;
+    updateSliderFill(multipleInput);
+  }
   if (depositInput && depositDisplay) {
     depositDisplay.textContent = fmt(Number(depositInput.value));
     updateSliderFill(depositInput);
@@ -101,7 +104,7 @@ function updateSliderDisplays() {
 }
 
 /* Bind slider input events */
-[grossIncomeInput, expensesInput, debtsInput, rateInput, termInput, depositInput]
+[grossIncomeInput, expensesInput, debtsInput, rateInput, termInput, multipleInput, depositInput]
   .filter(Boolean)
   .forEach((input) => {
     input.addEventListener('input', () => {
@@ -111,6 +114,33 @@ function updateSliderDisplays() {
   });
 
 updateSliderDisplays();
+
+let selectedMethod = 'income';
+function updateMethodUi(method) {
+  selectedMethod = method === 'payment' ? 'payment' : 'income';
+  if (multipleRow) {
+    multipleRow.classList.toggle('is-hidden', selectedMethod !== 'income');
+    multipleRow.hidden = selectedMethod !== 'income';
+    multipleRow.style.display = selectedMethod === 'income' ? '' : 'none';
+  }
+  if (paymentNoteRow) {
+    paymentNoteRow.classList.toggle('is-hidden', selectedMethod !== 'payment');
+    paymentNoteRow.hidden = selectedMethod !== 'payment';
+    paymentNoteRow.style.display = selectedMethod === 'payment' ? '' : 'none';
+  }
+}
+
+if (methodGroup) {
+  setupButtonGroup(methodGroup, {
+    defaultValue: 'income',
+    onChange: (value) => {
+      updateMethodUi(value);
+      calculate();
+    },
+  });
+} else {
+  updateMethodUi('income');
+}
 
 /* --- Helper: Estimate Net Income from Gross (Simple Tax Model) --- */
 function estimateNetIncome(grossAnnual) {
@@ -221,8 +251,8 @@ function renderScenarioTable(data) {
 
   const rows = data.rateSeries.map((item) => {
     const isCurrent = Math.abs(item.rate - data.interestRate) < 0.01;
-    // recalculate for table consistency
-    const payment = computeMonthlyPayment(item.value, item.rate, data.termYears * 12); // item.value is maxBorrow at that rate
+    // Show rate sensitivity for current borrowing target.
+    const payment = computeMonthlyPayment(data.maxBorrow, item.rate, data.termYears * 12);
     const prop = item.value + (data.deposit || 0);
 
     return `<tr${isCurrent ? ' class="bor-scenario-highlight"' : ''}>
@@ -267,13 +297,8 @@ function calculate() {
     const termYears = Number(termInput?.value) || 0;
     const deposit = Number(depositInput?.value) || 0;
 
-    // Use 'income' method (Multiple) which acts as a DUAL CAP:
-    // 1. Caps at Income * Multiple (4.5x)
-    // 2. Further reduces if Affordability (Net - Outgoings) is insufficient
-    // This is the most realistic bank lending model.
-    const method = 'income';
+    const method = selectedMethod;
 
-    // Standard lending multiple
     const incomeMultipleParam = multipleInput ? Number(multipleInput.value) : 4.5;
     const incomeMultiple = Number.isFinite(incomeMultipleParam) ? incomeMultipleParam : 4.5;
 
@@ -345,16 +370,10 @@ function calculate() {
 
     /* Constraint tag */
     if (constraintTag) {
-      // Show constraint based on what actually limited the loan?
-      // Since we use method='income', it's limited by either 4.5x OR Affordability.
-      // We can infer:
-      const maxByMultiple = grossIncomeAnnual * incomeMultiple;
-      // Check if maxBorrow is significantly less than what the multiple would allow
-      const isAffordabilityConstrained = data.maxBorrow < maxByMultiple * 0.99; // 1% buffer for floating point
-      if (isAffordabilityConstrained) {
-        constraintTag.textContent = `Limit determined by monthly budget (affordability)`;
+      if (method === 'payment') {
+        constraintTag.textContent = 'Payment-to-income cap';
       } else {
-        constraintTag.textContent = `Limit determined by income multiple (${incomeMultiple}x)`;
+        constraintTag.textContent = `Income multiple (${incomeMultiple}x)`;
       }
     }
 

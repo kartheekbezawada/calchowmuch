@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-17",
+  "defaults": {
+    "mode": "fast",
+    "categories": "performance",
+    "scanMixedContent": false,
+    "assumeServerRunning": true,
+    "runs": 1,
+    "warmupRun": false
+  },
+  "modes": {
+    "fast": {
+      "categories": "performance",
+      "runs": 1,
+      "warmupRun": false,
+      "scanMixedContent": false,
+      "assumeServerRunning": true
+    },
+    "stable": {
+      "categories": "performance",
+      "runs": 3,
+      "warmupRun": true,
+      "scanMixedContent": false,
+      "assumeServerRunning": false
+    },
+    "full": {
+      "categories": "performance,accessibility,best-practices",
+      "runs": 1,
+      "warmupRun": false,
+      "scanMixedContent": true,
+      "assumeServerRunning": false
+    }
+  },
+  "mobilePolicy": {
+    "formFactor": "mobile",
+    "throttlingMethod": "devtools"
+  },
+  "desktopPolicy": {
+    "preset": "desktop",
+    "formFactor": "desktop",
+    "screenEmulationDisabled": true,
+    "defaultThrottling": "native",
+    "allowDevtoolsOverride": true
+  },
+  "allowedOverrides": {
+    "LH_CATEGORIES": true,
+    "LH_SCAN_MIXED_CONTENT": true,
+    "LH_ASSUME_SERVER_RUNNING": true,
+    "LH_RUNS": true,
+    "LH_WARMUP_RUN": true,
+    "LH_DESKTOP_THROTTLING": true
+  },
+  "weeklyAuditPolicy": {
+    "blocking": "track-only",
+    "issueCreation": true,
+    "noiseControl": {
+      "consecutiveFailuresRequired": 2,
+      "lcpRegressionPercent": 15,
+      "clsRegressionAbsolute": 0.03,
+      "perfScoreDropPoints": 5
+    }
+  }
+}

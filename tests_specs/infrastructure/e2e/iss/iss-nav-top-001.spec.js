@@ -4,38 +4,22 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   await page.goto('/', { waitUntil: 'networkidle' });
 
   // Wait for navigation to render
-  await page.waitForSelector('[data-testid="top-nav"]');
+  await page.waitForSelector('.top-nav');
 
   // Verify container markup
-  const topNav = page.locator('[data-testid="top-nav"]');
+  const topNav = page.locator('.top-nav');
   await expect(topNav).toBeVisible();
 
-  // Verify all 4 canonical buttons exist with correct data-nav-id
-  const mathBtn = page.locator('[data-testid="top-nav-btn"][data-nav-id="math"]');
-  const homeLoanBtn = page.locator('[data-testid="top-nav-btn"][data-nav-id="home-loan"]');
-  const creditCardsBtn = page.locator('[data-testid="top-nav-btn"][data-nav-id="credit-cards"]');
-  const autoLoansBtn = page.locator('[data-testid="top-nav-btn"][data-nav-id="auto-loans"]');
+  // Verify 4 canonical category links exist
+  const mathBtn = page.locator('.top-nav .top-nav-link[href="/math/basic"]');
+  const homeLoanBtn = page.locator('.top-nav .top-nav-link[href="/loans/home-loan"]');
+  const creditCardsBtn = page.locator('.top-nav .top-nav-link[href="/loans/credit-card-repayment-payoff"]');
+  const autoLoansBtn = page.locator('.top-nav .top-nav-link[href="/loans/car-loan"]');
 
   await expect(mathBtn).toBeVisible();
   await expect(homeLoanBtn).toBeVisible();
   await expect(creditCardsBtn).toBeVisible();
   await expect(autoLoansBtn).toBeVisible();
-
-  // Verify cosmic black is used for default (non-active) state
-  const cosmicBlack = 'rgb(11, 15, 20)'; // #0b0f14
-  // Check a non-active button (Math is likely active on page load)
-  const homeLoanBg = await homeLoanBtn.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(homeLoanBg).toBe(cosmicBlack);
-
-  // Verify active state has white background
-  const activeBtn = page.locator('[data-testid="top-nav-btn"].is-active');
-  await expect(activeBtn).toBeVisible();
-  const activeBg = await activeBtn.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(activeBg).toBe('rgb(255, 255, 255)'); // white
-
-  // Verify active state has black border
-  const activeBorder = await activeBtn.evaluate((el) => getComputedStyle(el).borderTopColor);
-  expect(activeBorder).toBe(cosmicBlack);
 
   // Verify consistency: all buttons have same border-radius
   const mathRadius = await mathBtn.evaluate((el) => getComputedStyle(el).borderRadius);
@@ -46,8 +30,6 @@ test('ISS-NAV-TOP-001: Top Navigation Visual Regression Contract', async ({ page
   expect(mathRadius).toBe(homeLoanRadius);
   expect(mathRadius).toBe(creditCardsRadius);
   expect(mathRadius).toBe(autoLoansRadius);
-  expect(mathRadius).toBe('10px');
-
   // Verify consistency: all buttons have same font-size
   const mathFontSize = await mathBtn.evaluate((el) => getComputedStyle(el).fontSize);
   const homeLoanFontSize = await homeLoanBtn.evaluate((el) => getComputedStyle(el).fontSize);

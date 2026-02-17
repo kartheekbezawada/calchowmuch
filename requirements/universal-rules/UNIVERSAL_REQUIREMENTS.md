@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 3.5 (Design token reference defaults + layout hard-lock)
-- **Last Updated:** 2026-02-14
+- **Version:** 3.9 (Cluster isolation + testing efficiency + AdSense snippet governance)
+- **Last Updated:** 2026-02-17
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -57,9 +57,9 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-001 (P0):** Calculator navigation must use static `<a href>` links and full page reloads.
 - **UR-NAV-002 (P0):** SPA routing for calculator navigation is not allowed.
 - **UR-NAV-003 (P0):** Navigation hierarchy must align with `requirements/site-structure/calculator-hierarchy.md`.
-- **UR-NAV-004 (P0):** Live calculators must exist in `public/config/navigation.json` for nav visibility.
-- **UR-NAV-005 (P0):** Layout shell owns shared regions; calculator-specific compute logic must stay in calculator modules.
-- **UR-NAV-006 (P1):** Shared utility logic belongs in `/public/assets/js/core/`; avoid duplication in route modules.
+- **UR-NAV-004 (P0):** Live calculators must exist in a governed navigation source for nav visibility. Legacy shared source `public/config/navigation.json` is superseded by cluster-local navigation contracts under `UR-CLUSTER-010`.
+- **UR-NAV-005 (P0):** Layout shell ownership is cluster-scoped for isolated routes (`UR-CLUSTER-001`, `UR-CLUSTER-007`). Shared shell ownership applies only to legacy non-migrated routes.
+- **UR-NAV-006 (P1):** Shared utility logic under `/public/assets/js/core/` is superseded for isolated routes by cluster-owned runtime logic plus immutable core constraints (`UR-CLUSTER-006`, `UR-CLUSTER-010`).
 
 ### 3.1 Excluded Page Types (GTEP)
 
@@ -93,6 +93,44 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **`exp_only`:** Calc Pane (Omitted) + Exp Pane (Req). Layout: `single`.
 - **`content_shell`:** Calc Pane (Omitted) + Exp Pane (Omitted). Layout: `single`.
 
+### 3.5 Cluster Isolation Governance
+
+- **UR-CLUSTER-001 (P0):** Rule reuse is global; runtime/build files are cluster-owned.
+- **UR-CLUSTER-002 (P0):** The 7-cluster boundary model is canonical: `math`, `home-loan`, `credit-cards`, `auto-loans`, `finance`, `time-and-date`, `percentage`.
+- **UR-CLUSTER-003 (P0):** Public URL structure must remain unchanged during cluster migration unless explicitly approved.
+- **UR-CLUSTER-004 (P0):** Cross-cluster linking via static anchors (`<a href>`) is allowed.
+- **UR-CLUSTER-005 (P0):** Cross-cluster runtime imports/references are prohibited (CSS/JS/HTML asset references into another cluster prefix).
+- **UR-CLUSTER-006 (P0):** Allowed shared runtime is limited to immutable core assets under `/assets/core/v{n}/...`.
+- **UR-CLUSTER-007 (P0):** Cluster-owned shell contract is mandatory and must preserve required DOM hooks, ARIA behavior, and layout invariants.
+- **UR-CLUSTER-008 (P0):** Route ownership contract is mandatory via `config/clusters/route-ownership.json` with required ownership and rollback fields.
+- **UR-CLUSTER-009 (P0):** Cluster registry contract is mandatory via `config/clusters/cluster-registry.json`.
+- **UR-CLUSTER-010 (P0):** Per-cluster configuration contracts are mandatory: `clusters/<cluster-id>/config/navigation.json` and `clusters/<cluster-id>/config/asset-manifest.json`.
+- **UR-CLUSTER-011 (P0):** Generated route HTML must satisfy an isolation fence: allow only owner-cluster assets and immutable core prefixes.
+- **UR-CLUSTER-012 (P0):** Route assets must resolve only to owner cluster prefix or immutable core prefix.
+- **UR-CLUSTER-013 (P0):** Cluster asset hashing must be immutable; cleanup must be manifest-aware and safe against referenced asset deletion.
+- **UR-CLUSTER-014 (P0):** Rollback contract fields are required per route ownership entry: `activeOwnerClusterId`, `previousOwnerClusterId`, `rollbackTag`.
+- **UR-CLUSTER-015 (P0):** Global navigation destination parity must be enforced across cluster nav files using a policy-level global navigation spec.
+- **UR-CLUSTER-016 (P0):** Cluster build entry points must be independent; root harness is orchestration-only and must not reintroduce shared rendering logic.
+- **UR-CLUSTER-017 (P0):** Cross-cluster guard checks are mandatory release gates (ownership integrity, isolation fence, import graph, manifest integrity, nav parity).
+- **UR-CLUSTER-018 (P0):** Any new calculator cluster/category must follow this cluster-isolation approach by default.
+- **UR-CLUSTER-019 (P0):** Legacy shared shell/runtime files are forbidden for isolated routes after decommission phase completion.
+- **UR-CLUSTER-020 (P0):** Exceptions to cluster isolation require explicit approval, documented rationale, and signoff evidence.
+
+### 3.5.1 Cluster Contract Field Baseline (Normative)
+
+- **Route ownership contract (`config/clusters/route-ownership.json`) minimum fields:** `route`, `calculatorId`, `activeOwnerClusterId`, `previousOwnerClusterId`, `rollbackTag`.
+- **Cluster registry contract (`config/clusters/cluster-registry.json`) minimum fields:** `clusterId`, `displayName`, `status`, `routePrefixes`, `owners`.
+- **Per-cluster navigation contract:** `clusters/<cluster-id>/config/navigation.json` must include cluster-local sections plus required global-destination parity fields.
+- **Per-cluster asset manifest contract:** `clusters/<cluster-id>/config/asset-manifest.json` must include route-level CSS/JS ownership mappings and isolation boundary metadata.
+
+### 3.6 Superseded Legacy Shared Assumptions (Traceability)
+
+- **By `UR-CLUSTER-*`:** `UR-NAV-004`, `UR-NAV-005`, `UR-NAV-006`.
+- **By `UR-CLUSTER-*`:** `UR-UI-003`.
+- **By `UR-CLUSTER-*`:** `UR-CSS-002`, `UR-CSS-003`, `UR-CSS-005`, `UR-CSS-006`, `UR-CSS-009`.
+- **By `UR-CLUSTER-*`:** `UR-ADS-002`, `UR-ADS-012`.
+- **By `UR-CLUSTER-*`:** `UR-SMAP-003`.
+
 ---
 
 ## 4) Theme and UI Core
@@ -101,7 +139,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 
 - **UR-UI-001 (P0):** Premium-dark is the global default theme for shell/content/calculator surfaces.
 - **UR-UI-002 (P0):** Shared theme tokens are mandatory; ad-hoc route palettes are not allowed.
-- **UR-UI-003 (P0):** Theme is loaded once globally via shared base stylesheet; per-page duplicate theme link tags are disallowed.
+- **UR-UI-003 (P0):** Theme delivery for isolated routes is cluster-owned under `UR-CLUSTER-001` and `UR-CLUSTER-010`; global shared base theme loading is superseded for isolated routes.
 
 ### 4.2 Component and Input Rules
 
@@ -157,14 +195,14 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ### 4.6 CSS Architecture and Loading Rules
 
 - **UR-CSS-001 (P0):** `@import` is **prohibited** in all calculator CSS files. Enforced by `npm run lint:css-import`.
-- **UR-CSS-002 (P0):** Shared layout rules must be sourced from `/assets/css/shared-calculator-ui.css`; delivery may be direct `<link>` or generated route bundle, never `@import`.
-- **UR-CSS-003 (P0):** Generator manages shared CSS delivery links (direct shared link or route bundle); source HTML must NOT add shared CSS links/imports.
+- **UR-CSS-002 (P0):** Shared layout source requirement is superseded for isolated routes by cluster-owned CSS contracts (`UR-CLUSTER-010`); `@import` prohibition still applies.
+- **UR-CSS-003 (P0):** Shared generator-managed CSS delivery is superseded for isolated routes by cluster-owned build entry points (`UR-CLUSTER-016`).
 - **UR-CSS-004 (P0):** `calculator.css` contains **only page-specific overrides**.
-- **UR-CSS-005 (P0):** CSS load/concat order must remain: `theme` -> `base` -> `layout` -> `calc` -> `shared-ui` -> `style`.
-- **UR-CSS-006 (P0):** Do NOT copy CSS from other calculators (e.g., Home Loan). Use shared rules + overrides.
+- **UR-CSS-005 (P0):** CSS load order for isolated routes is cluster-scoped and must satisfy isolation fence constraints (`UR-CLUSTER-011`, `UR-CLUSTER-012`).
+- **UR-CSS-006 (P0):** Legacy shared cross-route CSS ownership is superseded for isolated routes; each route must load only owner-cluster CSS contracts (except immutable core under `UR-CLUSTER-006`).
 - **UR-CSS-007 (P1):** Blocking budget: ≤ 5 `<link>` tags for standard routes; approved route-bundle routes require exactly 1 blocking stylesheet link.
 - **UR-CSS-008 (P0):** `npm run validate` fails on any `@import`.
-- **UR-CSS-009 (P1):** Route-bundle manifests must map route -> hashed CSS output and declare ordered source files used to build each bundle.
+- **UR-CSS-009 (P1):** Route bundle manifests must map route -> hashed CSS output per owner cluster and comply with immutable retention rules (`UR-CLUSTER-013`).
 
 ---
 
@@ -266,6 +304,31 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
 
+### 8.5 Lighthouse Efficiency + Determinism Governance
+
+- **UR-TEST-LH-001 (P0):** Test-tooling changes must be small-diff and flag-driven; broad refactors require explicit approval.
+- **UR-TEST-LH-002 (P0):** Default Lighthouse gate category is `performance`.
+- **UR-TEST-LH-003 (P0):** Mixed-content scan is opt-in only via `LH_SCAN_MIXED_CONTENT=1`.
+- **UR-TEST-LH-004 (P1):** Server auto-start bypass is allowed via `LH_ASSUME_SERVER_RUNNING=1`.
+- **UR-TEST-LH-005 (P0):** Mobile Lighthouse runs must include explicit `--form-factor=mobile` and `--throttling-method=devtools`.
+- **UR-TEST-LH-006 (P0):** Desktop Lighthouse runs default to native desktop preset behavior with `--form-factor=desktop` and `--screenEmulation.disabled`; devtools throttling is not default.
+- **UR-TEST-LH-007 (P0):** Pre-release Lighthouse gate requires `LH_RUNS=3` with median aggregation for LCP/CLS/INP/performance score.
+- **UR-TEST-LH-008 (P1):** Warm-up run is optional via `LH_WARMUP_RUN=1`.
+- **UR-TEST-LH-009 (P1):** Weekly full audit (`performance,accessibility,best-practices` + mixed-content scan) is track-only and non-blocking for release.
+- **UR-TEST-LH-010 (P0):** Release evidence must include Lighthouse mode, `LH_RUNS`, aggregation type, resolved policy snapshot, and desktop policy mode; missing fields are hard fail.
+- **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `requirements/universal-rules/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
+- **UR-TEST-SCOPE-001 (P0):** PR Lighthouse gates must use exactly one `TARGET_ROUTE` or policy-approved golden set; full-site Lighthouse scans are disallowed in PR release gates by default.
+
+### 8.6 Testing Efficiency and Code-Diff Strategy
+
+- **UR-TEST-EFF-001 (P0):** Code-diff strategy is mandatory for testing-tooling changes: no broad refactor/reorganization and no function/file renames unless explicitly approved.
+- **UR-TEST-EFF-002 (P0):** New testing-tool behavior must be flag-driven and default-safe; when flags are unset, approved baseline behavior must remain intact.
+- **UR-TEST-EFF-003 (P1):** Slow checks must remain opt-in by default outside full-audit mode (e.g., mixed-content scanning via `LH_SCAN_MIXED_CONTENT=1`).
+- **UR-TEST-EFF-004 (P1):** Local run-time optimizations may use `LH_ASSUME_SERVER_RUNNING=1` and `LH_WARMUP_RUN=1` when allowed by policy and declared in release evidence.
+- **UR-TEST-EFF-005 (P0):** Release/perf gate operation must use policy modes (`fast`, `stable`, `full`) with explicit `LH_MODE`, `LH_RUNS`, categories, and aggregation declaration.
+- **UR-TEST-EFF-006 (P1):** Test-efficiency changes should record before/after runtime evidence for target route(s) to track CI time and cost impact.
+- **UR-TEST-EFF-007 (P0):** If rationale documents conflict with runtime policy, `requirements/universal-rules/lighthouse_policy.json` and `UR-TEST-LH-*` rules take precedence.
+
 ---
 
 ## 9) Header Contract
@@ -293,24 +356,29 @@ Applicability: `calc_exp`, `exp_only`.
 ### 11.1 AdSense Head Script (MANDATORY)
 
 - **UR-ADS-001 (P0):** Loader injected into `<head>` unconditionally.
-- **UR-ADS-002 (P0):** Loader centralized in shared generation logic.
+- **UR-ADS-002 (P0):** Loader centralization in shared generation logic is superseded for isolated routes by cluster-owned generation contracts (`UR-CLUSTER-010`, `UR-CLUSTER-016`).
 - **UR-ADS-003 (P0):** Max one loader per page.
 - **UR-ADS-004 (P0):** Env vars deprecated. Code always present.
 - **UR-ADS-005 (P0):** Attributes must match canonical snippet.
+- **UR-ADS-006 (P0):** Canonical loader snippet must use `async`, `crossorigin="anonymous"`, and source `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361`.
+- **UR-ADS-007 (P0):** Head loader must not be hardcoded manually in per-route templates; it must come from governed shell/build ownership for the owning route/cluster.
 
 ### 11.2 Ad Pane Slot (MANDATORY)
 
 - **UR-ADS-010 (P0):** `.ads-column` must render controlled `<ins>` slot.
 - **UR-ADS-011 (P0):** No placeholder text.
-- **UR-ADS-012 (P0):** Slot source from shared reusable logic.
+- **UR-ADS-012 (P0):** Slot source centralization is superseded for isolated routes by cluster-owned shell/runtime contracts (`UR-CLUSTER-007`, `UR-CLUSTER-010`).
 - **UR-ADS-013 (P1):** Mobile safety: `.ads-column` hidden at max-width 860px (unless overridden).
+- **UR-ADS-014 (P0):** Controlled ad-unit contract must include `class="adsbygoogle"`, `style="display:block"`, `data-ad-client="ca-pub-1063975431106361"`, `data-ad-format="auto"`, and `data-full-width-responsive="true"`.
+- **UR-ADS-015 (P0):** Default right-pane responsive unit must use `data-ad-slot="3901083802"` unless an approved route/cluster override contract is documented in release evidence.
+- **UR-ADS-016 (P0):** Slot activation script must use `(adsbygoogle = window.adsbygoogle || []).push({});` exactly once per rendered slot.
 
 ### 11.3 Controlled Injection Policy
 
 - **UR-ADS-020 (P0):** Auto Ads body injection PROHIBITED for calculator shell.
 - **UR-ADS-021 (P0):** No body-level loader duplication.
 - **UR-ADS-022 (P1):** Injection must be idempotent.
-- **UR-ADS-023 (P1):** Snippet docs are for reference only.
+- **UR-ADS-023 (P1):** Canonical snippet source docs are archived rationale only; normative enforcement is defined by `UR-ADS-*` rules in this file.
 
 ### 11.4 Manual Smoke Validation
 
@@ -323,7 +391,7 @@ Applicability: `calc_exp`, `exp_only`.
 
 - **UR-SMAP-001 (P0):** Live calc routes must contain human-readable `/sitemap/`.
 - **UR-SMAP-002 (P0):** Live = nav-visible or publicly reachable.
-- **UR-SMAP-003 (P0):** Source from shared nav.
+- **UR-SMAP-003 (P0):** Sitemap source may be composed from cluster navigation contracts and route ownership contracts; single shared nav source is superseded for isolated routes (`UR-CLUSTER-010`, `UR-CLUSTER-015`).
 - **UR-SMAP-004 (P0):** Missing route = Hard FAIL.
 - **UR-SMAP-005 (P0):** New calc must have sitemap criteria.
 - **UR-SMAP-006 (P0):** `xml` and `robots.txt` must preserve access.
@@ -407,6 +475,9 @@ Use only `UR-*` IDs for new work.
 - **Nav:** `requirements/site-structure/calculator-hierarchy.md`
 - **Comp:** `requirements/compliance/`
 - **Gen:** `scripts/generate-mpa-pages.js`
+- **LH Policy:** `requirements/universal-rules/lighthouse_policy.json`
+- **Archived Testing Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/code_diff_.md`, `requirements/universal-rules/Archive Rules/performance_improvements.md`
+- **Archived AdSense Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/AdSense code snippet.md`, `requirements/universal-rules/Archive Rules/Ad Unit Code.md`
 
 ---
 

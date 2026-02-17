@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "description": "Hard LCP budgets for loans-first strict isolation rollout.",
+  "profiles": {
+    "mobile": {
+      "lcpMs": 2500
+    },
+    "desktop": {
+      "lcpMs": 2500
+    }
+  },
+  "routes": [
+    "/loans/home-loan/",
+    "/loans/how-much-can-i-borrow/",
+    "/loans/remortgage-switching/",
+    "/loans/buy-to-let/",
+    "/loans/offset-calculator/",
+    "/loans/interest-rate-change-calculator/",
+    "/loans/loan-to-value/",
+    "/loans/credit-card-repayment-payoff/",
+    "/loans/credit-card-minimum-payment/",
+    "/loans/balance-transfer-installment-plan/",
+    "/loans/credit-card-consolidation/",
+    "/loans/car-loan/",
+    "/loans/multiple-car-loan/",
+    "/loans/hire-purchase/",
+    "/loans/pcp-calculator/",
+    "/loans/leasing-calculator/"
+  ]
+}
