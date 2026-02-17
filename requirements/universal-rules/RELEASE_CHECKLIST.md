@@ -113,6 +113,35 @@ at least one page per major category
 
 Store at: compliance/golden_routes.json
 
+3.5 Lighthouse Mode Matrix (MANDATORY)
+
+HARD: The selected Lighthouse mode must be declared in release evidence and must match policy.
+
+FAST Gate (PR default)
+
+- `LH_MODE=fast`
+- `LH_CATEGORIES=performance`
+- `LH_RUNS=1`
+- `LH_SCAN_MIXED_CONTENT=0`
+- `LH_ASSUME_SERVER_RUNNING=1`
+
+STABLE Pre-release
+
+- `LH_MODE=stable`
+- `LH_CATEGORIES=performance`
+- `LH_RUNS=3`
+- `LH_WARMUP_RUN=1`
+- `LH_SCAN_MIXED_CONTENT=0`
+
+FULL Weekly Audit (track-only)
+
+- `LH_MODE=full`
+- `LH_CATEGORIES=performance,accessibility,best-practices`
+- `LH_RUNS=1`
+- `LH_SCAN_MIXED_CONTENT=1`
+
+HARD: `requirements/universal-rules/lighthouse_policy.json` is the canonical runtime policy source.
+
 4. Pre-Release Command Gate (MANDATORY)
 
 HARD: npm run validate passes (lint + format + unit tests + css-import lint).
@@ -277,6 +306,14 @@ Network: Slow 3G
 
 1280×720, no throttling
 
+8.2.1 Lighthouse execution policy (required)
+
+HARD (Mobile): Explicit `--form-factor=mobile` and `--throttling-method=devtools` required.
+
+HARD (Desktop default): Native desktop preset policy with `--form-factor=desktop` and `--screenEmulation.disabled`.
+
+HARD (Desktop override): `LH_DESKTOP_THROTTLING=devtools` is allowed only when documented in sign-off evidence.
+
 8.3 Pass/Fail thresholds (lab proxy)
 
 HARD: LCP ≤ 2500ms
@@ -294,6 +331,10 @@ HARD: TARGET_ROUTE={route} npm run test:cwv:target
 
 Produces: test-results/performance/cls-guard.json
 
+HARD: PR gates must pass exactly one `TARGET_ROUTE` or policy-approved `GOLDEN_SET` routes.
+
+HARD: Full-site Lighthouse/CWV scans are disallowed in PR gates by default.
+
 9.2 Regression rules
 
 HARD: CLS regression >20% vs baseline for the same route → FAIL
@@ -305,6 +346,12 @@ HARD: LCP regression >30% vs baseline → FAIL
 SOFT/OPTIONAL: npm run test:cwv:all
 
 Only allowed if change type = INFRA and release owner requests it.
+
+9.4 Weekly FULL audit handling (track-only)
+
+SOFT: Weekly FULL audit failures create/update tracking issue using policy noise controls.
+
+SOFT: Weekly FULL audit failures are non-blocking for release unless separately promoted to HARD by human decision.
 
 10. Ads & AdSense Compliance — HARD
     10.1 Slot reservation (CLS prevention)
@@ -463,6 +510,18 @@ Accessibility UX automation (keyboard traversal + focus visibility + 200% zoom)
 
 Interaction guard automation (long task + latency + nav stability)
 
+Lighthouse mode used (`fast` | `stable` | `full`)
+
+`LH_RUNS` value
+
+Aggregation type (`single` | `median`)
+
+Desktop policy mode (`native` | `devtools-override`)
+
+Resolved policy snapshot (`runPolicy.resolved`) from Lighthouse summary
+
+HARD: Missing any Lighthouse governance evidence field above = checklist failure.
+
 17. Manual Annex (Non-Blocking)
 
 These items require staging/prod or ad fill and are recorded as Manual Annex only.
@@ -491,6 +550,8 @@ Missing explanation/FAQ in initial HTML
 
 Test scope not explicitly declared
 
+Missing Lighthouse governance evidence fields (`lighthouseMode`, `lhRuns`, `aggregationType`, `desktopPolicyMode`, `runPolicy.resolved`)
+
 SOFT SIGNALS (Release allowed)
 
 Minor Lighthouse dip with no CWV regressions
@@ -498,3 +559,5 @@ Minor Lighthouse dip with no CWV regressions
 Minor visual polish issues not impacting layout geometry
 
 Non-critical warnings recorded with follow-up ticket
+
+Weekly FULL audit track-only issue open with no active HARD gate regression in release scope

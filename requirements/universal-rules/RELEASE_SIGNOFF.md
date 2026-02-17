@@ -68,6 +68,15 @@
 | **CLS** | | |
 | **INP** | | |
 
+### Lighthouse Governance Evidence (Mandatory)
+| Field | Value |
+| :--- | :--- |
+| `lighthouseMode` (`fast/stable/full`) | |
+| `lhRuns` | |
+| `aggregationType` (`single/median`) | |
+| `desktopPolicyMode` (`native/devtools-override`) | |
+| `runPolicy.resolved` snapshot path/reference | |
+
 ### Exceptions
 | ID | Issue | Severity | Owner |
 | :--- | :--- | :--- | :--- |

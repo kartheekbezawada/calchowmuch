@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 3.5 (Design token reference defaults + layout hard-lock)
-- **Last Updated:** 2026-02-14
+- **Version:** 3.6 (Lighthouse policy-as-code + scoped gate governance)
+- **Last Updated:** 2026-02-17
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -266,6 +266,21 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
 
+### 8.5 Lighthouse Efficiency + Determinism Governance
+
+- **UR-TEST-LH-001 (P0):** Test-tooling changes must be small-diff and flag-driven; broad refactors require explicit approval.
+- **UR-TEST-LH-002 (P0):** Default Lighthouse gate category is `performance`.
+- **UR-TEST-LH-003 (P0):** Mixed-content scan is opt-in only via `LH_SCAN_MIXED_CONTENT=1`.
+- **UR-TEST-LH-004 (P1):** Server auto-start bypass is allowed via `LH_ASSUME_SERVER_RUNNING=1`.
+- **UR-TEST-LH-005 (P0):** Mobile Lighthouse runs must include explicit `--form-factor=mobile` and `--throttling-method=devtools`.
+- **UR-TEST-LH-006 (P0):** Desktop Lighthouse runs default to native desktop preset behavior with `--form-factor=desktop` and `--screenEmulation.disabled`; devtools throttling is not default.
+- **UR-TEST-LH-007 (P0):** Pre-release Lighthouse gate requires `LH_RUNS=3` with median aggregation for LCP/CLS/INP/performance score.
+- **UR-TEST-LH-008 (P1):** Warm-up run is optional via `LH_WARMUP_RUN=1`.
+- **UR-TEST-LH-009 (P1):** Weekly full audit (`performance,accessibility,best-practices` + mixed-content scan) is track-only and non-blocking for release.
+- **UR-TEST-LH-010 (P0):** Release evidence must include Lighthouse mode, `LH_RUNS`, aggregation type, resolved policy snapshot, and desktop policy mode; missing fields are hard fail.
+- **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `requirements/universal-rules/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
+- **UR-TEST-SCOPE-001 (P0):** PR Lighthouse gates must use exactly one `TARGET_ROUTE` or policy-approved golden set; full-site Lighthouse scans are disallowed in PR release gates by default.
+
 ---
 
 ## 9) Header Contract
@@ -407,6 +422,7 @@ Use only `UR-*` IDs for new work.
 - **Nav:** `requirements/site-structure/calculator-hierarchy.md`
 - **Comp:** `requirements/compliance/`
 - **Gen:** `scripts/generate-mpa-pages.js`
+- **LH Policy:** `requirements/universal-rules/lighthouse_policy.json`
 
 ---
 

@@ -15,7 +15,7 @@
         "route": [
           "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css"
+        "critical": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.2e4d1922.css"
       },
       "js": {
         "core": [
@@ -42,7 +42,7 @@
         "route": [
           "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css"
+        "critical": "/assets/css/route-bundles/loans-remortgage-switching.critical.6f309754.css"
       },
       "js": {
         "core": [
@@ -69,7 +69,7 @@
         "route": [
           "/assets/css/route-bundles/loans-buy-to-let.c1532170.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css"
+        "critical": "/assets/css/route-bundles/loans-buy-to-let.critical.428358df.css"
       },
       "js": {
         "core": [
@@ -96,7 +96,7 @@
         "route": [
           "/assets/css/route-bundles/loans-offset-calculator.87be7715.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css"
+        "critical": "/assets/css/route-bundles/loans-offset-calculator.critical.921fc0ad.css"
       },
       "js": {
         "core": [
@@ -123,7 +123,7 @@
         "route": [
           "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css"
+        "critical": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.ae8a7814.css"
       },
       "js": {
         "core": [
@@ -150,7 +150,7 @@
         "route": [
           "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css"
+        "critical": "/assets/css/route-bundles/loans-loan-to-value.critical.caa00192.css"
       },
       "js": {
         "core": [

@@ -27,7 +27,18 @@ const CALCULATOR_SHARED_SOURCES = [
   'assets/css/shared-calculator-ui.css',
 ];
 
-const CRITICAL_FULL_SOURCES = new Set(['assets/css/core-shell.css']);
+const CRITICAL_FULL_SOURCES = new Set();
+const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
+  'credit-card-repayment-payoff',
+  'credit-card-minimum-payment',
+  'balance-transfer-installment-plan',
+  'credit-card-consolidation',
+  'car-loan',
+  'multiple-car-loan',
+  'hire-purchase',
+  'pcp-calculator',
+  'leasing-calculator',
+]);
 const CRITICAL_SELECTOR_HINTS = [
   ':root',
   'html',
@@ -398,7 +409,7 @@ function renderCriticalRules(rules, indent = '') {
   return rendered.join('\n\n');
 }
 
-function buildCriticalCss(sources) {
+function buildCriticalCss(sources, fullSources = CRITICAL_FULL_SOURCES) {
   const sections = [];
 
   sources.forEach((relPath) => {
@@ -408,7 +419,7 @@ function buildCriticalCss(sources) {
     }
 
     let criticalChunk = '';
-    if (CRITICAL_FULL_SOURCES.has(relPath)) {
+    if (fullSources.has(relPath)) {
       criticalChunk = raw;
     } else {
       const parsed = parseCssRules(raw);
@@ -494,10 +505,14 @@ function buildBundles() {
     const criticalSources = isLoansIsolatedRoute(routeConfig.route)
       ? ['assets/css/core-shell.css', ...sources]
       : sources;
+    const fullCriticalSources = new Set(CRITICAL_FULL_SOURCES);
+    if (FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)) {
+      fullCriticalSources.add('assets/css/core-shell.css');
+    }
     const bundledCss = sources
       .map((relPath) => `/* source: ${toWebPath(relPath)} */\n${readRequired(relPath).trim()}`)
       .join('\n\n');
-    const criticalCss = buildCriticalCss(criticalSources);
+    const criticalCss = buildCriticalCss(criticalSources, fullCriticalSources);
 
     if (!criticalCss.trim()) {
       throw new Error(`Critical CSS extraction produced empty output for ${routeConfig.route}`);
