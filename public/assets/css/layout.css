@@ -143,9 +143,10 @@ body .site-header .brand-badge span {
 .header-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
-  color: #ffffff;
-  text-shadow: none;
-  letter-spacing: 0.01em;
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
