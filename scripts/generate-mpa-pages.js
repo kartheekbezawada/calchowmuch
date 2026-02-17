@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const CALC_DIR = path.join(PUBLIC_DIR, 'calculators');
 const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
+const ASSET_MANIFEST_PATH = path.join(PUBLIC_DIR, 'config', 'asset-manifest.json');
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 const ADSENSE_SNIPPET_PATH = path.join(
@@ -1046,7 +1047,7 @@ function normalizeRoutePath(routePath) {
   return normalized;
 }
 
-function buildFinanceRouteBundles() {
+function buildRouteBundles() {
   execSync('node scripts/build-route-css-bundles.mjs', {
     cwd: ROOT,
     stdio: 'inherit',
@@ -1070,6 +1071,29 @@ function resolveRouteBundleEntry(manifest, routePath) {
     return null;
   }
   const entry = manifest.routes[normalizedRoute];
+  if (!entry || typeof entry !== 'object') {
+    return null;
+  }
+  return entry;
+}
+
+function readAssetManifest() {
+  if (!fs.existsSync(ASSET_MANIFEST_PATH)) {
+    return { routes: {} };
+  }
+  const manifest = JSON.parse(readFile(ASSET_MANIFEST_PATH));
+  if (!manifest || typeof manifest !== 'object' || !manifest.routes) {
+    throw new Error(`Invalid asset manifest: ${ASSET_MANIFEST_PATH}`);
+  }
+  return manifest;
+}
+
+function resolveAssetConfig(assetManifest, routePath) {
+  const normalizedRoute = normalizeRoutePath(routePath);
+  if (!normalizedRoute) {
+    return null;
+  }
+  const entry = assetManifest.routes[normalizedRoute];
   if (!entry || typeof entry !== 'object') {
     return null;
   }
@@ -1556,11 +1580,20 @@ function buildPageHtml({
   includeHomeContent,
   pageType,
   calculatorRelPath,
+  assetConfig = null,
   cssBundleConfig = null,
   topNavStatic = false,
   staticStructuredData = null,
   injectStaticStructuredData = false,
 }) {
+  const sanitizedCalculatorHtml =
+    assetConfig && typeof calculatorHtml === 'string'
+      ? calculatorHtml.replace(
+          /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css['"]\);\s*<\/style>/gi,
+          ''
+        )
+      : calculatorHtml;
+
   const explanationTitleHtml =
     explanationHeading === '' || explanationHeading === null
       ? ''
@@ -1604,13 +1637,13 @@ function buildPageHtml({
         ? `<div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
-    ${calculatorHtml}
+    ${sanitizedCalculatorHtml}
 ${explanationTitleHtml}    ${explanationHtml}
   </div>
 </div>`
         : `<div class="panel panel-scroll">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-  ${calculatorHtml}
+  ${sanitizedCalculatorHtml}
 </div>
 <div class="panel panel-scroll">
 ${explanationTitleHtml}  ${explanationHtml}
@@ -1619,7 +1652,7 @@ ${explanationTitleHtml}  ${explanationHtml}
     calcContent = `<div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
-    ${calculatorHtml}
+    ${sanitizedCalculatorHtml}
   </div>
 </div>`;
   } else if (routeArchetype === 'exp_only') {
@@ -1640,18 +1673,61 @@ ${explanationTitleHtml}  ${explanationHtml}
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
-  const calculatorScript = calculatorRelPath
-    ? `\n    <script type="module" src="/calculators/${calculatorRelPath}/module.js"></script>`
-    : '';
+  const routeModuleScriptHref = calculatorRelPath ? `/calculators/${calculatorRelPath}/module.js` : null;
+
+  let scriptTagsHtml = '';
+  if (assetConfig) {
+    const coreScripts = Array.isArray(assetConfig?.js?.core) ? assetConfig.js.core : [];
+    const routeScripts = Array.isArray(assetConfig?.js?.route) ? assetConfig.js.route : [];
+    const allScripts = [...coreScripts, ...routeScripts];
+    scriptTagsHtml = allScripts
+      .filter((src) => typeof src === 'string' && src.trim())
+      .map((src) => `    <script type="module" src="${src}"></script>`)
+      .join('\n');
+  } else {
+    const defaultScripts = ['/assets/js/core/mpa-nav.js'];
+    if (routeModuleScriptHref) {
+      defaultScripts.push(routeModuleScriptHref);
+    }
+    scriptTagsHtml = defaultScripts.map((src) => `    <script type="module" src="${src}"></script>`).join('\n');
+  }
   const structuredDataScript =
     injectStaticStructuredData && staticStructuredData
       ? `    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
           staticStructuredData
         )}</script>\n`
       : '';
-  const cssLinksHtml = cssBundleConfig
-    ? `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n    </noscript>\n`
-    : `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
+  let cssLinksHtml = '';
+  if (assetConfig) {
+    const coreCss = Array.isArray(assetConfig?.css?.core) ? assetConfig.css.core : [];
+    const routeCss = Array.isArray(assetConfig?.css?.route) ? assetConfig.css.route : [];
+    const criticalHref = assetConfig?.css?.critical;
+    const lines = [];
+    if (criticalHref && typeof criticalHref === 'string') {
+      const criticalPath = path.join(PUBLIC_DIR, criticalHref.replace(/^\//, ''));
+      if (!fs.existsSync(criticalPath)) {
+        throw new Error(`Missing critical CSS artifact for asset manifest route ${canonical}: ${criticalPath}`);
+      }
+      lines.push(
+        `    <style data-route-critical="true">\n${indentBlock(readFile(criticalPath).trim(), '      ')}\n    </style>`
+      );
+    }
+    coreCss
+      .filter((href) => typeof href === 'string' && href.trim())
+      .forEach((href) => lines.push(`    <link rel="stylesheet" href="${href}" />`));
+    routeCss
+      .filter((href) => typeof href === 'string' && href.trim())
+      .forEach((href) =>
+        lines.push(
+          `    <link rel="stylesheet" href="${href}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${href}" />\n    </noscript>`
+        )
+      );
+    cssLinksHtml = `${lines.join('\n')}\n`;
+  } else if (cssBundleConfig) {
+    cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n    </noscript>\n`;
+  } else {
+    cssLinksHtml = `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
+  }
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
 
@@ -1693,7 +1769,7 @@ ${adPanelHtml}
       </main>
       ${footerHtml}
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>${calculatorScript}
+${scriptTagsHtml}
   </body>
 </html>
 `;
@@ -1911,8 +1987,9 @@ function main() {
   const scope = parseGenerationScope();
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
-  buildFinanceRouteBundles();
+  buildRouteBundles();
   const routeBundleManifest = readRouteBundleManifest();
+  const assetManifest = readAssetManifest();
 
   const calcLookup = new Map();
   const allCalculatorEntries = [];
@@ -1961,12 +2038,10 @@ function main() {
   const headerHtml = readFile(HEADER_PATH);
   const footerHtml = readFile(FOOTER_PATH);
 
-  // Pages with manual performance optimizations — do not overwrite during generation
-  const MANUAL_PAGES = new Set(['loans/home-loan']);
-
   selectedEntries.forEach((entry) => {
     const { category, subcategory, calculator, governance, relPath } = entry;
-    if (MANUAL_PAGES.has(relPath)) {
+    const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
+    if (assetConfig?.options?.generationMode === 'manual') {
       console.log(`  SKIP (manual): ${relPath}`);
       return;
     }
@@ -1988,13 +2063,14 @@ function main() {
     const pageTitle = override?.title ?? buildTitle(calculator.name);
     const pageDescription = override?.description ?? buildDescription(calculator.name);
     const pageCanonical = buildCanonical(calculator.url);
-    const routeBundleEntry = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+    const routeBundleEntry = !assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
       ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
       : null;
     let cssBundleConfig = null;
-    const topNavStatic = ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
+    const topNavStatic =
+      Boolean(assetConfig?.options?.topNavStatic) || ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
 
-    if (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
+    if (!assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
       throw new Error(`Missing route CSS bundle entry for ${calculator.id} (${calculator.url})`);
     }
 
@@ -2056,6 +2132,7 @@ function main() {
       includeHomeContent: false,
       pageType: 'calculator',
       calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
+      assetConfig,
       cssBundleConfig,
       topNavStatic,
       staticStructuredData,

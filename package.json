@@ -18,6 +18,8 @@
     "test:iss": "playwright test tests_specs/infrastructure/e2e/iss",
     "test:iss001": "playwright test tests_specs/infrastructure/e2e/iss-design-001.spec.js",
     "test:lighthouse:target": "node scripts/lighthouse-target.mjs",
+    "test:lcp:loans": "node scripts/validate-lcp-budgets.mjs",
+    "test:isolation:scope": "node scripts/validate-isolation-scope.mjs",
     "test:interaction:guard": "playwright test tests_specs/infrastructure/e2e/interaction-guard.spec.js",
     "test:mobile:ux": "playwright test tests_specs/infrastructure/e2e/mobile-ux.spec.js",
     "test:seo:source-finance": "vitest run tests_specs/finance/unit/finance-static-schema-source-parity.test.js",

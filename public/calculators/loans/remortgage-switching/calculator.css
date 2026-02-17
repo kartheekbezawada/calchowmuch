@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+#calculator-title {
+  text-align: center;
+}
+
 #calc-remortgage-switching .remo-ui {
   display: flex;
   flex-direction: column;
@@ -79,6 +83,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#calc-remortgage-switching .remo-horizon-tick-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  opacity: 0.9;
+  margin-top: 0.1rem;
+}
+
+#calc-remortgage-switching .remo-horizon-tick-row span {
+  text-align: center;
 }
 
 #calc-remortgage-switching label {

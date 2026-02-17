@@ -1,0 +1,42 @@
+name: Loans Isolation + LCP Gates
+
+on:
+  pull_request:
+    paths:
+      - 'public/calculators/loans/**'
+      - 'public/loans/**'
+      - 'public/assets/css/**'
+      - 'public/assets/js/**'
+      - 'public/config/**'
+      - 'scripts/**'
+      - 'requirements/universal-rules/**'
+      - 'package.json'
+  push:
+    branches:
+      - main
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Verify Route Bundles
+        run: npm run verify:css:route-bundles
+
+      - name: Isolation Scope Guard
+        run: npm run test:isolation:scope
+
+      - name: Loans LCP Hard Gate (Mobile + Desktop)
+        run: npm run test:lcp:loans

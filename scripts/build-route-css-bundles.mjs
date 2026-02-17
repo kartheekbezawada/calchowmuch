@@ -11,16 +11,23 @@ const ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const OUTPUT_DIR = path.join(PUBLIC_DIR, 'assets', 'css', 'route-bundles');
 const MANIFEST_PATH = path.join(OUTPUT_DIR, 'manifest.json');
+const ASSET_MANIFEST_PATH = path.join(PUBLIC_DIR, 'config', 'asset-manifest.json');
 
-const BASE_SOURCES = [
+const CSS_VERSION = '20260127';
+
+const CORE_CSS_SOURCES = [
   'assets/css/theme-premium-dark.css',
   'assets/css/base.css',
-  'assets/css/layout.css',
+  'assets/css/core-tokens.css',
+  'assets/css/core-shell.css',
+];
+
+const CALCULATOR_SHARED_SOURCES = [
   'assets/css/calculator.css',
   'assets/css/shared-calculator-ui.css',
 ];
 
-const CRITICAL_FULL_SOURCES = new Set(['assets/css/layout.css', 'assets/css/calculator.css']);
+const CRITICAL_FULL_SOURCES = new Set(['assets/css/core-shell.css']);
 const CRITICAL_SELECTOR_HINTS = [
   ':root',
   'html',
@@ -33,33 +40,13 @@ const CRITICAL_SELECTOR_HINTS = [
   '.center-column',
   '.panel',
   '.panel-scroll',
-  '#calc-home-loan',
   '.calculator-ui',
-  '.home-loan-ui',
-  '.mtg-hero',
-  '.mtg-form-panel',
-  '.mtg-preview-panel',
-  '.mtg-preview-main',
-  '.mtg-result-card',
-  '.mtg-result-value',
-  '.mtg-summary-card',
-  '.input-row',
-  '.input-grid-2-col',
-  '.slider-row',
-  '.slider-header',
-  '.slider-value',
-  '.pv-toggle-row',
-  '.pv-toggle-group',
-  '.pv-toggle-label',
-  '.button-group',
   '.calculator-button',
-  '.mtg-action-row',
-  '.helper',
   '.brand-logo',
   '.mobile-menu-toggle',
 ];
 
-const PILOT_ROUTES = [
+const FINANCE_PILOT_ROUTES = [
   {
     calculatorId: 'monthly-savings-needed',
     route: '/finance/monthly-savings-needed/',
@@ -122,6 +109,126 @@ const PILOT_ROUTES = [
   },
 ];
 
+const LOANS_ISOLATED_ROUTES = [
+  {
+    calculatorId: 'how-much-can-i-borrow',
+    route: '/loans/how-much-can-i-borrow/',
+    relPath: 'loans/how-much-can-i-borrow',
+    routeCss: 'calculators/loans/how-much-can-i-borrow/calculator.css',
+  },
+  {
+    calculatorId: 'remortgage-switching',
+    route: '/loans/remortgage-switching/',
+    relPath: 'loans/remortgage-switching',
+    routeCss: 'calculators/loans/remortgage-switching/calculator.css',
+  },
+  {
+    calculatorId: 'buy-to-let',
+    route: '/loans/buy-to-let/',
+    relPath: 'loans/buy-to-let',
+    routeCss: 'calculators/loans/buy-to-let/calculator.css',
+  },
+  {
+    calculatorId: 'offset-calculator',
+    route: '/loans/offset-calculator/',
+    relPath: 'loans/offset-calculator',
+    routeCss: 'calculators/loans/offset-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'interest-rate-change-calculator',
+    route: '/loans/interest-rate-change-calculator/',
+    relPath: 'loans/interest-rate-change-calculator',
+    routeCss: 'calculators/loans/interest-rate-change-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'loan-to-value',
+    route: '/loans/loan-to-value/',
+    relPath: 'loans/loan-to-value',
+    routeCss: 'calculators/loans/loan-to-value/calculator.css',
+  },
+  {
+    calculatorId: 'credit-card-repayment-payoff',
+    route: '/loans/credit-card-repayment-payoff/',
+    relPath: 'loans/credit-card-repayment-payoff',
+    routeCss: 'calculators/loans/credit-card-repayment-payoff/calculator.css',
+  },
+  {
+    calculatorId: 'credit-card-minimum-payment',
+    route: '/loans/credit-card-minimum-payment/',
+    relPath: 'loans/credit-card-minimum-payment',
+    routeCss: 'calculators/loans/credit-card-minimum-payment/calculator.css',
+  },
+  {
+    calculatorId: 'balance-transfer-installment-plan',
+    route: '/loans/balance-transfer-installment-plan/',
+    relPath: 'loans/balance-transfer-installment-plan',
+    routeCss: 'calculators/loans/balance-transfer-installment-plan/calculator.css',
+  },
+  {
+    calculatorId: 'credit-card-consolidation',
+    route: '/loans/credit-card-consolidation/',
+    relPath: 'loans/credit-card-consolidation',
+    routeCss: 'calculators/loans/credit-card-consolidation/calculator.css',
+  },
+  {
+    calculatorId: 'car-loan',
+    route: '/loans/car-loan/',
+    relPath: 'loans/car-loan',
+    routeCss: 'calculators/loans/car-loan/calculator.css',
+  },
+  {
+    calculatorId: 'multiple-car-loan',
+    route: '/loans/multiple-car-loan/',
+    relPath: 'loans/multiple-car-loan',
+    routeCss: 'calculators/loans/multiple-car-loan/calculator.css',
+  },
+  {
+    calculatorId: 'hire-purchase',
+    route: '/loans/hire-purchase/',
+    relPath: 'loans/hire-purchase',
+    routeCss: 'calculators/loans/hire-purchase/calculator.css',
+  },
+  {
+    calculatorId: 'pcp-calculator',
+    route: '/loans/pcp-calculator/',
+    relPath: 'loans/pcp-calculator',
+    routeCss: 'calculators/loans/pcp-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'leasing-calculator',
+    route: '/loans/leasing-calculator/',
+    relPath: 'loans/leasing-calculator',
+    routeCss: 'calculators/loans/leasing-calculator/calculator.css',
+  },
+];
+
+const LOANS_MANUAL_OVERRIDES = [
+  {
+    calculatorId: 'home-loan',
+    route: '/loans/home-loan/',
+    relPath: 'loans/home-loan',
+    options: {
+      generationMode: 'manual',
+      topNavStatic: true,
+      rationale: 'Manual performance optimizations are maintained route-locally.',
+    },
+  },
+];
+
+const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES];
+
+function resolveSourcesForRoute(routeConfig) {
+  const isLoansIsolated = LOANS_ISOLATED_ROUTES.some((item) => item.route === routeConfig.route);
+  if (isLoansIsolated) {
+    return [...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
+  }
+  return [...CORE_CSS_SOURCES, ...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
+}
+
+function isLoansIsolatedRoute(route) {
+  return LOANS_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
 function toRouteSlug(route) {
   return route.replace(/^\/|\/$/g, '').replace(/\//g, '-');
 }
@@ -166,34 +273,26 @@ function parseCssRules(source) {
 
   while (i < source.length) {
     i = skipComment(source, i);
-    if (i >= source.length) {
-      break;
-    }
+    if (i >= source.length) break;
 
     while (i < source.length && /\s/.test(source[i])) {
       i += 1;
       i = skipComment(source, i);
     }
-    if (i >= source.length) {
-      break;
-    }
+    if (i >= source.length) break;
 
     const preludeStart = i;
     let quote = null;
     while (i < source.length) {
       i = skipComment(source, i);
-      if (i >= source.length) {
-        break;
-      }
+      if (i >= source.length) break;
       const char = source[i];
       if (quote) {
         if (char === '\\') {
           i += 2;
           continue;
         }
-        if (char === quote) {
-          quote = null;
-        }
+        if (char === quote) quote = null;
         i += 1;
         continue;
       }
@@ -202,9 +301,7 @@ function parseCssRules(source) {
         i += 1;
         continue;
       }
-      if (char === '{' || char === ';') {
-        break;
-      }
+      if (char === '{' || char === ';') break;
       i += 1;
     }
 
@@ -220,9 +317,7 @@ function parseCssRules(source) {
       continue;
     }
 
-    if (source[i] !== '{') {
-      break;
-    }
+    if (source[i] !== '{') break;
 
     i += 1;
     const bodyStart = i;
@@ -231,18 +326,14 @@ function parseCssRules(source) {
 
     while (i < source.length && depth > 0) {
       i = skipComment(source, i);
-      if (i >= source.length) {
-        break;
-      }
+      if (i >= source.length) break;
       const char = source[i];
       if (quote) {
         if (char === '\\') {
           i += 2;
           continue;
         }
-        if (char === quote) {
-          quote = null;
-        }
+        if (char === quote) quote = null;
         i += 1;
         continue;
       }
@@ -251,11 +342,8 @@ function parseCssRules(source) {
         i += 1;
         continue;
       }
-      if (char === '{') {
-        depth += 1;
-      } else if (char === '}') {
-        depth -= 1;
-      }
+      if (char === '{') depth += 1;
+      else if (char === '}') depth -= 1;
       i += 1;
     }
 
@@ -264,11 +352,7 @@ function parseCssRules(source) {
     const isGroupRule = prelude.startsWith('@media') || prelude.startsWith('@supports');
 
     if (isGroupRule) {
-      rules.push({
-        type: 'group',
-        prelude,
-        children: parseCssRules(body),
-      });
+      rules.push({ type: 'group', prelude, children: parseCssRules(body) });
     } else {
       rules.push({ type: 'style', prelude, body: body.trim() });
     }
@@ -295,10 +379,7 @@ function renderCriticalRules(rules, indent = '') {
 
   rules.forEach((rule) => {
     if (rule.type === 'style') {
-      if (!isCriticalPrelude(rule.prelude)) {
-        return;
-      }
-      if (!rule.body) {
+      if (!isCriticalPrelude(rule.prelude) || !rule.body) {
         return;
       }
       rendered.push(`${indent}${rule.prelude} {\n${indent}  ${rule.body}\n${indent}}`);
@@ -342,19 +423,81 @@ function buildCriticalCss(sources) {
   return sections.join('\n\n');
 }
 
+function buildAssetManifest(routeBundleManifest) {
+  const baseCoreAssets = [
+    `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
+    `/assets/css/base.css?v=${CSS_VERSION}`,
+    `/assets/css/core-tokens.css?v=${CSS_VERSION}`,
+  ];
+
+  const routes = {};
+
+  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+    const routeEntry = routeBundleManifest.routes[routeConfig.route];
+    if (!routeEntry) {
+      throw new Error(`Missing route bundle entry for isolated route ${routeConfig.route}`);
+    }
+
+    routes[routeConfig.route] = {
+      route: routeConfig.route,
+      calculatorId: routeConfig.calculatorId,
+      isolationBoundary: 'route',
+      css: {
+        core: baseCoreAssets,
+        route: [routeEntry.deferredHref],
+        critical: routeEntry.criticalCss,
+      },
+      js: {
+        core: ['/assets/js/core-shell.js'],
+        route: [`/calculators/${routeConfig.relPath}/module.js`],
+      },
+      options: {
+        topNavStatic: true,
+      },
+    };
+  });
+
+  LOANS_MANUAL_OVERRIDES.forEach((entry) => {
+    routes[entry.route] = {
+      route: entry.route,
+      calculatorId: entry.calculatorId,
+      isolationBoundary: 'route',
+      css: {
+        core: [...baseCoreAssets, `/assets/css/core-shell.css?v=${CSS_VERSION}`],
+        route: [],
+        critical: null,
+      },
+      js: {
+        core: ['/assets/js/core-shell.js'],
+        route: [`/calculators/${entry.relPath}/module.js`],
+      },
+      options: entry.options,
+    };
+  });
+
+  return {
+    version: 1,
+    strategy: 'loans-first-strict-route-isolation',
+    routes,
+  };
+}
+
 function buildBundles() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   const manifest = {
-    generatedAt: new Date().toISOString(),
+    version: 2,
     routes: {},
   };
 
-  PILOT_ROUTES.forEach((routeConfig) => {
-    const sources = [...BASE_SOURCES, routeConfig.routeCss];
+  BUNDLED_ROUTES.forEach((routeConfig) => {
+    const sources = resolveSourcesForRoute(routeConfig);
+    const criticalSources = isLoansIsolatedRoute(routeConfig.route)
+      ? ['assets/css/core-shell.css', ...sources]
+      : sources;
     const bundledCss = sources
       .map((relPath) => `/* source: ${toWebPath(relPath)} */\n${readRequired(relPath).trim()}`)
       .join('\n\n');
-    const criticalCss = buildCriticalCss(sources);
+    const criticalCss = buildCriticalCss(criticalSources);
 
     if (!criticalCss.trim()) {
       throw new Error(`Critical CSS extraction produced empty output for ${routeConfig.route}`);
@@ -392,9 +535,14 @@ function buildBundles() {
     };
   });
 
+  const assetManifest = buildAssetManifest(manifest);
+
   fs.writeFileSync(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(ASSET_MANIFEST_PATH, `${JSON.stringify(assetManifest, null, 2)}\n`, 'utf8');
+
   console.log(`Route CSS bundles generated at ${OUTPUT_DIR}`);
   console.log(`Manifest written to ${MANIFEST_PATH}`);
+  console.log(`Asset manifest written to ${ASSET_MANIFEST_PATH}`);
 }
 
 function verifyBundles() {
@@ -406,8 +554,8 @@ function verifyBundles() {
     throw new Error('Invalid route bundle manifest format.');
   }
 
-  const expectedRouteSet = new Set(PILOT_ROUTES.map((item) => item.route));
-  PILOT_ROUTES.forEach((routeConfig) => {
+  const expectedRouteSet = new Set(BUNDLED_ROUTES.map((item) => item.route));
+  BUNDLED_ROUTES.forEach((routeConfig) => {
     const entry = manifest.routes[routeConfig.route];
     if (!entry) {
       throw new Error(`Manifest missing route entry for ${routeConfig.route}`);
@@ -436,7 +584,7 @@ function verifyBundles() {
       throw new Error(`Critical CSS file missing for ${routeConfig.route}: ${criticalAbsPath}`);
     }
 
-    const expectedSources = [...BASE_SOURCES, routeConfig.routeCss].map(toWebPath);
+    const expectedSources = resolveSourcesForRoute(routeConfig).map(toWebPath);
     if (JSON.stringify(entry.sources) !== JSON.stringify(expectedSources)) {
       throw new Error(`Manifest sources mismatch for ${routeConfig.route}`);
     }
@@ -455,7 +603,36 @@ function verifyBundles() {
     }
   });
 
+  if (!fs.existsSync(ASSET_MANIFEST_PATH)) {
+    throw new Error(`Missing asset manifest: ${ASSET_MANIFEST_PATH}`);
+  }
+  const assetManifest = JSON.parse(fs.readFileSync(ASSET_MANIFEST_PATH, 'utf8'));
+  if (!assetManifest || !assetManifest.routes) {
+    throw new Error(`Invalid asset manifest format: ${ASSET_MANIFEST_PATH}`);
+  }
+
+  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+    const entry = assetManifest.routes[routeConfig.route];
+    if (!entry) {
+      throw new Error(`Asset manifest missing loans route entry: ${routeConfig.route}`);
+    }
+    if (entry.isolationBoundary !== 'route') {
+      throw new Error(`Asset manifest isolationBoundary must be route for ${routeConfig.route}`);
+    }
+  });
+
+  LOANS_MANUAL_OVERRIDES.forEach((routeConfig) => {
+    const entry = assetManifest.routes[routeConfig.route];
+    if (!entry) {
+      throw new Error(`Asset manifest missing manual override route: ${routeConfig.route}`);
+    }
+    if (entry?.options?.generationMode !== 'manual') {
+      throw new Error(`Manual override generationMode missing for ${routeConfig.route}`);
+    }
+  });
+
   console.log(`Route CSS bundle manifest verified: ${MANIFEST_PATH}`);
+  console.log(`Asset manifest verified: ${ASSET_MANIFEST_PATH}`);
 }
 
 const verifyMode = process.argv.includes('--verify');

@@ -10,10 +10,22 @@ const DEFAULTS = {
   baseUrl: 'http://localhost:8000',
   outputDir: 'test-results/lighthouse',
   categories: 'performance,accessibility,best-practices',
+  preset: 'mobile',
   waitMs: 800,
   timeoutMs: 3000,
   mutationWaitMs: 2000,
 };
+
+function resolveLighthousePreset(inputPreset) {
+  const normalized = String(inputPreset || '').trim().toLowerCase();
+  if (normalized === 'mobile') {
+    return { publicPreset: 'mobile', lighthousePreset: 'perf', isDesktop: false };
+  }
+  if (normalized === 'desktop') {
+    return { publicPreset: 'desktop', lighthousePreset: 'perf', isDesktop: true };
+  }
+  throw new Error(`Invalid Lighthouse preset: ${inputPreset}. Use mobile or desktop.`);
+}
 
 function normalizeRoute(rawRoute) {
   if (!rawRoute || typeof rawRoute !== 'string') return null;
@@ -92,13 +104,14 @@ function buildChromeFlags(profileDir) {
   return baseFlags.join(' ');
 }
 
-async function runLighthouse({ url, outputPath, chromePath, categories, slugFolder }) {
+async function runLighthouse({ url, outputPath, chromePath, categories, slugFolder, lighthousePreset, isDesktop }) {
   const profileDir = `/tmp/lighthouse-target-${slugFolder}-${Date.now()}`;
   const chromeFlags = buildChromeFlags(profileDir);
   const args = [
     'lighthouse',
     url,
     `--only-categories=${categories}`,
+    `--preset=${lighthousePreset}`,
     '--chrome-flags',
     chromeFlags,
     '--output=json',
@@ -106,6 +119,9 @@ async function runLighthouse({ url, outputPath, chromePath, categories, slugFold
     outputPath,
     '--quiet',
   ];
+  if (isDesktop) {
+    args.push('--form-factor=desktop', '--screenEmulation.disabled', '--throttling-method=devtools');
+  }
 
   const run = spawnSync('npx', args, {
     env: {
@@ -193,10 +209,12 @@ async function main() {
   const url = new URL(targetRoute, baseUrl).href;
   const slugFolder = slugify(targetRoute);
   const outputDir = process.env.LH_OUTPUT_DIR || DEFAULTS.outputDir;
+  const presetInput = process.env.LH_PRESET || getArgValue('--preset') || DEFAULTS.preset;
+  const { publicPreset: preset, lighthousePreset, isDesktop } = resolveLighthousePreset(presetInput);
   await fs.mkdir(outputDir, { recursive: true });
 
-  const outputPath = path.join(outputDir, `${slugFolder}.json`);
-  const summaryPath = path.join(outputDir, `${slugFolder}.summary.json`);
+  const outputPath = path.join(outputDir, `${slugFolder}.${preset}.json`);
+  const summaryPath = path.join(outputDir, `${slugFolder}.${preset}.summary.json`);
 
   let server = null;
   try {
@@ -207,6 +225,8 @@ async function main() {
       chromePath,
       categories: process.env.LH_CATEGORIES || DEFAULTS.categories,
       slugFolder,
+      lighthousePreset,
+      isDesktop,
     });
 
     const mixedContent = await scanMixedContent(url);
@@ -215,6 +235,7 @@ async function main() {
     const summary = {
       url,
       route: targetRoute,
+      preset,
       generatedAt: new Date().toISOString(),
       categories: {
         performance: Math.round((report?.categories?.performance?.score ?? 0) * 100),

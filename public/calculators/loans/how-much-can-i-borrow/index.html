@@ -88,6 +88,26 @@
         </section>
 
         <section class="borrow-section" aria-label="Loan setup inputs">
+          <div class="borrow-toggle-row">
+            <span class="row-label">Affordability Method</span>
+            <div class="button-group" data-button-group="bor-method" role="group" aria-label="Affordability method">
+              <button type="button" class="calculator-button is-active" data-value="income" aria-pressed="true">
+                Income Multiple
+              </button>
+              <button type="button" class="calculator-button" data-value="payment" aria-pressed="false">
+                Payment Cap
+              </button>
+            </div>
+          </div>
+
+          <div class="input-row slider-row" id="bor-multiple-row">
+            <div class="slider-header">
+              <label for="bor-multiple">Income Multiple (x)</label>
+              <span class="slider-value" id="bor-multiple-display">4.5x</span>
+            </div>
+            <input id="bor-multiple" type="range" value="4.5" min="2.5" max="7.0" step="0.1" />
+          </div>
+
           <!-- Row 3: Rate & Term -->
           <div class="input-grid-2-col">
             <div class="input-row slider-row">
@@ -107,13 +127,17 @@
             </div>
           </div>
 
-          <!-- Hidden inputs for logic compatibility -->
+          <!-- Hidden input for logic compatibility -->
           <input type="hidden" id="bor-net-income" value="0" />
-          <input type="hidden" id="bor-multiple" value="4.5" />
 
-          <div class="borrow-payment-note is-hidden" id="bor-payment-note-row" aria-live="polite">
+          <div
+            class="borrow-payment-note is-hidden"
+            id="bor-payment-note-row"
+            aria-live="polite"
+            hidden
+          >
             <p class="borrow-context-note">
-              Calculates borrowing power based on income multiplier (4.5x) and affordability checks.
+              Calculates borrowing power from a payment-to-income cap after expenses and debts.
             </p>
           </div>
         </section>

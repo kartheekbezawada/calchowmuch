@@ -388,7 +388,75 @@
         background-image: none;
       }
 
-      /* critical source: /assets/css/layout.css */
+      /* critical source: /assets/css/core-tokens.css */
+      :root {
+        color-scheme: dark;
+        --color-blue-400: #60a5fa;
+        --color-blue-500: #3b82f6;
+        --color-blue-600: #2563eb;
+        --color-cyan-400: #22d3ee;
+        --color-cyan-500: #06b6d4;
+        --color-cyan-600: #0891b2;
+        --color-green-400: #4ade80;
+        --color-green-500: #10b981;
+        --color-emerald-500: #059669;
+        --color-orange-400: #fb923c;
+        --color-orange-500: #f97316;
+        --color-red-500: #dc2626;
+        --color-violet-400: #a78bfa;
+        --color-violet-500: #8b5cf6;
+        --color-indigo-500: #6366f1;
+        --color-yellow-400: #facc15;
+        --color-slate-50: #f8fafc;
+        --color-slate-100: #f1f5f9;
+        --color-slate-200: #e2e8f0;
+        --color-slate-300: #cbd5e1;
+        --color-slate-400: #94a3b8;
+        --color-slate-500: #64748b;
+        --color-slate-600: #475569;
+        --color-slate-700: #334155;
+        --color-slate-800: #1e293b;
+        --color-slate-900: #0f172a;
+        --color-slate-950: #020617;
+        --gradient-bg-main: linear-gradient(
+          to bottom right,
+          var(--color-slate-900),
+          #172554,
+          var(--color-slate-900)
+        );
+        --gradient-bg-card: linear-gradient(
+          to bottom right,
+          rgba(30, 41, 59, 0.85),
+          rgba(15, 23, 42, 0.85)
+        );
+        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+        --gradient-brand-text: linear-gradient(
+          to right,
+          var(--color-blue-400),
+          var(--color-cyan-400),
+          var(--color-blue-400)
+        );
+        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+        --page-bg: #0b1220;
+        --page-bg-accent: #0f172a;
+        --scrollbar-track: #0b1220;
+        --scrollbar-thumb: #334155;
+        --scrollbar-thumb-hover: #475569;
+        --shell-bg: rgba(15, 23, 42, 0.65);
+        --panel-bg: #0f172a;
+        --header-bg: transparent;
+        --header-text: #e2e8f0;
+        --muted-text: #94a3b8;
+        --border-color: rgba(51, 65, 85, 0.6);
+        --shell-border: rgba(51, 65, 85, 0.6);
+        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+        --accent: #3b82f6;
+        --accent-strong: #06b6d4;
+        --pill-bg: rgba(30, 41, 59, 0.8);
+        --pill-border: rgba(51, 65, 85, 0.7);
+      }
+
+      /* critical source: /assets/css/core-shell.css */
       .page {
         height: 100vh;
         max-height: 100vh;
@@ -1685,32 +1753,6 @@
         --calculator-button-radius: 10px;
       }
 
-      .calculator-page {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 32px 20px 48px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-      }
-
-      .is-hidden {
-        display: none;
-      }
-
-      .card {
-        background: var(--panel-bg);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: var(--panel-shadow);
-        border: 1px solid var(--border-color);
-      }
-
-      .card h1,
-      .card h2 {
-        margin-top: 0;
-      }
-
       .calculator-ui {
         display: grid;
         gap: 18px;
@@ -1753,12 +1795,6 @@
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
-      }
-
-      .back-link {
-        display: inline-flex;
-        margin-bottom: 16px;
-        color: var(--accent);
       }
 
       .calculator-ui .input-stack {
@@ -1875,186 +1911,14 @@
         outline-offset: 2px;
       }
 
-      #calc-percentage-composition .composition-mode-switch {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        gap: 12px;
-        margin: 6px 0 10px;
-        padding: 10px 12px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
-      }
-
-      #calc-percentage-composition .composition-mode-label {
-        text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.01em;
-        color: #5b6573;
-        transition:
-          color 0.2s ease,
-          transform 0.2s ease;
-      }
-
-      #calc-percentage-composition .composition-mode-label.is-active {
-        color: #0f172a;
-        transform: translateY(-1px);
-      }
-
-      #calc-percentage-composition .composition-toggle {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      #calc-percentage-composition .composition-toggle input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #calc-percentage-composition .composition-toggle-track {
-        width: 64px;
-        height: 34px;
-        border-radius: 999px;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-        transition: background 0.2s ease;
-      }
-
-      #calc-percentage-composition .composition-toggle-thumb {
-        width: 26px;
-        height: 26px;
-        border-radius: 999px;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
-        transform: translateX(0);
-        transition: transform 0.2s ease;
-      }
-
-      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
-        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
-      }
-
-      #calc-percentage-composition
-        .composition-toggle
-        input:checked
-        + .composition-toggle-track
-        .composition-toggle-thumb {
-        transform: translateX(30px);
-      }
-
-      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
-        outline: 3px solid rgba(59, 130, 246, 0.35);
-        outline-offset: 2px;
-      }
-
-      #calc-percentage-composition #composition-rows {
-        display: grid;
-        gap: 10px;
-      }
-
-      #calc-percentage-composition .composition-item-row {
-        display: grid;
-        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
-        align-items: end;
-        gap: 10px;
-        margin: 0;
-        padding: 10px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: var(--panel-bg);
-      }
-
-      #calc-percentage-composition .composition-row-field {
-        min-width: 0;
-      }
-
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
 
-      #calc-commission-calculator #comm-tier-rows {
-        display: grid;
-        gap: 10px;
-      }
-
-      #calc-commission-calculator .commission-tier-row {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-        align-items: end;
-        gap: 10px;
-        margin: 0;
-        padding: 10px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: var(--panel-bg);
-      }
-
-      #calc-commission-calculator .commission-tier-field {
-        min-width: 0;
-      }
-
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
-      }
-
-      #calc-markup-calculator #markup-basket-rows {
-        display: grid;
-        gap: 10px;
-      }
-
-      #calc-markup-calculator .markup-basket-row {
-        display: grid;
-        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
-        align-items: end;
-        gap: 10px 12px;
-        margin: 0;
-        padding: 12px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
-      }
-
-      #calc-markup-calculator .markup-row-field {
-        min-width: 0;
-      }
-
-      #calc-markup-calculator .markup-row-name-field {
-        grid-column: 1;
-      }
-
-      #calc-markup-calculator .markup-row-qty-field {
-        grid-column: 2;
-      }
-
-      #calc-markup-calculator .markup-remove-row {
-        grid-column: 3;
-        min-width: 104px;
-      }
-
-      #calc-markup-calculator .markup-row-cost-field {
-        grid-column: 1;
-      }
-
-      #calc-markup-calculator .markup-row-price-wrap,
-      #calc-markup-calculator .markup-row-markup-wrap {
-        grid-column: 2 / 4;
-      }
-
-      #calc-markup-calculator .markup-row-field > label {
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 4px;
       }
 
       #calc-markup-calculator .markup-basket-row .calculator-button {
@@ -2072,33 +1936,12 @@
           justify-self: center;
         }
 
-        #calc-percentage-composition .composition-mode-switch {
-          grid-template-columns: 1fr;
-          gap: 8px;
-        }
-
-        #calc-percentage-composition .composition-toggle {
-          justify-self: center;
-        }
-
-        #calc-percentage-composition .composition-item-row {
-          grid-template-columns: 1fr;
-        }
-
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
 
-        #calc-commission-calculator .commission-tier-row {
-          grid-template-columns: 1fr;
-        }
-
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
-        }
-
-        #calc-markup-calculator .markup-basket-row {
-          grid-template-columns: 1fr;
         }
 
         #calc-markup-calculator .markup-basket-row .calculator-button {
@@ -2149,10 +1992,6 @@
         cursor: not-allowed;
       }
 
-      .full-width {
-        width: 100%;
-      }
-
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
@@ -2197,547 +2036,7 @@
         font-weight: 600;
       }
 
-      .table-scroll {
-        overflow-x: scroll;
-        overflow-y: scroll;
-        min-width: 0;
-        max-height: 240px;
-        scrollbar-gutter: stable;
-      }
-
-      .calculator-table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid var(--border-color);
-        font-size: 15px;
-        min-width: 400px;
-      }
-
-      .calculator-table th,
-      .calculator-table td {
-        padding: 8px 12px;
-        border: 1px solid var(--border-color);
-        text-align: right;
-        white-space: nowrap;
-      }
-
-      .calculator-table th:first-child,
-      .calculator-table td:first-child {
-        text-align: left;
-      }
-
-      .calculator-table thead th {
-        background: var(--pill-bg);
-        color: var(--muted-text);
-        font-weight: 600;
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .calculator-table tfoot td {
-        background: var(--pill-bg);
-        font-weight: 600;
-      }
-
-      .graph-panel {
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 12px;
-        height: 260px;
-        background: var(--panel-bg);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        overflow: hidden;
-      }
-
-      .graph-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 13px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-      }
-
-      .graph-title {
-        color: var(--header-text);
-        font-weight: 600;
-      }
-
-      .explanation-pane h2,
-      .explanation-pane h3 {
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 6px;
-        position: relative;
-      }
-
-      .explanation-pane h2 {
-        margin-top: 0;
-      }
-
-      .explanation-pane h2::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -1px;
-        height: 2px;
-        width: 48px;
-        background: var(--accent);
-      }
-
-      .faq-box {
-        border: 1px solid var(--border-color);
-        padding: 16px;
-        border-radius: 8px;
-      }
-
-      .explanation-pane h3 + .faq-box {
-        margin-top: 6px;
-      }
-
-      .faq-box + .faq-box {
-        margin-top: 6px;
-      }
-
-      .faq-box p {
-        margin: 0;
-      }
-
-      .faq-box p + p {
-        margin-top: 6px;
-      }
-
-      .faq-box .faq-answer {
-        margin-left: 12px;
-      }
-
-      .graph-legend {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-size: 12px;
-        flex-shrink: 0;
-      }
-
-      .graph-legend-item {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .graph-legend-color {
-        width: 12px;
-        height: 12px;
-        border-radius: 3px;
-        flex-shrink: 0;
-      }
-
-      .graph-legend-color.principal {
-        background: var(--accent);
-      }
-
-      .graph-legend-color.interest {
-        background: #f59e0b;
-      }
-
-      .graph-legend-color.balance {
-        background: #10b981;
-      }
-
-      .graph-container {
-        display: flex;
-        flex: 1;
-        min-height: 0;
-        gap: 8px;
-      }
-
-      .graph-y-axis {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-size: 11px;
-        color: var(--muted-text);
-        text-align: right;
-        padding: 4px 0;
-        flex-shrink: 0;
-        min-width: 50px;
-      }
-
-      .graph-y-label {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        font-size: 11px;
-        color: var(--muted-text);
-        text-align: center;
-        flex-shrink: 0;
-      }
-
-      .graph-main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        overflow: hidden;
-      }
-
-      .graph-bars-wrapper {
-        flex: 1;
-        overflow-x: auto;
-        overflow-y: hidden;
-        min-height: 0;
-        scrollbar-gutter: stable;
-      }
-
-      .graph-bars {
-        display: flex;
-        align-items: flex-end;
-        gap: 4px;
-        height: 100%;
-        min-height: 100px;
-        width: max-content;
-        padding-bottom: 4px;
-      }
-
-      .graph-line {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      .graph-line polyline {
-        fill: none;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .graph-line .line-primary {
-        stroke: var(--accent);
-      }
-
-      .graph-line .line-secondary {
-        stroke: #94a3b8;
-        stroke-dasharray: 6 4;
-      }
-
-      .graph-legend-color.secondary {
-        background: #94a3b8;
-      }
-
-      .graph-bar {
-        width: 8px;
-        min-width: 8px;
-        background: var(--accent);
-        border-radius: 4px 4px 2px 2px;
-        flex: 0 0 auto;
-      }
-
-      .graph-bar.interest {
-        background: #f59e0b;
-      }
-
-      .graph-bar.balance {
-        background: #10b981;
-      }
-
-      .graph-x-axis {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        color: var(--muted-text);
-        padding-top: 4px;
-        border-top: 1px solid var(--border-color);
-        flex-shrink: 0;
-      }
-
-      .graph-x-label {
-        font-size: 11px;
-        color: var(--muted-text);
-        text-align: center;
-        margin-top: 4px;
-        flex-shrink: 0;
-      }
-
       /* critical source: /assets/css/shared-calculator-ui.css */
-      #calc-home-loan .is-hidden {
-        display: none;
-      }
-
-      #calc-home-loan .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      #calc-present-value .home-loan-ui,
-      #calc-future-value .home-loan-ui,
-      #calc-present-value-of-annuity .home-loan-ui,
-      #calc-future-value-of-annuity .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      #calc-present-value .mtg-hero,
-      #calc-future-value .mtg-hero,
-      #calc-present-value-of-annuity .mtg-hero,
-      #calc-future-value-of-annuity .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-      }
-
-      #calc-present-value .mtg-form-panel,
-      #calc-future-value .mtg-form-panel,
-      #calc-present-value-of-annuity .mtg-form-panel,
-      #calc-future-value-of-annuity .mtg-form-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-preview-panel,
-      #calc-future-value .mtg-preview-panel,
-      #calc-present-value-of-annuity .mtg-preview-panel,
-      #calc-future-value-of-annuity .mtg-preview-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-result-card,
-      #calc-future-value .mtg-result-card,
-      #calc-present-value-of-annuity .mtg-result-card,
-      #calc-future-value-of-annuity .mtg-result-card {
-        min-height: 44px;
-      }
-
-      #calc-present-value .mtg-summary-card,
-      #calc-future-value .mtg-summary-card,
-      #calc-present-value-of-annuity .mtg-summary-card,
-      #calc-future-value-of-annuity .mtg-summary-card {
-        min-height: 96px;
-      }
-
-      #calc-home-loan .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        background: none;
-      }
-
-      #calc-home-loan .mtg-form-panel {
-        display: grid;
-        gap: 1.65rem;
-        align-content: start;
-      }
-
-      #calc-home-loan .helper {
-        margin: 0;
-        font-size: 0.84rem;
-        line-height: 1.45;
-        color: rgba(226, 232, 240, 0.88);
-      }
-
-      #calc-home-loan .input-row {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.34rem;
-        min-width: 0;
-      }
-
-      #calc-home-loan label {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: rgba(226, 232, 240, 0.94);
-        line-height: 1.28;
-      }
-
-      #calc-home-loan input[type='number'],
-      #calc-home-loan input[type='month'] {
-        width: 100%;
-        min-height: 38px;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(148, 163, 184, 0.42);
-        background: rgba(15, 23, 42, 0.72);
-        color: #fff;
-        padding: 0.42rem 0.68rem;
-        font-size: 0.84rem;
-        line-height: 1.2;
-        transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease;
-      }
-
-      #calc-home-loan input[type='number']:hover,
-      #calc-home-loan input[type='month']:hover {
-        border-color: rgba(148, 163, 184, 0.62);
-      }
-
-      #calc-home-loan input[type='number']:focus-visible,
-      #calc-home-loan input[type='month']:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.64);
-        outline-offset: 1px;
-        border-color: rgba(125, 211, 252, 0.85);
-      }
-
-      #calc-home-loan .slider-row {
-        gap: 0.52rem;
-      }
-
-      #calc-home-loan .slider-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
-      }
-
-      #calc-home-loan .slider-value {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.24rem 0.72rem;
-        border-radius: 0.52rem;
-        background: rgba(15, 23, 42, 0.92);
-        border: 1px solid rgba(34, 197, 94, 0.45);
-        color: #4ade80;
-        font-size: 0.9rem;
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        text-shadow:
-          0 0 8px rgba(74, 222, 128, 0.7),
-          0 0 20px rgba(74, 222, 128, 0.4),
-          0 0 40px rgba(34, 197, 94, 0.2);
-        box-shadow:
-          0 0 8px rgba(34, 197, 94, 0.2),
-          0 0 20px rgba(34, 197, 94, 0.08);
-        transition:
-          border-color 0.25s ease,
-          color 0.25s ease,
-          text-shadow 0.25s ease,
-          box-shadow 0.25s ease;
-      }
-
-      #calc-home-loan .slider-row:hover .slider-value {
-        border-color: rgba(251, 113, 133, 0.55);
-        color: #fb7185;
-        text-shadow:
-          0 0 8px rgba(251, 113, 133, 0.7),
-          0 0 20px rgba(251, 113, 133, 0.45),
-          0 0 40px rgba(251, 113, 133, 0.2);
-        box-shadow:
-          0 0 8px rgba(251, 113, 133, 0.2),
-          0 0 20px rgba(251, 113, 133, 0.08);
-      }
-
-      #calc-home-loan input[type='range'] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 100%;
-        height: 5px;
-        border-radius: 9999px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: linear-gradient(
-          90deg,
-          #22c55e 0%,
-          #fb7185 var(--fill, 50%),
-          rgba(148, 163, 184, 0.14) var(--fill, 50%)
-        );
-        transition: box-shadow 0.2s ease;
-      }
-
-      #calc-home-loan input[type='range']:hover {
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
-      }
-
-      #calc-home-loan input[type='range']:focus-visible {
-        box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']:active::-webkit-slider-thumb {
-        cursor: grabbing;
-        transform: scale(1.08);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-track {
-        height: 5px;
-        border-radius: 9999px;
-        background: transparent;
-      }
-
-      #calc-home-loan .advanced-pair {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.1rem;
-        align-items: end;
-      }
-
-      #calc-home-loan .down-combined-left .button-group {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2rem;
-        padding: 3px;
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.78);
-      }
-
       #calc-home-loan .down-combined-left .calculator-button {
         min-height: 32px;
         padding: 0.36rem 0.72rem;
@@ -2764,100 +2063,6 @@
         color: #e0f2fe;
       }
 
-      #calc-home-loan .advanced-options {
-        margin-top: 0.18rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.28);
-        padding-top: 0.74rem;
-      }
-
-      #calc-home-loan .advanced-options summary {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.58rem;
-        padding: 0.48rem 0.58rem;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(56, 189, 248, 0.56);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
-        color: rgba(224, 242, 254, 0.98);
-        font-size: 0.78rem;
-        font-weight: 700;
-        transition:
-          border-color 0.2s ease,
-          background 0.2s ease;
-      }
-
-      #calc-home-loan .advanced-options summary:hover {
-        border-color: rgba(56, 189, 248, 0.72);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
-      }
-
-      #calc-home-loan .advanced-options summary::-webkit-details-marker {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options summary:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.74);
-        outline-offset: 2px;
-      }
-
-      #calc-home-loan .advanced-summary-pill {
-        min-width: 102px;
-        min-height: 24px;
-        border-radius: 9999px;
-        border: 1px solid rgba(125, 211, 252, 0.58);
-        background: rgba(15, 23, 42, 0.88);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 0.5rem;
-        flex-shrink: 0;
-      }
-
-      #calc-home-loan .summary-state {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.26rem;
-        font-size: 0.68rem;
-        font-weight: 700;
-      }
-
-      #calc-home-loan .summary-icon {
-        font-size: 0.86rem;
-        line-height: 1;
-      }
-
-      #calc-home-loan .summary-state-close {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-expand {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-close {
-        display: inline-flex;
-      }
-
-      #calc-home-loan .advanced-options[open] summary {
-        border-color: rgba(125, 211, 252, 0.86);
-      }
-
-      #calc-home-loan .advanced-stack {
-        margin-top: 0.76rem;
-        display: grid;
-        gap: 0.72rem;
-      }
-
-      #calc-home-loan .advanced-pair label {
-        min-height: 1.2em;
-      }
-
-      #calc-home-loan .mtg-action-row {
-        margin-top: 0.35rem;
-      }
-
       #calc-home-loan .mtg-action-row .calculator-button {
         min-height: 50px;
         border-radius: 0.82rem;
@@ -2876,126 +2081,6 @@
       #calc-home-loan .mtg-action-row .calculator-button:active {
         transform: translateY(0);
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      }
-
-      #calc-home-loan .mtg-preview-panel {
-        border-radius: 1.15rem;
-        border: 1px solid rgba(125, 211, 252, 0.22);
-        background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
-        padding: 1.15rem;
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-        box-shadow:
-          0 4px 24px rgba(2, 6, 23, 0.45),
-          0 0 40px rgba(59, 130, 246, 0.06);
-      }
-
-      #calc-home-loan .mtg-preview-main {
-        border-radius: 0.95rem;
-        padding: 1rem;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        display: grid;
-        gap: 0.65rem;
-      }
-
-      #calc-home-loan .mtg-preview-label {
-        margin: 0;
-        font-size: 0.73rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.94);
-        font-weight: 700;
-      }
-
-      #calc-home-loan .mtg-result-card,
-      #calc-home-loan .mtg-summary-card {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
-      }
-
-      #calc-home-loan .mtg-result-card {
-        color: rgba(239, 246, 255, 0.99);
-        font-size: 0.9rem;
-        line-height: 1.35;
-      }
-
-      #calc-home-loan .mtg-result-card strong {
-        display: block;
-        margin-bottom: 0.45rem;
-        font-size: 0.74rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.8);
-      }
-
-      #calc-home-loan .mtg-result-card .mtg-result-value {
-        display: block;
-        font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-        line-height: 1;
-        font-weight: 800;
-        color: #e0f2fe;
-        text-shadow:
-          0 0 20px rgba(125, 211, 252, 0.35),
-          0 0 40px rgba(59, 130, 246, 0.15);
-        letter-spacing: -0.02em;
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease;
-      }
-
-      #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-        animation: mtg-result-pop 0.4s ease-out;
-      }
-
-      #calc-home-loan .mtg-summary-card {
-        font-size: 0.83rem;
-        line-height: 1.52;
-        color: rgba(203, 213, 225, 0.92);
-        min-height: 80px;
-      }
-
-      #calc-home-loan .mtg-summary-card p {
-        margin: 0;
-      }
-
-      #calc-home-loan .mtg-summary-card p + p {
-        margin-top: 0.42rem;
-      }
-
-      #calc-home-loan .mtg-snapshot-list {
-        margin: 0;
-        padding: 0.35rem 0;
-        display: grid;
-        gap: 0.1rem;
-      }
-
-      #calc-home-loan .mtg-snapshot-row {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 0.72rem;
-        padding: 0.55rem 0;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      }
-
-      #calc-home-loan .mtg-snapshot-row:last-child {
-        border-bottom: 0;
-      }
-
-      #calc-home-loan .mtg-snapshot-row span {
-        font-size: 0.75rem;
-        color: rgba(148, 163, 184, 0.85);
-      }
-
-      #calc-home-loan .mtg-snapshot-row strong {
-        font-size: 0.88rem;
-        color: rgba(248, 250, 252, 0.99);
-        text-align: right;
-        line-height: 1.28;
       }
 
       #loan-mtg-explanation .table-view-toggle .calculator-button {
@@ -3019,68 +2104,9 @@
         background: rgba(30, 41, 59, 0.36);
       }
 
-      .home-loan-ui .input-row.slider-row {
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
-        padding: 8px;
-        border-radius: 8px;
-        margin: -8px 0 16px 0;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-header label {
-        color: #a5f3fc;
-        text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
-      }
-
-      .home-loan-ui .slider-value {
-        font-weight: 700;
-        color: #e0f2fe;
-        transition: color 0.2s ease;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-value {
-        color: #38bdf8;
-      }
-
-      .home-loan-ui .input-grid-2-col {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        width: 100%;
-        margin-top: 1.5rem;
-      }
-
       @media (prefers-reduced-motion: reduce) {
-        #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-          animation: none;
-        }
-
         #calc-home-loan .mtg-action-row .calculator-button {
           transition: none;
-        }
-      }
-
-      @media (max-width: 1220px) {
-        #calc-home-loan .mtg-hero {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 900px) {
-        #calc-home-loan .advanced-pair {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .home-loan-ui .input-grid-2-col {
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
         }
       }
 
@@ -3092,39 +2118,6 @@
       }
 
       /* critical source: /calculators/finance/monthly-savings-needed/calculator.css */
-      #calc-monthly-savings-needed .pv-toggle-row {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        align-items: flex-start;
-      }
-
-      #calc-monthly-savings-needed .pv-toggle-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        flex: 1 1 auto;
-        min-width: 120px;
-      }
-
-      #calc-monthly-savings-needed .pv-toggle-label {
-        font-size: 0.74rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.88);
-      }
-
-      #calc-monthly-savings-needed .pv-toggle-group .button-group {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.18rem;
-        padding: 3px;
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.78);
-      }
-
       #calc-monthly-savings-needed .pv-toggle-group .calculator-button {
         min-height: 30px;
         padding: 0.3rem 0.62rem;
@@ -3152,31 +2145,6 @@
         color: #e0f2fe;
       }
 
-      #calc-monthly-savings-needed #calc-home-loan .mtg-preview-main {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
-        border: 1px solid rgba(191, 219, 254, 0.34);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.2),
-          0 14px 28px rgba(2, 6, 23, 0.35);
-        backdrop-filter: blur(8px) saturate(125%);
-        -webkit-backdrop-filter: blur(8px) saturate(125%);
-      }
-
-      #calc-monthly-savings-needed #calc-home-loan .mtg-preview-main .mtg-preview-label {
-        letter-spacing: 0.08em;
-        color: rgba(219, 234, 254, 0.96);
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-      }
-
-      #calc-monthly-savings-needed #calc-home-loan .mtg-result-card .mtg-result-value {
-        text-shadow:
-          0 0 18px rgba(125, 211, 252, 0.45),
-          0 0 34px rgba(56, 189, 248, 0.24);
-        font-weight: 800;
-      }
-
       #msn-explanation .msn-results-table tbody tr:nth-child(even) {
         background: rgba(30, 41, 59, 0.36);
       }
@@ -3184,17 +2152,10 @@
       #msn-explanation .msn-results-table tbody tr:hover {
         background: rgba(59, 130, 246, 0.08);
       }
-
-      @media (max-width: 640px) {
-        #calc-monthly-savings-needed .pv-toggle-row {
-          flex-direction: column;
-          gap: 1rem;
-        }
-      }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/finance-monthly-savings-needed.d4d52e02.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/finance-monthly-savings-needed.4c30388f.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/finance-monthly-savings-needed.d4d52e02.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/finance-monthly-savings-needed.4c30388f.css" />
     </noscript>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance/monthly-savings-needed/#webpage","name":"Monthly Savings Needed | Calculate How Much Online Calcul...","url":"https://calchowmuch.com/finance/monthly-savings-needed/","description":"Monthly Savings Needed calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan co...","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance/monthly-savings-needed/#softwareapplication","name":"Monthly Savings Needed Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance/monthly-savings-needed/","description":"Calculate required monthly savings to reach a financial goal with compound interest.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Required monthly savings calculation","Total contributions breakdown","Total interest earned","Compounding frequency options"],"keywords":"monthly savings calculator, savings goal calculator, how much to save, investment calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance/monthly-savings-needed/#faq","mainEntity":[{"@type":"Question","name":"How much do I need to save each month to reach 25,000 in 3 years?","acceptedAnswer":{"@type":"Answer","text":"It depends on your current savings, interest rate, and compounding settings. Enter your values above to get a personalized monthly savings figure."}},{"@type":"Question","name":"Does interest reduce the required monthly savings amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. Interest compounds on your balance, meaning your money earns money. Even a modest rate can noticeably reduce how much you need to save each month."}},{"@type":"Question","name":"What if I already have some savings?","acceptedAnswer":{"@type":"Answer","text":"Existing savings reduce the gap to your goal. The more you start with, the less you need to save monthly — plus your starting balance earns interest from day one."}},{"@type":"Question","name":"How does compounding frequency affect required savings?","acceptedAnswer":{"@type":"Answer","text":"More frequent compounding (monthly vs annually) means interest is reinvested sooner, slightly reducing the monthly savings required to reach the same goal."}},{"@type":"Question","name":"Is saving at the beginning of the month better?","acceptedAnswer":{"@type":"Answer","text":"Yes. Beginning-of-month contributions start earning interest immediately for that period, requiring marginally less monthly savings."}},{"@type":"Question","name":"What happens if I shorten my time frame?","acceptedAnswer":{"@type":"Answer","text":"A shorter time frame means less time for compounding, so the required monthly savings increases."}},{"@type":"Question","name":"How much difference does 5 percent growth make?","acceptedAnswer":{"@type":"Answer","text":"At 5% annual growth, your savings benefit from meaningful compound interest. For longer time horizons, this can reduce your required monthly savings substantially."}},{"@type":"Question","name":"Can this calculator help plan a house deposit?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Set your goal to the deposit amount, enter your current savings and time frame, and see exactly how much per month you need to save."}},{"@type":"Question","name":"What if my investment returns vary each year?","acceptedAnswer":{"@type":"Answer","text":"This calculator uses a fixed annual rate for simplicity. In practice, variable returns may change outcomes — use a conservative estimate."}},{"@type":"Question","name":"Is it better to increase time or increase monthly savings?","acceptedAnswer":{"@type":"Answer","text":"Both work, but increasing time benefits from compounding effects. Starting earlier is more powerful than increasing your monthly contribution."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance/monthly-savings-needed/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Monthly Savings Needed","item":"https://calchowmuch.com/finance/monthly-savings-needed/"}]}]}</script>
@@ -3511,6 +2472,12 @@
     </div>
   </div>
 </div>
+
+<style>
+  @import url('/calculators/finance/monthly-savings-needed/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/monthly-savings-needed/module.js"></script>
 
   <h3>Explanation</h3>
     <div id="msn-explanation" class="explanation-pane">
