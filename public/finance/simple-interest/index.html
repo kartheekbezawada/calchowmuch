@@ -534,12 +534,10 @@
       .header-title {
         font-size: var(--text-2xl);
         font-weight: var(--font-semibold);
-        color: #ffffff;
-        text-shadow:
-          0 0 10px rgba(255, 255, 255, 0.85),
-          0 0 22px rgba(255, 255, 255, 0.55),
-          0 0 34px rgba(110, 231, 183, 0.3);
-        letter-spacing: 0.01em;
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3194,9 +3192,9 @@
         background: rgba(59, 130, 246, 0.08);
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/finance-simple-interest.ff6999c6.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/finance-simple-interest.51fd2540.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/finance-simple-interest.ff6999c6.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/finance-simple-interest.51fd2540.css" />
     </noscript>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance/simple-interest/#webpage","name":"Simple Interest Calculator – CalcHowMuch","url":"https://calchowmuch.com/finance/simple-interest/","description":"Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance/simple-interest/#softwareapplication","name":"Simple Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance/simple-interest/","description":"Calculate simple interest to find total interest and ending amount using principal, rate, and time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Total interest calculation","Ending amount estimate","Time unit toggle","Interest basis toggle"],"keywords":"simple interest calculator, interest calculator, loan interest, ending balance","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance/simple-interest/#faq","mainEntity":[{"@type":"Question","name":"What is simple interest?","acceptedAnswer":{"@type":"Answer","text":"Simple interest is interest calculated only on the original principal amount — it never compounds on previously earned interest."}},{"@type":"Question","name":"What is the simple interest formula?","acceptedAnswer":{"@type":"Answer","text":"I = P × r × t, where P is principal, r is the rate as a decimal, and t is time in years (or months if using per-month basis)."}},{"@type":"Question","name":"What is the difference between simple and compound interest?","acceptedAnswer":{"@type":"Answer","text":"Simple interest applies only to the principal, growing linearly. Compound interest earns interest on both principal and accumulated interest, growing exponentially."}},{"@type":"Question","name":"Can I use this for loans?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many short-term loans, auto loans, and personal loans use simple interest. This calculator estimates the total interest owed."}},{"@type":"Question","name":"Does simple interest grow linearly?","acceptedAnswer":{"@type":"Answer","text":"Yes. With a fixed rate the interest earned each period is the same, producing a straight-line growth pattern."}},{"@type":"Question","name":"How do I calculate interest for months?","acceptedAnswer":{"@type":"Answer","text":"Set the time unit to \"Months.\" The calculator converts months to years by dividing by 12, then applies the standard formula."}},{"@type":"Question","name":"What happens if the rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"Total interest is zero and the ending amount equals the principal — your money neither grows nor shrinks."}},{"@type":"Question","name":"What is Interest Basis?","acceptedAnswer":{"@type":"Answer","text":"\"Per Year\" treats the entered rate as an annual rate. \"Per Month\" treats it as a monthly rate, which dramatically changes the result over longer periods."}},{"@type":"Question","name":"Is simple interest used for savings?","acceptedAnswer":{"@type":"Answer","text":"Rarely for long-term savings — most savings accounts compound. But simple interest is useful for quick comparisons and short-term estimates."}},{"@type":"Question","name":"When should I use simple interest?","acceptedAnswer":{"@type":"Answer","text":"Use it for short-term loans, quick \"back of the envelope\" estimates, certificates of deposit with simple interest, and educational comparisons."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance/simple-interest/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Simple Interest","item":"https://calchowmuch.com/finance/simple-interest/"}]}]}</script>
@@ -3256,7 +3254,8 @@
       </div>
     </div>
     <div class="header-center">
-      <div class="header-title">Quick Calculations for Every Day Numbers</div>
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
     </div>
     <div class="header-right" role="search">
       <label class="sr-only" for="global-calculator-search">Search calculators</label>

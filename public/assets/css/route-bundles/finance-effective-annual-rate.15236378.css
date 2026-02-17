@@ -561,9 +561,10 @@ body .site-header .brand-badge span {
 .header-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
-  color: #ffffff;
-  text-shadow: none;
-  letter-spacing: 0.01em;
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3536,39 +3537,24 @@ body .site-header .header-search-icon {
   }
 }
 
-/* source: /calculators/finance/investment-growth/calculator.css */
-/* ── Investment Growth — overrides (Adapted from Time to Savings Goal) ── */
+/* source: /calculators/finance/effective-annual-rate/calculator.css */
+/* ── EAR-specific overrides (mirrors CI/PV calculator.css) ── */
 
-/* Dual-column slider grid for desktop */
-#calc-investment-growth .ig-slider-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
-  margin-bottom: 1.5rem;
+/* Reduce initial layout/paint cost by deferring below-the-fold explanation rendering */
+#ear-explanation {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 2200px;
 }
 
-#calc-investment-growth .ig-slider-grid .input-row {
-  margin-bottom: 0;
-}
-
-/* Full width for mobile */
-@media (max-width: 768px) {
-  #calc-investment-growth .ig-slider-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-}
-
-/* Toggle rows */
-#calc-investment-growth .pv-toggle-row {
+/* Toggle row */
+#calc-effective-annual-rate .pv-toggle-row {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
 }
 
-#calc-investment-growth .pv-toggle-group {
+#calc-effective-annual-rate .pv-toggle-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -3576,7 +3562,7 @@ body .site-header .header-search-icon {
   min-width: 120px;
 }
 
-#calc-investment-growth .pv-toggle-label {
+#calc-effective-annual-rate .pv-toggle-label {
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -3584,7 +3570,7 @@ body .site-header .header-search-icon {
   color: rgba(191, 219, 254, 0.88);
 }
 
-#calc-investment-growth .pv-toggle-group .button-group {
+#calc-effective-annual-rate .pv-toggle-group .button-group {
   display: inline-flex;
   align-items: center;
   gap: 0.18rem;
@@ -3594,7 +3580,7 @@ body .site-header .header-search-icon {
   background: rgba(15, 23, 42, 0.78);
 }
 
-#calc-investment-growth .pv-toggle-group .calculator-button {
+#calc-effective-annual-rate .pv-toggle-group .calculator-button {
   min-height: 30px;
   padding: 0.3rem 0.62rem;
   border-radius: 9999px;
@@ -3610,25 +3596,21 @@ body .site-header .header-search-icon {
   cursor: pointer;
 }
 
-#calc-investment-growth .pv-toggle-group .calculator-button.is-active {
+#calc-effective-annual-rate .pv-toggle-group .calculator-button.is-active {
   border-color: rgba(56, 189, 248, 0.82);
   background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
   color: #fff;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
 }
 
-#calc-investment-growth .pv-toggle-group .calculator-button:not(.is-active):hover {
+#calc-effective-annual-rate .pv-toggle-group .calculator-button:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.12);
   color: #e0f2fe;
 }
 
-/* Glassmorphism preview card */
-#calc-investment-growth #calc-home-loan .mtg-preview-main {
+/* Glassmorphism highlight for EAR preview */
+#calc-effective-annual-rate #calc-home-loan .mtg-preview-main {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
   border: 1px solid rgba(191, 219, 254, 0.34);
-  pointer-events: none;
-  position: relative;
-  padding: 1.5rem;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 14px 28px rgba(2, 6, 23, 0.35);
@@ -3636,22 +3618,44 @@ body .site-header .header-search-icon {
   -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
-#calc-investment-growth #calc-home-loan .mtg-preview-main .mtg-preview-label {
+#calc-effective-annual-rate #calc-home-loan .mtg-preview-main .mtg-preview-label {
   letter-spacing: 0.08em;
   color: rgba(219, 234, 254, 0.96);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+#calc-effective-annual-rate #calc-home-loan .mtg-result-card .mtg-result-value {
+  text-shadow:
+    0 0 18px rgba(125, 211, 252, 0.45),
+    0 0 34px rgba(56, 189, 248, 0.24);
+  font-weight: 800;
+}
+
+/* FAQ grid — 2 columns */
+#ear-explanation .bor-faq-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+  #ear-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-effective-annual-rate .pv-toggle-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 /* Results table */
-#ig-explanation .ig-results-table {
+#ear-explanation .ear-results-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-#ig-explanation .ig-results-table thead th {
+#ear-explanation .ear-results-table thead th {
   position: sticky;
   top: 0;
   z-index: 3;
@@ -3665,7 +3669,7 @@ body .site-header .header-search-icon {
   border: 1px solid rgba(148, 163, 184, 0.24);
 }
 
-#ig-explanation .ig-results-table td {
+#ear-explanation .ear-results-table td {
   font-size: 0.8rem;
   color: rgba(226, 232, 240, 0.94);
   padding: 0.58rem 0.75rem;
@@ -3673,15 +3677,15 @@ body .site-header .header-search-icon {
   line-height: 1.4;
 }
 
-#ig-explanation .ig-results-table tbody tr:nth-child(even) {
+#ear-explanation .ear-results-table tbody tr:nth-child(even) {
   background: rgba(30, 41, 59, 0.36);
 }
 
-#ig-explanation .ig-results-table tbody tr:hover {
+#ear-explanation .ear-results-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.08);
 }
 
-#ig-explanation .ig-results-table tfoot td {
+#ear-explanation .ear-results-table tfoot td {
   font-weight: 700;
   color: #e0f2fe;
   background: linear-gradient(160deg, rgba(37, 99, 235, 0.15), rgba(14, 165, 233, 0.1));
@@ -3689,14 +3693,14 @@ body .site-header .header-search-icon {
   font-size: 0.84rem;
 }
 
-#ig-explanation .ig-results-table .ig-how-col {
+#ear-explanation .ear-results-table .ear-how-col {
   font-size: 0.74rem;
   color: rgba(148, 163, 184, 0.88);
   font-style: italic;
 }
 
 /* Explanation bullet list */
-#ig-explanation .ig-explanation-list {
+#ear-explanation .ear-explanation-list {
   list-style: none;
   padding: 0;
   margin: 0.6rem 0 0.5rem;
@@ -3705,7 +3709,7 @@ body .site-header .header-search-icon {
   gap: 0.45rem;
 }
 
-#ig-explanation .ig-explanation-list li {
+#ear-explanation .ear-explanation-list li {
   position: relative;
   padding-left: 1.3rem;
   line-height: 1.65;
@@ -3713,7 +3717,7 @@ body .site-header .header-search-icon {
   color: rgba(226, 232, 240, 0.94);
 }
 
-#ig-explanation .ig-explanation-list li::before {
+#ear-explanation .ear-explanation-list li::before {
   content: '▸';
   position: absolute;
   left: 0;
@@ -3721,29 +3725,29 @@ body .site-header .header-search-icon {
   font-weight: 700;
 }
 
-#ig-explanation .ig-explanation-list li [data-ig] {
+#ear-explanation .ear-explanation-list li [data-ear] {
   font-weight: 700;
   color: #7dd3fc;
 }
 
-/* Formula block */
-#ig-explanation .ig-formula-block {
+/* Formula highlight block */
+#ear-explanation .ear-formula-block {
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   padding: 0.5rem 0.8rem;
   margin: 0.35rem auto 0.35rem;
   border-radius: 10px;
-  max-width: 480px;
+  max-width: 360px;
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: #e0f2fe;
   text-shadow: 0 0 12px rgba(125, 211, 252, 0.3);
 }
 
-/* Formula steps */
-#ig-explanation .ig-formula-steps {
+/* Formula ordered steps */
+#ear-explanation .ear-formula-steps {
   padding-left: 1.5rem;
   margin: 0.35rem 0 0.5rem;
   display: flex;
@@ -3751,201 +3755,23 @@ body .site-header .header-search-icon {
   gap: 0.3rem;
 }
 
-#ig-explanation .ig-formula-steps li {
+#ear-explanation .ear-formula-steps li {
   line-height: 1.65;
   font-size: 0.86rem;
   color: rgba(226, 232, 240, 0.92);
 }
 
-#ig-explanation .ig-formula-steps li [data-ig] {
+#ear-explanation .ear-formula-steps li [data-ear] {
   font-weight: 700;
   color: #7dd3fc;
 }
 
-/* ── FAQ Grid — bor-faq-card pattern ── */
-#ig-explanation .bor-faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-#ig-explanation .bor-faq-card {
-  padding: 0.85rem;
-  border-radius: 0.78rem;
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-top: 2px solid rgba(245, 158, 11, 0.45);
-  display: grid;
-  gap: 0.4rem;
-  transition:
-    transform 0.2s ease,
-    border-color 0.25s ease,
-    box-shadow 0.3s ease;
-}
-
-#ig-explanation .bor-faq-card:hover {
-  transform: translateY(-2px);
-  border-top-color: rgba(245, 158, 11, 0.8);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
-}
-
-#ig-explanation .bor-faq-number {
-  display: inline-flex;
-  width: 26px;
-  height: 26px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(139, 92, 246, 0.2);
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  color: #c4b5fd;
-  font-size: 0.68rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-#ig-explanation .bor-faq-card h4 {
-  margin: 0;
-  font-size: 0.86rem;
-  line-height: 1.3;
-  color: rgba(226, 232, 240, 0.98);
-}
-
-#ig-explanation .bor-faq-card p {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: rgba(203, 213, 225, 0.92);
-}
-
-@media (max-width: 640px) {
-  #ig-explanation .bor-faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #calc-investment-growth .pv-toggle-row {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
 /* Explanation section spacing */
-#ig-explanation .mtg-exp-section h4 {
+#ear-explanation .mtg-exp-section h4 {
   margin: 0.6rem 0 0.15rem;
   font-size: 0.92rem;
 }
 
-#ig-explanation .mtg-exp-section p {
+#ear-explanation .mtg-exp-section p {
   margin: 0.25rem 0;
-}
-
-/* ── WOW Factor Enhancements ── */
-
-/* 1. Electrifying Input Rows */
-#calc-investment-growth .input-row.slider-row {
-  transition:
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-  border-radius: 12px;
-  border: 1px solid transparent;
-}
-
-#calc-investment-growth .input-row.slider-row:hover {
-  transform: scale(1.02) translateY(-2px);
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow:
-    0 4px 20px -2px rgba(8, 145, 178, 0.15),
-    0 0 0 1px rgba(56, 189, 248, 0.1);
-  z-index: 10;
-}
-
-/* 2. Neon Sliders - Intensified */
-input[type='range'] {
-  background-image: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
-  background-size: 200% 100%;
-}
-
-input[type='range']::-webkit-slider-thumb {
-  box-shadow:
-    0 0 15px rgba(0, 242, 254, 0.8),
-    0 0 30px rgba(0, 242, 254, 0.4),
-    inset 0 0 4px rgba(255, 255, 255, 0.8);
-  border: 2px solid #fff;
-  background: #0ea5e9;
-}
-
-input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.4);
-  box-shadow:
-    0 0 25px rgba(0, 242, 254, 1),
-    0 0 50px rgba(0, 242, 254, 0.6),
-    inset 0 0 6px rgba(255, 255, 255, 0.9);
-}
-
-/* 3. Text Glows */
-.slider-value {
-  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
-  transition: all 0.2s ease;
-}
-
-.input-row.slider-row:hover .slider-value {
-  color: #67e8f9;
-  text-shadow: 0 0 18px rgba(103, 232, 249, 0.8);
-  transform: scale(1.05);
-}
-
-/* 4. Preview Panel - Super Glass */
-#calc-investment-growth #calc-home-loan .mtg-preview-main {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.45));
-  border: 1px solid rgba(125, 211, 252, 0.35);
-  box-shadow:
-    0 20px 40px -5px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 0 20px rgba(56, 189, 248, 0.15);
-  backdrop-filter: blur(16px) saturate(160%);
-  border-radius: 16px;
-}
-
-/* 5. Result Table Hover */
-#ig-explanation .ig-results-table tbody tr:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(59, 130, 246, 0.05),
-    rgba(59, 130, 246, 0.15),
-    rgba(59, 130, 246, 0.05)
-  );
-  transform: scale(1.01);
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-left: 2px solid #38bdf8;
-}
-
-#ig-explanation .ig-results-table td {
-  transition: color 0.2s ease;
-}
-
-#ig-explanation .ig-results-table tbody tr:hover td {
-  color: #e0f2fe;
-}
-
-/* 6. Triple Wow Result */
-#calc-investment-growth #calc-home-loan #ig-result {
-  font-size: 3.5rem;
-  line-height: 1.1;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0.5rem 0 1rem;
-  text-shadow:
-    0 0 15px rgba(56, 189, 248, 0.8),
-    0 0 30px rgba(56, 189, 248, 0.5),
-    0 0 50px rgba(37, 99, 235, 0.4);
-  font-family: var(--font-brand, sans-serif);
-}
-
-@media (min-width: 1024px) {
-  #calc-investment-growth #calc-home-loan #ig-result {
-    font-size: 4rem;
-  }
 }

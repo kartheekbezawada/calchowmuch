@@ -1,4 +1,4 @@
-/* critical source: /assets/css/theme-premium-dark.css */
+/* source: /assets/css/theme-premium-dark.css */
 :root {
   color-scheme: dark;
   --color-blue-400: #60a5fa;
@@ -335,7 +335,11 @@ body ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
 
-/* critical source: /assets/css/base.css */
+/* source: /assets/css/base.css */
+/* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+   instead of @import, to eliminate sequential CSS waterfall.
+   See known_issues.md KI-007 / KI-010. */
+
 :root {
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-family: var(--font-body);
@@ -369,7 +373,49 @@ body {
   background-image: none;
 }
 
-/* critical source: /assets/css/layout.css */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scrollbar styling - always visible with subtle colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, #f1f5f9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #94a3b8);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track, #f1f5f9);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #64748b);
+}
+
+/* source: /assets/css/layout.css */
 .page {
   height: 100vh;
   max-height: 100vh;
@@ -515,9 +561,10 @@ body .site-header .brand-badge span {
 .header-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
-  color: #ffffff;
-  text-shadow: none;
-  letter-spacing: 0.01em;
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1657,7 +1704,7 @@ body .site-header .header-search-icon {
   }
 }
 
-/* critical source: /assets/css/calculator.css */
+/* source: /assets/css/calculator.css */
 :root {
   --calculator-input-padding: 10px 12px;
   --calculator-input-radius: 10px;
@@ -2440,7 +2487,24 @@ body .site-header .header-search-icon {
   flex-shrink: 0;
 }
 
-/* critical source: /assets/css/shared-calculator-ui.css */
+/* source: /assets/css/shared-calculator-ui.css */
+/* ═══════════════════════════════════════════════════════════════════
+   shared-calculator-ui.css
+   Shared layout + visual rules for the home-loan calculator design family.
+   Used by: home-loan, car-loan, pcp, hire-purchase, leasing,
+            multiple-car-loan, and all finance calculators.
+
+   DO NOT add @import to this file.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page layout ── */
+
+.calculator-page-single {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 #calc-home-loan .is-hidden {
   display: none;
 }
@@ -2449,6 +2513,15 @@ body .site-header .header-search-icon {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+/* ── Finance time-value route overrides (pilot bundle source) ── */
+
+#calc-present-value,
+#calc-future-value,
+#calc-present-value-of-annuity,
+#calc-future-value-of-annuity {
+  width: 100%;
 }
 
 #calc-present-value .home-loan-ui,
@@ -2502,6 +2575,8 @@ body .site-header .header-search-icon {
   min-height: 96px;
 }
 
+/* ── Hero grid (form + preview) ── */
+
 #calc-home-loan .mtg-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
@@ -2525,6 +2600,8 @@ body .site-header .header-search-icon {
   line-height: 1.45;
   color: rgba(226, 232, 240, 0.88);
 }
+
+/* ── Form inputs ── */
 
 #calc-home-loan .input-row {
   margin: 0;
@@ -2568,6 +2645,8 @@ body .site-header .header-search-icon {
   outline-offset: 1px;
   border-color: rgba(125, 211, 252, 0.85);
 }
+
+/* ── Slider inputs ── */
 
 #calc-home-loan .slider-row {
   gap: 0.52rem;
@@ -2700,6 +2779,8 @@ body .site-header .header-search-icon {
   border-radius: 9999px;
   background: transparent;
 }
+
+/* ── Advanced options ── */
 
 #calc-home-loan .advanced-pair {
   display: grid;
@@ -2834,6 +2915,8 @@ body .site-header .header-search-icon {
   min-height: 1.2em;
 }
 
+/* ── Action row ── */
+
 #calc-home-loan .mtg-action-row {
   margin-top: 0.35rem;
 }
@@ -2857,6 +2940,8 @@ body .site-header .header-search-icon {
   transform: translateY(0);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
+
+/* ── Preview panel ── */
 
 #calc-home-loan .mtg-preview-panel {
   border-radius: 1.15rem;
@@ -2927,6 +3012,21 @@ body .site-header .header-search-icon {
     transform 0.3s ease;
 }
 
+@keyframes mtg-result-pop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
   animation: mtg-result-pop 0.4s ease-out;
 }
@@ -2945,6 +3045,8 @@ body .site-header .header-search-icon {
 #calc-home-loan .mtg-summary-card p + p {
   margin-top: 0.42rem;
 }
+
+/* ── Snapshot rows ── */
 
 #calc-home-loan .mtg-snapshot-list {
   margin: 0;
@@ -2978,6 +3080,231 @@ body .site-header .header-search-icon {
   line-height: 1.28;
 }
 
+/* ── Explanation section ── */
+
+#loan-mtg-explanation {
+  display: grid;
+  gap: 0.95rem;
+}
+
+#loan-mtg-explanation h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.97);
+}
+
+#loan-mtg-explanation > p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#loan-mtg-explanation .mtg-exp-section {
+  display: grid;
+  gap: 0.72rem;
+  padding: 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+}
+
+#loan-mtg-explanation .mtg-exp-section h3 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.94);
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#loan-mtg-explanation .mtg-exp-section h3::after {
+  content: none;
+}
+
+/* ── Lifetime Totals: 2-column layout (visual | totals) ── */
+
+#loan-mtg-explanation .mtg-exp-section--lifetime {
+  grid-template-columns: auto 1fr;
+}
+
+#loan-mtg-explanation .mtg-lifetime-header {
+  grid-column: 1 / -1;
+}
+
+#loan-mtg-explanation .mtg-lifetime-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut {
+  --principal-share: 70%;
+  width: 200px;
+  min-width: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
+  position: relative;
+  cursor: pointer;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut:hover {
+  box-shadow:
+    0 0 32px rgba(34, 197, 94, 0.35),
+    0 0 60px rgba(251, 113, 133, 0.22),
+    0 0 80px rgba(34, 197, 94, 0.1);
+  transform: scale(1.06);
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut::after {
+  content: '';
+  position: absolute;
+  inset: 26%;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.45rem 0.62rem;
+  border-radius: 0.62rem;
+  border: 1px solid transparent;
+  background: none;
+  cursor: default;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(125, 211, 252, 0.18);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item--principal::before {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item--interest::before {
+  background: #fb7185;
+  box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item span {
+  font-size: 0.74rem;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  margin-left: 0.2rem;
+}
+
+/* ── Totals: single column stacked, right side ── */
+
+#loan-mtg-explanation .mtg-lifetime-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: center;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.72rem;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.62rem;
+  background: none;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  cursor: default;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card:last-child {
+  border-bottom-color: transparent;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(125, 211, 252, 0.2);
+  box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
+  transform: translateX(4px);
+}
+
+#loan-mtg-explanation .mtg-lifetime-card span {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.78);
+  white-space: nowrap;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card strong {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: rgba(248, 250, 252, 0.98);
+  font-variant-numeric: tabular-nums;
+}
+
+#loan-mtg-explanation .mtg-lifetime-summary {
+  display: none;
+}
+
+/* ── Amortization table ── */
+
+#loan-mtg-explanation .amortization-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.72rem;
+}
+
+#loan-mtg-explanation .table-view-toggle {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.18rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.7);
+}
+
 #loan-mtg-explanation .table-view-toggle .calculator-button {
   min-height: 30px;
   padding: 0.3rem 0.66rem;
@@ -2995,9 +3322,105 @@ body .site-header .header-search-icon {
   color: #fff;
 }
 
+#loan-mtg-explanation .table-scroll {
+  max-height: 318px;
+  overflow-y: scroll;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(15, 23, 42, 0.62);
+}
+
+#loan-mtg-explanation .calculator-table {
+  min-width: 420px;
+  border-collapse: collapse;
+}
+
+#loan-mtg-explanation .calculator-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fde68a;
+  background: rgba(30, 41, 59, 0.98);
+}
+
+#loan-mtg-explanation .calculator-table th,
+#loan-mtg-explanation .calculator-table td {
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: 0.5rem;
+}
+
+#loan-mtg-explanation .calculator-table td {
+  font-size: 0.79rem;
+  color: rgba(226, 232, 240, 0.94);
+  white-space: nowrap;
+}
+
 #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
   background: rgba(30, 41, 59, 0.36);
 }
+
+/* ── FAQ grid ── */
+
+#loan-mtg-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+#loan-mtg-explanation .bor-faq-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(245, 158, 11, 0.45);
+  display: grid;
+  gap: 0.4rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+#loan-mtg-explanation .bor-faq-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+}
+
+#loan-mtg-explanation .bor-faq-number {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#loan-mtg-explanation .bor-faq-card h4 {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.3;
+  color: rgba(226, 232, 240, 0.98);
+}
+
+#loan-mtg-explanation .bor-faq-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+/* ── Slider hover effects (from auto-loan family) ── */
 
 .home-loan-ui .input-row.slider-row {
   transition:
@@ -3027,6 +3450,8 @@ body .site-header .header-search-icon {
   color: #38bdf8;
 }
 
+/* ── 2-Column Grid Layout ── */
+
 .home-loan-ui .input-grid-2-col {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3035,15 +3460,18 @@ body .site-header .header-search-icon {
   margin-top: 1.5rem;
 }
 
+/* ── Accessibility ── */
+
 @media (prefers-reduced-motion: reduce) {
   #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
     animation: none;
   }
-
   #calc-home-loan .mtg-action-row .calculator-button {
     transition: none;
   }
 }
+
+/* ── Responsive breakpoints ── */
 
 @media (max-width: 1220px) {
   #calc-home-loan .mtg-hero {
@@ -3055,6 +3483,19 @@ body .site-header .header-search-icon {
   #calc-home-loan .advanced-pair {
     grid-template-columns: 1fr;
   }
+
+  #loan-mtg-explanation .table-scroll {
+    border-radius: 0.7rem;
+  }
+
+  #loan-mtg-explanation .calculator-table {
+    min-width: 360px;
+  }
+
+  #loan-mtg-explanation .amortization-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -3065,21 +3506,70 @@ body .site-header .header-search-icon {
 }
 
 @media (max-width: 720px) {
+  #loan-mtg-explanation .mtg-exp-section {
+    padding: 0.85rem;
+  }
+
+  #loan-mtg-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
   #calc-home-loan .down-combined-left .calculator-button,
   #loan-mtg-explanation .table-view-toggle .calculator-button {
     flex: 1 1 auto;
   }
+
+  #loan-mtg-explanation .table-view-toggle {
+    width: 100%;
+  }
+
+  #loan-mtg-explanation .mtg-exp-section--lifetime {
+    grid-template-columns: 1fr;
+  }
+
+  #loan-mtg-explanation .mtg-lifetime-visual {
+    align-items: center;
+  }
+
+  #loan-mtg-explanation .mtg-lifetime-donut {
+    width: 160px;
+    min-width: 160px;
+  }
 }
 
-/* critical source: /calculators/finance/simple-interest/calculator.css */
-#calc-simple-interest .pv-toggle-row {
+/* source: /calculators/finance/investment-growth/calculator.css */
+/* ── Investment Growth — overrides (Adapted from Time to Savings Goal) ── */
+
+/* Dual-column slider grid for desktop */
+#calc-investment-growth .ig-slider-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#calc-investment-growth .ig-slider-grid .input-row {
+  margin-bottom: 0;
+}
+
+/* Full width for mobile */
+@media (max-width: 768px) {
+  #calc-investment-growth .ig-slider-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+/* Toggle rows */
+#calc-investment-growth .pv-toggle-row {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-start;
+  margin-bottom: 1.5rem;
 }
 
-#calc-simple-interest .pv-toggle-group {
+#calc-investment-growth .pv-toggle-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -3087,7 +3577,7 @@ body .site-header .header-search-icon {
   min-width: 120px;
 }
 
-#calc-simple-interest .pv-toggle-label {
+#calc-investment-growth .pv-toggle-label {
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -3095,7 +3585,7 @@ body .site-header .header-search-icon {
   color: rgba(191, 219, 254, 0.88);
 }
 
-#calc-simple-interest .pv-toggle-group .button-group {
+#calc-investment-growth .pv-toggle-group .button-group {
   display: inline-flex;
   align-items: center;
   gap: 0.18rem;
@@ -3105,7 +3595,7 @@ body .site-header .header-search-icon {
   background: rgba(15, 23, 42, 0.78);
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button {
+#calc-investment-growth .pv-toggle-group .calculator-button {
   min-height: 30px;
   padding: 0.3rem 0.62rem;
   border-radius: 9999px;
@@ -3121,20 +3611,25 @@ body .site-header .header-search-icon {
   cursor: pointer;
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button.is-active {
+#calc-investment-growth .pv-toggle-group .calculator-button.is-active {
   border-color: rgba(56, 189, 248, 0.82);
   background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
   color: #fff;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button:not(.is-active):hover {
+#calc-investment-growth .pv-toggle-group .calculator-button:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.12);
   color: #e0f2fe;
 }
 
-#calc-simple-interest #calc-home-loan .mtg-preview-main {
+/* Glassmorphism preview card */
+#calc-investment-growth #calc-home-loan .mtg-preview-main {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
   border: 1px solid rgba(191, 219, 254, 0.34);
+  pointer-events: none;
+  position: relative;
+  padding: 1.5rem;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 14px 28px rgba(2, 6, 23, 0.35);
@@ -3142,32 +3637,316 @@ body .site-header .header-search-icon {
   -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
-#calc-simple-interest #calc-home-loan .mtg-preview-main .mtg-preview-label {
+#calc-investment-growth #calc-home-loan .mtg-preview-main .mtg-preview-label {
   letter-spacing: 0.08em;
   color: rgba(219, 234, 254, 0.96);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-#calc-simple-interest #calc-home-loan .mtg-result-card .mtg-result-value {
-  text-shadow:
-    0 0 18px rgba(125, 211, 252, 0.45),
-    0 0 34px rgba(56, 189, 248, 0.24);
-  font-weight: 800;
+/* Results table */
+#ig-explanation .ig-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#ig-explanation .ig-results-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fde68a;
+  background: rgba(30, 41, 59, 0.98);
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+#ig-explanation .ig-results-table td {
+  font-size: 0.8rem;
+  color: rgba(226, 232, 240, 0.94);
+  padding: 0.58rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  line-height: 1.4;
+}
+
+#ig-explanation .ig-results-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.36);
+}
+
+#ig-explanation .ig-results-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+#ig-explanation .ig-results-table tfoot td {
+  font-weight: 700;
+  color: #e0f2fe;
+  background: linear-gradient(160deg, rgba(37, 99, 235, 0.15), rgba(14, 165, 233, 0.1));
+  border-top: 2px solid rgba(56, 189, 248, 0.4);
+  font-size: 0.84rem;
+}
+
+#ig-explanation .ig-results-table .ig-how-col {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.88);
+  font-style: italic;
+}
+
+/* Explanation bullet list */
+#ig-explanation .ig-explanation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+#ig-explanation .ig-explanation-list li {
+  position: relative;
+  padding-left: 1.3rem;
+  line-height: 1.65;
+  font-size: 0.88rem;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#ig-explanation .ig-explanation-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: rgba(56, 189, 248, 0.85);
+  font-weight: 700;
+}
+
+#ig-explanation .ig-explanation-list li [data-ig] {
+  font-weight: 700;
+  color: #7dd3fc;
+}
+
+/* Formula block */
+#ig-explanation .ig-formula-block {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem auto 0.35rem;
+  border-radius: 10px;
+  max-width: 480px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #e0f2fe;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.3);
+}
+
+/* Formula steps */
+#ig-explanation .ig-formula-steps {
+  padding-left: 1.5rem;
+  margin: 0.35rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#ig-explanation .ig-formula-steps li {
+  line-height: 1.65;
+  font-size: 0.86rem;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ig-explanation .ig-formula-steps li [data-ig] {
+  font-weight: 700;
+  color: #7dd3fc;
+}
+
+/* ── FAQ Grid — bor-faq-card pattern ── */
+#ig-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+#ig-explanation .bor-faq-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(245, 158, 11, 0.45);
+  display: grid;
+  gap: 0.4rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+#ig-explanation .bor-faq-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+}
+
+#ig-explanation .bor-faq-number {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#ig-explanation .bor-faq-card h4 {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.3;
+  color: rgba(226, 232, 240, 0.98);
+}
+
+#ig-explanation .bor-faq-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
 }
 
 @media (max-width: 640px) {
-  #calc-simple-interest .pv-toggle-row {
+  #ig-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-growth .pv-toggle-row {
     flex-direction: column;
     gap: 1rem;
   }
 }
 
-#si-explanation .si-results-table tbody tr:nth-child(even) {
-  background: rgba(30, 41, 59, 0.36);
+/* Explanation section spacing */
+#ig-explanation .mtg-exp-section h4 {
+  margin: 0.6rem 0 0.15rem;
+  font-size: 0.92rem;
 }
 
-#si-explanation .si-results-table tbody tr:hover {
-  background: rgba(59, 130, 246, 0.08);
+#ig-explanation .mtg-exp-section p {
+  margin: 0.25rem 0;
+}
+
+/* ── WOW Factor Enhancements ── */
+
+/* 1. Electrifying Input Rows */
+#calc-investment-growth .input-row.slider-row {
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+#calc-investment-growth .input-row.slider-row:hover {
+  transform: scale(1.02) translateY(-2px);
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow:
+    0 4px 20px -2px rgba(8, 145, 178, 0.15),
+    0 0 0 1px rgba(56, 189, 248, 0.1);
+  z-index: 10;
+}
+
+/* 2. Neon Sliders - Intensified */
+input[type='range'] {
+  background-image: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
+  background-size: 200% 100%;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  box-shadow:
+    0 0 15px rgba(0, 242, 254, 0.8),
+    0 0 30px rgba(0, 242, 254, 0.4),
+    inset 0 0 4px rgba(255, 255, 255, 0.8);
+  border: 2px solid #fff;
+  background: #0ea5e9;
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.4);
+  box-shadow:
+    0 0 25px rgba(0, 242, 254, 1),
+    0 0 50px rgba(0, 242, 254, 0.6),
+    inset 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+/* 3. Text Glows */
+.slider-value {
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+  transition: all 0.2s ease;
+}
+
+.input-row.slider-row:hover .slider-value {
+  color: #67e8f9;
+  text-shadow: 0 0 18px rgba(103, 232, 249, 0.8);
+  transform: scale(1.05);
+}
+
+/* 4. Preview Panel - Super Glass */
+#calc-investment-growth #calc-home-loan .mtg-preview-main {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.45));
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  box-shadow:
+    0 20px 40px -5px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 20px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-radius: 16px;
+}
+
+/* 5. Result Table Hover */
+#ig-explanation .ig-results-table tbody tr:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.05),
+    rgba(59, 130, 246, 0.15),
+    rgba(59, 130, 246, 0.05)
+  );
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-left: 2px solid #38bdf8;
+}
+
+#ig-explanation .ig-results-table td {
+  transition: color 0.2s ease;
+}
+
+#ig-explanation .ig-results-table tbody tr:hover td {
+  color: #e0f2fe;
+}
+
+/* 6. Triple Wow Result */
+#calc-investment-growth #calc-home-loan #ig-result {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0.5rem 0 1rem;
+  text-shadow:
+    0 0 15px rgba(56, 189, 248, 0.8),
+    0 0 30px rgba(56, 189, 248, 0.5),
+    0 0 50px rgba(37, 99, 235, 0.4);
+  font-family: var(--font-brand, sans-serif);
+}
+
+@media (min-width: 1024px) {
+  #calc-investment-growth #calc-home-loan #ig-result {
+    font-size: 4rem;
+  }
 }
