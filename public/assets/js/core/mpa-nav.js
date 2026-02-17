@@ -1,5 +1,47 @@
 import '/assets/js/core/mobile-nav.js';
 
+const NAV_ROUTE_PREFIXES = [
+  '/loans/',
+  '/math/',
+  '/finance/',
+  '/time-and-date/',
+  '/percentage-calculators/',
+];
+
+function normalizeNavHref(href) {
+  if (typeof href !== 'string' || !href.startsWith('/')) {
+    return href;
+  }
+  if (href.startsWith('//') || href.includes('.')) {
+    return href;
+  }
+
+  const [pathWithQuery, hashPart] = href.split('#');
+  const [pathPart, queryPart] = pathWithQuery.split('?');
+  const applies = NAV_ROUTE_PREFIXES.some((prefix) => pathPart.startsWith(prefix));
+  if (!applies || pathPart.endsWith('/')) {
+    return href;
+  }
+
+  const normalizedPath = `${pathPart}/`;
+  const query = queryPart ? `?${queryPart}` : '';
+  const hash = hashPart ? `#${hashPart}` : '';
+  return `${normalizedPath}${query}${hash}`;
+}
+
+function normalizeInternalNavAnchors() {
+  const selectors = ['.top-nav a[href]', '.left-nav a[href]', '.breadcrumb-nav a[href]'];
+  document.querySelectorAll(selectors.join(',')).forEach((anchor) => {
+    const currentHref = anchor.getAttribute('href');
+    const normalizedHref = normalizeNavHref(currentHref);
+    if (normalizedHref && normalizedHref !== currentHref) {
+      anchor.setAttribute('href', normalizedHref);
+    }
+  });
+}
+
+normalizeInternalNavAnchors();
+
 const standardToggles = document.querySelectorAll('.nav-category-toggle');
 standardToggles.forEach((toggle) => {
   toggle.addEventListener('click', () => {

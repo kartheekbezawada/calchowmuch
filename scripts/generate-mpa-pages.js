@@ -1054,6 +1054,19 @@ function buildRouteBundles() {
   });
 }
 
+function shouldBuildRouteBundles(scope) {
+  if (scope.fullSite) {
+    return true;
+  }
+  if (process.env.REBUILD_ROUTE_BUNDLES === '1' || hasFlag('--rebuild-bundles')) {
+    return true;
+  }
+  if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH) || !fs.existsSync(ASSET_MANIFEST_PATH)) {
+    return true;
+  }
+  return false;
+}
+
 function readRouteBundleManifest() {
   if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH)) {
     throw new Error(`Missing route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
@@ -1699,6 +1712,7 @@ ${explanationTitleHtml}  ${explanationHtml}
       : '';
   let cssLinksHtml = '';
   if (assetConfig) {
+    const deferCoreCss = assetConfig?.options?.deferCoreCss === true;
     const coreCss = Array.isArray(assetConfig?.css?.core) ? assetConfig.css.core : [];
     const routeCss = Array.isArray(assetConfig?.css?.route) ? assetConfig.css.route : [];
     const criticalHref = assetConfig?.css?.critical;
@@ -1712,9 +1726,11 @@ ${explanationTitleHtml}  ${explanationHtml}
         `    <style data-route-critical="true">\n${indentBlock(readFile(criticalPath).trim(), '      ')}\n    </style>`
       );
     }
-    coreCss
-      .filter((href) => typeof href === 'string' && href.trim())
-      .forEach((href) => lines.push(`    <link rel="stylesheet" href="${href}" />`));
+    if (!deferCoreCss) {
+      coreCss
+        .filter((href) => typeof href === 'string' && href.trim())
+        .forEach((href) => lines.push(`    <link rel="stylesheet" href="${href}" />`));
+    }
     routeCss
       .filter((href) => typeof href === 'string' && href.trim())
       .forEach((href) =>
@@ -1987,7 +2003,11 @@ function main() {
   const scope = parseGenerationScope();
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
-  buildRouteBundles();
+  if (shouldBuildRouteBundles(scope)) {
+    buildRouteBundles();
+  } else {
+    console.log('Skipping route bundle rebuild for scoped generation (use REBUILD_ROUTE_BUNDLES=1 to force).');
+  }
   const routeBundleManifest = readRouteBundleManifest();
   const assetManifest = readAssetManifest();
 
@@ -2007,7 +2027,7 @@ function main() {
           calculator,
           override,
         });
-        calculator.url = `/${relPath}`;
+        calculator.url = normalizeRoutePath(`/${relPath}`);
         const entry = { category, subcategory, calculator, governance, relPath };
         calcLookup.set(calculator.id, entry);
         allCalculatorEntries.push(entry);

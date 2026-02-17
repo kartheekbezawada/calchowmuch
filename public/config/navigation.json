@@ -11,7 +11,7 @@
             {
               "id": "basic",
               "name": "Basic Calculator",
-              "url": "/math/basic",
+              "url": "/math/basic/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -19,7 +19,7 @@
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "/percentage-calculators/percentage-increase",
+              "url": "/percentage-calculators/percentage-increase/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -27,7 +27,7 @@
             {
               "id": "fraction-calculator",
               "name": "Fraction Calculator",
-              "url": "/math/fraction-calculator",
+              "url": "/math/fraction-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -41,7 +41,7 @@
             {
               "id": "quadratic-equation",
               "name": "Quadratic Equation Solver",
-              "url": "/math/algebra/quadratic-equation",
+              "url": "/math/algebra/quadratic-equation/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -49,7 +49,7 @@
             {
               "id": "system-of-equations",
               "name": "System of Linear Equations",
-              "url": "/math/algebra/system-of-equations",
+              "url": "/math/algebra/system-of-equations/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -57,7 +57,7 @@
             {
               "id": "polynomial-operations",
               "name": "Polynomial Operations",
-              "url": "/math/algebra/polynomial-operations",
+              "url": "/math/algebra/polynomial-operations/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -65,7 +65,7 @@
             {
               "id": "factoring",
               "name": "Factoring Calculator",
-              "url": "/math/algebra/factoring",
+              "url": "/math/algebra/factoring/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -73,7 +73,7 @@
             {
               "id": "slope-distance",
               "name": "Slope & Distance Calculator",
-              "url": "/math/algebra/slope-distance",
+              "url": "/math/algebra/slope-distance/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -87,7 +87,7 @@
             {
               "id": "unit-circle",
               "name": "Unit Circle Calculator",
-              "url": "/math/trigonometry/unit-circle",
+              "url": "/math/trigonometry/unit-circle/",
               "keywords": [
                 "unit circle",
                 "reference angle",
@@ -103,7 +103,7 @@
             {
               "id": "triangle-solver",
               "name": "Triangle Solver",
-              "url": "/math/trigonometry/triangle-solver",
+              "url": "/math/trigonometry/triangle-solver/",
               "keywords": [
                 "SSS",
                 "SAS",
@@ -119,7 +119,7 @@
             {
               "id": "trig-functions",
               "name": "Trigonometric Functions",
-              "url": "/math/trigonometry/trig-functions",
+              "url": "/math/trigonometry/trig-functions/",
               "keywords": [
                 "sin",
                 "cos",
@@ -136,7 +136,7 @@
             {
               "id": "inverse-trig",
               "name": "Inverse Trig Functions",
-              "url": "/math/trigonometry/inverse-trig",
+              "url": "/math/trigonometry/inverse-trig/",
               "keywords": [
                 "arcsin",
                 "arccos",
@@ -150,7 +150,7 @@
             {
               "id": "law-of-sines-cosines",
               "name": "Law of Sines/Cosines Calculator",
-              "url": "/math/trigonometry/law-of-sines-cosines",
+              "url": "/math/trigonometry/law-of-sines-cosines/",
               "keywords": [
                 "law of sines",
                 "law of cosines",
@@ -169,7 +169,7 @@
             {
               "id": "derivative",
               "name": "Derivative Calculator",
-              "url": "/math/calculus/derivative",
+              "url": "/math/calculus/derivative/",
               "keywords": [
                 "derivative",
                 "differentiation",
@@ -185,7 +185,7 @@
             {
               "id": "integral",
               "name": "Integral Calculator",
-              "url": "/math/calculus/integral",
+              "url": "/math/calculus/integral/",
               "keywords": [
                 "integral",
                 "integration",
@@ -201,7 +201,7 @@
             {
               "id": "limit",
               "name": "Limit Calculator",
-              "url": "/math/calculus/limit",
+              "url": "/math/calculus/limit/",
               "keywords": [
                 "limit",
                 "lhopital",
@@ -216,7 +216,7 @@
             {
               "id": "series-convergence",
               "name": "Series Convergence Calculator",
-              "url": "/math/calculus/series-convergence",
+              "url": "/math/calculus/series-convergence/",
               "keywords": [
                 "series",
                 "convergence",
@@ -232,7 +232,7 @@
             {
               "id": "critical-points",
               "name": "Critical Points Finder",
-              "url": "/math/calculus/critical-points",
+              "url": "/math/calculus/critical-points/",
               "keywords": [
                 "critical points",
                 "extrema",
@@ -254,7 +254,7 @@
             {
               "id": "natural-log",
               "name": "Natural Log Calculator",
-              "url": "/math/log/natural-log",
+              "url": "/math/log/natural-log/",
               "keywords": [
                 "ln",
                 "natural log",
@@ -268,7 +268,7 @@
             {
               "id": "common-log",
               "name": "Common Log Calculator",
-              "url": "/math/log/common-log",
+              "url": "/math/log/common-log/",
               "keywords": [
                 "log",
                 "base 10",
@@ -282,7 +282,7 @@
             {
               "id": "log-properties",
               "name": "Logarithm Properties",
-              "url": "/math/log/log-properties",
+              "url": "/math/log/log-properties/",
               "keywords": [
                 "product rule",
                 "quotient rule",
@@ -296,7 +296,7 @@
             {
               "id": "exponential-equations",
               "name": "Exponential Equations Solver",
-              "url": "/math/log/exponential-equations",
+              "url": "/math/log/exponential-equations/",
               "keywords": [
                 "a^x",
                 "logarithmic solution",
@@ -309,7 +309,7 @@
             {
               "id": "log-scale",
               "name": "Log Scale Converter",
-              "url": "/math/log/log-scale",
+              "url": "/math/log/log-scale/",
               "keywords": [
                 "decibel",
                 "pH",
@@ -329,7 +329,7 @@
             {
               "id": "mean-median-mode-range",
               "name": "Mean Median Mode Range Calculator",
-              "url": "/math/mean-median-mode-range",
+              "url": "/math/mean-median-mode-range/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -337,7 +337,7 @@
             {
               "id": "standard-deviation",
               "name": "Standard Deviation Calculator",
-              "url": "/math/standard-deviation",
+              "url": "/math/standard-deviation/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -345,7 +345,7 @@
             {
               "id": "statistics",
               "name": "Statistics Calculator",
-              "url": "/math/statistics",
+              "url": "/math/statistics/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -353,7 +353,7 @@
             {
               "id": "confidence-interval",
               "name": "Confidence Interval Calculator",
-              "url": "/math/confidence-interval",
+              "url": "/math/confidence-interval/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -361,7 +361,7 @@
             {
               "id": "z-score",
               "name": "Z-Score Calculator",
-              "url": "/math/z-score",
+              "url": "/math/z-score/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -369,7 +369,7 @@
             {
               "id": "sample-size",
               "name": "Sample Size Calculator",
-              "url": "/math/sample-size",
+              "url": "/math/sample-size/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -377,7 +377,7 @@
             {
               "id": "number-sequence",
               "name": "Number Sequence Calculator",
-              "url": "/math/number-sequence",
+              "url": "/math/number-sequence/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -385,7 +385,7 @@
             {
               "id": "permutation-combination",
               "name": "Permutation & Combination Calculator",
-              "url": "/math/permutation-combination",
+              "url": "/math/permutation-combination/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -393,7 +393,7 @@
             {
               "id": "probability",
               "name": "Probability Calculator",
-              "url": "/math/probability",
+              "url": "/math/probability/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
@@ -401,7 +401,7 @@
             {
               "id": "regression-analysis",
               "name": "Regression Analysis",
-              "url": "/math/statistics/regression-analysis",
+              "url": "/math/statistics/regression-analysis/",
               "keywords": [
                 "linear regression",
                 "polynomial",
@@ -417,7 +417,7 @@
             {
               "id": "anova",
               "name": "ANOVA Calculator",
-              "url": "/math/statistics/anova",
+              "url": "/math/statistics/anova/",
               "keywords": [
                 "ANOVA",
                 "F-test",
@@ -432,7 +432,7 @@
             {
               "id": "hypothesis-testing",
               "name": "Hypothesis Testing",
-              "url": "/math/statistics/hypothesis-testing",
+              "url": "/math/statistics/hypothesis-testing/",
               "keywords": [
                 "t-test",
                 "z-test",
@@ -448,7 +448,7 @@
             {
               "id": "correlation",
               "name": "Correlation Calculator",
-              "url": "/math/statistics/correlation",
+              "url": "/math/statistics/correlation/",
               "keywords": [
                 "Pearson",
                 "Spearman",
@@ -463,7 +463,7 @@
             {
               "id": "distribution",
               "name": "Distribution Calculator",
-              "url": "/math/statistics/distribution",
+              "url": "/math/statistics/distribution/",
               "keywords": [
                 "normal distribution",
                 "t-distribution",
@@ -492,7 +492,7 @@
             {
               "id": "home-loan",
               "name": "Home Loan",
-              "url": "/loans/home-loan",
+              "url": "/loans/home-loan/",
               "keywords": [
                 "mortgage",
                 "home loan",
@@ -508,7 +508,7 @@
             {
               "id": "how-much-can-i-borrow",
               "name": "How Much Can I Borrow",
-              "url": "/loans/how-much-can-i-borrow",
+              "url": "/loans/how-much-can-i-borrow/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -516,7 +516,7 @@
             {
               "id": "remortgage-switching",
               "name": "Remortgage / Switching",
-              "url": "/loans/remortgage-switching",
+              "url": "/loans/remortgage-switching/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -524,7 +524,7 @@
             {
               "id": "buy-to-let",
               "name": "Buy-to-Let Calculator",
-              "url": "/loans/buy-to-let",
+              "url": "/loans/buy-to-let/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -532,7 +532,7 @@
             {
               "id": "offset-calculator",
               "name": "Offset Calculator",
-              "url": "/loans/offset-calculator",
+              "url": "/loans/offset-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -540,7 +540,7 @@
             {
               "id": "interest-rate-change-calculator",
               "name": "Interest Rate Change Calculator",
-              "url": "/loans/interest-rate-change-calculator",
+              "url": "/loans/interest-rate-change-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -548,7 +548,7 @@
             {
               "id": "loan-to-value",
               "name": "Loan-to-Value (LTV) Calculator",
-              "url": "/loans/loan-to-value",
+              "url": "/loans/loan-to-value/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -563,7 +563,7 @@
             {
               "id": "credit-card-repayment-payoff",
               "name": "Repayment",
-              "url": "/loans/credit-card-repayment-payoff",
+              "url": "/loans/credit-card-repayment-payoff/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -571,7 +571,7 @@
             {
               "id": "credit-card-minimum-payment",
               "name": "Minimum Payment",
-              "url": "/loans/credit-card-minimum-payment",
+              "url": "/loans/credit-card-minimum-payment/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -579,7 +579,7 @@
             {
               "id": "balance-transfer-installment-plan",
               "name": "Balance Transfer",
-              "url": "/loans/balance-transfer-installment-plan",
+              "url": "/loans/balance-transfer-installment-plan/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -587,7 +587,7 @@
             {
               "id": "credit-card-consolidation",
               "name": "Card Consolidation",
-              "url": "/loans/credit-card-consolidation",
+              "url": "/loans/credit-card-consolidation/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -602,7 +602,7 @@
             {
               "id": "car-loan",
               "name": "Car Loan Calculator",
-              "url": "/loans/car-loan",
+              "url": "/loans/car-loan/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -610,7 +610,7 @@
             {
               "id": "multiple-car-loan",
               "name": "Multiple Car Loan Calculator",
-              "url": "/loans/multiple-car-loan",
+              "url": "/loans/multiple-car-loan/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -618,7 +618,7 @@
             {
               "id": "hire-purchase",
               "name": "Hire Purchase Calculator",
-              "url": "/loans/hire-purchase",
+              "url": "/loans/hire-purchase/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -626,7 +626,7 @@
             {
               "id": "pcp-calculator",
               "name": "PCP Calculator",
-              "url": "/loans/pcp-calculator",
+              "url": "/loans/pcp-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -634,7 +634,7 @@
             {
               "id": "leasing-calculator",
               "name": "Leasing Calculator",
-              "url": "/loans/leasing-calculator",
+              "url": "/loans/leasing-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -654,7 +654,7 @@
             {
               "id": "present-value",
               "name": "Present Value (PV)",
-              "url": "/finance/present-value",
+              "url": "/finance/present-value/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -662,7 +662,7 @@
             {
               "id": "future-value",
               "name": "Future Value (FV)",
-              "url": "/finance/future-value",
+              "url": "/finance/future-value/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -670,7 +670,7 @@
             {
               "id": "present-value-of-annuity",
               "name": "Present Value of Annuity",
-              "url": "/finance/present-value-of-annuity",
+              "url": "/finance/present-value-of-annuity/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -678,7 +678,7 @@
             {
               "id": "future-value-of-annuity",
               "name": "Future Value of Annuity",
-              "url": "/finance/future-value-of-annuity",
+              "url": "/finance/future-value-of-annuity/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -692,7 +692,7 @@
             {
               "id": "simple-interest",
               "name": "Simple Interest",
-              "url": "/finance/simple-interest",
+              "url": "/finance/simple-interest/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -700,7 +700,7 @@
             {
               "id": "compound-interest",
               "name": "Compound Interest",
-              "url": "/finance/compound-interest",
+              "url": "/finance/compound-interest/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -708,7 +708,7 @@
             {
               "id": "effective-annual-rate",
               "name": "Effective Annual Rate (EAR)",
-              "url": "/finance/effective-annual-rate",
+              "url": "/finance/effective-annual-rate/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -722,7 +722,7 @@
             {
               "id": "investment-growth",
               "name": "Investment Growth",
-              "url": "/finance/investment-growth",
+              "url": "/finance/investment-growth/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -730,7 +730,7 @@
             {
               "id": "time-to-savings-goal",
               "name": "Time to Savings Goal",
-              "url": "/finance/time-to-savings-goal",
+              "url": "/finance/time-to-savings-goal/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -738,7 +738,7 @@
             {
               "id": "monthly-savings-needed",
               "name": "Monthly Savings Needed",
-              "url": "/finance/monthly-savings-needed",
+              "url": "/finance/monthly-savings-needed/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -759,7 +759,7 @@
             {
               "id": "sleep-time-calculator",
               "name": "Sleep Time Calculator",
-              "url": "/time-and-date/sleep-time-calculator",
+              "url": "/time-and-date/sleep-time-calculator/",
               "keywords": [
                 "sleep",
                 "wake up",
@@ -773,7 +773,7 @@
             {
               "id": "wake-up-time-calculator",
               "name": "Wake-Up Time Calculator",
-              "url": "/time-and-date/wake-up-time-calculator",
+              "url": "/time-and-date/wake-up-time-calculator/",
               "keywords": [
                 "wake up",
                 "sleep cycles",
@@ -787,7 +787,7 @@
             {
               "id": "nap-time-calculator",
               "name": "Nap Time Calculator",
-              "url": "/time-and-date/nap-time-calculator",
+              "url": "/time-and-date/nap-time-calculator/",
               "keywords": [
                 "nap",
                 "power nap",
@@ -801,7 +801,7 @@
             {
               "id": "power-nap-calculator",
               "name": "Power Nap Calculator",
-              "url": "/time-and-date/power-nap-calculator",
+              "url": "/time-and-date/power-nap-calculator/",
               "keywords": [
                 "power nap",
                 "nap length",
@@ -815,7 +815,7 @@
             {
               "id": "energy-based-nap-selector",
               "name": "Energy-Based Nap Selector",
-              "url": "/time-and-date/energy-based-nap-selector",
+              "url": "/time-and-date/energy-based-nap-selector/",
               "keywords": [
                 "energy nap",
                 "quick nap",
@@ -829,7 +829,7 @@
             {
               "id": "work-hours-calculator",
               "name": "Work Hours Calculator",
-              "url": "/time-and-date/work-hours-calculator",
+              "url": "/time-and-date/work-hours-calculator/",
               "keywords": [
                 "hours worked",
                 "breaks",
@@ -843,7 +843,7 @@
             {
               "id": "overtime-hours-calculator",
               "name": "Overtime Hours Calculator",
-              "url": "/time-and-date/overtime-hours-calculator",
+              "url": "/time-and-date/overtime-hours-calculator/",
               "keywords": [
                 "overtime",
                 "regular hours",
@@ -857,7 +857,7 @@
             {
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
-              "url": "/time-and-date/time-between-two-dates-calculator",
+              "url": "/time-and-date/time-between-two-dates-calculator/",
               "keywords": [
                 "date difference",
                 "days between",
@@ -871,7 +871,7 @@
             {
               "id": "days-until-a-date-calculator",
               "name": "Days Until a Date Calculator",
-              "url": "/time-and-date/days-until-a-date-calculator",
+              "url": "/time-and-date/days-until-a-date-calculator/",
               "keywords": [
                 "days until",
                 "countdown",
@@ -885,7 +885,7 @@
             {
               "id": "countdown-timer-generator",
               "name": "Countdown Timer Generator",
-              "url": "/time-and-date/countdown-timer-generator",
+              "url": "/time-and-date/countdown-timer-generator/",
               "keywords": [
                 "countdown",
                 "timer",
@@ -899,7 +899,7 @@
             {
               "id": "age-calculator",
               "name": "Age Calculator",
-              "url": "/time-and-date/age-calculator",
+              "url": "/time-and-date/age-calculator/",
               "keywords": [
                 "age",
                 "birthday",
@@ -913,7 +913,7 @@
             {
               "id": "birthday-day-of-week",
               "name": "Birthday Day-of-Week",
-              "url": "/time-and-date/birthday-day-of-week",
+              "url": "/time-and-date/birthday-day-of-week/",
               "keywords": [
                 "birthday",
                 "weekday",
@@ -939,7 +939,7 @@
             {
               "id": "percent-change",
               "name": "Percent Change",
-              "url": "/percentage-calculators/percent-change",
+              "url": "/percentage-calculators/percent-change/",
               "keywords": [
                 "percent change calculator",
                 "percentage change calculator",
@@ -953,7 +953,7 @@
             {
               "id": "percentage-difference",
               "name": "Percentage Difference",
-              "url": "/percentage-calculators/percentage-difference",
+              "url": "/percentage-calculators/percentage-difference/",
               "keywords": [
                 "percentage difference calculator",
                 "percent difference calculator",
@@ -967,7 +967,7 @@
             {
               "id": "percentage-increase",
               "name": "Percentage Increase",
-              "url": "/percentage-calculators/percentage-increase",
+              "url": "/percentage-calculators/percentage-increase/",
               "keywords": [
                 "percentage increase calculator",
                 "percent increase calculator",
@@ -981,7 +981,7 @@
             {
               "id": "percentage-decrease",
               "name": "Percentage Decrease",
-              "url": "/percentage-calculators/percentage-decrease",
+              "url": "/percentage-calculators/percentage-decrease/",
               "keywords": [
                 "percentage decrease calculator",
                 "percent decrease calculator",
@@ -995,7 +995,7 @@
             {
               "id": "percentage-composition",
               "name": "Percentage Composition",
-              "url": "/percentage-calculators/percentage-composition",
+              "url": "/percentage-calculators/percentage-composition/",
               "keywords": [
                 "percentage composition calculator",
                 "share of total calculator",
@@ -1009,7 +1009,7 @@
             {
               "id": "reverse-percentage",
               "name": "Reverse Percentage",
-              "url": "/percentage-calculators/reverse-percentage",
+              "url": "/percentage-calculators/reverse-percentage/",
               "keywords": [
                 "reverse percentage calculator",
                 "find original value from percentage",
@@ -1024,7 +1024,7 @@
             {
               "id": "percent-to-fraction-decimal",
               "name": "Percent to Fraction/Decimal",
-              "url": "/percentage-calculators/percent-to-fraction-decimal",
+              "url": "/percentage-calculators/percent-to-fraction-decimal/",
               "keywords": [
                 "percent to fraction converter",
                 "percent to decimal converter",
@@ -1039,7 +1039,7 @@
             {
               "id": "what-percent-is-x-of-y",
               "name": "What Percent Is X of Y",
-              "url": "/percentage-calculators/what-percent-is-x-of-y",
+              "url": "/percentage-calculators/what-percent-is-x-of-y/",
               "keywords": [
                 "what percent is X of Y",
                 "X is what percent of Y",
@@ -1054,7 +1054,7 @@
             {
               "id": "percentage-of-a-number",
               "name": "Find Percentage of a Number",
-              "url": "/percentage-calculators/percentage-of-a-number",
+              "url": "/percentage-calculators/percentage-of-a-number/",
               "keywords": [
                 "find percentage of a number",
                 "what is x% of y",
@@ -1069,7 +1069,7 @@
             {
               "id": "commission-calculator",
               "name": "Commission Calculator",
-              "url": "/percentage-calculators/commission-calculator",
+              "url": "/percentage-calculators/commission-calculator/",
               "keywords": [
                 "commission calculator",
                 "sales commission",
@@ -1083,7 +1083,7 @@
             {
               "id": "discount-calculator",
               "name": "Discount Calculator",
-              "url": "/percentage-calculators/discount-calculator",
+              "url": "/percentage-calculators/discount-calculator/",
               "keywords": [
                 "discount calculator",
                 "percentage discount",
@@ -1098,7 +1098,7 @@
             {
               "id": "margin-calculator",
               "name": "Margin Calculator",
-              "url": "/percentage-calculators/margin-calculator",
+              "url": "/percentage-calculators/margin-calculator/",
               "keywords": [
                 "margin calculator",
                 "gross margin calculator",
@@ -1112,7 +1112,7 @@
             {
               "id": "markup-calculator",
               "name": "Markup Calculator",
-              "url": "/percentage-calculators/markup-calculator",
+              "url": "/percentage-calculators/markup-calculator/",
               "keywords": [
                 "markup calculator",
                 "markup percentage",

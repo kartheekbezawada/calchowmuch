@@ -39,6 +39,17 @@ const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'pcp-calculator',
   'leasing-calculator',
 ]);
+const UX_FIRST_DEFER_CORE_ROUTES = new Set([
+  '/loans/credit-card-repayment-payoff/',
+  '/loans/credit-card-minimum-payment/',
+  '/loans/balance-transfer-installment-plan/',
+  '/loans/credit-card-consolidation/',
+]);
+const UX_FIRST_CORE_DEFERRED_ASSETS = [
+  `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
+  `/assets/css/base.css?v=${CSS_VERSION}`,
+  `/assets/css/core-tokens.css?v=${CSS_VERSION}`,
+];
 const CRITICAL_SELECTOR_HINTS = [
   ':root',
   'html',
@@ -238,6 +249,10 @@ function resolveSourcesForRoute(routeConfig) {
 
 function isLoansIsolatedRoute(route) {
   return LOANS_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
+function isFinancePilotRoute(route) {
+  return FINANCE_PILOT_ROUTES.some((item) => item.route === route);
 }
 
 function toRouteSlug(route) {
@@ -449,13 +464,19 @@ function buildAssetManifest(routeBundleManifest) {
       throw new Error(`Missing route bundle entry for isolated route ${routeConfig.route}`);
     }
 
+    const isUxFirstDeferredRoute = UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route);
+    const coreCssAssets = isUxFirstDeferredRoute ? [] : baseCoreAssets;
+    const deferredRouteAssets = isUxFirstDeferredRoute
+      ? [...UX_FIRST_CORE_DEFERRED_ASSETS, routeEntry.deferredHref]
+      : [routeEntry.deferredHref];
+
     routes[routeConfig.route] = {
       route: routeConfig.route,
       calculatorId: routeConfig.calculatorId,
       isolationBoundary: 'route',
       css: {
-        core: baseCoreAssets,
-        route: [routeEntry.deferredHref],
+        core: coreCssAssets,
+        route: deferredRouteAssets,
         critical: routeEntry.criticalCss,
       },
       js: {
@@ -464,6 +485,7 @@ function buildAssetManifest(routeBundleManifest) {
       },
       options: {
         topNavStatic: true,
+        ...(isUxFirstDeferredRoute ? { deferCoreCss: true } : {}),
       },
     };
   });
@@ -502,11 +524,23 @@ function buildBundles() {
 
   BUNDLED_ROUTES.forEach((routeConfig) => {
     const sources = resolveSourcesForRoute(routeConfig);
-    const criticalSources = isLoansIsolatedRoute(routeConfig.route)
+    let criticalSources = isLoansIsolatedRoute(routeConfig.route)
       ? ['assets/css/core-shell.css', ...sources]
       : sources;
+    if (UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route)) {
+      criticalSources = [
+        'assets/css/core-tokens.css',
+        'assets/css/theme-premium-dark.css',
+        'assets/css/base.css',
+        ...criticalSources,
+      ];
+    }
     const fullCriticalSources = new Set(CRITICAL_FULL_SOURCES);
-    if (FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)) {
+    if (
+      isLoansIsolatedRoute(routeConfig.route) ||
+      isFinancePilotRoute(routeConfig.route) ||
+      FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)
+    ) {
       fullCriticalSources.add('assets/css/core-shell.css');
     }
     const bundledCss = sources
