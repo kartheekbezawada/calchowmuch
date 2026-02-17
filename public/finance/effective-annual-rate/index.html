@@ -534,10 +534,12 @@
       .header-title {
         font-size: var(--text-2xl);
         font-weight: var(--font-semibold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #ffffff;
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.85),
+          0 0 22px rgba(255, 255, 255, 0.55),
+          0 0 34px rgba(110, 231, 183, 0.3);
+        letter-spacing: 0.01em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3192,9 +3194,9 @@
         background: rgba(59, 130, 246, 0.08);
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/finance-effective-annual-rate.15236378.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/finance-effective-annual-rate.c3261681.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/finance-effective-annual-rate.15236378.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/finance-effective-annual-rate.c3261681.css" />
     </noscript>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance/effective-annual-rate/#webpage","name":"Effective Annual Rate (EAR) Calculator – CalcHowMuch","url":"https://calchowmuch.com/finance/effective-annual-rate/","description":"Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance/effective-annual-rate/#softwareapplication","name":"Effective Annual Rate Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance/effective-annual-rate/","description":"Convert a nominal interest rate into an effective annual rate using compounding frequency.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Nominal to EAR conversion","Compounding frequency options","Difference highlight"],"keywords":"effective annual rate calculator, ear calculator, nominal vs effective, interest rate converter","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance/effective-annual-rate/#faq","mainEntity":[{"@type":"Question","name":"What is the Effective Annual Rate?","acceptedAnswer":{"@type":"Answer","text":"EAR is the true annual interest rate after accounting for compounding. It shows the real cost of borrowing or real return on savings."}},{"@type":"Question","name":"How is EAR different from a nominal rate?","acceptedAnswer":{"@type":"Answer","text":"A nominal rate is the stated headline percentage. EAR includes the effect of compounding, making it higher (or equal, if compounded annually)."}},{"@type":"Question","name":"What is the EAR formula?","acceptedAnswer":{"@type":"Answer","text":"EAR = (1 + r/n)^n − 1, where r is the nominal rate as a decimal and n is the number of compounding periods per year."}},{"@type":"Question","name":"Why does compounding frequency matter?","acceptedAnswer":{"@type":"Answer","text":"More frequent compounding means interest is reinvested sooner, producing a higher effective rate from the same nominal rate."}},{"@type":"Question","name":"Is EAR the same as APR?","acceptedAnswer":{"@type":"Answer","text":"No. APR (Annual Percentage Rate) typically does not include compounding effects, while EAR always does. EAR gives a more accurate picture."}},{"@type":"Question","name":"Can I compare loans using EAR?","acceptedAnswer":{"@type":"Answer","text":"Yes. Converting all loan rates to EAR lets you compare them on equal footing, regardless of how each lender states their rate."}},{"@type":"Question","name":"When does EAR equal the nominal rate?","acceptedAnswer":{"@type":"Answer","text":"When interest compounds only once per year (annually). With annual compounding, there's no additional compounding effect."}},{"@type":"Question","name":"How does quarterly vs annual compounding compare?","acceptedAnswer":{"@type":"Answer","text":"Quarterly compounding produces a slightly higher EAR than annual because interest is reinvested 4 times instead of once."}},{"@type":"Question","name":"Is EAR useful for savings accounts?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. EAR tells you the true annual return on your savings, helping you pick the best account regardless of stated rates."}},{"@type":"Question","name":"What if the nominal rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"If the nominal rate is 0%, the EAR is also 0% — no interest means no compounding effect, regardless of frequency."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance/effective-annual-rate/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Effective Annual Rate","item":"https://calchowmuch.com/finance/effective-annual-rate/"}]}]}</script>
@@ -3254,8 +3256,7 @@
       </div>
     </div>
     <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+      <div class="header-title">Quick Calculations for Every Day Numbers</div>
     </div>
     <div class="header-right" role="search">
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
@@ -3425,6 +3426,12 @@
     </div>
   </div>
 </div>
+
+<style>
+  @import url('/calculators/finance/effective-annual-rate/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/effective-annual-rate/module.js"></script>
 
     <div id="ear-explanation" class="explanation-pane">
   <div id="loan-mtg-explanation">

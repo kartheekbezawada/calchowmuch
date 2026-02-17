@@ -534,10 +534,12 @@
       .header-title {
         font-size: var(--text-2xl);
         font-weight: var(--font-semibold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #ffffff;
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.85),
+          0 0 22px rgba(255, 255, 255, 0.55),
+          0 0 34px rgba(110, 231, 183, 0.3);
+        letter-spacing: 0.01em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3192,9 +3194,9 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/finance-time-to-savings-goal.a832a6f7.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/finance-time-to-savings-goal.c516ae64.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/finance-time-to-savings-goal.a832a6f7.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/finance-time-to-savings-goal.c516ae64.css" />
     </noscript>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance/time-to-savings-goal/#webpage","name":"Time to Savings Goal Calculator – CalcHowMuch","url":"https://calchowmuch.com/finance/time-to-savings-goal/","description":"Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding. Plan your path to financial goals.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance/time-to-savings-goal/#softwareapplication","name":"Time to Savings Goal Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance/time-to-savings-goal/","description":"Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Time to goal estimate","Total interest earned","Total accumulated balance","Compounding frequency options"],"keywords":"time to savings goal, savings calculator, goal calculator, how long to save","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance/time-to-savings-goal/#faq","mainEntity":[{"@type":"Question","name":"What is a savings goal calculator?","acceptedAnswer":{"@type":"Answer","text":"A savings goal calculator estimates how long it will take to reach a target amount or how much you need to save each month to reach it."}},{"@type":"Question","name":"How do I calculate how much to save per month?","acceptedAnswer":{"@type":"Answer","text":"You can divide the remaining amount needed by the number of months, and optionally include interest to account for compounding growth."}},{"@type":"Question","name":"How do I calculate how long it will take to reach my savings goal?","acceptedAnswer":{"@type":"Answer","text":"Use your goal amount, current savings, and monthly contribution to estimate the number of months needed, optionally including interest."}},{"@type":"Question","name":"Does interest make it easier to reach a savings goal?","acceptedAnswer":{"@type":"Answer","text":"Yes. Interest can increase your balance over time, reducing the monthly amount needed or shortening the time to goal."}},{"@type":"Question","name":"What compounding frequency should I use?","acceptedAnswer":{"@type":"Answer","text":"Use the frequency that matches your account, such as monthly, quarterly, or annually."}},{"@type":"Question","name":"What if my current savings is already higher than my goal?","acceptedAnswer":{"@type":"Answer","text":"Then your time to goal is zero because you have already reached the target."}},{"@type":"Question","name":"What happens if my monthly contribution is zero?","acceptedAnswer":{"@type":"Answer","text":"If your goal is higher than your current savings, you will not reach it without contributions or interest growth."}},{"@type":"Question","name":"Is this a savings goal calculator with interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can add an annual interest rate and compounding frequency to include interest growth."}},{"@type":"Question","name":"Can this help me plan for a house deposit or emergency fund?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can use it for any target amount, including an emergency fund, house deposit, or holiday budget."}},{"@type":"Question","name":"Why do results change when I choose beginning vs end of month contributions?","acceptedAnswer":{"@type":"Answer","text":"Contributing at the beginning gives money more time to earn interest, which can slightly reduce the time to goal or the required monthly savings."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance/time-to-savings-goal/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loans/home-loan/"},{"@type":"ListItem","position":3,"name":"Time to Savings Goal","item":"https://calchowmuch.com/finance/time-to-savings-goal/"}]}]}</script>
@@ -3254,8 +3256,7 @@
       </div>
     </div>
     <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+      <div class="header-title">Quick Calculations for Every Day Numbers</div>
     </div>
     <div class="header-right" role="search">
       <label class="sr-only" for="global-calculator-search">Search calculators</label>
@@ -3494,6 +3495,12 @@
     </div>
   </div>
 </div>
+
+<style>
+  @import url('/calculators/finance/time-to-savings-goal/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance/time-to-savings-goal/module.js"></script>
 
     <div id="tsg-explanation" class="explanation-pane">
   <div id="loan-mtg-explanation">

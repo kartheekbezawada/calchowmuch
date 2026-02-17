@@ -515,10 +515,9 @@ body .site-header .brand-badge span {
 .header-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
-  background: var(--gradient-brand-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
+  text-shadow: none;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3072,15 +3071,15 @@ body .site-header .header-search-icon {
   }
 }
 
-/* critical source: /calculators/finance/simple-interest/calculator.css */
-#calc-simple-interest .pv-toggle-row {
+/* critical source: /calculators/finance/future-value-of-annuity/calculator.css */
+#calc-future-value-of-annuity .pv-toggle-row {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-#calc-simple-interest .pv-toggle-group {
+#calc-future-value-of-annuity .pv-toggle-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -3088,7 +3087,7 @@ body .site-header .header-search-icon {
   min-width: 120px;
 }
 
-#calc-simple-interest .pv-toggle-label {
+#calc-future-value-of-annuity .pv-toggle-label {
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -3096,7 +3095,7 @@ body .site-header .header-search-icon {
   color: rgba(191, 219, 254, 0.88);
 }
 
-#calc-simple-interest .pv-toggle-group .button-group {
+#calc-future-value-of-annuity .pv-toggle-group .button-group {
   display: inline-flex;
   align-items: center;
   gap: 0.18rem;
@@ -3106,7 +3105,7 @@ body .site-header .header-search-icon {
   background: rgba(15, 23, 42, 0.78);
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button {
+#calc-future-value-of-annuity .pv-toggle-group .calculator-button {
   min-height: 30px;
   padding: 0.3rem 0.62rem;
   border-radius: 9999px;
@@ -3122,18 +3121,18 @@ body .site-header .header-search-icon {
   cursor: pointer;
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button.is-active {
+#calc-future-value-of-annuity .pv-toggle-group .calculator-button.is-active {
   border-color: rgba(56, 189, 248, 0.82);
   background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
   color: #fff;
 }
 
-#calc-simple-interest .pv-toggle-group .calculator-button:not(.is-active):hover {
+#calc-future-value-of-annuity .pv-toggle-group .calculator-button:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.12);
   color: #e0f2fe;
 }
 
-#calc-simple-interest #calc-home-loan .mtg-preview-main {
+#calc-future-value-of-annuity #calc-home-loan .mtg-preview-main {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
   border: 1px solid rgba(191, 219, 254, 0.34);
   box-shadow:
@@ -3143,7 +3142,7 @@ body .site-header .header-search-icon {
   -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
-#calc-simple-interest #calc-home-loan .mtg-preview-main .mtg-preview-label {
+#calc-future-value-of-annuity #calc-home-loan .mtg-preview-main .mtg-preview-label {
   letter-spacing: 0.08em;
   color: rgba(219, 234, 254, 0.96);
   font-weight: 600;
@@ -3151,7 +3150,7 @@ body .site-header .header-search-icon {
   font-size: 0.75rem;
 }
 
-#calc-simple-interest #calc-home-loan .mtg-result-card .mtg-result-value {
+#calc-future-value-of-annuity #calc-home-loan .mtg-result-card .mtg-result-value {
   text-shadow:
     0 0 18px rgba(125, 211, 252, 0.45),
     0 0 34px rgba(56, 189, 248, 0.24);
@@ -3159,16 +3158,21 @@ body .site-header .header-search-icon {
 }
 
 @media (max-width: 640px) {
-  #calc-simple-interest .pv-toggle-row {
+  #calc-future-value-of-annuity .pv-toggle-row {
     flex-direction: column;
     gap: 1rem;
   }
+
+  #calc-future-value-of-annuity .pv-toggle-group .calculator-button {
+    min-height: 48px;
+    padding: 0.55rem 0.9rem;
+  }
 }
 
-#si-explanation .si-results-table tbody tr:nth-child(even) {
+#fva-explanation .fva-results-table tbody tr:nth-child(even) {
   background: rgba(30, 41, 59, 0.36);
 }
 
-#si-explanation .si-results-table tbody tr:hover {
+#fva-explanation .fva-results-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.08);
 }
