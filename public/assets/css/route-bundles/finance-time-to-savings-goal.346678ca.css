@@ -561,10 +561,9 @@ body .site-header .brand-badge span {
 .header-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
-  background: var(--gradient-brand-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
+  text-shadow: none;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3537,18 +3536,18 @@ body .site-header .header-search-icon {
   }
 }
 
-/* source: /calculators/finance/compound-interest/calculator.css */
-/* ── CI-specific overrides (mirrors PV calculator.css) ── */
+/* source: /calculators/finance/time-to-savings-goal/calculator.css */
+/* ── Time to Savings Goal — overrides (mirrors CI/EAR pattern) ── */
 
-/* Toggle row */
-#calc-compound-interest .pv-toggle-row {
+/* Toggle rows */
+#calc-time-to-savings-goal .pv-toggle-row {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-start;
 }
 
-#calc-compound-interest .pv-toggle-group {
+#calc-time-to-savings-goal .pv-toggle-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -3556,7 +3555,7 @@ body .site-header .header-search-icon {
   min-width: 120px;
 }
 
-#calc-compound-interest .pv-toggle-label {
+#calc-time-to-savings-goal .pv-toggle-label {
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -3564,7 +3563,7 @@ body .site-header .header-search-icon {
   color: rgba(191, 219, 254, 0.88);
 }
 
-#calc-compound-interest .pv-toggle-group .button-group {
+#calc-time-to-savings-goal .pv-toggle-group .button-group {
   display: inline-flex;
   align-items: center;
   gap: 0.18rem;
@@ -3574,7 +3573,7 @@ body .site-header .header-search-icon {
   background: rgba(15, 23, 42, 0.78);
 }
 
-#calc-compound-interest .pv-toggle-group .calculator-button {
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button {
   min-height: 30px;
   padding: 0.3rem 0.62rem;
   border-radius: 9999px;
@@ -3590,19 +3589,19 @@ body .site-header .header-search-icon {
   cursor: pointer;
 }
 
-#calc-compound-interest .pv-toggle-group .calculator-button.is-active {
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button.is-active {
   border-color: rgba(56, 189, 248, 0.82);
   background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
   color: #fff;
 }
 
-#calc-compound-interest .pv-toggle-group .calculator-button:not(.is-active):hover {
+#calc-time-to-savings-goal .pv-toggle-group .calculator-button:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.12);
   color: #e0f2fe;
 }
 
-/* Glassmorphism highlight for CI preview */
-#calc-compound-interest #calc-home-loan .mtg-preview-main {
+/* Glassmorphism preview card */
+#calc-time-to-savings-goal #calc-home-loan .mtg-preview-main {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
   border: 1px solid rgba(191, 219, 254, 0.34);
   box-shadow:
@@ -3612,7 +3611,7 @@ body .site-header .header-search-icon {
   -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
-#calc-compound-interest #calc-home-loan .mtg-preview-main .mtg-preview-label {
+#calc-time-to-savings-goal #calc-home-loan .mtg-preview-main .mtg-preview-label {
   letter-spacing: 0.08em;
   color: rgba(219, 234, 254, 0.96);
   font-weight: 600;
@@ -3620,36 +3619,20 @@ body .site-header .header-search-icon {
   font-size: 0.75rem;
 }
 
-#calc-compound-interest #calc-home-loan .mtg-result-card .mtg-result-value {
+#calc-time-to-savings-goal #calc-home-loan .mtg-result-card .mtg-result-value {
   text-shadow:
     0 0 18px rgba(125, 211, 252, 0.45),
     0 0 34px rgba(56, 189, 248, 0.24);
   font-weight: 800;
 }
 
-/* FAQ grid — 2 columns */
-#ci-explanation .bor-faq-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-@media (max-width: 640px) {
-  #ci-explanation .bor-faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #calc-compound-interest .pv-toggle-row {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
 /* Results table */
-#ci-explanation .ci-results-table {
+#tsg-explanation .tsg-results-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-#ci-explanation .ci-results-table thead th {
+#tsg-explanation .tsg-results-table thead th {
   position: sticky;
   top: 0;
   z-index: 3;
@@ -3663,7 +3646,7 @@ body .site-header .header-search-icon {
   border: 1px solid rgba(148, 163, 184, 0.24);
 }
 
-#ci-explanation .ci-results-table td {
+#tsg-explanation .tsg-results-table td {
   font-size: 0.8rem;
   color: rgba(226, 232, 240, 0.94);
   padding: 0.58rem 0.75rem;
@@ -3671,15 +3654,15 @@ body .site-header .header-search-icon {
   line-height: 1.4;
 }
 
-#ci-explanation .ci-results-table tbody tr:nth-child(even) {
+#tsg-explanation .tsg-results-table tbody tr:nth-child(even) {
   background: rgba(30, 41, 59, 0.36);
 }
 
-#ci-explanation .ci-results-table tbody tr:hover {
+#tsg-explanation .tsg-results-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.08);
 }
 
-#ci-explanation .ci-results-table tfoot td {
+#tsg-explanation .tsg-results-table tfoot td {
   font-weight: 700;
   color: #e0f2fe;
   background: linear-gradient(160deg, rgba(37, 99, 235, 0.15), rgba(14, 165, 233, 0.1));
@@ -3687,24 +3670,14 @@ body .site-header .header-search-icon {
   font-size: 0.84rem;
 }
 
-#ci-explanation .ci-results-table .ci-how-col {
+#tsg-explanation .tsg-results-table .tsg-how-col {
   font-size: 0.74rem;
   color: rgba(148, 163, 184, 0.88);
   font-style: italic;
 }
 
-/* Explanation section spacing */
-#ci-explanation .mtg-exp-section h4 {
-  margin: 0.6rem 0 0.15rem;
-  font-size: 0.92rem;
-}
-
-#ci-explanation .mtg-exp-section p {
-  margin: 0.25rem 0;
-}
-
 /* Explanation bullet list */
-#ci-explanation .ci-explanation-list {
+#tsg-explanation .tsg-explanation-list {
   list-style: none;
   padding: 0;
   margin: 0.6rem 0 0.5rem;
@@ -3713,7 +3686,7 @@ body .site-header .header-search-icon {
   gap: 0.45rem;
 }
 
-#ci-explanation .ci-explanation-list li {
+#tsg-explanation .tsg-explanation-list li {
   position: relative;
   padding-left: 1.3rem;
   line-height: 1.65;
@@ -3721,7 +3694,7 @@ body .site-header .header-search-icon {
   color: rgba(226, 232, 240, 0.94);
 }
 
-#ci-explanation .ci-explanation-list li::before {
+#tsg-explanation .tsg-explanation-list li::before {
   content: '▸';
   position: absolute;
   left: 0;
@@ -3729,29 +3702,29 @@ body .site-header .header-search-icon {
   font-weight: 700;
 }
 
-#ci-explanation .ci-explanation-list li [data-ci] {
+#tsg-explanation .tsg-explanation-list li [data-tsg] {
   font-weight: 700;
   color: #7dd3fc;
 }
 
-/* Formula highlight block */
-#ci-explanation .ci-formula-block {
+/* Formula block */
+#tsg-explanation .tsg-formula-block {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   padding: 0.5rem 0.8rem;
   margin: 0.35rem auto 0.35rem;
   border-radius: 10px;
-  max-width: 360px;
+  max-width: 480px;
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: #e0f2fe;
   text-shadow: 0 0 12px rgba(125, 211, 252, 0.3);
 }
 
-/* Formula ordered steps */
-#ci-explanation .ci-formula-steps {
+/* Formula steps */
+#tsg-explanation .tsg-formula-steps {
   padding-left: 1.5rem;
   margin: 0.35rem 0 0.5rem;
   display: flex;
@@ -3759,13 +3732,115 @@ body .site-header .header-search-icon {
   gap: 0.3rem;
 }
 
-#ci-explanation .ci-formula-steps li {
+#tsg-explanation .tsg-formula-steps li {
   line-height: 1.65;
   font-size: 0.86rem;
   color: rgba(226, 232, 240, 0.92);
 }
 
-#ci-explanation .ci-formula-steps li [data-ci] {
+#tsg-explanation .tsg-formula-steps li [data-tsg] {
   font-weight: 700;
   color: #7dd3fc;
+}
+
+/* FAQ grid — 2 columns */
+#tsg-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* FAQ Card Base (bor-faq-card) */
+#tsg-explanation .bor-faq-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-top: 2px solid rgba(245, 158, 11, 0.6);
+  /* Amber top border */
+  border-radius: 12px;
+  padding: 1.25rem;
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#tsg-explanation .bor-faq-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* Number Circle */
+#tsg-explanation .bor-faq-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+/* Question Heading */
+#tsg-explanation .bor-faq-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.4;
+}
+
+/* Answer Text */
+#tsg-explanation .bor-faq-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+@media (max-width: 640px) {
+  #tsg-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-time-to-savings-goal .pv-toggle-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Key insight callout */
+#tsg-explanation .tsg-insight-box {
+  margin: 0.6rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.08));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+#tsg-explanation .tsg-insight-box p {
+  margin: 0.2rem 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+/* Explanation section spacing */
+#tsg-explanation .mtg-exp-section h4 {
+  margin: 0.6rem 0 0.15rem;
+  font-size: 0.92rem;
+}
+
+#tsg-explanation .mtg-exp-section p {
+  margin: 0.25rem 0;
 }
