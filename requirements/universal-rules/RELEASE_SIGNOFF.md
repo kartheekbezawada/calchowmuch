@@ -10,6 +10,10 @@
 | **Release ID** | |
 | **Release Type** | |
 | **Scope (Global/Target)** | |
+| **Cluster ID(s)** | |
+| **Ownership Snapshot Ref** | |
+| **Cluster Manifest Ref** | |
+| **Rollback Contract Ref** | |
 | **Branch / Tag** | |
 | **Commit SHA** | |
 | **Environment** | |
@@ -61,6 +65,17 @@
 
 ## 4) Evidence & Metrics
 
+### Cluster Isolation Governance Evidence (Mandatory)
+| Check | Result (Pass/Fail) | Artifact / Path |
+| :--- | :--- | :--- |
+| Isolation fence validation (owner-cluster + immutable core only) | | |
+| Ownership validation (`config/clusters/route-ownership.json`) | | |
+| Import graph validation (no cross-cluster JS/CSS imports) | | |
+| Manifest integrity validation | | |
+| Global nav parity validation | | |
+| Immutable core usage declaration (`/assets/core/v{n}/...`) | | |
+| Cross-cluster reference violations (must be `0`) | | |
+
 ### Performance (Mobile Lab)
 | Metric | Value | Status |
 | :--- | :--- | :--- |
@@ -84,7 +99,7 @@
 
 ---
 
-## 4) Final Sign-Off
+## 5) Final Sign-Off
 
 **Decision:** [ ] APPROVED / [ ] REJECTED
 
