@@ -563,7 +563,7 @@
             {
               "id": "credit-card-repayment-payoff",
               "name": "Repayment",
-              "url": "/loans/credit-card-repayment-payoff/",
+              "url": "/credit-card-calculators/credit-card-payment-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -571,7 +571,7 @@
             {
               "id": "credit-card-minimum-payment",
               "name": "Minimum Payment",
-              "url": "/loans/credit-card-minimum-payment/",
+              "url": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -579,7 +579,7 @@
             {
               "id": "balance-transfer-installment-plan",
               "name": "Balance Transfer",
-              "url": "/loans/balance-transfer-installment-plan/",
+              "url": "/credit-card-calculators/balance-transfer-credit-card-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -587,7 +587,7 @@
             {
               "id": "credit-card-consolidation",
               "name": "Card Consolidation",
-              "url": "/loans/credit-card-consolidation/",
+              "url": "/credit-card-calculators/credit-card-consolidation-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -602,7 +602,7 @@
             {
               "id": "car-loan",
               "name": "Car Loan Calculator",
-              "url": "/loans/car-loan/",
+              "url": "/car-loan-calculators/car-loan-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -610,7 +610,7 @@
             {
               "id": "multiple-car-loan",
               "name": "Multiple Car Loan Calculator",
-              "url": "/loans/multiple-car-loan/",
+              "url": "/car-loan-calculators/auto-loan-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -618,7 +618,7 @@
             {
               "id": "hire-purchase",
               "name": "Hire Purchase Calculator",
-              "url": "/loans/hire-purchase/",
+              "url": "/car-loan-calculators/hire-purchase-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -626,7 +626,7 @@
             {
               "id": "pcp-calculator",
               "name": "PCP Calculator",
-              "url": "/loans/pcp-calculator/",
+              "url": "/car-loan-calculators/pcp-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -634,7 +634,7 @@
             {
               "id": "leasing-calculator",
               "name": "Leasing Calculator",
-              "url": "/loans/leasing-calculator/",
+              "url": "/car-loan-calculators/car-lease-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"

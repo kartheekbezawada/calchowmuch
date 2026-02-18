@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Credit Card Consolidation Calculator SEO', () => {
   test('CONSOLIDATION-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap', async ({ page }) => {
-    await page.goto('/loans/credit-card-consolidation');
+    await page.goto('/credit-card-calculators/credit-card-consolidation-calculator');
 
     await expect(page).toHaveTitle('Credit Card Consolidation Calculator -- Compare & Save');
 
@@ -18,7 +18,7 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
-      'https://calchowmuch.com/loans/credit-card-consolidation/'
+      'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/'
     );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
@@ -44,11 +44,11 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/loans/credit-card-consolidation/');
+    expect(sitemapText).toContain('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     const humanSitemapResponse = await page.request.get('/sitemap/');
     expect(humanSitemapResponse.ok()).toBeTruthy();
     const humanSitemapText = await humanSitemapResponse.text();
-    expect(humanSitemapText).toContain('/loans/credit-card-consolidation');
+    expect(humanSitemapText).toContain('/credit-card-calculators/credit-card-consolidation-calculator');
   });
 });

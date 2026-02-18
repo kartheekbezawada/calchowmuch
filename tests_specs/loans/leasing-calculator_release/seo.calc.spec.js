@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Leasing Calculator SEO', () => {
   test('LEASING-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    await page.goto('/loans/leasing-calculator');
+    await page.goto('/car-loan-calculators/car-lease-calculator');
 
     await expect(page).toHaveTitle('Leasing Calculator - Monthly Payment, Residual & Total Cost');
 
@@ -18,7 +18,7 @@ test.describe('Leasing Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/loans/leasing-calculator/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/car-loan-calculators/car-lease-calculator/');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -35,6 +35,6 @@ test.describe('Leasing Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/loans/leasing-calculator/');
+    expect(sitemapText).toContain('/car-loan-calculators/car-lease-calculator/');
   });
 });

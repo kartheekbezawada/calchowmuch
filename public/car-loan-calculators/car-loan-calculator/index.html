@@ -1,0 +1,2171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Car Loan Calculator | Calculate How Much Online Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Car Loan Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confi..." />
+    <link rel="canonical" href="https://calchowmuch.com/car-loan-calculators/car-loan-calculator/" />
+    <meta property="og:title" content="Car Loan Calculator | Calculate How Much Online Calculator" />
+    <meta property="og:description" content="Car Loan Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confi..." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/car-loan-calculators/car-loan-calculator/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Car Loan Calculator | Calculate How Much Online Calculator" />
+    <meta name="twitter:description" content="Car Loan Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confi..." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
+    <style data-route-critical="true">
+      /* critical source: /assets/css/core-shell.css */
+      .page {
+        height: 100vh;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: none;
+        width: min(1920px, calc(100vw - 48px));
+        margin: 8px auto 0;
+        padding: 14px 14px 0 14px;
+        background: var(--shell-bg);
+        border-radius: 28px;
+      }
+
+      body[data-page='calculator'] .page,
+      body[data-page='home'] .page {
+        width: 100vw;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        gap: 0;
+        overflow: hidden;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body[data-page='calculator'],
+      body[data-page='home'] {
+        overflow: hidden;
+      }
+
+      .site-header {
+        position: relative;
+        z-index: 5;
+        height: 72px !important;
+        min-height: 72px;
+        max-height: 72px;
+        background: rgba(11, 18, 32, 0.7);
+        color: var(--header-text);
+        border-bottom: 1px solid var(--shell-border);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      .site-header-inner {
+        height: 72px;
+        min-height: 72px;
+        max-height: 72px;
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
+        align-items: center;
+        gap: 16px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--gradient-brand-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        box-shadow: var(--shadow-glow-blue);
+        flex-shrink: 0;
+      }
+
+      .brand-logo-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .brand-block {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .brand-name {
+        font-size: var(--text-xl);
+        font-weight: var(--font-bold);
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        white-space: nowrap;
+      }
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: var(--font-semibold);
+        color: var(--color-orange-400, #fb923c);
+        text-transform: none;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-badge:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+
+      .brand-badge-icon {
+        font-size: 12px;
+      }
+
+      body .site-header .brand-logo-icon,
+      body .site-header .brand-badge-icon,
+      body .site-header .brand-badge span {
+        background: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        color: inherit;
+      }
+
+      .header-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-width: 0;
+      }
+
+      .header-title {
+        font-size: var(--text-2xl);
+        font-weight: var(--font-semibold);
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header-subtitle {
+        font-size: var(--text-xs);
+        color: var(--muted-text);
+        margin-top: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .header-search {
+        position: relative;
+        width: min(320px, 40vw);
+        min-width: 180px;
+      }
+
+      .header-search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted-text);
+        display: inline-flex;
+      }
+
+      body .site-header .header-search-icon {
+        background: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        color: var(--muted-text);
+      }
+
+      .header-search-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .header-search-input {
+        width: 100%;
+        padding: 10px 12px 10px 38px;
+        border-radius: 999px;
+        border: 1px solid var(--border-color);
+        background: rgba(15, 23, 42, 0.85);
+        color: var(--header-text);
+        font-size: var(--text-sm);
+        outline: none;
+      }
+
+      .header-search-input::placeholder {
+        color: var(--muted-text);
+      }
+
+      .header-search-input:focus-visible {
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+      }
+
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 2px 12px 0;
+        flex-wrap: nowrap;
+        min-height: 40px;
+        max-height: 40px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-gutter: stable;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .top-nav button,
+      .top-nav .top-nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+        border: 1px solid var(--accent-strong);
+        color: #ffffff;
+        padding: 8px 18px;
+        border-radius: 10px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-height: 38px;
+        line-height: 1.4;
+        text-decoration: none;
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      .top-nav .nav-icon {
+        font-size: 14px;
+        line-height: 1;
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 4px;
+      }
+
+      .top-nav .nav-icon-right {
+        margin-right: 0;
+        margin-left: 2px;
+      }
+
+      .top-nav .nav-label {
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      .top-nav button:hover,
+      .top-nav .top-nav-link:hover {
+        background: var(--accent-strong);
+      }
+
+      .top-nav button:focus-visible,
+      .top-nav .top-nav-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .top-nav button.is-active,
+      .top-nav .top-nav-link.is-active {
+        background: var(--accent);
+        color: #ffffff;
+        border-color: var(--accent);
+      }
+
+      .layout-main {
+        display: grid;
+        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
+        grid-template-rows: minmax(0, 1fr);
+        gap: 16px;
+        padding: 0;
+        min-height: 0;
+        flex: 1 1 auto;
+        margin-top: 12px;
+        margin-bottom: 0.5rem;
+      }
+
+      .left-nav {
+        /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
+        /* to give visual dominance to the calculator area */
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 14px;
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        height: 100%;
+        margin-left: -4px;
+        position: relative;
+      }
+
+      /* Edge glow effect */
+      .left-nav::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(102, 126, 234, 0.4) 20%,
+          rgba(102, 126, 234, 0.6) 50%,
+          rgba(102, 126, 234, 0.4) 80%,
+          transparent 100%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .left-nav-title {
+        margin: 0 0 14px;
+        font-size: var(--text-xl);
+        font-weight: var(--font-semibold);
+      }
+
+      #left-nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-search {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--panel-bg);
+        padding-bottom: 8px;
+      }
+
+      .nav-search-input {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: var(--text-sm);
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .nav-category {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-category-toggle {
+        width: 100%;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 4px;
+        color: var(--muted-text);
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        cursor: pointer;
+      }
+
+      .nav-category-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 8px;
+      }
+
+      .nav-category-label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .nav-category-indicator {
+        font-weight: 600;
+        color: var(--header-text);
+        flex-shrink: 0;
+      }
+
+      .nav-category-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* ── Finance Premium Nav — glassmorphism accordion ── */
+
+      .fin-nav-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* ── Category Group ── */
+      .fin-nav-group {
+        border-radius: 12px;
+        transition:
+          background 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+
+      .fin-nav-group.is-expanded {
+        background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
+        border: 1.5px solid rgba(56, 189, 248, 0.6);
+        box-shadow:
+          0 0 8px rgba(56, 189, 248, 0.3),
+          inset 0 0 5px rgba(56, 189, 248, 0.15),
+          0 8px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ── Toggle Button ── */
+      .fin-nav-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: #e2e8f0;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition:
+          background 0.12s ease,
+          box-shadow 0.12s ease,
+          padding-left 0.15s ease;
+      }
+
+      .fin-nav-toggle:hover {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgba(59, 130, 246, 0.1);
+        box-shadow:
+          0 0 24px rgba(0, 120, 255, 0.35),
+          0 0 48px rgba(59, 130, 246, 0.12);
+        padding-left: 18px;
+      }
+
+      .fin-nav-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 12px;
+      }
+
+      /* Subcategory icon */
+      .fin-nav-toggle-icon {
+        font-size: 16px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      /* Label — allow wrapping so full text is always visible */
+      .fin-nav-toggle-label {
+        flex: 1;
+        text-align: left;
+        white-space: normal;
+        overflow: visible;
+        line-height: 1.3;
+      }
+
+      /* ── Chevron Arrow ── */
+      .fin-nav-chevron {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1.5px solid rgba(96, 165, 250, 0.65);
+        color: #7dd3fc;
+        flex-shrink: 0;
+        box-shadow:
+          0 0 10px rgba(56, 189, 248, 0.35),
+          0 0 20px rgba(59, 130, 246, 0.15);
+        transition:
+          transform 0.2s ease,
+          background 0.12s ease,
+          border-color 0.12s ease,
+          box-shadow 0.12s ease;
+      }
+
+      .fin-nav-chevron-svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .fin-nav-group.is-expanded .fin-nav-chevron {
+        transform: rotate(90deg);
+        background: rgba(37, 99, 235, 0.4);
+        border-color: rgba(125, 211, 252, 1);
+        color: #bae6fd;
+        box-shadow:
+          0 0 16px rgba(56, 189, 248, 0.65),
+          0 0 32px rgba(59, 130, 246, 0.35),
+          0 0 48px rgba(96, 165, 250, 0.15);
+      }
+
+      .fin-nav-toggle:hover .fin-nav-chevron {
+        border-color: rgba(125, 211, 252, 1);
+        color: #bae6fd;
+        box-shadow:
+          0 0 14px rgba(56, 189, 248, 0.55),
+          0 0 30px rgba(59, 130, 246, 0.25);
+      }
+
+      /* ── Items Container — animated expand/collapse ── */
+      .fin-nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 8px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.22s ease,
+          opacity 0.15s ease,
+          padding 0.22s ease;
+      }
+
+      .fin-nav-group.is-expanded .fin-nav-items {
+        max-height: 600px;
+        opacity: 1;
+        padding: 6px 8px 10px;
+      }
+
+      /* ── Calculator Item (Pill) ── */
+      .fin-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(15, 23, 42, 0.35);
+        color: #cbd5e1;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.12s ease,
+          border-color 0.12s ease,
+          box-shadow 0.12s ease,
+          transform 0.12s ease,
+          color 0.12s ease;
+      }
+
+      .fin-nav-item-icon {
+        font-size: 14px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .fin-nav-item:hover {
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+        transform: scale(1.02);
+        color: #e0f2fe;
+      }
+
+      .fin-nav-item.is-active {
+        border: 1px solid rgba(147, 197, 253, 0.8);
+        border-left: 3px solid #f8fafc;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.85) 0%,
+          rgba(79, 70, 229, 0.9) 50%,
+          rgba(102, 126, 234, 0.85) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        font-weight: 600;
+        box-shadow:
+          0 6px 12px rgba(102, 126, 234, 0.22),
+          0 0 14px rgba(59, 130, 246, 0.25);
+      }
+
+      .fin-nav-item.is-active:hover {
+        transform: none;
+      }
+
+      /* Search integration */
+      .fin-nav-item.is-hidden {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group .fin-nav-items {
+        max-height: 600px;
+        opacity: 1;
+        padding: 6px 8px 10px;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group.is-hidden {
+        display: none;
+      }
+
+      .nav-category.is-collapsed .nav-category-items {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .nav-category.is-search-open .nav-category-items {
+        display: flex;
+      }
+
+      #left-nav-content.is-searching .nav-category.is-hidden {
+        display: none;
+      }
+
+      .left-nav .subcategory-title {
+        margin: 16px 0 8px;
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--muted-text);
+      }
+
+      .left-nav .nav-item {
+        width: 100%;
+        text-align: left;
+        background: var(--pill-bg);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        color: var(--header-text);
+        display: block;
+        text-decoration: none;
+        margin-bottom: 0;
+        border: 1px solid var(--pill-border);
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      /* Ripple effect structure */
+      .left-nav .nav-item::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(102, 126, 234, 0.3);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s ease,
+          height 0.6s ease,
+          opacity 0.6s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .left-nav .nav-item.ripple::after {
+        width: 300%;
+        height: 300%;
+        opacity: 0;
+      }
+
+      .left-nav .nav-item.is-active {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        border-color: var(--accent-strong);
+        box-shadow:
+          0 8px 14px rgba(102, 126, 234, 0.24),
+          0 0 20px rgba(102, 126, 234, 0.3);
+        position: relative;
+      }
+
+      /* Pulsing glow effect on active item */
+      .left-nav .nav-item.is-active::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
+        filter: blur(8px);
+        animation: pulse 2s ease-in-out infinite;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .left-nav .nav-item.is-hidden {
+        display: none;
+      }
+
+      /* Enhanced hover with multi-layer shadows */
+      .left-nav .nav-item:hover:not(.is-active) {
+        background: rgba(102, 126, 234, 0.08);
+        border-color: rgba(102, 126, 234, 0.6);
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.05),
+          0 4px 8px rgba(102, 126, 234, 0.15),
+          0 8px 16px rgba(102, 126, 234, 0.1);
+      }
+
+      /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
+      .nav-category[data-id='home-loan'] .nav-item,
+      .nav-category[data-id='credit-cards'] .nav-item,
+      .nav-category[data-id='auto-loans'] .nav-item,
+      .nav-category[data-id='time-and-date'] .nav-item {
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-left: 4px solid rgba(102, 126, 234, 0.5);
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          border-left-color 0.15s ease;
+      }
+
+      .nav-category[data-id='home-loan'] .nav-item:hover,
+      .nav-category[data-id='credit-cards'] .nav-item:hover,
+      .nav-category[data-id='auto-loans'] .nav-item:hover,
+      .nav-category[data-id='time-and-date'] .nav-item:hover {
+        border-left: 4px solid rgba(102, 126, 234, 0.9);
+        border-color: rgba(102, 126, 234, 0.4);
+        background: rgba(102, 126, 234, 0.1);
+      }
+
+      .nav-category[data-id='home-loan'] .nav-item.is-active,
+      .nav-category[data-id='credit-cards'] .nav-item.is-active,
+      .nav-category[data-id='auto-loans'] .nav-item.is-active,
+      .nav-category[data-id='time-and-date'] .nav-item.is-active {
+        border: 2px solid var(--accent-strong);
+        border-left: 4px solid #ffffff;
+      }
+
+      .center-column {
+        display: grid;
+        /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
+        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+        grid-template-rows: minmax(0, 1fr);
+        gap: 16px;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .panel {
+        background: var(--panel-bg);
+        border: 2px solid var(--shell-border);
+        border-radius: 12px;
+        box-shadow: var(--panel-shadow);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .panel-span-all {
+        grid-column: 1 / -1;
+      }
+
+      .panel-scroll {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .panel h1,
+      .panel h3 {
+        margin: 0;
+        font-size: var(--text-2xl);
+        font-weight: var(--font-bold);
+      }
+
+      .panel .placeholder {
+        color: var(--muted-text);
+        font-size: var(--text-sm);
+      }
+
+      .ads-column {
+        display: grid;
+        grid-template-rows: minmax(220px, 1fr);
+        gap: 12px;
+        min-height: 0;
+        background: var(--panel-bg);
+        border: 2px solid var(--shell-border);
+        border-radius: 12px;
+        padding: 12px;
+        height: 100%;
+      }
+
+      .ad-panel {
+        background: #f8f9fa;
+        border: 1px solid #d9e2ef;
+        border-radius: 12px;
+        padding: 10px;
+        min-height: 250px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .ad-panel .adsbygoogle {
+        display: block;
+        width: 100%;
+        min-height: 250px;
+      }
+
+      .site-footer {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        background: #ffffff;
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        border-radius: 0;
+        margin-top: 0.5rem;
+        padding: 1rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        color: #4b5563;
+        font-size: var(--text-sm);
+        font-weight: 400;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+
+      .site-footer a {
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.15s ease;
+      }
+
+      .site-footer a:hover {
+        color: #4f46e5;
+      }
+
+      .site-footer .footer-divider {
+        color: #4b5563;
+        user-select: none;
+      }
+
+      .site-footer .footer-branding {
+        color: #4b5563;
+      }
+
+      @keyframes shellLift {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes headerSlide {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes panelReveal {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Keyframe animations for navigation enhancements */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes edgeGlow {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .page,
+        .site-header,
+        .top-nav,
+        .layout-main > * {
+          animation: none;
+        }
+
+        .left-nav::before,
+        .left-nav .nav-item.is-active,
+        .left-nav .nav-item.is-active::before {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .center-column {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .site-header-inner {
+          padding: 0 16px;
+          grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
+        }
+
+        .header-title {
+          font-size: var(--text-xl);
+        }
+
+        .layout-main {
+          grid-template-columns: 200px minmax(0, 1fr);
+          padding: 0;
+        }
+
+        .ads-column {
+          grid-column: 1 / -1;
+          grid-template-columns: minmax(200px, 1fr);
+          grid-template-rows: minmax(220px, 1fr);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .header-subtitle {
+          display: none;
+        }
+
+        .header-search {
+          width: min(240px, 46vw);
+          min-width: 140px;
+        }
+
+        .page {
+          margin: 12px;
+          padding: 16px;
+        }
+
+        .layout-main {
+          grid-template-columns: 1fr;
+        }
+
+        .left-nav {
+          margin-left: 0;
+        }
+
+        .ads-column {
+          display: none;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .brand-name {
+          font-size: var(--text-base);
+        }
+
+        .header-title {
+          font-size: var(--text-base);
+        }
+
+        .header-search {
+          width: 160px;
+        }
+      }
+
+      /* Math Navigation Styles */
+      .math-nav-container {
+        background: var(--shell-bg);
+        border-radius: 12px;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+        width: 256px;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .math-nav-category {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .math-nav-category-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        gap: 8px;
+        transition: background-color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover {
+        background: rgba(99, 102, 241, 0.08);
+      }
+
+      .math-nav-category-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .math-nav-category-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .math-nav-category-icon {
+        width: 14px;
+        height: 14px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-icon {
+        color: var(--accent);
+      }
+
+      .math-nav-category-name {
+        font-size: var(--text-sm);
+        font-weight: var(--font-semibold);
+        color: var(--muted-text);
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-name {
+        color: var(--header-text);
+      }
+
+      .math-nav-category-chevron {
+        width: 14px;
+        height: 14px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-chevron {
+        color: var(--accent);
+      }
+
+      .math-nav-category-items {
+        margin-left: 0;
+        margin-top: 4px;
+        padding-left: 0;
+        border-left: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .math-nav-category.is-collapsed .math-nav-category-items {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .math-nav-category.is-search-open .math-nav-category-items {
+        display: flex;
+      }
+
+      #left-nav-content.is-searching .math-nav-category.is-hidden {
+        display: none;
+      }
+
+      .math-nav-item {
+        width: 100%;
+        text-align: left;
+        padding: 10px 8px;
+        border-radius: 12px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        color: var(--header-text);
+        background: var(--pill-bg);
+        border: 1px solid var(--pill-border);
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          color 0.15s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .math-nav-item:hover {
+        background: rgba(102, 126, 234, 0.08);
+        border-color: rgba(102, 126, 234, 0.6);
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.05),
+          0 4px 8px rgba(102, 126, 234, 0.15),
+          0 8px 16px rgba(102, 126, 234, 0.1);
+      }
+
+      .math-nav-item:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+      }
+
+      .math-nav-item.is-active {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        border-color: var(--accent-strong);
+        box-shadow:
+          0 8px 14px rgba(102, 126, 234, 0.24),
+          0 0 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .math-nav-item.is-active:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        color: #ffffff;
+      }
+
+      .math-nav-item.is-hidden {
+        display: none;
+      }
+
+      /* Mobile Navigation Drawer */
+      .mobile-menu-toggle {
+        display: none;
+        /* Desktop default */
+        background: transparent;
+        border: none;
+        color: var(--header-text);
+        padding: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      @media (max-width: 860px) {
+        .mobile-menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .left-nav {
+          position: fixed;
+          top: 72px;
+          /* Below header */
+          left: 0;
+          bottom: 0;
+          width: 280px;
+          background: var(--shell-bg);
+          z-index: 100;
+          transform: translateX(-100%);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+          border-right: 1px solid var(--shell-border);
+          margin-left: 0;
+          padding-bottom: 2rem;
+        }
+
+        .left-nav.is-mobile-open {
+          transform: translateX(0);
+        }
+
+        /* Overlay backdrop */
+        .left-nav.is-mobile-open::after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 280px;
+          right: -100vw;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(4px);
+          z-index: -1;
+          pointer-events: auto;
+        }
+      }
+
+      /* critical source: /assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      /* critical source: /assets/css/shared-calculator-ui.css */
+      #calc-home-loan .down-combined-left .calculator-button {
+        min-height: 32px;
+        padding: 0.36rem 0.72rem;
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: rgba(191, 219, 254, 0.92);
+        font-size: 0.76rem;
+        font-weight: 600;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      #calc-home-loan .down-combined-left .calculator-button.is-active {
+        border-color: rgba(56, 189, 248, 0.82);
+        background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+        color: #fff;
+      }
+
+      #calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
+        background: rgba(59, 130, 246, 0.12);
+        color: #e0f2fe;
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button {
+        min-height: 50px;
+        border-radius: 0.82rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        transition:
+          box-shadow 0.25s ease,
+          transform 0.15s ease;
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button:hover {
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+        transform: translateY(-1px);
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      }
+
+      #loan-mtg-explanation .table-view-toggle .calculator-button {
+        min-height: 30px;
+        padding: 0.3rem 0.66rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: rgba(191, 219, 254, 0.92);
+        font-size: 0.74rem;
+        font-weight: 600;
+      }
+
+      #loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
+        border-color: rgba(249, 115, 22, 0.58);
+        background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
+        color: #fff;
+      }
+
+      #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
+        background: rgba(30, 41, 59, 0.36);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #calc-home-loan .mtg-action-row .calculator-button {
+          transition: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #calc-home-loan .down-combined-left .calculator-button,
+        #loan-mtg-explanation .table-view-toggle .calculator-button {
+          flex: 1 1 auto;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css" media="print" onload="this.onload=null;this.media='all';" />
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css" />
+    </noscript>
+ 
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+    <!-- CHM_ADSENSE_HEAD_START -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
+         crossorigin="anonymous"></script>
+    <!-- CHM_ADSENSE_HEAD_END -->
+  </head>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans" data-top-nav-static="true">
+    <div class="page">
+      <header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-left">
+      <a class="brand-logo" href="/" aria-label="Home">
+        <span class="brand-logo-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="4" y="2.5" width="16" height="19" rx="3" />
+            <line x1="8" y1="6.5" x2="16" y2="6.5" />
+            <line x1="9" y1="10" x2="9" y2="10.01" />
+            <line x1="12" y1="10" x2="12" y2="10.01" />
+            <line x1="15" y1="10" x2="15" y2="10.01" />
+            <line x1="9" y1="13.5" x2="9" y2="13.51" />
+            <line x1="12" y1="13.5" x2="12" y2="13.51" />
+            <line x1="15" y1="13.5" x2="15" y2="13.51" />
+            <line x1="9" y1="17" x2="9" y2="17.01" />
+            <line x1="12" y1="17" x2="12" y2="17.01" />
+            <line x1="15" y1="17" x2="15" y2="17.01" />
+          </svg>
+        </span>
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
+      <div class="brand-block">
+        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
+        <a class="brand-badge" href="/loans/home-loan">
+          <span class="brand-badge-icon" aria-hidden="true">✦</span>
+          <span>Premium Calculator Suite</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-title">Calculate How Much</div>
+      <div class="header-subtitle">Quick calculations for everyday numbers</div>
+    </div>
+    <div class="header-right" role="search">
+      <label class="sr-only" for="global-calculator-search">Search calculators</label>
+      <div class="header-search">
+        <span class="header-search-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+        </span>
+        <input
+          id="global-calculator-search"
+          class="header-search-input"
+          type="search"
+          placeholder="Search calculators…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
+      <main class="layout-main">
+        <aside class="left-nav" aria-label="Left navigation">
+          <div id="left-nav-content">
+<div class="nav-category" data-id="auto-loans">
+  <button type="button" class="nav-category-toggle" aria-expanded="true">
+    <span class="nav-category-label">Auto Loans</span>
+    <span class="nav-category-indicator">-</span>
+  </button>
+  <div class="nav-category-items">
+    <a class="nav-item is-active" href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a><a class="nav-item" href="/car-loan-calculators/auto-loan-calculator/">Multiple Car Loan Calculator</a><a class="nav-item" href="/car-loan-calculators/hire-purchase-calculator/">Hire Purchase Calculator</a><a class="nav-item" href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a><a class="nav-item" href="/car-loan-calculators/car-lease-calculator/">Leasing Calculator</a>
+  </div>
+</div></div>
+        </aside>
+        <section class="center-column">
+          <div class="panel panel-scroll panel-span-all">
+  <h1 id="calculator-title">Car Loan Calculator</h1>
+  <div class="calculator-page-single">
+    <style>
+  #calc-car-loan {
+    width: 100%;
+  }
+
+  #calc-car-loan .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-car-loan .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  #calc-car-loan .mtg-form-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-car-loan .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  #calc-car-loan .mtg-result-card {
+    min-height: 44px;
+  }
+
+  #calc-car-loan .mtg-summary-card {
+    min-height: 96px;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-car-loan .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div id="calc-car-loan">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Car loan calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Enter your car loan inputs to estimate monthly EMI, total interest, and total payment in
+            the same premium calculator flow.
+          </p>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-price">Vehicle Price</label>
+              <span class="slider-value" id="car-price-display">28,000</span>
+            </div>
+            <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="car-down-value-label" for="car-down-value">Down Payment</label>
+                <span class="slider-value" id="car-down-display">3,000</span>
+              </div>
+              <input
+                id="car-down-value"
+                type="range"
+                value="3000"
+                min="0"
+                max="150000"
+                step="100"
+              />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-trade">Trade-in Value</label>
+                <span class="slider-value" id="car-trade-display">1,500</span>
+              </div>
+              <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-fees">Dealer Fees</label>
+                <span class="slider-value" id="car-fees-display">600</span>
+              </div>
+              <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-tax">Sales Tax (%)</label>
+                <span class="slider-value" id="car-tax-display">7%</span>
+              </div>
+              <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-term">Loan Term (years)</label>
+                <span class="slider-value" id="car-term-display">5 yrs</span>
+              </div>
+              <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-apr">Interest Rate (APR %)</label>
+                <span class="slider-value" id="car-apr-display">6.5%</span>
+              </div>
+              <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="car-calculate">
+              Calculate Car Loan
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="Car loan scenario snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Estimated Monthly EMI</p>
+            <div class="result mtg-result-card" id="car-result" aria-live="polite">
+              <span class="mtg-result-value">507.84</span>
+            </div>
+            <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite">
+              <p><strong>Amount Financed:</strong> 25,955</p>
+              <p><strong>Total Interest:</strong> 4,515.36</p>
+              <p><strong>Total Payment:</strong> 30,470.36</p>
+            </div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Vehicle Price</span>
+              <strong data-car="price">28,000</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Down Payment</span>
+              <strong
+                ><span data-car="down-payment">3,000</span> (<span data-car="down-percent"
+                  >10.71%</span
+                >)</strong
+              >
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Trade-in Value</span>
+              <strong data-car="trade-in">1,500</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Dealer Fees</span>
+              <strong data-car="fees">600</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Sales Tax</span>
+              <strong data-car="tax">1,855</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Amount Financed</span>
+              <strong data-car="amount-financed">25,955</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Rate</span>
+              <strong data-car="apr">6.5%</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Loan Term</span>
+              <strong data-car="term">5 years</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="loan-mtg-explanation">
+  <h2>Car Loan - Payment Breakdown</h2>
+  <p>
+    A car loan payment includes principal plus interest over your selected term. Fees, sales tax,
+    and trade-in value all affect the financed amount and your EMI.
+  </p>
+  <p>
+    Use the table views to inspect repayment pace month-by-month or year-by-year and understand the
+    total cost impact.
+  </p>
+
+  <section class="mtg-exp-section mtg-exp-section--lifetime">
+    <div class="mtg-lifetime-header">
+      <h3>Lifetime Totals</h3>
+    </div>
+    <div class="mtg-lifetime-visual">
+      <div
+        class="mtg-lifetime-donut"
+        data-car="lifetime-donut"
+        role="img"
+        aria-label="Principal vs interest breakdown"
+      ></div>
+      <div class="mtg-lifetime-legend">
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--principal">
+          <span>Principal Share</span>
+          <strong data-car="principal-share"></strong>
+        </div>
+        <div class="mtg-lifetime-legend-item mtg-lifetime-legend-item--interest">
+          <span>Interest Share</span>
+          <strong data-car="interest-share"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="mtg-lifetime-grid">
+      <article class="mtg-lifetime-card">
+        <span>Amount Financed</span>
+        <strong data-car="amount-financed-total"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Interest</span>
+        <strong data-car="total-interest"></strong>
+      </article>
+      <article class="mtg-lifetime-card">
+        <span>Total Payment</span>
+        <strong data-car="total-payment"></strong>
+      </article>
+    </div>
+    <p class="mtg-lifetime-summary" data-car="lifetime-summary"></p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--amortization">
+    <div class="amortization-section">
+      <div class="amortization-header">
+        <h3>Amortization Table</h3>
+        <div class="table-view-toggle" role="group" aria-label="Table view selector">
+          <button
+            class="calculator-button secondary"
+            type="button"
+            id="car-view-monthly"
+            aria-pressed="false"
+          >
+            Monthly
+          </button>
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            id="car-view-yearly"
+            aria-pressed="true"
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll is-hidden" id="car-table-monthly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-monthly">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-monthly-body"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll" id="car-table-yearly-wrap" tabindex="0">
+      <table class="calculator-table" id="car-table-yearly">
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Payments</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="car-table-yearly-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How is amount financed calculated?</h4>
+        <p>Amount financed = vehicle price - down payment - trade-in + dealer fees + sales tax.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What reduces monthly EMI the fastest?</h4>
+        <p>
+          A larger down payment, lower APR, or shorter financed amount can reduce EMI materially.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Does extending tenure always help?</h4>
+        <p>
+          Longer tenure lowers EMI but usually increases total interest paid over the full loan.
+        </p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Why include dealer fees and tax?</h4>
+        <p>Both increase the financed balance, which raises payment and total interest.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Is this calculator lender-specific?</h4>
+        <p>No. Results are estimates based on fixed-rate amortization math.</p>
+      </div>
+
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I compare monthly vs yearly payoff quickly?</h4>
+        <p>Yes. Use the table toggle to switch between yearly summary and monthly detail.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+  </div>
+</div>
+        </section>
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">
+            <!-- CHM_AD_SLOT_START -->
+            <!-- Right_Pane_Responsive -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1063975431106361"
+                 data-ad-slot="3901083802"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <!-- CHM_AD_SLOT_END -->
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+  <a href="/privacy/">Privacy</a>
+  <span class="footer-divider">|</span>
+  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+  <span class="footer-divider">|</span>
+  <a href="/contact-us/">Contact</a>
+  <span class="footer-divider">|</span>
+  <a href="/faqs/">FAQs</a>
+  <span class="footer-divider">|</span>
+  <a href="/sitemap/">Sitemap</a>
+  <span class="footer-divider">|</span>
+  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+</footer>
+
+    </div>
+    <script type="module" src="/assets/js/core-shell.js"></script>
+    <script type="module" src="/calculators/car-loan-calculators/car-loan-calculator/module.js"></script>
+  </body>
+</html>

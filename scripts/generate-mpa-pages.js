@@ -1653,7 +1653,7 @@ function buildPageHtml({
     <ul>
       <li><a href="/calculators/">Browse all calculators</a></li>
       <li><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a></li>
-      <li><a href="/loans/car-loan">Car Loan Calculator</a></li>
+      <li><a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a></li>
       <li><a href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a></li>
       <li><a href="/math/basic">Basic Calculator</a></li>
     </ul>

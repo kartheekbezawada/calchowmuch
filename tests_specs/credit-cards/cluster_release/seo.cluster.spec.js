@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTE = '/loans/balance-transfer-installment-plan/';
+const ROUTE = '/credit-card-calculators/balance-transfer-credit-card-calculator/';
 
 test.describe('credit-cards cluster seo smoke', () => {
   test('representative route has canonical/title/robots', async ({ page }) => {

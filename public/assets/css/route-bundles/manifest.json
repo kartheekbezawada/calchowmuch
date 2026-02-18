@@ -345,176 +345,176 @@
       "outputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
       "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
     },
-    "/loans/credit-card-repayment-payoff/": {
+    "/credit-card-calculators/credit-card-payment-calculator/": {
       "calculatorId": "credit-card-repayment-payoff",
-      "relPath": "loans/credit-card-repayment-payoff",
+      "relPath": "credit-card-calculators/credit-card-payment-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-credit-card-repayment-payoff.4a811c66.css",
-      "deferredHref": "/assets/css/route-bundles/loans-credit-card-repayment-payoff.4a811c66.css",
-      "criticalCss": "/assets/css/route-bundles/loans-credit-card-repayment-payoff.critical.3e5bbc8e.css",
-      "hash": "4a811c66",
-      "criticalHash": "3e5bbc8e",
-      "fullBytes": 50546,
-      "criticalBytes": 46007,
+      "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
+      "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css",
+      "hash": "c3ac71f5",
+      "criticalHash": "fb8a4657",
+      "fullBytes": 50566,
+      "criticalBytes": 46027,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/credit-card-repayment-payoff/calculator.css"
+        "/calculators/credit-card-calculators/credit-card-payment-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-credit-card-repayment-payoff.4a811c66.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-credit-card-repayment-payoff.critical.3e5bbc8e.css"
+      "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css"
     },
-    "/loans/credit-card-minimum-payment/": {
+    "/credit-card-calculators/credit-card-minimum-payment-calculator/": {
       "calculatorId": "credit-card-minimum-payment",
-      "relPath": "loans/credit-card-minimum-payment",
+      "relPath": "credit-card-calculators/credit-card-minimum-payment-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-credit-card-minimum-payment.575fd96c.css",
-      "deferredHref": "/assets/css/route-bundles/loans-credit-card-minimum-payment.575fd96c.css",
-      "criticalCss": "/assets/css/route-bundles/loans-credit-card-minimum-payment.critical.8f1b7348.css",
-      "hash": "575fd96c",
-      "criticalHash": "8f1b7348",
-      "fullBytes": 53653,
-      "criticalBytes": 44751,
+      "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
+      "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css",
+      "hash": "1ec64b30",
+      "criticalHash": "0ee915e8",
+      "fullBytes": 53682,
+      "criticalBytes": 44780,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/credit-card-minimum-payment/calculator.css"
+        "/calculators/credit-card-calculators/credit-card-minimum-payment-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-credit-card-minimum-payment.575fd96c.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-credit-card-minimum-payment.critical.8f1b7348.css"
+      "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css"
     },
-    "/loans/balance-transfer-installment-plan/": {
+    "/credit-card-calculators/balance-transfer-credit-card-calculator/": {
       "calculatorId": "balance-transfer-installment-plan",
-      "relPath": "loans/balance-transfer-installment-plan",
+      "relPath": "credit-card-calculators/balance-transfer-credit-card-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-balance-transfer-installment-plan.e1826d95.css",
-      "deferredHref": "/assets/css/route-bundles/loans-balance-transfer-installment-plan.e1826d95.css",
-      "criticalCss": "/assets/css/route-bundles/loans-balance-transfer-installment-plan.critical.09f748ab.css",
-      "hash": "e1826d95",
-      "criticalHash": "09f748ab",
-      "fullBytes": 54370,
-      "criticalBytes": 44822,
+      "href": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
+      "deferredHref": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css",
+      "hash": "c1df2b09",
+      "criticalHash": "6cc6a7b8",
+      "fullBytes": 54394,
+      "criticalBytes": 44846,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/balance-transfer-installment-plan/calculator.css"
+        "/calculators/credit-card-calculators/balance-transfer-credit-card-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-balance-transfer-installment-plan.e1826d95.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-balance-transfer-installment-plan.critical.09f748ab.css"
+      "outputFile": "public/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css"
     },
-    "/loans/credit-card-consolidation/": {
+    "/credit-card-calculators/credit-card-consolidation-calculator/": {
       "calculatorId": "credit-card-consolidation",
-      "relPath": "loans/credit-card-consolidation",
+      "relPath": "credit-card-calculators/credit-card-consolidation-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-credit-card-consolidation.badbe2c8.css",
-      "deferredHref": "/assets/css/route-bundles/loans-credit-card-consolidation.badbe2c8.css",
-      "criticalCss": "/assets/css/route-bundles/loans-credit-card-consolidation.critical.898f8d55.css",
-      "hash": "badbe2c8",
-      "criticalHash": "898f8d55",
-      "fullBytes": 58629,
-      "criticalBytes": 45982,
+      "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
+      "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css",
+      "hash": "8ade6101",
+      "criticalHash": "2e9445c8",
+      "fullBytes": 58658,
+      "criticalBytes": 46011,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/credit-card-consolidation/calculator.css"
+        "/calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-credit-card-consolidation.badbe2c8.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-credit-card-consolidation.critical.898f8d55.css"
+      "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css"
     },
-    "/loans/car-loan/": {
+    "/car-loan-calculators/car-loan-calculator/": {
       "calculatorId": "car-loan",
-      "relPath": "loans/car-loan",
+      "relPath": "car-loan-calculators/car-loan-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-car-loan.e80c8568.css",
-      "deferredHref": "/assets/css/route-bundles/loans-car-loan.e80c8568.css",
-      "criticalCss": "/assets/css/route-bundles/loans-car-loan.critical.dfec91a3.css",
-      "hash": "e80c8568",
+      "href": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
+      "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css",
+      "hash": "1ea39530",
       "criticalHash": "dfec91a3",
-      "fullBytes": 42841,
+      "fullBytes": 42867,
       "criticalBytes": 33682,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/car-loan/calculator.css"
+        "/calculators/car-loan-calculators/car-loan-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-car-loan.e80c8568.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-car-loan.critical.dfec91a3.css"
+      "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css"
     },
-    "/loans/multiple-car-loan/": {
+    "/car-loan-calculators/auto-loan-calculator/": {
       "calculatorId": "multiple-car-loan",
-      "relPath": "loans/multiple-car-loan",
+      "relPath": "car-loan-calculators/auto-loan-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-multiple-car-loan.33436fb9.css",
-      "deferredHref": "/assets/css/route-bundles/loans-multiple-car-loan.33436fb9.css",
-      "criticalCss": "/assets/css/route-bundles/loans-multiple-car-loan.critical.dfec91a3.css",
-      "hash": "33436fb9",
+      "href": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
+      "deferredHref": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css",
+      "hash": "605dcb31",
       "criticalHash": "dfec91a3",
-      "fullBytes": 40664,
+      "fullBytes": 40682,
       "criticalBytes": 33682,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/multiple-car-loan/calculator.css"
+        "/calculators/car-loan-calculators/auto-loan-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-multiple-car-loan.33436fb9.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-multiple-car-loan.critical.dfec91a3.css"
+      "outputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css"
     },
-    "/loans/hire-purchase/": {
+    "/car-loan-calculators/hire-purchase-calculator/": {
       "calculatorId": "hire-purchase",
-      "relPath": "loans/hire-purchase",
+      "relPath": "car-loan-calculators/hire-purchase-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-hire-purchase.38a648e7.css",
-      "deferredHref": "/assets/css/route-bundles/loans-hire-purchase.38a648e7.css",
-      "criticalCss": "/assets/css/route-bundles/loans-hire-purchase.critical.dfec91a3.css",
-      "hash": "38a648e7",
+      "href": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
+      "deferredHref": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css",
+      "hash": "6e868e2d",
       "criticalHash": "dfec91a3",
-      "fullBytes": 40455,
+      "fullBytes": 40481,
       "criticalBytes": 33682,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/hire-purchase/calculator.css"
+        "/calculators/car-loan-calculators/hire-purchase-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-hire-purchase.38a648e7.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-hire-purchase.critical.dfec91a3.css"
+      "outputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css"
     },
-    "/loans/pcp-calculator/": {
+    "/car-loan-calculators/pcp-calculator/": {
       "calculatorId": "pcp-calculator",
-      "relPath": "loans/pcp-calculator",
+      "relPath": "car-loan-calculators/pcp-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-pcp-calculator.4dfe739d.css",
-      "deferredHref": "/assets/css/route-bundles/loans-pcp-calculator.4dfe739d.css",
-      "criticalCss": "/assets/css/route-bundles/loans-pcp-calculator.critical.a10784a0.css",
-      "hash": "4dfe739d",
-      "criticalHash": "a10784a0",
-      "fullBytes": 42730,
-      "criticalBytes": 34274,
+      "href": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
+      "deferredHref": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css",
+      "hash": "318ead77",
+      "criticalHash": "24ee67db",
+      "fullBytes": 42745,
+      "criticalBytes": 34289,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/pcp-calculator/calculator.css"
+        "/calculators/car-loan-calculators/pcp-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-pcp-calculator.4dfe739d.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-pcp-calculator.critical.a10784a0.css"
+      "outputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css"
     },
-    "/loans/leasing-calculator/": {
+    "/car-loan-calculators/car-lease-calculator/": {
       "calculatorId": "leasing-calculator",
-      "relPath": "loans/leasing-calculator",
+      "relPath": "car-loan-calculators/car-lease-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-leasing-calculator.718b534c.css",
-      "deferredHref": "/assets/css/route-bundles/loans-leasing-calculator.718b534c.css",
-      "criticalCss": "/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css",
-      "hash": "718b534c",
-      "criticalHash": "55350a3c",
-      "fullBytes": 43764,
-      "criticalBytes": 34285,
+      "href": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
+      "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css",
+      "hash": "062a5bd6",
+      "criticalHash": "c6f07e73",
+      "fullBytes": 43781,
+      "criticalBytes": 34302,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/leasing-calculator/calculator.css"
+        "/calculators/car-loan-calculators/car-lease-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-leasing-calculator.718b534c.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css"
+      "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css"
     },
     "/percentage-calculators/percent-change-calculator/": {
       "calculatorId": "percent-change",

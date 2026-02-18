@@ -75,3 +75,43 @@ SEO Validation Commands:
 7. `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:seo`
 8. `CLUSTER=loans CALC=loan-to-value npm run test:calc:seo`
 9. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+
+## Wave D — Credit Cards Subset (`/credit-card-calculators/`) (Current)
+Canonical route map:
+1. `/loans/credit-card-repayment-payoff/` -> `/credit-card-calculators/credit-card-payment-calculator/`
+2. `/loans/credit-card-consolidation/` -> `/credit-card-calculators/credit-card-consolidation-calculator/`
+3. `/loans/credit-card-minimum-payment/` -> `/credit-card-calculators/credit-card-minimum-payment-calculator/`
+4. `/loans/balance-transfer-installment-plan/` -> `/credit-card-calculators/balance-transfer-credit-card-calculator/`
+
+Scope lock:
+- Credit cards subset only.
+- Home-loan and auto-loan routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=credit-cards npm run test:cluster:seo`
+2. `CLUSTER=credit-cards CALC=credit-card-repayment-payoff npm run test:calc:seo`
+3. `CLUSTER=credit-cards CALC=credit-card-consolidation npm run test:calc:seo`
+4. `CLUSTER=credit-cards CALC=credit-card-minimum-payment npm run test:calc:seo`
+5. `CLUSTER=credit-cards CALC=balance-transfer-installment-plan npm run test:calc:seo`
+6. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+
+## Wave E — Auto-Loan Subset (`/car-loan-calculators/`) (Current)
+Canonical route map:
+1. `/loans/car-loan/` -> `/car-loan-calculators/car-loan-calculator/`
+2. `/loans/multiple-car-loan/` -> `/car-loan-calculators/auto-loan-calculator/`
+3. `/loans/hire-purchase/` -> `/car-loan-calculators/hire-purchase-calculator/`
+4. `/loans/pcp-calculator/` -> `/car-loan-calculators/pcp-calculator/`
+5. `/loans/leasing-calculator/` -> `/car-loan-calculators/car-lease-calculator/`
+
+Scope lock:
+- Auto-loan subset only.
+- Home-loan and credit-card routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=loans npm run test:cluster:seo`
+2. `CLUSTER=loans CALC=car-loan npm run test:calc:seo`
+3. `CLUSTER=loans CALC=multiple-car-loan npm run test:calc:seo`
+4. `CLUSTER=loans CALC=hire-purchase npm run test:calc:seo`
+5. `CLUSTER=loans CALC=pcp-calculator npm run test:calc:seo`
+6. `CLUSTER=loans CALC=leasing-calculator npm run test:calc:seo`
+7. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`

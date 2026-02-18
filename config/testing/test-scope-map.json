@@ -198,16 +198,16 @@
       "clusterReleaseDir": "tests_specs/loans/cluster_release",
       "routes": [
         "/loan-calculators/buy-to-let-mortgage-calculator/",
-        "/loans/car-loan/",
-        "/loans/hire-purchase/",
+        "/car-loan-calculators/car-loan-calculator/",
+        "/car-loan-calculators/hire-purchase-calculator/",
         "/loan-calculators/mortgage-calculator/",
         "/loan-calculators/how-much-can-i-borrow/",
         "/loan-calculators/interest-rate-change-calculator/",
-        "/loans/leasing-calculator/",
+        "/car-loan-calculators/car-lease-calculator/",
         "/loan-calculators/ltv-calculator/",
-        "/loans/multiple-car-loan/",
+        "/car-loan-calculators/auto-loan-calculator/",
         "/loan-calculators/offset-mortgage-calculator/",
-        "/loans/pcp-calculator/",
+        "/car-loan-calculators/pcp-calculator/",
         "/loan-calculators/remortgage-calculator/"
       ],
       "calculators": {
@@ -240,23 +240,23 @@
           "releaseDir": "tests_specs/loans/loan-to-value_release"
         },
         "car-loan": {
-          "route": "/loans/car-loan/",
+          "route": "/car-loan-calculators/car-loan-calculator/",
           "releaseDir": "tests_specs/loans/car-loan_release"
         },
         "multiple-car-loan": {
-          "route": "/loans/multiple-car-loan/",
+          "route": "/car-loan-calculators/auto-loan-calculator/",
           "releaseDir": "tests_specs/loans/multiple-car-loan_release"
         },
         "hire-purchase": {
-          "route": "/loans/hire-purchase/",
+          "route": "/car-loan-calculators/hire-purchase-calculator/",
           "releaseDir": "tests_specs/loans/hire-purchase_release"
         },
         "pcp-calculator": {
-          "route": "/loans/pcp-calculator/",
+          "route": "/car-loan-calculators/pcp-calculator/",
           "releaseDir": "tests_specs/loans/pcp-calculator_release"
         },
         "leasing-calculator": {
-          "route": "/loans/leasing-calculator/",
+          "route": "/car-loan-calculators/car-lease-calculator/",
           "releaseDir": "tests_specs/loans/leasing-calculator_release"
         }
       }
@@ -264,26 +264,26 @@
     "credit-cards": {
       "clusterReleaseDir": "tests_specs/credit-cards/cluster_release",
       "routes": [
-        "/loans/balance-transfer-installment-plan/",
-        "/loans/credit-card-consolidation/",
-        "/loans/credit-card-minimum-payment/",
-        "/loans/credit-card-repayment-payoff/"
+        "/credit-card-calculators/balance-transfer-credit-card-calculator/",
+        "/credit-card-calculators/credit-card-consolidation-calculator/",
+        "/credit-card-calculators/credit-card-minimum-payment-calculator/",
+        "/credit-card-calculators/credit-card-payment-calculator/"
       ],
       "calculators": {
         "credit-card-repayment-payoff": {
-          "route": "/loans/credit-card-repayment-payoff/",
+          "route": "/credit-card-calculators/credit-card-payment-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-repayment-payoff_release"
         },
         "credit-card-minimum-payment": {
-          "route": "/loans/credit-card-minimum-payment/",
+          "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-minimum-payment_release"
         },
         "balance-transfer-installment-plan": {
-          "route": "/loans/balance-transfer-installment-plan/",
+          "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",
           "releaseDir": "tests_specs/credit-cards/balance-transfer-installment-plan_release"
         },
         "credit-card-consolidation": {
-          "route": "/loans/credit-card-consolidation/",
+          "route": "/credit-card-calculators/credit-card-consolidation-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-consolidation_release"
         }
       }

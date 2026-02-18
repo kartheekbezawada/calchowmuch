@@ -34,10 +34,10 @@
       "displayName": "Credit Cards",
       "status": "migrating",
       "routePrefixes": [
-        "/loans/credit-card-repayment-payoff/",
-        "/loans/credit-card-minimum-payment/",
-        "/loans/balance-transfer-installment-plan/",
-        "/loans/credit-card-consolidation/"
+        "/credit-card-calculators/credit-card-payment-calculator/",
+        "/credit-card-calculators/credit-card-minimum-payment-calculator/",
+        "/credit-card-calculators/balance-transfer-credit-card-calculator/",
+        "/credit-card-calculators/credit-card-consolidation-calculator/"
       ],
       "owners": [
         "platform"
@@ -48,11 +48,11 @@
       "displayName": "Auto Loans",
       "status": "migrating",
       "routePrefixes": [
-        "/loans/car-loan/",
-        "/loans/multiple-car-loan/",
-        "/loans/hire-purchase/",
-        "/loans/pcp-calculator/",
-        "/loans/leasing-calculator/"
+        "/car-loan-calculators/car-loan-calculator/",
+        "/car-loan-calculators/auto-loan-calculator/",
+        "/car-loan-calculators/hire-purchase-calculator/",
+        "/car-loan-calculators/pcp-calculator/",
+        "/car-loan-calculators/car-lease-calculator/"
       ],
       "owners": [
         "platform"
