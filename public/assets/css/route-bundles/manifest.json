@@ -534,6 +534,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change.740bcad7.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change.critical.ff820b68.css"
+    },
+    "/percentage-calculators/percentage-difference/": {
+      "calculatorId": "percentage-difference",
+      "relPath": "percentage-calculators/percentage-difference",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-difference.840d4692.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-difference.840d4692.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-difference.critical.43f60327.css",
+      "hash": "840d4692",
+      "criticalHash": "43f60327",
+      "fullBytes": 44445,
+      "criticalBytes": 81745,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-difference/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference.840d4692.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference.critical.43f60327.css"
     }
   }
 }

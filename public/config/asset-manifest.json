@@ -429,6 +429,28 @@
         "deferCoreCss": true
       }
     },
+    "/percentage-calculators/percentage-difference/": {
+      "route": "/percentage-calculators/percentage-difference/",
+      "calculatorId": "percentage-difference",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-difference.critical.43f60327.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percentage-difference/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/loans/home-loan/": {
       "route": "/loans/home-loan/",
       "calculatorId": "home-loan",

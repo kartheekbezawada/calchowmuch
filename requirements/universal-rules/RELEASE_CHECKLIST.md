@@ -134,6 +134,23 @@ HARD: Do not run global full-site suites by default for this release type.
 HARD: Attach scoped CWV artifact path in sign-off:
 - `test-results/performance/scoped-cwv/{cluster}/{calculator}.json`
 
+3.1.3 Pane Layout Contract (HARD)
+
+Applies to `CLUSTER_ROUTE_SINGLE_CALC` and cluster migration releases.
+
+HARD: If target route uses `routeArchetype=calc_exp`, navigation contract must declare:
+- `paneLayout: "single"`
+
+HARD: Generated route must render combined single-pane contract for `calc_exp`:
+- `panel-span-all`
+- `calculator-page-single`
+
+HARD: `paneLayout: "split"` on any touched target route is release fail.
+
+HARD: Sign-off evidence must include path + snippet proof from:
+- `public/config/navigation.json`
+- generated route HTML (`public/<route>/index.html`)
+
 3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
 HARD: Performance tests must not crawl every calculator by default.

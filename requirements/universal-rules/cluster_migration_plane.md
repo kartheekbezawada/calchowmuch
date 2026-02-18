@@ -399,6 +399,12 @@ Any new cluster/category must:
 4. Use only immutable core for allowed shared runtime.
 5. Pass all isolation contract, fence, and manifest checks before merge.
 
+## 20.1 Single-Pane Layout Guard (Mandatory)
+For calculator routes that include both calculation and explanation (`routeArchetype=calc_exp`):
+1. Cluster onboarding must normalize route metadata to `paneLayout=single`.
+2. Split-pane carryover is prohibited for newly onboarded or touched/migrated routes.
+3. Legacy untouched split routes may remain only as temporary migration backlog and must be converted when touched.
+
 ## 21) Assumptions
 1. MPA architecture remains unchanged.
 2. Public URLs remain unchanged.

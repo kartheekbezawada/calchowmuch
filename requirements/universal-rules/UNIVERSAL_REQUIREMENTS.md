@@ -102,10 +102,12 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-034 (P0):** Legacy routes missing metadata must default to `routeArchetype=calc_exp` and inferred `designFamily` without breaking existing pages.
 - **UR-NAV-035 (P0):** Page generation must emit `data-route-archetype` and `data-design-family` on `<body>`.
 - **UR-NAV-036 (P0):** Fragment loading is archetype-bound: `calc_exp` requires `index.html` + `explanation.html`; `calc_only` requires `index.html`; `exp_only` requires `explanation.html`; `content_shell` requires `content.html`.
+- **UR-NAV-037 (P0):** `calc_exp` routes must declare `paneLayout=single`; `paneLayout=split` is disallowed for new or modified calculator routes.
+- **UR-NAV-038 (P1):** Legacy split routes may exist temporarily as migration debt, but any touched/migrated calculator route must be converted to `paneLayout=single` before release signoff.
 
 ### 3.4 Archetype Behavior Matrix
 
-- **`calc_exp`:** Calc Pane (Req) + Exp Pane (Req). Layout: `single` or `split`.
+- **`calc_exp`:** Calc Pane (Req) + Exp Pane (Req). Layout: `single` only.
 - **`calc_only`:** Calc Pane (Req) + Exp Pane (Omitted). Layout: `single`.
 - **`exp_only`:** Calc Pane (Omitted) + Exp Pane (Req). Layout: `single`.
 - **`content_shell`:** Calc Pane (Omitted) + Exp Pane (Omitted). Layout: `single`.

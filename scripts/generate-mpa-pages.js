@@ -289,6 +289,14 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Percent Change Calculator',
     explanationHeading: '',
   },
+  'percentage-difference': {
+    title: 'Percentage Difference Calculator – CalcHowMuch',
+    description:
+      'Calculate percentage difference between two values using a symmetric formula based on their average. Free percent difference calculator.',
+    h1: 'Percentage Difference Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'percentage-increase': {
     title: 'Percentage Increase Calculator – CalcHowMuch',
     description:

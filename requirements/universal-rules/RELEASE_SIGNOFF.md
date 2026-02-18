@@ -13,6 +13,9 @@
 | **Cluster ID(s)** | |
 | **Calculator ID (CALC)** | |
 | **Primary Route** | |
+| **Route Archetype** | |
+| **Pane Layout Contract** | |
+| **Pane Layout Evidence Path** | |
 | **Ownership Snapshot Ref** | |
 | **Cluster Manifest Ref** | |
 | **Rollback Contract Ref** | |
@@ -51,6 +54,7 @@
 | **I2** | **Schema** | • `SoftwareApplication`<br>• `FAQPage`<br>• `BreadcrumbList` | |
 | **I3** | **Indexability** | • Content in initial HTML<br>• Crawlable without JS | |
 | **I4** | **Sitemap** | • Route present in sitemap.xml | |
+| **NAV-PANE-1** | **Pane Layout** | • `calc_exp` route uses single pane only (`paneLayout=single`)<br>• Combined panel contract rendered (`panel-span-all` + `calculator-page-single`) | |
 | **J** | **Content** | • Explanation present<br>• Worked example<br>• 3+ FAQs | |
 | **K** | **Security** | • HTTPS only<br>• Privacy/Terms linked | |
 

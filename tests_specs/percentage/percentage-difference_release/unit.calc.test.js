@@ -42,4 +42,10 @@ describe('Percentage Difference Calculator - PDIFF-TEST-U-3: validation', () => 
     expect(calculatePercentageDifference(10, Number.NaN)).toBeNull();
     expect(calculatePercentageDifference('abc', 10)).toBeNull();
   });
+
+  it('retains decimal precision before UI formatting', () => {
+    const result = calculatePercentageDifference(10, 10.5);
+    expect(result).not.toBeNull();
+    expect(result.percentDifference).toBeCloseTo(4.87804878, 8);
+  });
 });

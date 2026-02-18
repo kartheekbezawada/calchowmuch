@@ -129,6 +129,10 @@ For UX changes:
 If file list changes mid-work:
 - **Re-confirm** scope with HUMAN before editing additional files.
 
+For calculator UI migration/new route work:
+- **Single-pane invariant:** validate and preserve `paneLayout=single` for `calc_exp` routes.
+- If target route is `paneLayout=split`, conversion to `single` is in-scope by default unless HUMAN explicitly excludes it.
+
 ### 10.1 Scope Contract (Agent/Copilot Execution Format)
 
 Any Agent/Copilot creating scope must declare this contract before edits:

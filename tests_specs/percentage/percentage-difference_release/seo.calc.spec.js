@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Difference Calculator SEO', () => {
-  test('PDIFF-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
+  test('PDIFF-TEST-SEO-1: metadata, schema, sitemap, and explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-difference/');
 
     await expect(page).toHaveTitle('Percentage Difference Calculator – CalcHowMuch');
@@ -19,6 +19,11 @@ test.describe('Percentage Difference Calculator SEO', () => {
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/percentage-calculators/percentage-difference/');
+
+    await expect(page.locator('#pct-diff-explanation .pv-results-table')).toHaveCount(1);
+    await expect(page.locator('#pct-diff-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#pct-diff-explanation .faq-box')).toHaveCount(0);
+    await expect(page.locator('#pct-diff-explanation')).not.toContainText('Scenario Summary');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);

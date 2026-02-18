@@ -9,11 +9,13 @@ Commands:
 - `CLUSTER=percentage CALC=percentage-difference npm run test:calc:cwv`
 
 Pass criteria:
-- Unit logic tests pass
-- E2E flow + SEO checks pass
-- CWV route guard passes
+- Unit formula/edge-case tests pass.
+- E2E behavior checks pass (symmetry + zero-baseline guard).
+- Explanation UX contract is present (`pv-results-table`, `bor-faq-card`, no Scenario Summary).
+- SEO/schema/sitemap checks pass.
+- CWV scoped guard passes.
 
-Ownership: calculator route owner.
+Ownership: percentage cluster calculator route owner.
 
 Route:
-- /percentage-calculators/percentage-difference/
+- `/percentage-calculators/percentage-difference/`

@@ -80,6 +80,30 @@ Acceptance criteria:
 - Results table uses present-value style family
 - Explanation includes bullet list, formula block, and formula steps
 
+## 5.2 Wave 2 Implementation Scope (Percentage Difference)
+
+Target route:
+- `/percentage-calculators/percentage-difference/`
+
+Wave 2 changes:
+- Migrate calculator UI to the same modern theme/language as percent-change
+- Add route-local CSS contract:
+  - `public/calculators/percentage-calculators/percentage-difference/calculator.css`
+- Remove legacy explanation structure:
+  - remove Scenario Summary
+  - replace `calculator-table` with `pv-results-table`
+  - replace `faq-box` blocks with `bor-faq-grid` + `bor-faq-card`
+- Keep percentage-difference compute behavior and FAQ schema semantics intact
+- Add route-bundle/asset-manifest ownership for this route under percentage cluster
+
+Wave 2 acceptance criteria:
+- No Scenario Summary section exists on the page
+- Results table uses `pv-results-table` style family
+- FAQ renders as card-grid (`bor-faq-grid` with 10 cards)
+- Explanation includes bullet list + formula block + ordered steps
+- Scoped strict CWV artifact exists and passes:
+  - `test-results/performance/scoped-cwv/percentage/percentage-difference.json`
+
 ## 6) File-by-File Change Map
 
 Documentation/contracts:
@@ -219,6 +243,20 @@ Hard block policy:
 - Scoped CWV artifact is mandatory:
   - `test-results/performance/scoped-cwv/percentage/<slug>.json`
 - No implicit scope expansion; cross-calculator edits require explicit scope declaration.
+
+## 10.2 Universal Single-Pane Directive (Mandatory)
+
+Effective policy for all next percentage calculator waves:
+- `routeArchetype=calc_exp` must use `paneLayout=single`.
+- No new split-pane migrations are allowed.
+
+Transitional handling:
+- Legacy untouched split routes may remain temporarily as migration debt.
+- Any touched/migrated percentage route must be converted to single-pane before release signoff.
+
+Wave acceptance criteria additions:
+- Combined calculation + explanation rendered in one panel (`panel-span-all` + `calculator-page-single`).
+- Navigation contract proof shows `paneLayout: "single"` for the target route.
 
 ## 11) Test Isolation Model (Adopted)
 

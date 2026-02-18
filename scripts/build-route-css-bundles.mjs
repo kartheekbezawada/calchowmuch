@@ -29,6 +29,7 @@ const CALCULATOR_SHARED_SOURCES = [
 
 const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/percent-change/calculator.css',
+  'calculators/percentage-calculators/percentage-difference/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -47,7 +48,9 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/loans/balance-transfer-installment-plan/',
   '/loans/credit-card-consolidation/',
   '/percentage-calculators/percent-change/',
+  '/percentage-calculators/percentage-difference/',
 ]);
+const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set(['percent-change', 'percentage-difference']);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
   `/assets/css/base.css?v=${CSS_VERSION}`,
@@ -246,6 +249,12 @@ const PERCENTAGE_ISOLATED_ROUTES = [
     route: '/percentage-calculators/percent-change/',
     relPath: 'percentage-calculators/percent-change',
     routeCss: 'calculators/percentage-calculators/percent-change/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-difference',
+    route: '/percentage-calculators/percentage-difference/',
+    relPath: 'percentage-calculators/percentage-difference',
+    routeCss: 'calculators/percentage-calculators/percentage-difference/calculator.css',
   },
 ];
 
@@ -489,7 +498,7 @@ function buildAssetManifest(routeBundleManifest) {
     let deferredRouteAssets = isUxFirstDeferredRoute
       ? [...UX_FIRST_CORE_DEFERRED_ASSETS, routeEntry.deferredHref]
       : [routeEntry.deferredHref];
-    if (routeConfig.calculatorId === 'percent-change') {
+    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
       deferredRouteAssets = [];
     }
 
@@ -566,7 +575,7 @@ function buildBundles() {
     ) {
       fullCriticalSources.add('assets/css/core-shell.css');
     }
-    if (routeConfig.calculatorId === 'percent-change') {
+    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
       fullCriticalSources.add('assets/css/core-tokens.css');
       fullCriticalSources.add('assets/css/theme-premium-dark.css');
       fullCriticalSources.add('assets/css/base.css');

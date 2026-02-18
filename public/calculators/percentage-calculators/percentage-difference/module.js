@@ -8,6 +8,13 @@ const calculateButton = document.querySelector('#pct-diff-calc');
 const resultOutput = document.querySelector('#pct-diff-result');
 const resultDetail = document.querySelector('#pct-diff-result-detail');
 
+const snapshotTargets = {
+  a: document.querySelector('[data-pct-diff-snap="a"]'),
+  b: document.querySelector('[data-pct-diff-snap="b"]'),
+  absDiff: document.querySelector('[data-pct-diff-snap="abs-diff"]'),
+  avgBaseline: document.querySelector('[data-pct-diff-snap="avg-baseline"]'),
+};
+
 const explanationRoot = document.querySelector('#pct-diff-explanation');
 const valueTargets = explanationRoot
   ? {
@@ -195,6 +202,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -221,17 +235,25 @@ function calculate() {
   }
 
   const percent = Math.abs(result.percentDifference) < 1e-12 ? 0 : result.percentDifference;
+  const formattedA = formatValue(result.valueA);
+  const formattedB = formatValue(result.valueB);
+  const formattedAbsDiff = formatValue(result.absoluteDifference);
+  const formattedAvgBaseline = formatValue(result.averageBaseline);
+  const formattedPercent = formatPercent(percent);
 
-  resultOutput.textContent = `Percentage Difference: ${formatPercent(percent)}`;
-  resultDetail.textContent = `Absolute Difference: ${formatValue(result.absoluteDifference)} | Average Baseline: ${formatValue(
-    result.averageBaseline
-  )} | Formula: ${result.formula}`;
+  resultOutput.textContent = `Percentage Difference: ${formattedPercent}`;
+  resultDetail.textContent = `Absolute Difference: ${formattedAbsDiff} | Average Baseline: ${formattedAvgBaseline} | Formula: ${result.formula}`;
 
-  updateTargets(valueTargets?.a, formatValue(result.valueA));
-  updateTargets(valueTargets?.b, formatValue(result.valueB));
-  updateTargets(valueTargets?.absDiff, formatValue(result.absoluteDifference));
-  updateTargets(valueTargets?.avgBaseline, formatValue(result.averageBaseline));
-  updateTargets(valueTargets?.percentDiff, formatPercent(percent));
+  updateSnapshot('a', formattedA);
+  updateSnapshot('b', formattedB);
+  updateSnapshot('absDiff', formattedAbsDiff);
+  updateSnapshot('avgBaseline', formattedAvgBaseline);
+
+  updateTargets(valueTargets?.a, formattedA);
+  updateTargets(valueTargets?.b, formattedB);
+  updateTargets(valueTargets?.absDiff, formattedAbsDiff);
+  updateTargets(valueTargets?.avgBaseline, formattedAvgBaseline);
+  updateTargets(valueTargets?.percentDiff, formattedPercent);
   updateTargets(valueTargets?.formula, result.formula);
 
   hasCalculated = true;
@@ -246,5 +268,3 @@ calculateButton?.addEventListener('click', calculate);
     }
   });
 });
-
-calculate();
