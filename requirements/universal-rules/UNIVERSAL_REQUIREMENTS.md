@@ -332,6 +332,10 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-046 (P0):** Scoped calculator commands are first-class release gates: `test:calc:unit`, `test:calc:e2e`, `test:calc:seo`, `test:calc:cwv`; each requires `CLUSTER` and `CALC`.
 - **UR-TEST-047 (P0):** Scoped commands must fail fast with deterministic error text for missing/invalid `CLUSTER`/`CALC` values.
 - **UR-TEST-048 (P0):** Global commands (`test`, `test:e2e`, `test:cwv:all`, `test:iss001`) are reserved for full-site releases and are not default for cluster/calculator releases.
+- **UR-TEST-049 (P0):** `test:calc:cwv` is a hard blocker and must run calibrated first-time-user profiles with cache disabled: `mobile_strict` (CPU 3x + Slow 4G) and `desktop_strict` (CPU 6x + Slow 4G).
+- **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `requirements/universal-rules/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
+- **UR-TEST-051 (P0):** Render-blocking CSS budget breach in any strict profile is a hard fail for calculator release (`test:calc:cwv`).
+- **UR-TEST-052 (P0):** Scoped CWV artifact is mandatory evidence: `test-results/performance/scoped-cwv/{cluster}/{calc}.json`.
 
 ### 8.6 Lighthouse Efficiency + Determinism Governance
 

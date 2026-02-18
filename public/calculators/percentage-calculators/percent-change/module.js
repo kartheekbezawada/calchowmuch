@@ -271,5 +271,3 @@ calculateButton?.addEventListener('click', calculate);
     }
   });
 });
-
-calculate();

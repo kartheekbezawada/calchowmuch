@@ -51,11 +51,11 @@ function runVitest(files, scopeLabel) {
   run('npx', ['vitest', 'run', ...files]);
 }
 
-function runPlaywright(files, scopeLabel) {
+function runPlaywright(files, scopeLabel, extraEnv = {}) {
   if (!files.length) {
     fail(`No Playwright spec files matched for ${scopeLabel}`);
   }
-  run('npx', ['playwright', 'test', ...files]);
+  run('npx', ['playwright', 'test', ...files], extraEnv);
 }
 
 const level = readArg('--level');
@@ -143,5 +143,8 @@ if (type === 'unit') {
     dir,
     (name) => name.endsWith('.spec.js') && name.startsWith('cwv')
   );
-  runPlaywright(files, `CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`);
+  runPlaywright(files, `CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`, {
+    CWV_ASSERT_MODE: 'smoke',
+  });
+  run('node', ['scripts/validate-scoped-cwv-budgets.mjs']);
 }

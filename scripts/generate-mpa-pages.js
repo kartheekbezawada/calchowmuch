@@ -287,6 +287,7 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
     h1: 'Percent Change Calculator',
+    explanationHeading: '',
   },
   'percentage-increase': {
     title: 'Percentage Increase Calculator – CalcHowMuch',

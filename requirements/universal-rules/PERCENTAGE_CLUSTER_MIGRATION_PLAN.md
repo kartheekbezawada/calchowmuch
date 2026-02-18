@@ -172,6 +172,54 @@ For each next Percentage calculator:
 7. Record sign-off evidence
 8. Update master sign-off table
 
+## 10.1 Wave N Calculator Onboarding SOP (Decision-Complete)
+
+Required inputs (locked before implementation):
+- `CLUSTER=percentage`
+- `CALC=<slug>`
+- `ROUTE=/percentage-calculators/<slug>/`
+
+Mandatory files to add/update per calculator:
+- UI route files:
+  - `public/calculators/percentage-calculators/<slug>/index.html`
+  - `public/calculators/percentage-calculators/<slug>/module.js`
+  - `public/calculators/percentage-calculators/<slug>/explanation.html`
+  - `public/calculators/percentage-calculators/<slug>/calculator.css`
+- Test scope mapping:
+  - `config/testing/test-scope-map.json` (unique `(cluster, calc)` + exact route)
+- Calculator release test folder:
+  - `tests_specs/percentage/<slug>_release/unit.calc.test.js`
+  - `tests_specs/percentage/<slug>_release/e2e.calc.spec.js`
+  - `tests_specs/percentage/<slug>_release/seo.calc.spec.js`
+  - `tests_specs/percentage/<slug>_release/cwv.calc.spec.js`
+  - `tests_specs/percentage/<slug>_release/README.md`
+- Release evidence:
+  - `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_<ID>.md`
+  - `requirements/universal-rules/Release Sign-Off Master Table.md`
+
+Build/regenerate contract:
+1. `npm run build:css:route-bundles`
+2. `TARGET_ROUTE=/percentage-calculators/<slug>/ node scripts/generate-mpa-pages.js`
+
+Mandatory scoped gates (exact order):
+1. `CLUSTER=percentage npm run test:cluster:unit`
+2. `CLUSTER=percentage npm run test:cluster:e2e`
+3. `CLUSTER=percentage npm run test:cluster:seo`
+4. `CLUSTER=percentage npm run test:cluster:cwv`
+5. `CLUSTER=percentage CALC=<slug> npm run test:calc:unit`
+6. `CLUSTER=percentage CALC=<slug> npm run test:calc:e2e`
+7. `CLUSTER=percentage CALC=<slug> npm run test:calc:seo`
+8. `CLUSTER=percentage CALC=<slug> npm run test:calc:cwv`
+9. `npm run test:isolation:scope`
+10. `npm run test:cluster:contracts`
+
+Hard block policy:
+- Any gate failure blocks release.
+- `test:calc:cwv` and `test:cluster:cwv` are hard blockers.
+- Scoped CWV artifact is mandatory:
+  - `test-results/performance/scoped-cwv/percentage/<slug>.json`
+- No implicit scope expansion; cross-calculator edits require explicit scope declaration.
+
 ## 11) Test Isolation Model (Adopted)
 
 Cluster release folder:

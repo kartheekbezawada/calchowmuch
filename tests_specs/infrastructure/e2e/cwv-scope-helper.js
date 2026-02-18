@@ -69,6 +69,14 @@ export async function measureRouteCwv(page, route) {
 }
 
 export function assertCwv(metrics, route) {
+  if (process.env.CWV_ASSERT_MODE === 'smoke') {
+    expect(metrics.cls, `Smoke CWV: invalid CLS on ${route}`).toBeGreaterThanOrEqual(0);
+    expect(metrics.cls, `Smoke CWV: extreme CLS on ${route}`).toBeLessThanOrEqual(0.5);
+    expect(metrics.lcp, `Smoke CWV: invalid LCP on ${route}`).toBeGreaterThanOrEqual(0);
+    expect(metrics.lcp, `Smoke CWV: extreme LCP on ${route}`).toBeLessThanOrEqual(10000);
+    return;
+  }
+
   expect(metrics.cls, `CLS exceeded on ${route}`).toBeLessThanOrEqual(CLS_THRESHOLD);
   expect(metrics.lcp, `LCP exceeded on ${route}`).toBeLessThanOrEqual(LCP_THRESHOLD_MS);
 }

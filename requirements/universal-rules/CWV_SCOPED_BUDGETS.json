@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "description": "Strict first-time-user scoped CWV + render-blocking CSS budgets for calculator releases.",
+  "thresholds": {
+    "clsMax": 0.1,
+    "lcpMaxMs": 2500,
+    "blockingCssDurationMaxMs": 800,
+    "blockingCssMaxRequests": 1
+  },
+  "profiles": {
+    "mobile_strict": {
+      "kind": "mobile",
+      "device": "Pixel 5",
+      "cpuThrottlingRate": 3,
+      "network": {
+        "offline": false,
+        "latency": 150,
+        "downloadThroughput": 209715,
+        "uploadThroughput": 96000,
+        "connectionType": "cellular4g"
+      },
+      "cacheDisabled": true
+    },
+    "desktop_strict": {
+      "kind": "desktop",
+      "viewport": {
+        "width": 1365,
+        "height": 940
+      },
+      "cpuThrottlingRate": 6,
+      "network": {
+        "offline": false,
+        "latency": 150,
+        "downloadThroughput": 209715,
+        "uploadThroughput": 96000,
+        "connectionType": "cellular4g"
+      },
+      "cacheDisabled": true
+    }
+  },
+  "routeOverrides": {}
+}

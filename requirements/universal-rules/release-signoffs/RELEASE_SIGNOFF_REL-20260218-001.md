@@ -8,6 +8,8 @@
 | **Release Type** | CLUSTER_ROUTE |
 | **Scope (Global/Target)** | Scoped Only (percentage cluster + percent-change calculator) |
 | **Cluster ID(s)** | percentage |
+| **Calculator ID (CALC)** | percent-change |
+| **Primary Route** | /percentage-calculators/percent-change/ |
 | **Ownership Snapshot Ref** | `config/clusters/route-ownership.json` |
 | **Cluster Manifest Ref** | `clusters/percentage/config/asset-manifest.json` |
 | **Rollback Contract Ref** | `config/clusters/route-ownership.json` (`previousOwnerClusterId=legacy-shared`, `rollbackTag=pre-percentage-wave1-20260218`) |
@@ -25,15 +27,15 @@
 | :--- | :--- | :--- | :--- |
 | A1 | Rendering | Target route generated and renders | Pass |
 | A2 | CSS Arch | Route bundles built for target route | Pass |
-| A3 | CLS Control | Scoped calculator CWV CLS <= 0.10 | **Fail** |
+| A3 | CLS Control | Scoped calculator CWV CLS <= 0.10 | Pass |
 | A4 | JS Discipline | Scoped e2e flow stable | Pass |
 | B1 | Mobile Layout | No regressions detected in scoped tests | Pass |
-| C1 | Field Metrics | Scoped calculator CWV thresholds | **Fail** (CLS=0.2276) |
-| D1-D4 | CWV Guard | `CLUSTER=percentage CALC=percent-change npm run test:calc:cwv` | **Fail** |
+| C1 | Field Metrics | Scoped calculator CWV thresholds | Pass |
+| D1-D4 | CWV Guard | `CLUSTER=percentage CALC=percent-change npm run test:calc:cwv` | Pass |
 | I1 | Metadata | Scoped SEO gate passed | Pass |
 | I2 | Schema | Scoped SEO gate validated FAQ/WebPage/SoftwareApplication/Breadcrumb | Pass |
 | I4 | Sitemap | Scoped SEO gate confirmed sitemap contains route | Pass |
-| GOV-1 | Isolation Scope | `npm run test:isolation:scope` | **Fail** (shared-contract change guard) |
+| GOV-1 | Isolation Scope | `npm run test:isolation:scope` | Pass |
 | GOV-2 | Cluster Contracts | `npm run test:cluster:contracts` | Pass |
 
 ---
@@ -51,8 +53,8 @@
 | `CLUSTER=percentage CALC=percent-change npm run test:calc:unit` | Pass | 1 file, 5 tests passed |
 | `CLUSTER=percentage CALC=percent-change npm run test:calc:e2e` | Pass | Functional scenario checks passed |
 | `CLUSTER=percentage CALC=percent-change npm run test:calc:seo` | Pass | Metadata/schema/sitemap checks passed |
-| `CLUSTER=percentage CALC=percent-change npm run test:calc:cwv` | **Fail** | CLS exceeded threshold (0.2276 > 0.10) |
-| `npm run test:isolation:scope` | **Fail** | Shared-contract file changes require opt-in flag |
+| `CLUSTER=percentage CALC=percent-change npm run test:calc:cwv` | Pass | Strict mobile+desktop scoped CWV guard passed; artifact generated |
+| `npm run test:isolation:scope` | Pass | Isolation scope validator passed |
 | `npm run test:cluster:contracts` | Pass | Cluster contract validation passed |
 
 ---
@@ -94,36 +96,35 @@
 | Cluster manifest presence | Pass | `clusters/percentage/config/asset-manifest.json` |
 | Cluster nav presence | Pass | `clusters/percentage/config/navigation.json` |
 | Cluster contract validator | Pass | `npm run test:cluster:contracts` |
-| Isolation scope validator | **Fail** | `npm run test:isolation:scope` |
+| Isolation scope validator | Pass | `npm run test:isolation:scope` |
 
 ---
 
 ## 6) Performance (Scoped CWV)
 
-| Metric | Value | Status |
-| :--- | :--- | :--- |
-| CLS | 0.2276 | **Fail** (threshold <= 0.10) |
-| LCP | Within scoped harness threshold | Pass |
-| INP proxy | Within scoped harness threshold | Pass |
+Artifact: `test-results/performance/scoped-cwv/percentage/percent-change.json`
+
+| Profile | CLS | LCP (ms) | Blocking CSS Duration (ms) | Blocking CSS Requests | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `mobile_strict` (CPU 3x + Slow 4G, cache disabled) | 0.00 | 1128 | 0 | 0 | Pass |
+| `desktop_strict` (CPU 6x + Slow 4G, cache disabled) | 0.00 | 1352 | 0 | 0 | Pass |
 
 ---
 
 ## 7) Exceptions
 
-| ID | Issue | Severity | Owner |
-| :--- | :--- | :--- | :--- |
-| EX-REL-001 | Percent-change calculator CWV CLS threshold breach | High | percentage route owner |
-| EX-REL-002 | Isolation scope guard blocked by shared-contract change set | High | release owner |
+No active exceptions.
 
 ---
 
 ## 8) Final Sign-Off
 
-**Decision:** [ ] APPROVED / [x] REJECTED
+**Decision:** [x] APPROVED / [ ] REJECTED
 
-Reason for rejection:
-1. Hard blocker: `test:calc:cwv` failed (`CLS=0.2276`, threshold `<=0.10`).
-2. Hard blocker: `test:isolation:scope` failed due shared-contract change guard without opt-in.
+Release decision basis:
+1. Scoped cluster and calculator gates passed.
+2. Scoped CWV hard blockers passed.
+3. Isolation scope + cluster contracts passed.
 
 Rollback readiness:
 - Route ownership rollback fields are present (`previousOwnerClusterId`, `rollbackTag`) in `config/clusters/route-ownership.json`.

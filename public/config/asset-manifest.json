@@ -412,15 +412,9 @@
       "calculatorId": "percent-change",
       "isolationBoundary": "route",
       "css": {
-        "core": [
-          "/assets/css/theme-premium-dark.css?v=20260127",
-          "/assets/css/base.css?v=20260127",
-          "/assets/css/core-tokens.css?v=20260127"
-        ],
-        "route": [
-          "/assets/css/route-bundles/percentage-calculators-percent-change.d8cef7a5.css"
-        ],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.b0affedb.css"
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.ff820b68.css"
       },
       "js": {
         "core": [
@@ -431,7 +425,8 @@
         ]
       },
       "options": {
-        "topNavStatic": true
+        "topNavStatic": true,
+        "deferCoreCss": true
       }
     },
     "/loans/home-loan/": {

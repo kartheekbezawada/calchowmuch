@@ -27,7 +27,9 @@ const CALCULATOR_SHARED_SOURCES = [
   'assets/css/shared-calculator-ui.css',
 ];
 
-const CRITICAL_FULL_SOURCES = new Set();
+const CRITICAL_FULL_SOURCES = new Set([
+  'calculators/percentage-calculators/percent-change/calculator.css',
+]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
   'credit-card-minimum-payment',
@@ -44,6 +46,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/loans/credit-card-minimum-payment/',
   '/loans/balance-transfer-installment-plan/',
   '/loans/credit-card-consolidation/',
+  '/percentage-calculators/percent-change/',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -483,9 +486,12 @@ function buildAssetManifest(routeBundleManifest) {
 
     const isUxFirstDeferredRoute = UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route);
     const coreCssAssets = isUxFirstDeferredRoute ? [] : baseCoreAssets;
-    const deferredRouteAssets = isUxFirstDeferredRoute
+    let deferredRouteAssets = isUxFirstDeferredRoute
       ? [...UX_FIRST_CORE_DEFERRED_ASSETS, routeEntry.deferredHref]
       : [routeEntry.deferredHref];
+    if (routeConfig.calculatorId === 'percent-change') {
+      deferredRouteAssets = [];
+    }
 
     routes[routeConfig.route] = {
       route: routeConfig.route,
@@ -559,6 +565,16 @@ function buildBundles() {
       FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)
     ) {
       fullCriticalSources.add('assets/css/core-shell.css');
+    }
+    if (routeConfig.calculatorId === 'percent-change') {
+      fullCriticalSources.add('assets/css/core-tokens.css');
+      fullCriticalSources.add('assets/css/theme-premium-dark.css');
+      fullCriticalSources.add('assets/css/base.css');
+      fullCriticalSources.add('assets/css/calculator.css');
+      fullCriticalSources.add('assets/css/shared-calculator-ui.css');
+      criticalSources.forEach((sourcePath) => {
+        fullCriticalSources.add(sourcePath);
+      });
     }
     const bundledCss = sources
       .map((relPath) => `/* source: ${toWebPath(relPath)} */\n${readRequired(relPath).trim()}`)
