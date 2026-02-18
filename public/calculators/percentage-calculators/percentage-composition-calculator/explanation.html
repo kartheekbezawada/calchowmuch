@@ -1,0 +1,163 @@
+<div id="composition-explanation" class="explanation-pane">
+  <section class="comp-exp-section">
+    <h3>Results Table</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">What It Means</th>
+            <th scope="col">Your Value</th>
+            <th scope="col">How It Works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Items Count</td>
+            <td><span data-composition="items-count">3</span></td>
+            <td class="pv-how-col">Number of active item rows used in the calculation</td>
+          </tr>
+          <tr>
+            <td>Total Source</td>
+            <td><span data-composition="total-used">Sum of items</span></td>
+            <td class="pv-how-col">Either calculated from items or taken from known total mode</td>
+          </tr>
+          <tr>
+            <td>Total Used</td>
+            <td><span data-composition="total">1000.00</span></td>
+            <td class="pv-how-col">Denominator used for each share calculation</td>
+          </tr>
+          <tr>
+            <td>Sum of Items</td>
+            <td><span data-composition="sum-items">1000.00</span></td>
+            <td class="pv-how-col">Sum of all row values</td>
+          </tr>
+          <tr>
+            <td>Remainder %</td>
+            <td><span data-composition="remainder-percent">N/A</span></td>
+            <td class="pv-how-col">Shown when known total mode is active</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Formula</td>
+            <td>(Item / Total) x 100</td>
+            <td class="pv-how-col">Share-of-total formula for each item</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="comp-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      Percentage composition shows how much each item contributes to the overall total as a
+      percentage share.
+    </p>
+
+    <ul class="pv-explanation-list">
+      <li>
+        <strong>Collect item values:</strong>
+        The calculator reads all rows and counts <span data-composition="items-count">3</span> items.
+      </li>
+      <li>
+        <strong>Choose total source:</strong>
+        Current mode uses <span data-composition="total-used">Sum of items</span> as the denominator.
+      </li>
+      <li>
+        <strong>Compute item share:</strong>
+        Each item share is calculated as item value / total x 100.
+      </li>
+      <li>
+        <strong>Track remainder:</strong>
+        In known total mode, remainder% is
+        <span data-composition="remainder-percent">N/A</span>.
+      </li>
+      <li>
+        <strong>Interpret output:</strong>
+        Shares help compare allocations, category splits, and contribution weight.
+      </li>
+    </ul>
+
+    <h4>How the Formula Works</h4>
+    <p>The percentage composition formula is:</p>
+    <p class="pv-formula-block">Item Share % = (Item / Total) x 100</p>
+    <p>Known-total remainder formula:</p>
+    <p class="pv-formula-block">Remainder % = ((Total - Sum of Items) / Total) x 100</p>
+    <ol class="pv-formula-steps">
+      <li>
+        <strong>Compute total:</strong>
+        Use <span data-composition="total-used">Sum of items</span> and set total to
+        <span data-composition="total">1000.00</span>.
+      </li>
+      <li>
+        <strong>Compute shares:</strong>
+        Divide each item by total, then multiply by 100.
+      </li>
+      <li>
+        <strong>Compute remainder in known mode:</strong>
+        Use total minus sum of items (<span data-composition="sum-items">1000.00</span>) and convert to percent.
+      </li>
+      <li>
+        <strong>Guard baseline:</strong>
+        If total is 0, composition percentages are undefined.
+      </li>
+    </ol>
+  </section>
+
+  <section class="comp-exp-section comp-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is percentage composition?</h4>
+        <p>Percentage composition shows each item's share of a total as a percentage.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How do you calculate percent of total for an item?</h4>
+        <p>Divide the item value by the total and multiply by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is the share of total formula?</h4>
+        <p>The formula is (Item / Total) x 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What is remainder percentage?</h4>
+        <p>Remainder percentage is the part of total not covered by listed items, expressed as a percentage.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>How do you calculate remainder %?</h4>
+        <p>Subtract sum of items from total, divide by total, then multiply by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>What if the items already add up to the total?</h4>
+        <p>Then remainder is zero and remainder percentage is 0%.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>What if the items exceed the total?</h4>
+        <p>The remainder becomes negative, indicating listed items are larger than the total.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Can I use decimals for item values?</h4>
+        <p>Yes, decimals work the same way for percent of total calculations.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Do percentages always add up to 100%?</h4>
+        <p>They should, but rounding can cause very small differences.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Where is percentage composition used in real life?</h4>
+        <p>It is used for budgets, allocations, category breakdowns, and percent share reporting.</p>
+      </div>
+    </div>
+  </section>
+</div>

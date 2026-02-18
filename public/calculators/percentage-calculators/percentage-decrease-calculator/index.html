@@ -1,0 +1,65 @@
+<div id="calc-percentage-decrease">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="dec-hero" aria-label="Percentage decrease calculator">
+        <div class="dec-form-panel">
+          <p class="helper">
+            Measure how much a value has dropped from the original amount to the new amount. Enter
+            X and Y, then calculate the decrease percentage.
+          </p>
+
+          <div class="input-row">
+            <label for="pctdec-original">Original Value (X)</label>
+            <input id="pctdec-original" type="number" value="200" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row">
+            <label for="pctdec-new">New Value (Y)</label>
+            <input id="pctdec-new" type="number" value="150" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row dec-action-row">
+            <button class="calculator-button full-width" type="button" id="pctdec-calc">
+              Calculate Percentage Decrease
+            </button>
+          </div>
+        </div>
+
+        <aside class="dec-insight-panel" aria-label="Percentage decrease result snapshot">
+          <div class="dec-result-shell">
+            <p class="dec-result-label">Decline Snapshot</p>
+            <div class="result dec-result-value" id="pctdec-result" aria-live="polite">
+              Percentage Decrease: 25.00%
+            </div>
+            <div class="result-detail dec-result-detail" id="pctdec-result-detail" aria-live="polite">
+              Decrease Amount: 50.00 | Direction: Decrease | Formula: ((X - Y) / X) x 100
+            </div>
+          </div>
+
+          <div class="dec-metrics-list">
+            <div class="dec-metric-row">
+              <span>Original Value (X)</span>
+              <strong data-pctdec-snap="original-value">200.00</strong>
+            </div>
+            <div class="dec-metric-row">
+              <span>New Value (Y)</span>
+              <strong data-pctdec-snap="new-value">150.00</strong>
+            </div>
+            <div class="dec-metric-row">
+              <span>Decrease Amount</span>
+              <strong data-pctdec-snap="decrease-amount">50.00</strong>
+            </div>
+            <div class="dec-metric-row">
+              <span>Direction</span>
+              <strong data-pctdec-snap="direction">Decrease</strong>
+            </div>
+            <div class="dec-metric-row">
+              <span>Formula</span>
+              <strong>((X - Y) / X) x 100</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+</div>

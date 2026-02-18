@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "routes": [
+    {
+      "route": "/percentage-calculators/percent-change/",
+      "calculatorId": "percent-change",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-wave1-20260218",
+      "generationMode": "cluster"
+    }
+  ]
+}

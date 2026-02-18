@@ -515,6 +515,101 @@
       ],
       "outputFile": "public/assets/css/route-bundles/loans-leasing-calculator.718b534c.css",
       "criticalOutputFile": "public/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css"
+    },
+    "/percentage-calculators/percent-change-calculator/": {
+      "calculatorId": "percent-change",
+      "relPath": "percentage-calculators/percent-change-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css",
+      "hash": "a19f5d8e",
+      "criticalHash": "3f64b960",
+      "fullBytes": 44492,
+      "criticalBytes": 81792,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percent-change-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
+    },
+    "/percentage-calculators/percentage-difference-calculator/": {
+      "calculatorId": "percentage-difference",
+      "relPath": "percentage-calculators/percentage-difference-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css",
+      "hash": "8a8f706a",
+      "criticalHash": "8360d792",
+      "fullBytes": 44456,
+      "criticalBytes": 81756,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-difference-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css"
+    },
+    "/percentage-calculators/percentage-increase-calculator/": {
+      "calculatorId": "percentage-increase",
+      "relPath": "percentage-calculators/percentage-increase-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css",
+      "hash": "3e77d544",
+      "criticalHash": "f1e8b7a2",
+      "fullBytes": 46733,
+      "criticalBytes": 84033,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-increase-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css"
+    },
+    "/percentage-calculators/percentage-decrease-calculator/": {
+      "calculatorId": "percentage-decrease",
+      "relPath": "percentage-calculators/percentage-decrease-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css",
+      "hash": "01f836a4",
+      "criticalHash": "dd2c7275",
+      "fullBytes": 46729,
+      "criticalBytes": 84029,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-decrease-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css"
+    },
+    "/percentage-calculators/percentage-composition-calculator/": {
+      "calculatorId": "percentage-composition",
+      "relPath": "percentage-calculators/percentage-composition-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css",
+      "hash": "d54a7138",
+      "criticalHash": "4643c96a",
+      "fullBytes": 49092,
+      "criticalBytes": 86392,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-composition-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css"
     }
   }
 }

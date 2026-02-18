@@ -1,0 +1,62 @@
+{
+  "clusterId": "percentage",
+  "displayName": "Percentage Calculators",
+  "globalDestinations": [
+    {
+      "clusterId": "math",
+      "label": "Math",
+      "href": "/math/basic/"
+    },
+    {
+      "clusterId": "home-loan",
+      "label": "Home Loan",
+      "href": "/loans/home-loan/"
+    },
+    {
+      "clusterId": "credit-cards",
+      "label": "Credit Cards",
+      "href": "/loans/credit-card-repayment-payoff/"
+    },
+    {
+      "clusterId": "auto-loans",
+      "label": "Auto Loans",
+      "href": "/loans/car-loan/"
+    },
+    {
+      "clusterId": "finance",
+      "label": "Finance",
+      "href": "/finance/present-value/"
+    },
+    {
+      "clusterId": "time-and-date",
+      "label": "Time & Date",
+      "href": "/time-and-date/sleep-time-calculator/"
+    },
+    {
+      "clusterId": "percentage",
+      "label": "Percentage Calculators",
+      "href": "/percentage-calculators/percent-change/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "percentage-calculators",
+      "name": "Percentage Calculators",
+      "calculators": [
+        { "id": "percent-change", "name": "Percent Change", "url": "/percentage-calculators/percent-change/" },
+        { "id": "percentage-difference", "name": "Percentage Difference", "url": "/percentage-calculators/percentage-difference/" },
+        { "id": "percentage-increase", "name": "Percentage Increase", "url": "/percentage-calculators/percentage-increase/" },
+        { "id": "percentage-decrease", "name": "Percentage Decrease", "url": "/percentage-calculators/percentage-decrease/" },
+        { "id": "percentage-composition", "name": "Percentage Composition", "url": "/percentage-calculators/percentage-composition/" },
+        { "id": "reverse-percentage", "name": "Reverse Percentage", "url": "/percentage-calculators/reverse-percentage/" },
+        { "id": "percent-to-fraction-decimal", "name": "Percent to Fraction/Decimal", "url": "/percentage-calculators/percent-to-fraction-decimal/" },
+        { "id": "what-percent-is-x-of-y", "name": "What Percent Is X of Y", "url": "/percentage-calculators/what-percent-is-x-of-y/" },
+        { "id": "percentage-of-a-number", "name": "Find Percentage of a Number", "url": "/percentage-calculators/percentage-of-a-number/" },
+        { "id": "commission-calculator", "name": "Commission Calculator", "url": "/percentage-calculators/commission-calculator/" },
+        { "id": "discount-calculator", "name": "Discount Calculator", "url": "/percentage-calculators/discount-calculator/" },
+        { "id": "margin-calculator", "name": "Margin Calculator", "url": "/percentage-calculators/margin-calculator/" },
+        { "id": "markup-calculator", "name": "Markup Calculator", "url": "/percentage-calculators/markup-calculator/" }
+      ]
+    }
+  ]
+}

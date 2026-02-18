@@ -1,0 +1,169 @@
+<div id="pct-change-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h3>Results Table</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">What It Means</th>
+            <th scope="col">Your Value</th>
+            <th scope="col">How It Works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Original Value (A)</td>
+            <td><span data-pct-change="a">50.00</span></td>
+            <td class="pv-how-col">Starting value used as the denominator base</td>
+          </tr>
+          <tr>
+            <td>New Value (B)</td>
+            <td><span data-pct-change="b">60.00</span></td>
+            <td class="pv-how-col">Ending value used to compute the change amount</td>
+          </tr>
+          <tr>
+            <td>Change Amount</td>
+            <td><span data-pct-change="amount">10.00</span></td>
+            <td class="pv-how-col">Calculated as B - A</td>
+          </tr>
+          <tr>
+            <td>Direction</td>
+            <td><span data-pct-change="direction">Increase</span></td>
+            <td class="pv-how-col">Increase if positive, decrease if negative, no change if zero</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>((B - A) / A) x 100</td>
+            <td class="pv-how-col">Percent change formula using original value as base</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Percent Change</td>
+          <td><span data-pct-change="percent">+20.00%</span></td>
+            <td class="pv-how-col">Final signed percentage result</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      Percent change compares how far a new value moves away from the original value and expresses
+      that movement as a percentage of the original value.
+    </p>
+
+    <ul class="pv-explanation-list">
+      <li>
+        <strong>Start with both values:</strong>
+        Original value A is <span data-pct-change="a">50.00</span> and new value B is
+        <span data-pct-change="b">60.00</span>.
+      </li>
+      <li>
+        <strong>Find the change amount:</strong>
+        Subtract A from B to get <span data-pct-change="amount">10.00</span>.
+      </li>
+      <li>
+        <strong>Normalize by original value:</strong>
+        Divide the change amount by A so the result is measured relative to the starting point.
+      </li>
+      <li>
+        <strong>Convert to percent:</strong>
+        Multiply by 100 and apply sign direction, resulting in
+        <span data-pct-change="percent">+20.00%</span>.
+      </li>
+      <li>
+        <strong>Interpret direction:</strong>
+        Current direction is <span data-pct-change="direction">Increase</span>.
+      </li>
+    </ul>
+
+    <h4>How the Formula Works</h4>
+    <p>The percent change formula is:</p>
+    <p class="pv-formula-block">% Change = ((B - A) / A) x 100</p>
+    <p>Substituting your values step by step:</p>
+    <ol class="pv-formula-steps">
+      <li>
+        <strong>Compute difference:</strong>
+        B - A = <span data-pct-change="amount">10.00</span>.
+      </li>
+      <li>
+        <strong>Divide by original:</strong>
+        (<span data-pct-change="amount">10.00</span>) / (<span data-pct-change="a">50.00</span>)
+        gives the relative change ratio.
+      </li>
+      <li>
+        <strong>Convert to percentage:</strong>
+        Multiply the ratio by 100 to get <span data-pct-change="percent">+20.00%</span>.
+      </li>
+      <li>
+        <strong>Assign direction:</strong>
+        Use the sign to label the result as <span data-pct-change="direction">Increase</span>.
+      </li>
+    </ol>
+    <p>
+      If A is zero, percent change is undefined because division by zero is not possible.
+    </p>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is percent change?</h4>
+        <p>Percent change is the percentage increase or decrease from an original value to a new value.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How do you calculate percent change from A to B?</h4>
+        <p>Subtract A from B, divide by A, then multiply by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is the percent change formula?</h4>
+        <p>The formula is ((B - A) / A) x 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Why does percent change include a plus or minus sign?</h4>
+        <p>The sign shows whether the change is an increase or a decrease.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What does a negative percent change mean?</h4>
+        <p>A negative percent change means the new value is lower than the original value.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can percent change be greater than 100%?</h4>
+        <p>Yes, if the change is larger than the original value, the percent change can exceed 100%.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>What happens if the original value is zero?</h4>
+        <p>Percent change is undefined because you cannot divide by zero.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Can I use decimals for A and B?</h4>
+        <p>Yes, percent change works the same for decimal values.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is percent change the same as percentage increase?</h4>
+        <p>
+          No, percentage increase only applies when the value goes up, while percent change can be
+          increase or decrease.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Where is percent change used in real life?</h4>
+        <p>It is used for tracking prices, KPIs, growth rates, and changes over time.</p>
+      </div>
+    </div>
+  </section>
+</div>

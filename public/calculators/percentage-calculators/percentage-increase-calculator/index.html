@@ -1,0 +1,65 @@
+<div id="calc-percentage-increase">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="inc-hero" aria-label="Percentage increase calculator">
+        <div class="inc-form-panel">
+          <p class="helper">
+            Measure how much a value has grown from the original amount to the new amount. Enter X
+            and Y, then calculate the increase percentage.
+          </p>
+
+          <div class="input-row">
+            <label for="pct-inc-x">Original Value (X)</label>
+            <input id="pct-inc-x" type="number" value="80" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row">
+            <label for="pct-inc-y">New Value (Y)</label>
+            <input id="pct-inc-y" type="number" value="100" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row inc-action-row">
+            <button class="calculator-button full-width" type="button" id="pct-inc-calc">
+              Calculate Percentage Increase
+            </button>
+          </div>
+        </div>
+
+        <aside class="inc-insight-panel" aria-label="Percentage increase result snapshot">
+          <div class="inc-result-shell">
+            <p class="inc-result-label">Growth Snapshot</p>
+            <div class="result inc-result-value" id="pct-inc-result" aria-live="polite">
+              Percentage Increase: +25.00%
+            </div>
+            <div class="result-detail inc-result-detail" id="pct-inc-result-detail" aria-live="polite">
+              Increase Amount: 20.00 | Direction: Increase | Formula: ((Y - X) / X) x 100
+            </div>
+          </div>
+
+          <div class="inc-metrics-list">
+            <div class="inc-metric-row">
+              <span>Original Value (X)</span>
+              <strong data-pct-inc-snap="x">80.00</strong>
+            </div>
+            <div class="inc-metric-row">
+              <span>New Value (Y)</span>
+              <strong data-pct-inc-snap="y">100.00</strong>
+            </div>
+            <div class="inc-metric-row">
+              <span>Increase Amount</span>
+              <strong data-pct-inc-snap="amount">20.00</strong>
+            </div>
+            <div class="inc-metric-row">
+              <span>Direction</span>
+              <strong data-pct-inc-snap="direction">Increase</strong>
+            </div>
+            <div class="inc-metric-row">
+              <span>Formula</span>
+              <strong>((Y - X) / X) x 100</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+</div>

@@ -94,6 +94,63 @@ D) INFRA (only for build tooling, caching, deployments)
 
 Scope = GOLDEN_SET + 1 real page from top-traffic category
 
+3.1.1 Scoped command matrix (HARD)
+
+HARD: Cluster releases must use only scoped cluster commands:
+
+- `CLUSTER={cluster} npm run test:cluster:unit`
+- `CLUSTER={cluster} npm run test:cluster:e2e`
+- `CLUSTER={cluster} npm run test:cluster:seo`
+- `CLUSTER={cluster} npm run test:cluster:cwv`
+
+HARD: Single-calculator releases must use only scoped calculator commands:
+
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:unit`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:e2e`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:seo`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:cwv`
+
+HARD: Scoped runs must fail fast for missing/invalid `CLUSTER` / `CALC`.
+
+HARD: Global commands (`npm run test`, `npm run test:e2e`, `npm run test:cwv:all`, `npm run test:iss001`) are reserved for full-site releases only.
+
+3.1.2 Calculator Release Type (HARD)
+
+Release Type: `CLUSTER_ROUTE_SINGLE_CALC`
+
+Required scope lock fields:
+- `CLUSTER={cluster}`
+- `CALC={calculator}`
+- `ROUTE={route}`
+
+HARD: `CLUSTER_ROUTE_SINGLE_CALC` releases must run only scoped gates:
+- `test:cluster:*`
+- `test:calc:*`
+- `test:isolation:scope`
+- `test:cluster:contracts`
+
+HARD: Do not run global full-site suites by default for this release type.
+
+HARD: Attach scoped CWV artifact path in sign-off:
+- `test-results/performance/scoped-cwv/{cluster}/{calculator}.json`
+
+3.1.3 Pane Layout Contract (HARD)
+
+Applies to `CLUSTER_ROUTE_SINGLE_CALC` and cluster migration releases.
+
+HARD: If target route uses `routeArchetype=calc_exp`, navigation contract must declare:
+- `paneLayout: "single"`
+
+HARD: Generated route must render combined single-pane contract for `calc_exp`:
+- `panel-span-all`
+- `calculator-page-single`
+
+HARD: `paneLayout: "split"` on any touched target route is release fail.
+
+HARD: Sign-off evidence must include path + snippet proof from:
+- `public/config/navigation.json`
+- generated route HTML (`public/<route>/index.html`)
+
 3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
 HARD: Performance tests must not crawl every calculator by default.
@@ -358,9 +415,17 @@ HARD: CLS ≤ 0.10
 9. CWV Guard Automation — HARD (SCOPED ONLY)
    9.1 Run scoped CWV guard
 
-HARD: TARGET_ROUTE={route} npm run test:cwv:target
+HARD (calculator release): `CLUSTER={cluster} CALC={calculator} npm run test:calc:cwv`
 
-Produces: test-results/performance/cls-guard.json
+HARD: Scoped CWV run must execute both strict first-time-user profiles with cache disabled:
+- `mobile_strict`: CPU 3x + Slow 4G
+- `desktop_strict`: CPU 6x + Slow 4G
+
+HARD: Render-blocking CSS budget must pass in strict CWV artifact:
+- blocking CSS duration <= 800ms
+- blocking CSS request count <= configured threshold
+
+Produces (mandatory evidence): `test-results/performance/scoped-cwv/{cluster}/{calculator}.json`
 
 HARD: PR gates must pass exactly one `TARGET_ROUTE` or policy-approved `GOLDEN_SET` routes.
 

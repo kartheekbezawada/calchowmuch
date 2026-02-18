@@ -11,6 +11,11 @@
 | **Release Type** | |
 | **Scope (Global/Target)** | |
 | **Cluster ID(s)** | |
+| **Calculator ID (CALC)** | |
+| **Primary Route** | |
+| **Route Archetype** | |
+| **Pane Layout Contract** | |
+| **Pane Layout Evidence Path** | |
 | **Ownership Snapshot Ref** | |
 | **Cluster Manifest Ref** | |
 | **Rollback Contract Ref** | |
@@ -36,7 +41,7 @@
 | **B3** | **Mobile Ads** | • **No ads above H1** (Hard Rule)<br>• No overlap with UI | |
 | **C1** | **Field Metrics** | • LCP ≤ 2.5s<br>• CLS ≤ 0.10<br>• INP ≤ 200ms | |
 | **C2** | **Lab Gates** | • No filmstrip shifts<br>• No long tasks near start | |
-| **D1-D4**| **CWV Guard** | • `npm run test:cwv:target` (or all) passed<br>• No regression >20% | |
+| **D1-D4**| **CWV Guard** | • Scoped calc gate passed: `CLUSTER={cluster} CALC={calculator} npm run test:calc:cwv`<br>• strict mobile+desktop profiles passed<br>• render-blocking CSS budget passed | |
 | **E1** | **Ad Slots** | • Reserved `min-height`<br>• Non-collapsing | |
 | **E2** | **Ad Loading** | • Lazy loaded (requestIdleCallback)<br>• Single loader script | |
 | **E3** | **Ad Policy** | • No policy violations (AdSense)<br>• No misleading placement | |
@@ -49,6 +54,7 @@
 | **I2** | **Schema** | • `SoftwareApplication`<br>• `FAQPage`<br>• `BreadcrumbList` | |
 | **I3** | **Indexability** | • Content in initial HTML<br>• Crawlable without JS | |
 | **I4** | **Sitemap** | • Route present in sitemap.xml | |
+| **NAV-PANE-1** | **Pane Layout** | • `calc_exp` route uses single pane only (`paneLayout=single`)<br>• Combined panel contract rendered (`panel-span-all` + `calculator-page-single`) | |
 | **J** | **Content** | • Explanation present<br>• Worked example<br>• 3+ FAQs | |
 | **K** | **Security** | • HTTPS only<br>• Privacy/Terms linked | |
 
@@ -82,6 +88,14 @@
 | **LCP** | | |
 | **CLS** | | |
 | **INP** | | |
+
+### Scoped CWV Strict Profiles (Calculator Release)
+| Profile | CLS | LCP (ms) | Blocking CSS Duration (ms) | Blocking CSS Requests | Pass/Fail |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `mobile_strict` (CPU 3x + Slow 4G, cache disabled) | | | | | |
+| `desktop_strict` (CPU 6x + Slow 4G, cache disabled) | | | | | |
+
+Artifact path (mandatory): `test-results/performance/scoped-cwv/{cluster}/{calculator}.json`
 
 ### Lighthouse Governance Evidence (Mandatory)
 | Field | Value |

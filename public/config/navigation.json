@@ -19,10 +19,10 @@
             {
               "id": "percentage-increase",
               "name": "Percentage Calculator",
-              "url": "/percentage-calculators/percentage-increase/",
+              "url": "/percentage-calculators/percentage-increase-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "fraction-calculator",
@@ -939,7 +939,7 @@
             {
               "id": "percent-change",
               "name": "Percent Change",
-              "url": "/percentage-calculators/percent-change/",
+              "url": "/percentage-calculators/percent-change-calculator/",
               "keywords": [
                 "percent change calculator",
                 "percentage change calculator",
@@ -948,12 +948,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-difference",
               "name": "Percentage Difference",
-              "url": "/percentage-calculators/percentage-difference/",
+              "url": "/percentage-calculators/percentage-difference-calculator/",
               "keywords": [
                 "percentage difference calculator",
                 "percent difference calculator",
@@ -962,12 +962,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-increase",
               "name": "Percentage Increase",
-              "url": "/percentage-calculators/percentage-increase/",
+              "url": "/percentage-calculators/percentage-increase-calculator/",
               "keywords": [
                 "percentage increase calculator",
                 "percent increase calculator",
@@ -976,12 +976,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-decrease",
               "name": "Percentage Decrease",
-              "url": "/percentage-calculators/percentage-decrease/",
+              "url": "/percentage-calculators/percentage-decrease-calculator/",
               "keywords": [
                 "percentage decrease calculator",
                 "percent decrease calculator",
@@ -990,12 +990,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-composition",
               "name": "Percentage Composition",
-              "url": "/percentage-calculators/percentage-composition/",
+              "url": "/percentage-calculators/percentage-composition-calculator/",
               "keywords": [
                 "percentage composition calculator",
                 "share of total calculator",
@@ -1004,12 +1004,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "reverse-percentage",
               "name": "Reverse Percentage",
-              "url": "/percentage-calculators/reverse-percentage/",
+              "url": "/percentage-calculators/reverse-percentage-calculator/",
               "keywords": [
                 "reverse percentage calculator",
                 "find original value from percentage",
@@ -1024,7 +1024,7 @@
             {
               "id": "percent-to-fraction-decimal",
               "name": "Percent to Fraction/Decimal",
-              "url": "/percentage-calculators/percent-to-fraction-decimal/",
+              "url": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
               "keywords": [
                 "percent to fraction converter",
                 "percent to decimal converter",
@@ -1039,7 +1039,7 @@
             {
               "id": "what-percent-is-x-of-y",
               "name": "What Percent Is X of Y",
-              "url": "/percentage-calculators/what-percent-is-x-of-y/",
+              "url": "/percentage-calculators/percentage-finder-calculator/",
               "keywords": [
                 "what percent is X of Y",
                 "X is what percent of Y",
@@ -1054,7 +1054,7 @@
             {
               "id": "percentage-of-a-number",
               "name": "Find Percentage of a Number",
-              "url": "/percentage-calculators/percentage-of-a-number/",
+              "url": "/percentage-calculators/percentage-of-a-number-calculator/",
               "keywords": [
                 "find percentage of a number",
                 "what is x% of y",

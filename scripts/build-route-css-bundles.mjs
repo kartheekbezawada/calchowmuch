@@ -27,7 +27,13 @@ const CALCULATOR_SHARED_SOURCES = [
   'assets/css/shared-calculator-ui.css',
 ];
 
-const CRITICAL_FULL_SOURCES = new Set();
+const CRITICAL_FULL_SOURCES = new Set([
+  'calculators/percentage-calculators/percent-change-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-decrease-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
+]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
   'credit-card-minimum-payment',
@@ -44,6 +50,18 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/loans/credit-card-minimum-payment/',
   '/loans/balance-transfer-installment-plan/',
   '/loans/credit-card-consolidation/',
+  '/percentage-calculators/percent-change-calculator/',
+  '/percentage-calculators/percentage-difference-calculator/',
+  '/percentage-calculators/percentage-increase-calculator/',
+  '/percentage-calculators/percentage-decrease-calculator/',
+  '/percentage-calculators/percentage-composition-calculator/',
+]);
+const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
+  'percent-change',
+  'percentage-difference',
+  'percentage-increase',
+  'percentage-decrease',
+  'percentage-composition',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -237,11 +255,44 @@ const LOANS_MANUAL_OVERRIDES = [
   },
 ];
 
-const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES];
+const PERCENTAGE_ISOLATED_ROUTES = [
+  {
+    calculatorId: 'percent-change',
+    route: '/percentage-calculators/percent-change-calculator/',
+    relPath: 'percentage-calculators/percent-change-calculator',
+    routeCss: 'calculators/percentage-calculators/percent-change-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-difference',
+    route: '/percentage-calculators/percentage-difference-calculator/',
+    relPath: 'percentage-calculators/percentage-difference-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-increase',
+    route: '/percentage-calculators/percentage-increase-calculator/',
+    relPath: 'percentage-calculators/percentage-increase-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-decrease',
+    route: '/percentage-calculators/percentage-decrease-calculator/',
+    relPath: 'percentage-calculators/percentage-decrease-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-decrease-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-composition',
+    route: '/percentage-calculators/percentage-composition-calculator/',
+    relPath: 'percentage-calculators/percentage-composition-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
+  },
+];
+
+const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
+const ISOLATED_ROUTE_CONTRACTS = [...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
 
 function resolveSourcesForRoute(routeConfig) {
-  const isLoansIsolated = LOANS_ISOLATED_ROUTES.some((item) => item.route === routeConfig.route);
-  if (isLoansIsolated) {
+  if (isLoansIsolatedRoute(routeConfig.route) || isPercentageIsolatedRoute(routeConfig.route)) {
     return [...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
   }
   return [...CORE_CSS_SOURCES, ...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
@@ -249,6 +300,14 @@ function resolveSourcesForRoute(routeConfig) {
 
 function isLoansIsolatedRoute(route) {
   return LOANS_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
+function isPercentageIsolatedRoute(route) {
+  return PERCENTAGE_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
+function isIsolatedRoute(route) {
+  return isLoansIsolatedRoute(route) || isPercentageIsolatedRoute(route);
 }
 
 function isFinancePilotRoute(route) {
@@ -458,7 +517,7 @@ function buildAssetManifest(routeBundleManifest) {
 
   const routes = {};
 
-  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+  ISOLATED_ROUTE_CONTRACTS.forEach((routeConfig) => {
     const routeEntry = routeBundleManifest.routes[routeConfig.route];
     if (!routeEntry) {
       throw new Error(`Missing route bundle entry for isolated route ${routeConfig.route}`);
@@ -466,9 +525,12 @@ function buildAssetManifest(routeBundleManifest) {
 
     const isUxFirstDeferredRoute = UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route);
     const coreCssAssets = isUxFirstDeferredRoute ? [] : baseCoreAssets;
-    const deferredRouteAssets = isUxFirstDeferredRoute
+    let deferredRouteAssets = isUxFirstDeferredRoute
       ? [...UX_FIRST_CORE_DEFERRED_ASSETS, routeEntry.deferredHref]
       : [routeEntry.deferredHref];
+    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
+      deferredRouteAssets = [];
+    }
 
     routes[routeConfig.route] = {
       route: routeConfig.route,
@@ -510,7 +572,7 @@ function buildAssetManifest(routeBundleManifest) {
 
   return {
     version: 1,
-    strategy: 'loans-first-strict-route-isolation',
+    strategy: 'route-isolation-cluster-migration',
     routes,
   };
 }
@@ -524,7 +586,7 @@ function buildBundles() {
 
   BUNDLED_ROUTES.forEach((routeConfig) => {
     const sources = resolveSourcesForRoute(routeConfig);
-    let criticalSources = isLoansIsolatedRoute(routeConfig.route)
+    let criticalSources = isIsolatedRoute(routeConfig.route)
       ? ['assets/css/core-shell.css', ...sources]
       : sources;
     if (UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route)) {
@@ -537,11 +599,21 @@ function buildBundles() {
     }
     const fullCriticalSources = new Set(CRITICAL_FULL_SOURCES);
     if (
-      isLoansIsolatedRoute(routeConfig.route) ||
+      isIsolatedRoute(routeConfig.route) ||
       isFinancePilotRoute(routeConfig.route) ||
       FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)
     ) {
       fullCriticalSources.add('assets/css/core-shell.css');
+    }
+    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
+      fullCriticalSources.add('assets/css/core-tokens.css');
+      fullCriticalSources.add('assets/css/theme-premium-dark.css');
+      fullCriticalSources.add('assets/css/base.css');
+      fullCriticalSources.add('assets/css/calculator.css');
+      fullCriticalSources.add('assets/css/shared-calculator-ui.css');
+      criticalSources.forEach((sourcePath) => {
+        fullCriticalSources.add(sourcePath);
+      });
     }
     const bundledCss = sources
       .map((relPath) => `/* source: ${toWebPath(relPath)} */\n${readRequired(relPath).trim()}`)
@@ -660,10 +732,10 @@ function verifyBundles() {
     throw new Error(`Invalid asset manifest format: ${ASSET_MANIFEST_PATH}`);
   }
 
-  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+  ISOLATED_ROUTE_CONTRACTS.forEach((routeConfig) => {
     const entry = assetManifest.routes[routeConfig.route];
     if (!entry) {
-      throw new Error(`Asset manifest missing loans route entry: ${routeConfig.route}`);
+      throw new Error(`Asset manifest missing isolated route entry: ${routeConfig.route}`);
     }
     if (entry.isolationBoundary !== 'route') {
       throw new Error(`Asset manifest isolationBoundary must be route for ${routeConfig.route}`);

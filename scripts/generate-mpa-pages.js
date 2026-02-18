@@ -287,12 +287,39 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
     h1: 'Percent Change Calculator',
+    explanationHeading: '',
+  },
+  'percentage-difference': {
+    title: 'Percentage Difference Calculator – CalcHowMuch',
+    description:
+      'Calculate percentage difference between two values using a symmetric formula based on their average. Free percent difference calculator.',
+    h1: 'Percentage Difference Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'percentage-increase': {
     title: 'Percentage Increase Calculator – CalcHowMuch',
     description:
       'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
     h1: 'Percentage Increase Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'percentage-decrease': {
+    title: 'Percentage Decrease Calculator – CalcHowMuch',
+    description:
+      'Calculate percentage decrease from an original value to a new value instantly. Use our free percent decrease calculator and formula.',
+    h1: 'Percentage Decrease Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'percentage-composition': {
+    title: 'Percentage Composition Calculator – CalcHowMuch',
+    description:
+      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator.",
+    h1: 'Percentage Composition Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
     title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
@@ -1627,7 +1654,7 @@ function buildPageHtml({
       <li><a href="/calculators/">Browse all calculators</a></li>
       <li><a href="/loans/home-loan">Home Loan Calculator</a></li>
       <li><a href="/loans/car-loan">Car Loan Calculator</a></li>
-      <li><a href="/math/percentage-increase">Percentage Calculator</a></li>
+      <li><a href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a></li>
       <li><a href="/math/basic">Basic Calculator</a></li>
     </ul>
   </div>
@@ -1952,10 +1979,15 @@ function buildSitemapXml(categories) {
     { path: '/faqs/', lastmod: '2026-02-09', changefreq: 'monthly', priority: '0.40' },
   ];
   const urls = [];
+  const seen = new Set();
   categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
       subcategory.calculators.forEach((calculator) => {
-        urls.push(calculator.url);
+        const normalized = calculator.url.endsWith('/') ? calculator.url : `${calculator.url}/`;
+        if (!seen.has(normalized)) {
+          seen.add(normalized);
+          urls.push(normalized);
+        }
       });
     });
   });
@@ -1975,7 +2007,7 @@ ${entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : ''}    <changefr
     .map(
       (url) => `
   <url>
-    <loc>https://calchowmuch.com${url.endsWith('/') ? url : `${url}/`}</loc>
+    <loc>https://calchowmuch.com${url}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
@@ -2016,7 +2048,17 @@ function main() {
   navigation.categories.forEach((category) => {
     category.subcategories.forEach((subcategory) => {
       subcategory.calculators.forEach((calculator) => {
-        const relPath = calculatorDirs.get(calculator.id);
+        let relPath = null;
+        if (typeof calculator.url === 'string' && calculator.url.trim()) {
+          const routeDerived = calculator.url.replace(/^\/+|\/+$/g, '');
+          const candidateDir = path.join(CALC_DIR, routeDerived);
+          if (routeDerived && fs.existsSync(candidateDir) && fs.statSync(candidateDir).isDirectory()) {
+            relPath = routeDerived;
+          }
+        }
+        if (!relPath) {
+          relPath = calculatorDirs.get(calculator.id) ?? null;
+        }
         if (!relPath) {
           throw new Error(`Unable to locate calculator folder for ${calculator.id}`);
         }

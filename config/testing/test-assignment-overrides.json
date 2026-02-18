@@ -1,0 +1,15 @@
+{
+  "unit": {
+    "credit-card-utils.test.js": "__cluster__",
+    "finance-static-schema-source-parity.test.js": "__cluster__",
+    "loan-utils.test.js": "__cluster__",
+    "auto-loan-utils.test.js": "__cluster__",
+    "buy-to-let-utils.test.js": "buy-to-let"
+  },
+  "e2e": {
+    "percentage-calculator-logic.spec.js": "__cluster__",
+    "how-much-can-borrow.spec.js": "how-much-can-i-borrow",
+    "overtime-hours-seo.spec.js": "overtime-hours-calculator",
+    "sleep-time-seo.spec.js": "sleep-time-calculator"
+  }
+}

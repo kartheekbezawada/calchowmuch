@@ -1,0 +1,61 @@
+<div id="calc-percent-change">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Percent change calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Calculate percent change from A to B with the correct + or - sign. Enter original and
+            new values, then click calculate.
+          </p>
+
+          <div class="input-row">
+            <label for="pct-change-a">Original Value (A)</label>
+            <input id="pct-change-a" type="number" value="50" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row">
+            <label for="pct-change-b">New Value (B)</label>
+            <input id="pct-change-b" type="number" value="60" step="0.01" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="pct-change-calc">
+              Calculate Percent Change
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="Percent change result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Percent Change Result</p>
+            <div class="result mtg-result-card" id="pct-change-result" aria-live="polite">Percent Change: +20.00%</div>
+            <div class="result-detail mtg-summary-card" id="pct-change-result-detail" aria-live="polite">Change Amount: 10.00 | Direction: Increase | Formula: ((B - A) / A) x 100</div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Original Value (A)</span>
+              <strong data-pct-change-snap="a">50.00</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>New Value (B)</span>
+              <strong data-pct-change-snap="b">60.00</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Change Amount</span>
+              <strong data-pct-change-snap="amount">10.00</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Direction</span>
+              <strong data-pct-change-snap="direction">Increase</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Formula</span>
+              <strong>((B - A) / A) x 100</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+</div>

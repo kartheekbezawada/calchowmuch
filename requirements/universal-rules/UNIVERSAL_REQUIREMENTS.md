@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 3.9 (Cluster isolation + testing efficiency + AdSense snippet governance)
-- **Last Updated:** 2026-02-17
+- **Version:** 4.0 (Cluster + calculator scoped test isolation governance)
+- **Last Updated:** 2026-02-18
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -50,6 +50,23 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-AP-002 (P0):** This document governs implementation standards; AGENTS governs operating contract/roles/override semantics.
 - **UR-AP-003 (P1):** Tracker and documentation updates must reflect repository truth.
 
+### 2.1 Scope Contract Protocol (Agent/Copilot Mandatory)
+
+- **UR-SCOPE-001 (P0):** Before any implementation, any Agent/Copilot must publish a Scope Contract for the current task.
+- **UR-SCOPE-002 (P0):** Scope Contract must include all of the following:
+  - Target calculator(s) and route(s)
+  - Allowed file list (explicit paths)
+  - Forbidden file list (explicit paths or prefixes)
+  - Allowed commands
+  - Forbidden commands
+  - Exact stop rule for out-of-scope requirements
+- **UR-SCOPE-003 (P0):** Agent/Copilot must not edit files until HUMAN explicitly approves the declared Scope Contract.
+- **UR-SCOPE-004 (P0):** If implementation requires any file/command outside approved scope, Agent/Copilot must stop and request explicit approval before proceeding.
+- **UR-SCOPE-005 (P0):** Silent scope expansion is prohibited.
+- **UR-SCOPE-006 (P0):** If a scope violation occurs, Agent/Copilot must stop immediately, revert its own out-of-scope edits, and report root cause + corrective action.
+- **UR-SCOPE-007 (P0):** Shared/core files (for example shell, shared CSS/JS, generators, manifests) are treated as forbidden by default unless explicitly listed as allowed in the approved Scope Contract.
+- **UR-SCOPE-008 (P0):** Release evidence must include the approved scope statement and any approved scope-change deltas.
+
 ---
 
 ## 3) MPA Navigation and Architecture
@@ -85,10 +102,12 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-NAV-034 (P0):** Legacy routes missing metadata must default to `routeArchetype=calc_exp` and inferred `designFamily` without breaking existing pages.
 - **UR-NAV-035 (P0):** Page generation must emit `data-route-archetype` and `data-design-family` on `<body>`.
 - **UR-NAV-036 (P0):** Fragment loading is archetype-bound: `calc_exp` requires `index.html` + `explanation.html`; `calc_only` requires `index.html`; `exp_only` requires `explanation.html`; `content_shell` requires `content.html`.
+- **UR-NAV-037 (P0):** `calc_exp` routes must declare `paneLayout=single`; `paneLayout=split` is disallowed for new or modified calculator routes.
+- **UR-NAV-038 (P1):** Legacy split routes may exist temporarily as migration debt, but any touched/migrated calculator route must be converted to `paneLayout=single` before release signoff.
 
 ### 3.4 Archetype Behavior Matrix
 
-- **`calc_exp`:** Calc Pane (Req) + Exp Pane (Req). Layout: `single` or `split`.
+- **`calc_exp`:** Calc Pane (Req) + Exp Pane (Req). Layout: `single` only.
 - **`calc_only`:** Calc Pane (Req) + Exp Pane (Omitted). Layout: `single`.
 - **`exp_only`:** Calc Pane (Omitted) + Exp Pane (Req). Layout: `single`.
 - **`content_shell`:** Calc Pane (Omitted) + Exp Pane (Omitted). Layout: `single`.
@@ -304,7 +323,23 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
 
-### 8.5 Lighthouse Efficiency + Determinism Governance
+### 8.5 Cluster & Calculator Scoped Test Isolation
+
+- **UR-TEST-040 (P0):** Test folder architecture is mandatory: `tests_specs/{cluster}/cluster_release/` and `tests_specs/{cluster}/{calculator}_release/`.
+- **UR-TEST-041 (P0):** Cluster release folder must contain exactly these baseline files: `unit.cluster.test.js`, `contracts.cluster.test.js`, `e2e.cluster.spec.js`, `seo.cluster.spec.js`, `cwv.cluster.spec.js`, `README.md`.
+- **UR-TEST-042 (P0):** Calculator release folder must contain exactly these baseline files: `unit.calc.test.js`, `e2e.calc.spec.js`, `seo.calc.spec.js`, `cwv.calc.spec.js`, `README.md`.
+- **UR-TEST-043 (P0):** Unit runner isolation is mandatory: `npm run test` must execute only `*.test.js`; Playwright `*.spec.js` files are forbidden in Vitest runs.
+- **UR-TEST-044 (P0):** E2E runner isolation is mandatory: `npm run test:e2e` must execute only `*.spec.js`; Vitest `*.test.js` files are forbidden in Playwright runs.
+- **UR-TEST-045 (P0):** Scoped cluster commands are first-class release gates: `test:cluster:unit`, `test:cluster:e2e`, `test:cluster:seo`, `test:cluster:cwv`; each requires `CLUSTER`.
+- **UR-TEST-046 (P0):** Scoped calculator commands are first-class release gates: `test:calc:unit`, `test:calc:e2e`, `test:calc:seo`, `test:calc:cwv`; each requires `CLUSTER` and `CALC`.
+- **UR-TEST-047 (P0):** Scoped commands must fail fast with deterministic error text for missing/invalid `CLUSTER`/`CALC` values.
+- **UR-TEST-048 (P0):** Global commands (`test`, `test:e2e`, `test:cwv:all`, `test:iss001`) are reserved for full-site releases and are not default for cluster/calculator releases.
+- **UR-TEST-049 (P0):** `test:calc:cwv` is a hard blocker and must run calibrated first-time-user profiles with cache disabled: `mobile_strict` (CPU 3x + Slow 4G) and `desktop_strict` (CPU 6x + Slow 4G).
+- **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `requirements/universal-rules/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
+- **UR-TEST-051 (P0):** Render-blocking CSS budget breach in any strict profile is a hard fail for calculator release (`test:calc:cwv`).
+- **UR-TEST-052 (P0):** Scoped CWV artifact is mandatory evidence: `test-results/performance/scoped-cwv/{cluster}/{calc}.json`.
+
+### 8.6 Lighthouse Efficiency + Determinism Governance
 
 - **UR-TEST-LH-001 (P0):** Test-tooling changes must be small-diff and flag-driven; broad refactors require explicit approval.
 - **UR-TEST-LH-002 (P0):** Default Lighthouse gate category is `performance`.
@@ -319,7 +354,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `requirements/universal-rules/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
 - **UR-TEST-SCOPE-001 (P0):** PR Lighthouse gates must use exactly one `TARGET_ROUTE` or policy-approved golden set; full-site Lighthouse scans are disallowed in PR release gates by default.
 
-### 8.6 Testing Efficiency and Code-Diff Strategy
+### 8.7 Testing Efficiency and Code-Diff Strategy
 
 - **UR-TEST-EFF-001 (P0):** Code-diff strategy is mandatory for testing-tooling changes: no broad refactor/reorganization and no function/file renames unless explicitly approved.
 - **UR-TEST-EFF-002 (P0):** New testing-tool behavior must be flag-driven and default-safe; when flags are unset, approved baseline behavior must remain intact.

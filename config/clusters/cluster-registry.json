@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "clusters": [
+    {
+      "clusterId": "math",
+      "displayName": "Math",
+      "status": "legacy",
+      "routePrefixes": [
+        "/math/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "home-loan",
+      "displayName": "Home Loan",
+      "status": "migrating",
+      "routePrefixes": [
+        "/loans/home-loan/",
+        "/loans/how-much-can-i-borrow/",
+        "/loans/remortgage-switching/",
+        "/loans/buy-to-let/",
+        "/loans/offset-calculator/",
+        "/loans/interest-rate-change-calculator/",
+        "/loans/loan-to-value/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "credit-cards",
+      "displayName": "Credit Cards",
+      "status": "migrating",
+      "routePrefixes": [
+        "/loans/credit-card-repayment-payoff/",
+        "/loans/credit-card-minimum-payment/",
+        "/loans/balance-transfer-installment-plan/",
+        "/loans/credit-card-consolidation/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "auto-loans",
+      "displayName": "Auto Loans",
+      "status": "migrating",
+      "routePrefixes": [
+        "/loans/car-loan/",
+        "/loans/multiple-car-loan/",
+        "/loans/hire-purchase/",
+        "/loans/pcp-calculator/",
+        "/loans/leasing-calculator/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "finance",
+      "displayName": "Finance",
+      "status": "legacy",
+      "routePrefixes": [
+        "/finance/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "time-and-date",
+      "displayName": "Time and Date",
+      "status": "legacy",
+      "routePrefixes": [
+        "/time-and-date/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    },
+    {
+      "clusterId": "percentage",
+      "displayName": "Percentage",
+      "status": "migrating",
+      "routePrefixes": [
+        "/percentage-calculators/"
+      ],
+      "owners": [
+        "platform"
+      ]
+    }
+  ]
+}
