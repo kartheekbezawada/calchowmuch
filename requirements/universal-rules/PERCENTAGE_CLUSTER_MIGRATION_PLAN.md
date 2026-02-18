@@ -104,6 +104,33 @@ Wave 2 acceptance criteria:
 - Scoped strict CWV artifact exists and passes:
   - `test-results/performance/scoped-cwv/percentage/percentage-difference.json`
 
+## 5.3 Wave 3 Implementation Scope (Percentage Increase)
+
+Target route:
+- `/percentage-calculators/percentage-increase/`
+
+Wave 3 changes:
+- Migrate to cluster-owned single-pane architecture (`calc_exp` + `paneLayout=single`)
+- Rebuild route UI with a distinct design language from percent-change while keeping platform patterns
+- Add route-local CSS contract:
+  - `public/calculators/percentage-calculators/percentage-increase/calculator.css`
+- Remove legacy explanation structure:
+  - remove Scenario Summary
+  - replace legacy `calculator-table` with `pv-results-table`
+  - replace `faq-box` blocks with `bor-faq-grid` + `bor-faq-card`
+- Keep percentage-increase formula behavior, validation, and FAQ schema semantics intact
+- Add route-bundle/asset-manifest ownership for this route under percentage cluster
+
+Wave 3 acceptance criteria:
+- Navigation contract uses `routeArchetype: "calc_exp"` and `paneLayout: "single"` for this route
+- Combined pane is rendered (`panel-span-all` + `calculator-page-single`)
+- No Scenario Summary section exists on the page
+- Results table uses `pv-results-table` style family
+- FAQ renders as card-grid (`bor-faq-grid` with 10 cards)
+- Explanation includes bullet list + formula block + ordered steps
+- Scoped strict CWV artifact exists and passes:
+  - `test-results/performance/scoped-cwv/percentage/percentage-increase.json`
+
 ## 6) File-by-File Change Map
 
 Documentation/contracts:

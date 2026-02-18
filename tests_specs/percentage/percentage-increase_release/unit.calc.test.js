@@ -17,7 +17,11 @@ describe('Percentage Increase Calculator - PINC-TEST-U-2: edge cases', () => {
     expect(percentageChange(0, 100)).toBeNull();
   });
 
-  it('can return negative result when new value is smaller (decrease)', () => {
+  it('returns signed percent when new value is smaller (decrease)', () => {
     expect(percentageChange(100, 90)).toBeCloseTo(-10, 8);
+  });
+
+  it('keeps deterministic precision for repeating ratios', () => {
+    expect(percentageChange(3, 4)).toBeCloseTo(33.3333333333, 8);
   });
 });

@@ -22,7 +22,7 @@
               "url": "/percentage-calculators/percentage-increase/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "fraction-calculator",
@@ -976,7 +976,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-decrease",

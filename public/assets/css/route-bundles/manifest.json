@@ -553,6 +553,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference.840d4692.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference.critical.43f60327.css"
+    },
+    "/percentage-calculators/percentage-increase/": {
+      "calculatorId": "percentage-increase",
+      "relPath": "percentage-calculators/percentage-increase",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-increase.2885ca65.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-increase.2885ca65.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-increase.critical.1449aa2b.css",
+      "hash": "2885ca65",
+      "criticalHash": "1449aa2b",
+      "fullBytes": 46722,
+      "criticalBytes": 84022,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-increase/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase.2885ca65.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase.critical.1449aa2b.css"
     }
   }
 }

@@ -8,6 +8,13 @@ const calculateButton = document.querySelector('#pct-inc-calc');
 const resultOutput = document.querySelector('#pct-inc-result');
 const resultDetail = document.querySelector('#pct-inc-result-detail');
 
+const snapshotTargets = {
+  x: document.querySelector('[data-pct-inc-snap="x"]'),
+  y: document.querySelector('[data-pct-inc-snap="y"]'),
+  amount: document.querySelector('[data-pct-inc-snap="amount"]'),
+  direction: document.querySelector('[data-pct-inc-snap="direction"]'),
+};
+
 const explanationRoot = document.querySelector('#pct-inc-explanation');
 const valueTargets = explanationRoot
   ? {
@@ -15,6 +22,7 @@ const valueTargets = explanationRoot
       y: explanationRoot.querySelectorAll('[data-pct-inc="y"]'),
       amount: explanationRoot.querySelectorAll('[data-pct-inc="amount"]'),
       percent: explanationRoot.querySelectorAll('[data-pct-inc="percent"]'),
+      direction: explanationRoot.querySelectorAll('[data-pct-inc="direction"]'),
     }
   : null;
 
@@ -180,8 +188,10 @@ function formatValue(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function formatPercent(value) {
-  return `${formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+function formatSignedPercent(value) {
+  const formatted = formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const sign = value > 0 ? '+' : '';
+  return `${sign}${formatted}%`;
 }
 
 function updateTargets(nodes, value) {
@@ -191,6 +201,13 @@ function updateTargets(nodes, value) {
   nodes.forEach((node) => {
     node.textContent = value;
   });
+}
+
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
 }
 
 let hasCalculated = false;
@@ -216,18 +233,32 @@ function calculate() {
   if (percentIncrease === null) {
     resultOutput.textContent = 'Percentage increase is undefined when original value (X) is 0.';
     resultDetail.textContent = 'Provide an original value other than 0.';
+    updateTargets(valueTargets?.direction, 'Undefined');
+    updateSnapshot('direction', 'Undefined');
     return;
   }
 
   const increaseAmount = y - x;
+  const direction = increaseAmount > 0 ? 'Increase' : increaseAmount < 0 ? 'Decrease' : 'No Change';
 
-  resultOutput.textContent = `Percentage Increase: ${formatPercent(percentIncrease)}`;
-  resultDetail.textContent = `Increase Amount: ${formatValue(increaseAmount)} | Formula: ((Y - X) / X) x 100`;
+  const formattedX = formatValue(x);
+  const formattedY = formatValue(y);
+  const formattedAmount = formatValue(increaseAmount);
+  const formattedPercent = formatSignedPercent(percentIncrease);
 
-  updateTargets(valueTargets?.x, formatValue(x));
-  updateTargets(valueTargets?.y, formatValue(y));
-  updateTargets(valueTargets?.amount, formatValue(increaseAmount));
-  updateTargets(valueTargets?.percent, formatPercent(percentIncrease));
+  resultOutput.textContent = `Percentage Increase: ${formattedPercent}`;
+  resultDetail.textContent = `Increase Amount: ${formattedAmount} | Direction: ${direction} | Formula: ((Y - X) / X) x 100`;
+
+  updateSnapshot('x', formattedX);
+  updateSnapshot('y', formattedY);
+  updateSnapshot('amount', formattedAmount);
+  updateSnapshot('direction', direction);
+
+  updateTargets(valueTargets?.x, formattedX);
+  updateTargets(valueTargets?.y, formattedY);
+  updateTargets(valueTargets?.amount, formattedAmount);
+  updateTargets(valueTargets?.percent, formattedPercent);
+  updateTargets(valueTargets?.direction, direction);
 
   hasCalculated = true;
 }

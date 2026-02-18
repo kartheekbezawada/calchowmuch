@@ -302,6 +302,8 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
     h1: 'Percentage Increase Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
     title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
