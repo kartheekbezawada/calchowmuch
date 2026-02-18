@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Multiple Car Loan Calculator SEO', () => {
   test('MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    await page.goto('/loans/multiple-car-loan');
+    await page.goto('/car-loan-calculators/auto-loan-calculator');
 
     await expect(page).toHaveTitle('Multiple Car Loan Calculator - Compare Two Auto Loans');
 
@@ -18,7 +18,7 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/loans/multiple-car-loan/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -35,6 +35,6 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/loans/multiple-car-loan/');
+    expect(sitemapText).toContain('/car-loan-calculators/auto-loan-calculator/');
   });
 });

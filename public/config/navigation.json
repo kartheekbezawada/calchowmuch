@@ -492,7 +492,7 @@
             {
               "id": "home-loan",
               "name": "Home Loan",
-              "url": "/loans/home-loan/",
+              "url": "/loan-calculators/mortgage-calculator/",
               "keywords": [
                 "mortgage",
                 "home loan",
@@ -508,7 +508,7 @@
             {
               "id": "how-much-can-i-borrow",
               "name": "How Much Can I Borrow",
-              "url": "/loans/how-much-can-i-borrow/",
+              "url": "/loan-calculators/how-much-can-i-borrow/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -516,7 +516,7 @@
             {
               "id": "remortgage-switching",
               "name": "Remortgage / Switching",
-              "url": "/loans/remortgage-switching/",
+              "url": "/loan-calculators/remortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -524,7 +524,7 @@
             {
               "id": "buy-to-let",
               "name": "Buy-to-Let Calculator",
-              "url": "/loans/buy-to-let/",
+              "url": "/loan-calculators/buy-to-let-mortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -532,7 +532,7 @@
             {
               "id": "offset-calculator",
               "name": "Offset Calculator",
-              "url": "/loans/offset-calculator/",
+              "url": "/loan-calculators/offset-mortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -540,7 +540,7 @@
             {
               "id": "interest-rate-change-calculator",
               "name": "Interest Rate Change Calculator",
-              "url": "/loans/interest-rate-change-calculator/",
+              "url": "/loan-calculators/interest-rate-change-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -548,7 +548,7 @@
             {
               "id": "loan-to-value",
               "name": "Loan-to-Value (LTV) Calculator",
-              "url": "/loans/loan-to-value/",
+              "url": "/loan-calculators/ltv-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -563,7 +563,7 @@
             {
               "id": "credit-card-repayment-payoff",
               "name": "Repayment",
-              "url": "/loans/credit-card-repayment-payoff/",
+              "url": "/credit-card-calculators/credit-card-payment-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -571,7 +571,7 @@
             {
               "id": "credit-card-minimum-payment",
               "name": "Minimum Payment",
-              "url": "/loans/credit-card-minimum-payment/",
+              "url": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -579,7 +579,7 @@
             {
               "id": "balance-transfer-installment-plan",
               "name": "Balance Transfer",
-              "url": "/loans/balance-transfer-installment-plan/",
+              "url": "/credit-card-calculators/balance-transfer-credit-card-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -587,7 +587,7 @@
             {
               "id": "credit-card-consolidation",
               "name": "Card Consolidation",
-              "url": "/loans/credit-card-consolidation/",
+              "url": "/credit-card-calculators/credit-card-consolidation-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "credit-cards",
               "paneLayout": "single"
@@ -602,7 +602,7 @@
             {
               "id": "car-loan",
               "name": "Car Loan Calculator",
-              "url": "/loans/car-loan/",
+              "url": "/car-loan-calculators/car-loan-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -610,7 +610,7 @@
             {
               "id": "multiple-car-loan",
               "name": "Multiple Car Loan Calculator",
-              "url": "/loans/multiple-car-loan/",
+              "url": "/car-loan-calculators/auto-loan-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -618,7 +618,7 @@
             {
               "id": "hire-purchase",
               "name": "Hire Purchase Calculator",
-              "url": "/loans/hire-purchase/",
+              "url": "/car-loan-calculators/hire-purchase-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -626,7 +626,7 @@
             {
               "id": "pcp-calculator",
               "name": "PCP Calculator",
-              "url": "/loans/pcp-calculator/",
+              "url": "/car-loan-calculators/pcp-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -634,7 +634,7 @@
             {
               "id": "leasing-calculator",
               "name": "Leasing Calculator",
-              "url": "/loans/leasing-calculator/",
+              "url": "/car-loan-calculators/car-lease-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "auto-loans",
               "paneLayout": "single"
@@ -654,7 +654,7 @@
             {
               "id": "present-value",
               "name": "Present Value (PV)",
-              "url": "/finance/present-value/",
+              "url": "/finance-calculators/present-value-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -662,7 +662,7 @@
             {
               "id": "future-value",
               "name": "Future Value (FV)",
-              "url": "/finance/future-value/",
+              "url": "/finance-calculators/future-value-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -670,7 +670,7 @@
             {
               "id": "present-value-of-annuity",
               "name": "Present Value of Annuity",
-              "url": "/finance/present-value-of-annuity/",
+              "url": "/finance-calculators/present-value-of-annuity-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -678,7 +678,7 @@
             {
               "id": "future-value-of-annuity",
               "name": "Future Value of Annuity",
-              "url": "/finance/future-value-of-annuity/",
+              "url": "/finance-calculators/future-value-of-annuity-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -692,7 +692,7 @@
             {
               "id": "simple-interest",
               "name": "Simple Interest",
-              "url": "/finance/simple-interest/",
+              "url": "/finance-calculators/simple-interest-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -700,7 +700,7 @@
             {
               "id": "compound-interest",
               "name": "Compound Interest",
-              "url": "/finance/compound-interest/",
+              "url": "/finance-calculators/compound-interest-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -708,7 +708,7 @@
             {
               "id": "effective-annual-rate",
               "name": "Effective Annual Rate (EAR)",
-              "url": "/finance/effective-annual-rate/",
+              "url": "/finance-calculators/effective-annual-rate-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -722,7 +722,7 @@
             {
               "id": "investment-growth",
               "name": "Investment Growth",
-              "url": "/finance/investment-growth/",
+              "url": "/finance-calculators/investment-growth-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -730,7 +730,7 @@
             {
               "id": "time-to-savings-goal",
               "name": "Time to Savings Goal",
-              "url": "/finance/time-to-savings-goal/",
+              "url": "/finance-calculators/time-to-savings-goal-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
@@ -738,7 +738,7 @@
             {
               "id": "monthly-savings-needed",
               "name": "Monthly Savings Needed",
-              "url": "/finance/monthly-savings-needed/",
+              "url": "/finance-calculators/monthly-savings-needed-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Present Value Calculator SEO', () => {
   test('PV-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/present-value');
+    await page.goto('/finance-calculators/present-value-calculator');
 
     await expect(page).toHaveTitle('Present Value (PV) Calculator – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Present Value Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/present-value/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/present-value-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Present Value (PV) Calculator – CalcHowMuch');
@@ -52,6 +52,6 @@ test.describe('Present Value Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/present-value/');
+    expect(sitemapText).toContain('/finance-calculators/present-value-calculator/');
   });
 });

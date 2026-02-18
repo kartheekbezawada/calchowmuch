@@ -1,0 +1,191 @@
+<div id="calc-home-loan">
+  <div class="calculator-ui home-loan-ui">
+    <section class="mtg-hero" aria-label="Home loan calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Enter your loan details and see monthly payment, payoff timeline, and savings from extra
+          payments.
+        </p>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="mtg-price">Home Price</label>
+            <span class="slider-value" id="mtg-price-display">400,000</span>
+          </div>
+          <input id="mtg-price" type="range" value="400000" min="10000" max="2000000" step="5000" />
+        </div>
+
+        <div class="input-row down-combined-left">
+          <label id="mtg-down-label">Down Payment Type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="mtg-down-label"
+            data-button-group="mtg-down-type"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="amount"
+              aria-pressed="true"
+            >
+              Amount
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="percent"
+              aria-pressed="false"
+            >
+              Percent
+            </button>
+          </div>
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label id="mtg-down-value-label" for="mtg-down-value">Down Payment Amount</label>
+            <span class="slider-value" id="mtg-down-display">80,000</span>
+          </div>
+          <input id="mtg-down-value" type="range" value="80000" min="0" max="2000000" step="5000" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="mtg-term">Loan Term (years)</label>
+            <span class="slider-value" id="mtg-term-display">30 yrs</span>
+          </div>
+          <input id="mtg-term" type="range" value="30" min="1" max="40" step="1" />
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="mtg-rate">Interest Rate (APR %)</label>
+            <span class="slider-value" id="mtg-rate-display">6.5%</span>
+          </div>
+          <input id="mtg-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
+        </div>
+
+        <details class="advanced-options">
+          <summary>
+            <span class="advanced-summary-title">Advanced Options - Optional</span>
+            <span class="advanced-summary-pill" aria-hidden="true">
+              <span class="summary-state summary-state-expand">
+                <span class="summary-icon">+</span>
+                <span class="summary-text">Expand</span>
+              </span>
+              <span class="summary-state summary-state-close">
+                <span class="summary-icon">-</span>
+                <span class="summary-text">Close</span>
+              </span>
+            </span>
+          </summary>
+
+          <div class="advanced-stack">
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="mtg-tax">Property Tax</label>
+                <input id="mtg-tax" type="number" value="0" min="0" step="0.01" />
+              </div>
+              <div class="input-row">
+                <label for="mtg-insurance">Home Insurance</label>
+                <input id="mtg-insurance" type="number" value="0" min="0" step="0.01" />
+              </div>
+            </div>
+
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="mtg-start">Start Date (optional)</label>
+                <input id="mtg-start" type="month" value="" />
+              </div>
+              <div class="input-row">
+                <label for="mtg-extra">Extra Monthly Payment</label>
+                <input id="mtg-extra" type="number" value="0" min="0" step="0.01" />
+              </div>
+            </div>
+
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="mtg-lump">One-time Lump Sum (optional)</label>
+                <input id="mtg-lump" type="number" value="0" min="0" step="0.01" />
+              </div>
+              <div class="input-row">
+                <label for="mtg-lump-month">Lump Sum Month (number)</label>
+                <input
+                  id="mtg-lump-month"
+                  type="number"
+                  value=""
+                  min="1"
+                  step="1"
+                  placeholder="e.g., 12"
+                />
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="mtg-calculate">
+            Calculate Mortgage
+          </button>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" aria-label="Mortgage scenario snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Monthly Payment</p>
+          <div class="result mtg-result-card" id="mtg-result" aria-live="polite">
+            <strong>Monthly Payment (Principal + Interest)</strong>
+            <span class="mtg-result-value">2,022.62</span>
+          </div>
+          <div class="result-detail mtg-summary-card" id="mtg-summary" aria-live="polite">
+            <p><strong>Payoff with extras:</strong> 30 years.</p>
+            <p>No extra payment applied.</p>
+          </div>
+        </div>
+
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Home Price</span>
+            <strong data-mtg="price">400,000</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Down Payment</span>
+            <strong
+              ><span data-mtg="down-payment">80,000</span> (<span data-mtg="down-percent">20%</span
+              >)</strong
+            >
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Loan Amount</span>
+            <strong data-mtg="loan-amount">320,000</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Interest Rate</span>
+            <strong data-mtg="rate">6.5%</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Loan Term</span>
+            <strong data-mtg="term">30 years</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Extra Monthly</span>
+            <strong data-mtg="extra-monthly">None</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Lump Sum</span>
+            <strong data-mtg="lump-sum">None</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Taxes + Insurance</span>
+            <strong data-mtg="escrow">None</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loan-calculators/mortgage-calculator/calculator.css');
+</style>

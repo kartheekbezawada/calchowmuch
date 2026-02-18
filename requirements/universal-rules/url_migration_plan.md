@@ -1,16 +1,12 @@
-# Urgent Percentage URL Migration (SEO/SERP + Sitemap Only)
+# URL Migration Plan (SEO/SERP + Sitemap Only)
 
-## Summary
-This wave performs a percentage-only URL cutover to canonical `-calculator` slugs with full sitemap and SEO/SERP alignment.
+## Scope
+This document tracks URL-only migration waves. In scope: routes, redirects, sitemap, canonical/internal links, and SEO validation.
 
-Scope guard:
-- In scope: URL paths, redirects, canonical links, sitemap, structured-data URLs, and SEO verification.
-- Out of scope: unit testing, performance/CWV, functional e2e, cluster regrouping, calculator logic/UI changes.
+Out of scope: unit tests, performance/CWV, functional e2e, UI/formula changes.
 
-## Locked Scope
-Cluster: `percentage-calculators` only.
-
-Canonical route map:
+## Wave A — Percentage (Completed)
+Canonical route map (completed):
 1. `/percentage-calculators/percent-change/` -> `/percentage-calculators/percent-change-calculator/`
 2. `/percentage-calculators/percentage-difference/` -> `/percentage-calculators/percentage-difference-calculator/`
 3. `/percentage-calculators/percentage-increase/` -> `/percentage-calculators/percentage-increase-calculator/`
@@ -18,50 +14,104 @@ Canonical route map:
 5. `/percentage-calculators/percentage-composition/` -> `/percentage-calculators/percentage-composition-calculator/`
 6. `/percentage-calculators/reverse-percentage/` -> `/percentage-calculators/reverse-percentage-calculator/`
 7. `/percentage-calculators/percent-to-fraction-decimal/` -> `/percentage-calculators/percent-to-fraction-decimal-calculator/`
-8. `/percentage-calculators/percentage-finder-calculator/` -> `/percentage-calculators/percentage-finder-calculator/`
-9. `/percentage-calculators/percentage-of-a-number/` -> `/percentage-calculators/percentage-of-a-number-calculator/`
+8. `/percentage-calculators/what-percent-is-x-of-y/` -> `/percentage-calculators/percentage-finder-calculator/`
+9. `/percentage-calculators/what-percent-is-calculator/` -> `/percentage-calculators/percentage-finder-calculator/`
+10. `/percentage-calculators/percentage-of-a-number/` -> `/percentage-calculators/percentage-of-a-number-calculator/`
 
 Legacy redirect:
 - `/math/percentage-increase/` -> `/percentage-calculators/percentage-increase-calculator/`
 
-Not in this wave:
-- `commission-calculator`
-- `discount-calculator`
-- `margin-calculator`
-- `markup-calculator`
+## Wave B — Finance (`/finance-calculators/`) (Current)
+Canonical route map:
+1. `/finance/present-value/` -> `/finance-calculators/present-value-calculator/`
+2. `/finance/future-value/` -> `/finance-calculators/future-value-calculator/`
+3. `/finance/present-value-of-annuity/` -> `/finance-calculators/present-value-of-annuity-calculator/`
+4. `/finance/future-value-of-annuity/` -> `/finance-calculators/future-value-of-annuity-calculator/`
+5. `/finance/simple-interest/` -> `/finance-calculators/simple-interest-calculator/`
+6. `/finance/compound-interest/` -> `/finance-calculators/compound-interest-calculator/`
+7. `/finance/effective-annual-rate/` -> `/finance-calculators/effective-annual-rate-calculator/`
+8. `/finance/investment-growth/` -> `/finance-calculators/investment-growth-calculator/`
+9. `/finance/time-to-savings-goal/` -> `/finance-calculators/time-to-savings-goal-calculator/`
+10. `/finance/monthly-savings-needed/` -> `/finance-calculators/monthly-savings-needed-calculator/`
 
-## SEO Contract
-- One canonical URL per migrated calculator.
-- Old URLs permanently redirect (301) to canonical URLs.
-- Sitemap includes only canonical URLs for migrated routes.
-- No duplicate migrated URLs in sitemap.
-- Internal links must use canonical migrated URLs.
+Assumption:
+- `public/calculators/finance/savings-goal/` remains out of scope.
 
-## Execution Checklist
-1. Freeze redirect map for the 9 routes.
-2. Move canonical route folders to new slugs.
-3. Update navigation/generator/structured-data references.
-4. Regenerate pages and sitemap.
-5. Add `_redirects` entries for old -> new paths.
-6. Run SEO-only verification.
-7. Resolve failures and rerun SEO checks.
+## SEO Validation Commands
+1. `CLUSTER=finance npm run test:cluster:seo`
+2. `CLUSTER=finance CALC=present-value npm run test:calc:seo`
+3. `CLUSTER=finance CALC=future-value npm run test:calc:seo`
+4. `CLUSTER=finance CALC=present-value-of-annuity npm run test:calc:seo`
+5. `CLUSTER=finance CALC=future-value-of-annuity npm run test:calc:seo`
+6. `CLUSTER=finance CALC=simple-interest npm run test:calc:seo`
+7. `CLUSTER=finance CALC=compound-interest npm run test:calc:seo`
+8. `CLUSTER=finance CALC=effective-annual-rate npm run test:calc:seo`
+9. `CLUSTER=finance CALC=investment-growth npm run test:calc:seo`
+10. `CLUSTER=finance CALC=time-to-savings-goal npm run test:calc:seo`
+11. `CLUSTER=finance CALC=monthly-savings-needed npm run test:calc:seo`
+12. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
 
-## SEO-Only Validation Commands
-1. `CLUSTER=percentage npm run test:cluster:seo`
-2. `CLUSTER=percentage CALC=percent-change npm run test:calc:seo`
-3. `CLUSTER=percentage CALC=percentage-difference npm run test:calc:seo`
-4. `CLUSTER=percentage CALC=percentage-increase npm run test:calc:seo`
-5. `CLUSTER=percentage CALC=percentage-decrease npm run test:calc:seo`
-6. `CLUSTER=percentage CALC=percentage-composition npm run test:calc:seo`
-7. `CLUSTER=percentage CALC=reverse-percentage npm run test:calc:seo`
-8. `CLUSTER=percentage CALC=percent-to-fraction-decimal npm run test:calc:seo`
-9. `CLUSTER=percentage CALC=what-percent-is-x-of-y npm run test:calc:seo`
-10. `CLUSTER=percentage CALC=percentage-of-a-number npm run test:calc:seo`
-11. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+## Wave C — Loans Home Subset (`/loan-calculators/`) (Current)
+Canonical route map:
+1. `/loans/home-loan/` -> `/loan-calculators/mortgage-calculator/`
+2. `/loans/how-much-can-i-borrow/` -> `/loan-calculators/how-much-can-i-borrow/`
+3. `/loans/remortgage-switching/` -> `/loan-calculators/remortgage-calculator/`
+4. `/loans/buy-to-let/` -> `/loan-calculators/buy-to-let-mortgage-calculator/`
+5. `/loans/offset-calculator/` -> `/loan-calculators/offset-mortgage-calculator/`
+6. `/loans/interest-rate-change-calculator/` -> `/loan-calculators/interest-rate-change-calculator/`
+7. `/loans/loan-to-value/` -> `/loan-calculators/ltv-calculator/`
 
-## Manual SEO/SERP Verification
-- Old URL returns 301.
-- New URL returns 200.
-- Canonical equals served new URL.
-- JSON-LD URL fields match canonical URL.
-- Sitemap has canonical migrated URLs only and no duplicates.
+Scope lock:
+- Home-loan subset only in the loans cluster.
+- Car-loan and credit-card loan routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=loans npm run test:cluster:seo`
+2. `CLUSTER=loans CALC=home-loan npm run test:calc:seo`
+3. `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:seo`
+4. `CLUSTER=loans CALC=remortgage-switching npm run test:calc:seo`
+5. `CLUSTER=loans CALC=buy-to-let npm run test:calc:seo`
+6. `CLUSTER=loans CALC=offset-calculator npm run test:calc:seo`
+7. `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:seo`
+8. `CLUSTER=loans CALC=loan-to-value npm run test:calc:seo`
+9. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+
+## Wave D — Credit Cards Subset (`/credit-card-calculators/`) (Current)
+Canonical route map:
+1. `/loans/credit-card-repayment-payoff/` -> `/credit-card-calculators/credit-card-payment-calculator/`
+2. `/loans/credit-card-consolidation/` -> `/credit-card-calculators/credit-card-consolidation-calculator/`
+3. `/loans/credit-card-minimum-payment/` -> `/credit-card-calculators/credit-card-minimum-payment-calculator/`
+4. `/loans/balance-transfer-installment-plan/` -> `/credit-card-calculators/balance-transfer-credit-card-calculator/`
+
+Scope lock:
+- Credit cards subset only.
+- Home-loan and auto-loan routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=credit-cards npm run test:cluster:seo`
+2. `CLUSTER=credit-cards CALC=credit-card-repayment-payoff npm run test:calc:seo`
+3. `CLUSTER=credit-cards CALC=credit-card-consolidation npm run test:calc:seo`
+4. `CLUSTER=credit-cards CALC=credit-card-minimum-payment npm run test:calc:seo`
+5. `CLUSTER=credit-cards CALC=balance-transfer-installment-plan npm run test:calc:seo`
+6. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+
+## Wave E — Auto-Loan Subset (`/car-loan-calculators/`) (Current)
+Canonical route map:
+1. `/loans/car-loan/` -> `/car-loan-calculators/car-loan-calculator/`
+2. `/loans/multiple-car-loan/` -> `/car-loan-calculators/auto-loan-calculator/`
+3. `/loans/hire-purchase/` -> `/car-loan-calculators/hire-purchase-calculator/`
+4. `/loans/pcp-calculator/` -> `/car-loan-calculators/pcp-calculator/`
+5. `/loans/leasing-calculator/` -> `/car-loan-calculators/car-lease-calculator/`
+
+Scope lock:
+- Auto-loan subset only.
+- Home-loan and credit-card routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=loans npm run test:cluster:seo`
+2. `CLUSTER=loans CALC=car-loan npm run test:calc:seo`
+3. `CLUSTER=loans CALC=multiple-car-loan npm run test:calc:seo`
+4. `CLUSTER=loans CALC=hire-purchase npm run test:calc:seo`
+5. `CLUSTER=loans CALC=pcp-calculator npm run test:calc:seo`
+6. `CLUSTER=loans CALC=leasing-calculator npm run test:calc:seo`
+7. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`

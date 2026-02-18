@@ -9,17 +9,17 @@
     {
       "clusterId": "home-loan",
       "label": "Home Loan",
-      "href": "/loans/home-loan/"
+      "href": "/loan-calculators/mortgage-calculator/"
     },
     {
       "clusterId": "credit-cards",
       "label": "Credit Cards",
-      "href": "/loans/credit-card-repayment-payoff/"
+      "href": "/credit-card-calculators/credit-card-payment-calculator/"
     },
     {
       "clusterId": "auto-loans",
       "label": "Auto Loans",
-      "href": "/loans/car-loan/"
+      "href": "/car-loan-calculators/car-loan-calculator/"
     },
     {
       "clusterId": "finance",

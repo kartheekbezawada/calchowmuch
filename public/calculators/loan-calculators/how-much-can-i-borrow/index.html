@@ -1,0 +1,193 @@
+<style>
+  #calc-how-much-can-borrow {
+    width: 100%;
+  }
+
+  #calc-how-much-can-borrow .borrow-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  #calc-how-much-can-borrow .borrow-form-panel {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
+  }
+
+  #calc-how-much-can-borrow .borrow-result-dashboard {
+    min-height: 328px;
+  }
+
+  #calc-how-much-can-borrow .borrow-metric__value {
+    display: inline-block;
+    min-height: 1.5em;
+  }
+
+  @media (max-width: 900px) {
+    #calc-how-much-can-borrow .borrow-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div id="calc-how-much-can-borrow">
+  <div class="calculator-ui borrow-ui">
+    <section class="borrow-hero" aria-label="Borrowing power calculator">
+      <div class="borrow-form-panel">
+        <p class="helper">
+          Estimate your maximum affordable loan using income multiples or a payment-to-income cap.
+        </p>
+
+        <section class="borrow-section" aria-label="Income and outgoings inputs">
+          <!-- Row 1: Income & Deposit -->
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-gross-income">Gross Annual Income</label>
+                <span class="slider-value" id="bor-gross-income-display">90,000</span>
+              </div>
+              <input
+                id="bor-gross-income"
+                type="range"
+                value="90000"
+                min="0"
+                max="500000"
+                step="1000"
+              />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-deposit">Deposit Amount</label>
+                <span class="slider-value" id="bor-deposit-display">0</span>
+              </div>
+              <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
+            </div>
+          </div>
+
+          <!-- Row 2: Expenses & Debts -->
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-expenses">Monthly Expenses</label>
+                <span class="slider-value" id="bor-expenses-display">1,200</span>
+              </div>
+              <input id="bor-expenses" type="range" value="1200" min="0" max="15000" step="50" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-debts">Monthly Debt Payments</label>
+                <span class="slider-value" id="bor-debts-display">300</span>
+              </div>
+              <input id="bor-debts" type="range" value="300" min="0" max="15000" step="50" />
+            </div>
+          </div>
+        </section>
+
+        <section class="borrow-section" aria-label="Loan setup inputs">
+          <div class="borrow-toggle-row">
+            <span class="row-label">Affordability Method</span>
+            <div class="button-group" data-button-group="bor-method" role="group" aria-label="Affordability method">
+              <button type="button" class="calculator-button is-active" data-value="income" aria-pressed="true">
+                Income Multiple
+              </button>
+              <button type="button" class="calculator-button" data-value="payment" aria-pressed="false">
+                Payment Cap
+              </button>
+            </div>
+          </div>
+
+          <div class="input-row slider-row" id="bor-multiple-row">
+            <div class="slider-header">
+              <label for="bor-multiple">Income Multiple (x)</label>
+              <span class="slider-value" id="bor-multiple-display">4.5x</span>
+            </div>
+            <input id="bor-multiple" type="range" value="4.5" min="2.5" max="7.0" step="0.1" />
+          </div>
+
+          <!-- Row 3: Rate & Term -->
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-rate">Interest Rate (APR %)</label>
+                <span class="slider-value" id="bor-rate-display">6.50%</span>
+              </div>
+              <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="bor-term">Loan Term (years)</label>
+                <span class="slider-value" id="bor-term-display">25 yrs</span>
+              </div>
+              <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
+            </div>
+          </div>
+
+          <!-- Hidden input for logic compatibility -->
+          <input type="hidden" id="bor-net-income" value="0" />
+
+          <div
+            class="borrow-payment-note is-hidden"
+            id="bor-payment-note-row"
+            aria-live="polite"
+            hidden
+          >
+            <p class="borrow-context-note">
+              Calculates borrowing power from a payment-to-income cap after expenses and debts.
+            </p>
+          </div>
+        </section>
+
+        <div class="input-row action-row borrow-action-row">
+          <button class="calculator-button full-width" type="button" id="bor-calculate">
+            Calculate Borrowing Power
+          </button>
+        </div>
+      </div>
+
+      <aside class="borrow-result-dashboard" aria-label="Borrowing capacity results">
+        <p class="borrow-dashboard-label">Your Borrowing Capacity</p>
+
+        <div class="borrow-metric-grid">
+          <div class="borrow-metric borrow-metric--primary">
+            <span class="borrow-metric__label">Maximum Borrow</span>
+            <span class="borrow-metric__value" id="bor-metric-borrow" aria-live="polite"
+              >275,400</span
+            >
+          </div>
+          <div class="borrow-metric borrow-metric--property">
+            <span class="borrow-metric__label">Max Property</span>
+            <span class="borrow-metric__value" id="bor-metric-property" aria-live="polite"
+              >275,400</span
+            >
+          </div>
+          <div class="borrow-metric borrow-metric--payment">
+            <span class="borrow-metric__label">Est. Monthly</span>
+            <span class="borrow-metric__value" id="bor-metric-payment" aria-live="polite"
+              >1,860</span
+            >
+          </div>
+          <div class="borrow-metric borrow-metric--disposable">
+            <span class="borrow-metric__label">Disposable</span>
+            <span class="borrow-metric__value" id="bor-metric-disposable" aria-live="polite"
+              >3,600</span
+            >
+          </div>
+        </div>
+
+        <div class="borrow-constraint-tag" id="bor-constraint" aria-live="polite">
+          Limit determined by monthly budget (affordability)
+        </div>
+        <div class="borrow-error" id="bor-error" aria-live="polite"></div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loan-calculators/how-much-can-i-borrow/calculator.css');
+</style>

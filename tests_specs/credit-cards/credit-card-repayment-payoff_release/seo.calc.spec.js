@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Credit Card Repayment Calculator SEO', () => {
   test('REPAYMENT-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
-    await page.goto('/loans/credit-card-repayment-payoff');
+    await page.goto('/credit-card-calculators/credit-card-payment-calculator');
 
     await expect(page).toHaveTitle(
       'Credit Card Repayment Calculator – Payoff Time & Interest'
@@ -15,12 +15,12 @@ test.describe('Credit Card Repayment Calculator SEO', () => {
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Credit Card Repayment Calculator');
+    await expect(h1).toHaveText('Repayment');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/loans/credit-card-repayment-payoff/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -40,6 +40,6 @@ test.describe('Credit Card Repayment Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/loans/credit-card-repayment-payoff/');
+    expect(sitemapText).toContain('/credit-card-calculators/credit-card-payment-calculator/');
   });
 });

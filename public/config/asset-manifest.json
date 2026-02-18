@@ -2,8 +2,8 @@
   "version": 1,
   "strategy": "route-isolation-cluster-migration",
   "routes": {
-    "/loans/how-much-can-i-borrow/": {
-      "route": "/loans/how-much-can-i-borrow/",
+    "/loan-calculators/how-much-can-i-borrow/": {
+      "route": "/loan-calculators/how-much-can-i-borrow/",
       "calculatorId": "how-much-can-i-borrow",
       "isolationBoundary": "route",
       "css": {
@@ -13,24 +13,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css"
+          "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/how-much-can-i-borrow/module.js"
+          "/calculators/loan-calculators/how-much-can-i-borrow/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/remortgage-switching/": {
-      "route": "/loans/remortgage-switching/",
+    "/loan-calculators/remortgage-calculator/": {
+      "route": "/loan-calculators/remortgage-calculator/",
       "calculatorId": "remortgage-switching",
       "isolationBoundary": "route",
       "css": {
@@ -40,24 +40,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css"
+          "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/remortgage-switching/module.js"
+          "/calculators/loan-calculators/remortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/buy-to-let/": {
-      "route": "/loans/buy-to-let/",
+    "/loan-calculators/buy-to-let-mortgage-calculator/": {
+      "route": "/loan-calculators/buy-to-let-mortgage-calculator/",
       "calculatorId": "buy-to-let",
       "isolationBoundary": "route",
       "css": {
@@ -67,24 +67,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-buy-to-let.c1532170.css"
+          "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/buy-to-let/module.js"
+          "/calculators/loan-calculators/buy-to-let-mortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/offset-calculator/": {
-      "route": "/loans/offset-calculator/",
+    "/loan-calculators/offset-mortgage-calculator/": {
+      "route": "/loan-calculators/offset-mortgage-calculator/",
       "calculatorId": "offset-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -94,24 +94,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-offset-calculator.87be7715.css"
+          "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/offset-calculator/module.js"
+          "/calculators/loan-calculators/offset-mortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/interest-rate-change-calculator/": {
-      "route": "/loans/interest-rate-change-calculator/",
+    "/loan-calculators/interest-rate-change-calculator/": {
+      "route": "/loan-calculators/interest-rate-change-calculator/",
       "calculatorId": "interest-rate-change-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -121,24 +121,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css"
+          "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/interest-rate-change-calculator/module.js"
+          "/calculators/loan-calculators/interest-rate-change-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/loan-to-value/": {
-      "route": "/loans/loan-to-value/",
+    "/loan-calculators/ltv-calculator/": {
+      "route": "/loan-calculators/ltv-calculator/",
       "calculatorId": "loan-to-value",
       "isolationBoundary": "route",
       "css": {
@@ -148,24 +148,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css"
+          "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/loan-to-value/module.js"
+          "/calculators/loan-calculators/ltv-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/credit-card-repayment-payoff/": {
-      "route": "/loans/credit-card-repayment-payoff/",
+    "/credit-card-calculators/credit-card-payment-calculator/": {
+      "route": "/credit-card-calculators/credit-card-payment-calculator/",
       "calculatorId": "credit-card-repayment-payoff",
       "isolationBoundary": "route",
       "css": {
@@ -174,16 +174,16 @@
           "/assets/css/theme-premium-dark.css?v=20260127",
           "/assets/css/base.css?v=20260127",
           "/assets/css/core-tokens.css?v=20260127",
-          "/assets/css/route-bundles/loans-credit-card-repayment-payoff.4a811c66.css"
+          "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-credit-card-repayment-payoff.critical.3e5bbc8e.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/credit-card-repayment-payoff/module.js"
+          "/calculators/credit-card-calculators/credit-card-payment-calculator/module.js"
         ]
       },
       "options": {
@@ -191,8 +191,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/credit-card-minimum-payment/": {
-      "route": "/loans/credit-card-minimum-payment/",
+    "/credit-card-calculators/credit-card-minimum-payment-calculator/": {
+      "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
       "calculatorId": "credit-card-minimum-payment",
       "isolationBoundary": "route",
       "css": {
@@ -201,16 +201,16 @@
           "/assets/css/theme-premium-dark.css?v=20260127",
           "/assets/css/base.css?v=20260127",
           "/assets/css/core-tokens.css?v=20260127",
-          "/assets/css/route-bundles/loans-credit-card-minimum-payment.575fd96c.css"
+          "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-credit-card-minimum-payment.critical.8f1b7348.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/credit-card-minimum-payment/module.js"
+          "/calculators/credit-card-calculators/credit-card-minimum-payment-calculator/module.js"
         ]
       },
       "options": {
@@ -218,8 +218,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/balance-transfer-installment-plan/": {
-      "route": "/loans/balance-transfer-installment-plan/",
+    "/credit-card-calculators/balance-transfer-credit-card-calculator/": {
+      "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",
       "calculatorId": "balance-transfer-installment-plan",
       "isolationBoundary": "route",
       "css": {
@@ -228,16 +228,16 @@
           "/assets/css/theme-premium-dark.css?v=20260127",
           "/assets/css/base.css?v=20260127",
           "/assets/css/core-tokens.css?v=20260127",
-          "/assets/css/route-bundles/loans-balance-transfer-installment-plan.e1826d95.css"
+          "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-balance-transfer-installment-plan.critical.09f748ab.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/balance-transfer-installment-plan/module.js"
+          "/calculators/credit-card-calculators/balance-transfer-credit-card-calculator/module.js"
         ]
       },
       "options": {
@@ -245,8 +245,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/credit-card-consolidation/": {
-      "route": "/loans/credit-card-consolidation/",
+    "/credit-card-calculators/credit-card-consolidation-calculator/": {
+      "route": "/credit-card-calculators/credit-card-consolidation-calculator/",
       "calculatorId": "credit-card-consolidation",
       "isolationBoundary": "route",
       "css": {
@@ -255,16 +255,16 @@
           "/assets/css/theme-premium-dark.css?v=20260127",
           "/assets/css/base.css?v=20260127",
           "/assets/css/core-tokens.css?v=20260127",
-          "/assets/css/route-bundles/loans-credit-card-consolidation.badbe2c8.css"
+          "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-credit-card-consolidation.critical.898f8d55.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/credit-card-consolidation/module.js"
+          "/calculators/credit-card-calculators/credit-card-consolidation-calculator/module.js"
         ]
       },
       "options": {
@@ -272,8 +272,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/car-loan/": {
-      "route": "/loans/car-loan/",
+    "/car-loan-calculators/car-loan-calculator/": {
+      "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "isolationBoundary": "route",
       "css": {
@@ -283,24 +283,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-car-loan.e80c8568.css"
+          "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-car-loan.critical.dfec91a3.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/car-loan/module.js"
+          "/calculators/car-loan-calculators/car-loan-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/multiple-car-loan/": {
-      "route": "/loans/multiple-car-loan/",
+    "/car-loan-calculators/auto-loan-calculator/": {
+      "route": "/car-loan-calculators/auto-loan-calculator/",
       "calculatorId": "multiple-car-loan",
       "isolationBoundary": "route",
       "css": {
@@ -310,24 +310,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-multiple-car-loan.33436fb9.css"
+          "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-multiple-car-loan.critical.dfec91a3.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/multiple-car-loan/module.js"
+          "/calculators/car-loan-calculators/auto-loan-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/hire-purchase/": {
-      "route": "/loans/hire-purchase/",
+    "/car-loan-calculators/hire-purchase-calculator/": {
+      "route": "/car-loan-calculators/hire-purchase-calculator/",
       "calculatorId": "hire-purchase",
       "isolationBoundary": "route",
       "css": {
@@ -337,24 +337,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-hire-purchase.38a648e7.css"
+          "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-hire-purchase.critical.dfec91a3.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/hire-purchase/module.js"
+          "/calculators/car-loan-calculators/hire-purchase-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/pcp-calculator/": {
-      "route": "/loans/pcp-calculator/",
+    "/car-loan-calculators/pcp-calculator/": {
+      "route": "/car-loan-calculators/pcp-calculator/",
       "calculatorId": "pcp-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -364,24 +364,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-pcp-calculator.4dfe739d.css"
+          "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-pcp-calculator.critical.a10784a0.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/pcp-calculator/module.js"
+          "/calculators/car-loan-calculators/pcp-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/leasing-calculator/": {
-      "route": "/loans/leasing-calculator/",
+    "/car-loan-calculators/car-lease-calculator/": {
+      "route": "/car-loan-calculators/car-lease-calculator/",
       "calculatorId": "leasing-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -391,16 +391,16 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-leasing-calculator.718b534c.css"
+          "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/leasing-calculator/module.js"
+          "/calculators/car-loan-calculators/car-lease-calculator/module.js"
         ]
       },
       "options": {
@@ -517,8 +517,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/home-loan/": {
-      "route": "/loans/home-loan/",
+    "/loan-calculators/mortgage-calculator/": {
+      "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",
       "isolationBoundary": "route",
       "css": {
@@ -536,7 +536,7 @@
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/home-loan/module.js"
+          "/calculators/loan-calculators/mortgage-calculator/module.js"
         ]
       },
       "options": {

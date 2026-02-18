@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Credit Card Minimum Payment Calculator SEO', () => {
   test('MINPAY-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap', async ({ page }) => {
-    await page.goto('/loans/credit-card-minimum-payment');
+    await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator');
 
     await expect(page).toHaveTitle('Credit Card Minimum Payment Calculator -- True Cost of Minimums');
 
@@ -18,7 +18,7 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
-      'https://calchowmuch.com/loans/credit-card-minimum-payment/'
+      'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/'
     );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
@@ -44,11 +44,11 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/loans/credit-card-minimum-payment/');
+    expect(sitemapText).toContain('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     const humanSitemapResponse = await page.request.get('/sitemap/');
     expect(humanSitemapResponse.ok()).toBeTruthy();
     const humanSitemapText = await humanSitemapResponse.text();
-    expect(humanSitemapText).toContain('/loans/credit-card-minimum-payment');
+    expect(humanSitemapText).toContain('/credit-card-calculators/credit-card-minimum-payment-calculator');
   });
 });

@@ -232,132 +232,132 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/home-loan/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/mortgage-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/how-much-can-i-borrow/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/remortgage-switching/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/remortgage-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/buy-to-let/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/buy-to-let-mortgage-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/offset-calculator/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/interest-rate-change-calculator/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/loan-to-value/</loc>
+    <loc>https://calchowmuch.com/loan-calculators/ltv-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/credit-card-repayment-payoff/</loc>
+    <loc>https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/credit-card-minimum-payment/</loc>
+    <loc>https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/balance-transfer-installment-plan/</loc>
+    <loc>https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/credit-card-consolidation/</loc>
+    <loc>https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/car-loan/</loc>
+    <loc>https://calchowmuch.com/car-loan-calculators/car-loan-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/multiple-car-loan/</loc>
+    <loc>https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/hire-purchase/</loc>
+    <loc>https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/pcp-calculator/</loc>
+    <loc>https://calchowmuch.com/car-loan-calculators/pcp-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/loans/leasing-calculator/</loc>
+    <loc>https://calchowmuch.com/car-loan-calculators/car-lease-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/present-value/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/present-value-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/future-value/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/future-value-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/present-value-of-annuity/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/present-value-of-annuity-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/future-value-of-annuity/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/future-value-of-annuity-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/simple-interest/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/simple-interest-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/compound-interest/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/compound-interest-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/effective-annual-rate/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/investment-growth/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/investment-growth-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/time-to-savings-goal/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/finance/monthly-savings-needed/</loc>
+    <loc>https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

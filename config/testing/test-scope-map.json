@@ -197,66 +197,66 @@
     "loans": {
       "clusterReleaseDir": "tests_specs/loans/cluster_release",
       "routes": [
-        "/loans/buy-to-let/",
-        "/loans/car-loan/",
-        "/loans/hire-purchase/",
-        "/loans/home-loan/",
-        "/loans/how-much-can-i-borrow/",
-        "/loans/interest-rate-change-calculator/",
-        "/loans/leasing-calculator/",
-        "/loans/loan-to-value/",
-        "/loans/multiple-car-loan/",
-        "/loans/offset-calculator/",
-        "/loans/pcp-calculator/",
-        "/loans/remortgage-switching/"
+        "/loan-calculators/buy-to-let-mortgage-calculator/",
+        "/car-loan-calculators/car-loan-calculator/",
+        "/car-loan-calculators/hire-purchase-calculator/",
+        "/loan-calculators/mortgage-calculator/",
+        "/loan-calculators/how-much-can-i-borrow/",
+        "/loan-calculators/interest-rate-change-calculator/",
+        "/car-loan-calculators/car-lease-calculator/",
+        "/loan-calculators/ltv-calculator/",
+        "/car-loan-calculators/auto-loan-calculator/",
+        "/loan-calculators/offset-mortgage-calculator/",
+        "/car-loan-calculators/pcp-calculator/",
+        "/loan-calculators/remortgage-calculator/"
       ],
       "calculators": {
         "home-loan": {
-          "route": "/loans/home-loan/",
+          "route": "/loan-calculators/mortgage-calculator/",
           "releaseDir": "tests_specs/loans/home-loan_release"
         },
         "how-much-can-i-borrow": {
-          "route": "/loans/how-much-can-i-borrow/",
+          "route": "/loan-calculators/how-much-can-i-borrow/",
           "releaseDir": "tests_specs/loans/how-much-can-i-borrow_release"
         },
         "remortgage-switching": {
-          "route": "/loans/remortgage-switching/",
+          "route": "/loan-calculators/remortgage-calculator/",
           "releaseDir": "tests_specs/loans/remortgage-switching_release"
         },
         "buy-to-let": {
-          "route": "/loans/buy-to-let/",
+          "route": "/loan-calculators/buy-to-let-mortgage-calculator/",
           "releaseDir": "tests_specs/loans/buy-to-let_release"
         },
         "offset-calculator": {
-          "route": "/loans/offset-calculator/",
+          "route": "/loan-calculators/offset-mortgage-calculator/",
           "releaseDir": "tests_specs/loans/offset-calculator_release"
         },
         "interest-rate-change-calculator": {
-          "route": "/loans/interest-rate-change-calculator/",
+          "route": "/loan-calculators/interest-rate-change-calculator/",
           "releaseDir": "tests_specs/loans/interest-rate-change-calculator_release"
         },
         "loan-to-value": {
-          "route": "/loans/loan-to-value/",
+          "route": "/loan-calculators/ltv-calculator/",
           "releaseDir": "tests_specs/loans/loan-to-value_release"
         },
         "car-loan": {
-          "route": "/loans/car-loan/",
+          "route": "/car-loan-calculators/car-loan-calculator/",
           "releaseDir": "tests_specs/loans/car-loan_release"
         },
         "multiple-car-loan": {
-          "route": "/loans/multiple-car-loan/",
+          "route": "/car-loan-calculators/auto-loan-calculator/",
           "releaseDir": "tests_specs/loans/multiple-car-loan_release"
         },
         "hire-purchase": {
-          "route": "/loans/hire-purchase/",
+          "route": "/car-loan-calculators/hire-purchase-calculator/",
           "releaseDir": "tests_specs/loans/hire-purchase_release"
         },
         "pcp-calculator": {
-          "route": "/loans/pcp-calculator/",
+          "route": "/car-loan-calculators/pcp-calculator/",
           "releaseDir": "tests_specs/loans/pcp-calculator_release"
         },
         "leasing-calculator": {
-          "route": "/loans/leasing-calculator/",
+          "route": "/car-loan-calculators/car-lease-calculator/",
           "releaseDir": "tests_specs/loans/leasing-calculator_release"
         }
       }
@@ -264,26 +264,26 @@
     "credit-cards": {
       "clusterReleaseDir": "tests_specs/credit-cards/cluster_release",
       "routes": [
-        "/loans/balance-transfer-installment-plan/",
-        "/loans/credit-card-consolidation/",
-        "/loans/credit-card-minimum-payment/",
-        "/loans/credit-card-repayment-payoff/"
+        "/credit-card-calculators/balance-transfer-credit-card-calculator/",
+        "/credit-card-calculators/credit-card-consolidation-calculator/",
+        "/credit-card-calculators/credit-card-minimum-payment-calculator/",
+        "/credit-card-calculators/credit-card-payment-calculator/"
       ],
       "calculators": {
         "credit-card-repayment-payoff": {
-          "route": "/loans/credit-card-repayment-payoff/",
+          "route": "/credit-card-calculators/credit-card-payment-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-repayment-payoff_release"
         },
         "credit-card-minimum-payment": {
-          "route": "/loans/credit-card-minimum-payment/",
+          "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-minimum-payment_release"
         },
         "balance-transfer-installment-plan": {
-          "route": "/loans/balance-transfer-installment-plan/",
+          "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",
           "releaseDir": "tests_specs/credit-cards/balance-transfer-installment-plan_release"
         },
         "credit-card-consolidation": {
-          "route": "/loans/credit-card-consolidation/",
+          "route": "/credit-card-calculators/credit-card-consolidation-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-consolidation_release"
         }
       }
@@ -291,56 +291,56 @@
     "finance": {
       "clusterReleaseDir": "tests_specs/finance/cluster_release",
       "routes": [
-        "/finance/compound-interest/",
-        "/finance/effective-annual-rate/",
-        "/finance/future-value-of-annuity/",
-        "/finance/future-value/",
-        "/finance/investment-growth/",
-        "/finance/monthly-savings-needed/",
-        "/finance/present-value-of-annuity/",
-        "/finance/present-value/",
-        "/finance/simple-interest/",
-        "/finance/time-to-savings-goal/"
+        "/finance-calculators/compound-interest-calculator/",
+        "/finance-calculators/effective-annual-rate-calculator/",
+        "/finance-calculators/future-value-of-annuity-calculator/",
+        "/finance-calculators/future-value-calculator/",
+        "/finance-calculators/investment-growth-calculator/",
+        "/finance-calculators/monthly-savings-needed-calculator/",
+        "/finance-calculators/present-value-of-annuity-calculator/",
+        "/finance-calculators/present-value-calculator/",
+        "/finance-calculators/simple-interest-calculator/",
+        "/finance-calculators/time-to-savings-goal-calculator/"
       ],
       "calculators": {
         "present-value": {
-          "route": "/finance/present-value/",
+          "route": "/finance-calculators/present-value-calculator/",
           "releaseDir": "tests_specs/finance/present-value_release"
         },
         "future-value": {
-          "route": "/finance/future-value/",
+          "route": "/finance-calculators/future-value-calculator/",
           "releaseDir": "tests_specs/finance/future-value_release"
         },
         "present-value-of-annuity": {
-          "route": "/finance/present-value-of-annuity/",
+          "route": "/finance-calculators/present-value-of-annuity-calculator/",
           "releaseDir": "tests_specs/finance/present-value-of-annuity_release"
         },
         "future-value-of-annuity": {
-          "route": "/finance/future-value-of-annuity/",
+          "route": "/finance-calculators/future-value-of-annuity-calculator/",
           "releaseDir": "tests_specs/finance/future-value-of-annuity_release"
         },
         "simple-interest": {
-          "route": "/finance/simple-interest/",
+          "route": "/finance-calculators/simple-interest-calculator/",
           "releaseDir": "tests_specs/finance/simple-interest_release"
         },
         "compound-interest": {
-          "route": "/finance/compound-interest/",
+          "route": "/finance-calculators/compound-interest-calculator/",
           "releaseDir": "tests_specs/finance/compound-interest_release"
         },
         "effective-annual-rate": {
-          "route": "/finance/effective-annual-rate/",
+          "route": "/finance-calculators/effective-annual-rate-calculator/",
           "releaseDir": "tests_specs/finance/effective-annual-rate_release"
         },
         "investment-growth": {
-          "route": "/finance/investment-growth/",
+          "route": "/finance-calculators/investment-growth-calculator/",
           "releaseDir": "tests_specs/finance/investment-growth_release"
         },
         "time-to-savings-goal": {
-          "route": "/finance/time-to-savings-goal/",
+          "route": "/finance-calculators/time-to-savings-goal-calculator/",
           "releaseDir": "tests_specs/finance/time-to-savings-goal_release"
         },
         "monthly-savings-needed": {
-          "route": "/finance/monthly-savings-needed/",
+          "route": "/finance-calculators/monthly-savings-needed-calculator/",
           "releaseDir": "tests_specs/finance/monthly-savings-needed_release"
         }
       }

@@ -967,7 +967,7 @@ function buildHomeLoanStructuredData({
           '@type': 'ListItem',
           position: 2,
           name: 'Home Loan',
-          item: `${SITE_URL}/loans/home-loan/`,
+          item: `${SITE_URL}/loan-calculators/mortgage-calculator/`,
         },
         {
           '@type': 'ListItem',
@@ -1652,8 +1652,8 @@ function buildPageHtml({
     <p class="helper">Popular starting points:</p>
     <ul>
       <li><a href="/calculators/">Browse all calculators</a></li>
-      <li><a href="/loans/home-loan">Home Loan Calculator</a></li>
-      <li><a href="/loans/car-loan">Car Loan Calculator</a></li>
+      <li><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a></li>
+      <li><a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a></li>
       <li><a href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a></li>
       <li><a href="/math/basic">Basic Calculator</a></li>
     </ul>

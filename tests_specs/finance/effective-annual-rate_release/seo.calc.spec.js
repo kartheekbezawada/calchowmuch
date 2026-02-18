@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Effective Annual Rate Calculator SEO', () => {
   test('EAR-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/effective-annual-rate');
+    await page.goto('/finance-calculators/effective-annual-rate-calculator');
 
     await expect(page).toHaveTitle('Effective Annual Rate (EAR) Calculator – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Effective Annual Rate Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/effective-annual-rate/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Effective Annual Rate (EAR) Calculator – CalcHowMuch');
@@ -42,6 +42,6 @@ test.describe('Effective Annual Rate Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/effective-annual-rate/');
+    expect(sitemapText).toContain('/finance-calculators/effective-annual-rate-calculator/');
   });
 });

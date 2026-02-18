@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Simple Interest Calculator SEO', () => {
   test('SI-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/simple-interest');
+    await page.goto('/finance-calculators/simple-interest-calculator');
 
     await expect(page).toHaveTitle('Simple Interest Calculator – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Simple Interest Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/simple-interest/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/simple-interest-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Simple Interest Calculator – CalcHowMuch');
@@ -42,6 +42,6 @@ test.describe('Simple Interest Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/simple-interest/');
+    expect(sitemapText).toContain('/finance-calculators/simple-interest-calculator/');
   });
 });
