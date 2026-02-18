@@ -1,0 +1,199 @@
+# Percentage Cluster Migration Plan
+
+## 1) Purpose and Scope
+
+This document is the execution plan for migrating Percentage calculators to cluster-owned architecture under Universal Requirements.
+
+Wave 1 scope:
+- Documentation + contracts bootstrap
+- Migrate only `/percentage-calculators/percent-change/`
+
+Rollout model:
+- One-by-one migration for remaining Percentage calculators
+- Public URL and public category label remain unchanged during migration
+
+## 2) Governance Mapping (UR IDs)
+
+- MPA navigation: `UR-NAV-001`, `UR-NAV-002`
+- Navigation hierarchy/governed source: `UR-NAV-003`, `UR-NAV-004`
+- Cluster boundaries and isolation: `UR-CLUSTER-001` to `UR-CLUSTER-020`
+- Route ownership contract: `UR-CLUSTER-008`
+- Cluster registry contract: `UR-CLUSTER-009`
+- Per-cluster nav/asset contracts: `UR-CLUSTER-010`
+- Isolation fence: `UR-CLUSTER-011`, `UR-CLUSTER-012`
+- Global nav parity: `UR-CLUSTER-015`
+- Cross-cluster guards in release gates: `UR-CLUSTER-017`
+- Sitemap inclusion and infrastructure: `UR-SMAP-001`, `UR-SMAP-005`
+- Factory pipeline: `UR-FLOW-001`, `UR-FLOW-010`, `UR-FLOW-011`, `UR-FLOW-012`, `UR-FLOW-013`
+
+## 3) Current-State Gap Analysis
+
+Detected in this repository branch:
+- Missing `config/clusters/cluster-registry.json`
+- Missing `config/clusters/route-ownership.json`
+- Missing `clusters/percentage/config/navigation.json`
+- Missing `clusters/percentage/config/asset-manifest.json`
+- Missing `config/policy/global-navigation-spec.json`
+- Missing `requirements/universal-rules/release-signoffs/`
+
+Wave 1 includes bootstrapping these artifacts.
+
+## 4) Target Architecture for Percentage Cluster
+
+- Cluster ID: `percentage`
+- Owner scope: all `/percentage-calculators/**`
+- Public route behavior: unchanged URLs, MPA hard navigation with `<a href>`
+- Runtime/build ownership: cluster-owned contracts and manifests
+- Cross-cluster behavior: link-only allowed, runtime imports across clusters prohibited
+
+## 5) Wave 1 Implementation Scope (Percent Change Only)
+
+Target route:
+- `/percentage-calculators/percent-change/`
+
+Wave 1 changes:
+- Redesign percent-change to new standard (present-value style baseline)
+- Add route-specific calculator CSS
+- Keep compute behavior and SEO semantics intact
+- Add ownership + manifest contracts for this route
+- Apply Wave 1 explanation harmonization patch:
+  - Remove Scenario Summary section
+  - Use present-value style Results Table design
+  - Convert Explanation to bullet points + formula block + formula steps
+  - Use present-value style FAQ card grid and color family
+
+Out of scope:
+- Migrating any other percentage calculator in this release
+- Public category rename changes
+
+### 5.1 Wave 1 UI Harmonization Patch
+
+Accepted refinement for `/percentage-calculators/percent-change/` only:
+- FAQ design and color aligned with present-value card-grid style
+- Scenario Summary removed
+- Results Table aligned with present-value table style
+- Explanation rewritten as bullet-based formula walkthrough
+
+Acceptance criteria:
+- No Scenario Summary section exists on the page
+- FAQ is rendered as card-grid style (not legacy faq-box blocks)
+- Results table uses present-value style family
+- Explanation includes bullet list, formula block, and formula steps
+
+## 6) File-by-File Change Map
+
+Documentation/contracts:
+- `requirements/universal-rules/PERCENTAGE_CLUSTER_MIGRATION_PLAN.md`
+- `config/clusters/cluster-registry.json`
+- `config/clusters/route-ownership.json`
+- `clusters/percentage/config/navigation.json`
+- `clusters/percentage/config/asset-manifest.json`
+- `config/policy/global-navigation-spec.json`
+- `scripts/validate-cluster-contracts.mjs`
+
+Wave 1 route:
+- `public/calculators/percentage-calculators/percent-change/index.html`
+- `public/calculators/percentage-calculators/percent-change/module.js`
+- `public/calculators/percentage-calculators/percent-change/explanation.html`
+- `public/calculators/percentage-calculators/percent-change/calculator.css`
+- `public/config/navigation.json`
+- `public/config/asset-manifest.json`
+- `scripts/build-route-css-bundles.mjs`
+- `scripts/generate-mpa-pages.js` (generation wiring only if needed)
+
+Release evidence:
+- `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_<ID>.md`
+- `requirements/universal-rules/Release Sign-Off Master Table.md`
+
+## 7) Build/Test/Release Checklist Command Matrix
+
+Build/update:
+1. `npm run build:css:route-bundles`
+2. `TARGET_ROUTE=/percentage-calculators/percent-change/ node scripts/generate-mpa-pages.js`
+
+Scoped release gates (default for cluster/calculator releases):
+1. `CLUSTER=percentage npm run test:cluster:unit`
+2. `CLUSTER=percentage npm run test:cluster:e2e`
+3. `CLUSTER=percentage npm run test:cluster:seo`
+4. `CLUSTER=percentage npm run test:cluster:cwv`
+5. `CLUSTER=percentage CALC=percent-change npm run test:calc:unit`
+6. `CLUSTER=percentage CALC=percent-change npm run test:calc:e2e`
+7. `CLUSTER=percentage CALC=percent-change npm run test:calc:seo`
+8. `CLUSTER=percentage CALC=percent-change npm run test:calc:cwv`
+9. `npm run test:isolation:scope`
+10. `npm run test:cluster:contracts`
+
+Global full-site gates (reserved for full-site releases only):
+1. `npm run lint`
+2. `npm run test`
+3. `npm run test:e2e`
+4. `npm run test:cwv:all`
+5. `npm run test:iss001`
+
+Rule: Any hard fail => fix and rerun failed gates.
+
+## 8) Sign-Off Evidence and Artifacts
+
+Required evidence in release sign-off:
+- Checklist results (pass/fail)
+- Test command outputs and scope
+- CWV and Lighthouse governance fields
+- Ownership/parity/isolation contract checks
+- Sitemap evidence for `/percentage-calculators/percent-change/`
+
+Artifacts:
+- `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_<ID>.md`
+- Master ledger update in `requirements/universal-rules/Release Sign-Off Master Table.md`
+
+## 9) Rollback Model (Percent Change)
+
+Ownership-driven rollback:
+- Route: `/percentage-calculators/percent-change/`
+- Rollback field source: `config/clusters/route-ownership.json`
+- Procedure:
+  1. Switch `activeOwnerClusterId` to `previousOwnerClusterId`
+  2. Restore assets using `rollbackTag`
+  3. Regenerate route HTML for target route only
+
+## 10) Wave 2+ Template Checklist
+
+For each next Percentage calculator:
+1. Add route ownership entry with rollback fields
+2. Add/update cluster asset manifest mapping
+3. Migrate route UI to cluster pattern
+4. Create/verify calculator release test folder:
+   - `tests_specs/percentage/<calculator>_release/unit.calc.test.js`
+   - `tests_specs/percentage/<calculator>_release/e2e.calc.spec.js`
+   - `tests_specs/percentage/<calculator>_release/seo.calc.spec.js`
+   - `tests_specs/percentage/<calculator>_release/cwv.calc.spec.js`
+   - `tests_specs/percentage/<calculator>_release/README.md`
+5. Regenerate target route only
+6. Run required scoped release gates
+7. Record sign-off evidence
+8. Update master sign-off table
+
+## 11) Test Isolation Model (Adopted)
+
+Cluster release folder:
+- `tests_specs/percentage/cluster_release/`
+- Required files:
+  - `unit.cluster.test.js`
+  - `contracts.cluster.test.js`
+  - `e2e.cluster.spec.js`
+  - `seo.cluster.spec.js`
+  - `cwv.cluster.spec.js`
+  - `README.md`
+
+Calculator release folder:
+- `tests_specs/percentage/<calculator>_release/`
+- Required files:
+  - `unit.calc.test.js`
+  - `e2e.calc.spec.js`
+  - `seo.calc.spec.js`
+  - `cwv.calc.spec.js`
+  - `README.md`
+
+Runner isolation:
+- `vitest.config.js` runs only `*.test.js`
+- `playwright.config.js` runs only `*.spec.js`
+- Scoped commands must fail fast if `CLUSTER` / `CALC` values are missing or invalid

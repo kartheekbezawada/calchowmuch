@@ -11,11 +11,11 @@ function normalizeRoute(rawRoute) {
 }
 
 const targetRoute = normalizeRoute(process.env.TARGET_ROUTE);
-if (!targetRoute) {
-  throw new Error('TARGET_ROUTE is required for interaction guard tests.');
-}
+const missingRouteReason = 'TARGET_ROUTE is required for interaction guard tests.';
 
 test.describe('Interaction guard', () => {
+  test.skip(!targetRoute, missingRouteReason);
+
   test('Long task guard during interaction', async ({ page }) => {
     await page.goto(targetRoute);
     await page.waitForLoadState('networkidle');

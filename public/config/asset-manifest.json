@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "strategy": "loans-first-strict-route-isolation",
+  "strategy": "route-isolation-cluster-migration",
   "routes": {
     "/loans/how-much-can-i-borrow/": {
       "route": "/loans/how-much-can-i-borrow/",
@@ -401,6 +401,33 @@
         ],
         "route": [
           "/calculators/loans/leasing-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true
+      }
+    },
+    "/percentage-calculators/percent-change/": {
+      "route": "/percentage-calculators/percent-change/",
+      "calculatorId": "percent-change",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/percentage-calculators-percent-change.d8cef7a5.css"
+        ],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.b0affedb.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percent-change/module.js"
         ]
       },
       "options": {

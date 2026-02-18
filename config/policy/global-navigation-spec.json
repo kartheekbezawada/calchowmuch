@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "globalDestinations": [
+    {
+      "clusterId": "math",
+      "label": "Math",
+      "href": "/math/basic/"
+    },
+    {
+      "clusterId": "home-loan",
+      "label": "Home Loan",
+      "href": "/loans/home-loan/"
+    },
+    {
+      "clusterId": "credit-cards",
+      "label": "Credit Cards",
+      "href": "/loans/credit-card-repayment-payoff/"
+    },
+    {
+      "clusterId": "auto-loans",
+      "label": "Auto Loans",
+      "href": "/loans/car-loan/"
+    },
+    {
+      "clusterId": "finance",
+      "label": "Finance",
+      "href": "/finance/present-value/"
+    },
+    {
+      "clusterId": "time-and-date",
+      "label": "Time & Date",
+      "href": "/time-and-date/sleep-time-calculator/"
+    },
+    {
+      "clusterId": "percentage",
+      "label": "Percentage Calculators",
+      "href": "/percentage-calculators/percent-change/"
+    }
+  ]
+}

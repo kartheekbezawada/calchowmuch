@@ -237,11 +237,20 @@ const LOANS_MANUAL_OVERRIDES = [
   },
 ];
 
-const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES];
+const PERCENTAGE_ISOLATED_ROUTES = [
+  {
+    calculatorId: 'percent-change',
+    route: '/percentage-calculators/percent-change/',
+    relPath: 'percentage-calculators/percent-change',
+    routeCss: 'calculators/percentage-calculators/percent-change/calculator.css',
+  },
+];
+
+const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
+const ISOLATED_ROUTE_CONTRACTS = [...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
 
 function resolveSourcesForRoute(routeConfig) {
-  const isLoansIsolated = LOANS_ISOLATED_ROUTES.some((item) => item.route === routeConfig.route);
-  if (isLoansIsolated) {
+  if (isLoansIsolatedRoute(routeConfig.route) || isPercentageIsolatedRoute(routeConfig.route)) {
     return [...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
   }
   return [...CORE_CSS_SOURCES, ...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
@@ -249,6 +258,14 @@ function resolveSourcesForRoute(routeConfig) {
 
 function isLoansIsolatedRoute(route) {
   return LOANS_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
+function isPercentageIsolatedRoute(route) {
+  return PERCENTAGE_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
+function isIsolatedRoute(route) {
+  return isLoansIsolatedRoute(route) || isPercentageIsolatedRoute(route);
 }
 
 function isFinancePilotRoute(route) {
@@ -458,7 +475,7 @@ function buildAssetManifest(routeBundleManifest) {
 
   const routes = {};
 
-  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+  ISOLATED_ROUTE_CONTRACTS.forEach((routeConfig) => {
     const routeEntry = routeBundleManifest.routes[routeConfig.route];
     if (!routeEntry) {
       throw new Error(`Missing route bundle entry for isolated route ${routeConfig.route}`);
@@ -510,7 +527,7 @@ function buildAssetManifest(routeBundleManifest) {
 
   return {
     version: 1,
-    strategy: 'loans-first-strict-route-isolation',
+    strategy: 'route-isolation-cluster-migration',
     routes,
   };
 }
@@ -524,7 +541,7 @@ function buildBundles() {
 
   BUNDLED_ROUTES.forEach((routeConfig) => {
     const sources = resolveSourcesForRoute(routeConfig);
-    let criticalSources = isLoansIsolatedRoute(routeConfig.route)
+    let criticalSources = isIsolatedRoute(routeConfig.route)
       ? ['assets/css/core-shell.css', ...sources]
       : sources;
     if (UX_FIRST_DEFER_CORE_ROUTES.has(routeConfig.route)) {
@@ -537,7 +554,7 @@ function buildBundles() {
     }
     const fullCriticalSources = new Set(CRITICAL_FULL_SOURCES);
     if (
-      isLoansIsolatedRoute(routeConfig.route) ||
+      isIsolatedRoute(routeConfig.route) ||
       isFinancePilotRoute(routeConfig.route) ||
       FULL_CORE_SHELL_CRITICAL_CALCULATORS.has(routeConfig.calculatorId)
     ) {
@@ -660,10 +677,10 @@ function verifyBundles() {
     throw new Error(`Invalid asset manifest format: ${ASSET_MANIFEST_PATH}`);
   }
 
-  LOANS_ISOLATED_ROUTES.forEach((routeConfig) => {
+  ISOLATED_ROUTE_CONTRACTS.forEach((routeConfig) => {
     const entry = assetManifest.routes[routeConfig.route];
     if (!entry) {
-      throw new Error(`Asset manifest missing loans route entry: ${routeConfig.route}`);
+      throw new Error(`Asset manifest missing isolated route entry: ${routeConfig.route}`);
     }
     if (entry.isolationBoundary !== 'route') {
       throw new Error(`Asset manifest isolationBoundary must be route for ${routeConfig.route}`);

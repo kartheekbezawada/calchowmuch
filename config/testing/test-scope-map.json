@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "generatedAt": "2026-02-18T14:13:13.934Z",
+  "clusters": {
+    "math": {
+      "clusterReleaseDir": "tests_specs/math/cluster_release",
+      "routes": [
+        "/math/algebra/factoring/",
+        "/math/algebra/polynomial-operations/",
+        "/math/algebra/quadratic-equation/",
+        "/math/algebra/slope-distance/",
+        "/math/algebra/system-of-equations/",
+        "/math/basic/",
+        "/math/calculus/critical-points/",
+        "/math/calculus/derivative/",
+        "/math/calculus/integral/",
+        "/math/calculus/limit/",
+        "/math/calculus/series-convergence/",
+        "/math/confidence-interval/",
+        "/math/fraction-calculator/",
+        "/math/log/common-log/",
+        "/math/log/exponential-equations/",
+        "/math/log/log-properties/",
+        "/math/log/log-scale/",
+        "/math/log/natural-log/",
+        "/math/mean-median-mode-range/",
+        "/math/number-sequence/",
+        "/math/permutation-combination/",
+        "/math/probability/",
+        "/math/sample-size/",
+        "/math/standard-deviation/",
+        "/math/statistics/",
+        "/math/statistics/anova/",
+        "/math/statistics/correlation/",
+        "/math/statistics/distribution/",
+        "/math/statistics/hypothesis-testing/",
+        "/math/statistics/regression-analysis/",
+        "/math/trigonometry/inverse-trig/",
+        "/math/trigonometry/law-of-sines-cosines/",
+        "/math/trigonometry/triangle-solver/",
+        "/math/trigonometry/trig-functions/",
+        "/math/trigonometry/unit-circle/",
+        "/math/z-score/",
+        "/percentage-calculators/percentage-increase/"
+      ],
+      "calculators": {
+        "basic": {
+          "route": "/math/basic/",
+          "releaseDir": "tests_specs/math/basic_release"
+        },
+        "percentage-increase": {
+          "route": "/percentage-calculators/percentage-increase/",
+          "releaseDir": "tests_specs/math/percentage-increase_release"
+        },
+        "fraction-calculator": {
+          "route": "/math/fraction-calculator/",
+          "releaseDir": "tests_specs/math/fraction-calculator_release"
+        },
+        "quadratic-equation": {
+          "route": "/math/algebra/quadratic-equation/",
+          "releaseDir": "tests_specs/math/quadratic-equation_release"
+        },
+        "system-of-equations": {
+          "route": "/math/algebra/system-of-equations/",
+          "releaseDir": "tests_specs/math/system-of-equations_release"
+        },
+        "polynomial-operations": {
+          "route": "/math/algebra/polynomial-operations/",
+          "releaseDir": "tests_specs/math/polynomial-operations_release"
+        },
+        "factoring": {
+          "route": "/math/algebra/factoring/",
+          "releaseDir": "tests_specs/math/factoring_release"
+        },
+        "slope-distance": {
+          "route": "/math/algebra/slope-distance/",
+          "releaseDir": "tests_specs/math/slope-distance_release"
+        },
+        "unit-circle": {
+          "route": "/math/trigonometry/unit-circle/",
+          "releaseDir": "tests_specs/math/unit-circle_release"
+        },
+        "triangle-solver": {
+          "route": "/math/trigonometry/triangle-solver/",
+          "releaseDir": "tests_specs/math/triangle-solver_release"
+        },
+        "trig-functions": {
+          "route": "/math/trigonometry/trig-functions/",
+          "releaseDir": "tests_specs/math/trig-functions_release"
+        },
+        "inverse-trig": {
+          "route": "/math/trigonometry/inverse-trig/",
+          "releaseDir": "tests_specs/math/inverse-trig_release"
+        },
+        "law-of-sines-cosines": {
+          "route": "/math/trigonometry/law-of-sines-cosines/",
+          "releaseDir": "tests_specs/math/law-of-sines-cosines_release"
+        },
+        "derivative": {
+          "route": "/math/calculus/derivative/",
+          "releaseDir": "tests_specs/math/derivative_release"
+        },
+        "integral": {
+          "route": "/math/calculus/integral/",
+          "releaseDir": "tests_specs/math/integral_release"
+        },
+        "limit": {
+          "route": "/math/calculus/limit/",
+          "releaseDir": "tests_specs/math/limit_release"
+        },
+        "series-convergence": {
+          "route": "/math/calculus/series-convergence/",
+          "releaseDir": "tests_specs/math/series-convergence_release"
+        },
+        "critical-points": {
+          "route": "/math/calculus/critical-points/",
+          "releaseDir": "tests_specs/math/critical-points_release"
+        },
+        "natural-log": {
+          "route": "/math/log/natural-log/",
+          "releaseDir": "tests_specs/math/natural-log_release"
+        },
+        "common-log": {
+          "route": "/math/log/common-log/",
+          "releaseDir": "tests_specs/math/common-log_release"
+        },
+        "log-properties": {
+          "route": "/math/log/log-properties/",
+          "releaseDir": "tests_specs/math/log-properties_release"
+        },
+        "exponential-equations": {
+          "route": "/math/log/exponential-equations/",
+          "releaseDir": "tests_specs/math/exponential-equations_release"
+        },
+        "log-scale": {
+          "route": "/math/log/log-scale/",
+          "releaseDir": "tests_specs/math/log-scale_release"
+        },
+        "mean-median-mode-range": {
+          "route": "/math/mean-median-mode-range/",
+          "releaseDir": "tests_specs/math/mean-median-mode-range_release"
+        },
+        "standard-deviation": {
+          "route": "/math/standard-deviation/",
+          "releaseDir": "tests_specs/math/standard-deviation_release"
+        },
+        "statistics": {
+          "route": "/math/statistics/",
+          "releaseDir": "tests_specs/math/statistics_release"
+        },
+        "confidence-interval": {
+          "route": "/math/confidence-interval/",
+          "releaseDir": "tests_specs/math/confidence-interval_release"
+        },
+        "z-score": {
+          "route": "/math/z-score/",
+          "releaseDir": "tests_specs/math/z-score_release"
+        },
+        "sample-size": {
+          "route": "/math/sample-size/",
+          "releaseDir": "tests_specs/math/sample-size_release"
+        },
+        "number-sequence": {
+          "route": "/math/number-sequence/",
+          "releaseDir": "tests_specs/math/number-sequence_release"
+        },
+        "permutation-combination": {
+          "route": "/math/permutation-combination/",
+          "releaseDir": "tests_specs/math/permutation-combination_release"
+        },
+        "probability": {
+          "route": "/math/probability/",
+          "releaseDir": "tests_specs/math/probability_release"
+        },
+        "regression-analysis": {
+          "route": "/math/statistics/regression-analysis/",
+          "releaseDir": "tests_specs/math/regression-analysis_release"
+        },
+        "anova": {
+          "route": "/math/statistics/anova/",
+          "releaseDir": "tests_specs/math/anova_release"
+        },
+        "hypothesis-testing": {
+          "route": "/math/statistics/hypothesis-testing/",
+          "releaseDir": "tests_specs/math/hypothesis-testing_release"
+        },
+        "correlation": {
+          "route": "/math/statistics/correlation/",
+          "releaseDir": "tests_specs/math/correlation_release"
+        },
+        "distribution": {
+          "route": "/math/statistics/distribution/",
+          "releaseDir": "tests_specs/math/distribution_release"
+        }
+      }
+    },
+    "loans": {
+      "clusterReleaseDir": "tests_specs/loans/cluster_release",
+      "routes": [
+        "/loans/buy-to-let/",
+        "/loans/car-loan/",
+        "/loans/hire-purchase/",
+        "/loans/home-loan/",
+        "/loans/how-much-can-i-borrow/",
+        "/loans/interest-rate-change-calculator/",
+        "/loans/leasing-calculator/",
+        "/loans/loan-to-value/",
+        "/loans/multiple-car-loan/",
+        "/loans/offset-calculator/",
+        "/loans/pcp-calculator/",
+        "/loans/remortgage-switching/"
+      ],
+      "calculators": {
+        "home-loan": {
+          "route": "/loans/home-loan/",
+          "releaseDir": "tests_specs/loans/home-loan_release"
+        },
+        "how-much-can-i-borrow": {
+          "route": "/loans/how-much-can-i-borrow/",
+          "releaseDir": "tests_specs/loans/how-much-can-i-borrow_release"
+        },
+        "remortgage-switching": {
+          "route": "/loans/remortgage-switching/",
+          "releaseDir": "tests_specs/loans/remortgage-switching_release"
+        },
+        "buy-to-let": {
+          "route": "/loans/buy-to-let/",
+          "releaseDir": "tests_specs/loans/buy-to-let_release"
+        },
+        "offset-calculator": {
+          "route": "/loans/offset-calculator/",
+          "releaseDir": "tests_specs/loans/offset-calculator_release"
+        },
+        "interest-rate-change-calculator": {
+          "route": "/loans/interest-rate-change-calculator/",
+          "releaseDir": "tests_specs/loans/interest-rate-change-calculator_release"
+        },
+        "loan-to-value": {
+          "route": "/loans/loan-to-value/",
+          "releaseDir": "tests_specs/loans/loan-to-value_release"
+        },
+        "car-loan": {
+          "route": "/loans/car-loan/",
+          "releaseDir": "tests_specs/loans/car-loan_release"
+        },
+        "multiple-car-loan": {
+          "route": "/loans/multiple-car-loan/",
+          "releaseDir": "tests_specs/loans/multiple-car-loan_release"
+        },
+        "hire-purchase": {
+          "route": "/loans/hire-purchase/",
+          "releaseDir": "tests_specs/loans/hire-purchase_release"
+        },
+        "pcp-calculator": {
+          "route": "/loans/pcp-calculator/",
+          "releaseDir": "tests_specs/loans/pcp-calculator_release"
+        },
+        "leasing-calculator": {
+          "route": "/loans/leasing-calculator/",
+          "releaseDir": "tests_specs/loans/leasing-calculator_release"
+        }
+      }
+    },
+    "credit-cards": {
+      "clusterReleaseDir": "tests_specs/credit-cards/cluster_release",
+      "routes": [
+        "/loans/balance-transfer-installment-plan/",
+        "/loans/credit-card-consolidation/",
+        "/loans/credit-card-minimum-payment/",
+        "/loans/credit-card-repayment-payoff/"
+      ],
+      "calculators": {
+        "credit-card-repayment-payoff": {
+          "route": "/loans/credit-card-repayment-payoff/",
+          "releaseDir": "tests_specs/credit-cards/credit-card-repayment-payoff_release"
+        },
+        "credit-card-minimum-payment": {
+          "route": "/loans/credit-card-minimum-payment/",
+          "releaseDir": "tests_specs/credit-cards/credit-card-minimum-payment_release"
+        },
+        "balance-transfer-installment-plan": {
+          "route": "/loans/balance-transfer-installment-plan/",
+          "releaseDir": "tests_specs/credit-cards/balance-transfer-installment-plan_release"
+        },
+        "credit-card-consolidation": {
+          "route": "/loans/credit-card-consolidation/",
+          "releaseDir": "tests_specs/credit-cards/credit-card-consolidation_release"
+        }
+      }
+    },
+    "finance": {
+      "clusterReleaseDir": "tests_specs/finance/cluster_release",
+      "routes": [
+        "/finance/compound-interest/",
+        "/finance/effective-annual-rate/",
+        "/finance/future-value-of-annuity/",
+        "/finance/future-value/",
+        "/finance/investment-growth/",
+        "/finance/monthly-savings-needed/",
+        "/finance/present-value-of-annuity/",
+        "/finance/present-value/",
+        "/finance/simple-interest/",
+        "/finance/time-to-savings-goal/"
+      ],
+      "calculators": {
+        "present-value": {
+          "route": "/finance/present-value/",
+          "releaseDir": "tests_specs/finance/present-value_release"
+        },
+        "future-value": {
+          "route": "/finance/future-value/",
+          "releaseDir": "tests_specs/finance/future-value_release"
+        },
+        "present-value-of-annuity": {
+          "route": "/finance/present-value-of-annuity/",
+          "releaseDir": "tests_specs/finance/present-value-of-annuity_release"
+        },
+        "future-value-of-annuity": {
+          "route": "/finance/future-value-of-annuity/",
+          "releaseDir": "tests_specs/finance/future-value-of-annuity_release"
+        },
+        "simple-interest": {
+          "route": "/finance/simple-interest/",
+          "releaseDir": "tests_specs/finance/simple-interest_release"
+        },
+        "compound-interest": {
+          "route": "/finance/compound-interest/",
+          "releaseDir": "tests_specs/finance/compound-interest_release"
+        },
+        "effective-annual-rate": {
+          "route": "/finance/effective-annual-rate/",
+          "releaseDir": "tests_specs/finance/effective-annual-rate_release"
+        },
+        "investment-growth": {
+          "route": "/finance/investment-growth/",
+          "releaseDir": "tests_specs/finance/investment-growth_release"
+        },
+        "time-to-savings-goal": {
+          "route": "/finance/time-to-savings-goal/",
+          "releaseDir": "tests_specs/finance/time-to-savings-goal_release"
+        },
+        "monthly-savings-needed": {
+          "route": "/finance/monthly-savings-needed/",
+          "releaseDir": "tests_specs/finance/monthly-savings-needed_release"
+        }
+      }
+    },
+    "sleep-and-nap": {
+      "clusterReleaseDir": "tests_specs/sleep-and-nap/cluster_release",
+      "routes": [
+        "/time-and-date/energy-based-nap-selector/",
+        "/time-and-date/nap-time-calculator/",
+        "/time-and-date/power-nap-calculator/",
+        "/time-and-date/sleep-time-calculator/",
+        "/time-and-date/wake-up-time-calculator/"
+      ],
+      "calculators": {
+        "sleep-time-calculator": {
+          "route": "/time-and-date/sleep-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/sleep-time-calculator_release"
+        },
+        "wake-up-time-calculator": {
+          "route": "/time-and-date/wake-up-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/wake-up-time-calculator_release"
+        },
+        "nap-time-calculator": {
+          "route": "/time-and-date/nap-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/nap-time-calculator_release"
+        },
+        "power-nap-calculator": {
+          "route": "/time-and-date/power-nap-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/power-nap-calculator_release"
+        },
+        "energy-based-nap-selector": {
+          "route": "/time-and-date/energy-based-nap-selector/",
+          "releaseDir": "tests_specs/sleep-and-nap/energy-based-nap-selector_release"
+        }
+      }
+    },
+    "time-and-date": {
+      "clusterReleaseDir": "tests_specs/time-and-date/cluster_release",
+      "routes": [
+        "/time-and-date/age-calculator/",
+        "/time-and-date/birthday-day-of-week/",
+        "/time-and-date/countdown-timer-generator/",
+        "/time-and-date/days-until-a-date-calculator/",
+        "/time-and-date/overtime-hours-calculator/",
+        "/time-and-date/time-between-two-dates-calculator/",
+        "/time-and-date/work-hours-calculator/"
+      ],
+      "calculators": {
+        "work-hours-calculator": {
+          "route": "/time-and-date/work-hours-calculator/",
+          "releaseDir": "tests_specs/time-and-date/work-hours-calculator_release"
+        },
+        "overtime-hours-calculator": {
+          "route": "/time-and-date/overtime-hours-calculator/",
+          "releaseDir": "tests_specs/time-and-date/overtime-hours-calculator_release"
+        },
+        "time-between-two-dates-calculator": {
+          "route": "/time-and-date/time-between-two-dates-calculator/",
+          "releaseDir": "tests_specs/time-and-date/time-between-two-dates-calculator_release"
+        },
+        "days-until-a-date-calculator": {
+          "route": "/time-and-date/days-until-a-date-calculator/",
+          "releaseDir": "tests_specs/time-and-date/days-until-a-date-calculator_release"
+        },
+        "countdown-timer-generator": {
+          "route": "/time-and-date/countdown-timer-generator/",
+          "releaseDir": "tests_specs/time-and-date/countdown-timer-generator_release"
+        },
+        "age-calculator": {
+          "route": "/time-and-date/age-calculator/",
+          "releaseDir": "tests_specs/time-and-date/age-calculator_release"
+        },
+        "birthday-day-of-week": {
+          "route": "/time-and-date/birthday-day-of-week/",
+          "releaseDir": "tests_specs/time-and-date/birthday-day-of-week_release"
+        }
+      }
+    },
+    "percentage": {
+      "clusterReleaseDir": "tests_specs/percentage/cluster_release",
+      "routes": [
+        "/percentage-calculators/commission-calculator/",
+        "/percentage-calculators/discount-calculator/",
+        "/percentage-calculators/margin-calculator/",
+        "/percentage-calculators/markup-calculator/",
+        "/percentage-calculators/percent-change/",
+        "/percentage-calculators/percent-to-fraction-decimal/",
+        "/percentage-calculators/percentage-composition/",
+        "/percentage-calculators/percentage-decrease/",
+        "/percentage-calculators/percentage-difference/",
+        "/percentage-calculators/percentage-increase/",
+        "/percentage-calculators/percentage-of-a-number/",
+        "/percentage-calculators/reverse-percentage/",
+        "/percentage-calculators/what-percent-is-x-of-y/"
+      ],
+      "calculators": {
+        "percent-change": {
+          "route": "/percentage-calculators/percent-change/",
+          "releaseDir": "tests_specs/percentage/percent-change_release"
+        },
+        "percentage-difference": {
+          "route": "/percentage-calculators/percentage-difference/",
+          "releaseDir": "tests_specs/percentage/percentage-difference_release"
+        },
+        "percentage-increase": {
+          "route": "/percentage-calculators/percentage-increase/",
+          "releaseDir": "tests_specs/percentage/percentage-increase_release"
+        },
+        "percentage-decrease": {
+          "route": "/percentage-calculators/percentage-decrease/",
+          "releaseDir": "tests_specs/percentage/percentage-decrease_release"
+        },
+        "percentage-composition": {
+          "route": "/percentage-calculators/percentage-composition/",
+          "releaseDir": "tests_specs/percentage/percentage-composition_release"
+        },
+        "reverse-percentage": {
+          "route": "/percentage-calculators/reverse-percentage/",
+          "releaseDir": "tests_specs/percentage/reverse-percentage_release"
+        },
+        "percent-to-fraction-decimal": {
+          "route": "/percentage-calculators/percent-to-fraction-decimal/",
+          "releaseDir": "tests_specs/percentage/percent-to-fraction-decimal_release"
+        },
+        "what-percent-is-x-of-y": {
+          "route": "/percentage-calculators/what-percent-is-x-of-y/",
+          "releaseDir": "tests_specs/percentage/what-percent-is-x-of-y_release"
+        },
+        "percentage-of-a-number": {
+          "route": "/percentage-calculators/percentage-of-a-number/",
+          "releaseDir": "tests_specs/percentage/percentage-of-a-number_release"
+        },
+        "commission-calculator": {
+          "route": "/percentage-calculators/commission-calculator/",
+          "releaseDir": "tests_specs/percentage/commission-calculator_release"
+        },
+        "discount-calculator": {
+          "route": "/percentage-calculators/discount-calculator/",
+          "releaseDir": "tests_specs/percentage/discount-calculator_release"
+        },
+        "margin-calculator": {
+          "route": "/percentage-calculators/margin-calculator/",
+          "releaseDir": "tests_specs/percentage/margin-calculator_release"
+        },
+        "markup-calculator": {
+          "route": "/percentage-calculators/markup-calculator/",
+          "releaseDir": "tests_specs/percentage/markup-calculator_release"
+        }
+      }
+    }
+  }
+}

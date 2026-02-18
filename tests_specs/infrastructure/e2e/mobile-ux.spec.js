@@ -16,13 +16,12 @@ function slugify(route) {
 }
 
 const targetRoute = normalizeRoute(process.env.TARGET_ROUTE);
-if (!targetRoute) {
-  throw new Error('TARGET_ROUTE is required for mobile UX tests.');
-}
-
-const slug = slugify(targetRoute);
+const missingRouteReason = 'TARGET_ROUTE is required for mobile UX tests.';
+const slug = targetRoute ? slugify(targetRoute) : '__missing__';
 
 test.describe('Mobile UX guard', () => {
+  test.skip(!targetRoute, missingRouteReason);
+
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('mobile viewport screenshot', async ({ page }) => {

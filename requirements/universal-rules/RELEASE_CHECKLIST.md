@@ -94,6 +94,26 @@ D) INFRA (only for build tooling, caching, deployments)
 
 Scope = GOLDEN_SET + 1 real page from top-traffic category
 
+3.1.1 Scoped command matrix (HARD)
+
+HARD: Cluster releases must use only scoped cluster commands:
+
+- `CLUSTER={cluster} npm run test:cluster:unit`
+- `CLUSTER={cluster} npm run test:cluster:e2e`
+- `CLUSTER={cluster} npm run test:cluster:seo`
+- `CLUSTER={cluster} npm run test:cluster:cwv`
+
+HARD: Single-calculator releases must use only scoped calculator commands:
+
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:unit`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:e2e`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:seo`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:cwv`
+
+HARD: Scoped runs must fail fast for missing/invalid `CLUSTER` / `CALC`.
+
+HARD: Global commands (`npm run test`, `npm run test:e2e`, `npm run test:cwv:all`, `npm run test:iss001`) are reserved for full-site releases only.
+
 3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
 HARD: Performance tests must not crawl every calculator by default.

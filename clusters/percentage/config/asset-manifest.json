@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "clusterId": "percentage",
+  "routes": {
+    "/percentage-calculators/percent-change/": {
+      "route": "/percentage-calculators/percent-change/",
+      "calculatorId": "percent-change",
+      "clusterId": "percentage",
+      "buildId": "wave1-20260218",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "route": [
+          "/assets/css/route-bundles/percentage-calculators-percent-change.835ced9e.css"
+        ],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.dfec91a3.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percent-change/module.js"
+        ]
+      }
+    }
+  }
+}

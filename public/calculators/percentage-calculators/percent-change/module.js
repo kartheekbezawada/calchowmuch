@@ -8,6 +8,13 @@ const calculateButton = document.querySelector('#pct-change-calc');
 const resultOutput = document.querySelector('#pct-change-result');
 const resultDetail = document.querySelector('#pct-change-result-detail');
 
+const snapshotTargets = {
+  a: document.querySelector('[data-pct-change-snap="a"]'),
+  b: document.querySelector('[data-pct-change-snap="b"]'),
+  amount: document.querySelector('[data-pct-change-snap="amount"]'),
+  direction: document.querySelector('[data-pct-change-snap="direction"]'),
+};
+
 const explanationRoot = document.querySelector('#pct-change-explanation');
 const valueTargets = explanationRoot
   ? {
@@ -198,6 +205,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -230,9 +244,18 @@ function calculate() {
   resultOutput.textContent = `Percent Change: ${signedPercent}`;
   resultDetail.textContent = `Change Amount: ${formatValue(changeAmount)} | Direction: ${direction} | Formula: ((B - A) / A) x 100`;
 
-  updateTargets(valueTargets?.a, formatValue(a));
-  updateTargets(valueTargets?.b, formatValue(b));
-  updateTargets(valueTargets?.amount, formatValue(changeAmount));
+  const formattedA = formatValue(a);
+  const formattedB = formatValue(b);
+  const formattedAmount = formatValue(changeAmount);
+
+  updateSnapshot('a', formattedA);
+  updateSnapshot('b', formattedB);
+  updateSnapshot('amount', formattedAmount);
+  updateSnapshot('direction', direction);
+
+  updateTargets(valueTargets?.a, formattedA);
+  updateTargets(valueTargets?.b, formattedB);
+  updateTargets(valueTargets?.amount, formattedAmount);
   updateTargets(valueTargets?.percent, signedPercent);
   updateTargets(valueTargets?.direction, direction);
 

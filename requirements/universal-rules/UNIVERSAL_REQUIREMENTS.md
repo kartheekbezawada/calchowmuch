@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 3.9 (Cluster isolation + testing efficiency + AdSense snippet governance)
-- **Last Updated:** 2026-02-17
+- **Version:** 4.0 (Cluster + calculator scoped test isolation governance)
+- **Last Updated:** 2026-02-18
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -304,7 +304,19 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
 
-### 8.5 Lighthouse Efficiency + Determinism Governance
+### 8.5 Cluster & Calculator Scoped Test Isolation
+
+- **UR-TEST-040 (P0):** Test folder architecture is mandatory: `tests_specs/{cluster}/cluster_release/` and `tests_specs/{cluster}/{calculator}_release/`.
+- **UR-TEST-041 (P0):** Cluster release folder must contain exactly these baseline files: `unit.cluster.test.js`, `contracts.cluster.test.js`, `e2e.cluster.spec.js`, `seo.cluster.spec.js`, `cwv.cluster.spec.js`, `README.md`.
+- **UR-TEST-042 (P0):** Calculator release folder must contain exactly these baseline files: `unit.calc.test.js`, `e2e.calc.spec.js`, `seo.calc.spec.js`, `cwv.calc.spec.js`, `README.md`.
+- **UR-TEST-043 (P0):** Unit runner isolation is mandatory: `npm run test` must execute only `*.test.js`; Playwright `*.spec.js` files are forbidden in Vitest runs.
+- **UR-TEST-044 (P0):** E2E runner isolation is mandatory: `npm run test:e2e` must execute only `*.spec.js`; Vitest `*.test.js` files are forbidden in Playwright runs.
+- **UR-TEST-045 (P0):** Scoped cluster commands are first-class release gates: `test:cluster:unit`, `test:cluster:e2e`, `test:cluster:seo`, `test:cluster:cwv`; each requires `CLUSTER`.
+- **UR-TEST-046 (P0):** Scoped calculator commands are first-class release gates: `test:calc:unit`, `test:calc:e2e`, `test:calc:seo`, `test:calc:cwv`; each requires `CLUSTER` and `CALC`.
+- **UR-TEST-047 (P0):** Scoped commands must fail fast with deterministic error text for missing/invalid `CLUSTER`/`CALC` values.
+- **UR-TEST-048 (P0):** Global commands (`test`, `test:e2e`, `test:cwv:all`, `test:iss001`) are reserved for full-site releases and are not default for cluster/calculator releases.
+
+### 8.6 Lighthouse Efficiency + Determinism Governance
 
 - **UR-TEST-LH-001 (P0):** Test-tooling changes must be small-diff and flag-driven; broad refactors require explicit approval.
 - **UR-TEST-LH-002 (P0):** Default Lighthouse gate category is `performance`.
@@ -319,7 +331,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `requirements/universal-rules/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
 - **UR-TEST-SCOPE-001 (P0):** PR Lighthouse gates must use exactly one `TARGET_ROUTE` or policy-approved golden set; full-site Lighthouse scans are disallowed in PR release gates by default.
 
-### 8.6 Testing Efficiency and Code-Diff Strategy
+### 8.7 Testing Efficiency and Code-Diff Strategy
 
 - **UR-TEST-EFF-001 (P0):** Code-diff strategy is mandatory for testing-tooling changes: no broad refactor/reorganization and no function/file renames unless explicitly approved.
 - **UR-TEST-EFF-002 (P0):** New testing-tool behavior must be flag-driven and default-safe; when flags are unset, approved baseline behavior must remain intact.

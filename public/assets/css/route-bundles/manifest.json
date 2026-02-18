@@ -515,6 +515,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/loans-leasing-calculator.718b534c.css",
       "criticalOutputFile": "public/assets/css/route-bundles/loans-leasing-calculator.critical.55350a3c.css"
+    },
+    "/percentage-calculators/percent-change/": {
+      "calculatorId": "percent-change",
+      "relPath": "percentage-calculators/percent-change",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percent-change.d8cef7a5.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percent-change.d8cef7a5.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.b0affedb.css",
+      "hash": "d8cef7a5",
+      "criticalHash": "b0affedb",
+      "fullBytes": 44421,
+      "criticalBytes": 33983,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percent-change/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change.d8cef7a5.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change.critical.b0affedb.css"
     }
   }
 }
