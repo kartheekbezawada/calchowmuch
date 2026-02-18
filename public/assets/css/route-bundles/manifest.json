@@ -572,6 +572,44 @@
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase.2885ca65.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase.critical.1449aa2b.css"
+    },
+    "/percentage-calculators/percentage-decrease/": {
+      "calculatorId": "percentage-decrease",
+      "relPath": "percentage-calculators/percentage-decrease",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-decrease.4a2b92ec.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-decrease.4a2b92ec.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-decrease.critical.0d81409a.css",
+      "hash": "4a2b92ec",
+      "criticalHash": "0d81409a",
+      "fullBytes": 46718,
+      "criticalBytes": 84018,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-decrease/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease.4a2b92ec.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease.critical.0d81409a.css"
+    },
+    "/percentage-calculators/percentage-composition/": {
+      "calculatorId": "percentage-composition",
+      "relPath": "percentage-calculators/percentage-composition",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percentage-composition.1d10463a.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-composition.1d10463a.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-composition.critical.8cddddab.css",
+      "hash": "1d10463a",
+      "criticalHash": "8cddddab",
+      "fullBytes": 49081,
+      "criticalBytes": 86381,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percentage-composition/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition.1d10463a.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition.critical.8cddddab.css"
     }
   }
 }

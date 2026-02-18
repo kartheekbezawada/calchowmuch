@@ -1,6 +1,6 @@
 # percentage/percentage-decrease release
 
-Scope: calculator-level release tests for `percentage-decrease` in cluster `percentage`.
+Scope: calculator-level release tests for `percentage-decrease` in cluster `percentage`, including single-pane DOM contract and strict scoped CWV.
 
 Commands:
 - `CLUSTER=percentage CALC=percentage-decrease npm run test:calc:unit`
@@ -10,10 +10,11 @@ Commands:
 
 Pass criteria:
 - Unit logic tests pass
-- E2E flow + SEO checks pass
-- CWV route guard passes
+- E2E flow + single-pane UX structure checks pass
+- SEO/schema/sitemap checks pass
+- Strict scoped CWV budget passes
 
-Ownership: calculator route owner.
+Ownership: percentage cluster calculator route owner.
 
 Route:
-- /percentage-calculators/percentage-decrease/
+- `/percentage-calculators/percentage-decrease/`

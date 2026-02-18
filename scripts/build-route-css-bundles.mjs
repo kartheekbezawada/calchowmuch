@@ -31,6 +31,8 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/percent-change/calculator.css',
   'calculators/percentage-calculators/percentage-difference/calculator.css',
   'calculators/percentage-calculators/percentage-increase/calculator.css',
+  'calculators/percentage-calculators/percentage-decrease/calculator.css',
+  'calculators/percentage-calculators/percentage-composition/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -51,11 +53,15 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/percent-change/',
   '/percentage-calculators/percentage-difference/',
   '/percentage-calculators/percentage-increase/',
+  '/percentage-calculators/percentage-decrease/',
+  '/percentage-calculators/percentage-composition/',
 ]);
 const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
   'percentage-difference',
   'percentage-increase',
+  'percentage-decrease',
+  'percentage-composition',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -267,6 +273,18 @@ const PERCENTAGE_ISOLATED_ROUTES = [
     route: '/percentage-calculators/percentage-increase/',
     relPath: 'percentage-calculators/percentage-increase',
     routeCss: 'calculators/percentage-calculators/percentage-increase/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-decrease',
+    route: '/percentage-calculators/percentage-decrease/',
+    relPath: 'percentage-calculators/percentage-decrease',
+    routeCss: 'calculators/percentage-calculators/percentage-decrease/calculator.css',
+  },
+  {
+    calculatorId: 'percentage-composition',
+    route: '/percentage-calculators/percentage-composition/',
+    relPath: 'percentage-calculators/percentage-composition',
+    routeCss: 'calculators/percentage-calculators/percentage-composition/calculator.css',
   },
 ];
 

@@ -1,0 +1,304 @@
+/* Percentage Decrease calculator route overrides */
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(290px, 0.82fr);
+  gap: 0.95rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-form-panel {
+  border-radius: 16px;
+  border: 1px solid rgba(244, 114, 182, 0.24);
+  background:
+    radial-gradient(circle at 10% 14%, rgba(251, 113, 133, 0.14), transparent 52%),
+    linear-gradient(164deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 16px 34px rgba(2, 6, 23, 0.3);
+  padding: 0.95rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-form-panel .helper {
+  margin-bottom: 0.78rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-form-panel .input-row label {
+  display: block;
+  margin-bottom: 0.32rem;
+}
+
+#calc-percentage-decrease
+  #calc-home-loan
+  .dec-form-panel
+  .input-row:not(.action-row)
+  + .input-row:not(.action-row) {
+  margin-top: 0.5rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .input-row input[type='number'] {
+  min-height: 46px;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-action-row {
+  margin-top: 0.9rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-action-row .calculator-button {
+  background: linear-gradient(130deg, #f43f5e, #f59e0b 76%);
+  box-shadow:
+    0 12px 26px rgba(244, 63, 94, 0.3),
+    0 4px 10px rgba(245, 158, 11, 0.26);
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-insight-panel {
+  border-radius: 16px;
+  border: 1px solid rgba(251, 146, 60, 0.24);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(251, 146, 60, 0.17), transparent 44%),
+    linear-gradient(166deg, rgba(21, 31, 58, 0.86), rgba(11, 17, 35, 0.96));
+  padding: 0.92rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 30px rgba(2, 8, 25, 0.34);
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-result-shell {
+  border-radius: 14px;
+  border: 1px solid rgba(253, 186, 116, 0.34);
+  background: linear-gradient(155deg, rgba(15, 23, 42, 0.76), rgba(127, 29, 29, 0.35));
+  padding: 0.8rem 0.82rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-result-label {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(254, 215, 170, 0.96);
+  font-weight: 700;
+}
+
+#calc-percentage-decrease #calc-home-loan #pctdec-result {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.44rem;
+  font-weight: 800;
+  color: #fff1f2;
+  text-shadow:
+    0 0 16px rgba(251, 113, 133, 0.42),
+    0 0 28px rgba(249, 115, 22, 0.24);
+}
+
+#calc-percentage-decrease #calc-home-loan #pctdec-result-detail {
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-metrics-list {
+  margin-top: 0.78rem;
+  border-radius: 12px;
+  border: 1px solid rgba(249, 115, 22, 0.26);
+  background: rgba(2, 6, 23, 0.3);
+  padding: 0.3rem 0.7rem;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.52rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-metric-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-metric-row span {
+  color: rgba(226, 232, 240, 0.82);
+}
+
+#calc-percentage-decrease #calc-home-loan .dec-metric-row strong {
+  color: #fdba74;
+  text-align: right;
+}
+
+#pctdec-explanation .pv-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#pctdec-explanation .pv-results-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fed7aa;
+  background: rgba(30, 41, 59, 0.98);
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+#pctdec-explanation .pv-results-table td {
+  font-size: 0.8rem;
+  color: rgba(226, 232, 240, 0.94);
+  padding: 0.58rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  line-height: 1.4;
+}
+
+#pctdec-explanation .pv-results-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.35);
+}
+
+#pctdec-explanation .pv-results-table tbody tr:hover {
+  background: rgba(244, 63, 94, 0.1);
+}
+
+#pctdec-explanation .pv-results-table tfoot td {
+  font-weight: 700;
+  color: #fff1f2;
+  background: linear-gradient(160deg, rgba(251, 113, 133, 0.16), rgba(249, 115, 22, 0.12));
+  border-top: 2px solid rgba(251, 113, 133, 0.38);
+  font-size: 0.84rem;
+}
+
+#pctdec-explanation .pv-results-table .pv-how-col {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.88);
+  font-style: italic;
+}
+
+#pctdec-explanation .pv-explanation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.62rem 0 0.52rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.44rem;
+}
+
+#pctdec-explanation .pv-explanation-list li {
+  position: relative;
+  padding-left: 1.3rem;
+  line-height: 1.64;
+  font-size: 0.88rem;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#pctdec-explanation .pv-explanation-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: rgba(251, 146, 60, 0.92);
+  font-weight: 700;
+}
+
+#pctdec-explanation .pv-explanation-list li [data-pctdec] {
+  font-weight: 700;
+  color: #fdba74;
+}
+
+#pctdec-explanation .pv-formula-block {
+  text-align: center;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.52rem 0.8rem;
+  margin: 0.35rem auto;
+  border-radius: 10px;
+  max-width: 380px;
+  background: rgba(127, 29, 29, 0.35);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  color: #fff1f2;
+  text-shadow: 0 0 12px rgba(251, 113, 133, 0.22);
+}
+
+#pctdec-explanation .pv-formula-steps {
+  padding-left: 1.5rem;
+  margin: 0.35rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#pctdec-explanation .pv-formula-steps li {
+  line-height: 1.64;
+  font-size: 0.86rem;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#pctdec-explanation .pv-formula-steps li [data-pctdec] {
+  font-weight: 700;
+  color: #fdba74;
+}
+
+#pctdec-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+#pctdec-explanation .bor-faq-card {
+  position: relative;
+  border: 1px solid rgba(251, 113, 133, 0.24);
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.74), rgba(127, 29, 29, 0.32));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 20px rgba(2, 6, 23, 0.22);
+  padding: 0.8rem 0.85rem 0.85rem;
+}
+
+#pctdec-explanation .bor-faq-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff1f2;
+  background: linear-gradient(145deg, rgba(244, 63, 94, 0.9), rgba(249, 115, 22, 0.82));
+  margin-bottom: 0.45rem;
+}
+
+#pctdec-explanation .bor-faq-card h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #f8fafc;
+}
+
+#pctdec-explanation .bor-faq-card p {
+  margin: 0.35rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+@media (max-width: 1024px) {
+  #calc-percentage-decrease #calc-home-loan .dec-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  #pctdec-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

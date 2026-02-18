@@ -1,91 +1,118 @@
 <div id="calc-percentage-composition">
-  <div class="calculator-ui">
-    <p class="helper">
-      Calculate each item's share as a percent of the total. Optionally enter a known total to see
-      the remainder.
-    </p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="comp-hero" aria-label="Percentage composition calculator">
+        <div class="comp-form-panel">
+          <p class="helper">
+            Calculate each item's share as a percent of total. Keep total in calculated mode or
+            switch to known total mode to track remainder.
+          </p>
 
-    <div class="composition-mode-switch" role="group" aria-label="Total source mode">
-      <span class="composition-mode-label is-active" data-composition-mode-label="calculated">
-        Calculated Total
-      </span>
-      <label class="composition-toggle" for="composition-known-toggle">
-        <input
-          id="composition-known-toggle"
-          type="checkbox"
-          role="switch"
-          aria-label="Use known total mode"
-        />
-        <span class="composition-toggle-track" aria-hidden="true">
-          <span class="composition-toggle-thumb"></span>
-        </span>
-      </label>
-      <span class="composition-mode-label" data-composition-mode-label="known"> Known Total </span>
+          <div class="composition-mode-switch" role="group" aria-label="Total source mode">
+            <span class="composition-mode-label is-active" data-composition-mode-label="calculated">
+              Calculated Total
+            </span>
+            <label class="composition-toggle" for="composition-known-toggle">
+              <input
+                id="composition-known-toggle"
+                type="checkbox"
+                role="switch"
+                aria-label="Use known total mode"
+              />
+              <span class="composition-toggle-track" aria-hidden="true">
+                <span class="composition-toggle-thumb"></span>
+              </span>
+            </label>
+            <span class="composition-mode-label" data-composition-mode-label="known">Known Total</span>
+          </div>
+
+          <div id="composition-known-total-section" hidden aria-hidden="true">
+            <div class="input-row">
+              <label for="composition-known-total">Known Total (T)</label>
+              <input id="composition-known-total" type="number" min="0" step="any" value="" />
+            </div>
+          </div>
+
+          <div id="composition-rows" class="composition-rows">
+            <div class="input-row composition-item-row">
+              <div class="composition-row-field">
+                <label>Name</label>
+                <input type="text" class="composition-row-name" value="Item A" placeholder="Optional" />
+              </div>
+              <div class="composition-row-field">
+                <label>Value</label>
+                <input type="number" class="composition-row-value" value="300" min="0" step="any" />
+              </div>
+              <button type="button" class="calculator-button secondary composition-remove-row">Remove</button>
+            </div>
+            <div class="input-row composition-item-row">
+              <div class="composition-row-field">
+                <label>Name</label>
+                <input type="text" class="composition-row-name" value="Item B" placeholder="Optional" />
+              </div>
+              <div class="composition-row-field">
+                <label>Value</label>
+                <input type="number" class="composition-row-value" value="200" min="0" step="any" />
+              </div>
+              <button type="button" class="calculator-button secondary composition-remove-row">Remove</button>
+            </div>
+            <div class="input-row composition-item-row">
+              <div class="composition-row-field">
+                <label>Name</label>
+                <input type="text" class="composition-row-name" value="Item C" placeholder="Optional" />
+              </div>
+              <div class="composition-row-field">
+                <label>Value</label>
+                <input type="number" class="composition-row-value" value="500" min="0" step="any" />
+              </div>
+              <button type="button" class="calculator-button secondary composition-remove-row">Remove</button>
+            </div>
+          </div>
+
+          <div class="comp-actions">
+            <button type="button" class="calculator-button secondary" id="composition-add-row">
+              + Add Item
+            </button>
+          </div>
+
+          <div class="input-row action-row comp-action-row">
+            <button class="calculator-button full-width" type="button" id="composition-calc">
+              Calculate Composition
+            </button>
+          </div>
+        </div>
+
+        <aside class="comp-insight-panel" aria-label="Composition result snapshot">
+          <div class="comp-result-shell">
+            <p class="comp-result-label">Composition Snapshot</p>
+            <div class="result comp-result-value" id="composition-result" aria-live="polite"></div>
+            <div class="result-detail comp-result-detail" id="composition-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="comp-metrics-list">
+            <div class="comp-metric-row">
+              <span>Items Count</span>
+              <strong data-composition-snap="items-count">3</strong>
+            </div>
+            <div class="comp-metric-row">
+              <span>Total Source</span>
+              <strong data-composition-snap="total-used">Sum of items</strong>
+            </div>
+            <div class="comp-metric-row">
+              <span>Total Used</span>
+              <strong data-composition-snap="total">1000.00</strong>
+            </div>
+            <div class="comp-metric-row">
+              <span>Sum of Items</span>
+              <strong data-composition-snap="sum-items">1000.00</strong>
+            </div>
+            <div class="comp-metric-row">
+              <span>Remainder %</span>
+              <strong data-composition-snap="remainder-percent">N/A</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <div id="composition-known-total-section" hidden aria-hidden="true">
-      <div class="input-row">
-        <label for="composition-known-total">Known Total (T)</label>
-        <input id="composition-known-total" type="number" min="0" step="any" value="" />
-      </div>
-    </div>
-
-    <div id="composition-rows">
-      <div class="input-row composition-item-row">
-        <div class="composition-row-field">
-          <label>Name</label>
-          <input type="text" class="composition-row-name" value="" placeholder="Optional" />
-        </div>
-        <div class="composition-row-field">
-          <label>Value</label>
-          <input type="number" class="composition-row-value" value="300" min="0" step="any" />
-        </div>
-        <button type="button" class="calculator-button secondary composition-remove-row">
-          Remove
-        </button>
-      </div>
-      <div class="input-row composition-item-row">
-        <div class="composition-row-field">
-          <label>Name</label>
-          <input type="text" class="composition-row-name" value="" placeholder="Optional" />
-        </div>
-        <div class="composition-row-field">
-          <label>Value</label>
-          <input type="number" class="composition-row-value" value="200" min="0" step="any" />
-        </div>
-        <button type="button" class="calculator-button secondary composition-remove-row">
-          Remove
-        </button>
-      </div>
-      <div class="input-row composition-item-row">
-        <div class="composition-row-field">
-          <label>Name</label>
-          <input type="text" class="composition-row-name" value="" placeholder="Optional" />
-        </div>
-        <div class="composition-row-field">
-          <label>Value</label>
-          <input type="number" class="composition-row-value" value="500" min="0" step="any" />
-        </div>
-        <button type="button" class="calculator-button secondary composition-remove-row">
-          Remove
-        </button>
-      </div>
-    </div>
-
-    <button type="button" class="calculator-button secondary" id="composition-add-row">
-      + Add Item
-    </button>
-
-    <button class="calculator-button full-width" type="button" id="composition-calc">
-      Calculate Composition
-    </button>
-
-    <div class="result" id="composition-result" aria-live="polite"></div>
-    <div class="result-detail" id="composition-result-detail" aria-live="polite"></div>
   </div>
 </div>
-
-<script
-  type="module"
-  src="/calculators/percentage-calculators/percentage-composition/module.js"
-></script>

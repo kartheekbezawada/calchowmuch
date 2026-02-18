@@ -131,6 +131,67 @@ Wave 3 acceptance criteria:
 - Scoped strict CWV artifact exists and passes:
   - `test-results/performance/scoped-cwv/percentage/percentage-increase.json`
 
+## 5.4 Wave 4 Implementation Scope (Percentage Decrease)
+
+Target route:
+- `/percentage-calculators/percentage-decrease/`
+
+Wave 4 changes:
+- Migrate to cluster-owned single-pane architecture (`calc_exp` + `paneLayout=single`)
+- Rebuild route UI with a unique decline-focused visual language while preserving cluster patterns
+- Add route-local CSS contract:
+  - `public/calculators/percentage-calculators/percentage-decrease/calculator.css`
+- Remove legacy explanation structure:
+  - remove Scenario Summary
+  - replace `calculator-table` with `pv-results-table`
+  - replace `faq-box` blocks with `bor-faq-grid` + `bor-faq-card`
+- Keep percentage-decrease formula behavior, guard behavior, and FAQ schema semantics intact
+- Add route-bundle/asset-manifest ownership for this route under percentage cluster
+
+Wave 4 acceptance criteria:
+- Navigation contract uses `routeArchetype: "calc_exp"` and `paneLayout: "single"` for this route
+- Combined pane is rendered (`panel-span-all` + `calculator-page-single`)
+- No Scenario Summary section exists on the page
+- Results table uses `pv-results-table` style family
+- FAQ renders as card-grid (`bor-faq-grid` with 10 cards)
+- Explanation includes bullet list + formula block + ordered steps
+- Scoped strict CWV artifact exists and passes:
+  - `test-results/performance/scoped-cwv/percentage/percentage-decrease.json`
+
+## 5.5 Wave 5 Implementation Scope (Percentage Composition)
+
+Target route:
+- `/percentage-calculators/percentage-composition/`
+
+Wave 5 changes:
+- Migrate to cluster-owned single-pane architecture (`calc_exp` + `paneLayout=single`)
+- Preserve full composition UX:
+  - calculated total vs known total mode
+  - dynamic add/remove item rows
+  - remainder value and remainder percentage behavior
+- Add route-local CSS contract:
+  - `public/calculators/percentage-calculators/percentage-composition/calculator.css`
+- Remove legacy explanation structure:
+  - remove Scenario Summary
+  - replace `calculator-table` with `pv-results-table`
+  - replace `faq-box` blocks with `bor-faq-grid` + `bor-faq-card`
+- Keep composition formula behavior and FAQ schema semantics intact
+- Add route-bundle/asset-manifest ownership for this route under percentage cluster
+
+Wave 5 acceptance criteria:
+- Navigation contract uses `routeArchetype: "calc_exp"` and `paneLayout: "single"` for this route
+- Combined pane is rendered (`panel-span-all` + `calculator-page-single`)
+- No Scenario Summary section exists on the page
+- Results table uses `pv-results-table` style family
+- FAQ renders as card-grid (`bor-faq-grid` with 10 cards)
+- Composition UX remains intact:
+  - calculated mode works
+  - known total mode works
+  - add/remove row behavior works
+  - remainder behavior works
+- Scoped strict CWV artifact exists and passes:
+  - `test-results/performance/scoped-cwv/percentage/percentage-composition.json`
+
 ## 6) File-by-File Change Map
 
 Documentation/contracts:

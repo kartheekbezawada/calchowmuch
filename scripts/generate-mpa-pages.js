@@ -305,6 +305,22 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'percentage-decrease': {
+    title: 'Percentage Decrease Calculator – CalcHowMuch',
+    description:
+      'Calculate percentage decrease from an original value to a new value instantly. Use our free percent decrease calculator and formula.',
+    h1: 'Percentage Decrease Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'percentage-composition': {
+    title: 'Percentage Composition Calculator – CalcHowMuch',
+    description:
+      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator.",
+    h1: 'Percentage Composition Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'percent-to-fraction-decimal': {
     title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
     description:

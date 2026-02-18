@@ -13,6 +13,14 @@ const calculateButton = document.querySelector('#composition-calc');
 const resultOutput = document.querySelector('#composition-result');
 const resultDetail = document.querySelector('#composition-result-detail');
 
+const snapshotTargets = {
+  itemsCount: document.querySelector('[data-composition-snap="items-count"]'),
+  totalUsed: document.querySelector('[data-composition-snap="total-used"]'),
+  total: document.querySelector('[data-composition-snap="total"]'),
+  sumItems: document.querySelector('[data-composition-snap="sum-items"]'),
+  remainderPercent: document.querySelector('[data-composition-snap="remainder-percent"]'),
+};
+
 const explanationRoot = document.querySelector('#composition-explanation');
 const valueTargets = explanationRoot
   ? {
@@ -53,7 +61,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the share of total formula?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The formula is (Item ÷ Total) × 100.',
+        text: 'The formula is (Item / Total) x 100.',
       },
     },
     {
@@ -61,7 +69,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is remainder percentage?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Remainder percentage is the part of the total not covered by the listed items, expressed as a percent of the total.',
+        text: 'Remainder percentage is the part of total not covered by listed items, expressed as a percentage.',
       },
     },
     {
@@ -69,7 +77,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How do you calculate remainder %?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Subtract the sum of items from the total, divide by the total, then multiply by 100.',
+        text: 'Subtract sum of items from total, divide by total, then multiply by 100.',
       },
     },
     {
@@ -77,7 +85,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What if the items already add up to the total?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Then the remainder is zero and the remainder percentage is 0%.',
+        text: 'Then remainder is zero and remainder percentage is 0%.',
       },
     },
     {
@@ -85,7 +93,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What if the items exceed the total?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The remainder becomes negative, which indicates the items are larger than the total.',
+        text: 'The remainder becomes negative, indicating listed items are larger than the total.',
       },
     },
     {
@@ -93,15 +101,15 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use decimals for item values?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, decimals work the same way for percent of total.',
+        text: 'Yes, decimals work the same way for percent of total calculations.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do the percentages always add up to 100%?',
+      name: 'Do percentages always add up to 100%?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'They should add up to 100% when using the same total, but rounding can cause small differences.',
+        text: 'They should, but rounding can cause very small differences.',
       },
     },
     {
@@ -195,11 +203,17 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 function setVisibility(element, visible) {
   if (!element) {
     return;
   }
-  element.classList.toggle('is-hidden', !visible);
   element.hidden = !visible;
   element.setAttribute('aria-hidden', String(!visible));
 }
@@ -215,17 +229,26 @@ function syncModeUI() {
   knownModeLabel?.classList.toggle('is-active', mode === 'known');
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function renderItemRow({ name = '', value = '' } = {}) {
   const row = document.createElement('div');
   row.className = 'input-row composition-item-row';
   row.innerHTML = `
     <div class="composition-row-field">
       <label>Name</label>
-      <input type="text" class="composition-row-name" value="${name}" placeholder="Optional" />
+      <input type="text" class="composition-row-name" value="${escapeHtml(name)}" placeholder="Optional" />
     </div>
     <div class="composition-row-field">
       <label>Value</label>
-      <input type="number" class="composition-row-value" value="${value}" min="0" step="any" />
+      <input type="number" class="composition-row-value" value="${escapeHtml(value)}" min="0" step="any" />
     </div>
     <button type="button" class="calculator-button secondary composition-remove-row">Remove</button>
   `;
@@ -235,11 +258,13 @@ function renderItemRow({ name = '', value = '' } = {}) {
 function collectItems() {
   const rowElements = rowsContainer?.querySelectorAll('.composition-item-row') ?? [];
   const items = [];
+
   for (const rowEl of rowElements) {
     const name = rowEl.querySelector('.composition-row-name')?.value || '';
-    const value = rowEl.querySelector('.composition-row-value')?.value || '';
-    items.push({ name, value: Number(value) });
+    const valueRaw = rowEl.querySelector('.composition-row-value')?.value || '';
+    items.push({ name, value: Number(valueRaw) });
   }
+
   return items;
 }
 
@@ -248,6 +273,7 @@ const liveUpdatesEnabled = false;
 
 function calculate() {
   const items = collectItems();
+
   if (!items.length) {
     resultOutput.textContent = 'Add at least one item.';
     resultDetail.textContent = '';
@@ -266,36 +292,46 @@ function calculate() {
   const result = calculatePercentageComposition(items, knownTotal);
 
   if (result === null) {
-    resultOutput.textContent = 'Total is zero — percentages are undefined.';
+    resultOutput.textContent = 'Total is zero - percentages are undefined.';
     resultDetail.textContent = '';
+    updateTargets(valueTargets?.remainderPercent, 'N/A');
+    updateSnapshot('remainderPercent', 'N/A');
     return;
   }
 
-  const itemLines = result.items
+  const lineItems = result.items
     .map((item) => `${item.name}: ${fmt(item.value)} (${fmt(item.percent)}%)`)
     .join(' | ');
+
+  const remainderText = result.useKnownTotal
+    ? ` | Remainder (Other): ${fmt(result.remainingValue)} (${fmt(result.remainderPercent)}%)`
+    : '';
 
   let warning = '';
   if (result.useKnownTotal && result.remainingValue < 0) {
     warning = ' (Items exceed total)';
   }
 
-  let remainderLine = '';
-  if (result.useKnownTotal) {
-    remainderLine = ` | Remainder (Other): ${fmt(result.remainingValue)} (${fmt(result.remainderPercent)}%)`;
-  }
+  resultOutput.textContent = `Composition: ${lineItems}${remainderText}${warning}`;
+  resultDetail.textContent = `Total: ${fmt(result.total)} | Sum of Items: ${fmt(result.sumItems)} | Formula: (Item / ${fmt(result.total)}) x 100`;
 
-  resultOutput.textContent = `Composition: ${itemLines}${remainderLine}${warning}`;
-  resultDetail.textContent = `Total: ${fmt(result.total)} | Sum of Items: ${fmt(result.sumItems)} | Formula: (Item ÷ ${fmt(result.total)}) × 100.`;
+  const itemsCount = String(result.items.length);
+  const totalSource = result.useKnownTotal ? 'Known total' : 'Sum of items';
+  const total = fmt(result.total);
+  const sumItems = fmt(result.sumItems);
+  const remainderPercent = result.useKnownTotal ? `${fmt(result.remainderPercent)}%` : 'N/A';
 
-  updateTargets(valueTargets?.itemsCount, String(result.items.length));
-  updateTargets(valueTargets?.totalUsed, result.useKnownTotal ? 'Known total' : 'Sum of items');
-  updateTargets(valueTargets?.total, fmt(result.total));
-  updateTargets(valueTargets?.sumItems, fmt(result.sumItems));
-  updateTargets(
-    valueTargets?.remainderPercent,
-    result.useKnownTotal ? `${fmt(result.remainderPercent)}%` : 'N/A'
-  );
+  updateSnapshot('itemsCount', itemsCount);
+  updateSnapshot('totalUsed', totalSource);
+  updateSnapshot('total', total);
+  updateSnapshot('sumItems', sumItems);
+  updateSnapshot('remainderPercent', remainderPercent);
+
+  updateTargets(valueTargets?.itemsCount, itemsCount);
+  updateTargets(valueTargets?.totalUsed, totalSource);
+  updateTargets(valueTargets?.total, total);
+  updateTargets(valueTargets?.sumItems, sumItems);
+  updateTargets(valueTargets?.remainderPercent, remainderPercent);
 
   hasCalculated = true;
 }
@@ -318,11 +354,14 @@ rowsContainer?.addEventListener('click', (event) => {
   if (!button) {
     return;
   }
+
   const rows = rowsContainer.querySelectorAll('.composition-item-row');
   if (rows.length <= 1) {
     return;
   }
+
   button.closest('.composition-item-row')?.remove();
+
   if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
@@ -341,5 +380,3 @@ knownTotalInput?.addEventListener('input', () => {
 });
 
 calculateButton?.addEventListener('click', calculate);
-
-calculate();

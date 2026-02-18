@@ -8,6 +8,13 @@ const calculateButton = document.querySelector('#pctdec-calc');
 const resultOutput = document.querySelector('#pctdec-result');
 const resultDetail = document.querySelector('#pctdec-result-detail');
 
+const snapshotTargets = {
+  originalValue: document.querySelector('[data-pctdec-snap="original-value"]'),
+  newValue: document.querySelector('[data-pctdec-snap="new-value"]'),
+  decreaseAmount: document.querySelector('[data-pctdec-snap="decrease-amount"]'),
+  direction: document.querySelector('[data-pctdec-snap="direction"]'),
+};
+
 const explanationRoot = document.querySelector('#pctdec-explanation');
 const valueTargets = explanationRoot
   ? {
@@ -15,6 +22,7 @@ const valueTargets = explanationRoot
       newValue: explanationRoot.querySelectorAll('[data-pctdec="new-value"]'),
       decreaseAmount: explanationRoot.querySelectorAll('[data-pctdec="decrease-amount"]'),
       percentDecrease: explanationRoot.querySelectorAll('[data-pctdec="percent-decrease"]'),
+      direction: explanationRoot.querySelectorAll('[data-pctdec="direction"]'),
     }
   : null;
 
@@ -47,7 +55,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the percentage decrease formula?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The formula is ((X − Y) ÷ X) × 100.',
+        text: 'The formula is ((X - Y) / X) x 100.',
       },
     },
     {
@@ -55,7 +63,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the difference between decrease amount and percentage decrease?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Decrease amount is X − Y, while percentage decrease compares that change to the original value.',
+        text: 'Decrease amount is X - Y, while percentage decrease compares that change to the original value.',
       },
     },
     {
@@ -176,8 +184,13 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-function fmt(value) {
+function formatValue(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function formatSignedPercent(value) {
+  const formatted = formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `${formatted}%`;
 }
 
 function updateTargets(nodes, value) {
@@ -189,14 +202,11 @@ function updateTargets(nodes, value) {
   });
 }
 
-function updateExplanation(values) {
-  if (!valueTargets) {
-    return;
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
   }
-  updateTargets(valueTargets.originalValue, values.originalValue);
-  updateTargets(valueTargets.newValue, values.newValue);
-  updateTargets(valueTargets.decreaseAmount, values.decreaseAmount);
-  updateTargets(valueTargets.percentDecrease, values.percentDecrease);
 }
 
 let hasCalculated = false;
@@ -207,13 +217,13 @@ function calculate() {
   const y = Number.parseFloat(newInput?.value ?? '');
 
   if (!Number.isFinite(x)) {
-    resultOutput.textContent = 'Enter a valid original value.';
+    resultOutput.textContent = 'Enter a valid original value (X).';
     resultDetail.textContent = '';
     return;
   }
 
   if (!Number.isFinite(y)) {
-    resultOutput.textContent = 'Enter a valid new value.';
+    resultOutput.textContent = 'Enter a valid new value (Y).';
     resultDetail.textContent = '';
     return;
   }
@@ -221,25 +231,33 @@ function calculate() {
   const result = calculatePercentageDecrease(x, y);
 
   if (result === null) {
-    resultOutput.textContent = 'Percentage decrease is undefined when the original value is zero.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Percentage decrease is undefined when original value (X) is 0.';
+    resultDetail.textContent = 'Provide an original value other than 0.';
+    updateTargets(valueTargets?.direction, 'Undefined');
+    updateSnapshot('direction', 'Undefined');
     return;
   }
 
-  let note = '';
-  if (result.percentDecrease < 0) {
-    note = ' (Negative result indicates an increase, not a decrease)';
-  }
+  const direction = result.percentDecrease > 0 ? 'Decrease' : result.percentDecrease < 0 ? 'Increase' : 'No Change';
 
-  resultOutput.textContent = `Percentage Decrease: ${fmt(result.percentDecrease)}%${note}`;
-  resultDetail.textContent = `Decrease Amount: ${fmt(result.decreaseAmount)}. Formula: ((${fmt(result.originalValue)} − ${fmt(result.newValue)}) ÷ ${fmt(result.originalValue)}) × 100 = ${fmt(result.percentDecrease)}%.`;
+  const formattedX = formatValue(result.originalValue);
+  const formattedY = formatValue(result.newValue);
+  const formattedAmount = formatValue(result.decreaseAmount);
+  const formattedPercent = formatSignedPercent(result.percentDecrease);
 
-  updateExplanation({
-    originalValue: fmt(result.originalValue),
-    newValue: fmt(result.newValue),
-    decreaseAmount: fmt(result.decreaseAmount),
-    percentDecrease: `${fmt(result.percentDecrease)}%`,
-  });
+  resultOutput.textContent = `Percentage Decrease: ${formattedPercent}`;
+  resultDetail.textContent = `Decrease Amount: ${formattedAmount} | Direction: ${direction} | Formula: ((X - Y) / X) x 100`;
+
+  updateSnapshot('originalValue', formattedX);
+  updateSnapshot('newValue', formattedY);
+  updateSnapshot('decreaseAmount', formattedAmount);
+  updateSnapshot('direction', direction);
+
+  updateTargets(valueTargets?.originalValue, formattedX);
+  updateTargets(valueTargets?.newValue, formattedY);
+  updateTargets(valueTargets?.decreaseAmount, formattedAmount);
+  updateTargets(valueTargets?.percentDecrease, formattedPercent);
+  updateTargets(valueTargets?.direction, direction);
 
   hasCalculated = true;
 }

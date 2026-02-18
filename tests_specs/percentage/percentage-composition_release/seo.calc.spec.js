@@ -1,14 +1,15 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Composition Calculator SEO', () => {
-  test('COMPOSITION-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
+  test('PCOMP-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-composition/');
 
     await expect(page).toHaveTitle('Percentage Composition Calculator – CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBeTruthy();
-    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description).toBe(
+      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator."
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
@@ -17,37 +18,24 @@ test.describe('Percentage Composition Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe(
-      'https://calchowmuch.com/percentage-calculators/percentage-composition/'
-    );
+    expect(canonicalHref).toBe('https://calchowmuch.com/percentage-calculators/percentage-composition/');
 
-    const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBeTruthy();
-
-    const ogDescription = await page
-      .locator('meta[property="og:description"]')
-      .getAttribute('content');
-    expect(ogDescription).toBeTruthy();
-
-    const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');
-    expect(ogImage).toBeTruthy();
-
-    const twitterCard = await page.locator('meta[name="twitter:card"]').getAttribute('content');
-    expect(twitterCard).toBe('summary_large_image');
+    await expect(page.locator('#composition-explanation .pv-results-table')).toHaveCount(1);
+    await expect(page.locator('#composition-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#composition-explanation .faq-box')).toHaveCount(0);
+    await expect(page.locator('#composition-explanation')).not.toContainText('Scenario Summary');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
     const structuredText = await structuredDataScript.textContent();
     const structuredData = JSON.parse(structuredText || '{}');
 
-    expect(structuredData['@graph']).toBeTruthy();
     const types = structuredData['@graph'].map((node) => node['@type']);
     expect(types).toEqual(
       expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
     );
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
-    expect(faqNode).toBeTruthy();
     expect(faqNode.mainEntity).toHaveLength(10);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

@@ -990,7 +990,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-composition",
@@ -1004,7 +1004,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "reverse-percentage",
