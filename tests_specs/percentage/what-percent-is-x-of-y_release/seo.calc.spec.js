@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('What Percent Is X of Y Calculator SEO', () => {
   test('WPXY-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/percentage-calculators/what-percent-is-x-of-y/');
+    await page.goto('/percentage-calculators/percentage-finder-calculator/');
 
     await expect(page).toHaveTitle('What Percent Is X of Y Calculator – CalcHowMuch');
 
@@ -12,13 +12,13 @@ test.describe('What Percent Is X of Y Calculator SEO', () => {
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('What Percent Is X of Y Calculator');
+    await expect(h1).toHaveText('What Percent Is X of Y');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe(
-      'https://calchowmuch.com/percentage-calculators/what-percent-is-x-of-y/'
+      'https://calchowmuch.com/percentage-calculators/percentage-finder-calculator/'
     );
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
@@ -53,6 +53,6 @@ test.describe('What Percent Is X of Y Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/percentage-calculators/what-percent-is-x-of-y/');
+    expect(sitemapText).toContain('/percentage-calculators/percentage-finder-calculator/');
   });
 });

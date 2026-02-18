@@ -5,3 +5,16 @@
 /faqs/ /faq/ 301
 
 /faq /faq/ 301
+
+# Percentage URL canonical migration (2026-02-18)
+/percentage-calculators/percent-change/ /percentage-calculators/percent-change-calculator/ 301
+/percentage-calculators/percentage-difference/ /percentage-calculators/percentage-difference-calculator/ 301
+/percentage-calculators/percentage-increase/ /percentage-calculators/percentage-increase-calculator/ 301
+/percentage-calculators/percentage-decrease/ /percentage-calculators/percentage-decrease-calculator/ 301
+/percentage-calculators/percentage-composition/ /percentage-calculators/percentage-composition-calculator/ 301
+/percentage-calculators/reverse-percentage/ /percentage-calculators/reverse-percentage-calculator/ 301
+/percentage-calculators/percent-to-fraction-decimal/ /percentage-calculators/percent-to-fraction-decimal-calculator/ 301
+/percentage-calculators/what-percent-is-x-of-y/ /percentage-calculators/percentage-finder-calculator/ 301
+/percentage-calculators/percentage-of-a-number/ /percentage-calculators/percentage-of-a-number-calculator/ 301
+/math/percentage-increase/ /percentage-calculators/percentage-increase-calculator/ 301
+/percentage-calculators/what-percent-is-calculator/ /percentage-calculators/percentage-finder-calculator/ 301

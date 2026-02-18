@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { assertCwv, measureRouteCwv } from '../../infrastructure/e2e/cwv-scope-helper.js';
 
-const ROUTE = '/percentage-calculators/what-percent-is-x-of-y/';
+const ROUTE = '/percentage-calculators/percentage-finder-calculator/';
 
 test.describe('percentage/what-percent-is-x-of-y cwv guard', () => {
   test('calculator route satisfies CLS/LCP thresholds', async ({ page }) => {

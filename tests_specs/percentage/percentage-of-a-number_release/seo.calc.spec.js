@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Find Percentage of a Number Calculator SEO', () => {
   test('PON-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-of-a-number/');
+    await page.goto('/percentage-calculators/percentage-of-a-number-calculator/');
 
     await expect(page).toHaveTitle('Find Percentage of a Number Calculator – CalcHowMuch');
 
@@ -14,7 +14,7 @@ test.describe('Find Percentage of a Number Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
-      'https://calchowmuch.com/percentage-calculators/percentage-of-a-number/'
+      'https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/'
     );
 
     const h1 = page.locator('h1');
@@ -33,6 +33,6 @@ test.describe('Find Percentage of a Number Calculator SEO', () => {
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
-    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percentage-of-a-number/');
+    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percentage-of-a-number-calculator/');
   });
 });

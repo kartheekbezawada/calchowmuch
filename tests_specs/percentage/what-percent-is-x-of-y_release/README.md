@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /percentage-calculators/what-percent-is-x-of-y/
+- /percentage-calculators/percentage-finder-calculator/

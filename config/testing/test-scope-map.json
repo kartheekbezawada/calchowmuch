@@ -41,7 +41,7 @@
         "/math/trigonometry/trig-functions/",
         "/math/trigonometry/unit-circle/",
         "/math/z-score/",
-        "/percentage-calculators/percentage-increase/"
+        "/percentage-calculators/percentage-increase-calculator/"
       ],
       "calculators": {
         "basic": {
@@ -49,7 +49,7 @@
           "releaseDir": "tests_specs/math/basic_release"
         },
         "percentage-increase": {
-          "route": "/percentage-calculators/percentage-increase/",
+          "route": "/percentage-calculators/percentage-increase-calculator/",
           "releaseDir": "tests_specs/math/percentage-increase_release"
         },
         "fraction-calculator": {
@@ -426,51 +426,51 @@
         "/percentage-calculators/discount-calculator/",
         "/percentage-calculators/margin-calculator/",
         "/percentage-calculators/markup-calculator/",
-        "/percentage-calculators/percent-change/",
-        "/percentage-calculators/percent-to-fraction-decimal/",
-        "/percentage-calculators/percentage-composition/",
-        "/percentage-calculators/percentage-decrease/",
-        "/percentage-calculators/percentage-difference/",
-        "/percentage-calculators/percentage-increase/",
-        "/percentage-calculators/percentage-of-a-number/",
-        "/percentage-calculators/reverse-percentage/",
-        "/percentage-calculators/what-percent-is-x-of-y/"
+        "/percentage-calculators/percent-change-calculator/",
+        "/percentage-calculators/percent-to-fraction-decimal-calculator/",
+        "/percentage-calculators/percentage-composition-calculator/",
+        "/percentage-calculators/percentage-decrease-calculator/",
+        "/percentage-calculators/percentage-difference-calculator/",
+        "/percentage-calculators/percentage-increase-calculator/",
+        "/percentage-calculators/percentage-of-a-number-calculator/",
+        "/percentage-calculators/reverse-percentage-calculator/",
+        "/percentage-calculators/percentage-finder-calculator/"
       ],
       "calculators": {
         "percent-change": {
-          "route": "/percentage-calculators/percent-change/",
+          "route": "/percentage-calculators/percent-change-calculator/",
           "releaseDir": "tests_specs/percentage/percent-change_release"
         },
         "percentage-difference": {
-          "route": "/percentage-calculators/percentage-difference/",
+          "route": "/percentage-calculators/percentage-difference-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-difference_release"
         },
         "percentage-increase": {
-          "route": "/percentage-calculators/percentage-increase/",
+          "route": "/percentage-calculators/percentage-increase-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-increase_release"
         },
         "percentage-decrease": {
-          "route": "/percentage-calculators/percentage-decrease/",
+          "route": "/percentage-calculators/percentage-decrease-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-decrease_release"
         },
         "percentage-composition": {
-          "route": "/percentage-calculators/percentage-composition/",
+          "route": "/percentage-calculators/percentage-composition-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-composition_release"
         },
         "reverse-percentage": {
-          "route": "/percentage-calculators/reverse-percentage/",
+          "route": "/percentage-calculators/reverse-percentage-calculator/",
           "releaseDir": "tests_specs/percentage/reverse-percentage_release"
         },
         "percent-to-fraction-decimal": {
-          "route": "/percentage-calculators/percent-to-fraction-decimal/",
+          "route": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
           "releaseDir": "tests_specs/percentage/percent-to-fraction-decimal_release"
         },
         "what-percent-is-x-of-y": {
-          "route": "/percentage-calculators/what-percent-is-x-of-y/",
+          "route": "/percentage-calculators/percentage-finder-calculator/",
           "releaseDir": "tests_specs/percentage/what-percent-is-x-of-y_release"
         },
         "percentage-of-a-number": {
-          "route": "/percentage-calculators/percentage-of-a-number/",
+          "route": "/percentage-calculators/percentage-of-a-number-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-of-a-number_release"
         },
         "commission-calculator": {

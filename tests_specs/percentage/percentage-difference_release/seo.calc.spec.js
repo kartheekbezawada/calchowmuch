@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Difference Calculator SEO', () => {
   test('PDIFF-TEST-SEO-1: metadata, schema, sitemap, and explanation parity', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-difference/');
+    await page.goto('/percentage-calculators/percentage-difference-calculator/');
 
     await expect(page).toHaveTitle('Percentage Difference Calculator – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Percentage Difference Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/percentage-calculators/percentage-difference/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/');
 
     await expect(page.locator('#pct-diff-explanation .pv-results-table')).toHaveCount(1);
     await expect(page.locator('#pct-diff-explanation .bor-faq-card')).toHaveCount(10);
@@ -41,6 +41,6 @@ test.describe('Percentage Difference Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/percentage-calculators/percentage-difference/');
+    expect(sitemapText).toContain('/percentage-calculators/percentage-difference-calculator/');
   });
 });

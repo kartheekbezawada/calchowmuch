@@ -407,21 +407,21 @@
         "topNavStatic": true
       }
     },
-    "/percentage-calculators/percent-change/": {
-      "route": "/percentage-calculators/percent-change/",
+    "/percentage-calculators/percent-change-calculator/": {
+      "route": "/percentage-calculators/percent-change-calculator/",
       "calculatorId": "percent-change",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change.critical.ff820b68.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/percent-change/module.js"
+          "/calculators/percentage-calculators/percent-change-calculator/module.js"
         ]
       },
       "options": {
@@ -429,21 +429,21 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/percentage-difference/": {
-      "route": "/percentage-calculators/percentage-difference/",
+    "/percentage-calculators/percentage-difference-calculator/": {
+      "route": "/percentage-calculators/percentage-difference-calculator/",
       "calculatorId": "percentage-difference",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-difference.critical.43f60327.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/percentage-difference/module.js"
+          "/calculators/percentage-calculators/percentage-difference-calculator/module.js"
         ]
       },
       "options": {
@@ -451,21 +451,21 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/percentage-increase/": {
-      "route": "/percentage-calculators/percentage-increase/",
+    "/percentage-calculators/percentage-increase-calculator/": {
+      "route": "/percentage-calculators/percentage-increase-calculator/",
       "calculatorId": "percentage-increase",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-increase.critical.1449aa2b.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/percentage-increase/module.js"
+          "/calculators/percentage-calculators/percentage-increase-calculator/module.js"
         ]
       },
       "options": {
@@ -473,21 +473,21 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/percentage-decrease/": {
-      "route": "/percentage-calculators/percentage-decrease/",
+    "/percentage-calculators/percentage-decrease-calculator/": {
+      "route": "/percentage-calculators/percentage-decrease-calculator/",
       "calculatorId": "percentage-decrease",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-decrease.critical.0d81409a.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/percentage-decrease/module.js"
+          "/calculators/percentage-calculators/percentage-decrease-calculator/module.js"
         ]
       },
       "options": {
@@ -495,21 +495,21 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/percentage-composition/": {
-      "route": "/percentage-calculators/percentage-composition/",
+    "/percentage-calculators/percentage-composition-calculator/": {
+      "route": "/percentage-calculators/percentage-composition-calculator/",
       "calculatorId": "percentage-composition",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-composition.critical.8cddddab.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/percentage-composition/module.js"
+          "/calculators/percentage-calculators/percentage-composition-calculator/module.js"
         ]
       },
       "options": {

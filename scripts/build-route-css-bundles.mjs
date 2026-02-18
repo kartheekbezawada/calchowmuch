@@ -28,11 +28,11 @@ const CALCULATOR_SHARED_SOURCES = [
 ];
 
 const CRITICAL_FULL_SOURCES = new Set([
-  'calculators/percentage-calculators/percent-change/calculator.css',
-  'calculators/percentage-calculators/percentage-difference/calculator.css',
-  'calculators/percentage-calculators/percentage-increase/calculator.css',
-  'calculators/percentage-calculators/percentage-decrease/calculator.css',
-  'calculators/percentage-calculators/percentage-composition/calculator.css',
+  'calculators/percentage-calculators/percent-change-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-decrease-calculator/calculator.css',
+  'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -50,11 +50,11 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/loans/credit-card-minimum-payment/',
   '/loans/balance-transfer-installment-plan/',
   '/loans/credit-card-consolidation/',
-  '/percentage-calculators/percent-change/',
-  '/percentage-calculators/percentage-difference/',
-  '/percentage-calculators/percentage-increase/',
-  '/percentage-calculators/percentage-decrease/',
-  '/percentage-calculators/percentage-composition/',
+  '/percentage-calculators/percent-change-calculator/',
+  '/percentage-calculators/percentage-difference-calculator/',
+  '/percentage-calculators/percentage-increase-calculator/',
+  '/percentage-calculators/percentage-decrease-calculator/',
+  '/percentage-calculators/percentage-composition-calculator/',
 ]);
 const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
@@ -258,33 +258,33 @@ const LOANS_MANUAL_OVERRIDES = [
 const PERCENTAGE_ISOLATED_ROUTES = [
   {
     calculatorId: 'percent-change',
-    route: '/percentage-calculators/percent-change/',
-    relPath: 'percentage-calculators/percent-change',
-    routeCss: 'calculators/percentage-calculators/percent-change/calculator.css',
+    route: '/percentage-calculators/percent-change-calculator/',
+    relPath: 'percentage-calculators/percent-change-calculator',
+    routeCss: 'calculators/percentage-calculators/percent-change-calculator/calculator.css',
   },
   {
     calculatorId: 'percentage-difference',
-    route: '/percentage-calculators/percentage-difference/',
-    relPath: 'percentage-calculators/percentage-difference',
-    routeCss: 'calculators/percentage-calculators/percentage-difference/calculator.css',
+    route: '/percentage-calculators/percentage-difference-calculator/',
+    relPath: 'percentage-calculators/percentage-difference-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
   },
   {
     calculatorId: 'percentage-increase',
-    route: '/percentage-calculators/percentage-increase/',
-    relPath: 'percentage-calculators/percentage-increase',
-    routeCss: 'calculators/percentage-calculators/percentage-increase/calculator.css',
+    route: '/percentage-calculators/percentage-increase-calculator/',
+    relPath: 'percentage-calculators/percentage-increase-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
   },
   {
     calculatorId: 'percentage-decrease',
-    route: '/percentage-calculators/percentage-decrease/',
-    relPath: 'percentage-calculators/percentage-decrease',
-    routeCss: 'calculators/percentage-calculators/percentage-decrease/calculator.css',
+    route: '/percentage-calculators/percentage-decrease-calculator/',
+    relPath: 'percentage-calculators/percentage-decrease-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-decrease-calculator/calculator.css',
   },
   {
     calculatorId: 'percentage-composition',
-    route: '/percentage-calculators/percentage-composition/',
-    relPath: 'percentage-calculators/percentage-composition',
-    routeCss: 'calculators/percentage-calculators/percentage-composition/calculator.css',
+    route: '/percentage-calculators/percentage-composition-calculator/',
+    relPath: 'percentage-calculators/percentage-composition-calculator',
+    routeCss: 'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
   },
 ];
 

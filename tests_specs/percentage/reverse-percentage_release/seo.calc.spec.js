@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Reverse Percentage Calculator SEO', () => {
   test('REVPCT-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/percentage-calculators/reverse-percentage/');
+    await page.goto('/percentage-calculators/reverse-percentage-calculator/');
 
     await expect(page).toHaveTitle('Reverse Percentage Calculator – CalcHowMuch');
 
@@ -12,13 +12,13 @@ test.describe('Reverse Percentage Calculator SEO', () => {
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Reverse Percentage Calculator');
+    await expect(h1).toHaveText('Reverse Percentage');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe(
-      'https://calchowmuch.com/percentage-calculators/reverse-percentage/'
+      'https://calchowmuch.com/percentage-calculators/reverse-percentage-calculator/'
     );
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
@@ -53,6 +53,6 @@ test.describe('Reverse Percentage Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/percentage-calculators/reverse-percentage/');
+    expect(sitemapText).toContain('/percentage-calculators/reverse-percentage-calculator/');
   });
 });

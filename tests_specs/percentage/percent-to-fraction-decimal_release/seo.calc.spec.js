@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percent to Fraction/Decimal Converter SEO', () => {
   test('PTFD-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
-    await page.goto('/percentage-calculators/percent-to-fraction-decimal/');
+    await page.goto('/percentage-calculators/percent-to-fraction-decimal-calculator/');
 
     await expect(page).toHaveTitle('Percent to Fraction & Decimal Converter – CalcHowMuch');
 
@@ -14,7 +14,7 @@ test.describe('Percent to Fraction/Decimal Converter SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
-      'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal/'
+      'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal-calculator/'
     );
 
     const h1 = page.locator('h1');
@@ -33,6 +33,6 @@ test.describe('Percent to Fraction/Decimal Converter SEO', () => {
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
-    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percent-to-fraction-decimal/');
+    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percent-to-fraction-decimal-calculator/');
   });
 });

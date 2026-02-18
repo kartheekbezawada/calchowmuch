@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Increase Calculator SEO', () => {
   test('PINC-TEST-SEO-1: metadata, schema, sitemap, and explanation parity', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-increase/');
+    await page.goto('/percentage-calculators/percentage-increase-calculator/');
 
     await expect(page).toHaveTitle('Percentage Increase Calculator – CalcHowMuch');
 
@@ -14,7 +14,7 @@ test.describe('Percentage Increase Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
-      'https://calchowmuch.com/percentage-calculators/percentage-increase/'
+      'https://calchowmuch.com/percentage-calculators/percentage-increase-calculator/'
     );
 
     const h1 = page.locator('h1');
@@ -40,6 +40,6 @@ test.describe('Percentage Increase Calculator SEO', () => {
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
-    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percentage-increase/');
+    expect(await sitemapResponse.text()).toContain('/percentage-calculators/percentage-increase-calculator/');
   });
 });
