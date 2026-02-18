@@ -24,22 +24,22 @@
         <tbody>
           <tr>
             <td>Original Value (A)</td>
-            <td><span data-pct-change="a"></span></td>
+            <td><span data-pct-change="a">50.00</span></td>
             <td class="pv-how-col">Starting value used as the denominator base</td>
           </tr>
           <tr>
             <td>New Value (B)</td>
-            <td><span data-pct-change="b"></span></td>
+            <td><span data-pct-change="b">60.00</span></td>
             <td class="pv-how-col">Ending value used to compute the change amount</td>
           </tr>
           <tr>
             <td>Change Amount</td>
-            <td><span data-pct-change="amount"></span></td>
+            <td><span data-pct-change="amount">10.00</span></td>
             <td class="pv-how-col">Calculated as B - A</td>
           </tr>
           <tr>
             <td>Direction</td>
-            <td><span data-pct-change="direction"></span></td>
+            <td><span data-pct-change="direction">Increase</span></td>
             <td class="pv-how-col">Increase if positive, decrease if negative, no change if zero</td>
           </tr>
           <tr>
@@ -51,7 +51,7 @@
         <tfoot>
           <tr>
             <td>Percent Change</td>
-            <td><span data-pct-change="percent"></span></td>
+          <td><span data-pct-change="percent">+20.00%</span></td>
             <td class="pv-how-col">Final signed percentage result</td>
           </tr>
         </tfoot>
@@ -69,12 +69,12 @@
     <ul class="pv-explanation-list">
       <li>
         <strong>Start with both values:</strong>
-        Original value A is <span data-pct-change="a"></span> and new value B is
-        <span data-pct-change="b"></span>.
+        Original value A is <span data-pct-change="a">50.00</span> and new value B is
+        <span data-pct-change="b">60.00</span>.
       </li>
       <li>
         <strong>Find the change amount:</strong>
-        Subtract A from B to get <span data-pct-change="amount"></span>.
+        Subtract A from B to get <span data-pct-change="amount">10.00</span>.
       </li>
       <li>
         <strong>Normalize by original value:</strong>
@@ -83,11 +83,11 @@
       <li>
         <strong>Convert to percent:</strong>
         Multiply by 100 and apply sign direction, resulting in
-        <span data-pct-change="percent"></span>.
+        <span data-pct-change="percent">+20.00%</span>.
       </li>
       <li>
         <strong>Interpret direction:</strong>
-        Current direction is <span data-pct-change="direction"></span>.
+        Current direction is <span data-pct-change="direction">Increase</span>.
       </li>
     </ul>
 
@@ -98,20 +98,20 @@
     <ol class="pv-formula-steps">
       <li>
         <strong>Compute difference:</strong>
-        B - A = <span data-pct-change="amount"></span>.
+        B - A = <span data-pct-change="amount">10.00</span>.
       </li>
       <li>
         <strong>Divide by original:</strong>
-        (<span data-pct-change="amount"></span>) / (<span data-pct-change="a"></span>)
+        (<span data-pct-change="amount">10.00</span>) / (<span data-pct-change="a">50.00</span>)
         gives the relative change ratio.
       </li>
       <li>
         <strong>Convert to percentage:</strong>
-        Multiply the ratio by 100 to get <span data-pct-change="percent"></span>.
+        Multiply the ratio by 100 to get <span data-pct-change="percent">+20.00%</span>.
       </li>
       <li>
         <strong>Assign direction:</strong>
-        Use the sign to label the result as <span data-pct-change="direction"></span>.
+        Use the sign to label the result as <span data-pct-change="direction">Increase</span>.
       </li>
     </ol>
     <p>

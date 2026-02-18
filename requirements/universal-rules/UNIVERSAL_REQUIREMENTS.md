@@ -50,6 +50,23 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-AP-002 (P0):** This document governs implementation standards; AGENTS governs operating contract/roles/override semantics.
 - **UR-AP-003 (P1):** Tracker and documentation updates must reflect repository truth.
 
+### 2.1 Scope Contract Protocol (Agent/Copilot Mandatory)
+
+- **UR-SCOPE-001 (P0):** Before any implementation, any Agent/Copilot must publish a Scope Contract for the current task.
+- **UR-SCOPE-002 (P0):** Scope Contract must include all of the following:
+  - Target calculator(s) and route(s)
+  - Allowed file list (explicit paths)
+  - Forbidden file list (explicit paths or prefixes)
+  - Allowed commands
+  - Forbidden commands
+  - Exact stop rule for out-of-scope requirements
+- **UR-SCOPE-003 (P0):** Agent/Copilot must not edit files until HUMAN explicitly approves the declared Scope Contract.
+- **UR-SCOPE-004 (P0):** If implementation requires any file/command outside approved scope, Agent/Copilot must stop and request explicit approval before proceeding.
+- **UR-SCOPE-005 (P0):** Silent scope expansion is prohibited.
+- **UR-SCOPE-006 (P0):** If a scope violation occurs, Agent/Copilot must stop immediately, revert its own out-of-scope edits, and report root cause + corrective action.
+- **UR-SCOPE-007 (P0):** Shared/core files (for example shell, shared CSS/JS, generators, manifests) are treated as forbidden by default unless explicitly listed as allowed in the approved Scope Contract.
+- **UR-SCOPE-008 (P0):** Release evidence must include the approved scope statement and any approved scope-change deltas.
+
 ---
 
 ## 3) MPA Navigation and Architecture

@@ -128,3 +128,19 @@ For UX changes:
 
 If file list changes mid-work:
 - **Re-confirm** scope with HUMAN before editing additional files.
+
+### 10.1 Scope Contract (Agent/Copilot Execution Format)
+
+Any Agent/Copilot creating scope must declare this contract before edits:
+
+1. Allowed files (explicit paths)
+2. Forbidden files (explicit paths/prefixes; include shared/core defaults)
+3. Allowed commands
+4. Forbidden commands
+5. Stop rule: if a fix needs forbidden files/commands, stop and ask HUMAN
+6. Out-of-scope violation rule: stop, revert own out-of-scope edits, report why
+
+Mandatory behavior:
+- Do not start edits until HUMAN replies with explicit scope approval.
+- Do not widen scope silently.
+- If tests fail outside approved scope, stop and ask whether to expand scope or isolate the failing test.
