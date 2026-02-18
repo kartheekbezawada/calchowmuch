@@ -18,3 +18,15 @@
 /percentage-calculators/percentage-of-a-number/ /percentage-calculators/percentage-of-a-number-calculator/ 301
 /math/percentage-increase/ /percentage-calculators/percentage-increase-calculator/ 301
 /percentage-calculators/what-percent-is-calculator/ /percentage-calculators/percentage-finder-calculator/ 301
+
+# Finance URL canonical migration (2026-02-18)
+/finance/present-value/ /finance-calculators/present-value-calculator/ 301
+/finance/future-value/ /finance-calculators/future-value-calculator/ 301
+/finance/present-value-of-annuity/ /finance-calculators/present-value-of-annuity-calculator/ 301
+/finance/future-value-of-annuity/ /finance-calculators/future-value-of-annuity-calculator/ 301
+/finance/simple-interest/ /finance-calculators/simple-interest-calculator/ 301
+/finance/compound-interest/ /finance-calculators/compound-interest-calculator/ 301
+/finance/effective-annual-rate/ /finance-calculators/effective-annual-rate-calculator/ 301
+/finance/investment-growth/ /finance-calculators/investment-growth-calculator/ 301
+/finance/time-to-savings-goal/ /finance-calculators/time-to-savings-goal-calculator/ 301
+/finance/monthly-savings-needed/ /finance-calculators/monthly-savings-needed-calculator/ 301

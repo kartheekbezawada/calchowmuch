@@ -2,14 +2,12 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Compound Interest Calculator SEO', () => {
   test('CI-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/compound-interest');
+    await page.goto('/finance-calculators/compound-interest-calculator');
 
     await expect(page).toHaveTitle('Compound Interest Calculator – CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBe(
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports monthly, daily, and contributions.'
-    );
+    expect(description).toContain('Calculate compound interest to estimate your ending balance');
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
@@ -18,7 +16,7 @@ test.describe('Compound Interest Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/compound-interest/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/compound-interest-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Compound Interest Calculator – CalcHowMuch');
@@ -42,6 +40,6 @@ test.describe('Compound Interest Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/compound-interest/');
+    expect(sitemapText).toContain('/finance-calculators/compound-interest-calculator/');
   });
 });

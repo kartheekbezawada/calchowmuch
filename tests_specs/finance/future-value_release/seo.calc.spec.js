@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Future Value Calculator SEO', () => {
   test('FV-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/future-value');
+    await page.goto('/finance-calculators/future-value-calculator');
 
     await expect(page).toHaveTitle('Future Value (FV) Calculator – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Future Value Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/future-value/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/future-value-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Future Value (FV) Calculator – CalcHowMuch');
@@ -52,6 +52,6 @@ test.describe('Future Value Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/future-value/');
+    expect(sitemapText).toContain('/finance-calculators/future-value-calculator/');
   });
 });

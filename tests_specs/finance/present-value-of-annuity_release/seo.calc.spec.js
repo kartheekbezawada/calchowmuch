@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Present Value of Annuity Calculator SEO', () => {
   test('PVA-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
-    await page.goto('/finance/present-value-of-annuity');
+    await page.goto('/finance-calculators/present-value-of-annuity-calculator');
 
     await expect(page).toHaveTitle('Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch');
 
@@ -18,7 +18,7 @@ test.describe('Present Value of Annuity Calculator SEO', () => {
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/finance/present-value-of-annuity/');
+    expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/present-value-of-annuity-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
     expect(ogTitle).toBe('Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch');
@@ -52,6 +52,6 @@ test.describe('Present Value of Annuity Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/finance/present-value-of-annuity/');
+    expect(sitemapText).toContain('/finance-calculators/present-value-of-annuity-calculator/');
   });
 });

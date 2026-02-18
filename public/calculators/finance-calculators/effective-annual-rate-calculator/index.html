@@ -1,0 +1,106 @@
+<div id="calc-effective-annual-rate">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Effective annual rate calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Convert a nominal interest rate into the true annual rate after compounding. Compare
+            loans, savings, and investments on a like-for-like basis.
+          </p>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ear-nominal-rate">Nominal Interest Rate (%)</label>
+              <span class="slider-value" id="ear-rate-display">12%</span>
+            </div>
+            <input id="ear-nominal-rate" type="range" value="12" min="0" max="50" step="0.1" />
+          </div>
+
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding Frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="ear-frequency"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semi
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Qtr
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="ear-calc">
+              Calculate Effective Annual Rate
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="EAR result snapshot">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Effective Annual Rate</p>
+            <div class="result mtg-result-card" id="ear-result" aria-live="polite"></div>
+            <div
+              class="result-detail mtg-summary-card"
+              id="ear-result-detail"
+              aria-live="polite"
+            ></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Nominal Rate</span>
+              <strong data-ear="snap-nominal"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Compounding</span>
+              <strong data-ear="snap-compounding"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Periods Per Year</span>
+              <strong data-ear="snap-periods"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Rate Per Period</span>
+              <strong data-ear="snap-periodic-rate"></strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>EAR Difference</span>
+              <strong data-ear="snap-difference"></strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/finance-calculators/effective-annual-rate-calculator/calculator.css');
+</style>
+
+<script type="module" src="/calculators/finance-calculators/effective-annual-rate-calculator/module.js"></script>

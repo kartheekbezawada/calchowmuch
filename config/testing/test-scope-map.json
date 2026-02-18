@@ -291,56 +291,56 @@
     "finance": {
       "clusterReleaseDir": "tests_specs/finance/cluster_release",
       "routes": [
-        "/finance/compound-interest/",
-        "/finance/effective-annual-rate/",
-        "/finance/future-value-of-annuity/",
-        "/finance/future-value/",
-        "/finance/investment-growth/",
-        "/finance/monthly-savings-needed/",
-        "/finance/present-value-of-annuity/",
-        "/finance/present-value/",
-        "/finance/simple-interest/",
-        "/finance/time-to-savings-goal/"
+        "/finance-calculators/compound-interest-calculator/",
+        "/finance-calculators/effective-annual-rate-calculator/",
+        "/finance-calculators/future-value-of-annuity-calculator/",
+        "/finance-calculators/future-value-calculator/",
+        "/finance-calculators/investment-growth-calculator/",
+        "/finance-calculators/monthly-savings-needed-calculator/",
+        "/finance-calculators/present-value-of-annuity-calculator/",
+        "/finance-calculators/present-value-calculator/",
+        "/finance-calculators/simple-interest-calculator/",
+        "/finance-calculators/time-to-savings-goal-calculator/"
       ],
       "calculators": {
         "present-value": {
-          "route": "/finance/present-value/",
+          "route": "/finance-calculators/present-value-calculator/",
           "releaseDir": "tests_specs/finance/present-value_release"
         },
         "future-value": {
-          "route": "/finance/future-value/",
+          "route": "/finance-calculators/future-value-calculator/",
           "releaseDir": "tests_specs/finance/future-value_release"
         },
         "present-value-of-annuity": {
-          "route": "/finance/present-value-of-annuity/",
+          "route": "/finance-calculators/present-value-of-annuity-calculator/",
           "releaseDir": "tests_specs/finance/present-value-of-annuity_release"
         },
         "future-value-of-annuity": {
-          "route": "/finance/future-value-of-annuity/",
+          "route": "/finance-calculators/future-value-of-annuity-calculator/",
           "releaseDir": "tests_specs/finance/future-value-of-annuity_release"
         },
         "simple-interest": {
-          "route": "/finance/simple-interest/",
+          "route": "/finance-calculators/simple-interest-calculator/",
           "releaseDir": "tests_specs/finance/simple-interest_release"
         },
         "compound-interest": {
-          "route": "/finance/compound-interest/",
+          "route": "/finance-calculators/compound-interest-calculator/",
           "releaseDir": "tests_specs/finance/compound-interest_release"
         },
         "effective-annual-rate": {
-          "route": "/finance/effective-annual-rate/",
+          "route": "/finance-calculators/effective-annual-rate-calculator/",
           "releaseDir": "tests_specs/finance/effective-annual-rate_release"
         },
         "investment-growth": {
-          "route": "/finance/investment-growth/",
+          "route": "/finance-calculators/investment-growth-calculator/",
           "releaseDir": "tests_specs/finance/investment-growth_release"
         },
         "time-to-savings-goal": {
-          "route": "/finance/time-to-savings-goal/",
+          "route": "/finance-calculators/time-to-savings-goal-calculator/",
           "releaseDir": "tests_specs/finance/time-to-savings-goal_release"
         },
         "monthly-savings-needed": {
-          "route": "/finance/monthly-savings-needed/",
+          "route": "/finance-calculators/monthly-savings-needed-calculator/",
           "releaseDir": "tests_specs/finance/monthly-savings-needed_release"
         }
       }
