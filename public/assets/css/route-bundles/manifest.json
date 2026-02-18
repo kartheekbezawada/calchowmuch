@@ -231,119 +231,119 @@
       "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.6e035de4.css",
       "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.2751fdc6.css"
     },
-    "/loans/how-much-can-i-borrow/": {
+    "/loan-calculators/how-much-can-i-borrow/": {
       "calculatorId": "how-much-can-i-borrow",
-      "relPath": "loans/how-much-can-i-borrow",
+      "relPath": "loan-calculators/how-much-can-i-borrow",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css",
-      "deferredHref": "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css",
-      "criticalCss": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css",
-      "hash": "695512f3",
-      "criticalHash": "505f2d6c",
-      "fullBytes": 56085,
-      "criticalBytes": 34644,
+      "href": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css",
+      "hash": "4add897e",
+      "criticalHash": "a55ee92e",
+      "fullBytes": 56096,
+      "criticalBytes": 34655,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/how-much-can-i-borrow/calculator.css"
+        "/calculators/loan-calculators/how-much-can-i-borrow/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css"
     },
-    "/loans/remortgage-switching/": {
+    "/loan-calculators/remortgage-calculator/": {
       "calculatorId": "remortgage-switching",
-      "relPath": "loans/remortgage-switching",
+      "relPath": "loan-calculators/remortgage-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css",
-      "deferredHref": "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css",
-      "criticalCss": "/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css",
-      "hash": "9b52ff6f",
-      "criticalHash": "38eada6d",
-      "fullBytes": 51011,
-      "criticalBytes": 34910,
+      "href": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css",
+      "hash": "ee3f7a9f",
+      "criticalHash": "48e0ea4b",
+      "fullBytes": 51023,
+      "criticalBytes": 34922,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/remortgage-switching/calculator.css"
+        "/calculators/loan-calculators/remortgage-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css"
     },
-    "/loans/buy-to-let/": {
+    "/loan-calculators/buy-to-let-mortgage-calculator/": {
       "calculatorId": "buy-to-let",
-      "relPath": "loans/buy-to-let",
+      "relPath": "loan-calculators/buy-to-let-mortgage-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-buy-to-let.c1532170.css",
-      "deferredHref": "/assets/css/route-bundles/loans-buy-to-let.c1532170.css",
-      "criticalCss": "/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css",
-      "hash": "c1532170",
-      "criticalHash": "89db6e69",
-      "fullBytes": 59821,
-      "criticalBytes": 35091,
+      "href": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css",
+      "hash": "6823459e",
+      "criticalHash": "f57e4d5a",
+      "fullBytes": 59852,
+      "criticalBytes": 35122,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/buy-to-let/calculator.css"
+        "/calculators/loan-calculators/buy-to-let-mortgage-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-buy-to-let.c1532170.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css"
     },
-    "/loans/offset-calculator/": {
+    "/loan-calculators/offset-mortgage-calculator/": {
       "calculatorId": "offset-calculator",
-      "relPath": "loans/offset-calculator",
+      "relPath": "loan-calculators/offset-mortgage-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-offset-calculator.87be7715.css",
-      "deferredHref": "/assets/css/route-bundles/loans-offset-calculator.87be7715.css",
-      "criticalCss": "/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css",
-      "hash": "87be7715",
-      "criticalHash": "a8124d0a",
-      "fullBytes": 60167,
-      "criticalBytes": 35951,
+      "href": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css",
+      "hash": "5b39f129",
+      "criticalHash": "c88335af",
+      "fullBytes": 60187,
+      "criticalBytes": 35971,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/offset-calculator/calculator.css"
+        "/calculators/loan-calculators/offset-mortgage-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-offset-calculator.87be7715.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css"
     },
-    "/loans/interest-rate-change-calculator/": {
+    "/loan-calculators/interest-rate-change-calculator/": {
       "calculatorId": "interest-rate-change-calculator",
-      "relPath": "loans/interest-rate-change-calculator",
+      "relPath": "loan-calculators/interest-rate-change-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css",
-      "deferredHref": "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css",
-      "criticalCss": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css",
-      "hash": "08b22434",
-      "criticalHash": "2198f6c4",
-      "fullBytes": 60797,
-      "criticalBytes": 36009,
+      "href": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css",
+      "hash": "acafd5eb",
+      "criticalHash": "31e03054",
+      "fullBytes": 60808,
+      "criticalBytes": 36020,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/interest-rate-change-calculator/calculator.css"
+        "/calculators/loan-calculators/interest-rate-change-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css"
     },
-    "/loans/loan-to-value/": {
+    "/loan-calculators/ltv-calculator/": {
       "calculatorId": "loan-to-value",
-      "relPath": "loans/loan-to-value",
+      "relPath": "loan-calculators/ltv-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css",
-      "deferredHref": "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css",
-      "criticalCss": "/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css",
-      "hash": "2524fc92",
-      "criticalHash": "5d18b5e6",
-      "fullBytes": 62733,
-      "criticalBytes": 36186,
+      "href": "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css",
+      "hash": "8e193b2f",
+      "criticalHash": "ff652a4a",
+      "fullBytes": 62745,
+      "criticalBytes": 36198,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/loans/loan-to-value/calculator.css"
+        "/calculators/loan-calculators/ltv-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/loans-loan-to-value.2524fc92.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css"
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
     },
     "/loans/credit-card-repayment-payoff/": {
       "calculatorId": "credit-card-repayment-payoff",

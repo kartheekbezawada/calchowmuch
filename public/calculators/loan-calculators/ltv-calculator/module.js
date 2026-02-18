@@ -6,7 +6,7 @@ const metadata = {
   title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
   description:
     'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
-  canonical: 'https://calchowmuch.com/loans/loan-to-value/',
+  canonical: 'https://calchowmuch.com/loan-calculators/ltv-calculator/',
 };
 
 setPageMetadata(metadata);

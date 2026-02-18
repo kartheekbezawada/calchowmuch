@@ -50,3 +50,28 @@ Assumption:
 10. `CLUSTER=finance CALC=time-to-savings-goal npm run test:calc:seo`
 11. `CLUSTER=finance CALC=monthly-savings-needed npm run test:calc:seo`
 12. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`
+
+## Wave C — Loans Home Subset (`/loan-calculators/`) (Current)
+Canonical route map:
+1. `/loans/home-loan/` -> `/loan-calculators/mortgage-calculator/`
+2. `/loans/how-much-can-i-borrow/` -> `/loan-calculators/how-much-can-i-borrow/`
+3. `/loans/remortgage-switching/` -> `/loan-calculators/remortgage-calculator/`
+4. `/loans/buy-to-let/` -> `/loan-calculators/buy-to-let-mortgage-calculator/`
+5. `/loans/offset-calculator/` -> `/loan-calculators/offset-mortgage-calculator/`
+6. `/loans/interest-rate-change-calculator/` -> `/loan-calculators/interest-rate-change-calculator/`
+7. `/loans/loan-to-value/` -> `/loan-calculators/ltv-calculator/`
+
+Scope lock:
+- Home-loan subset only in the loans cluster.
+- Car-loan and credit-card loan routes remain unchanged in this wave.
+
+SEO Validation Commands:
+1. `CLUSTER=loans npm run test:cluster:seo`
+2. `CLUSTER=loans CALC=home-loan npm run test:calc:seo`
+3. `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:seo`
+4. `CLUSTER=loans CALC=remortgage-switching npm run test:calc:seo`
+5. `CLUSTER=loans CALC=buy-to-let npm run test:calc:seo`
+6. `CLUSTER=loans CALC=offset-calculator npm run test:calc:seo`
+7. `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:seo`
+8. `CLUSTER=loans CALC=loan-to-value npm run test:calc:seo`
+9. `npx playwright test tests_specs/infrastructure/e2e/sitemap-seo.spec.js`

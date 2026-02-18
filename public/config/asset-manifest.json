@@ -2,8 +2,8 @@
   "version": 1,
   "strategy": "route-isolation-cluster-migration",
   "routes": {
-    "/loans/how-much-can-i-borrow/": {
-      "route": "/loans/how-much-can-i-borrow/",
+    "/loan-calculators/how-much-can-i-borrow/": {
+      "route": "/loan-calculators/how-much-can-i-borrow/",
       "calculatorId": "how-much-can-i-borrow",
       "isolationBoundary": "route",
       "css": {
@@ -13,24 +13,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-how-much-can-i-borrow.695512f3.css"
+          "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-how-much-can-i-borrow.critical.505f2d6c.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/how-much-can-i-borrow/module.js"
+          "/calculators/loan-calculators/how-much-can-i-borrow/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/remortgage-switching/": {
-      "route": "/loans/remortgage-switching/",
+    "/loan-calculators/remortgage-calculator/": {
+      "route": "/loan-calculators/remortgage-calculator/",
       "calculatorId": "remortgage-switching",
       "isolationBoundary": "route",
       "css": {
@@ -40,24 +40,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-remortgage-switching.9b52ff6f.css"
+          "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-remortgage-switching.critical.38eada6d.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/remortgage-switching/module.js"
+          "/calculators/loan-calculators/remortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/buy-to-let/": {
-      "route": "/loans/buy-to-let/",
+    "/loan-calculators/buy-to-let-mortgage-calculator/": {
+      "route": "/loan-calculators/buy-to-let-mortgage-calculator/",
       "calculatorId": "buy-to-let",
       "isolationBoundary": "route",
       "css": {
@@ -67,24 +67,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-buy-to-let.c1532170.css"
+          "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-buy-to-let.critical.89db6e69.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/buy-to-let/module.js"
+          "/calculators/loan-calculators/buy-to-let-mortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/offset-calculator/": {
-      "route": "/loans/offset-calculator/",
+    "/loan-calculators/offset-mortgage-calculator/": {
+      "route": "/loan-calculators/offset-mortgage-calculator/",
       "calculatorId": "offset-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -94,24 +94,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-offset-calculator.87be7715.css"
+          "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-offset-calculator.critical.a8124d0a.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/offset-calculator/module.js"
+          "/calculators/loan-calculators/offset-mortgage-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/interest-rate-change-calculator/": {
-      "route": "/loans/interest-rate-change-calculator/",
+    "/loan-calculators/interest-rate-change-calculator/": {
+      "route": "/loan-calculators/interest-rate-change-calculator/",
       "calculatorId": "interest-rate-change-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -121,24 +121,24 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-interest-rate-change-calculator.08b22434.css"
+          "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-interest-rate-change-calculator.critical.2198f6c4.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/interest-rate-change-calculator/module.js"
+          "/calculators/loan-calculators/interest-rate-change-calculator/module.js"
         ]
       },
       "options": {
         "topNavStatic": true
       }
     },
-    "/loans/loan-to-value/": {
-      "route": "/loans/loan-to-value/",
+    "/loan-calculators/ltv-calculator/": {
+      "route": "/loan-calculators/ltv-calculator/",
       "calculatorId": "loan-to-value",
       "isolationBoundary": "route",
       "css": {
@@ -148,16 +148,16 @@
           "/assets/css/core-tokens.css?v=20260127"
         ],
         "route": [
-          "/assets/css/route-bundles/loans-loan-to-value.2524fc92.css"
+          "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css"
         ],
-        "critical": "/assets/css/route-bundles/loans-loan-to-value.critical.5d18b5e6.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
       },
       "js": {
         "core": [
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/loan-to-value/module.js"
+          "/calculators/loan-calculators/ltv-calculator/module.js"
         ]
       },
       "options": {
@@ -517,8 +517,8 @@
         "deferCoreCss": true
       }
     },
-    "/loans/home-loan/": {
-      "route": "/loans/home-loan/",
+    "/loan-calculators/mortgage-calculator/": {
+      "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",
       "isolationBoundary": "route",
       "css": {
@@ -536,7 +536,7 @@
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/loans/home-loan/module.js"
+          "/calculators/loan-calculators/mortgage-calculator/module.js"
         ]
       },
       "options": {

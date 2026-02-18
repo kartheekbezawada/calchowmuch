@@ -152,39 +152,39 @@ const FINANCE_PILOT_ROUTES = [
 const LOANS_ISOLATED_ROUTES = [
   {
     calculatorId: 'how-much-can-i-borrow',
-    route: '/loans/how-much-can-i-borrow/',
-    relPath: 'loans/how-much-can-i-borrow',
-    routeCss: 'calculators/loans/how-much-can-i-borrow/calculator.css',
+    route: '/loan-calculators/how-much-can-i-borrow/',
+    relPath: 'loan-calculators/how-much-can-i-borrow',
+    routeCss: 'calculators/loan-calculators/how-much-can-i-borrow/calculator.css',
   },
   {
     calculatorId: 'remortgage-switching',
-    route: '/loans/remortgage-switching/',
-    relPath: 'loans/remortgage-switching',
-    routeCss: 'calculators/loans/remortgage-switching/calculator.css',
+    route: '/loan-calculators/remortgage-calculator/',
+    relPath: 'loan-calculators/remortgage-calculator',
+    routeCss: 'calculators/loan-calculators/remortgage-calculator/calculator.css',
   },
   {
     calculatorId: 'buy-to-let',
-    route: '/loans/buy-to-let/',
-    relPath: 'loans/buy-to-let',
-    routeCss: 'calculators/loans/buy-to-let/calculator.css',
+    route: '/loan-calculators/buy-to-let-mortgage-calculator/',
+    relPath: 'loan-calculators/buy-to-let-mortgage-calculator',
+    routeCss: 'calculators/loan-calculators/buy-to-let-mortgage-calculator/calculator.css',
   },
   {
     calculatorId: 'offset-calculator',
-    route: '/loans/offset-calculator/',
-    relPath: 'loans/offset-calculator',
-    routeCss: 'calculators/loans/offset-calculator/calculator.css',
+    route: '/loan-calculators/offset-mortgage-calculator/',
+    relPath: 'loan-calculators/offset-mortgage-calculator',
+    routeCss: 'calculators/loan-calculators/offset-mortgage-calculator/calculator.css',
   },
   {
     calculatorId: 'interest-rate-change-calculator',
-    route: '/loans/interest-rate-change-calculator/',
-    relPath: 'loans/interest-rate-change-calculator',
-    routeCss: 'calculators/loans/interest-rate-change-calculator/calculator.css',
+    route: '/loan-calculators/interest-rate-change-calculator/',
+    relPath: 'loan-calculators/interest-rate-change-calculator',
+    routeCss: 'calculators/loan-calculators/interest-rate-change-calculator/calculator.css',
   },
   {
     calculatorId: 'loan-to-value',
-    route: '/loans/loan-to-value/',
-    relPath: 'loans/loan-to-value',
-    routeCss: 'calculators/loans/loan-to-value/calculator.css',
+    route: '/loan-calculators/ltv-calculator/',
+    relPath: 'loan-calculators/ltv-calculator',
+    routeCss: 'calculators/loan-calculators/ltv-calculator/calculator.css',
   },
   {
     calculatorId: 'credit-card-repayment-payoff',
@@ -245,8 +245,8 @@ const LOANS_ISOLATED_ROUTES = [
 const LOANS_MANUAL_OVERRIDES = [
   {
     calculatorId: 'home-loan',
-    route: '/loans/home-loan/',
-    relPath: 'loans/home-loan',
+    route: '/loan-calculators/mortgage-calculator/',
+    relPath: 'loan-calculators/mortgage-calculator',
     options: {
       generationMode: 'manual',
       topNavStatic: true,

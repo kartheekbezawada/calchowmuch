@@ -197,46 +197,46 @@
     "loans": {
       "clusterReleaseDir": "tests_specs/loans/cluster_release",
       "routes": [
-        "/loans/buy-to-let/",
+        "/loan-calculators/buy-to-let-mortgage-calculator/",
         "/loans/car-loan/",
         "/loans/hire-purchase/",
-        "/loans/home-loan/",
-        "/loans/how-much-can-i-borrow/",
-        "/loans/interest-rate-change-calculator/",
+        "/loan-calculators/mortgage-calculator/",
+        "/loan-calculators/how-much-can-i-borrow/",
+        "/loan-calculators/interest-rate-change-calculator/",
         "/loans/leasing-calculator/",
-        "/loans/loan-to-value/",
+        "/loan-calculators/ltv-calculator/",
         "/loans/multiple-car-loan/",
-        "/loans/offset-calculator/",
+        "/loan-calculators/offset-mortgage-calculator/",
         "/loans/pcp-calculator/",
-        "/loans/remortgage-switching/"
+        "/loan-calculators/remortgage-calculator/"
       ],
       "calculators": {
         "home-loan": {
-          "route": "/loans/home-loan/",
+          "route": "/loan-calculators/mortgage-calculator/",
           "releaseDir": "tests_specs/loans/home-loan_release"
         },
         "how-much-can-i-borrow": {
-          "route": "/loans/how-much-can-i-borrow/",
+          "route": "/loan-calculators/how-much-can-i-borrow/",
           "releaseDir": "tests_specs/loans/how-much-can-i-borrow_release"
         },
         "remortgage-switching": {
-          "route": "/loans/remortgage-switching/",
+          "route": "/loan-calculators/remortgage-calculator/",
           "releaseDir": "tests_specs/loans/remortgage-switching_release"
         },
         "buy-to-let": {
-          "route": "/loans/buy-to-let/",
+          "route": "/loan-calculators/buy-to-let-mortgage-calculator/",
           "releaseDir": "tests_specs/loans/buy-to-let_release"
         },
         "offset-calculator": {
-          "route": "/loans/offset-calculator/",
+          "route": "/loan-calculators/offset-mortgage-calculator/",
           "releaseDir": "tests_specs/loans/offset-calculator_release"
         },
         "interest-rate-change-calculator": {
-          "route": "/loans/interest-rate-change-calculator/",
+          "route": "/loan-calculators/interest-rate-change-calculator/",
           "releaseDir": "tests_specs/loans/interest-rate-change-calculator_release"
         },
         "loan-to-value": {
-          "route": "/loans/loan-to-value/",
+          "route": "/loan-calculators/ltv-calculator/",
           "releaseDir": "tests_specs/loans/loan-to-value_release"
         },
         "car-loan": {

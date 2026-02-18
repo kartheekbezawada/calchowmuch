@@ -30,3 +30,12 @@
 /finance/investment-growth/ /finance-calculators/investment-growth-calculator/ 301
 /finance/time-to-savings-goal/ /finance-calculators/time-to-savings-goal-calculator/ 301
 /finance/monthly-savings-needed/ /finance-calculators/monthly-savings-needed-calculator/ 301
+
+# Loans home subset URL canonical migration (2026-02-18)
+/loans/home-loan/ /loan-calculators/mortgage-calculator/ 301
+/loans/how-much-can-i-borrow/ /loan-calculators/how-much-can-i-borrow/ 301
+/loans/remortgage-switching/ /loan-calculators/remortgage-calculator/ 301
+/loans/buy-to-let/ /loan-calculators/buy-to-let-mortgage-calculator/ 301
+/loans/offset-calculator/ /loan-calculators/offset-mortgage-calculator/ 301
+/loans/interest-rate-change-calculator/ /loan-calculators/interest-rate-change-calculator/ 301
+/loans/loan-to-value/ /loan-calculators/ltv-calculator/ 301

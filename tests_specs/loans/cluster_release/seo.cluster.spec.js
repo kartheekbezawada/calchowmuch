@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTE = '/loans/home-loan/';
+const ROUTE = '/loan-calculators/mortgage-calculator/';
 
 test.describe('loans cluster seo smoke', () => {
   test('representative route has canonical/title/robots', async ({ page }) => {

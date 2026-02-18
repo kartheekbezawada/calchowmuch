@@ -6,7 +6,7 @@ const metadata = {
   title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
   description:
     'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
-  canonical: 'https://calchowmuch.com/loans/how-much-can-i-borrow/',
+  canonical: 'https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/',
 };
 
 try {
@@ -192,7 +192,7 @@ async function ensureExplanation() {
   const container = document.querySelector('#calc-how-much-can-borrow');
   if (document.querySelector('#loan-borrow-explanation') || !container) return;
   try {
-    const response = await fetch('/calculators/loans/how-much-can-i-borrow/explanation.html');
+    const response = await fetch('/calculators/loan-calculators/how-much-can-i-borrow/explanation.html');
     if (response.ok) {
       container.insertAdjacentHTML('beforeend', await response.text());
     }

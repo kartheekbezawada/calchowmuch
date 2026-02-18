@@ -17,13 +17,13 @@
       "displayName": "Home Loan",
       "status": "migrating",
       "routePrefixes": [
-        "/loans/home-loan/",
-        "/loans/how-much-can-i-borrow/",
-        "/loans/remortgage-switching/",
-        "/loans/buy-to-let/",
-        "/loans/offset-calculator/",
-        "/loans/interest-rate-change-calculator/",
-        "/loans/loan-to-value/"
+        "/loan-calculators/mortgage-calculator/",
+        "/loan-calculators/how-much-can-i-borrow/",
+        "/loan-calculators/remortgage-calculator/",
+        "/loan-calculators/buy-to-let-mortgage-calculator/",
+        "/loan-calculators/offset-mortgage-calculator/",
+        "/loan-calculators/interest-rate-change-calculator/",
+        "/loan-calculators/ltv-calculator/"
       ],
       "owners": [
         "platform"

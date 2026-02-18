@@ -492,7 +492,7 @@
             {
               "id": "home-loan",
               "name": "Home Loan",
-              "url": "/loans/home-loan/",
+              "url": "/loan-calculators/mortgage-calculator/",
               "keywords": [
                 "mortgage",
                 "home loan",
@@ -508,7 +508,7 @@
             {
               "id": "how-much-can-i-borrow",
               "name": "How Much Can I Borrow",
-              "url": "/loans/how-much-can-i-borrow/",
+              "url": "/loan-calculators/how-much-can-i-borrow/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -516,7 +516,7 @@
             {
               "id": "remortgage-switching",
               "name": "Remortgage / Switching",
-              "url": "/loans/remortgage-switching/",
+              "url": "/loan-calculators/remortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -524,7 +524,7 @@
             {
               "id": "buy-to-let",
               "name": "Buy-to-Let Calculator",
-              "url": "/loans/buy-to-let/",
+              "url": "/loan-calculators/buy-to-let-mortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -532,7 +532,7 @@
             {
               "id": "offset-calculator",
               "name": "Offset Calculator",
-              "url": "/loans/offset-calculator/",
+              "url": "/loan-calculators/offset-mortgage-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -540,7 +540,7 @@
             {
               "id": "interest-rate-change-calculator",
               "name": "Interest Rate Change Calculator",
-              "url": "/loans/interest-rate-change-calculator/",
+              "url": "/loan-calculators/interest-rate-change-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
@@ -548,7 +548,7 @@
             {
               "id": "loan-to-value",
               "name": "Loan-to-Value (LTV) Calculator",
-              "url": "/loans/loan-to-value/",
+              "url": "/loan-calculators/ltv-calculator/",
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"

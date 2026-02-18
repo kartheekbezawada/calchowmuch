@@ -9,7 +9,7 @@
     {
       "clusterId": "home-loan",
       "label": "Home Loan",
-      "href": "/loans/home-loan/"
+      "href": "/loan-calculators/mortgage-calculator/"
     },
     {
       "clusterId": "credit-cards",
