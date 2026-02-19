@@ -24,6 +24,14 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-percent-to-fraction-decimal-wave7-20260219",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percentage-finder-calculator/",
+      "calculatorId": "what-percent-is-x-of-y",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-what-percent-is-x-of-y-wave8-20260219",
+      "generationMode": "cluster"
     }
   ]
 }

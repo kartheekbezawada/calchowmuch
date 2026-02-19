@@ -72,6 +72,31 @@
           "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/module.js"
         ]
       }
+    },
+    "/percentage-calculators/percentage-finder-calculator/": {
+      "route": "/percentage-calculators/percentage-finder-calculator/",
+      "calculatorId": "what-percent-is-x-of-y",
+      "clusterId": "percentage",
+      "buildId": "wave8-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/calculators/percentage-calculators/percentage-finder-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percentage-finder-calculator/module.js"
+        ]
+      }
     }
   }
 }
