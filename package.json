@@ -11,6 +11,7 @@
     "test:cwv:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cwv:target": "CLS_GUARD_ROUTE_INCLUDE=$TARGET playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cls:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
+    "test:schema:dedupe": "node scripts/schema-structured-data-dedupe.mjs",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:update": "playwright test --update-snapshots",
     "test:above-fold": "playwright test tests_specs/infrastructure/e2e/above-the-fold-mutation.spec.js",

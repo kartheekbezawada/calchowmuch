@@ -19,8 +19,29 @@ Date: {YYYY-MM-DD}
 Change Type (pick one): CLUSTER_ROUTE | CLUSTER_SHARED | IMMUTABLE_CORE | INFRA
 Legacy alias accepted during transition: SINGLE_CALCULATOR -> CLUSTER_ROUTE, CATEGORY -> CLUSTER_ROUTE, GLOBAL_SHARED -> CLUSTER_SHARED
 
+Release Mode (pick one): SCHEMA_DEDUPE_MAINTENANCE | NEW_BUILD | ONBOARDING | REDESIGN | STANDARD
+
 Primary Target Route (MANDATORY): {ROUTE_SLUG}
 Example: /finance/present-value-of-annuity/
+
+0.1 Release Mode Gate Matrix (HARD)
+
+`SCHEMA_DEDUPE_MAINTENANCE`
+
+HARD: Mandatory gate is `npm run test:schema:dedupe`.
+
+HARD: Other global gates (`npm run lint`, `npm run test`, `npm run test:e2e`, `npm run test:cwv:all`, `npm run test:iss001`) are optional unless HUMAN explicitly promotes them.
+
+`NEW_BUILD | ONBOARDING | REDESIGN`
+
+HARD: Full release gates are mandatory:
+
+- `npm run lint`
+- `npm run test`
+- `npm run test:e2e`
+- `npm run test:cwv:all`
+- `npm run test:iss001`
+- `npm run test:schema:dedupe`
 
 1. HARD vs SOFT Policy (DO NOT EDIT)
    HARD (Blocks Release)
@@ -159,6 +180,26 @@ HARD: `paneLayout: "split"` on any touched target route is release fail.
 HARD: Sign-off evidence must include path + snippet proof from:
 - `public/config/navigation.json`
 - generated route HTML (`public/<route>/index.html`)
+
+3.1.4 Structured Data Dedupe Gate (HARD)
+
+HARD: Structured-data dedupe command contract:
+
+- `npm run test:schema:dedupe -- --scope=full` (full repo)
+- `CLUSTER={cluster} npm run test:schema:dedupe -- --scope=cluster` (cluster scope)
+- `CLUSTER={cluster} CALC={calculator} npm run test:schema:dedupe -- --scope=calc` (single calculator)
+- `npm run test:schema:dedupe -- --scope=route --route=/path/` (optional single route)
+
+HARD: If no explicit scope argument is provided, default scope is full repo.
+
+HARD: Fail release on parse errors or unresolved duplicates for `FAQPage`, `BreadcrumbList`, `SoftwareApplication`.
+
+HARD: Dedupe run must emit both report artifacts at repository root:
+
+- `schema_duplicates_report.md`
+- `schema_duplicates_report.csv`
+
+Policy source: `requirements/universal-rules/SCHEMA_DEDUPE_GUARDRAIL.md`.
 
 3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
@@ -570,6 +611,12 @@ JSON-LD FAQ
 
 module metadata FAQ (if applicable)
 
+HARD: Per-page uniqueness for target schema types is mandatory:
+
+- `FAQPage` max 1
+- `BreadcrumbList` max 1
+- `SoftwareApplication` max 1
+
 13.3 Indexability
 
 HARD: Explanation + FAQs exist in initial HTML (not JS-only)
@@ -632,6 +679,12 @@ AdSense loader snippet compliance proof (head snippet exact-match evidence)
 Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activation)
 
 SERP validation notes (canonical + schema + FAQ parity)
+
+Structured data dedupe run details (scope + command used + summary counts)
+
+Structured data dedupe artifacts attached:
+- `schema_duplicates_report.md`
+- `schema_duplicates_report.csv`
 
 Mobile UX artifacts (screenshots + tap target check results)
 

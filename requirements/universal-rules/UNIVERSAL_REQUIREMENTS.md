@@ -6,7 +6,7 @@
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
 - **Version:** 4.0 (Cluster + calculator scoped test isolation governance)
-- **Last Updated:** 2026-02-18
+- **Last Updated:** 2026-02-19
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -33,7 +33,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ### 1.2 Step Definitions
 
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
-- **UR-FLOW-011 (P0): Release Checklist:** Execute ALL gates (`lint`, `unit`, `e2e`, `cwv:all`, `iss-001`) per `RELEASE_CHECKLIST.md`.
+- **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`; `NEW_BUILD|ONBOARDING|REDESIGN` require full gates (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
 - **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` and update Master Table per `RELEASE_SIGNOFF.md`.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
@@ -276,6 +276,9 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-010 (P0):** Schema: `WebPage` + `SoftwareApplication` + `BreadcrumbList`. `FAQPage` if FAQs exist.
 - **UR-SEO-011 (P0):** FAQ 3-way parity: JSON-LD <-> Meta <-> Visible.
 - **UR-SEO-012 (P0):** Schema types or validation failure is FAIL.
+- **UR-SEO-013 (P0):** Per-page uniqueness is mandatory for `FAQPage`, `BreadcrumbList`, and `SoftwareApplication` (max one each per URL).
+- **UR-SEO-014 (P0):** Structured-data dedupe evidence is mandatory for schema-dedupe releases: `schema_duplicates_report.md` and `schema_duplicates_report.csv`.
+- **UR-SEO-015 (P0):** Structured-data dedupe governance is defined in `requirements/universal-rules/SCHEMA_DEDUPE_GUARDRAIL.md`; runtime/build behavior must conform.
 
 ### 7.3 P3/P4/P5 Governance
 
@@ -300,6 +303,9 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-004 (P0):** FAQ schema guard.
 - **UR-TEST-005 (P0):** CWV Guard: `test:cwv:target` (Targeted) or `test:cwv:all` (Global). (Fail if: CLS > 0.10, LCP > 2.5s).
 - **UR-TEST-006 (P0):** Artifact: `test-results/performance/cls-guard-all-calculators.json`.
+- **UR-TEST-007 (P0):** Structured-data dedupe guard: `npm run test:schema:dedupe`.
+- **UR-TEST-008 (P0):** `test:schema:dedupe` must support scope modes: `full-repo`, `cluster`, `single-calculator`, and optional `route`.
+- **UR-TEST-009 (P0):** `test:schema:dedupe` is mandatory for schema-dedupe maintenance releases; parse errors or unresolved duplicates are hard fail.
 
 ### 8.2 Change-Type Matrix
 
@@ -308,6 +314,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-012 (P0):** Nav/Shell: Nav E2E + ISS-001.
 - **UR-TEST-013 (P0):** Finance/Trigger: Button-only regression.
 - **UR-TEST-014 (P0):** Feature Release: Targeted CWV guard (`TARGET={scope}`). Global Release: All-calc CWV guard.
+- **UR-TEST-015 (P0):** Release mode `SCHEMA_DEDUPE_MAINTENANCE`: mandatory gate is `npm run test:schema:dedupe`; other global gates are optional unless promoted by HUMAN.
+- **UR-TEST-016 (P0):** Release modes `NEW_BUILD`, `ONBOARDING`, and `REDESIGN`: full release gates are mandatory (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
 
 ### 8.3 Evidence Recording
 
