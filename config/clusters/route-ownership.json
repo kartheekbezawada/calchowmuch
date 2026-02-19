@@ -32,6 +32,14 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-what-percent-is-x-of-y-wave8-20260219",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percentage-of-a-number-calculator/",
+      "calculatorId": "percentage-of-a-number",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-of-a-number-wave9-20260219",
+      "generationMode": "cluster"
     }
   ]
 }

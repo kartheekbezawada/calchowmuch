@@ -97,6 +97,31 @@
           "/calculators/percentage-calculators/percentage-finder-calculator/module.js"
         ]
       }
+    },
+    "/percentage-calculators/percentage-of-a-number-calculator/": {
+      "route": "/percentage-calculators/percentage-of-a-number-calculator/",
+      "calculatorId": "percentage-of-a-number",
+      "clusterId": "percentage",
+      "buildId": "wave9-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js"
+        ]
+      }
     }
   }
 }

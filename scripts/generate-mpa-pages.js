@@ -44,6 +44,7 @@ const ADSENSE_LOADER_SCRIPT_RE =
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
 const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neutral']);
 const PANE_LAYOUTS = new Set(['single', 'split']);
+const FORCED_SINGLE_PANE_CALCULATOR_IDS = new Set(['what-percent-is-x-of-y']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'monthly-savings-needed',
   'time-to-savings-goal',
@@ -786,15 +787,21 @@ function resolveCalculatorGovernance({ category, subcategory, calculator, overri
   const routeArchetype = calculator.routeArchetype ?? 'calc_exp';
   const inferredDesignFamily = inferDesignFamily(category.id, subcategory.id);
   const designFamily = calculator.designFamily ?? inferredDesignFamily;
+  const forcedPaneLayout = FORCED_SINGLE_PANE_CALCULATOR_IDS.has(calculator.id) ? 'single' : null;
   const overridePaneLayout = override?.paneLayout;
 
-  if (calculator.paneLayout && overridePaneLayout && calculator.paneLayout !== overridePaneLayout) {
+  if (
+    !forcedPaneLayout &&
+    calculator.paneLayout &&
+    overridePaneLayout &&
+    calculator.paneLayout !== overridePaneLayout
+  ) {
     throw new Error(
       `Conflicting paneLayout for ${calculator.id}: navigation=${calculator.paneLayout} override=${overridePaneLayout}`
     );
   }
 
-  let paneLayout = calculator.paneLayout ?? overridePaneLayout ?? 'split';
+  let paneLayout = forcedPaneLayout ?? calculator.paneLayout ?? overridePaneLayout ?? 'split';
 
   if (!ROUTE_ARCHETYPES.has(routeArchetype)) {
     throw new Error(
