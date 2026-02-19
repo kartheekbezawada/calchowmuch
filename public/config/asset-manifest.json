@@ -566,55 +566,6 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/percentage-of-a-number-calculator/": {
-      "route": "/percentage-calculators/percentage-of-a-number-calculator/",
-      "calculatorId": "percentage-of-a-number",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-of-a-number-calculator.critical.9d8f6a10.css"
-      },
-      "js": {
-        "core": [
-          "/assets/js/core-shell.js"
-        ],
-        "route": [
-          "/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js"
-        ]
-      },
-      "options": {
-        "topNavStatic": true,
-        "deferCoreCss": true
-      }
-    },
-    "/percentage-calculators/percentage-finder-calculator/": {
-      "route": "/percentage-calculators/percentage-finder-calculator/",
-      "calculatorId": "what-percent-is-x-of-y",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [
-          "/assets/css/theme-premium-dark.css?v=20260127",
-          "/assets/css/base.css?v=20260127",
-          "/assets/css/core-tokens.css?v=20260127",
-          "/calculators/percentage-calculators/percentage-finder-calculator/calculator.css"
-        ],
-        "critical": null
-      },
-      "js": {
-        "core": [
-          "/assets/js/core-shell.js"
-        ],
-        "route": [
-          "/calculators/percentage-calculators/percentage-finder-calculator/module.js"
-        ]
-      },
-      "options": {
-        "topNavStatic": true,
-        "deferCoreCss": true
-      }
-    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",
