@@ -527,9 +527,9 @@
           "/assets/css/theme-premium-dark.css?v=20260127",
           "/assets/css/base.css?v=20260127",
           "/assets/css/core-tokens.css?v=20260127",
-          "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css"
+          "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css"
         ],
-        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.f78b6ed1.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.0ebf2b58.css"
       },
       "js": {
         "core": [
@@ -551,7 +551,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.7a9217a2.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css"
       },
       "js": {
         "core": [

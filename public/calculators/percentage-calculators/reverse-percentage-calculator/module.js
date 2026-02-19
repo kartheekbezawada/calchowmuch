@@ -7,6 +7,11 @@ const finalInput = document.querySelector('#revpct-final');
 const calculateButton = document.querySelector('#revpct-calc');
 const resultOutput = document.querySelector('#revpct-result');
 const resultDetail = document.querySelector('#revpct-result-detail');
+const snapshotTargets = {
+  percentage: document.querySelector('[data-revpct-snap="percentage"]'),
+  finalValue: document.querySelector('[data-revpct-snap="final-value"]'),
+  original: document.querySelector('[data-revpct-snap="original"]'),
+};
 
 const explanationRoot = document.querySelector('#revpct-explanation');
 const valueTargets = explanationRoot
@@ -189,6 +194,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -212,12 +224,16 @@ function calculate() {
 
   if (result === null) {
     resultOutput.textContent = 'Original value is undefined when the percentage is zero.';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Use any percentage except 0 to compute a valid original value.';
     return;
   }
 
   resultOutput.textContent = `Original Value: ${fmt(result.original)}`;
-  resultDetail.textContent = `Formula: Original = (${fmt(result.finalValue)} × 100) ÷ ${fmt(result.percentage)} = ${fmt(result.original)}. Check: ${fmt(result.percentage)}% of ${fmt(result.original)} = ${fmt(result.finalValue)}.`;
+  resultDetail.innerHTML = `<ul class="revpct-detail-list"><li>Question solved: ${fmt(result.finalValue)} is ${fmt(result.percentage)}% of ${fmt(result.original)}.</li><li>Formula: Original = (${fmt(result.finalValue)} × 100) ÷ ${fmt(result.percentage)} = ${fmt(result.original)}.</li><li>Check: ${fmt(result.percentage)}% of ${fmt(result.original)} = ${fmt(result.finalValue)}.</li></ul>`;
+
+  updateSnapshot('percentage', `${fmt(result.percentage)}%`);
+  updateSnapshot('finalValue', fmt(result.finalValue));
+  updateSnapshot('original', fmt(result.original));
 
   updateTargets(valueTargets?.percentage, `${fmt(result.percentage)}%`);
   updateTargets(valueTargets?.finalValue, fmt(result.finalValue));

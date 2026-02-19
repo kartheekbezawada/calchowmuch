@@ -192,9 +192,10 @@ function calculate() {
   const decimalValue = fmt(result.decimal);
   const mixedValue = result.mixedNumber || 'N/A (proper fraction)';
   const stepsText = result.steps.join(' -> ');
+  const stepsList = result.steps.map((step) => `<li>${step}</li>`).join('');
 
-  resultOutput.textContent = `Decimal: ${decimalValue} | Fraction: ${result.fraction}`;
-  resultDetail.textContent = `Steps: ${stepsText}`;
+  resultOutput.innerHTML = `<span class="ptfd-result-line">Decimal: ${decimalValue}</span><span class="ptfd-result-line">Fraction: ${result.fraction}</span>`;
+  resultDetail.innerHTML = `<ul class="ptfd-steps-list">${stepsList}</ul>`;
 
   updateSnapshot('percent', normalizedPercent);
   updateSnapshot('decimal', decimalValue);

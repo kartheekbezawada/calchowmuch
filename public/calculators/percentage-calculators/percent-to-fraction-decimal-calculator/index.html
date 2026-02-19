@@ -27,12 +27,16 @@
 
         <aside class="ptfd-insight-panel" aria-label="Percent conversion result snapshot">
           <div class="ptfd-result-shell">
-            <p class="ptfd-result-label">Conversion Result</p>
             <div class="result" id="ptfd-result" aria-live="polite">
-              Decimal: 0.125 | Fraction: 1/8
+              <span class="ptfd-result-line">Decimal: 0.125</span>
+              <span class="ptfd-result-line">Fraction: 1/8</span>
             </div>
             <div class="result-detail" id="ptfd-result-detail" aria-live="polite">
-              Steps: 12.5% -> 12.5/100 -> 1/8
+              <ul class="ptfd-steps-list">
+                <li>Write percent over 100: 12.5% = 12.5/100.</li>
+                <li>Convert to decimal: 12.5 / 100 = 0.125.</li>
+                <li>Simplify fraction: 12.5/100 = 1/8.</li>
+              </ul>
             </div>
           </div>
 
