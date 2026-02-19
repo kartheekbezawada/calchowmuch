@@ -54,5 +54,10 @@ test.describe('Reverse Percentage Calculator SEO', () => {
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
     expect(sitemapText).toContain('/percentage-calculators/reverse-percentage-calculator/');
+
+    const pageHtml = await page.content();
+    expect(pageHtml).not.toContain(
+      'critical source: /calculators/percentage-calculators/percent-change-calculator/calculator.css'
+    );
   });
 });

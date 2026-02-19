@@ -7,12 +7,21 @@ const calculateButton = document.querySelector('#ptfd-calc');
 const resultOutput = document.querySelector('#ptfd-result');
 const resultDetail = document.querySelector('#ptfd-result-detail');
 
+const snapshotTargets = {
+  percent: document.querySelector('[data-ptfd-snap="percent"]'),
+  decimal: document.querySelector('[data-ptfd-snap="decimal"]'),
+  fraction: document.querySelector('[data-ptfd-snap="fraction"]'),
+  mixed: document.querySelector('[data-ptfd-snap="mixed"]'),
+  formula: document.querySelector('[data-ptfd-snap="formula"]'),
+};
+
 const explanationRoot = document.querySelector('#ptfd-explanation');
 const valueTargets = explanationRoot
   ? {
       percent: explanationRoot.querySelectorAll('[data-ptfd="percent"]'),
       decimal: explanationRoot.querySelectorAll('[data-ptfd="decimal"]'),
       fraction: explanationRoot.querySelectorAll('[data-ptfd="fraction"]'),
+      mixed: explanationRoot.querySelectorAll('[data-ptfd="mixed"]'),
       steps: explanationRoot.querySelectorAll('[data-ptfd="steps"]'),
       formulaDecimal: explanationRoot.querySelectorAll('[data-ptfd="formula-decimal"]'),
       formulaFraction: explanationRoot.querySelectorAll('[data-ptfd="formula-fraction"]'),
@@ -159,6 +168,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -174,15 +190,23 @@ function calculate() {
 
   const normalizedPercent = `${fmt(result.percent)}%`;
   const decimalValue = fmt(result.decimal);
-  const mixedText = result.mixedNumber ? ` | Mixed: ${result.mixedNumber}` : '';
+  const mixedValue = result.mixedNumber || 'N/A (proper fraction)';
+  const stepsText = result.steps.join(' -> ');
 
-  resultOutput.textContent = `Decimal: ${decimalValue} | Fraction: ${result.fraction}${mixedText}`;
-  resultDetail.textContent = `Steps: ${result.steps.join(' -> ')}`;
+  resultOutput.textContent = `Decimal: ${decimalValue} | Fraction: ${result.fraction}`;
+  resultDetail.textContent = `Steps: ${stepsText}`;
+
+  updateSnapshot('percent', normalizedPercent);
+  updateSnapshot('decimal', decimalValue);
+  updateSnapshot('fraction', result.fraction);
+  updateSnapshot('mixed', mixedValue);
+  updateSnapshot('formula', 'X / 100');
 
   updateTargets(valueTargets?.percent, normalizedPercent);
   updateTargets(valueTargets?.decimal, decimalValue);
   updateTargets(valueTargets?.fraction, result.fraction);
-  updateTargets(valueTargets?.steps, result.steps.join(' -> '));
+  updateTargets(valueTargets?.mixed, mixedValue);
+  updateTargets(valueTargets?.steps, stepsText);
   updateTargets(valueTargets?.formulaDecimal, 'Decimal = X / 100');
   updateTargets(valueTargets?.formulaFraction, 'Fraction = X / 100 (simplified)');
 

@@ -49,7 +49,7 @@
         { "id": "percentage-decrease", "name": "Percentage Decrease", "url": "/percentage-calculators/percentage-decrease/" },
         { "id": "percentage-composition", "name": "Percentage Composition", "url": "/percentage-calculators/percentage-composition/" },
         { "id": "reverse-percentage", "name": "Reverse Percentage", "url": "/percentage-calculators/reverse-percentage-calculator/" },
-        { "id": "percent-to-fraction-decimal", "name": "Percent to Fraction/Decimal", "url": "/percentage-calculators/percent-to-fraction-decimal/" },
+        { "id": "percent-to-fraction-decimal", "name": "Percent to Fraction/Decimal", "url": "/percentage-calculators/percent-to-fraction-decimal-calculator/" },
         { "id": "what-percent-is-x-of-y", "name": "What Percent Is X of Y", "url": "/percentage-calculators/what-percent-is-x-of-y/" },
         { "id": "percentage-of-a-number", "name": "Find Percentage of a Number", "url": "/percentage-calculators/percentage-of-a-number/" },
         { "id": "commission-calculator", "name": "Commission Calculator", "url": "/percentage-calculators/commission-calculator/" },

@@ -610,6 +610,44 @@
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css"
+    },
+    "/percentage-calculators/reverse-percentage-calculator/": {
+      "calculatorId": "reverse-percentage",
+      "relPath": "percentage-calculators/reverse-percentage-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.f78b6ed1.css",
+      "hash": "4001924e",
+      "criticalHash": "f78b6ed1",
+      "fullBytes": 43053,
+      "criticalBytes": 48459,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/reverse-percentage-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.f78b6ed1.css"
+    },
+    "/percentage-calculators/percent-to-fraction-decimal-calculator/": {
+      "calculatorId": "percent-to-fraction-decimal",
+      "relPath": "percentage-calculators/percent-to-fraction-decimal-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.f08a766a.css",
+      "deferredHref": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.f08a766a.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.7a9217a2.css",
+      "hash": "f08a766a",
+      "criticalHash": "7a9217a2",
+      "fullBytes": 46645,
+      "criticalBytes": 83945,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.f08a766a.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.7a9217a2.css"
     }
   }
 }

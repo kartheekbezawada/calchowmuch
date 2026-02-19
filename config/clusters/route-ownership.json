@@ -16,6 +16,14 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-reverse-percentage-wave6-20260219",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
+      "calculatorId": "percent-to-fraction-decimal",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percent-to-fraction-decimal-wave7-20260219",
+      "generationMode": "cluster"
     }
   ]
 }

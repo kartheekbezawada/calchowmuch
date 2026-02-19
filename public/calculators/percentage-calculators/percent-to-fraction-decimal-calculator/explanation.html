@@ -1,156 +1,159 @@
 <div id="ptfd-explanation" class="explanation-pane">
-  <p>
-    This percent to fraction and decimal converter turns a percentage into its equivalent decimal
-    and simplified fraction.
-  </p>
-  <p>
-    To convert a percent to a decimal, divide by 100. To convert a percent to a fraction, write it
-    over 100 and reduce the fraction to simplest terms.
-  </p>
-  <p>This tool is useful for schoolwork, discounts, interest rates, and quick math conversions.</p>
+  <section class="ptfd-exp-section">
+    <h3>Results Table</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">What It Means</th>
+            <th scope="col">Your Value</th>
+            <th scope="col">How It Works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Input Percentage (X)</td>
+            <td><span data-ptfd="percent">12.5%</span></td>
+            <td class="pv-how-col">User input with optional % sign</td>
+          </tr>
+          <tr>
+            <td>Decimal</td>
+            <td><span data-ptfd="decimal">0.125</span></td>
+            <td class="pv-how-col">Calculated with Decimal = X / 100</td>
+          </tr>
+          <tr>
+            <td>Simplified Fraction</td>
+            <td><span data-ptfd="fraction">1/8</span></td>
+            <td class="pv-how-col">Built from X/100 then reduced</td>
+          </tr>
+          <tr>
+            <td>Mixed Number</td>
+            <td><span data-ptfd="mixed">N/A (proper fraction)</span></td>
+            <td class="pv-how-col">Shown only when fraction is improper</td>
+          </tr>
+          <tr>
+            <td>Decimal Formula</td>
+            <td><span data-ptfd="formula-decimal">Decimal = X / 100</span></td>
+            <td class="pv-how-col">Percent means per hundred</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Fraction Formula</td>
+            <td><span data-ptfd="formula-fraction">Fraction = X / 100 (simplified)</span></td>
+            <td class="pv-how-col">Reduce numerator and denominator by GCD</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage</td>
-          <td><span data-ptfd="percent">12.5%</span></td>
-          <td>Input</td>
-        </tr>
-        <tr>
-          <td>Decimal</td>
-          <td><span data-ptfd="decimal">0.125</span></td>
-          <td>Engine</td>
-        </tr>
-        <tr>
-          <td>Fraction</td>
-          <td><span data-ptfd="fraction">1/8</span></td>
-          <td>Engine</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Steps</td>
-          <td><span data-ptfd="steps">Write over 100 and simplify.</span></td>
-          <td>Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <section class="ptfd-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      A percentage is a ratio out of 100. Converting percent to decimal and fraction is a direct
+      transformation of the same value into different numeric representations.
+    </p>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage</td>
-          <td><span data-ptfd="percent">12.5%</span></td>
-          <td>Input value</td>
-        </tr>
-        <tr>
-          <td>Decimal</td>
-          <td><span data-ptfd="decimal">0.125</span></td>
-          <td>Percent divided by 100</td>
-        </tr>
-        <tr>
-          <td>Fraction</td>
-          <td><span data-ptfd="fraction">1/8</span></td>
-          <td>Simplified percent as a fraction</td>
-        </tr>
-        <tr>
-          <td>Formula</td>
-          <td><span data-ptfd="formula-decimal">Decimal = X / 100</span></td>
-          <td>Percent to decimal</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Formula</td>
-          <td><span data-ptfd="formula-fraction">Fraction = X / 100 (simplified)</span></td>
-          <td>Percent to fraction</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <ul class="pv-explanation-list">
+      <li>
+        <strong>Read the input percent:</strong>
+        Current value is <span data-ptfd="percent">12.5%</span>.
+      </li>
+      <li>
+        <strong>Convert to decimal:</strong>
+        Divide by 100 to get <span data-ptfd="decimal">0.125</span>.
+      </li>
+      <li>
+        <strong>Convert to fraction:</strong>
+        Write X over 100, simplify, and get <span data-ptfd="fraction">1/8</span>.
+      </li>
+      <li>
+        <strong>Check mixed form:</strong>
+        Mixed number is <span data-ptfd="mixed">N/A (proper fraction)</span>.
+      </li>
+      <li>
+        <strong>Track the process:</strong>
+        Steps: <span data-ptfd="steps">12.5% -> 12.5/100 -> 1/8</span>.
+      </li>
+    </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    To convert a percentage to a decimal, divide the percentage by 100. For example, 25% becomes
-    0.25.
-  </p>
-  <p>
-    To convert a percentage to a fraction, write the number over 100 and simplify. For example, 25%
-    = 25/100, which reduces to 1/4.
-  </p>
-  <p>
-    If the percentage includes decimals, convert it to an exact fraction by removing the decimal
-    places and then simplify using the greatest common divisor.
-  </p>
+    <h4>How the Formula Works</h4>
+    <p class="pv-formula-block" data-ptfd="formula-decimal">Decimal = X / 100</p>
+    <p class="pv-formula-block" data-ptfd="formula-fraction">Fraction = X / 100 (simplified)</p>
+    <ol class="pv-formula-steps">
+      <li>
+        <strong>Decimal path:</strong>
+        Move the decimal point two places left.
+      </li>
+      <li>
+        <strong>Fraction path:</strong>
+        Represent input as X/100.
+      </li>
+      <li>
+        <strong>Simplify:</strong>
+        Divide numerator and denominator by the greatest common divisor.
+      </li>
+      <li>
+        <strong>Normalize sign:</strong>
+        Negative inputs keep a negative decimal and fraction.
+      </li>
+    </ol>
+  </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: How do you convert a percent to a decimal?</strong></p>
-    <p class="faq-answer">A: Divide the percent by 100.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you convert a percent to a fraction?</strong></p>
-    <p class="faq-answer">A: Write it over 100 and simplify the fraction.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is 50% as a decimal?</strong></p>
-    <p class="faq-answer">A: 50% equals 0.5.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is 25% as a fraction?</strong></p>
-    <p class="faq-answer">A: 25% equals 1/4.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you simplify the percent fraction?</strong></p>
-    <p class="faq-answer">
-      A: Divide the numerator and denominator by their greatest common divisor.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you convert a decimal percent like 12.5% to a fraction?</strong></p>
-    <p class="faq-answer">
-      A: Convert 12.5 to 125/10, then divide by 100 to get 125/1000 and simplify.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can a percent be written as a mixed number fraction?</strong></p>
-    <p class="faq-answer">
-      A: Yes, if the fraction is improper, it can be written as a mixed number.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Do negative percentages work the same way?</strong></p>
-    <p class="faq-answer">A: Yes, the negative sign carries through to the decimal and fraction.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why does converting percent to decimal use 100?</strong></p>
-    <p class="faq-answer">
-      A: Percent means per hundred, so dividing by 100 converts it to a per-one value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Where is percent to fraction conversion used?</strong></p>
-    <p class="faq-answer">
-      A: It is used in math education, rates, discounts, and quick equivalence checks.
-    </p>
-  </div>
+  <section class="ptfd-exp-section ptfd-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>How do you convert a percent to a decimal?</h4>
+        <p>Divide the percent by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How do you convert a percent to a fraction?</h4>
+        <p>Write it over 100 and simplify the fraction.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is 50% as a decimal?</h4>
+        <p>50% equals 0.5.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What is 25% as a fraction?</h4>
+        <p>25% equals 1/4.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>How do you simplify the percent fraction?</h4>
+        <p>Divide the numerator and denominator by their greatest common divisor.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>How do you convert a decimal percent like 12.5% to a fraction?</h4>
+        <p>Convert 12.5 to 125/10, then divide by 100 to get 125/1000 and simplify.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can a percent be written as a mixed number fraction?</h4>
+        <p>Yes, if the fraction is improper, it can be written as a mixed number.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Do negative percentages work the same way?</h4>
+        <p>Yes, the negative sign carries through to the decimal and fraction.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Why does converting percent to decimal use 100?</h4>
+        <p>Percent means per hundred, so dividing by 100 converts it to a per-one value.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Where is percent to fraction conversion used?</h4>
+        <p>It is used in math education, rates, discounts, and quick equivalence checks.</p>
+      </div>
+    </div>
+  </section>
 </div>

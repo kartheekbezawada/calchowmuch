@@ -1,25 +1,66 @@
 <div id="calc-percent-to-fraction-decimal">
-  <div class="calculator-ui">
-    <p class="helper">Convert X% to decimal and simplified fraction.</p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="ptfd-hero" aria-label="Percent to fraction and decimal converter">
+        <div class="ptfd-form-panel">
+          <p class="helper">
+            Convert any percentage into its decimal and simplified fraction form. Enter a value such
+            as 12.5 or 12.5% and click convert.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ptfd-percent">Percentage (X)</label>
-        <input
-          id="ptfd-percent"
-          type="text"
-          inputmode="decimal"
-          value="12.5"
-          placeholder="12.5 or 12.5%"
-        />
-        <p class="helper">Example: 12.5%</p>
-      </div>
+          <div class="input-row">
+            <label for="ptfd-percent">Percentage (X)</label>
+            <input
+              id="ptfd-percent"
+              type="text"
+              inputmode="decimal"
+              value="12.5"
+              placeholder="12.5 or 12.5%"
+              maxlength="12"
+            />
+          </div>
+
+          <div class="input-row action-row ptfd-action-row">
+            <button class="calculator-button full-width" type="button" id="ptfd-calc">Convert</button>
+          </div>
+        </div>
+
+        <aside class="ptfd-insight-panel" aria-label="Percent conversion result snapshot">
+          <div class="ptfd-result-shell">
+            <p class="ptfd-result-label">Conversion Result</p>
+            <div class="result" id="ptfd-result" aria-live="polite">
+              Decimal: 0.125 | Fraction: 1/8
+            </div>
+            <div class="result-detail" id="ptfd-result-detail" aria-live="polite">
+              Steps: 12.5% -> 12.5/100 -> 1/8
+            </div>
+          </div>
+
+          <div class="ptfd-snapshot-list">
+            <div class="ptfd-snapshot-row">
+              <span>Input Percent</span>
+              <strong data-ptfd-snap="percent">12.5%</strong>
+            </div>
+            <div class="ptfd-snapshot-row">
+              <span>Decimal</span>
+              <strong data-ptfd-snap="decimal">0.125</strong>
+            </div>
+            <div class="ptfd-snapshot-row">
+              <span>Fraction</span>
+              <strong data-ptfd-snap="fraction">1/8</strong>
+            </div>
+            <div class="ptfd-snapshot-row">
+              <span>Mixed Number</span>
+              <strong data-ptfd-snap="mixed">N/A (proper fraction)</strong>
+            </div>
+            <div class="ptfd-snapshot-row">
+              <span>Formula</span>
+              <strong data-ptfd-snap="formula">X / 100</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="ptfd-calc">Convert</button>
-
-    <div class="result" id="ptfd-result" aria-live="polite"></div>
-    <div class="result-detail" id="ptfd-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

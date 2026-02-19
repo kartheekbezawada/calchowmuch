@@ -523,8 +523,13 @@
       "isolationBoundary": "route",
       "css": {
         "core": [],
-        "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css"
+        ],
+        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.f78b6ed1.css"
       },
       "js": {
         "core": [
@@ -532,6 +537,28 @@
         ],
         "route": [
           "/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/percentage-calculators/percent-to-fraction-decimal-calculator/": {
+      "route": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
+      "calculatorId": "percent-to-fraction-decimal",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.7a9217a2.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/module.js"
         ]
       },
       "options": {
