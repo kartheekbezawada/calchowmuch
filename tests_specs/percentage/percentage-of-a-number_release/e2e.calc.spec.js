@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Find Percentage of a Number Calculator', () => {
   test('PON-TEST-E2E-1: computes X% of Y for positive and negative inputs', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-of-a-number/');
+    await page.goto('/percentage-calculators/percentage-of-a-number-calculator/');
 
     await page.fill('#pon-percent', '20');
     await page.fill('#pon-number', '50');

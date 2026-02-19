@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /percentage-calculators/percent-change/
+- /percentage-calculators/percent-change-calculator/

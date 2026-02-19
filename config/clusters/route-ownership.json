@@ -8,6 +8,14 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-percentage-wave1-20260218",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/reverse-percentage-calculator/",
+      "calculatorId": "reverse-percentage",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-reverse-percentage-wave6-20260219",
+      "generationMode": "cluster"
     }
   ]
 }

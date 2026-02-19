@@ -114,6 +114,15 @@ HARD: Scoped runs must fail fast for missing/invalid `CLUSTER` / `CALC`.
 
 HARD: Global commands (`npm run test`, `npm run test:e2e`, `npm run test:cwv:all`, `npm run test:iss001`) are reserved for full-site releases only.
 
+HARD: Grouped scoped wrappers may be used as additive optimizations while legacy scoped commands remain available for rollback:
+
+- `CLUSTER={cluster} npm run test:cluster:playwright`
+- `CLUSTER={cluster} CALC={calculator} npm run test:calc:playwright`
+
+HARD: Grouped scoped runs must emit machine-readable summary evidence:
+
+- `test-results/playwright/<scope>/<timestamp>/playwright-all.summary.json`
+
 3.1.2 Calculator Release Type (HARD)
 
 Release Type: `CLUSTER_ROUTE_SINGLE_CALC`

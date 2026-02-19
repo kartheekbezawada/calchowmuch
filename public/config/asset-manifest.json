@@ -517,6 +517,28 @@
         "deferCoreCss": true
       }
     },
+    "/percentage-calculators/reverse-percentage-calculator/": {
+      "route": "/percentage-calculators/reverse-percentage-calculator/",
+      "calculatorId": "reverse-percentage",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",

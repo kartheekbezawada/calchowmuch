@@ -27,6 +27,26 @@
           "/calculators/percentage-calculators/percent-change/module.js"
         ]
       }
+    },
+    "/percentage-calculators/reverse-percentage-calculator/": {
+      "route": "/percentage-calculators/reverse-percentage-calculator/",
+      "calculatorId": "reverse-percentage",
+      "clusterId": "percentage",
+      "buildId": "wave6-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+        ]
+      }
     }
   }
 }

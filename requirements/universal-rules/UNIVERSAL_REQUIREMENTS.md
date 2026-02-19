@@ -338,6 +338,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `requirements/universal-rules/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
 - **UR-TEST-051 (P0):** Render-blocking CSS budget breach in any strict profile is a hard fail for calculator release (`test:calc:cwv`).
 - **UR-TEST-052 (P0):** Scoped CWV artifact is mandatory evidence: `test-results/performance/scoped-cwv/{cluster}/{calc}.json`.
+- **UR-TEST-RUNNER-001 (P0):** Runner refactors for startup-cost elimination are allowed only if legacy commands remain available for at least one release cycle, rollback path exists, evidence artifacts remain auditable, and scope/debug dry-run mode is provided.
 
 ### 8.6 Lighthouse Efficiency + Determinism Governance
 

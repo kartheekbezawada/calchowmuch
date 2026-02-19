@@ -17,4 +17,4 @@ Pass criteria:
 Ownership: percentage cluster calculator route owner.
 
 Route:
-- `/percentage-calculators/percentage-decrease/`
+- `/percentage-calculators/percentage-decrease-calculator/`

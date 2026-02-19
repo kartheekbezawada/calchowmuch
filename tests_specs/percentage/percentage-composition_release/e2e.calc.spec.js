@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Composition Calculator', () => {
   test('PCOMP-TEST-E2E-1: single-pane structure, calculated mode, known mode, and no legacy blocks', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-composition/');
+    await page.goto('/percentage-calculators/percentage-composition-calculator/');
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
@@ -27,7 +27,7 @@ test.describe('Percentage Composition Calculator', () => {
   });
 
   test('PCOMP-TEST-E2E-2: add/remove rows and zero-total guard', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-composition/');
+    await page.goto('/percentage-calculators/percentage-composition-calculator/');
 
     await page.click('#composition-add-row');
     await page.fill('.composition-item-row:last-of-type .composition-row-value', '100');
