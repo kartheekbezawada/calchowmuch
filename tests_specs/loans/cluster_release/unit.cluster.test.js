@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
-
+  calculateCarLoan,
+  calculateMultipleCarLoan,
+  computeBalloonPayment,
+  calculateHirePurchase,
+  calculatePcp,
+  calculateLease,
+} from '../../../public/assets/js/core/auto-loan-utils.js';
 import {
   computeMonthlyPayment,
   computePrincipalFromPayment,
@@ -12,13 +18,6 @@ import {
   calculateOffset,
   calculateBorrow,
 } from '../../../public/assets/js/core/loan-utils.js';
-  calculateCarLoan,
-  calculateMultipleCarLoan,
-  computeBalloonPayment,
-  calculateHirePurchase,
-  calculatePcp,
-  calculateLease,
-} from '../../../public/assets/js/core/auto-loan-utils.js';
 
 describe('auto loan utility calculations', () => {
   it('calculates car loan amount financed with percent down', () => {

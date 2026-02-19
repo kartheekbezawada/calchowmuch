@@ -6,12 +6,12 @@ import path from 'node:path';
 import process from 'node:process';
 import { spawn, spawnSync } from 'node:child_process';
 import { JSDOM } from 'jsdom';
+import { acquirePortLease, releasePortLease } from './ports.mjs';
 
 const ROOT = process.cwd();
 const POLICY_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'lighthouse_policy.json');
 
 const DEFAULTS = {
-  baseUrl: 'http://localhost:8000',
   outputDir: 'test-results/lighthouse',
   preset: 'mobile',
   timeoutMs: 3000,
@@ -438,7 +438,23 @@ async function main() {
   const policy = await loadPolicy();
   const resolvedPolicy = resolvePolicy(policy);
 
-  const baseUrl = process.env.LH_BASE_URL || DEFAULTS.baseUrl;
+  const explicitBaseUrl = process.env.LH_BASE_URL || null;
+  let lease = null;
+  const baseUrl = explicitBaseUrl
+    ? explicitBaseUrl
+    : (() => {
+        lease = acquirePortLease({
+          group: 'lighthouse',
+          owner: 'lighthouse-target',
+        });
+        if (lease.conflict) {
+          console.warn(
+            `[ports] preferred port conflict fallback: pid=${lease.conflict.pid ?? 'unknown'} ` +
+              `process=${lease.conflict.process ?? 'unknown'} selected=${lease.port}`
+          );
+        }
+        return `http://localhost:${lease.port}`;
+      })();
   const outputDir = process.env.LH_OUTPUT_DIR || DEFAULTS.outputDir;
   const presetInput = process.env.LH_PRESET || getArgValue('--preset') || DEFAULTS.preset;
   const { publicPreset: preset, lighthousePreset, isDesktop } = resolveLighthousePreset(presetInput);
@@ -611,6 +627,13 @@ async function main() {
   } finally {
     if (server) {
       server.kill();
+    }
+    if (lease?.leaseId) {
+      try {
+        releasePortLease({ leaseId: lease.leaseId });
+      } catch {
+        // best-effort release
+      }
     }
   }
 }

@@ -4,9 +4,13 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { getCalculatorScope, getClusterScope } from './test-scope-resolver.mjs';
+import { acquirePortLease, releasePortLease } from './ports.mjs';
 
 const ROOT = process.cwd();
 const PLAYWRIGHT_SUITE_ORDER = ['e2e', 'seo', 'cwv'];
+const PLAYWRIGHT_PORT_GROUP = 'playwright';
+let activePlaywrightLeaseId = null;
+let activePlaywrightPort = null;
 
 function readArg(name) {
   const prefix = `${name}=`;
@@ -58,6 +62,65 @@ function parsePositiveInt(value) {
   }
   const parsed = Number.parseInt(String(value), 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function ensurePlaywrightPortLease(scopeLabel) {
+  if (activePlaywrightLeaseId && activePlaywrightPort) {
+    return { leaseId: activePlaywrightLeaseId, port: activePlaywrightPort };
+  }
+
+  const preferredPort = parsePositiveInt(process.env.PW_WEB_SERVER_PORT);
+  const lease = acquirePortLease({
+    group: PLAYWRIGHT_PORT_GROUP,
+    preferPort: preferredPort,
+    owner: `run-scoped-tests:${scopeLabel}`,
+  });
+
+  activePlaywrightLeaseId = lease.leaseId;
+  activePlaywrightPort = lease.port;
+
+  if (lease.conflict) {
+    console.warn(
+      `[ports] Preferred port conflict detected. requested=${preferredPort} ` +
+        `pid=${lease.conflict.pid ?? 'unknown'} process=${lease.conflict.process ?? 'unknown'} ` +
+        `fallback=${lease.port}`
+    );
+  }
+
+  const cleanup = () => {
+    if (!activePlaywrightLeaseId) return;
+    try {
+      releasePortLease({ leaseId: activePlaywrightLeaseId });
+    } catch {
+      // best-effort release
+    } finally {
+      activePlaywrightLeaseId = null;
+      activePlaywrightPort = null;
+    }
+  };
+
+  process.on('exit', cleanup);
+  process.on('SIGINT', () => {
+    cleanup();
+    process.exit(130);
+  });
+  process.on('SIGTERM', () => {
+    cleanup();
+    process.exit(143);
+  });
+
+  return { leaseId: activePlaywrightLeaseId, port: activePlaywrightPort };
+}
+
+function withPlaywrightPortEnv(scopeLabel, extraEnv = {}) {
+  const lease = ensurePlaywrightPortLease(scopeLabel);
+  const baseUrl = `http://localhost:${lease.port}`;
+  return {
+    ...extraEnv,
+    PW_WEB_SERVER_PORT: String(lease.port),
+    PW_BASE_URL: baseUrl,
+    SCOPED_CWV_BASE_URL: extraEnv.SCOPED_CWV_BASE_URL || process.env.SCOPED_CWV_BASE_URL || baseUrl,
+  };
 }
 
 function resolveWorkers() {
@@ -219,7 +282,7 @@ function runPlaywrightGrouped(scopeDetails, suiteFiles, extraEnv = {}) {
   }
 
   const env = {
-    ...extraEnv,
+    ...withPlaywrightPortEnv(scopeDetails.scopeLabel, extraEnv),
     PLAYWRIGHT_JSON_OUTPUT_NAME: jsonReportPath,
     PLAYWRIGHT_HTML_OUTPUT_DIR: htmlReportDir,
     PLAYWRIGHT_HTML_OPEN: 'never',
@@ -239,7 +302,11 @@ function runPlaywrightGrouped(scopeDetails, suiteFiles, extraEnv = {}) {
   const includesCwv = (suiteFiles.cwv || []).length > 0;
   const shouldRunCwvValidator = includesCwv && scopeDetails.level === 'calc';
   if (shouldRunCwvValidator && execution.status === 0) {
-    const validator = runWithResult('node', ['scripts/validate-scoped-cwv-budgets.mjs'], extraEnv);
+    const validator = runWithResult(
+      'node',
+      ['scripts/validate-scoped-cwv-budgets.mjs'],
+      withPlaywrightPortEnv(scopeDetails.scopeLabel, extraEnv)
+    );
     cwvValidatorStatus = validator.status;
     cwvValidatorStdout = validator.stdout;
     cwvValidatorStderr = validator.stderr;
@@ -355,7 +422,7 @@ function runPlaywright(files, scopeLabel, extraEnv = {}) {
   if (!files.length) {
     fail(`No Playwright spec files matched for ${scopeLabel}`);
   }
-  run('npx', ['playwright', 'test', ...files], extraEnv);
+  run('npx', ['playwright', 'test', ...files], withPlaywrightPortEnv(scopeLabel, extraEnv));
 }
 
 const level = readArg('--level');
@@ -499,7 +566,13 @@ if (type === 'unit') {
   runPlaywright(files, `CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`, {
     CWV_ASSERT_MODE: 'smoke',
   });
-  run('node', ['scripts/validate-scoped-cwv-budgets.mjs']);
+  run(
+    'node',
+    ['scripts/validate-scoped-cwv-budgets.mjs'],
+    withPlaywrightPortEnv(`CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`, {
+      CWV_ASSERT_MODE: 'smoke',
+    })
+  );
 } else if (type === 'playwright-all') {
   const suiteFiles = collectPlaywrightSuites(dir);
   if (dryRun) {

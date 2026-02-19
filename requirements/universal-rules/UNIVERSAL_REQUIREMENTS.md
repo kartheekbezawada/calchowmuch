@@ -365,6 +365,14 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-EFF-006 (P1):** Test-efficiency changes should record before/after runtime evidence for target route(s) to track CI time and cost impact.
 - **UR-TEST-EFF-007 (P0):** If rationale documents conflict with runtime policy, `requirements/universal-rules/lighthouse_policy.json` and `UR-TEST-LH-*` rules take precedence.
 
+### 8.8 Port Governance for Local/CI Test Servers
+
+- **UR-DEV-PORT-001 (P1):** All scripts that start local web servers for tests/audits must use governed port policy from `config/ports.json` (fixed policy port or approved managed range allocation).
+- **UR-DEV-PORT-002 (P0):** Automation must not hardcode unmanaged startup ports for Playwright/Lighthouse/scoped CWV flows; port selection must be policy-driven.
+- **UR-DEV-PORT-003 (P0):** Managed dynamic pool size must not exceed `maxManagedPorts` (currently 200) in `config/ports.json`.
+- **UR-DEV-PORT-004 (P0):** Port lease lifecycle is mandatory for automation (`acquire` before run, `release` after run/failure) with stale-lease cleanup support.
+- **UR-DEV-PORT-005 (P0):** Fixed admin port `8000` is reserved for manual/admin use. If a requested fixed/preferred port is busy, automation must fall back to the approved dynamic range and emit conflict diagnostics (requested port, PID, process, selected fallback).
+
 ---
 
 ## 9) Header Contract

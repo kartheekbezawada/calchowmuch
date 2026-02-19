@@ -12,6 +12,8 @@ const resolvedWorkers = process.env.CI
   ? parseWorkerCount(process.env.PW_WORKERS_CI) || 2
   : parseWorkerCount(process.env.PW_WORKERS_LOCAL);
 const resolvedMaxFailures = parseWorkerCount(process.env.PW_MAX_FAILURES);
+const resolvedWebServerPort = parseWorkerCount(process.env.PW_WEB_SERVER_PORT) || 8001;
+const resolvedBaseUrl = process.env.PW_BASE_URL || `http://localhost:${resolvedWebServerPort}`;
 
 export default defineConfig({
   testDir: './tests_specs',
@@ -24,7 +26,7 @@ export default defineConfig({
   maxFailures: resolvedMaxFailures,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:8001',
+    baseURL: resolvedBaseUrl,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -36,8 +38,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'python3 -m http.server 8001 --directory public',
-    url: 'http://localhost:8001',
+    command: `python3 -m http.server ${resolvedWebServerPort} --directory public`,
+    url: resolvedBaseUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 10000,
   },

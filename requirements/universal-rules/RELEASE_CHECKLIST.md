@@ -239,6 +239,19 @@ HARD: `stable` pre-release mode requires `LH_RUNS=3` with median aggregation.
 
 SOFT: Include before/after runtime note for target route(s) when efficiency-oriented tooling changes are introduced.
 
+3.7 Port Governance Checks (HARD for server-start tooling changes)
+
+Applicable when change touches Playwright webServer startup, Lighthouse target runner, scoped CWV server startup, or related execution wrappers.
+
+HARD: Managed port policy file exists and is canonical:
+- `config/ports.json`
+
+HARD: New/changed server-start commands must be policy-driven (fixed policy port or approved managed range allocation); unmanaged hardcoded ports are disallowed.
+
+HARD: Automation must not consume fixed admin port `8000` by default.
+
+HARD: Release evidence must include port lease lifecycle proof (acquire + release) and conflict diagnostics when fallback occurs (requested port, PID, process, selected fallback).
+
 4. Pre-Release Command Gate (MANDATORY)
 
 HARD: npm run validate passes (lint + format + unit tests + css-import lint).
