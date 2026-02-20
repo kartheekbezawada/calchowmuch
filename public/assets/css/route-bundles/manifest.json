@@ -648,6 +648,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.1934b165.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css"
+    },
+    "/time-and-date/sleep-time-calculator/": {
+      "calculatorId": "sleep-time-calculator",
+      "relPath": "time-and-date/sleep-time-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.452224de.css",
+      "hash": "6fc46893",
+      "criticalHash": "452224de",
+      "fullBytes": 56285,
+      "criticalBytes": 93585,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/sleep-time-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.452224de.css"
     }
   }
 }
