@@ -54,4 +54,64 @@ test.describe('Official standalone homepage', () => {
     await expect(footerLinks.nth(3)).toHaveText('FAQs');
     await expect(footerLinks.nth(4)).toHaveText('Sitemap');
   });
+
+  test('HOME-SEO-001: homepage has Organization/WebSite/WebPage JSON-LD with SearchAction and no FAQPage', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toHaveCount(1);
+    const canonicalHref = await canonical.getAttribute('href');
+    expect(canonicalHref).toBe('https://calchowmuch.com/');
+
+    const structuredDataScript = page.locator('script[data-homepage-ld="true"]');
+    await expect(structuredDataScript).toHaveCount(1);
+    const structuredText = await structuredDataScript.textContent();
+    const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const types = graph.map((node) => node['@type']);
+
+    expect(types).toEqual(expect.arrayContaining(['Organization', 'WebSite', 'WebPage']));
+    expect(types).not.toContain('FAQPage');
+
+    const organizationNode = graph.find((node) => node['@type'] === 'Organization');
+    expect(organizationNode?.name).toBe('Calculate How Much');
+
+    const websiteNode = graph.find((node) => node['@type'] === 'WebSite');
+    expect(websiteNode?.url).toBe('https://calchowmuch.com/');
+    expect(websiteNode?.potentialAction?.['@type']).toBe('SearchAction');
+    expect(websiteNode?.potentialAction?.target?.urlTemplate).toBe(
+      'https://calchowmuch.com/calculators/?q={search_term_string}'
+    );
+    expect(websiteNode?.potentialAction?.['query-input']).toBe('required name=search_term_string');
+
+    const webpageNode = graph.find((node) => node['@type'] === 'WebPage');
+    expect(webpageNode?.url).toBe(canonicalHref);
+    expect(webpageNode?.['@id']).toBe(`${canonicalHref}#webpage`);
+  });
+
+  test('HOME-SEO-002: /calculators/?q= query contract filters results and handles empty matches', async ({
+    page,
+  }) => {
+    await page.goto('/calculators/?q=mortgage');
+    await expect(page.locator('#global-calculator-search')).toHaveValue('mortgage');
+
+    const visibleMortgageLinks = page.locator('section ul li:not([hidden]) a');
+    const visibleMortgageCount = await visibleMortgageLinks.count();
+    expect(visibleMortgageCount).toBeGreaterThan(0);
+    const visibleMortgageRows = await visibleMortgageLinks.evaluateAll((nodes) =>
+      nodes.map((node) => `${node.textContent || ''} ${node.getAttribute('href') || ''}`.toLowerCase())
+    );
+    expect(visibleMortgageRows.some((value) => value.includes('mortgage'))).toBeTruthy();
+
+    await page.goto('/calculators/?q=zzzzzz');
+    await expect(page.locator('#global-calculator-search')).toHaveValue('zzzzzz');
+    await expect(page.locator('#all-calculators-no-results')).toBeVisible();
+    expect(await page.locator('section ul li:not([hidden]) a').count()).toBe(0);
+
+    await page.goto('/calculators/');
+    await expect(page.locator('#all-calculators-no-results')).toBeHidden();
+    expect(await page.locator('section ul li:not([hidden]) a').count()).toBeGreaterThan(0);
+  });
 });

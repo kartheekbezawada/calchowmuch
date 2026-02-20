@@ -1062,6 +1062,54 @@ function buildHomeLoanStructuredData({
   };
 }
 
+function buildHomepageStructuredData({ title, description, canonical }) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'Calculate How Much',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'Calculate How Much',
+        inLanguage: 'en',
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${SITE_URL}/calculators/?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+    ],
+  };
+}
+
 function stringifyStructuredData(structuredData) {
   return JSON.stringify(structuredData).replace(/<\/script/gi, '<\\/script');
 }
@@ -1868,12 +1916,9 @@ function buildCalculatorIndex(categories) {
     })
     .join('');
 
-  const title = ensureLength('All Calculators | Calculate How Much', 50, 60);
-  const description = ensureLength(
-    'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.',
-    150,
-    160
-  );
+  const title = 'All Calculators | Calculate How Much Online Calculator Hub';
+  const description =
+    'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
 
   return `<!doctype html>
@@ -1905,17 +1950,97 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
               Browse calculators by category. Select a calculator to launch it in the main
               calculator shell.
             </p>
+            <p id="all-calculators-no-results" class="helper" hidden>
+              No calculator matches your search.
+            </p>
             ${sections}
           </div>
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const searchInput = document.getElementById('global-calculator-search');
+        const panel = document.querySelector('.panel.panel-scroll');
+        const noResultsNode = document.getElementById('all-calculators-no-results');
+        if (!searchInput || !panel) {
+          return;
+        }
+
+        const normalize = (value) => String(value || '').trim().toLowerCase();
+        const sections = Array.from(panel.querySelectorAll('section')).map((section) => {
+          const groups = Array.from(section.querySelectorAll('h3'))
+            .map((heading) => {
+              const list = heading.nextElementSibling;
+              if (!list || list.tagName !== 'UL') {
+                return null;
+              }
+              return {
+                heading,
+                list,
+                items: Array.from(list.querySelectorAll('li')),
+              };
+            })
+            .filter(Boolean);
+
+          return { section, groups };
+        });
+
+        const queryFromUrl = new URLSearchParams(window.location.search).get('q') || '';
+        searchInput.value = queryFromUrl;
+
+        function applyFilter(rawQuery) {
+          const query = normalize(rawQuery);
+          let visibleItemCount = 0;
+
+          sections.forEach(({ section, groups }) => {
+            let sectionHasVisibleItems = false;
+
+            groups.forEach(({ heading, list, items }) => {
+              let groupVisibleCount = 0;
+
+              items.forEach((item) => {
+                const link = item.querySelector('a');
+                const searchable =
+                  (item.textContent || '') + ' ' + (link ? link.getAttribute('href') || '' : '');
+                const isMatch = !query || normalize(searchable).includes(query);
+                item.hidden = !isMatch;
+                if (isMatch) {
+                  groupVisibleCount += 1;
+                  visibleItemCount += 1;
+                }
+              });
+
+              const groupVisible = groupVisibleCount > 0;
+              heading.hidden = !groupVisible;
+              list.hidden = !groupVisible;
+              if (groupVisible) {
+                sectionHasVisibleItems = true;
+              }
+            });
+
+            section.hidden = !sectionHasVisibleItems;
+          });
+
+          if (noResultsNode) {
+            noResultsNode.hidden = visibleItemCount > 0;
+          }
+        }
+
+        searchInput.addEventListener('input', () => {
+          applyFilter(searchInput.value);
+        });
+
+        applyFilter(queryFromUrl);
+      })();
+    </script>
   </body>
 </html>`;
 }
 
 function buildStandaloneHomepage({ title, description, canonical, robots }) {
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  const homepageStructuredData = buildHomepageStructuredData({ title, description, canonical });
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -1924,6 +2049,15 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${canonical}" />
+    <meta property="og:image" content="${OG_IMAGE}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${OG_IMAGE}" />
     <meta name="robots" content="${robots}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1932,6 +2066,9 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
+    <script type="application/ld+json" data-homepage-ld="true" data-calculator-ld="true">${stringifyStructuredData(
+      homepageStructuredData
+    )}</script>
 ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="home" data-route-archetype="content_shell" data-design-family="neutral">
@@ -2140,6 +2277,7 @@ ${urlItems}
 function main() {
   const scope = parseGenerationScope();
   const shouldWriteRootHomepage = scope.fullSite || scope.targetRoute === '/';
+  const shouldWriteCalculatorIndex = scope.fullSite || scope.targetRoute === '/calculators/';
 
   if (scope.fullSite || shouldWriteRootHomepage) {
     syncClusterRegistryToPublic();
@@ -2203,7 +2341,7 @@ function main() {
         return routeMatch && calcMatch;
       });
 
-  if (!selectedEntries.length && !shouldWriteRootHomepage && !shouldWritePreviewHomepage) {
+  if (!selectedEntries.length && !shouldWriteRootHomepage && !shouldWriteCalculatorIndex) {
     throw new Error(
       `No calculators matched the requested scope (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
     );
@@ -2317,12 +2455,9 @@ function main() {
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
-  const homeTitle = ensureLength('Calculate How Much | Free Online Calculators', 50, 60);
-  const homeDescription = ensureLength(
-    'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentages.',
-    150,
-    160
-  );
+  const homeTitle = 'Calculate How Much | Free Online Calculators & Tools';
+  const homeDescription =
+    'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentage planning.';
 
   if (shouldWriteRootHomepage) {
     writeFile(
@@ -2336,16 +2471,19 @@ function main() {
     );
   }
 
+  if (shouldWriteCalculatorIndex) {
+    writeFile(
+      path.join(PUBLIC_DIR, 'calculators', 'index.html'),
+      buildCalculatorIndex(navigation.categories)
+    );
+  }
+
   if (!scope.fullSite) {
     console.log(
       `Scoped generation complete for ${selectedEntries.length} route(s) (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
     );
     return;
   }
-  writeFile(
-    path.join(PUBLIC_DIR, 'calculators', 'index.html'),
-    buildCalculatorIndex(navigation.categories)
-  );
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
   writeFile(
     path.join(PUBLIC_DIR, 'sitemap', 'index.html'),
