@@ -77,6 +77,61 @@
     </section>
 
     <section class="mtg-exp-section">
+      <div class="ci-projection-header">
+        <h3>Growth Projection Table</h3>
+        <div
+          class="ci-table-frequency-toggle"
+          role="group"
+          aria-label="Growth projection frequency"
+          data-button-group="ci-table-frequency"
+        >
+          <button
+            class="calculator-button secondary is-active"
+            type="button"
+            data-value="annual"
+            aria-pressed="true"
+          >
+            Annual
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="semiannual"
+            aria-pressed="false"
+          >
+            Semi-Annual
+          </button>
+          <button
+            class="calculator-button secondary"
+            type="button"
+            data-value="quarterly"
+            aria-pressed="false"
+          >
+            Quarterly
+          </button>
+        </div>
+      </div>
+      <div class="table-scroll" id="ci-projection-wrap" tabindex="0">
+        <table id="ci-projection-table" class="ci-projection-table">
+          <thead>
+            <tr>
+              <th scope="col">Period</th>
+              <th scope="col">Opening Balance</th>
+              <th scope="col">Contribution</th>
+              <th scope="col">Interest Earned</th>
+              <th scope="col">Ending Balance</th>
+            </tr>
+          </thead>
+          <tbody id="ci-projection-body">
+            <tr class="ci-projection-placeholder-row">
+              <td colspan="5">Run a valid calculation to view projection rows.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mtg-exp-section">
       <h3>Explanation</h3>
       <p>
         Compound interest is the most powerful force in personal finance — interest earns interest,
