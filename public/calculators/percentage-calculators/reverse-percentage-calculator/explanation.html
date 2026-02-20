@@ -1,157 +1,157 @@
 <div id="revpct-explanation" class="explanation-pane">
-  <p>
-    Reverse percentage helps you find the original value when you know a final value and the
-    percentage it represents.
-  </p>
-  <p>
-    This reverse percentage calculator answers "Y is X% of what number?" by dividing Y by X
-    expressed as a fraction of 100.
-  </p>
-  <p>
-    It is commonly used to find the original price before discount, the original total from a
-    percentage-based result, or the base value behind a percentage.
-  </p>
+  <section class="revpct-exp-section">
+    <h3>Results Table</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">What It Means</th>
+            <th scope="col">Your Value</th>
+            <th scope="col">How It Works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Percentage (X)</td>
+            <td><span data-revpct="percentage">20.00%</span></td>
+            <td class="pv-how-col">Known percentage represented by the final value</td>
+          </tr>
+          <tr>
+            <td>Final Value (Y)</td>
+            <td><span data-revpct="final-value">60.00</span></td>
+            <td class="pv-how-col">Known output amount used to recover the base value</td>
+          </tr>
+          <tr>
+            <td>Original Value</td>
+            <td><span data-revpct="original">300.00</span></td>
+            <td class="pv-how-col">Base value before applying percentage</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Original = (Y x 100) / X</td>
+            <td class="pv-how-col">Reverse percentage identity</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Verification</td>
+            <td><span data-revpct="check">20.00% of 300.00 = 60.00</span></td>
+            <td class="pv-how-col">Multiply original by percentage to confirm Y</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage (X)</td>
-          <td><span data-revpct="percentage"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Final Value (Y)</td>
-          <td><span data-revpct="final-value"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Original Value</td>
-          <td><span data-revpct="original"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <section class="revpct-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      Reverse percentage finds the original value when the final value and represented percentage are
+      known.
+    </p>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage (X)</td>
-          <td><span data-revpct="percentage"></span></td>
-          <td>Percentage of the original</td>
-        </tr>
-        <tr>
-          <td>Final Value (Y)</td>
-          <td><span data-revpct="final-value"></span></td>
-          <td>The known result/value</td>
-        </tr>
-        <tr>
-          <td>Original Value</td>
-          <td><span data-revpct="original"></span></td>
-          <td>Base value before applying percent</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Formula</td>
-          <td>Original = (Y × 100) ÷ X</td>
-          <td>Reverse percentage formula</td>
-        </tr>
-        <tr>
-          <td>Check</td>
-          <td><span data-revpct="check"></span></td>
-          <td>Verification of result</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <ul class="pv-explanation-list">
+      <li>
+        <strong>Start with known values:</strong>
+        percentage = <span data-revpct="percentage">20.00%</span> and final value =
+        <span data-revpct="final-value">60.00</span>.
+      </li>
+      <li>
+        <strong>Rearrange the percentage equation:</strong>
+        If Y is X% of Original, then Original = (Y x 100) / X.
+      </li>
+      <li>
+        <strong>Compute original value:</strong>
+        Result is <span data-revpct="original">300.00</span>.
+      </li>
+      <li>
+        <strong>Verify the output:</strong>
+        <span data-revpct="check">20.00% of 300.00 = 60.00</span>.
+      </li>
+      <li>
+        <strong>Guard condition:</strong>
+        If percentage is 0, the original value is undefined due to division by zero.
+      </li>
+    </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    To solve a reverse percentage, convert the percentage into a decimal by dividing by 100, then
-    divide the final value by that decimal.
-  </p>
-  <p>For example, if 60 is 20% of a number, then the original number is 60 ÷ 0.20 = 300.</p>
-  <p>
-    This is also how you find an original price before a discount when the discounted price is known
-    as a percentage of the original.
-  </p>
-  <p>
-    If the percentage is zero, the original value cannot be calculated because division by zero is
-    not possible.
-  </p>
+    <h4>How the Formula Works</h4>
+    <p>The reverse percentage formula is:</p>
+    <p class="pv-formula-block">Original = (Y x 100) / X</p>
+    <p>Substitute your values step by step:</p>
+    <ol class="pv-formula-steps">
+      <li>
+        <strong>Known final value:</strong>
+        Y = <span data-revpct="final-value">60.00</span>.
+      </li>
+      <li>
+        <strong>Known percentage:</strong>
+        X = <span data-revpct="percentage">20.00%</span>.
+      </li>
+      <li>
+        <strong>Compute base:</strong>
+        (<span data-revpct="final-value">60.00</span> x 100) / 20 =
+        <span data-revpct="original">300.00</span>.
+      </li>
+      <li>
+        <strong>Validate:</strong>
+        <span data-revpct="check">20.00% of 300.00 = 60.00</span>.
+      </li>
+    </ol>
+  </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is reverse percentage?</strong></p>
-    <p class="faq-answer">
-      A: Reverse percentage finds the original value when a final value is a known percentage of it.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate "Y is X% of what number"?</strong></p>
-    <p class="faq-answer">A: Divide Y by (X ÷ 100).</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the reverse percentage formula?</strong></p>
-    <p class="faq-answer">A: The formula is Original = (Y × 100) ÷ X.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do I find the original price before discount?</strong></p>
-    <p class="faq-answer">
-      A: If the discounted price is Y and it equals X% of the original, the original is (Y × 100) ÷
-      X.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the percentage is 0%?</strong></p>
-    <p class="faq-answer">
-      A: The original value is undefined because division by zero is not possible.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can I use decimal percentages like 12.5%?</strong></p>
-    <p class="faq-answer">A: Yes, decimal percentages work the same way.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can the final value be negative?</strong></p>
-    <p class="faq-answer">A: Yes, negative values are supported mathematically.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do I check if the result is correct?</strong></p>
-    <p class="faq-answer">A: Multiply the original value by X% and confirm it equals Y.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is reverse percentage the same as percent change?</strong></p>
-    <p class="faq-answer">
-      A: No, reverse percentage finds a base value, while percent change compares two values.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Where is reverse percentage used in real life?</strong></p>
-    <p class="faq-answer">
-      A: It is used for discounts, taxes, price recovery, and finding totals from percentage-based
-      values.
-    </p>
-  </div>
+  <section class="revpct-exp-section revpct-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is reverse percentage?</h4>
+        <p>Reverse percentage finds the original value when a final value is a known percentage of it.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How do you calculate "Y is X% of what number"?</h4>
+        <p>Divide Y by (X / 100), or equivalently use Original = (Y x 100) / X.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is the reverse percentage formula?</h4>
+        <p>The formula is Original = (Y x 100) / X.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>How do I find the original price before discount?</h4>
+        <p>If the discounted price is Y and equals X% of original, original is (Y x 100) / X.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What happens if the percentage is 0%?</h4>
+        <p>The original value is undefined because division by zero is not valid.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I use decimal percentages like 12.5%?</h4>
+        <p>Yes, decimal percentages work exactly the same with the same formula.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can the final value be negative?</h4>
+        <p>Yes, negative values are valid mathematically and produce a signed original value.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>How do I check if the result is correct?</h4>
+        <p>Multiply the computed original by X% and confirm it matches the final value Y.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is reverse percentage the same as percent change?</h4>
+        <p>No. Reverse percentage finds a base value; percent change compares two values.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Where is reverse percentage used in real life?</h4>
+        <p>It is used in discounts, taxes, pricing analysis, and recovering original totals.</p>
+      </div>
+    </div>
+  </section>
 </div>

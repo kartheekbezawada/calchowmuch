@@ -1,43 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import {
-
-import {
-
-import {
-
-import {
-
-import {
-  computeTrigValues,
-  degToRad,
-  detectTriangleType,
-  getInverseTrigSolutions,
-  getQuadrantFromDegrees,
-  getReferenceAngleDegrees,
-  getSpecialAngleInfo,
-  solveTriangle,
-} from '../../../public/assets/js/core/trigonometry.js';
-  mean,
-  median,
-  mode,
-  min,
-  max,
-  range,
-  parseDataset,
-  analyzeSequence,
-  nthTermArithmetic,
-  nthTermGeometric,
-  sumArithmetic,
-  sumGeometric,
-} from '../../../public/assets/js/core/stats.js';
-  calculateNaturalLog,
-  calculateLogBase,
-  logProductRule,
-  logQuotientRule,
-  logPowerRule,
-  solveSimpleExponential,
-  convertLogScaleValue,
-} from '../../../public/assets/js/core/logarithm.js';
   addPolynomials,
   calculateSlopeDistance,
   coefficientsToArray,
@@ -57,6 +19,7 @@ import {
   subtractPolynomials,
   multiplyPolynomials,
 } from '../../../public/assets/js/core/algebra.js';
+import {
   // Distribution functions
   normalPdf,
   normalCdf,
@@ -96,6 +59,39 @@ import {
   kendallCorrelation,
   correlationMatrix,
 } from '../../../public/assets/js/core/advanced-statistics.js';
+import {
+  calculateNaturalLog,
+  calculateLogBase,
+  logProductRule,
+  logQuotientRule,
+  logPowerRule,
+  solveSimpleExponential,
+  convertLogScaleValue,
+} from '../../../public/assets/js/core/logarithm.js';
+import {
+  mean,
+  median,
+  mode,
+  min,
+  max,
+  range,
+  parseDataset,
+  analyzeSequence,
+  nthTermArithmetic,
+  nthTermGeometric,
+  sumArithmetic,
+  sumGeometric,
+} from '../../../public/assets/js/core/stats.js';
+import {
+  computeTrigValues,
+  degToRad,
+  detectTriangleType,
+  getInverseTrigSolutions,
+  getQuadrantFromDegrees,
+  getReferenceAngleDegrees,
+  getSpecialAngleInfo,
+  solveTriangle,
+} from '../../../public/assets/js/core/trigonometry.js';
 
 // ============================================================================
 // DISTRIBUTION FUNCTIONS TESTS

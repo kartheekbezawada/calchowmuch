@@ -1,25 +1,56 @@
 <div id="calc-percentage-of-a-number">
-  <div class="calculator-ui">
-    <p class="helper">What is X% of Y?</p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="pon-hero" aria-label="Find percentage of a number calculator">
+        <div class="pon-form-panel">
+          <p class="helper">
+            Enter a percentage and a base number to compute the exact amount represented by that
+            percentage.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pon-percent">Percentage (X)</label>
-        <input id="pon-percent" type="number" value="20" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="pon-percent">Percentage (X)</label>
+            <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
+          </div>
 
-      <div class="input-row">
-        <label for="pon-number">Number (Y)</label>
-        <input id="pon-number" type="number" value="50" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="pon-number">Number (Y)</label>
+            <input id="pon-number" type="number" value="50" step="any" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row pon-action-row">
+            <button class="calculator-button full-width" type="button" id="pon-calc">
+              Calculate Percentage
+            </button>
+          </div>
+        </div>
+
+        <aside class="pon-insight-panel" aria-label="Result summary">
+          <div class="pon-result-shell">
+            <div class="result" id="pon-result" aria-live="polite"></div>
+            <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
+          </div>
+          <div class="pon-snapshot-list">
+            <div class="pon-snapshot-row">
+              <span>Percentage (X)</span>
+              <strong data-pon-snap="percent">20.00%</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Number (Y)</span>
+              <strong data-pon-snap="number">50.00</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Result</span>
+              <strong data-pon-snap="result">10.00</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Formula</span>
+              <strong data-pon-snap="formula">(X / 100) x Y</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="pon-calc">
-      Calculate Percentage
-    </button>
-
-    <div class="result" id="pon-result" aria-live="polite"></div>
-    <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
   </div>
 </div>
 

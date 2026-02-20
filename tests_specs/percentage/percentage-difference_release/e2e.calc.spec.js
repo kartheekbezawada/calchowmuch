@@ -6,7 +6,7 @@ function parseNumber(text) {
 
 test.describe('Percentage Difference Calculator', () => {
   test('PDIFF-TEST-E2E-1: calculates symmetric percentage difference and renders new explanation UX', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-difference/');
+    await page.goto('/percentage-calculators/percentage-difference-calculator/');
 
     await expect(page.locator('.top-nav-link.is-active .nav-label').first()).toHaveText(
       'Percentage Calculators'
@@ -38,7 +38,7 @@ test.describe('Percentage Difference Calculator', () => {
   });
 
   test('PDIFF-TEST-E2E-2: handles divide-by-zero baseline', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-difference/');
+    await page.goto('/percentage-calculators/percentage-difference-calculator/');
 
     await page.fill('#pct-diff-a', '0');
     await page.fill('#pct-diff-b', '0');

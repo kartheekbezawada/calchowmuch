@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Increase Calculator', () => {
   test('PINC-TEST-E2E-1: single-pane journey, formula output, and modern explanation UX', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-increase/');
+    await page.goto('/percentage-calculators/percentage-increase-calculator/');
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
@@ -28,7 +28,7 @@ test.describe('Percentage Increase Calculator', () => {
   });
 
   test('PINC-TEST-E2E-2: handles zero-origin guard', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-increase/');
+    await page.goto('/percentage-calculators/percentage-increase-calculator/');
 
     await page.fill('#pct-inc-x', '0');
     await page.fill('#pct-inc-y', '100');

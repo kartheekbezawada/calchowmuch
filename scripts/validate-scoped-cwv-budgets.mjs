@@ -6,10 +6,10 @@ import process from 'node:process';
 import { spawn } from 'node:child_process';
 import { chromium, devices } from 'playwright';
 import { getCalculatorScope } from './test-scope-resolver.mjs';
+import { acquirePortLease, releasePortLease } from './ports.mjs';
 
 const ROOT = process.cwd();
 const CONFIG_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'CWV_SCOPED_BUDGETS.json');
-const DEFAULT_BASE_URL = process.env.SCOPED_CWV_BASE_URL || 'http://localhost:8001';
 const REPORT_ROOT = path.join(ROOT, 'test-results', 'performance', 'scoped-cwv');
 
 function fail(message) {
@@ -375,13 +375,30 @@ async function main() {
   }
 
   const thresholds = resolveThresholds(config, route);
-  const server = await ensureServer(DEFAULT_BASE_URL);
+  const explicitBaseUrl = process.env.SCOPED_CWV_BASE_URL || null;
+  let lease = null;
+  const baseUrl = explicitBaseUrl
+    ? explicitBaseUrl
+    : (() => {
+        lease = acquirePortLease({
+          group: 'scoped-cwv',
+          owner: `scoped-cwv:${clusterId}:${calcId}`,
+        });
+        if (lease.conflict) {
+          console.warn(
+            `[ports] preferred port conflict fallback: pid=${lease.conflict.pid ?? 'unknown'} ` +
+              `process=${lease.conflict.process ?? 'unknown'} selected=${lease.port}`
+          );
+        }
+        return `http://localhost:${lease.port}`;
+      })();
+  const server = await ensureServer(baseUrl);
 
   const browser = await chromium.launch({ headless: true });
   try {
     const profileResults = [];
     for (const [profileName, profileConfig] of Object.entries(config.profiles)) {
-      const result = await runProfile(browser, DEFAULT_BASE_URL, route, profileName, profileConfig);
+      const result = await runProfile(browser, baseUrl, route, profileName, profileConfig);
       profileResults.push(evaluateProfile(result, thresholds));
     }
 
@@ -390,7 +407,7 @@ async function main() {
       clusterId,
       calcId,
       route,
-      baseUrl: DEFAULT_BASE_URL,
+      baseUrl,
       thresholds,
       profiles: profileResults,
       pass: profileResults.every((item) => item.pass),
@@ -417,6 +434,13 @@ async function main() {
     await browser.close();
     if (server) {
       server.kill();
+    }
+    if (lease?.leaseId) {
+      try {
+        releasePortLease({ leaseId: lease.leaseId });
+      } catch {
+        // best-effort release
+      }
     }
   }
 }

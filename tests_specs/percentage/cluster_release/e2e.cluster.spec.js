@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const ROUTES = [
   '/percentage-calculators/commission-calculator/',
   '/percentage-calculators/discount-calculator/',
-  '/percentage-calculators/percent-change/',
+  '/percentage-calculators/percent-change-calculator/',
 ];
 
 function isIgnorableRuntimeError(message) {

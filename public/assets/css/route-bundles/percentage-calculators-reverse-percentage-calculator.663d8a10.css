@@ -1,0 +1,2067 @@
+/* source: /assets/css/calculator.css */
+:root {
+  --calculator-input-padding: 10px 12px;
+  --calculator-input-radius: 10px;
+  --calculator-button-padding: 10px 12px;
+  --calculator-button-radius: 10px;
+}
+
+.calculator-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--panel-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.card h1,
+.card h2 {
+  margin-top: 0;
+}
+
+.calculator-ui {
+  display: grid;
+  gap: 18px;
+}
+
+.calculator-ui label {
+  font-size: 14px;
+  color: var(--muted-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.calculator-ui input[type='number'],
+.calculator-ui input[type='text'],
+.calculator-ui input[type='email'],
+.calculator-ui input[type='password'],
+.calculator-ui input[type='search'],
+.calculator-ui input[type='tel'],
+.calculator-ui input[type='url'],
+.calculator-ui input[type='date'],
+.calculator-ui input[type='time'],
+.calculator-ui input[type='datetime-local'],
+.calculator-ui input[type='month'],
+.calculator-ui input[type='week'],
+.calculator-ui textarea {
+  width: 100%;
+  padding: var(--calculator-input-padding);
+  border-radius: var(--calculator-input-radius);
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+  font-family: inherit;
+  background: var(--panel-bg);
+}
+
+.calculator-ui textarea {
+  resize: vertical;
+}
+
+.calculator-ui .helper {
+  color: var(--muted-text);
+  margin: 0;
+  font-size: 14px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.calculator-ui .input-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.calculator-ui .input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.calculator-ui .calculator-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.calculator-ui .toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calculator-ui .button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calculator-ui .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calculator-ui .mode-switch-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+}
+
+.calculator-ui .mode-switch-label {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5b6573;
+  line-height: 1.3;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.calculator-ui .mode-switch-label.is-active {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.calculator-ui .mode-switch-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calculator-ui .mode-switch-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.calculator-ui .mode-switch-track {
+  width: 64px;
+  height: 34px;
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease;
+}
+
+.calculator-ui .mode-switch-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+}
+
+.calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+  transform: translateX(30px);
+}
+
+.calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+#calc-percentage-composition .composition-mode-switch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+}
+
+#calc-percentage-composition .composition-mode-label {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5b6573;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#calc-percentage-composition .composition-mode-label.is-active {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+#calc-percentage-composition .composition-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#calc-percentage-composition .composition-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#calc-percentage-composition .composition-toggle-track {
+  width: 64px;
+  height: 34px;
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease;
+}
+
+#calc-percentage-composition .composition-toggle-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+#calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+}
+
+#calc-percentage-composition
+  .composition-toggle
+  input:checked
+  + .composition-toggle-track
+  .composition-toggle-thumb {
+  transform: translateX(30px);
+}
+
+#calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+#calc-percentage-composition #composition-rows {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-percentage-composition .composition-item-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+#calc-percentage-composition .composition-row-field {
+  min-width: 0;
+}
+
+#calc-percentage-composition .composition-item-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+#calc-commission-calculator #comm-tier-rows {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-commission-calculator .commission-tier-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+#calc-commission-calculator .commission-tier-field {
+  min-width: 0;
+}
+
+#calc-commission-calculator .commission-tier-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+#calc-markup-calculator #markup-basket-rows {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-markup-calculator .markup-basket-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+  align-items: end;
+  gap: 10px 12px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+}
+
+#calc-markup-calculator .markup-row-field {
+  min-width: 0;
+}
+
+#calc-markup-calculator .markup-row-name-field {
+  grid-column: 1;
+}
+
+#calc-markup-calculator .markup-row-qty-field {
+  grid-column: 2;
+}
+
+#calc-markup-calculator .markup-remove-row {
+  grid-column: 3;
+  min-width: 104px;
+}
+
+#calc-markup-calculator .markup-row-cost-field {
+  grid-column: 1;
+}
+
+#calc-markup-calculator .markup-row-price-wrap,
+#calc-markup-calculator .markup-row-markup-wrap {
+  grid-column: 2 / 4;
+}
+
+#calc-markup-calculator .markup-row-field > label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#calc-markup-calculator .markup-basket-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+@media (max-width: 720px) {
+  .calculator-ui .mode-switch-control {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .calculator-ui .mode-switch-toggle {
+    justify-self: center;
+  }
+
+  #calc-percentage-composition .composition-mode-switch {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  #calc-percentage-composition .composition-toggle {
+    justify-self: center;
+  }
+
+  #calc-percentage-composition .composition-item-row {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-percentage-composition .composition-item-row .calculator-button {
+    width: 100%;
+  }
+
+  #calc-commission-calculator .commission-tier-row {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-commission-calculator .commission-tier-row .calculator-button {
+    width: 100%;
+  }
+
+  #calc-markup-calculator .markup-basket-row {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-markup-calculator .markup-basket-row .calculator-button {
+    width: 100%;
+  }
+}
+
+.calculator-button {
+  padding: var(--calculator-button-padding);
+  border-radius: var(--calculator-button-radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.calculator-button.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.calculator-button.secondary {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.calculator-button.is-active,
+.calculator-button[aria-pressed='true'] {
+  background: var(--button-active-bg, #1d4ed8);
+  color: #fff;
+}
+
+.calculator-button.secondary.is-active,
+.calculator-button.secondary[aria-pressed='true'] {
+  background: var(--button-active-bg, #1d4ed8);
+  color: #fff;
+}
+
+.calculator-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.calculator-ui .result {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 60px;
+}
+
+.calculator-ui .result-detail {
+  font-size: 14px;
+  color: var(--muted-text);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.calculator-ui .result-detail p {
+  margin: 0.25rem 0;
+}
+
+.calculator-ui .result-scroll {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  max-height: 280px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calculator-ui .result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calculator-ui .result-section h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.table-scroll {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  min-width: 0;
+  max-height: 240px;
+  scrollbar-gutter: stable;
+}
+
+.calculator-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  font-size: 15px;
+  min-width: 400px;
+}
+
+.calculator-table th,
+.calculator-table td {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.calculator-table th:first-child,
+.calculator-table td:first-child {
+  text-align: left;
+}
+
+.calculator-table thead th {
+  background: var(--pill-bg);
+  color: var(--muted-text);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calculator-table tfoot td {
+  background: var(--pill-bg);
+  font-weight: 600;
+}
+
+.graph-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  height: 260px;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.graph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted-text);
+  flex-shrink: 0;
+}
+
+.graph-title {
+  color: var(--header-text);
+  font-weight: 600;
+}
+
+.explanation-pane h2,
+.explanation-pane h3 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+  position: relative;
+}
+
+.explanation-pane h2 {
+  margin-top: 0;
+}
+
+.explanation-pane h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 48px;
+  background: var(--accent);
+}
+
+.faq-box {
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.explanation-pane h3 + .faq-box {
+  margin-top: 6px;
+}
+
+.faq-box + .faq-box {
+  margin-top: 6px;
+}
+
+.faq-box p {
+  margin: 0;
+}
+
+.faq-box p + p {
+  margin-top: 6px;
+}
+
+.faq-box .faq-answer {
+  margin-left: 12px;
+}
+
+.graph-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.graph-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.graph-legend-color.principal {
+  background: var(--accent);
+}
+
+.graph-legend-color.interest {
+  background: #f59e0b;
+}
+
+.graph-legend-color.balance {
+  background: #10b981;
+}
+
+.graph-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 8px;
+}
+
+.graph-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: right;
+  padding: 4px 0;
+  flex-shrink: 0;
+  min-width: 50px;
+}
+
+.graph-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.graph-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.graph-bars-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 0;
+  scrollbar-gutter: stable;
+}
+
+.graph-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 100%;
+  min-height: 100px;
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+.graph-line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.graph-line polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-line .line-primary {
+  stroke: var(--accent);
+}
+
+.graph-line .line-secondary {
+  stroke: #94a3b8;
+  stroke-dasharray: 6 4;
+}
+
+.graph-legend-color.secondary {
+  background: #94a3b8;
+}
+
+.graph-bar {
+  width: 8px;
+  min-width: 8px;
+  background: var(--accent);
+  border-radius: 4px 4px 2px 2px;
+  flex: 0 0 auto;
+}
+
+.graph-bar.interest {
+  background: #f59e0b;
+}
+
+.graph-bar.balance {
+  background: #10b981;
+}
+
+.graph-x-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted-text);
+  padding-top: 4px;
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.graph-x-label {
+  font-size: 11px;
+  color: var(--muted-text);
+  text-align: center;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* source: /assets/css/shared-calculator-ui.css */
+/* ═══════════════════════════════════════════════════════════════════
+   shared-calculator-ui.css
+   Shared layout + visual rules for the home-loan calculator design family.
+   Used by: home-loan, car-loan, pcp, hire-purchase, leasing,
+            multiple-car-loan, and all finance calculators.
+
+   DO NOT add @import to this file.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page layout ── */
+
+.calculator-page-single {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+#calc-home-loan .is-hidden {
+  display: none;
+}
+
+#calc-home-loan .home-loan-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Finance time-value route overrides (pilot bundle source) ── */
+
+#calc-present-value,
+#calc-future-value,
+#calc-present-value-of-annuity,
+#calc-future-value-of-annuity {
+  width: 100%;
+}
+
+#calc-present-value .home-loan-ui,
+#calc-future-value .home-loan-ui,
+#calc-present-value-of-annuity .home-loan-ui,
+#calc-future-value-of-annuity .home-loan-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#calc-present-value .mtg-hero,
+#calc-future-value .mtg-hero,
+#calc-present-value-of-annuity .mtg-hero,
+#calc-future-value-of-annuity .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-present-value .mtg-form-panel,
+#calc-future-value .mtg-form-panel,
+#calc-present-value-of-annuity .mtg-form-panel,
+#calc-future-value-of-annuity .mtg-form-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+#calc-present-value .mtg-preview-panel,
+#calc-future-value .mtg-preview-panel,
+#calc-present-value-of-annuity .mtg-preview-panel,
+#calc-future-value-of-annuity .mtg-preview-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+#calc-present-value .mtg-result-card,
+#calc-future-value .mtg-result-card,
+#calc-present-value-of-annuity .mtg-result-card,
+#calc-future-value-of-annuity .mtg-result-card {
+  min-height: 44px;
+}
+
+#calc-present-value .mtg-summary-card,
+#calc-future-value .mtg-summary-card,
+#calc-present-value-of-annuity .mtg-summary-card,
+#calc-future-value-of-annuity .mtg-summary-card {
+  min-height: 96px;
+}
+
+/* ── Hero grid (form + preview) ── */
+
+#calc-home-loan .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+#calc-home-loan .mtg-form-panel {
+  display: grid;
+  gap: 1.65rem;
+  align-content: start;
+}
+
+#calc-home-loan .helper {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.88);
+}
+
+/* ── Form inputs ── */
+
+#calc-home-loan .input-row {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.34rem;
+  min-width: 0;
+}
+
+#calc-home-loan label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(226, 232, 240, 0.94);
+  line-height: 1.28;
+}
+
+#calc-home-loan input[type='number'],
+#calc-home-loan input[type='month'] {
+  width: 100%;
+  min-height: 38px;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+  background: rgba(15, 23, 42, 0.72);
+  color: #fff;
+  padding: 0.42rem 0.68rem;
+  font-size: 0.84rem;
+  line-height: 1.2;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#calc-home-loan input[type='number']:hover,
+#calc-home-loan input[type='month']:hover {
+  border-color: rgba(148, 163, 184, 0.62);
+}
+
+#calc-home-loan input[type='number']:focus-visible,
+#calc-home-loan input[type='month']:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.64);
+  outline-offset: 1px;
+  border-color: rgba(125, 211, 252, 0.85);
+}
+
+/* ── Slider inputs ── */
+
+#calc-home-loan .slider-row {
+  gap: 0.52rem;
+}
+
+#calc-home-loan .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+#calc-home-loan .slider-value {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.72rem;
+  border-radius: 0.52rem;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(34, 197, 94, 0.45);
+  color: #4ade80;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow:
+    0 0 8px rgba(74, 222, 128, 0.7),
+    0 0 20px rgba(74, 222, 128, 0.4),
+    0 0 40px rgba(34, 197, 94, 0.2);
+  box-shadow:
+    0 0 8px rgba(34, 197, 94, 0.2),
+    0 0 20px rgba(34, 197, 94, 0.08);
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#calc-home-loan .slider-row:hover .slider-value {
+  border-color: rgba(251, 113, 133, 0.55);
+  color: #fb7185;
+  text-shadow:
+    0 0 8px rgba(251, 113, 133, 0.7),
+    0 0 20px rgba(251, 113, 133, 0.45),
+    0 0 40px rgba(251, 113, 133, 0.2);
+  box-shadow:
+    0 0 8px rgba(251, 113, 133, 0.2),
+    0 0 20px rgba(251, 113, 133, 0.08);
+}
+
+#calc-home-loan input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    #22c55e 0%,
+    #fb7185 var(--fill, 50%),
+    rgba(148, 163, 184, 0.14) var(--fill, 50%)
+  );
+  transition: box-shadow 0.2s ease;
+}
+
+#calc-home-loan input[type='range']:hover {
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
+}
+
+#calc-home-loan input[type='range']:focus-visible {
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
+}
+
+#calc-home-loan input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(34, 197, 94, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+#calc-home-loan input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  border-color: rgba(251, 113, 133, 0.7);
+  box-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(251, 113, 133, 0.2);
+}
+
+#calc-home-loan input[type='range']:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.08);
+}
+
+#calc-home-loan input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(34, 197, 94, 0.5);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+#calc-home-loan input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.18);
+  border-color: rgba(251, 113, 133, 0.7);
+  box-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(251, 113, 133, 0.2);
+}
+
+#calc-home-loan input[type='range']::-moz-range-track {
+  height: 5px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+/* ── Advanced options ── */
+
+#calc-home-loan .advanced-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem;
+  align-items: end;
+}
+
+#calc-home-loan .down-combined-left .button-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 3px;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.78);
+}
+
+#calc-home-loan .down-combined-left .calculator-button {
+  min-height: 32px;
+  padding: 0.36rem 0.72rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.76rem;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#calc-home-loan .down-combined-left .calculator-button.is-active {
+  border-color: rgba(56, 189, 248, 0.82);
+  background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+  color: #fff;
+}
+
+#calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
+  background: rgba(59, 130, 246, 0.12);
+  color: #e0f2fe;
+}
+
+#calc-home-loan .advanced-options {
+  margin-top: 0.18rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+  padding-top: 0.74rem;
+}
+
+#calc-home-loan .advanced-options summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.58rem;
+  padding: 0.48rem 0.58rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(56, 189, 248, 0.56);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
+  color: rgba(224, 242, 254, 0.98);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#calc-home-loan .advanced-options summary:hover {
+  border-color: rgba(56, 189, 248, 0.72);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
+}
+
+#calc-home-loan .advanced-options summary::-webkit-details-marker {
+  display: none;
+}
+
+#calc-home-loan .advanced-options summary:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.74);
+  outline-offset: 2px;
+}
+
+#calc-home-loan .advanced-summary-pill {
+  min-width: 102px;
+  min-height: 24px;
+  border-radius: 9999px;
+  border: 1px solid rgba(125, 211, 252, 0.58);
+  background: rgba(15, 23, 42, 0.88);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+#calc-home-loan .summary-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.26rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+#calc-home-loan .summary-icon {
+  font-size: 0.86rem;
+  line-height: 1;
+}
+
+#calc-home-loan .summary-state-close {
+  display: none;
+}
+
+#calc-home-loan .advanced-options[open] .summary-state-expand {
+  display: none;
+}
+
+#calc-home-loan .advanced-options[open] .summary-state-close {
+  display: inline-flex;
+}
+
+#calc-home-loan .advanced-options[open] summary {
+  border-color: rgba(125, 211, 252, 0.86);
+}
+
+#calc-home-loan .advanced-stack {
+  margin-top: 0.76rem;
+  display: grid;
+  gap: 0.72rem;
+}
+
+#calc-home-loan .advanced-pair label {
+  min-height: 1.2em;
+}
+
+/* ── Action row ── */
+
+#calc-home-loan .mtg-action-row {
+  margin-top: 0.35rem;
+}
+
+#calc-home-loan .mtg-action-row .calculator-button {
+  min-height: 50px;
+  border-radius: 0.82rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+#calc-home-loan .mtg-action-row .calculator-button:hover {
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+}
+
+#calc-home-loan .mtg-action-row .calculator-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Preview panel ── */
+
+#calc-home-loan .mtg-preview-panel {
+  border-radius: 1.15rem;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
+  padding: 1.15rem;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  box-shadow:
+    0 4px 24px rgba(2, 6, 23, 0.45),
+    0 0 40px rgba(59, 130, 246, 0.06);
+}
+
+#calc-home-loan .mtg-preview-main {
+  border-radius: 0.95rem;
+  padding: 1rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  display: grid;
+  gap: 0.65rem;
+}
+
+#calc-home-loan .mtg-preview-label {
+  margin: 0;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.94);
+  font-weight: 700;
+}
+
+#calc-home-loan .mtg-result-card,
+#calc-home-loan .mtg-summary-card {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+#calc-home-loan .mtg-result-card {
+  color: rgba(239, 246, 255, 0.99);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+#calc-home-loan .mtg-result-card strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.8);
+}
+
+#calc-home-loan .mtg-result-card .mtg-result-value {
+  display: block;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  line-height: 1;
+  font-weight: 800;
+  color: #e0f2fe;
+  text-shadow:
+    0 0 20px rgba(125, 211, 252, 0.35),
+    0 0 40px rgba(59, 130, 246, 0.15);
+  letter-spacing: -0.02em;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+@keyframes mtg-result-pop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
+  animation: mtg-result-pop 0.4s ease-out;
+}
+
+#calc-home-loan .mtg-summary-card {
+  font-size: 0.83rem;
+  line-height: 1.52;
+  color: rgba(203, 213, 225, 0.92);
+  min-height: 80px;
+}
+
+#calc-home-loan .mtg-summary-card p {
+  margin: 0;
+}
+
+#calc-home-loan .mtg-summary-card p + p {
+  margin-top: 0.42rem;
+}
+
+/* ── Snapshot rows ── */
+
+#calc-home-loan .mtg-snapshot-list {
+  margin: 0;
+  padding: 0.35rem 0;
+  display: grid;
+  gap: 0.1rem;
+}
+
+#calc-home-loan .mtg-snapshot-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.72rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+#calc-home-loan .mtg-snapshot-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-home-loan .mtg-snapshot-row span {
+  font-size: 0.75rem;
+  color: rgba(148, 163, 184, 0.85);
+}
+
+#calc-home-loan .mtg-snapshot-row strong {
+  font-size: 0.88rem;
+  color: rgba(248, 250, 252, 0.99);
+  text-align: right;
+  line-height: 1.28;
+}
+
+/* ── Explanation section ── */
+
+#loan-mtg-explanation {
+  display: grid;
+  gap: 0.95rem;
+}
+
+#loan-mtg-explanation h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: rgba(226, 232, 240, 0.97);
+}
+
+#loan-mtg-explanation > p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#loan-mtg-explanation .mtg-exp-section {
+  display: grid;
+  gap: 0.72rem;
+  padding: 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+}
+
+#loan-mtg-explanation .mtg-exp-section h3 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.94);
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#loan-mtg-explanation .mtg-exp-section h3::after {
+  content: none;
+}
+
+/* ── Lifetime Totals: 2-column layout (visual | totals) ── */
+
+#loan-mtg-explanation .mtg-exp-section--lifetime {
+  grid-template-columns: auto 1fr;
+}
+
+#loan-mtg-explanation .mtg-lifetime-header {
+  grid-column: 1 / -1;
+}
+
+#loan-mtg-explanation .mtg-lifetime-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut {
+  --principal-share: 70%;
+  width: 200px;
+  min-width: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
+  position: relative;
+  cursor: pointer;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut:hover {
+  box-shadow:
+    0 0 32px rgba(34, 197, 94, 0.35),
+    0 0 60px rgba(251, 113, 133, 0.22),
+    0 0 80px rgba(34, 197, 94, 0.1);
+  transform: scale(1.06);
+}
+
+#loan-mtg-explanation .mtg-lifetime-donut::after {
+  content: '';
+  position: absolute;
+  inset: 26%;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.96);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.45rem 0.62rem;
+  border-radius: 0.62rem;
+  border: 1px solid transparent;
+  background: none;
+  cursor: default;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(125, 211, 252, 0.18);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item--principal::before {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item--interest::before {
+  background: #fb7185;
+  box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item span {
+  font-size: 0.74rem;
+  color: rgba(203, 213, 225, 0.9);
+}
+
+#loan-mtg-explanation .mtg-lifetime-legend-item strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(248, 250, 252, 0.98);
+  margin-left: 0.2rem;
+}
+
+/* ── Totals: single column stacked, right side ── */
+
+#loan-mtg-explanation .mtg-lifetime-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: center;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.72rem;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.62rem;
+  background: none;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  cursor: default;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card:last-child {
+  border-bottom-color: transparent;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(125, 211, 252, 0.2);
+  box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
+  transform: translateX(4px);
+}
+
+#loan-mtg-explanation .mtg-lifetime-card span {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.78);
+  white-space: nowrap;
+}
+
+#loan-mtg-explanation .mtg-lifetime-card strong {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: rgba(248, 250, 252, 0.98);
+  font-variant-numeric: tabular-nums;
+}
+
+#loan-mtg-explanation .mtg-lifetime-summary {
+  display: none;
+}
+
+/* ── Amortization table ── */
+
+#loan-mtg-explanation .amortization-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.72rem;
+}
+
+#loan-mtg-explanation .table-view-toggle {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.18rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+#loan-mtg-explanation .table-view-toggle .calculator-button {
+  min-height: 30px;
+  padding: 0.3rem 0.66rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+#loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
+  border-color: rgba(249, 115, 22, 0.58);
+  background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
+  color: #fff;
+}
+
+#loan-mtg-explanation .table-scroll {
+  max-height: 318px;
+  overflow-y: scroll;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(15, 23, 42, 0.62);
+}
+
+#loan-mtg-explanation .calculator-table {
+  min-width: 420px;
+  border-collapse: collapse;
+}
+
+#loan-mtg-explanation .calculator-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fde68a;
+  background: rgba(30, 41, 59, 0.98);
+}
+
+#loan-mtg-explanation .calculator-table th,
+#loan-mtg-explanation .calculator-table td {
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  padding: 0.5rem;
+}
+
+#loan-mtg-explanation .calculator-table td {
+  font-size: 0.79rem;
+  color: rgba(226, 232, 240, 0.94);
+  white-space: nowrap;
+}
+
+#loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.36);
+}
+
+/* ── FAQ grid ── */
+
+#loan-mtg-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+#loan-mtg-explanation .bor-faq-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(245, 158, 11, 0.45);
+  display: grid;
+  gap: 0.4rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+#loan-mtg-explanation .bor-faq-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+}
+
+#loan-mtg-explanation .bor-faq-number {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#loan-mtg-explanation .bor-faq-card h4 {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.3;
+  color: rgba(226, 232, 240, 0.98);
+}
+
+#loan-mtg-explanation .bor-faq-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+/* ── Slider hover effects (from auto-loan family) ── */
+
+.home-loan-ui .input-row.slider-row {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+  padding: 8px;
+  border-radius: 8px;
+  margin: -8px 0 16px 0;
+}
+
+.home-loan-ui .input-row.slider-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.home-loan-ui .input-row.slider-row:hover .slider-header label {
+  color: #a5f3fc;
+  text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
+}
+
+.home-loan-ui .slider-value {
+  font-weight: 700;
+  color: #e0f2fe;
+  transition: color 0.2s ease;
+}
+
+.home-loan-ui .input-row.slider-row:hover .slider-value {
+  color: #38bdf8;
+}
+
+/* ── 2-Column Grid Layout ── */
+
+.home-loan-ui .input-grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* ── Accessibility ── */
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
+    animation: none;
+  }
+  #calc-home-loan .mtg-action-row .calculator-button {
+    transition: none;
+  }
+}
+
+/* ── Responsive breakpoints ── */
+
+@media (max-width: 1220px) {
+  #calc-home-loan .mtg-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  #calc-home-loan .advanced-pair {
+    grid-template-columns: 1fr;
+  }
+
+  #loan-mtg-explanation .table-scroll {
+    border-radius: 0.7rem;
+  }
+
+  #loan-mtg-explanation .calculator-table {
+    min-width: 360px;
+  }
+
+  #loan-mtg-explanation .amortization-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-loan-ui .input-grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 720px) {
+  #loan-mtg-explanation .mtg-exp-section {
+    padding: 0.85rem;
+  }
+
+  #loan-mtg-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-home-loan .down-combined-left .calculator-button,
+  #loan-mtg-explanation .table-view-toggle .calculator-button {
+    flex: 1 1 auto;
+  }
+
+  #loan-mtg-explanation .table-view-toggle {
+    width: 100%;
+  }
+
+  #loan-mtg-explanation .mtg-exp-section--lifetime {
+    grid-template-columns: 1fr;
+  }
+
+  #loan-mtg-explanation .mtg-lifetime-visual {
+    align-items: center;
+  }
+
+  #loan-mtg-explanation .mtg-lifetime-donut {
+    width: 160px;
+    min-width: 160px;
+  }
+}
+
+/* source: /calculators/percentage-calculators/reverse-percentage-calculator/calculator.css */
+/* Reverse Percentage calculator route overrides */
+
+#revpct-explanation .pv-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#revpct-explanation .pv-results-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fef08a;
+  background: rgba(30, 41, 59, 0.98);
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+#revpct-explanation .pv-results-table td {
+  font-size: 0.8rem;
+  color: rgba(226, 232, 240, 0.94);
+  padding: 0.58rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  line-height: 1.4;
+}
+
+#revpct-explanation .pv-results-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.35);
+}
+
+#revpct-explanation .pv-results-table tbody tr:hover {
+  background: rgba(13, 148, 136, 0.12);
+}
+
+#revpct-explanation .pv-results-table tfoot td {
+  font-weight: 700;
+  color: #ecfeff;
+  background: linear-gradient(160deg, rgba(20, 184, 166, 0.16), rgba(6, 182, 212, 0.1));
+  border-top: 2px solid rgba(45, 212, 191, 0.42);
+  font-size: 0.84rem;
+}
+
+#revpct-explanation .pv-results-table .pv-how-col {
+  font-size: 0.74rem;
+  color: rgba(148, 163, 184, 0.88);
+  font-style: italic;
+}
+
+#revpct-explanation .pv-explanation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.62rem 0 0.52rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.44rem;
+}
+
+#revpct-explanation .pv-explanation-list li {
+  position: relative;
+  padding-left: 1.3rem;
+  line-height: 1.64;
+  font-size: 0.88rem;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#revpct-explanation .pv-explanation-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: rgba(45, 212, 191, 0.92);
+  font-weight: 700;
+}
+
+#revpct-explanation .pv-explanation-list li [data-revpct] {
+  font-weight: 700;
+  color: #5eead4;
+}
+
+#revpct-explanation .pv-formula-block {
+  text-align: center;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.52rem 0.8rem;
+  margin: 0.35rem auto;
+  border-radius: 10px;
+  max-width: 360px;
+  background: rgba(2, 44, 34, 0.45);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  color: #ecfeff;
+  text-shadow: 0 0 12px rgba(45, 212, 191, 0.25);
+}
+
+#revpct-explanation .pv-formula-steps {
+  padding-left: 1.5rem;
+  margin: 0.35rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#revpct-explanation .pv-formula-steps li {
+  line-height: 1.64;
+  font-size: 0.86rem;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#revpct-explanation .pv-formula-steps li [data-revpct] {
+  font-weight: 700;
+  color: #5eead4;
+}
+
+#revpct-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+#revpct-explanation .bor-faq-card {
+  position: relative;
+  border: 1px solid rgba(45, 212, 191, 0.22);
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.72), rgba(6, 95, 70, 0.34));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 24px rgba(2, 8, 25, 0.28);
+  padding: 0.78rem 0.82rem 0.82rem;
+}
+
+#revpct-explanation .bor-faq-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.48rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #042f2e;
+  background: linear-gradient(120deg, #5eead4, #67e8f9);
+}
+
+#revpct-explanation .bor-faq-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  color: #ecfeff;
+}
+
+#revpct-explanation .bor-faq-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.58;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+@media (max-width: 860px) {
+  #revpct-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reverse Percentage calculator side-answer-card parity with percent change */
+#calc-reverse-percentage #calc-home-loan .mtg-hero {
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+}
+
+#calc-reverse-percentage #calc-home-loan .input-row input[type='number'] {
+  min-height: 46px;
+}
+
+#calc-reverse-percentage #calc-home-loan .mtg-form-panel .helper {
+  color: #d1fae5;
+  font-weight: 600;
+  text-shadow:
+    0 0 10px rgba(52, 211, 153, 0.5),
+    0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+#calc-reverse-percentage #calc-home-loan .mtg-preview-main {
+  background: linear-gradient(145deg, rgba(6, 78, 59, 0.52), rgba(16, 185, 129, 0.22));
+  border: 1px solid rgba(110, 231, 183, 0.36);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 14px 30px rgba(2, 6, 23, 0.34);
+}
+
+#calc-reverse-percentage #calc-home-loan #revpct-result {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #d1fae5;
+  text-shadow:
+    0 0 18px rgba(110, 231, 183, 0.52),
+    0 0 36px rgba(16, 185, 129, 0.24);
+}
+
+#calc-reverse-percentage #calc-home-loan #revpct-result-detail {
+  line-height: 1.5;
+}
+
+#calc-reverse-percentage #calc-home-loan .mtg-snapshot-row strong {
+  color: #6ee7b7;
+}
+
+#calc-reverse-percentage #calc-home-loan .revpct-formula-line {
+  display: block;
+  margin-top: 0.34rem;
+}
+
+#calc-reverse-percentage #calc-home-loan .revpct-detail-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+#calc-reverse-percentage #calc-home-loan .revpct-detail-list li {
+  margin: 0.2rem 0;
+}
+
+@media (max-width: 1024px) {
+  #calc-reverse-percentage #calc-home-loan .mtg-hero {
+    grid-template-columns: 1fr;
+  }
+}

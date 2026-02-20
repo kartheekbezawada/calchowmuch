@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percentage Decrease Calculator', () => {
   test('PDEC-TEST-E2E-1: single-pane journey, formula output, and migrated explanation UX', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-decrease/');
+    await page.goto('/percentage-calculators/percentage-decrease-calculator/');
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
@@ -28,7 +28,7 @@ test.describe('Percentage Decrease Calculator', () => {
   });
 
   test('PDEC-TEST-E2E-2: handles zero-origin guard', async ({ page }) => {
-    await page.goto('/percentage-calculators/percentage-decrease/');
+    await page.goto('/percentage-calculators/percentage-decrease-calculator/');
 
     await page.fill('#pctdec-original', '0');
     await page.fill('#pctdec-new', '50');

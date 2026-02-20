@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Percent Change Calculator', () => {
   test('PCHG-TEST-E2E-1: signed percent, amount, direction, and zero-origin guard', async ({ page }) => {
-    await page.goto('/percentage-calculators/percent-change/');
+    await page.goto('/percentage-calculators/percent-change-calculator/');
 
     await page.fill('#pct-change-a', '50');
     await page.fill('#pct-change-b', '60');

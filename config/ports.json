@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "maxManagedPorts": 200,
+  "fixed": [
+    {
+      "name": "admin-live-server",
+      "owner": "admin",
+      "defaultPort": 8000,
+      "purpose": "manual local live-server testing",
+      "env": ["dev"],
+      "status": "reserved"
+    }
+  ],
+  "ranges": [
+    {
+      "name": "playwright",
+      "owner": "qa",
+      "start": 3100,
+      "end": 3169,
+      "purpose": "playwright webServer",
+      "env": ["dev", "ci"],
+      "status": "available"
+    },
+    {
+      "name": "lighthouse",
+      "owner": "qa",
+      "start": 3170,
+      "end": 3229,
+      "purpose": "lighthouse server",
+      "env": ["dev", "ci"],
+      "status": "available"
+    },
+    {
+      "name": "scoped-cwv",
+      "owner": "qa",
+      "start": 3230,
+      "end": 3298,
+      "purpose": "scoped cwv validation server",
+      "env": ["dev", "ci"],
+      "status": "available"
+    }
+  ]
+}

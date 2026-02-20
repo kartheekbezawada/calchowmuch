@@ -14,7 +14,7 @@
               "url": "/math/basic/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-increase",
@@ -1019,7 +1019,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percent-to-fraction-decimal",
@@ -1034,7 +1034,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "what-percent-is-x-of-y",
@@ -1049,7 +1049,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "percentage-of-a-number",
@@ -1064,7 +1064,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "commission-calculator",

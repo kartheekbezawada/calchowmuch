@@ -33,6 +33,8 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-decrease-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
+  'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
+  'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -55,6 +57,8 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/percentage-increase-calculator/',
   '/percentage-calculators/percentage-decrease-calculator/',
   '/percentage-calculators/percentage-composition-calculator/',
+  '/percentage-calculators/reverse-percentage-calculator/',
+  '/percentage-calculators/percent-to-fraction-decimal-calculator/',
 ]);
 const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
@@ -62,6 +66,7 @@ const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
   'percentage-increase',
   'percentage-decrease',
   'percentage-composition',
+  'percent-to-fraction-decimal',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -285,6 +290,18 @@ const PERCENTAGE_ISOLATED_ROUTES = [
     route: '/percentage-calculators/percentage-composition-calculator/',
     relPath: 'percentage-calculators/percentage-composition-calculator',
     routeCss: 'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'reverse-percentage',
+    route: '/percentage-calculators/reverse-percentage-calculator/',
+    relPath: 'percentage-calculators/reverse-percentage-calculator',
+    routeCss: 'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'percent-to-fraction-decimal',
+    route: '/percentage-calculators/percent-to-fraction-decimal-calculator/',
+    relPath: 'percentage-calculators/percent-to-fraction-decimal-calculator',
+    routeCss: 'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
   },
 ];
 

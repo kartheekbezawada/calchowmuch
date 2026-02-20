@@ -37,6 +37,11 @@ It serves calculators across finance, loans, math, percentage, and time/date cat
   - `npm install`
 - Serve static site locally:
   - `python3 -m http.server 8000 --directory public`
+- Port policy/status:
+  - `npm run ports:list`
+  - `npm run ports:next-free -- --group=playwright`
+  - `npm run ports:acquire -- --group=lighthouse`
+  - `npm run ports:release -- --lease-id=<lease-id>`
 - Regenerate one route safely (default workflow):
   - `TARGET_ROUTE=/finance/simple-interest/ node scripts/generate-mpa-pages.js`
 - Regenerate one calculator by id:
@@ -101,9 +106,9 @@ Categories: `loans`, `credit-cards`, `finance`, `percentage`, `math`, `time-and-
 
 - Vitest tests run in Node with `jsdom` environment.
 - Playwright tests run Chromium locally using:
-  - Base URL: `http://localhost:8001`
+  - Base URL: `PW_BASE_URL` (default `http://localhost:8001`)
   - Auto web server command from config:
-    - `python3 -m http.server 8001 --directory public`
+    - `python3 -m http.server ${PW_WEB_SERVER_PORT} --directory public` (default `8001`)
 - Local SEO audit runs against a manually provided local base URL.
   - Default in script is `http://127.0.0.1:8000`.
   - Artifacts are written under `test-results/seo/local-audit/`.

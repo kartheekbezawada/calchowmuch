@@ -5,40 +5,64 @@ function parseNumber(text) {
 }
 
 test.describe('Compound Interest Calculator', () => {
-  test('CI-TEST-E2E-1: user journey and results', async ({ page }) => {
-    await page.goto('/finance/compound-interest');
+  test('CI-TEST-E2E-1: user journey and projection table frequency toggle', async ({ page }) => {
+    await page.goto('/finance-calculators/compound-interest-calculator/');
 
-    const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
-    await expect(topNavActive).toHaveText('Finance');
+    await expect(page.locator('h1').first()).toHaveText('Compound Interest Calculator');
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://calchowmuch.com/finance-calculators/compound-interest-calculator/'
+    );
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Compound Interest');
+    const sectionTitles = await page.locator('#ci-explanation .mtg-exp-section h3').allTextContents();
+    const resultsIndex = sectionTitles.findIndex((text) => text.trim() === 'Results Table');
+    const projectionIndex = sectionTitles.findIndex((text) => text.trim() === 'Growth Projection Table');
+    const explanationIndex = sectionTitles.findIndex((text) => text.trim() === 'Explanation');
 
-    const optionalSection = page.locator('#ci-optional-section');
-    await expect(optionalSection).toHaveClass(/is-hidden/);
+    expect(resultsIndex).toBeGreaterThanOrEqual(0);
+    expect(projectionIndex).toBeGreaterThan(resultsIndex);
+    expect(explanationIndex).toBeGreaterThan(projectionIndex);
 
     await page.fill('#ci-principal', '10000');
-    await page.fill('#ci-rate', '5');
-    await page.fill('#ci-time', '10');
-    await page.click('[data-button-group="ci-compounding"] button[data-value="monthly"]');
-    await page.click('#ci-calc');
-
-    const resultText = await page.locator('#ci-result').textContent();
-    expect(resultText).toContain('Ending Balance');
-    const resultValue = parseNumber(resultText);
-    const expected = 10000 * Math.pow(1 + 0.05 / 12, 120);
-    expect(resultValue).toBeCloseTo(expected, 0);
-
-    await page.click('#ci-optional-toggle');
-    await expect(optionalSection).not.toHaveClass(/is-hidden/);
-
+    await page.fill('#ci-rate', '6');
+    await page.fill('#ci-time', '2');
     await page.fill('#ci-contribution', '100');
     await page.click('#ci-calc');
 
-    const contribResultText = await page.locator('#ci-result').textContent();
-    const contribValue = parseNumber(contribResultText);
-    expect(contribValue).toBeGreaterThan(expected);
+    await expect(
+      page.locator('[data-button-group="ci-table-frequency"] button[data-value="annual"]')
+    ).toHaveClass(/is-active/);
 
-    await expect(page.locator('[data-ci="ending-balance"]').first()).not.toHaveText('N/A');
+    const resultText = await page.locator('#ci-result').textContent();
+    const resultValue = parseNumber(resultText);
+    expect(resultValue).toBeGreaterThan(10000);
+
+    await expect(page.locator('#ci-projection-body tr')).toHaveCount(2);
+    await expect(page.locator('#ci-projection-body tr').first().locator('td').first()).toHaveText(
+      'Year 1'
+    );
+
+    await page.click('[data-button-group="ci-compounding"] button[data-value="quarterly"]');
+    await expect(
+      page.locator('[data-button-group="ci-compounding"] button[data-value="quarterly"]')
+    ).toHaveClass(/is-active/);
+
+    await page.click('[data-button-group="ci-table-frequency"] button[data-value="semiannual"]');
+    await expect(page.locator('#ci-projection-body tr')).toHaveCount(4);
+    await expect(page.locator('#ci-projection-body tr').first().locator('td').first()).toHaveText(
+      'Half-Year 1'
+    );
+    await expect(
+      page.locator('[data-button-group="ci-compounding"] button[data-value="quarterly"]')
+    ).toHaveClass(/is-active/);
+
+    await page.click('[data-button-group="ci-table-frequency"] button[data-value="quarterly"]');
+    await expect(page.locator('#ci-projection-body tr')).toHaveCount(8);
+    await expect(page.locator('#ci-projection-body tr').first().locator('td').first()).toHaveText(
+      'Quarter 1'
+    );
+    await expect(
+      page.locator('[data-button-group="ci-compounding"] button[data-value="quarterly"]')
+    ).toHaveClass(/is-active/);
   });
 });

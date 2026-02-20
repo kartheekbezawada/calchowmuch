@@ -25,6 +25,7 @@ const snapCompounding = document.querySelector('[data-ci="snap-compounding"]');
 const snapContribution = document.querySelector('[data-ci="snap-contribution"]');
 const snapPeriodicRate = document.querySelector('[data-ci="snap-periodic-rate"]');
 const snapTotalPeriods = document.querySelector('[data-ci="snap-total-periods"]');
+const projectionTableBody = document.querySelector('#ci-projection-body');
 
 /* ── DOM refs: explanation targets ── */
 const explanationRoot = document.querySelector('#ci-explanation');
@@ -52,6 +53,7 @@ const valueTargets = explanationRoot
 
 /* ── Button groups ── */
 const compoundingGroup = document.querySelector('[data-button-group="ci-compounding"]');
+const tableFrequencyGroup = document.querySelector('[data-button-group="ci-table-frequency"]');
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
@@ -59,6 +61,21 @@ const compoundingButtons = setupButtonGroup(compoundingGroup, {
     calculate();
   },
 });
+
+const tableFrequencyButtons = setupButtonGroup(tableFrequencyGroup, {
+  defaultValue: 'annual',
+  onChange() {
+    renderProjectionTable(lastProjectionInput);
+  },
+});
+
+const PROJECTION_FREQUENCY = {
+  annual: { periodsPerYear: 1, label: 'Year' },
+  semiannual: { periodsPerYear: 2, label: 'Half-Year' },
+  quarterly: { periodsPerYear: 4, label: 'Quarter' },
+};
+
+let lastProjectionInput = null;
 
 /* ── SEO / Schema ── */
 export const pageSchema = {
@@ -262,6 +279,76 @@ function updateTargets(targets, value) {
 function setError(message) {
   if (resultDiv) resultDiv.textContent = message;
   if (summaryDiv) summaryDiv.textContent = '';
+  renderProjectionPlaceholder('Run a valid calculation to view projection rows.');
+}
+
+function renderProjectionPlaceholder(message) {
+  if (!projectionTableBody) return;
+  projectionTableBody.innerHTML = `<tr class="ci-projection-placeholder-row"><td colspan="5">${message}</td></tr>`;
+}
+
+function renderProjectionTable(data) {
+  if (!projectionTableBody) return;
+
+  if (!data) {
+    renderProjectionPlaceholder('Run a valid calculation to view projection rows.');
+    return;
+  }
+
+  const { principal, annualRate, years, contributionPerPeriod } = data;
+  const tableFrequency = tableFrequencyButtons?.getValue() ?? 'annual';
+  const frequencyInfo = PROJECTION_FREQUENCY[tableFrequency] ?? PROJECTION_FREQUENCY.annual;
+
+  const periodsPerYear = frequencyInfo.periodsPerYear;
+  const periodicRate = annualRate / 100 / periodsPerYear;
+  const totalPeriods = Math.max(0, Math.round(years * periodsPerYear));
+
+  if (
+    !Number.isFinite(principal) ||
+    !Number.isFinite(annualRate) ||
+    !Number.isFinite(years) ||
+    !Number.isFinite(contributionPerPeriod) ||
+    !Number.isFinite(periodicRate) ||
+    !Number.isFinite(totalPeriods)
+  ) {
+    renderProjectionPlaceholder('Run a valid calculation to view projection rows.');
+    return;
+  }
+
+  if (years === 0 || totalPeriods === 0) {
+    const openingStr = fmt(principal);
+    projectionTableBody.innerHTML = `
+      <tr>
+        <td>${frequencyInfo.label} 0</td>
+        <td>${openingStr}</td>
+        <td>${fmt(0)}</td>
+        <td>${fmt(0)}</td>
+        <td>${openingStr}</td>
+      </tr>`;
+    return;
+  }
+
+  let runningBalance = principal;
+  const rows = [];
+  for (let periodIndex = 1; periodIndex <= totalPeriods; periodIndex += 1) {
+    const openingBalance = runningBalance;
+    const interestEarned = openingBalance * periodicRate;
+    const endingBalance = openingBalance + interestEarned + contributionPerPeriod;
+
+    rows.push(
+      `<tr>
+        <td>${frequencyInfo.label} ${periodIndex}</td>
+        <td>${fmt(openingBalance)}</td>
+        <td>${fmt(contributionPerPeriod)}</td>
+        <td>${fmt(interestEarned)}</td>
+        <td>${fmt(endingBalance)}</td>
+      </tr>`
+    );
+
+    runningBalance = endingBalance;
+  }
+
+  projectionTableBody.innerHTML = rows.join('');
 }
 
 /* ── Core calculate ── */
@@ -277,18 +364,22 @@ function calculate() {
 
     if (!Number.isFinite(principal) || principal < 0) {
       setError('Principal must be 0 or more.');
+      lastProjectionInput = null;
       return;
     }
     if (!Number.isFinite(annualRate) || annualRate < 0) {
       setError('Rate must be 0 or more.');
+      lastProjectionInput = null;
       return;
     }
     if (!Number.isFinite(timePeriod) || timePeriod < 0) {
       setError('Time must be 0 or more.');
+      lastProjectionInput = null;
       return;
     }
     if (!Number.isFinite(contribution) || contribution < 0) {
       setError('Contribution must be 0 or more.');
+      lastProjectionInput = null;
       return;
     }
 
@@ -303,6 +394,7 @@ function calculate() {
 
     if (!result) {
       setError('Check your inputs.');
+      lastProjectionInput = null;
       return;
     }
 
@@ -364,8 +456,18 @@ function calculate() {
       updateTargets(valueTargets.growthFactor, growthFactorStr);
       updateTargets(valueTargets.principalGrowth, principalGrowthStr);
     }
+
+    lastProjectionInput = {
+      principal,
+      annualRate,
+      years: result.years,
+      contributionPerPeriod: contribution,
+    };
+    renderProjectionTable(lastProjectionInput);
   } catch (err) {
     console.error('[CI Calculator] calculate():', err);
+    lastProjectionInput = null;
+    renderProjectionPlaceholder('Run a valid calculation to view projection rows.');
   }
 }
 /* ── Event wiring ── */

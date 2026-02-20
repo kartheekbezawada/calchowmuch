@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /percentage-calculators/percent-to-fraction-decimal/
+- /percentage-calculators/percent-to-fraction-decimal-calculator/

@@ -128,4 +128,35 @@ describe('UI schema guard for FAQPage injection', () => {
       })
     ).toThrow(/found 2 FAQPage schemas/);
   });
+
+  it('rejects duplicate BreadcrumbList schema on a single URL', async () => {
+    setupDom('/finance/simple-interest/');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
+
+    expect(() =>
+      setPageMetadata({
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@graph': [{ '@type': 'BreadcrumbList' }, { '@type': 'BreadcrumbList' }],
+        },
+      })
+    ).toThrow(/BreadcrumbList/);
+  });
+
+  it('rejects duplicate SoftwareApplication schema on a single URL', async () => {
+    setupDom('/finance/simple-interest/');
+    const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
+
+    expect(() =>
+      setPageMetadata({
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@graph': [
+            { '@type': 'SoftwareApplication', name: 'A' },
+            { '@type': 'SoftwareApplication', name: 'B' },
+          ],
+        },
+      })
+    ).toThrow(/SoftwareApplication/);
+  });
 });

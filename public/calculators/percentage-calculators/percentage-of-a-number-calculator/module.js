@@ -7,6 +7,12 @@ const numberInput = document.querySelector('#pon-number');
 const calculateButton = document.querySelector('#pon-calc');
 const resultOutput = document.querySelector('#pon-result');
 const resultDetail = document.querySelector('#pon-result-detail');
+const snapshotTargets = {
+  percent: document.querySelector('[data-pon-snap="percent"]'),
+  number: document.querySelector('[data-pon-snap="number"]'),
+  result: document.querySelector('[data-pon-snap="result"]'),
+  formula: document.querySelector('[data-pon-snap="formula"]'),
+};
 
 const explanationRoot = document.querySelector('#pon-explanation');
 const valueTargets = explanationRoot
@@ -158,6 +164,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateSnapshot(key, value) {
+  const node = snapshotTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -185,7 +198,12 @@ function calculate() {
   }
 
   resultOutput.textContent = `Result: ${fmt(result.result)}`;
-  resultDetail.textContent = `Formula: (${fmt(result.percent)} / 100) x ${fmt(result.number)} = ${fmt(result.result)}`;
+  resultDetail.innerHTML = `<ul class="pon-detail-list"><li>Formula: (${fmt(result.percent)} / 100) x ${fmt(result.number)} = ${fmt(result.result)}</li><li>Interpretation: ${fmt(result.percent)}% of ${fmt(result.number)} equals ${fmt(result.result)}.</li></ul>`;
+
+  updateSnapshot('percent', `${fmt(result.percent)}%`);
+  updateSnapshot('number', fmt(result.number));
+  updateSnapshot('result', fmt(result.result));
+  updateSnapshot('formula', '(X / 100) x Y');
 
   updateTargets(valueTargets?.percent, `${fmt(result.percent)}%`);
   updateTargets(valueTargets?.number, fmt(result.number));

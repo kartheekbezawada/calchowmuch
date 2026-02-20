@@ -121,30 +121,62 @@
 </div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Find Percentage of a Number Calculator</h1>
-  <div id="calc-percentage-of-a-number">
-  <div class="calculator-ui">
-    <p class="helper">What is X% of Y?</p>
+  <div class="calculator-page-single">
+    <div id="calc-percentage-of-a-number">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="pon-hero" aria-label="Find percentage of a number calculator">
+        <div class="pon-form-panel">
+          <p class="helper">
+            Enter a percentage and a base number to compute the exact amount represented by that
+            percentage.
+          </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="pon-percent">Percentage (X)</label>
-        <input id="pon-percent" type="number" value="20" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="pon-percent">Percentage (X)</label>
+            <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
+          </div>
 
-      <div class="input-row">
-        <label for="pon-number">Number (Y)</label>
-        <input id="pon-number" type="number" value="50" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="pon-number">Number (Y)</label>
+            <input id="pon-number" type="number" value="50" step="any" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row pon-action-row">
+            <button class="calculator-button full-width" type="button" id="pon-calc">
+              Calculate Percentage
+            </button>
+          </div>
+        </div>
+
+        <aside class="pon-insight-panel" aria-label="Result summary">
+          <div class="pon-result-shell">
+            <div class="result" id="pon-result" aria-live="polite"></div>
+            <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
+          </div>
+          <div class="pon-snapshot-list">
+            <div class="pon-snapshot-row">
+              <span>Percentage (X)</span>
+              <strong data-pon-snap="percent">20.00%</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Number (Y)</span>
+              <strong data-pon-snap="number">50.00</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Result</span>
+              <strong data-pon-snap="result">10.00</strong>
+            </div>
+            <div class="pon-snapshot-row">
+              <span>Formula</span>
+              <strong data-pon-snap="formula">(X / 100) x Y</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="pon-calc">
-      Calculate Percentage
-    </button>
-
-    <div class="result" id="pon-result" aria-live="polite"></div>
-    <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
   </div>
 </div>
 
@@ -153,154 +185,159 @@
   src="/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js"
 ></script>
 
-</div>
-<div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="pon-explanation" class="explanation-pane">
-  <p>
-    The percentage of a number calculation shows how much a given percentage represents out of a
-    total value.
-  </p>
-  <p>
-    This calculator answers the question "What is X% of Y?" by converting the percentage into a
-    fraction of 100 and multiplying it by the number.
-  </p>
-  <p>
-    Percentage calculations are widely used for discounts, taxes, interest, grades, and everyday
-    comparisons.
-  </p>
+    <div id="pon-explanation" class="explanation-pane">
+  <section class="pon-exp-section">
+    <h3>Results Table</h3>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">What It Means</th>
+            <th scope="col">Your Value</th>
+            <th scope="col">How It Works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Percentage (X)</td>
+            <td><span data-pon="percent">20.00%</span></td>
+            <td class="pv-how-col">The percent portion applied to the base number</td>
+          </tr>
+          <tr>
+            <td>Number (Y)</td>
+            <td><span data-pon="number">50.00</span></td>
+            <td class="pv-how-col">The full value from which the percentage is taken</td>
+          </tr>
+          <tr>
+            <td>Result</td>
+            <td><span data-pon="result">10.00</span></td>
+            <td class="pv-how-col">The computed amount represented by X% of Y</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Formula</td>
+            <td><span data-pon="formula">(X / 100) x Y</span></td>
+            <td class="pv-how-col">Convert percent to per-one form, then multiply</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage</td>
-          <td><span data-pon="percent">20.00%</span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td><span data-pon="number">50.00</span></td>
-          <td>Calculation Pane</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Result</td>
-          <td><span data-pon="result">10.00</span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <section class="pon-exp-section">
+    <h3>Explanation</h3>
+    <p>
+      This calculation answers the question, "What is X% of Y?" by converting percentage into a
+      ratio and applying it to the base value.
+    </p>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Percentage</td>
-          <td><span data-pon="percent">20.00%</span></td>
-          <td>Portion applied</td>
-        </tr>
-        <tr>
-          <td>Base Number</td>
-          <td><span data-pon="number">50.00</span></td>
-          <td>Total value</td>
-        </tr>
-        <tr>
-          <td>Result</td>
-          <td><span data-pon="result">10.00</span></td>
-          <td>X percent of Y</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Formula</td>
-          <td><span data-pon="formula">(X / 100) x Y</span></td>
-          <td>Percentage formula</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <ul class="pv-explanation-list">
+      <li>
+        <strong>Read your input values:</strong>
+        Percentage is <span data-pon="percent">20.00%</span> and number is
+        <span data-pon="number">50.00</span>.
+      </li>
+      <li>
+        <strong>Convert percent to decimal form:</strong>
+        Divide percentage by 100.
+      </li>
+      <li>
+        <strong>Multiply by the number:</strong>
+        Apply the decimal to Y to get <span data-pon="result">10.00</span>.
+      </li>
+      <li>
+        <strong>Use for real scenarios:</strong>
+        Works for discounts, taxes, commissions, rates, and grade-based calculations.
+      </li>
+      <li>
+        <strong>Edge compatibility:</strong>
+        Handles decimal percentages, values greater than 100%, and negative inputs.
+      </li>
+    </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    To calculate the percentage of a number, divide the percentage by 100 to convert it into a
-    decimal, then multiply it by the number.
-  </p>
-  <p>For example, calculating 20% of 50 means multiplying 50 by 0.20, which equals 10.</p>
-  <p>
-    This method works for whole numbers, decimals, values greater than 100%, and negative numbers.
-  </p>
+    <h4>How the Formula Works</h4>
+    <p class="pv-formula-block" data-pon="formula">(X / 100) x Y</p>
+    <ol class="pv-formula-steps">
+      <li>
+        <strong>Start with X:</strong>
+        X = <span data-pon="percent">20.00%</span>.
+      </li>
+      <li>
+        <strong>Convert to ratio:</strong>
+        X / 100.
+      </li>
+      <li>
+        <strong>Multiply by Y:</strong>
+        (<span data-pon="percent">20.00%</span> / 100) x
+        <span data-pon="number">50.00</span>.
+      </li>
+      <li>
+        <strong>Final result:</strong>
+        <span data-pon="result">10.00</span>.
+      </li>
+    </ol>
+  </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What does percentage of a number mean?</strong></p>
-    <p class="faq-answer">
-      A: It means calculating how much a given percentage represents out of a total value.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate X% of Y?</strong></p>
-    <p class="faq-answer">A: Divide X by 100 and multiply the result by Y.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the formula for percentage of a number?</strong></p>
-    <p class="faq-answer">A: The formula is (X / 100) x Y.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can percentages be greater than 100%?</strong></p>
-    <p class="faq-answer">
-      A: Yes, percentages greater than 100% represent values larger than the original number.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can the number be negative?</strong></p>
-    <p class="faq-answer">A: Yes, percentage calculations work with negative numbers.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can percentages include decimals?</strong></p>
-    <p class="faq-answer">A: Yes, percentages can include decimal values such as 2.5% or 12.75%.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is this calculator accurate for large numbers?</strong></p>
-    <p class="faq-answer">
-      A: Yes, it accurately calculates percentages for both small and large numbers.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How are percentages used in real life?</strong></p>
-    <p class="faq-answer">
-      A: Percentages are used for discounts, taxes, interest rates, grades, and financial
-      comparisons.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is 0% of a number?</strong></p>
-    <p class="faq-answer">A: Zero percent of any number is always zero.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Why do we divide by 100 in percentage calculations?</strong></p>
-    <p class="faq-answer">A: Because a percentage represents a fraction out of 100.</p>
-  </div>
+  <section class="pon-exp-section pon-exp-section--faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does percentage of a number mean?</h4>
+        <p>It means calculating how much a given percentage represents out of a total value.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How do you calculate X% of Y?</h4>
+        <p>Divide X by 100 and multiply the result by Y.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is the formula for percentage of a number?</h4>
+        <p>The formula is (X / 100) x Y.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can percentages be greater than 100%?</h4>
+        <p>Yes, percentages greater than 100% represent values larger than the original number.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Can the number be negative?</h4>
+        <p>Yes, percentage calculations work with negative numbers.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can percentages include decimals?</h4>
+        <p>Yes, percentages can include decimal values such as 2.5% or 12.75%.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Is this calculator accurate for large numbers?</h4>
+        <p>Yes, it accurately calculates percentages for both small and large numbers.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>How are percentages used in real life?</h4>
+        <p>Percentages are used for discounts, taxes, interest rates, grades, and financial comparisons.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>What is 0% of a number?</h4>
+        <p>Zero percent of any number is always zero.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Why do we divide by 100 in percentage calculations?</h4>
+        <p>Because a percentage represents a fraction out of 100.</p>
+      </div>
+    </div>
+  </section>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

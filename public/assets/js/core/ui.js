@@ -157,28 +157,63 @@ function normalizePageSchema(schema) {
   return { calculatorFAQ, globalFAQ };
 }
 
-function isFaqPageNode(node) {
-  return Boolean(node && typeof node === 'object' && node['@type'] === 'FAQPage');
-}
+const UNIQUE_SCHEMA_TYPES = ['FAQPage', 'BreadcrumbList', 'SoftwareApplication'];
 
-function countFaqPages(structuredData) {
+function collectSchemaTypeCounts(structuredData, counts) {
   if (!structuredData) {
-    return 0;
+    return;
   }
   if (Array.isArray(structuredData)) {
-    return structuredData.reduce((sum, item) => sum + countFaqPages(item), 0);
+    structuredData.forEach((item) => collectSchemaTypeCounts(item, counts));
+    return;
   }
   if (typeof structuredData !== 'object') {
-    return 0;
+    return;
   }
-  if (isFaqPageNode(structuredData)) {
-    return 1;
+
+  const rawType = structuredData['@type'];
+  if (typeof rawType === 'string' && Object.prototype.hasOwnProperty.call(counts, rawType)) {
+    counts[rawType] += 1;
+  } else if (Array.isArray(rawType)) {
+    rawType.forEach((entry) => {
+      if (typeof entry === 'string' && Object.prototype.hasOwnProperty.call(counts, entry)) {
+        counts[entry] += 1;
+      }
+    });
   }
-  const graph = structuredData['@graph'];
-  if (Array.isArray(graph)) {
-    return graph.reduce((sum, item) => sum + countFaqPages(item), 0);
+
+  if (Array.isArray(structuredData['@graph'])) {
+    collectSchemaTypeCounts(structuredData['@graph'], counts);
   }
-  return 0;
+}
+
+function getDuplicateSchemaTypes(structuredData) {
+  const counts = UNIQUE_SCHEMA_TYPES.reduce((acc, type) => {
+    acc[type] = 0;
+    return acc;
+  }, {});
+
+  collectSchemaTypeCounts(structuredData, counts);
+
+  return UNIQUE_SCHEMA_TYPES.filter((type) => counts[type] > 1).map((type) => ({
+    type,
+    count: counts[type],
+  }));
+}
+
+function assertUniqueSchemaTypes(structuredData) {
+  const duplicates = getDuplicateSchemaTypes(structuredData);
+  if (duplicates.length === 1) {
+    const [{ type, count }] = duplicates;
+    throw new Error(`Invalid structured data: found ${count} ${type} schemas on one URL.`);
+  }
+  if (duplicates.length > 1) {
+    throw new Error(
+      `Invalid structured data: duplicate schema types on one URL (${duplicates
+        .map((entry) => `${entry.type}:${entry.count}`)
+        .join(', ')}).`
+    );
+  }
 }
 
 function ensureSchemaContext(base, fallback = 'https://schema.org') {
@@ -243,6 +278,7 @@ function buildGuardedStructuredData(metadata) {
   }
 
   if (!hasFlags && !calculatorFAQSchema && !globalFAQSchema) {
+    assertUniqueSchemaTypes(baseStructuredData);
     return baseStructuredData;
   }
 
@@ -265,10 +301,8 @@ function buildGuardedStructuredData(metadata) {
     base: baseStructuredData,
     faqSchema: selectedFaqSchema,
   });
-  const faqCount = countFaqPages(merged);
-  if (faqCount > 1) {
-    throw new Error(`Invalid structured data: found ${faqCount} FAQPage schemas on one URL.`);
-  }
+
+  assertUniqueSchemaTypes(merged);
   return merged;
 }
 

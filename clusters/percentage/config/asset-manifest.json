@@ -27,6 +27,101 @@
           "/calculators/percentage-calculators/percent-change/module.js"
         ]
       }
+    },
+    "/percentage-calculators/reverse-percentage-calculator/": {
+      "route": "/percentage-calculators/reverse-percentage-calculator/",
+      "calculatorId": "reverse-percentage",
+      "clusterId": "percentage",
+      "buildId": "wave6-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.4001924e.css"
+        ],
+        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.f78b6ed1.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percent-to-fraction-decimal-calculator/": {
+      "route": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
+      "calculatorId": "percent-to-fraction-decimal",
+      "clusterId": "percentage",
+      "buildId": "wave7-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.7a9217a2.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percentage-finder-calculator/": {
+      "route": "/percentage-calculators/percentage-finder-calculator/",
+      "calculatorId": "what-percent-is-x-of-y",
+      "clusterId": "percentage",
+      "buildId": "wave8-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/calculators/percentage-calculators/percentage-finder-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percentage-finder-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percentage-of-a-number-calculator/": {
+      "route": "/percentage-calculators/percentage-of-a-number-calculator/",
+      "calculatorId": "percentage-of-a-number",
+      "clusterId": "percentage",
+      "buildId": "wave9-20260219",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js"
+        ]
+      }
     }
   }
 }

@@ -517,6 +517,55 @@
         "deferCoreCss": true
       }
     },
+    "/percentage-calculators/reverse-percentage-calculator/": {
+      "route": "/percentage-calculators/reverse-percentage-calculator/",
+      "calculatorId": "reverse-percentage",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css"
+        ],
+        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.0ebf2b58.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
+    "/percentage-calculators/percent-to-fraction-decimal-calculator/": {
+      "route": "/percentage-calculators/percent-to-fraction-decimal-calculator/",
+      "calculatorId": "percent-to-fraction-decimal",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",

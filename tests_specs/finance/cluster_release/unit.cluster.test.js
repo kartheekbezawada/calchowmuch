@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest';
 import { JSDOM } from 'jsdom';
 
 const REPO_ROOT = process.cwd();
-const FINANCE_PUBLIC_DIR = path.join(REPO_ROOT, 'public', 'finance');
-const FINANCE_MODULES_DIR = path.join(REPO_ROOT, 'public', 'calculators', 'finance');
+const FINANCE_PUBLIC_DIR = path.join(REPO_ROOT, 'public', 'finance-calculators');
+const FINANCE_MODULES_DIR = path.join(REPO_ROOT, 'public', 'calculators', 'finance-calculators');
 const NAV_PATH = path.join(REPO_ROOT, 'public', 'config', 'navigation.json');
 
 function normalizeText(value) {
@@ -135,13 +135,13 @@ function getFinanceSlugs() {
 }
 
 describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () => {
-  it('enforces static head schema + robots + JS FAQ parity + visible FAQ parity for /finance/*', () => {
+  it('enforces static head schema + robots + JS FAQ parity + visible FAQ parity for /finance-calculators/*', () => {
     const slugs = getFinanceSlugs();
     const metadataByPath = getNavigationMetadataByPath();
     expect(slugs.length).toBeGreaterThan(0);
 
     slugs.forEach((slug) => {
-      const routePath = normalizeRoutePath(`/finance/${slug}/`);
+      const routePath = normalizeRoutePath(`/finance-calculators/${slug}/`);
       const routeMetadata = metadataByPath.get(routePath) ?? {
         routeArchetype: 'calc_exp',
         designFamily: 'neutral',
@@ -157,7 +157,7 @@ describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () =>
       const html = fs.readFileSync(htmlPath, 'utf8');
       const moduleSource = fs.readFileSync(modulePath, 'utf8');
       const dom = new JSDOM(html, {
-        url: `https://calchowmuch.com/finance/${slug}/`,
+        url: `https://calchowmuch.com/finance-calculators/${slug}/`,
       });
       const { document } = dom.window;
 

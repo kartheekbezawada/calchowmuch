@@ -1,29 +1,53 @@
 <div id="calc-reverse-percentage">
-  <div class="calculator-ui">
-    <p class="helper">Y is X% of what number? Find the original value.</p>
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Reverse percentage calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">Find the original value from a percentage.</p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="revpct-percent">Percentage (X%)</label>
-        <input id="revpct-percent" type="number" value="20" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="revpct-percent">Percentage (X%)</label>
+            <input id="revpct-percent" type="number" value="20" step="any" inputmode="decimal" />
+          </div>
 
-      <div class="input-row">
-        <label for="revpct-final">Final Value (Y)</label>
-        <input id="revpct-final" type="number" value="60" step="any" />
-      </div>
+          <div class="input-row">
+            <label for="revpct-final">Final Value (Y)</label>
+            <input id="revpct-final" type="number" value="60" step="any" inputmode="decimal" />
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="revpct-calc">
+              Calculate Original Value
+            </button>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="Reverse percentage result snapshot">
+          <div class="mtg-preview-main">
+            <div class="result mtg-result-card" id="revpct-result" aria-live="polite"></div>
+            <div class="result-detail mtg-summary-card" id="revpct-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Percentage (X%)</span>
+              <strong data-revpct-snap="percentage">20.00%</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Final Value (Y)</span>
+              <strong data-revpct-snap="final-value">60.00</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Original Value</span>
+              <strong data-revpct-snap="original">300.00</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Formula</span>
+              <strong>Original = (Y × 100) ÷ X</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="revpct-calc">
-      Calculate Original Value
-    </button>
-
-    <div class="result" id="revpct-result" aria-live="polite"></div>
-    <div class="result-detail" id="revpct-result-detail" aria-live="polite"></div>
   </div>
 </div>
-
-<script
-  type="module"
-  src="/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
-></script>
