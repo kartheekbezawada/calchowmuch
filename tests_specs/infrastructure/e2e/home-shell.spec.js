@@ -1,6 +1,28 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Official standalone homepage', () => {
+  test('HOME-MOBILE-001: mobile viewport uses compact cards and disables particle canvas', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+
+    const cards = page.locator('[data-cluster-card]');
+    await expect(cards.first()).toBeVisible();
+
+    const firstCardMetrics = await cards.first().evaluate((node) => {
+      const style = window.getComputedStyle(node);
+      return {
+        height: Math.round(node.getBoundingClientRect().height),
+        animationName: style.animationName,
+      };
+    });
+
+    expect(firstCardMetrics.height).toBeLessThan(320);
+    expect(firstCardMetrics.animationName).toBe('none');
+    await expect(page.locator('#particleCanvas')).toBeHidden();
+  });
+
   test('HOME-ISS-001: root route renders standalone cluster cards without calculator shell panes', async ({
     page,
     request,
