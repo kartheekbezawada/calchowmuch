@@ -610,6 +610,28 @@
         "deferCoreCss": true
       }
     },
+    "/time-and-date/nap-time-calculator/": {
+      "route": "/time-and-date/nap-time-calculator/",
+      "calculatorId": "nap-time-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.64edfef0.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/nap-time-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",

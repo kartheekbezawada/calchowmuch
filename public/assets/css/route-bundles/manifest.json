@@ -686,6 +686,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
       "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css"
+    },
+    "/time-and-date/nap-time-calculator/": {
+      "calculatorId": "nap-time-calculator",
+      "relPath": "time-and-date/nap-time-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.64edfef0.css",
+      "hash": "1ddffbc4",
+      "criticalHash": "64edfef0",
+      "fullBytes": 48597,
+      "criticalBytes": 85897,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/nap-time-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.64edfef0.css"
     }
   }
 }
