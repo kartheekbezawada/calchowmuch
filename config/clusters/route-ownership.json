@@ -2,6 +2,14 @@
   "version": 1,
   "routes": [
     {
+      "route": "/",
+      "calculatorId": "homepage-root",
+      "activeOwnerClusterId": "homepage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-homepage-cluster-cutover-20260220",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/percentage-calculators/percent-change/",
       "calculatorId": "percent-change",
       "activeOwnerClusterId": "percentage",

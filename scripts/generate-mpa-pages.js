@@ -10,6 +10,18 @@ const PUBLIC_DIR = path.join(ROOT, 'public');
 const CALC_DIR = path.join(PUBLIC_DIR, 'calculators');
 const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const ASSET_MANIFEST_PATH = path.join(PUBLIC_DIR, 'config', 'asset-manifest.json');
+const SOURCE_CLUSTER_REGISTRY_PATH = path.join(
+  ROOT,
+  'config',
+  'clusters',
+  'cluster-registry.json'
+);
+const PUBLIC_CLUSTER_REGISTRY_PATH = path.join(
+  PUBLIC_DIR,
+  'config',
+  'clusters',
+  'cluster-registry.json'
+);
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
 const ADSENSE_SNIPPET_PATH = path.join(
@@ -1135,6 +1147,14 @@ function readAssetManifest() {
   return manifest;
 }
 
+function syncClusterRegistryToPublic() {
+  if (!fs.existsSync(SOURCE_CLUSTER_REGISTRY_PATH)) {
+    throw new Error(`Missing cluster registry: ${SOURCE_CLUSTER_REGISTRY_PATH}`);
+  }
+  const registry = JSON.parse(readFile(SOURCE_CLUSTER_REGISTRY_PATH));
+  writeFile(PUBLIC_CLUSTER_REGISTRY_PATH, `${JSON.stringify(registry, null, 2)}\n`);
+}
+
 function resolveAssetConfig(assetManifest, routePath) {
   const normalizedRoute = normalizeRoutePath(routePath);
   if (!normalizedRoute) {
@@ -1894,6 +1914,85 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='http
 </html>`;
 }
 
+function buildStandaloneHomepage({ title, description, canonical, robots }) {
+  const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>${title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="${description}" />
+    <link rel="canonical" href="${canonical}" />
+    <meta name="robots" content="${robots}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
+${adsenseHeadScript}    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="home" data-route-archetype="content_shell" data-design-family="neutral">
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <div class="homepage-preview-shell">
+      <header class="preview-header">
+        <div class="preview-header-inner">
+          <a class="brand-link" href="/" aria-label="CalcHowMuch home">
+            <span class="brand-logo" aria-hidden="true">#</span>
+            <span class="brand-copy">
+              <strong>CalcHowMuch</strong>
+              <small>Premium Calculator Suite</small>
+            </span>
+          </a>
+          <label class="search-wrap" for="homepage-search">
+            <span class="sr-only">Search calculators</span>
+            <input
+              id="homepage-search"
+              type="search"
+              placeholder="Search calculators..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
+        </div>
+      </header>
+      <main class="preview-main">
+        <section class="hero" aria-labelledby="homepage-hero-title">
+          <h1 id="homepage-hero-title">Calculate How Much</h1>
+          <p>Quick calculations for everyday numbers.</p>
+        </section>
+        <section class="categories" aria-labelledby="homepage-categories-title">
+          <div class="section-head">
+            <h2 id="homepage-categories-title">All Calculator Clusters</h2>
+          </div>
+          <div id="homepage-empty" class="empty-state" hidden>
+            No calculator matches your search.
+          </div>
+          <div id="homepage-grid" class="category-grid" aria-live="polite"></div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <nav aria-label="Footer links">
+          <a href="/privacy/">Privacy</a>
+          <span class="footer-divider">|</span>
+          <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+          <span class="footer-divider">|</span>
+          <a href="/contact-us/">Contact</a>
+          <span class="footer-divider">|</span>
+          <a href="/faqs/">FAQs</a>
+          <span class="footer-divider">|</span>
+          <a href="/sitemap/">Sitemap</a>
+        </nav>
+        <p class="footer-branding">&copy; 2026 @CalcHowMuch</p>
+      </footer>
+    </div>
+    <script type="module" src="/assets/js/homepage-preview.js"></script>
+  </body>
+</html>`;
+}
+
 function buildGtepFooter() {
   return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faqs/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap/">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
 }
@@ -2040,6 +2139,12 @@ ${urlItems}
 
 function main() {
   const scope = parseGenerationScope();
+  const shouldWriteRootHomepage = scope.fullSite || scope.targetRoute === '/';
+
+  if (scope.fullSite || shouldWriteRootHomepage) {
+    syncClusterRegistryToPublic();
+  }
+
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
   if (shouldBuildRouteBundles(scope)) {
@@ -2098,7 +2203,7 @@ function main() {
         return routeMatch && calcMatch;
       });
 
-  if (!selectedEntries.length) {
+  if (!selectedEntries.length && !shouldWriteRootHomepage && !shouldWritePreviewHomepage) {
     throw new Error(
       `No calculators matched the requested scope (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
     );
@@ -2212,40 +2317,31 @@ function main() {
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
+  const homeTitle = ensureLength('Calculate How Much | Free Online Calculators', 50, 60);
+  const homeDescription = ensureLength(
+    'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentages.',
+    150,
+    160
+  );
+
+  if (shouldWriteRootHomepage) {
+    writeFile(
+      path.join(PUBLIC_DIR, 'index.html'),
+      buildStandaloneHomepage({
+        title: homeTitle,
+        description: homeDescription,
+        canonical: buildCanonical('/'),
+        robots: 'index,follow',
+      })
+    );
+  }
+
   if (!scope.fullSite) {
     console.log(
       `Scoped generation complete for ${selectedEntries.length} route(s) (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
     );
     return;
   }
-
-  const homeTopNav = buildTopNavHtml(navigation.categories, null, null);
-  const homeLeftNav = buildLeftNavHtml(navigation.categories, null, null, null, calcLookup, 'home');
-
-  const homeHtml = buildPageHtml({
-    title: ensureLength('Calculate How Much | Free Online Calculators', 50, 60),
-    description: ensureLength(
-      'Browse free online calculators for math, finance, and time. Calculate How Much offers clear inputs, helpful explanations, and fast results to support everyday planning.',
-      150,
-      160
-    ),
-    canonical: buildCanonical('/'),
-    headerHtml,
-    footerHtml,
-    topNavHtml: homeTopNav,
-    leftNavHtml: homeLeftNav,
-    calculatorTitle: '',
-    calculatorHtml: '',
-    explanationHtml: '',
-    contentHtml: '',
-    routeArchetype: 'content_shell',
-    designFamily: 'neutral',
-    paneLayout: 'single',
-    includeHomeContent: true,
-    pageType: 'home',
-  });
-
-  writeFile(path.join(PUBLIC_DIR, 'index.html'), homeHtml);
   writeFile(
     path.join(PUBLIC_DIR, 'calculators', 'index.html'),
     buildCalculatorIndex(navigation.categories)

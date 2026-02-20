@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "clusterId": "homepage",
+  "routes": {
+    "/": {
+      "route": "/",
+      "calculatorId": "homepage-root",
+      "clusterId": "homepage",
+      "buildId": "homepage-cutover-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/homepage-preview.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/assets/js/homepage-preview.js"
+        ]
+      }
+    }
+  }
+}

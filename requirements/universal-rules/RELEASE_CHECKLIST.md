@@ -92,6 +92,8 @@ HARD: Rollback contract presence passes for all changed routes: `activeOwnerClus
 
 HARD: New cluster/category onboarding must include full contract compliance (`config/clusters/cluster-registry.json`, route ownership entries, cluster nav, cluster asset manifest, isolation fence evidence).
 
+HARD: Homepage discoverability contract must pass for onboarding/cluster changes: clusters with `showOnHomepage !== false` must render on `/` via registry + governed route sources, and `showOnHomepage` intent must be explicitly set/validated in registry updates.
+
 3. TESTING POLICY — DEFAULT = ONE CALCULATOR (MANDATORY)
 
 Goal: Avoid universal tests touching every calculator.

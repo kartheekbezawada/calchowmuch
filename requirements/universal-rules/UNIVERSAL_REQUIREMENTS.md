@@ -115,7 +115,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ### 3.5 Cluster Isolation Governance
 
 - **UR-CLUSTER-001 (P0):** Rule reuse is global; runtime/build files are cluster-owned.
-- **UR-CLUSTER-002 (P0):** The 7-cluster boundary model is canonical: `math`, `home-loan`, `credit-cards`, `auto-loans`, `finance`, `time-and-date`, `percentage`.
+- **UR-CLUSTER-002 (P0):** The cluster boundary model is registry-driven; active clusters are sourced from `config/clusters/cluster-registry.json`.
 - **UR-CLUSTER-003 (P0):** Public URL structure must remain unchanged during cluster migration unless explicitly approved.
 - **UR-CLUSTER-004 (P0):** Cross-cluster linking via static anchors (`<a href>`) is allowed.
 - **UR-CLUSTER-005 (P0):** Cross-cluster runtime imports/references are prohibited (CSS/JS/HTML asset references into another cluster prefix).
@@ -134,11 +134,12 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-CLUSTER-018 (P0):** Any new calculator cluster/category must follow this cluster-isolation approach by default.
 - **UR-CLUSTER-019 (P0):** Legacy shared shell/runtime files are forbidden for isolated routes after decommission phase completion.
 - **UR-CLUSTER-020 (P0):** Exceptions to cluster isolation require explicit approval, documented rationale, and signoff evidence.
+- **UR-CLUSTER-021 (P0):** Homepage discoverability is registry-driven: clusters with `showOnHomepage !== false` must be renderable on `/` from cluster registry plus governed route sources (`navigation` and/or cluster `routePrefixes` fallback).
 
 ### 3.5.1 Cluster Contract Field Baseline (Normative)
 
 - **Route ownership contract (`config/clusters/route-ownership.json`) minimum fields:** `route`, `calculatorId`, `activeOwnerClusterId`, `previousOwnerClusterId`, `rollbackTag`.
-- **Cluster registry contract (`config/clusters/cluster-registry.json`) minimum fields:** `clusterId`, `displayName`, `status`, `routePrefixes`, `owners`.
+- **Cluster registry contract (`config/clusters/cluster-registry.json`) minimum fields:** `clusterId`, `displayName`, `status`, `routePrefixes`, `owners`. Optional governance fields: `showOnHomepage` (default `true`), `contractsEnabled` (default `false`).
 - **Per-cluster navigation contract:** `clusters/<cluster-id>/config/navigation.json` must include cluster-local sections plus required global-destination parity fields.
 - **Per-cluster asset manifest contract:** `clusters/<cluster-id>/config/asset-manifest.json` must include route-level CSS/JS ownership mappings and isolation boundary metadata.
 

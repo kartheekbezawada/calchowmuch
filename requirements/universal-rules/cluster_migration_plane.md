@@ -26,7 +26,7 @@ We are standardizing on this migration model because:
 
 ## 3) Decision Locks
 These are final for this migration program:
-1. Cluster boundary model: 7 clusters.
+1. Cluster boundary model: registry-driven clusters.
 2. Build/runtime isolation: strict cluster ownership.
 3. Shared runtime allowed only for immutable tiny core primitives.
 4. Public URLs unchanged.
@@ -299,7 +299,7 @@ Exit criteria:
 1. Route ownership map complete and approved.
 
 ## Phase 1 — Scaffolding + Contract Validation
-1. Create cluster folder structure for all 7 clusters.
+1. Create cluster folder structure for all active clusters in `cluster-registry.json`.
 2. Add JSON Schema files for registry/ownership/nav/manifest.
 3. Add `validate-contracts.mjs` and run before any cluster build.
 
