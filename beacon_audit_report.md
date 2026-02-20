@@ -1,5 +1,20 @@
 # Beacon Injection Audit Report
 
+## Status Update - 2026-02-20 (REL-20260220-003)
+
+- Action: Manual Cloudflare beacon include was **commented out (not removed)** across all currently detected beacon-bearing pages.
+- Scope:
+  - `public/**/index.html`: 108 files
+  - `scripts/generate-mpa-pages.js`: 4 template insertion points updated to commented form
+- Comment marker used:
+  - `Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation)`
+- Validation:
+  - 5-page random smoke check PASS
+  - Verified no active `beacon.min.js` script after stripping HTML comments in sampled pages
+- Governance evidence:
+  - `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_REL-20260220-003.md`
+  - `requirements/universal-rules/Release Sign-Off Master Table.md`
+
 - Audit date: 2026-02-19
 - Repository: `calchowmuch`
 - Build command used: `node scripts/generate-mpa-pages.js --all`

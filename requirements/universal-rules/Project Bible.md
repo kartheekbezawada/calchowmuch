@@ -42,7 +42,7 @@
 
 ### 3.1 Cluster Isolation Operating Model
 - **Rule Reuse, File Isolation:** Universal governance rules are reused globally, but runtime/build ownership is cluster-local.
-- **7-Cluster Ownership Model:** `math`, `home-loan`, `credit-cards`, `auto-loans`, `finance`, `time-and-date`, and `percentage` own their shell/assets/build outputs.
+- **Registry-Driven Ownership Model:** Active clusters are sourced from `config/clusters/cluster-registry.json`; each listed cluster owns its shell/assets/build outputs.
 - **Immutable Tiny Core:** Shared runtime is limited to immutable low-level primitives under `/assets/core/v{n}/...`; no shared UI ownership in core.
 - **Customer Performance Rationale:** This 95/5 model preserves strong isolation while retaining cross-route cache reuse for tiny primitives, avoiding full-duplication byte inflation.
 - **Migration Stability Contract:** Visual behavior and public URLs remain stable during migration; changes focus on ownership boundaries, not customer-facing redesign.
