@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>All Calculators | Calculate How Much - Free Tool - Free Tool</title>
+    <title>All Calculators | Calculate How Much Online Calculator Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body>
     <div class="page">
@@ -110,6 +110,9 @@
               Browse calculators by category. Select a calculator to launch it in the main
               calculator shell.
             </p>
+            <p id="all-calculators-no-results" class="helper" hidden>
+              No calculator matches your search.
+            </p>
             
             <section>
               <h2>Math</h2>
@@ -191,5 +194,81 @@
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const searchInput = document.getElementById('global-calculator-search');
+        const panel = document.querySelector('.panel.panel-scroll');
+        const noResultsNode = document.getElementById('all-calculators-no-results');
+        if (!searchInput || !panel) {
+          return;
+        }
+
+        const normalize = (value) => String(value || '').trim().toLowerCase();
+        const sections = Array.from(panel.querySelectorAll('section')).map((section) => {
+          const groups = Array.from(section.querySelectorAll('h3'))
+            .map((heading) => {
+              const list = heading.nextElementSibling;
+              if (!list || list.tagName !== 'UL') {
+                return null;
+              }
+              return {
+                heading,
+                list,
+                items: Array.from(list.querySelectorAll('li')),
+              };
+            })
+            .filter(Boolean);
+
+          return { section, groups };
+        });
+
+        const queryFromUrl = new URLSearchParams(window.location.search).get('q') || '';
+        searchInput.value = queryFromUrl;
+
+        function applyFilter(rawQuery) {
+          const query = normalize(rawQuery);
+          let visibleItemCount = 0;
+
+          sections.forEach(({ section, groups }) => {
+            let sectionHasVisibleItems = false;
+
+            groups.forEach(({ heading, list, items }) => {
+              let groupVisibleCount = 0;
+
+              items.forEach((item) => {
+                const link = item.querySelector('a');
+                const searchable =
+                  (item.textContent || '') + ' ' + (link ? link.getAttribute('href') || '' : '');
+                const isMatch = !query || normalize(searchable).includes(query);
+                item.hidden = !isMatch;
+                if (isMatch) {
+                  groupVisibleCount += 1;
+                  visibleItemCount += 1;
+                }
+              });
+
+              const groupVisible = groupVisibleCount > 0;
+              heading.hidden = !groupVisible;
+              list.hidden = !groupVisible;
+              if (groupVisible) {
+                sectionHasVisibleItems = true;
+              }
+            });
+
+            section.hidden = !sectionHasVisibleItems;
+          });
+
+          if (noResultsNode) {
+            noResultsNode.hidden = visibleItemCount > 0;
+          }
+        }
+
+        searchInput.addEventListener('input', () => {
+          applyFilter(searchInput.value);
+        });
+
+        applyFilter(queryFromUrl);
+      })();
+    </script>
   </body>
 </html>

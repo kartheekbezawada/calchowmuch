@@ -2,6 +2,10 @@ const NAVIGATION_CONFIG_URL = '/config/navigation.json';
 const CLUSTER_REGISTRY_URL = '/config/clusters/cluster-registry.json';
 const MIN_CALCULATORS_PER_CARD = 3;
 const MAX_CALCULATORS_PER_CARD = 4;
+const MOBILE_MEDIA_QUERY = '(max-width: 760px)';
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+const MOBILE_PLACEHOLDER_CARD_COUNT = 6;
+const DESKTOP_PLACEHOLDER_CARD_COUNT = 8;
 
 const ROUTE_PREFIX_ALIASES = {
   '/finance/': ['/finance-calculators/'],
@@ -10,9 +14,9 @@ const ROUTE_PREFIX_ALIASES = {
 const CLUSTER_THEME = {
   math: { icon: '∑', accent: '#22d3ee' },
   'home-loan': { icon: '⌂', accent: '#c084fc' },
-  'credit-cards': { icon: '💳', accent: '#fb7185' },
+  'credit-cards': { icon: '💳', accent: '#f97316', flare: '#fb923c', warm: true },
   'auto-loans': { icon: '🚗', accent: '#60a5fa' },
-  finance: { icon: '$', accent: '#f59e0b' },
+  finance: { icon: '$', accent: '#f59e0b', flare: '#fb923c', warm: true },
   'time-and-date': { icon: '🕒', accent: '#818cf8' },
   percentage: { icon: '%', accent: '#34d399' },
   default: { icon: '*', accent: '#60a5fa' },
@@ -21,6 +25,16 @@ const CLUSTER_THEME = {
 const gridNode = document.getElementById('homepage-grid') || document.getElementById('homepage-preview-grid');
 const searchNode = document.getElementById('homepage-search') || document.getElementById('homepage-preview-search');
 const emptyNode = document.getElementById('homepage-empty') || document.getElementById('homepage-preview-empty');
+
+function isMobileViewport() {
+  return window.matchMedia(MOBILE_MEDIA_QUERY).matches;
+}
+
+function shouldDisableParticles() {
+  const reducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+  const saveData = navigator.connection?.saveData === true;
+  return reducedMotion || isMobileViewport() || saveData;
+}
 
 function toArray(value) {
   return Array.isArray(value) ? value : [];
@@ -234,15 +248,16 @@ function renderClusterCards(clusters) {
         })
         .join('');
 
+      const exploreHref = cluster.routes[0]?.url || '/calculators/';
       const totalCalculators = Math.max(cluster.totalRoutes, cluster.routes.length);
       return `<article
-        class="category-card"
+        class="category-card${theme.warm ? ' is-warm' : ''}"
         data-cluster-card
         data-cluster-id="${escapeHtml(cluster.id)}"
         data-cluster-name="${escapeHtml(normalizeQuery(cluster.name))}"
         data-total-calculators="${totalCalculators}"
         data-total-routes="${totalCalculators}"
-        style="--card-accent: ${theme.accent}; --float-delay: ${index * 0.3}s"
+        style="--card-accent: ${theme.accent}; --card-flare: ${theme.flare || theme.accent}; --float-delay: ${index * 0.3}s"
       >
         <div class="card-head">
           <div class="card-title">
@@ -252,11 +267,36 @@ function renderClusterCards(clusters) {
           <span class="count-pill">${totalCalculators} calculators</span>
         </div>
         <ul class="route-list">${routeItems}</ul>
+        <a class="card-explore" href="${escapeHtml(exploreHref)}">
+          <span>Explore</span><span class="card-explore-arrow" aria-hidden="true">›</span>
+        </a>
       </article>`;
     })
     .join('');
 
   gridNode.innerHTML = cardsHtml;
+}
+
+function renderLoadingPlaceholders() {
+  const placeholderCount = isMobileViewport()
+    ? MOBILE_PLACEHOLDER_CARD_COUNT
+    : DESKTOP_PLACEHOLDER_CARD_COUNT;
+  const placeholderRoutes = '<li><span class="route-link"></span></li>'.repeat(4);
+  const placeholders = Array.from({ length: placeholderCount }, () => {
+    return `<article class="category-card is-placeholder" aria-hidden="true">
+      <div class="card-head">
+        <div class="card-title">
+          <span class="card-icon"></span>
+          <h3></h3>
+        </div>
+        <span class="count-pill"></span>
+      </div>
+      <ul class="route-list">${placeholderRoutes}</ul>
+      <span class="card-explore"><span>Explore</span><span class="card-explore-arrow">›</span></span>
+    </article>`;
+  }).join('');
+
+  gridNode.innerHTML = placeholders;
 }
 
 function applySearchFilter() {
@@ -299,12 +339,20 @@ function applySearchFilter() {
 }
 
 function initParticles() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) {
     return;
   }
+  if (shouldDisableParticles()) {
+    canvas.hidden = true;
+    return;
+  }
+  canvas.hidden = false;
 
-  const canvas = document.getElementById('particleCanvas');
   const context = canvas.getContext('2d');
+  if (!context) {
+    return;
+  }
   const particles = [];
   const count = 80;
   let width = 0;
@@ -372,6 +420,9 @@ function initParticles() {
 }
 
 async function loadHomepage() {
+  renderLoadingPlaceholders();
+  emptyNode.hidden = true;
+
   try {
     const [registryResponse, navigationResponse] = await Promise.all([
       fetch(CLUSTER_REGISTRY_URL, { cache: 'no-store' }),
