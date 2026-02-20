@@ -588,6 +588,28 @@
         "deferCoreCss": true
       }
     },
+    "/time-and-date/wake-up-time-calculator/": {
+      "route": "/time-and-date/wake-up-time-calculator/",
+      "calculatorId": "wake-up-time-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/wake-up-time-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",

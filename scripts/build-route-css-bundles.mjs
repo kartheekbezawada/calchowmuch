@@ -36,6 +36,7 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
   'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
   'calculators/time-and-date/sleep-time-calculator/calculator.css',
+  'calculators/time-and-date/wake-up-time-calculator/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -61,6 +62,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/reverse-percentage-calculator/',
   '/percentage-calculators/percent-to-fraction-decimal-calculator/',
   '/time-and-date/sleep-time-calculator/',
+  '/time-and-date/wake-up-time-calculator/',
 ]);
 const STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
@@ -70,6 +72,7 @@ const STRICT_INLINE_CALCULATORS = new Set([
   'percentage-composition',
   'percent-to-fraction-decimal',
   'sleep-time-calculator',
+  'wake-up-time-calculator',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -314,6 +317,13 @@ const TIME_AND_DATE_ISOLATED_ROUTES = [
     route: '/time-and-date/sleep-time-calculator/',
     relPath: 'time-and-date/sleep-time-calculator',
     routeCss: 'calculators/time-and-date/sleep-time-calculator/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'wake-up-time-calculator',
+    route: '/time-and-date/wake-up-time-calculator/',
+    relPath: 'time-and-date/wake-up-time-calculator',
+    routeCss: 'calculators/time-and-date/wake-up-time-calculator/calculator.css',
     topNavStatic: false,
   },
 ];

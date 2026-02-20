@@ -667,6 +667,25 @@
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
       "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.452224de.css"
+    },
+    "/time-and-date/wake-up-time-calculator/": {
+      "calculatorId": "wake-up-time-calculator",
+      "relPath": "time-and-date/wake-up-time-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css",
+      "hash": "13608f82",
+      "criticalHash": "597b74d0",
+      "fullBytes": 49861,
+      "criticalBytes": 87161,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/wake-up-time-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css"
     }
   }
 }

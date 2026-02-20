@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Wake-Up Time Calculator', () => {
+  test.describe.configure({ mode: 'serial' });
+
   test('WAKEUP-TEST-E2E-1: user journey and recommendations', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator');
 
@@ -13,33 +15,25 @@ test.describe('Wake-Up Time Calculator', () => {
     const modeButtons = page.locator('[data-button-group="wake-mode"] button');
     await expect(modeButtons.first()).toHaveClass(/is-active/);
 
-    const latencyRow = page.locator('#wake-latency-row');
-    await expect(latencyRow).toHaveClass(/is-collapsed/);
-
-    const dateTimeInput = page.locator('#wake-datetime');
-    const fallbackWrap = page.locator('#wake-fallback');
-    if (!(await fallbackWrap.isVisible())) {
-      await expect(dateTimeInput).toHaveValue(/T/);
-    }
-
-    await page.locator('#wake-calculate').click();
+    await expect(page.locator('#wake-datetime')).toHaveCount(0);
+    await expect(page.locator('#wake-fallback')).toHaveCount(0);
 
     const resultsList = page.locator('#wake-results-list');
-    await expect(resultsList).not.toHaveClass(/is-hidden/);
     await expect(resultsList.locator('.wake-result')).toHaveCount(3);
     await expect(resultsList.locator('.wake-result.is-primary')).toHaveCount(1);
-    await expect(resultsList.locator('.wake-result').first()).toContainText('Wake up at');
 
-    const baselinePrimary = (await resultsList.locator('.wake-result.is-primary').first().textContent()) ?? '';
-    await modeButtons.nth(1).click();
-    await expect(latencyRow).not.toHaveClass(/is-collapsed/);
-    await expect(page.locator('#wake-latency')).toHaveValue('15');
-    await expect(resultsList).toHaveClass(/is-hidden/);
-    await expect(page.locator('#wake-placeholder')).toBeVisible();
+    const firstBefore = await resultsList.locator('.wake-result-time').first().textContent();
 
     await page.locator('#wake-calculate').click();
-    await expect(resultsList).not.toHaveClass(/is-hidden/);
-    await expect(resultsList.locator('.wake-result.is-primary').first()).not.toContainText(baselinePrimary);
+    await expect(resultsList.locator('.wake-result')).toHaveCount(3);
+
+    await modeButtons.nth(1).click();
+    const firstAfterModeOnly = await resultsList.locator('.wake-result-time').first().textContent();
+    expect(firstAfterModeOnly).toBe(firstBefore);
+
+    await page.locator('#wake-calculate').click();
+    const firstAfterCalc = await resultsList.locator('.wake-result-time').first().textContent();
+    expect(firstAfterCalc).not.toBe(firstBefore);
   });
 
   test('WAKEUP-TEST-E2E-1B: left nav includes nap calculator links and navigation works', async ({
@@ -48,10 +42,10 @@ test.describe('Wake-Up Time Calculator', () => {
     await page.goto('/time-and-date/wake-up-time-calculator');
 
     const powerNapLink = page.locator(
-      '.left-nav .nav-item[href="/time-and-date/power-nap-calculator"]'
+      '.left-nav .nav-item[href="/time-and-date/power-nap-calculator/"]'
     );
     const energyNapLink = page.locator(
-      '.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]'
+      '.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector/"]'
     );
 
     await expect(powerNapLink).toBeVisible();
@@ -67,25 +61,27 @@ test.describe('Wake-Up Time Calculator', () => {
 
     await Promise.all([
       page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
-      page.locator('.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector"]').click(),
+      page.locator('.left-nav .nav-item[href="/time-and-date/energy-based-nap-selector/"]').click(),
     ]);
     await expect(page.locator('.nav-item.is-active')).toHaveText('Energy-Based Nap Selector');
   });
 
-  test('WAKEUP-TEST-E2E-2: layout stability and content', async ({ page }) => {
+  test('WAKEUP-TEST-E2E-2: calculate-only updates and explanation content', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator');
 
-    const calcPanel = page.locator('.center-column .panel').first();
-    const initialHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
+    const resultsList = page.locator('#wake-results-list');
+    const firstResultBefore = await resultsList.locator('.wake-result-time').first().textContent();
 
-    const modeButtons = page.locator('[data-button-group="wake-mode"] button');
-    await modeButtons.nth(1).click();
-    const afterBedHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
-    expect(Math.abs(afterBedHeight - initialHeight)).toBeLessThanOrEqual(1);
+    const timeInput = page.locator('#wake-time-primary');
+    await timeInput.fill('23:15');
+    await timeInput.dispatchEvent('change');
 
-    await modeButtons.first().click();
-    const afterSleepHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
-    expect(Math.abs(afterSleepHeight - initialHeight)).toBeLessThanOrEqual(1);
+    const firstAfterInputOnly = await resultsList.locator('.wake-result-time').first().textContent();
+    expect(firstAfterInputOnly).toBe(firstResultBefore);
+
+    await page.locator('#wake-calculate').click();
+    const firstAfterCalculate = await resultsList.locator('.wake-result-time').first().textContent();
+    expect(firstAfterCalculate).not.toBe(firstResultBefore);
 
     const explanation = page.locator('#wake-up-explanation');
     await expect(explanation.locator('h2')).toHaveCount(1);
