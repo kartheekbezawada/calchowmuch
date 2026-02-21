@@ -7,8 +7,8 @@ test.describe('Birthday Day-of-Week Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Birthday Day-of-Week');
+    const leftActive = page.locator('.nav-item.is-active');
+    await expect(leftActive).toHaveText('Birthday Day-of-Week');
 
     await page.locator('#birthday-dow-dob').fill('1990-06-15');
     await page.locator('#birthday-dow-year').fill('2025');

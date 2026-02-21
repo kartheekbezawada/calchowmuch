@@ -15,7 +15,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.bbacbc75.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css"
       },
       "js": {
         "core": [
@@ -42,7 +42,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.0c02b150.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css"
       },
       "js": {
         "core": [
@@ -69,7 +69,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.9ecf3f86.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css"
       },
       "js": {
         "core": [
@@ -96,7 +96,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.543b0995.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css"
       },
       "js": {
         "core": [
@@ -123,7 +123,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.776a862b.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css"
       },
       "js": {
         "core": [
@@ -150,7 +150,7 @@
         "route": [
           "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css"
         ],
-        "critical": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ae908fc4.css"
+        "critical": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
       },
       "js": {
         "core": [
@@ -176,7 +176,7 @@
           "/assets/css/core-tokens.css?v=20260127",
           "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css"
         ],
-        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.b73eacca.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css"
       },
       "js": {
         "core": [
@@ -203,7 +203,7 @@
           "/assets/css/core-tokens.css?v=20260127",
           "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css"
         ],
-        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.8ac814c1.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css"
       },
       "js": {
         "core": [
@@ -230,7 +230,7 @@
           "/assets/css/core-tokens.css?v=20260127",
           "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css"
         ],
-        "critical": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.d78f7574.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css"
       },
       "js": {
         "core": [
@@ -257,7 +257,7 @@
           "/assets/css/core-tokens.css?v=20260127",
           "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css"
         ],
-        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.1373a6a0.css"
+        "critical": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css"
       },
       "js": {
         "core": [
@@ -285,7 +285,7 @@
         "route": [
           "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css"
         ],
-        "critical": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.8daac8a4.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
@@ -312,7 +312,7 @@
         "route": [
           "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css"
         ],
-        "critical": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.8daac8a4.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
@@ -339,7 +339,7 @@
         "route": [
           "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css"
         ],
-        "critical": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.8daac8a4.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css"
       },
       "js": {
         "core": [
@@ -366,7 +366,7 @@
         "route": [
           "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css"
         ],
-        "critical": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.20738ef9.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css"
       },
       "js": {
         "core": [
@@ -393,7 +393,7 @@
         "route": [
           "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css"
         ],
-        "critical": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.8b493c9b.css"
+        "critical": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css"
       },
       "js": {
         "core": [
@@ -414,7 +414,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.0c7560e5.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
       },
       "js": {
         "core": [
@@ -436,7 +436,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.6baf124d.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css"
       },
       "js": {
         "core": [
@@ -458,7 +458,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.d93a4f9b.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css"
       },
       "js": {
         "core": [
@@ -480,7 +480,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.427b15ff.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css"
       },
       "js": {
         "core": [
@@ -502,7 +502,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.449e17cf.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css"
       },
       "js": {
         "core": [
@@ -529,7 +529,7 @@
           "/assets/css/core-tokens.css?v=20260127",
           "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css"
         ],
-        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.419f89f8.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.0ebf2b58.css"
       },
       "js": {
         "core": [
@@ -551,7 +551,7 @@
       "css": {
         "core": [],
         "route": [],
-        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.0e7c3080.css"
+        "critical": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css"
       },
       "js": {
         "core": [
@@ -563,72 +563,6 @@
       },
       "options": {
         "topNavStatic": true,
-        "deferCoreCss": true
-      }
-    },
-    "/time-and-date/sleep-time-calculator/": {
-      "route": "/time-and-date/sleep-time-calculator/",
-      "calculatorId": "sleep-time-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.1a12f184.css"
-      },
-      "js": {
-        "core": [
-          "/assets/js/core-shell.js"
-        ],
-        "route": [
-          "/calculators/time-and-date/sleep-time-calculator/module.js"
-        ]
-      },
-      "options": {
-        "topNavStatic": false,
-        "deferCoreCss": true
-      }
-    },
-    "/time-and-date/wake-up-time-calculator/": {
-      "route": "/time-and-date/wake-up-time-calculator/",
-      "calculatorId": "wake-up-time-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.4ebe5212.css"
-      },
-      "js": {
-        "core": [
-          "/assets/js/core-shell.js"
-        ],
-        "route": [
-          "/calculators/time-and-date/wake-up-time-calculator/module.js"
-        ]
-      },
-      "options": {
-        "topNavStatic": false,
-        "deferCoreCss": true
-      }
-    },
-    "/time-and-date/nap-time-calculator/": {
-      "route": "/time-and-date/nap-time-calculator/",
-      "calculatorId": "nap-time-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": "/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.ac068d0e.css"
-      },
-      "js": {
-        "core": [
-          "/assets/js/core-shell.js"
-        ],
-        "route": [
-          "/calculators/time-and-date/nap-time-calculator/module.js"
-        ]
-      },
-      "options": {
-        "topNavStatic": false,
         "deferCoreCss": true
       }
     },

@@ -3,23 +3,17 @@ import {
   calculateSleepRecommendations,
   roundToNextQuarterHour,
   SLEEP_CYCLES,
-  CYCLE_MINUTES,
 } from '/assets/js/core/sleep-utils.js';
 
 const modeGroup = document.querySelector('[data-button-group="sleep-mode"]');
-const fieldLabel = document.querySelector('#sleep-field-label');
-const primaryTimeInput = document.querySelector('#sleep-time-primary');
 const dateTimeInput = document.querySelector('#sleep-datetime');
 const dateTimeRow = document.querySelector('#sleep-datetime-row');
-const advancedDetails = document.querySelector('.sleep-advanced');
-const dateInput = document.querySelector('#sleep-date');
+const fallbackWrap = document.querySelector('#sleep-fallback');
+const fallbackDateInput = document.querySelector('#sleep-date');
+const fallbackTimeInput = document.querySelector('#sleep-time');
 const calculateButton = document.querySelector('#sleep-calculate');
-const proxyInput = document.querySelector('#sleep-latency-proxy');
-const proxyButton = document.querySelector('#sleep-calc');
-const proxyResult = document.querySelector('#sleep-result');
 const resultsList = document.querySelector('#sleep-results-list');
 const placeholder = document.querySelector('#sleep-placeholder');
-const starfield = document.querySelector('#sleep-starfield');
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -192,41 +186,27 @@ function ensureH1Title() {
   title.replaceWith(h1);
 }
 
-function buildStars() {
-  if (!starfield || starfield.childElementCount > 0) {
-    return;
-  }
-  // Use deterministic pseudo-random values so visual tests remain stable.
-  let seed = 41027;
-  const nextRandom = () => {
-    seed = (1664525 * seed + 1013904223) % 4294967296;
-    return seed / 4294967296;
-  };
+ensureH1Title();
 
-  const starCount = 180;
-  for (let i = 0; i < starCount; i += 1) {
-    const star = document.createElement('span');
-    star.className = 'sleep-star';
-    const size = nextRandom() * 2.2 + 0.5;
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.top = `${nextRandom() * 100}%`;
-    star.style.left = `${nextRandom() * 100}%`;
-    star.style.setProperty('--dur', `${(nextRandom() * 4 + 2).toFixed(1)}s`);
-    star.style.setProperty('--base-op', `${(nextRandom() * 0.4 + 0.2).toFixed(2)}`);
-    star.style.animationDelay = `${(nextRandom() * 5).toFixed(1)}s`;
-    starfield.appendChild(star);
-  }
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: 'wake',
+  onChange: () => {
+    if (!resultsList?.classList.contains('is-hidden')) {
+      showPlaceholder();
+    }
+  },
+});
+
+function formatDateTimeLocalValue(date) {
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(
+    date.getHours()
+  )}:${pad(date.getMinutes())}`;
 }
 
 function formatDateValue(date) {
   const pad = (value) => String(value).padStart(2, '0');
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-}
-
-function formatDateTimeLocalValue(date) {
-  const pad = (value) => String(value).padStart(2, '0');
-  return `${formatDateValue(date)}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 function formatTimeValue(date) {
@@ -235,29 +215,7 @@ function formatTimeValue(date) {
 }
 
 function formatTime(date) {
-  return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
-}
-
-function timeValueToMinutes(value) {
-  if (typeof value !== 'string' || !value.includes(':')) {
-    return null;
-  }
-  const [hours, minutes] = value.split(':').map(Number);
-  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
-    return null;
-  }
-  return hours * 60 + minutes;
-}
-
-function minutesToTimeValue(value) {
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed)) {
-    return null;
-  }
-  const normalized = ((Math.round(parsed) % 1440) + 1440) % 1440;
-  const hours = Math.floor(normalized / 60);
-  const minutes = normalized % 60;
-  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
 }
 
 function supportsDateTimeLocal() {
@@ -269,64 +227,65 @@ function supportsDateTimeLocal() {
   return test.type === 'datetime-local';
 }
 
-function parseDateTimeValue(value) {
-  const parsed = new Date(value);
-  return Number.isNaN(parsed.getTime()) ? null : parsed;
+const hasDateTimeSupport = supportsDateTimeLocal();
+if (!hasDateTimeSupport && fallbackWrap) {
+  dateTimeRow?.classList.add('is-hidden');
+  fallbackWrap.classList.remove('is-hidden');
+  dateTimeInput?.setAttribute('disabled', 'true');
 }
 
-function getBaseDateFromPrimaryTime() {
-  const timeValue = primaryTimeInput?.value;
-  if (!timeValue) {
-    return null;
-  }
-  const [hours, minutes] = timeValue.split(':').map(Number);
-  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
-    return null;
-  }
-
-  const baseDate = new Date();
-  if (advancedDetails?.open && dateInput?.value) {
-    const parsedDate = parseDateTimeValue(`${dateInput.value}T00:00`);
-    if (parsedDate) {
-      baseDate.setFullYear(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate());
-    }
-  }
-
-  baseDate.setHours(hours, minutes, 0, 0);
-  return baseDate;
+const defaultDate = roundToNextQuarterHour(new Date());
+if (dateTimeInput) {
+  dateTimeInput.value = formatDateTimeLocalValue(defaultDate);
+}
+if (fallbackDateInput) {
+  fallbackDateInput.value = formatDateValue(defaultDate);
+}
+if (fallbackTimeInput) {
+  fallbackTimeInput.value = formatTimeValue(defaultDate);
 }
 
 function getSelectedDate() {
-  const baseFromTime = getBaseDateFromPrimaryTime();
-  if (!baseFromTime) {
-    return null;
-  }
-
-  if (advancedDetails?.open && hasDateTimeSupport && dateTimeInput?.value) {
-    const advancedValue = parseDateTimeValue(dateTimeInput.value);
-    if (advancedValue) {
-      return advancedValue;
+  if (hasDateTimeSupport && dateTimeInput) {
+    const value = dateTimeInput.value;
+    if (!value) {
+      return null;
     }
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+      return null;
+    }
+    return parsed;
   }
 
-  return baseFromTime;
+  if (fallbackDateInput && fallbackTimeInput) {
+    const dateValue = fallbackDateInput.value;
+    const timeValue = fallbackTimeInput.value;
+    if (!dateValue || !timeValue) {
+      return null;
+    }
+    const parsed = new Date(`${dateValue}T${timeValue}`);
+    if (Number.isNaN(parsed.getTime())) {
+      return null;
+    }
+    return parsed;
+  }
+
+  return null;
 }
 
 function showPlaceholder() {
   placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
   if (resultsList) {
     resultsList.innerHTML = '';
   }
-  if (proxyResult) {
-    proxyResult.textContent = 'No result';
-  }
 }
 
-function showResults(recommendations) {
+function showResults(recommendations, mode, baseTime) {
   if (!resultsList || !placeholder) {
     return;
   }
-
   resultsList.innerHTML = '';
   recommendations.forEach((rec) => {
     const item = document.createElement('div');
@@ -335,42 +294,27 @@ function showResults(recommendations) {
       item.classList.add('is-primary');
     }
 
-    const left = document.createElement('div');
-    left.className = 'sleep-result-info';
+    const message = document.createElement('div');
+    if (mode === 'sleep') {
+      message.textContent = `Wake up at ${formatTime(rec.wakeTime)} after falling asleep at ${formatTime(
+        baseTime
+      )} (${rec.cycles} cycles).`;
+    } else {
+      message.textContent = `Fall asleep by ${formatTime(rec.sleepTime)} to wake at ${formatTime(
+        baseTime
+      )} (${rec.cycles} cycles).`;
+    }
 
     const cycle = document.createElement('div');
     cycle.className = 'cycle-label';
-    cycle.textContent = `${rec.cycles} cycles`;
+    cycle.textContent = rec.cycles === 5 ? 'Recommended (5 cycles)' : `${rec.cycles} cycles`;
 
-    const hours = document.createElement('div');
-    hours.className = 'sleep-result-hours';
-    hours.textContent = `${(rec.cycles * CYCLE_MINUTES) / 60} hours of sleep`;
-
-    left.append(cycle, hours);
-
-    const right = document.createElement('div');
-    right.className = 'sleep-result-time';
-    right.textContent = formatTime(rec.sleepTime || rec.wakeTime);
-
-    const badge = document.createElement('span');
-    badge.className = 'sleep-recommended-badge';
-    badge.textContent = 'Best';
-
-    item.append(left, right, badge);
+    item.append(message, cycle);
     resultsList.appendChild(item);
   });
 
   placeholder.classList.add('is-hidden');
-  if (proxyResult && recommendations[0]) {
-    proxyResult.textContent = formatTime(recommendations[0].sleepTime || recommendations[0].wakeTime);
-  }
-}
-
-function updateFieldLabel(mode) {
-  if (!fieldLabel) {
-    return;
-  }
-  fieldLabel.textContent = mode === 'sleep' ? 'I plan to fall asleep at...' : 'I want to wake up at...';
+  resultsList.classList.remove('is-hidden');
 }
 
 function calculate() {
@@ -391,78 +335,22 @@ function calculate() {
     return;
   }
 
-  showResults(recommendations);
-}
-
-ensureH1Title();
-buildStars();
-
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'wake',
-  onChange: () => {
-    updateFieldLabel(modeButtons?.getValue() ?? 'wake');
-  },
-});
-
-const defaultDate = roundToNextQuarterHour(new Date());
-if (primaryTimeInput) {
-  primaryTimeInput.value = formatTimeValue(defaultDate);
-}
-if (dateInput) {
-  dateInput.value = formatDateValue(defaultDate);
-}
-if (dateTimeInput) {
-  dateTimeInput.value = formatDateTimeLocalValue(defaultDate);
-}
-if (proxyInput) {
-  const initialMinutes = timeValueToMinutes(formatTimeValue(defaultDate));
-  proxyInput.value = String(initialMinutes ?? 0);
-}
-
-const hasDateTimeSupport = supportsDateTimeLocal();
-if (!hasDateTimeSupport) {
-  dateTimeRow?.classList.add('is-hidden');
-  if (dateTimeInput) {
-    dateTimeInput.setAttribute('disabled', 'true');
-  }
+  showResults(recommendations, mode, selectedDate);
 }
 
 calculateButton?.addEventListener('click', calculate);
-proxyButton?.addEventListener('click', calculate);
-proxyInput?.addEventListener('input', () => {
-  const next = minutesToTimeValue(proxyInput.value);
-  if (next && primaryTimeInput) {
-    primaryTimeInput.value = next;
-  }
-});
-proxyInput?.addEventListener('change', () => {
-  const next = minutesToTimeValue(proxyInput.value);
-  if (next && primaryTimeInput) {
-    primaryTimeInput.value = next;
-  }
-});
 
-[primaryTimeInput, dateInput, dateTimeInput].forEach((input) => {
+[dateTimeInput, fallbackDateInput, fallbackTimeInput].forEach((input) => {
   input?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       calculate();
     }
   });
-
   input?.addEventListener('change', () => {
-    // Keep current results visible until explicit Calculate action.
-    if (input === primaryTimeInput && proxyInput) {
-      const minutes = timeValueToMinutes(primaryTimeInput?.value || '');
-      if (minutes !== null) {
-        proxyInput.value = String(minutes);
-      }
+    if (!resultsList?.classList.contains('is-hidden')) {
+      showPlaceholder();
     }
   });
 });
 
-advancedDetails?.addEventListener('toggle', () => {
-  // Keep current results visible until explicit Calculate action.
-});
-
-updateFieldLabel('wake');
-calculate();
+showPlaceholder();

@@ -345,21 +345,14 @@
         }
       }
     },
-    "time-and-date": {
-      "clusterReleaseDir": "tests_specs/time-and-date/cluster_release",
+    "sleep-and-nap": {
+      "clusterReleaseDir": "tests_specs/sleep-and-nap/cluster_release",
       "routes": [
-        "/time-and-date/sleep-time-calculator/",
-        "/time-and-date/wake-up-time-calculator/",
+        "/time-and-date/energy-based-nap-selector/",
         "/time-and-date/nap-time-calculator/",
         "/time-and-date/power-nap-calculator/",
-        "/time-and-date/energy-based-nap-selector/",
-        "/time-and-date/work-hours-calculator/",
-        "/time-and-date/overtime-hours-calculator/",
-        "/time-and-date/time-between-two-dates-calculator/",
-        "/time-and-date/days-until-a-date-calculator/",
-        "/time-and-date/countdown-timer-generator/",
-        "/time-and-date/age-calculator/",
-        "/time-and-date/birthday-day-of-week/"
+        "/time-and-date/sleep-time-calculator/",
+        "/time-and-date/wake-up-time-calculator/"
       ],
       "calculators": {
         "sleep-time-calculator": {
@@ -381,7 +374,21 @@
         "energy-based-nap-selector": {
           "route": "/time-and-date/energy-based-nap-selector/",
           "releaseDir": "tests_specs/sleep-and-nap/energy-based-nap-selector_release"
-        },
+        }
+      }
+    },
+    "time-and-date": {
+      "clusterReleaseDir": "tests_specs/time-and-date/cluster_release",
+      "routes": [
+        "/time-and-date/age-calculator/",
+        "/time-and-date/birthday-day-of-week/",
+        "/time-and-date/countdown-timer-generator/",
+        "/time-and-date/days-until-a-date-calculator/",
+        "/time-and-date/overtime-hours-calculator/",
+        "/time-and-date/time-between-two-dates-calculator/",
+        "/time-and-date/work-hours-calculator/"
+      ],
+      "calculators": {
         "work-hours-calculator": {
           "route": "/time-and-date/work-hours-calculator/",
           "releaseDir": "tests_specs/time-and-date/work-hours-calculator_release"

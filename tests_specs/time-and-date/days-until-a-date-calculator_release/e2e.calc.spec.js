@@ -7,8 +7,8 @@ test.describe('Days Until a Date Calculator', () => {
     const topNavActive = page.locator('#top-nav button.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Days Until a Date Calculator');
+    const leftActive = page.locator('.nav-item.is-active');
+    await expect(leftActive).toHaveText('Days Until a Date Calculator');
 
     const targetDate = await page.evaluate(() => {
       const d = new Date();

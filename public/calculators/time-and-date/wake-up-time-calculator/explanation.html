@@ -1,177 +1,167 @@
 <div id="wake-up-explanation" class="explanation-pane">
-  <section class="wake-exp-intro">
-    <h2>
-      Based on your input time of <span data-wake-summary="input-time">—</span>, your estimated sleep
-      start is <span data-wake-summary="sleep-start">—</span> and the primary wake-up recommendation
-      is <span data-wake-summary="recommended-wake">—</span>.
-    </h2>
-  </section>
+  <h2>
+    Based on your input time of <span data-wake-summary="input-time">—</span>, your estimated sleep
+    start is <span data-wake-summary="sleep-start">—</span> and the primary wake-up recommendation
+    is <span data-wake-summary="recommended-wake">—</span>.
+  </h2>
 
-  <section class="wake-exp-section">
-    <h3>Scenario Summary</h3>
-    <div class="table-scroll">
-      <table class="calculator-table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Value</th>
-            <th>Source</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mode</td>
-            <td data-wake-scenario="mode">—</td>
-            <td>Calculation Pane</td>
-          </tr>
-          <tr>
-            <td>Input time</td>
-            <td data-wake-scenario="input">—</td>
-            <td>Calculation Pane</td>
-          </tr>
-          <tr>
-            <td>Estimated sleep start</td>
-            <td data-wake-scenario="sleep-start">—</td>
-            <td>Calculator Engine</td>
-          </tr>
-          <tr>
-            <td>Primary recommendation</td>
-            <td data-wake-scenario="recommended">—</td>
-            <td>Calculator Engine</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <h3>Scenario Summary</h3>
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mode</td>
+          <td data-wake-scenario="mode">—</td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Input time</td>
+          <td data-wake-scenario="input">—</td>
+          <td>Calculation Pane</td>
+        </tr>
+        <tr>
+          <td>Estimated sleep start</td>
+          <td data-wake-scenario="sleep-start">—</td>
+          <td>Calculator Engine</td>
+        </tr>
+        <tr>
+          <td>Primary recommendation</td>
+          <td data-wake-scenario="recommended">—</td>
+          <td>Calculator Engine</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <section class="wake-exp-section">
-    <h3>Results Table</h3>
-    <div class="table-scroll">
-      <table class="calculator-table">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>Value</th>
-            <th>Unit</th>
-            <th>Explanation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>4-cycle wake time</td>
-            <td data-wake-metric="cycle-4">—</td>
-            <td>time</td>
-            <td>Earliest recommended wake option.</td>
-          </tr>
-          <tr>
-            <td>5-cycle wake time</td>
-            <td data-wake-metric="cycle-5">—</td>
-            <td>time</td>
-            <td>Primary balance of rest and schedule.</td>
-          </tr>
-          <tr>
-            <td>6-cycle wake time</td>
-            <td data-wake-metric="cycle-6">—</td>
-            <td>time</td>
-            <td>Longest standard recommendation shown.</td>
-          </tr>
-          <tr>
-            <td>Fall-asleep buffer</td>
-            <td data-wake-metric="buffer">—</td>
-            <td>minutes</td>
-            <td>Fixed buffer before cycles in bedtime mode.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <h3>Results Table</h3>
+  <div class="table-scroll">
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Unit</th>
+          <th>Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4-cycle wake time</td>
+          <td data-wake-metric="cycle-4">—</td>
+          <td>time</td>
+          <td>Earliest recommended wake option.</td>
+        </tr>
+        <tr>
+          <td>5-cycle wake time</td>
+          <td data-wake-metric="cycle-5">—</td>
+          <td>time</td>
+          <td>Primary balance of rest and schedule.</td>
+        </tr>
+        <tr>
+          <td>6-cycle wake time</td>
+          <td data-wake-metric="cycle-6">—</td>
+          <td>time</td>
+          <td>Longest standard recommendation shown.</td>
+        </tr>
+        <tr>
+          <td>Fall-asleep buffer</td>
+          <td data-wake-metric="buffer">—</td>
+          <td>minutes</td>
+          <td>Fixed buffer before cycles in bedtime mode.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <section class="wake-exp-section">
-    <h3>Explanation</h3>
-    <p>
-      The calculator uses fixed 90-minute cycles and reports
-      <span data-wake-expl="primary">—</span> as the default target. This matches a full-cycle wake
-      boundary that many users find easier than waking mid-cycle.
+  <h3>Explanation</h3>
+  <p>
+    The calculator uses fixed 90-minute cycles and reports
+    <span data-wake-expl="primary">—</span> as the default target. This matches a full-cycle wake
+    boundary that many users find easier than waking mid-cycle.
+  </p>
+  <p>
+    Your recommended wake window currently spans <span data-wake-expl="window">—</span>, so you can
+    choose a time that fits your schedule while still aligning to full cycles.
+  </p>
+
+  <h3>Frequently Asked Questions</h3>
+
+  <div class="faq-box">
+    <p><strong>Q: How many sleep cycles should I aim for?</strong></p>
+    <p class="faq-answer">
+      A: Many adults feel best with 5 or 6 cycles (about 7.5 to 9 hours), but personal needs vary.
     </p>
-    <p>
-      Your recommended wake window currently spans <span data-wake-expl="window">—</span>, so you can
-      choose a time that fits your schedule while still aligning to full cycles.
+  </div>
+
+  <div class="faq-box">
+    <p><strong>Q: What is a sleep cycle?</strong></p>
+    <p class="faq-answer">
+      A: A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often
+      lasts about 90 minutes.
     </p>
-  </section>
+  </div>
 
-  <section class="wake-exp-section">
-    <h3>Frequently Asked Questions</h3>
+  <div class="faq-box">
+    <p><strong>Q: Why are 4, 5, and 6 cycles shown?</strong></p>
+    <p class="faq-answer">
+      A: These options balance schedule flexibility with enough total sleep for most adults.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: How many sleep cycles should I aim for?</strong></p>
-      <p class="faq-answer">
-        A: Many adults feel best with 5 or 6 cycles (about 7.5 to 9 hours), but personal needs vary.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Does this calculator assume it takes time to fall asleep?</strong></p>
+    <p class="faq-answer">
+      A: Yes. In bedtime mode, it adds a fixed 15-minute buffer before sleep cycles begin.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: What is a sleep cycle?</strong></p>
-      <p class="faq-answer">
-        A: A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often
-        lasts about 90 minutes.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Can I use this if I wake during the night?</strong></p>
+    <p class="faq-answer">
+      A: Yes. Re-enter the new bedtime and calculate again for updated wake-up suggestions.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: Why are 4, 5, and 6 cycles shown?</strong></p>
-      <p class="faq-answer">
-        A: These options balance schedule flexibility with enough total sleep for most adults.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Why might I feel groggy even after a suggested wake-up time?</strong></p>
+    <p class="faq-answer">
+      A: Cycle length varies by person, so timing can still feel off on some nights.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: Does this calculator assume it takes time to fall asleep?</strong></p>
-      <p class="faq-answer">
-        A: Yes. In bedtime mode, it adds a fixed 15-minute buffer before sleep cycles begin.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Does daylight saving time affect the result?</strong></p>
+    <p class="faq-answer">
+      A: It can, because clock changes can shift local wall-clock wake-up times.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: Can I use this if I wake during the night?</strong></p>
-      <p class="faq-answer">
-        A: Yes. Re-enter the new bedtime and calculate again for updated wake-up suggestions.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Is this calculator a medical tool?</strong></p>
+    <p class="faq-answer">
+      A: No. It is a planning aid and does not diagnose sleep or health conditions.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: Why might I feel groggy even after a suggested wake-up time?</strong></p>
-      <p class="faq-answer">
-        A: Cycle length varies by person, so timing can still feel off on some nights.
-      </p>
-    </div>
+  <div class="faq-box">
+    <p><strong>Q: Should I choose 5 or 6 cycles?</strong></p>
+    <p class="faq-answer">
+      A: Choose the option that fits your schedule while still leaving enough rest time.
+    </p>
+  </div>
 
-    <div class="faq-box">
-      <p><strong>Q: Does daylight saving time affect the result?</strong></p>
-      <p class="faq-answer">
-        A: It can, because clock changes can shift local wall-clock wake-up times.
-      </p>
-    </div>
-
-    <div class="faq-box">
-      <p><strong>Q: Is this calculator a medical tool?</strong></p>
-      <p class="faq-answer">
-        A: No. It is a planning aid and does not diagnose sleep or health conditions.
-      </p>
-    </div>
-
-    <div class="faq-box">
-      <p><strong>Q: Should I choose 5 or 6 cycles?</strong></p>
-      <p class="faq-answer">
-        A: Choose the option that fits your schedule while still leaving enough rest time.
-      </p>
-    </div>
-
-    <div class="faq-box">
-      <p><strong>Q: What if my schedule allows only 4 cycles?</strong></p>
-      <p class="faq-answer">
-        A: 4 cycles can work occasionally, but many adults feel better with longer sleep when
-        possible.
-      </p>
-    </div>
-  </section>
+  <div class="faq-box">
+    <p><strong>Q: What if my schedule allows only 4 cycles?</strong></p>
+    <p class="faq-answer">
+      A: 4 cycles can work occasionally, but many adults feel better with longer sleep when
+      possible.
+    </p>
+  </div>
 </div>

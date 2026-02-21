@@ -77,12 +77,11 @@
     {
       "clusterId": "time-and-date",
       "displayName": "Time and Date",
-      "status": "migrating",
+      "status": "legacy",
       "routePrefixes": [
         "/time-and-date/"
       ],
-      "showOnHomepage": true,
-      "contractsEnabled": true,
+      "contractsEnabled": false,
       "owners": [
         "platform"
       ]
