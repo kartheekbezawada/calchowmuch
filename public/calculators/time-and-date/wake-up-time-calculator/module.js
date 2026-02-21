@@ -8,17 +8,19 @@ import {
 } from '/assets/js/core/sleep-utils.js';
 
 const modeGroup = document.querySelector('[data-button-group="wake-mode"]');
-const dateTimeInput = document.querySelector('#wake-datetime');
-const dateTimeRow = document.querySelector('#wake-datetime-row');
-const fallbackWrap = document.querySelector('#wake-fallback');
-const fallbackDateInput = document.querySelector('#wake-date');
-const fallbackTimeInput = document.querySelector('#wake-time');
-const latencyRow = document.querySelector('#wake-latency-row');
-const latencyInput = document.querySelector('#wake-latency');
+const fieldLabel = document.querySelector('#wake-field-label');
+const primaryTimeInput = document.querySelector('#wake-time-primary');
+const timePickerButton = document.querySelector('#wake-time-picker');
 const calculateButton = document.querySelector('#wake-calculate');
 const resultsList = document.querySelector('#wake-results-list');
 const placeholder = document.querySelector('#wake-placeholder');
 const errorMessage = document.querySelector('#wake-error');
+const bufferCopy = document.querySelector('#wake-buffer-copy');
+
+const proxyInput = document.querySelector('#wake-latency-proxy');
+const proxyButton = document.querySelector('#wake-calc');
+const proxyResult = document.querySelector('#wake-result');
+
 const summaryInputTime = document.querySelector('[data-wake-summary="input-time"]');
 const summarySleepStart = document.querySelector('[data-wake-summary="sleep-start"]');
 const summaryRecommendedWake = document.querySelector('[data-wake-summary="recommended-wake"]');
@@ -190,117 +192,9 @@ function ensureH1Title() {
   title.replaceWith(h1);
 }
 
-ensureH1Title();
-
-function updateLatencyVisibility(mode) {
-  if (!latencyRow) {
-    return;
-  }
-  const isBedMode = mode === 'bed';
-  latencyRow.classList.toggle('is-collapsed', !isBedMode);
-  latencyRow.setAttribute('aria-hidden', String(!isBedMode));
-  if (latencyInput) {
-    latencyInput.disabled = !isBedMode;
-  }
-}
-
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'sleep',
-  onChange: (value) => {
-    updateLatencyVisibility(value);
-    clearError();
-    showPlaceholder();
-  },
-});
-
-updateLatencyVisibility(modeButtons?.getValue() ?? 'sleep');
-
-function formatDateTimeLocalValue(date) {
-  const pad = (value) => String(value).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(
-    date.getHours()
-  )}:${pad(date.getMinutes())}`;
-}
-
-function formatDateValue(date) {
-  const pad = (value) => String(value).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-}
-
 function formatTimeValue(date) {
   const pad = (value) => String(value).padStart(2, '0');
   return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
-}
-
-function formatTime(date) {
-  return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
-}
-
-function supportsDateTimeLocal() {
-  if (!dateTimeInput) {
-    return false;
-  }
-  const test = document.createElement('input');
-  test.setAttribute('type', 'datetime-local');
-  return test.type === 'datetime-local';
-}
-
-const hasDateTimeSupport = supportsDateTimeLocal();
-if (!hasDateTimeSupport && fallbackWrap) {
-  dateTimeRow?.classList.add('is-hidden');
-  fallbackWrap.classList.remove('is-hidden');
-  dateTimeInput?.setAttribute('disabled', 'true');
-}
-
-const defaultDate = roundToNextQuarterHour(new Date());
-if (dateTimeInput) {
-  dateTimeInput.value = formatDateTimeLocalValue(defaultDate);
-}
-if (fallbackDateInput) {
-  fallbackDateInput.value = formatDateValue(defaultDate);
-}
-if (fallbackTimeInput) {
-  fallbackTimeInput.value = formatTimeValue(defaultDate);
-}
-if (latencyInput) {
-  latencyInput.value = String(FALL_ASLEEP_MINUTES);
-  latencyInput.readOnly = true;
-}
-
-function getSelectedDate() {
-  if (hasDateTimeSupport && dateTimeInput) {
-    const value = dateTimeInput.value;
-    if (!value) {
-      return null;
-    }
-    const parsed = new Date(value);
-    if (Number.isNaN(parsed.getTime())) {
-      return null;
-    }
-    return parsed;
-  }
-
-  if (fallbackDateInput && fallbackTimeInput) {
-    const dateValue = fallbackDateInput.value;
-    const timeValue = fallbackTimeInput.value;
-    if (!dateValue || !timeValue) {
-      return null;
-    }
-    const parsed = new Date(`${dateValue}T${timeValue}`);
-    if (Number.isNaN(parsed.getTime())) {
-      return null;
-    }
-    return parsed;
-  }
-
-  return null;
-}
-
-function getSleepStart(mode, selectedDate) {
-  if (mode === 'bed') {
-    return new Date(selectedDate.getTime() + FALL_ASLEEP_MINUTES * 60000);
-  }
-  return new Date(selectedDate.getTime());
 }
 
 function formatDateTime(date) {
@@ -310,6 +204,54 @@ function formatDateTime(date) {
     hour: 'numeric',
     minute: '2-digit',
   });
+}
+
+function formatTime(date) {
+  return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+}
+
+function timeValueToMinutes(value) {
+  if (typeof value !== 'string' || !value.includes(':')) {
+    return null;
+  }
+  const [hours, minutes] = value.split(':').map(Number);
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+    return null;
+  }
+  return hours * 60 + minutes;
+}
+
+function minutesToTimeValue(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+  const normalized = ((Math.round(parsed) % 1440) + 1440) % 1440;
+  const hours = Math.floor(normalized / 60);
+  const minutes = normalized % 60;
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+function getSelectedDate() {
+  const timeValue = primaryTimeInput?.value;
+  if (!timeValue) {
+    return null;
+  }
+  const [hours, minutes] = timeValue.split(':').map(Number);
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+    return null;
+  }
+
+  const baseDate = new Date();
+  baseDate.setHours(hours, minutes, 0, 0);
+  return baseDate;
+}
+
+function getSleepStart(mode, selectedDate) {
+  if (mode === 'bed') {
+    return new Date(selectedDate.getTime() + FALL_ASLEEP_MINUTES * 60000);
+  }
+  return new Date(selectedDate.getTime());
 }
 
 function clearError() {
@@ -326,33 +268,14 @@ function showError(message) {
   }
   errorMessage.textContent = message;
   errorMessage.classList.remove('is-hidden');
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function formatCycleHours(cycles) {
-  const hours = (cycles * CYCLE_MINUTES) / 60;
-  return Number.isInteger(hours) ? String(hours) : hours.toFixed(1);
 }
 
 function showResults(recommendations) {
   if (!resultsList || !placeholder) {
     return;
   }
-  resultsList.innerHTML = '';
 
+  resultsList.innerHTML = '';
   recommendations.forEach((rec) => {
     const item = document.createElement('div');
     item.className = 'wake-result';
@@ -360,21 +283,35 @@ function showResults(recommendations) {
       item.classList.add('is-primary');
     }
 
-    const message = document.createElement('div');
-    message.textContent = `Wake up at ${formatTime(rec.wakeTime)} after ${rec.cycles} cycles (${formatCycleHours(
-      rec.cycles
-    )} hours).`;
+    const left = document.createElement('div');
+    left.className = 'wake-result-info';
 
     const cycle = document.createElement('div');
     cycle.className = 'cycle-label';
-    cycle.textContent = rec.cycles === 5 ? 'Recommended (5 cycles)' : `${rec.cycles} cycles`;
+    cycle.textContent = `${rec.cycles} cycles`;
 
-    item.append(message, cycle);
+    const hours = document.createElement('div');
+    hours.className = 'wake-result-hours';
+    hours.textContent = `${(rec.cycles * CYCLE_MINUTES) / 60} hours of sleep`;
+
+    const badge = document.createElement('span');
+    badge.className = 'wake-recommended-badge';
+    badge.textContent = 'Best balance';
+
+    left.append(cycle, hours, badge);
+
+    const right = document.createElement('div');
+    right.className = 'wake-result-time';
+    right.textContent = formatTime(rec.wakeTime);
+
+    item.append(left, right);
     resultsList.appendChild(item);
   });
 
   placeholder.classList.add('is-hidden');
-  resultsList.classList.remove('is-hidden');
+  if (proxyResult && recommendations[0]) {
+    proxyResult.textContent = formatTime(recommendations[0].wakeTime);
+  }
 }
 
 function updateExplanation(mode, selectedDate, sleepStart, recommendations) {
@@ -425,10 +362,21 @@ function updateExplanation(mode, selectedDate, sleepStart, recommendations) {
   }
 }
 
+function updateFieldLabel(mode) {
+  if (!fieldLabel) {
+    return;
+  }
+  fieldLabel.textContent =
+    mode === 'bed' ? 'I plan to go to bed at...' : 'I plan to fall asleep at...';
+  if (bufferCopy) {
+    bufferCopy.textContent = mode === 'bed' ? '15-minute' : '0-minute';
+  }
+}
+
 function calculate() {
   const selectedDate = getSelectedDate();
   if (!selectedDate) {
-    showError('Please enter a valid date and time.');
+    showError('Please enter a valid time.');
     return;
   }
 
@@ -450,17 +398,64 @@ function calculate() {
   updateExplanation(mode, selectedDate, sleepStart, recommendations);
 }
 
-calculateButton?.addEventListener('click', calculate);
+ensureH1Title();
 
-dateTimeInput?.addEventListener('input', () => {
-  clearError();
-  showPlaceholder();
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: 'sleep',
+  onChange: () => {
+    updateFieldLabel(modeButtons?.getValue() ?? 'sleep');
+  },
 });
-fallbackDateInput?.addEventListener('input', () => {
-  clearError();
-  showPlaceholder();
+
+const defaultDate = roundToNextQuarterHour(new Date());
+if (primaryTimeInput) {
+  primaryTimeInput.value = formatTimeValue(defaultDate);
+}
+if (proxyInput) {
+  const initialMinutes = timeValueToMinutes(formatTimeValue(defaultDate));
+  proxyInput.value = String(initialMinutes ?? 0);
+}
+
+calculateButton?.addEventListener('click', calculate);
+proxyButton?.addEventListener('click', calculate);
+
+timePickerButton?.addEventListener('click', () => {
+  if (!primaryTimeInput) {
+    return;
+  }
+  if (typeof primaryTimeInput.showPicker === 'function') {
+    primaryTimeInput.showPicker();
+    return;
+  }
+  primaryTimeInput.focus();
 });
-fallbackTimeInput?.addEventListener('input', () => {
-  clearError();
-  showPlaceholder();
+
+proxyInput?.addEventListener('input', () => {
+  const next = minutesToTimeValue(proxyInput.value);
+  if (next && primaryTimeInput) {
+    primaryTimeInput.value = next;
+  }
 });
+
+proxyInput?.addEventListener('change', () => {
+  const next = minutesToTimeValue(proxyInput.value);
+  if (next && primaryTimeInput) {
+    primaryTimeInput.value = next;
+  }
+});
+
+primaryTimeInput?.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    calculate();
+  }
+});
+
+primaryTimeInput?.addEventListener('change', () => {
+  const minutes = timeValueToMinutes(primaryTimeInput?.value || '');
+  if (minutes !== null && proxyInput) {
+    proxyInput.value = String(minutes);
+  }
+});
+
+updateFieldLabel('sleep');
+calculate();

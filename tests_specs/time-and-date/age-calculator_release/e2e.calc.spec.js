@@ -7,8 +7,8 @@ test.describe('Age Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Age Calculator');
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Age Calculator');
 
     await page.locator('#age-dob').fill('1990-06-15');
     await page.locator('#age-as-of').fill('2025-09-01');
