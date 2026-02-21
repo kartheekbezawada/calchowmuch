@@ -1,410 +1,459 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sleep Planner — Dream Better</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+# REQ — Sleep Time Calculator (SERP-Ready)
 
-  :root {
-    --ink: #0a0a1a;
-    --deep: #07091a;
-    --mid: #0f1535;
-    --mist: #1a2048;
-    --lavender: #8b8fff;
-    --moon: #e8e4d8;
-    --gold: #f5c842;
-    --rose: #ff7b9c;
-    --teal: #5ee8c8;
-    --soft-white: rgba(232, 228, 216, 0.85);
-  }
+**Calculator Group:** Time & Date
 
-  html, body {
-    height: 100%;
-    overflow-x: hidden;
-  }
+**Calculator:** Sleep Time Calculator
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--deep);
-    color: var(--moon);
-    min-height: 100vh;
-    position: relative;
-  }
+**Primary Question (Single-Question Rule):** "What time should I go to bed (or wake up) based on sleep cycles?"
 
-  /* ── Starfield ── */
-  .starfield {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    overflow: hidden;
-  }
-  .star {
-    position: absolute;
-    border-radius: 50%;
-    background: white;
-    animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
-    opacity: var(--base-op, 0.5);
-  }
-  @keyframes twinkle {
-    from { opacity: var(--base-op, 0.3); transform: scale(1); }
-    to   { opacity: 1; transform: scale(1.4); }
-  }
+**Status:** REBUILD (SERP Upgrade)
 
-  /* ── Aurora BG ── */
-  .aurora {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background:
-      radial-gradient(ellipse 80% 40% at 20% 0%, rgba(94,232,200,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 30% at 80% 10%, rgba(139,143,255,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,123,156,0.07) 0%, transparent 70%);
-    animation: aurora-shift 12s ease-in-out infinite alternate;
-  }
-  @keyframes aurora-shift {
-    0%   { opacity: 0.6; transform: translateY(0) scaleX(1); }
-    50%  { opacity: 1;   transform: translateY(-20px) scaleX(1.05); }
-    100% { opacity: 0.7; transform: translateY(5px) scaleX(0.97); }
-  }
+**Type:** Existing layout preserved; SEO + copy + schema + logic hardening
 
-  /* ── Moon ── */
-  .moon-wrap {
-    position: fixed; top: 40px; right: 80px; z-index: 1; pointer-events: none;
-  }
-  .moon-circle {
-    width: 90px; height: 90px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #fff8dc, #f5c842 40%, #d4a017 80%);
-    box-shadow: 0 0 40px 15px rgba(245,200,66,0.25), 0 0 80px 30px rgba(245,200,66,0.1);
-    animation: moon-glow 6s ease-in-out infinite alternate;
-  }
-  @keyframes moon-glow {
-    from { box-shadow: 0 0 40px 15px rgba(245,200,66,0.2), 0 0 80px 30px rgba(245,200,66,0.08); }
-    to   { box-shadow: 0 0 60px 25px rgba(245,200,66,0.35), 0 0 100px 50px rgba(245,200,66,0.15); }
-  }
+**FSM Phase:** REQ
 
-  /* ── Layout ── */
-  .container {
-    position: relative; z-index: 2;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-  }
+**Scope:** UI (no layout changes), Compute, Explanation Pane, SEO, JSON-LD, Sitemap, Testing
 
-  /* ── Header ── */
-  .hero-tag {
-    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--teal); opacity: 0.8; margin-bottom: 12px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--teal); }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--moon);
-    margin-bottom: 8px;
-  }
-  h1 em { color: var(--lavender); font-style: italic; }
-  .tagline {
-    font-size: 15px; color: rgba(232,228,216,0.55); font-weight: 300;
-    margin-bottom: 52px; line-height: 1.6;
-  }
+This requirement follows your established calculator REQ pattern and schema guard rules.
 
-  /* ── Card ── */
-  .card {
-    background: rgba(15,21,53,0.7);
-    border: 1px solid rgba(139,143,255,0.15);
-    border-radius: 24px;
-    padding: 36px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-    animation: card-in 0.9s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  @keyframes card-in {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+Present Value of Annuity Calcul…
 
-  /* ── Mode Toggle ── */
-  .mode-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,228,216,0.4); margin-bottom: 10px; }
-  .toggle-wrap { display: flex; gap: 8px; margin-bottom: 28px; }
-  .toggle-btn {
-    flex: 1; padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(139,143,255,0.2);
-    background: transparent; color: rgba(232,228,216,0.5); font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s;
-  }
-  .toggle-btn.active {
-    background: linear-gradient(135deg, rgba(139,143,255,0.3), rgba(94,232,200,0.2));
-    border-color: rgba(139,143,255,0.5);
-    color: var(--moon);
-    box-shadow: 0 0 20px rgba(139,143,255,0.2);
-  }
-  .toggle-btn:not(.active):hover { border-color: rgba(139,143,255,0.35); color: rgba(232,228,216,0.75); }
+## 1. Purpose & Search Intent (SEO-Critical)
 
-  /* ── Time Input ── */
-  .field-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,228,216,0.4); margin-bottom: 10px; }
-  .time-input-wrap { position: relative; margin-bottom: 28px; }
-  .time-input {
-    width: 100%; padding: 18px 20px;
-    background: rgba(7,9,26,0.6);
-    border: 1px solid rgba(139,143,255,0.2);
-    border-radius: 14px;
-    color: var(--moon);
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    letter-spacing: 0.05em;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    color-scheme: dark;
-  }
-  .time-input:focus {
-    border-color: rgba(139,143,255,0.6);
-    box-shadow: 0 0 0 3px rgba(139,143,255,0.12);
-  }
+### 1.1 User Intent
 
-  /* ── CTA Button ── */
-  .calc-btn {
-    width: 100%; padding: 18px;
-    background: linear-gradient(135deg, #6b6fff 0%, #5ee8c8 100%);
-    border: none; border-radius: 14px;
-    color: var(--ink); font-family: 'DM Sans', sans-serif;
-    font-size: 15px; font-weight: 700; letter-spacing: 0.05em;
-    text-transform: uppercase; cursor: pointer;
-    position: relative; overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 10px 30px rgba(107,111,255,0.35);
-  }
-  .calc-btn::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(107,111,255,0.5); }
-  .calc-btn:hover::before { opacity: 1; }
-  .calc-btn:active { transform: translateY(0); }
+Users want ideal bedtimes or wake-up times that align with typical sleep cycles (commonly approximated as 90 minutes per cycle) plus fall-asleep latency (commonly approximated as 15 minutes).
 
-  /* ── Results ── */
-  .results { margin-top: 36px; animation: fade-up 0.6s ease both; }
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .results-header {
-    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-    color: rgba(232,228,216,0.35); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .results-header::after { content: ''; flex: 1; height: 1px; background: rgba(139,143,255,0.15); }
+Two modes (same page):
 
-  .cycle-cards { display: flex; flex-direction: column; gap: 12px; }
-  .cycle-card {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 22px;
-    background: rgba(7,9,26,0.5);
-    border: 1px solid rgba(139,143,255,0.12);
-    border-radius: 14px;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: default;
-    animation: card-pop 0.5s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  .cycle-card:nth-child(1) { animation-delay: 0.05s; }
-  .cycle-card:nth-child(2) { animation-delay: 0.12s; }
-  .cycle-card:nth-child(3) { animation-delay: 0.19s; }
-  @keyframes card-pop {
-    from { opacity: 0; transform: scale(0.95) translateY(10px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  .cycle-card:hover { transform: translateX(4px); border-color: rgba(139,143,255,0.3); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-  .cycle-card.recommended {
-    border-color: rgba(94,232,200,0.4);
-    background: rgba(94,232,200,0.06);
-    box-shadow: 0 0 30px rgba(94,232,200,0.1);
-  }
+- Wake-up time → recommend bedtimes
+- Fall-asleep time → recommend wake-up times
 
-  .cycle-info { display: flex; flex-direction: column; gap: 2px; }
-  .cycle-num { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,228,216,0.4); }
-  .cycle-card.recommended .cycle-num { color: var(--teal); }
-  .cycle-hours { font-size: 13px; color: rgba(232,228,216,0.5); }
-  .cycle-time {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; font-weight: 700;
-    color: var(--moon);
-    letter-spacing: 0.03em;
-  }
-  .cycle-card.recommended .cycle-time { color: var(--teal); }
-  .rec-badge {
-    display: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    background: rgba(94,232,200,0.15); border: 1px solid rgba(94,232,200,0.3);
-    color: var(--teal); padding: 4px 10px; border-radius: 20px;
-  }
-  .cycle-card.recommended .rec-badge { display: block; }
+### 1.2 Primary SEO Keywords (MANDATORY)
 
-  /* ── Sleep tip ── */
-  .sleep-tip {
-    margin-top: 28px; padding: 18px 22px;
-    background: rgba(139,143,255,0.07);
-    border-left: 3px solid rgba(139,143,255,0.4);
-    border-radius: 0 12px 12px 0;
-    font-size: 13px; line-height: 1.6; color: rgba(232,228,216,0.6);
-    font-style: italic;
-  }
-  .sleep-tip strong { color: var(--lavender); font-style: normal; }
+These keywords MUST appear naturally in: H1, title, meta description, explanation summary, and FAQ questions.
 
-  /* ── Footer note ── */
-  .footer-note {
-    margin-top: 40px; text-align: center;
-    font-size: 12px; color: rgba(232,228,216,0.25); line-height: 1.8;
-  }
-  .footer-note span { color: rgba(94,232,200,0.5); }
+**Primary keywords:**
 
-  /* ── Shooting star ── */
-  .shooting-star {
-    position: fixed; pointer-events: none; z-index: 1;
-    width: 2px; height: 2px; border-radius: 50%; background: white;
-    top: var(--sy); left: -10px;
-    animation: shoot var(--sd, 5s) var(--delay, 3s) ease-in infinite;
-    opacity: 0;
-  }
-  @keyframes shoot {
-    0%   { opacity: 0; transform: translate(0, 0) scaleX(1); }
-    5%   { opacity: 1; }
-    40%  { opacity: 1; box-shadow: -60px 0 20px 2px rgba(255,255,255,0.6); transform: translate(120vw, 40px) scaleX(30); }
-    42%  { opacity: 0; }
-    100% { opacity: 0; }
-  }
-</style>
-</head>
-<body>
+- sleep time calculator
+- sleep calculator
+- best time to sleep calculator
+- bedtime calculator
 
-<div class="starfield" id="starfield"></div>
-<div class="aurora"></div>
-<div class="moon-wrap"><div class="moon-circle"></div></div>
+**Secondary keywords:**
 
-<!-- Shooting stars -->
-<div class="shooting-star" style="--sy:15%;--sd:8s;--delay:2s"></div>
-<div class="shooting-star" style="--sy:30%;--sd:11s;--delay:7s"></div>
-<div class="shooting-star" style="--sy:8%;--sd:9s;--delay:14s"></div>
+- sleep cycle calculator
+- 90 minute sleep cycle calculator
+- wake up time calculator (supporting term; do not change nav label)
+- ideal bedtime calculator
+- best time to wake up calculator
 
-<div class="container">
-  <div class="hero-tag">Sleep Science</div>
-  <h1>Rest like the <em>stars</em><br>sleep in cycles</h1>
-  <p class="tagline">Each 90-minute cycle brings you deeper rest. Wake at the right moment — refreshed, not groggy.</p>
+**Long-tail / intent keywords:**
 
-  <div class="card">
-    <div class="mode-label">I want to know my…</div>
-    <div class="toggle-wrap">
-      <button class="toggle-btn active" id="wakeBtn" onclick="setMode('wake')">🌅 Wake-Up Time</button>
-      <button class="toggle-btn" id="sleepBtn" onclick="setMode('sleep')">🌙 Bedtime</button>
-    </div>
+- what time should I go to bed to wake up at {time}
+- what time should I wake up if I fall asleep at {time}
+- best bedtime for 6 hours / 7.5 hours / 9 hours sleep
+- how many sleep cycles do I need
 
-    <div class="field-label" id="fieldLabel">I want to wake up at…</div>
-    <div class="time-input-wrap">
-      <input type="time" class="time-input" id="timeInput" value="07:00" />
-    </div>
+## 2. Category & Navigation Requirements (No Layout Changes)
 
-    <button class="calc-btn" onclick="calculate()">✦ Calculate My Sleep Plan</button>
+### 2.1 Top Navigation
 
-    <div class="results" id="results" style="display:none">
-      <div class="results-header">Your ideal options</div>
-      <div class="cycle-cards" id="cycleCards"></div>
-      <div class="sleep-tip" id="sleepTip"></div>
-    </div>
-  </div>
+Top nav button stays: Time & Date
 
-  <div class="footer-note">
-    Based on <span>90-minute ultradian sleep cycles</span> + ~14 min to fall asleep.<br>
-    Your body knows the rhythm — trust the science.
-  </div>
-</div>
+### 2.2 Left Navigation (Time & Date)
 
-<script>
-  // Starfield
-  const sf = document.getElementById('starfield');
-  for (let i = 0; i < 180; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() * 2.5 + 0.5;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      top:${Math.random()*100}%;
-      left:${Math.random()*100}%;
-      --dur:${(Math.random()*4+2).toFixed(1)}s;
-      --base-op:${(Math.random()*0.4+0.2).toFixed(2)};
-      animation-delay:${(Math.random()*5).toFixed(1)}s;
-    `;
-    sf.appendChild(s);
-  }
+Keep your existing structure and labels. Sleep Time Calculator remains selected item.
 
-  let mode = 'wake'; // wake = user sets wake time, calc bedtime; sleep = user sets bedtime, calc wake
+Example (do not rename items):
 
-  function setMode(m) {
-    mode = m;
-    document.getElementById('wakeBtn').classList.toggle('active', m === 'wake');
-    document.getElementById('sleepBtn').classList.toggle('active', m === 'sleep');
-    document.getElementById('fieldLabel').textContent =
-      m === 'wake' ? 'I want to wake up at…' : 'I plan to fall asleep at…';
-    document.getElementById('results').style.display = 'none';
-  }
+- Sleep Time Calculator
+- Wake-Up Time Calculator
+- Nap Time Calculator
+- Work Hours Calculator
+- Overtime Hours Calculator
+- Time Between Two Dates
+- Days Until a Date
+- Countdown Timer Generator
+- Age Calculator
+- Birthday Day-of-Week
 
-  const tips = [
-    '<strong>Pro tip:</strong> Keep the room cool — around 18°C (65°F) signals your body it\'s time to rest.',
-    '<strong>Did you know?</strong> The 5-cycle option gives you 7.5 hours — hitting the sweet spot most adults need.',
-    '<strong>Wind down:</strong> Dim lights 30 minutes before your bedtime to boost natural melatonin.',
-    '<strong>Morning light:</strong> Step outside within 30 mins of waking to lock in your circadian rhythm.',
-  ];
+**Rules:**
 
-  function formatTime(date) {
-    return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-  }
+- Navigation remains config-driven
+- No layout changes (same component + styling)
 
-  function calculate() {
-    const val = document.getElementById('timeInput').value;
-    if (!val) return;
-    const [h, m] = val.split(':').map(Number);
-    const base = new Date(); base.setHours(h, m, 0, 0);
+## 3. URL & Page Model (SEO + MVP)
 
-    const FALL_ASLEEP = 14; // minutes
-    const cycles = [4, 5, 6];
-    const hoursLabel = [6, 7.5, 9];
+### 3.1 Canonical URL (REQUIRED)
 
-    const cards = document.getElementById('cycleCards');
-    cards.innerHTML = '';
+`/time-and-date/sleep-time-calculator/`
 
-    cycles.forEach((c, i) => {
-      const totalMins = c * 90;
-      let targetDate = new Date(base);
-      if (mode === 'wake') {
-        // subtract total sleep + fall asleep time = bedtime
-        targetDate = new Date(base.getTime() - (totalMins + FALL_ASLEEP) * 60000);
-      } else {
-        // add fall asleep + cycles = wake time
-        targetDate = new Date(base.getTime() + (totalMins + FALL_ASLEEP) * 60000);
-      }
+### 3.2 Architecture
 
-      const div = document.createElement('div');
-      div.className = 'cycle-card' + (c === 5 ? ' recommended' : '');
-      div.innerHTML = `
-        <div class="cycle-info">
-          <div class="cycle-num">${c} cycles</div>
-          <div class="cycle-hours">${hoursLabel[i]} hours of sleep</div>
-        </div>
-        <div class="cycle-time">${formatTime(targetDate)}</div>
-        <div class="rec-badge">★ Best</div>
-      `;
-      cards.appendChild(div);
-    });
+- MPA (one calculator per page)
+- Explanation pane must be crawlable static HTML
+- No separate URLs for mode variants (avoid cannibalization)
 
-    document.getElementById('sleepTip').innerHTML = tips[Math.floor(Math.random() * tips.length)];
+## 4. Folder & File Structure (REQUIRED)
 
-    const res = document.getElementById('results');
-    res.style.display = 'block';
-    res.style.animation = 'none';
-    void res.offsetWidth;
-    res.style.animation = 'fade-up 0.6s ease both';
-  }
+`/public/calculators/time-and-date/sleep-time-calculator/`
+
+- `index.html` — calculator shell + calculation pane + schema injection
+- `module.js` — compute logic + validation
+- `explanation.html` — static explanation pane (SEO-critical)
+
+## 5. Calculation Pane Requirements (UI must remain visually the same)
+
+### 5.1 H1 / H2 Copy
+
+- **H1 (page):** Sleep Time Calculator
+- **Subtitle (under H1):** Find ideal sleep or wake times using 90-minute sleep cycles.
+
+### 5.2 Inputs (match your current layout)
+
+**Mode toggle (required):**
+
+- Button A: "I want to wake up at…"
+- Button B: "I want to fall asleep at…"
+
+**Date & Time (required):**
+
+- Date-time combined input (required)
+- OR split Date + Time inputs (as shown) (required)
+- Keep current UX (do not remove either if both currently shown)
+
+**Calculate CTA:**
+
+Keep the same primary button placement and label: Calculate
+
+### 5.3 Output (must exist even if currently not shown in screenshot)
+
+After clicking Calculate, show a result list of recommended times in the Calculation Pane (below inputs), without changing layout structure:
+
+- 4, 5, 6 cycles (default)
+- optionally also show 3 and 7 cycles as secondary (still same page; just list more rows)
+
+Each recommendation row must show:
+
+- Recommended time (local time)
+- Cycle count (e.g., "5 cycles")
+- Estimated sleep duration (e.g., "7h 30m")
+
+## 6. Calculator Engine (Logic)
+
+### 6.1 Defaults (configurable constants)
+
+- `CYCLE_MINUTES = 90`
+- `FALL_ASLEEP_MINUTES = 15`
+- `CYCLES_DEFAULT = [4,5,6]`
+- `CYCLES_EXTENDED = [3,4,5,6,7]` (optional display; if shown, 4–6 visually primary)
+
+### 6.2 Mode A — Wake-up time → Bedtimes
+
+Given target wake datetime W:
+
+For each cycles c:
+
+- `total_sleep_minutes = c * 90`
+- `bedtime = W - total_sleep_minutes - FALL_ASLEEP_MINUTES`
+
+Return bedtimes sorted ascending by time.
+
+### 6.3 Mode B — Fall-asleep time → Wake-up times
+
+Given fall-asleep datetime S:
+
+For each cycles c:
+
+- `wake_time = S + (c * 90)`
+
+Optionally include a note that results assume you fall asleep at the selected time; if user selects "fall asleep at", do not add 15 minutes (they already chose asleep time).
+
+### 6.4 Input/Edge Rules
+
+- Must handle cross-day results correctly (date rollover)
+- If input is missing/invalid: show inline error and do not crash
+- Locale formatting: use user locale for time display (but keep consistent "HH:MM" UI formatting you already use)
+- Time zone: use browser local time zone
+
+## 7. Explanation Pane (SEO-Critical; must follow your Universal Standard)
+
+### 7.1 H2 — Summary (keyword-dense, natural)
+
+Include Sleep Time Calculator, sleep cycles, 90-minute cycles, bedtime, wake-up time naturally.
+
+**Required content points:**
+
+- What it does
+- Two modes (wake-up → bedtime, asleep → wake-up)
+- Assumptions (90 min cycle, 15 min fall-asleep for wake-up mode)
+
+### 7.2 H3 — Scenario Summary (dynamic table)
+
+Table rows must be populated from calculation pane + computed results:
+
+| Field | Value |
+|-------|-------|
+| Mode | {MODE_LABEL} |
+| Selected date | {DATE} |
+| Selected time | {TIME} |
+| Assumed cycle length | 90 minutes |
+| Fall-asleep buffer (only for Mode A) | 15 minutes |
+| Recommended options shown | {LIST_OF_CYCLES} |
+
+### 7.3 H3 — Results Table (dynamic)
+
+A semantic table:
+
+**Columns:**
+
+- Cycles
+- Recommended Bedtime / Wake Time (depends on mode)
+- Estimated Sleep Time (hours/minutes)
+- Notes (e.g., "includes 15 min to fall asleep" for Mode A only)
+
+### 7.4 H3 — How the Sleep Time Calculator Works
+
+Explain:
+
+- 90-minute cycles approximation
+- Why waking at the end of a cycle can feel easier
+- Why fall-asleep buffer is applied only when targeting a wake-up time
+
+### 7.5 H3 — Assumptions and Limitations
+
+Must include:
+
+- Sleep cycles vary by person/night
+- Falling asleep time varies
+- Not medical advice; for sleep disorders consult a professional
+
+### 7.6 H3 — FAQs (Exactly 10; boxed styling per your standard)
+
+These 10 must be used verbatim in the UI and JSON-LD:
+
+**What is a sleep time calculator?**
+A sleep time calculator suggests bedtimes or wake-up times based on typical sleep cycles so you can aim to wake up between cycles.
+
+**How long is a typical sleep cycle?**
+A common estimate is about 90 minutes per sleep cycle, though it can vary by person and by night.
+
+**Why does the calculator use 15 minutes to fall asleep?**
+It adds a buffer to estimate the time it may take to fall asleep after getting into bed.
+
+**If I want to wake up at a certain time, what bedtime should I choose?**
+Pick a recommended bedtime that lines up with 4–6 sleep cycles before your wake-up time.
+
+**If I fall asleep at a certain time, what time should I wake up?**
+Choose a wake-up option that is 4–6 cycles (about 6–9 hours) after your fall-asleep time.
+
+**How many sleep cycles should I aim for?**
+Many people feel best with 5 or 6 cycles (about 7.5 to 9 hours), but needs vary.
+
+**Is 8 hours of sleep always the best target?**
+Not always—sleep quality and timing matter, and some people feel better with slightly more or less.
+
+**Does waking up during deep sleep matter?**
+Waking in the middle of a cycle can feel harder because you may be in deeper sleep; waking near the end of a cycle can feel easier.
+
+**Can I use this calculator for naps?**
+For naps, shorter options like 1–2 cycles are often used; a dedicated nap calculator can be more precise.
+
+**Is this sleep calculator medical advice?**
+No. It provides estimates based on averages; persistent sleep problems should be discussed with a healthcare professional.
+
+## 8. SEO Metadata (Required)
+
+**Title:** Sleep Time Calculator (90-Minute Sleep Cycles) – CalcHowMuch
+
+**Meta description (140–160 chars):**
+Calculate the best time to sleep or wake up using 90-minute sleep cycles. Get ideal bedtimes or wake-up times in seconds.
+
+**H1:** Sleep Time Calculator
+
+**Canonical:** `https://calchowmuch.com/time-and-date/sleep-time-calculator/`
+
+## 9. Page-Scoped JSON-LD Bundle (Required)
+
+### 9.1 WebPage
+
+```json
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Sleep Time Calculator",
+  "url": "https://calchowmuch.com/time-and-date/sleep-time-calculator/",
+  "description": "Calculate ideal bedtimes or wake-up times using 90-minute sleep cycles and a fall-asleep buffer.",
+  "inLanguage": "en"
+}
 </script>
-</body>
-</html>
+```
+
+### 9.2 SoftwareApplication
+
+```json
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Sleep Time Calculator",
+  "applicationCategory": "HealthApplication",
+  "applicationSubCategory": "Sleep Cycle Calculator",
+  "operatingSystem": "Web",
+  "url": "https://calchowmuch.com/time-and-date/sleep-time-calculator/",
+  "description": "Free sleep time calculator to find ideal bedtimes or wake-up times based on 90-minute sleep cycles.",
+  "browserRequirements": "Requires JavaScript enabled",
+  "softwareVersion": "1.0",
+  "creator": {
+    "@type": "Organization",
+    "name": "CalcHowMuch"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+```
+
+### 9.3 FAQPage (Exactly 10; must match visible FAQs)
+
+```json
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a sleep time calculator?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A sleep time calculator suggests bedtimes or wake-up times based on typical sleep cycles so you can aim to wake up between cycles." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is a typical sleep cycle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A common estimate is about 90 minutes per sleep cycle, though it can vary by person and by night." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator use 15 minutes to fall asleep?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It adds a buffer to estimate the time it may take to fall asleep after getting into bed." }
+    },
+    {
+      "@type": "Question",
+      "name": "If I want to wake up at a certain time, what bedtime should I choose?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pick a recommended bedtime that lines up with 4–6 sleep cycles before your wake-up time." }
+    },
+    {
+      "@type": "Question",
+      "name": "If I fall asleep at a certain time, what time should I wake up?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Choose a wake-up option that is 4–6 cycles (about 6–9 hours) after your fall-asleep time." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many sleep cycles should I aim for?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Many people feel best with 5 or 6 cycles (about 7.5 to 9 hours), but needs vary." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 8 hours of sleep always the best target?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not always—sleep quality and timing matter, and some people feel better with slightly more or less." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does waking up during deep sleep matter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Waking in the middle of a cycle can feel harder because you may be in deeper sleep; waking near the end of a cycle can feel easier." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for naps?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For naps, shorter options like 1–2 cycles are often used; a dedicated nap calculator can be more precise." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this sleep calculator medical advice?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It provides estimates based on averages; persistent sleep problems should be discussed with a healthcare professional." }
+    }
+  ]
+}
+</script>
+```
+
+### 9.4 BreadcrumbList
+
+```json
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calchowmuch.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Time & Date", "item": "https://calchowmuch.com/time-and-date/" },
+    { "@type": "ListItem", "position": 3, "name": "Sleep Time Calculator", "item": "https://calchowmuch.com/time-and-date/sleep-time-calculator/" }
+  ]
+}
+</script>
+```
+
+## 10. Schema Injection Guard (Required Pattern)
+
+Implement a boolean flag pattern to prevent any global/layout FAQPage from leaking into calculator pages.
+
+**Requirement:**
+
+- On this page: page-scoped FAQPage must exist
+- On layout/app shell: no global FAQPage injection
+- Site-wide FAQPage schema allowed only on `/faq`
+
+## 11. Sitemap & Indexing Updates (Required)
+
+Must update:
+
+- `sitemap.xml` add `/time-and-date/sleep-time-calculator/`
+- `/sitemap` page listing
+- public calculators index (if you maintain one)
+- left-nav config (ensure slug points to this canonical)
+
+**Recommended changefreq/priority:**
+
+- calculator page: monthly / 0.70 (consistent with your current pattern)
+
+## 12. Testing Requirements (Required)
+
+### 12.1 Unit tests (module.js)
+
+- Mode A computation correctness (including fall-asleep buffer)
+- Mode B computation correctness
+- Cross-day rollover (e.g., wake 06:00 → bedtime previous day)
+- Invalid input handling
+
+### 12.2 E2E (Playwright)
+
+- Toggle mode A/B changes labels/results correctly
+- Date/time entry works
+- Calculate produces results list
+- Explanation pane exists and contains 10 FAQs
+
+### 12.3 SEO Tests
+
+- Title, meta description, canonical present
+- JSON-LD scripts present (WebPage, SoftwareApplication, FAQPage, BreadcrumbList)
+- FAQPage count = 10, matches visible FAQ text
+- No duplicate FAQPage from layout
+
+### 12.4 ISS-001 UI Regression
+
+- No layout changes
+- Spacing/alignment unchanged
+- Buttons/inputs remain in same positions
+
+## 13. Acceptance Criteria
+
+- Renders identically to current layout (only copy/SEO/logic/results added)
+- Produces correct recommended times for both modes
+- Explanation pane follows your standard with dynamic tables + 10 FAQs
+- Page-scoped JSON-LD passes Rich Results validation (no duplicate FAQPage)
+- Sitemap updated and page is indexable with canonical set

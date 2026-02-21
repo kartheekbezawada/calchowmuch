@@ -7,8 +7,8 @@ test.describe('Energy-Based Nap Selector', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Energy-Based Nap Selector');
+    const leftActive = page.locator('.nav-item.is-active');
+    await expect(leftActive).toHaveText('Energy-Based Nap Selector');
 
     await expect(page.locator('select')).toHaveCount(0);
 

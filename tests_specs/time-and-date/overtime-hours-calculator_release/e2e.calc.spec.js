@@ -7,8 +7,8 @@ test.describe('Overtime Hours Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Overtime Hours Calculator');
+    const leftActive = page.locator('.nav-item.is-active');
+    await expect(leftActive).toHaveText('Overtime Hours Calculator');
 
     await page.locator('#overtime-single-start').fill('09:00');
     await page.locator('#overtime-single-end').fill('17:30');

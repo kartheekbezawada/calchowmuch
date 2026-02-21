@@ -753,8 +753,8 @@
       "icon": "🕒",
       "subcategories": [
         {
-          "id": "sleep-time",
-          "name": "Sleep Time",
+          "id": "time-and-date",
+          "name": "Time & Date",
           "calculators": [
             {
               "id": "sleep-time-calculator",
@@ -768,7 +768,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             },
             {
               "id": "wake-up-time-calculator",
@@ -782,7 +782,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             },
             {
               "id": "nap-time-calculator",
@@ -796,7 +796,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             },
             {
               "id": "power-nap-calculator",
@@ -825,13 +825,7 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
-            }
-          ]
-        },
-        {
-          "id": "work-hours",
-          "name": "Work Hours",
-          "calculators": [
+            },
             {
               "id": "work-hours-calculator",
               "name": "Work Hours Calculator",
@@ -859,13 +853,7 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
-            }
-          ]
-        },
-        {
-          "id": "date-time",
-          "name": "Date & Time",
-          "calculators": [
+            },
             {
               "id": "time-between-two-dates-calculator",
               "name": "Time Between Two Dates Calculator",
@@ -907,13 +895,7 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
-            }
-          ]
-        },
-        {
-          "id": "age-calculator",
-          "name": "Age Calculator",
-          "calculators": [
+            },
             {
               "id": "age-calculator",
               "name": "Age Calculator",

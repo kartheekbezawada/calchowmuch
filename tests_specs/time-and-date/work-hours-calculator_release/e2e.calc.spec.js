@@ -7,8 +7,8 @@ test.describe('Work Hours Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Work Hours Calculator');
+    const leftActive = page.locator('.nav-item.is-active');
+    await expect(leftActive).toHaveText('Work Hours Calculator');
 
     await page.locator('#work-hours-single-start').fill('09:00');
     await page.locator('#work-hours-single-end').fill('17:30');
