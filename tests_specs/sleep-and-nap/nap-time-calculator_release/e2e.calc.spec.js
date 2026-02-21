@@ -9,8 +9,8 @@ test.describe('Nap Time Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Nap Time Calculator');
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Nap Time Calculator');
 
     const napTypeButtons = page.locator('[data-button-group="nap-type"] button');
     await expect(napTypeButtons.nth(1)).toHaveClass(/is-active/);
@@ -37,8 +37,10 @@ test.describe('Nap Time Calculator', () => {
     await page.goto('/time-and-date/nap-time-calculator');
 
     const explanation = page.locator('#nap-time-explanation');
-    await expect(explanation).toContainText('What is a Nap Time Calculator?');
-    await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation).toContainText(
+      'A Nap Time Calculator helps you choose a wake-up time'
+    );
+    await expect(explanation).toContainText('Which nap is best for work breaks?');
     await expect(explanation.locator('.nap-faq-item')).toHaveCount(5);
   });
 });

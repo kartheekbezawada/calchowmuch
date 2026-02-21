@@ -5,13 +5,13 @@
       "calculatorId": "monthly-savings-needed",
       "relPath": "finance-calculators/monthly-savings-needed-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.b94e59f5.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.b94e59f5.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.critical.3701aa36.css",
-      "hash": "b94e59f5",
-      "criticalHash": "3701aa36",
-      "fullBytes": 83669,
-      "criticalBytes": 45634,
+      "href": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.9729ec29.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.9729ec29.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.critical.47373a07.css",
+      "hash": "9729ec29",
+      "criticalHash": "47373a07",
+      "fullBytes": 83960,
+      "criticalBytes": 45925,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -21,20 +21,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/monthly-savings-needed-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.b94e59f5.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.critical.3701aa36.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.9729ec29.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-monthly-savings-needed-calculator.critical.47373a07.css"
     },
     "/finance-calculators/time-to-savings-goal-calculator/": {
       "calculatorId": "time-to-savings-goal",
       "relPath": "finance-calculators/time-to-savings-goal-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.4a30ba46.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.4a30ba46.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.critical.1f749539.css",
-      "hash": "4a30ba46",
-      "criticalHash": "1f749539",
-      "fullBytes": 83773,
-      "criticalBytes": 45626,
+      "href": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.f0dedfe7.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.f0dedfe7.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.critical.39dfb559.css",
+      "hash": "f0dedfe7",
+      "criticalHash": "39dfb559",
+      "fullBytes": 84064,
+      "criticalBytes": 45917,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -44,20 +44,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/time-to-savings-goal-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.4a30ba46.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.critical.1f749539.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.f0dedfe7.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-time-to-savings-goal-calculator.critical.39dfb559.css"
     },
     "/finance-calculators/investment-growth-calculator/": {
       "calculatorId": "investment-growth",
       "relPath": "finance-calculators/investment-growth-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.e8e588da.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.e8e588da.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.critical.be66a0e7.css",
-      "hash": "e8e588da",
-      "criticalHash": "be66a0e7",
-      "fullBytes": 86410,
-      "criticalBytes": 46057,
+      "href": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.378bd1e5.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.378bd1e5.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-investment-growth-calculator.critical.8930c1c9.css",
+      "hash": "378bd1e5",
+      "criticalHash": "8930c1c9",
+      "fullBytes": 86701,
+      "criticalBytes": 46348,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -67,20 +67,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/investment-growth-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-investment-growth-calculator.e8e588da.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-investment-growth-calculator.critical.be66a0e7.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-investment-growth-calculator.378bd1e5.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-investment-growth-calculator.critical.8930c1c9.css"
     },
     "/finance-calculators/effective-annual-rate-calculator/": {
       "calculatorId": "effective-annual-rate",
       "relPath": "finance-calculators/effective-annual-rate-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.45483395.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.45483395.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.critical.6c4ce456.css",
-      "hash": "45483395",
-      "criticalHash": "6c4ce456",
-      "fullBytes": 82232,
-      "criticalBytes": 45630,
+      "href": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.a11bc8ab.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.a11bc8ab.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.critical.9e748d84.css",
+      "hash": "a11bc8ab",
+      "criticalHash": "9e748d84",
+      "fullBytes": 82523,
+      "criticalBytes": 45921,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -90,20 +90,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/effective-annual-rate-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.45483395.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.critical.6c4ce456.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.a11bc8ab.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-effective-annual-rate-calculator.critical.9e748d84.css"
     },
     "/finance-calculators/compound-interest-calculator/": {
       "calculatorId": "compound-interest",
       "relPath": "finance-calculators/compound-interest-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.b6264785.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.b6264785.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.b6308e46.css",
-      "hash": "b6264785",
-      "criticalHash": "b6308e46",
-      "fullBytes": 85427,
-      "criticalBytes": 46977,
+      "href": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.f055864a.css",
+      "hash": "d91f3da6",
+      "criticalHash": "f055864a",
+      "fullBytes": 85718,
+      "criticalBytes": 47268,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -113,20 +113,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/compound-interest-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.b6264785.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.b6308e46.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.f055864a.css"
     },
     "/finance-calculators/simple-interest-calculator/": {
       "calculatorId": "simple-interest",
       "relPath": "finance-calculators/simple-interest-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.a657177d.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.a657177d.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.critical.5c3a594d.css",
-      "hash": "a657177d",
-      "criticalHash": "5c3a594d",
-      "fullBytes": 82013,
-      "criticalBytes": 45602,
+      "href": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.bd407a31.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.bd407a31.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-simple-interest-calculator.critical.af43be71.css",
+      "hash": "bd407a31",
+      "criticalHash": "af43be71",
+      "fullBytes": 82304,
+      "criticalBytes": 45893,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -136,20 +136,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/simple-interest-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-simple-interest-calculator.a657177d.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-simple-interest-calculator.critical.5c3a594d.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-simple-interest-calculator.bd407a31.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-simple-interest-calculator.critical.af43be71.css"
     },
     "/finance-calculators/present-value-calculator/": {
       "calculatorId": "present-value",
       "relPath": "finance-calculators/present-value-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-present-value-calculator.8d00c9d2.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-present-value-calculator.8d00c9d2.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-present-value-calculator.critical.1ee3c4db.css",
-      "hash": "8d00c9d2",
-      "criticalHash": "1ee3c4db",
-      "fullBytes": 82070,
-      "criticalBytes": 45740,
+      "href": "/assets/css/route-bundles/finance-calculators-present-value-calculator.4b9755d4.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-present-value-calculator.4b9755d4.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-present-value-calculator.critical.c49b8bc1.css",
+      "hash": "4b9755d4",
+      "criticalHash": "c49b8bc1",
+      "fullBytes": 82361,
+      "criticalBytes": 46031,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -159,20 +159,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/present-value-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-calculator.8d00c9d2.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-calculator.critical.1ee3c4db.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-calculator.4b9755d4.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-calculator.critical.c49b8bc1.css"
     },
     "/finance-calculators/future-value-calculator/": {
       "calculatorId": "future-value",
       "relPath": "finance-calculators/future-value-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-future-value-calculator.1b0d363a.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-future-value-calculator.1b0d363a.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-future-value-calculator.critical.715cdb0e.css",
-      "hash": "1b0d363a",
-      "criticalHash": "715cdb0e",
-      "fullBytes": 82085,
-      "criticalBytes": 45735,
+      "href": "/assets/css/route-bundles/finance-calculators-future-value-calculator.89935058.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-future-value-calculator.89935058.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-future-value-calculator.critical.cd3a1d3e.css",
+      "hash": "89935058",
+      "criticalHash": "cd3a1d3e",
+      "fullBytes": 82376,
+      "criticalBytes": 46026,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -182,20 +182,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/future-value-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-future-value-calculator.1b0d363a.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-future-value-calculator.critical.715cdb0e.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-future-value-calculator.89935058.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-future-value-calculator.critical.cd3a1d3e.css"
     },
     "/finance-calculators/future-value-of-annuity-calculator/": {
       "calculatorId": "future-value-of-annuity",
       "relPath": "finance-calculators/future-value-of-annuity-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.f4d1b3d0.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.f4d1b3d0.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.critical.c6f1aec5.css",
-      "hash": "f4d1b3d0",
-      "criticalHash": "c6f1aec5",
-      "fullBytes": 82283,
-      "criticalBytes": 45794,
+      "href": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.7d3ae755.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.7d3ae755.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.critical.dc5c317f.css",
+      "hash": "7d3ae755",
+      "criticalHash": "dc5c317f",
+      "fullBytes": 82574,
+      "criticalBytes": 46085,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -205,20 +205,20 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/future-value-of-annuity-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.f4d1b3d0.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.critical.c6f1aec5.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.7d3ae755.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-future-value-of-annuity-calculator.critical.dc5c317f.css"
     },
     "/finance-calculators/present-value-of-annuity-calculator/": {
       "calculatorId": "present-value-of-annuity",
       "relPath": "finance-calculators/present-value-of-annuity-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.6e035de4.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.6e035de4.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.2751fdc6.css",
-      "hash": "6e035de4",
-      "criticalHash": "2751fdc6",
-      "fullBytes": 82273,
-      "criticalBytes": 45799,
+      "href": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.196b49f5.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.196b49f5.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.ead5da2c.css",
+      "hash": "196b49f5",
+      "criticalHash": "ead5da2c",
+      "fullBytes": 82564,
+      "criticalBytes": 46090,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -228,8 +228,8 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/present-value-of-annuity-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.6e035de4.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.2751fdc6.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.196b49f5.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.ead5da2c.css"
     },
     "/loan-calculators/how-much-can-i-borrow/": {
       "calculatorId": "how-much-can-i-borrow",
@@ -237,18 +237,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.bbacbc75.css",
       "hash": "4add897e",
-      "criticalHash": "a55ee92e",
+      "criticalHash": "bbacbc75",
       "fullBytes": 56096,
-      "criticalBytes": 34655,
+      "criticalBytes": 34946,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/how-much-can-i-borrow/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.4add897e.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.a55ee92e.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.critical.bbacbc75.css"
     },
     "/loan-calculators/remortgage-calculator/": {
       "calculatorId": "remortgage-switching",
@@ -256,18 +256,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.0c02b150.css",
       "hash": "ee3f7a9f",
-      "criticalHash": "48e0ea4b",
+      "criticalHash": "0c02b150",
       "fullBytes": 51023,
-      "criticalBytes": 34922,
+      "criticalBytes": 35213,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/remortgage-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-remortgage-calculator.ee3f7a9f.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.48e0ea4b.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-remortgage-calculator.critical.0c02b150.css"
     },
     "/loan-calculators/buy-to-let-mortgage-calculator/": {
       "calculatorId": "buy-to-let",
@@ -275,18 +275,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.9ecf3f86.css",
       "hash": "6823459e",
-      "criticalHash": "f57e4d5a",
+      "criticalHash": "9ecf3f86",
       "fullBytes": 59852,
-      "criticalBytes": 35122,
+      "criticalBytes": 35413,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/buy-to-let-mortgage-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.6823459e.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.f57e4d5a.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-buy-to-let-mortgage-calculator.critical.9ecf3f86.css"
     },
     "/loan-calculators/offset-mortgage-calculator/": {
       "calculatorId": "offset-calculator",
@@ -294,18 +294,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.543b0995.css",
       "hash": "5b39f129",
-      "criticalHash": "c88335af",
+      "criticalHash": "543b0995",
       "fullBytes": 60187,
-      "criticalBytes": 35971,
+      "criticalBytes": 36262,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/offset-mortgage-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.5b39f129.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.c88335af.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-offset-mortgage-calculator.critical.543b0995.css"
     },
     "/loan-calculators/interest-rate-change-calculator/": {
       "calculatorId": "interest-rate-change-calculator",
@@ -313,18 +313,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.776a862b.css",
       "hash": "acafd5eb",
-      "criticalHash": "31e03054",
+      "criticalHash": "776a862b",
       "fullBytes": 60808,
-      "criticalBytes": 36020,
+      "criticalBytes": 36311,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/interest-rate-change-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.acafd5eb.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.31e03054.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.critical.776a862b.css"
     },
     "/loan-calculators/ltv-calculator/": {
       "calculatorId": "loan-to-value",
@@ -332,18 +332,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
       "deferredHref": "/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
-      "criticalCss": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ae908fc4.css",
       "hash": "8e193b2f",
-      "criticalHash": "ff652a4a",
+      "criticalHash": "ae908fc4",
       "fullBytes": 62745,
-      "criticalBytes": 36198,
+      "criticalBytes": 36489,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/loan-calculators/ltv-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.8e193b2f.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ff652a4a.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ae908fc4.css"
     },
     "/credit-card-calculators/credit-card-payment-calculator/": {
       "calculatorId": "credit-card-repayment-payoff",
@@ -351,18 +351,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
       "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
-      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.b73eacca.css",
       "hash": "c3ac71f5",
-      "criticalHash": "fb8a4657",
+      "criticalHash": "b73eacca",
       "fullBytes": 50566,
-      "criticalBytes": 46027,
+      "criticalBytes": 46318,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/credit-card-calculators/credit-card-payment-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.c3ac71f5.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.fb8a4657.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.critical.b73eacca.css"
     },
     "/credit-card-calculators/credit-card-minimum-payment-calculator/": {
       "calculatorId": "credit-card-minimum-payment",
@@ -370,18 +370,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
       "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
-      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.8ac814c1.css",
       "hash": "1ec64b30",
-      "criticalHash": "0ee915e8",
+      "criticalHash": "8ac814c1",
       "fullBytes": 53682,
-      "criticalBytes": 44780,
+      "criticalBytes": 45071,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/credit-card-calculators/credit-card-minimum-payment-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.1ec64b30.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.0ee915e8.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.critical.8ac814c1.css"
     },
     "/credit-card-calculators/balance-transfer-credit-card-calculator/": {
       "calculatorId": "balance-transfer-installment-plan",
@@ -389,18 +389,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
       "deferredHref": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
-      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.d78f7574.css",
       "hash": "c1df2b09",
-      "criticalHash": "6cc6a7b8",
+      "criticalHash": "d78f7574",
       "fullBytes": 54394,
-      "criticalBytes": 44846,
+      "criticalBytes": 45137,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/credit-card-calculators/balance-transfer-credit-card-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.c1df2b09.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.6cc6a7b8.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-balance-transfer-credit-card-calculator.critical.d78f7574.css"
     },
     "/credit-card-calculators/credit-card-consolidation-calculator/": {
       "calculatorId": "credit-card-consolidation",
@@ -408,18 +408,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
       "deferredHref": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
-      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css",
+      "criticalCss": "/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.1373a6a0.css",
       "hash": "8ade6101",
-      "criticalHash": "2e9445c8",
+      "criticalHash": "1373a6a0",
       "fullBytes": 58658,
-      "criticalBytes": 46011,
+      "criticalBytes": 46302,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.8ade6101.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.2e9445c8.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/credit-card-calculators-credit-card-consolidation-calculator.critical.1373a6a0.css"
     },
     "/car-loan-calculators/car-loan-calculator/": {
       "calculatorId": "car-loan",
@@ -427,18 +427,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.8daac8a4.css",
       "hash": "1ea39530",
-      "criticalHash": "dfec91a3",
+      "criticalHash": "8daac8a4",
       "fullBytes": 42867,
-      "criticalBytes": 33682,
+      "criticalBytes": 33973,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/car-loan-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.1ea39530.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.dfec91a3.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.8daac8a4.css"
     },
     "/car-loan-calculators/auto-loan-calculator/": {
       "calculatorId": "multiple-car-loan",
@@ -446,18 +446,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.8daac8a4.css",
       "hash": "605dcb31",
-      "criticalHash": "dfec91a3",
+      "criticalHash": "8daac8a4",
       "fullBytes": 40682,
-      "criticalBytes": 33682,
+      "criticalBytes": 33973,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/auto-loan-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.605dcb31.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.dfec91a3.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.8daac8a4.css"
     },
     "/car-loan-calculators/hire-purchase-calculator/": {
       "calculatorId": "hire-purchase",
@@ -465,18 +465,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.8daac8a4.css",
       "hash": "6e868e2d",
-      "criticalHash": "dfec91a3",
+      "criticalHash": "8daac8a4",
       "fullBytes": 40481,
-      "criticalBytes": 33682,
+      "criticalBytes": 33973,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/hire-purchase-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.6e868e2d.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.dfec91a3.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.8daac8a4.css"
     },
     "/car-loan-calculators/pcp-calculator/": {
       "calculatorId": "pcp-calculator",
@@ -484,18 +484,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.20738ef9.css",
       "hash": "318ead77",
-      "criticalHash": "24ee67db",
+      "criticalHash": "20738ef9",
       "fullBytes": 42745,
-      "criticalBytes": 34289,
+      "criticalBytes": 34580,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/pcp-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.318ead77.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.24ee67db.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.20738ef9.css"
     },
     "/car-loan-calculators/car-lease-calculator/": {
       "calculatorId": "leasing-calculator",
@@ -503,18 +503,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.8b493c9b.css",
       "hash": "062a5bd6",
-      "criticalHash": "c6f07e73",
+      "criticalHash": "8b493c9b",
       "fullBytes": 43781,
-      "criticalBytes": 34302,
+      "criticalBytes": 34593,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/car-lease-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.062a5bd6.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.c6f07e73.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.8b493c9b.css"
     },
     "/percentage-calculators/percent-change-calculator/": {
       "calculatorId": "percent-change",
@@ -522,18 +522,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.0c7560e5.css",
       "hash": "a19f5d8e",
-      "criticalHash": "3f64b960",
+      "criticalHash": "0c7560e5",
       "fullBytes": 44492,
-      "criticalBytes": 81792,
+      "criticalBytes": 82083,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percent-change-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change-calculator.a19f5d8e.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.3f64b960.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-change-calculator.critical.0c7560e5.css"
     },
     "/percentage-calculators/percentage-difference-calculator/": {
       "calculatorId": "percentage-difference",
@@ -541,18 +541,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.6baf124d.css",
       "hash": "8a8f706a",
-      "criticalHash": "8360d792",
+      "criticalHash": "6baf124d",
       "fullBytes": 44456,
-      "criticalBytes": 81756,
+      "criticalBytes": 82047,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percentage-difference-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.8a8f706a.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.8360d792.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.critical.6baf124d.css"
     },
     "/percentage-calculators/percentage-increase-calculator/": {
       "calculatorId": "percentage-increase",
@@ -560,18 +560,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.d93a4f9b.css",
       "hash": "3e77d544",
-      "criticalHash": "f1e8b7a2",
+      "criticalHash": "d93a4f9b",
       "fullBytes": 46733,
-      "criticalBytes": 84033,
+      "criticalBytes": 84324,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percentage-increase-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.3e77d544.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.f1e8b7a2.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-increase-calculator.critical.d93a4f9b.css"
     },
     "/percentage-calculators/percentage-decrease-calculator/": {
       "calculatorId": "percentage-decrease",
@@ -579,18 +579,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.427b15ff.css",
       "hash": "01f836a4",
-      "criticalHash": "dd2c7275",
+      "criticalHash": "427b15ff",
       "fullBytes": 46729,
-      "criticalBytes": 84029,
+      "criticalBytes": 84320,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percentage-decrease-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.01f836a4.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.dd2c7275.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-decrease-calculator.critical.427b15ff.css"
     },
     "/percentage-calculators/percentage-composition-calculator/": {
       "calculatorId": "percentage-composition",
@@ -598,18 +598,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.449e17cf.css",
       "hash": "d54a7138",
-      "criticalHash": "4643c96a",
+      "criticalHash": "449e17cf",
       "fullBytes": 49092,
-      "criticalBytes": 86392,
+      "criticalBytes": 86683,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percentage-composition-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.d54a7138.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.4643c96a.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percentage-composition-calculator.critical.449e17cf.css"
     },
     "/percentage-calculators/reverse-percentage-calculator/": {
       "calculatorId": "reverse-percentage",
@@ -617,18 +617,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.0ebf2b58.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.419f89f8.css",
       "hash": "663d8a10",
-      "criticalHash": "0ebf2b58",
+      "criticalHash": "419f89f8",
       "fullBytes": 44772,
-      "criticalBytes": 50178,
+      "criticalBytes": 50469,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/reverse-percentage-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.663d8a10.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.0ebf2b58.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-reverse-percentage-calculator.critical.419f89f8.css"
     },
     "/percentage-calculators/percent-to-fraction-decimal-calculator/": {
       "calculatorId": "percent-to-fraction-decimal",
@@ -636,18 +636,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.1934b165.css",
       "deferredHref": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.1934b165.css",
-      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css",
+      "criticalCss": "/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.0e7c3080.css",
       "hash": "1934b165",
-      "criticalHash": "756fad0c",
+      "criticalHash": "0e7c3080",
       "fullBytes": 46735,
-      "criticalBytes": 84035,
+      "criticalBytes": 84326,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.1934b165.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.756fad0c.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-percent-to-fraction-decimal-calculator.critical.0e7c3080.css"
     },
     "/time-and-date/sleep-time-calculator/": {
       "calculatorId": "sleep-time-calculator",
@@ -655,18 +655,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
       "deferredHref": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
-      "criticalCss": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.452224de.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.1a12f184.css",
       "hash": "6fc46893",
-      "criticalHash": "452224de",
+      "criticalHash": "1a12f184",
       "fullBytes": 56285,
-      "criticalBytes": 93585,
+      "criticalBytes": 93876,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/time-and-date/sleep-time-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.6fc46893.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.452224de.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.1a12f184.css"
     },
     "/time-and-date/wake-up-time-calculator/": {
       "calculatorId": "wake-up-time-calculator",
@@ -674,18 +674,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
       "deferredHref": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
-      "criticalCss": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.4ebe5212.css",
       "hash": "13608f82",
-      "criticalHash": "597b74d0",
+      "criticalHash": "4ebe5212",
       "fullBytes": 49861,
-      "criticalBytes": 87161,
+      "criticalBytes": 87452,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/time-and-date/wake-up-time-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.13608f82.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.597b74d0.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-wake-up-time-calculator.critical.4ebe5212.css"
     },
     "/time-and-date/nap-time-calculator/": {
       "calculatorId": "nap-time-calculator",
@@ -693,18 +693,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
       "deferredHref": "/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
-      "criticalCss": "/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.64edfef0.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.ac068d0e.css",
       "hash": "1ddffbc4",
-      "criticalHash": "64edfef0",
+      "criticalHash": "ac068d0e",
       "fullBytes": 48597,
-      "criticalBytes": 85897,
+      "criticalBytes": 86188,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/time-and-date/nap-time-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.1ddffbc4.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.64edfef0.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.ac068d0e.css"
     }
   }
 }

@@ -580,6 +580,18 @@ body .site-header .header-search-icon {
     color 0.12s ease;
 }
 
+.fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
+  align-items: flex-start;
+  white-space: normal;
+  line-height: 1.32;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
+  margin-top: 2px;
+}
+
 .fin-nav-item-icon {
   font-size: 14px;
   line-height: 1;

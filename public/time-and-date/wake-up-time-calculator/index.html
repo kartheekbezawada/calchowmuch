@@ -1086,6 +1086,18 @@
           color 0.12s ease;
       }
 
+      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
+        align-items: flex-start;
+        white-space: normal;
+        line-height: 1.32;
+        overflow: visible;
+        text-overflow: clip;
+      }
+
+      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
+        margin-top: 2px;
+      }
+
       .fin-nav-item-icon {
         font-size: 14px;
         line-height: 1;
@@ -4210,16 +4222,47 @@
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link is-active" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content">
-<div class="nav-category" data-id="time-and-date">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Time & Date</span>
-    <span class="nav-category-indicator">-</span>
+          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true" data-fin-nav-cluster="time-and-date">
+<div class="fin-nav-group is-expanded" data-fin-subcategory="sleep-time">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">🌙</span>
+    <span class="fin-nav-toggle-label">Sleep Time</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="nav-category-items">
-    <a class="nav-item" href="/time-and-date/sleep-time-calculator/">Sleep Time Calculator</a><a class="nav-item is-active" href="/time-and-date/wake-up-time-calculator/">Wake-Up Time Calculator</a><a class="nav-item" href="/time-and-date/nap-time-calculator/">Nap Time Calculator</a><a class="nav-item" href="/time-and-date/power-nap-calculator/">Power Nap Calculator</a><a class="nav-item" href="/time-and-date/energy-based-nap-selector/">Energy-Based Nap Selector</a><a class="nav-item" href="/time-and-date/work-hours-calculator/">Work Hours Calculator</a><a class="nav-item" href="/time-and-date/overtime-hours-calculator/">Overtime Hours Calculator</a><a class="nav-item" href="/time-and-date/time-between-two-dates-calculator/">Time Between Two Dates Calculator</a><a class="nav-item" href="/time-and-date/days-until-a-date-calculator/">Days Until a Date Calculator</a><a class="nav-item" href="/time-and-date/countdown-timer-generator/">Countdown Timer Generator</a><a class="nav-item" href="/time-and-date/age-calculator/">Age Calculator</a><a class="nav-item" href="/time-and-date/birthday-day-of-week/">Birthday Day-of-Week</a>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/time-and-date/sleep-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌙</span>Sleep Time Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/wake-up-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌅</span>Wake-Up Time Calculator</a><a class="fin-nav-item" href="/time-and-date/nap-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">😴</span>Nap Time Calculator</a><a class="fin-nav-item" href="/time-and-date/power-nap-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚡</span>Power Nap Calculator</a><a class="fin-nav-item" href="/time-and-date/energy-based-nap-selector/"><span class="fin-nav-item-icon" aria-hidden="true">🔋</span>Energy-Based Nap Selector</a>
   </div>
-</div></div>
+</div>
+<div class="fin-nav-group" data-fin-subcategory="work-hours">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">⏱️</span>
+    <span class="fin-nav-toggle-label">Work Hours</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/time-and-date/work-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🕒</span>Work Hours Calculator</a><a class="fin-nav-item" href="/time-and-date/overtime-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⌛</span>Overtime Hours Calculator</a>
+  </div>
+</div>
+<div class="fin-nav-group" data-fin-subcategory="date-time">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">📅</span>
+    <span class="fin-nav-toggle-label">Date & Time</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer-generator/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer Generator</a>
+  </div>
+</div>
+<div class="fin-nav-group" data-fin-subcategory="age-calculator">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">🎂</span>
+    <span class="fin-nav-toggle-label">Age Calculator</span>
+    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="fin-nav-items">
+    <a class="fin-nav-item" href="/time-and-date/age-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧬</span>Age Calculator</a><a class="fin-nav-item" href="/time-and-date/birthday-day-of-week/"><span class="fin-nav-item-icon" aria-hidden="true">🎉</span>Birthday Day-of-Week</a>
+  </div>
+</div></div></div>
         </aside>
         <section class="center-column">
           <div class="panel panel-scroll panel-span-all">
