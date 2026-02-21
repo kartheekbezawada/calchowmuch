@@ -2129,13 +2129,82 @@ body .site-header .header-search-icon {
 
 #calc-compound-interest .pv-toggle-group .calculator-button.is-active {
   border-color: rgba(56, 189, 248, 0.82);
-  background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+  background: linear-gradient(
+    140deg,
+    rgba(37, 99, 235, 0.95),
+    rgba(14, 165, 233, 0.82)
+  );
   color: #fff;
 }
 
-#calc-compound-interest .pv-toggle-group .calculator-button:not(.is-active):hover {
+#calc-compound-interest
+  .pv-toggle-group
+  .calculator-button:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.12);
   color: #e0f2fe;
+}
+
+#calc-compound-interest .calculator-ui .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-compound-interest .calculator-ui .mtg-form-panel {
+  display: grid;
+  gap: 1.65rem;
+  align-content: start;
+}
+
+#calc-compound-interest .calculator-ui .mtg-preview-panel {
+  border-radius: 1.15rem;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: linear-gradient(
+    160deg,
+    rgba(30, 41, 59, 0.96),
+    rgba(15, 23, 42, 0.92)
+  );
+  padding: 1.15rem;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+#calc-compound-interest .calculator-ui .mtg-preview-main {
+  border-radius: 0.95rem;
+  padding: 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+#calc-compound-interest .calculator-ui .mtg-result-card {
+  min-height: 56px;
+}
+
+#calc-compound-interest .calculator-ui .mtg-summary-card {
+  min-height: 80px;
+}
+
+#calc-compound-interest .calculator-ui .input-grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 1220px) {
+  #calc-compound-interest .calculator-ui .mtg-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #calc-compound-interest .calculator-ui .input-grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 #ci-explanation .ci-results-table tbody tr:nth-child(even) {
@@ -2165,15 +2234,23 @@ body .site-header .header-search-icon {
     box-shadow 0.2s ease;
 }
 
-#ci-explanation .ci-table-frequency-toggle .calculator-button.secondary:not(.is-active):hover {
+#ci-explanation
+  .ci-table-frequency-toggle
+  .calculator-button.secondary:not(.is-active):hover {
   background: rgba(59, 130, 246, 0.16);
   border-color: rgba(125, 211, 252, 0.34);
   color: #e0f2fe;
 }
 
-#ci-explanation .ci-table-frequency-toggle .calculator-button.secondary.is-active {
+#ci-explanation
+  .ci-table-frequency-toggle
+  .calculator-button.secondary.is-active {
   border-color: rgba(56, 189, 248, 0.82);
-  background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+  background: linear-gradient(
+    140deg,
+    rgba(37, 99, 235, 0.95),
+    rgba(14, 165, 233, 0.82)
+  );
   color: #fff;
   box-shadow:
     0 0 0 1px rgba(125, 211, 252, 0.35),
@@ -2186,6 +2263,45 @@ body .site-header .header-search-icon {
 
 #ci-explanation .ci-projection-table tbody tr:hover {
   background: rgba(59, 130, 246, 0.08);
+}
+
+#ci-explanation .ci-chart-scale-toggle .calculator-button.secondary {
+  min-height: 28px;
+  min-width: 88px;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.2s ease;
+}
+
+#ci-explanation
+  .ci-chart-scale-toggle
+  .calculator-button.secondary:not(.is-active):hover {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(125, 211, 252, 0.36);
+  color: #e0f2fe;
+}
+
+#ci-explanation .ci-chart-scale-toggle .calculator-button.secondary.is-active {
+  border-color: rgba(56, 189, 248, 0.82);
+  background: linear-gradient(
+    140deg,
+    rgba(37, 99, 235, 0.95),
+    rgba(14, 165, 233, 0.82)
+  );
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.35),
+    0 8px 18px rgba(37, 99, 235, 0.28);
 }
 
 @media (max-width: 640px) {

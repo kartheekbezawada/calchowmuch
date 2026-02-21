@@ -97,13 +97,13 @@
       "calculatorId": "compound-interest",
       "relPath": "finance-calculators/compound-interest-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.f055864a.css",
-      "hash": "d91f3da6",
-      "criticalHash": "f055864a",
-      "fullBytes": 85718,
-      "criticalBytes": 47268,
+      "href": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.96afbac4.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.96afbac4.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.3f03ab4c.css",
+      "hash": "96afbac4",
+      "criticalHash": "3f03ab4c",
+      "fullBytes": 92167,
+      "criticalBytes": 49648,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -113,8 +113,8 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/compound-interest-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.d91f3da6.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.f055864a.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.96afbac4.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-compound-interest-calculator.critical.3f03ab4c.css"
     },
     "/finance-calculators/simple-interest-calculator/": {
       "calculatorId": "simple-interest",
