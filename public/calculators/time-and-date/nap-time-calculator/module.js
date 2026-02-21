@@ -11,11 +11,14 @@ import {
 const napTypeGroup = document.querySelector('[data-button-group="nap-type"]');
 const bufferGroup = document.querySelector('[data-button-group="nap-buffer"]');
 const startTimeInput = document.querySelector('#nap-start-time');
-const useNowButton = document.querySelector('#nap-use-now');
+const timePickerButton = document.querySelector('#nap-time-picker');
 const calculateButton = document.querySelector('#nap-calculate');
 const resultsList = document.querySelector('#nap-results-list');
-const placeholder = document.querySelector('#nap-placeholder');
 const errorMessage = document.querySelector('#nap-error');
+
+const proxyInput = document.querySelector('#nap-latency-proxy');
+const proxyButton = document.querySelector('#nap-calc');
+const proxyResult = document.querySelector('#nap-result');
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -111,7 +114,7 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Nap Time Calculator – Best Nap Length & Wake Time',
+  title: 'Nap Time Calculator – Find the Best Time to Wake Up | CalcHowMuch',
   description:
     'Calculate the best nap length and wake-up time. Plan quick naps, power naps, or longer naps without grogginess.',
   canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
@@ -145,12 +148,16 @@ const placeholders = {
 
 const napTypeButtons = setupButtonGroup(napTypeGroup, {
   defaultValue: DEFAULT_NAP_TYPE,
-  onChange: () => showPlaceholder(),
+  onChange: () => {
+    clearError();
+  },
 });
 
 const bufferButtons = setupButtonGroup(bufferGroup, {
   defaultValue: String(DEFAULT_BUFFER_MINUTES),
-  onChange: () => showPlaceholder(),
+  onChange: () => {
+    clearError();
+  },
 });
 
 function formatTimeInput(date) {
@@ -162,6 +169,28 @@ function formatTimeDisplay(hours, minutes) {
   const date = new Date();
   date.setHours(hours, minutes, 0, 0);
   return date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+}
+
+function timeValueToMinutes(value) {
+  if (typeof value !== 'string' || !value.includes(':')) {
+    return null;
+  }
+  const [hours, minutes] = value.split(':').map(Number);
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+    return null;
+  }
+  return hours * 60 + minutes;
+}
+
+function minutesToTimeValue(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+  const normalized = ((Math.round(parsed) % 1440) + 1440) % 1440;
+  const hours = Math.floor(normalized / 60);
+  const minutes = normalized % 60;
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
 function updatePlaceholders({ napType, napMinutes, bufferMinutes, wakeTime, startTime }) {
@@ -195,20 +224,6 @@ function showError(message) {
   }
   errorMessage.textContent = message;
   errorMessage.classList.remove('is-hidden');
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
 }
 
 function addResultRow(label, value) {
@@ -274,8 +289,9 @@ function calculate() {
     startTime: startTimeLabel,
   });
 
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.remove('is-hidden');
+  if (proxyResult) {
+    proxyResult.textContent = wakeTimeLabel;
+  }
 }
 
 function setNowValue() {
@@ -285,25 +301,60 @@ function setNowValue() {
   const now = new Date();
   now.setSeconds(0, 0);
   startTimeInput.value = formatTimeInput(now);
+  if (proxyInput) {
+    const minutes = timeValueToMinutes(startTimeInput.value);
+    proxyInput.value = String(minutes ?? 0);
+  }
 }
 
 setNowValue();
 
 startTimeInput?.addEventListener('input', () => {
   if (!startTimeInput.value) {
-    showPlaceholder();
+    showError('Please enter a valid start time.');
     return;
   }
   clearError();
+  if (proxyInput) {
+    const minutes = timeValueToMinutes(startTimeInput.value);
+    if (minutes !== null) {
+      proxyInput.value = String(minutes);
+    }
+  }
 });
 
-startTimeInput?.addEventListener('change', () => clearError());
+startTimeInput?.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    calculate();
+  }
+});
 
-useNowButton?.addEventListener('click', () => {
-  setNowValue();
-  clearError();
+timePickerButton?.addEventListener('click', () => {
+  if (!startTimeInput) {
+    return;
+  }
+  if (typeof startTimeInput.showPicker === 'function') {
+    startTimeInput.showPicker();
+    return;
+  }
+  startTimeInput.focus();
+});
+
+proxyInput?.addEventListener('input', () => {
+  const next = minutesToTimeValue(proxyInput.value);
+  if (next && startTimeInput) {
+    startTimeInput.value = next;
+  }
+});
+
+proxyInput?.addEventListener('change', () => {
+  const next = minutesToTimeValue(proxyInput.value);
+  if (next && startTimeInput) {
+    startTimeInput.value = next;
+  }
 });
 
 calculateButton?.addEventListener('click', () => calculate());
+proxyButton?.addEventListener('click', () => calculate());
 
 calculate();

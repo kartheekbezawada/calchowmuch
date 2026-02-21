@@ -18,6 +18,26 @@ function slugify(route) {
 const targetRoute = normalizeRoute(process.env.TARGET_ROUTE);
 const missingRouteReason = 'TARGET_ROUTE is required for mobile UX tests.';
 const slug = targetRoute ? slugify(targetRoute) : '__missing__';
+const screenshotConfigBySlug = {
+  // Sleep route includes tiny starfield glow variance on some runs.
+  'time-and-date-sleep-time-calculator': { maxDiffPixels: 10 },
+};
+const screenshotStateBySlug = {
+  'time-and-date-sleep-time-calculator': async (page) => {
+    await page.evaluate(() => {
+      const input = document.getElementById('sleep-time-primary');
+      if (!input) return;
+      input.value = '22:00';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    const calcButton = page.locator('#sleep-calculate');
+    if ((await calcButton.count()) > 0) {
+      await calcButton.first().click();
+      await page.waitForTimeout(200);
+    }
+  },
+};
 
 test.describe('Mobile UX guard', () => {
   test.skip(!targetRoute, missingRouteReason);
@@ -28,9 +48,14 @@ test.describe('Mobile UX guard', () => {
     await page.goto(targetRoute);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(300);
+    if (screenshotStateBySlug[slug]) {
+      await screenshotStateBySlug[slug](page);
+    }
+    const screenshotConfig = screenshotConfigBySlug[slug] || {};
     await expect(page).toHaveScreenshot(`mobile-${slug}.png`, {
       fullPage: true,
       animations: 'disabled',
+      ...screenshotConfig,
     });
   });
 

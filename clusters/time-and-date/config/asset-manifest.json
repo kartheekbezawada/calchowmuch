@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "clusterId": "time-and-date",
+  "routes": {
+    "/time-and-date/sleep-time-calculator/": {
+      "route": "/time-and-date/sleep-time-calculator/",
+      "calculatorId": "sleep-time-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/sleep-time-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/sleep-time-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/wake-up-time-calculator/": {
+      "route": "/time-and-date/wake-up-time-calculator/",
+      "calculatorId": "wake-up-time-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/wake-up-time-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/wake-up-time-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/nap-time-calculator/": {
+      "route": "/time-and-date/nap-time-calculator/",
+      "calculatorId": "nap-time-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/nap-time-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/nap-time-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/power-nap-calculator/": {
+      "route": "/time-and-date/power-nap-calculator/",
+      "calculatorId": "power-nap-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/power-nap-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/power-nap-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/energy-based-nap-selector/": {
+      "route": "/time-and-date/energy-based-nap-selector/",
+      "calculatorId": "energy-based-nap-selector",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/energy-based-nap-selector/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/energy-based-nap-selector/module.js"
+        ]
+      }
+    },
+    "/time-and-date/work-hours-calculator/": {
+      "route": "/time-and-date/work-hours-calculator/",
+      "calculatorId": "work-hours-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/work-hours-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/work-hours-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/overtime-hours-calculator/": {
+      "route": "/time-and-date/overtime-hours-calculator/",
+      "calculatorId": "overtime-hours-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/overtime-hours-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/overtime-hours-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/time-between-two-dates-calculator/": {
+      "route": "/time-and-date/time-between-two-dates-calculator/",
+      "calculatorId": "time-between-two-dates-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/time-between-two-dates-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/time-between-two-dates-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/days-until-a-date-calculator/": {
+      "route": "/time-and-date/days-until-a-date-calculator/",
+      "calculatorId": "days-until-a-date-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/days-until-a-date-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/days-until-a-date-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/countdown-timer-generator/": {
+      "route": "/time-and-date/countdown-timer-generator/",
+      "calculatorId": "countdown-timer-generator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/countdown-timer-generator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/countdown-timer-generator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/age-calculator/": {
+      "route": "/time-and-date/age-calculator/",
+      "calculatorId": "age-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/age-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/age-calculator/module.js"
+        ]
+      }
+    },
+    "/time-and-date/birthday-day-of-week/": {
+      "route": "/time-and-date/birthday-day-of-week/",
+      "calculatorId": "birthday-day-of-week",
+      "clusterId": "time-and-date",
+      "buildId": "wave0-20260220",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/birthday-day-of-week/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/birthday-day-of-week/module.js"
+        ]
+      }
+    }
+  }
+}

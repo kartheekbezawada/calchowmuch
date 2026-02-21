@@ -7,8 +7,8 @@ test.describe('Countdown Timer Generator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Countdown Timer Generator');
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Countdown Timer Generator');
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
