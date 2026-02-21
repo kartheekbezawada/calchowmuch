@@ -35,6 +35,9 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
   'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
   'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
+  'calculators/time-and-date/sleep-time-calculator/calculator.css',
+  'calculators/time-and-date/wake-up-time-calculator/calculator.css',
+  'calculators/time-and-date/nap-time-calculator/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -59,14 +62,20 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/percentage-composition-calculator/',
   '/percentage-calculators/reverse-percentage-calculator/',
   '/percentage-calculators/percent-to-fraction-decimal-calculator/',
+  '/time-and-date/sleep-time-calculator/',
+  '/time-and-date/wake-up-time-calculator/',
+  '/time-and-date/nap-time-calculator/',
 ]);
-const PERCENTAGE_STRICT_INLINE_CALCULATORS = new Set([
+const STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
   'percentage-difference',
   'percentage-increase',
   'percentage-decrease',
   'percentage-composition',
   'percent-to-fraction-decimal',
+  'sleep-time-calculator',
+  'wake-up-time-calculator',
+  'nap-time-calculator',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -305,11 +314,48 @@ const PERCENTAGE_ISOLATED_ROUTES = [
   },
 ];
 
-const BUNDLED_ROUTES = [...FINANCE_PILOT_ROUTES, ...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
-const ISOLATED_ROUTE_CONTRACTS = [...LOANS_ISOLATED_ROUTES, ...PERCENTAGE_ISOLATED_ROUTES];
+const TIME_AND_DATE_ISOLATED_ROUTES = [
+  {
+    calculatorId: 'sleep-time-calculator',
+    route: '/time-and-date/sleep-time-calculator/',
+    relPath: 'time-and-date/sleep-time-calculator',
+    routeCss: 'calculators/time-and-date/sleep-time-calculator/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'wake-up-time-calculator',
+    route: '/time-and-date/wake-up-time-calculator/',
+    relPath: 'time-and-date/wake-up-time-calculator',
+    routeCss: 'calculators/time-and-date/wake-up-time-calculator/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'nap-time-calculator',
+    route: '/time-and-date/nap-time-calculator/',
+    relPath: 'time-and-date/nap-time-calculator',
+    routeCss: 'calculators/time-and-date/nap-time-calculator/calculator.css',
+    topNavStatic: false,
+  },
+];
+
+const BUNDLED_ROUTES = [
+  ...FINANCE_PILOT_ROUTES,
+  ...LOANS_ISOLATED_ROUTES,
+  ...PERCENTAGE_ISOLATED_ROUTES,
+  ...TIME_AND_DATE_ISOLATED_ROUTES,
+];
+const ISOLATED_ROUTE_CONTRACTS = [
+  ...LOANS_ISOLATED_ROUTES,
+  ...PERCENTAGE_ISOLATED_ROUTES,
+  ...TIME_AND_DATE_ISOLATED_ROUTES,
+];
 
 function resolveSourcesForRoute(routeConfig) {
-  if (isLoansIsolatedRoute(routeConfig.route) || isPercentageIsolatedRoute(routeConfig.route)) {
+  if (
+    isLoansIsolatedRoute(routeConfig.route) ||
+    isPercentageIsolatedRoute(routeConfig.route) ||
+    isTimeAndDateIsolatedRoute(routeConfig.route)
+  ) {
     return [...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
   }
   return [...CORE_CSS_SOURCES, ...CALCULATOR_SHARED_SOURCES, routeConfig.routeCss];
@@ -323,8 +369,16 @@ function isPercentageIsolatedRoute(route) {
   return PERCENTAGE_ISOLATED_ROUTES.some((item) => item.route === route);
 }
 
+function isTimeAndDateIsolatedRoute(route) {
+  return TIME_AND_DATE_ISOLATED_ROUTES.some((item) => item.route === route);
+}
+
 function isIsolatedRoute(route) {
-  return isLoansIsolatedRoute(route) || isPercentageIsolatedRoute(route);
+  return (
+    isLoansIsolatedRoute(route) ||
+    isPercentageIsolatedRoute(route) ||
+    isTimeAndDateIsolatedRoute(route)
+  );
 }
 
 function isFinancePilotRoute(route) {
@@ -545,7 +599,7 @@ function buildAssetManifest(routeBundleManifest) {
     let deferredRouteAssets = isUxFirstDeferredRoute
       ? [...UX_FIRST_CORE_DEFERRED_ASSETS, routeEntry.deferredHref]
       : [routeEntry.deferredHref];
-    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
+    if (STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
       deferredRouteAssets = [];
     }
 
@@ -563,7 +617,7 @@ function buildAssetManifest(routeBundleManifest) {
         route: [`/calculators/${routeConfig.relPath}/module.js`],
       },
       options: {
-        topNavStatic: true,
+        topNavStatic: routeConfig.topNavStatic !== false,
         ...(isUxFirstDeferredRoute ? { deferCoreCss: true } : {}),
       },
     };
@@ -622,7 +676,7 @@ function buildBundles() {
     ) {
       fullCriticalSources.add('assets/css/core-shell.css');
     }
-    if (PERCENTAGE_STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
+    if (STRICT_INLINE_CALCULATORS.has(routeConfig.calculatorId)) {
       fullCriticalSources.add('assets/css/core-tokens.css');
       fullCriticalSources.add('assets/css/theme-premium-dark.css');
       fullCriticalSources.add('assets/css/base.css');

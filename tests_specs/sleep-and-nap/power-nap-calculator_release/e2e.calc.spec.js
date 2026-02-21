@@ -7,8 +7,8 @@ test.describe('Power Nap Calculator', () => {
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Power Nap Calculator');
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Power Nap Calculator');
 
     await page.locator('#power-nap-start-time').fill('13:00');
     await page.locator('#power-nap-calculate').click();

@@ -1533,6 +1533,28 @@ const FINANCE_CALCULATOR_ICONS = {
   'monthly-savings-needed': '🏦',
 };
 
+const TIME_AND_DATE_SUBCATEGORY_ICONS = {
+  'sleep-time': '🌙',
+  'work-hours': '⏱️',
+  'date-time': '📅',
+  'age-calculator': '🎂',
+};
+
+const TIME_AND_DATE_CALCULATOR_ICONS = {
+  'sleep-time-calculator': '🌙',
+  'wake-up-time-calculator': '🌅',
+  'nap-time-calculator': '😴',
+  'power-nap-calculator': '⚡',
+  'energy-based-nap-selector': '🔋',
+  'work-hours-calculator': '🕒',
+  'overtime-hours-calculator': '⌛',
+  'time-between-two-dates-calculator': '🗓️',
+  'days-until-a-date-calculator': '📆',
+  'countdown-timer-generator': '⏳',
+  'age-calculator': '🧬',
+  'birthday-day-of-week': '🎉',
+};
+
 const FIN_NAV_CHEVRON_SVG =
   '<svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
 
@@ -1568,6 +1590,40 @@ function buildFinanceNav(category, activeCalculatorId, calcLookup) {
     .join('');
 
   return `<div class="fin-nav-container" data-fin-nav="true">${groupsHtml}</div>`;
+}
+
+function buildTimeAndDateNav(category, activeCalculatorId, calcLookup) {
+  const activeEntry = calcLookup.get(activeCalculatorId);
+  const activeSubcategoryId = activeEntry?.subcategory?.id ?? null;
+
+  const groupsHtml = category.subcategories
+    .map((subcategory) => {
+      const isExpanded = subcategory.id === activeSubcategoryId;
+      const subcategoryIcon = TIME_AND_DATE_SUBCATEGORY_ICONS[subcategory.id] || '🕒';
+
+      const itemsHtml = subcategory.calculators
+        .map((calculator) => {
+          const isActive = calculator.id === activeCalculatorId;
+          const calcIcon = TIME_AND_DATE_CALCULATOR_ICONS[calculator.id] || '🕒';
+          return `<a class="fin-nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}"><span class="fin-nav-item-icon" aria-hidden="true">${calcIcon}</span>${calculator.name}</a>`;
+        })
+        .join('');
+
+      return `
+<div class="fin-nav-group${isExpanded ? ' is-expanded' : ''}" data-fin-subcategory="${subcategory.id}">
+  <button type="button" class="fin-nav-toggle" aria-expanded="${isExpanded}">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">${subcategoryIcon}</span>
+    <span class="fin-nav-toggle-label">${subcategory.name}</span>
+    <span class="fin-nav-chevron">${FIN_NAV_CHEVRON_SVG}</span>
+  </button>
+  <div class="fin-nav-items">
+    ${itemsHtml}
+  </div>
+</div>`;
+    })
+    .join('');
+
+  return `<div class="fin-nav-container" data-fin-nav="true" data-fin-nav-cluster="time-and-date">${groupsHtml}</div>`;
 }
 
 function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup) {
@@ -1671,6 +1727,10 @@ function buildLeftNavHtml(
 
   if (category.id === 'finance') {
     return buildFinanceNav(category, activeCalculatorId, calcLookup);
+  }
+
+  if (category.id === 'time-and-date') {
+    return buildTimeAndDateNav(category, activeCalculatorId, calcLookup);
   }
 
   return buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup);
