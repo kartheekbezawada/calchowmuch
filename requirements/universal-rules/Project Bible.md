@@ -55,6 +55,7 @@
 ### 4.1 Foundations
 - **Metadata:** Unique Title, Intent-aligned Description, Single Canonical.
 - **Indexability:** Explanation & FAQs in initial HTML (Server-rendered).
+- **Explanation Quality Contract:** Intent-led heading, then `How to Guide`, then `Important Notes`, then FAQ.
 - **Links:** Bidirectional (Category <-> Calc <-> Related).
 
 ### 4.2 Intent Coverage
@@ -63,10 +64,19 @@
 - **Long-tail:** Natural language variations in FAQs.
 - **Scenarios:** Real-world examples (Required for Finance).
 
-### 4.3 Validation Checklist
+### 4.3 Readability and Graph Clarity
+- **Intent-first copy:** Avoid generic section names like `Explanation`; heading should match calculator purpose.
+- **How-to utility:** Steps must be actionable and skimmable (ordered list or bullets).
+- **Important notes:** Include trust assumptions and visible `Last updated` month/year.
+- **Graph quality bar:** If a chart exists, it must be decision-grade readable (clear axes/units, distinct series, non-obstructive legend, mobile readability).
+
+### 4.4 Validation Checklist
 - [ ] Metadata unique & valid.
 - [ ] JSON-LD valid & page-scoped.
 - [ ] Content (Exp/FAQ) in initial HTML.
+- [ ] Intent-led structure present: `Intent heading -> How to Guide -> Important Notes -> FAQ`.
+- [ ] Important Notes includes `Last updated`.
+- [ ] Graph readability checks pass (if graph exists).
 - [ ] Internal links present.
 - [ ] Mobile rendering pass (No CLS).
 

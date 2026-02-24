@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Home Loan calculator', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/loans/home-loan/');
+    await page.goto('/loan-calculators/mortgage-calculator/');
     await page.waitForSelector('#mtg-calculate');
   });
 
@@ -57,8 +57,6 @@ test.describe('Home Loan calculator', () => {
 
     const resultCard = page.locator('#mtg-result');
     await expect(resultCard).not.toContainText(/[£$€]/);
-    const summaryCard = page.locator('#mtg-summary');
-    await expect(summaryCard).not.toContainText(/[£$€]/);
 
     const tableRows = page.locator('#mtg-table-monthly-body tr');
     expect(await tableRows.count()).toBeGreaterThan(0);
@@ -126,6 +124,46 @@ test.describe('Home Loan calculator', () => {
 
     const faqItems = page.locator('#loan-mtg-explanation .bor-faq-card');
     await expect(faqItems).toHaveCount(10);
+
+    const graphCanvas = page.locator('#mtg-balance-canvas');
+    await expect(graphCanvas).toBeVisible();
+
+    const practicalGuide = page.locator('#mtg-section-practical-guide');
+    await expect(practicalGuide).toBeVisible();
+
+    await expect(page.locator('#mtg-section-practical-guide a')).toHaveCount(0);
+
+    await expect(page.locator('#mtg-summary')).toHaveCount(0);
+
+    const trustBlock = page.locator('#mtg-section-trust');
+    await expect(trustBlock).toBeVisible();
+    await expect(trustBlock).toContainText('For educational purposes only; not financial advice.');
+
+    const sectionOrderIsCorrect = await page.evaluate(() => {
+      const sectionIds = [
+        'mtg-section-lifetime',
+        'mtg-section-amortization',
+        'mtg-section-graph',
+        'mtg-section-practical-guide',
+        'mtg-section-how-to-guide',
+        'mtg-section-faq',
+        'mtg-section-trust',
+      ];
+      const positions = sectionIds.map((id) => {
+        const element = document.getElementById(id);
+        return element ? element.getBoundingClientRect().top + window.scrollY : -1;
+      });
+      if (positions.some((value) => value < 0)) {
+        return false;
+      }
+      for (let index = 1; index < positions.length; index += 1) {
+        if (positions[index] <= positions[index - 1]) {
+          return false;
+        }
+      }
+      return true;
+    });
+    expect(sectionOrderIsCorrect).toBe(true);
 
     const hasHorizontalScroll = await page.evaluate(() => {
       const root = document.documentElement;

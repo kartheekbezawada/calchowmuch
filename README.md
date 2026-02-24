@@ -53,6 +53,20 @@ It serves calculators across finance, loans, math, percentage, and time/date cat
 - Format check:
   - `npm run format:check`
 
+## Codex Usage Modes
+
+Use these chat commands to control Codex response efficiency:
+
+- `MODE: MAX` -> compact responses with reduced token usage.
+- `MODE: STANDARD` -> normal response detail and verbosity.
+- `MODE: STATUS` -> one-line output of the current mode.
+
+Notes:
+
+- Commands are case-insensitive but must start with `MODE:`.
+- Unknown mode values should return one-line guidance with valid options.
+- This affects collaboration verbosity only; release/compliance gate requirements stay unchanged.
+
 ## Packages Used (Build + Dev)
 
 From `package.json`:
@@ -130,6 +144,23 @@ At minimum, a high-confidence pass for a calculator change means:
 Governance source:
 
 - `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
+
+## Calculator Explanation Authoring Standard
+
+For `calc_exp` and `exp_only` routes, explanation content is mandatory in this order:
+
+- Intent-led heading (calculator purpose/topic; avoid generic `Explanation` headings)
+- `How to Guide`
+- `Important Notes` (must include `Last updated: <Month YYYY>`)
+- FAQ (schema-aligned)
+
+If a calculator includes graphs/charts, they must be readable and decision-useful:
+
+- Axes with clear labels and units/time basis
+- Distinct data series + legible legend placement
+- Mobile readability without horizontal overflow
+
+Source of truth: `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` and `requirements/universal-rules/RELEASE_CHECKLIST.md`
 
 ## Compliance and Tracking
 

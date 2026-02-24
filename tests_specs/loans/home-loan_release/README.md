@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/home-loan/
+- /loan-calculators/mortgage-calculator/

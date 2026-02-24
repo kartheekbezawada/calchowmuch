@@ -22,6 +22,28 @@
 - **Hard Limits:** No unsafe actions, no secret exfiltration, no fabrication.
 - **Deactivation:** Applies only to the current message. Next message reverts to Law.
 
+## 1.1 Token Efficiency Modes
+> **Commands:** `MODE: STANDARD` | `MODE: MAX` | `MODE: STATUS`
+
+- **Default:** `STANDARD`.
+- **Persistence:** Session-sticky until HUMAN sends a different `MODE:` command.
+- **Parsing contract:** Case-insensitive; must start with `MODE:`.
+- **Unknown mode:** Return one-line guidance with valid commands only.
+- **Status:** `MODE: STATUS` returns current mode in one line.
+- **Mode-change acknowledgement:** One-line confirmation only when mode changes.
+- **Precedence:** `ADMIN` remains higher-priority and unchanged; mode commands affect response efficiency only.
+
+`STANDARD`
+- Keep existing operating behavior and response detail.
+
+`MAX`
+- Enforce concise replies by default.
+- Use milestone-only progress updates.
+- Minimize repeated context and avoid redundant restatements.
+- Prefer targeted file reads/searches over broad scans.
+
+- **Governance lock:** Release/compliance obligations and mandatory gates remain unchanged in all modes.
+
 ---
 
 ## 2. Factory Pipeline (Build → Checklist → Sign-off → Release)

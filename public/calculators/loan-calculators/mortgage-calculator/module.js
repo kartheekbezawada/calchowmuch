@@ -8,7 +8,9 @@ import {
   formatTerm,
   buildHomeLoanSchedule,
   aggregateYearly,
+  buildMonthlySeries,
 } from '/assets/js/core/home-loan-utils.js';
+import { createMortgageBalanceChart } from '/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js';
 
 const priceInput = document.querySelector('#mtg-price');
 const downValueInput = document.querySelector('#mtg-down-value');
@@ -23,7 +25,6 @@ const lumpInput = document.querySelector('#mtg-lump');
 const lumpMonthInput = document.querySelector('#mtg-lump-month');
 const calculateButton = document.querySelector('#mtg-calculate');
 const resultDiv = document.querySelector('#mtg-result');
-const summaryDiv = document.querySelector('#mtg-summary');
 
 const downTypeGroup = document.querySelector('[data-button-group="mtg-down-type"]');
 const viewMonthlyButton = document.querySelector('#mtg-view-monthly');
@@ -55,6 +56,13 @@ const monthlyTableBody = document.querySelector('#mtg-table-monthly-body');
 const yearlyTableBody = document.querySelector('#mtg-table-yearly-body');
 const monthlyTableWrap = document.querySelector('#mtg-table-monthly-wrap');
 const yearlyTableWrap = document.querySelector('#mtg-table-yearly-wrap');
+const balanceChartCanvas = document.querySelector('#mtg-balance-canvas');
+const balanceChartTooltip = document.querySelector('#mtg-balance-tooltip');
+const balanceChartStatus = document.querySelector('#mtg-balance-status');
+const chartPayoffBase = document.querySelector('[data-mtg="chart-payoff-base"]');
+const chartPayoffExtra = document.querySelector('[data-mtg="chart-payoff-extra"]');
+const chartMonthsSaved = document.querySelector('[data-mtg="chart-months-saved"]');
+const chartInterestSaved = document.querySelector('[data-mtg="chart-interest-saved"]');
 
 const downTypeButtons = setupButtonGroup(downTypeGroup, {
   defaultValue: 'amount',
@@ -67,6 +75,11 @@ const downTypeButtons = setupButtonGroup(downTypeGroup, {
 let lastDownType = downTypeButtons?.getValue() ?? 'amount';
 let currentData = null;
 let scheduleView = 'monthly';
+const balanceChart = createMortgageBalanceChart({
+  canvas: balanceChartCanvas,
+  tooltip: balanceChartTooltip,
+  status: balanceChartStatus,
+});
 
 function handleDownTypeChange(type) {
   const price = Number(priceInput?.value);
@@ -269,24 +282,60 @@ function clearOutputs() {
   }
 }
 
+function clearChartKpis() {
+  if (chartPayoffBase) chartPayoffBase.textContent = '-';
+  if (chartPayoffExtra) chartPayoffExtra.textContent = '-';
+  if (chartMonthsSaved) chartMonthsSaved.textContent = '-';
+  if (chartInterestSaved) chartInterestSaved.textContent = '-';
+}
+
+function updateChartKpis({ baselineMonths, overpaymentMonths, interestSaved }) {
+  if (chartPayoffBase) chartPayoffBase.textContent = formatTerm(baselineMonths);
+  if (chartPayoffExtra) chartPayoffExtra.textContent = formatTerm(overpaymentMonths);
+  if (chartMonthsSaved) {
+    const monthDiff = Math.max(0, baselineMonths - overpaymentMonths);
+    chartMonthsSaved.textContent = String(monthDiff);
+  }
+  if (chartInterestSaved) chartInterestSaved.textContent = formatExplanationNumber(interestSaved);
+}
+
+function buildBalanceChartSeries({ principal, baseline, overpayment }) {
+  const totalMonths = Math.max(baseline.months, overpayment.months);
+  const baselineSeries = buildMonthlySeries(baseline.schedule, principal, totalMonths);
+  const overpaymentSeries = buildMonthlySeries(overpayment.schedule, principal, totalMonths);
+  const points = [];
+
+  for (let month = 0; month <= totalMonths; month += 1) {
+    points.push({
+      month,
+      baselineBalance: baselineSeries[month] ?? 0,
+      extraBalance: overpaymentSeries[month] ?? 0,
+    });
+  }
+
+  return { points };
+}
+
+function renderBalanceChart(series) {
+  balanceChart.update(series);
+}
+
 function setError(message) {
   if (resultDiv) {
     resultDiv.textContent = message;
   }
-  if (summaryDiv) {
-    summaryDiv.textContent = '';
-  }
   clearOutputs();
+  clearChartKpis();
+  renderBalanceChart(null);
   currentData = null;
 }
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {
+  if (!resultDiv) {
     return;
   }
 
   resultDiv.textContent = '';
-  summaryDiv.textContent = '';
   clearOutputs();
 
   const price = Number(priceInput?.value);
@@ -445,6 +494,15 @@ function calculate() {
     yearlyOver,
   };
 
+  const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
+  const chartSeries = buildBalanceChartSeries({ principal, baseline, overpayment });
+  updateChartKpis({
+    baselineMonths: baseline.months,
+    overpaymentMonths: overpayment.months,
+    interestSaved,
+  });
+  renderBalanceChart(chartSeries);
+
   resultDiv.innerHTML =
     '<strong>Monthly Payment (Principal + Interest)</strong>' +
     `<span class="mtg-result-value">${formatMoney(payment)}</span>`;
@@ -456,28 +514,6 @@ function calculate() {
       resultValue.classList.add('is-updated');
     });
   }
-
-  const interestSaved = Math.max(0, baseline.totalInterest - overpayment.totalInterest);
-  const timeSaved = Math.max(0, baseline.months - overpayment.months);
-  const payoffText = formatTerm(overpayment.months);
-  const payoffDate = startDate
-    ? formatMonthYear(addMonths(startDate, overpayment.months - 1))
-    : null;
-  const escrowLine =
-    escrowMonthly > 0
-      ? `Total monthly payment (PITI): ${formatMoney(payment + escrowMonthly)} ` +
-        `(taxes + insurance ${formatMoney(escrowMonthly)}/mo).`
-      : '';
-  const extraLine =
-    extraMonthly > 0 || lumpSum > 0
-      ? `Extra payments save ${formatMoney(interestSaved)} ` + `and ${formatTerm(timeSaved)}.`
-      : 'No extra payment applied.';
-  const payoffLine = payoffDate ? `${payoffText} (ending ${payoffDate})` : payoffText;
-
-  summaryDiv.innerHTML =
-    `<p><strong>Payoff with extras:</strong> ${payoffLine}.</p>` +
-    (escrowLine ? `<p>${escrowLine}</p>` : '') +
-    `<p>${extraLine}</p>`;
 
   scheduleView = 'monthly';
   renderMonthlyTable(overpayment.schedule, startDate);

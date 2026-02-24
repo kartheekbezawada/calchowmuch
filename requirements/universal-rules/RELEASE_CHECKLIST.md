@@ -625,7 +625,33 @@ HARD: Explanation + FAQs exist in initial HTML (not JS-only)
 
 HARD: Page crawlable without JS
 
-13.4 Sitemap
+13.4 Calculator Content Structure (Intent-Led) — HARD
+
+Applies to `calc_exp` and `exp_only` routes.
+
+HARD: Explanation heading must be intent-led (calculator purpose/topic), not generic labels like `Explanation` or `Calculator Explanation`.
+
+HARD: Required section order must be visible in initial HTML:
+- Intent-led heading
+- `How to Guide`
+- `Important Notes`
+- FAQ
+
+HARD: `Important Notes` must include `Last updated: <Month YYYY>`.
+
+HARD: FAQ count and visible FAQ content must remain schema-aligned.
+
+13.5 Graph Readability (When Graph Exists) — HARD
+
+HARD: Graph/chart must have readable axis labels with units/time basis where applicable.
+
+HARD: Multi-series graphs must use legible legend labels and legend placement must not cover key data traces.
+
+HARD: Text/labels/tooltips must remain readable on desktop and at 375px mobile width.
+
+HARD: Graph area must not create horizontal overflow.
+
+13.6 Sitemap
 
 HARD: Route present in public/sitemap.xml
 
@@ -681,6 +707,10 @@ AdSense loader snippet compliance proof (head snippet exact-match evidence)
 Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activation)
 
 SERP validation notes (canonical + schema + FAQ parity)
+
+Intent-led content structure validation notes (section order + `Last updated` evidence)
+
+Graph readability validation notes (if graph exists)
 
 Structured data dedupe run details (scope + command used + summary counts)
 

@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.0 (Cluster + calculator scoped test isolation governance)
-- **Last Updated:** 2026-02-19
+- **Version:** 4.2 (Intent-led explanation + graph readability governance)
+- **Last Updated:** 2026-02-23
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -41,6 +41,12 @@ This is the only active governance file under `requirements/universal-rules/`. A
 
 - **UR-FLOW-020 (P0):** Keyword `ADMIN` in message supersedes all workflow constraints.
 - **UR-FLOW-021 (P0):** ADMIN mode skips gates but must not violate platform safety/security.
+
+### 1.4 Interaction Efficiency Modes
+
+- **UR-FLOW-022 (P1):** Agent may use interaction modes (`STANDARD`, `MAX`) for response efficiency.
+- **UR-FLOW-023 (P0):** Interaction modes must not relax mandatory release gates or safety constraints.
+- **UR-FLOW-024 (P1):** Mode-switch command syntax and semantics are governed by `AGENTS.md`.
 
 ---
 
@@ -246,21 +252,35 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 6.1 Mandatory Structure
 
-- **UR-EXP-001 (P0):** Order: H2 Summary, H3 Scenario, H3 Results, H3 Expl, H3 FAQ.
-- **UR-EXP-002 (P0):** Only one H2 (Summary); others are H3.
-- **UR-EXP-003 (P0):** No extra heading levels/sections without approval.
+- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, explanation order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`).
+- **UR-EXP-002 (P0):** The explanation `H2` must use the calculator's intent/topic (example: `Mortgage Complete Practical Guide`); generic headings like `Explanation` or `Calculator Explanation` are forbidden.
+- **UR-EXP-003 (P0):** Only one `H2` is allowed in the explanation pane.
+- **UR-EXP-004 (P0):** `How to Guide` and `Important Notes` sections are mandatory and must appear before FAQ.
+- **UR-EXP-005 (P0):** `Important Notes` must include a visible `Last updated: <Month YYYY>` line.
+- **UR-EXP-006 (P0):** No extra heading hierarchy or section insertion between required blocks without explicit REQ approval.
 
 ### 6.2 Dynamic Content and FAQ
 
-- **UR-EXP-010 (P0):** Summary must be dynamic (inputs/outputs).
+- **UR-EXP-010 (P0):** Intent-led section content must be output-aware and calculator-specific (not generic filler copy).
 - **UR-EXP-011 (P0):** Tables must be output-driven, not static.
 - **UR-EXP-012 (P0):** Default FAQ baseline: 10 items.
 - **UR-EXP-013 (P0):** FAQ layout/text must align with schema.
+- **UR-EXP-014 (P0):** `How to Guide` must use scannable, actionable steps (ordered list or bullets).
+- **UR-EXP-015 (P0):** `Important Notes` must provide concise trust/disclaimer assumptions relevant to calculator behavior.
 
 ### 6.3 Table Baseline
 
 - **UR-EXP-020 (P0):** Use semantic HTML (`table/thead/tbody/tfoot`) and full grid consistency.
 - **UR-EXP-021 (P0):** Styling must align with shared theme; no conflicting borders.
+
+### 6.4 Graph and Visual Output Contract
+
+- **UR-EXP-030 (P0):** If a calculator renders a graph/chart, it must be in a dedicated section with a descriptive heading.
+- **UR-EXP-031 (P0):** Graph axes must have readable labels and units/time basis where applicable.
+- **UR-EXP-032 (P0):** Multi-series charts must provide clear legend labels that do not occlude important data.
+- **UR-EXP-033 (P0):** Series styling must remain visually distinguishable (color/line treatment) in both desktop and mobile views.
+- **UR-EXP-034 (P1):** Interactive charts should expose tooltip/focus values with period + value.
+- **UR-EXP-035 (P0):** Graph rendering must not clip labels or create horizontal overflow on mobile.
 
 ---
 
@@ -271,6 +291,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-001 (P0):** Unique title (35-61ch), meta description (110-165ch), one H1, canonical, viewport, lang, robots.
 - **UR-SEO-002 (P0):** Static HTML Robots: `<meta name="robots" content="index,follow">`.
 - **UR-SEO-003 (P0):** Canonical must be absolute and production domain.
+- **UR-SEO-004 (P0):** `calc_exp` and `exp_only` routes must include required explanation blocks from `UR-EXP-001` to `UR-EXP-005` in initial HTML.
+- **UR-SEO-005 (P0):** Missing Intent-led heading, `How to Guide`, `Important Notes`, or FAQ on applicable routes is SEO FAIL.
 
 ### 7.2 P2 Structured Data and Social
 
@@ -331,6 +353,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-033 (P0):** `content_shell`: Shell/Nav/SEO. Panes N/A.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
+- **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> `Important Notes` -> FAQ).
+- **UR-TEST-037 (P0):** If a route includes graphs/charts, tests must assert graph readability basics: labeled axes, legible legend, and no horizontal overflow at mobile width.
 
 ### 8.5 Cluster & Calculator Scoped Test Isolation
 
