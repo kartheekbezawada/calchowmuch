@@ -17,3 +17,15 @@ Ownership: calculator route owner.
 
 Route:
 - /loan-calculators/mortgage-calculator/
+
+Cloudflare cache hardening (mortgage only):
+- Versioned assets in route:
+  - `/calculators/loan-calculators/mortgage-calculator/module.js?v=20260224`
+  - `/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js?v=20260224`
+  - `/calculators/loan-calculators/mortgage-calculator/calculator.css?v=20260224`
+- Version token source:
+  - `ROUTE_ASSET_VERSION` in `scripts/generate-mpa-pages.js` (override via env on deploy).
+- Purge only these paths on release:
+  - `/loan-calculators/mortgage-calculator/`
+  - `/calculators/loan-calculators/mortgage-calculator/module.js`
+  - `/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js`

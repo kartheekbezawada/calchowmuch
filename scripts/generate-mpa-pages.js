@@ -41,6 +41,7 @@ const ROUTE_BUNDLE_MANIFEST_PATH = path.join(
 
 const CSS_VERSION = '20260127';
 const GTEP_CSS_VERSION = '20260127';
+const ROUTE_ASSET_VERSION = process.env.ROUTE_ASSET_VERSION || '20260224';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
 const ADSENSE_HEAD_MARKER_START = '<!-- CHM_ADSENSE_HEAD_START -->';
@@ -848,6 +849,36 @@ function resolveCalculatorGovernance({ category, subcategory, calculator, overri
   calculator.paneLayout = paneLayout;
 
   return { routeArchetype, designFamily, paneLayout };
+}
+
+function appendVersionParam(href, version = ROUTE_ASSET_VERSION) {
+  if (typeof href !== 'string' || !href.trim() || !version) {
+    return href;
+  }
+  const [pathAndQuery, hash = ''] = href.split('#');
+  if (/[?&]v=/.test(pathAndQuery)) {
+    return href;
+  }
+  const separator = pathAndQuery.includes('?') ? '&' : '?';
+  const withVersion = `${pathAndQuery}${separator}v=${encodeURIComponent(version)}`;
+  return hash ? `${withVersion}#${hash}` : withVersion;
+}
+
+function versionCalculatorSourceHref(href) {
+  if (typeof href !== 'string') {
+    return href;
+  }
+  return href.startsWith('/calculators/') ? appendVersionParam(href) : href;
+}
+
+function applyCalculatorFragmentVersioning(html) {
+  if (typeof html !== 'string' || !html) {
+    return html;
+  }
+  return html.replace(
+    /\/calculators\/[^"')\s]+?\.(?:js|css)(?:\?[^"')\s]*)?/g,
+    (match) => versionCalculatorSourceHref(match)
+  );
 }
 
 function ensureLength(text, min, max) {
@@ -1761,13 +1792,14 @@ function buildPageHtml({
   staticStructuredData = null,
   injectStaticStructuredData = false,
 }) {
+  const versionedCalculatorHtml = applyCalculatorFragmentVersioning(calculatorHtml);
   const sanitizedCalculatorHtml =
-    assetConfig && typeof calculatorHtml === 'string'
-      ? calculatorHtml.replace(
-          /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css['"]\);\s*<\/style>/gi,
+    assetConfig && typeof versionedCalculatorHtml === 'string'
+      ? versionedCalculatorHtml.replace(
+          /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>/gi,
           ''
         )
-      : calculatorHtml;
+      : versionedCalculatorHtml;
 
   const explanationTitleHtml =
     explanationHeading === '' || explanationHeading === null
@@ -1848,7 +1880,9 @@ ${explanationTitleHtml}  ${explanationHtml}
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
-  const routeModuleScriptHref = calculatorRelPath ? `/calculators/${calculatorRelPath}/module.js` : null;
+  const routeModuleScriptHref = calculatorRelPath
+    ? appendVersionParam(`/calculators/${calculatorRelPath}/module.js`)
+    : null;
 
   let scriptTagsHtml = '';
   if (assetConfig) {
@@ -1857,7 +1891,7 @@ ${explanationTitleHtml}  ${explanationHtml}
     const allScripts = [...coreScripts, ...routeScripts];
     scriptTagsHtml = allScripts
       .filter((src) => typeof src === 'string' && src.trim())
-      .map((src) => `    <script type="module" src="${src}"></script>`)
+      .map((src) => `    <script type="module" src="${versionCalculatorSourceHref(src)}"></script>`)
       .join('\n');
   } else {
     const defaultScripts = ['/assets/js/core/mpa-nav.js'];

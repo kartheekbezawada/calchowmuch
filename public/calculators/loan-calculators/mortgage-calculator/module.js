@@ -10,7 +10,7 @@ import {
   aggregateYearly,
   buildMonthlySeries,
 } from '/assets/js/core/home-loan-utils.js';
-import { createMortgageBalanceChart } from '/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js';
+import { createMortgageBalanceChart } from '/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js?v=20260224';
 
 const priceInput = document.querySelector('#mtg-price');
 const downValueInput = document.querySelector('#mtg-down-value');

@@ -196,3 +196,8 @@ Release governance follows the document chain:
 
 - This repo is static-first: generated HTML in `public/` is expected output.
 - `scripts/local-seo-performance-audit.mjs` uses `CHROME_PATH` resolution to stabilize Lighthouse runs in WSL/Linux environments.
+- Cache policy baseline for calculators:
+  - HTML routes are short-cache (`max-age=0, must-revalidate`).
+  - JS/CSS assets are long-cache (`max-age=2592000, stale-while-revalidate=86400`).
+  - Calculator-source imports under `/calculators/...` are versioned by `ROUTE_ASSET_VERSION` in `scripts/generate-mpa-pages.js`.
+  - On scoped releases, purge only the changed route path plus changed calculator module/helper asset paths.
