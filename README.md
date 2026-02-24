@@ -162,6 +162,25 @@ If a calculator includes graphs/charts, they must be readable and decision-usefu
 
 Source of truth: `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` and `requirements/universal-rules/RELEASE_CHECKLIST.md`
 
+## Thin-Content Governance
+
+Thin-content quality checks are integrated into scoped SEO release commands.
+
+- Primary command:
+  - `npm run test:content:quality -- --scope=<full|cluster|calc|route> [--route=/path/]`
+- Scoped SEO integration:
+  - `CLUSTER={cluster} CALC={calculator} npm run test:calc:seo` runs Playwright SEO specs, then thin-content scoring (`--scope=calc`).
+  - `CLUSTER={cluster} npm run test:cluster:seo` runs Playwright SEO specs, then thin-content scoring (`--scope=cluster`).
+
+Rollout policy:
+
+- `soft` mode: evidence + warnings only (non-blocking)
+- `hard` mode: blocking fail when score `<70` or hard flags exist
+
+Scoped calc artifact path:
+
+- `test-results/content-quality/scoped/{cluster}/{calc}.json`
+
 ## Compliance and Tracking
 
 Release governance follows the document chain:

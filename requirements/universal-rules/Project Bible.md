@@ -55,7 +55,7 @@
 ### 4.1 Foundations
 - **Metadata:** Unique Title, Intent-aligned Description, Single Canonical.
 - **Indexability:** Explanation & FAQs in initial HTML (Server-rendered).
-- **Explanation Quality Contract:** Intent-led heading, then `How to Guide`, then `Important Notes`, then FAQ.
+- **Explanation Quality Contract:** Output insight sections may appear first; required SERP explanation block remains strict: Intent-led heading, then `How to Guide`, then `Important Notes`, then FAQ.
 - **Links:** Bidirectional (Category <-> Calc <-> Related).
 
 ### 4.2 Intent Coverage
@@ -74,7 +74,7 @@
 - [ ] Metadata unique & valid.
 - [ ] JSON-LD valid & page-scoped.
 - [ ] Content (Exp/FAQ) in initial HTML.
-- [ ] Intent-led structure present: `Intent heading -> How to Guide -> Important Notes -> FAQ`.
+- [ ] Intent-led structure present in required SERP block: `Intent heading -> How to Guide -> Important Notes -> FAQ` (output-first sections allowed).
 - [ ] Important Notes includes `Last updated`.
 - [ ] Graph readability checks pass (if graph exists).
 - [ ] Internal links present.

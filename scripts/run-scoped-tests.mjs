@@ -487,6 +487,7 @@ if (level === 'cluster') {
       process.exit(0);
     }
     runPlaywright(files, `CLUSTER=${clusterId} TYPE=${type}`);
+    run('node', ['scripts/content-quality-thin-score.mjs', '--scope=cluster']);
   } else if (type === 'cwv') {
     const files = collectFiles(
       dir,
@@ -554,6 +555,7 @@ if (type === 'unit') {
     process.exit(0);
   }
   runPlaywright(files, `CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`);
+  run('node', ['scripts/content-quality-thin-score.mjs', '--scope=calc']);
 } else if (type === 'cwv') {
   const files = collectFiles(
     dir,

@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.2 (Intent-led explanation + graph readability governance)
-- **Last Updated:** 2026-02-23
+- **Version:** 4.3 (Thin-content governance + output-first explanation contract)
+- **Last Updated:** 2026-02-24
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -252,7 +252,7 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 6.1 Mandatory Structure
 
-- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, explanation order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`).
+- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, required SERP explanation block order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`).
 - **UR-EXP-002 (P0):** The explanation `H2` must use the calculator's intent/topic (example: `Mortgage Complete Practical Guide`); generic headings like `Explanation` or `Calculator Explanation` are forbidden.
 - **UR-EXP-003 (P0):** Only one `H2` is allowed in the explanation pane.
 - **UR-EXP-004 (P0):** `How to Guide` and `Important Notes` sections are mandatory and must appear before FAQ.
@@ -281,6 +281,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-033 (P0):** Series styling must remain visually distinguishable (color/line treatment) in both desktop and mobile views.
 - **UR-EXP-034 (P1):** Interactive charts should expose tooltip/focus values with period + value.
 - **UR-EXP-035 (P0):** Graph rendering must not clip labels or create horizontal overflow on mobile.
+- **UR-EXP-036 (P0):** Output insight sections (for example totals tables, amortization tables, graph modules, result interpretation cards) may appear before the required SERP explanation block from `UR-EXP-001`.
+- **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block: `How to Guide` must appear before `Important Notes`, and `Important Notes` must appear before `FAQ`.
 
 ---
 
@@ -313,6 +315,10 @@ Applicability: `calc_exp`, `exp_only`.
 
 - **UR-SEO-030 (P0):** Priority failure/missing evidence = SEO FAIL.
 - **UR-SEO-031 (P0):** SEO results must be recorded in Release Sign-off.
+- **UR-SEO-032 (P0):** Thin-content quality scoring is mandatory for `calc_exp` and `exp_only` routes through `test:content:quality` with weighted model `Core Value 40 + Depth 25 + Uniqueness 15 + Trust 10 + Structure 10`.
+- **UR-SEO-033 (P0):** Thin-content hard flags are mandatory checks: missing result interpretation guidance, missing worked example, explanation content `<150` words, similarity `>80%`, boilerplate FAQ pattern, and tool-only minimal context risk.
+- **UR-SEO-034 (P0):** Phase-1 rollout is `soft` mode, home-loan pilot only (`/loan-calculators/mortgage-calculator/`) for two release cycles; soft mode is non-blocking and must still produce evidence artifacts.
+- **UR-SEO-035 (P0):** Phase-2 rollout is `hard` mode; release fails if thin-content score is `<70` or any hard flag is present. Mode transition must be explicit in release sign-off evidence.
 
 ---
 
@@ -371,6 +377,10 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `requirements/universal-rules/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
 - **UR-TEST-051 (P0):** Render-blocking CSS budget breach in any strict profile is a hard fail for calculator release (`test:calc:cwv`).
 - **UR-TEST-052 (P0):** Scoped CWV artifact is mandatory evidence: `test-results/performance/scoped-cwv/{cluster}/{calc}.json`.
+- **UR-TEST-053 (P0):** Thin-content scorer command is mandatory and must support scope modes: `npm run test:content:quality -- --scope=full|cluster|calc|route [--route=/path/]`.
+- **UR-TEST-054 (P0):** Scoped SEO commands must execute thin-content scoring after Playwright SEO specs: `test:calc:seo` runs scope `calc`; `test:cluster:seo` runs scope `cluster`.
+- **UR-TEST-055 (P0):** Thin-content scoped calc artifact is mandatory evidence path: `test-results/content-quality/scoped/{cluster}/{calc}.json`.
+- **UR-TEST-056 (P0):** Thin-content scorer behavior is mode-driven: `soft` mode records warnings without blocking; `hard` mode blocks on score `<70` or any hard flag.
 - **UR-TEST-RUNNER-001 (P0):** Runner refactors for startup-cost elimination are allowed only if legacy commands remain available for at least one release cycle, rollback path exists, evidence artifacts remain auditable, and scope/debug dry-run mode is provided.
 
 ### 8.6 Lighthouse Efficiency + Determinism Governance

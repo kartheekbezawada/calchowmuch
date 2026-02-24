@@ -22,6 +22,11 @@
 | **Branch / Tag** | |
 | **Commit SHA** | |
 | **Environment** | |
+| **thinContentMode (`soft`/`hard`)** | |
+| **thinContentScore** | |
+| **thinContentGrade** | |
+| **thinContentHardFlags** | |
+| **thinContentArtifactPath** | |
 | **Owner** | |
 | **Date** | |
 
@@ -105,6 +110,15 @@ Artifact path (mandatory): `test-results/performance/scoped-cwv/{cluster}/{calcu
 | `aggregationType` (`single/median`) | |
 | `desktopPolicyMode` (`native/devtools-override`) | |
 | `runPolicy.resolved` snapshot path/reference | |
+
+### Thin-Content Evidence (Mandatory for `calc_exp` / `exp_only`)
+| Field | Value |
+| :--- | :--- |
+| `thinContentMode` (`soft`/`hard`) | |
+| `thinContentScore` | |
+| `thinContentGrade` | |
+| `thinContentHardFlags` | |
+| `thinContentArtifactPath` | |
 
 ### Exceptions
 | ID | Issue | Severity | Owner |

@@ -146,8 +146,8 @@ test.describe('Home Loan calculator', () => {
         'mtg-section-graph',
         'mtg-section-practical-guide',
         'mtg-section-how-to-guide',
-        'mtg-section-faq',
         'mtg-section-trust',
+        'mtg-section-faq',
       ];
       const positions = sectionIds.map((id) => {
         const element = document.getElementById(id);

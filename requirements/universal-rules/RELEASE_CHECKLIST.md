@@ -629,6 +629,8 @@ HARD: Page crawlable without JS
 
 Applies to `calc_exp` and `exp_only` routes.
 
+HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block, but required SERP block order is unchanged.
+
 HARD: Explanation heading must be intent-led (calculator purpose/topic), not generic labels like `Explanation` or `Calculator Explanation`.
 
 HARD: Required section order must be visible in initial HTML:
@@ -640,6 +642,24 @@ HARD: Required section order must be visible in initial HTML:
 HARD: `Important Notes` must include `Last updated: <Month YYYY>`.
 
 HARD: FAQ count and visible FAQ content must remain schema-aligned.
+
+13.4.1 Thin-Content Quality Scoring — HARD
+
+Applies to `calc_exp` and `exp_only` routes.
+
+HARD: Run thin-content scorer and attach artifact evidence:
+
+- `npm run test:content:quality -- --scope=calc` for scoped calculator release
+- `npm run test:content:quality -- --scope=cluster` for scoped cluster release
+
+HARD: Weighted scoring model is fixed: `Core Value 40 + Depth 25 + Uniqueness 15 + Trust 10 + Structure 10`.
+
+HARD: In `soft` mode, thin-content score warnings do not block release but artifact evidence is mandatory.
+
+HARD: In `hard` mode, release fails when:
+
+- score `<70`, or
+- any hard flag is raised (`no interpretation`, `no worked example`, `explanation <150 words`, `similarity >80%`, `boilerplate FAQ`, `tool-only minimal context`).
 
 13.5 Graph Readability (When Graph Exists) — HARD
 
@@ -709,6 +729,10 @@ Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activat
 SERP validation notes (canonical + schema + FAQ parity)
 
 Intent-led content structure validation notes (section order + `Last updated` evidence)
+
+Thin-content scoring notes (`thinContentMode`, score, grade, hard flags)
+
+Thin-content artifact path (`test-results/content-quality/scoped/{cluster}/{calc}.json` or scoped cluster artifact path)
 
 Graph readability validation notes (if graph exists)
 
