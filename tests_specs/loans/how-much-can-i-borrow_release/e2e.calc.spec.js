@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const CALCULATOR_URL = '/loans/how-much-can-i-borrow/';
+const CALCULATOR_URL = '/loan-calculators/how-much-can-i-borrow/';
 
 const TEST_DATA = {
   standard: {
