@@ -296,6 +296,7 @@
         "/finance-calculators/future-value-of-annuity-calculator/",
         "/finance-calculators/future-value-calculator/",
         "/finance-calculators/investment-growth-calculator/",
+        "/finance-calculators/investment-return-calculator/",
         "/finance-calculators/monthly-savings-needed-calculator/",
         "/finance-calculators/present-value-of-annuity-calculator/",
         "/finance-calculators/present-value-calculator/",
@@ -334,6 +335,10 @@
         "investment-growth": {
           "route": "/finance-calculators/investment-growth-calculator/",
           "releaseDir": "tests_specs/finance/investment-growth_release"
+        },
+        "investment-return": {
+          "route": "/finance-calculators/investment-return-calculator/",
+          "releaseDir": "tests_specs/finance/investment-return_release"
         },
         "time-to-savings-goal": {
           "route": "/finance-calculators/time-to-savings-goal-calculator/",

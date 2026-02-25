@@ -728,6 +728,14 @@
               "paneLayout": "single"
             },
             {
+              "id": "investment-return",
+              "name": "Investment Return",
+              "url": "/finance-calculators/investment-return-calculator/",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
               "id": "time-to-savings-goal",
               "name": "Time to Savings Goal",
               "url": "/finance-calculators/time-to-savings-goal-calculator/",

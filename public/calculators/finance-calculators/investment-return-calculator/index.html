@@ -1,0 +1,178 @@
+<div id="calc-investment-return">
+  <div id="calc-home-loan">
+    <div class="calculator-ui home-loan-ui">
+      <section class="mtg-hero" aria-label="Investment return calculator">
+        <div class="mtg-form-panel">
+          <p class="helper">
+            Model long-term returns using lump sum, recurring contributions, inflation, tax, and
+            advanced year-by-year assumptions.
+          </p>
+
+          <div class="ir-grid">
+            <label class="input-row" for="ir-initial">
+              <span>Initial Investment</span>
+              <input id="ir-initial" type="number" min="0" step="100" value="10000" inputmode="decimal" />
+            </label>
+            <label class="input-row" for="ir-return">
+              <span>Expected Annual Return (%)</span>
+              <input id="ir-return" type="number" min="-100" max="100" step="0.1" value="6" inputmode="decimal" />
+            </label>
+            <label class="input-row" for="ir-years">
+              <span>Investment Duration (Years)</span>
+              <input id="ir-years" type="number" min="1" max="80" step="1" value="20" inputmode="numeric" />
+            </label>
+            <label class="input-row" for="ir-contribution">
+              <span>Regular Contribution</span>
+              <input id="ir-contribution" type="number" min="0" step="10" value="300" inputmode="decimal" />
+            </label>
+            <label class="input-row" for="ir-inflation">
+              <span>Inflation Rate (%)</span>
+              <input id="ir-inflation" type="number" min="-100" max="100" step="0.1" value="2.5" inputmode="decimal" />
+            </label>
+            <label class="input-row" for="ir-tax">
+              <span>Tax Rate on Gains (%)</span>
+              <input id="ir-tax" type="number" min="0" max="100" step="0.1" value="10" inputmode="decimal" />
+            </label>
+          </div>
+
+          <div class="ir-presets" role="group" aria-label="Return presets">
+            <span class="pv-toggle-label">Scenario Presets</span>
+            <button class="calculator-button secondary" type="button" data-ir-preset="4">Conservative 4%</button>
+            <button class="calculator-button secondary" type="button" data-ir-preset="6">Balanced 6%</button>
+            <button class="calculator-button secondary" type="button" data-ir-preset="8">Growth 8%</button>
+            <button class="calculator-button secondary" type="button" data-ir-preset="10">Aggressive 10%</button>
+          </div>
+
+          <div class="pv-toggle-row">
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Compounding</span>
+              <div class="button-group" role="group" data-button-group="ir-compounding" aria-label="Compounding frequency">
+                <button class="calculator-button secondary" type="button" data-value="ANNUAL" aria-pressed="false">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="QUARTERLY" aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary is-active" type="button" data-value="MONTHLY" aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="DAILY" aria-pressed="false">Daily</button>
+              </div>
+            </div>
+
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Contribution Frequency</span>
+              <div class="button-group" role="group" data-button-group="ir-contrib-frequency" aria-label="Contribution frequency">
+                <button class="calculator-button secondary is-active" type="button" data-value="MONTHLY" aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="QUARTERLY" aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary" type="button" data-value="ANNUAL" aria-pressed="false">Annual</button>
+              </div>
+            </div>
+
+            <div class="pv-toggle-group">
+              <span class="pv-toggle-label">Contribution Timing</span>
+              <div class="button-group" role="group" data-button-group="ir-contrib-timing" aria-label="Contribution timing">
+                <button class="calculator-button secondary is-active" type="button" data-value="END_OF_PERIOD" aria-pressed="true">End</button>
+                <button class="calculator-button secondary" type="button" data-value="BEGINNING_OF_PERIOD" aria-pressed="false">Beginning</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row action-row mtg-action-row">
+            <button class="calculator-button full-width" type="button" id="ir-calc">Calculate Investment Return</button>
+          </div>
+
+          <div class="ir-advanced-control">
+            <button class="calculator-button secondary full-width" type="button" id="ir-advanced-toggle" aria-expanded="false">Show Advanced Mode</button>
+          </div>
+
+          <div id="ir-advanced-section" class="is-hidden" aria-live="polite">
+            <section class="ir-advanced-card" aria-label="Variable annual returns">
+              <p class="pv-toggle-label">Variable Annual Returns by Year (%)</p>
+              <div id="ir-variable-returns" class="ir-variable-rows"></div>
+            </section>
+
+            <section class="ir-advanced-card" aria-label="One-time events">
+              <p class="pv-toggle-label">One-Time Deposit / Withdrawal Events</p>
+              <div id="ir-events-rows" class="ir-events-rows"></div>
+              <button class="calculator-button secondary" type="button" id="ir-add-event">Add Event</button>
+            </section>
+
+            <section class="ir-advanced-card" aria-label="Crash simulation">
+              <p class="pv-toggle-label">Market Crash Simulation</p>
+              <div class="pv-toggle-group">
+                <div class="button-group" role="group" data-button-group="ir-crash-enabled" aria-label="Enable crash simulation">
+                  <button class="calculator-button secondary is-active" type="button" data-value="off" aria-pressed="true">Off</button>
+                  <button class="calculator-button secondary" type="button" data-value="on" aria-pressed="false">On</button>
+                </div>
+              </div>
+              <div class="ir-grid ir-grid--inline">
+                <label class="input-row" for="ir-crash-year">
+                  <span>Crash Year</span>
+                  <input id="ir-crash-year" type="number" min="1" max="80" step="1" value="5" inputmode="numeric" />
+                </label>
+                <label class="input-row" for="ir-crash-drop">
+                  <span>Crash Drop (%)</span>
+                  <input id="ir-crash-drop" type="number" min="0" max="100" step="0.1" value="20" inputmode="decimal" />
+                </label>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <aside class="mtg-preview-panel" aria-label="Investment return summary">
+          <div class="mtg-preview-main">
+            <p class="mtg-preview-label">Final Portfolio Value</p>
+            <div class="result mtg-result-card" id="ir-result" aria-live="polite">-</div>
+            <div class="result-detail mtg-summary-card" id="ir-result-detail" aria-live="polite"></div>
+          </div>
+
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row"><span>Total Contributions</span><strong data-ir-snap="contributions">-</strong></div>
+            <div class="mtg-snapshot-row"><span>Total Profit</span><strong data-ir-snap="profit">-</strong></div>
+            <div class="mtg-snapshot-row"><span>Nominal CAGR</span><strong data-ir-snap="cagr">-</strong></div>
+            <div class="mtg-snapshot-row"><span>Real CAGR</span><strong data-ir-snap="real-cagr">-</strong></div>
+            <div class="mtg-snapshot-row"><span>Total Tax Paid</span><strong data-ir-snap="tax">-</strong></div>
+            <div class="mtg-snapshot-row"><span>Effective Annual Rate</span><strong data-ir-snap="ear">-</strong></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="ir-results" aria-label="Investment return breakdown and graph">
+        <div class="ir-results-controls">
+          <div class="pv-toggle-group">
+            <span class="pv-toggle-label">Breakdown View</span>
+            <div class="button-group" role="group" data-button-group="ir-breakdown-mode" aria-label="Breakdown mode">
+              <button class="calculator-button secondary is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
+              <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
+            </div>
+          </div>
+
+          <div class="pv-toggle-group">
+            <span class="pv-toggle-label">Graph Mode</span>
+            <div class="button-group" role="group" data-button-group="ir-graph-mode" aria-label="Graph mode">
+              <button class="calculator-button secondary is-active" type="button" data-value="growth" aria-pressed="true">Growth Curve</button>
+              <button class="calculator-button secondary" type="button" data-value="stacked" aria-pressed="false">Principal vs Returns</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-scroll" tabindex="0">
+          <table class="ir-breakdown-table" id="ir-breakdown-table">
+            <thead>
+              <tr id="ir-breakdown-head"></tr>
+            </thead>
+            <tbody id="ir-breakdown-body"></tbody>
+          </table>
+        </div>
+
+        <div class="graph-panel" id="ir-graph-panel">
+          <p class="graph-title" id="ir-graph-title">Portfolio Growth</p>
+          <svg id="ir-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Investment growth graph">
+            <g id="ir-graph-bars"></g>
+            <polyline id="ir-graph-main" fill="none" stroke-width="1.8"></polyline>
+            <polyline id="ir-graph-secondary" fill="none" stroke-width="1.2"></polyline>
+          </svg>
+          <div class="ir-graph-legend">
+            <span class="ir-legend ir-legend-main">Nominal Balance</span>
+            <span class="ir-legend ir-legend-secondary" id="ir-secondary-legend">Inflation-Adjusted</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

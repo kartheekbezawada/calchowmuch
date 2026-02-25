@@ -1,0 +1,225 @@
+#calc-investment-return .ir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+#calc-investment-return .ir-grid--inline {
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+}
+
+#calc-investment-return .input-row {
+  display: grid;
+  gap: 0.3rem;
+}
+
+#calc-investment-return .input-row span {
+  font-size: 0.78rem;
+  color: rgba(191, 219, 254, 0.92);
+}
+
+#calc-investment-return .input-row input {
+  width: 100%;
+}
+
+#calc-investment-return .ir-presets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+
+#calc-investment-return .ir-presets .pv-toggle-label {
+  width: 100%;
+}
+
+#calc-investment-return .ir-advanced-control {
+  margin-top: 0.8rem;
+}
+
+#calc-investment-return #ir-advanced-section {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+#calc-investment-return #ir-advanced-section.is-hidden {
+  display: none;
+}
+
+#calc-investment-return .ir-advanced-card {
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+#calc-investment-return .ir-variable-rows {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+#calc-investment-return .ir-var-row {
+  display: grid;
+  gap: 0.2rem;
+}
+
+#calc-investment-return .ir-var-row label {
+  font-size: 0.7rem;
+  color: rgba(191, 219, 254, 0.92);
+}
+
+#calc-investment-return .ir-events-rows {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+#calc-investment-return .ir-event-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+#calc-investment-return .ir-event-timing {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+#calc-investment-return .ir-event-timing button {
+  min-height: 30px;
+  padding: 0.25rem 0.5rem;
+}
+
+#calc-investment-return .ir-results {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+#calc-investment-return .ir-results-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+#calc-investment-return .ir-breakdown-table,
+#ir-explanation .ir-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calc-investment-return .ir-breakdown-table th,
+#calc-investment-return .ir-breakdown-table td,
+#ir-explanation .ir-results-table th,
+#ir-explanation .ir-results-table td {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+#calc-investment-return .ir-breakdown-table th,
+#ir-explanation .ir-results-table th {
+  background: rgba(30, 41, 59, 0.86);
+  color: #f8fafc;
+}
+
+#calc-investment-return .graph-panel {
+  min-height: 230px;
+  display: grid;
+  gap: 0.5rem;
+}
+
+#calc-investment-return #ir-graph-svg {
+  width: 100%;
+  height: 180px;
+  border-radius: 0.7rem;
+  background: rgba(2, 6, 23, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+#calc-investment-return #ir-graph-main {
+  stroke: #38bdf8;
+}
+
+#calc-investment-return #ir-graph-secondary {
+  stroke: #f59e0b;
+}
+
+#calc-investment-return .ir-graph-legend {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+#calc-investment-return .ir-legend {
+  font-size: 0.75rem;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+#calc-investment-return .ir-legend-main::before,
+#calc-investment-return .ir-legend-secondary::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 0.35rem;
+}
+
+#calc-investment-return .ir-legend-main::before {
+  background: #38bdf8;
+}
+
+#calc-investment-return .ir-legend-secondary::before {
+  background: #f59e0b;
+}
+
+#ir-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+#ir-explanation .bor-faq-card {
+  padding: 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.48);
+  display: grid;
+  gap: 0.35rem;
+}
+
+#ir-explanation .bor-faq-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.16);
+}
+
+@media (max-width: 900px) {
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-variable-rows {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr;
+  }
+
+  #ir-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

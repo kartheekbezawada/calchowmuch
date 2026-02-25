@@ -62,6 +62,7 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'monthly-savings-needed',
   'time-to-savings-goal',
   'investment-growth',
+  'investment-return',
   'effective-annual-rate',
   'compound-interest',
   'simple-interest',
@@ -283,6 +284,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
     h1: 'Investment Growth Calculator',
+  },
+  'investment-return': {
+    title: 'Investment Return Calculator - Portfolio Growth, Profit, CAGR',
+    description:
+      'Calculate investment return using lump sum, contributions, compounding, inflation, and tax assumptions. View CAGR and annual or monthly breakdowns.',
+    h1: 'Investment Return Calculator',
+    paneLayout: 'single',
+    explanationHeading: '',
   },
   'commission-calculator': {
     title: 'Commission Calculator – CalcHowMuch',
@@ -601,6 +610,24 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'growth calculator',
       'compound interest',
       'inflation adjusted return',
+    ],
+  },
+  'investment-return': {
+    breadcrumbLabel: 'Investment Return',
+    softwareName: 'Investment Return Calculator',
+    softwareDescription:
+      'Estimate portfolio growth with lump sum and recurring contributions, with optional tax and inflation adjustment.',
+    featureList: [
+      'Future value from lump sum and recurring contributions',
+      'Annual and monthly breakdowns',
+      'Tax on gains with loss carryforward modeling',
+      'Inflation-adjusted return metrics',
+    ],
+    keywords: [
+      'investment return calculator',
+      'portfolio growth calculator',
+      'cagr calculator',
+      'inflation adjusted investment return',
     ],
   },
   'present-value': {
@@ -1560,6 +1587,7 @@ const FINANCE_CALCULATOR_ICONS = {
   'compound-interest': '♻️',
   'effective-annual-rate': '🔄',
   'investment-growth': '📊',
+  'investment-return': '📈',
   'time-to-savings-goal': '🎯',
   'monthly-savings-needed': '🏦',
 };

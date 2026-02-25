@@ -9,6 +9,7 @@ const FINANCE_ROUTES = [
   '/finance/compound-interest',
   '/finance/effective-annual-rate',
   '/finance/investment-growth',
+  '/finance-calculators/investment-return-calculator',
 ];
 
 const PERCENTAGE_ROUTES = [
@@ -115,7 +116,7 @@ async function verifyButtonOnlyRecalculation(page, route) {
   const baselineExplanation = normalize(await explanation.textContent());
 
   const input = await findFirstVisibleEditableInput(pane, {
-    allowRange: route.startsWith('/finance/'),
+    allowRange: route.startsWith('/finance/') || route.startsWith('/finance-calculators/'),
   });
   expect(input, `${route} must expose at least one visible editable input`).not.toBeNull();
   await setChangedNumericValue(input);

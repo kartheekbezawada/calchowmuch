@@ -1,0 +1,166 @@
+<div id="ir-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Investment Return Calculator Summary</h2>
+    <p>
+      This calculator estimates future portfolio value from a lump sum, recurring contributions,
+      compounding assumptions, inflation, and taxes. It reports how much you contribute, what your
+      investment earns, and how much of that growth remains after tax and inflation.
+    </p>
+
+    <section class="mtg-exp-section">
+      <h3>Scenario Summary</h3>
+      <table class="ir-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Input</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Initial Investment</td><td data-ir="exp-initial">-</td></tr>
+          <tr><td>Expected Annual Return</td><td data-ir="exp-rate">-</td></tr>
+          <tr><td>Duration</td><td data-ir="exp-years">-</td></tr>
+          <tr><td>Compounding Frequency</td><td data-ir="exp-compounding">-</td></tr>
+          <tr><td>Regular Contribution</td><td data-ir="exp-contribution">-</td></tr>
+          <tr><td>Contribution Frequency</td><td data-ir="exp-contrib-frequency">-</td></tr>
+          <tr><td>Contribution Timing</td><td data-ir="exp-contrib-timing">-</td></tr>
+          <tr><td>Inflation Rate</td><td data-ir="exp-inflation">-</td></tr>
+          <tr><td>Tax Rate</td><td data-ir="exp-tax-rate">-</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="ir-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Value</th>
+              <th scope="col">Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Final Portfolio Value</td>
+              <td data-ir="exp-final-value">-</td>
+              <td>Projected ending balance after contributions, growth, and tax.</td>
+            </tr>
+            <tr>
+              <td>Total Contributions</td>
+              <td data-ir="exp-total-contributions">-</td>
+              <td>Initial investment plus net additional deposits and withdrawals.</td>
+            </tr>
+            <tr>
+              <td>Total Profit</td>
+              <td data-ir="exp-total-profit">-</td>
+              <td>Growth above total contributions.</td>
+            </tr>
+            <tr>
+              <td>Total Tax Paid</td>
+              <td data-ir="exp-total-tax">-</td>
+              <td>Year-end tax on net positive gains after carryforward offsets.</td>
+            </tr>
+            <tr>
+              <td>Nominal CAGR</td>
+              <td data-ir="exp-cagr">-</td>
+              <td>Annualized growth rate from start to finish before inflation adjustment.</td>
+            </tr>
+            <tr>
+              <td>Real CAGR</td>
+              <td data-ir="exp-real-cagr">-</td>
+              <td>Annualized growth rate adjusted for inflation.</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Real Final Value</td>
+              <td data-ir="exp-real-final">-</td>
+              <td>Estimated purchasing-power-equivalent value at the end of the plan.</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>How The Calculation Works</h3>
+      <p>
+        Base lump-sum growth uses compound returns: <strong>FV = P × (1 + r / n)^(n × t)</strong>.
+        Recurring contributions are added using your selected frequency and timing, then each month
+        applies a deterministic growth step derived from your annual return and compounding setup.
+      </p>
+      <p>
+        Advanced mode can replace the constant return with year-level rates, optional one-time
+        deposits or withdrawals, and a crash adjustment in a selected year. Tax is applied at each
+        year end on net positive gain after carryforward losses. Inflation-adjusted values are
+        computed using <strong>Real = Nominal / (1 + inflation)^years</strong>.
+      </p>
+      <p>
+        Current effective annual rate: <strong data-ir="exp-ear">-</strong>. Current carryforward
+        loss balance: <strong data-ir="exp-carryforward">-</strong>.
+      </p>
+      <p>
+        Important note: this is a planning model using assumptions. Results are not financial advice
+        and do not guarantee future performance.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>How is investment return calculated here?</h4>
+          <p>The model combines compound growth, recurring contributions, and optional tax and inflation adjustments.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Can I model both lump sum and regular deposits?</h4>
+          <p>Yes. You can enter an initial amount and recurring contributions with monthly, quarterly, or annual frequency.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What does CAGR mean?</h4>
+          <p>CAGR is the annualized growth rate implied by your starting amount and projected ending value.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does inflation affect results?</h4>
+          <p>Inflation reduces purchasing power. Real output values show what the ending balance may be worth in today's terms.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>How is tax applied?</h4>
+          <p>Tax is applied at year end to net positive gains after any carryforward losses from prior negative years.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>What does carryforward loss mean?</h4>
+          <p>Negative annual gains are stored as losses and used to offset taxable gains in later years.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">07</span>
+          <h4>Can I input year-by-year return assumptions?</h4>
+          <p>Yes. Advanced mode lets you set a specific return percentage for each year in the plan.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">08</span>
+          <h4>Can I simulate a market crash?</h4>
+          <p>Yes. You can apply a one-year percentage drop in a selected year to stress-test the projection.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">09</span>
+          <h4>Why do monthly and annual views differ in shape?</h4>
+          <p>Both show the same model outputs at different granularity, so month-level tables reveal intra-year movement.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">10</span>
+          <h4>Are these projections guaranteed?</h4>
+          <p>No. This tool is for education and planning. Real market returns vary and can differ materially from assumptions.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

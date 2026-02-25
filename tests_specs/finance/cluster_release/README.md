@@ -21,6 +21,7 @@ Routes:
 - /finance/future-value-of-annuity/
 - /finance/future-value/
 - /finance/investment-growth/
+- /finance-calculators/investment-return-calculator/
 - /finance/monthly-savings-needed/
 - /finance/present-value-of-annuity/
 - /finance/present-value/

@@ -120,6 +120,12 @@ const FINANCE_PILOT_ROUTES = [
     routeCss: 'calculators/finance-calculators/investment-growth-calculator/calculator.css',
   },
   {
+    calculatorId: 'investment-return',
+    route: '/finance-calculators/investment-return-calculator/',
+    relPath: 'finance-calculators/investment-return-calculator',
+    routeCss: 'calculators/finance-calculators/investment-return-calculator/calculator.css',
+  },
+  {
     calculatorId: 'effective-annual-rate',
     route: '/finance-calculators/effective-annual-rate-calculator/',
     relPath: 'finance-calculators/effective-annual-rate-calculator',

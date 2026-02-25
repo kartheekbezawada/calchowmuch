@@ -352,6 +352,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://calchowmuch.com/finance-calculators/investment-return-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

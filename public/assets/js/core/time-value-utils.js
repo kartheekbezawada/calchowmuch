@@ -793,6 +793,473 @@ export function calculateInvestmentGrowth({
   };
 }
 
+const INVESTMENT_RETURN_COMPOUNDING_PERIODS = {
+  ANNUAL: 1,
+  QUARTERLY: 4,
+  MONTHLY: 12,
+  DAILY: 365,
+  annual: 1,
+  quarterly: 4,
+  monthly: 12,
+  daily: 365,
+};
+
+const INVESTMENT_RETURN_CONTRIBUTION_PERIODS = {
+  ANNUAL: 1,
+  QUARTERLY: 4,
+  MONTHLY: 12,
+  annual: 1,
+  quarterly: 4,
+  monthly: 12,
+};
+
+const INVESTMENT_RETURN_TIMING = {
+  END_OF_PERIOD: 'end',
+  BEGINNING_OF_PERIOD: 'beginning',
+  end: 'end',
+  beginning: 'beginning',
+  END: 'end',
+  BEGINNING: 'beginning',
+};
+
+const INVESTMENT_RETURN_EVENT_TIMING = {
+  START_OF_YEAR: 'start',
+  END_OF_YEAR: 'end',
+  start: 'start',
+  end: 'end',
+};
+
+function roundHalfAwayFromZero(value, precision = 2) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    return parsed;
+  }
+  const factor = 10 ** precision;
+  if (!Number.isFinite(factor) || factor <= 0) {
+    return parsed;
+  }
+  if (parsed === 0) {
+    return 0;
+  }
+  const scaledAbs = Math.abs(parsed) * factor;
+  const roundedAbs = Math.round(scaledAbs + Number.EPSILON);
+  const rounded = roundedAbs / factor;
+  return parsed < 0 ? -rounded : rounded;
+}
+
+function normalizeOptionalNumber(value, fallback = 0) {
+  if (value === null || value === undefined || value === '') {
+    return fallback;
+  }
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function normalizeCompoundingPeriods(compoundingFrequency) {
+  const key = compoundingFrequency ?? 'ANNUAL';
+  return INVESTMENT_RETURN_COMPOUNDING_PERIODS[key] ?? null;
+}
+
+function normalizeContributionPeriods(contributionFrequency) {
+  const key = contributionFrequency ?? 'MONTHLY';
+  return INVESTMENT_RETURN_CONTRIBUTION_PERIODS[key] ?? null;
+}
+
+function normalizeContributionTiming(contributionTiming) {
+  const key = contributionTiming ?? 'END_OF_PERIOD';
+  return INVESTMENT_RETURN_TIMING[key] ?? null;
+}
+
+function normalizeEventTiming(eventTiming) {
+  const key = eventTiming ?? 'END_OF_YEAR';
+  return INVESTMENT_RETURN_EVENT_TIMING[key] ?? null;
+}
+
+function annualNominalToMonthlyRate(annualRatePercent, compoundsPerYear) {
+  const annualRateDecimal = Number(annualRatePercent) / 100;
+  const periods = Number(compoundsPerYear);
+  if (!Number.isFinite(annualRateDecimal) || !Number.isFinite(periods) || periods <= 0) {
+    return NaN;
+  }
+  const base = 1 + annualRateDecimal / periods;
+  if (base < 0) {
+    return NaN;
+  }
+  const monthlyFactor = Math.pow(base, periods / 12);
+  if (!Number.isFinite(monthlyFactor) || monthlyFactor < 0) {
+    return NaN;
+  }
+  return monthlyFactor - 1;
+}
+
+function normalizeVariableReturns(durationYears, baseAnnualRate, variableAnnualReturns, crash) {
+  const perYear = new Array(durationYears).fill(baseAnnualRate);
+  if (Array.isArray(variableAnnualReturns) && variableAnnualReturns.length > 0) {
+    for (let index = 0; index < durationYears; index += 1) {
+      const candidate = variableAnnualReturns[index];
+      if (candidate === null || candidate === undefined || candidate === '') {
+        continue;
+      }
+      const parsed = Number(candidate);
+      if (Number.isFinite(parsed)) {
+        perYear[index] = parsed;
+      }
+    }
+  }
+  if (crash?.enabled && Number.isInteger(crash.year) && crash.year >= 1 && crash.year <= durationYears) {
+    perYear[crash.year - 1] -= Math.abs(crash.dropPercent);
+  }
+  return perYear;
+}
+
+function indexEventsByYear(oneTimeEvents = []) {
+  const byYear = new Map();
+  oneTimeEvents.forEach((event) => {
+    const year = Number(event?.year);
+    const amount = Number(event?.amount);
+    const timing = normalizeEventTiming(event?.timing);
+    if (!Number.isInteger(year) || !Number.isFinite(amount) || !timing) {
+      return;
+    }
+    if (!byYear.has(year)) {
+      byYear.set(year, { start: [], end: [] });
+    }
+    byYear.get(year)[timing].push(amount);
+  });
+  return byYear;
+}
+
+function isRecurringContributionDue(monthInYear, contributionsPerYear) {
+  if (contributionsPerYear === 12) {
+    return true;
+  }
+  if (contributionsPerYear === 4) {
+    return monthInYear % 3 === 0;
+  }
+  if (contributionsPerYear === 1) {
+    return monthInYear === 12;
+  }
+  return false;
+}
+
+function createValidationResult(errors) {
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+function validateInvestmentReturnInput(input) {
+  const errors = [];
+  const initialInvestment = normalizeOptionalNumber(input?.initialInvestment, 0);
+  const annualReturnRate = normalizeOptionalNumber(input?.annualReturnRate, 0);
+  const durationYears = normalizeOptionalNumber(input?.durationYears, NaN);
+  const regularContribution = normalizeOptionalNumber(input?.regularContribution, 0);
+  const inflationRate = normalizeOptionalNumber(input?.inflationRate, 0);
+  const taxRate = normalizeOptionalNumber(input?.taxRate, 0);
+  const precision = normalizeOptionalNumber(input?.precision, 2);
+
+  if (!Number.isFinite(initialInvestment) || initialInvestment < 0) {
+    errors.push('initialInvestment must be a finite number >= 0.');
+  }
+  if (!Number.isFinite(annualReturnRate) || annualReturnRate < -100 || annualReturnRate > 100) {
+    errors.push('annualReturnRate must be between -100 and 100.');
+  }
+  if (!Number.isFinite(durationYears) || !Number.isInteger(durationYears) || durationYears < 1) {
+    errors.push('durationYears must be an integer >= 1.');
+  }
+  if (!Number.isFinite(regularContribution) || regularContribution < 0) {
+    errors.push('regularContribution must be a finite number >= 0.');
+  }
+  if (!Number.isFinite(inflationRate) || inflationRate < -100 || inflationRate > 100) {
+    errors.push('inflationRate must be between -100 and 100.');
+  }
+  if (!Number.isFinite(taxRate) || taxRate < 0 || taxRate > 100) {
+    errors.push('taxRate must be between 0 and 100.');
+  }
+  if (!Number.isFinite(precision) || !Number.isInteger(precision) || precision < 0 || precision > 8) {
+    errors.push('precision must be an integer between 0 and 8.');
+  }
+
+  const compoundsPerYear = normalizeCompoundingPeriods(input?.compoundingFrequency);
+  if (!compoundsPerYear) {
+    errors.push('compoundingFrequency must be one of ANNUAL, QUARTERLY, MONTHLY, DAILY.');
+  }
+
+  const contributionsPerYear = normalizeContributionPeriods(input?.contributionFrequency ?? 'MONTHLY');
+  if (!contributionsPerYear) {
+    errors.push('contributionFrequency must be one of MONTHLY, QUARTERLY, ANNUAL.');
+  }
+
+  const contributionTiming = normalizeContributionTiming(input?.contributionTiming ?? 'END_OF_PERIOD');
+  if (!contributionTiming) {
+    errors.push('contributionTiming must be END_OF_PERIOD or BEGINNING_OF_PERIOD.');
+  }
+
+  if (Array.isArray(input?.variableAnnualReturns)) {
+    input.variableAnnualReturns.forEach((value, index) => {
+      if (value === null || value === undefined || value === '') {
+        return;
+      }
+      const parsed = Number(value);
+      if (!Number.isFinite(parsed) || parsed < -100 || parsed > 100) {
+        errors.push(`variableAnnualReturns[${index}] must be between -100 and 100.`);
+      }
+    });
+  }
+
+  if (Array.isArray(input?.oneTimeEvents)) {
+    input.oneTimeEvents.forEach((event, index) => {
+      const year = Number(event?.year);
+      const amount = Number(event?.amount);
+      const timing = normalizeEventTiming(event?.timing);
+      if (!Number.isInteger(year) || year < 1 || year > durationYears) {
+        errors.push(`oneTimeEvents[${index}].year must be an integer between 1 and durationYears.`);
+      }
+      if (!Number.isFinite(amount)) {
+        errors.push(`oneTimeEvents[${index}].amount must be a finite number.`);
+      }
+      if (!timing) {
+        errors.push(`oneTimeEvents[${index}].timing must be START_OF_YEAR or END_OF_YEAR.`);
+      }
+    });
+  }
+
+  const crashEnabled = Boolean(input?.crashSimulation?.enabled);
+  const crashYear = normalizeOptionalNumber(input?.crashSimulation?.year, NaN);
+  const crashDropPercent = normalizeOptionalNumber(input?.crashSimulation?.dropPercent, 20);
+  if (crashEnabled) {
+    if (!Number.isFinite(crashDropPercent) || crashDropPercent < 0 || crashDropPercent > 100) {
+      errors.push('crashSimulation.dropPercent must be between 0 and 100.');
+    }
+    if (!Number.isInteger(crashYear) || crashYear < 1 || crashYear > durationYears) {
+      errors.push('crashSimulation.year must be an integer between 1 and durationYears.');
+    }
+  }
+
+  return createValidationResult(errors);
+}
+
+export function calculateInvestmentReturn(input = {}) {
+  const validation = validateInvestmentReturnInput(input);
+  if (!validation.isValid) {
+    return validation;
+  }
+
+  const initialInvestment = Number(input.initialInvestment ?? 0);
+  const annualReturnRate = Number(input.annualReturnRate ?? 0);
+  const durationYears = Number(input.durationYears);
+  const regularContribution = Number(input.regularContribution ?? 0);
+  const inflationRate = Number(input.inflationRate ?? 0);
+  const taxRate = Number(input.taxRate ?? 0);
+  const precision = Number(input.precision ?? 2);
+  const compoundsPerYear = normalizeCompoundingPeriods(input.compoundingFrequency);
+  const contributionsPerYear = normalizeContributionPeriods(input.contributionFrequency ?? 'MONTHLY');
+  const contributionTiming = normalizeContributionTiming(input.contributionTiming ?? 'END_OF_PERIOD');
+  const oneTimeEvents = Array.isArray(input.oneTimeEvents) ? input.oneTimeEvents : [];
+  const crash = {
+    enabled: Boolean(input?.crashSimulation?.enabled),
+    year: Number(input?.crashSimulation?.year ?? NaN),
+    dropPercent: Number(input?.crashSimulation?.dropPercent ?? 20),
+  };
+
+  const variableAnnualReturns = normalizeVariableReturns(
+    durationYears,
+    annualReturnRate,
+    input?.variableAnnualReturns,
+    crash
+  );
+  const eventIndex = indexEventsByYear(oneTimeEvents);
+
+  let balance = initialInvestment;
+  let totalContributions = initialInvestment;
+  let cumulativeContributions = initialInvestment;
+  let totalTaxPaid = 0;
+  let carryforwardLoss = 0;
+
+  const yearlyBreakdown = [];
+  const monthlyBreakdown = [];
+  const graph = {
+    labels: [],
+    nominalBalance: [],
+    principal: [],
+    returns: [],
+    realBalance: [],
+  };
+
+  const taxRateDecimal = taxRate / 100;
+  const inflationRateDecimal = inflationRate / 100;
+
+  for (let year = 1; year <= durationYears; year += 1) {
+    const annualRateThisYear = variableAnnualReturns[year - 1];
+    const monthlyRate = annualNominalToMonthlyRate(annualRateThisYear, compoundsPerYear);
+    if (!Number.isFinite(monthlyRate)) {
+      return createValidationResult([
+        `Unable to compute monthly growth rate for year ${year}. Check return/compounding values.`,
+      ]);
+    }
+
+    const yearlyStart = balance;
+    let yearlyContributions = 0;
+    let yearlyInterest = 0;
+    let yearlyTax = 0;
+
+    for (let monthInYear = 1; monthInYear <= 12; monthInYear += 1) {
+      const monthIndex = (year - 1) * 12 + monthInYear;
+      const monthStart = balance;
+      let monthContributions = 0;
+
+      const dueRecurring = regularContribution > 0 && isRecurringContributionDue(monthInYear, contributionsPerYear);
+      const yearlyEvents = eventIndex.get(year) ?? { start: [], end: [] };
+
+      if (dueRecurring && contributionTiming === 'beginning') {
+        balance += regularContribution;
+        monthContributions += regularContribution;
+      }
+
+      if (monthInYear === 1 && yearlyEvents.start.length) {
+        yearlyEvents.start.forEach((amount) => {
+          balance += amount;
+          monthContributions += amount;
+        });
+      }
+
+      const monthInterest = balance * monthlyRate;
+      balance += monthInterest;
+
+      if (dueRecurring && contributionTiming === 'end') {
+        balance += regularContribution;
+        monthContributions += regularContribution;
+      }
+
+      if (monthInYear === 12 && yearlyEvents.end.length) {
+        yearlyEvents.end.forEach((amount) => {
+          balance += amount;
+          monthContributions += amount;
+        });
+      }
+
+      yearlyContributions += monthContributions;
+      yearlyInterest += monthInterest;
+      totalContributions += monthContributions;
+      cumulativeContributions += monthContributions;
+
+      monthlyBreakdown.push({
+        year,
+        month: monthIndex,
+        startingBalance: roundHalfAwayFromZero(monthStart, precision),
+        contributions: roundHalfAwayFromZero(monthContributions, precision),
+        interestEarned: roundHalfAwayFromZero(monthInterest, precision),
+        taxPaid: 0,
+        endingBalance: roundHalfAwayFromZero(balance, precision),
+      });
+    }
+
+    if (taxRateDecimal > 0) {
+      const annualGainBeforeTax = balance - yearlyStart - yearlyContributions;
+      if (annualGainBeforeTax > 0) {
+        const adjustedGain = annualGainBeforeTax + carryforwardLoss;
+        const taxableGain = Math.max(0, adjustedGain);
+        carryforwardLoss = Math.min(0, adjustedGain);
+        yearlyTax = taxableGain * taxRateDecimal;
+      } else if (annualGainBeforeTax < 0) {
+        carryforwardLoss += annualGainBeforeTax;
+      }
+
+      if (yearlyTax > 0) {
+        balance -= yearlyTax;
+        totalTaxPaid += yearlyTax;
+        const lastMonth = monthlyBreakdown[monthlyBreakdown.length - 1];
+        if (lastMonth) {
+          lastMonth.taxPaid = roundHalfAwayFromZero(yearlyTax, precision);
+          lastMonth.endingBalance = roundHalfAwayFromZero(balance, precision);
+        }
+      }
+    }
+
+    const realEnding =
+      inflationRate !== 0 ? balance / Math.pow(1 + inflationRateDecimal, year) : null;
+
+    yearlyBreakdown.push({
+      year,
+      startingBalance: roundHalfAwayFromZero(yearlyStart, precision),
+      contributions: roundHalfAwayFromZero(yearlyContributions, precision),
+      interestEarned: roundHalfAwayFromZero(yearlyInterest, precision),
+      taxPaid: roundHalfAwayFromZero(yearlyTax, precision),
+      endingBalance: roundHalfAwayFromZero(balance, precision),
+      inflationAdjustedEndingBalance:
+        realEnding === null ? null : roundHalfAwayFromZero(realEnding, precision),
+      annualReturnRate: roundHalfAwayFromZero(annualRateThisYear, precision),
+    });
+
+    graph.labels.push(`Year ${year}`);
+    graph.nominalBalance.push(roundHalfAwayFromZero(balance, precision));
+    graph.principal.push(roundHalfAwayFromZero(cumulativeContributions, precision));
+    graph.returns.push(roundHalfAwayFromZero(balance - cumulativeContributions, precision));
+    graph.realBalance.push(
+      realEnding === null ? null : roundHalfAwayFromZero(realEnding, precision)
+    );
+  }
+
+  const finalValue = balance;
+  const realFinalValue =
+    inflationRate !== 0 ? finalValue / Math.pow(1 + inflationRateDecimal, durationYears) : null;
+  const totalGain = finalValue - totalContributions;
+
+  const effectiveAnnualRateDecimal =
+    Math.pow(1 + annualReturnRate / 100 / compoundsPerYear, compoundsPerYear) - 1;
+  const nominalCagr =
+    initialInvestment > 0 && finalValue > 0
+      ? Math.pow(finalValue / initialInvestment, 1 / durationYears) - 1
+      : null;
+  const realCagr =
+    initialInvestment > 0 && Number.isFinite(realFinalValue) && realFinalValue > 0
+      ? Math.pow(realFinalValue / initialInvestment, 1 / durationYears) - 1
+      : null;
+
+  return {
+    isValid: true,
+    errors: [],
+    input: {
+      ...input,
+      initialInvestment,
+      annualReturnRate,
+      durationYears,
+      compoundingFrequency: input.compoundingFrequency ?? 'ANNUAL',
+      regularContribution,
+      contributionFrequency: input.contributionFrequency ?? 'MONTHLY',
+      contributionTiming: input.contributionTiming ?? 'END_OF_PERIOD',
+      inflationRate,
+      taxRate,
+      precision,
+    },
+    summary: {
+      finalValue: roundHalfAwayFromZero(finalValue, precision),
+      totalContributions: roundHalfAwayFromZero(totalContributions, precision),
+      totalGain: roundHalfAwayFromZero(totalGain, precision),
+      totalTaxPaid: roundHalfAwayFromZero(totalTaxPaid, precision),
+      nominalCAGR: nominalCagr === null ? null : roundHalfAwayFromZero(nominalCagr * 100, precision),
+      realCAGR: realCagr === null ? null : roundHalfAwayFromZero(realCagr * 100, precision),
+      realFinalValue:
+        realFinalValue === null ? null : roundHalfAwayFromZero(realFinalValue, precision),
+      effectiveAnnualRate: roundHalfAwayFromZero(effectiveAnnualRateDecimal * 100, precision),
+    },
+    yearlyBreakdown,
+    monthlyBreakdown,
+    graph,
+    metadata: {
+      calculatedAt: new Date().toISOString(),
+      assumptions: {
+        constantAnnualReturn: !Array.isArray(input.variableAnnualReturns),
+        constantContribution: true,
+        taxModel: 'year_end_with_carryforward',
+        contributionTiming,
+      },
+      carryforwardLoss: roundHalfAwayFromZero(carryforwardLoss, precision),
+    },
+  };
+}
+
 export function calculateEffectiveAnnualRate({
   nominalRate,
   compounding = 'annual',
