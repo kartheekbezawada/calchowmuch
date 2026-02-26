@@ -2109,3 +2109,16 @@ body .site-header .header-search-icon {
     flex: 1 1 auto;
   }
 }
+
+/* critical source: /calculators/finance-calculators/investment-return-calculator/calculator.css */
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(odd) td {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) td {
+  background: rgba(30, 41, 59, 0.38);
+}
+
+#calc-investment-return .ir-breakdown-table tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.16);
+}

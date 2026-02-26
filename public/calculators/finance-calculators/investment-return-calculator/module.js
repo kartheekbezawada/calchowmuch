@@ -1,7 +1,7 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { calculateInvestmentReturn } from '/assets/js/core/time-value-utils.js';
-import { buildPolyline, getPaddedMinMax, sampleValues } from '/assets/js/core/graph-utils.js';
+import { getPaddedMinMax, sampleValues } from '/assets/js/core/graph-utils.js';
 
 const initialInput = document.querySelector('#ir-initial');
 const returnInput = document.querySelector('#ir-return');
@@ -28,8 +28,21 @@ const breakdownBody = document.querySelector('#ir-breakdown-body');
 const graphTitle = document.querySelector('#ir-graph-title');
 const graphMain = document.querySelector('#ir-graph-main');
 const graphSecondary = document.querySelector('#ir-graph-secondary');
+const graphMainArea = document.querySelector('#ir-graph-main-area');
+const graphSecondaryArea = document.querySelector('#ir-graph-secondary-area');
 const graphBars = document.querySelector('#ir-graph-bars');
+const graphGrid = document.querySelector('#ir-graph-grid');
+const graphXTicks = document.querySelector('#ir-graph-x-ticks');
+const graphYTicks = document.querySelector('#ir-graph-y-ticks');
 const secondaryLegend = document.querySelector('#ir-secondary-legend');
+const hasGraph = Boolean(graphTitle && graphMain && graphSecondary && graphBars && secondaryLegend);
+
+const PLOT_BOUNDS = Object.freeze({
+  minX: 10,
+  maxX: 96,
+  minY: 8,
+  maxY: 84,
+});
 
 const presetButtons = Array.from(document.querySelectorAll('[data-ir-preset]'));
 const snapNodes = {
@@ -231,14 +244,17 @@ const breakdownButtons = setupButtonGroup(document.querySelector('[data-button-g
     }
   },
 });
-const graphButtons = setupButtonGroup(document.querySelector('[data-button-group="ir-graph-mode"]'), {
-  defaultValue: 'growth',
-  onChange: () => {
-    if (lastOutput) {
-      renderGraph(lastOutput);
-    }
-  },
-});
+const graphModeGroup = document.querySelector('[data-button-group="ir-graph-mode"]');
+const graphButtons = graphModeGroup
+  ? setupButtonGroup(graphModeGroup, {
+      defaultValue: 'growth',
+      onChange: () => {
+        if (lastOutput) {
+          renderGraph(lastOutput);
+        }
+      },
+    })
+  : null;
 const crashButtons = setupButtonGroup(document.querySelector('[data-button-group="ir-crash-enabled"]'), {
   defaultValue: 'off',
   onChange: () => {
@@ -265,6 +281,20 @@ function formatPercent(value) {
     return '-';
   }
   return `${formatNumber(value, { maximumFractionDigits: 2 })}%`;
+}
+
+function formatCompactNumber(value) {
+  if (!Number.isFinite(value)) {
+    return '-';
+  }
+  const absolute = Math.abs(value);
+  if (absolute >= 1_000_000) {
+    return `${formatNumber(value / 1_000_000, { maximumFractionDigits: 1 })}M`;
+  }
+  if (absolute >= 1_000) {
+    return `${formatNumber(value / 1_000, { maximumFractionDigits: 1 })}K`;
+  }
+  return formatNumber(value, { maximumFractionDigits: 0 });
 }
 
 function clampInteger(value, min, max) {
@@ -449,66 +479,193 @@ function renderBreakdown(output) {
     .join('');
 }
 
+function buildPlotPoints(values, minValue, maxValue) {
+  const safe = Array.isArray(values) && values.length ? values : [0, 0];
+  const range = Math.max(1e-9, maxValue - minValue);
+  const width = PLOT_BOUNDS.maxX - PLOT_BOUNDS.minX;
+  const height = PLOT_BOUNDS.maxY - PLOT_BOUNDS.minY;
+  const denominator = Math.max(1, safe.length - 1);
+
+  return safe.map((value, index) => {
+    const ratioX = index / denominator;
+    const normalizedY = (value - minValue) / range;
+    return {
+      x: PLOT_BOUNDS.minX + ratioX * width,
+      y: PLOT_BOUNDS.maxY - normalizedY * height,
+    };
+  });
+}
+
+function pointsToString(points) {
+  return points.map((point) => `${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(' ');
+}
+
+function areaPolygonString(points) {
+  if (!points.length) {
+    return '';
+  }
+  const first = points[0];
+  const last = points[points.length - 1];
+  const areaPoints = [
+    { x: first.x, y: PLOT_BOUNDS.maxY },
+    ...points,
+    { x: last.x, y: PLOT_BOUNDS.maxY },
+  ];
+  return pointsToString(areaPoints);
+}
+
+function renderGraphAxes(minValue, maxValue, pointsCount) {
+  if (!graphGrid || !graphXTicks || !graphYTicks) {
+    return;
+  }
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const ySteps = 4;
+  const xSteps = Math.max(2, Math.min(6, (pointsCount || 2) - 1));
+  const yRange = Math.max(1, maxValue - minValue);
+
+  const gridFragment = document.createDocumentFragment();
+  const xTickFragment = document.createDocumentFragment();
+  const yTickFragment = document.createDocumentFragment();
+
+  for (let i = 0; i <= ySteps; i += 1) {
+    const ratio = i / ySteps;
+    const y = PLOT_BOUNDS.minY + ratio * (PLOT_BOUNDS.maxY - PLOT_BOUNDS.minY);
+
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', String(PLOT_BOUNDS.minX));
+    line.setAttribute('x2', String(PLOT_BOUNDS.maxX));
+    line.setAttribute('y1', String(y));
+    line.setAttribute('y2', String(y));
+    line.setAttribute('stroke', i === ySteps ? 'rgba(148, 163, 184, 0.6)' : 'rgba(148, 163, 184, 0.26)');
+    line.setAttribute('stroke-width', i === ySteps ? '0.55' : '0.35');
+    gridFragment.appendChild(line);
+
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', '2');
+    label.setAttribute('y', String(y + 1.25));
+    label.setAttribute('font-size', '3');
+    label.setAttribute('fill', 'rgba(219, 234, 254, 0.98)');
+    label.textContent = formatCompactNumber(maxValue - ratio * yRange);
+    yTickFragment.appendChild(label);
+  }
+
+  const xLabelMax = Math.max(1, pointsCount - 1);
+  for (let i = 0; i <= xSteps; i += 1) {
+    const ratio = xSteps === 0 ? 0 : i / xSteps;
+    const x = PLOT_BOUNDS.minX + ratio * (PLOT_BOUNDS.maxX - PLOT_BOUNDS.minX);
+
+    const tick = document.createElementNS(ns, 'line');
+    tick.setAttribute('x1', String(x));
+    tick.setAttribute('x2', String(x));
+    tick.setAttribute('y1', String(PLOT_BOUNDS.maxY));
+    tick.setAttribute('y2', String(PLOT_BOUNDS.maxY + 1.4));
+    tick.setAttribute('stroke', 'rgba(148, 163, 184, 0.65)');
+    tick.setAttribute('stroke-width', '0.42');
+    xTickFragment.appendChild(tick);
+
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', String(x - 1.3));
+    label.setAttribute('y', '98');
+    label.setAttribute('font-size', '2.9');
+    label.setAttribute('fill', 'rgba(219, 234, 254, 0.98)');
+    label.textContent = String(Math.round(xLabelMax * ratio));
+    xTickFragment.appendChild(label);
+  }
+
+  const yAxis = document.createElementNS(ns, 'line');
+  yAxis.setAttribute('x1', String(PLOT_BOUNDS.minX));
+  yAxis.setAttribute('x2', String(PLOT_BOUNDS.minX));
+  yAxis.setAttribute('y1', String(PLOT_BOUNDS.minY));
+  yAxis.setAttribute('y2', String(PLOT_BOUNDS.maxY));
+  yAxis.setAttribute('stroke', 'rgba(191, 219, 254, 0.7)');
+  yAxis.setAttribute('stroke-width', '0.45');
+  gridFragment.appendChild(yAxis);
+
+  graphGrid.replaceChildren(gridFragment);
+  graphXTicks.replaceChildren(xTickFragment);
+  graphYTicks.replaceChildren(yTickFragment);
+}
+
 function renderGrowthGraph(output) {
+  if (!hasGraph) {
+    return;
+  }
   const nominal = sampleValues(output.graph.nominalBalance, 60);
   const hasReal = output.graph.realBalance.some((value) => Number.isFinite(value));
   const real = hasReal
     ? sampleValues(output.graph.realBalance.map((value, index) => (Number.isFinite(value) ? value : output.graph.nominalBalance[index])), 60)
     : sampleValues(output.graph.principal, 60);
   const range = getPaddedMinMax([...nominal, ...real]);
+  renderGraphAxes(range.min, range.max, nominal.length);
 
-  graphMain.setAttribute('points', buildPolyline(nominal, range.min, range.max));
-  graphSecondary.setAttribute('points', buildPolyline(real, range.min, range.max));
+  const nominalPoints = buildPlotPoints(nominal, range.min, range.max);
+  const realPoints = buildPlotPoints(real, range.min, range.max);
+
+  graphMain.setAttribute('points', pointsToString(nominalPoints));
+  graphSecondary.setAttribute('points', pointsToString(realPoints));
+  graphMainArea?.setAttribute('points', areaPolygonString(nominalPoints));
+  graphSecondaryArea?.setAttribute('points', areaPolygonString(realPoints));
   graphBars.replaceChildren();
   graphTitle.textContent = 'Portfolio Growth Curve';
   secondaryLegend.textContent = hasReal ? 'Inflation-Adjusted' : 'Cumulative Contributions';
 }
 
 function renderStackedGraph(output) {
+  if (!hasGraph) {
+    return;
+  }
   const principal = sampleValues(output.graph.principal, 50);
   const returns = sampleValues(output.graph.returns, 50);
   const maxTotal = Math.max(
     1,
     ...principal.map((value, index) => Math.max(0, value) + Math.max(0, returns[index] ?? 0))
   );
-  const step = 100 / principal.length;
+  renderGraphAxes(0, maxTotal, principal.length);
+  const step = (PLOT_BOUNDS.maxX - PLOT_BOUNDS.minX) / principal.length;
+  const plotHeight = PLOT_BOUNDS.maxY - PLOT_BOUNDS.minY;
   const ns = 'http://www.w3.org/2000/svg';
   const fragment = document.createDocumentFragment();
 
   for (let index = 0; index < principal.length; index += 1) {
-    const x = index * step;
-    const width = Math.max(0.8, step - 0.6);
+    const x = PLOT_BOUNDS.minX + index * step + 0.1;
+    const width = Math.max(0.65, step - 0.3);
     const p = Math.max(0, principal[index]);
     const r = Math.max(0, returns[index] ?? 0);
 
-    const principalHeight = (p / maxTotal) * 100;
-    const returnsHeight = (r / maxTotal) * 100;
+    const principalHeight = (p / maxTotal) * plotHeight;
+    const returnsHeight = (r / maxTotal) * plotHeight;
 
     const principalBar = document.createElementNS(ns, 'rect');
     principalBar.setAttribute('x', String(x));
-    principalBar.setAttribute('y', String(100 - principalHeight));
+    principalBar.setAttribute('y', String(PLOT_BOUNDS.maxY - principalHeight));
     principalBar.setAttribute('width', String(width));
     principalBar.setAttribute('height', String(principalHeight));
-    principalBar.setAttribute('fill', 'rgba(56, 189, 248, 0.72)');
+    principalBar.setAttribute('fill', 'rgba(34, 211, 238, 0.78)');
     fragment.appendChild(principalBar);
 
     const returnsBar = document.createElementNS(ns, 'rect');
     returnsBar.setAttribute('x', String(x));
-    returnsBar.setAttribute('y', String(100 - principalHeight - returnsHeight));
+    returnsBar.setAttribute('y', String(PLOT_BOUNDS.maxY - principalHeight - returnsHeight));
     returnsBar.setAttribute('width', String(width));
     returnsBar.setAttribute('height', String(returnsHeight));
-    returnsBar.setAttribute('fill', 'rgba(245, 158, 11, 0.78)');
+    returnsBar.setAttribute('fill', 'rgba(251, 191, 36, 0.88)');
     fragment.appendChild(returnsBar);
   }
 
   graphBars.replaceChildren(fragment);
   graphMain.setAttribute('points', '');
   graphSecondary.setAttribute('points', '');
+  graphMainArea?.setAttribute('points', '');
+  graphSecondaryArea?.setAttribute('points', '');
   graphTitle.textContent = 'Principal vs Returns (Stacked)';
   secondaryLegend.textContent = 'Returns (Profit Component)';
 }
 
 function renderGraph(output) {
+  if (!hasGraph) {
+    return;
+  }
   const mode = graphButtons?.getValue() ?? 'growth';
   if (mode === 'stacked') {
     renderStackedGraph(output);

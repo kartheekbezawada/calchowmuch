@@ -74,13 +74,13 @@
       "calculatorId": "investment-return",
       "relPath": "finance-calculators/investment-return-calculator",
       "mode": "inline-critical-deferred-bundle",
-      "href": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.9d85bc66.css",
-      "deferredHref": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.9d85bc66.css",
-      "criticalCss": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.critical.af0b175c.css",
-      "hash": "9d85bc66",
-      "criticalHash": "af0b175c",
-      "fullBytes": 89099,
-      "criticalBytes": 44855,
+      "href": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.6ca73210.css",
+      "deferredHref": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.6ca73210.css",
+      "criticalCss": "/assets/css/route-bundles/finance-calculators-investment-return-calculator.critical.c31f70ea.css",
+      "hash": "6ca73210",
+      "criticalHash": "c31f70ea",
+      "fullBytes": 90743,
+      "criticalBytes": 45290,
       "sources": [
         "/assets/css/theme-premium-dark.css",
         "/assets/css/base.css",
@@ -90,8 +90,8 @@
         "/assets/css/shared-calculator-ui.css",
         "/calculators/finance-calculators/investment-return-calculator/calculator.css"
       ],
-      "outputFile": "public/assets/css/route-bundles/finance-calculators-investment-return-calculator.9d85bc66.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-investment-return-calculator.critical.af0b175c.css"
+      "outputFile": "public/assets/css/route-bundles/finance-calculators-investment-return-calculator.6ca73210.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-investment-return-calculator.critical.c31f70ea.css"
     },
     "/finance-calculators/effective-annual-rate-calculator/": {
       "calculatorId": "effective-annual-rate",

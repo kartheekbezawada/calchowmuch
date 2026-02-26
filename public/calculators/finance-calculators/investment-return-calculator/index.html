@@ -135,18 +135,10 @@
       <section class="ir-results" aria-label="Investment return breakdown and graph">
         <div class="ir-results-controls">
           <div class="pv-toggle-group">
-            <span class="pv-toggle-label">Breakdown View</span>
+            <span class="pv-toggle-label">Data Granularity</span>
             <div class="button-group" role="group" data-button-group="ir-breakdown-mode" aria-label="Breakdown mode">
               <button class="calculator-button secondary is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
               <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
-            </div>
-          </div>
-
-          <div class="pv-toggle-group">
-            <span class="pv-toggle-label">Graph Mode</span>
-            <div class="button-group" role="group" data-button-group="ir-graph-mode" aria-label="Graph mode">
-              <button class="calculator-button secondary is-active" type="button" data-value="growth" aria-pressed="true">Growth Curve</button>
-              <button class="calculator-button secondary" type="button" data-value="stacked" aria-pressed="false">Principal vs Returns</button>
             </div>
           </div>
         </div>
@@ -160,18 +152,6 @@
           </table>
         </div>
 
-        <div class="graph-panel" id="ir-graph-panel">
-          <p class="graph-title" id="ir-graph-title">Portfolio Growth</p>
-          <svg id="ir-graph-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Investment growth graph">
-            <g id="ir-graph-bars"></g>
-            <polyline id="ir-graph-main" fill="none" stroke-width="1.8"></polyline>
-            <polyline id="ir-graph-secondary" fill="none" stroke-width="1.2"></polyline>
-          </svg>
-          <div class="ir-graph-legend">
-            <span class="ir-legend ir-legend-main">Nominal Balance</span>
-            <span class="ir-legend ir-legend-secondary" id="ir-secondary-legend">Inflation-Adjusted</span>
-          </div>
-        </div>
       </section>
     </div>
   </div>
