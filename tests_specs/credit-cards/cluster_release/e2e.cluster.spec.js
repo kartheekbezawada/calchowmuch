@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTES = ["/loans/balance-transfer-installment-plan/","/loans/credit-card-consolidation/","/loans/credit-card-minimum-payment/"];
+const ROUTES = ["/credit-card-calculators/balance-transfer-credit-card-calculator/","/credit-card-calculators/credit-card-consolidation-calculator/","/credit-card-calculators/credit-card-minimum-payment-calculator/"];
 
 test.describe('credit-cards cluster e2e smoke', () => {
   test('cluster representative routes load and show H1', async ({ page }) => {

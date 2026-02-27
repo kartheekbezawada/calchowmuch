@@ -46,7 +46,7 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
     const sitemapText = await sitemapResponse.text();
     expect(sitemapText).toContain('/credit-card-calculators/credit-card-consolidation-calculator/');
 
-    const humanSitemapResponse = await page.request.get('/sitemap/');
+    const humanSitemapResponse = await page.request.get('/sitemap.xml');
     expect(humanSitemapResponse.ok()).toBeTruthy();
     const humanSitemapText = await humanSitemapResponse.text();
     expect(humanSitemapText).toContain('/credit-card-calculators/credit-card-consolidation-calculator');

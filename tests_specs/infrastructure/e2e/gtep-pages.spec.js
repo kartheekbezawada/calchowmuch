@@ -1,11 +1,10 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  { name: 'Sitemap', path: '/sitemap/', h1: 'Sitemap' },
   { name: 'Privacy', path: '/privacy/', h1: 'Privacy Policy' },
   { name: 'Terms', path: '/terms-and-conditions/', h1: 'Terms & Conditions' },
   { name: 'Contact', path: '/contact-us/', h1: 'Contact' },
-  { name: 'FAQs', path: '/faqs/', h1: 'FAQs' },
+  { name: 'FAQs', path: '/faq/', h1: 'FAQs' },
 ];
 
 routes.forEach(({ name, path, h1 }) => {

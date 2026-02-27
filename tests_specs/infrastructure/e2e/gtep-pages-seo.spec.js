@@ -18,18 +18,6 @@ function ensureLength(text, min, max) {
 
 const pages = [
   {
-    name: 'Sitemap',
-    path: '/sitemap/',
-    title: ensureLength('Sitemap | Calculate How Much', 50, 60),
-    description: ensureLength(
-      'Browse the full list of calculators on Calculate How Much, organized by category.',
-      150,
-      160
-    ),
-    canonical: 'https://calchowmuch.com/sitemap/',
-    h1: 'Sitemap',
-  },
-  {
     name: 'Privacy',
     path: '/privacy/',
     title: 'Privacy Policy | Calculate How Much - Data & Cookies',
@@ -58,11 +46,11 @@ const pages = [
   },
   {
     name: 'FAQs',
-    path: '/faqs/',
+    path: '/faq/',
     title: 'FAQs | Calculate How Much - Calculator Help and Answers',
     description:
       'Find answers about how Calculate How Much calculators work, data assumptions, accuracy, and when to verify results with professionals for important decisions.',
-    canonical: 'https://calchowmuch.com/faqs/',
+    canonical: 'https://calchowmuch.com/faq/',
     h1: 'FAQs',
   },
 ];
@@ -86,4 +74,3 @@ pages.forEach(({ name, path, title, description, canonical, h1 }) => {
     await expect(h1Tag).toHaveText(h1);
   });
 });
-

@@ -40,7 +40,7 @@ const assertStableBox = (currentBox, initialBox) => {
 
 test.describe('ISS-001: Layout Stability', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/loans/car-loan');
+    await page.goto('/car-loan-calculators/car-loan-calculator/');
     await waitForStableShell(page);
   });
 

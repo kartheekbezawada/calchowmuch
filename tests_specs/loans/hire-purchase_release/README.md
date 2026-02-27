@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/hire-purchase/
+- /car-loan-calculators/hire-purchase-calculator/

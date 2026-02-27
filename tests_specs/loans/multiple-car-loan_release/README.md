@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/multiple-car-loan/
+- /car-loan-calculators/auto-loan-calculator/

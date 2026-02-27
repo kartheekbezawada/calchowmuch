@@ -7,46 +7,60 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const SITEMAP_PATH = path.join(PUBLIC_DIR, 'sitemap.xml');
+const NAVIGATION_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 
 // Base URLs that should always be present
 const STATIC_URLS = [
     { loc: 'https://calchowmuch.com/', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://calchowmuch.com/calculators/', changefreq: 'monthly', priority: '0.85' },
-    { loc: 'https://calchowmuch.com/sitemap/', changefreq: 'monthly', priority: '0.4' },
+    { loc: 'https://calchowmuch.com/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
     { loc: 'https://calchowmuch.com/privacy/', changefreq: 'monthly', priority: '0.4' },
     { loc: 'https://calchowmuch.com/privacy-policy/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
     { loc: 'https://calchowmuch.com/terms-and-conditions/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
     { loc: 'https://calchowmuch.com/contact-us/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
-    { loc: 'https://calchowmuch.com/faqs/', changefreq: 'monthly', priority: '0.40', lastmod: '2026-02-09' },
+    { loc: 'https://calchowmuch.com/faq/', changefreq: 'monthly', priority: '0.40', lastmod: '2026-02-09' },
 ];
 
-const EXCLUDED_DIRS = ['assets', 'config', 'layout', 'test'];
+function normalizeRoutePath(route) {
+    if (typeof route !== 'string') return null;
+    const trimmed = route.trim();
+    if (!trimmed.startsWith('/')) return null;
+    if (trimmed === '/') return '/';
+    return trimmed.endsWith('/') ? trimmed : `${trimmed}/`;
+}
 
-function getCalculators() {
+function getCalculatorsFromNavigation() {
+    const navigation = JSON.parse(fs.readFileSync(NAVIGATION_PATH, 'utf8'));
+    const categories = Array.isArray(navigation?.categories) ? navigation.categories : [];
     const calculators = [];
-    const categories = fs.readdirSync(path.join(PUBLIC_DIR, 'calculators'), { withFileTypes: true });
+    const seen = new Set();
 
     for (const category of categories) {
-        if (!category.isDirectory() || EXCLUDED_DIRS.includes(category.name)) continue;
-
-        const categoryPath = path.join(PUBLIC_DIR, 'calculators', category.name);
-        const subdirs = fs.readdirSync(categoryPath, { withFileTypes: true });
-
-        for (const subdir of subdirs) {
-            if (subdir.isDirectory()) {
+        const subcategories = Array.isArray(category?.subcategories) ? category.subcategories : [];
+        for (const subcategory of subcategories) {
+            const categoryCalculators = Array.isArray(subcategory?.calculators)
+                ? subcategory.calculators
+                : [];
+            for (const calculator of categoryCalculators) {
+                const routePath = normalizeRoutePath(calculator?.url);
+                if (!routePath || seen.has(routePath)) {
+                    continue;
+                }
+                seen.add(routePath);
                 calculators.push({
-                    loc: `https://calchowmuch.com/${category.name}/${subdir.name}/`,
+                    loc: `https://calchowmuch.com${routePath}`,
                     changefreq: 'monthly',
-                    priority: '0.7'
+                    priority: '0.7',
                 });
             }
         }
     }
+
     return calculators;
 }
 
 function generateSitemap() {
-    const calculators = getCalculators();
+    const calculators = getCalculatorsFromNavigation();
     const allUrls = [...STATIC_URLS, ...calculators];
 
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';

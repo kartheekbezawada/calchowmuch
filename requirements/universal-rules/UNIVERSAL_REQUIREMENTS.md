@@ -374,7 +374,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-047 (P0):** Scoped commands must fail fast with deterministic error text for missing/invalid `CLUSTER`/`CALC` values.
 - **UR-TEST-048 (P0):** Global commands (`test`, `test:e2e`, `test:cwv:all`, `test:iss001`) are reserved for full-site releases and are not default for cluster/calculator releases.
 - **UR-TEST-049 (P0):** `test:calc:cwv` is a hard blocker and must run calibrated first-time-user profiles with cache disabled: `mobile_strict` (CPU 3x + Slow 4G) and `desktop_strict` (CPU 6x + Slow 4G).
-- **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `requirements/universal-rules/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
+- **UR-TEST-050 (P0):** Scoped calculator CWV budgets are enforced by `config/testing/CWV_SCOPED_BUDGETS.json`; defaults are `CLS <= 0.10`, `LCP <= 2500ms`, and render-blocking CSS duration `<= 800ms`.
 - **UR-TEST-051 (P0):** Render-blocking CSS budget breach in any strict profile is a hard fail for calculator release (`test:calc:cwv`).
 - **UR-TEST-052 (P0):** Scoped CWV artifact is mandatory evidence: `test-results/performance/scoped-cwv/{cluster}/{calc}.json`.
 - **UR-TEST-053 (P0):** Thin-content scorer command is mandatory and must support scope modes: `npm run test:content:quality -- --scope=full|cluster|calc|route [--route=/path/]`.
@@ -395,7 +395,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-LH-008 (P1):** Warm-up run is optional via `LH_WARMUP_RUN=1`.
 - **UR-TEST-LH-009 (P1):** Weekly full audit (`performance,accessibility,best-practices` + mixed-content scan) is track-only and non-blocking for release.
 - **UR-TEST-LH-010 (P0):** Release evidence must include Lighthouse mode, `LH_RUNS`, aggregation type, resolved policy snapshot, and desktop policy mode; missing fields are hard fail.
-- **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `requirements/universal-rules/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
+- **UR-TEST-LH-011 (P0):** Policy precedence is mandatory: defaults from `config/testing/lighthouse_policy.json`, then allowed environment overrides, then explicitly permitted CLI flags. Summary JSON must include `runPolicy.resolved`.
 - **UR-TEST-SCOPE-001 (P0):** PR Lighthouse gates must use exactly one `TARGET_ROUTE` or policy-approved golden set; full-site Lighthouse scans are disallowed in PR release gates by default.
 
 ### 8.7 Testing Efficiency and Code-Diff Strategy
@@ -406,7 +406,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-EFF-004 (P1):** Local run-time optimizations may use `LH_ASSUME_SERVER_RUNNING=1` and `LH_WARMUP_RUN=1` when allowed by policy and declared in release evidence.
 - **UR-TEST-EFF-005 (P0):** Release/perf gate operation must use policy modes (`fast`, `stable`, `full`) with explicit `LH_MODE`, `LH_RUNS`, categories, and aggregation declaration.
 - **UR-TEST-EFF-006 (P1):** Test-efficiency changes should record before/after runtime evidence for target route(s) to track CI time and cost impact.
-- **UR-TEST-EFF-007 (P0):** If rationale documents conflict with runtime policy, `requirements/universal-rules/lighthouse_policy.json` and `UR-TEST-LH-*` rules take precedence.
+- **UR-TEST-EFF-007 (P0):** If rationale documents conflict with runtime policy, `config/testing/lighthouse_policy.json` and `UR-TEST-LH-*` rules take precedence.
 
 ### 8.8 Port Governance for Local/CI Test Servers
 
@@ -562,7 +562,7 @@ Use only `UR-*` IDs for new work.
 - **Nav:** `requirements/site-structure/calculator-hierarchy.md`
 - **Comp:** `requirements/compliance/`
 - **Gen:** `scripts/generate-mpa-pages.js`
-- **LH Policy:** `requirements/universal-rules/lighthouse_policy.json`
+- **LH Policy:** `config/testing/lighthouse_policy.json`
 - **Archived Testing Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/code_diff_.md`, `requirements/universal-rules/Archive Rules/performance_improvements.md`
 - **Archived AdSense Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/AdSense code snippet.md`, `requirements/universal-rules/Archive Rules/Ad Unit Code.md`
 

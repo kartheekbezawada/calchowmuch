@@ -42,7 +42,7 @@ test.describe('Energy-Based Nap Selector SEO', () => {
     const sitemapText = await sitemapResponse.text();
     expect(sitemapText).toContain('/time-and-date/energy-based-nap-selector/');
 
-    const humanSitemap = await page.request.get('/sitemap/');
+    const humanSitemap = await page.request.get('/sitemap.xml');
     expect(humanSitemap.ok()).toBeTruthy();
     const humanSitemapText = await humanSitemap.text();
     expect(humanSitemapText).toContain('/time-and-date/energy-based-nap-selector');

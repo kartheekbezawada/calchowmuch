@@ -16,7 +16,7 @@ Pass criteria:
 Ownership: cluster release owner.
 
 Routes:
-- /loans/balance-transfer-installment-plan/
-- /loans/credit-card-consolidation/
-- /loans/credit-card-minimum-payment/
-- /loans/credit-card-repayment-payoff/
+- /credit-card-calculators/balance-transfer-credit-card-calculator/
+- /credit-card-calculators/credit-card-consolidation-calculator/
+- /credit-card-calculators/credit-card-minimum-payment-calculator/
+- /credit-card-calculators/credit-card-payment-calculator/

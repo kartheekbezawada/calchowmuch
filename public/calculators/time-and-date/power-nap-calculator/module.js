@@ -30,71 +30,47 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is the ideal power nap length?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Most sleep researchers suggest 20 to 30 minutes. This range helps you wake up alert without entering deep sleep.',
+        text: 'Most people do best with 20 to 30 minutes because that range supports alertness while reducing the chance of waking from deeper sleep.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why do I feel groggy after a long nap?',
+      name: 'Why are 20- and 30-minute options marked as best?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Naps longer than 30 minutes can push you into deep sleep. Waking during deep sleep causes sleep inertia, a temporary feeling of grogginess.',
+        text: 'They are commonly used power-nap targets that balance recovery speed and daytime practicality.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can a 10-minute nap really help?',
+      name: 'Can a 10-minute micro nap still help?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Even a short micro nap can reduce sleepiness and improve alertness for a brief period.',
+        text: 'Yes. A short micro nap can reduce sleepiness and provide a quick mental reset when time is limited.',
       },
     },
     {
       '@type': 'Question',
-      name: 'When is the best time to take a power nap?',
+      name: 'When should I avoid a long nap?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Early afternoon, typically between 1:00 PM and 3:00 PM, is ideal. Napping later may make it harder to fall asleep at night.',
+        text: 'Avoid long naps later in the day, especially in the evening, because they can make nighttime sleep harder.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Will napping affect my nighttime sleep?',
+      name: 'What does the evening warning mean?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Short naps taken early in the afternoon usually do not. Long naps or naps taken in the evening are more likely to interfere with nighttime sleep.',
+        text: 'It flags that long naps started after 6:00 PM may delay bedtime and reduce overnight sleep quality.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the difference between a power nap and a full sleep cycle?',
+      name: 'Does this calculator set an alarm for me?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A power nap lasts 20 to 30 minutes and stays in light sleep. A full sleep cycle lasts about 90 minutes and includes all sleep stages, from light to deep to REM.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does this calculator set an alarm?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. It only suggests wake-up times. You can set an alarm on your phone or device based on the result.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why does the calculator warn about evening naps?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Napping after 6:00 PM, especially for longer durations, can delay your bedtime and reduce overall sleep quality at night.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is a 60-minute nap better than a 30-minute nap?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Not always. A 60-minute nap includes deep sleep, which is restorative but may cause grogginess upon waking. A 30-minute nap avoids that risk.',
+        text: 'No. It gives wake-up targets only. Set an alarm on your phone or device based on your selected result.',
       },
     },
     {
@@ -102,7 +78,31 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use this calculator for shift work?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Enter your nap start time regardless of the hour. The calculator handles time rollover past midnight and works for any schedule.',
+        text: 'Yes. Enter any start time. The calculation handles rollover across midnight and works for non-standard schedules.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is a 60-minute nap better than a 30-minute nap?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Not always. A 60-minute nap can be restorative but may increase grogginess risk after waking. A 30-minute nap is often easier to recover from quickly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a full-cycle 90-minute nap for?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A 90-minute option is useful when you are highly sleep-deprived and have enough time for a deeper recovery window.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will napping hurt my nighttime sleep?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Early, short naps usually have less impact. Late or long naps are more likely to interfere with nighttime sleep.',
       },
     },
   ],
@@ -115,7 +115,8 @@ const STRUCTURED_DATA = {
       '@type': 'WebPage',
       name: 'Power Nap Calculator',
       url: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
-      description: 'Find the best wake-up time for power naps of 10, 20, 30, 60, or 90 minutes.',
+      description:
+        'Plan wake-up targets for 10, 20, 30, 60, and 90 minute naps with a focus-friendly power nap workflow.',
       inLanguage: 'en',
     },
     {
@@ -125,9 +126,9 @@ const STRUCTURED_DATA = {
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
       description:
-        'Free power nap calculator to find ideal wake-up times for micro naps, power naps, recovery naps, and full sleep cycles.',
+        'Free power nap calculator that returns wake-up times for micro naps, power naps, recovery naps, and full-cycle naps.',
       browserRequirements: 'Requires JavaScript enabled',
-      softwareVersion: '1.0',
+      softwareVersion: '2.0',
       creator: {
         '@type': 'Organization',
         name: 'CalcHowMuch',
@@ -240,6 +241,7 @@ function addResultRow(label, value, recommended) {
   if (!resultsList) {
     return;
   }
+
   const row = document.createElement('div');
   row.className = 'result-row';
   if (recommended) {
@@ -283,21 +285,22 @@ function calculate() {
     if (!wakeTime) {
       continue;
     }
-    const wakeLabel = formatTimeDisplay(wakeTime.hours, wakeTime.minutes);
-    const rowLabel = `${nap.label} (${nap.minutes} min)`;
-    addResultRow(rowLabel, wakeLabel, nap.recommended);
+
+    addResultRow(
+      `${nap.label} (${nap.minutes} min)`,
+      formatTimeDisplay(wakeTime.hours, wakeTime.minutes),
+      nap.recommended
+    );
   }
 
   const startLabel = formatTimeDisplay(startValue.hours, startValue.minutes);
   if (explanationPlaceholders.startTime) {
     explanationPlaceholders.startTime.textContent = startLabel;
   }
+
   const wake20 = calculateWakeTime(startValue, 20, 0);
   if (wake20 && explanationPlaceholders.wakeTime20) {
-    explanationPlaceholders.wakeTime20.textContent = formatTimeDisplay(
-      wake20.hours,
-      wake20.minutes
-    );
+    explanationPlaceholders.wakeTime20.textContent = formatTimeDisplay(wake20.hours, wake20.minutes);
   }
 
   if (isEveningStart(startValue)) {

@@ -10,9 +10,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
-    <loc>https://calchowmuch.com/sitemap/</loc>
+    <loc>https://calchowmuch.com/sitemap.xml</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -40,12 +39,11 @@
     <priority>0.30</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/faqs/</loc>
+    <loc>https://calchowmuch.com/faq/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.40</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/math/basic/</loc>
     <changefreq>monthly</changefreq>

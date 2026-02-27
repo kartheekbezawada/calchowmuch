@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/loan-to-value/
+- /loan-calculators/ltv-calculator/

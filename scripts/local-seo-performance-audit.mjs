@@ -53,32 +53,32 @@ function toTitleCase(value) {
 
 function inferCategory(slug) {
   if (slug === '/') return 'Home';
-  if (slug.startsWith('/finance/')) return 'Finance';
+  if (slug.startsWith('/finance/') || slug.startsWith('/finance-calculators/')) return 'Finance';
   if (slug.startsWith('/percentage-calculators/')) return 'Percentage Calculators';
   if (slug.startsWith('/time-and-date/')) return 'Time & Date';
   if (
-    slug.startsWith('/loans/credit-card-') ||
-    slug.startsWith('/loans/balance-transfer-')
+    slug.startsWith('/credit-card-calculators/credit-card-') ||
+    slug.startsWith('/credit-card-calculators/balance-transfer-')
   ) {
     return 'Credit Cards';
   }
   if (
-    slug.startsWith('/loans/home-loan/') ||
-    slug.startsWith('/loans/how-much-can-i-borrow/') ||
-    slug.startsWith('/loans/remortgage-switching/') ||
-    slug.startsWith('/loans/buy-to-let/') ||
-    slug.startsWith('/loans/offset-calculator/') ||
-    slug.startsWith('/loans/interest-rate-change-calculator/') ||
-    slug.startsWith('/loans/loan-to-value/')
+    slug.startsWith('/loan-calculators/mortgage-calculator/') ||
+    slug.startsWith('/loan-calculators/how-much-can-i-borrow/') ||
+    slug.startsWith('/loan-calculators/remortgage-calculator/') ||
+    slug.startsWith('/loan-calculators/buy-to-let-mortgage-calculator/') ||
+    slug.startsWith('/loan-calculators/offset-mortgage-calculator/') ||
+    slug.startsWith('/loan-calculators/interest-rate-change-calculator/') ||
+    slug.startsWith('/loan-calculators/ltv-calculator/')
   ) {
     return 'Home Loan';
   }
   if (
-    slug.startsWith('/loans/car-loan/') ||
-    slug.startsWith('/loans/pcp-calculator/') ||
-    slug.startsWith('/loans/multiple-car-loan/') ||
-    slug.startsWith('/loans/hire-purchase/') ||
-    slug.startsWith('/loans/leasing-calculator/')
+    slug.startsWith('/car-loan-calculators/car-loan-calculator/') ||
+    slug.startsWith('/car-loan-calculators/pcp-calculator/') ||
+    slug.startsWith('/car-loan-calculators/auto-loan-calculator/') ||
+    slug.startsWith('/car-loan-calculators/hire-purchase-calculator/') ||
+    slug.startsWith('/car-loan-calculators/car-lease-calculator/')
   ) {
     return 'Auto Loans';
   }

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Credit Card Repayment Calculator', () => {
   test('REPAYMENT-TEST-E2E-1: load, nav, calculate, verify results', async ({ page }) => {
-    await page.goto('/loans/credit-card-repayment-payoff');
+    await page.goto('/credit-card-calculators/credit-card-payment-calculator/');
 
     const centerPanels = page.locator('.center-column > .panel');
     await expect(centerPanels).toHaveCount(1);
@@ -48,7 +48,7 @@ test.describe('Credit Card Repayment Calculator', () => {
   });
 
   test('REPAYMENT-TEST-E2E-2: projected horizon remains visible after input change', async ({ page }) => {
-    await page.goto('/loans/credit-card-repayment-payoff');
+    await page.goto('/credit-card-calculators/credit-card-payment-calculator/');
 
     await page.locator('#cc-payoff-calc').click();
 
@@ -65,7 +65,7 @@ test.describe('Credit Card Repayment Calculator', () => {
   });
 
   test('REPAYMENT-TEST-E2E-3: explanation pane has 10 FAQ items', async ({ page }) => {
-    await page.goto('/loans/credit-card-repayment-payoff');
+    await page.goto('/credit-card-calculators/credit-card-payment-calculator/');
 
     const explanation = page.locator('#cc-payoff-explanation');
     await expect(explanation).toContainText('Frequently Asked Questions');

@@ -15,7 +15,7 @@ test.describe('Credit Card Consolidation Calculator', () => {
   test('CONSOLIDATION-TEST-E2E-1: single-panel Home Loan UI with calculate, donut, and table toggle', async ({
     page,
   }) => {
-    await page.goto('/loans/credit-card-consolidation');
+    await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Credit Card Consolidation Calculator');
 
@@ -83,7 +83,7 @@ test.describe('Credit Card Consolidation Calculator', () => {
   test('CONSOLIDATION-TEST-E2E-2: input edit keeps side/table live and invalid input preserves last valid data', async ({
     page,
   }) => {
-    await page.goto('/loans/credit-card-consolidation');
+    await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     const currentMonthsValue = page.locator('[data-cc-con="current-months"]').first();
     const yearlyPlaceholder = page.locator('#cc-con-table-yearly-body .cc-con-table-placeholder-row');
@@ -109,7 +109,7 @@ test.describe('Credit Card Consolidation Calculator', () => {
   test('CONSOLIDATION-TEST-E2E-3: explanation contains required rebuilt sections and 10 FAQs', async ({
     page,
   }) => {
-    await page.goto('/loans/credit-card-consolidation');
+    await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     const explanation = page.locator('#cc-con-explanation');
     await expect(explanation.locator('h2')).toHaveText('Credit Card Consolidation Summary');

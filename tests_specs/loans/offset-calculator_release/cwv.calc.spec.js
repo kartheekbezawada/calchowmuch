@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { assertCwv, measureRouteCwv } from '../../infrastructure/e2e/cwv-scope-helper.js';
 
-const ROUTE = '/loans/offset-calculator/';
+const ROUTE = '/loan-calculators/offset-mortgage-calculator/';
 
 test.describe('loans/offset-calculator cwv guard', () => {
   test('calculator route satisfies CLS/LCP thresholds', async ({ page }) => {
