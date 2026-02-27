@@ -31,6 +31,11 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/credit-card-calculators/balance-transfer-credit-card-calculator/calculator.css',
   'calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css',
   'calculators/credit-card-calculators/credit-card-minimum-payment-calculator/calculator.css',
+  'calculators/math/algebra/quadratic-equation/calculator.css',
+  'calculators/math/algebra/slope-distance/calculator.css',
+  'calculators/math/algebra/factoring/calculator.css',
+  'calculators/math/algebra/polynomial-operations/calculator.css',
+  'calculators/math/algebra/system-of-equations/calculator.css',
   'calculators/percentage-calculators/percent-change-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
@@ -60,6 +65,11 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/credit-card-calculators/credit-card-minimum-payment-calculator/',
   '/credit-card-calculators/balance-transfer-credit-card-calculator/',
   '/credit-card-calculators/credit-card-consolidation-calculator/',
+  '/math/algebra/quadratic-equation/',
+  '/math/algebra/slope-distance/',
+  '/math/algebra/factoring/',
+  '/math/algebra/polynomial-operations/',
+  '/math/algebra/system-of-equations/',
   '/percentage-calculators/percent-change-calculator/',
   '/percentage-calculators/percentage-difference-calculator/',
   '/percentage-calculators/percentage-increase-calculator/',
@@ -74,6 +84,11 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/time-and-date/energy-based-nap-selector/',
 ]);
 const STRICT_INLINE_CALCULATORS = new Set([
+  'quadratic-equation',
+  'slope-distance',
+  'factoring',
+  'polynomial-operations',
+  'system-of-equations',
   'percent-change',
   'percentage-difference',
   'percentage-increase',
@@ -367,8 +382,42 @@ const TIME_AND_DATE_ISOLATED_ROUTES = [
   },
 ];
 
+const MATH_ALGEBRA_ROUTES = [
+  {
+    calculatorId: 'quadratic-equation',
+    route: '/math/algebra/quadratic-equation/',
+    relPath: 'math/algebra/quadratic-equation',
+    routeCss: 'calculators/math/algebra/quadratic-equation/calculator.css',
+  },
+  {
+    calculatorId: 'slope-distance',
+    route: '/math/algebra/slope-distance/',
+    relPath: 'math/algebra/slope-distance',
+    routeCss: 'calculators/math/algebra/slope-distance/calculator.css',
+  },
+  {
+    calculatorId: 'factoring',
+    route: '/math/algebra/factoring/',
+    relPath: 'math/algebra/factoring',
+    routeCss: 'calculators/math/algebra/factoring/calculator.css',
+  },
+  {
+    calculatorId: 'polynomial-operations',
+    route: '/math/algebra/polynomial-operations/',
+    relPath: 'math/algebra/polynomial-operations',
+    routeCss: 'calculators/math/algebra/polynomial-operations/calculator.css',
+  },
+  {
+    calculatorId: 'system-of-equations',
+    route: '/math/algebra/system-of-equations/',
+    relPath: 'math/algebra/system-of-equations',
+    routeCss: 'calculators/math/algebra/system-of-equations/calculator.css',
+  },
+];
+
 const BUNDLED_ROUTES = [
   ...FINANCE_PILOT_ROUTES,
+  ...MATH_ALGEBRA_ROUTES,
   ...LOANS_ISOLATED_ROUTES,
   ...PERCENTAGE_ISOLATED_ROUTES,
   ...TIME_AND_DATE_ISOLATED_ROUTES,

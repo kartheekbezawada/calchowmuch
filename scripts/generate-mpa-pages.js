@@ -59,6 +59,11 @@ const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neu
 const PANE_LAYOUTS = new Set(['single', 'split']);
 const FORCED_SINGLE_PANE_CALCULATOR_IDS = new Set(['what-percent-is-x-of-y']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'quadratic-equation',
+  'slope-distance',
+  'factoring',
+  'polynomial-operations',
+  'system-of-equations',
   'monthly-savings-needed',
   'time-to-savings-goal',
   'investment-growth',
@@ -182,6 +187,46 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
     h1: 'Credit Card Consolidation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'quadratic-equation': {
+    title: 'Quadratic Equation Solver Calculator | CalcHowMuch',
+    description:
+      'Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output.',
+    h1: 'Quadratic Equation Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'slope-distance': {
+    title: 'Slope and Distance Calculator | CalcHowMuch',
+    description:
+      'Calculate slope, midpoint, distance, and line equations from two points with clear outputs for vertical, horizontal, and diagonal lines.',
+    h1: 'Slope and Distance Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  factoring: {
+    title: 'Factoring Calculator | Polynomial Factoring Steps | CalcHowMuch',
+    description:
+      'Factor algebraic expressions using GCF, quadratic factoring, difference of squares, cubes, and grouping with readable result steps.',
+    h1: 'Factoring Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'polynomial-operations': {
+    title: 'Polynomial Operations Calculator | Add Subtract Multiply Divide',
+    description:
+      'Perform polynomial addition, subtraction, multiplication, and division with quotient and remainder outputs and clear operation summaries.',
+    h1: 'Polynomial Operations Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'system-of-equations': {
+    title: 'System of Equations Solver | 2x2 and 3x3 | CalcHowMuch',
+    description:
+      'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.',
+    h1: 'System of Equations Solver',
     explanationHeading: '',
     paneLayout: 'single',
   },

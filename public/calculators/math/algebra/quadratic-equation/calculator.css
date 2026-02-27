@@ -1,52 +1,52 @@
-/* Quadratic Equation Calculator Specific Styles */
+.algebra-surface {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.5);
+}
 
-.equation-display {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
+.algebra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.quad-equation {
+  margin: 14px 0;
   padding: 12px;
-  margin: 16px 0;
-  text-align: center;
-  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(30, 41, 59, 0.55);
+}
+
+.quad-equation-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  margin-bottom: 4px;
 }
 
 #equation-text {
   font-family: 'Courier New', monospace;
-  color: #1e40af;
-  font-weight: bold;
 }
 
-.solution-steps {
-  background: #fefce8;
-  border: 1px solid #fbbf24;
-  border-radius: 6px;
-  padding: 16px;
-  margin: 12px 0;
+.solution-steps,
+.discriminant-info {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(30, 41, 59, 0.45);
 }
 
 .solution-steps h4 {
-  margin: 0 0 8px 0;
-  color: #92400e;
-}
-
-.solution-steps ol {
-  margin: 8px 0;
-  padding-left: 20px;
+  margin: 0 0 8px;
 }
 
 .solution-steps li {
-  margin: 4px 0;
-  font-family: 'Courier New', monospace;
+  margin-bottom: 6px;
 }
 
-.discriminant-info {
-  background: #ecfccb;
-  border: 1px solid #84cc16;
-  border-radius: 6px;
-  padding: 12px;
-  margin: 8px 0;
-}
-
-.discriminant-info strong {
-  color: #365314;
+.faq-card {
+  margin-top: 10px;
 }
