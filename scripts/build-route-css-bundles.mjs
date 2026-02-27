@@ -28,6 +28,9 @@ const CALCULATOR_SHARED_SOURCES = [
 ];
 
 const CRITICAL_FULL_SOURCES = new Set([
+  'calculators/credit-card-calculators/balance-transfer-credit-card-calculator/calculator.css',
+  'calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css',
+  'calculators/credit-card-calculators/credit-card-minimum-payment-calculator/calculator.css',
   'calculators/percentage-calculators/percent-change-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-difference-calculator/calculator.css',
   'calculators/percentage-calculators/percentage-increase-calculator/calculator.css',
