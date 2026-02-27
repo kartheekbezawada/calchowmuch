@@ -428,6 +428,7 @@
   font-size: 0.76rem;
   line-height: 1.45;
   color: rgba(203, 213, 225, 0.9);
+  min-height: 3.2em;
 }
 
 #calc-cc-bt .cc-bt-snapshot-list {
@@ -460,6 +461,7 @@
   color: rgba(248, 250, 252, 0.99);
   text-align: right;
   line-height: 1.28;
+  white-space: nowrap;
 }
 
 #cc-bt-explanation {
@@ -531,6 +533,10 @@
   border: 1px solid rgba(148, 163, 184, 0.34);
   background: rgba(15, 23, 42, 0.58);
   overflow: auto;
+}
+
+#cc-bt-explanation #cc-bt-table-wrap {
+  min-height: 320px;
 }
 
 #cc-bt-explanation #cc-bt-scenario-table,
@@ -618,6 +624,28 @@
 
 #cc-bt-explanation .cc-bt-faq-item .faq-answer {
   padding-left: 0.56rem;
+}
+
+#cc-bt-explanation .cc-bt-important-notes {
+  margin: 0;
+  padding: 0.9rem 0.95rem;
+  list-style: none;
+  display: grid;
+  gap: 0.46rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.48));
+}
+
+#cc-bt-explanation .cc-bt-important-notes li {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#cc-bt-explanation .cc-bt-important-notes strong {
+  color: rgba(254, 205, 211, 0.98);
 }
 
 @media (max-width: 1140px) {

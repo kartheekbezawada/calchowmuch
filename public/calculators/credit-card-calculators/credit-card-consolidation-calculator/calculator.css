@@ -812,6 +812,28 @@
   color: rgba(203, 213, 225, 0.92);
 }
 
+#cc-con-explanation .cc-con-important-notes {
+  margin: 0;
+  padding: 0.9rem 0.96rem;
+  list-style: none;
+  display: grid;
+  gap: 0.46rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(245, 158, 11, 0.34);
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.45));
+}
+
+#cc-con-explanation .cc-con-important-notes li {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#cc-con-explanation .cc-con-important-notes strong {
+  color: rgba(253, 230, 138, 0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
   #calc-cc-con .cc-con-result-card .cc-con-result-value.is-updated {
     animation: none;
