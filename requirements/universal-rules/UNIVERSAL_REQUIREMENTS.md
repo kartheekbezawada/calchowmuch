@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.3 (Thin-content governance + output-first explanation contract)
-- **Last Updated:** 2026-02-24
+- **Version:** 4.4 (SERP guide consistency contract + controlled order exceptions)
+- **Last Updated:** 2026-02-27
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -252,10 +252,10 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 6.1 Mandatory Structure
 
-- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, required SERP explanation block order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`).
+- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, default SERP explanation block order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`), unless explicit route-level exception is approved per `UR-EXP-038`.
 - **UR-EXP-002 (P0):** The explanation `H2` must use the calculator's intent/topic (example: `Mortgage Complete Practical Guide`); generic headings like `Explanation` or `Calculator Explanation` are forbidden.
 - **UR-EXP-003 (P0):** Only one `H2` is allowed in the explanation pane.
-- **UR-EXP-004 (P0):** `How to Guide` and `Important Notes` sections are mandatory and must appear before FAQ.
+- **UR-EXP-004 (P0):** `How to Guide` and `Important Notes` sections are mandatory. Default placement is before FAQ unless explicit route-level exception is approved per `UR-EXP-038`.
 - **UR-EXP-005 (P0):** `Important Notes` must include a visible `Last updated: <Month YYYY>` line.
 - **UR-EXP-006 (P0):** No extra heading hierarchy or section insertion between required blocks without explicit REQ approval.
 
@@ -282,7 +282,12 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-034 (P1):** Interactive charts should expose tooltip/focus values with period + value.
 - **UR-EXP-035 (P0):** Graph rendering must not clip labels or create horizontal overflow on mobile.
 - **UR-EXP-036 (P0):** Output insight sections (for example totals tables, amortization tables, graph modules, result interpretation cards) may appear before the required SERP explanation block from `UR-EXP-001`.
-- **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block: `How to Guide` must appear before `Important Notes`, and `Important Notes` must appear before `FAQ`.
+- **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block. Default sequence is `How to Guide` before `Important Notes`, and `Important Notes` before `FAQ`, unless explicit route-level exception is approved per `UR-EXP-038`.
+- **UR-EXP-038 (P0):** Route-level section-order exception (for example, `FAQ -> Important Notes`) is allowed only when explicitly requested by HUMAN and approved in Scope Contract before implementation.
+- **UR-EXP-039 (P0):** Every approved order exception must be documented in release sign-off and Master Table as route-specific exception evidence, and route tests must assert the approved order.
+- **UR-EXP-040 (P0):** SERP `How to Guide` and `Important Notes` visual structure must remain consistent across calculators using existing explanation card/container patterns; content updates must not introduce a new design language by default.
+- **UR-EXP-041 (P0):** Default SERP guide typography contract is `H3: 16px`, `H4: 14px`, body/list text `14px`; any typography deviation requires explicit REQ approval.
+- **UR-EXP-042 (P0):** SERP guide and notes must inherit the route calculator font stack by default, and heading/subheading colors must reuse existing route accent token/color already used in calculator data surfaces.
 
 ---
 
@@ -359,7 +364,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-TEST-033 (P0):** `content_shell`: Shell/Nav/SEO. Panes N/A.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
-- **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> `Important Notes` -> FAQ).
+- **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> `Important Notes` -> FAQ) or approved route-level exception order per `UR-EXP-038` and `UR-EXP-039`.
 - **UR-TEST-037 (P0):** If a route includes graphs/charts, tests must assert graph readability basics: labeled axes, legible legend, and no horizontal overflow at mobile width.
 
 ### 8.5 Cluster & Calculator Scoped Test Isolation

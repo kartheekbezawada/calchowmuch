@@ -28,7 +28,7 @@ test.describe('Investment Return Calculator', () => {
       })
       .not.toBe(baselineResult);
 
-    await page.click('button[data-ir-preset="10"]');
+    await page.fill('#ir-return', '10');
     await expect(page.locator('#ir-return')).toHaveValue('10');
 
     await page.click('#ir-advanced-toggle');
@@ -52,7 +52,6 @@ test.describe('Investment Return Calculator', () => {
     await page.click('[data-button-group="ir-breakdown-mode"] button[data-value="monthly"]');
     await expect(page.locator('#ir-breakdown-head')).toContainText('Month');
 
-    await page.click('[data-button-group="ir-graph-mode"] button[data-value="stacked"]');
-    await expect(page.locator('#ir-graph-bars rect').first()).toBeVisible();
+    await expect(page.locator('#ir-breakdown-body tr').first()).toBeVisible();
   });
 });

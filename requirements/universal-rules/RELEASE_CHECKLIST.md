@@ -629,17 +629,28 @@ HARD: Page crawlable without JS
 
 Applies to `calc_exp` and `exp_only` routes.
 
-HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block, but required SERP block order is unchanged.
+HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block. Default SERP block order remains unchanged unless route-level exception is explicitly approved.
 
 HARD: Explanation heading must be intent-led (calculator purpose/topic), not generic labels like `Explanation` or `Calculator Explanation`.
 
-HARD: Required section order must be visible in initial HTML:
+HARD: Default required section order must be visible in initial HTML:
 - Intent-led heading
 - `How to Guide`
 - `Important Notes`
 - FAQ
 
+HARD: If route-level order exception is used (for example `FAQ -> Important Notes`), release evidence must include:
+- explicit HUMAN requirement statement
+- exact route and approved order
+- route test assertions proving that approved order
+
 HARD: `Important Notes` must include `Last updated: <Month YYYY>`.
+
+HARD: SERP guide + Important Notes style consistency must be validated for touched calculators:
+- existing explanation card/container pattern reused (no new design system by default)
+- guide typography baseline preserved (`H3 16px`, `H4 14px`, body/list `14px`) unless REQ override is approved
+- font family inherited from calculator theme (no isolated font swap)
+- heading/subheading colors reuse route accent token/color used by calculator data surfaces
 
 HARD: FAQ count and visible FAQ content must remain schema-aligned.
 
@@ -728,7 +739,9 @@ Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activat
 
 SERP validation notes (canonical + schema + FAQ parity)
 
-Intent-led content structure validation notes (section order + `Last updated` evidence)
+Intent-led content structure validation notes (default section order or approved route exception + `Last updated` evidence)
+
+SERP guide/notes style consistency notes (typography baseline + font inheritance + heading/subheading color consistency)
 
 Thin-content scoring notes (`thinContentMode`, score, grade, hard flags)
 

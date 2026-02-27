@@ -22,16 +22,45 @@
   width: 100%;
 }
 
-#calc-investment-return .ir-presets {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  margin: 1rem 0;
+#calc-investment-return .pv-toggle-row {
+  margin-top: 0.35rem;
+  padding: 0.82rem;
+  border-radius: 0.82rem;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.64), rgba(30, 41, 59, 0.42));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 0.9rem;
+  align-items: start;
 }
 
-#calc-investment-return .ir-presets .pv-toggle-label {
-  width: 100%;
+#calc-investment-return .pv-toggle-row .pv-toggle-group {
+  display: grid;
+  gap: 0.42rem;
+  min-width: 0;
+  align-content: start;
+}
+
+#calc-investment-return .pv-toggle-row .pv-toggle-label {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.97);
+}
+
+#calc-investment-return .pv-toggle-row .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+#calc-investment-return .pv-toggle-row .calculator-button {
+  min-height: 38px;
+  padding: 0.4rem 0.78rem;
+  border-radius: 0.68rem;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 #calc-investment-return .ir-advanced-control {
@@ -268,7 +297,143 @@
   background: rgba(139, 92, 246, 0.16);
 }
 
+#ir-explanation .ir-serp-guide,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide,
+#ir-explanation .ir-important-notes,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes {
+  display: block;
+}
+
+#ir-explanation .ir-serp-guide h3,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide h3,
+#ir-explanation .ir-important-notes h3,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #93c5fd;
+  text-shadow:
+    0 0 2px rgba(56, 189, 248, 0.4),
+    0 0 16px rgba(56, 189, 248, 0.28);
+}
+
+#ir-explanation .ir-serp-guide h4,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide h4 {
+  margin: 12px 0 6px;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: #93c5fd;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.22);
+}
+
+#ir-explanation .ir-serp-guide p,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide p {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.48;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-serp-guide ul,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide ul {
+  margin: 2px 0 9px 16px;
+  padding: 0;
+}
+
+#ir-explanation .ir-serp-guide li,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide li {
+  margin: 3px 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist {
+  list-style: none;
+  margin: 4px 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist li,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist li {
+  position: relative;
+  margin: 0;
+  padding: 7px 9px 7px 23px;
+  border-radius: 9px;
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  background: rgba(15, 23, 42, 0.46);
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist li::before,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist li::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 11px;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
+}
+
+#ir-explanation .ir-important-notes,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes {
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.56), rgba(30, 64, 175, 0.14));
+  border-color: rgba(56, 189, 248, 0.28);
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list li,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list li {
+  position: relative;
+  margin: 0;
+  padding: 8px 10px 8px 24px;
+  border-radius: 9px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(15, 23, 42, 0.52);
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list li::before,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list li::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 11px;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.65);
+}
+
+#ir-explanation .ir-important-notes strong,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes strong {
+  color: #bfdbfe;
+}
+
 @media (max-width: 900px) {
+  #calc-investment-return .pv-toggle-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   #calc-investment-return .ir-grid,
   #calc-investment-return .ir-variable-rows {
     grid-template-columns: 1fr;
@@ -279,6 +444,12 @@
   }
 
   #ir-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  #calc-investment-return .pv-toggle-row {
     grid-template-columns: 1fr;
   }
 }

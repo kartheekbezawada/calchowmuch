@@ -22,6 +22,50 @@ test.describe('Investment Return Calculator SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Investment Return Calculator');
 
+    await expect(page.locator('#loan-mtg-explanation > h2')).toHaveText(
+      'Investment Return Calculator Summary'
+    );
+    await expect(
+      page.locator('#loan-mtg-explanation .mtg-exp-section h3', {
+        hasText: 'Investment Return Complete Practical Guide',
+      })
+    ).toHaveCount(1);
+    await expect(
+      page.locator('#loan-mtg-explanation .mtg-exp-section h3', { hasText: 'Important Notes' })
+    ).toHaveCount(1);
+    await expect(page.locator('#loan-mtg-explanation .mtg-exp-section--faq .bor-faq-card')).toHaveCount(10);
+
+    const guideWordCount = await page.evaluate(() => {
+      const section = Array.from(
+        document.querySelectorAll('#loan-mtg-explanation section.mtg-exp-section')
+      ).find(
+        (node) =>
+          node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() ===
+          'Investment Return Complete Practical Guide'
+      );
+
+      if (!section) {
+        return -1;
+      }
+
+      const text = section.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+      return text ? text.split(' ').filter(Boolean).length : 0;
+    });
+    expect(guideWordCount).toBeGreaterThanOrEqual(800);
+    expect(guideWordCount).toBeLessThanOrEqual(1200);
+
+    const contentOrder = await page.evaluate(() => {
+      const sections = Array.from(document.querySelectorAll('#loan-mtg-explanation > section'));
+      const faqIndex = sections.findIndex((node) => node.classList.contains('mtg-exp-section--faq'));
+      const notesIndex = sections.findIndex(
+        (node) => node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() === 'Important Notes'
+      );
+      return { faqIndex, notesIndex };
+    });
+    expect(contentOrder.faqIndex).toBeGreaterThanOrEqual(0);
+    expect(contentOrder.notesIndex).toBeGreaterThanOrEqual(0);
+    expect(contentOrder.notesIndex).toBeGreaterThan(contentOrder.faqIndex);
+
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
     const structuredJson = JSON.parse((await structuredDataScript.textContent()) || '{}');

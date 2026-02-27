@@ -44,7 +44,6 @@ const PLOT_BOUNDS = Object.freeze({
   maxY: 84,
 });
 
-const presetButtons = Array.from(document.querySelectorAll('[data-ir-preset]'));
 const snapNodes = {
   contributions: document.querySelector('[data-ir-snap="contributions"]'),
   profit: document.querySelector('[data-ir-snap="profit"]'),
@@ -265,6 +264,22 @@ const crashButtons = setupButtonGroup(document.querySelector('[data-button-group
 let lastOutput = null;
 let advancedOpen = false;
 let variableRowsTouched = false;
+const DEFAULT_FORM_STATE = Object.freeze({
+  initialInvestment: '10000',
+  annualReturnRate: '6',
+  durationYears: '20',
+  regularContribution: '300',
+  inflationRate: '2.5',
+  taxRate: '10',
+  compoundingFrequency: 'MONTHLY',
+  contributionFrequency: 'MONTHLY',
+  contributionTiming: 'END_OF_PERIOD',
+  breakdownMode: 'annual',
+  graphMode: 'growth',
+  crashEnabled: 'off',
+  crashYear: '5',
+  crashDropPercent: '20',
+});
 
 function formatMoney(value) {
   if (!Number.isFinite(value)) {
@@ -761,18 +776,34 @@ function toggleCrashInputs() {
   }
 }
 
-presetButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const rate = Number(button.dataset.irPreset);
-    if (!Number.isFinite(rate) || !returnInput) {
-      return;
-    }
-    returnInput.value = String(rate);
-    if (!variableRowsTouched) {
-      buildVariableRows();
-    }
-  });
-});
+function applyDefaultFormState() {
+  if (initialInput) initialInput.value = DEFAULT_FORM_STATE.initialInvestment;
+  if (returnInput) returnInput.value = DEFAULT_FORM_STATE.annualReturnRate;
+  if (yearsInput) yearsInput.value = DEFAULT_FORM_STATE.durationYears;
+  if (contributionInput) contributionInput.value = DEFAULT_FORM_STATE.regularContribution;
+  if (inflationInput) inflationInput.value = DEFAULT_FORM_STATE.inflationRate;
+  if (taxInput) taxInput.value = DEFAULT_FORM_STATE.taxRate;
+  if (crashYearInput) crashYearInput.value = DEFAULT_FORM_STATE.crashYear;
+  if (crashDropInput) crashDropInput.value = DEFAULT_FORM_STATE.crashDropPercent;
+
+  compoundingButtons?.setValue(DEFAULT_FORM_STATE.compoundingFrequency);
+  contributionFrequencyButtons?.setValue(DEFAULT_FORM_STATE.contributionFrequency);
+  contributionTimingButtons?.setValue(DEFAULT_FORM_STATE.contributionTiming);
+  breakdownButtons?.setValue(DEFAULT_FORM_STATE.breakdownMode);
+  graphButtons?.setValue(DEFAULT_FORM_STATE.graphMode);
+  crashButtons?.setValue(DEFAULT_FORM_STATE.crashEnabled);
+
+  advancedOpen = false;
+  variableRowsTouched = false;
+  advancedSection?.classList.add('is-hidden');
+  advancedToggleButton?.setAttribute('aria-expanded', 'false');
+  if (advancedToggleButton) {
+    advancedToggleButton.textContent = 'Show Advanced Mode';
+  }
+  variableRowsRoot?.replaceChildren();
+  eventsRowsRoot?.replaceChildren();
+  toggleCrashInputs();
+}
 
 advancedToggleButton?.addEventListener('click', () => {
   toggleAdvancedMode();
@@ -800,4 +831,4 @@ calculateButton?.addEventListener('click', () => {
   calculateAndRender();
 });
 
-toggleCrashInputs();
+applyDefaultFormState();
