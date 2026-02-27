@@ -32,3 +32,13 @@
 ## Follow-Up
 
 - None. All 5 algebra waves completed as scoped passes.
+
+## Wave-2 Queue (Right-Side Answer Cards + FAQ10)
+
+| Order | Calculator | Route | Status | Release ID | Commit SHA | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | quadratic-equation | /math/algebra/quadratic-equation/ | passed | REL-20260227-011 | TBD | Right-side answer cards + FAQ 10 + schema parity |
+| 2 | slope-distance | /math/algebra/slope-distance/ | pending | REL-20260227-012 | TBD | Pending wave execution |
+| 3 | factoring | /math/algebra/factoring/ | pending | REL-20260227-013 | TBD | Pending wave execution |
+| 4 | polynomial-operations | /math/algebra/polynomial-operations/ | pending | REL-20260227-014 | TBD | Pending wave execution |
+| 5 | system-of-equations | /math/algebra/system-of-equations/ | pending | REL-20260227-015 | TBD | Pending wave execution |

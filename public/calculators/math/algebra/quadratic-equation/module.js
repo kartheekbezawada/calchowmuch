@@ -10,6 +10,23 @@ const resultDiv = document.querySelector('#quad-result');
 const detailDiv = document.querySelector('#quad-detail');
 const equationText = document.querySelector('#equation-text');
 
+const snapshotEquation = document.querySelector('[data-quad-snap="equation"]');
+const snapshotRootType = document.querySelector('[data-quad-snap="root-type"]');
+const snapshotDiscriminant = document.querySelector('[data-quad-snap="discriminant"]');
+const snapshotMethod = document.querySelector('[data-quad-snap="method"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function resetSnapshots() {
+  updateSnapshot(snapshotRootType, '-');
+  updateSnapshot(snapshotDiscriminant, '-');
+  updateSnapshot(snapshotMethod, 'Quadratic formula');
+}
+
 function updateEquationDisplay() {
   const a = toNumber(aInput.value, 1);
   const b = toNumber(bInput.value, 0);
@@ -39,6 +56,14 @@ function updateEquationDisplay() {
 
   equation += ' = 0';
   equationText.textContent = equation;
+  updateSnapshot(snapshotEquation, equation);
+}
+
+function showError(message) {
+  resultDiv.textContent = message;
+  detailDiv.textContent = '';
+  updateSnapshot(snapshotRootType, 'Error');
+  updateSnapshot(snapshotDiscriminant, '-');
 }
 
 function solveCurrentEquation() {
@@ -47,7 +72,7 @@ function solveCurrentEquation() {
 
   const invalidLength = [aInput, bInput, cInput].find((input) => !hasMaxDigits(input.value, 12));
   if (invalidLength) {
-    resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    showError('Inputs are limited to 12 digits.');
     return;
   }
 
@@ -57,11 +82,13 @@ function solveCurrentEquation() {
 
   const solution = solveQuadraticEquation(a, b, c);
   if (solution.error) {
-    resultDiv.textContent = `Error: ${solution.error}`;
+    showError(`Error: ${solution.error}`);
     return;
   }
 
   const discriminant = solution.discriminant;
+  updateSnapshot(snapshotDiscriminant, formatNumber(discriminant, { maximumFractionDigits: 6 }));
+
   let solutionsHTML = '';
   let detailHTML = '';
 
@@ -80,18 +107,24 @@ function solveCurrentEquation() {
 
   if (solution.type === 'two-real') {
     const [x1, x2] = solution.roots;
+    updateSnapshot(snapshotRootType, 'Two real roots');
+
     solutionsHTML = '<strong>Two Real Solutions</strong><br>';
     solutionsHTML += `x1 = ${formatNumber(x1, { maximumFractionDigits: 6 })}<br>`;
     solutionsHTML += `x2 = ${formatNumber(x2, { maximumFractionDigits: 6 })}`;
     detailHTML += 'Δ &gt; 0, so the equation has two distinct real roots.';
   } else if (solution.type === 'one-real') {
     const [x] = solution.roots;
+    updateSnapshot(snapshotRootType, 'One repeated root');
+
     solutionsHTML = '<strong>One Repeated Real Solution</strong><br>';
     solutionsHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}`;
     detailHTML += 'Δ = 0, so the equation has one repeated root.';
   } else {
     const realPart = solution.roots[0].real;
     const imaginaryPart = Math.abs(solution.roots[0].imaginary);
+    updateSnapshot(snapshotRootType, 'Complex roots');
+
     solutionsHTML = '<strong>Two Complex Solutions</strong><br>';
     solutionsHTML += `x1 = ${formatNumber(realPart, { maximumFractionDigits: 6 })} + ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i<br>`;
     solutionsHTML += `x2 = ${formatNumber(realPart, { maximumFractionDigits: 6 })} - ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i`;
@@ -109,3 +142,4 @@ cInput.addEventListener('input', updateEquationDisplay);
 solveButton.addEventListener('click', solveCurrentEquation);
 
 updateEquationDisplay();
+resetSnapshots();
