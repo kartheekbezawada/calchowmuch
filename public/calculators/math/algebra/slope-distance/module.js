@@ -10,6 +10,24 @@ const calculateButton = document.querySelector('#calculate-slope');
 const resultDiv = document.querySelector('#slope-result');
 const detailDiv = document.querySelector('#slope-detail');
 
+const snapshotSlope = document.querySelector('[data-slope-snap="slope"]');
+const snapshotDistance = document.querySelector('[data-slope-snap="distance"]');
+const snapshotMidpoint = document.querySelector('[data-slope-snap="midpoint"]');
+const snapshotLineType = document.querySelector('[data-slope-snap="line-type"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function resetSnapshots() {
+  updateSnapshot(snapshotSlope, '-');
+  updateSnapshot(snapshotDistance, '-');
+  updateSnapshot(snapshotMidpoint, '-');
+  updateSnapshot(snapshotLineType, '-');
+}
+
 function validateInputs(inputs) {
   const invalidLength = inputs.find((input) => !hasMaxDigits(input.value, 12));
   if (invalidLength) {
@@ -26,6 +44,7 @@ function calculate() {
   const lengthError = validateInputs(inputs);
   if (lengthError) {
     resultDiv.textContent = lengthError;
+    resetSnapshots();
     return;
   }
 
@@ -43,9 +62,16 @@ function calculate() {
   const distanceText = formatNumber(props.distance, { maximumFractionDigits: 6 });
   const midpointText = `(${formatNumber(props.midpoint.x, { maximumFractionDigits: 6 })}, ${formatNumber(props.midpoint.y, { maximumFractionDigits: 6 })})`;
 
+  let lineType = 'General line';
+  if (props.slope === null) {
+    lineType = 'Vertical line';
+  } else if (props.slope === 0) {
+    lineType = 'Horizontal line';
+  }
+
   let slopeInterceptText = 'Not available (vertical line)';
-  let pointSlopeText = 'x = ' + formatNumber(x1, { maximumFractionDigits: 6 });
-  let standardText = 'x = ' + formatNumber(x1, { maximumFractionDigits: 6 });
+  let pointSlopeText = `x = ${formatNumber(x1, { maximumFractionDigits: 6 })}`;
+  let standardText = `x = ${formatNumber(x1, { maximumFractionDigits: 6 })}`;
 
   if (props.slope !== null) {
     const b = props.slopeIntercept.b;
@@ -88,6 +114,11 @@ function calculate() {
       <div class="equation-form"><strong>Perpendicular (through Point 1):</strong> ${perpendicularText}</div>
     </div>
   `;
+
+  updateSnapshot(snapshotSlope, props.slope === null ? 'Undefined' : slopeText);
+  updateSnapshot(snapshotDistance, distanceText);
+  updateSnapshot(snapshotMidpoint, midpointText);
+  updateSnapshot(snapshotLineType, lineType);
 }
 
 calculateButton.addEventListener('click', calculate);

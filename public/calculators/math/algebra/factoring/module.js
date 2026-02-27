@@ -1,7 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import {
-  evaluatePolynomial,
   extractGcf,
   factorByGrouping,
   factorDifferenceOfSquares,
@@ -24,6 +23,23 @@ const methodDifference = document.querySelector('#method-difference');
 const methodSumDifference = document.querySelector('#method-sum-difference');
 const methodGrouping = document.querySelector('#method-grouping');
 
+const snapshotInput = document.querySelector('[data-factor-snap="input"]');
+const snapshotMethod = document.querySelector('[data-factor-snap="method"]');
+const snapshotFactored = document.querySelector('[data-factor-snap="factored"]');
+const snapshotResidual = document.querySelector('[data-factor-snap="residual"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function resetSnapshots() {
+  updateSnapshot(snapshotMethod, '-');
+  updateSnapshot(snapshotFactored, '-');
+  updateSnapshot(snapshotResidual, '-');
+}
+
 function validatePolynomialInput(input) {
   const tokens = input.match(/-?\d*\.?\d+/g) || [];
   const invalidToken = tokens.find((token) => !hasMaxDigits(token, 12));
@@ -44,15 +60,19 @@ function calculate() {
   detailDiv.textContent = '';
 
   const inputText = polyInput.value || '';
+  updateSnapshot(snapshotInput, inputText || '-');
+
   const validationError = validatePolynomialInput(inputText);
   if (validationError) {
     resultDiv.textContent = validationError;
+    resetSnapshots();
     return;
   }
 
   const parsed = parsePolynomial(inputText);
   if (parsed.errors.length) {
     resultDiv.textContent = `Invalid terms: ${parsed.errors.join(', ')}`;
+    resetSnapshots();
     return;
   }
 
@@ -119,9 +139,20 @@ function calculate() {
     factors.push(...factored.factors);
     steps.push(`${factored.label}: ${factored.factors.join(' ')}`);
     resultDiv.innerHTML = `<strong>Factored Form:</strong> ${factors.join(' ')}`;
+    updateSnapshot(snapshotMethod, factored.label);
+    updateSnapshot(snapshotFactored, factors.join(' '));
+    updateSnapshot(snapshotResidual, formatPolynomial(workingCoeffs));
   } else {
-    resultDiv.innerHTML = `<strong>Factored Form:</strong> ${factors.length ? `${factors.join(' ')} (${formatPolynomial(workingCoeffs)})` : formatPolynomial(workingCoeffs)}`;
+    const fallback = factors.length
+      ? `${factors.join(' ')} (${formatPolynomial(workingCoeffs)})`
+      : formatPolynomial(workingCoeffs);
+
+    resultDiv.innerHTML = `<strong>Factored Form:</strong> ${fallback}`;
     steps.push('No additional factoring found with selected methods.');
+
+    updateSnapshot(snapshotMethod, 'No further match');
+    updateSnapshot(snapshotFactored, fallback);
+    updateSnapshot(snapshotResidual, formatPolynomial(workingCoeffs));
   }
 
   detailDiv.innerHTML = `

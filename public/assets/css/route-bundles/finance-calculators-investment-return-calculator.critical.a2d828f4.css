@@ -2111,6 +2111,14 @@ body .site-header .header-search-icon {
 }
 
 /* critical source: /calculators/finance-calculators/investment-return-calculator/calculator.css */
+#calc-investment-return .pv-toggle-row .calculator-button {
+  min-height: 38px;
+  padding: 0.4rem 0.78rem;
+  border-radius: 0.68rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
 #calc-investment-return .ir-breakdown-table tbody tr:nth-child(odd) td {
   background: rgba(15, 23, 42, 0.45);
 }

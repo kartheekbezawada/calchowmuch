@@ -2816,6 +2816,103 @@
   color: rgba(203, 213, 225, 0.92);
 }
 
+/* --- Practical Guide: typography alignment with calculator theme --- */
+
+#loan-borrow-explanation .bor-exp-section--guide {
+  font-family: inherit;
+  gap: 0.58rem;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide h3 {
+  margin: 0 0 0.16rem;
+  font-family: inherit;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #fde68a;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide h4 {
+  margin: 0.34rem 0 0.08rem;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #fde68a;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide p,
+#loan-borrow-explanation .bor-exp-section--guide li {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide p {
+  margin: 0;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide p + p {
+  margin-top: 0.24rem;
+}
+
+#loan-borrow-explanation .bor-exp-section--guide .bor-guide-list {
+  margin: 0.04rem 0 0.2rem;
+  padding-left: 1.02rem;
+  display: grid;
+  gap: 0.18rem;
+}
+
+/* --- Important Notes: natural home-loan theme refinement --- */
+
+#loan-borrow-explanation .bor-exp-section--notes {
+  font-family: inherit;
+  gap: 0.82rem;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-left: 4px solid rgba(56, 189, 248, 0.82);
+  background: linear-gradient(145deg, rgba(11, 25, 47, 0.9), rgba(16, 35, 64, 0.85));
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+}
+
+#loan-borrow-explanation .bor-exp-section--notes h3 {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(224, 242, 254, 0.98);
+}
+
+#loan-borrow-explanation .bor-note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.48rem;
+}
+
+#loan-borrow-explanation .bor-note-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.58;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+#loan-borrow-explanation .bor-note-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+}
+
+#loan-borrow-explanation .bor-note-list strong {
+  color: rgba(186, 230, 253, 0.98);
+  font-weight: 700;
+}
+
 /* ================================================================
    ACCESSIBILITY & REDUCED MOTION
    ================================================================ */

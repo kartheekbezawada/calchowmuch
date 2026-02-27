@@ -1,123 +1,256 @@
+<style>
+  #calc-system-equations .algebra-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+  }
+  #calc-system-equations .algebra-preview-panel {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.62);
+    padding: 12px;
+  }
+  #calc-system-equations .algebra-preview-main {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  #calc-system-equations .algebra-result-card,
+  #calc-system-equations .algebra-summary-card {
+    margin: 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(30, 41, 59, 0.5);
+  }
+  #calc-system-equations .algebra-snapshot-list {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.45);
+  }
+  #calc-system-equations .algebra-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+  #calc-system-equations .algebra-snapshot-row:last-child {
+    border-bottom: 0;
+  }
+  @media (max-width: 980px) {
+    #calc-system-equations .algebra-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 <div id="calc-system-equations">
-  <div class="calculator-ui">
-    <p class="helper">
-      Solve systems of linear equations using elimination, substitution, or matrix methods
-    </p>
+  <div class="calculator-ui algebra-surface">
+    <section class="algebra-hero" aria-label="System of equations solver">
+      <div class="algebra-form-panel">
+        <p class="helper">Solve linear systems in 2x2 or 3x3 form.</p>
 
-    <div class="system-type-selector">
-      <label>System Size:</label>
-      <div class="button-group" role="group" data-button-group="system-size">
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="2x2"
-          aria-pressed="true"
-        >
-          2×2 System
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="3x3"
-          aria-pressed="false"
-        >
-          3×3 System
-        </button>
-      </div>
-    </div>
+        <div class="system-type-selector">
+          <label>System size</label>
+          <div class="button-group" role="group" data-button-group="system-size">
+            <button class="calculator-button secondary is-active" type="button" data-value="2x2" aria-pressed="true">
+              2x2
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="3x3" aria-pressed="false">
+              3x3
+            </button>
+          </div>
+        </div>
 
-    <div id="equations-input">
-      <!-- 2x2 System -->
-      <div class="system-2x2" id="system-2x2">
-        <h3>Enter coefficients for the system:</h3>
-        <div class="equation-row">
-          <input type="number" id="a11" value="1" step="any" class="coeff-input" />
-          <span>x +</span>
-          <input type="number" id="a12" value="2" step="any" class="coeff-input" />
-          <span>y =</span>
-          <input type="number" id="b1" value="5" step="any" class="coeff-input" />
-        </div>
-        <div class="equation-row">
-          <input type="number" id="a21" value="3" step="any" class="coeff-input" />
-          <span>x +</span>
-          <input type="number" id="a22" value="4" step="any" class="coeff-input" />
-          <span>y =</span>
-          <input type="number" id="b2" value="11" step="any" class="coeff-input" />
-        </div>
-      </div>
+        <div id="equations-input">
+          <div class="system-2x2" id="system-2x2">
+            <h3>2x2 Coefficients</h3>
+            <div class="equation-row">
+              <input type="number" id="a11" value="1" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a12" value="2" step="any" class="coeff-input" />
+              <span>y =</span>
+              <input type="number" id="b1" value="5" step="any" class="coeff-input" />
+            </div>
+            <div class="equation-row">
+              <input type="number" id="a21" value="3" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a22" value="4" step="any" class="coeff-input" />
+              <span>y =</span>
+              <input type="number" id="b2" value="11" step="any" class="coeff-input" />
+            </div>
+          </div>
 
-      <!-- 3x3 System (hidden by default) -->
-      <div class="system-3x3" id="system-3x3" style="display: none">
-        <h3>Enter coefficients for the system:</h3>
-        <div class="equation-row">
-          <input type="number" id="a11-3x3" value="1" step="any" class="coeff-input" />
-          <span>x +</span>
-          <input type="number" id="a12-3x3" value="2" step="any" class="coeff-input" />
-          <span>y +</span>
-          <input type="number" id="a13-3x3" value="3" step="any" class="coeff-input" />
-          <span>z =</span>
-          <input type="number" id="b1-3x3" value="14" step="any" class="coeff-input" />
+          <div class="system-3x3" id="system-3x3" style="display: none">
+            <h3>3x3 Coefficients</h3>
+            <div class="equation-row">
+              <input type="number" id="a11-3x3" value="1" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a12-3x3" value="2" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a13-3x3" value="3" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b1-3x3" value="14" step="any" class="coeff-input" />
+            </div>
+            <div class="equation-row">
+              <input type="number" id="a21-3x3" value="4" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a22-3x3" value="5" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a23-3x3" value="6" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b2-3x3" value="32" step="any" class="coeff-input" />
+            </div>
+            <div class="equation-row">
+              <input type="number" id="a31-3x3" value="7" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a32-3x3" value="8" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a33-3x3" value="9" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b3-3x3" value="50" step="any" class="coeff-input" />
+            </div>
+          </div>
         </div>
-        <div class="equation-row">
-          <input type="number" id="a21-3x3" value="4" step="any" class="coeff-input" />
-          <span>x +</span>
-          <input type="number" id="a22-3x3" value="5" step="any" class="coeff-input" />
-          <span>y +</span>
-          <input type="number" id="a23-3x3" value="6" step="any" class="coeff-input" />
-          <span>z =</span>
-          <input type="number" id="b2-3x3" value="32" step="any" class="coeff-input" />
-        </div>
-        <div class="equation-row">
-          <input type="number" id="a31-3x3" value="7" step="any" class="coeff-input" />
-          <span>x +</span>
-          <input type="number" id="a32-3x3" value="8" step="any" class="coeff-input" />
-          <span>y +</span>
-          <input type="number" id="a33-3x3" value="9" step="any" class="coeff-input" />
-          <span>z =</span>
-          <input type="number" id="b3-3x3" value="50" step="any" class="coeff-input" />
-        </div>
-      </div>
-    </div>
 
-    <div class="solution-method-selector">
-      <label>Solution Method:</label>
-      <div class="button-group" role="group" data-button-group="solution-method">
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="elimination"
-          aria-pressed="true"
-        >
-          Elimination
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="substitution"
-          aria-pressed="false"
-        >
-          Substitution
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="matrix"
-          aria-pressed="false"
-        >
-          Matrix
+        <div class="solution-method-selector">
+          <label>Solution method</label>
+          <div class="button-group" role="group" data-button-group="solution-method">
+            <button class="calculator-button secondary is-active" type="button" data-value="elimination" aria-pressed="true">
+              Elimination
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="substitution" aria-pressed="false">
+              Substitution
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="matrix" aria-pressed="false">
+              Matrix
+            </button>
+          </div>
+        </div>
+
+        <button class="calculator-button full-width" type="button" id="solve-system">
+          Solve System
         </button>
       </div>
-    </div>
 
-    <button class="calculator-button full-width" type="button" id="solve-system">
-      Solve System
-    </button>
+      <aside class="algebra-preview-panel" aria-label="System of equations answer cards">
+        <div class="algebra-preview-main">
+          <p class="algebra-preview-label">Answer Card</p>
+          <div class="result algebra-result-card" id="system-result" aria-live="polite">
+            Results will appear after you click <strong>Solve System</strong>.
+          </div>
+          <div class="result-detail algebra-summary-card" id="system-detail" aria-live="polite"></div>
+        </div>
 
-    <div class="result" id="system-result" aria-live="polite"></div>
-    <div class="result-detail" id="system-detail" aria-live="polite"></div>
+        <div class="algebra-snapshot-list" aria-label="System snapshot">
+          <div class="algebra-snapshot-row">
+            <span>System Size</span>
+            <strong data-system-snap="size">2x2</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Method</span>
+            <strong data-system-snap="method">Elimination</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Determinant</span>
+            <strong data-system-snap="determinant">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Solution Status</span>
+            <strong data-system-snap="status">-</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
-
-<style>
-  @import url('/calculators/math/algebra/system-of-equations/calculator.css');
-</style>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What system sizes are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This solver supports both 2x2 and 3x3 linear systems."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What methods can I choose?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can choose elimination, substitution, or matrix-based solving approaches."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does determinant indicate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A non-zero determinant indicates a unique solution for the system."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the solver detect no-solution cases?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it identifies inconsistent systems where equations have no common intersection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it detect infinite solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, dependent systems with overlapping equations are reported as infinite solutions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are decimal coefficients allowed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, decimal and negative coefficients are supported."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does 3x3 often use matrix logic?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Matrix and determinant methods scale well for 3-variable systems and provide consistent solving steps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does method choice change the final solution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, valid methods should produce the same final solution when a unique solution exists."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this to verify homework?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the calculator is useful for checking solutions and intermediate reasoning."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my system is nearly singular?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Near-zero determinants can indicate numerical sensitivity; review inputs and interpret results carefully."
+        }
+      }
+    ]
+  }
+</script>

@@ -1,4 +1,73 @@
-/* source: /assets/css/theme-premium-dark.css */
+/* critical source: /assets/css/core-tokens.css */
+/* Core shared design tokens for isolated route bundles. */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+/* critical source: /assets/css/theme-premium-dark.css */
 :root {
   color-scheme: dark;
   --color-blue-400: #60a5fa;
@@ -335,7 +404,7 @@ body ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
 
-/* source: /assets/css/base.css */
+/* critical source: /assets/css/base.css */
 /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
    instead of @import, to eliminate sequential CSS waterfall.
    See known_issues.md KI-007 / KI-010. */
@@ -415,7 +484,424 @@ button {
   background: var(--scrollbar-thumb-hover, #64748b);
 }
 
-/* source: /assets/css/core-tokens.css */
+/* critical source: /assets/css/theme-premium-dark.css */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+body {
+  background-color: var(--page-bg);
+  background-image: var(--gradient-bg-main);
+  color: var(--header-text);
+}
+
+body .page {
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+}
+
+body .site-header {
+  color: var(--header-text);
+}
+
+body .site-header span {
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body .top-nav button,
+body .top-nav .top-nav-link {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+  box-shadow: none;
+}
+
+body .top-nav button:hover,
+body .top-nav .top-nav-link:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+body .top-nav button.is-active,
+body .top-nav .top-nav-link.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .nav-category-toggle {
+  color: var(--color-slate-400);
+}
+
+body .nav-category-indicator {
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .panel,
+body .ads-column {
+  background: var(--gradient-bg-card);
+  border-color: var(--shell-border);
+  box-shadow: var(--panel-shadow);
+}
+
+body .ad-panel {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+body .panel h1,
+body .panel h3 {
+  color: var(--header-text);
+}
+
+body .panel h1,
+body .panel h3 {
+  position: relative;
+}
+
+body .panel h1::after,
+body .panel h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
+}
+
+body .calculator-ui label,
+body .calculator-ui .helper,
+body .panel .placeholder {
+  color: var(--muted-text);
+}
+
+body .calculator-ui input[type='number'],
+body .calculator-ui input[type='text'],
+body .calculator-ui input[type='email'],
+body .calculator-ui input[type='password'],
+body .calculator-ui input[type='search'],
+body .calculator-ui input[type='tel'],
+body .calculator-ui input[type='url'],
+body .calculator-ui input[type='date'],
+body .calculator-ui input[type='time'],
+body .calculator-ui input[type='datetime-local'],
+body .calculator-ui input[type='month'],
+body .calculator-ui input[type='week'],
+body .calculator-ui textarea,
+body .nav-search-input {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui input::placeholder,
+body .calculator-ui textarea::placeholder,
+body .nav-search-input::placeholder {
+  color: var(--color-slate-500);
+}
+
+body .calculator-button {
+  background: var(--gradient-brand-primary);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-button.secondary {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-200);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  box-shadow: none;
+}
+
+body .calculator-button.is-active,
+body .calculator-button[aria-pressed='true'] {
+  background: #1d4ed8;
+  color: #fff;
+  box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
+}
+
+body .calculator-ui .result,
+body .calculator-ui .result-detail {
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui .result-scroll,
+body .graph-panel {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table,
+body .calculator-table th,
+body .calculator-table td {
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table thead th,
+body .calculator-table tfoot td {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-300);
+}
+
+body .graph-title {
+  color: var(--color-slate-200);
+}
+
+body .graph-y-axis,
+body .graph-x-axis,
+body .graph-legend,
+body .graph-y-label {
+  color: var(--color-slate-400);
+}
+
+body .site-footer {
+  background: rgba(15, 23, 42, 0.9);
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-400);
+}
+
+body .site-footer a,
+body .site-footer .footer-divider,
+body .site-footer .footer-branding {
+  color: var(--color-slate-400);
+}
+
+body .site-footer a:hover {
+  color: var(--color-blue-400);
+}
+
+body .calculator-ui input[type='range'] {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  margin: 6px 0;
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+  margin-top: -6px;
+}
+
+body .calculator-ui input[type='range']:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.7);
+  outline-offset: 4px;
+}
+
+body .calculator-ui input[type='range']::-moz-range-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-ui input[type='range']::-moz-range-progress {
+  background: rgba(59, 130, 246, 0.6);
+  height: 8px;
+  border-radius: 999px;
+}
+
+body ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body ::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+body ::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* critical source: /assets/css/base.css */
+/* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+   instead of @import, to eliminate sequential CSS waterfall.
+   See known_issues.md KI-007 / KI-010. */
+
+:root {
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
+  /* Typography scale (Tailwind-inspired) */
+  --text-4xl: 2.25rem;
+  --text-2xl: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+  /* Font weights */
+  --font-bold: 700;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-normal: 400;
+  --header-height: 80px;
+  --nav-height: 64px;
+  --footer-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+}
+
+body {
+  margin: 0;
+  color: var(--header-text);
+  background-color: var(--page-bg);
+  background-image: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scrollbar styling - always visible with subtle colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, #f1f5f9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #94a3b8);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track, #f1f5f9);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #64748b);
+}
+
+/* critical source: /assets/css/core-tokens.css */
 /* Core shared design tokens for isolated route bundles. */
 :root {
   color-scheme: dark;
@@ -484,7 +970,7 @@ button {
   --pill-border: rgba(51, 65, 85, 0.7);
 }
 
-/* source: /assets/css/core-shell.css */
+/* critical source: /assets/css/core-shell.css */
 .page {
   height: 100vh;
   max-height: 100vh;
@@ -1785,7 +2271,7 @@ body .site-header .header-search-icon {
   }
 }
 
-/* source: /assets/css/calculator.css */
+/* critical source: /assets/css/calculator.css */
 :root {
   --calculator-input-padding: 10px 12px;
   --calculator-input-radius: 10px;
@@ -2568,7 +3054,7 @@ body .site-header .header-search-icon {
   flex-shrink: 0;
 }
 
-/* source: /assets/css/shared-calculator-ui.css */
+/* critical source: /assets/css/shared-calculator-ui.css */
 /* ═══════════════════════════════════════════════════════════════════
    shared-calculator-ui.css
    Shared layout + visual rules for the home-loan calculator design family.
@@ -3938,327 +4424,49 @@ body .site-header .header-search-icon {
 
 }
 
-/* source: /calculators/finance-calculators/investment-return-calculator/calculator.css */
-#calc-investment-return .ir-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-#calc-investment-return .ir-grid--inline {
-  grid-template-columns: repeat(2, minmax(120px, 1fr));
-}
-
-#calc-investment-return .input-row {
-  display: grid;
-  gap: 0.3rem;
-}
-
-#calc-investment-return .input-row span {
-  font-size: 0.78rem;
-  color: rgba(191, 219, 254, 0.92);
-}
-
-#calc-investment-return .input-row input {
-  width: 100%;
-}
-
-#calc-investment-return .pv-toggle-row {
-  margin-top: 0.35rem;
-  padding: 0.82rem;
-  border-radius: 0.82rem;
-  border: 1px solid rgba(96, 165, 250, 0.28);
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.64), rgba(30, 41, 59, 0.42));
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem 0.9rem;
-  align-items: start;
-}
-
-#calc-investment-return .pv-toggle-row .pv-toggle-group {
-  display: grid;
-  gap: 0.42rem;
-  min-width: 0;
-  align-content: start;
-}
-
-#calc-investment-return .pv-toggle-row .pv-toggle-label {
-  margin: 0;
-  font-size: 0.86rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: rgba(226, 232, 240, 0.97);
-}
-
-#calc-investment-return .pv-toggle-row .button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-#calc-investment-return .pv-toggle-row .calculator-button {
-  min-height: 38px;
-  padding: 0.4rem 0.78rem;
-  border-radius: 0.68rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-#calc-investment-return .ir-advanced-control {
-  margin-top: 0.8rem;
-}
-
-#calc-investment-return #ir-advanced-section {
-  display: grid;
-  gap: 0.8rem;
-  margin-top: 0.9rem;
-}
-
-#calc-investment-return #ir-advanced-section.is-hidden {
-  display: none;
-}
-
-#calc-investment-return .ir-advanced-card {
-  padding: 0.8rem;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(148, 163, 184, 0.3);
+/* critical source: /calculators/math/algebra/slope-distance/calculator.css */
+.algebra-surface {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  padding: 18px;
   background: rgba(15, 23, 42, 0.5);
 }
 
-#calc-investment-return .ir-variable-rows {
+.point-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
-  margin-top: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
 }
 
-#calc-investment-return .ir-var-row {
-  display: grid;
-  gap: 0.2rem;
+.point-card {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(30, 41, 59, 0.45);
 }
 
-#calc-investment-return .ir-var-row label {
-  font-size: 0.7rem;
-  color: rgba(191, 219, 254, 0.92);
+.point-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
 }
 
-#calc-investment-return .ir-events-rows {
-  display: grid;
-  gap: 0.55rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.6rem;
+.line-equations {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  background: rgba(30, 41, 59, 0.45);
 }
 
-#calc-investment-return .ir-event-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto auto;
-  gap: 0.4rem;
-  align-items: center;
+.line-equations h4 {
+  margin: 0 0 8px;
 }
 
-#calc-investment-return .ir-event-timing {
-  display: inline-flex;
-  gap: 0.25rem;
+.equation-form {
+  margin-bottom: 7px;
+  font-family: 'Courier New', monospace;
 }
 
-#calc-investment-return .ir-event-timing button {
-  min-height: 30px;
-  padding: 0.25rem 0.5rem;
-}
-
-#calc-investment-return .ir-results {
-  margin-top: 1rem;
-  display: grid;
-  gap: 1rem;
-}
-
-#calc-investment-return .ir-results-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-end;
-}
-
-#calc-investment-return .ir-breakdown-table,
-#ir-explanation .ir-results-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#calc-investment-return .ir-breakdown-table th,
-#calc-investment-return .ir-breakdown-table td,
-#ir-explanation .ir-results-table th,
-#ir-explanation .ir-results-table td {
-  border: 1px solid rgba(96, 165, 250, 0.2);
-  padding: 0.62rem 0.72rem;
-  font-size: 0.82rem;
-  text-align: left;
-}
-
-#calc-investment-return .ir-breakdown-table th,
-#ir-explanation .ir-results-table th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.24), rgba(30, 64, 175, 0.35));
-  color: #f8fafc;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: 0.75rem;
-}
-
-#calc-investment-return .ir-breakdown-table tbody tr:nth-child(odd) td {
-  background: rgba(15, 23, 42, 0.45);
-}
-
-#calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) td {
-  background: rgba(30, 41, 59, 0.38);
-}
-
-#calc-investment-return .ir-breakdown-table tbody tr:hover td {
-  background: rgba(37, 99, 235, 0.16);
-}
-
-#calc-investment-return .graph-panel {
-  min-height: 320px;
-  display: grid;
-  gap: 0.65rem;
-  padding: 1rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(59, 130, 246, 0.44);
-  background: linear-gradient(155deg, rgba(23, 37, 84, 0.82), rgba(15, 23, 42, 0.92));
-}
-
-#calc-investment-return .ir-graph-toolbar {
-  display: grid;
-  gap: 0.35rem;
-  margin-top: 0.35rem;
-}
-
-#calc-investment-return #ir-graph-svg {
-  width: 100%;
-  height: 255px;
-  border-radius: 0.7rem;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.72));
-  border: 1px solid rgba(148, 163, 184, 0.58);
-  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.22);
-}
-
-#calc-investment-return #ir-graph-plot-bg {
-  fill: rgba(2, 6, 23, 0.52);
-  stroke: rgba(148, 163, 184, 0.26);
-  stroke-width: 0.32;
-}
-
-#calc-investment-return #ir-graph-main {
-  stroke: #22d3ee;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.5));
-}
-
-#calc-investment-return #ir-graph-main-area {
-  fill: rgba(34, 211, 238, 0.14);
-}
-
-#calc-investment-return #ir-graph-secondary {
-  stroke: #fbbf24;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4));
-}
-
-#calc-investment-return #ir-graph-secondary-area {
-  fill: rgba(251, 191, 36, 0.14);
-}
-
-#calc-investment-return .ir-axis-labels {
-  display: flex;
-  justify-content: space-between;
-  color: rgba(191, 219, 254, 0.92);
-  font-size: 0.73rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-#calc-investment-return .ir-graph-legend {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-#calc-investment-return .ir-legend {
-  font-size: 0.75rem;
-  color: rgba(226, 232, 240, 0.9);
-}
-
-#calc-investment-return .ir-legend-main::before,
-#calc-investment-return .ir-legend-secondary::before {
-  content: '';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  margin-right: 0.35rem;
-}
-
-#calc-investment-return .ir-legend-main::before {
-  background: #38bdf8;
-}
-
-#calc-investment-return .ir-legend-secondary::before {
-  background: #f59e0b;
-}
-
-#ir-explanation .bor-faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-#ir-explanation .bor-faq-card {
-  padding: 0.8rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(148, 163, 184, 0.22);
-  background: rgba(15, 23, 42, 0.48);
-  display: grid;
-  gap: 0.35rem;
-}
-
-#ir-explanation .bor-faq-number {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  font-size: 0.68rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #c4b5fd;
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  background: rgba(139, 92, 246, 0.16);
-}
-
-@media (max-width: 900px) {
-  #calc-investment-return .pv-toggle-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  #calc-investment-return .ir-grid,
-  #calc-investment-return .ir-variable-rows {
-    grid-template-columns: 1fr;
-  }
-
-  #calc-investment-return .ir-event-row {
-    grid-template-columns: 1fr;
-  }
-
-  #ir-explanation .bor-faq-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 620px) {
-  #calc-investment-return .pv-toggle-row {
-    grid-template-columns: 1fr;
-  }
+.faq-card {
+  margin-top: 10px;
 }

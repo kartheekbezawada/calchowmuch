@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { solveQuadratic } from '/assets/js/core/algebra.js';
+import { solveQuadratic as solveQuadraticEquation } from '/assets/js/core/algebra.js';
 
 const aInput = document.querySelector('#quad-a');
 const bInput = document.querySelector('#quad-b');
@@ -10,6 +10,23 @@ const resultDiv = document.querySelector('#quad-result');
 const detailDiv = document.querySelector('#quad-detail');
 const equationText = document.querySelector('#equation-text');
 
+const snapshotEquation = document.querySelector('[data-quad-snap="equation"]');
+const snapshotRootType = document.querySelector('[data-quad-snap="root-type"]');
+const snapshotDiscriminant = document.querySelector('[data-quad-snap="discriminant"]');
+const snapshotMethod = document.querySelector('[data-quad-snap="method"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function resetSnapshots() {
+  updateSnapshot(snapshotRootType, '-');
+  updateSnapshot(snapshotDiscriminant, '-');
+  updateSnapshot(snapshotMethod, 'Quadratic formula');
+}
+
 function updateEquationDisplay() {
   const a = toNumber(aInput.value, 1);
   const b = toNumber(bInput.value, 0);
@@ -17,23 +34,20 @@ function updateEquationDisplay() {
 
   let equation = '';
 
-  // Handle coefficient a
   if (a === 1) {
-    equation += 'x²';
+    equation += 'x^2';
   } else if (a === -1) {
-    equation += '-x²';
+    equation += '-x^2';
   } else {
-    equation += `${formatNumber(a)}x²`;
+    equation += `${formatNumber(a)}x^2`;
   }
 
-  // Handle coefficient b
   if (b > 0) {
     equation += ` + ${b === 1 ? '' : formatNumber(b)}x`;
   } else if (b < 0) {
     equation += ` - ${b === -1 ? '' : formatNumber(Math.abs(b))}x`;
   }
 
-  // Handle coefficient c
   if (c > 0) {
     equation += ` + ${formatNumber(c)}`;
   } else if (c < 0) {
@@ -42,15 +56,23 @@ function updateEquationDisplay() {
 
   equation += ' = 0';
   equationText.textContent = equation;
+  updateSnapshot(snapshotEquation, equation);
 }
 
-function solveQuadratic() {
+function showError(message) {
+  resultDiv.textContent = message;
+  detailDiv.textContent = '';
+  updateSnapshot(snapshotRootType, 'Error');
+  updateSnapshot(snapshotDiscriminant, '-');
+}
+
+function solveCurrentEquation() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
 
   const invalidLength = [aInput, bInput, cInput].find((input) => !hasMaxDigits(input.value, 12));
   if (invalidLength) {
-    resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    showError('Inputs are limited to 12 digits.');
     return;
   }
 
@@ -58,74 +80,66 @@ function solveQuadratic() {
   const b = toNumber(bInput.value, 0);
   const c = toNumber(cInput.value, 0);
 
-  const solution = solveQuadratic(a, b, c);
+  const solution = solveQuadraticEquation(a, b, c);
   if (solution.error) {
-    resultDiv.textContent = `Error: ${solution.error}`;
+    showError(`Error: ${solution.error}`);
     return;
   }
+
   const discriminant = solution.discriminant;
+  updateSnapshot(snapshotDiscriminant, formatNumber(discriminant, { maximumFractionDigits: 6 }));
 
   let solutionsHTML = '';
   let detailHTML = '';
 
-  // Step-by-step solution
-  detailHTML += `<div class="solution-steps">`;
-  detailHTML += `<h4>Step-by-Step Solution:</h4>`;
-  detailHTML += `<ol>`;
+  detailHTML += '<div class="solution-steps">';
+  detailHTML += '<h4>Step-by-Step Solution</h4>';
+  detailHTML += '<ol>';
   detailHTML += `<li>Given equation: ${equationText.textContent}</li>`;
-  detailHTML += `<li>Using quadratic formula: x = (-b ± √(b² - 4ac)) / (2a)</li>`;
-  detailHTML += `<li>Substitute values: a = ${formatNumber(a)}, b = ${formatNumber(b)}, c = ${formatNumber(c)}</li>`;
-  detailHTML += `<li>Calculate discriminant: Δ = b² - 4ac = ${formatNumber(b)}² - 4(${formatNumber(a)})(${formatNumber(c)}) = ${formatNumber(discriminant)}</li>`;
-  detailHTML += `</ol>`;
-  detailHTML += `</div>`;
+  detailHTML += '<li>Use formula: x = (-b ± sqrt(b^2 - 4ac)) / (2a)</li>';
+  detailHTML += `<li>Substitute: a=${formatNumber(a)}, b=${formatNumber(b)}, c=${formatNumber(c)}</li>`;
+  detailHTML += `<li>Discriminant: b^2 - 4ac = ${formatNumber(discriminant)}</li>`;
+  detailHTML += '</ol>';
+  detailHTML += '</div>';
 
-  // Discriminant analysis
-  detailHTML += `<div class="discriminant-info">`;
-  detailHTML += `<strong>Discriminant Analysis (Δ = ${formatNumber(discriminant)}):</strong><br>`;
+  detailHTML += '<div class="discriminant-info">';
+  detailHTML += `<strong>Discriminant (Δ): ${formatNumber(discriminant)}</strong><br>`;
 
   if (solution.type === 'two-real') {
-    const x1 = solution.roots[0];
-    const x2 = solution.roots[1];
+    const [x1, x2] = solution.roots;
+    updateSnapshot(snapshotRootType, 'Two real roots');
 
-    solutionsHTML = `<strong>Two Real Solutions:</strong><br>`;
-    solutionsHTML += `x₁ = ${formatNumber(x1, { maximumFractionDigits: 6 })}<br>`;
-    solutionsHTML += `x₂ = ${formatNumber(x2, { maximumFractionDigits: 6 })}`;
-
-    detailHTML += `Δ > 0: Two distinct real roots<br>`;
-    detailHTML += `x₁ = (-${formatNumber(b)} + √${formatNumber(discriminant)}) / (2 × ${formatNumber(a)}) = ${formatNumber(x1, { maximumFractionDigits: 6 })}<br>`;
-    detailHTML += `x₂ = (-${formatNumber(b)} - √${formatNumber(discriminant)}) / (2 × ${formatNumber(a)}) = ${formatNumber(x2, { maximumFractionDigits: 6 })}`;
+    solutionsHTML = '<strong>Two Real Solutions</strong><br>';
+    solutionsHTML += `x1 = ${formatNumber(x1, { maximumFractionDigits: 6 })}<br>`;
+    solutionsHTML += `x2 = ${formatNumber(x2, { maximumFractionDigits: 6 })}`;
+    detailHTML += 'Δ &gt; 0, so the equation has two distinct real roots.';
   } else if (solution.type === 'one-real') {
-    const x = solution.roots[0];
+    const [x] = solution.roots;
+    updateSnapshot(snapshotRootType, 'One repeated root');
 
-    solutionsHTML = `<strong>One Real Solution (Repeated Root):</strong><br>`;
+    solutionsHTML = '<strong>One Repeated Real Solution</strong><br>';
     solutionsHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}`;
-
-    detailHTML += `Δ = 0: One repeated real root<br>`;
-    detailHTML += `x = -${formatNumber(b)} / (2 × ${formatNumber(a)}) = ${formatNumber(x, { maximumFractionDigits: 6 })}`;
+    detailHTML += 'Δ = 0, so the equation has one repeated root.';
   } else {
     const realPart = solution.roots[0].real;
     const imaginaryPart = Math.abs(solution.roots[0].imaginary);
+    updateSnapshot(snapshotRootType, 'Complex roots');
 
-    solutionsHTML = `<strong>Two Complex Solutions:</strong><br>`;
-    solutionsHTML += `x₁ = ${formatNumber(realPart, { maximumFractionDigits: 6 })} + ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i<br>`;
-    solutionsHTML += `x₂ = ${formatNumber(realPart, { maximumFractionDigits: 6 })} - ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i`;
-
-    detailHTML += `Δ < 0: Two complex conjugate roots<br>`;
-    detailHTML += `x₁ = ${formatNumber(realPart, { maximumFractionDigits: 6 })} + ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i<br>`;
-    detailHTML += `x₂ = ${formatNumber(realPart, { maximumFractionDigits: 6 })} - ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i`;
+    solutionsHTML = '<strong>Two Complex Solutions</strong><br>';
+    solutionsHTML += `x1 = ${formatNumber(realPart, { maximumFractionDigits: 6 })} + ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i<br>`;
+    solutionsHTML += `x2 = ${formatNumber(realPart, { maximumFractionDigits: 6 })} - ${formatNumber(imaginaryPart, { maximumFractionDigits: 6 })}i`;
+    detailHTML += 'Δ &lt; 0, so the equation has complex conjugate roots.';
   }
 
-  detailHTML += `</div>`;
-
+  detailHTML += '</div>';
   resultDiv.innerHTML = solutionsHTML;
   detailDiv.innerHTML = detailHTML;
 }
 
-// Event listeners
 aInput.addEventListener('input', updateEquationDisplay);
 bInput.addEventListener('input', updateEquationDisplay);
 cInput.addEventListener('input', updateEquationDisplay);
-solveButton.addEventListener('click', solveQuadratic);
+solveButton.addEventListener('click', solveCurrentEquation);
 
-// Initialize
 updateEquationDisplay();
+resetSnapshots();

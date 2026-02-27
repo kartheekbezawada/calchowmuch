@@ -1,48 +1,73 @@
 <section>
-  <h3>What Is a System of Linear Equations?</h3>
+  <h2>System of Equations Solver Practical Guide</h2>
   <p>
-    A system of linear equations is a set of two or more equations that share variables. Solving the
-    system means finding values that satisfy every equation at the same time.
+    Use this calculator to solve 2x2 and 3x3 linear systems while checking determinant behavior and
+    solution type.
   </p>
 </section>
 
 <section>
-  <h3>Solution Types</h3>
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select system size: 2x2 or 3x3.</li>
+    <li>Enter coefficients and constants for each equation.</li>
+    <li>Choose a preferred method.</li>
+    <li>Click <strong>Solve System</strong> and review solution status, determinant, and steps.</li>
+  </ol>
+</section>
+
+<section>
+  <h3>Important Notes</h3>
+  <p><strong>Last updated: February 2026</strong></p>
   <ul>
-    <li><strong>Unique solution:</strong> Lines (or planes) intersect at one point.</li>
-    <li><strong>No solution:</strong> Lines are parallel or planes do not intersect.</li>
-    <li><strong>Infinite solutions:</strong> The equations represent the same line or plane.</li>
+    <li>Determinant near zero may indicate no unique solution.</li>
+    <li>2x2 systems support elimination, substitution, and matrix styles.</li>
+    <li>3x3 systems are summarized with determinant-based steps.</li>
+    <li>Decimal coefficients are supported.</li>
+    <li>Method choice should not change the final solution when unique.</li>
   </ul>
 </section>
 
 <section>
-  <h3>Methods Used</h3>
-  <ul>
-    <li><strong>Elimination:</strong> Add or subtract equations to eliminate a variable.</li>
-    <li><strong>Substitution:</strong> Solve one equation for a variable and substitute.</li>
-    <li><strong>Matrix / Cramer's Rule:</strong> Use determinants to solve for variables.</li>
-  </ul>
-</section>
-
-<section>
-  <h3>2×2 System Example</h3>
-  <p>For the system:</p>
-  <p style="margin-left: 1rem">x + 2y = 5</p>
-  <p style="margin-left: 1rem">3x + 4y = 11</p>
-  <p>The determinant is 1×4 - 2×3 = -2. Using Cramer's rule gives x = 1 and y = 2.</p>
-</section>
-
-<section>
-  <h3>3×3 System Notes</h3>
-  <p>
-    For 3×3 systems, Cramer's rule uses determinants of 3×3 matrices. If the main determinant is
-    zero, there is no unique solution.
-  </p>
-</section>
-
-<section>
-  <h3>Graphing Insight</h3>
-  <p>
-    For 2×2 systems, each equation is a line. The intersection point on the graph is the solution.
-  </p>
+  <h3>FAQ</h3>
+  <div class="faq-card">
+    <h4>What system sizes are supported?</h4>
+    <p>This solver supports both 2x2 and 3x3 linear systems.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What methods can I choose?</h4>
+    <p>You can choose elimination, substitution, or matrix-based solving approaches.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What does determinant indicate?</h4>
+    <p>A non-zero determinant indicates a unique solution for the system.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can the solver detect no-solution cases?</h4>
+    <p>Yes, it identifies inconsistent systems where equations have no common intersection.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can it detect infinite solutions?</h4>
+    <p>Yes, dependent systems with overlapping equations are reported as infinite solutions.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Are decimal coefficients allowed?</h4>
+    <p>Yes, decimal and negative coefficients are supported.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Why does 3x3 often use matrix logic?</h4>
+    <p>Matrix and determinant methods scale well for 3-variable systems and provide consistent solving steps.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Does method choice change the final solution?</h4>
+    <p>No, valid methods should produce the same final solution when a unique solution exists.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can I use this to verify homework?</h4>
+    <p>Yes, the calculator is useful for checking solutions and intermediate reasoning.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What if my system is nearly singular?</h4>
+    <p>Near-zero determinants can indicate numerical sensitivity; review inputs and interpret results carefully.</p>
+  </div>
 </section>

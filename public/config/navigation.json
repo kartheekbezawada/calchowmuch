@@ -44,7 +44,7 @@
               "url": "/math/algebra/quadratic-equation/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "system-of-equations",
@@ -52,7 +52,7 @@
               "url": "/math/algebra/system-of-equations/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "polynomial-operations",
@@ -60,7 +60,7 @@
               "url": "/math/algebra/polynomial-operations/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "factoring",
@@ -68,7 +68,7 @@
               "url": "/math/algebra/factoring/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "slope-distance",
@@ -76,7 +76,7 @@
               "url": "/math/algebra/slope-distance/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         },
