@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/how-much-can-i-borrow/
+- /loan-calculators/how-much-can-i-borrow/

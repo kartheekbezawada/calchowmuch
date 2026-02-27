@@ -1023,8 +1023,8 @@ function buildHomeLoanStructuredData({
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Loans',
-          item: `${SITE_URL}/loans/`,
+          name: 'Home Loan',
+          item: `${SITE_URL}/loan-calculators/mortgage-calculator/`,
         },
         {
           '@type': 'ListItem',
@@ -2237,9 +2237,9 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <span class="footer-divider">|</span>
           <a href="/contact-us/">Contact</a>
           <span class="footer-divider">|</span>
-          <a href="/faqs/">FAQs</a>
+          <a href="/faq/">FAQs</a>
           <span class="footer-divider">|</span>
-          <a href="/sitemap/">Sitemap</a>
+          <a href="/sitemap.xml">Sitemap</a>
         </nav>
         <p class="footer-branding">&copy; 2026 @CalcHowMuch</p>
       </footer>
@@ -2250,7 +2250,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
 }
 
 function buildGtepFooter() {
-  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faqs/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap/">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
+  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faq/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap.xml">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
 }
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
@@ -2266,7 +2266,7 @@ function buildGtepSitemap(categories) {
               <li><a href="/privacy/">Privacy</a></li>
               <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
               <li><a href="/contact-us/">Contact</a></li>
-              <li><a href="/faqs/">FAQs</a></li>
+              <li><a href="/faq/">FAQs</a></li>
             </ul>
           </section>`;
   const sections = categories
@@ -2311,14 +2311,14 @@ function buildGtepSitemap(categories) {
       150,
       160
     ),
-    canonical: buildCanonical('/sitemap/'),
+    canonical: buildCanonical('/sitemap.xml'),
     bodyHtml,
   });
 }
 
 function buildSitemapXml(categories) {
   const staticUrls = [
-    { path: '/sitemap/', changefreq: 'monthly', priority: '0.4' },
+    { path: '/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
     { path: '/privacy/', changefreq: 'monthly', priority: '0.4' },
     {
       path: '/privacy-policy/',
@@ -2338,7 +2338,7 @@ function buildSitemapXml(categories) {
       changefreq: 'yearly',
       priority: '0.30',
     },
-    { path: '/faqs/', lastmod: '2026-02-09', changefreq: 'monthly', priority: '0.40' },
+    { path: '/faq/', lastmod: '2026-02-09', changefreq: 'monthly', priority: '0.40' },
   ];
   const urls = [];
   const seen = new Set();
@@ -2604,10 +2604,6 @@ function main() {
     return;
   }
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
-  writeFile(
-    path.join(PUBLIC_DIR, 'sitemap', 'index.html'),
-    buildGtepSitemap(navigation.categories)
-  );
   syncAdsenseAcrossPublicHtml();
 }
 

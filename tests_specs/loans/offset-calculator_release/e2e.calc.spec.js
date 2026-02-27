@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const CALCULATOR_URL = '/loans/offset-calculator/';
+const CALCULATOR_URL = '/loan-calculators/offset-mortgage-calculator/';
 
 async function setSliderValue(page, selector, value) {
   await page.locator(selector).evaluate((element, nextValue) => {
@@ -168,7 +168,7 @@ test.describe('Offset Calculator Home-Loan Visual Standard', () => {
 
 test.describe('Offset calculator route contract', () => {
   test('ISS-OFFSET-HOMELOAN-VISUAL: single-pane route and interaction contract', async ({ page }) => {
-    await page.goto('/loans/offset-calculator');
+    await page.goto('/loan-calculators/offset-mortgage-calculator/');
 
     const centerPanels = page.locator('.center-column > .panel');
     await expect(centerPanels).toHaveCount(1);

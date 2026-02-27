@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/interest-rate-change-calculator/
+- /loan-calculators/interest-rate-change-calculator/

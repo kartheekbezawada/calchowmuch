@@ -21,7 +21,7 @@ test.describe('Hire Purchase Calculator', () => {
   test('HIRE-PURCHASE-E2E-1: premium single pane, button-only calculate, and full outputs', async ({
     page,
   }) => {
-    await page.goto('/loans/hire-purchase');
+    await page.goto('/car-loan-calculators/hire-purchase-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Hire Purchase Calculator');
 

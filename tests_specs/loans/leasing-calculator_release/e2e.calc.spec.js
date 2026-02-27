@@ -21,7 +21,7 @@ test.describe('Leasing Calculator', () => {
   test('LEASING-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs', async ({
     page,
   }) => {
-    await page.goto('/loans/leasing-calculator');
+    await page.goto('/car-loan-calculators/car-lease-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Leasing Calculator');
 

@@ -16,15 +16,15 @@ Pass criteria:
 Ownership: cluster release owner.
 
 Routes:
-- /loans/buy-to-let/
-- /loans/car-loan/
-- /loans/hire-purchase/
-- /loans/home-loan/
-- /loans/how-much-can-i-borrow/
-- /loans/interest-rate-change-calculator/
-- /loans/leasing-calculator/
-- /loans/loan-to-value/
-- /loans/multiple-car-loan/
-- /loans/offset-calculator/
-- /loans/pcp-calculator/
-- /loans/remortgage-switching/
+- /loan-calculators/buy-to-let-mortgage-calculator/
+- /car-loan-calculators/car-loan-calculator/
+- /car-loan-calculators/hire-purchase-calculator/
+- /loan-calculators/mortgage-calculator/
+- /loan-calculators/how-much-can-i-borrow/
+- /loan-calculators/interest-rate-change-calculator/
+- /car-loan-calculators/car-lease-calculator/
+- /loan-calculators/ltv-calculator/
+- /car-loan-calculators/auto-loan-calculator/
+- /loan-calculators/offset-mortgage-calculator/
+- /car-loan-calculators/pcp-calculator/
+- /loan-calculators/remortgage-calculator/

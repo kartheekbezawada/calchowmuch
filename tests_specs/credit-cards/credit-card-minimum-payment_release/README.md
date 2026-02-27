@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/credit-card-minimum-payment/
+- /credit-card-calculators/credit-card-minimum-payment-calculator/

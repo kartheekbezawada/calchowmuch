@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const CALCULATOR_URL = '/loans/interest-rate-change-calculator/';
+const CALCULATOR_URL = '/loan-calculators/interest-rate-change-calculator/';
 
 async function setSliderValue(page, selector, value) {
   await page.locator(selector).evaluate((element, nextValue) => {

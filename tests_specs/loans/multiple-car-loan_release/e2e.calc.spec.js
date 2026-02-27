@@ -21,7 +21,7 @@ test.describe('Multiple Car Loan Calculator', () => {
   test('MULTI-CAR-LOAN-E2E-1: premium single pane with button-only recalculation and full outputs', async ({
     page,
   }) => {
-    await page.goto('/loans/multiple-car-loan');
+    await page.goto('/car-loan-calculators/auto-loan-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Multiple Car Loan Calculator');
 

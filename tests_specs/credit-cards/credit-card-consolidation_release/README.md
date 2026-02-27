@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/credit-card-consolidation/
+- /credit-card-calculators/credit-card-consolidation-calculator/

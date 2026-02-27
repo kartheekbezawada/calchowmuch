@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/remortgage-switching/
+- /loan-calculators/remortgage-calculator/

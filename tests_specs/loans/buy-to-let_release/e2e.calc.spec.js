@@ -38,7 +38,7 @@ async function setBaseInputs(page) {
 
 test.describe('Buy-to-Let calculator requirements', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/loans/buy-to-let');
+    await page.goto('/loan-calculators/buy-to-let-mortgage-calculator/');
     await page.waitForSelector('#btl-calculate');
     await page.waitForTimeout(300);
   });

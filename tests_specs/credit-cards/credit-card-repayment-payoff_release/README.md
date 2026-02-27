@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/credit-card-repayment-payoff/
+- /credit-card-calculators/credit-card-payment-calculator/

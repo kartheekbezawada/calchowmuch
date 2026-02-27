@@ -1,9 +1,12 @@
 import '/assets/js/core/mobile-nav.js';
 
 const NAV_ROUTE_PREFIXES = [
-  '/loans/',
+  '/loan-calculators/',
+  '/credit-card-calculators/',
+  '/car-loan-calculators/',
   '/math/',
   '/finance/',
+  '/finance-calculators/',
   '/time-and-date/',
   '/percentage-calculators/',
 ];

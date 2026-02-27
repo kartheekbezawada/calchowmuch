@@ -21,7 +21,7 @@ test.describe('PCP Calculator', () => {
   test('PCP-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs', async ({
     page,
   }) => {
-    await page.goto('/loans/pcp-calculator');
+    await page.goto('/car-loan-calculators/pcp-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('PCP Calculator');
 

@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/buy-to-let/
+- /loan-calculators/buy-to-let-mortgage-calculator/

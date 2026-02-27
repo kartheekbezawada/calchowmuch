@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/leasing-calculator/
+- /car-loan-calculators/car-lease-calculator/

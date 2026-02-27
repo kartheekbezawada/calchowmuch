@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const CALCULATOR_URL = '/loans/remortgage-switching/';
+const CALCULATOR_URL = '/loan-calculators/remortgage-calculator/';
 
 async function setNumberValue(page, selector, value) {
   await page.locator(selector).evaluate((element, nextValue) => {
@@ -188,7 +188,7 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
 
 test.describe('Remortgage / Switching Hybrid', () => {
   test('ISS-REMORT-HYBRID: single-pane ownership and interaction contract', async ({ page }) => {
-    await page.goto('/loans/remortgage-switching');
+    await page.goto('/loan-calculators/remortgage-calculator/');
 
     const centerPanels = page.locator('.center-column > .panel');
     await expect(centerPanels).toHaveCount(1);

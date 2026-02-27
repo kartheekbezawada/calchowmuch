@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/pcp-calculator/
+- /car-loan-calculators/pcp-calculator/

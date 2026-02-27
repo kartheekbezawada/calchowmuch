@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /loans/balance-transfer-installment-plan/
+- /credit-card-calculators/balance-transfer-credit-card-calculator/

@@ -10,7 +10,7 @@ async function setSliderValue(page, selector, value) {
 
 test.describe('Credit Card Minimum Payment Calculator', () => {
   test('MINPAY-TEST-E2E-1: load, nav, calculate, verify results', async ({ page }) => {
-    await page.goto('/loans/credit-card-minimum-payment');
+    await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     const centerPanels = page.locator('.center-column > .panel');
     await expect(centerPanels).toHaveCount(1);
@@ -93,7 +93,7 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
   test('MINPAY-TEST-E2E-2: input change keeps outcome visible with updated defaults', async ({
     page,
   }) => {
-    await page.goto('/loans/credit-card-minimum-payment');
+    await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     await expect(page.locator('#cc-min-placeholder')).toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
@@ -109,7 +109,7 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
   test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 10 FAQs', async ({
     page,
   }) => {
-    await page.goto('/loans/credit-card-minimum-payment');
+    await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     const explanation = page.locator('#cc-min-explanation');
     await expect(explanation.locator('h2')).toHaveText('Minimum Payment Payoff Summary');
