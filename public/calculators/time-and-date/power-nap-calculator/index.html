@@ -1,37 +1,57 @@
 <div id="calc-power-nap">
-  <div class="calculator-ui">
-    <p class="helper">Enter your nap start time to see wake-up times for different nap lengths.</p>
+  <div class="power-nap-scene" aria-hidden="true">
+    <div class="power-nap-aurora power-nap-aurora-one"></div>
+    <div class="power-nap-aurora power-nap-aurora-two"></div>
+    <div class="power-nap-grid-glow"></div>
+    <div class="power-nap-orb"></div>
+  </div>
 
-    <div class="input-row">
-      <label for="power-nap-start-time">Nap start time</label>
-      <div class="input-with-button">
-        <input id="power-nap-start-time" type="time" />
-        <button class="calculator-button secondary" type="button" id="power-nap-use-now">
-          Use now
+  <div class="power-nap-container">
+    <div class="power-nap-hero-tag">Neon Midnight</div>
+    <h2 class="power-nap-hero-title">Power nap in a sharp <em>focus window</em></h2>
+    <p class="power-nap-tagline">
+      Lock your start time, run the calculation, and pick the wake-up point that matches your energy target.
+    </p>
+
+    <div class="power-nap-layout">
+      <section class="power-nap-card power-nap-card-controls">
+        <p class="power-nap-label">Nap setup</p>
+
+        <div class="power-nap-input-row">
+          <label for="power-nap-start-time">Nap start time</label>
+          <div class="power-nap-input-with-action">
+            <input id="power-nap-start-time" type="time" />
+            <button class="calculator-button secondary" type="button" id="power-nap-use-now">
+              Use now
+            </button>
+          </div>
+        </div>
+
+        <button class="calculator-button power-nap-calculate" type="button" id="power-nap-calculate">
+          Calculate Power Nap Times
         </button>
-      </div>
-    </div>
 
-    <button class="calculator-button full-width" type="button" id="power-nap-calculate">
-      Calculate
-    </button>
+        <p class="power-nap-micro-note">
+          Best balance is usually 20-30 minutes. Longer sessions are included for recovery scenarios.
+        </p>
+      </section>
 
-    <div class="result" id="power-nap-results" aria-live="polite">
-      <p class="placeholder" id="power-nap-placeholder">
-        Enter a start time and click Calculate to see your nap options.
-      </p>
-      <p class="form-error is-hidden" id="power-nap-error"></p>
-      <div class="power-nap-results-list is-hidden" id="power-nap-results-list"></div>
-      <div class="evening-warning is-hidden" id="power-nap-warning">
-        Long naps in the evening may affect your nighttime sleep. Consider a shorter nap if it is
-        after 6:00 PM.
-      </div>
+      <section class="power-nap-card power-nap-card-results">
+        <div class="power-nap-results-title">Wake-up recommendations</div>
+        <p class="power-nap-results-note">Results appear after you click Calculate.</p>
+
+        <div class="result" id="power-nap-results" aria-live="polite">
+          <p class="placeholder" id="power-nap-placeholder">
+            Enter a start time and click Calculate to see your nap options.
+          </p>
+          <p class="form-error is-hidden" id="power-nap-error"></p>
+          <div class="power-nap-results-list is-hidden" id="power-nap-results-list"></div>
+          <div class="evening-warning is-hidden" id="power-nap-warning">
+            Long naps in the evening may affect your nighttime sleep. Consider a shorter nap if it is
+            after 6:00 PM.
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </div>
-
-<style>
-  @import url('/calculators/time-and-date/power-nap-calculator/calculator.css');
-</style>
-
-<script type="module" src="/calculators/time-and-date/power-nap-calculator/module.js"></script>

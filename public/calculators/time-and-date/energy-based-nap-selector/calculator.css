@@ -1,123 +1,555 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+#calc-energy-nap {
+  --energy-ink: #effff8;
+  --energy-muted: #a9cfc1;
+  --energy-accent: #24f1c2;
+  --energy-accent-soft: #7dffd2;
+  --energy-accent-2: #d9ff6a;
+  --energy-deep-1: #03120f;
+  --energy-deep-2: #062520;
+  --energy-deep-3: #0b3a30;
+  --energy-card: rgba(8, 33, 28, 0.86);
+  --energy-card-strong: rgba(10, 43, 35, 0.94);
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  isolation: isolate;
+  border: 1px solid rgba(101, 255, 212, 0.3);
+  background:
+    radial-gradient(circle at 84% 12%, rgba(140, 255, 173, 0.14) 0%, transparent 42%),
+    radial-gradient(circle at 16% 6%, rgba(56, 231, 196, 0.2) 0%, transparent 38%),
+    linear-gradient(165deg, var(--energy-deep-1) 0%, var(--energy-deep-2) 54%, var(--energy-deep-3) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 66px rgba(1, 16, 13, 0.6);
+}
 
-#calc-energy-nap .input-with-button {
+#calc-energy-nap::before,
+#calc-energy-nap::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#calc-energy-nap::before {
+  inset: -40% 55% 35% -35%;
+  background: radial-gradient(circle, rgba(53, 236, 196, 0.24), transparent 72%);
+  filter: blur(8px);
+}
+
+#calc-energy-nap::after {
+  inset: 55% -30% -45% 48%;
+  background: radial-gradient(circle, rgba(217, 255, 106, 0.16), transparent 70%);
+  filter: blur(10px);
+}
+
+.panel-span-all > #calculator-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.panel-span-all > #calculator-title::after {
+  content: none;
+}
+
+.panel-span-all > h3::after {
+  content: none !important;
+}
+
+.panel-span-all .calculator-page-single {
+  margin-top: -12px;
+}
+
+#calc-energy-nap .energy-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#calc-energy-nap .energy-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(99, 255, 214, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(99, 255, 214, 0.06) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.5;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent 88%);
+}
+
+#calc-energy-nap .energy-wave {
+  position: absolute;
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+}
+
+#calc-energy-nap .energy-wave-a {
+  top: -290px;
+  left: -170px;
+  background: radial-gradient(circle, rgba(63, 255, 206, 0.22) 0%, rgba(63, 255, 206, 0) 72%);
+  animation: energy-wave-float 13s ease-in-out infinite;
+}
+
+#calc-energy-nap .energy-wave-b {
+  right: -220px;
+  top: -230px;
+  background: radial-gradient(circle, rgba(222, 255, 117, 0.2) 0%, rgba(222, 255, 117, 0) 72%);
+  animation: energy-wave-float 16s ease-in-out infinite reverse;
+}
+
+#calc-energy-nap .energy-orb {
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ecfffb 0%, #63f7cf 45%, #1d8d75 86%);
+  box-shadow: 0 0 26px rgba(64, 244, 206, 0.45), 0 0 68px rgba(145, 255, 188, 0.24);
+  animation: energy-orb-pulse 2.7s ease-in-out infinite;
+}
+
+#calc-energy-nap .energy-battery-shell {
+  position: absolute;
+  right: 156px;
+  top: 42px;
+  width: 78px;
+  height: 30px;
+  border: 2px solid rgba(198, 255, 136, 0.74);
+  border-radius: 8px;
+  background: rgba(10, 58, 48, 0.52);
+  box-shadow: 0 0 16px rgba(153, 255, 141, 0.26);
+}
+
+#calc-energy-nap .energy-battery-shell::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: -8px;
+  width: 6px;
+  height: 10px;
+  border-radius: 0 2px 2px 0;
+  background: rgba(198, 255, 136, 0.86);
+}
+
+#calc-energy-nap .energy-battery-core {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  height: calc(100% - 6px);
+  width: calc(100% - 12px);
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(49, 233, 196, 0.95), rgba(217, 255, 106, 0.92));
+  animation: energy-charge 3s ease-in-out infinite;
+}
+
+#calc-energy-nap .energy-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 56px;
+}
+
+#calc-energy-nap .energy-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 255, 204, 0.34);
+  background: rgba(9, 41, 34, 0.72);
+  color: rgba(204, 255, 233, 0.95);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+#calc-energy-nap .energy-hero-tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c9ff75;
+  box-shadow: 0 0 10px rgba(201, 255, 117, 0.75);
+}
+
+#calc-energy-nap .energy-hero-title {
+  margin: 0 0 10px;
+  max-width: 760px;
+  color: var(--energy-ink);
+  font-family: 'Bookman Old Style', 'Palatino Linotype', serif;
+  font-size: clamp(2.15rem, 5.4vw, 3.5rem);
+  line-height: 1.02;
+}
+
+#calc-energy-nap .energy-hero-title em {
+  color: #cbff72;
+  font-style: italic;
+}
+
+#calc-energy-nap .energy-tagline {
+  margin: 0 0 24px;
+  max-width: 700px;
+  color: rgba(211, 250, 236, 0.92);
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+#calc-energy-nap .energy-two-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+#calc-energy-nap .energy-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid rgba(111, 255, 202, 0.3);
+  background: linear-gradient(155deg, rgba(8, 35, 29, 0.88), rgba(13, 49, 41, 0.84));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 42px rgba(2, 19, 15, 0.48),
+    0 0 0 1px rgba(89, 255, 200, 0.08);
+  backdrop-filter: blur(12px);
+  animation: energy-card-rise 0.5s ease both;
+}
+
+#calc-energy-nap .energy-card-answer {
+  animation-delay: 0.08s;
+}
+
+#calc-energy-nap .energy-label {
+  margin-bottom: 10px;
+  color: rgba(188, 251, 228, 0.56);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+#calc-energy-nap .energy-goal-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#calc-energy-nap .energy-goal-btn {
+  flex: 1;
+  min-height: 56px;
+  border-radius: 13px;
+  border: 1px solid rgba(106, 247, 203, 0.34);
+  background: rgba(8, 27, 23, 0.84);
+  color: rgba(229, 255, 246, 0.9);
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.05;
+  transition: transform 0.14s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#calc-energy-nap .energy-goal-btn span {
+  font-size: 0.76rem;
+  font-weight: 600;
+  opacity: 0.86;
+}
+
+#calc-energy-nap .energy-goal-btn:hover {
+  transform: translateY(-1px);
+}
+
+#calc-energy-nap .energy-goal-btn.is-active,
+#calc-energy-nap .energy-goal-btn[aria-pressed='true'] {
+  border-color: rgba(160, 255, 149, 0.8);
+  background: linear-gradient(135deg, rgba(48, 227, 192, 0.36), rgba(215, 255, 110, 0.34));
+  color: #f2fff9;
+  box-shadow: 0 0 0 3px rgba(69, 234, 198, 0.2), 0 12px 24px rgba(27, 109, 88, 0.3);
+}
+
+#calc-energy-nap .energy-time-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 16px;
 }
 
-#calc-energy-nap .input-with-button input {
+#calc-energy-nap .energy-time-input {
   flex: 1;
+  min-height: 62px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(105, 247, 203, 0.38);
+  background: rgba(5, 19, 16, 0.84);
+  color: #ebfff7;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(52, 209, 170, 0.12);
+}
+
+#calc-energy-nap .energy-time-input:focus {
+  border-color: rgba(168, 255, 155, 0.86);
+  box-shadow: 0 0 0 3px rgba(69, 234, 198, 0.24);
+}
+
+#calc-energy-nap .energy-now-btn {
+  min-height: 62px;
+  min-width: 114px;
+  border-radius: 14px;
+  border: 1px solid rgba(106, 247, 203, 0.42);
+  background: rgba(13, 55, 46, 0.74);
+  color: rgba(228, 255, 247, 0.95);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+#calc-energy-nap .energy-now-btn:hover {
+  background: rgba(17, 69, 57, 0.8);
+}
+
+#calc-energy-nap .energy-calc-btn {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 14px;
+  border: 0;
+  color: #053d33;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #31e6c2 0%, #61f4bf 50%, #d9ff6a 100%);
+  box-shadow: 0 16px 34px rgba(53, 221, 172, 0.33);
+  transition: transform 0.14s ease, box-shadow 0.2s ease;
+}
+
+#calc-energy-nap .energy-calc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 36px rgba(53, 221, 172, 0.42);
+}
+
+#calc-energy-nap .energy-answer-title {
+  margin: 0 0 7px;
+  color: rgba(196, 255, 226, 0.94);
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#calc-energy-nap .energy-answer-note {
+  margin: 0 0 13px;
+  color: rgba(195, 239, 224, 0.76);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+#calc-energy-nap #energy-nap-results {
+  min-height: 260px;
+}
+
+#calc-energy-nap #energy-nap-placeholder {
+  color: rgba(195, 233, 221, 0.86);
+  font-size: 0.98rem;
 }
 
 #calc-energy-nap .energy-results {
   display: grid;
   gap: 10px;
-  margin-top: 8px;
 }
 
 #calc-energy-nap .energy-primary-card {
-  border: 1px solid #16a34a;
-  border-radius: 12px;
-  background: var(--panel-bg);
-  color: var(--header-text, #e2e8f0);
-  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(161, 255, 150, 0.62);
+  background: linear-gradient(145deg, rgba(8, 39, 31, 0.98), rgba(11, 53, 43, 0.94));
+  color: #ecfff8;
+  padding: 13px;
   display: grid;
-  gap: 6px;
+  gap: 7px;
+  box-shadow: 0 14px 26px rgba(5, 26, 20, 0.42);
 }
 
 #calc-energy-nap .energy-primary-card h4 {
   margin: 0;
-  font-size: 14px;
-  color: var(--header-text, #e2e8f0);
+  color: rgba(208, 255, 229, 0.92);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 #calc-energy-nap .energy-primary-metrics {
   margin: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--header-text, #e2e8f0);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f0fff9;
 }
 
 #calc-energy-nap .energy-primary-reason {
   margin: 0;
-  font-size: 13px;
-  color: var(--color-slate-300, #cbd5e1);
+  color: rgba(206, 247, 232, 0.84);
+  font-size: 0.84rem;
+  line-height: 1.46;
 }
 
 #calc-energy-nap .energy-alt-list {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
-  padding: 8px;
+  border: 1px solid rgba(102, 224, 189, 0.4);
+  border-radius: 14px;
+  background: rgba(8, 31, 26, 0.84);
+  padding: 9px;
   display: grid;
   gap: 8px;
 }
 
 #calc-energy-nap .energy-alt-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
   gap: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 14px;
+  padding: 10px 11px;
+  border: 1px solid rgba(101, 224, 189, 0.3);
+  border-radius: 12px;
+  background: rgba(6, 24, 20, 0.82);
+  color: #dcfaef;
+  font-size: 0.92rem;
 }
 
 #calc-energy-nap .energy-alt-row span:last-child {
-  font-weight: 600;
+  font-weight: 700;
+  color: #eefff8;
 }
 
 #calc-energy-nap .energy-warning {
-  border: 1px solid #f59e0b;
+  border: 1px solid rgba(228, 255, 128, 0.54);
   border-radius: 12px;
-  background: #fffbeb;
-  color: #92400e;
-  padding: 8px 10px;
-  font-size: 13px;
+  background: rgba(47, 67, 30, 0.86);
+  color: #ecffc4;
+  padding: 9px 11px;
+  font-size: 0.83rem;
+  line-height: 1.45;
 }
 
 #calc-energy-nap .form-error {
   margin: 8px 0 0;
-  color: #dc2626;
-  font-size: 13px;
-  font-weight: 600;
+  color: #ffadb6;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+#calc-energy-nap .energy-footer-note {
+  margin: 14px 0 0;
+  color: rgba(193, 241, 224, 0.82);
+  font-size: 0.89rem;
+  text-align: center;
+}
+
+#calc-energy-nap .energy-footer-note span {
+  color: #ceff77;
+  font-weight: 700;
 }
 
 #energy-nap-explanation {
+  margin-top: 20px;
   display: grid;
-  gap: 16px;
+  gap: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(94, 229, 189, 0.26);
+  background: linear-gradient(180deg, rgba(8, 34, 28, 0.95), rgba(11, 43, 35, 0.9));
+  padding: 18px;
+}
+
+#energy-nap-explanation h2 {
+  margin: 0;
+  color: #ecfff8;
+  font-size: 1.2rem;
+}
+
+#energy-nap-explanation h2::after {
+  content: none !important;
+}
+
+#energy-nap-explanation h3 {
+  margin: 0;
+  color: rgba(200, 255, 228, 0.96);
+  font-size: 0.98rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 #energy-nap-explanation p {
   margin: 0;
-  line-height: 1.5;
+  color: rgba(212, 247, 237, 0.92);
+  line-height: 1.62;
+}
+
+#energy-nap-explanation .energy-exp-steps,
+#energy-nap-explanation .energy-exp-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: rgba(214, 247, 238, 0.92);
+  line-height: 1.58;
+}
+
+#energy-nap-explanation .energy-exp-steps li + li,
+#energy-nap-explanation .energy-exp-list li + li {
+  margin-top: 0.34rem;
+}
+
+#energy-nap-explanation .energy-last-updated {
+  color: rgba(199, 255, 226, 0.86);
+  font-size: 0.86rem;
+}
+
+#energy-nap-explanation .energy-table-wrap {
+  overflow-x: auto;
 }
 
 #energy-nap-explanation table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  min-width: 560px;
 }
 
 #energy-nap-explanation th,
 #energy-nap-explanation td {
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(91, 213, 175, 0.32);
   padding: 8px;
   text-align: left;
   vertical-align: top;
+  font-size: 0.83rem;
+}
+
+#energy-nap-explanation th {
+  color: rgba(203, 255, 230, 0.95);
+  background: rgba(10, 48, 39, 0.72);
+}
+
+#energy-nap-explanation td {
+  color: rgba(214, 246, 237, 0.9);
+}
+
+#energy-nap-explanation .energy-faq-list {
+  display: grid;
+  gap: 10px;
 }
 
 #energy-nap-explanation .faq-box {
+  border: 1px solid rgba(95, 224, 186, 0.3);
+  border-radius: 12px;
+  background: rgba(7, 29, 24, 0.84);
+  padding: 12px;
   display: grid;
   gap: 6px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
 }
 
 #energy-nap-explanation .faq-box p {
@@ -125,16 +557,114 @@
 }
 
 #energy-nap-explanation .faq-answer {
-  padding-left: 14px;
+  color: rgba(208, 243, 232, 0.9);
 }
 
-@media (max-width: 720px) {
-  #calc-energy-nap .input-with-button {
+@keyframes energy-wave-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(18px);
+  }
+}
+
+@keyframes energy-orb-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes energy-charge {
+  0%,
+  100% {
+    width: calc(100% - 12px);
+  }
+
+  50% {
+    width: calc(100% - 26px);
+  }
+}
+
+@keyframes energy-card-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 980px) {
+  #calc-energy-nap .energy-container {
+    padding: 18px 18px 46px;
+  }
+
+  #calc-energy-nap .energy-two-box {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-energy-nap .energy-card {
+    padding: 18px;
+  }
+
+  #calc-energy-nap .energy-orb,
+  #calc-energy-nap .energy-battery-shell {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  #calc-energy-nap {
+    border-radius: 18px;
+  }
+
+  #calc-energy-nap .energy-hero-title {
+    font-size: clamp(1.6rem, 8.2vw, 2.45rem);
+    line-height: 1.08;
+  }
+
+  #calc-energy-nap .energy-tagline {
+    font-size: 0.96rem;
+    margin-bottom: 18px;
+  }
+
+  #calc-energy-nap .energy-goal-wrap,
+  #calc-energy-nap .energy-time-wrap {
     flex-direction: column;
     align-items: stretch;
   }
 
-  #calc-energy-nap .input-with-button .calculator-button {
+  #calc-energy-nap .energy-now-btn {
     width: 100%;
+    min-width: 0;
+  }
+
+  #calc-energy-nap .energy-time-input {
+    font-size: 28px;
+  }
+
+  #calc-energy-nap #energy-nap-results {
+    min-height: 0;
+  }
+
+  #energy-nap-explanation {
+    padding: 15px;
+  }
+
+  #energy-nap-explanation table {
+    min-width: 0;
   }
 }

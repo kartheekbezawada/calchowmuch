@@ -632,6 +632,35 @@
         "deferCoreCss": true
       }
     },
+    "/time-and-date/power-nap-calculator/": {
+      "route": "/time-and-date/power-nap-calculator/",
+      "calculatorId": "power-nap-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/layout.css?v=20260127",
+          "/assets/css/calculator.css?v=20260127",
+          "/assets/css/shared-calculator-ui.css?v=20260127"
+        ],
+        "route": [
+          "/calculators/time-and-date/power-nap-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/power-nap-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",

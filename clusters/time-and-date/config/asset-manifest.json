@@ -69,14 +69,22 @@
       "buildId": "wave0-20260220",
       "isolationBoundary": "route",
       "css": {
-        "core": [],
+        "core": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/layout.css?v=20260127",
+          "/assets/css/calculator.css?v=20260127",
+          "/assets/css/shared-calculator-ui.css?v=20260127"
+        ],
         "route": [
           "/calculators/time-and-date/power-nap-calculator/calculator.css"
         ],
         "critical": null
       },
       "js": {
-        "core": [],
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
         "route": [
           "/calculators/time-and-date/power-nap-calculator/module.js"
         ]

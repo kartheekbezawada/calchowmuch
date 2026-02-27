@@ -1,155 +1,149 @@
 <div id="energy-nap-explanation">
-  <h2>Summary</h2>
-  <p>
-    Based on your selected <span data-placeholder="summary-goal">Full</span> goal, this calculator
-    recommends a <span data-placeholder="summary-duration">90 minutes</span> nap. With your entered
-    start time, the primary wake-up target is <span data-placeholder="summary-wake">--</span>. This
-    gives you a predictable nap plan while still showing practical alternatives.
-  </p>
+  <section class="energy-exp-section">
+    <h2>Energy-Based Nap Selector Practical Guide</h2>
+    <p>
+      Based on your selected <span data-placeholder="summary-goal">Full</span> goal, this planner
+      recommends a <span data-placeholder="summary-duration">90 minutes</span> nap and targets a
+      wake-up time of <span data-placeholder="summary-wake">--</span>. It keeps the process
+      deterministic while still showing practical alternatives.
+    </p>
+  </section>
 
-  <h3>Scenario Summary</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Value</th>
-        <th>Source</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Input</td>
-        <td><span data-placeholder="scenario-start">--</span> start time</td>
-        <td>Calculation Pane</td>
-      </tr>
-      <tr>
-        <td>Input</td>
-        <td><span data-placeholder="scenario-goal">Full</span> goal</td>
-        <td>Calculation Pane</td>
-      </tr>
-      <tr>
-        <td>Output</td>
-        <td><span data-placeholder="scenario-bucket">Day</span> bucket</td>
-        <td>Calculator Engine</td>
-      </tr>
-      <tr>
-        <td>Output</td>
-        <td><span data-placeholder="scenario-primary">90 min</span> recommendation</td>
-        <td>Calculator Engine</td>
-      </tr>
-    </tbody>
-  </table>
+  <section class="energy-exp-section">
+    <h3>How to Guide</h3>
+    <ol class="energy-exp-steps">
+      <li>Choose your goal profile: Quick, Strong, or Full.</li>
+      <li>Enter your nap start time: <span data-placeholder="scenario-start">--</span>.</li>
+      <li>
+        Click Calculate to get your primary duration
+        (<span data-placeholder="scenario-primary">90 min</span>) and wake target
+        (<span data-placeholder="result-wake">--</span>).
+      </li>
+      <li>Review alternatives and any night-time caution before setting your alarm.</li>
+    </ol>
 
-  <h3>Results Table</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Metric</th>
-        <th>Value</th>
-        <th>Unit</th>
-        <th>Explanation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Recommended duration</td>
-        <td><span data-placeholder="result-duration">90</span></td>
-        <td>minutes</td>
-        <td>Primary nap duration output.</td>
-      </tr>
-      <tr>
-        <td>Primary wake-up time</td>
-        <td><span data-placeholder="result-wake">--</span></td>
-        <td>local time</td>
-        <td>When to end the recommended nap.</td>
-      </tr>
-      <tr>
-        <td>Time bucket</td>
-        <td><span data-placeholder="result-bucket">Day</span></td>
-        <td>category</td>
-        <td>Day, Afternoon, or Night classification.</td>
-      </tr>
-      <tr>
-        <td>Overridden</td>
-        <td><span data-placeholder="result-override">No</span></td>
-        <td>flag</td>
-        <td>Shows night-time inferred-full downgrade.</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="energy-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Value</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Selected goal</td>
+            <td><span data-placeholder="scenario-goal">Full</span></td>
+            <td>Calculation Pane</td>
+          </tr>
+          <tr>
+            <td>Time bucket</td>
+            <td><span data-placeholder="scenario-bucket">Day</span></td>
+            <td>Calculator Engine</td>
+          </tr>
+          <tr>
+            <td>Recommended duration</td>
+            <td><span data-placeholder="result-duration">90</span> minutes</td>
+            <td>Calculator Engine</td>
+          </tr>
+          <tr>
+            <td>Primary wake-up</td>
+            <td><span data-placeholder="result-wake">--</span></td>
+            <td>Calculator Engine</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h3>Explanation</h3>
-  <p>
-    The selector uses fixed mapping so each goal always corresponds to a deterministic nap length.
-    It then computes wake-up time from your start time and selected or adjusted duration.
-  </p>
-  <p>
-    For late-night starts, inferred long naps are shortened to reduce the risk of pushing bedtime
-    too late. If you explicitly choose Full at night, the duration remains 90 minutes, but a warning
-    is shown so the tradeoff is clear.
-  </p>
+  <section class="energy-exp-section">
+    <h3>Important Notes</h3>
+    <p class="energy-last-updated">Last updated: February 2026</p>
+    <ul class="energy-exp-list">
+      <li>
+        This tool uses fixed goal mappings: Quick 15 minutes, Strong 25 minutes, Full 90 minutes.
+      </li>
+      <li>
+        Night-time starts can apply caution logic based on the bucket
+        <span data-placeholder="result-bucket">Day</span>.
+      </li>
+      <li>
+        Override status is shown as <span data-placeholder="result-override">No</span> to make
+        recommendation changes explicit.
+      </li>
+      <li>
+        It is a planning aid and not medical advice; personal sleep needs can vary significantly.
+      </li>
+    </ul>
+  </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>What does the Energy-Based Nap Selector do?</strong></p>
-    <p class="faq-answer">
-      It recommends a nap length based on your selected goal and start time, then shows wake-up
-      times for the primary and alternative options.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>How are Quick, Strong, and Full goals mapped?</strong></p>
-    <p class="faq-answer">
-      Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Why does the recommendation change at night?</strong></p>
-    <p class="faq-answer">
-      Late-night long naps can disrupt normal sleep timing, so inferred Full goals at night are
-      downgraded to a shorter recommendation.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>When is a Full nap not downgraded?</strong></p>
-    <p class="faq-answer">
-      If you explicitly choose Full, the tool keeps the 90-minute recommendation and shows a warning
-      instead of downgrading.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Does this calculator account for bedtime routines?</strong></p>
-    <p class="faq-answer">
-      No. It applies deterministic nap-duration rules and does not model personal bedtime habits.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>What time buckets are used for warnings?</strong></p>
-    <p class="faq-answer">
-      The calculator groups time into Day, Afternoon, and Night buckets and applies late-night
-      warnings to long naps.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Can I use the selector for shift work?</strong></p>
-    <p class="faq-answer">
-      Yes. The logic is based on local clock time and works for any schedule, including overnight
-      routines.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Does the calculator set an alarm for me?</strong></p>
-    <p class="faq-answer">No. It gives wake-up times that you can use to set an alarm manually.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Will changing inputs recalculate instantly?</strong></p>
-    <p class="faq-answer">No. After page load, results update only when you click Calculate.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Is this tool medical advice?</strong></p>
-    <p class="faq-answer">
-      No. It is a planning aid and does not diagnose sleep conditions or replace professional
-      medical guidance.
-    </p>
-  </div>
+  <section class="energy-exp-section">
+    <h3>FAQ</h3>
+    <div class="energy-faq-list">
+      <div class="faq-box">
+        <p><strong>What does the Energy-Based Nap Selector do?</strong></p>
+        <p class="faq-answer">
+          It maps your selected goal and start time to a deterministic nap duration and wake-up
+          recommendation with alternatives.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>How are Quick, Strong, and Full goals mapped?</strong></p>
+        <p class="faq-answer">
+          Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Why can a late-night recommendation become shorter?</strong></p>
+        <p class="faq-answer">
+          Long late-night naps can delay bedtime, so inferred Full recommendations are shortened to
+          reduce disruption risk.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>When does the tool keep a full 90-minute nap at night?</strong></p>
+        <p class="faq-answer">
+          If you explicitly choose Full, the recommendation stays at 90 minutes and a warning is
+          shown instead of forcing a downgrade.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Does it account for my personal bedtime habits?</strong></p>
+        <p class="faq-answer">
+          No. The output is deterministic and does not model individual routines.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Which time buckets are used?</strong></p>
+        <p class="faq-answer">
+          Results are classified into Day, Afternoon, and Night buckets for recommendation context.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Can shift workers use this calculator?</strong></p>
+        <p class="faq-answer">
+          Yes. It uses local clock time and works for daytime or overnight schedules.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Does the calculator set alarms automatically?</strong></p>
+        <p class="faq-answer">
+          No. It provides wake-up targets that you can copy into your own alarm app.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Will changing inputs auto-calculate?</strong></p>
+        <p class="faq-answer">
+          No. Results update only when you click Calculate.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Is this medical advice?</strong></p>
+        <p class="faq-answer">
+          No. It is a practical planning tool and does not replace professional medical guidance.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

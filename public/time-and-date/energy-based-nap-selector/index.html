@@ -156,243 +156,259 @@
 </div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Energy-Based Nap Selector</h1>
-  <div id="calc-energy-nap">
-  <div class="calculator-ui">
-    <p class="helper">
-      Choose your energy goal and start time to get a deterministic nap duration, wake-up time, and
-      two alternatives.
+  <div class="calculator-page-single">
+    <div id="calc-energy-nap">
+  <div class="energy-scene" aria-hidden="true">
+    <div class="energy-grid"></div>
+    <div class="energy-wave energy-wave-a"></div>
+    <div class="energy-wave energy-wave-b"></div>
+    <div class="energy-orb"></div>
+    <div class="energy-battery-shell">
+      <div class="energy-battery-core"></div>
+    </div>
+  </div>
+
+  <div class="energy-container">
+    <div class="energy-hero-tag">Neon Recharge</div>
+    <h2 class="energy-hero-title">Pick your <em>energy level</em>, wake at the right charge</h2>
+    <p class="energy-tagline">
+      Choose Quick, Strong, or Full, then get a deterministic wake target and two practical
+      alternatives in one focused plan.
     </p>
 
-    <div class="input-row">
-      <label id="energy-goal-label">Goal</label>
-      <div
-        class="button-group"
-        role="group"
-        aria-labelledby="energy-goal-label"
-        data-button-group="energy-goal"
-      >
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="quick"
-          aria-pressed="false"
+    <div class="energy-two-box">
+      <div class="energy-card energy-card-calc">
+        <div class="energy-label" id="energy-goal-label">Energy goal</div>
+        <div
+          class="energy-goal-wrap"
+          role="group"
+          aria-labelledby="energy-goal-label"
+          data-button-group="energy-goal"
         >
-          Quick
+          <button
+            class="energy-goal-btn calculator-button secondary"
+            type="button"
+            data-value="quick"
+            aria-pressed="false"
+          >
+            Quick<br /><span>15 min</span>
+          </button>
+          <button
+            class="energy-goal-btn calculator-button secondary"
+            type="button"
+            data-value="strong"
+            aria-pressed="false"
+          >
+            Strong<br /><span>25 min</span>
+          </button>
+          <button
+            class="energy-goal-btn calculator-button secondary is-active"
+            type="button"
+            data-value="full"
+            aria-pressed="true"
+          >
+            Full<br /><span>90 min</span>
+          </button>
+        </div>
+
+        <div class="energy-label">Nap start time</div>
+        <div class="energy-time-wrap">
+          <input id="energy-nap-start-time" class="energy-time-input" type="time" />
+          <button
+            class="energy-now-btn calculator-button secondary"
+            type="button"
+            id="energy-nap-use-now"
+          >
+            Use now
+          </button>
+        </div>
+
+        <button class="energy-calc-btn" type="button" id="energy-nap-calculate">
+          Calculate Recharge Plan
         </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="strong"
-          aria-pressed="false"
-        >
-          Strong
-        </button>
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="full"
-          aria-pressed="true"
-        >
-          Full
-        </button>
+      </div>
+
+      <div class="energy-card energy-card-answer">
+        <div class="energy-answer-title">Recharge Recommendation</div>
+        <p class="energy-answer-note">Default values are shown. Update inputs and click Calculate.</p>
+
+        <div class="result" id="energy-nap-results" aria-live="polite">
+          <p class="placeholder" id="energy-nap-placeholder">
+            Select a goal, set a start time, and click Calculate.
+          </p>
+          <p class="form-error is-hidden" id="energy-nap-error"></p>
+          <div class="energy-results">
+            <div class="energy-primary-card is-hidden" id="energy-nap-primary"></div>
+            <div class="energy-alt-list is-hidden" id="energy-nap-alternatives"></div>
+          </div>
+          <div class="energy-warning is-hidden" id="energy-nap-warning"></div>
+        </div>
       </div>
     </div>
 
-    <div class="input-row">
-      <label for="energy-nap-start-time">Nap start time</label>
-      <div class="input-with-button">
-        <input id="energy-nap-start-time" type="time" />
-        <button class="calculator-button secondary" type="button" id="energy-nap-use-now">
-          Use now
-        </button>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="energy-nap-calculate">
-      Calculate
-    </button>
-
-    <div class="result" id="energy-nap-results" aria-live="polite">
-      <p class="placeholder" id="energy-nap-placeholder">
-        Select a goal, set a start time, and click Calculate to see recommendations.
-      </p>
-      <p class="form-error is-hidden" id="energy-nap-error"></p>
-      <div class="energy-results">
-        <div class="energy-primary-card is-hidden" id="energy-nap-primary"></div>
-        <div class="energy-alt-list is-hidden" id="energy-nap-alternatives"></div>
-      </div>
-      <div class="energy-warning is-hidden" id="energy-nap-warning"></div>
-    </div>
+    <p class="energy-footer-note">
+      Deterministic profiles: <span>Quick 15m</span>, <span>Strong 25m</span>, <span>Full 90m</span>.
+    </p>
   </div>
 </div>
 
 <style>
-  @import url('/calculators/time-and-date/energy-based-nap-selector/calculator.css?v=20260224');
+  @import url('/calculators/time-and-date/energy-based-nap-selector/calculator.css?v=20260228');
 </style>
 
-<script type="module" src="/calculators/time-and-date/energy-based-nap-selector/module.js?v=20260224"></script>
-
-</div>
-<div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="energy-nap-explanation">
-  <h2>Summary</h2>
-  <p>
-    Based on your selected <span data-placeholder="summary-goal">Full</span> goal, this calculator
-    recommends a <span data-placeholder="summary-duration">90 minutes</span> nap. With your entered
-    start time, the primary wake-up target is <span data-placeholder="summary-wake">--</span>. This
-    gives you a predictable nap plan while still showing practical alternatives.
-  </p>
+    <div id="energy-nap-explanation">
+  <section class="energy-exp-section">
+    <h2>Energy-Based Nap Selector Practical Guide</h2>
+    <p>
+      Based on your selected <span data-placeholder="summary-goal">Full</span> goal, this planner
+      recommends a <span data-placeholder="summary-duration">90 minutes</span> nap and targets a
+      wake-up time of <span data-placeholder="summary-wake">--</span>. It keeps the process
+      deterministic while still showing practical alternatives.
+    </p>
+  </section>
 
-  <h3>Scenario Summary</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Value</th>
-        <th>Source</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Input</td>
-        <td><span data-placeholder="scenario-start">--</span> start time</td>
-        <td>Calculation Pane</td>
-      </tr>
-      <tr>
-        <td>Input</td>
-        <td><span data-placeholder="scenario-goal">Full</span> goal</td>
-        <td>Calculation Pane</td>
-      </tr>
-      <tr>
-        <td>Output</td>
-        <td><span data-placeholder="scenario-bucket">Day</span> bucket</td>
-        <td>Calculator Engine</td>
-      </tr>
-      <tr>
-        <td>Output</td>
-        <td><span data-placeholder="scenario-primary">90 min</span> recommendation</td>
-        <td>Calculator Engine</td>
-      </tr>
-    </tbody>
-  </table>
+  <section class="energy-exp-section">
+    <h3>How to Guide</h3>
+    <ol class="energy-exp-steps">
+      <li>Choose your goal profile: Quick, Strong, or Full.</li>
+      <li>Enter your nap start time: <span data-placeholder="scenario-start">--</span>.</li>
+      <li>
+        Click Calculate to get your primary duration
+        (<span data-placeholder="scenario-primary">90 min</span>) and wake target
+        (<span data-placeholder="result-wake">--</span>).
+      </li>
+      <li>Review alternatives and any night-time caution before setting your alarm.</li>
+    </ol>
 
-  <h3>Results Table</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Metric</th>
-        <th>Value</th>
-        <th>Unit</th>
-        <th>Explanation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Recommended duration</td>
-        <td><span data-placeholder="result-duration">90</span></td>
-        <td>minutes</td>
-        <td>Primary nap duration output.</td>
-      </tr>
-      <tr>
-        <td>Primary wake-up time</td>
-        <td><span data-placeholder="result-wake">--</span></td>
-        <td>local time</td>
-        <td>When to end the recommended nap.</td>
-      </tr>
-      <tr>
-        <td>Time bucket</td>
-        <td><span data-placeholder="result-bucket">Day</span></td>
-        <td>category</td>
-        <td>Day, Afternoon, or Night classification.</td>
-      </tr>
-      <tr>
-        <td>Overridden</td>
-        <td><span data-placeholder="result-override">No</span></td>
-        <td>flag</td>
-        <td>Shows night-time inferred-full downgrade.</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="energy-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Value</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Selected goal</td>
+            <td><span data-placeholder="scenario-goal">Full</span></td>
+            <td>Calculation Pane</td>
+          </tr>
+          <tr>
+            <td>Time bucket</td>
+            <td><span data-placeholder="scenario-bucket">Day</span></td>
+            <td>Calculator Engine</td>
+          </tr>
+          <tr>
+            <td>Recommended duration</td>
+            <td><span data-placeholder="result-duration">90</span> minutes</td>
+            <td>Calculator Engine</td>
+          </tr>
+          <tr>
+            <td>Primary wake-up</td>
+            <td><span data-placeholder="result-wake">--</span></td>
+            <td>Calculator Engine</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h3>Explanation</h3>
-  <p>
-    The selector uses fixed mapping so each goal always corresponds to a deterministic nap length.
-    It then computes wake-up time from your start time and selected or adjusted duration.
-  </p>
-  <p>
-    For late-night starts, inferred long naps are shortened to reduce the risk of pushing bedtime
-    too late. If you explicitly choose Full at night, the duration remains 90 minutes, but a warning
-    is shown so the tradeoff is clear.
-  </p>
+  <section class="energy-exp-section">
+    <h3>Important Notes</h3>
+    <p class="energy-last-updated">Last updated: February 2026</p>
+    <ul class="energy-exp-list">
+      <li>
+        This tool uses fixed goal mappings: Quick 15 minutes, Strong 25 minutes, Full 90 minutes.
+      </li>
+      <li>
+        Night-time starts can apply caution logic based on the bucket
+        <span data-placeholder="result-bucket">Day</span>.
+      </li>
+      <li>
+        Override status is shown as <span data-placeholder="result-override">No</span> to make
+        recommendation changes explicit.
+      </li>
+      <li>
+        It is a planning aid and not medical advice; personal sleep needs can vary significantly.
+      </li>
+    </ul>
+  </section>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>What does the Energy-Based Nap Selector do?</strong></p>
-    <p class="faq-answer">
-      It recommends a nap length based on your selected goal and start time, then shows wake-up
-      times for the primary and alternative options.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>How are Quick, Strong, and Full goals mapped?</strong></p>
-    <p class="faq-answer">
-      Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Why does the recommendation change at night?</strong></p>
-    <p class="faq-answer">
-      Late-night long naps can disrupt normal sleep timing, so inferred Full goals at night are
-      downgraded to a shorter recommendation.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>When is a Full nap not downgraded?</strong></p>
-    <p class="faq-answer">
-      If you explicitly choose Full, the tool keeps the 90-minute recommendation and shows a warning
-      instead of downgrading.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Does this calculator account for bedtime routines?</strong></p>
-    <p class="faq-answer">
-      No. It applies deterministic nap-duration rules and does not model personal bedtime habits.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>What time buckets are used for warnings?</strong></p>
-    <p class="faq-answer">
-      The calculator groups time into Day, Afternoon, and Night buckets and applies late-night
-      warnings to long naps.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Can I use the selector for shift work?</strong></p>
-    <p class="faq-answer">
-      Yes. The logic is based on local clock time and works for any schedule, including overnight
-      routines.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Does the calculator set an alarm for me?</strong></p>
-    <p class="faq-answer">No. It gives wake-up times that you can use to set an alarm manually.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Will changing inputs recalculate instantly?</strong></p>
-    <p class="faq-answer">No. After page load, results update only when you click Calculate.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Is this tool medical advice?</strong></p>
-    <p class="faq-answer">
-      No. It is a planning aid and does not diagnose sleep conditions or replace professional
-      medical guidance.
-    </p>
-  </div>
+  <section class="energy-exp-section">
+    <h3>FAQ</h3>
+    <div class="energy-faq-list">
+      <div class="faq-box">
+        <p><strong>What does the Energy-Based Nap Selector do?</strong></p>
+        <p class="faq-answer">
+          It maps your selected goal and start time to a deterministic nap duration and wake-up
+          recommendation with alternatives.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>How are Quick, Strong, and Full goals mapped?</strong></p>
+        <p class="faq-answer">
+          Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Why can a late-night recommendation become shorter?</strong></p>
+        <p class="faq-answer">
+          Long late-night naps can delay bedtime, so inferred Full recommendations are shortened to
+          reduce disruption risk.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>When does the tool keep a full 90-minute nap at night?</strong></p>
+        <p class="faq-answer">
+          If you explicitly choose Full, the recommendation stays at 90 minutes and a warning is
+          shown instead of forcing a downgrade.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Does it account for my personal bedtime habits?</strong></p>
+        <p class="faq-answer">
+          No. The output is deterministic and does not model individual routines.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Which time buckets are used?</strong></p>
+        <p class="faq-answer">
+          Results are classified into Day, Afternoon, and Night buckets for recommendation context.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Can shift workers use this calculator?</strong></p>
+        <p class="faq-answer">
+          Yes. It uses local clock time and works for daytime or overnight schedules.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Does the calculator set alarms automatically?</strong></p>
+        <p class="faq-answer">
+          No. It provides wake-up targets that you can copy into your own alarm app.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Will changing inputs auto-calculate?</strong></p>
+        <p class="faq-answer">
+          No. Results update only when you click Calculate.
+        </p>
+      </div>
+      <div class="faq-box">
+        <p><strong>Is this medical advice?</strong></p>
+        <p class="faq-answer">
+          No. It is a practical planning tool and does not replace professional medical guidance.
+        </p>
+      </div>
+    </div>
+  </section>
 </div>
-
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">
@@ -428,6 +444,6 @@
 
     </div>
     <script type="module" src="/assets/js/core/mpa-nav.js"></script>
-    <script type="module" src="/calculators/time-and-date/energy-based-nap-selector/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/time-and-date/energy-based-nap-selector/module.js?v=20260228"></script>
   </body>
 </html>
