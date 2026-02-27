@@ -9,7 +9,7 @@ import { getCalculatorScope } from './test-scope-resolver.mjs';
 import { acquirePortLease, releasePortLease } from './ports.mjs';
 
 const ROOT = process.cwd();
-const CONFIG_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'CWV_SCOPED_BUDGETS.json');
+const CONFIG_PATH = path.join(ROOT, 'config', 'testing', 'CWV_SCOPED_BUDGETS.json');
 const REPORT_ROOT = path.join(ROOT, 'test-results', 'performance', 'scoped-cwv');
 
 function fail(message) {

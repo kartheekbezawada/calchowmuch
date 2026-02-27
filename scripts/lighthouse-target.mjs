@@ -9,7 +9,7 @@ import { JSDOM } from 'jsdom';
 import { acquirePortLease, releasePortLease } from './ports.mjs';
 
 const ROOT = process.cwd();
-const POLICY_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'lighthouse_policy.json');
+const POLICY_PATH = path.join(ROOT, 'config', 'testing', 'lighthouse_policy.json');
 
 const DEFAULTS = {
   outputDir: 'test-results/lighthouse',

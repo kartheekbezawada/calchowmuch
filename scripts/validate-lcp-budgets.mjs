@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { chromium } from 'playwright';
 
 const ROOT = process.cwd();
-const BUDGET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'PERF_BUDGETS.json');
+const BUDGET_PATH = path.join(ROOT, 'config', 'testing', 'PERF_BUDGETS.json');
 const LIGHTHOUSE_OUTPUT_DIR = path.join(ROOT, 'test-results', 'lighthouse');
 const REPORT_PATH = path.join(ROOT, 'test-results', 'performance', 'lcp-budgets-loans.json');
 const MAX_ATTEMPTS_PER_PROFILE = 3;

@@ -266,7 +266,7 @@ FULL Weekly Audit (track-only)
 - `LH_RUNS=1`
 - `LH_SCAN_MIXED_CONTENT=1`
 
-HARD: `requirements/universal-rules/lighthouse_policy.json` is the canonical runtime policy source.
+HARD: `config/testing/lighthouse_policy.json` is the canonical runtime policy source.
 
 3.6 Test Tooling Diff-Discipline Checks (HARD for tooling changes)
 
