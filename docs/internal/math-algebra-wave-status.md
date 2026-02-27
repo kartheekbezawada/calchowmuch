@@ -7,8 +7,8 @@
 | 1 | quadratic-equation | /math/algebra/quadratic-equation/ | passed | REL-20260227-006 | d161ad7 | Scoped gates passed |
 | 2 | slope-distance | /math/algebra/slope-distance/ | passed | REL-20260227-007 | b6b1036 | Scoped gates passed |
 | 3 | factoring | /math/algebra/factoring/ | passed | REL-20260227-008 | 8a754f2 | Scoped gates passed |
-| 4 | polynomial-operations | /math/algebra/polynomial-operations/ | passed | REL-20260227-009 | TBD | Scoped gates passed |
-| 5 | system-of-equations | /math/algebra/system-of-equations/ | in_progress | TBD | TBD | Wave 5 active |
+| 4 | polynomial-operations | /math/algebra/polynomial-operations/ | passed | REL-20260227-009 | bb687e0 | Scoped gates passed |
+| 5 | system-of-equations | /math/algebra/system-of-equations/ | passed | REL-20260227-010 | TBD | Scoped gates passed |
 
 ## Shared Baseline
 
@@ -19,12 +19,16 @@
 | Generator override updates | done | `scripts/generate-mpa-pages.js` |
 | Bundles/manifests rebuilt | done | `public/assets/css/route-bundles/manifest.json`, `public/config/asset-manifest.json` |
 
-## Final Matrix (Populate After Wave 5)
+## Final Matrix
 
 | Calculator | Status | Release ID | Commit SHA | Gate Summary | Artifacts |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | quadratic-equation | passed | REL-20260227-006 | d161ad7 | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/quadratic-equation.json` |
 | slope-distance | passed | REL-20260227-007 | b6b1036 | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/slope-distance.json` |
 | factoring | passed | REL-20260227-008 | 8a754f2 | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/factoring.json` |
-| polynomial-operations | passed | REL-20260227-009 | TBD | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/polynomial-operations.json` |
-| system-of-equations | TBD | TBD | TBD | TBD | TBD |
+| polynomial-operations | passed | REL-20260227-009 | bb687e0 | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/polynomial-operations.json` |
+| system-of-equations | passed | REL-20260227-010 | TBD | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/system-of-equations.json` |
+
+## Follow-Up
+
+- None. All 5 algebra waves completed as scoped passes.
