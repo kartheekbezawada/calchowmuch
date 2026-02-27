@@ -1,18 +1,18 @@
 <section>
   <h2>System of Equations Solver Practical Guide</h2>
   <p>
-    This calculator solves linear systems and helps you identify unique, infinite, or no-solution
-    outcomes.
+    Use this calculator to solve 2x2 and 3x3 linear systems while checking determinant behavior and
+    solution type.
   </p>
 </section>
 
 <section>
   <h3>How to Guide</h3>
   <ol>
-    <li>Select system size (2x2 or 3x3).</li>
-    <li>Enter coefficients and constants exactly as your equations require.</li>
-    <li>Select the solution method view.</li>
-    <li>Click <strong>Solve System</strong> and review the result and method details.</li>
+    <li>Select system size: 2x2 or 3x3.</li>
+    <li>Enter coefficients and constants for each equation.</li>
+    <li>Choose a preferred method.</li>
+    <li>Click <strong>Solve System</strong> and review solution status, determinant, and steps.</li>
   </ol>
 </section>
 
@@ -20,28 +20,54 @@
   <h3>Important Notes</h3>
   <p><strong>Last updated: February 2026</strong></p>
   <ul>
-    <li>2x2 systems can return unique, infinite, or no solution.</li>
-    <li>3x3 unique solutions require a non-zero determinant.</li>
-    <li>Method toggle controls presentation of steps; core solution remains the same.</li>
+    <li>Determinant near zero may indicate no unique solution.</li>
+    <li>2x2 systems support elimination, substitution, and matrix styles.</li>
+    <li>3x3 systems are summarized with determinant-based steps.</li>
+    <li>Decimal coefficients are supported.</li>
+    <li>Method choice should not change the final solution when unique.</li>
   </ul>
 </section>
 
 <section>
   <h3>FAQ</h3>
   <div class="faq-card">
-    <h4>How do I know if the system is inconsistent?</h4>
-    <p>The solver reports no solution when equations do not intersect at a common point.</p>
+    <h4>What system sizes are supported?</h4>
+    <p>This solver supports both 2x2 and 3x3 linear systems.</p>
   </div>
   <div class="faq-card">
-    <h4>When do infinite solutions happen?</h4>
-    <p>Infinite solutions occur when equations represent the same line (or same plane relation).</p>
+    <h4>What methods can I choose?</h4>
+    <p>You can choose elimination, substitution, or matrix-based solving approaches.</p>
   </div>
   <div class="faq-card">
-    <h4>Can I use decimals in coefficients?</h4>
-    <p>Yes, decimal coefficients are supported for both 2x2 and 3x3 modes.</p>
+    <h4>What does determinant indicate?</h4>
+    <p>A non-zero determinant indicates a unique solution for the system.</p>
   </div>
   <div class="faq-card">
-    <h4>Is Cramer's rule used for 3x3?</h4>
-    <p>Yes, the 3x3 output uses determinant-based solving consistent with Cramer's rule.</p>
+    <h4>Can the solver detect no-solution cases?</h4>
+    <p>Yes, it identifies inconsistent systems where equations have no common intersection.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can it detect infinite solutions?</h4>
+    <p>Yes, dependent systems with overlapping equations are reported as infinite solutions.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Are decimal coefficients allowed?</h4>
+    <p>Yes, decimal and negative coefficients are supported.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Why does 3x3 often use matrix logic?</h4>
+    <p>Matrix and determinant methods scale well for 3-variable systems and provide consistent solving steps.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Does method choice change the final solution?</h4>
+    <p>No, valid methods should produce the same final solution when a unique solution exists.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can I use this to verify homework?</h4>
+    <p>Yes, the calculator is useful for checking solutions and intermediate reasoning.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What if my system is nearly singular?</h4>
+    <p>Near-zero determinants can indicate numerical sensitivity; review inputs and interpret results carefully.</p>
   </div>
 </section>

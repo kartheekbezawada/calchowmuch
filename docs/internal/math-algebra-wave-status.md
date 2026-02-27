@@ -41,4 +41,4 @@
 | 2 | slope-distance | /math/algebra/slope-distance/ | passed | REL-20260227-012 | TBD | Right-side answer cards + FAQ 10 + schema parity |
 | 3 | factoring | /math/algebra/factoring/ | passed | REL-20260227-013 | TBD | Right-side answer cards + FAQ 10 + schema parity |
 | 4 | polynomial-operations | /math/algebra/polynomial-operations/ | passed | REL-20260227-014 | TBD | Right-side answer cards + FAQ 10 + schema parity |
-| 5 | system-of-equations | /math/algebra/system-of-equations/ | pending | REL-20260227-015 | TBD | Pending wave execution |
+| 5 | system-of-equations | /math/algebra/system-of-equations/ | passed | REL-20260227-015 | TBD | Right-side answer cards + FAQ 10 + schema parity |

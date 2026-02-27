@@ -3,12 +3,36 @@ import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
 import { solveSystem2x2, solveSystem3x3 } from '/assets/js/core/algebra.js';
 
+const snapshotSize = document.querySelector('[data-system-snap="size"]');
+const snapshotMethod = document.querySelector('[data-system-snap="method"]');
+const snapshotDeterminant = document.querySelector('[data-system-snap="determinant"]');
+const snapshotStatus = document.querySelector('[data-system-snap="status"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function prettyMethodLabel(value) {
+  if (value === 'matrix') return 'Matrix';
+  if (value === 'substitution') return 'Substitution';
+  return 'Elimination';
+}
+
+function resetDynamicSnapshots() {
+  updateSnapshot(snapshotDeterminant, '-');
+  updateSnapshot(snapshotStatus, '-');
+}
+
 const systemSizeGroup = setupButtonGroup(
   document.querySelector('[data-button-group="system-size"]'),
   {
     defaultValue: '2x2',
     onChange: (value) => {
       toggleSystemSize(value);
+      updateSnapshot(snapshotSize, value);
+      resetDynamicSnapshots();
     },
   }
 );
@@ -17,8 +41,8 @@ const solutionMethodGroup = setupButtonGroup(
   document.querySelector('[data-button-group="solution-method"]'),
   {
     defaultValue: 'elimination',
-    onChange: () => {
-      // Method will be used when solving
+    onChange: (value) => {
+      updateSnapshot(snapshotMethod, prettyMethodLabel(value));
     },
   }
 );
@@ -32,6 +56,8 @@ function validateInputs(ids) {
   const invalid = inputs.find((input) => !hasMaxDigits(input.value, 12));
   if (invalid) {
     resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    detailDiv.textContent = '';
+    resetDynamicSnapshots();
     return false;
   }
   return true;
@@ -56,6 +82,9 @@ function solveSystem() {
 
   const systemSize = systemSizeGroup.getValue();
   const method = solutionMethodGroup.getValue();
+
+  updateSnapshot(snapshotSize, systemSize);
+  updateSnapshot(snapshotMethod, prettyMethodLabel(method));
 
   if (systemSize === '2x2') {
     if (!validateInputs(['#a11', '#a12', '#b1', '#a21', '#a22', '#b2'])) {
@@ -86,7 +115,6 @@ function solveSystem() {
 }
 
 function solve2x2System(method) {
-  // Get coefficients
   const a11 = toNumber(document.querySelector('#a11').value, 1);
   const a12 = toNumber(document.querySelector('#a12').value, 2);
   const b1 = toNumber(document.querySelector('#b1').value, 5);
@@ -97,10 +125,11 @@ function solve2x2System(method) {
   const solution = solveSystem2x2(a11, a12, b1, a21, a22, b2);
   const det = solution.determinant;
 
+  updateSnapshot(snapshotDeterminant, formatNumber(det, { maximumFractionDigits: 6 }));
+
   let solutionHTML = '';
   let detailHTML = '';
 
-  // Display system
   detailHTML += `<div class="system-type">`;
   detailHTML += `<strong>System of Equations:</strong><br>`;
   detailHTML += `${formatNumber(a11)}x + ${formatNumber(a12)}y = ${formatNumber(b1)}<br>`;
@@ -111,10 +140,12 @@ function solve2x2System(method) {
     if (solution.type === 'infinite') {
       solutionHTML = '<strong>Infinite Solutions:</strong><br>The system is dependent (same line).';
       detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = 0 and ratios are equal. The equations represent the same line.</div>`;
+      updateSnapshot(snapshotStatus, 'Infinite solutions');
     } else {
       solutionHTML =
         '<strong>No Solution:</strong><br>The system is inconsistent (parallel lines).';
       detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = 0 but ratios are not equal. The equations represent parallel lines.</div>`;
+      updateSnapshot(snapshotStatus, 'No solution');
     }
   } else {
     const x = solution.solution.x;
@@ -124,7 +155,6 @@ function solve2x2System(method) {
     solutionHTML += `x = ${formatNumber(x, { maximumFractionDigits: 6 })}<br>`;
     solutionHTML += `y = ${formatNumber(y, { maximumFractionDigits: 6 })}`;
 
-    // Show solution steps based on method
     if (method === 'elimination') {
       detailHTML += showEliminationSteps(a11, a12, b1, a21, a22, b2, x, y);
     } else if (method === 'substitution') {
@@ -132,6 +162,8 @@ function solve2x2System(method) {
     } else if (method === 'matrix') {
       detailHTML += showMatrixSteps(a11, a12, b1, a21, a22, b2, x, y, det);
     }
+
+    updateSnapshot(snapshotStatus, 'Unique solution');
   }
 
   resultDiv.innerHTML = solutionHTML;
@@ -146,7 +178,6 @@ function showEliminationSteps(a11, a12, b1, a21, a22, b2, x, y) {
   stepsHTML += `&nbsp;&nbsp;${formatNumber(a11)}x + ${formatNumber(a12)}y = ${formatNumber(b1)}<br>`;
   stepsHTML += `&nbsp;&nbsp;${formatNumber(a21)}x + ${formatNumber(a22)}y = ${formatNumber(b2)}</li>`;
 
-  // Eliminate x by multiplying equations
   const mult1 = a21;
   const mult2 = -a11;
   const newA12 = a12 * mult1;
@@ -205,8 +236,7 @@ function showMatrixSteps(a11, a12, b1, a21, a22, b2, x, y, det) {
   return stepsHTML;
 }
 
-function solve3x3System(method) {
-  // Get coefficients for 3x3 system
+function solve3x3System() {
   const a11 = toNumber(document.querySelector('#a11-3x3').value, 1);
   const a12 = toNumber(document.querySelector('#a12-3x3').value, 2);
   const a13 = toNumber(document.querySelector('#a13-3x3').value, 3);
@@ -223,10 +253,11 @@ function solve3x3System(method) {
   const solution = solveSystem3x3(a11, a12, a13, b1, a21, a22, a23, b2, a31, a32, a33, b3);
   const det = solution.determinant;
 
+  updateSnapshot(snapshotDeterminant, formatNumber(det, { maximumFractionDigits: 6 }));
+
   let solutionHTML = '';
   let detailHTML = '';
 
-  // Display system
   detailHTML += `<div class="system-type">`;
   detailHTML += `<strong>3×3 System of Equations:</strong><br>`;
   detailHTML += `${formatNumber(a11)}x + ${formatNumber(a12)}y + ${formatNumber(a13)}z = ${formatNumber(b1)}<br>`;
@@ -238,6 +269,7 @@ function solve3x3System(method) {
     solutionHTML =
       '<strong>No Unique Solution:</strong><br>The system is either inconsistent or has infinite solutions.';
     detailHTML += `<div class="solution-steps"><strong>Analysis:</strong> Determinant = ${formatNumber(det, { maximumFractionDigits: 10 })} ≈ 0. The system does not have a unique solution.</div>`;
+    updateSnapshot(snapshotStatus, 'No unique solution');
   } else {
     const { x, y, z } = solution.solution;
     const detX =
@@ -261,14 +293,17 @@ function solve3x3System(method) {
     detailHTML += `<li>Calculate z: det(Az) = ${formatNumber(detZ)}, z = ${formatNumber(z, { maximumFractionDigits: 6 })}</li>`;
     detailHTML += `</ol>`;
     detailHTML += `</div>`;
+
+    updateSnapshot(snapshotStatus, 'Unique solution');
   }
 
   resultDiv.innerHTML = solutionHTML;
   detailDiv.innerHTML = detailHTML;
 }
 
-// Event listeners
 solveButton.addEventListener('click', solveSystem);
 
-// Initialize
 toggleSystemSize('2x2');
+updateSnapshot(snapshotSize, '2x2');
+updateSnapshot(snapshotMethod, 'Elimination');
+resetDynamicSnapshots();
