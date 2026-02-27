@@ -17,7 +17,7 @@
 | **Cluster Manifest Ref** | public/config/asset-manifest.json |
 | **Rollback Contract Ref** | config/clusters/route-ownership.json |
 | **Branch / Tag** | kartheek_devv |
-| **Commit SHA** | TBD |
+| **Commit SHA** | 8a754f2 |
 | **Environment** | local static server (scoped Playwright/Vitest harness) |
 | **thinContentMode (`soft`/`hard`)** | soft (pilotExcluded) |
 | **thinContentScore** | N/A |
