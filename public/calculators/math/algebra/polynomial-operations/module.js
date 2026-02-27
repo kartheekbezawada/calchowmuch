@@ -3,7 +3,6 @@ import { hasMaxDigits } from '/assets/js/core/validate.js';
 import {
   addPolynomials,
   dividePolynomials,
-  evaluatePolynomial,
   formatPolynomial,
   multiplyPolynomials,
   parsePolynomial,
@@ -22,6 +21,40 @@ const calculateButton = document.querySelector('#calculate-poly');
 const resultDiv = document.querySelector('#poly-result');
 const detailDiv = document.querySelector('#poly-detail');
 
+const snapshotOperation = document.querySelector('[data-poly-snap="operation"]');
+const snapshotResult = document.querySelector('[data-poly-snap="result"]');
+const snapshotDegree = document.querySelector('[data-poly-snap="degree"]');
+const snapshotRemainder = document.querySelector('[data-poly-snap="remainder"]');
+
+function updateSnapshot(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function prettifyOperation(op) {
+  if (op === 'add') return 'Add';
+  if (op === 'subtract') return 'Subtract';
+  if (op === 'multiply') return 'Multiply';
+  return 'Divide';
+}
+
+function polynomialDegree(coeffs) {
+  for (let i = coeffs.length - 1; i >= 0; i -= 1) {
+    if (Math.abs(coeffs[i]) > 1e-10) {
+      return i;
+    }
+  }
+  return 0;
+}
+
+function resetSnapshots(op) {
+  updateSnapshot(snapshotOperation, prettifyOperation(op));
+  updateSnapshot(snapshotResult, '-');
+  updateSnapshot(snapshotDegree, '-');
+  updateSnapshot(snapshotRemainder, '-');
+}
+
 function validatePolynomialInput(input) {
   const tokens = input.match(/-?\d*\.?\d+/g) || [];
   const invalidToken = tokens.find((token) => !hasMaxDigits(token, 12));
@@ -35,6 +68,8 @@ function calculate() {
   const op = operationGroup.getValue();
   const poly1Text = poly1Input.value || '';
   const poly2Text = poly2Input.value || '';
+
+  resetSnapshots(op);
 
   const validationError = validatePolynomialInput(poly1Text) || validatePolynomialInput(poly2Text);
   if (validationError) {
@@ -79,24 +114,37 @@ function calculate() {
       resultDiv.textContent = 'Cannot divide by a zero polynomial.';
       return;
     }
+
+    const quotientText = formatPolynomial(division.quotient);
+    const remainderText = formatPolynomial(division.remainder);
+
     resultDiv.innerHTML = `
-      <strong>Quotient:</strong> ${formatPolynomial(division.quotient)}<br />
-      <strong>Remainder:</strong> ${formatPolynomial(division.remainder)}
+      <strong>Quotient:</strong> ${quotientText}<br />
+      <strong>Remainder:</strong> ${remainderText}
     `;
     detailDiv.innerHTML = `
       <p><strong>Dividend:</strong> ${formatPolynomial(poly1)}</p>
       <p><strong>Divisor:</strong> ${formatPolynomial(poly2)}</p>
       <p><strong>Process:</strong> Polynomial long division.</p>
     `;
+
+    updateSnapshot(snapshotResult, quotientText);
+    updateSnapshot(snapshotDegree, String(polynomialDegree(division.quotient)));
+    updateSnapshot(snapshotRemainder, remainderText);
     return;
   }
 
-  resultDiv.innerHTML = `<strong>Result:</strong> ${formatPolynomial(result)}`;
+  const resultText = formatPolynomial(result);
+
+  resultDiv.innerHTML = `<strong>Result:</strong> ${resultText}`;
   detailDiv.innerHTML = `
     <p><strong>Operation:</strong> ${summary}</p>
     <p><strong>Steps:</strong> ${steps}</p>
-    <p><strong>Result:</strong> ${formatPolynomial(result)}</p>
+    <p><strong>Result:</strong> ${resultText}</p>
   `;
+
+  updateSnapshot(snapshotResult, resultText);
+  updateSnapshot(snapshotDegree, String(polynomialDegree(result)));
 }
 
 calculateButton.addEventListener('click', calculate);
