@@ -41,6 +41,8 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/time-and-date/sleep-time-calculator/calculator.css',
   'calculators/time-and-date/wake-up-time-calculator/calculator.css',
   'calculators/time-and-date/nap-time-calculator/calculator.css',
+  'calculators/time-and-date/power-nap-calculator/calculator.css',
+  'calculators/time-and-date/energy-based-nap-selector/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -68,6 +70,8 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/time-and-date/sleep-time-calculator/',
   '/time-and-date/wake-up-time-calculator/',
   '/time-and-date/nap-time-calculator/',
+  '/time-and-date/power-nap-calculator/',
+  '/time-and-date/energy-based-nap-selector/',
 ]);
 const STRICT_INLINE_CALCULATORS = new Set([
   'percent-change',
@@ -79,6 +83,8 @@ const STRICT_INLINE_CALCULATORS = new Set([
   'sleep-time-calculator',
   'wake-up-time-calculator',
   'nap-time-calculator',
+  'power-nap-calculator',
+  'energy-based-nap-selector',
 ]);
 const UX_FIRST_CORE_DEFERRED_ASSETS = [
   `/assets/css/theme-premium-dark.css?v=${CSS_VERSION}`,
@@ -343,6 +349,20 @@ const TIME_AND_DATE_ISOLATED_ROUTES = [
     route: '/time-and-date/nap-time-calculator/',
     relPath: 'time-and-date/nap-time-calculator',
     routeCss: 'calculators/time-and-date/nap-time-calculator/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'power-nap-calculator',
+    route: '/time-and-date/power-nap-calculator/',
+    relPath: 'time-and-date/power-nap-calculator',
+    routeCss: 'calculators/time-and-date/power-nap-calculator/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'energy-based-nap-selector',
+    route: '/time-and-date/energy-based-nap-selector/',
+    relPath: 'time-and-date/energy-based-nap-selector',
+    routeCss: 'calculators/time-and-date/energy-based-nap-selector/calculator.css',
     topNavStatic: false,
   },
 ];
