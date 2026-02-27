@@ -1711,6 +1711,99 @@
         background: rgba(30, 41, 59, 0.36);
       }
 
+      #loan-borrow-explanation .bor-exp-section--guide {
+        font-family: inherit;
+        gap: 0.58rem;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide h3 {
+        margin: 0 0 0.16rem;
+        font-family: inherit;
+        font-size: 16px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: #fde68a;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide h4 {
+        margin: 0.34rem 0 0.08rem;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #fde68a;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide p,
+      #loan-borrow-explanation .bor-exp-section--guide li {
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide p {
+        margin: 0;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide p + p {
+        margin-top: 0.24rem;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--guide .bor-guide-list {
+        margin: 0.04rem 0 0.2rem;
+        padding-left: 1.02rem;
+        display: grid;
+        gap: 0.18rem;
+      }
+
+      #loan-borrow-explanation .bor-exp-section--notes {
+        font-family: inherit;
+        gap: 0.82rem;
+        border: 1px solid rgba(56, 189, 248, 0.28);
+        border-left: 4px solid rgba(56, 189, 248, 0.82);
+        background: linear-gradient(145deg, rgba(11, 25, 47, 0.9), rgba(16, 35, 64, 0.85));
+        box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+      }
+
+      #loan-borrow-explanation .bor-exp-section--notes h3 {
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        color: rgba(224, 242, 254, 0.98);
+      }
+
+      #loan-borrow-explanation .bor-note-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.48rem;
+      }
+
+      #loan-borrow-explanation .bor-note-list li {
+        position: relative;
+        padding-left: 1.1rem;
+        font-size: 0.85rem;
+        line-height: 1.58;
+        color: rgba(226, 232, 240, 0.95);
+      }
+
+      #loan-borrow-explanation .bor-note-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #38bdf8;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+      }
+
+      #loan-borrow-explanation .bor-note-list strong {
+        color: rgba(186, 230, 253, 0.98);
+        font-weight: 700;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         #calc-how-much-can-borrow .borrow-action-row .calculator-button {
           transition: none;
@@ -1723,11 +1816,19 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
+    <link rel="preload" href="/assets/css/theme-premium-dark.css?v=20260127" as="style" />
+    <link rel="preload" href="/assets/css/base.css?v=20260127" as="style" />
+    <link rel="preload" href="/assets/css/core-tokens.css?v=20260127" as="style" />
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/calculators/loan-calculators/how-much-can-i-borrow/calculator.css?v=20260227" />
     <link rel="stylesheet" href="/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.d19ea9e5.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
+      <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
+      <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+      <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
+      <link rel="stylesheet" href="/calculators/loan-calculators/how-much-can-i-borrow/calculator.css?v=20260227" />
       <link rel="stylesheet" href="/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.d19ea9e5.css" />
     </noscript>
  
@@ -2108,6 +2209,171 @@
     </div>
   </section>
 
+  <section class="bor-exp-section bor-exp-section--guide">
+    <h3>How Much Can I Borrow Complete Practical Guide</h3>
+
+    <h4>What the calculator estimates</h4>
+    <p>
+      This calculator gives a practical estimate of four planning outputs: Maximum Borrow, Max
+      Property, Estimated Monthly, and Disposable income after expenses and debt payments.
+    </p>
+    <p>
+      It supports two affordability methods so you can compare a qualification-style estimate with
+      a budget-first estimate before deciding on a target property range.
+    </p>
+
+    <h4>Inputs explained</h4>
+    <ul class="bor-guide-list">
+      <li><strong>Gross Annual Income:</strong> your before-tax income used for affordability rules.</li>
+      <li><strong>Deposit Amount:</strong> added to borrowing power to estimate max property budget.</li>
+      <li><strong>Monthly Expenses:</strong> regular living costs that reduce available mortgage room.</li>
+      <li><strong>Monthly Debt Payments:</strong> existing obligations that lower safe borrowing.</li>
+      <li><strong>Interest Rate (APR) and Term:</strong> key drivers of monthly payment size.</li>
+    </ul>
+
+    <h4>Affordability method toggle</h4>
+    <p><strong>Method A: Income Multiple</strong></p>
+    <p>This is the quick, commonly used approach:</p>
+    <p><strong>Maximum Borrow = Gross Annual Income x Income Multiple</strong></p>
+    <p>
+      The Income Multiple (x) input lets you choose the multiple. A higher multiple increases the
+      borrowing estimate; a lower multiple is more conservative.
+    </p>
+    <p>This method is useful for:</p>
+    <ul class="bor-guide-list">
+      <li>quick budget ranges</li>
+      <li>early-stage planning</li>
+      <li>comparing scenarios (e.g., different incomes or deposit sizes)</li>
+    </ul>
+    <p>
+      But it does not directly account for your monthly expenses and debt payments. You can still use
+      the outputs (especially Estimated Monthly and Disposable) to sanity-check whether the loan would
+      feel affordable in real life.
+    </p>
+    <p><strong>Method B: Payment Cap</strong></p>
+    <p>Payment Cap starts from what you can afford each month. Conceptually, it works like this:</p>
+    <p><strong>Estimate your monthly disposable amount:</strong></p>
+    <p>
+      <strong>
+        Disposable = Monthly Income (approx.) - Monthly Expenses - Monthly Debt Payments
+      </strong>
+    </p>
+    <p>
+      Apply a cap so that your loan payment does not exceed a chosen portion of that disposable
+      amount.
+    </p>
+    <p><strong>Convert that affordable monthly payment into a maximum loan amount based on:</strong></p>
+    <ul class="bor-guide-list">
+      <li>Interest Rate (APR %)</li>
+      <li>Loan Term (years)</li>
+    </ul>
+    <p>This method is useful for:</p>
+    <ul class="bor-guide-list">
+      <li>preventing budget stress</li>
+      <li>planning with a safety margin</li>
+      <li>
+        handling complex situations where expenses matter (family costs, multiple debts, variable
+        spending)
+      </li>
+    </ul>
+    <p>
+      Payment Cap is often the better "real-life" method because it is driven by monthly
+      affordability, not just annual income.
+    </p>
+
+    <h4>Interest Rate &amp; Term Imapct: Why they matter a lot</h4>
+    <p><strong>Interest Rate (APR %)</strong></p>
+    <p>APR affects your monthly payment and the total cost of the loan.</p>
+    <ul class="bor-guide-list">
+      <li>Higher APR -&gt; higher monthly payment -&gt; lower affordable borrowing under Payment Cap.</li>
+      <li>Lower APR -&gt; lower monthly payment -&gt; higher affordable borrowing under Payment Cap.</li>
+      <li>Even a small rate change can move the monthly payment meaningfully on long terms.</li>
+    </ul>
+    <p><strong>Loan Term (years)</strong></p>
+    <p>The term changes the balance between monthly affordability and total interest:</p>
+    <ul class="bor-guide-list">
+      <li>
+        Longer term -&gt; lower monthly payment -&gt; higher "maximum borrow" under Payment Cap (but
+        more total interest over time).
+      </li>
+      <li>
+        Shorter term -&gt; higher monthly payment -&gt; lower "maximum borrow" under Payment Cap (but
+        less total interest overall).
+      </li>
+    </ul>
+    <p>
+      A longer term can make a bigger loan "fit" monthly, but you should always check whether that
+      increases total interest beyond what you are comfortable paying.
+    </p>
+
+    <h4>How to interpret the outputs</h4>
+    <p>
+      <strong>Maximum Borrow:</strong> Treat this as an upper estimate. Being approved for a maximum
+      amount does not mean it is a good idea to borrow the maximum. Use it as a boundary, then decide
+      what feels safe based on your priorities.
+    </p>
+    <p>
+      <strong>Max Property:</strong> This is typically:
+      <br />
+      Max Property = Maximum Borrow + Deposit Amount
+      <br />
+      This gives you a purchase price range to explore.
+    </p>
+    <p>
+      <strong>Estimated Monthly:</strong> This is your projected monthly loan payment. Use it as your
+      anchor: if the monthly payment feels uncomfortable, the loan is too large (even if the income
+      multiple says it is "allowed").
+    </p>
+    <p>
+      <strong>Disposable:</strong> This helps you quickly evaluate resilience. If Disposable is low
+      after including the estimated monthly payment (and you feel one unexpected bill would break the
+      budget), the plan is too tight.
+    </p>
+    <p>A good borrowing plan leaves room for:</p>
+    <ul class="bor-guide-list">
+      <li>Emergencies</li>
+      <li>Repairs &amp; Maintenance</li>
+      <li>Lifestyle Flexibility</li>
+      <li>Future changes (job changes, family costs, rate changes)</li>
+    </ul>
+
+    <h4>Worked examples</h4>
+    <p>
+      <strong>Income Multiple example:</strong> Gross income 60,000 at 4.0x gives estimated maximum
+      borrowing of about 240,000. With a 30,000 deposit, max property is about 270,000.
+    </p>
+    <p>
+      <strong>Payment Cap example:</strong> Gross income 60,000 with monthly expenses of 1,500 and
+      debts of 300 uses monthly affordability first, then maps that capacity to a loan using your
+      chosen APR and term.
+    </p>
+
+    <h4>Practical tips to increase affordability (without guessing)</h4>
+    <p>If your results feel short of your goal, the highest-impact levers are usually:</p>
+    <ul class="bor-guide-list">
+      <li>
+        <strong>Reduce monthly debts:</strong> Paying off or consolidating high monthly commitments
+        can directly increase affordable borrowing under Payment Cap.
+      </li>
+      <li>
+        <strong>Increase deposit:</strong> A larger deposit boosts Max Property and reduces risk,
+        often making affordability stronger.
+      </li>
+      <li>
+        <strong>Adjust loan term carefully:</strong> Extending term reduces monthly payment, but
+        increases total interest. Use it strategically.
+      </li>
+      <li>
+        <strong>Shop interest rate:</strong> Rate improvements can change monthly payments
+        dramatically. Even a modest improvement can raise your maximum under Payment Cap.
+      </li>
+      <li>
+        <strong>Be conservative with expenses:</strong> If you underestimate expenses, you
+        overestimate affordability. Conservative inputs create safer decisions.
+      </li>
+    </ul>
+  </section>
+
   <section class="bor-exp-section bor-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -2201,6 +2467,21 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="bor-exp-section bor-exp-section--notes" aria-label="Important notes">
+    <h3>Important Notes</h3>
+    <ul class="bor-note-list">
+      <li><strong>Last updated:</strong> February 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
+      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+      <li>
+        <strong>Assumptions:</strong> Uses income-multiple and payment-cap affordability models,
+        approximates monthly net income from gross income for affordability checks, and assumes a
+        constant APR and regular monthly repayment schedule over the selected term.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
   </section>
 </div>
 
