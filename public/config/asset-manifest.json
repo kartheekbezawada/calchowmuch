@@ -661,17 +661,11 @@
       "calculatorId": "power-nap-calculator",
       "isolationBoundary": "route",
       "css": {
-        "core": [
-          "/assets/css/theme-premium-dark.css?v=20260127",
-          "/assets/css/base.css?v=20260127",
-          "/assets/css/layout.css?v=20260127",
-          "/assets/css/calculator.css?v=20260127",
-          "/assets/css/shared-calculator-ui.css?v=20260127"
-        ],
+        "core": [],
         "route": [
           "/calculators/time-and-date/power-nap-calculator/calculator.css"
         ],
-        "critical": null
+        "critical": "/assets/css/route-bundles/time-and-date-sleep-time-calculator.critical.1de7e02d.css"
       },
       "js": {
         "core": [
@@ -682,7 +676,8 @@
         ]
       },
       "options": {
-        "topNavStatic": false
+        "topNavStatic": false,
+        "deferCoreCss": true
       }
     },
     "/loan-calculators/mortgage-calculator/": {

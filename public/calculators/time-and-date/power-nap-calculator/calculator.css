@@ -45,7 +45,7 @@
 #calc-power-nap .power-nap-aurora {
   position: absolute;
   border-radius: 999px;
-  filter: blur(18px);
+  filter: none;
   opacity: 0.62;
 }
 
@@ -55,7 +55,6 @@
   top: -70px;
   left: -50px;
   background: radial-gradient(circle at 40% 50%, rgba(83, 242, 255, 0.42), rgba(83, 242, 255, 0));
-  animation: power-nap-drift-one 11s ease-in-out infinite alternate;
 }
 
 #calc-power-nap .power-nap-aurora-two {
@@ -64,7 +63,6 @@
   top: -46px;
   right: -70px;
   background: radial-gradient(circle at 55% 55%, rgba(127, 141, 255, 0.4), rgba(127, 141, 255, 0));
-  animation: power-nap-drift-two 13s ease-in-out infinite alternate;
 }
 
 #calc-power-nap .power-nap-grid-glow {
@@ -87,7 +85,6 @@
   border-radius: 50%;
   background: radial-gradient(circle at 34% 34%, #ffffff, #7ff8ff 42%, #4763f2 78%);
   box-shadow: 0 0 28px rgba(127, 248, 255, 0.38), 0 0 64px rgba(101, 133, 255, 0.2);
-  animation: power-nap-orb-pulse 5s ease-in-out infinite alternate;
 }
 
 #calc-power-nap .power-nap-container {
@@ -152,7 +149,7 @@
   background: linear-gradient(160deg, rgba(11, 18, 40, 0.86), rgba(15, 24, 52, 0.84));
   box-shadow: 0 16px 38px rgba(2, 7, 26, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   padding: 22px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
 }
 
 #calc-power-nap .power-nap-label {
@@ -275,7 +272,8 @@
   padding: 12px 13px;
   border: 1px solid rgba(127, 141, 255, 0.34);
   border-radius: 13px;
-  background: rgba(8, 14, 34, 0.82);
+  background-color: rgb(15, 23, 42);
+  background-image: linear-gradient(160deg, rgba(8, 14, 34, 0.82), rgba(8, 14, 34, 0.82));
   color: #deebff;
   font-size: 14px;
 }
@@ -287,7 +285,8 @@
 
 #calc-power-nap .result-row.is-recommended {
   border-color: rgba(89, 243, 255, 0.58);
-  background: linear-gradient(140deg, rgba(10, 21, 46, 0.9), rgba(18, 39, 72, 0.86));
+  background-color: rgb(15, 23, 42);
+  background-image: linear-gradient(140deg, rgba(10, 21, 46, 0.9), rgba(18, 39, 72, 0.86));
 }
 
 #calc-power-nap .recommend-badge {
@@ -329,6 +328,8 @@
   border-radius: 18px;
   background: linear-gradient(180deg, rgba(10, 15, 33, 0.94), rgba(14, 22, 48, 0.9));
   padding: 18px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 940px;
 }
 
 #power-nap-explanation h2 {
@@ -380,33 +381,6 @@
   border-radius: 14px;
   background: rgba(8, 13, 30, 0.78);
   padding: 12px 13px;
-}
-
-@keyframes power-nap-drift-one {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(20px, 8px, 0) scale(1.07);
-  }
-}
-
-@keyframes power-nap-drift-two {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(-16px, 10px, 0) scale(1.06);
-  }
-}
-
-@keyframes power-nap-orb-pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.08);
-  }
 }
 
 @media (max-width: 980px) {

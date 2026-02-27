@@ -27,7 +27,7 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is the best power nap length?',
+      name: 'What is the ideal power nap length?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Most people do best with 20 to 30 minutes because that range supports alertness while reducing the chance of waking from deeper sleep.',
@@ -166,9 +166,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Power Nap Calculator - Best Wake-Up Times for 10 to 90 Minute Naps',
+  title: 'Power Nap Calculator – Best Nap Length and Wake-Up Time',
   description:
-    'Find wake-up times for 10, 20, 30, 60, and 90 minute naps. Use this power nap calculator to pick a quick reset or deeper recovery window.',
+    'Calculate the best wake-up time for power naps. See options for 10, 20, 30, 60, and 90-minute naps with recommended durations.',
   canonical: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
