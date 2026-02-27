@@ -4662,58 +4662,224 @@
           <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Factoring Calculator</h1>
   <div class="calculator-page-single">
-    <div id="calc-factoring">
+    <style>
+  #calc-factoring .algebra-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+  }
+  #calc-factoring .algebra-preview-panel {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.62);
+    padding: 12px;
+  }
+  #calc-factoring .algebra-preview-main {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  #calc-factoring .algebra-result-card,
+  #calc-factoring .algebra-summary-card {
+    margin: 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(30, 41, 59, 0.5);
+  }
+  #calc-factoring .algebra-snapshot-list {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.45);
+  }
+  #calc-factoring .algebra-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+  #calc-factoring .algebra-snapshot-row:last-child {
+    border-bottom: 0;
+  }
+  @media (max-width: 980px) {
+    #calc-factoring .algebra-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<div id="calc-factoring">
   <div class="calculator-ui algebra-surface">
-    <p class="helper">Factor polynomials with multiple common methods in one pass.</p>
+    <section class="algebra-hero" aria-label="Factoring calculator">
+      <div class="algebra-form-panel">
+        <p class="helper">Factor polynomials with multiple common methods in one pass.</p>
 
-    <div class="input-stack">
-      <div class="polynomial-input">
-        <label for="factor-poly">Polynomial to factor</label>
-        <input
-          id="factor-poly"
-          type="text"
-          value="x^2 + 5x + 6"
-          placeholder="Example: x^2 + 5x + 6"
-          maxlength="60"
-        />
+        <div class="input-stack">
+          <div class="polynomial-input">
+            <label for="factor-poly">Polynomial to factor</label>
+            <input
+              id="factor-poly"
+              type="text"
+              value="x^2 + 5x + 6"
+              placeholder="Example: x^2 + 5x + 6"
+              maxlength="60"
+            />
+          </div>
+        </div>
+
+        <div class="factoring-methods">
+          <label>Methods to apply</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" id="method-gcf" checked /> Greatest common factor</label>
+            <label><input type="checkbox" id="method-quadratic" checked /> Quadratic factoring</label>
+            <label><input type="checkbox" id="method-difference" checked /> Difference of squares</label>
+            <label><input type="checkbox" id="method-sum-difference" checked /> Sum or difference of cubes</label>
+            <label><input type="checkbox" id="method-grouping" checked /> Grouping</label>
+          </div>
+        </div>
+
+        <button class="calculator-button full-width" type="button" id="factor-calculate">
+          Factor Polynomial
+        </button>
       </div>
-    </div>
 
-    <div class="factoring-methods">
-      <label>Methods to apply</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" id="method-gcf" checked /> Greatest common factor</label>
-        <label><input type="checkbox" id="method-quadratic" checked /> Quadratic factoring</label>
-        <label><input type="checkbox" id="method-difference" checked /> Difference of squares</label>
-        <label><input type="checkbox" id="method-sum-difference" checked /> Sum or difference of cubes</label>
-        <label><input type="checkbox" id="method-grouping" checked /> Grouping</label>
-      </div>
-    </div>
+      <aside class="algebra-preview-panel" aria-label="Factoring answer cards">
+        <div class="algebra-preview-main">
+          <p class="algebra-preview-label">Answer Card</p>
+          <div class="result algebra-result-card" id="factor-result" aria-live="polite">
+            Results will appear after you click <strong>Factor Polynomial</strong>.
+          </div>
+          <div class="result-detail algebra-summary-card" id="factor-detail" aria-live="polite"></div>
+        </div>
 
-    <button class="calculator-button full-width" type="button" id="factor-calculate">
-      Factor Polynomial
-    </button>
-
-    <div class="result" id="factor-result" aria-live="polite"></div>
-    <div class="result-detail" id="factor-detail" aria-live="polite"></div>
+        <div class="algebra-snapshot-list" aria-label="Factoring snapshot">
+          <div class="algebra-snapshot-row">
+            <span>Input Polynomial</span>
+            <strong data-factor-snap="input">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Method Hit</span>
+            <strong data-factor-snap="method">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Factored Form</span>
+            <strong data-factor-snap="factored">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Residual</span>
+            <strong data-factor-snap="residual">-</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of factoring methods are included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator checks GCF, quadratic factoring, difference of squares, cubes, and grouping."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this factor expressions with decimal coefficients?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, decimal coefficients are supported when parsing polynomial terms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if no selected method can factor further?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator returns the current simplified polynomial and reports no additional factoring."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it always extract a common factor first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If GCF is enabled and available, it is extracted before other methods are tested."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does quadratic factoring work here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It searches factor pairs that multiply to ac and add to b for valid trinomial decomposition."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I disable methods I do not want?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, each factoring method has a checkbox so you can control which methods are applied."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does formatting differ from my class notes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Equivalent factored forms can be arranged differently while representing the same expression."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens with malformed input text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Invalid tokens are reported so you can correct the polynomial syntax."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this verify by expansion?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The methods are algebraic and the result detail helps you verify factors against the original expression."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this factor every polynomial completely?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not always; some expressions are irreducible over integers or require advanced methods not selected."
+        }
+      }
+    ]
+  }
+</script>
 
     <section>
   <h2>Factoring Calculator Practical Guide</h2>
   <p>
-    Use this calculator to break down algebraic expressions into simpler factors and review the
-    method used for the final form.
+    Use this calculator to factor polynomials by applying common school and exam methods in a single
+    workflow.
   </p>
 </section>
 
 <section>
   <h3>How to Guide</h3>
   <ol>
-    <li>Type the polynomial expression in standard form.</li>
+    <li>Enter the polynomial expression in standard form.</li>
     <li>Select the factoring methods you want to apply.</li>
     <li>Click <strong>Factor Polynomial</strong>.</li>
-    <li>Review the factored form and the method trail in the steps section.</li>
+    <li>Review the factored form and step list to see which method matched.</li>
   </ol>
 </section>
 
@@ -4721,29 +4887,55 @@
   <h3>Important Notes</h3>
   <p><strong>Last updated: February 2026</strong></p>
   <ul>
-    <li>Always start with greatest common factor extraction when possible.</li>
-    <li>Some expressions are only partially factorable over integers.</li>
-    <li>Enable or disable methods to inspect how each strategy contributes.</li>
+    <li>Input should use algebraic syntax like <code>x^2 + 5x + 6</code>.</li>
+    <li>GCF extraction may happen before other methods when enabled.</li>
+    <li>Some polynomials are irreducible for selected methods.</li>
+    <li>Equivalent factors may appear in a different order than classroom notes.</li>
+    <li>Invalid term syntax is reported in the result area.</li>
   </ul>
 </section>
 
 <section>
   <h3>FAQ</h3>
   <div class="faq-card">
-    <h4>Why does the result remain mostly unchanged?</h4>
-    <p>The expression may not factor further with the selected integer-based methods.</p>
+    <h4>What types of factoring methods are included?</h4>
+    <p>The calculator checks GCF, quadratic factoring, difference of squares, cubes, and grouping.</p>
   </div>
   <div class="faq-card">
-    <h4>Does this support cubic expressions?</h4>
-    <p>Yes, grouping and sum/difference of cubes checks are included for applicable forms.</p>
+    <h4>Can this factor expressions with decimal coefficients?</h4>
+    <p>Yes, decimal coefficients are supported when parsing polynomial terms.</p>
   </div>
   <div class="faq-card">
-    <h4>Can I use decimal coefficients?</h4>
-    <p>Decimal inputs are accepted, but some exact factoring methods require integer patterns.</p>
+    <h4>What if no selected method can factor further?</h4>
+    <p>The calculator returns the current simplified polynomial and reports no additional factoring.</p>
   </div>
   <div class="faq-card">
-    <h4>How do I verify the factorization?</h4>
-    <p>Multiply the resulting factors to confirm you recover the original polynomial.</p>
+    <h4>Does it always extract a common factor first?</h4>
+    <p>If GCF is enabled and available, it is extracted before other methods are tested.</p>
+  </div>
+  <div class="faq-card">
+    <h4>How does quadratic factoring work here?</h4>
+    <p>It searches factor pairs that multiply to ac and add to b for valid trinomial decomposition.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can I disable methods I do not want?</h4>
+    <p>Yes, each factoring method has a checkbox so you can control which methods are applied.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Why does formatting differ from my class notes?</h4>
+    <p>Equivalent factored forms can be arranged differently while representing the same expression.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What happens with malformed input text?</h4>
+    <p>Invalid tokens are reported so you can correct the polynomial syntax.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Does this verify by expansion?</h4>
+    <p>The methods are algebraic and the result detail helps you verify factors against the original expression.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can this factor every polynomial completely?</h4>
+    <p>Not always; some expressions are irreducible over integers or require advanced methods not selected.</p>
   </div>
 </section>
 

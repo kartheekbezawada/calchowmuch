@@ -1,18 +1,18 @@
 <section>
   <h2>Factoring Calculator Practical Guide</h2>
   <p>
-    Use this calculator to break down algebraic expressions into simpler factors and review the
-    method used for the final form.
+    Use this calculator to factor polynomials by applying common school and exam methods in a single
+    workflow.
   </p>
 </section>
 
 <section>
   <h3>How to Guide</h3>
   <ol>
-    <li>Type the polynomial expression in standard form.</li>
+    <li>Enter the polynomial expression in standard form.</li>
     <li>Select the factoring methods you want to apply.</li>
     <li>Click <strong>Factor Polynomial</strong>.</li>
-    <li>Review the factored form and the method trail in the steps section.</li>
+    <li>Review the factored form and step list to see which method matched.</li>
   </ol>
 </section>
 
@@ -20,28 +20,54 @@
   <h3>Important Notes</h3>
   <p><strong>Last updated: February 2026</strong></p>
   <ul>
-    <li>Always start with greatest common factor extraction when possible.</li>
-    <li>Some expressions are only partially factorable over integers.</li>
-    <li>Enable or disable methods to inspect how each strategy contributes.</li>
+    <li>Input should use algebraic syntax like <code>x^2 + 5x + 6</code>.</li>
+    <li>GCF extraction may happen before other methods when enabled.</li>
+    <li>Some polynomials are irreducible for selected methods.</li>
+    <li>Equivalent factors may appear in a different order than classroom notes.</li>
+    <li>Invalid term syntax is reported in the result area.</li>
   </ul>
 </section>
 
 <section>
   <h3>FAQ</h3>
   <div class="faq-card">
-    <h4>Why does the result remain mostly unchanged?</h4>
-    <p>The expression may not factor further with the selected integer-based methods.</p>
+    <h4>What types of factoring methods are included?</h4>
+    <p>The calculator checks GCF, quadratic factoring, difference of squares, cubes, and grouping.</p>
   </div>
   <div class="faq-card">
-    <h4>Does this support cubic expressions?</h4>
-    <p>Yes, grouping and sum/difference of cubes checks are included for applicable forms.</p>
+    <h4>Can this factor expressions with decimal coefficients?</h4>
+    <p>Yes, decimal coefficients are supported when parsing polynomial terms.</p>
   </div>
   <div class="faq-card">
-    <h4>Can I use decimal coefficients?</h4>
-    <p>Decimal inputs are accepted, but some exact factoring methods require integer patterns.</p>
+    <h4>What if no selected method can factor further?</h4>
+    <p>The calculator returns the current simplified polynomial and reports no additional factoring.</p>
   </div>
   <div class="faq-card">
-    <h4>How do I verify the factorization?</h4>
-    <p>Multiply the resulting factors to confirm you recover the original polynomial.</p>
+    <h4>Does it always extract a common factor first?</h4>
+    <p>If GCF is enabled and available, it is extracted before other methods are tested.</p>
+  </div>
+  <div class="faq-card">
+    <h4>How does quadratic factoring work here?</h4>
+    <p>It searches factor pairs that multiply to ac and add to b for valid trinomial decomposition.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can I disable methods I do not want?</h4>
+    <p>Yes, each factoring method has a checkbox so you can control which methods are applied.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Why does formatting differ from my class notes?</h4>
+    <p>Equivalent factored forms can be arranged differently while representing the same expression.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What happens with malformed input text?</h4>
+    <p>Invalid tokens are reported so you can correct the polynomial syntax.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Does this verify by expansion?</h4>
+    <p>The methods are algebraic and the result detail helps you verify factors against the original expression.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can this factor every polynomial completely?</h4>
+    <p>Not always; some expressions are irreducible over integers or require advanced methods not selected.</p>
   </div>
 </section>
