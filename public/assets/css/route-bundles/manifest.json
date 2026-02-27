@@ -728,6 +728,44 @@
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.9398e091.css",
       "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-nap-time-calculator.critical.3a49f712.css"
+    },
+    "/time-and-date/power-nap-calculator/": {
+      "calculatorId": "power-nap-calculator",
+      "relPath": "time-and-date/power-nap-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-power-nap-calculator.48cc9a2a.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-power-nap-calculator.48cc9a2a.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-power-nap-calculator.critical.24577630.css",
+      "hash": "48cc9a2a",
+      "criticalHash": "24577630",
+      "fullBytes": 56336,
+      "criticalBytes": 93927,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/power-nap-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-power-nap-calculator.48cc9a2a.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-power-nap-calculator.critical.24577630.css"
+    },
+    "/time-and-date/energy-based-nap-selector/": {
+      "calculatorId": "energy-based-nap-selector",
+      "relPath": "time-and-date/energy-based-nap-selector",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-energy-based-nap-selector.36a2f50a.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-energy-based-nap-selector.36a2f50a.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-energy-based-nap-selector.critical.ebfc1608.css",
+      "hash": "36a2f50a",
+      "criticalHash": "ebfc1608",
+      "fullBytes": 60763,
+      "criticalBytes": 98354,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/energy-based-nap-selector/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-energy-based-nap-selector.36a2f50a.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-energy-based-nap-selector.critical.ebfc1608.css"
     }
   }
 }

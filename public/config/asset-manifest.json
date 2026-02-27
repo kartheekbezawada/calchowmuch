@@ -632,6 +632,50 @@
         "deferCoreCss": true
       }
     },
+    "/time-and-date/power-nap-calculator/": {
+      "route": "/time-and-date/power-nap-calculator/",
+      "calculatorId": "power-nap-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-power-nap-calculator.critical.24577630.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/power-nap-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
+    "/time-and-date/energy-based-nap-selector/": {
+      "route": "/time-and-date/energy-based-nap-selector/",
+      "calculatorId": "energy-based-nap-selector",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-energy-based-nap-selector.critical.ebfc1608.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/energy-based-nap-selector/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
     "/loan-calculators/mortgage-calculator/": {
       "route": "/loan-calculators/mortgage-calculator/",
       "calculatorId": "home-loan",
