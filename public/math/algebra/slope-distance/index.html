@@ -4664,60 +4664,226 @@
           <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Slope and Distance Calculator</h1>
   <div class="calculator-page-single">
-    <div id="calc-slope-distance">
+    <style>
+  #calc-slope-distance .algebra-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+  }
+  #calc-slope-distance .algebra-preview-panel {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.62);
+    padding: 12px;
+  }
+  #calc-slope-distance .algebra-preview-main {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  #calc-slope-distance .algebra-result-card,
+  #calc-slope-distance .algebra-summary-card {
+    margin: 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(30, 41, 59, 0.5);
+  }
+  #calc-slope-distance .algebra-snapshot-list {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.45);
+  }
+  #calc-slope-distance .algebra-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+  #calc-slope-distance .algebra-snapshot-row:last-child {
+    border-bottom: 0;
+  }
+  @media (max-width: 980px) {
+    #calc-slope-distance .algebra-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<div id="calc-slope-distance">
   <div class="calculator-ui algebra-surface">
-    <p class="helper">Find slope, distance, midpoint, and line forms for two points.</p>
+    <section class="algebra-hero" aria-label="Slope and distance calculator">
+      <div class="algebra-form-panel">
+        <p class="helper">Find slope, distance, midpoint, and line forms for two points.</p>
 
-    <div class="input-stack point-grid">
-      <div class="point-card">
-        <h3>Point 1</h3>
-        <div class="input-row">
-          <label for="x1">x1</label>
-          <input id="x1" type="number" value="1" step="any" inputmode="decimal" />
+        <div class="input-stack point-grid">
+          <div class="point-card">
+            <h3>Point 1</h3>
+            <div class="input-row">
+              <label for="x1">x1</label>
+              <input id="x1" type="number" value="1" step="any" inputmode="decimal" />
+            </div>
+            <div class="input-row">
+              <label for="y1">y1</label>
+              <input id="y1" type="number" value="2" step="any" inputmode="decimal" />
+            </div>
+          </div>
+
+          <div class="point-card">
+            <h3>Point 2</h3>
+            <div class="input-row">
+              <label for="x2">x2</label>
+              <input id="x2" type="number" value="4" step="any" inputmode="decimal" />
+            </div>
+            <div class="input-row">
+              <label for="y2">y2</label>
+              <input id="y2" type="number" value="8" step="any" inputmode="decimal" />
+            </div>
+          </div>
         </div>
-        <div class="input-row">
-          <label for="y1">y1</label>
-          <input id="y1" type="number" value="2" step="any" inputmode="decimal" />
-        </div>
+
+        <button class="calculator-button full-width" type="button" id="calculate-slope">
+          Calculate Properties
+        </button>
       </div>
 
-      <div class="point-card">
-        <h3>Point 2</h3>
-        <div class="input-row">
-          <label for="x2">x2</label>
-          <input id="x2" type="number" value="4" step="any" inputmode="decimal" />
+      <aside class="algebra-preview-panel" aria-label="Slope and distance answer cards">
+        <div class="algebra-preview-main">
+          <p class="algebra-preview-label">Answer Card</p>
+          <div class="result algebra-result-card" id="slope-result" aria-live="polite">
+            Results will appear after you click <strong>Calculate Properties</strong>.
+          </div>
+          <div class="result-detail algebra-summary-card" id="slope-detail" aria-live="polite"></div>
         </div>
-        <div class="input-row">
-          <label for="y2">y2</label>
-          <input id="y2" type="number" value="8" step="any" inputmode="decimal" />
+
+        <div class="algebra-snapshot-list" aria-label="Slope snapshot">
+          <div class="algebra-snapshot-row">
+            <span>Slope</span>
+            <strong data-slope-snap="slope">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Distance</span>
+            <strong data-slope-snap="distance">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Midpoint</span>
+            <strong data-slope-snap="midpoint">-</strong>
+          </div>
+          <div class="algebra-snapshot-row">
+            <span>Line Type</span>
+            <strong data-slope-snap="line-type">-</strong>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <button class="calculator-button full-width" type="button" id="calculate-slope">
-      Calculate Properties
-    </button>
-
-    <div class="result" id="slope-result" aria-live="polite"></div>
-    <div class="result-detail" id="slope-detail" aria-live="polite"></div>
+      </aside>
+    </section>
   </div>
 </div>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does slope represent between two points?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Slope represents how much y changes for each one-unit change in x between the points."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is slope undefined for vertical lines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For vertical lines, the x-change is zero, so the slope formula requires division by zero."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is midpoint calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Midpoint is found by averaging x-values and y-values separately: ((x1+x2)/2, (y1+y2)/2)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does distance use the Pythagorean theorem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the distance formula is derived from the Pythagorean theorem in coordinate geometry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this handle decimal coordinates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, decimal and negative coordinates are supported."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What line forms are provided?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The result includes slope-intercept, point-slope, and standard forms when applicable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is shown for horizontal lines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Horizontal lines show slope 0, and the equation is presented as y = constant."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use identical points?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but distance becomes 0 and the line relationship is degenerate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it show parallel and perpendicular lines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it provides representative parallel and perpendicular equations through Point 1."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why might standard form look different from my textbook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Equivalent standard forms can differ by scaling or sign but represent the same line."
+        }
+      }
+    ]
+  }
+</script>
 
     <section>
   <h2>Slope and Distance Calculator Practical Guide</h2>
   <p>
-    Use this calculator to analyze a line segment from two coordinate points, including distance,
-    midpoint, and equation forms.
+    Use this calculator to compute slope, distance, midpoint, and line equations from two coordinate
+    points.
   </p>
 </section>
 
 <section>
   <h3>How to Guide</h3>
   <ol>
-    <li>Enter coordinates for Point 1 and Point 2.</li>
+    <li>Enter x and y coordinates for Point 1 and Point 2.</li>
     <li>Click <strong>Calculate Properties</strong>.</li>
-    <li>Read slope, distance, and midpoint in the summary output.</li>
-    <li>Review line equations and parallel/perpendicular references in the detail panel.</li>
+    <li>Read slope, distance, and midpoint in the answer card.</li>
+    <li>Review equation forms and parallel/perpendicular outputs in details.</li>
   </ol>
 </section>
 
@@ -4725,29 +4891,55 @@
   <h3>Important Notes</h3>
   <p><strong>Last updated: February 2026</strong></p>
   <ul>
-    <li>If x1 equals x2, the slope is undefined and the line is vertical.</li>
-    <li>Distance uses the Euclidean formula sqrt((x2-x1)^2 + (y2-y1)^2).</li>
-    <li>Perpendicular slope is the negative reciprocal when slope is finite and non-zero.</li>
+    <li>Vertical lines have undefined slope.</li>
+    <li>Horizontal lines have slope zero.</li>
+    <li>Distance is always non-negative.</li>
+    <li>Equivalent equation forms may look different but represent the same line.</li>
+    <li>Decimal coordinates are supported.</li>
   </ul>
 </section>
 
 <section>
   <h3>FAQ</h3>
   <div class="faq-card">
-    <h4>Why does slope show undefined?</h4>
-    <p>Undefined slope means both points share the same x-value, so the line is vertical.</p>
+    <h4>What does slope represent between two points?</h4>
+    <p>Slope represents how much y changes for each one-unit change in x between the points.</p>
   </div>
   <div class="faq-card">
-    <h4>Can I enter decimal coordinates?</h4>
-    <p>Yes, decimal values are supported for all coordinates.</p>
+    <h4>Why is slope undefined for vertical lines?</h4>
+    <p>For vertical lines, the x-change is zero, so the slope formula requires division by zero.</p>
   </div>
   <div class="faq-card">
-    <h4>What does midpoint represent?</h4>
-    <p>The midpoint is the exact center of the segment connecting the two points.</p>
+    <h4>How is midpoint calculated?</h4>
+    <p>Midpoint is found by averaging x-values and y-values separately: ((x1+x2)/2, (y1+y2)/2).</p>
   </div>
   <div class="faq-card">
-    <h4>Are line equations always shown?</h4>
-    <p>Yes. For vertical lines, forms that require finite slope are replaced with vertical-line text.</p>
+    <h4>Does distance use the Pythagorean theorem?</h4>
+    <p>Yes, the distance formula is derived from the Pythagorean theorem in coordinate geometry.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can this handle decimal coordinates?</h4>
+    <p>Yes, decimal and negative coordinates are supported.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What line forms are provided?</h4>
+    <p>The result includes slope-intercept, point-slope, and standard forms when applicable.</p>
+  </div>
+  <div class="faq-card">
+    <h4>What is shown for horizontal lines?</h4>
+    <p>Horizontal lines show slope 0, and the equation is presented as y = constant.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Can I use identical points?</h4>
+    <p>Yes, but distance becomes 0 and the line relationship is degenerate.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Does it show parallel and perpendicular lines?</h4>
+    <p>Yes, it provides representative parallel and perpendicular equations through Point 1.</p>
+  </div>
+  <div class="faq-card">
+    <h4>Why might standard form look different from my textbook?</h4>
+    <p>Equivalent standard forms can differ by scaling or sign but represent the same line.</p>
   </div>
 </section>
 
