@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:math/quadratic-equation`
+- Scope: `calc:math/slope-distance`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/math/algebra/quadratic-equation/index.html` | 0 | 0→0 | 0→0 | 0→0 | FAQ []<br>Breadcrumb []<br>Software [] | - | OK | UNCHANGED |
+| `public/math/algebra/slope-distance/index.html` | 0 | 0→0 | 0→0 | 0→0 | FAQ []<br>Breadcrumb []<br>Software [] | - | OK | UNCHANGED |
 

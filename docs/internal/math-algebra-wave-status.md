@@ -4,9 +4,9 @@
 
 | Order | Calculator | Route | Status | Release ID | Commit SHA | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | quadratic-equation | /math/algebra/quadratic-equation/ | passed | REL-20260227-006 | TBD | Scoped gates passed |
-| 2 | slope-distance | /math/algebra/slope-distance/ | in_progress | TBD | TBD | Wave 2 active |
-| 3 | factoring | /math/algebra/factoring/ | pending | TBD | TBD | Awaiting wave 2 |
+| 1 | quadratic-equation | /math/algebra/quadratic-equation/ | passed | REL-20260227-006 | d161ad7 | Scoped gates passed |
+| 2 | slope-distance | /math/algebra/slope-distance/ | passed | REL-20260227-007 | TBD | Scoped gates passed |
+| 3 | factoring | /math/algebra/factoring/ | in_progress | TBD | TBD | Wave 3 active |
 | 4 | polynomial-operations | /math/algebra/polynomial-operations/ | pending | TBD | TBD | Awaiting wave 3 |
 | 5 | system-of-equations | /math/algebra/system-of-equations/ | pending | TBD | TBD | Awaiting wave 4 |
 
@@ -23,8 +23,8 @@
 
 | Calculator | Status | Release ID | Commit SHA | Gate Summary | Artifacts |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| quadratic-equation | passed | REL-20260227-006 | TBD | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/quadratic-equation.json` |
-| slope-distance | TBD | TBD | TBD | TBD | TBD |
+| quadratic-equation | passed | REL-20260227-006 | d161ad7 | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/quadratic-equation.json` |
+| slope-distance | passed | REL-20260227-007 | TBD | lint + scoped unit/e2e/seo/cwv/schema/isolation/contracts | `test-results/performance/scoped-cwv/math/slope-distance.json` |
 | factoring | TBD | TBD | TBD | TBD | TBD |
 | polynomial-operations | TBD | TBD | TBD | TBD | TBD |
 | system-of-equations | TBD | TBD | TBD | TBD | TBD |

@@ -1,29 +1,45 @@
-/* Slope & Distance Calculator Specific Styles */
+.algebra-surface {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.5);
+}
 
-h3 {
-  margin: 16px 0 8px 0;
-  color: #1e40af;
-  font-size: 16px;
+.point-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.point-card {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(30, 41, 59, 0.45);
+}
+
+.point-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
 }
 
 .line-equations {
-  background: #fefce8;
-  border: 1px solid #fbbf24;
-  border-radius: 6px;
-  padding: 16px;
-  margin: 12px 0;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  background: rgba(30, 41, 59, 0.45);
 }
 
 .line-equations h4 {
-  margin: 0 0 8px 0;
-  color: #92400e;
+  margin: 0 0 8px;
 }
 
 .equation-form {
+  margin-bottom: 7px;
   font-family: 'Courier New', monospace;
-  background: white;
-  padding: 8px;
-  border-radius: 4px;
-  margin: 6px 0;
-  border: 1px solid #e5e7eb;
+}
+
+.faq-card {
+  margin-top: 10px;
 }
