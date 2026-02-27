@@ -1,39 +1,43 @@
-/* Factoring Calculator Specific Styles */
-
-.polynomial-input {
-  margin-bottom: 16px;
+.algebra-surface {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(15, 23, 42, 0.5);
 }
 
-.polynomial-input label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #374151;
+.polynomial-input {
+  margin-bottom: 12px;
 }
 
 .polynomial-input input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 16px;
 }
 
 .factoring-methods {
-  margin: 16px 0;
+  margin: 12px 0;
   padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(30, 41, 59, 0.45);
+}
+
+.factoring-methods > label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .checkbox-group {
   display: grid;
   gap: 8px;
-  margin-top: 8px;
 }
 
 .checkbox-group label {
-  font-size: 14px;
-  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.faq-card {
+  margin-top: 10px;
 }
