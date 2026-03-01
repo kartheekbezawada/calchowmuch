@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const CALC_DIR = path.join(PUBLIC_DIR, 'calculators');
+const CONTENT_CALC_DIR = path.join(ROOT, 'content', 'calculators');
 const NAV_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const ASSET_MANIFEST_PATH = path.join(PUBLIC_DIR, 'config', 'asset-manifest.json');
 const SOURCE_CLUSTER_REGISTRY_PATH = path.join(
@@ -75,6 +76,19 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'future-value',
   'future-value-of-annuity',
   'present-value-of-annuity',
+]);
+const FINANCE_CALCULATOR_IDS = new Set([
+  'present-value',
+  'future-value',
+  'present-value-of-annuity',
+  'future-value-of-annuity',
+  'simple-interest',
+  'compound-interest',
+  'effective-annual-rate',
+  'investment-growth',
+  'investment-return',
+  'time-to-savings-goal',
+  'monthly-savings-needed',
 ]);
 const CALCULATOR_OVERRIDES = {
   'home-loan': {
@@ -1506,6 +1520,42 @@ function findCalculatorDirs(rootDir) {
   return map;
 }
 
+function isFinanceCalculatorRelPath(relPath) {
+  return typeof relPath === 'string' && relPath.startsWith('finance-calculators/');
+}
+
+function pathExistsAsDirectory(targetPath) {
+  return fs.existsSync(targetPath) && fs.statSync(targetPath).isDirectory();
+}
+
+function resolveCalculatorFragmentDir(relPath) {
+  if (!isFinanceCalculatorRelPath(relPath)) {
+    return path.join(CALC_DIR, relPath);
+  }
+  const contentDir = path.join(CONTENT_CALC_DIR, relPath);
+  if (pathExistsAsDirectory(contentDir)) {
+    return contentDir;
+  }
+  throw new Error(`Missing finance fragment directory: ${contentDir}`);
+}
+
+function resolveCalculatorModuleScriptHref(calculatorRelPath) {
+  if (!calculatorRelPath) {
+    return null;
+  }
+  if (isFinanceCalculatorRelPath(calculatorRelPath)) {
+    const financeAssetRelPath = path
+      .join('assets', 'js', 'calculators', calculatorRelPath, 'module.js')
+      .replace(/\\/g, '/');
+    const financeAssetAbsPath = path.join(PUBLIC_DIR, financeAssetRelPath);
+    if (!fs.existsSync(financeAssetAbsPath)) {
+      throw new Error(`Missing finance module asset: ${financeAssetAbsPath}`);
+    }
+    return appendVersionParam(`/${financeAssetRelPath}`);
+  }
+  return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+}
+
 const mathIcons = {
   simple:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>',
@@ -1953,9 +2003,7 @@ ${explanationTitleHtml}  ${explanationHtml}
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
-  const routeModuleScriptHref = calculatorRelPath
-    ? appendVersionParam(`/calculators/${calculatorRelPath}/module.js`)
-    : null;
+  const routeModuleScriptHref = resolveCalculatorModuleScriptHref(calculatorRelPath);
 
   let scriptTagsHtml = '';
   if (assetConfig) {
@@ -2466,8 +2514,15 @@ function main() {
         if (typeof calculator.url === 'string' && calculator.url.trim()) {
           const routeDerived = calculator.url.replace(/^\/+|\/+$/g, '');
           const candidateDir = path.join(CALC_DIR, routeDerived);
-          if (routeDerived && fs.existsSync(candidateDir) && fs.statSync(candidateDir).isDirectory()) {
-            relPath = routeDerived;
+          const contentCandidateDir = path.join(CONTENT_CALC_DIR, routeDerived);
+          if (routeDerived) {
+            if (FINANCE_CALCULATOR_IDS.has(calculator.id)) {
+              if (pathExistsAsDirectory(contentCandidateDir)) {
+                relPath = routeDerived;
+              }
+            } else if (pathExistsAsDirectory(candidateDir)) {
+              relPath = routeDerived;
+            }
           }
         }
         if (!relPath) {
@@ -2521,7 +2576,7 @@ function main() {
       console.log(`  SKIP (manual): ${relPath}`);
       return;
     }
-    const fragmentDir = path.join(CALC_DIR, relPath);
+    const fragmentDir = resolveCalculatorFragmentDir(relPath);
     const override = CALCULATOR_OVERRIDES[calculator.id];
     const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
     const topNavHtml = buildTopNavHtml(
@@ -2564,10 +2619,16 @@ function main() {
       if (!fs.existsSync(criticalCssPath)) {
         throw new Error(`Missing critical CSS artifact for ${calculator.id}: ${criticalCssPath}`);
       }
+      const criticalCss = readFile(criticalCssPath)
+        .trim()
+        .replace(
+          /\/calculators\/finance-calculators\//g,
+          '/assets/css/calculators/finance-calculators/'
+        );
 
       cssBundleConfig = {
         deferredHref,
-        criticalCss: readFile(criticalCssPath).trim(),
+        criticalCss,
       };
     }
 

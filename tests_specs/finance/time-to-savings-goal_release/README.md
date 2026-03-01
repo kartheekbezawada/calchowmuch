@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/time-to-savings-goal/
+- /finance-calculators/time-to-savings-goal-calculator/

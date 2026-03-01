@@ -19,7 +19,7 @@ async function setInputValue(page, selector, value) {
 
 test.describe('Future Value Calculator', () => {
   test('FV-TEST-E2E-1: user journey and results', async ({ page }) => {
-    await page.goto('/finance/future-value');
+    await page.goto('/finance-calculators/future-value-calculator/');
 
     const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
     await expect(topNavActive).toHaveText('Finance');

@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/future-value-of-annuity/
+- /finance-calculators/future-value-of-annuity-calculator/

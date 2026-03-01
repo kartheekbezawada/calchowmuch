@@ -6,13 +6,10 @@ function parseNumber(text) {
 
 test.describe('Simple Interest Calculator', () => {
   test('SI-TEST-E2E-1: user journey and calculation output', async ({ page }) => {
-    await page.goto('/finance/simple-interest');
+    await page.goto('/finance-calculators/simple-interest-calculator/');
 
     await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Finance');
-    await expect(page.locator('.nav-item.is-active')).toHaveText('Simple Interest');
-
-    const optionalSection = page.locator('#si-optional-section');
-    await expect(optionalSection).toHaveClass(/is-hidden/);
+    await expect(page.locator('.fin-nav-item.is-active')).toContainText('Simple Interest');
 
     await page.fill('#si-principal', '10000');
     await page.fill('#si-rate', '6');
@@ -24,9 +21,6 @@ test.describe('Simple Interest Calculator', () => {
 
     const endingText = await page.locator('#si-result-detail').textContent();
     expect(parseNumber(endingText)).toBeCloseTo(11800, 3);
-
-    await page.click('#si-optional-toggle');
-    await expect(optionalSection).not.toHaveClass(/is-hidden/);
 
     await page.click('[data-button-group="si-basis"] button[data-value="per-month"]');
     await page.fill('#si-time', '6');

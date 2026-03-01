@@ -509,7 +509,7 @@ function renderProjectionTable(data) {
 function loadGrowthChartModule() {
   if (!growthChartModulePromise) {
     growthChartModulePromise =
-      import("/calculators/finance-calculators/compound-interest-calculator/ci-growth-chart.js");
+      import("/assets/js/calculators/finance-calculators/compound-interest-calculator/ci-growth-chart.js");
   }
   return growthChartModulePromise;
 }
