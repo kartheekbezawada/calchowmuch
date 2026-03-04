@@ -1687,6 +1687,27 @@ const FINANCE_CALCULATOR_ICONS = {
   'monthly-savings-needed': '🏦',
 };
 
+const PERCENTAGE_SUBCATEGORY_ICONS = {
+  'percentage-core': '%',
+  'pricing-and-margin': '💼',
+};
+
+const PERCENTAGE_CALCULATOR_ICONS = {
+  'percent-change': '↔️',
+  'percentage-difference': '⚖️',
+  'percentage-increase': '⬆️',
+  'percentage-decrease': '⬇️',
+  'percentage-composition': '🧩',
+  'reverse-percentage': '🔁',
+  'percent-to-fraction-decimal': '🔢',
+  'what-percent-is-x-of-y': '❓',
+  'percentage-of-a-number': '🎯',
+  'commission-calculator': '💵',
+  'discount-calculator': '🏷️',
+  'margin-calculator': '📐',
+  'markup-calculator': '➕',
+};
+
 const TIME_AND_DATE_SUBCATEGORY_ICONS = {
   'sleep-time': '🌙',
   'work-hours': '⏱️',
@@ -1746,6 +1767,40 @@ function buildFinanceNav(category, activeCalculatorId, calcLookup) {
   return `<div class="fin-nav-container" data-fin-nav="true">${groupsHtml}</div>`;
 }
 
+function buildPercentageNav(category, activeCalculatorId, calcLookup) {
+  const activeEntry = calcLookup.get(activeCalculatorId);
+  const activeSubcategoryId = activeEntry?.subcategory?.id ?? null;
+
+  const groupsHtml = category.subcategories
+    .map((subcategory) => {
+      const isExpanded = subcategory.id === activeSubcategoryId;
+      const subcategoryIcon = PERCENTAGE_SUBCATEGORY_ICONS[subcategory.id] || '📁';
+
+      const itemsHtml = subcategory.calculators
+        .map((calculator) => {
+          const isActive = calculator.id === activeCalculatorId;
+          const calcIcon = PERCENTAGE_CALCULATOR_ICONS[calculator.id] || '🔢';
+          return `<a class="fin-nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}"><span class="fin-nav-item-icon" aria-hidden="true">${calcIcon}</span>${calculator.name}</a>`;
+        })
+        .join('');
+
+      return `
+<div class="fin-nav-group${isExpanded ? ' is-expanded' : ''}" data-fin-subcategory="${subcategory.id}">
+  <button type="button" class="fin-nav-toggle" aria-expanded="${isExpanded}">
+    <span class="fin-nav-toggle-icon" aria-hidden="true">${subcategoryIcon}</span>
+    <span class="fin-nav-toggle-label">${subcategory.name}</span>
+    <span class="fin-nav-chevron">${FIN_NAV_CHEVRON_SVG}</span>
+  </button>
+  <div class="fin-nav-items">
+    ${itemsHtml}
+  </div>
+</div>`;
+    })
+    .join('');
+
+  return `<div class="fin-nav-container" data-fin-nav="true">${groupsHtml}</div>`;
+}
+
 function buildTimeAndDateNav(category, activeCalculatorId, calcLookup) {
   const activeEntry = calcLookup.get(activeCalculatorId);
   const activeSubcategoryId = activeEntry?.subcategory?.id ?? null;
@@ -1781,23 +1836,6 @@ function buildTimeAndDateNav(category, activeCalculatorId, calcLookup) {
 }
 
 function buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup) {
-  if (category.id === 'percentage-calculators') {
-    const calculators = category.subcategories.flatMap((subcategory) => subcategory.calculators);
-    const itemsHtml = calculators
-      .map((calculator) => {
-        const isActive = calculator.id === activeCalculatorId;
-        return `<a class="nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}">${calculator.name}</a>`;
-      })
-      .join('');
-
-    return `
-<div class="nav-category" data-id="percentage-calculators-flat">
-  <div class="nav-category-items">
-    ${itemsHtml}
-  </div>
-</div>`;
-  }
-
   let subcategoriesToRender = category.subcategories;
   if (activeSubcategoryId) {
     const activeSubcategory = category.subcategories.find((sub) => sub.id === activeSubcategoryId);
@@ -1881,6 +1919,10 @@ function buildLeftNavHtml(
 
   if (category.id === 'finance') {
     return buildFinanceNav(category, activeCalculatorId, calcLookup);
+  }
+
+  if (category.id === 'percentage-calculators') {
+    return buildPercentageNav(category, activeCalculatorId, calcLookup);
   }
 
   if (category.id === 'time-and-date') {

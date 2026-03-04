@@ -9,7 +9,11 @@ test.describe('Commission Calculator', () => {
     await page.goto('/percentage-calculators/commission-calculator');
 
     await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Percentage');
-    await expect(page.locator('.nav-item.is-active')).toHaveText('Commission Calculator');
+    await expect(
+      page
+        .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
+        .first()
+    ).toContainText('Commission Calculator');
 
     await page.fill('#comm-sales', '20000');
     await page.fill('#comm-rate', '7.5');

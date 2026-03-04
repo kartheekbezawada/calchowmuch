@@ -959,7 +959,7 @@
       "name": "Percentage Calculators",
       "subcategories": [
         {
-          "id": "percentage-calculators",
+          "id": "percentage-core",
           "name": "Percentage Calculators",
           "calculators": [
             {
@@ -1091,7 +1091,13 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
-            },
+            }
+          ]
+        },
+        {
+          "id": "pricing-and-margin",
+          "name": "Pricing & Margin",
+          "calculators": [
             {
               "id": "commission-calculator",
               "name": "Commission Calculator",
