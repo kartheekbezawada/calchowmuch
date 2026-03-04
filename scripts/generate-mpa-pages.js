@@ -1932,6 +1932,30 @@ function buildLeftNavHtml(
   return buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup);
 }
 
+function assertPercentageFinNavContract({ leftNavHtml, calculatorId, routePath }) {
+  // Hard gate (percentage only): keep legacy deletion deferred until all clusters migrate.
+  const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group"', 'class="fin-nav-item"'];
+  const forbiddenTokens = ['class="nav-item', 'class="nav-category'];
+
+  const missingTokens = requiredTokens.filter((token) => !leftNavHtml.includes(token));
+  const foundForbidden = forbiddenTokens.filter((token) => leftNavHtml.includes(token));
+
+  if (!missingTokens.length && !foundForbidden.length) {
+    return;
+  }
+
+  const details = [
+    missingTokens.length ? `missing=[${missingTokens.join(', ')}]` : null,
+    foundForbidden.length ? `forbidden=[${foundForbidden.join(', ')}]` : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  throw new Error(
+    `Percentage nav contract violation for calc=${calculatorId} route=${routePath}. ${details}`
+  );
+}
+
 function buildPageHtml({
   title,
   description,
@@ -2633,6 +2657,13 @@ function main() {
       calculator.id,
       calcLookup
     );
+    if (category.id === 'percentage-calculators') {
+      assertPercentageFinNavContract({
+        leftNavHtml,
+        calculatorId: calculator.id,
+        routePath: calculator.url,
+      });
+    }
     const pageTitle = override?.title ?? buildTitle(calculator.name);
     const pageDescription = override?.description ?? buildDescription(calculator.name);
     const pageCanonical = buildCanonical(calculator.url);
