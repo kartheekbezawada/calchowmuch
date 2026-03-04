@@ -360,6 +360,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
     suppressAdsColumn: true,
     calculatorPanelClass: 'panel--shellless',
+    layoutMainClass: 'layout-main--no-ads',
   },
   'margin-calculator': {
     title: 'Margin Calculator – CalcHowMuch',
@@ -1977,6 +1978,7 @@ function buildPageHtml({
   designFamily = 'neutral',
   suppressAdsColumn = false,
   calculatorPanelClass = '',
+  layoutMainClass = '',
   includeHomeContent,
   pageType,
   calculatorRelPath,
@@ -2003,6 +2005,8 @@ function buildPageHtml({
     typeof calculatorPanelClass === 'string' && calculatorPanelClass.trim()
       ? ` ${calculatorPanelClass.trim()}`
       : '';
+  const layoutMainClassSuffix =
+    typeof layoutMainClass === 'string' && layoutMainClass.trim() ? ` ${layoutMainClass.trim()}` : '';
 
   let calcContent = '';
 
@@ -2170,7 +2174,7 @@ ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (ma
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
-      <main class="layout-main">
+      <main class="layout-main${layoutMainClassSuffix}">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content">${leftNavHtml}</div>
         </aside>
@@ -2762,6 +2766,7 @@ function main() {
       suppressAdsColumn: Boolean(override?.suppressAdsColumn),
       calculatorPanelClass:
         typeof override?.calculatorPanelClass === 'string' ? override.calculatorPanelClass : '',
+      layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
     });
 
     const outputDir = path.join(PUBLIC_DIR, relPath);
