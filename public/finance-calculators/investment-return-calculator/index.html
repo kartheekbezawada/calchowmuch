@@ -2520,156 +2520,173 @@
       </div>
     </section>
 
-    <section class="mtg-exp-section">
+    <section class="mtg-exp-section ir-guide-readable">
       <h3>Investment Return Complete Practical Guide</h3>
+      <style>
+        #loan-mtg-explanation .mtg-exp-section h3 {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 1.5px;
+        }
 
-      <h4>What this calculator estimates</h4>
-      <p>
-        This calculator gives you a structured projection of how a portfolio can evolve over time
-        based on the inputs you control. It combines your starting amount, ongoing contributions,
-        assumed return, compounding frequency, inflation, and tax treatment to estimate both nominal
-        and real outcomes. The goal is not to predict markets with certainty, but to help you test
-        assumptions and understand how different decisions change long-term results.
-      </p>
-      <p>
-        At output level, you can read Final Portfolio Value, Total Contributions, Total Profit, Total
-        Tax Paid, Nominal CAGR, Real CAGR, and Real Final Value in one place. This makes it easier to
-        move from a single headline number to an actual decision context: how much came from your own
-        cash flow, how much came from growth, and how much was eroded by taxes and inflation.
-      </p>
-      <p>
-        The annual and monthly breakdown tables are useful for pacing expectations. Annual view is
-        cleaner for strategy checks. Monthly view reveals the path more closely, including how
-        contributions and compounding interactions accumulate over time.
-      </p>
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable > h3 {
+          text-decoration: none;
+        }
 
-      <h4>Inputs that drive your projection</h4>
-      <p>
-        The six core inputs are Initial Investment, Expected Annual Return, Investment Duration,
-        Regular Contribution, Inflation Rate, and Tax Rate on Gains. Together, they define your base
-        projection.
-      </p>
-      <p>
-        Initial Investment sets the starting base that compounds immediately. Regular Contribution
-        controls how much new capital enters the model each period. Expected Annual Return defines the
-        growth assumption before inflation and tax effects. Investment Duration controls time in
-        market, which is often the strongest amplifier in long-term models.
-      </p>
-      <p>
-        Inflation Rate does not reduce your nominal ending balance directly; it adjusts purchasing
-        power so you can see what the outcome means in today’s value terms. Tax Rate affects growth
-        retention by applying tax to net positive gains at year end after carryforward loss offsets.
-      </p>
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable h4 {
+          margin: 9px 0 5px;
+          font-size: 15px;
+          line-height: 1.35;
+          color: #dbeafe;
+          text-shadow: none;
+        }
 
-      <h4>How compounding and contribution timing change outcomes</h4>
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable p,
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable li {
+          margin: 0 0 6px;
+          font-size: 14px;
+          line-height: 1.42;
+          color: rgba(226, 232, 240, 0.96);
+        }
+
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable ul,
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable ol {
+          margin: 1px 0 7px 18px;
+          padding: 0;
+        }
+      </style>
+
+      <h4>What this guide helps you decide</h4>
       <p>
-        Compounding frequency changes how often growth is applied. Monthly compounding generally
-        produces a slightly higher ending value than annual compounding under the same nominal return
-        assumption because gains are reinvested sooner. The difference is usually moderate at short
-        horizons and more visible across long durations.
+        Use this calculator as a planning model, not a market prediction tool. It combines your
+        starting capital, recurring deposits, expected return, compounding, inflation, and tax
+        assumptions to show how a portfolio may evolve over time.
       </p>
       <p>
-        Contribution Frequency and Contribution Timing are equally practical levers. Monthly
-        contributions smooth entry points and build habit-driven accumulation. Quarterly or annual
-        contributions may fit cash-flow reality but can change the growth path because funds are added
-        less often. Timing matters because money added at the beginning of a period has more time to
-        compound than money added at the end.
-      </p>
-      <p>
-        If two plans have the same total annual contribution, the plan that gets capital invested
-        earlier usually ends higher in the model. This is why frequency and timing are not cosmetic
-        toggles. They represent real behavior patterns that can materially shift your long-term range.
+        Compare how much of your ending balance comes from your own contributions versus investment
+        growth, and how much growth may be reduced by tax drag and inflation. That context helps you
+        make better contribution, timing, and risk-assumption decisions before committing real money.
+        Annual view is best for strategy-level checks, while monthly view is best for path behavior and
+        contribution pacing.
       </p>
 
-      <h4>Tax, inflation, and real returns</h4>
+      <h4>Step-by-step: run a useful baseline first</h4>
+      <ol>
+        <li>Enter a realistic initial investment and monthly contribution you can sustain.</li>
+        <li>Choose an annual return assumption that matches your risk profile, not your best-case hope.</li>
+        <li>Set a duration aligned to your real goal timeline.</li>
+        <li>Turn on inflation and tax inputs to avoid overly optimistic projections.</li>
+        <li>Click calculate and read the full output set, not only the final portfolio value.</li>
+        <li>Save this as your baseline before testing optimistic and conservative variants.</li>
+      </ol>
       <p>
-        Tax and inflation are where many optimistic projections become more realistic. In this model,
-        tax is applied at year end to net positive gains after any carryforward losses. A loss year
-        can offset future taxable gains, which can reduce future tax drag. This approach is still a
-        simplification, but it is more informative than assuming a flat tax haircut every period.
-      </p>
-      <p>
-        Inflation-adjusted outputs translate nominal balances into purchasing-power terms. Real CAGR
-        and Real Final Value help answer the question that matters most: what could this money buy
-        later, not just what number appears in the account statement. If nominal returns look strong
-        but real CAGR is modest, your plan may need higher savings discipline, lower cost drag, longer
-        duration, or a different risk-return assumption.
-      </p>
-
-      <h4>Advanced mode: variable returns, one-time events, and crash testing</h4>
-      <p>
-        Advanced mode is for scenario quality, not complexity for its own sake. Variable annual
-        returns allow you to replace one constant rate with year-by-year assumptions. One-time events
-        let you add or withdraw capital at specific years. Crash simulation lets you apply a one-year
-        drop and observe recovery behavior under your current contribution plan.
-      </p>
-      <p>
-        Use variable returns when you want to model uneven market phases. Use one-time events when you
-        expect known cash changes such as bonus deployment, education costs, or liquidity needs. Use
-        crash testing when you want to stress resilience: not only the final number, but how the path
-        behaves after a drawdown.
-      </p>
-      <p>
-        A practical workflow is to run a base scenario first, then one optimistic and one conservative
-        variant. Compare the spread between outcomes rather than anchoring on one point estimate. The
-        spread is often more decision-useful than the single highest projection.
+        Most planning mistakes happen when people start with aggressive assumptions and treat the first
+        output as a target. A better workflow is baseline first, then controlled scenario changes one
+        variable at a time.
       </p>
 
-      <h4>How to interpret key outputs</h4>
+      <h4>Understand each input before trusting the output</h4>
       <p>
-        Final Portfolio Value is the projected ending balance after contributions, growth, and taxes.
-        Treat it as an assumption-dependent estimate, not a promise. Total Contributions shows your
-        direct capital commitment. Total Profit isolates projected growth above contributed capital.
+        Each core input has a specific role in the model. Small changes in one field can have large
+        long-term effects when combined with duration and contribution behavior.
       </p>
-      <p>
-        Nominal CAGR shows annualized growth without inflation adjustment. Real CAGR adjusts that rate
-        for purchasing power and is usually the better planning metric. Total Tax Paid helps quantify
-        the drag from taxation under the selected assumptions. Real Final Value shows what the nominal
-        outcome may represent in today’s value terms.
-      </p>
-      <p>
-        A healthy interpretation pattern is to read all outputs together. A high nominal final value
-        with weak real CAGR and high tax drag may indicate that the strategy is less effective than it
-        first appears. Balanced plans tend to show consistent behavior across nominal growth, real
-        growth, and contribution sustainability.
-      </p>
-
-      <h4>Worked examples</h4>
-      <p>
-        <strong>Example 1: baseline accumulation.</strong> Suppose you invest 10,000 initially, add
-        300 monthly, assume 6% annual return, 20 years, 2.5% inflation, and 10% tax on gains. The
-        model will typically show that regular contributions form a large share of total capital while
-        compounding drives most late-stage acceleration. In this type of setup, extending duration by
-        five additional years can sometimes have more impact than increasing contributions modestly for
-        a shorter horizon.
-      </p>
-      <p>
-        <strong>Example 2: stress-tested path.</strong> Keep the same inputs but turn on advanced mode
-        and apply a market crash in year 2 with a 15% drop, then continue contributions. The immediate
-        ending projection may fall versus baseline, but the continued contribution stream can improve
-        recovery over later years. This shows why contribution continuity matters: steady investing can
-        partly offset early drawdowns in long-horizon plans.
-      </p>
-      <p>
-        <strong>Example 3: contribution timing contrast.</strong> Compare end-of-period versus
-        beginning-of-period contributions with all else equal. Beginning-of-period contributions
-        generally produce a somewhat higher ending balance because funds remain invested longer each
-        cycle. The difference may look small per period but compounds over many years.
-      </p>
-
-      <h4>Decision checklist before acting on results</h4>
-      <ul class="ir-checklist">
-        <li>Check whether your assumptions are realistic for your risk tolerance.</li>
-        <li>Review both nominal and real outputs before choosing a target.</li>
-        <li>Stress-test at least one adverse return path and one cash-flow interruption path.</li>
-        <li>Confirm contribution frequency and timing match how you actually invest.</li>
-        <li>Use tax and inflation inputs conservatively when uncertain.</li>
-        <li>Re-run the plan when income, contribution capacity, or goals change materially.</li>
+      <ul>
+        <li><strong>Initial Investment:</strong> Your compounding base from day one.</li>
+        <li><strong>Expected Annual Return:</strong> The growth assumption before tax and inflation effects.</li>
+        <li><strong>Investment Duration:</strong> Time in market, often the strongest long-term driver.</li>
+        <li><strong>Regular Contribution:</strong> New capital flow that compounds over the remaining horizon.</li>
+        <li><strong>Inflation Rate:</strong> Purchasing-power adjustment for real-world value interpretation.</li>
+        <li><strong>Tax Rate on Gains:</strong> Modeled year-end drag on net positive gains.</li>
       </ul>
       <p>
-        Final takeaway: use this tool as a disciplined planning model, not a guarantee engine. Better
-        decisions come from comparing ranges, pressure-testing assumptions, and choosing a plan you can
-        sustain consistently across different market conditions.
+        A common practical insight is that extending duration can outperform modest contribution
+        increases over short periods, especially when contributions are already consistent. This is why
+        time horizon should be chosen deliberately rather than defaulting to round numbers.
+      </p>
+
+      <h4>How compounding, frequency, and timing change the path</h4>
+      <p>
+        Compounding frequency changes how often returns are applied. Under the same nominal return
+        assumption, more frequent compounding usually produces slightly higher ending values over long
+        horizons because gains are reinvested sooner.
+      </p>
+      <p>
+        Contribution frequency and contribution timing are just as important. Monthly deposits smooth
+        investment behavior and often fit budgeting habits. Quarterly or annual deposits can still work,
+        but capital enters the market less often. Timing also matters: beginning-of-period contributions
+        usually have more time to compound than end-of-period contributions.
+      </p>
+      <p>
+        If two strategies contribute the same total amount per year, the one investing earlier in each
+        cycle will typically end higher in this model. Treat frequency and timing as real strategy
+        controls, not cosmetic toggles.
+      </p>
+
+      <h4>Read nominal and real returns together</h4>
+      <p>
+        Nominal outputs show account-value growth. Real outputs show purchasing-power outcomes. Both are
+        useful, but real metrics are usually better for planning lifestyle goals, retirement spending,
+        and future purchasing decisions.
+      </p>
+      <p>
+        Tax is modeled on net positive annual gains after carryforward loss offsets. That means loss
+        years can reduce future taxable gains in later recovery years. This is still a simplified model,
+        but it gives a more practical result than applying a flat haircut to every period.
+      </p>
+      <p>
+        When nominal CAGR looks strong but real CAGR is modest, the plan may still be fragile. In that
+        case, you can test alternatives such as higher contributions, longer duration, or more
+        conservative cost and tax assumptions.
+      </p>
+
+      <h4>Use advanced mode for scenario quality, not complexity</h4>
+      <p>
+        Advanced mode is designed for stress testing and planning depth. Use it when your assumptions
+        are not constant over time or when you want to model known events.
+      </p>
+      <ul>
+        <li><strong>Variable annual returns:</strong> Model uneven market years instead of one flat rate.</li>
+        <li><strong>One-time events:</strong> Add planned deposits or withdrawals in specific years.</li>
+        <li><strong>Crash simulation:</strong> Apply a one-year drawdown to test recovery resilience.</li>
+      </ul>
+      <p>
+        A strong practical workflow is to run three cases: baseline, optimistic, and conservative. The
+        spread between outcomes is often more decision-useful than any single headline projection.
+      </p>
+
+      <h4>Worked scenarios you can copy</h4>
+      <p>
+        <strong>Scenario 1: baseline accumulation.</strong> Start with 10,000, contribute 300 monthly,
+        assume 6% annual return, 20 years, 2.5% inflation, and 10% tax on gains. In many cases, the
+        model will show late-stage acceleration driven by compounding while contributions remain the
+        foundation of total capital.
+      </p>
+      <p>
+        <strong>Scenario 2: early drawdown stress test.</strong> Keep the same setup, enable advanced
+        mode, and apply a 15% crash in year 2. Final value usually drops versus baseline, but continued
+        contributions can improve long-term recovery. This demonstrates the importance of contribution
+        consistency during volatility.
+      </p>
+      <p>
+        <strong>Scenario 3: timing comparison.</strong> Compare end-of-period and beginning-of-period
+        contributions with all else fixed. Beginning timing often leads to a higher ending value because
+        each contribution remains invested for longer. Over long periods, small per-cycle differences can
+        compound into meaningful gaps.
+      </p>
+
+      <h4>Decision checklist before using results</h4>
+      <ul class="ir-checklist">
+        <li>Use assumptions you can defend, not assumptions that only maximize output.</li>
+        <li>Review final value, contributions, profit, tax, and both CAGR metrics together.</li>
+        <li>Validate results in both annual and monthly views before acting.</li>
+        <li>Run at least one adverse-return scenario and one cash-flow disruption scenario.</li>
+        <li>Confirm contribution frequency and timing match your real investing behavior.</li>
+        <li>Recalculate whenever income, goals, tax context, or risk tolerance changes.</li>
+      </ul>
+      <p>
+        Final takeaway: use this calculator as a disciplined planning framework. Better financial
+        decisions come from comparing ranges, understanding tradeoffs, and choosing a strategy you can
+        sustain through different market conditions.
       </p>
       <p>
         Current effective annual rate: <strong data-ir="exp-ear">-</strong>. Current carryforward
