@@ -5,6 +5,7 @@ import { setPageMetadata } from '/assets/js/core/ui.js';
 const tieredModeToggle = document.querySelector('#comm-tiered-toggle');
 const flatModeLabel = document.querySelector('[data-comm-mode-label="flat"]');
 const tieredModeLabel = document.querySelector('[data-comm-mode-label="tiered"]');
+const modeRadios = Array.from(document.querySelectorAll('input[name="comm-mode"]'));
 const salesInput = document.querySelector('#comm-sales');
 const flatSection = document.querySelector('#comm-flat-section');
 const tieredSection = document.querySelector('#comm-tiered-section');
@@ -240,11 +241,20 @@ function setModeVisibility(mode) {
 }
 
 function getMode() {
-  return tieredModeToggle?.checked ? 'tiered' : 'flat';
+  if (tieredModeToggle) {
+    return tieredModeToggle.checked ? 'tiered' : 'flat';
+  }
+  return modeRadios.some((radio) => radio.checked && radio.value === 'tiered') ? 'tiered' : 'flat';
 }
 
 function syncModeUI() {
   const mode = getMode();
+  if (tieredModeToggle) {
+    tieredModeToggle.checked = mode === 'tiered';
+  }
+  modeRadios.forEach((radio) => {
+    radio.checked = radio.value === mode;
+  });
   setModeVisibility(mode);
   flatModeLabel?.classList.toggle('is-active', mode === 'flat');
   tieredModeLabel?.classList.toggle('is-active', mode === 'tiered');
@@ -384,6 +394,21 @@ tieredModeToggle?.addEventListener('change', () => {
   if (liveUpdatesEnabled && hasCalculated) {
     calculate();
   }
+});
+
+modeRadios.forEach((radio) => {
+  radio.addEventListener('change', () => {
+    if (!radio.checked) {
+      return;
+    }
+    if (tieredModeToggle) {
+      tieredModeToggle.checked = radio.value === 'tiered';
+    }
+    syncModeUI();
+    if (liveUpdatesEnabled && hasCalculated) {
+      calculate();
+    }
+  });
 });
 
 addTierButton?.addEventListener('click', () => {

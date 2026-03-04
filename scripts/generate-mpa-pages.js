@@ -359,6 +359,7 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Commission Calculator',
     paneLayout: 'single',
     suppressAdsColumn: true,
+    calculatorPanelClass: 'panel--shellless',
   },
   'margin-calculator': {
     title: 'Margin Calculator – CalcHowMuch',
@@ -1975,6 +1976,7 @@ function buildPageHtml({
   routeArchetype = 'calc_exp',
   designFamily = 'neutral',
   suppressAdsColumn = false,
+  calculatorPanelClass = '',
   includeHomeContent,
   pageType,
   calculatorRelPath,
@@ -1997,6 +1999,10 @@ function buildPageHtml({
     explanationHeading === '' || explanationHeading === null
       ? ''
       : `  <h3>${explanationHeading}</h3>\n`;
+  const calculatorPanelClassSuffix =
+    typeof calculatorPanelClass === 'string' && calculatorPanelClass.trim()
+      ? ` ${calculatorPanelClass.trim()}`
+      : '';
 
   let calcContent = '';
 
@@ -2033,7 +2039,7 @@ function buildPageHtml({
   } else if (routeArchetype === 'calc_exp') {
     calcContent =
       paneLayout === 'single'
-        ? `<div class="panel panel-scroll panel-span-all">
+        ? `<div class="panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${sanitizedCalculatorHtml}
@@ -2754,6 +2760,8 @@ function main() {
       staticStructuredData,
       injectStaticStructuredData,
       suppressAdsColumn: Boolean(override?.suppressAdsColumn),
+      calculatorPanelClass:
+        typeof override?.calculatorPanelClass === 'string' ? override.calculatorPanelClass : '',
     });
 
     const outputDir = path.join(PUBLIC_DIR, relPath);

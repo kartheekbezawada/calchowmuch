@@ -23,6 +23,9 @@ Create a decision-complete pre-implementation log for commission-calculator rede
 - Remove/suppress right ads column for commission page only.
 - Preserve left-nav/top-nav behavior and percentage fin-nav contract.
 - Preserve all `#comm-*` and `data-comm=*` behavior selectors unless intentionally migrated with tests.
+- Commission calculation form uses compact radio-chip mode selector (`Flat` / `Tiered`) instead of oversized toggle.
+- Commission page uses sticky calculate action bar so `#comm-calc` remains visible while tier rows scroll.
+- Commission panel shell is removed route-specifically via generator class hook (`panel--shellless`).
 - Full release gates and sign-off are mandatory.
 
 ## Implementation Checklist
@@ -32,6 +35,9 @@ Create a decision-complete pre-implementation log for commission-calculator rede
 - [x] Remove/suppress right ads column for commission page only.
 - [x] Preserve left-nav/top-nav contracts.
 - [x] Preserve all `#comm-*` and `data-comm=*` behavior contracts unless intentionally migrated.
+- [x] Replace oversized mode toggle with compact radio-chip control while preserving mode behavior.
+- [x] Add sticky action container so `#comm-calc` remains visible without scrolling.
+- [x] Apply commission-only shellless panel treatment (no heavy outer panel frame).
 - [x] Regenerate commission route HTML.
 
 ## Validation Checklist
@@ -81,6 +87,11 @@ Record each execution artifact below.
 | `npm run build:css:route-bundles` | `PASS` | `2026-03-04 08:48 UTC` | Added commission route-bundle + asset-manifest entry with deferred core CSS | `public/config/asset-manifest.json` |
 | `CLUSTER=percentage CALC=commission-calculator npm run test:calc:cwv` | `PASS` | `2026-03-04 08:51 UTC` | Scoped CWV budgets now pass after route-level CSS delivery optimization | `test-results/performance/scoped-cwv/percentage/commission-calculator.json` |
 | `CLUSTER=percentage CALC=commission-calculator npm run test:calc:e2e` | `PASS` | `2026-03-04 08:59 UTC` | Revalidated e2e after static top-nav label expectation update | `tests_specs/percentage/commission-calculator_release/e2e.calc.spec.js` |
+| `TARGET_CALC_ID=commission-calculator node scripts/generate-mpa-pages.js` | `PASS` | `2026-03-04 09:25 UTC` | Regenerated commission route after compact UI redesign (`panel--shellless`, radio chips, sticky action bar) | `public/percentage-calculators/commission-calculator/index.html` |
+| `CLUSTER=percentage CALC=commission-calculator npm run test:calc:unit` | `PASS` | `2026-03-04 09:25 UTC` | Math logic unchanged after UI refactor | `tests_specs/percentage/commission-calculator_release/unit.calc.test.js` |
+| `CLUSTER=percentage CALC=commission-calculator npm run test:calc:e2e` | `PASS` | `2026-03-04 09:25 UTC` | Verified chip mode switch, sticky calculate visibility, flat+tiered workflows | `tests_specs/percentage/commission-calculator_release/e2e.calc.spec.js` |
+| `CLUSTER=percentage CALC=commission-calculator npm run test:calc:seo` | `PASS` | `2026-03-04 09:25 UTC` | Metadata/schema/sitemap unaffected by UI redesign | `tests_specs/percentage/commission-calculator_release/seo.calc.spec.js` |
+| `CLUSTER=percentage CALC=commission-calculator npm run test:calc:cwv` | `PASS` | `2026-03-04 09:25 UTC` | CWV scoped guard remains green after UI redesign | `test-results/performance/scoped-cwv/percentage/commission-calculator.json` |
 | `ALLOW_SHARED_CONTRACT_CHANGE=1 CLUSTER=percentage CALC=commission-calculator npm run test:isolation:scope` | `PASS` | `2026-03-04 04:53 UTC` | Shared-contract edits acknowledged by explicit override flag | `scripts/validate-isolation-scope.mjs` |
 | `CLUSTER=percentage npm run test:cluster:contracts` | `PASS` | `2026-03-04 04:53 UTC` | Cluster contract validation passed | `scripts/validate-cluster-contracts.mjs` |
 | `CLUSTER=percentage CALC=commission-calculator npm run test:schema:dedupe -- --scope=calc` | `PASS` | `2026-03-04 04:53 UTC` | Structured-data dedupe clean (`changed=0`) | `schema_duplicates_report.md` |

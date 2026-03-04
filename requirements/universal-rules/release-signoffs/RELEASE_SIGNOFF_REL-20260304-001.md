@@ -75,6 +75,7 @@ Artifact path: `test-results/performance/scoped-cwv/percentage/commission-calcul
 - `CLUSTER=percentage CALC=commission-calculator npm run test:calc:cwv` -> PASS
 - `CLUSTER=percentage CALC=commission-calculator npm run test:schema:dedupe -- --scope=calc` -> PASS
 - `npm run test:percentage:nav-guard` -> PASS
+- Commission UI evidence (shellless panel + radio chips + sticky CTA): `public/percentage-calculators/commission-calculator/index.html`
 
 ---
 
@@ -82,4 +83,4 @@ Artifact path: `test-results/performance/scoped-cwv/percentage/commission-calcul
 
 **Decision:** [x] APPROVED / [ ] REJECTED
 
-Scoped release gates are passing for commission redesign and CWV delivery hardening.
+Scoped release gates are passing for commission redesign v2 (shellless compact UI + sticky CTA) and CWV delivery hardening.

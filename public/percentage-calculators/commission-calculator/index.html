@@ -4075,64 +4075,229 @@
 </div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll panel-span-all">
+          <div class="panel panel-scroll panel-span-all panel--shellless">
   <h1 id="calculator-title">Commission Calculator</h1>
   <div class="calculator-page-single">
     <div id="calc-commission-calculator">
-  <div class="calculator-ui">
+  <style>
+    .panel.panel--shellless {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    #calc-commission-calculator .comm-layout {
+      gap: 12px;
+      align-content: start;
+    }
+
+    #calc-commission-calculator .comm-form {
+      max-width: 760px;
+      width: 100%;
+    }
+
+    #calc-commission-calculator .comm-input-stack {
+      gap: 12px;
+    }
+
+    #calc-commission-calculator .comm-mode-row {
+      gap: 8px;
+    }
+
+    #calc-commission-calculator .comm-mode-chips {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #calc-commission-calculator .comm-mode-radio {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #calc-commission-calculator .comm-mode-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: rgba(226, 232, 240, 0.92);
+      background: rgba(15, 23, 42, 0.75);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    #calc-commission-calculator .comm-mode-chip.is-active {
+      border-color: rgba(56, 189, 248, 0.58);
+      color: #f8fafc;
+      background: linear-gradient(120deg, rgba(37, 99, 235, 0.9), rgba(8, 145, 178, 0.9));
+      box-shadow: 0 6px 16px rgba(14, 116, 144, 0.24);
+    }
+
+    #calc-commission-calculator .comm-mode-radio:focus-visible + .comm-mode-chip {
+      outline: 2px solid rgba(125, 211, 252, 0.7);
+      outline-offset: 2px;
+    }
+
+    #calc-commission-calculator .input-row input[type='number'] {
+      min-height: 44px;
+      max-width: 520px;
+    }
+
+    #calc-commission-calculator #comm-tiered-section .helper {
+      margin-bottom: 4px;
+    }
+
+    #calc-commission-calculator #comm-tier-rows {
+      gap: 8px;
+    }
+
+    #calc-commission-calculator .commission-tier-row {
+      padding: 8px;
+      gap: 8px;
+      border-radius: 10px;
+      border-color: rgba(71, 85, 105, 0.52);
+    }
+
+    #calc-commission-calculator .commission-tier-row input[type='number'] {
+      max-width: none;
+      min-height: 40px;
+      padding: 10px 12px;
+    }
+
+    #calc-commission-calculator .commission-tier-row .calculator-button {
+      min-height: 40px;
+      padding: 8px 12px;
+      min-width: 92px;
+    }
+
+    #calc-commission-calculator #comm-add-tier {
+      width: fit-content;
+      min-height: 38px;
+      padding: 8px 12px;
+    }
+
+    #calc-commission-calculator .comm-sticky-action {
+      position: sticky;
+      bottom: 0;
+      z-index: 12;
+      padding-top: 8px;
+      padding-bottom: 6px;
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 0.92) 45%);
+      backdrop-filter: blur(2px);
+    }
+
+    #calc-commission-calculator #comm-calc {
+      max-width: 520px;
+      min-height: 44px;
+    }
+
+    #calc-commission-calculator #comm-result,
+    #calc-commission-calculator #comm-result-detail {
+      max-width: 760px;
+    }
+
+    @media (max-width: 860px) {
+      #calc-commission-calculator .comm-form,
+      #calc-commission-calculator #comm-result,
+      #calc-commission-calculator #comm-result-detail {
+        max-width: 100%;
+      }
+
+      #calc-commission-calculator .input-row input[type='number'],
+      #calc-commission-calculator #comm-calc {
+        max-width: 100%;
+      }
+
+      #calc-commission-calculator .comm-sticky-action {
+        bottom: -2px;
+      }
+    }
+  </style>
+
+  <div class="calculator-ui comm-layout">
     <p class="helper">
       Calculate commission earnings from total sales using a flat commission rate or tiered rates.
     </p>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label>Mode</label>
-        <div class="mode-switch-control" role="group" aria-label="Commission mode">
-          <span class="mode-switch-label is-active" data-comm-mode-label="flat">
-            Flat Commission %
-          </span>
-          <label class="mode-switch-toggle" for="comm-tiered-toggle">
+    <div class="comm-form">
+      <input
+        id="comm-tiered-toggle"
+        type="checkbox"
+        role="switch"
+        aria-label="Enable tiered commission mode"
+        hidden
+        tabindex="-1"
+      />
+
+      <div class="input-stack comm-input-stack">
+        <div class="input-row comm-mode-row">
+          <label>Mode</label>
+          <div class="comm-mode-chips" role="radiogroup" aria-label="Commission mode">
             <input
-              id="comm-tiered-toggle"
-              type="checkbox"
-              role="switch"
-              aria-label="Enable tiered commission mode"
+              id="comm-mode-flat"
+              class="comm-mode-radio"
+              type="radio"
+              name="comm-mode"
+              value="flat"
+              checked
             />
-            <span class="mode-switch-track" aria-hidden="true">
-              <span class="mode-switch-thumb"></span>
-            </span>
-          </label>
-          <span class="mode-switch-label" data-comm-mode-label="tiered">Tiered Commission</span>
+            <label class="comm-mode-chip is-active" for="comm-mode-flat" data-comm-mode-label="flat">
+              Flat Commission %
+            </label>
+
+            <input
+              id="comm-mode-tiered"
+              class="comm-mode-radio"
+              type="radio"
+              name="comm-mode"
+              value="tiered"
+            />
+            <label class="comm-mode-chip" for="comm-mode-tiered" data-comm-mode-label="tiered">
+              Tiered Commission
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label for="comm-sales">Total Sales (S)</label>
-        <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
-      </div>
-
-      <div id="comm-flat-section" class="input-stack">
         <div class="input-row">
-          <label for="comm-rate">Commission Rate % (R)</label>
-          <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+          <label for="comm-sales">Total Sales (S)</label>
+          <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
         </div>
-      </div>
 
-      <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-        <p class="helper">
-          Set tiers in ascending “Up to” order. Leave the last “Up to” blank for “Above last
-          threshold”.
-        </p>
-        <div id="comm-tier-rows" class="input-stack"></div>
-        <button class="calculator-button secondary" id="comm-add-tier" type="button">
-          Add Tier
-        </button>
+        <div id="comm-flat-section" class="input-stack">
+          <div class="input-row">
+            <label for="comm-rate">Commission Rate % (R)</label>
+            <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+          </div>
+        </div>
+
+        <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
+          <p class="helper">
+            Set tiers in ascending “Up to” order. Leave the last “Up to” blank for “Above last
+            threshold”.
+          </p>
+          <div id="comm-tier-rows" class="input-stack"></div>
+          <button class="calculator-button secondary" id="comm-add-tier" type="button">
+            Add Tier
+          </button>
+        </div>
+
+        <div class="comm-sticky-action">
+          <button class="calculator-button full-width" type="button" id="comm-calc">
+            Calculate Commission
+          </button>
+        </div>
       </div>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="comm-calc">
-      Calculate Commission
-    </button>
 
     <div class="result" id="comm-result" aria-live="polite"></div>
     <div class="result-detail" id="comm-result-detail" aria-live="polite"></div>
