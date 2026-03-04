@@ -43,6 +43,7 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/percentage-composition-calculator/calculator.css',
   'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
   'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
+  'calculators/percentage-calculators/commission-calculator/calculator.css',
   'calculators/time-and-date/sleep-time-calculator/calculator.css',
   'calculators/time-and-date/wake-up-time-calculator/calculator.css',
   'calculators/time-and-date/nap-time-calculator/calculator.css',
@@ -77,6 +78,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/percentage-composition-calculator/',
   '/percentage-calculators/reverse-percentage-calculator/',
   '/percentage-calculators/percent-to-fraction-decimal-calculator/',
+  '/percentage-calculators/commission-calculator/',
   '/time-and-date/sleep-time-calculator/',
   '/time-and-date/wake-up-time-calculator/',
   '/time-and-date/nap-time-calculator/',
@@ -95,6 +97,7 @@ const STRICT_INLINE_CALCULATORS = new Set([
   'percentage-decrease',
   'percentage-composition',
   'percent-to-fraction-decimal',
+  'commission-calculator',
   'sleep-time-calculator',
   'wake-up-time-calculator',
   'nap-time-calculator',
@@ -341,6 +344,12 @@ const PERCENTAGE_ISOLATED_ROUTES = [
     route: '/percentage-calculators/percent-to-fraction-decimal-calculator/',
     relPath: 'percentage-calculators/percent-to-fraction-decimal-calculator',
     routeCss: 'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'commission-calculator',
+    route: '/percentage-calculators/commission-calculator/',
+    relPath: 'percentage-calculators/commission-calculator',
+    routeCss: 'calculators/percentage-calculators/commission-calculator/calculator.css',
   },
 ];
 

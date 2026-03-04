@@ -216,7 +216,7 @@ function fmt(value, opts = {}) {
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min) || 0;
   const max = Number(input.max) || 100;
   const val = Number(input.value) || 0;
@@ -244,21 +244,21 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = '';
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = '';}
 }
 
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
 
   const principal = Number(principalInput?.value);
   const rate = Number(rateInput?.value);
@@ -305,17 +305,17 @@ function calculate() {
   /* Preview panel — show total interest as the hero number */
   resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${totalInterestStr}</span>`;
   const valueEl = resultDiv.querySelector('.mtg-result-value');
-  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+  if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
   summaryDiv.innerHTML = `<p><strong>Ending amount:</strong> ${endingAmountStr}</p>`;
 
   /* Snapshot rows */
-  if (snapPrincipal) snapPrincipal.textContent = principalStr;
-  if (snapRate) snapRate.textContent = rateStr;
-  if (snapTime) snapTime.textContent = `${timeStr} ${timeUnitStr.toLowerCase()}`;
-  if (snapBasis) snapBasis.textContent = basisStr;
-  if (snapYears) snapYears.textContent = yearsStr;
-  if (snapInterest) snapInterest.textContent = totalInterestStr;
+  if (snapPrincipal) {snapPrincipal.textContent = principalStr;}
+  if (snapRate) {snapRate.textContent = rateStr;}
+  if (snapTime) {snapTime.textContent = `${timeStr} ${timeUnitStr.toLowerCase()}`;}
+  if (snapBasis) {snapBasis.textContent = basisStr;}
+  if (snapYears) {snapYears.textContent = yearsStr;}
+  if (snapInterest) {snapInterest.textContent = totalInterestStr;}
 
   /* Explanation targets */
   if (valueTargets) {

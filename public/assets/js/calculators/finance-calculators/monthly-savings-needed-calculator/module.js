@@ -228,7 +228,7 @@ function fmt(value, opts = {}) {
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
   const value = Number(input.value);
@@ -260,15 +260,15 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = '';
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = '';}
 }
 
 function timingLabel(value) {
@@ -277,15 +277,15 @@ function timingLabel(value) {
 
 function timePeriodLabel(years, months) {
   const parts = [];
-  if (years > 0) parts.push(`${years} Year${years !== 1 ? 's' : ''}`);
-  if (months > 0) parts.push(`${months} Month${months !== 1 ? 's' : ''}`);
+  if (years > 0) {parts.push(`${years} Year${years !== 1 ? 's' : ''}`);}
+  if (months > 0) {parts.push(`${months} Month${months !== 1 ? 's' : ''}`);}
   return parts.length > 0 ? parts.join(' ') : '0 Months';
 }
 
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
   try {
     const goalAmount = Number(goalInput?.value);
     const currentSavings = Number(currentInput?.value);
@@ -317,7 +317,7 @@ function calculate() {
     if (currentSavings >= goalAmount) {
       resultDiv.innerHTML = '<span class="mtg-result-value is-updated">Already reached!</span>';
       const el = resultDiv.querySelector('.mtg-result-value');
-      if (el) setTimeout(() => el.classList.remove('is-updated'), 420);
+      if (el) {setTimeout(() => el.classList.remove('is-updated'), 420);}
       summaryDiv.innerHTML = '<p>Your current savings already meet or exceed the goal.</p>';
       return;
     }
@@ -359,7 +359,7 @@ function calculate() {
     /* Preview panel */
     resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${monthlyStr} per month</span>`;
     const valueEl = resultDiv.querySelector('.mtg-result-value');
-    if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
     summaryDiv.innerHTML =
       `<p><strong>Total contributions:</strong> ${totalContribStr}</p>` +
@@ -367,16 +367,16 @@ function calculate() {
       `<p><strong>Final balance:</strong> ${finalBalanceStr}</p>`;
 
     /* Snapshot rows */
-    if (snapGoal) snapGoal.textContent = goalStr;
-    if (snapCurrent) snapCurrent.textContent = currentStr;
-    if (snapTime) snapTime.textContent = timePeriodStr;
-    if (snapRate) snapRate.textContent = rateStr;
-    if (snapCompounding) snapCompounding.textContent = compoundingStr;
-    if (snapTiming) snapTiming.textContent = timingStr;
-    if (snapMonthly) snapMonthly.textContent = monthlyStr;
-    if (snapContributions) snapContributions.textContent = totalContribStr;
-    if (snapInterest) snapInterest.textContent = totalInterestStr;
-    if (snapBalance) snapBalance.textContent = finalBalanceStr;
+    if (snapGoal) {snapGoal.textContent = goalStr;}
+    if (snapCurrent) {snapCurrent.textContent = currentStr;}
+    if (snapTime) {snapTime.textContent = timePeriodStr;}
+    if (snapRate) {snapRate.textContent = rateStr;}
+    if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
+    if (snapTiming) {snapTiming.textContent = timingStr;}
+    if (snapMonthly) {snapMonthly.textContent = monthlyStr;}
+    if (snapContributions) {snapContributions.textContent = totalContribStr;}
+    if (snapInterest) {snapInterest.textContent = totalInterestStr;}
+    if (snapBalance) {snapBalance.textContent = finalBalanceStr;}
 
     /* Explanation targets */
     if (valueTargets) {

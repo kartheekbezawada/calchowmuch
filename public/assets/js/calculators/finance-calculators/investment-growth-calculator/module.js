@@ -1,5 +1,5 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { formatCurrency, formatPercent, formatNumber } from '/assets/js/core/format.js';
+import { formatPercent, formatNumber } from '/assets/js/core/format.js';
 import { calculateInvestmentGrowth } from '/assets/js/core/time-value-utils.js';
 
 const initialInput = document.querySelector('#ig-initial');
@@ -203,7 +203,7 @@ const compoundingButtons = setupButtonGroup(compoundingGroup, {
 });
 
 function updateSnapshots(data) {
-  if (!snapInitial) return;
+  if (!snapInitial) {return;}
 
   snapInitial.textContent = formatInput(data.initialInvestment);
   snapReturn.textContent = formatPercent(data.expectedReturn);
@@ -253,7 +253,7 @@ function calculate() {
   const totalYears = years + months / 12;
 
   // Only calculate if we have some time period, even if it's 0 (start value)
-  if (totalYears < 0) return;
+  if (totalYears < 0) {return;}
 
   const result = calculateInvestmentGrowth({
     initialInvestment,

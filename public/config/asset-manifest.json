@@ -566,6 +566,28 @@
         "deferCoreCss": true
       }
     },
+    "/percentage-calculators/commission-calculator/": {
+      "route": "/percentage-calculators/commission-calculator/",
+      "calculatorId": "commission-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/percentage-calculators-commission-calculator.critical.2942ae79.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/percentage-calculators/commission-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/time-and-date/sleep-time-calculator/": {
       "route": "/time-and-date/sleep-time-calculator/",
       "calculatorId": "sleep-time-calculator",

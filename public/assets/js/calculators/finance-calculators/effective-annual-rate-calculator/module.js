@@ -208,7 +208,7 @@ function fmtPct(value, maxFraction = 4) {
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
   const value = Number(input.value);
@@ -224,21 +224,21 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = '';
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = '';}
 }
 
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
   try {
     const nominalRate = Number(nominalRateInput?.value);
     const compounding = frequencyButtons?.getValue() ?? 'annual';
@@ -283,7 +283,7 @@ function calculate() {
     /* Preview panel */
     resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${earStr}</span>`;
     const valueEl = resultDiv.querySelector('.mtg-result-value');
-    if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
     summaryDiv.innerHTML =
       `<p><strong>Nominal rate:</strong> ${nominalStr}</p>` +
@@ -291,11 +291,11 @@ function calculate() {
       `<p><strong>Difference:</strong> +${differenceStr}</p>`;
 
     /* Snapshot rows */
-    if (snapNominal) snapNominal.textContent = nominalStr;
-    if (snapCompounding) snapCompounding.textContent = compoundingStr;
-    if (snapPeriods) snapPeriods.textContent = periodsStr;
-    if (snapPeriodicRate) snapPeriodicRate.textContent = periodicRateStr;
-    if (snapDifference) snapDifference.textContent = `+${differenceStr}`;
+    if (snapNominal) {snapNominal.textContent = nominalStr;}
+    if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
+    if (snapPeriods) {snapPeriods.textContent = periodsStr;}
+    if (snapPeriodicRate) {snapPeriodicRate.textContent = periodicRateStr;}
+    if (snapDifference) {snapDifference.textContent = `+${differenceStr}`;}
 
     /* Explanation targets */
     if (valueTargets) {

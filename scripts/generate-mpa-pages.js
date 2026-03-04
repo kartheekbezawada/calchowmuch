@@ -357,6 +357,8 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
     h1: 'Commission Calculator',
+    paneLayout: 'single',
+    suppressAdsColumn: true,
   },
   'margin-calculator': {
     title: 'Margin Calculator – CalcHowMuch',
@@ -1972,6 +1974,7 @@ function buildPageHtml({
   paneLayout = 'split',
   routeArchetype = 'calc_exp',
   designFamily = 'neutral',
+  suppressAdsColumn = false,
   includeHomeContent,
   pageType,
   calculatorRelPath,
@@ -2129,6 +2132,12 @@ ${explanationTitleHtml}  ${explanationHtml}
   }
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
+  const adsColumnHtml = suppressAdsColumn
+    ? ''
+    : `        <section class="ads-column" aria-label="Ad placeholders">
+${adPanelHtml}
+        </section>
+`;
 
   return `<!doctype html>
 <html lang="en">
@@ -2162,10 +2171,7 @@ ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (ma
         <section class="center-column">
           ${calcContent}
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-${adPanelHtml}
-        </section>
-      </main>
+${adsColumnHtml}      </main>
       ${footerHtml}
     </div>
 ${scriptTagsHtml}
@@ -2747,6 +2753,7 @@ function main() {
       topNavStatic,
       staticStructuredData,
       injectStaticStructuredData,
+      suppressAdsColumn: Boolean(override?.suppressAdsColumn),
     });
 
     const outputDir = path.join(PUBLIC_DIR, relPath);

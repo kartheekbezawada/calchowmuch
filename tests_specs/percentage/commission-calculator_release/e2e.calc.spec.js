@@ -8,12 +8,17 @@ test.describe('Commission Calculator', () => {
   test('COMM-TEST-E2E-1: flat and tiered commission workflows', async ({ page }) => {
     await page.goto('/percentage-calculators/commission-calculator');
 
-    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Percentage');
+    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText(
+      /Percentage( Calculators)?/
+    );
     await expect(
       page
         .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
         .first()
     ).toContainText('Commission Calculator');
+    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     await page.fill('#comm-sales', '20000');
     await page.fill('#comm-rate', '7.5');
