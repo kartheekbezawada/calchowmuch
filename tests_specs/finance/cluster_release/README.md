@@ -16,14 +16,14 @@ Pass criteria:
 Ownership: cluster release owner.
 
 Routes:
-- /finance/compound-interest/
-- /finance/effective-annual-rate/
-- /finance/future-value-of-annuity/
-- /finance/future-value/
-- /finance/investment-growth/
+- /finance-calculators/compound-interest-calculator/
+- /finance-calculators/effective-annual-rate-calculator/
+- /finance-calculators/future-value-of-annuity-calculator/
+- /finance-calculators/future-value-calculator/
+- /finance-calculators/investment-growth-calculator/
 - /finance-calculators/investment-return-calculator/
-- /finance/monthly-savings-needed/
-- /finance/present-value-of-annuity/
-- /finance/present-value/
-- /finance/simple-interest/
-- /finance/time-to-savings-goal/
+- /finance-calculators/monthly-savings-needed-calculator/
+- /finance-calculators/present-value-of-annuity-calculator/
+- /finance-calculators/present-value-calculator/
+- /finance-calculators/simple-interest-calculator/
+- /finance-calculators/time-to-savings-goal-calculator/

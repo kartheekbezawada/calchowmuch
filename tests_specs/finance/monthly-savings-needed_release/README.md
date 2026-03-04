@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/monthly-savings-needed/
+- /finance-calculators/monthly-savings-needed-calculator/

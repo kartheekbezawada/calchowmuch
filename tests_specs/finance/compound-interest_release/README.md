@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/compound-interest/
+- /finance-calculators/compound-interest-calculator/

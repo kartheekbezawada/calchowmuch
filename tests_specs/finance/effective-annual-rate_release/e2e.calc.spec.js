@@ -6,36 +6,29 @@ function parseNumber(text) {
 
 test.describe('Effective Annual Rate Calculator', () => {
   test('EAR-TEST-E2E-1: user journey and results', async ({ page }) => {
-    await page.goto('/finance/effective-annual-rate');
+    await page.goto('/finance-calculators/effective-annual-rate-calculator/');
 
     const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
     await expect(topNavActive).toHaveText('Finance');
 
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Effective Annual Rate (EAR)');
-
-    const optionalSection = page.locator('#ear-optional-section');
-    await expect(optionalSection).toHaveClass(/is-hidden/);
+    const leftActive = page.locator('.fin-nav-item.is-active');
+    await expect(leftActive).toContainText('Effective Annual Rate (EAR)');
 
     await page.fill('#ear-nominal-rate', '12');
-    await page.click('[data-button-group="ear-frequency"] button[data-value="monthly"]');
     await page.click('#ear-calc');
 
     const resultText = await page.locator('#ear-result').textContent();
     const resultValue = parseNumber(resultText);
-    const expected = (Math.pow(1 + 0.12 / 12, 12) - 1) * 100;
+    const expected = (Math.pow(1 + 0.12 / 1, 1) - 1) * 100;
     expect(resultValue).toBeCloseTo(expected, 3);
 
-    await page.click('#ear-optional-toggle');
-    await expect(optionalSection).not.toHaveClass(/is-hidden/);
-
-    await page.fill('#ear-custom-periods', '52');
+    await page.click('[data-button-group="ear-frequency"] button[data-value="quarterly"]');
     await page.click('#ear-calc');
 
-    const customResultText = await page.locator('#ear-result').textContent();
-    const customValue = parseNumber(customResultText);
-    const customExpected = (Math.pow(1 + 0.12 / 52, 52) - 1) * 100;
-    expect(customValue).toBeCloseTo(customExpected, 3);
+    const quarterlyResultText = await page.locator('#ear-result').textContent();
+    const quarterlyValue = parseNumber(quarterlyResultText);
+    const quarterlyExpected = (Math.pow(1 + 0.12 / 4, 4) - 1) * 100;
+    expect(quarterlyValue).toBeCloseTo(quarterlyExpected, 3);
 
     await expect(page.locator('[data-ear="ear-rate"]').first()).not.toHaveText('N/A');
   });

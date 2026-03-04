@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/investment-growth/
+- /finance-calculators/investment-growth-calculator/

@@ -1,0 +1,329 @@
+<div id="ir-explanation" class="explanation-pane">
+  <div id="loan-mtg-explanation">
+    <h2>Investment Return Calculator Summary</h2>
+    <p>
+      This calculator estimates future portfolio value from a lump sum, recurring contributions,
+      compounding assumptions, inflation, and taxes. It reports how much you contribute, what your
+      investment earns, and how much of that growth remains after tax and inflation.
+    </p>
+
+    <section class="mtg-exp-section ir-serp-guide" aria-label="Investment return practical guide">
+      <h3>Scenario Summary</h3>
+      <table class="ir-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Input</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Initial Investment</td><td data-ir="exp-initial">-</td></tr>
+          <tr><td>Expected Annual Return</td><td data-ir="exp-rate">-</td></tr>
+          <tr><td>Duration</td><td data-ir="exp-years">-</td></tr>
+          <tr><td>Compounding Frequency</td><td data-ir="exp-compounding">-</td></tr>
+          <tr><td>Regular Contribution</td><td data-ir="exp-contribution">-</td></tr>
+          <tr><td>Contribution Frequency</td><td data-ir="exp-contrib-frequency">-</td></tr>
+          <tr><td>Contribution Timing</td><td data-ir="exp-contrib-timing">-</td></tr>
+          <tr><td>Inflation Rate</td><td data-ir="exp-inflation">-</td></tr>
+          <tr><td>Tax Rate</td><td data-ir="exp-tax-rate">-</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="mtg-exp-section">
+      <h3>Results Table</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="ir-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Metric</th>
+              <th scope="col">Value</th>
+              <th scope="col">Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Final Portfolio Value</td>
+              <td data-ir="exp-final-value">-</td>
+              <td>Projected ending balance after contributions, growth, and tax.</td>
+            </tr>
+            <tr>
+              <td>Total Contributions</td>
+              <td data-ir="exp-total-contributions">-</td>
+              <td>Initial investment plus net additional deposits and withdrawals.</td>
+            </tr>
+            <tr>
+              <td>Total Profit</td>
+              <td data-ir="exp-total-profit">-</td>
+              <td>Growth above total contributions.</td>
+            </tr>
+            <tr>
+              <td>Total Tax Paid</td>
+              <td data-ir="exp-total-tax">-</td>
+              <td>Year-end tax on net positive gains after carryforward offsets.</td>
+            </tr>
+            <tr>
+              <td>Nominal CAGR</td>
+              <td data-ir="exp-cagr">-</td>
+              <td>Annualized growth rate from start to finish before inflation adjustment.</td>
+            </tr>
+            <tr>
+              <td>Real CAGR</td>
+              <td data-ir="exp-real-cagr">-</td>
+              <td>Annualized growth rate adjusted for inflation.</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Real Final Value</td>
+              <td data-ir="exp-real-final">-</td>
+              <td>Estimated purchasing-power-equivalent value at the end of the plan.</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="mtg-exp-section ir-guide-readable">
+      <h3>Investment Return Complete Practical Guide</h3>
+      <style>
+        #loan-mtg-explanation .mtg-exp-section h3 {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 1.5px;
+        }
+
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable > h3 {
+          text-decoration: none;
+        }
+
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable h4 {
+          margin: 9px 0 5px;
+          font-size: 15px;
+          line-height: 1.35;
+          color: #dbeafe;
+          text-shadow: none;
+        }
+
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable p,
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable li {
+          margin: 0 0 6px;
+          font-size: 14px;
+          line-height: 1.42;
+          color: rgba(226, 232, 240, 0.96);
+        }
+
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable ul,
+        #loan-mtg-explanation .mtg-exp-section.ir-guide-readable ol {
+          margin: 1px 0 7px 18px;
+          padding: 0;
+        }
+      </style>
+
+      <h4>What this guide helps you decide</h4>
+      <p>
+        Use this calculator as a planning model, not a market prediction tool. It combines your
+        starting capital, recurring deposits, expected return, compounding, inflation, and tax
+        assumptions to show how a portfolio may evolve over time.
+      </p>
+      <p>
+        Compare how much of your ending balance comes from your own contributions versus investment
+        growth, and how much growth may be reduced by tax drag and inflation. That context helps you
+        make better contribution, timing, and risk-assumption decisions before committing real money.
+        Annual view is best for strategy-level checks, while monthly view is best for path behavior and
+        contribution pacing.
+      </p>
+
+      <h4>Step-by-step: run a useful baseline first</h4>
+      <ol>
+        <li>Enter a realistic initial investment and monthly contribution you can sustain.</li>
+        <li>Choose an annual return assumption that matches your risk profile, not your best-case hope.</li>
+        <li>Set a duration aligned to your real goal timeline.</li>
+        <li>Turn on inflation and tax inputs to avoid overly optimistic projections.</li>
+        <li>Click calculate and read the full output set, not only the final portfolio value.</li>
+        <li>Save this as your baseline before testing optimistic and conservative variants.</li>
+      </ol>
+      <p>
+        Most planning mistakes happen when people start with aggressive assumptions and treat the first
+        output as a target. A better workflow is baseline first, then controlled scenario changes one
+        variable at a time.
+      </p>
+
+      <h4>Understand each input before trusting the output</h4>
+      <p>
+        Each core input has a specific role in the model. Small changes in one field can have large
+        long-term effects when combined with duration and contribution behavior.
+      </p>
+      <ul>
+        <li><strong>Initial Investment:</strong> Your compounding base from day one.</li>
+        <li><strong>Expected Annual Return:</strong> The growth assumption before tax and inflation effects.</li>
+        <li><strong>Investment Duration:</strong> Time in market, often the strongest long-term driver.</li>
+        <li><strong>Regular Contribution:</strong> New capital flow that compounds over the remaining horizon.</li>
+        <li><strong>Inflation Rate:</strong> Purchasing-power adjustment for real-world value interpretation.</li>
+        <li><strong>Tax Rate on Gains:</strong> Modeled year-end drag on net positive gains.</li>
+      </ul>
+      <p>
+        A common practical insight is that extending duration can outperform modest contribution
+        increases over short periods, especially when contributions are already consistent. This is why
+        time horizon should be chosen deliberately rather than defaulting to round numbers.
+      </p>
+
+      <h4>How compounding, frequency, and timing change the path</h4>
+      <p>
+        Compounding frequency changes how often returns are applied. Under the same nominal return
+        assumption, more frequent compounding usually produces slightly higher ending values over long
+        horizons because gains are reinvested sooner.
+      </p>
+      <p>
+        Contribution frequency and contribution timing are just as important. Monthly deposits smooth
+        investment behavior and often fit budgeting habits. Quarterly or annual deposits can still work,
+        but capital enters the market less often. Timing also matters: beginning-of-period contributions
+        usually have more time to compound than end-of-period contributions.
+      </p>
+      <p>
+        If two strategies contribute the same total amount per year, the one investing earlier in each
+        cycle will typically end higher in this model. Treat frequency and timing as real strategy
+        controls, not cosmetic toggles.
+      </p>
+
+      <h4>Read nominal and real returns together</h4>
+      <p>
+        Nominal outputs show account-value growth. Real outputs show purchasing-power outcomes. Both are
+        useful, but real metrics are usually better for planning lifestyle goals, retirement spending,
+        and future purchasing decisions.
+      </p>
+      <p>
+        Tax is modeled on net positive annual gains after carryforward loss offsets. That means loss
+        years can reduce future taxable gains in later recovery years. This is still a simplified model,
+        but it gives a more practical result than applying a flat haircut to every period.
+      </p>
+      <p>
+        When nominal CAGR looks strong but real CAGR is modest, the plan may still be fragile. In that
+        case, you can test alternatives such as higher contributions, longer duration, or more
+        conservative cost and tax assumptions.
+      </p>
+
+      <h4>Use advanced mode for scenario quality, not complexity</h4>
+      <p>
+        Advanced mode is designed for stress testing and planning depth. Use it when your assumptions
+        are not constant over time or when you want to model known events.
+      </p>
+      <ul>
+        <li><strong>Variable annual returns:</strong> Model uneven market years instead of one flat rate.</li>
+        <li><strong>One-time events:</strong> Add planned deposits or withdrawals in specific years.</li>
+        <li><strong>Crash simulation:</strong> Apply a one-year drawdown to test recovery resilience.</li>
+      </ul>
+      <p>
+        A strong practical workflow is to run three cases: baseline, optimistic, and conservative. The
+        spread between outcomes is often more decision-useful than any single headline projection.
+      </p>
+
+      <h4>Worked scenarios you can copy</h4>
+      <p>
+        <strong>Scenario 1: baseline accumulation.</strong> Start with 10,000, contribute 300 monthly,
+        assume 6% annual return, 20 years, 2.5% inflation, and 10% tax on gains. In many cases, the
+        model will show late-stage acceleration driven by compounding while contributions remain the
+        foundation of total capital.
+      </p>
+      <p>
+        <strong>Scenario 2: early drawdown stress test.</strong> Keep the same setup, enable advanced
+        mode, and apply a 15% crash in year 2. Final value usually drops versus baseline, but continued
+        contributions can improve long-term recovery. This demonstrates the importance of contribution
+        consistency during volatility.
+      </p>
+      <p>
+        <strong>Scenario 3: timing comparison.</strong> Compare end-of-period and beginning-of-period
+        contributions with all else fixed. Beginning timing often leads to a higher ending value because
+        each contribution remains invested for longer. Over long periods, small per-cycle differences can
+        compound into meaningful gaps.
+      </p>
+
+      <h4>Decision checklist before using results</h4>
+      <ul class="ir-checklist">
+        <li>Use assumptions you can defend, not assumptions that only maximize output.</li>
+        <li>Review final value, contributions, profit, tax, and both CAGR metrics together.</li>
+        <li>Validate results in both annual and monthly views before acting.</li>
+        <li>Run at least one adverse-return scenario and one cash-flow disruption scenario.</li>
+        <li>Confirm contribution frequency and timing match your real investing behavior.</li>
+        <li>Recalculate whenever income, goals, tax context, or risk tolerance changes.</li>
+      </ul>
+      <p>
+        Final takeaway: use this calculator as a disciplined planning framework. Better financial
+        decisions come from comparing ranges, understanding tradeoffs, and choosing a strategy you can
+        sustain through different market conditions.
+      </p>
+      <p>
+        Current effective annual rate: <strong data-ir="exp-ear">-</strong>. Current carryforward
+        loss balance: <strong data-ir="exp-carryforward">-</strong>.
+      </p>
+    </section>
+
+    <section class="mtg-exp-section mtg-exp-section--faq">
+      <h3>Frequently Asked Questions</h3>
+      <div class="bor-faq-grid">
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">01</span>
+          <h4>How is investment return calculated here?</h4>
+          <p>The model combines compound growth, recurring contributions, and optional tax and inflation adjustments.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">02</span>
+          <h4>Can I model both lump sum and regular deposits?</h4>
+          <p>Yes. You can enter an initial amount and recurring contributions with monthly, quarterly, or annual frequency.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">03</span>
+          <h4>What does CAGR mean?</h4>
+          <p>CAGR is the annualized growth rate implied by your starting amount and projected ending value.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">04</span>
+          <h4>How does inflation affect results?</h4>
+          <p>Inflation reduces purchasing power. Real output values show what the ending balance may be worth in today's terms.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">05</span>
+          <h4>How is tax applied?</h4>
+          <p>Tax is applied at year end to net positive gains after any carryforward losses from prior negative years.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">06</span>
+          <h4>What does carryforward loss mean?</h4>
+          <p>Negative annual gains are stored as losses and used to offset taxable gains in later years.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">07</span>
+          <h4>Can I input year-by-year return assumptions?</h4>
+          <p>Yes. Advanced mode lets you set a specific return percentage for each year in the plan.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">08</span>
+          <h4>Can I simulate a market crash?</h4>
+          <p>Yes. You can apply a one-year percentage drop in a selected year to stress-test the projection.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">09</span>
+          <h4>Why do monthly and annual views differ in shape?</h4>
+          <p>Both show the same model outputs at different granularity, so month-level tables reveal intra-year movement.</p>
+        </div>
+        <div class="bor-faq-card">
+          <span class="bor-faq-number">10</span>
+          <h4>Are these projections guaranteed?</h4>
+          <p>No. This tool is for education and planning. Real market returns vary and can differ materially from assumptions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mtg-exp-section ir-important-notes" aria-label="Important notes">
+      <h3>Important Notes</h3>
+      <ul class="ir-notes-list">
+        <li><strong>Last updated:</strong> February 2026.</li>
+        <li><strong>Accuracy:</strong> Outputs are estimates from your assumptions and selected model settings.</li>
+        <li><strong>Financial disclaimer:</strong> For education and planning only; this is not financial advice.</li>
+        <li><strong>Assumptions:</strong> Constant-return mode applies one recurring annual-return assumption, while advanced mode applies your year-level rates, one-time events, and optional crash year input.</li>
+        <li><strong>Tax and inflation:</strong> Tax is modeled on net positive annual gains after carryforward losses; inflation-adjusted outputs are purchasing-power estimates, not guaranteed future value.</li>
+        <li><strong>Privacy:</strong> Calculations run in your browser; no form input data is stored by this tool.</li>
+      </ul>
+    </section>
+  </div>
+</div>

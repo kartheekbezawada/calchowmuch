@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { assertCwv, measureRouteCwv } from '../../infrastructure/e2e/cwv-scope-helper.js';
 
-const ROUTES = ["/finance/compound-interest/","/finance/effective-annual-rate/","/finance/future-value-of-annuity/"];
+const ROUTES = ["/finance-calculators/compound-interest-calculator/","/finance-calculators/effective-annual-rate-calculator/","/finance-calculators/future-value-of-annuity-calculator/"];
 
 test.describe('finance cluster cwv guard', () => {
   test('cluster routes satisfy CLS/LCP thresholds', async ({ page }) => {

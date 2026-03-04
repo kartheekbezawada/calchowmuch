@@ -12,8 +12,11 @@ test.describe('Margin Calculator', () => {
       'Percentage'
     );
     await expect(
-      page.locator('.math-nav-item.is-active, .nav-item.is-active').filter({ hasText: 'Margin Calculator' }).first()
-    ).toHaveText('Margin Calculator');
+      page
+        .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
+        .filter({ hasText: 'Margin Calculator' })
+        .first()
+    ).toContainText('Margin Calculator');
 
     await page.fill('#margin-cost', '60');
     await page.fill('#margin-price', '100');

@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/present-value/
+- /finance-calculators/present-value-calculator/

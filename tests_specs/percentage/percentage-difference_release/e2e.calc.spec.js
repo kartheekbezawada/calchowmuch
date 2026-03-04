@@ -13,10 +13,10 @@ test.describe('Percentage Difference Calculator', () => {
     );
     await expect(
       page
-        .locator('.math-nav-item.is-active, .nav-item.is-active')
+        .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
         .filter({ hasText: 'Percentage Difference' })
         .first()
-    ).toHaveText('Percentage Difference');
+    ).toContainText('Percentage Difference');
 
     await expect(page.locator('#pct-diff-explanation .pv-results-table')).toHaveCount(1);
     await expect(page.locator('#pct-diff-explanation .bor-faq-card')).toHaveCount(10);

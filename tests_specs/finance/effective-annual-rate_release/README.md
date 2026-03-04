@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/effective-annual-rate/
+- /finance-calculators/effective-annual-rate-calculator/

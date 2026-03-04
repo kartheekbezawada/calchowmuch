@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /finance/simple-interest/
+- /finance-calculators/simple-interest-calculator/

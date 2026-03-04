@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTES = ["/finance/compound-interest/","/finance/effective-annual-rate/","/finance/future-value-of-annuity/"];
+const ROUTES = ["/finance-calculators/compound-interest-calculator/","/finance-calculators/effective-annual-rate-calculator/","/finance-calculators/future-value-of-annuity-calculator/"];
 
 test.describe('finance cluster e2e smoke', () => {
   test('cluster representative routes load and show H1', async ({ page }) => {

@@ -19,7 +19,7 @@ async function setInputValue(page, selector, value) {
 
 test.describe('Present Value Calculator', () => {
   test('PV-TEST-E2E-1: user journey and results', async ({ page }) => {
-    await page.goto('/finance/present-value');
+    await page.goto('/finance-calculators/present-value-calculator/');
 
     const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
     await expect(topNavActive).toHaveText('Finance');
