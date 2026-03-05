@@ -9,7 +9,7 @@ function clamp(value, min, max) {
 }
 
 function formatAxisCurrency(value) {
-  if (!Number.isFinite(value)) return "—";
+  if (!Number.isFinite(value)) {return "—";}
   const abs = Math.abs(value);
 
   if (abs >= 1_000_000_000) {
@@ -26,7 +26,7 @@ function formatAxisCurrency(value) {
 }
 
 function formatCurrency(value) {
-  if (!Number.isFinite(value)) return "—";
+  if (!Number.isFinite(value)) {return "—";}
   return CURRENCY_FORMATTER.format(value);
 }
 
@@ -123,8 +123,8 @@ function getScaleTransform(scale, maxBalance) {
 }
 
 function resolvePeriodPrefix(frequencyLabel) {
-  if (frequencyLabel === "Quarter") return "Q";
-  if (frequencyLabel === "Half-Year") return "H";
+  if (frequencyLabel === "Quarter") {return "Q";}
+  if (frequencyLabel === "Half-Year") {return "H";}
   return "Y";
 }
 
@@ -226,7 +226,6 @@ function drawAxesAndGrid(ctx, geometry) {
     xTicks,
     xAxisLabel,
     yAxisLabel,
-    width,
     height,
   } = geometry;
 
@@ -289,7 +288,7 @@ function drawAxesAndGrid(ctx, geometry) {
 
 function drawAreasAndLine(ctx, geometry) {
   const { plotBottom, balanceCoords, principalCoords } = geometry;
-  if (balanceCoords.length === 0) return;
+  if (balanceCoords.length === 0) {return;}
 
   const principalGradient = ctx.createLinearGradient(0, 0, 0, plotBottom);
   principalGradient.addColorStop(0, "rgba(124, 58, 237, 0.48)");
@@ -334,11 +333,11 @@ function drawAreasAndLine(ctx, geometry) {
 }
 
 function drawHoverState(ctx, geometry, hoverIndex) {
-  if (!Number.isInteger(hoverIndex) || hoverIndex < 0) return;
+  if (!Number.isInteger(hoverIndex) || hoverIndex < 0) {return;}
 
   const balancePoint = geometry.balanceCoords[hoverIndex];
   const principalPoint = geometry.principalCoords[hoverIndex];
-  if (!balancePoint || !principalPoint) return;
+  if (!balancePoint || !principalPoint) {return;}
 
   ctx.save();
   ctx.strokeStyle = "rgba(125, 211, 252, 0.7)";
@@ -398,7 +397,7 @@ function resizeCanvas(canvas, ctx) {
 }
 
 function hideTooltip(tooltip) {
-  if (!tooltip) return;
+  if (!tooltip) {return;}
   tooltip.hidden = true;
   tooltip.innerHTML = "";
 }

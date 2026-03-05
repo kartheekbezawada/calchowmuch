@@ -235,14 +235,14 @@ function fmt(value, opts = {}) {
 }
 
 function setTextIfChanged(node, nextValue) {
-  if (!node) return;
+  if (!node) {return;}
   if (node.textContent !== nextValue) {
     node.textContent = nextValue;
   }
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min) || 0;
   const max = Number(input.max) || 100;
   const val = Number(input.value) || 0;
@@ -276,19 +276,19 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => setTextIfChanged(node, value));
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = '';
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = '';}
 }
 
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
 
   const pmt = Number(pmtInput?.value);
   const rate = Number(rateInput?.value);
@@ -358,7 +358,7 @@ function calculate() {
   /* Preview panel */
   resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${fvStr}</span>`;
   const valueEl = resultDiv.querySelector('.mtg-result-value');
-  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+  if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
   summaryDiv.innerHTML =
     `<p><strong>Type:</strong> ${annuityTypeStr}</p>` +
@@ -366,13 +366,13 @@ function calculate() {
     `<p><strong>Interest earned:</strong> ${totalInterestStr}</p>`;
 
   /* Snapshot rows */
-  if (snapPayment) snapPayment.textContent = pmtStr;
-  if (snapRate) snapRate.textContent = rateStr;
-  if (snapPeriods) snapPeriods.textContent = periodsStr;
-  if (snapAnnuityType) snapAnnuityType.textContent = annuityTypeStr;
-  if (snapCompounding) snapCompounding.textContent = compoundingStr;
-  if (snapEffectivePeriods) snapEffectivePeriods.textContent = effectivePeriodsStr;
-  if (snapPeriodicRate) snapPeriodicRate.textContent = `${appliedRateStr}%`;
+  if (snapPayment) {snapPayment.textContent = pmtStr;}
+  if (snapRate) {snapRate.textContent = rateStr;}
+  if (snapPeriods) {snapPeriods.textContent = periodsStr;}
+  if (snapAnnuityType) {snapAnnuityType.textContent = annuityTypeStr;}
+  if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
+  if (snapEffectivePeriods) {snapEffectivePeriods.textContent = effectivePeriodsStr;}
+  if (snapPeriodicRate) {snapPeriodicRate.textContent = `${appliedRateStr}%`;}
 
   /* Explanation targets */
   if (valueTargets) {

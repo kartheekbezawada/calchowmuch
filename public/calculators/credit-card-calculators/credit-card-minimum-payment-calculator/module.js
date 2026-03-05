@@ -100,9 +100,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Minimum Payment Calculator -- True Cost of Minimums',
+  title: 'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch',
   description:
-    'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+    'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
@@ -112,17 +112,17 @@ const metadata = {
         name: 'Credit Card Minimum Payment Calculator',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+          'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
         name: 'Credit Card Minimum Payment Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'Free credit card minimum payment calculator. Estimate payoff months, first payment, total interest, and total paid when making minimum payments only.',
+          'Estimate how long it takes to pay off a credit card balance when making only minimum payments.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -147,8 +147,8 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Credit Cards',
-            item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
+            name: 'Credit Card Calculators',
+            item: 'https://calchowmuch.com/credit-card-calculators/',
           },
           {
             '@type': 'ListItem',
@@ -256,6 +256,25 @@ function formatExplanationAmount(value) {
   });
 }
 
+function setDerivedInputSpans({ balance, apr, minRate }) {
+  const firstRatePayment =
+    Number.isFinite(balance) && Number.isFinite(minRate) ? (balance * minRate) / 100 : NaN;
+  const monthlyApr = Number.isFinite(apr) ? apr / 12 : NaN;
+
+  setSpan(
+    'first-rate-payment',
+    Number.isFinite(firstRatePayment) && firstRatePayment >= 0
+      ? formatExplanationAmount(firstRatePayment)
+      : '—'
+  );
+  setSpan(
+    'monthly-apr',
+    Number.isFinite(monthlyApr) && monthlyApr >= 0
+      ? formatPercent(monthlyApr, { maximumFractionDigits: 2 })
+      : '—'
+  );
+}
+
 function setInputSpans({ balance, apr, minRate, minPayment }) {
   setSpan('balance', Number.isFinite(balance) ? formatExplanationAmount(balance) : '—');
   setSpan('apr', Number.isFinite(apr) ? formatPercent(apr) : '—');
@@ -269,15 +288,33 @@ function setInputSpans({ balance, apr, minRate, minPayment }) {
 function setOutputPlaceholders() {
   setSpan('first-payment', '—');
   setSpan('months', '—');
+  setSpan('years', '—');
   setSpan('interest', '—');
   setSpan('total', '—');
+  setSpan('interest-multiple', '—');
 }
 
-function setOutputSpans(data) {
+function setOutputSpans(data, values) {
+  const years = data.months / 12;
+  const interestMultiple =
+    Number.isFinite(values.balance) && values.balance > 0 ? data.totalPayment / values.balance : NaN;
+
   setSpan('first-payment', formatExplanationAmount(data.firstPayment));
   setSpan('months', `${formatNumber(data.months, { maximumFractionDigits: 0 })} months`);
+  setSpan(
+    'years',
+    Number.isFinite(years)
+      ? formatNumber(years, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+      : '—'
+  );
   setSpan('interest', formatExplanationAmount(data.totalInterest));
   setSpan('total', formatExplanationAmount(data.totalPayment));
+  setSpan(
+    'interest-multiple',
+    Number.isFinite(interestMultiple)
+      ? `${formatNumber(interestMultiple, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}x`
+      : '—'
+  );
 }
 
 function renderTablePlaceholder() {
@@ -400,17 +437,22 @@ function resetAfterInputChange() {
 
   const validationError = validateInputs(values);
   if (validationError) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
+    setOutputPlaceholders();
     return;
   }
 
+  setDerivedInputSpans(values);
   const data = calculateMinimumPayment(values);
   if (data.error) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
+    setOutputPlaceholders();
     return;
   }
 
   renderOutcomeCard(data.months);
   updateTable(data.yearly);
-  setOutputSpans(data);
+  setOutputSpans(data, values);
 }
 
 function calculate() {
@@ -420,13 +462,16 @@ function calculate() {
 
   const validationError = validateInputs(values);
   if (validationError) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
     setOutputPlaceholders();
     showError(validationError);
     return;
   }
 
+  setDerivedInputSpans(values);
   const data = calculateMinimumPayment(values);
   if (data.error) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
     setOutputPlaceholders();
     showError(data.error);
     return;
@@ -434,7 +479,7 @@ function calculate() {
 
   renderOutcomeCard(data.months);
   updateTable(data.yearly);
-  setOutputSpans(data);
+  setOutputSpans(data, values);
 }
 
 calculateButton?.addEventListener('click', () => {
@@ -449,10 +494,12 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
   syncSliderUI();
   const values = readInputs();
   setInputSpans(values);
+  setDerivedInputSpans(values);
   setOutputPlaceholders();
 
   const validationError = validateInputs(values);
   if (validationError) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
     showPlaceholder();
     renderTablePlaceholder();
     return;
@@ -460,6 +507,7 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 
   const defaultData = calculateMinimumPayment(values);
   if (defaultData.error) {
+    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
     showPlaceholder();
     renderTablePlaceholder();
     return;
@@ -467,5 +515,5 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 
   renderOutcomeCard(defaultData.months);
   updateTable(defaultData.yearly);
-  setOutputSpans(defaultData);
+  setOutputSpans(defaultData, values);
 })();

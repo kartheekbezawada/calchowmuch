@@ -49,11 +49,6 @@ let scheduleView = 'yearly';
 let lastDepositType = 'amount';
 let lastTermUnit = 'years';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
 const FAQ_ITEMS = [
   {
     question: 'How does a PCP calculator estimate monthly payment?',
@@ -115,13 +110,70 @@ const CALCULATOR_FAQ_SCHEMA = {
   })),
 };
 
+const CALCULATOR_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/#webpage',
+      url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
+      name: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
+      description:
+        'Calculate PCP monthly payments, final balloon payment (GFV), total interest, and total payable cost.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/#app',
+      name: 'PCP Car Finance Calculator',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
+      description:
+        'Calculate PCP monthly payments, final balloon payment (GFV), total interest, and total payable cost.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Car Loan Calculators',
+          item: 'https://calchowmuch.com/car-loan-calculators/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'PCP Car Finance Calculator',
+          item: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
+        },
+      ],
+    },
+    CALCULATOR_FAQ_SCHEMA,
+  ],
+};
+
 const metadata = {
-  title: 'PCP Calculator - Monthly Payment, GFV & Total Cost',
+  title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
   description:
-    'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.',
+    'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: CALCULATOR_STRUCTURED_DATA,
 };
 
 setPageMetadata(metadata);

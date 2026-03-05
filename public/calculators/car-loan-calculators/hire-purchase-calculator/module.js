@@ -39,11 +39,6 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-hp]')).redu
 let scheduleView = 'yearly';
 let lastTermUnit = 'years';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
 const FAQ_ITEMS = [
   {
     question: 'How does a hire purchase calculator estimate monthly payment?',
@@ -104,13 +99,70 @@ const CALCULATOR_FAQ_SCHEMA = {
   })),
 };
 
+const CALCULATOR_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#webpage',
+      url: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
+      name: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
+      description:
+        'Estimate hire purchase monthly payments, interest cost, and total payable amount for vehicle financing.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#app',
+      name: 'Hire Purchase Calculator',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      url: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
+      description:
+        'Estimate hire purchase monthly payments, interest cost, and total payable amount for vehicle financing.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Car Loan Calculators',
+          item: 'https://calchowmuch.com/car-loan-calculators/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Hire Purchase Calculator',
+          item: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
+        },
+      ],
+    },
+    CALCULATOR_FAQ_SCHEMA,
+  ],
+};
+
 const metadata = {
-  title: 'Hire Purchase Calculator - Monthly Payment, Balloon & Total Cost',
+  title: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
   description:
-    'Estimate hire purchase monthly payment, final balloon amount, total interest, and total payable with premium slider inputs and amortization views.',
+    'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: CALCULATOR_STRUCTURED_DATA,
 };
 
 setPageMetadata(metadata);

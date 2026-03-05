@@ -304,7 +304,7 @@ function fmt(value, opts = {}) {
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
   const value = Number(input.value);
@@ -338,7 +338,7 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => {
     node.textContent = value;
   });
@@ -354,7 +354,7 @@ function getChartScale() {
 }
 
 function setGrowthStatus(message) {
-  if (!growthChartStatus) return;
+  if (!growthChartStatus) {return;}
   if (!message) {
     growthChartStatus.hidden = true;
     return;
@@ -399,7 +399,7 @@ function clearGrowthChartState(message) {
 }
 
 function buildProjectionSeries(data) {
-  if (!data) return null;
+  if (!data) {return null;}
 
   const { principal, annualRate, years, contributionPerPeriod } = data;
   const frequencyInfo = getProjectionFrequencyInfo();
@@ -465,12 +465,12 @@ function buildProjectionSeries(data) {
 }
 
 function renderProjectionPlaceholder(message) {
-  if (!projectionTableBody) return;
+  if (!projectionTableBody) {return;}
   projectionTableBody.innerHTML = `<tr class="ci-projection-placeholder-row"><td colspan="5">${message}</td></tr>`;
 }
 
 function renderProjectionTable(data) {
-  if (!projectionTableBody) return;
+  if (!projectionTableBody) {return;}
 
   const series = buildProjectionSeries(data);
   if (!series) {
@@ -534,7 +534,7 @@ function teardownGrowthChartTriggers() {
 }
 
 function ensureGrowthChartHydration() {
-  if (growthChartHydrated || !growthChartSection || !growthChartCanvas) return;
+  if (growthChartHydrated || !growthChartSection || !growthChartCanvas) {return;}
 
   if (!firstPaintCompleted) {
     deferredGrowthHydration = true;
@@ -589,7 +589,7 @@ function scheduleGrowthChartHydration() {
     growthChartObserver = new IntersectionObserver(
       (entries) => {
         const visible = entries.some((entry) => entry.isIntersecting);
-        if (!visible) return;
+        if (!visible) {return;}
         requestHydration();
       },
       { rootMargin: "340px 0px" },
@@ -613,7 +613,7 @@ function scheduleGrowthChartHydration() {
 }
 
 function renderGrowthChart(data) {
-  if (!growthChartSection || !growthChartCanvas) return;
+  if (!growthChartSection || !growthChartCanvas) {return;}
 
   if (!data) {
     clearGrowthChartState("Run a valid calculation to render chart data.");
@@ -653,8 +653,8 @@ function renderProjectionVisuals(data) {
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = "";
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = "";}
   renderProjectionPlaceholder(
     "Run a valid calculation to view projection rows.",
   );
@@ -664,7 +664,7 @@ function setError(message) {
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
   try {
     const principal = Number(principalInput?.value);
     const annualRate = Number(rateInput?.value);
@@ -736,7 +736,7 @@ function calculate() {
     /* Preview panel */
     resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${endingBalanceStr}</span>`;
     const valueEl = resultDiv.querySelector(".mtg-result-value");
-    if (valueEl) setTimeout(() => valueEl.classList.remove("is-updated"), 420);
+    if (valueEl) {setTimeout(() => valueEl.classList.remove("is-updated"), 420);}
 
     summaryDiv.innerHTML =
       `<p><strong>Total interest:</strong> ${totalInterestStr}</p>` +
@@ -744,13 +744,13 @@ function calculate() {
       `<p><strong>Compounding:</strong> ${compoundingStr}</p>`;
 
     /* Snapshot rows */
-    if (snapPrincipal) snapPrincipal.textContent = principalStr;
-    if (snapRate) snapRate.textContent = rateStr;
-    if (snapTime) snapTime.textContent = timeStr;
-    if (snapCompounding) snapCompounding.textContent = compoundingStr;
-    if (snapContribution) snapContribution.textContent = contribStr;
-    if (snapPeriodicRate) snapPeriodicRate.textContent = `${periodicRateStr}%`;
-    if (snapTotalPeriods) snapTotalPeriods.textContent = totalPeriodsStr;
+    if (snapPrincipal) {snapPrincipal.textContent = principalStr;}
+    if (snapRate) {snapRate.textContent = rateStr;}
+    if (snapTime) {snapTime.textContent = timeStr;}
+    if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
+    if (snapContribution) {snapContribution.textContent = contribStr;}
+    if (snapPeriodicRate) {snapPeriodicRate.textContent = `${periodicRateStr}%`;}
+    if (snapTotalPeriods) {snapTotalPeriods.textContent = totalPeriodsStr;}
 
     /* Explanation targets */
     if (valueTargets) {

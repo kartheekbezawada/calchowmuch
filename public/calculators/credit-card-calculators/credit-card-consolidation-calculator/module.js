@@ -131,9 +131,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Consolidation Calculator -- Compare & Save',
+  title: 'Credit Card Consolidation Calculator – Compare Debt Savings | CalcHowMuch',
   description:
-    'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
+    'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
@@ -143,17 +143,17 @@ const metadata = {
         name: 'Credit Card Consolidation Calculator',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
         description:
-          'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
+          'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
         name: 'Credit Card Consolidation Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
         description:
-          'Free credit card consolidation calculator. Compare current card payoff against a consolidation loan including fees, monthly payment change, and total savings.',
+          'Compare paying credit cards separately versus consolidating debt into a fixed-rate loan.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -178,8 +178,8 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Credit Cards',
-            item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
+            name: 'Credit Card Calculators',
+            item: 'https://calchowmuch.com/credit-card-calculators/',
           },
           {
             '@type': 'ListItem',

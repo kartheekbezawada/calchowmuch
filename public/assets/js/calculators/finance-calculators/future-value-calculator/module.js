@@ -225,14 +225,14 @@ function fmt(value, opts = {}) {
 }
 
 function setTextIfChanged(node, nextValue) {
-  if (!node) return;
+  if (!node) {return;}
   if (node.textContent !== nextValue) {
     node.textContent = nextValue;
   }
 }
 
 function setSliderFill(input) {
-  if (!input) return;
+  if (!input) {return;}
   const min = Number(input.min) || 0;
   const max = Number(input.max) || 100;
   const val = Number(input.value) || 0;
@@ -276,19 +276,19 @@ function updateSliderDisplays() {
 }
 
 function updateTargets(targets, value) {
-  if (!targets) return;
+  if (!targets) {return;}
   targets.forEach((node) => setTextIfChanged(node, value));
 }
 
 function setError(message) {
-  if (resultDiv) resultDiv.textContent = message;
-  if (summaryDiv) summaryDiv.textContent = '';
+  if (resultDiv) {resultDiv.textContent = message;}
+  if (summaryDiv) {summaryDiv.textContent = '';}
 }
 
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) return;
+  if (!resultDiv || !summaryDiv) {return;}
 
   const pv = Number(pvInput?.value);
   const rate = Number(rateInput?.value);
@@ -349,7 +349,7 @@ function calculate() {
   /* Preview panel */
   resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${fvStr}</span>`;
   const valueEl = resultDiv.querySelector('.mtg-result-value');
-  if (valueEl) setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+  if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
   summaryDiv.innerHTML =
     `<p><strong>Total growth:</strong> ${totalGrowthStr}</p>` +
@@ -357,13 +357,13 @@ function calculate() {
     `<p><strong>Compounding:</strong> ${compoundingStr}</p>`;
 
   /* Snapshot rows */
-  if (snapPv) snapPv.textContent = pvStr;
-  if (snapRate) snapRate.textContent = rateStr;
-  if (snapTime) snapTime.textContent = timeStr;
-  if (snapCompounding) snapCompounding.textContent = compoundingStr;
-  if (snapContribution) snapContribution.textContent = contribStr;
-  if (snapPeriods) snapPeriods.textContent = totalPeriodsStr;
-  if (snapPeriodicRate) snapPeriodicRate.textContent = `${appliedRateStr}%`;
+  if (snapPv) {snapPv.textContent = pvStr;}
+  if (snapRate) {snapRate.textContent = rateStr;}
+  if (snapTime) {snapTime.textContent = timeStr;}
+  if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
+  if (snapContribution) {snapContribution.textContent = contribStr;}
+  if (snapPeriods) {snapPeriods.textContent = totalPeriodsStr;}
+  if (snapPeriodicRate) {snapPeriodicRate.textContent = `${appliedRateStr}%`;}
 
   /* Explanation targets */
   if (valueTargets) {

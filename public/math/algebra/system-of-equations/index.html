@@ -4451,9 +4451,38 @@
         background: rgba(15, 23, 42, 0.5);
       }
 
+      .algebra-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .algebra-form-panel {
+        display: grid;
+        gap: 12px;
+      }
+
+      .algebra-preview-label {
+        margin: 0;
+        font-size: 0.74rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.92);
+      }
+
+      .algebra-result-card,
+      .algebra-summary-card {
+        margin: 0;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        background: rgba(30, 41, 59, 0.5);
+      }
+
       .system-type-selector,
       .solution-method-selector {
-        margin: 12px 0;
+        margin: 4px 0;
       }
 
       .system-type-selector > label,
@@ -4512,10 +4541,16 @@
       .faq-card {
         margin-top: 10px;
       }
+
+      @media (max-width: 980px) {
+        .algebra-hero {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/math-algebra-system-of-equations.dc7aba22.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/math-algebra-system-of-equations.576080b7.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/math-algebra-system-of-equations.dc7aba22.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/math-algebra-system-of-equations.576080b7.css" />
     </noscript>
  
     <!-- CHM_ADSENSE_HEAD_START -->

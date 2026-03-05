@@ -124,34 +124,42 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'car-loan': {
+    title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+    description:
+      'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
+    h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
+    title: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
+    description:
+      'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.',
+    h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Calculator - Monthly Payment, GFV & Total Cost',
+    title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
     description:
-      'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.',
-    h1: 'PCP Calculator',
+      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
+    h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Leasing Calculator - Monthly Payment, Residual & Total Cost',
+    title: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
     description:
-      'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.',
-    h1: 'Leasing Calculator',
+      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.',
+    h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
+    title: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
     description:
-      'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.',
-    h1: 'Multiple Car Loan Calculator',
+      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.',
+    h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -180,26 +188,33 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'credit-card-minimum-payment': {
-    h1: 'Credit Card Minimum Payment',
+    title: 'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch',
+    description:
+      'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
+    h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'balance-transfer-installment-plan': {
-    title: 'Balance Transfer Calculator – Savings with Promo APR & Fees',
+    title: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
     description:
-      'Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline.',
-    h1: 'Balance Transfer Calculator',
+      'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
+    h1: 'Balance Transfer Credit Card Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-repayment-payoff': {
+    title: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
+    description:
+      'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
+    h1: 'Credit Card Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-consolidation': {
-    title: 'Credit Card Consolidation Calculator -- Compare & Save',
+    title: 'Credit Card Consolidation Calculator – Compare Debt Savings | CalcHowMuch',
     description:
-      'Compare paying credit cards separately vs consolidating into a fixed-rate loan. See monthly payment, interest savings, and total cost difference.',
+      'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
     h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -357,6 +372,10 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
     h1: 'Commission Calculator',
+    paneLayout: 'single',
+    suppressAdsColumn: true,
+    calculatorPanelClass: 'panel--shellless',
+    layoutMainClass: 'layout-main--no-ads',
   },
   'margin-calculator': {
     title: 'Margin Calculator – CalcHowMuch',
@@ -967,38 +986,173 @@ function applyCalculatorFragmentVersioning(html) {
   );
 }
 
-function ensureLength(text, min, max) {
-  let result = text.trim().replace(/\s+/g, ' ');
-  const filler = ' - Free Tool';
-  while (result.length < min) {
-    result = `${result}${filler}`;
-    if (result.length > max) {
-      break;
-    }
+function normalizeSeoText(value) {
+  if (value === null || value === undefined) {
+    return '';
   }
-  if (result.length > max) {
-    result = result.slice(0, Math.max(max - 3, 0)).trimEnd();
-    result = `${result}...`;
-  }
-  return result;
+  return String(value)
+    .replace(/â€“/g, '–')
+    .replace(/\u2026|\.{3,}/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function escapeHtmlAttr(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function buildTitle(name) {
-  const longTitle = `${name} | Calculate How Much Online Calculator`;
-  return ensureLength(longTitle, 50, 60);
+  const normalizedName = normalizeSeoText(name);
+  return `${normalizedName} | Calculate How Much Online Calculator`;
 }
 
 function buildDescription(name) {
-  const base =
-    `${name} calculator with fast inputs and clear results. ` +
-    'Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.';
-  return ensureLength(base, 150, 160);
+  const normalizedName = normalizeSeoText(name);
+  return `${normalizedName} calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.`;
 }
 
 function buildCanonical(pathname) {
   const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
   const withSlash = normalized.endsWith('/') ? normalized : `${normalized}/`;
   return `${SITE_URL}${withSlash}`;
+}
+
+function isCalculatorPath(pathname) {
+  const normalizedPath = typeof pathname === 'string' ? pathname : '';
+  return normalizedPath.includes('-calculators/') || normalizedPath.endsWith('-calculator/');
+}
+
+function isCalculatorPathFromCanonical(canonicalUrl) {
+  try {
+    const parsed = new URL(canonicalUrl, SITE_URL);
+    return isCalculatorPath(parsed.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function toTitleCaseLabel(value) {
+  return String(value)
+    .split('-')
+    .filter(Boolean)
+    .map((token) => token.charAt(0).toUpperCase() + token.slice(1))
+    .join(' ');
+}
+
+function buildCalculatorFallbackStructuredData({ canonical, title, description, h1 }) {
+  let pathname = '/';
+  try {
+    pathname = new URL(canonical, SITE_URL).pathname || '/';
+  } catch {
+    pathname = '/';
+  }
+
+  const segments = pathname.split('/').filter(Boolean);
+  const clusterSegment = segments[0] || '';
+  const softwareName =
+    normalizeSeoText(h1) || normalizeSeoText(title).split('|')[0].trim() || 'Calculator';
+  const breadcrumbLabel = toTitleCaseLabel(clusterSegment);
+
+  const breadcrumbItems = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${SITE_URL}/`,
+    },
+  ];
+
+  if (breadcrumbLabel) {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: breadcrumbLabel,
+      item: `${SITE_URL}/${clusterSegment}/`,
+    });
+  }
+
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: breadcrumbItems.length + 1,
+    name: softwareName,
+    item: canonical,
+  });
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description,
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: breadcrumbItems,
+      },
+    ],
+  };
+}
+
+function generateHeadMeta({
+  canonicalUrl,
+  seoTitle,
+  seoDescription,
+  ogImageUrl,
+  h1,
+  isCalculatorPage,
+}) {
+  const fallbackTitle = normalizeSeoText(h1) || 'CalcHowMuch';
+  const title = normalizeSeoText(seoTitle) || fallbackTitle;
+  let description = normalizeSeoText(seoDescription);
+  if (!description || description.toLowerCase() === title.toLowerCase()) {
+    description = `${fallbackTitle} with clear inputs, practical assumptions, and transparent results on CalcHowMuch.`;
+  }
+
+  const canonical = normalizeSeoText(canonicalUrl) || `${SITE_URL}/`;
+  const ogImage = normalizeSeoText(ogImageUrl) || OG_IMAGE;
+  const calculatorFallbackJsonLd = isCalculatorPage
+    ? `\n    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
+        buildCalculatorFallbackStructuredData({
+          canonical,
+          title,
+          description,
+          h1: fallbackTitle,
+        })
+      )}</script>`
+    : '';
+
+  // Keep argument explicit in the shared contract even though current tags are identical.
+  const ogType = isCalculatorPage ? 'website' : 'website';
+
+  return `    <meta charset="utf-8" />
+    <title>${escapeHtmlAttr(title)}</title>
+    <meta name="description" content="${escapeHtmlAttr(description)}" />
+    <link rel="canonical" href="${escapeHtmlAttr(canonical)}" />
+    <meta property="og:title" content="${escapeHtmlAttr(title)}" />
+    <meta property="og:description" content="${escapeHtmlAttr(description)}" />
+    <meta property="og:type" content="${ogType}" />
+    <meta property="og:url" content="${escapeHtmlAttr(canonical)}" />
+    <meta property="og:image" content="${escapeHtmlAttr(ogImage)}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtmlAttr(title)}" />
+    <meta name="twitter:description" content="${escapeHtmlAttr(description)}" />
+    <meta name="twitter:image" content="${escapeHtmlAttr(ogImage)}" />
+    <meta name="robots" content="index,follow" />${calculatorFallbackJsonLd}`;
 }
 
 function decodeHtmlEntities(value) {
@@ -1932,6 +2086,30 @@ function buildLeftNavHtml(
   return buildStandardNav(category, activeCalculatorId, activeSubcategoryId, calcLookup);
 }
 
+function assertPercentageFinNavContract({ leftNavHtml, calculatorId, routePath }) {
+  // Hard gate (percentage only): keep legacy deletion deferred until all clusters migrate.
+  const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group"', 'class="fin-nav-item"'];
+  const forbiddenTokens = ['class="nav-item', 'class="nav-category'];
+
+  const missingTokens = requiredTokens.filter((token) => !leftNavHtml.includes(token));
+  const foundForbidden = forbiddenTokens.filter((token) => leftNavHtml.includes(token));
+
+  if (!missingTokens.length && !foundForbidden.length) {
+    return;
+  }
+
+  const details = [
+    missingTokens.length ? `missing=[${missingTokens.join(', ')}]` : null,
+    foundForbidden.length ? `forbidden=[${foundForbidden.join(', ')}]` : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  throw new Error(
+    `Percentage nav contract violation for calc=${calculatorId} route=${routePath}. ${details}`
+  );
+}
+
 function buildPageHtml({
   title,
   description,
@@ -1948,6 +2126,9 @@ function buildPageHtml({
   paneLayout = 'split',
   routeArchetype = 'calc_exp',
   designFamily = 'neutral',
+  suppressAdsColumn = false,
+  calculatorPanelClass = '',
+  layoutMainClass = '',
   includeHomeContent,
   pageType,
   calculatorRelPath,
@@ -1970,6 +2151,12 @@ function buildPageHtml({
     explanationHeading === '' || explanationHeading === null
       ? ''
       : `  <h3>${explanationHeading}</h3>\n`;
+  const calculatorPanelClassSuffix =
+    typeof calculatorPanelClass === 'string' && calculatorPanelClass.trim()
+      ? ` ${calculatorPanelClass.trim()}`
+      : '';
+  const layoutMainClassSuffix =
+    typeof layoutMainClass === 'string' && layoutMainClass.trim() ? ` ${layoutMainClass.trim()}` : '';
 
   let calcContent = '';
 
@@ -2006,7 +2193,7 @@ function buildPageHtml({
   } else if (routeArchetype === 'calc_exp') {
     calcContent =
       paneLayout === 'single'
-        ? `<div class="panel panel-scroll panel-span-all">
+        ? `<div class="panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${sanitizedCalculatorHtml}
@@ -2069,6 +2256,17 @@ ${explanationTitleHtml}  ${explanationHtml}
           staticStructuredData
         )}</script>\n`
       : '';
+  const isCalculatorPage = isCalculatorPathFromCanonical(canonical);
+  const shouldEmitCalculatorHeadJsonLd =
+    isCalculatorPage && !(injectStaticStructuredData && staticStructuredData);
+  const headMetaHtml = generateHeadMeta({
+    canonicalUrl: canonical,
+    seoTitle: title,
+    seoDescription: description,
+    ogImageUrl: OG_IMAGE,
+    h1: calculatorTitle,
+    isCalculatorPage: shouldEmitCalculatorHeadJsonLd,
+  });
   let cssLinksHtml = '';
   if (assetConfig) {
     const deferCoreCss = assetConfig?.options?.deferCoreCss === true;
@@ -2105,25 +2303,18 @@ ${explanationTitleHtml}  ${explanationHtml}
   }
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
+  const adsColumnHtml = suppressAdsColumn
+    ? ''
+    : `        <section class="ads-column" aria-label="Ad placeholders">
+${adPanelHtml}
+        </section>
+`;
 
   return `<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>${title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="${description}" />
-    <link rel="canonical" href="${canonical}" />
-    <meta property="og:title" content="${title}" />
-    <meta property="og:description" content="${description}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${canonical}" />
-    <meta property="og:image" content="${OG_IMAGE}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${title}" />
-    <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${OG_IMAGE}" />
-    <meta name="robots" content="index,follow" />
+${headMetaHtml}
 ${cssLinksHtml} 
 ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
@@ -2131,17 +2322,14 @@ ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (ma
     <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
-      <main class="layout-main">
+      <main class="layout-main${layoutMainClassSuffix}">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content">${leftNavHtml}</div>
         </aside>
         <section class="center-column">
           ${calcContent}
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-${adPanelHtml}
-        </section>
-      </main>
+${adsColumnHtml}      </main>
       ${footerHtml}
     </div>
 ${scriptTagsHtml}
@@ -2176,20 +2364,22 @@ function buildCalculatorIndex(categories) {
   const title = 'All Calculators | Calculate How Much Online Calculator Hub';
   const description =
     'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
+  const canonical = buildCanonical('/calculators/');
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  const headMetaHtml = generateHeadMeta({
+    canonicalUrl: canonical,
+    seoTitle: title,
+    seoDescription: description,
+    ogImageUrl: OG_IMAGE,
+    h1: 'All Calculators',
+    isCalculatorPage: isCalculatorPathFromCanonical(canonical),
+  });
 
   return `<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>${title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="${description}"
-    />
-    <link rel="canonical" href="${buildCanonical('/calculators/')}" />
-    <meta name="robots" content="index,follow" />
+${headMetaHtml}
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
@@ -2298,24 +2488,19 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
 function buildStandaloneHomepage({ title, description, canonical, robots }) {
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const homepageStructuredData = buildHomepageStructuredData({ title, description, canonical });
+  const headMetaHtml = generateHeadMeta({
+    canonicalUrl: canonical,
+    seoTitle: title,
+    seoDescription: description,
+    ogImageUrl: OG_IMAGE,
+    h1: 'Calculate How Much',
+    isCalculatorPage: isCalculatorPathFromCanonical(canonical),
+  });
   return `<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>${title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="${description}" />
-    <link rel="canonical" href="${canonical}" />
-    <meta property="og:title" content="${title}" />
-    <meta property="og:description" content="${description}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${canonical}" />
-    <meta property="og:image" content="${OG_IMAGE}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${title}" />
-    <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${OG_IMAGE}" />
-    <meta name="robots" content="${robots}" />
+${headMetaHtml}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -2390,7 +2575,15 @@ function buildGtepFooter() {
 
 function buildGtepPage({ title, description, canonical, bodyHtml }) {
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <title>${title}</title>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <meta name="description" content="${description}" />\n    <link rel="canonical" href="${canonical}" />\n    <meta name="robots" content="index,follow" />\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  const headMetaHtml = generateHeadMeta({
+    canonicalUrl: canonical,
+    seoTitle: title,
+    seoDescription: description,
+    ogImageUrl: OG_IMAGE,
+    h1: title,
+    isCalculatorPage: isCalculatorPathFromCanonical(canonical),
+  });
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n${headMetaHtml}\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -2633,6 +2826,13 @@ function main() {
       calculator.id,
       calcLookup
     );
+    if (category.id === 'percentage-calculators') {
+      assertPercentageFinNavContract({
+        leftNavHtml,
+        calculatorId: calculator.id,
+        routePath: calculator.url,
+      });
+    }
     const pageTitle = override?.title ?? buildTitle(calculator.name);
     const pageDescription = override?.description ?? buildDescription(calculator.name);
     const pageCanonical = buildCanonical(calculator.url);
@@ -2716,6 +2916,10 @@ function main() {
       topNavStatic,
       staticStructuredData,
       injectStaticStructuredData,
+      suppressAdsColumn: Boolean(override?.suppressAdsColumn),
+      calculatorPanelClass:
+        typeof override?.calculatorPanelClass === 'string' ? override.calculatorPanelClass : '',
+      layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
     });
 
     const outputDir = path.join(PUBLIC_DIR, relPath);

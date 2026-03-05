@@ -47,11 +47,6 @@ let scheduleView = 'yearly';
 let lastResidualType = 'amount';
 let lastTermUnit = 'years';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
 const FAQ_ITEMS = [
   {
     question: 'How does a leasing calculator estimate monthly payment?',
@@ -114,13 +109,70 @@ const CALCULATOR_FAQ_SCHEMA = {
   })),
 };
 
+const CALCULATOR_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/#webpage',
+      url: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
+      name: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
+      description:
+        'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/#app',
+      name: 'Car Lease Calculator',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      url: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
+      description:
+        'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Car Loan Calculators',
+          item: 'https://calchowmuch.com/car-loan-calculators/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Car Lease Calculator',
+          item: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
+        },
+      ],
+    },
+    CALCULATOR_FAQ_SCHEMA,
+  ],
+};
+
 const metadata = {
-  title: 'Leasing Calculator - Monthly Payment, Residual & Total Cost',
+  title: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
   description:
-    'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.',
+    'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: CALCULATOR_STRUCTURED_DATA,
 };
 
 setPageMetadata(metadata);

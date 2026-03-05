@@ -8,12 +8,19 @@ test.describe('Commission Calculator', () => {
   test('COMM-TEST-E2E-1: flat and tiered commission workflows', async ({ page }) => {
     await page.goto('/percentage-calculators/commission-calculator');
 
-    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText('Percentage');
+    await expect(page.locator('.top-nav-link.is-active .nav-label')).toHaveText(
+      /Percentage( Calculators)?/
+    );
     await expect(
       page
         .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
         .first()
     ).toContainText('Commission Calculator');
+    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.comm-mode-chip.is-active')).toContainText('Flat Commission %');
+    await expect(page.locator('.comm-sticky-action #comm-calc')).toBeInViewport();
 
     await page.fill('#comm-sales', '20000');
     await page.fill('#comm-rate', '7.5');
@@ -22,9 +29,11 @@ test.describe('Commission Calculator', () => {
     const flatResult = await page.locator('#comm-result').textContent();
     expect(parseNumber(flatResult)).toBeCloseTo(1500, 2);
 
-    await page.click('label.mode-switch-toggle[for="comm-tiered-toggle"] .mode-switch-track');
+    await page.click('label[for="comm-mode-tiered"]');
     const tierSection = page.locator('#comm-tiered-section');
     await expect(tierSection).not.toBeHidden();
+    await expect(page.locator('.comm-mode-chip.is-active')).toContainText('Tiered Commission');
+    await expect(page.locator('.comm-sticky-action #comm-calc')).toBeInViewport();
 
     await page.click('#comm-add-tier');
     const rows = page.locator('.commission-tier-row');

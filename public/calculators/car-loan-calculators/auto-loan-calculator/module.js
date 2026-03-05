@@ -43,11 +43,6 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-multi]')).r
 
 let scheduleView = 'yearly';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
 const FAQ_ITEMS = [
   {
     question: 'What does this multiple car loan calculator compare?',
@@ -109,13 +104,70 @@ const CALCULATOR_FAQ_SCHEMA = {
   })),
 };
 
+const CALCULATOR_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#webpage',
+      url: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
+      name: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
+      description:
+        'Compare two auto loans side by side to estimate monthly payments, total interest, and total cost.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#app',
+      name: 'Auto Loan Comparison Calculator',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      url: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
+      description:
+        'Compare two auto loans side by side to estimate monthly payments, total interest, and total cost.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Car Loan Calculators',
+          item: 'https://calchowmuch.com/car-loan-calculators/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Auto Loan Comparison Calculator',
+          item: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
+        },
+      ],
+    },
+    CALCULATOR_FAQ_SCHEMA,
+  ],
+};
+
 const metadata = {
-  title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
+  title: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
   description:
-    'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.',
+    'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: CALCULATOR_STRUCTURED_DATA,
 };
 
 setPageMetadata(metadata);

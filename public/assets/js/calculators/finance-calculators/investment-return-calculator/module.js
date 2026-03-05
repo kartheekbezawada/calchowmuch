@@ -777,14 +777,14 @@ function toggleCrashInputs() {
 }
 
 function applyDefaultFormState() {
-  if (initialInput) initialInput.value = DEFAULT_FORM_STATE.initialInvestment;
-  if (returnInput) returnInput.value = DEFAULT_FORM_STATE.annualReturnRate;
-  if (yearsInput) yearsInput.value = DEFAULT_FORM_STATE.durationYears;
-  if (contributionInput) contributionInput.value = DEFAULT_FORM_STATE.regularContribution;
-  if (inflationInput) inflationInput.value = DEFAULT_FORM_STATE.inflationRate;
-  if (taxInput) taxInput.value = DEFAULT_FORM_STATE.taxRate;
-  if (crashYearInput) crashYearInput.value = DEFAULT_FORM_STATE.crashYear;
-  if (crashDropInput) crashDropInput.value = DEFAULT_FORM_STATE.crashDropPercent;
+  if (initialInput) {initialInput.value = DEFAULT_FORM_STATE.initialInvestment;}
+  if (returnInput) {returnInput.value = DEFAULT_FORM_STATE.annualReturnRate;}
+  if (yearsInput) {yearsInput.value = DEFAULT_FORM_STATE.durationYears;}
+  if (contributionInput) {contributionInput.value = DEFAULT_FORM_STATE.regularContribution;}
+  if (inflationInput) {inflationInput.value = DEFAULT_FORM_STATE.inflationRate;}
+  if (taxInput) {taxInput.value = DEFAULT_FORM_STATE.taxRate;}
+  if (crashYearInput) {crashYearInput.value = DEFAULT_FORM_STATE.crashYear;}
+  if (crashDropInput) {crashDropInput.value = DEFAULT_FORM_STATE.crashDropPercent;}
 
   compoundingButtons?.setValue(DEFAULT_FORM_STATE.compoundingFrequency);
   contributionFrequencyButtons?.setValue(DEFAULT_FORM_STATE.contributionFrequency);

@@ -50,11 +50,6 @@ const lifetimeSummary = document.querySelector('[data-car="lifetime-summary"]');
 let lastDownType = 'amount';
 let scheduleView = 'yearly';
 
-export const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
 const CALCULATOR_FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
@@ -93,13 +88,70 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
+const CALCULATOR_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/#webpage',
+      url: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
+      name: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+      description:
+        'Calculate car loan monthly payments, total interest, and total cost based on loan amount, APR, and term.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/#app',
+      name: 'Car Loan Calculator',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      url: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
+      description:
+        'Calculate car loan monthly payments, total interest, and total cost based on loan amount, APR, and term.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://calchowmuch.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Car Loan Calculators',
+          item: 'https://calchowmuch.com/car-loan-calculators/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Car Loan Calculator',
+          item: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
+        },
+      ],
+    },
+    CALCULATOR_FAQ_SCHEMA,
+  ],
+};
+
 const metadata = {
-  title: 'Car Loan Calculator – Monthly Payment & Total Cost',
+  title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
   description:
-    'Calculate car loan EMI, total interest, and total payment using premium slider-based inputs for price, down payment, trade-in, fees, tax, APR, and term.',
+    'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: CALCULATOR_STRUCTURED_DATA,
 };
 
 setPageMetadata(metadata);
