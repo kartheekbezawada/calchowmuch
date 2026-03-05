@@ -55,8 +55,8 @@
 | **G2** | **Interaction** | • Smooth slider drag<br>• Instant mode toggle | |
 | **G3** | **Navigation** | • Full `href` links<br>• Subcategories collapsed | |
 | **H** | **Accessibility** | • Keyboard navigable<br>• `aria-live` for results<br>• Zoom 200% valid | |
-| **I1** | **Metadata** | • Unique Title/Desc<br>• Canonical URL present | |
-| **I2** | **Schema** | • `SoftwareApplication`<br>• `FAQPage`<br>• `BreadcrumbList` | |
+| **I1** | **Metadata** | • Title follows SEO pattern contract<br>• No ellipsis / mojibake artifacts<br>• No disallowed placeholder boilerplate<br>• Description is independent (not equal to title)<br>• Canonical URL present and valid<br>• OG/Twitter parity with final SEO metadata | |
+| **I2** | **Schema** | • Calculator pages include `SoftwareApplication` + `BreadcrumbList`<br>• `FAQPage` optional and parity-bound when present<br>• No per-page duplicate `WebSite` injection | |
 | **I3** | **Indexability** | • Content in initial HTML<br>• Crawlable without JS | |
 | **I4** | **Sitemap** | • Route present in sitemap.xml | |
 | **NAV-PANE-1** | **Pane Layout** | • `calc_exp` route uses single pane only (`paneLayout=single`)<br>• Combined panel contract rendered (`panel-span-all` + `calculator-page-single`) | |
@@ -119,6 +119,14 @@ Artifact path (mandatory): `test-results/performance/scoped-cwv/{cluster}/{calcu
 | `thinContentGrade` | |
 | `thinContentHardFlags` | |
 | `thinContentArtifactPath` | |
+
+### Metadata and Schema Evidence (Mandatory for SEO-impacting releases)
+| Field | Value |
+| :--- | :--- |
+| `metadataParityProofPath` (SEO artifact path proving title/description/OG/Twitter alignment) | |
+| `charsetProof` (`<meta charset="utf-8">` evidence path/snippet) | |
+| `schemaPresenceFlags` (`has_schema_jsonld`, `has_breadcrumb_schema`, `has_softwareapp_schema`) | |
+| `duplicateChecks` (title/description/canonical duplicate audit result) | |
 
 ### Exceptions
 | ID | Issue | Severity | Owner |

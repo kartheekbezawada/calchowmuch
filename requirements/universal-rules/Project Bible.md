@@ -53,7 +53,8 @@
 **Definition:** A page is SERP-Ready only if ALL conditions are met.
 
 ### 4.1 Foundations
-- **Metadata:** Unique Title, Intent-aligned Description, Single Canonical.
+- **Metadata governance pointer:** Calculator SEO head metadata and structured-data compliance is governed by `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` (`UR-SEO-040` to `UR-SEO-051`). These rules are normative and release-blocking where marked P0.
+- **Metadata:** Unique title, independently authored intent-aligned description, and single canonical aligned to governance rules.
 - **Indexability:** Explanation & FAQs in initial HTML (Server-rendered).
 - **Explanation Quality Contract:** Output insight sections may appear first; default SERP explanation block order is Intent-led heading, then `How to Guide`, then `Important Notes`, then FAQ. Route-level order exceptions are allowed only with explicit HUMAN approval and release evidence.
 - **Links:** Bidirectional (Category <-> Calc <-> Related).
