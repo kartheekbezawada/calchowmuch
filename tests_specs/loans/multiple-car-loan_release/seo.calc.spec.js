@@ -2,25 +2,58 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Multiple Car Loan Calculator SEO', () => {
   test('MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
+    const expectedTitle = 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch';
+    const expectedDescription =
+      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.';
+
     await page.goto('/car-loan-calculators/auto-loan-calculator');
 
-    await expect(page).toHaveTitle(
-      'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch'
-    );
+    await expect(page).toHaveTitle(expectedTitle);
+    expect(expectedTitle).not.toContain('...');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBe(
-      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.'
-    );
+    expect(description).toBe(expectedDescription);
+    expect(description).not.toBe(expectedTitle);
+    expect(description).not.toContain('...');
+    expect(expectedDescription).not.toContain('...');
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Auto Loan Comparison Calculator');
 
+    const charset = await page.locator('meta[charset]').getAttribute('charset');
+    expect((charset || '').toLowerCase()).toBe('utf-8');
+
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/');
+
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+      'content',
+      canonicalHref
+    );
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      'content',
+      'summary_large_image'
+    );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -35,6 +68,9 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
 
     expect(webpageSchema?.name).toBe(
       'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch'
+    );
+    expect(webpageSchema?.primaryImageOfPage?.url).toBe(
+      'https://calchowmuch.com/assets/images/og-default.png'
     );
     expect(softwareSchema?.name).toBe('Auto Loan Comparison Calculator');
     expect(breadcrumbSchema?.itemListElement).toHaveLength(3);

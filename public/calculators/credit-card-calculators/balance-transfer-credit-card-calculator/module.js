@@ -103,29 +103,29 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Balance Transfer Calculator – Savings with Promo APR & Fees',
+  title: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
   description:
-    'Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline.',
+    'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Balance Transfer Calculator',
+        name: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
         url: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
         description:
-          'Calculate your balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See total cost and payoff timeline.',
+          'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Balance Transfer Calculator',
+        name: 'Balance Transfer Credit Card Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
         description:
-          'Free balance transfer calculator. Enter your balance, transfer fee, promo APR, and post-promo rate to see payoff time, total interest, and savings.',
+          'Estimate balance transfer savings including transfer fees, promotional APR periods, and total repayment cost.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -150,13 +150,13 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Credit Cards',
-            item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
+            name: 'Credit Card Calculators',
+            item: 'https://calchowmuch.com/credit-card-calculators/',
           },
           {
             '@type': 'ListItem',
             position: 3,
-            name: 'Balance Transfer Calculator',
+            name: 'Balance Transfer Credit Card Calculator',
             item: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
           },
         ],

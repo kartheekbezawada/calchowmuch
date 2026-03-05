@@ -117,29 +117,29 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Repayment Calculator – Payoff Time & Interest',
+  title: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
   description:
-    'Calculate how long it takes to pay off your credit card balance with fixed monthly payments. See total interest, payoff time, and yearly breakdown.',
+    'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Credit Card Repayment Calculator',
+        name: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
         description:
-          'Calculate how long it takes to pay off your credit card balance with fixed monthly payments. See total interest, payoff time, and yearly breakdown.',
+          'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Credit Card Repayment Calculator',
+        name: 'Credit Card Payment Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
         description:
-          'Free credit card repayment calculator. Enter your balance, APR, and monthly payment to see payoff time, total interest, and yearly breakdown.',
+          'Calculate credit card payments, payoff timeline, and total interest based on balance, APR, and payment amount.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -164,13 +164,13 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Credit Cards',
-            item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
+            name: 'Credit Card Calculators',
+            item: 'https://calchowmuch.com/credit-card-calculators/',
           },
           {
             '@type': 'ListItem',
             position: 3,
-            name: 'Credit Card Repayment Calculator',
+            name: 'Credit Card Payment Calculator',
             item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
           },
         ],

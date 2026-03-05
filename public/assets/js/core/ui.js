@@ -151,6 +151,107 @@ const INITIAL_METADATA = (() => {
   };
 })();
 
+const DEFAULT_OG_IMAGE = 'https://calchowmuch.com/assets/images/og-default.png';
+const CALCULATOR_ONLY_SCHEMA_TYPES = new Set(['SoftwareApplication', 'BreadcrumbList']);
+
+function normalizeMetaText(value) {
+  if (value === null || value === undefined) {
+    return '';
+  }
+  return String(value)
+    .replace(/â€“/g, '–')
+    .replace(/\u2026|\.{3,}/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isCalculatorPath(pathname) {
+  const normalizedPath = typeof pathname === 'string' ? pathname : '';
+  return normalizedPath.includes('-calculators/') || normalizedPath.endsWith('-calculator/');
+}
+
+function resolvePrimaryHeading() {
+  const heading = document.querySelector('#calculator-title, h1');
+  return normalizeMetaText(heading?.textContent || '');
+}
+
+function buildFallbackDescription({ title, h1 }) {
+  const base = normalizeMetaText(h1) || normalizeMetaText(title) || 'Calculator';
+  return `${base} with clear inputs, practical assumptions, and transparent results on CalcHowMuch.`;
+}
+
+function upsertMetaTag(head, selector, attrs) {
+  let node = head.querySelector(selector);
+  if (!node) {
+    node = document.createElement('meta');
+    Object.entries(attrs).forEach(([key, value]) => {
+      if (value !== undefined) {
+        node.setAttribute(key, value);
+      }
+    });
+    head.appendChild(node);
+    return node;
+  }
+
+  Object.entries(attrs).forEach(([key, value]) => {
+    if (value !== undefined) {
+      node.setAttribute(key, value);
+    }
+  });
+  return node;
+}
+
+function syncSocialMetadata(head, { title, description, canonical }) {
+  const normalizedTitle = normalizeMetaText(title);
+  const normalizedDescription = normalizeMetaText(description);
+  const normalizedCanonical = normalizeMetaText(canonical);
+
+  const ogImageMeta = head.querySelector('meta[property="og:image"]');
+  const twitterImageMeta = head.querySelector('meta[name="twitter:image"]');
+  const resolvedImage =
+    normalizeMetaText(
+      ogImageMeta?.getAttribute('content') ?? twitterImageMeta?.getAttribute('content') ?? ''
+    ) || DEFAULT_OG_IMAGE;
+
+  upsertMetaTag(head, 'meta[property="og:title"]', {
+    property: 'og:title',
+    content: normalizedTitle,
+  });
+  upsertMetaTag(head, 'meta[property="og:description"]', {
+    property: 'og:description',
+    content: normalizedDescription,
+  });
+  upsertMetaTag(head, 'meta[property="og:url"]', {
+    property: 'og:url',
+    content: normalizedCanonical,
+  });
+  upsertMetaTag(head, 'meta[property="og:type"]', {
+    property: 'og:type',
+    content: 'website',
+  });
+  upsertMetaTag(head, 'meta[property="og:image"]', {
+    property: 'og:image',
+    content: resolvedImage,
+  });
+
+  upsertMetaTag(head, 'meta[name="twitter:card"]', {
+    name: 'twitter:card',
+    content: 'summary_large_image',
+  });
+  upsertMetaTag(head, 'meta[name="twitter:title"]', {
+    name: 'twitter:title',
+    content: normalizedTitle,
+  });
+  upsertMetaTag(head, 'meta[name="twitter:description"]', {
+    name: 'twitter:description',
+    content: normalizedDescription,
+  });
+  upsertMetaTag(head, 'meta[name="twitter:image"]', {
+    name: 'twitter:image',
+    content: resolvedImage,
+  });
+}
+
 function normalizePageSchema(schema) {
   const calculatorFAQ = Boolean(schema?.calculatorFAQ);
   const globalFAQ = Boolean(schema?.globalFAQ);
@@ -223,6 +324,48 @@ function ensureSchemaContext(base, fallback = 'https://schema.org') {
   return fallback;
 }
 
+function hasCalculatorOnlySchemaType(rawType) {
+  if (typeof rawType === 'string') {
+    return CALCULATOR_ONLY_SCHEMA_TYPES.has(rawType);
+  }
+  if (Array.isArray(rawType)) {
+    return rawType.some(
+      (entry) => typeof entry === 'string' && CALCULATOR_ONLY_SCHEMA_TYPES.has(entry)
+    );
+  }
+  return false;
+}
+
+function scopeCalculatorOnlySchemas(structuredData, allowCalculatorSchemas) {
+  if (!structuredData) {
+    return structuredData;
+  }
+  if (Array.isArray(structuredData)) {
+    return structuredData
+      .map((entry) => scopeCalculatorOnlySchemas(entry, allowCalculatorSchemas))
+      .filter(Boolean);
+  }
+  if (typeof structuredData !== 'object') {
+    return structuredData;
+  }
+
+  if (!allowCalculatorSchemas && hasCalculatorOnlySchemaType(structuredData['@type'])) {
+    return null;
+  }
+
+  if (Array.isArray(structuredData['@graph'])) {
+    const filteredGraph = structuredData['@graph']
+      .map((entry) => scopeCalculatorOnlySchemas(entry, allowCalculatorSchemas))
+      .filter(Boolean);
+    return {
+      ...structuredData,
+      '@graph': filteredGraph,
+    };
+  }
+
+  return structuredData;
+}
+
 function mergeStructuredDataWithFaq({ base, faqSchema }) {
   if (!faqSchema) {
     return base ?? null;
@@ -269,9 +412,12 @@ function buildGuardedStructuredData(metadata) {
   const hasFlags = schemaFlags.calculatorFAQ || schemaFlags.globalFAQ;
   const calculatorFAQSchema = metadata?.calculatorFAQSchema ?? null;
   const globalFAQSchema = metadata?.globalFAQSchema ?? null;
-  const baseStructuredData = Object.prototype.hasOwnProperty.call(metadata, 'structuredData')
+  const rawStructuredData = Object.prototype.hasOwnProperty.call(metadata, 'structuredData')
     ? metadata.structuredData
     : null;
+  const pathname = typeof window !== 'undefined' ? (window.location?.pathname ?? '') : '';
+  const allowCalculatorSchemas = isCalculatorPath(pathname);
+  const baseStructuredData = scopeCalculatorOnlySchemas(rawStructuredData, allowCalculatorSchemas);
 
   if (schemaFlags.calculatorFAQ && schemaFlags.globalFAQ) {
     throw new Error('Invalid schema flags: both calculatorFAQ and globalFAQ are true.');
@@ -282,7 +428,6 @@ function buildGuardedStructuredData(metadata) {
     return baseStructuredData;
   }
 
-  const pathname = typeof window !== 'undefined' ? (window.location?.pathname ?? '') : '';
   const isFaqPath = pathname === '/faq' || pathname === '/faq/';
   if (schemaFlags.globalFAQ && !isFaqPath) {
     throw new Error(`Invalid schema flags: globalFAQ is true on non-FAQ path (${pathname}).`);
@@ -316,28 +461,53 @@ export function setPageMetadata(metadata = {}) {
   }
 
   if ('title' in metadata && metadata.title !== undefined) {
-    document.title = metadata.title ?? '';
+    document.title = normalizeMetaText(metadata.title ?? '');
   }
+  const resolvedTitle = normalizeMetaText(document.title ?? '');
 
+  let descriptionMeta = head.querySelector('meta[name="description"]');
   if ('description' in metadata) {
-    let descriptionMeta = head.querySelector('meta[name="description"]');
     if (!descriptionMeta) {
       descriptionMeta = document.createElement('meta');
       descriptionMeta.setAttribute('name', 'description');
       head.appendChild(descriptionMeta);
     }
-    descriptionMeta.setAttribute('content', metadata.description ?? '');
+    descriptionMeta.setAttribute('content', normalizeMetaText(metadata.description ?? ''));
   }
 
+  const existingDescription = normalizeMetaText(descriptionMeta?.getAttribute('content') ?? '');
+  const resolvedDescription =
+    existingDescription && existingDescription.toLowerCase() !== resolvedTitle.toLowerCase()
+      ? existingDescription
+      : buildFallbackDescription({ title: resolvedTitle, h1: resolvePrimaryHeading() });
+
+  if (!descriptionMeta) {
+    descriptionMeta = document.createElement('meta');
+    descriptionMeta.setAttribute('name', 'description');
+    head.appendChild(descriptionMeta);
+  }
+  descriptionMeta.setAttribute('content', resolvedDescription);
+
+  let canonicalLink = head.querySelector('link[rel="canonical"]');
   if ('canonical' in metadata) {
-    let canonicalLink = head.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
       canonicalLink.setAttribute('rel', 'canonical');
       head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', metadata.canonical ?? '');
+    canonicalLink.setAttribute('href', normalizeMetaText(metadata.canonical ?? ''));
   }
+
+  const resolvedCanonical = normalizeMetaText(canonicalLink?.getAttribute('href') ?? '');
+  if (canonicalLink && resolvedCanonical) {
+    canonicalLink.setAttribute('href', resolvedCanonical);
+  }
+
+  syncSocialMetadata(head, {
+    title: resolvedTitle,
+    description: resolvedDescription,
+    canonical: resolvedCanonical,
+  });
 
   const hasSchemaUpdate =
     Object.prototype.hasOwnProperty.call(metadata, 'structuredData') ||

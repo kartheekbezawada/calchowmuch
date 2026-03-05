@@ -2,23 +2,55 @@ import { expect, test } from '@playwright/test';
 
 test.describe('PCP Calculator SEO', () => {
   test('PCP-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
+    const expectedTitle = 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch';
+    const expectedDescription =
+      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.';
+
     await page.goto('/car-loan-calculators/pcp-calculator');
 
-    await expect(page).toHaveTitle('PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch');
+    await expect(page).toHaveTitle(expectedTitle);
+    expect(expectedTitle).not.toContain('...');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBe(
-      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.'
-    );
+    expect(description).toBe(expectedDescription);
+    expect(description).not.toBe(expectedTitle);
+    expect(description).not.toContain('...');
+    expect(expectedDescription).not.toContain('...');
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('PCP Car Finance Calculator');
 
+    const charset = await page.locator('meta[charset]').getAttribute('charset');
+    expect((charset || '').toLowerCase()).toBe('utf-8');
+
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/car-loan-calculators/pcp-calculator/');
+
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', canonicalHref);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      'content',
+      'summary_large_image'
+    );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -32,6 +64,9 @@ test.describe('PCP Calculator SEO', () => {
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
     expect(webpageSchema?.name).toBe('PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch');
+    expect(webpageSchema?.primaryImageOfPage?.url).toBe(
+      'https://calchowmuch.com/assets/images/og-default.png'
+    );
     expect(softwareSchema?.name).toBe('PCP Car Finance Calculator');
     expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
     expect(faqSchema?.mainEntity).toHaveLength(10);

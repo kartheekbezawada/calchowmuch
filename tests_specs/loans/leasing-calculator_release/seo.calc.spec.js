@@ -2,23 +2,55 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Leasing Calculator SEO', () => {
   test('LEASING-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
+    const expectedTitle = 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch';
+    const expectedDescription =
+      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.';
+
     await page.goto('/car-loan-calculators/car-lease-calculator');
 
-    await expect(page).toHaveTitle('Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch');
+    await expect(page).toHaveTitle(expectedTitle);
+    expect(expectedTitle).not.toContain('...');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBe(
-      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.'
-    );
+    expect(description).toBe(expectedDescription);
+    expect(description).not.toBe(expectedTitle);
+    expect(description).not.toContain('...');
+    expect(expectedDescription).not.toContain('...');
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Car Lease Calculator');
 
+    const charset = await page.locator('meta[charset]').getAttribute('charset');
+    expect((charset || '').toLowerCase()).toBe('utf-8');
+
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/car-loan-calculators/car-lease-calculator/');
+
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', canonicalHref);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
+      'content',
+      expectedTitle
+    );
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      'content',
+      'summary_large_image'
+    );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -32,6 +64,9 @@ test.describe('Leasing Calculator SEO', () => {
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
     expect(webpageSchema?.name).toBe('Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch');
+    expect(webpageSchema?.primaryImageOfPage?.url).toBe(
+      'https://calchowmuch.com/assets/images/og-default.png'
+    );
     expect(softwareSchema?.name).toBe('Car Lease Calculator');
     expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
     expect(faqSchema?.mainEntity).toHaveLength(10);

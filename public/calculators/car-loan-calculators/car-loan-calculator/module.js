@@ -106,7 +106,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://calchowmuch.com/assets/og/default.png',
+        url: 'https://calchowmuch.com/assets/images/og-default.png',
       },
     },
     {

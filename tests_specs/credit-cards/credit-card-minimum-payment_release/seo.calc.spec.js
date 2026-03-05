@@ -2,23 +2,53 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Credit Card Minimum Payment Calculator SEO', () => {
   test('MINPAY-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap', async ({ page }) => {
-    await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator');
+    const route = '/credit-card-calculators/credit-card-minimum-payment-calculator/';
+    const expectedTitle =
+      'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch';
+    const expectedDescription =
+      'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.';
 
-    await expect(page).toHaveTitle('Credit Card Minimum Payment Calculator -- True Cost of Minimums');
+    await page.goto(route);
+
+    const charset = await page.locator('meta[charset]').getAttribute('charset');
+    expect((charset || '').toLowerCase()).toBe('utf-8');
+
+    await expect(page).toHaveTitle(expectedTitle);
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBe(
-      'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.'
-    );
+    expect(description).toBe(expectedDescription);
+    expect(description).not.toBe(expectedTitle);
+    expect(expectedTitle).not.toContain('...');
+    expect(expectedDescription).not.toContain('...');
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Credit Card Minimum Payment');
+    await expect(h1).toHaveText('Credit Card Minimum Payment Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe(
       'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/'
+    );
+
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', expectedTitle);
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'website');
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+      'content',
+      'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/'
+    );
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', expectedTitle);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute(
+      'content',
+      expectedDescription
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      'content',
+      'summary_large_image'
     );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
@@ -44,7 +74,7 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/credit-card-calculators/credit-card-minimum-payment-calculator/');
+    expect(sitemapText).toContain(route);
 
     const humanSitemapResponse = await page.request.get('/sitemap.xml');
     expect(humanSitemapResponse.ok()).toBeTruthy();

@@ -100,9 +100,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Minimum Payment Calculator -- True Cost of Minimums',
+  title: 'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch',
   description:
-    'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+    'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
@@ -112,17 +112,17 @@ const metadata = {
         name: 'Credit Card Minimum Payment Calculator',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'See how long it takes to pay off your credit card with minimum payments only. Calculate total interest, payoff months, and yearly payment breakdown.',
+          'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
         name: 'Credit Card Minimum Payment Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'Free credit card minimum payment calculator. Estimate payoff months, first payment, total interest, and total paid when making minimum payments only.',
+          'Estimate how long it takes to pay off a credit card balance when making only minimum payments.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -147,8 +147,8 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Credit Cards',
-            item: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
+            name: 'Credit Card Calculators',
+            item: 'https://calchowmuch.com/credit-card-calculators/',
           },
           {
             '@type': 'ListItem',
