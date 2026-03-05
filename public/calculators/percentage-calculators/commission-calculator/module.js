@@ -15,6 +15,11 @@ const addTierButton = document.querySelector('#comm-add-tier');
 const calculateButton = document.querySelector('#comm-calc');
 const resultOutput = document.querySelector('#comm-result');
 const resultDetail = document.querySelector('#comm-result-detail');
+const deckMode = document.querySelector('#comm-deck-mode');
+const deckSales = document.querySelector('#comm-deck-sales');
+const deckRates = document.querySelector('#comm-deck-rates');
+const deckCommission = document.querySelector('#comm-deck-commission');
+const deckEffectiveRate = document.querySelector('#comm-deck-effective-rate');
 
 const explanationRoot = document.querySelector('#comm-explanation');
 const breakdownWrap = explanationRoot?.querySelector('#comm-breakdown-wrap');
@@ -205,6 +210,12 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateNode(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 function renderTierRow({ upTo = '', rate = '' } = {}) {
   const row = document.createElement('div');
   row.className = 'input-row commission-tier-row';
@@ -375,6 +386,11 @@ function calculate() {
   updateTargets(valueTargets?.commission, formatCurrency(result.totalCommission));
   updateTargets(valueTargets?.effectiveRate, formatPercent(result.effectiveRate));
   updateTargets(valueTargets?.formula, result.formula);
+  updateNode(deckMode, mode === 'flat' ? 'Flat Commission %' : 'Tiered Commission');
+  updateNode(deckSales, formatCurrency(result.sales));
+  updateNode(deckRates, ratesText);
+  updateNode(deckCommission, formatCurrency(result.totalCommission));
+  updateNode(deckEffectiveRate, formatPercent(result.effectiveRate));
 
   if (mode === 'tiered') {
     renderBreakdownRows(result.breakdown);
