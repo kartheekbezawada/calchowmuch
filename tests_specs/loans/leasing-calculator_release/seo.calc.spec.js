@@ -4,16 +4,16 @@ test.describe('Leasing Calculator SEO', () => {
   test('LEASING-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/car-loan-calculators/car-lease-calculator');
 
-    await expect(page).toHaveTitle('Leasing Calculator - Monthly Payment, Residual & Total Cost');
+    await expect(page).toHaveTitle('Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.'
+      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Leasing Calculator');
+    await expect(h1).toHaveText('Car Lease Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -25,10 +25,17 @@ test.describe('Leasing Calculator SEO', () => {
     const structuredText = await structuredDataScript.textContent();
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const webpageSchema = graph.find((entry) => entry?.['@type'] === 'WebPage');
+    const softwareSchema = graph.find((entry) => entry?.['@type'] === 'SoftwareApplication');
+    const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
+    const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(10);
-    expect(structuredData.mainEntity[0].name).toBe(
+    expect(webpageSchema?.name).toBe('Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch');
+    expect(softwareSchema?.name).toBe('Car Lease Calculator');
+    expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
+    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'How does a leasing calculator estimate monthly payment?'
     );
 

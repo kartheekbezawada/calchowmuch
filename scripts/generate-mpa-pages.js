@@ -124,34 +124,42 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'car-loan': {
+    title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+    description:
+      'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
+    h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
+    title: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
+    description:
+      'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.',
+    h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Calculator - Monthly Payment, GFV & Total Cost',
+    title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
     description:
-      'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.',
-    h1: 'PCP Calculator',
+      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
+    h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Leasing Calculator - Monthly Payment, Residual & Total Cost',
+    title: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
     description:
-      'Estimate lease monthly payment, residual impact, finance charge, and total lease cost with premium sliders, three table views, and FAQs.',
-    h1: 'Leasing Calculator',
+      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.',
+    h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Multiple Car Loan Calculator - Compare Two Auto Loans',
+    title: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
     description:
-      'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.',
-    h1: 'Multiple Car Loan Calculator',
+      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.',
+    h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },

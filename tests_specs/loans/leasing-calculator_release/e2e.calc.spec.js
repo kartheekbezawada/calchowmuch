@@ -23,7 +23,7 @@ test.describe('Leasing Calculator', () => {
   }) => {
     await page.goto('/car-loan-calculators/car-lease-calculator/');
 
-    await expect(page.locator('#calculator-title')).toHaveText('Leasing Calculator');
+    await expect(page.locator('#calculator-title')).toHaveText('Car Lease Calculator');
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Auto Loans');

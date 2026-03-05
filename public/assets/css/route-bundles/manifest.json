@@ -565,18 +565,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.a047f593.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.a047f593.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.8daac8a4.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.f9ef802a.css",
       "hash": "a047f593",
-      "criticalHash": "8daac8a4",
+      "criticalHash": "f9ef802a",
       "fullBytes": 50647,
-      "criticalBytes": 33973,
+      "criticalBytes": 88238,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/car-loan-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.a047f593.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.8daac8a4.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-loan-calculator.critical.f9ef802a.css"
     },
     "/car-loan-calculators/auto-loan-calculator/": {
       "calculatorId": "multiple-car-loan",
@@ -584,18 +584,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.f863ced4.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.f863ced4.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.8daac8a4.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.ca337210.css",
       "hash": "f863ced4",
-      "criticalHash": "8daac8a4",
+      "criticalHash": "ca337210",
       "fullBytes": 48462,
-      "criticalBytes": 33973,
+      "criticalBytes": 44855,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/auto-loan-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.f863ced4.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.8daac8a4.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-auto-loan-calculator.critical.ca337210.css"
     },
     "/car-loan-calculators/hire-purchase-calculator/": {
       "calculatorId": "hire-purchase",
@@ -603,18 +603,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.8daac8a4.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.ca337210.css",
       "hash": "e6cf9d8c",
-      "criticalHash": "8daac8a4",
+      "criticalHash": "ca337210",
       "fullBytes": 48261,
-      "criticalBytes": 33973,
+      "criticalBytes": 44855,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/hire-purchase-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.8daac8a4.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.critical.ca337210.css"
     },
     "/car-loan-calculators/pcp-calculator/": {
       "calculatorId": "pcp-calculator",
@@ -622,18 +622,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.1116a9e5.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.1116a9e5.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.20738ef9.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.bc2b4a1a.css",
       "hash": "1116a9e5",
-      "criticalHash": "20738ef9",
+      "criticalHash": "bc2b4a1a",
       "fullBytes": 50525,
-      "criticalBytes": 34580,
+      "criticalBytes": 45462,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/pcp-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.1116a9e5.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.20738ef9.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-pcp-calculator.critical.bc2b4a1a.css"
     },
     "/car-loan-calculators/car-lease-calculator/": {
       "calculatorId": "leasing-calculator",
@@ -641,18 +641,18 @@
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.290f9185.css",
       "deferredHref": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.290f9185.css",
-      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.8b493c9b.css",
+      "criticalCss": "/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.777d8c26.css",
       "hash": "290f9185",
-      "criticalHash": "8b493c9b",
+      "criticalHash": "777d8c26",
       "fullBytes": 51561,
-      "criticalBytes": 34593,
+      "criticalBytes": 45475,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
         "/calculators/car-loan-calculators/car-lease-calculator/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.290f9185.css",
-      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.8b493c9b.css"
+      "criticalOutputFile": "public/assets/css/route-bundles/car-loan-calculators-car-lease-calculator.critical.777d8c26.css"
     },
     "/percentage-calculators/percent-change-calculator/": {
       "calculatorId": "percent-change",

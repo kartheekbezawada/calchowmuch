@@ -4,11 +4,11 @@ test.describe('Car Loan Calculator SEO', () => {
   test('CAR-LOAN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/car-loan-calculators/car-loan-calculator');
 
-    await expect(page).toHaveTitle('Car Loan Calculator – Monthly Payment & Total Cost');
+    await expect(page).toHaveTitle('Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate car loan EMI, total interest, and total payment using premium slider-based inputs for price, down payment, trade-in, fees, tax, APR, and term.'
+      'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.'
     );
 
     const h1 = page.locator('h1');
@@ -25,10 +25,17 @@ test.describe('Car Loan Calculator SEO', () => {
     const structuredText = await structuredDataScript.textContent();
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const webpageSchema = graph.find((entry) => entry?.['@type'] === 'WebPage');
+    const softwareSchema = graph.find((entry) => entry?.['@type'] === 'SoftwareApplication');
+    const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
+    const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(4);
-    expect(structuredData.mainEntity[0].name).toBe('How is amount financed calculated?');
+    expect(webpageSchema?.name).toBe('Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch');
+    expect(softwareSchema?.name).toBe('Car Loan Calculator');
+    expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
+    expect(faqSchema?.mainEntity).toHaveLength(4);
+    expect(faqSchema?.mainEntity?.[0]?.name).toBe('How is amount financed calculated?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

@@ -62,6 +62,11 @@ const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'leasing-calculator',
 ]);
 const UX_FIRST_DEFER_CORE_ROUTES = new Set([
+  '/car-loan-calculators/car-loan-calculator/',
+  '/car-loan-calculators/auto-loan-calculator/',
+  '/car-loan-calculators/hire-purchase-calculator/',
+  '/car-loan-calculators/pcp-calculator/',
+  '/car-loan-calculators/car-lease-calculator/',
   '/credit-card-calculators/credit-card-payment-calculator/',
   '/credit-card-calculators/credit-card-minimum-payment-calculator/',
   '/credit-card-calculators/balance-transfer-credit-card-calculator/',
@@ -86,6 +91,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/time-and-date/energy-based-nap-selector/',
 ]);
 const STRICT_INLINE_CALCULATORS = new Set([
+  'car-loan',
   'quadratic-equation',
   'slope-distance',
   'factoring',

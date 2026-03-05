@@ -4,16 +4,16 @@ test.describe('PCP Calculator SEO', () => {
   test('PCP-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/car-loan-calculators/pcp-calculator');
 
-    await expect(page).toHaveTitle('PCP Calculator - Monthly Payment, GFV & Total Cost');
+    await expect(page).toHaveTitle('PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate PCP monthly payment, final payment (GFV + option fee), total interest, and total payable with premium slider inputs, three table views, and FAQs.'
+      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('PCP Calculator');
+    await expect(h1).toHaveText('PCP Car Finance Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -25,10 +25,17 @@ test.describe('PCP Calculator SEO', () => {
     const structuredText = await structuredDataScript.textContent();
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const webpageSchema = graph.find((entry) => entry?.['@type'] === 'WebPage');
+    const softwareSchema = graph.find((entry) => entry?.['@type'] === 'SoftwareApplication');
+    const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
+    const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(10);
-    expect(structuredData.mainEntity[0].name).toBe(
+    expect(webpageSchema?.name).toBe('PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch');
+    expect(softwareSchema?.name).toBe('PCP Car Finance Calculator');
+    expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
+    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'How does a PCP calculator estimate monthly payment?'
     );
 

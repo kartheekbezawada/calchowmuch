@@ -23,7 +23,7 @@ test.describe('PCP Calculator', () => {
   }) => {
     await page.goto('/car-loan-calculators/pcp-calculator/');
 
-    await expect(page.locator('#calculator-title')).toHaveText('PCP Calculator');
+    await expect(page.locator('#calculator-title')).toHaveText('PCP Car Finance Calculator');
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Auto Loans');

@@ -4,16 +4,18 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
   test('MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/car-loan-calculators/auto-loan-calculator');
 
-    await expect(page).toHaveTitle('Multiple Car Loan Calculator - Compare Two Auto Loans');
+    await expect(page).toHaveTitle(
+      'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch'
+    );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Compare two car loans side by side and estimate combined monthly payment, total interest, and total paid with amortization views and FAQs.'
+      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Multiple Car Loan Calculator');
+    await expect(h1).toHaveText('Auto Loan Comparison Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -25,10 +27,19 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
     const structuredText = await structuredDataScript.textContent();
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const webpageSchema = graph.find((entry) => entry?.['@type'] === 'WebPage');
+    const softwareSchema = graph.find((entry) => entry?.['@type'] === 'SoftwareApplication');
+    const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
+    const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(10);
-    expect(structuredData.mainEntity[0].name).toBe(
+    expect(webpageSchema?.name).toBe(
+      'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch'
+    );
+    expect(softwareSchema?.name).toBe('Auto Loan Comparison Calculator');
+    expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
+    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'What does this multiple car loan calculator compare?'
     );
 

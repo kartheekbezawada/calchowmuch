@@ -4,11 +4,13 @@ test.describe('Hire Purchase Calculator SEO', () => {
   test('HIRE-PURCHASE-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/car-loan-calculators/hire-purchase-calculator');
 
-    await expect(page).toHaveTitle('Hire Purchase Calculator - Monthly Payment, Balloon & Total Cost');
+    await expect(page).toHaveTitle(
+      'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch'
+    );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate hire purchase monthly payment, final balloon amount, total interest, and total payable with premium slider inputs and amortization views.'
+      'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.'
     );
 
     const h1 = page.locator('h1');
@@ -25,10 +27,17 @@ test.describe('Hire Purchase Calculator SEO', () => {
     const structuredText = await structuredDataScript.textContent();
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const webpageSchema = graph.find((entry) => entry?.['@type'] === 'WebPage');
+    const softwareSchema = graph.find((entry) => entry?.['@type'] === 'SoftwareApplication');
+    const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
+    const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(structuredData['@type']).toBe('FAQPage');
-    expect(structuredData.mainEntity).toHaveLength(10);
-    expect(structuredData.mainEntity[0].name).toBe(
+    expect(webpageSchema?.name).toBe('Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch');
+    expect(softwareSchema?.name).toBe('Hire Purchase Calculator');
+    expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
+    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'How does a hire purchase calculator estimate monthly payment?'
     );
 

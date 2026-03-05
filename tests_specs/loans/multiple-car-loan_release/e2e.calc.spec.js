@@ -23,7 +23,7 @@ test.describe('Multiple Car Loan Calculator', () => {
   }) => {
     await page.goto('/car-loan-calculators/auto-loan-calculator/');
 
-    await expect(page.locator('#calculator-title')).toHaveText('Multiple Car Loan Calculator');
+    await expect(page.locator('#calculator-title')).toHaveText('Auto Loan Comparison Calculator');
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Auto Loans');
