@@ -2625,6 +2625,13 @@
         margin-top: 0;
       }
 
+      #cc-min-explanation h4 {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        color: rgba(224, 242, 254, 0.98);
+      }
+
       #cc-min-explanation > p,
       #cc-min-explanation .cc-min-exp-section > p {
         margin: 0;
@@ -2640,6 +2647,68 @@
         border-radius: 0.92rem;
         border: 1px solid rgba(125, 211, 252, 0.16);
         background: linear-gradient(170deg, rgba(15, 23, 42, 0.46), rgba(30, 41, 59, 0.26));
+      }
+
+      #cc-min-explanation .cc-min-guide-section {
+        gap: 1rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      #cc-min-explanation .cc-min-guide-block {
+        display: grid;
+        gap: 0.42rem;
+        margin: 0;
+        margin-bottom: 0.28rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      #cc-min-explanation .cc-min-guide-block h4 {
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        letter-spacing: 0.01em;
+      }
+
+      #cc-min-explanation .cc-min-guide-block > p,
+      #cc-min-explanation .cc-min-guide-block > ul {
+        margin-left: 0.95rem;
+      }
+
+      #cc-min-explanation .cc-min-guide-block p {
+        margin: 0;
+      }
+
+      #cc-min-explanation .cc-min-guide-formula {
+        display: inline;
+        padding: 0;
+        border-radius: 0;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        color: rgba(186, 230, 253, 0.96);
+        border: 0;
+        background: transparent;
+        font-style: italic;
+        opacity: 0.94;
+      }
+
+      #cc-min-explanation .cc-min-guide-list {
+        margin: 0;
+        padding-left: 1.1rem;
+        display: grid;
+        gap: 0.34rem;
+      }
+
+      #cc-min-explanation .cc-min-guide-list li {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.5;
+        color: rgba(226, 232, 240, 0.94);
       }
 
       #cc-min-explanation [data-cc-min] {
@@ -2818,9 +2887,9 @@
     <noscript>
       <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
     </noscript>
-    <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.d9c57150.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.81e81f4a.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.d9c57150.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-minimum-payment-calculator.81e81f4a.css" />
     </noscript>
  
     <!-- CHM_ADSENSE_HEAD_START -->
@@ -3088,32 +3157,161 @@
     </div>
   </section>
 
-  <section class="cc-min-exp-section">
-    <h3 id="cc-min-explain-heading">Explanation</h3>
-    <p>
-      Your minimum payment is estimated each month as the greater of a percentage of the remaining
-      balance and a fixed lowest monthly payment (floor). In this scenario, the first minimum
-      payment is <span data-cc-min="first-payment">—</span>.
-    </p>
-    <p>
-      Because the percentage-based minimum shrinks as balance declines, principal reduction slows
-      over time. That is why this scenario takes <span data-cc-min="months">—</span> months and
-      accumulates <span data-cc-min="interest">—</span> in interest.
-    </p>
-    <p>
-      The lowest monthly payment (floor) keeps the minimum from dropping below
-      <span data-cc-min="floor">—</span>, which helps prevent the payment from becoming too small at
-      low balances.
-    </p>
-    <p>
-      Paying only minimums can be much more expensive than using a fixed higher payment strategy.
-      Comparing this minimum-only total (<span data-cc-min="total">—</span>) against a fixed payment
-      plan helps you quantify the savings from faster payoff.
-    </p>
-    <p>
-      This estimate assumes fixed APR, no late fees, no annual fees, no new purchases, and on-time
-      monthly payments. Real card statements can differ if rates, fees, or spending behavior change.
-    </p>
+  <section class="cc-min-exp-section cc-min-guide-section" id="cc-min-how-to-guide">
+    <h3 id="cc-min-how-to-guide-heading">How to Guide</h3>
+
+    <div class="cc-min-guide-block">
+      <h4>How Minimum Payments Are Calculated</h4>
+      <p>
+        A credit card minimum payment is the smallest amount required to keep your account current.
+        Most issuers model the monthly minimum as the higher of a percentage-based amount and a
+        fixed floor amount. With your current values, the percentage-only amount is
+        <span data-cc-min="first-rate-payment">—</span>, the floor is
+        <span data-cc-min="floor">—</span>, and the first required payment is
+        <span data-cc-min="first-payment">—</span>.
+      </p>
+      <p class="cc-min-guide-formula">
+        Minimum payment = max(balance x minimum payment rate, lowest monthly payment)
+      </p>
+      <p>
+        In this scenario the model uses a starting balance of <span data-cc-min="balance">—</span>,
+        APR of <span data-cc-min="apr">—</span>, and minimum payment rate of
+        <span data-cc-min="rate">—</span>.
+      </p>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>Why Minimum Payments Slow Down Debt Repayment</h4>
+      <p>
+        As your balance declines, percentage-based minimums usually decline too. That means less of
+        each payment goes toward principal over time, which can extend payoff and increase the
+        overall borrowing cost.
+      </p>
+      <p>
+        In this scenario, payoff takes <span data-cc-min="months">—</span> (about
+        <span data-cc-min="years">—</span> years), with total interest of
+        <span data-cc-min="interest">—</span>.
+      </p>
+      <p>
+        This is why minimum-only repayment often feels manageable month to month but expensive over
+        the full timeline.
+      </p>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>The Role of the Minimum Payment Floor</h4>
+      <p>
+        The lowest monthly payment floor keeps your required payment from dropping below
+        <span data-cc-min="floor">—</span>. Without a floor, required payments could become very
+        small near the end of the schedule and stretch payoff further.
+      </p>
+      <p>
+        Early in payoff, the percentage-based amount tends to control the minimum. Later, the floor
+        often becomes the active minimum once the balance is lower.
+      </p>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>Why Minimum-Only Repayment Becomes Expensive</h4>
+      <p>
+        Starting from a balance of <span data-cc-min="balance">—</span>, this minimum-only path
+        leads to total payments of <span data-cc-min="total">—</span>, which is
+        <span data-cc-min="interest-multiple">—</span> your starting balance.
+      </p>
+      <p>
+        APR of <span data-cc-min="apr">—</span> corresponds to roughly
+        <span data-cc-min="monthly-apr">—</span> per month, so interest can continue compounding as
+        long as a balance remains.
+      </p>
+      <p>
+        Total interest in this run is <span data-cc-min="interest">—</span>, and total paid is
+        <span data-cc-min="total">—</span>, which shows how long repayment windows magnify overall
+        borrowing cost.
+      </p>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>How Fixed Payments Change the Outcome</h4>
+      <p>
+        One practical way to reduce cost is to move from minimum-only payments to a fixed higher
+        monthly payment. Fixed payments reduce principal faster, shorten payoff time, and lower
+        cumulative interest.
+      </p>
+      <ul class="cc-min-guide-list">
+        <li>Faster principal reduction month by month</li>
+        <li>Lower total interest over the life of the balance</li>
+        <li>Clearer payoff planning and less long-term repayment drag</li>
+      </ul>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>How Credit Card Interest Works</h4>
+      <p>
+        Credit card APR is an annual rate, but interest accrues on a monthly or daily basis. With
+        APR at <span data-cc-min="apr">—</span>, the approximate monthly rate is
+        <span data-cc-min="monthly-apr">—</span>. If the balance is not paid in full, interest
+        keeps accruing on the remaining amount.
+      </p>
+      <p>
+        When minimum payments are close to the interest charge, principal falls slowly and payoff
+        duration increases.
+      </p>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>When Minimum Payments Can Be Useful</h4>
+      <p>
+        Minimum payments can be useful temporarily when cash flow is tight and your goal is to stay
+        current and avoid late-payment penalties while preparing a stronger repayment plan.
+      </p>
+      <ul class="cc-min-guide-list">
+        <li>Short-term cash flow pressure</li>
+        <li>Protecting payment history while restructuring budget</li>
+        <li>Transitioning to a fixed-payment or refinance strategy</li>
+      </ul>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>Strategies to Pay Off Faster</h4>
+      <p>
+        Moving from minimum-only payments to a fixed higher monthly payment generally lowers total
+        interest and shortens payoff time. Even modest increases can materially improve the
+        long-term outcome.
+      </p>
+      <ul class="cc-min-guide-list">
+        <li>Pay more than the minimum whenever possible</li>
+        <li>Set a fixed monthly target to accelerate principal reduction</li>
+        <li>Avoid new spending on the same card during payoff</li>
+      </ul>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>Important Assumptions in This Estimate</h4>
+      <p>
+        This estimate assumes fixed APR, no new purchases, no additional fees, and on-time monthly
+        payments. Real credit card statements can differ if rates change, fees apply, or spending
+        behavior changes.
+      </p>
+      <ul class="cc-min-guide-list">
+        <li>APR stays constant for the full payoff period</li>
+        <li>No extra card purchases are added after the starting balance</li>
+        <li>No late fees, annual fees, or penalty APR changes</li>
+      </ul>
+    </div>
+
+    <div class="cc-min-guide-block">
+      <h4>How to Use This Calculator Effectively</h4>
+      <p>
+        Use this calculator to understand trade-offs by testing multiple scenarios with different
+        balances, APR values, minimum rates, and floor settings. Focus on payoff time, total
+        interest, and total paid to choose a realistic repayment strategy.
+      </p>
+      <ul class="cc-min-guide-list">
+        <li>Run a minimum-only baseline first</li>
+        <li>Increase repayment assumptions and compare total interest differences</li>
+        <li>Use the yearly table to track how quickly balance is reducing</li>
+      </ul>
+    </div>
   </section>
 
   <h3 id="cc-min-faq-heading">Frequently Asked Questions</h3>
