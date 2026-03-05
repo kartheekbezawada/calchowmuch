@@ -488,6 +488,7 @@ if (level === 'cluster') {
     }
     runPlaywright(files, `CLUSTER=${clusterId} TYPE=${type}`);
     run('node', ['scripts/content-quality-thin-score.mjs', '--scope=cluster']);
+    run('node', ['scripts/validate-seo-mojibake.mjs', '--scope=cluster']);
   } else if (type === 'cwv') {
     const files = collectFiles(
       dir,
@@ -505,6 +506,7 @@ if (level === 'cluster') {
       process.exit(0);
     }
     runPlaywrightGrouped(scopeDetails, suiteFiles);
+    run('node', ['scripts/validate-seo-mojibake.mjs', '--scope=cluster']);
   }
 
   process.exit(0);
@@ -556,6 +558,7 @@ if (type === 'unit') {
   }
   runPlaywright(files, `CLUSTER=${clusterId} CALC=${calcId} TYPE=${type}`);
   run('node', ['scripts/content-quality-thin-score.mjs', '--scope=calc']);
+  run('node', ['scripts/validate-seo-mojibake.mjs', '--scope=calc']);
 } else if (type === 'cwv') {
   const files = collectFiles(
     dir,
@@ -584,4 +587,5 @@ if (type === 'unit') {
   runPlaywrightGrouped(scopeDetails, suiteFiles, {
     CWV_ASSERT_MODE: 'smoke',
   });
+  run('node', ['scripts/validate-seo-mojibake.mjs', '--scope=calc']);
 }

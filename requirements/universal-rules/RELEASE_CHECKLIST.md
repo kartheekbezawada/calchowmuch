@@ -712,6 +712,15 @@ HARD: Route present in public/sitemap.xml
 
 HARD: Regenerate sitemap after route changes
 
+13.7 Mojibake Audit Command (SEO Metadata/JSON-LD)
+
+HARD: Run mojibake audit in release SEO scope:
+- `npm run test:seo:mojibake -- --scope=full`
+- `CLUSTER={cluster} npm run test:seo:mojibake -- --scope=cluster`
+- `CLUSTER={cluster} CALC={calculator} npm run test:seo:mojibake -- --scope=calc`
+
+HARD: Release fails when any mojibake token is detected in calculator `<title>`, tracked SEO/social meta fields, or JSON-LD blocks.
+
 14. Security & Trust — MANUAL ANNEX (NON-BLOCKING)
 
 Manual Annex: HTTPS only, no mixed content
