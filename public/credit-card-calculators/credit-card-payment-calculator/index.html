@@ -2178,6 +2178,117 @@
           animation: none;
         }
       }
+
+      /* --- Payoff Progress Chart --- */
+      .cc-payoff-chart-section.is-hidden { display: none; }
+
+      .cc-payoff-chart-wrap {
+        position: relative;
+        width: 100%;
+        height: 320px;
+      }
+
+      .cc-payoff-chart-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.7rem;
+        cursor: crosshair;
+      }
+
+      .cc-payoff-chart-tooltip {
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+        min-width: 195px;
+        padding: 0.72rem 0.9rem;
+        border-radius: 0.78rem;
+        border: 1px solid rgba(125, 211, 252, 0.36);
+        background: rgba(15, 23, 42, 0.97);
+        box-shadow: 0 8px 28px rgba(2, 6, 23, 0.75), 0 0 16px rgba(34, 211, 238, 0.12);
+        backdrop-filter: blur(10px);
+        color: rgba(226, 232, 240, 0.97);
+        font-size: 0.79rem;
+        line-height: 1.44;
+        white-space: nowrap;
+      }
+
+      .cc-payoff-chart-tooltip.is-hidden { display: none; }
+
+      .cc-payoff-chart-tooltip .chart-tooltip-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.97);
+        margin-bottom: 0.48rem;
+        padding-bottom: 0.36rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      }
+
+      .cc-payoff-chart-tooltip .chart-tooltip-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.22rem 0;
+      }
+
+      .cc-payoff-chart-tooltip .chart-tooltip-row .ct-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .cc-payoff-chart-tooltip .ct-dot-payments { background: #3b82f6; }
+      .cc-payoff-chart-tooltip .ct-dot-interest  { background: #f97316; }
+      .cc-payoff-chart-tooltip .ct-dot-balance   { background: #22d3ee; }
+
+      .cc-payoff-chart-tooltip .ct-label {
+        flex: 1;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      .cc-payoff-chart-tooltip .ct-value {
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        color: rgba(248, 250, 252, 0.97);
+      }
+
+      .cc-payoff-chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.3rem;
+        justify-content: center;
+        padding-top: 0.2rem;
+      }
+
+      .cc-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.44rem;
+        font-size: 0.77rem;
+        font-weight: 600;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      .cc-legend-swatch {
+        width: 14px;
+        height: 10px;
+        border-radius: 3px;
+        flex-shrink: 0;
+        display: inline-block;
+      }
+
+      .cc-legend-swatch--payments { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+      .cc-legend-swatch--interest  { background: linear-gradient(135deg, #f97316, #ea580c); }
+      .cc-legend-swatch--balance {
+        background: #22d3ee;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.28);
+      }
     </style>
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
@@ -2378,6 +2489,34 @@
         </thead>
         <tbody id="cc-payoff-table-body"></tbody>
       </table>
+    </div>
+  </section>
+
+  <section class="cc-payoff-exp-section cc-payoff-chart-section is-hidden" id="cc-payoff-chart-section">
+    <h3>Yearly Payoff Progress</h3>
+    <div class="cc-payoff-chart-wrap" id="cc-payoff-chart-wrap">
+      <canvas
+        id="cc-payoff-chart"
+        class="cc-payoff-chart-canvas"
+        aria-label="Yearly payoff progress chart showing annual payments, interest, and remaining balance"
+        role="img"
+      ></canvas>
+      <div
+        id="cc-payoff-chart-tooltip"
+        class="cc-payoff-chart-tooltip is-hidden"
+        aria-hidden="true"
+      ></div>
+    </div>
+    <div class="cc-payoff-chart-legend" aria-hidden="true">
+      <span class="cc-legend-item">
+        <span class="cc-legend-swatch cc-legend-swatch--payments"></span>Annual Payments
+      </span>
+      <span class="cc-legend-item">
+        <span class="cc-legend-swatch cc-legend-swatch--interest"></span>Annual Interest
+      </span>
+      <span class="cc-legend-item">
+        <span class="cc-legend-swatch cc-legend-swatch--balance"></span>Ending Balance
+      </span>
     </div>
   </section>
 

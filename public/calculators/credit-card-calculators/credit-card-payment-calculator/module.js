@@ -301,7 +301,323 @@ function calculate() {
 
   updateTable(data.yearly);
   updateExplanation({ ...data, balance, apr, extraPayment });
+  renderPayoffChart(data.yearly);
 }
+
+// ─── Payoff Progress Chart ────────────────────────────────────────────────────
+
+const chartSection  = document.querySelector('#cc-payoff-chart-section');
+const chartCanvas   = document.querySelector('#cc-payoff-chart');
+const chartTooltip  = document.querySelector('#cc-payoff-chart-tooltip');
+const chartWrap     = document.querySelector('#cc-payoff-chart-wrap');
+
+/** Abbreviate dollar values for Y-axis labels */
+function fmtAxis(v) {
+  if (v >= 1_000_000) return `$${(v / 1_000_000).toFixed(1)}M`;
+  if (v >= 1_000)     return `$${(v / 1_000).toFixed(v >= 10_000 ? 0 : 1)}k`;
+  return `$${Math.round(v)}`;
+}
+
+/** Full dollar amount for tooltip */
+function fmtFull(v) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(v);
+}
+
+/** Store last data for redraws on resize */
+let _lastYearly = null;
+
+function renderPayoffChart(yearly) {
+  if (!chartCanvas || !yearly || yearly.length === 0) return;
+  _lastYearly = yearly;
+
+  // Show the section
+  if (chartSection) chartSection.classList.remove('is-hidden');
+
+  _drawPayoffChart(yearly);
+
+  // Hover events
+  chartCanvas.onmousemove = (e) => _onChartHover(e, yearly);
+  chartCanvas.onmouseleave = _hideTooltip;
+  chartCanvas.ontouchend = _hideTooltip;
+}
+
+function _drawPayoffChart(yearly) {
+  const canvas = chartCanvas;
+  if (!canvas) return;
+
+  const dpr  = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const W    = Math.max(rect.width,  1);
+  const H    = Math.max(rect.height, 1);
+
+  canvas.width  = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // ── Layout margins ──────────────────────────────────────────────────────────
+  const pad = { top: 22, right: 22, bottom: 58, left: 68 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  // ── Colour tokens (matching the dark premium theme) ──────────────────────────
+  const CLR = {
+    grid:          'rgba(148, 163, 184, 0.13)',
+    axis:          'rgba(148, 163, 184, 0.44)',
+    label:         'rgba(148, 163, 184, 0.82)',
+    axisTitle:     'rgba(148, 163, 184, 0.68)',
+    payments:      ['rgba(59,130,246,0.95)',  'rgba(37,99,235,0.72)'],
+    interest:      ['rgba(249,115,22,0.95)',  'rgba(234,88,12,0.72)'],
+    balanceLine:   '#22d3ee',
+    balanceFill:   'rgba(34,211,238,0.10)',
+    balanceDotOut: '#22d3ee',
+    balanceDotIn:  '#081425',
+    activeColBg:   'rgba(255,255,255,0.04)',
+  };
+
+  // ── Y-axis range ─────────────────────────────────────────────────────────────
+  const allVals = yearly.flatMap((r) => [r.payment, r.interest, r.balance]);
+  const rawMax  = Math.max(...allVals);
+  const yMax    = rawMax * 1.14;               // 14 % head-room
+
+  // ── Coordinate helpers ───────────────────────────────────────────────────────
+  const n        = yearly.length;
+  const groupW   = plotW / n;
+  const barW     = Math.min(groupW * 0.30, 26);
+  const barGap   = Math.min(groupW * 0.05,  4);
+
+  const toY      = (v) => pad.top + plotH - (v / yMax) * plotH;
+  const xCenter  = (i) => pad.left + (i + 0.5) * groupW;
+  const baseY    = pad.top + plotH;             // bottom of plot area
+
+  // ── Clear ──────────────────────────────────────────────────────────────────
+  ctx.clearRect(0, 0, W, H);
+
+  // ── Grid lines & Y-axis ticks ──────────────────────────────────────────────
+  const GRID_N = 5;
+  const baseFontSize = W > 460 ? 11 : 10;
+  ctx.font          = `${baseFontSize}px system-ui,sans-serif`;
+  ctx.textBaseline  = 'middle';
+  ctx.textAlign     = 'right';
+
+  for (let g = 0; g <= GRID_N; g++) {
+    const val = (yMax / GRID_N) * (GRID_N - g);
+    const y   = pad.top + (plotH / GRID_N) * g;
+
+    // dashed grid line
+    ctx.beginPath();
+    ctx.strokeStyle = CLR.grid;
+    ctx.lineWidth   = 1;
+    ctx.setLineDash([4, 5]);
+    ctx.moveTo(pad.left,       y);
+    ctx.lineTo(W - pad.right,  y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Y tick label
+    ctx.fillStyle = CLR.label;
+    ctx.fillText(fmtAxis(val), pad.left - 7, y);
+  }
+
+  // ── Axes ──────────────────────────────────────────────────────────────────
+  ctx.beginPath();
+  ctx.strokeStyle = CLR.axis;
+  ctx.lineWidth   = 1.2;
+  ctx.moveTo(pad.left,       pad.top);
+  ctx.lineTo(pad.left,       baseY);
+  ctx.lineTo(W - pad.right,  baseY);
+  ctx.stroke();
+
+  // ── Balance area fill ─────────────────────────────────────────────────────
+  const balGrad = ctx.createLinearGradient(0, pad.top, 0, baseY);
+  balGrad.addColorStop(0,   CLR.balanceFill);
+  balGrad.addColorStop(1,   'rgba(34,211,238,0.01)');
+
+  ctx.beginPath();
+  ctx.moveTo(xCenter(0), toY(yearly[0].balance));
+  for (let i = 1; i < n; i++) ctx.lineTo(xCenter(i), toY(yearly[i].balance));
+  ctx.lineTo(xCenter(n - 1), baseY);
+  ctx.lineTo(xCenter(0),     baseY);
+  ctx.closePath();
+  ctx.fillStyle = balGrad;
+  ctx.fill();
+
+  // ── Balance line ──────────────────────────────────────────────────────────
+  ctx.beginPath();
+  ctx.strokeStyle = CLR.balanceLine;
+  ctx.lineWidth   = 2.5;
+  ctx.lineJoin    = 'round';
+  ctx.lineCap     = 'round';
+  for (let i = 0; i < n; i++) {
+    const x = xCenter(i);
+    const y = toY(yearly[i].balance);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // ── Balance dots ─────────────────────────────────────────────────────────
+  for (let i = 0; i < n; i++) {
+    const x = xCenter(i);
+    const y = toY(yearly[i].balance);
+    // outer glow ring
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(34,211,238,0.22)';
+    ctx.fill();
+    // filled dot
+    ctx.beginPath();
+    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = CLR.balanceDotOut;
+    ctx.fill();
+    // inner dark core
+    ctx.beginPath();
+    ctx.arc(x, y, 1.6, 0, Math.PI * 2);
+    ctx.fillStyle = CLR.balanceDotIn;
+    ctx.fill();
+  }
+
+  // ── Grouped bars ─────────────────────────────────────────────────────────
+  for (let i = 0; i < n; i++) {
+    const cx      = xCenter(i);
+    const leftBar = cx - barGap / 2 - barW;  // Payments bar left edge
+    const rightBar = cx + barGap / 2;         // Interest bar left edge
+
+    // Payments
+    const pyTop = toY(yearly[i].payment);
+    const pyH   = baseY - pyTop;
+    if (pyH > 0.5) {
+      const g = ctx.createLinearGradient(0, pyTop, 0, baseY);
+      g.addColorStop(0, CLR.payments[0]);
+      g.addColorStop(1, CLR.payments[1]);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      const rp = Math.min(4, pyH / 2, barW / 2);
+      ctx.roundRect(leftBar, pyTop, barW, pyH, [rp, rp, 0, 0]);
+      ctx.fill();
+    }
+
+    // Interest
+    const iyTop = toY(yearly[i].interest);
+    const iyH   = baseY - iyTop;
+    if (iyH > 0.5) {
+      const g = ctx.createLinearGradient(0, iyTop, 0, baseY);
+      g.addColorStop(0, CLR.interest[0]);
+      g.addColorStop(1, CLR.interest[1]);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      const ri = Math.min(4, iyH / 2, barW / 2);
+      ctx.roundRect(rightBar, iyTop, barW, iyH, [ri, ri, 0, 0]);
+      ctx.fill();
+    }
+  }
+
+  // ── X-axis labels ─────────────────────────────────────────────────────────
+  ctx.fillStyle    = CLR.label;
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'top';
+  ctx.font         = `${baseFontSize}px system-ui,sans-serif`;
+
+  // Skip labels if too crowded (show every Nth)
+  const skipEvery = n > 20 ? 3 : n > 12 ? 2 : 1;
+  for (let i = 0; i < n; i++) {
+    if (i % skipEvery !== 0 && i !== n - 1) continue;
+    const label = `Yr ${yearly[i].year}`;
+    ctx.fillText(label, xCenter(i), baseY + 9);
+  }
+
+  // ── Axis titles ───────────────────────────────────────────────────────────
+  ctx.fillStyle    = CLR.axisTitle;
+  ctx.font         = `${baseFontSize}px system-ui,sans-serif`;
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillText('Year', pad.left + plotW / 2, H - 7);
+
+  ctx.save();
+  ctx.translate(13, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign    = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Amount ($)', 0, 0);
+  ctx.restore();
+
+  // ── Store hit-test metadata ───────────────────────────────────────────────
+  canvas._chartMeta = { xCenter, groupW, n, pad, plotW };
+}
+
+function _onChartHover(event, yearly) {
+  const canvas = chartCanvas;
+  if (!canvas || !canvas._chartMeta) return;
+
+  const rect  = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+
+  const { xCenter, groupW, n, pad } = canvas._chartMeta;
+
+  // Find the closest year column
+  let best = -1, bestDist = Infinity;
+  for (let i = 0; i < n; i++) {
+    const cx   = xCenter(i);
+    const dist = Math.abs(mouseX - cx);
+    if (dist < groupW / 2 && dist < bestDist) {
+      best = i;
+      bestDist = dist;
+    }
+  }
+
+  if (best === -1) { _hideTooltip(); return; }
+
+  const row = yearly[best];
+
+  // Build tooltip
+  if (!chartTooltip) return;
+  chartTooltip.innerHTML = `
+    <div class="chart-tooltip-title">Year ${row.year}</div>
+    <div class="chart-tooltip-row">
+      <span class="ct-dot ct-dot-payments"></span>
+      <span class="ct-label">Payments</span>
+      <span class="ct-value">${fmtFull(row.payment)}</span>
+    </div>
+    <div class="chart-tooltip-row">
+      <span class="ct-dot ct-dot-interest"></span>
+      <span class="ct-label">Interest</span>
+      <span class="ct-value">${fmtFull(row.interest)}</span>
+    </div>
+    <div class="chart-tooltip-row">
+      <span class="ct-dot ct-dot-balance"></span>
+      <span class="ct-label">Balance</span>
+      <span class="ct-value">${fmtFull(row.balance)}</span>
+    </div>
+  `;
+
+  // Position relative to the chart wrapper
+  const wrapRect    = chartWrap ? chartWrap.getBoundingClientRect() : rect;
+  const tipX        = event.clientX - wrapRect.left;
+  const tipY        = event.clientY - wrapRect.top;
+  const tipW        = chartTooltip.offsetWidth  || 200;
+  const tipH        = chartTooltip.offsetHeight || 120;
+  const maxLeft     = wrapRect.width  - tipW - 8;
+  const maxTop      = wrapRect.height - tipH - 8;
+
+  chartTooltip.style.left = `${Math.max(8, Math.min(tipX + 14, maxLeft))}px`;
+  chartTooltip.style.top  = `${Math.max(8, Math.min(tipY - tipH / 2, maxTop))}px`;
+  chartTooltip.classList.remove('is-hidden');
+}
+
+function _hideTooltip() {
+  if (chartTooltip) chartTooltip.classList.add('is-hidden');
+}
+
+// Re-draw chart on window resize to keep it sharp and responsive
+let _resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    if (_lastYearly) _drawPayoffChart(_lastYearly);
+  }, 120);
+});
+
+// ─── Event listeners ─────────────────────────────────────────────────────────
 
 calculateButton?.addEventListener('click', () => {
   hasCalculated = true;
