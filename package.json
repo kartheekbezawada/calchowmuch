@@ -12,6 +12,7 @@
     "test:cwv:target": "CLS_GUARD_ROUTE_INCLUDE=$TARGET playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cls:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:schema:dedupe": "node scripts/schema-structured-data-dedupe.mjs",
+    "test:seo:mojibake": "node scripts/validate-seo-mojibake.mjs",
     "test:content:quality": "node scripts/content-quality-thin-score.mjs",
     "test:beacon:dedupe": "node scripts/beacon-duplicate-guard.mjs",
     "test:e2e:ui": "playwright test --ui",

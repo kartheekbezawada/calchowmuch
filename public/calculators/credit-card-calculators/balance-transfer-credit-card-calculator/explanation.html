@@ -1,20 +1,20 @@
 <div id="cc-bt-explanation" class="cc-bt-explanation">
   <section class="cc-bt-exp-section cc-bt-exp-intro">
-    <h2>Balance Transfer Summary</h2>
+    <h2>Balance Transfer Credit Card Complete Guide</h2>
     <p>
-      A transfer balance of <span data-cc-bt="balance">—</span> with a one-time fee of
-      <span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>) starts at
-      <span data-cc-bt="starting-balance">—</span>.
+      A transfer balance of <span data-cc-bt="balance">-</span> with one-time fee of
+      <span data-cc-bt="fee">-</span> (<span data-cc-bt="fee-amount">-</span>) starts at
+      <span data-cc-bt="starting-balance">-</span>.
     </p>
     <p>
-      With <span data-cc-bt="promo-months">—</span> at <span data-cc-bt="promo-apr">—</span> and a
-      post-promo APR of <span data-cc-bt="post-apr">—</span>, paying
-      <span data-cc-bt="payment">—</span> monthly is projected to clear the balance in
-      <span data-cc-bt="months">—</span>.
+      With <span data-cc-bt="promo-months">-</span> at <span data-cc-bt="promo-apr">-</span> and
+      post-promo APR of <span data-cc-bt="post-apr">-</span>, monthly payment of
+      <span data-cc-bt="payment">-</span> is projected to clear the balance in
+      <span data-cc-bt="months">-</span>.
     </p>
     <p>
-      Estimated total interest is <span data-cc-bt="interest">—</span> and total paid is
-      <span data-cc-bt="total-paid">—</span>.
+      Estimated total interest is <span data-cc-bt="interest">-</span>, and estimated total paid is
+      <span data-cc-bt="total-paid">-</span>.
     </p>
   </section>
 
@@ -32,52 +32,52 @@
         <tbody>
           <tr>
             <td>Transfer Balance</td>
-            <td><span data-cc-bt="balance">—</span></td>
+            <td><span data-cc-bt="balance">-</span></td>
             <td>Input</td>
           </tr>
           <tr>
             <td>Transfer Fee</td>
-            <td><span data-cc-bt="fee">—</span> (<span data-cc-bt="fee-amount">—</span>)</td>
+            <td><span data-cc-bt="fee">-</span> (<span data-cc-bt="fee-amount">-</span>)</td>
             <td>Input/Output</td>
           </tr>
           <tr>
             <td>Starting Balance</td>
-            <td><span data-cc-bt="starting-balance">—</span></td>
+            <td><span data-cc-bt="starting-balance">-</span></td>
             <td>Output</td>
           </tr>
           <tr>
             <td>Promo APR</td>
-            <td><span data-cc-bt="promo-apr">—</span></td>
+            <td><span data-cc-bt="promo-apr">-</span></td>
             <td>Input</td>
           </tr>
           <tr>
             <td>Promo Period</td>
-            <td><span data-cc-bt="promo-months">—</span></td>
+            <td><span data-cc-bt="promo-months">-</span></td>
             <td>Input</td>
           </tr>
           <tr>
             <td>Post-Promo APR</td>
-            <td><span data-cc-bt="post-apr">—</span></td>
+            <td><span data-cc-bt="post-apr">-</span></td>
             <td>Input</td>
           </tr>
           <tr>
             <td>Monthly Payment</td>
-            <td><span data-cc-bt="payment">—</span></td>
+            <td><span data-cc-bt="payment">-</span></td>
             <td>Input</td>
           </tr>
           <tr>
             <td>Payoff Time</td>
-            <td><span data-cc-bt="months">—</span></td>
+            <td><span data-cc-bt="months">-</span></td>
             <td>Output</td>
           </tr>
           <tr>
             <td>Total Interest</td>
-            <td><span data-cc-bt="interest">—</span></td>
+            <td><span data-cc-bt="interest">-</span></td>
             <td>Output</td>
           </tr>
           <tr>
             <td>Total Paid</td>
-            <td><span data-cc-bt="total-paid">—</span></td>
+            <td><span data-cc-bt="total-paid">-</span></td>
             <td>Output</td>
           </tr>
         </tbody>
@@ -102,24 +102,151 @@
     </div>
   </section>
 
-  <section class="cc-bt-exp-section">
-    <h3>Explanation</h3>
-    <p>
-      A balance transfer moves debt to a card with a temporary lower APR, often 0%, to reduce
-      interest while you pay down principal faster.
-    </p>
-    <p>
-      The transfer fee is added upfront, so your true starting point is
-      <span data-cc-bt="starting-balance">—</span>, not just the transferred balance.
-    </p>
-    <p>
-      If your payment does not clear the balance during the promo window, the remaining amount
-      starts accruing at <span data-cc-bt="post-apr">—</span>, which can sharply raise total cost.
-    </p>
-    <p>
-      This estimate assumes fixed APR inputs, consistent monthly payments, no missed payments, and
-      no new purchases added to the transfer card.
-    </p>
+  <section class="cc-bt-exp-section cc-bt-guide-section" id="cc-bt-how-to-guide">
+    <h3>How to Guide</h3>
+
+    <div class="cc-bt-guide-block">
+      <h4>What This Calculator Is Designed to Estimate</h4>
+      <p>
+        A balance transfer calculator estimates whether moving existing debt to a new card with a
+        promotional APR can reduce overall interest and improve payoff timing after considering fee,
+        promo window, and post-promo rate.
+      </p>
+      <p>
+        The model combines all key variables so you can evaluate whether the transfer likely creates
+        real savings or only short-term payment relief.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>Calculate the Transfer Fee and Starting Balance</h4>
+      <p>
+        Transfer fee is generally charged as a percentage of the moved balance and added immediately
+        to the new account. That means repayment starts above the original transferred amount.
+      </p>
+      <p class="cc-bt-guide-formula">Transfer fee = Transfer balance x Transfer fee percent</p>
+      <p class="cc-bt-guide-formula">Starting balance = Transfer balance + Transfer fee</p>
+      <ul class="cc-bt-guide-list">
+        <li>Transfer balance: <span data-cc-bt="balance">-</span></li>
+        <li>Transfer fee: <span data-cc-bt="fee">-</span> (<span data-cc-bt="fee-amount">-</span>)</li>
+        <li>Starting balance: <span data-cc-bt="starting-balance">-</span></li>
+      </ul>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>How Interest Works Without a Balance Transfer</h4>
+      <p>
+        Without a transfer, debt continues compounding at the existing APR from month one. Monthly
+        interest is charged on remaining principal, so slow principal reduction usually increases
+        total cost over time.
+      </p>
+      <p class="cc-bt-guide-formula">Monthly interest rate = APR / 12</p>
+      <p class="cc-bt-guide-formula">Monthly interest = Current balance x Monthly interest rate</p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>How Interest Works During the Promo Window</h4>
+      <p>
+        During the promotional period, the promo APR applies for
+        <span data-cc-bt="promo-months">-</span>. At low or zero promo APR, a larger share of each
+        payment reduces principal directly.
+      </p>
+      <ul class="cc-bt-guide-list">
+        <li>Promo APR: <span data-cc-bt="promo-apr">-</span></li>
+        <li>Promo period: <span data-cc-bt="promo-months">-</span></li>
+        <li>Monthly payment: <span data-cc-bt="payment">-</span></li>
+      </ul>
+      <p>
+        This phase is where most potential savings are usually generated.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>After the Promotional Period Ends</h4>
+      <p>
+        Any remaining balance after the promo window shifts to post-promo APR of
+        <span data-cc-bt="post-apr">-</span>. Once this happens, monthly interest can increase
+        sharply and extend payoff duration.
+      </p>
+      <p>
+        This is why payoff pace during promo months is critical to total-cost outcome.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>Promo Payoff Feasibility Check</h4>
+      <p>
+        A useful planning check is to compare your monthly payment with the minimum monthly pace
+        needed to clear the starting balance before promo expiry.
+      </p>
+      <p class="cc-bt-guide-formula">Required monthly pace = Starting balance / Promo months</p>
+      <p>
+        If payment is below this pace, part of balance may continue into the post-promo phase.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>How to Use the Inputs Effectively</h4>
+      <p>
+        Use realistic values for transfer fee, promo APR, promo months, post-promo APR, and monthly
+        payment. Then compare the resulting payoff months and total paid across different offer
+        assumptions.
+      </p>
+      <ul class="cc-bt-guide-list">
+        <li>Keep monthly payment realistic for your cash flow.</li>
+        <li>Test both conservative and aggressive payoff cases.</li>
+        <li>Prioritize scenarios that minimize total paid, not only monthly burden.</li>
+      </ul>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>When a Balance Transfer Usually Makes Sense</h4>
+      <p>
+        Transfer strategy is generally stronger when promo APR is materially lower than current card
+        APR, transfer fee is manageable, and repayment pace is sufficient to reduce most balance
+        before post-promo rate starts.
+      </p>
+      <p>
+        This run estimates payoff in <span data-cc-bt="months">-</span> with total interest of
+        <span data-cc-bt="interest">-</span> and total paid of
+        <span data-cc-bt="total-paid">-</span>.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>How to Compare Multiple Transfer Offers</h4>
+      <p>
+        Run each offer separately using its own fee, promo APR, promo duration, and post-promo APR.
+        Compare total paid and payoff months side by side to identify the lower-cost realistic plan.
+      </p>
+      <p>
+        Offers with low promo APR but short promo duration can still underperform if post-promo APR is
+        high and payment pace is insufficient.
+      </p>
+    </div>
+
+    <div class="cc-bt-guide-block">
+      <h4>Core Assumptions and Limitations</h4>
+      <p>
+        This model assumes transfer fee is added upfront, promo and post-promo APR inputs remain as
+        entered, monthly payments are consistent and on time, and no additional purchases are made on
+        the transfer card during payoff.
+      </p>
+    </div>
+  </section>
+
+  <section class="cc-bt-exp-section cc-bt-exp-section--notes" aria-label="Important notes">
+    <h3>Important Notes</h3>
+    <ul class="cc-bt-important-notes">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
+      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+      <li>
+        <strong>Assumptions:</strong> Assumes transfer fee is added upfront, promo APR applies for
+        the selected promo months, post-promo APR applies afterward, and payments are made on time.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
   </section>
 
   <h3 id="cc-bt-faq-heading">Frequently Asked Questions</h3>
@@ -205,18 +332,4 @@
       </p>
     </div>
   </div>
-
-  <section class="cc-bt-exp-section cc-bt-exp-section--notes" aria-label="Important notes">
-    <h3>Important Notes</h3>
-    <ul class="cc-bt-important-notes">
-      <li><strong>Last updated:</strong> February 2026.</li>
-      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
-      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
-      <li>
-        <strong>Assumptions:</strong> Assumes transfer fee is added upfront, promo APR applies for
-        the selected promo months, post-promo APR applies afterward, and payments are made on time.
-      </li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
-    </ul>
-  </section>
 </div>

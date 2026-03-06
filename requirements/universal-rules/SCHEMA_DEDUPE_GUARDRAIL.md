@@ -12,6 +12,12 @@ Prevent duplicate JSON-LD target schema types on a single URL and provide determ
 
 Per-page rule: each target type must appear at most once in final HTML.
 
+## 2.1) Interplay with Metadata Contract (Clarification)
+
+- This guardrail complements, and does not replace, SEO head metadata contract enforcement in `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` (`UR-SEO-040` to `UR-SEO-051`).
+- Calculator routes still must satisfy presence requirements for `SoftwareApplication` + `BreadcrumbList`; dedupe only enforces uniqueness/parseability of target types.
+- Global `WebSite` schema is outside per-calculator dedupe target scope and must remain global-once rather than duplicated per calculator page.
+
 ## 3) Command Contract
 
 Primary command:

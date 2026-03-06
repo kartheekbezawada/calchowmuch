@@ -589,23 +589,47 @@ Automation: TARGET_ROUTE={route} npm run test:accessibility:ux
 13. SERP Readiness — HARD
     13.1 Metadata integrity
 
-HARD: Unique <title> and <meta name="description">
+HARD: `<meta charset="utf-8">` present in initial HTML `<head>`
+
+HARD: Unique `<title>` and unique `<meta name="description">`
 
 HARD: Exactly one <h1>
 
-HARD: Correct absolute canonical URL
+HARD: Description must not equal title text
+
+HARD: Title and description must not contain ellipsis (`...` or `…`)
+
+HARD: Metadata must not contain mojibake/encoding artifacts (for example `â€“`, `â€™`, `â€œ`)
+
+HARD: Metadata must not include disallowed generic placeholder patterns (for example `Online Calculator`, `Free Tool`, `calculator with fast inputs and clear results`, `provides explanations, examples, and assumptions`) unless explicitly approved in release evidence
+
+HARD: Correct absolute canonical URL (HTTPS + `calchowmuch.com`)
+
+HARD: `og:url` equals canonical URL
+
+HARD: OG/Twitter mirror checks:
+- `og:title` and `twitter:title` match final SEO title (or approved close equivalent)
+- `og:description` and `twitter:description` match final SEO description (or approved close equivalent)
+- `twitter:card=summary_large_image`
 
 13.2 Structured data hygiene
 
-HARD: Required JSON-LD present:
+HARD: Calculator page detection standard:
+- pathname contains `-calculators/`, OR
+- pathname ends with `-calculator/`, OR
+- metadata explicitly sets `calculator=true`
 
-WebPage
+HARD: Required calculator JSON-LD present on detected calculator pages:
 
-SoftwareApplication
+- `SoftwareApplication`
 
-BreadcrumbList
+- `BreadcrumbList`
 
-HARD: FAQ parity (3-way match):
+HARD: `WebPage` is optional if route architecture uses it; do not require it for all calculator pages.
+
+HARD: Do not inject per-calculator `WebSite` node; `WebSite` remains global-once.
+
+HARD: FAQ schema is optional; when present, parity (3-way match) is mandatory:
 
 visible FAQ
 
@@ -687,6 +711,15 @@ HARD: Graph area must not create horizontal overflow.
 HARD: Route present in public/sitemap.xml
 
 HARD: Regenerate sitemap after route changes
+
+13.7 Mojibake Audit Command (SEO Metadata/JSON-LD)
+
+HARD: Run mojibake audit in release SEO scope:
+- `npm run test:seo:mojibake -- --scope=full`
+- `CLUSTER={cluster} npm run test:seo:mojibake -- --scope=cluster`
+- `CLUSTER={cluster} CALC={calculator} npm run test:seo:mojibake -- --scope=calc`
+
+HARD: Release fails when any mojibake token is detected in calculator `<title>`, tracked SEO/social meta fields, or JSON-LD blocks.
 
 14. Security & Trust — MANUAL ANNEX (NON-BLOCKING)
 

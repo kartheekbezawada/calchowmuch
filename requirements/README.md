@@ -16,19 +16,9 @@ requirements/
 │   ├── Project Bible.md            ← Strategy, design intent, SERP system
 │   ├── RELEASE_CHECKLIST.md        ← Pre-release pass/fail gate
 │   ├── RELEASE_SIGNOFF.md          ← Release sign-off template (copy per release)
+│   ├── requirement_tracker.md      ← Active requirements (REQ lifecycle)
 │   ├── release-signoffs/           ← Per-release evidence files (RELEASE_SIGNOFF_{RELEASE_ID}.md)
 │   └── Release Sign-Off Master Table.md ← Cumulative release ledger
-│
-├── compliance/                     ← TRACKING & WORKFLOW
-│   ├── requirement_tracker.md      ← Active requirements (REQ lifecycle)
-│   ├── lessons_learned.md          ← Curated patterns from past failures
-│   ├── calculator-migration-checklist.md
-│   ├── new-calculator-design-checklist.md
-│   ├── testing_requirements.md     ← Test selection guidance
-│   ├── seo_requirements.md         ← SEO rules
-│   └── iterations/                 ← One file per build session
-│       ├── _TEMPLATE.md
-│       └── ITER-*.md
 │
 └── rules/                          ← CALCULATOR-SPECIFIC (optional)
     ├── math/
@@ -58,8 +48,7 @@ requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
 
 ```
 requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md
-requirements/compliance/lessons_learned.md
-requirements/compliance/requirement_tracker.md
+requirements/universal-rules/requirement_tracker.md
 requirements/universal-rules/RELEASE_CHECKLIST.md
 ```
 
@@ -69,9 +58,8 @@ requirements/universal-rules/RELEASE_CHECKLIST.md
 |------|--------------|
 | `Project Bible.md` | Strategy/design intent questions |
 | `RELEASE_SIGNOFF.md` | Template for release sign-off evidence |
-| `iterations/ITER-*.md` | Only for current REQ's session |
-| `testing_requirements.md` | When selecting tests |
-| `seo_requirements.md` | When SEO validation needed |
+| `requirement_tracker.md` | Active REQ status and lifecycle |
+| `UNIVERSAL_REQUIREMENTS.md` (`UR-SEO-040` to `UR-SEO-052`) | When SEO head metadata/schema validation is needed |
 | `rules/{calculator}.md` | When working on specific calculator |
 
 ---
@@ -82,9 +70,10 @@ requirements/universal-rules/RELEASE_CHECKLIST.md
 |------------|---------|
 | Know the rules | `universal-rules/UNIVERSAL_REQUIREMENTS.md` |
 | Understand design intent | `universal-rules/Project Bible.md` |
-| Start a build | `compliance/requirement_tracker.md` |
-| Avoid past mistakes | `compliance/lessons_learned.md` |
+| Start a build | `universal-rules/requirement_tracker.md` |
 | Check what must pass | `universal-rules/RELEASE_CHECKLIST.md` |
 | Record release evidence | `universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md` |
 
 **REQ Authoring Note:** For calculators with many inputs, mode toggles, or dynamic rows, requirements must include an explicit Calculation Pane Interaction Contract (control type, default mode, per-mode visibility, row parity, button-only trigger behavior).
+
+**Builder Metadata Note:** Page builders/templates must provide final SEO inputs to the reusable head generator contract: `canonicalUrl`, `seoTitle`, `seoDescription`, `h1`, `ogImageUrl`, and `isCalculatorPage`.

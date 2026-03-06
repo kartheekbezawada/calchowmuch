@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.4 (SERP guide consistency contract + controlled order exceptions)
-- **Last Updated:** 2026-02-27
+- **Version:** 4.5 (SEO head metadata + structured data standards hardening)
+- **Last Updated:** 2026-03-05
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -295,7 +295,7 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 7.1 P1 Critical SEO
 
-- **UR-SEO-001 (P0):** Unique title (35-61ch), meta description (110-165ch), one H1, canonical, viewport, lang, robots.
+- **UR-SEO-001 (P0):** Baseline metadata presence is mandatory: one unique `<title>`, one unique `<meta name="description">`, one `<h1>`, one canonical URL, viewport, `lang`, and robots in initial HTML. Detailed title/description formatting and quality rules are governed by `UR-SEO-040` to `UR-SEO-052`.
 - **UR-SEO-002 (P0):** Static HTML Robots: `<meta name="robots" content="index,follow">`.
 - **UR-SEO-003 (P0):** Canonical must be absolute and production domain.
 - **UR-SEO-004 (P0):** `calc_exp` and `exp_only` routes must include required explanation blocks from `UR-EXP-001` to `UR-EXP-005` in initial HTML.
@@ -303,7 +303,7 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 7.2 P2 Structured Data and Social
 
-- **UR-SEO-010 (P0):** Schema: `WebPage` + `SoftwareApplication` + `BreadcrumbList`. `FAQPage` if FAQs exist.
+- **UR-SEO-010 (P0):** Calculator-page schema minimum is `SoftwareApplication` + `BreadcrumbList`. `WebPage` is allowed when route/page architecture uses it. `FAQPage` is optional and allowed only when visible FAQs exist and parity rules pass.
 - **UR-SEO-011 (P0):** FAQ 3-way parity: JSON-LD <-> Meta <-> Visible.
 - **UR-SEO-012 (P0):** Schema types or validation failure is FAIL.
 - **UR-SEO-013 (P0):** Per-page uniqueness is mandatory for `FAQPage`, `BreadcrumbList`, and `SoftwareApplication` (max one each per URL).
@@ -324,6 +324,75 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-033 (P0):** Thin-content hard flags are mandatory checks: missing result interpretation guidance, missing worked example, explanation content `<150` words, similarity `>80%`, boilerplate FAQ pattern, and tool-only minimal context risk.
 - **UR-SEO-034 (P0):** Phase-1 rollout is `soft` mode, home-loan pilot only (`/loan-calculators/mortgage-calculator/`) for two release cycles; soft mode is non-blocking and must still produce evidence artifacts.
 - **UR-SEO-035 (P0):** Phase-2 rollout is `hard` mode; release fails if thin-content score is `<70` or any hard flag is present. Mode transition must be explicit in release sign-off evidence.
+
+### 7.5 SEO Head Metadata and Structured Data Standard
+
+Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wording where conflicts exist. These rules apply to all calculator clusters and calculator routes unless an explicit HUMAN-approved exemption is documented in release evidence.
+
+- **UR-SEO-040 (P0):** Applicability + inheritance.
+  - Requirement: Every indexable calculator page must comply with `UR-SEO-041` to `UR-SEO-051`; cluster-level requirements inherit these rules by default.
+  - Acceptance criteria: Compliance evidence references these IDs for calculator releases and scoped SEO/schema checks.
+  - Failure conditions: Missing inheritance or missing evidence linkage for calculator releases is SEO governance failure.
+- **UR-SEO-041 (P0):** Title tag standard.
+  - Requirement: Output exactly one unique `<title>` using `<Primary Keyword> – <Main Benefit> | CalcHowMuch`; primary keyword must appear at the start. No ellipsis (`...` or `…`), no placeholder terms (`Online Calculator`, `Free Tool`) unless explicitly approved, and no encoding artifacts (for example `â€“`).
+  - Acceptance criteria: One title per page; no duplicates across canonical calculator pages; human-readable CTR-oriented title; no mojibake.
+  - Failure conditions: Missing/duplicate title, ellipsis, placeholder-only boilerplate, or encoding artifact in title.
+- **UR-SEO-042 (P0):** Meta description standard.
+  - Requirement: Output exactly one unique meta description that is independently authored and never equal to title text. Description must explain what the calculator estimates and key inputs/results; no ellipsis and no generic boilerplate patterns.
+  - Acceptance criteria: One description per page; title and description differ; content aligns with visible page purpose and search intent.
+  - Failure conditions: Description missing/duplicated, equals title, contains ellipsis, or uses disallowed generic template copy.
+- **UR-SEO-043 (P0):** OG and Twitter metadata standard.
+  - Requirement: `og:title`/`twitter:title` must mirror final resolved SEO title (or approved close equivalent). `og:description`/`twitter:description` must mirror final resolved meta description (or approved close equivalent). `twitter:card` must be `summary_large_image`, and `og:image` + `twitter:image` must use approved assets.
+  - Acceptance criteria: Social metadata values are synchronized with final resolved SEO metadata and contain no placeholder/truncated values.
+  - Failure conditions: OG/Twitter title/description drift from resolved SEO values, invalid card type, or non-approved image assets.
+- **UR-SEO-044 (P0):** Canonical standard.
+  - Requirement: Every indexable calculator page must emit exactly one canonical URL that is absolute HTTPS and uses host `calchowmuch.com`; self-canonical pages must match source URL. `og:url` must equal canonical.
+  - Acceptance criteria: Canonical is absolute, unique per page, production-hosted, and aligned with `og:url`.
+  - Failure conditions: Relative canonical, mismatched `og:url`, duplicate canonical conflicts, or non-production host canonical.
+- **UR-SEO-045 (P0):** Structured data standard.
+  - Requirement: Calculator pages must include valid parseable JSON-LD with `SoftwareApplication` and `BreadcrumbList`. `FAQPage` is optional and only permitted when visible FAQ content exists and matches exactly. Global `WebSite` is site-level and must not be duplicated as per-calculator page schema.
+  - Acceptance criteria: `has_schema_jsonld=TRUE`, `has_breadcrumb_schema=TRUE`, `has_softwareapp_schema=TRUE`; breadcrumb names are human-readable Title Case; FAQ parity holds when FAQPage exists.
+  - Failure conditions: Missing calculator schema minimums, invalid JSON-LD, FAQ schema without visible FAQ parity, or per-page duplicate `WebSite` injection.
+- **UR-SEO-046 (P0):** Calculator-page detection standard.
+  - Requirement: Treat route as calculator page when pathname contains `-calculators/`, or pathname ends with `-calculator/`, or explicit metadata flag `calculator=true`.
+  - Acceptance criteria: All detected calculator pages receive calculator-schema requirements automatically; non-calculator pages do not receive incorrect calculator schema.
+  - Failure conditions: False negatives (calculator pages missing required schema) or false positives (non-calculator pages receiving calculator schema).
+- **UR-SEO-047 (P0):** UTF-8 and encoding standard.
+  - Requirement: Emit `<meta charset="utf-8">` on all indexable pages. Build/export/runtime metadata output must preserve UTF-8 and must not emit mojibake (`â€“`, `â€™`, `â€œ`). Title separator strategy must be consistent (approved en dash or approved hyphen strategy).
+  - Acceptance criteria: No encoding artifacts in HTML source, rendered browser metadata, or SEO export artifacts.
+  - Failure conditions: Missing charset tag, mojibake in metadata/JSON-LD, or inconsistent separator strategy.
+- **UR-SEO-048 (P0):** No generic placeholder copy standard.
+  - Requirement: Disallow generic placeholder SEO metadata in production unless explicitly approved, including `Online Calculator`, `Free Tool`, `calculator with fast inputs and clear results`, `provides explanations, examples, and assumptions`, and repeated cluster boilerplate unrelated to route intent.
+  - Acceptance criteria: Metadata is page-specific, intent-specific, and reflects actual calculator behavior.
+  - Failure conditions: Presence of disallowed placeholder strings or broad repeated boilerplate across unrelated calculators.
+- **UR-SEO-049 (P0):** Head generator standard.
+  - Requirement: SEO head tags must be generated from one reusable generator/template entrypoint with explicit inputs: `canonicalUrl`, `seoTitle`, `seoDescription`, `h1`, `ogImageUrl`, `isCalculatorPage`.
+  - Acceptance criteria: One code path emits required tags (`charset`, `title`, `description`, canonical, OG set, Twitter set, robots) with no per-page drift.
+  - Failure conditions: Multiple divergent head generation paths, derived description from title text, or truncated UI label reuse for SEO fields.
+- **UR-SEO-050 (P0):** Runtime metadata sync standard.
+  - Requirement: Runtime metadata update behavior (including `setPageMetadata`) must use final resolved title/description/canonical, apply UTF-8-safe sanitization, and mirror OG/Twitter from resolved values.
+  - Acceptance criteria: Runtime-updated metadata remains aligned with initial contract rules and does not reintroduce ellipsis or encoding defects.
+  - Failure conditions: Runtime divergence from resolved metadata contract or reintroduction of disallowed artifacts.
+- **UR-SEO-051 (P0):** QA/audit standard and fail conditions.
+  - Requirement: Every SEO audit/release check must validate title, description, canonical, H1, JSON-LD presence, `SoftwareApplication` + `BreadcrumbList` on calculator pages, no duplicate title/description/canonical, no ellipsis/artifacts, sitemap inclusion, and LOW_WORD_COUNT exception policy handling.
+  - Acceptance criteria: SEO CSV export passes required checks and emits issues-only output for failures; critical metadata/schema failures are hard fail or prominently blocking warnings per release mode.
+  - Failure conditions: Any critical metadata/schema check failure without approved exception evidence.
+- **UR-SEO-052 (P1):** Worked example contract (canonical examples).
+  - Requirement: Keep canonical examples for implementation guidance aligned with this standard.
+  - Acceptance criteria:
+    - Credit Card Minimum Payment example:
+      - Title: `Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch`
+      - Description: `Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.`
+      - H1: `Credit Card Minimum Payment Calculator`
+      - SoftwareApplication name: `Credit Card Minimum Payment Calculator`
+      - Breadcrumb: `Home > Credit Card Calculators > Credit Card Minimum Payment Calculator`
+    - Car Loan Calculator example:
+      - Title: `Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch`
+      - Description: `Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.`
+      - H1: `Car Loan Calculator`
+      - SoftwareApplication name: `Car Loan Calculator`
+      - Breadcrumb: `Home > Car Loan Calculators > Car Loan Calculator`
+  - Failure conditions: Canonical examples drift from enforced standard or encode deprecated placeholder patterns.
 
 ---
 
