@@ -2191,9 +2191,9 @@
     <noscript>
       <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
     </noscript>
-    <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.4980c04e.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.e0ede983.css" media="print" onload="this.onload=null;this.media='all';" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.4980c04e.css" />
+      <link rel="stylesheet" href="/assets/css/route-bundles/credit-card-calculators-credit-card-payment-calculator.e0ede983.css" />
     </noscript>
  
     <!-- CHM_ADSENSE_HEAD_START -->
@@ -2364,6 +2364,25 @@
 
 
     <div id="cc-payoff-explanation" class="cc-payoff-explanation">
+  <section class="cc-payoff-exp-section cc-payoff-exp-intro">
+    <h2>Credit Card Payment Repayment Complete Guide</h2>
+    <p>
+      With a current balance of <span data-cc-payoff="balance">-</span>, APR of
+      <span data-cc-payoff="apr">-</span>, monthly payment of
+      <span data-cc-payoff="payment">-</span>, and extra monthly payment of
+      <span data-cc-payoff="extra">-</span>, this projection estimates payoff in
+      <span data-cc-payoff="months">-</span>.
+    </p>
+    <p>
+      Estimated total interest is <span data-cc-payoff="interest">-</span> and estimated total
+      amount paid is <span data-cc-payoff="total">-</span>.
+    </p>
+    <p>
+      This article explains each input, shows the repayment logic used in the model, and helps you
+      understand how payment changes influence payoff speed and lifetime interest cost.
+    </p>
+  </section>
+
   <section class="cc-payoff-exp-section" id="cc-payoff-yearly">
     <h3>Yearly Payoff Snapshot</h3>
     <div class="table-scroll" id="cc-payoff-table-wrap" tabindex="0">
@@ -2381,22 +2400,192 @@
     </div>
   </section>
 
-  <section class="cc-payoff-exp-section">
-    <h3>How to Read This Plan</h3>
-    <p>
-      Interest compounds monthly, so the earlier you reduce principal, the more total interest you
-      avoid.
-    </p>
-    <p>
-      Increasing the monthly payment even slightly can cut multiple months from payoff and lower the
-      final amount paid.
-    </p>
-    <p>
-      This calculator assumes no new purchases and a fixed APR during the full repayment window.
-    </p>
+  <section class="cc-payoff-exp-section cc-payoff-guide-section" id="cc-payoff-how-to-guide">
+    <h3>How to Guide</h3>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Understanding the Key Inputs</h4>
+      <p>
+        Each input directly changes repayment speed and total borrowing cost. Balance and APR control
+        interest load, while monthly and extra payments control how quickly principal is reduced.
+      </p>
+      <ul class="cc-payoff-guide-list">
+        <li>Current balance: <span data-cc-payoff="balance">-</span></li>
+        <li>APR: <span data-cc-payoff="apr">-</span></li>
+        <li>Monthly payment: <span data-cc-payoff="payment">-</span></li>
+        <li>Extra monthly payment: <span data-cc-payoff="extra">-</span></li>
+      </ul>
+      <p>
+        Higher APR usually increases total interest, while higher payment levels typically shorten the
+        payoff horizon.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>How Card Balance Affects Repayment</h4>
+      <p>
+        Card balance is the principal owed to the issuer. Interest is applied to remaining principal
+        each month until the balance reaches zero. A larger starting balance generally means larger
+        early interest charges and a longer payoff period unless payments are increased.
+      </p>
+      <p>
+        Because early-month interest is calculated on a higher principal amount, the first phase of
+        repayment usually feels slower than the final phase.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>APR and Monthly Interest Conversion</h4>
+      <p>
+        APR is annual, but repayment is modeled monthly. The model first converts APR into a monthly
+        rate and then applies that rate to the outstanding balance each month.
+      </p>
+      <p class="cc-payoff-guide-formula">Monthly interest rate = APR / 12</p>
+      <p>
+        This is why even modest APR differences can create meaningful long-term cost changes,
+        especially when payoff spans multiple years.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Monthly Payment Logic Used by the Calculator</h4>
+      <p>
+        The payoff engine uses a month-by-month amortization sequence: calculate interest, apply the
+        full payment amount, then reduce principal by what remains after interest.
+      </p>
+      <p class="cc-payoff-guide-formula">Total monthly payment = Monthly payment + Extra payment</p>
+      <p class="cc-payoff-guide-formula">Interest = Current balance x Monthly interest rate</p>
+      <p class="cc-payoff-guide-formula">Principal reduction = Total monthly payment - Interest</p>
+      <p>
+        The process repeats until balance is zero, producing the payoff timeline and cumulative
+        totals.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Why Interest Costs Add Up Over Time</h4>
+      <p>
+        Interest is highest when balance is highest. In early repayment months, a larger share of each
+        payment may go to interest, which slows principal reduction. As balance falls, interest
+        charges usually decline and principal reduction accelerates.
+      </p>
+      <p>
+        This is why reducing principal earlier can have a compounding savings effect across the full
+        schedule.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Interpreting the Results</h4>
+      <p>
+        This run projects payoff in <span data-cc-payoff="months">-</span>, with total interest of
+        <span data-cc-payoff="interest">-</span> and total paid of
+        <span data-cc-payoff="total">-</span>.
+      </p>
+      <p>
+        These three outputs should be read together. Payoff months shows time impact, while total
+        interest and total paid show cost impact.
+      </p>
+      <ul class="cc-payoff-guide-list">
+        <li>If months are high, interest exposure remains elevated for longer.</li>
+        <li>If total interest is large, consider testing stronger payment scenarios.</li>
+        <li>Use yearly table rows to see progress rate and balance decline shape.</li>
+      </ul>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>How Extra Payments Change the Timeline</h4>
+      <p>
+        Extra payment directly lowers principal faster, which then lowers future interest charges.
+        Even relatively small recurring overpayments can reduce both payoff duration and lifetime
+        interest.
+      </p>
+      <p>
+        In practical planning, consistency matters more than occasional large spikes. A stable extra
+        payment strategy often creates predictable and measurable savings.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Strategies to Reduce Credit Card Interest</h4>
+      <ul class="cc-payoff-guide-list">
+        <li>Increase monthly payment where budget allows.</li>
+        <li>Keep a recurring extra payment to accelerate principal reduction.</li>
+        <li>Lower APR where possible through transfer or refinance strategy.</li>
+        <li>Avoid new purchases during active repayment.</li>
+      </ul>
+      <p>
+        Test multiple scenarios in this calculator to compare both timeline and total-cost outcomes
+        before finalizing your repayment target.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Why Repayment Planning Matters</h4>
+      <p>
+        Without a plan, revolving debt can remain for years due to compounding interest. A structured
+        payment plan helps you set a realistic monthly target and track progress against a defined
+        payoff horizon.
+      </p>
+      <p>
+        Seeing projected months and total interest often makes trade-offs clearer and supports better
+        payment decisions.
+      </p>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>What This Calculator Helps You Compare</h4>
+      <p>
+        This model is useful for scenario testing. You can compare payment approaches to identify a
+        strategy that balances affordability with faster payoff and lower interest.
+      </p>
+      <ul class="cc-payoff-guide-list">
+        <li>Baseline repayment with current payment behavior.</li>
+        <li>Higher monthly payment cases.</li>
+        <li>Different extra-payment levels.</li>
+        <li>Re-run outcomes after APR changes.</li>
+      </ul>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Formulas Used in This Repayment Estimate</h4>
+      <ul class="cc-payoff-guide-list">
+        <li>Total monthly payment = Monthly payment + Extra payment</li>
+        <li>Monthly interest rate = APR / 12</li>
+        <li>Monthly interest = Current balance x Monthly interest rate</li>
+        <li>Principal reduction = Total monthly payment - Monthly interest</li>
+        <li>New balance = Previous balance + Interest - Payment</li>
+        <li>Payoff horizon = Number of months until balance reaches zero</li>
+        <li>Total interest = Sum of all monthly interest charges</li>
+        <li>Total paid = Original balance + Total interest</li>
+      </ul>
+    </div>
+
+    <div class="cc-payoff-guide-block">
+      <h4>Important Assumptions in the Model</h4>
+      <p>
+        This estimate assumes fixed APR, fixed monthly and extra payments, no late-payment
+        disruptions, no additional card spending, and monthly compounding behavior. Actual statement
+        outcomes may differ if any of these conditions change.
+      </p>
+    </div>
   </section>
 
-  <h3>Frequently Asked Questions</h3>
+  <section class="cc-payoff-exp-section cc-payoff-exp-section--notes" aria-label="Important notes">
+    <h3>Important Notes</h3>
+    <ul class="cc-payoff-important-notes">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
+      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+      <li>
+        <strong>Assumptions:</strong> Assumes a fixed APR, fixed monthly and extra payments, no new
+        purchases, and on-time payments throughout payoff.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
+
+  <h3 id="cc-payoff-faq-heading">Frequently Asked Questions</h3>
   <div class="cc-payoff-faq-grid">
     <div class="faq-box cc-payoff-faq-item">
       <p><strong>Q: What is a credit card payoff calculator?</strong></p>
@@ -2489,20 +2678,6 @@
       </p>
     </div>
   </div>
-
-  <section class="cc-payoff-exp-section cc-payoff-exp-section--notes" aria-label="Important notes">
-    <h3>Important Notes</h3>
-    <ul class="cc-payoff-important-notes">
-      <li><strong>Last updated:</strong> February 2026.</li>
-      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
-      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
-      <li>
-        <strong>Assumptions:</strong> Assumes a fixed APR, fixed monthly and extra payments, no
-        new purchases, and on-time payments throughout payoff.
-      </li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
-    </ul>
-  </section>
 </div>
 
   </div>
