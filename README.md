@@ -151,8 +151,22 @@ For `calc_exp` and `exp_only` routes, explanation content is mandatory in this o
 
 - Intent-led heading (calculator purpose/topic; avoid generic `Explanation` headings)
 - `How to Guide`
-- `Important Notes` (must include `Last updated: <Month YYYY>`)
 - FAQ (schema-aligned)
+- `Important Notes` (must be final section)
+
+`Important Notes` must include:
+
+- `Last updated: <Month YYYY>` (refresh when page content changes in release)
+- `Accuracy: ...`
+- calculator-relevant disclaimer key (for example `Financial disclaimer`, `Health disclaimer`, or `Disclaimer`)
+- `Assumptions: ...` (calculator-specific)
+- `Privacy: All calculations run locally in your browser - no data is stored.` (exact text)
+
+Presentation requirements:
+
+- notes use a bullet list (`ul`/`ol`)
+- no dedicated notes container box
+- key label color is `rgba(186, 230, 253, 0.98)`
 
 If a calculator includes graphs/charts, they must be readable and decision-useful:
 

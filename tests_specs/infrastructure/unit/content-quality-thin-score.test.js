@@ -3,6 +3,7 @@ import {
   analyzeHtmlDocument,
   gradeForScore,
   normalizeScopeMode,
+  resolveQualityStatus,
   resolveScopeFiles,
   scoreAnalyzedPage,
   validateRequiredBlockOrder,
@@ -68,18 +69,113 @@ describe('content-quality-thin-score explanation order contract', () => {
       'Mortgage Balance Graph',
       'Mortgage Complete Practical Guide',
       'How To Guide',
-      'Important Notes',
       'Frequently Asked Questions',
+      'Important Notes',
     ]);
 
     expect(result.isValid).toBe(true);
-    expect(result.howToIndex).toBeLessThan(result.importantNotesIndex);
-    expect(result.importantNotesIndex).toBeLessThan(result.faqIndex);
+    expect(result.howToIndex).toBeLessThan(result.faqIndex);
+    expect(result.faqIndex).toBeLessThan(result.importantNotesIndex);
   });
 
-  it('rejects when FAQ appears before Important Notes', () => {
-    const result = validateRequiredBlockOrder(['How To Guide', 'Frequently Asked Questions', 'Important Notes']);
+  it('rejects when Important Notes appears before FAQ', () => {
+    const result = validateRequiredBlockOrder(['How To Guide', 'Important Notes', 'Frequently Asked Questions']);
     expect(result.isValid).toBe(false);
+  });
+});
+
+describe('content-quality-thin-score Important Notes contract', () => {
+  it('passes required Important Notes keys and format checks', () => {
+    const html = `<!doctype html>
+      <html>
+        <body data-route-archetype="calc_exp">
+          <section class="explanation-pane">
+            <div id="test-explanation">
+              <h3>How to Guide</h3>
+              <p>Use this calculator to estimate payoff timeline and total interest.</p>
+              <h3>Frequently Asked Questions</h3>
+              <div class="faq-box"><strong>Q: What does this calculator estimate?</strong></div>
+              <h3>Important Notes</h3>
+              <ul>
+                <li><strong>Last updated:</strong> March 2026.</li>
+                <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
+                <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+                <li><strong>Assumptions:</strong> Assumes fixed APR and on-time payments.</li>
+                <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+              </ul>
+            </div>
+          </section>
+        </body>
+      </html>`;
+
+    const analyzed = analyzeHtmlDocument({
+      html,
+      route: '/credit-card-calculators/credit-card-payment-calculator/',
+      filePath: '/tmp/test.html',
+    });
+    const scored = scoreAnalyzedPage(analyzed, 0.25);
+
+    expect(analyzed.importantNotesContract.hasRequiredKeys).toBe(true);
+    expect(analyzed.importantNotesContract.hasDisclaimerKey).toBe(true);
+    expect(analyzed.importantNotesContract.hasPrivacyExactText).toBe(true);
+    expect(analyzed.importantNotesContract.hasLastUpdatedMonthYear).toBe(true);
+    expect(scored.hardFlags).not.toContainEqual(expect.stringContaining('Important Notes missing required keys'));
+  });
+
+  it('flags Important Notes contract violations', () => {
+    const html = `<!doctype html>
+      <html>
+        <body data-route-archetype="calc_exp">
+          <section class="explanation-pane">
+            <div id="test-explanation">
+              <h3>How to Guide</h3>
+              <p>Enter values and review outputs.</p>
+              <h3>Frequently Asked Questions</h3>
+              <p>FAQ text</p>
+              <h3>Important Notes</h3>
+              <ul>
+                <li><strong>Last updated:</strong> 2026-03.</li>
+                <li><strong>Assumptions:</strong> Fixed inputs.</li>
+                <li><strong>Privacy:</strong> Data stays local in browser.</li>
+              </ul>
+            </div>
+          </section>
+        </body>
+      </html>`;
+
+    const analyzed = analyzeHtmlDocument({
+      html,
+      route: '/credit-card-calculators/credit-card-payment-calculator/',
+      filePath: '/tmp/test.html',
+    });
+    const scored = scoreAnalyzedPage(analyzed, 0.25);
+
+    expect(scored.hardFlags).toContainEqual(expect.stringContaining('missing required keys'));
+    expect(scored.hardFlags).toContainEqual(expect.stringContaining('disclaimer key'));
+    expect(scored.hardFlags).toContainEqual(expect.stringContaining('privacy line must exactly match'));
+    expect(scored.hardFlags).toContainEqual(expect.stringContaining('Last updated: <Month YYYY>'));
+  });
+});
+
+describe('content-quality-thin-score mode status behavior', () => {
+  it('returns warn in soft mode for hard flags', () => {
+    const status = resolveQualityStatus({
+      mode: 'soft',
+      threshold: 70,
+      score: 82,
+      hardFlagsCount: 1,
+    });
+    expect(status).toBe('warn');
+  });
+
+  it('returns fail in hard mode for hard flags', () => {
+    const status = resolveQualityStatus({
+      mode: 'hard',
+      threshold: 70,
+      score: 82,
+      hardFlagsCount: 1,
+    });
+    expect(status).toBe('fail');
   });
 });
 

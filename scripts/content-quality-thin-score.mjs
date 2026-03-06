@@ -13,7 +13,10 @@ const OUTPUT_ROOT = path.join(ROOT, 'test-results', 'content-quality');
 const APPLICABLE_ARCHETYPES = new Set(['calc_exp', 'exp_only']);
 const DEFAULT_MODE = 'soft';
 const DEFAULT_THRESHOLD = 70;
-const DEFAULT_PILOT_ROUTE = '/loan-calculators/mortgage-calculator/';
+const IMPORTANT_NOTES_PRIVACY_TEXT = 'All calculations run locally in your browser - no data is stored.';
+const MONTH_YEAR_REGEX =
+  /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b/i;
+const IMPORTANT_NOTES_REQUIRED_KEYS = ['last updated', 'accuracy', 'assumptions', 'privacy'];
 
 const STOP_WORDS = new Set([
   'a',
@@ -162,18 +165,12 @@ export function parseCliArgs(argv = process.argv.slice(2), env = process.env) {
   const route = normalizeRoutePath(readArgValue(argv, '--route') ?? env.TARGET_ROUTE ?? null);
   const mode = normalizeMode(readArgValue(argv, '--mode') ?? env.THIN_CONTENT_MODE ?? DEFAULT_MODE);
   const threshold = parseThreshold(readArgValue(argv, '--threshold') ?? env.THIN_CONTENT_THRESHOLD);
-  const pilotRoute = normalizeRoutePath(
-    readArgValue(argv, '--pilot-route') ?? env.THIN_CONTENT_PILOT_ROUTE ?? DEFAULT_PILOT_ROUTE
-  );
-  const softPilotOnly = mode === 'soft' && String(env.THIN_CONTENT_SOFT_PILOT_ONLY || '1') !== '0';
 
   return {
     scope,
     route,
     mode,
     threshold,
-    pilotRoute,
-    softPilotOnly,
     dryRun: hasFlag(argv, '--dry-run'),
   };
 }
@@ -335,17 +332,63 @@ export function validateRequiredBlockOrder(headingTexts = []) {
   const howToIndex = normalizedHeadings.findIndex((entry) => headingMatchesHowTo(entry));
   const importantNotesIndex = normalizedHeadings.findIndex((entry) => headingMatchesImportant(entry));
   const faqIndex = normalizedHeadings.findIndex((entry) => headingMatchesFaq(entry));
+  const headingCount = normalizedHeadings.length;
 
   return {
     howToIndex,
     importantNotesIndex,
     faqIndex,
+    headingCount,
     isValid:
       howToIndex >= 0 &&
       importantNotesIndex >= 0 &&
       faqIndex >= 0 &&
-      howToIndex < importantNotesIndex &&
-      importantNotesIndex < faqIndex,
+      howToIndex < faqIndex &&
+      faqIndex < importantNotesIndex &&
+      importantNotesIndex === headingCount - 1,
+  };
+}
+
+function analyzeImportantNotesContract(explanationRoot) {
+  const fallback = {
+    hasHeading: false,
+    hasRequiredKeys: false,
+    missingFixedKeys: [...IMPORTANT_NOTES_REQUIRED_KEYS],
+    hasDisclaimerKey: false,
+    hasPrivacyExactText: false,
+    hasLastUpdatedMonthYear: false,
+  };
+  if (!explanationRoot) return fallback;
+
+  const headingNodes = [...explanationRoot.querySelectorAll('h2,h3,h4')];
+  const notesHeadingNode = headingNodes.find((node) =>
+    headingMatchesImportant(normalizeHeading(node.textContent))
+  );
+  if (!notesHeadingNode) return fallback;
+
+  const sectionNodes = [];
+  let cursor = notesHeadingNode.nextElementSibling;
+  while (cursor) {
+    if (/^H[2-4]$/i.test(cursor.tagName)) break;
+    sectionNodes.push(cursor);
+    cursor = cursor.nextElementSibling;
+  }
+
+  const sourceNodes = sectionNodes.length ? sectionNodes : [notesHeadingNode.parentElement || notesHeadingNode];
+  const sectionText = normalizeText(sourceNodes.map((node) => node.textContent || '').join(' '));
+  const hasFixedKey = (key) => new RegExp(`\\b${key}\\s*:`, 'i').test(sectionText);
+  const missingFixedKeys = IMPORTANT_NOTES_REQUIRED_KEYS.filter((key) => !hasFixedKey(key));
+  const hasDisclaimerKey = /\b[a-z ]*disclaimer\s*:/i.test(sectionText);
+  const hasPrivacyExactText = sectionText.includes(IMPORTANT_NOTES_PRIVACY_TEXT);
+  const hasLastUpdatedMonthYear = /\bLast updated:\s*/i.test(sectionText) && MONTH_YEAR_REGEX.test(sectionText);
+
+  return {
+    hasHeading: true,
+    hasRequiredKeys: missingFixedKeys.length === 0,
+    missingFixedKeys,
+    hasDisclaimerKey,
+    hasPrivacyExactText,
+    hasLastUpdatedMonthYear,
   };
 }
 
@@ -502,6 +545,13 @@ export function gradeForScore(score) {
   return 'High Risk Thin';
 }
 
+export function resolveQualityStatus({ mode, threshold, score, hardFlagsCount }) {
+  if (mode === 'hard') {
+    return score < threshold || hardFlagsCount > 0 ? 'fail' : 'pass';
+  }
+  return score < threshold || hardFlagsCount > 0 ? 'warn' : 'pass';
+}
+
 export function analyzeHtmlDocument({ html, route, filePath }) {
   const dom = new JSDOM(html, { url: 'https://calchowmuch.com/' });
   const { document } = dom.window;
@@ -520,6 +570,7 @@ export function analyzeHtmlDocument({ html, route, filePath }) {
   const headingOrder = validateRequiredBlockOrder(headingTexts);
   const hasIntentHeading = normalizedHeadings.some((heading) => headingMatchesIntent(heading));
   const hasImportantNotesHeading = normalizedHeadings.some((heading) => headingMatchesImportant(heading));
+  const importantNotesContract = analyzeImportantNotesContract(explanationRoot);
 
   const paragraphNodes = explanationRoot ? [...explanationRoot.querySelectorAll('p,li')] : [];
   const paragraphWordCounts = paragraphNodes
@@ -650,6 +701,7 @@ export function analyzeHtmlDocument({ html, route, filePath }) {
     edgeHits,
     hypeHits,
     transparencyHits,
+    importantNotesContract,
     tokenSet: tokenizeForSimilarity(explanationText),
   };
 }
@@ -681,8 +733,12 @@ export function scoreAnalyzedPage(analyzed, maxSimilarity) {
   const score = coreValue + depth + uniqueness + trust + structure;
 
   const flags = [];
+  const hardFlags = [];
   if (!analyzed.headingOrder.isValid) {
-    flags.push('Required explanation block order is not `How to Guide -> Important Notes -> FAQ`.');
+    const orderMessage =
+      'Required explanation block order is not `How to Guide -> FAQ -> Important Notes` with `Important Notes` as the last section.';
+    flags.push(orderMessage);
+    hardFlags.push(orderMessage);
   }
   if (b1 <= 7) {
     flags.push('FAQ quality can be improved with more calculator-specific questions.');
@@ -694,7 +750,35 @@ export function scoreAnalyzedPage(analyzed, maxSimilarity) {
     flags.push(`Content overlap risk detected (max similarity ${(maxSimilarity * 100).toFixed(1)}%).`);
   }
 
-  const hardFlags = [];
+  const notes = analyzed.importantNotesContract;
+  if (!notes.hasHeading) {
+    const message = 'Important Notes heading is missing.';
+    flags.push(message);
+    hardFlags.push(message);
+  } else {
+    if (!notes.hasRequiredKeys) {
+      const message = `Important Notes missing required keys: ${notes.missingFixedKeys.join(', ')}.`;
+      flags.push(message);
+      hardFlags.push(message);
+    }
+    if (!notes.hasDisclaimerKey) {
+      const message = 'Important Notes is missing a calculator-relevant disclaimer key.';
+      flags.push(message);
+      hardFlags.push(message);
+    }
+    if (!notes.hasPrivacyExactText) {
+      const message =
+        'Important Notes privacy line must exactly match: `All calculations run locally in your browser - no data is stored.`';
+      flags.push(message);
+      hardFlags.push(message);
+    }
+    if (!notes.hasLastUpdatedMonthYear) {
+      const message = 'Important Notes last-updated line must use `Last updated: <Month YYYY>` format.';
+      flags.push(message);
+      hardFlags.push(message);
+    }
+  }
+
   if (a2 === 0) hardFlags.push('No result interpretation guidance detected.');
   if (a3 === 0) hardFlags.push('No worked example detected.');
   if (analyzed.wordCount < 150) hardFlags.push('Explanation content below 150 words.');
@@ -788,7 +872,6 @@ function summarize(results) {
     pass: 0,
     warn: 0,
     fail: 0,
-    pilotExcluded: 0,
     notApplicable: 0,
     avgScore: null,
   };
@@ -796,10 +879,6 @@ function summarize(results) {
   let scoreTotal = 0;
 
   results.forEach((result) => {
-    if (result.status === 'pilot_excluded') {
-      summary.pilotExcluded += 1;
-      return;
-    }
     if (result.status === 'not_applicable') {
       summary.notApplicable += 1;
       return;
@@ -823,33 +902,13 @@ function summarize(results) {
   return summary;
 }
 
-function evaluateScope({ files, mode, threshold, pilotRoute, softPilotOnly, env }) {
+function evaluateScope({ files, mode, threshold, env }) {
   const corpusIndex = buildCorpusIndex();
-  const resolvedPilotRoute = normalizeRoutePath(pilotRoute);
 
   const results = files.map((filePath) => {
     const route = publicPathToRoute(filePath);
     const html = fs.readFileSync(filePath, 'utf8');
     const analyzed = analyzeHtmlDocument({ html, route, filePath });
-
-    const inPilot = !resolvedPilotRoute || analyzed.route === resolvedPilotRoute;
-    if (softPilotOnly && !inPilot) {
-      return {
-        route: analyzed.route,
-        filePath: path.relative(ROOT, filePath),
-        archetype: analyzed.archetype,
-        mode,
-        threshold,
-        status: 'pilot_excluded',
-        score: null,
-        grade: null,
-        sectionScores: null,
-        flags: ['Excluded by soft-mode pilot scope.'],
-        hardFlags: [],
-        maxSimilarity: null,
-        wordCount: analyzed.wordCount,
-      };
-    }
 
     if (!analyzed.applicable) {
       return {
@@ -871,15 +930,12 @@ function evaluateScope({ files, mode, threshold, pilotRoute, softPilotOnly, env 
 
     const maxSimilarity = computeMaxSimilarity(analyzed.route, analyzed.tokenSet, corpusIndex);
     const scoring = scoreAnalyzedPage(analyzed, maxSimilarity);
-
-    let status = 'pass';
-    if (mode === 'hard') {
-      if (scoring.score < threshold || scoring.hardFlags.length > 0) {
-        status = 'fail';
-      }
-    } else if (scoring.score < threshold || scoring.hardFlags.length > 0) {
-      status = 'warn';
-    }
+    const status = resolveQualityStatus({
+      mode,
+      threshold,
+      score: scoring.score,
+      hardFlagsCount: scoring.hardFlags.length,
+    });
 
     return {
       route: analyzed.route,
@@ -896,6 +952,7 @@ function evaluateScope({ files, mode, threshold, pilotRoute, softPilotOnly, env 
       maxSimilarity: Number((maxSimilarity * 100).toFixed(2)),
       wordCount: analyzed.wordCount,
       headingOrder: analyzed.headingOrder,
+      importantNotesContract: analyzed.importantNotesContract,
       faqCount: analyzed.faqCount,
     };
   });
@@ -911,8 +968,6 @@ function evaluateScope({ files, mode, threshold, pilotRoute, softPilotOnly, env 
     },
     mode,
     threshold,
-    pilotRoute: resolvedPilotRoute,
-    softPilotOnly,
     generatedAt: new Date().toISOString(),
     results,
     summary,
@@ -941,8 +996,6 @@ function main() {
       files,
       mode: cli.mode,
       threshold: cli.threshold,
-      pilotRoute: cli.pilotRoute,
-      softPilotOnly: cli.softPilotOnly,
       env: process.env,
     }),
     cli
@@ -958,7 +1011,7 @@ function main() {
 
   console.log(`Thin-content quality artifact: ${path.relative(ROOT, outputPath)}`);
   console.log(
-    `Thin-content summary: evaluated=${payload.summary.evaluatedRoutes}, pass=${payload.summary.pass}, warn=${payload.summary.warn}, fail=${payload.summary.fail}, pilotExcluded=${payload.summary.pilotExcluded}, notApplicable=${payload.summary.notApplicable}`
+    `Thin-content summary: evaluated=${payload.summary.evaluatedRoutes}, pass=${payload.summary.pass}, warn=${payload.summary.warn}, fail=${payload.summary.fail}, notApplicable=${payload.summary.notApplicable}`
   );
 
   if (cli.dryRun) {

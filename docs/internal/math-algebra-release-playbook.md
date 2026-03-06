@@ -58,8 +58,13 @@ When `ADMIN` is used:
 4. Ensure explanation block order:
    - Intent-led `H2`
    - `How to Guide` (`H3`)
-   - `Important Notes` (`H3`) with `Last updated: <Month YYYY>`
    - `FAQ` (`H3`)
+   - `Important Notes` (`H3`) as final section with required keys:
+     - `Last updated: <Month YYYY>`
+     - `Accuracy`
+     - disclaimer label (`Financial disclaimer`/`Health disclaimer`/`Disclaimer`)
+     - `Assumptions`
+     - exact `Privacy` statement
 5. Replace placeholder test packs with real scoped tests (`unit`, `e2e`, `seo`).
 6. Regenerate only target route.
 

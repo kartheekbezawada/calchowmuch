@@ -653,28 +653,31 @@ HARD: Page crawlable without JS
 
 Applies to `calc_exp` and `exp_only` routes.
 
-HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block. Default SERP block order remains unchanged unless route-level exception is explicitly approved.
+HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block.
 
 HARD: Explanation heading must be intent-led (calculator purpose/topic), not generic labels like `Explanation` or `Calculator Explanation`.
 
 HARD: Default required section order must be visible in initial HTML:
 - Intent-led heading
 - `How to Guide`
-- `Important Notes`
 - FAQ
+- `Important Notes` (must be last explanation section)
 
-HARD: If route-level order exception is used (for example `FAQ -> Important Notes`), release evidence must include:
-- explicit HUMAN requirement statement
-- exact route and approved order
-- route test assertions proving that approved order
+HARD: `Important Notes` placement exceptions are not allowed. Any route that places `Important Notes` before FAQ, or not as the final explanation section, fails release.
 
-HARD: `Important Notes` must include `Last updated: <Month YYYY>`.
+HARD: `Important Notes` must include required key lines:
+- `Last updated: <Month YYYY>` (and month/year refreshed when the calculator page was updated in this release)
+- `Accuracy: ...`
+- calculator-relevant disclaimer line (for example `Financial disclaimer`, `Health disclaimer`, or `Disclaimer`)
+- `Assumptions: ...` (calculator-specific)
+- `Privacy: All calculations run locally in your browser - no data is stored.` (exact text)
 
 HARD: SERP guide + Important Notes style consistency must be validated for touched calculators:
-- existing explanation card/container pattern reused (no new design system by default)
+- `Important Notes` rendered as bullet list (`ul`/`ol`)
+- `Important Notes` is not wrapped in a dedicated container box
 - guide typography baseline preserved (`H3 16px`, `H4 14px`, body/list `14px`) unless REQ override is approved
 - font family inherited from calculator theme (no isolated font swap)
-- heading/subheading colors reuse route accent token/color used by calculator data surfaces
+- `Important Notes` key label color is `rgba(186, 230, 253, 0.98)`
 
 HARD: FAQ count and visible FAQ content must remain schema-aligned.
 
@@ -694,7 +697,7 @@ HARD: In `soft` mode, thin-content score warnings do not block release but artif
 HARD: In `hard` mode, release fails when:
 
 - score `<70`, or
-- any hard flag is raised (`no interpretation`, `no worked example`, `explanation <150 words`, `similarity >80%`, `boilerplate FAQ`, `tool-only minimal context`).
+- any hard flag is raised (`no interpretation`, `no worked example`, `explanation <150 words`, `similarity >80%`, `boilerplate FAQ`, `tool-only minimal context`, `Important Notes` contract failure).
 
 13.5 Graph Readability (When Graph Exists) — HARD
 
@@ -772,9 +775,9 @@ Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activat
 
 SERP validation notes (canonical + schema + FAQ parity)
 
-Intent-led content structure validation notes (default section order or approved route exception + `Last updated` evidence)
+Intent-led content structure validation notes (`How to Guide -> FAQ -> Important Notes`, `Important Notes` final-position evidence, and `Last updated` freshness evidence)
 
-SERP guide/notes style consistency notes (typography baseline + font inheritance + heading/subheading color consistency)
+SERP guide/notes style consistency notes (typography baseline + font inheritance + bullet-list/no-container proof + key-label color proof)
 
 Thin-content scoring notes (`thinContentMode`, score, grade, hard flags)
 

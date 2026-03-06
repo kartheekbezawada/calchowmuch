@@ -56,7 +56,7 @@
 - **Metadata governance pointer:** Calculator SEO head metadata and structured-data compliance is governed by `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` (`UR-SEO-040` to `UR-SEO-051`). These rules are normative and release-blocking where marked P0.
 - **Metadata:** Unique title, independently authored intent-aligned description, and single canonical aligned to governance rules.
 - **Indexability:** Explanation & FAQs in initial HTML (Server-rendered).
-- **Explanation Quality Contract:** Output insight sections may appear first; default SERP explanation block order is Intent-led heading, then `How to Guide`, then `Important Notes`, then FAQ. Route-level order exceptions are allowed only with explicit HUMAN approval and release evidence.
+- **Explanation Quality Contract:** Output insight sections may appear first; required SERP explanation block order is Intent-led heading, then `How to Guide`, then FAQ, then `Important Notes` as the final section.
 - **Links:** Bidirectional (Category <-> Calc <-> Related).
 
 ### 4.2 Intent Coverage
@@ -68,18 +68,18 @@
 ### 4.3 Readability and Graph Clarity
 - **Intent-first copy:** Avoid generic section names like `Explanation`; heading should match calculator purpose.
 - **How-to utility:** Steps must be actionable and skimmable (ordered list or bullets).
-- **Important notes:** Include trust assumptions and visible `Last updated` month/year.
-- **SERP guide consistency:** Keep reusable guide/notes presentation consistent across calculators (same container pattern, blog-style paragraph rhythm, and typography baseline by default).
+- **Important notes:** Include required keys: `Last updated` (Month Year), `Accuracy`, calculator-relevant disclaimer, calculator-specific `Assumptions`, and exact `Privacy` statement.
+- **SERP guide consistency:** Keep reusable guide/notes presentation consistent across calculators (bullet-list notes, no container box, typography baseline by default).
 - **Typography baseline:** Guide `H3` 16px, guide `H4` 14px, body/list 14px unless route-specific REQ overrides.
-- **Theme fidelity:** Guide/notes use calculator font inheritance and route accent color reuse for headings/subheadings; avoid introducing a separate visual system by default.
+- **Theme fidelity:** Guide/notes use calculator font inheritance; `Important Notes` key labels use `rgba(186, 230, 253, 0.98)`.
 - **Graph quality bar:** If a chart exists, it must be decision-grade readable (clear axes/units, distinct series, non-obstructive legend, mobile readability).
 
 ### 4.4 Validation Checklist
 - [ ] Metadata unique & valid.
 - [ ] JSON-LD valid & page-scoped.
 - [ ] Content (Exp/FAQ) in initial HTML.
-- [ ] Intent-led structure present in default SERP block: `Intent heading -> How to Guide -> Important Notes -> FAQ` (output-first sections allowed; route-level order exception must be explicitly approved and evidenced).
-- [ ] Important Notes includes `Last updated`.
+- [ ] Intent-led structure present in required SERP block: `Intent heading -> How to Guide -> FAQ -> Important Notes` with `Important Notes` last.
+- [ ] Important Notes includes all required key lines and updated `Last updated` month/year.
 - [ ] SERP guide/notes style contract validated (font inheritance + typography baseline + accent-color reuse).
 - [ ] Graph readability checks pass (if graph exists).
 - [ ] Internal links present.

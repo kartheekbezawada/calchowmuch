@@ -61,6 +61,7 @@
 | **I4** | **Sitemap** | • Route present in sitemap.xml | |
 | **NAV-PANE-1** | **Pane Layout** | • `calc_exp` route uses single pane only (`paneLayout=single`)<br>• Combined panel contract rendered (`panel-span-all` + `calculator-page-single`) | |
 | **J** | **Content** | • Explanation present<br>• Worked example<br>• 3+ FAQs | |
+| **J2** | **Important Notes Contract** | • Order: `How to Guide -> FAQ -> Important Notes`<br>• `Important Notes` is final section<br>• Required keys present (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy` exact text)<br>• Notes rendered as bullet list with no container box<br>• Key label color `rgba(186, 230, 253, 0.98)` | |
 | **K** | **Security** | • HTTPS only<br>• Privacy/Terms linked | |
 
 ---
@@ -119,6 +120,16 @@ Artifact path (mandatory): `test-results/performance/scoped-cwv/{cluster}/{calcu
 | `thinContentGrade` | |
 | `thinContentHardFlags` | |
 | `thinContentArtifactPath` | |
+
+### Important Notes Contract Evidence (Mandatory for `calc_exp` / `exp_only`)
+| Field | Value |
+| :--- | :--- |
+| `importantNotesOrderProofPath` (`How to Guide -> FAQ -> Important Notes`) | |
+| `importantNotesFinalSectionProofPath` | |
+| `importantNotesKeysProofPath` (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`) | |
+| `importantNotesPrivacyExactTextProofPath` | |
+| `importantNotesStyleProofPath` (bullet-list + no-container + key-label color) | |
+| `importantNotesLastUpdatedFreshnessEvidence` (month/year updated for touched route) | |
 
 ### Metadata and Schema Evidence (Mandatory for SEO-impacting releases)
 | Field | Value |
