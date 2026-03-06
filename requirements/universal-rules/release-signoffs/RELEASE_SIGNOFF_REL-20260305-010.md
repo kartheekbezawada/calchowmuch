@@ -1,16 +1,16 @@
-# Release Sign-Off — REL-20260305-003
+# Release Sign-Off — REL-20260305-010
 
 ## 1) Release Identity
 
 | Field | Value |
 | :--- | :--- |
-| **Release ID** | REL-20260305-003 |
+| **Release ID** | REL-20260305-010 |
 | **Release Type** | CLUSTER_ROUTE_SINGLE_CALC |
 | **Release Mode** | SCHEMA_DEDUPE_MAINTENANCE |
 | **Scope (Global/Target)** | Target |
-| **Cluster ID(s)** | credit-cards |
-| **Calculator ID (CALC)** | credit-card-consolidation |
-| **Primary Route** | /credit-card-calculators/credit-card-consolidation-calculator/ |
+| **Cluster ID(s)** | loans |
+| **Calculator ID (CALC)** | pcp-calculator |
+| **Primary Route** | /car-loan-calculators/pcp-calculator/ |
 | **Route Archetype** | calc_exp |
 | **Pane Layout Contract** | single |
 | **Branch / Tag** | local working tree |
@@ -41,7 +41,7 @@ target route regenerated with:
 - 
 	target command: 
 		tSkipping route bundle rebuild for scoped generation (use REBUILD_ROUTE_BUNDLES=1 to force).
-Scoped generation complete for 1 route(s) (route=n/a, calcId=credit-card-consolidation).
+Scoped generation complete for 1 route(s) (route=n/a, calcId=pcp-calculator).
 - Scoped SEO gate:
   - 
 > calchowmuch@1.0.0 test:calc:seo
@@ -50,10 +50,10 @@ Scoped generation complete for 1 route(s) (route=n/a, calcId=credit-card-consoli
 
 Running 1 test using 1 worker
 
-  ✓  1 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/seo.calc.spec.js:4:3 › Credit Card Consolidation Calculator SEO › CONSOLIDATION-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap (1.7s)
+  ✓  1 [chromium] › tests_specs/loans/pcp-calculator_release/seo.calc.spec.js:4:3 › PCP Calculator SEO › PCP-SEO-1: metadata, heading, FAQ schema, sitemap (2.2s)
 
-  1 passed (3.1s)
-Thin-content quality artifact: test-results/content-quality/scoped/credit-cards/credit-card-consolidation.json
+  1 passed (3.3s)
+Thin-content quality artifact: test-results/content-quality/scoped/loans/pcp-calculator.json
 Thin-content summary: evaluated=0, pass=0, warn=0, fail=0, pilotExcluded=1, notApplicable=0
 [seo:mojibake] scannedFiles=1 scannedCalculators=1 findings=0
 [seo:mojibake] reports: seo_mojibake_report.md, seo_mojibake_report.csv -> Pass
@@ -73,24 +73,22 @@ Thin-content summary: evaluated=0, pass=0, warn=0, fail=0, pilotExcluded=1, notA
 
  RUN  v1.6.1 /home/kartheek/calchowmuch
 
- ↓ tests_specs/credit-cards/credit-card-consolidation_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/pcp-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
 
  Test Files  1 skipped (1)
       Tests  1 skipped (1)
-   Start at  23:54:28
-   Duration  758ms (transform 22ms, setup 0ms, collect 22ms, tests 0ms, environment 339ms, prepare 116ms) (skipped by human request)
+   Start at  04:26:27
+   Duration  671ms (transform 18ms, setup 0ms, collect 15ms, tests 0ms, environment 301ms, prepare 66ms) (skipped by human request)
 - 
 > calchowmuch@1.0.0 test:calc:e2e
 > node scripts/run-scoped-tests.mjs --level=calc --type=e2e
 
 
-Running 3 tests using 3 workers
+Running 1 test using 1 worker
 
-  ✓  1 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:109:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-3: explanation contains required rebuilt sections and 10 FAQs (2.2s)
-  ✓  3 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:83:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-2: input edit keeps side/table live and invalid input preserves last valid data (2.4s)
-  ✓  2 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:15:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-1: single-panel Home Loan UI with calculate, donut, and table toggle (3.1s)
+  ✓  1 [chromium] › tests_specs/loans/pcp-calculator_release/e2e.calc.spec.js:21:3 › PCP Calculator › PCP-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs (2.6s)
 
-  3 passed (4.4s) (skipped by human request)
+  1 passed (3.7s) (skipped by human request)
 - 
 > calchowmuch@1.0.0 test:calc:cwv
 > node scripts/run-scoped-tests.mjs --level=calc --type=cwv
@@ -98,10 +96,10 @@ Running 3 tests using 3 workers
 
 Running 1 test using 1 worker
 
-  ✓  1 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-consolidation cwv guard › calculator route satisfies CLS/LCP thresholds (3.3s)
+  ✓  1 [chromium] › tests_specs/loans/pcp-calculator_release/cwv.calc.spec.js:7:3 › loans/pcp-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (3.6s)
 
-  1 passed (4.5s)
-Scoped CWV budget report written to test-results/performance/scoped-cwv/credit-cards/credit-card-consolidation.json (skipped by human request)
+  1 passed (4.7s)
+Scoped CWV budget report written to test-results/performance/scoped-cwv/loans/pcp-calculator.json (skipped by human request)
 - Global suites skipped by mode lock:
   - 
 > calchowmuch@1.0.0 test
@@ -110,130 +108,130 @@ Scoped CWV budget report written to test-results/performance/scoped-cwv/credit-c
 
  RUN  v1.6.1 /home/kartheek/calchowmuch
 
- ✓ tests_specs/math/fraction-calculator_release/unit.calc.test.js  (25 tests) 9ms
- ✓ tests_specs/percentage/markup-calculator_release/unit.calc.test.js  (18 tests) 15ms
+ ✓ tests_specs/math/confidence-interval_release/unit.calc.test.js  (22 tests) 8ms
+ ✓ tests_specs/math/statistics_release/unit.calc.test.js  (34 tests) 10ms
+ ✓ tests_specs/finance/investment-growth_release/unit.calc.test.js  (15 tests) 7ms
+ ✓ tests_specs/finance/compound-interest_release/unit.calc.test.js  (12 tests) 7ms
  ✓ tests_specs/math/z-score_release/unit.calc.test.js  (49 tests) 21ms
- ✓ tests_specs/math/confidence-interval_release/unit.calc.test.js  (22 tests) 18ms
- ✓ tests_specs/math/statistics_release/unit.calc.test.js  (34 tests) 25ms
- ✓ tests_specs/math/standard-deviation_release/unit.calc.test.js  (26 tests) 22ms
- ✓ tests_specs/math/basic_release/unit.calc.test.js  (31 tests) 19ms
- ✓ tests_specs/infrastructure/unit/stats.test.js  (104 tests) 45ms
- ❯ tests_specs/finance/cluster_release/unit.cluster.test.js  (1 test | 1 failed) 17ms
+ ❯ tests_specs/finance/cluster_release/unit.cluster.test.js  (1 test | 1 failed) 34ms
    ❯ tests_specs/finance/cluster_release/unit.cluster.test.js > Finance static schema source parity guard (SEO-FAQ-SCHEMA-002) > enforces static head schema + robots + JS FAQ parity + visible FAQ parity for /finance-calculators/*
      → compound-interest-calculator: missing module.js file: expected false to be true // Object.is equality
- ✓ tests_specs/finance/investment-growth_release/unit.calc.test.js  (15 tests) 10ms
- ✓ tests_specs/finance/compound-interest_release/unit.calc.test.js  (12 tests) 9ms
- ✓ tests_specs/finance/investment-return_release/unit.calc.test.js  (31 tests) 80ms
- ✓ tests_specs/loans/home-loan_release/unit.calc.test.js  (9 tests) 69ms
- ✓ tests_specs/loans/cluster_release/unit.cluster.test.js  (25 tests) 86ms
- ✓ tests_specs/math/cluster_release/unit.cluster.test.js  (207 tests) 115ms
- ✓ tests_specs/infrastructure/unit/math.test.js  (31 tests) 21ms
- ✓ tests_specs/loans/how-much-can-i-borrow_release/unit.calc.test.js  (4 tests) 9ms
- ✓ tests_specs/percentage/what-percent-is-x-of-y_release/unit.calc.test.js  (19 tests) 12ms
- ❯ tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js  (7 tests | 2 failed) 302ms
+ ✓ tests_specs/math/standard-deviation_release/unit.calc.test.js  (26 tests) 21ms
+ ✓ tests_specs/math/fraction-calculator_release/unit.calc.test.js  (25 tests) 20ms
+ ✓ tests_specs/finance/investment-return_release/unit.calc.test.js  (31 tests) 46ms
+ ✓ tests_specs/infrastructure/unit/stats.test.js  (104 tests) 57ms
+ ✓ tests_specs/loans/home-loan_release/unit.calc.test.js  (9 tests) 21ms
+ ✓ tests_specs/math/basic_release/unit.calc.test.js  (31 tests) 26ms
+ ✓ tests_specs/percentage/markup-calculator_release/unit.calc.test.js  (18 tests) 22ms
+ ✓ tests_specs/loans/cluster_release/unit.cluster.test.js  (25 tests) 48ms
+ ✓ tests_specs/math/cluster_release/unit.cluster.test.js  (207 tests) 136ms
+ ✓ tests_specs/finance/future-value-of-annuity_release/unit.calc.test.js  (9 tests) 7ms
+ ✓ tests_specs/infrastructure/unit/schema-structured-data-dedupe.test.js  (7 tests) 15ms
+ ✓ tests_specs/sleep-and-nap/wake-up-time-calculator_release/unit.calc.test.js  (8 tests) 8ms
+ ✓ tests_specs/loans/buy-to-let_release/unit.calc.test.js  (5 tests) 13ms
+ ✓ tests_specs/infrastructure/unit/validate.test.js  (21 tests) 23ms
+ ✓ tests_specs/finance/present-value-of-annuity_release/unit.calc.test.js  (6 tests) 23ms
+ ✓ tests_specs/infrastructure/unit/format.test.js  (31 tests) 66ms
+ ✓ tests_specs/percentage/what-percent-is-x-of-y_release/unit.calc.test.js  (19 tests) 29ms
+ ✓ tests_specs/loans/how-much-can-i-borrow_release/unit.calc.test.js  (4 tests) 25ms
+ ✓ tests_specs/percentage/reverse-percentage_release/unit.calc.test.js  (18 tests) 23ms
+ ✓ tests_specs/credit-cards/cluster_release/unit.cluster.test.js  (11 tests) 43ms
+ ✓ tests_specs/infrastructure/unit/math.test.js  (31 tests) 30ms
+ ✓ tests_specs/time-and-date/work-hours-calculator_release/unit.calc.test.js  (9 tests) 15ms
+ ✓ tests_specs/infrastructure/unit/content-quality-thin-score.test.js  (7 tests) 83ms
+ ❯ tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js  (7 tests | 2 failed) 300ms
    ❯ tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js > UI schema guard for FAQPage injection > rejects duplicate BreadcrumbList schema on a single URL
      → expected [Function] to throw an error
    ❯ tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js > UI schema guard for FAQPage injection > rejects duplicate SoftwareApplication schema on a single URL
      → expected [Function] to throw an error
- ✓ tests_specs/sleep-and-nap/wake-up-time-calculator_release/unit.calc.test.js  (8 tests) 19ms
- ✓ tests_specs/infrastructure/unit/validate.test.js  (21 tests) 19ms
- ✓ tests_specs/finance/future-value-of-annuity_release/unit.calc.test.js  (9 tests) 15ms
- ✓ tests_specs/credit-cards/cluster_release/unit.cluster.test.js  (11 tests) 25ms
- ✓ tests_specs/finance/present-value-of-annuity_release/unit.calc.test.js  (6 tests) 20ms
- ✓ tests_specs/infrastructure/unit/format.test.js  (31 tests) 115ms
- ✓ tests_specs/loans/buy-to-let_release/unit.calc.test.js  (5 tests) 44ms
- ✓ tests_specs/percentage/reverse-percentage_release/unit.calc.test.js  (18 tests) 59ms
- ✓ tests_specs/time-and-date/work-hours-calculator_release/unit.calc.test.js  (9 tests) 50ms
- ✓ tests_specs/infrastructure/unit/schema-structured-data-dedupe.test.js  (7 tests) 59ms
- ✓ tests_specs/infrastructure/unit/content-quality-thin-score.test.js  (7 tests) 228ms
- ✓ tests_specs/percentage/percentage-composition_release/unit.calc.test.js  (6 tests) 7ms
- ✓ tests_specs/time-and-date/overtime-hours-calculator_release/unit.calc.test.js  (7 tests) 21ms
+ ✓ tests_specs/time-and-date/overtime-hours-calculator_release/unit.calc.test.js  (7 tests) 17ms
+ ✓ tests_specs/percentage/percentage-composition_release/unit.calc.test.js  (6 tests) 16ms
+ ✓ tests_specs/percentage/percentage-difference_release/unit.calc.test.js  (6 tests) 16ms
+ ✓ tests_specs/percentage/commission-calculator_release/unit.calc.test.js  (6 tests) 17ms
+ ✓ tests_specs/sleep-and-nap/sleep-time-calculator_release/unit.calc.test.js  (5 tests) 13ms
+ ✓ tests_specs/finance/present-value_release/unit.calc.test.js  (5 tests) 13ms
+ ✓ tests_specs/finance/simple-interest_release/unit.calc.test.js  (5 tests) 10ms
+ ✓ tests_specs/time-and-date/time-between-two-dates-calculator_release/unit.calc.test.js  (5 tests) 5ms
+ ✓ tests_specs/sleep-and-nap/energy-based-nap-selector_release/unit.calc.test.js  (6 tests) 19ms
  ✓ tests_specs/finance/effective-annual-rate_release/unit.calc.test.js  (5 tests) 11ms
- ✓ tests_specs/sleep-and-nap/sleep-time-calculator_release/unit.calc.test.js  (5 tests) 12ms
- ✓ tests_specs/percentage/cluster_release/unit.cluster.test.js  (10 tests) 16ms
- ✓ tests_specs/finance/simple-interest_release/unit.calc.test.js  (5 tests) 13ms
- ✓ tests_specs/finance/present-value_release/unit.calc.test.js  (5 tests) 16ms
- ✓ tests_specs/percentage/commission-calculator_release/unit.calc.test.js  (6 tests) 18ms
- ✓ tests_specs/percentage/percentage-difference_release/unit.calc.test.js  (6 tests) 22ms
- ✓ tests_specs/percentage/margin-calculator_release/unit.calc.test.js  (5 tests) 30ms
- ✓ tests_specs/finance/future-value_release/unit.calc.test.js  (4 tests) 40ms
- ✓ tests_specs/sleep-and-nap/energy-based-nap-selector_release/unit.calc.test.js  (6 tests) 17ms
- ✓ tests_specs/percentage/percentage-decrease_release/unit.calc.test.js  (6 tests) 12ms
- ✓ tests_specs/percentage/discount-calculator_release/unit.calc.test.js  (8 tests) 21ms
- ✓ tests_specs/time-and-date/time-between-two-dates-calculator_release/unit.calc.test.js  (5 tests) 10ms
+ ✓ tests_specs/percentage/margin-calculator_release/unit.calc.test.js  (5 tests) 15ms
+ ✓ tests_specs/percentage/percentage-decrease_release/unit.calc.test.js  (6 tests) 17ms
+ ✓ tests_specs/finance/future-value_release/unit.calc.test.js  (4 tests) 10ms
+ ✓ tests_specs/percentage/cluster_release/unit.cluster.test.js  (10 tests) 22ms
+ ✓ tests_specs/percentage/discount-calculator_release/unit.calc.test.js  (8 tests) 5ms
  ✓ tests_specs/time-and-date/countdown-timer-generator_release/unit.calc.test.js  (3 tests) 5ms
- ✓ tests_specs/math/probability_release/unit.calc.test.js  (5 tests) 14ms
+ ✓ tests_specs/math/polynomial-operations_release/unit.calc.test.js  (3 tests) 7ms
+ ✓ tests_specs/math/probability_release/unit.calc.test.js  (5 tests) 5ms
  ✓ tests_specs/sleep-and-nap/nap-time-calculator_release/unit.calc.test.js  (5 tests) 8ms
  ✓ tests_specs/time-and-date/birthday-day-of-week_release/unit.calc.test.js  (4 tests) 5ms
- ✓ tests_specs/math/polynomial-operations_release/unit.calc.test.js  (3 tests) 9ms
- ✓ tests_specs/math/quadratic-equation_release/unit.calc.test.js  (4 tests) 10ms
- ✓ tests_specs/percentage/percent-to-fraction-decimal_release/unit.calc.test.js  (4 tests) 6ms
- ✓ tests_specs/percentage/percent-change_release/unit.calc.test.js  (5 tests) 11ms
- ✓ tests_specs/infrastructure/unit/graph-utils.test.js  (4 tests) 10ms
- ✓ tests_specs/math/system-of-equations_release/unit.calc.test.js  (3 tests) 7ms
- ✓ tests_specs/math/slope-distance_release/unit.calc.test.js  (3 tests) 10ms
- ✓ tests_specs/percentage/percentage-of-a-number_release/unit.calc.test.js  (4 tests) 19ms
+ ✓ tests_specs/percentage/percentage-of-a-number_release/unit.calc.test.js  (4 tests) 6ms
+ ✓ tests_specs/math/quadratic-equation_release/unit.calc.test.js  (4 tests) 18ms
+ ✓ tests_specs/percentage/percent-to-fraction-decimal_release/unit.calc.test.js  (4 tests) 20ms
  ✓ tests_specs/percentage/percentage-increase_release/unit.calc.test.js  (5 tests) 9ms
- ✓ tests_specs/time-and-date/age-calculator_release/unit.calc.test.js  (4 tests) 18ms
- ✓ tests_specs/time-and-date/days-until-a-date-calculator_release/unit.calc.test.js  (4 tests) 24ms
- ✓ tests_specs/time-and-date/cluster_release/contracts.cluster.test.js  (1 test) 7ms
- ❯ tests_specs/sleep-and-nap/cluster_release/contracts.cluster.test.js  (1 test | 1 failed) 12ms
+ ✓ tests_specs/percentage/percent-change_release/unit.calc.test.js  (5 tests) 21ms
+ ✓ tests_specs/math/slope-distance_release/unit.calc.test.js  (3 tests) 16ms
+ ✓ tests_specs/infrastructure/unit/graph-utils.test.js  (4 tests) 20ms
+ ✓ tests_specs/time-and-date/age-calculator_release/unit.calc.test.js  (4 tests) 19ms
+ ✓ tests_specs/time-and-date/days-until-a-date-calculator_release/unit.calc.test.js  (4 tests) 4ms
+ ✓ tests_specs/math/system-of-equations_release/unit.calc.test.js  (3 tests) 5ms
+ ❯ tests_specs/sleep-and-nap/cluster_release/contracts.cluster.test.js  (1 test | 1 failed) 11ms
    ❯ tests_specs/sleep-and-nap/cluster_release/contracts.cluster.test.js > sleep-and-nap cluster contracts > scope map contains cluster and calculator route contracts
      → expected undefined to be truthy
- ✓ tests_specs/credit-cards/cluster_release/contracts.cluster.test.js  (1 test) 7ms
- ✓ tests_specs/percentage/cluster_release/contracts.cluster.test.js  (1 test) 10ms
+ ✓ tests_specs/time-and-date/cluster_release/contracts.cluster.test.js  (1 test) 9ms
+ ✓ tests_specs/percentage/cluster_release/contracts.cluster.test.js  (1 test) 21ms
+ ✓ tests_specs/credit-cards/cluster_release/contracts.cluster.test.js  (1 test) 11ms
+ ✓ tests_specs/loans/cluster_release/contracts.cluster.test.js  (1 test) 10ms
+ ✓ tests_specs/finance/cluster_release/contracts.cluster.test.js  (1 test) 5ms
+ ✓ tests_specs/math/permutation-combination_release/unit.calc.test.js  (4 tests) 5ms
+ ✓ tests_specs/math/factoring_release/unit.calc.test.js  (3 tests) 12ms
  ✓ tests_specs/math/cluster_release/contracts.cluster.test.js  (1 test) 7ms
  ↓ tests_specs/credit-cards/balance-transfer-installment-plan_release/unit.calc.test.js  (1 test | 1 skipped)
- ✓ tests_specs/math/permutation-combination_release/unit.calc.test.js  (4 tests) 12ms
- ✓ tests_specs/finance/cluster_release/contracts.cluster.test.js  (1 test) 12ms
- ✓ tests_specs/loans/cluster_release/contracts.cluster.test.js  (1 test) 9ms
- ↓ tests_specs/loans/interest-rate-change-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/credit-cards/credit-card-repayment-payoff_release/unit.calc.test.js  (1 test | 1 skipped)
- ✓ tests_specs/math/factoring_release/unit.calc.test.js  (3 tests) 19ms
  ↓ tests_specs/credit-cards/credit-card-consolidation_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/sleep-and-nap/power-nap-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/credit-cards/credit-card-minimum-payment_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/credit-cards/credit-card-repayment-payoff_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/interest-rate-change-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/sleep-and-nap/power-nap-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/finance/monthly-savings-needed_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/finance/time-to-savings-goal_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/mean-median-mode-range_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/remortgage-switching_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/exponential-equations_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/law-of-sines-cosines_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/remortgage-switching_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/leasing-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/multiple-car-loan_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/percentage-increase_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/regression-analysis_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/loans/offset-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/multiple-car-loan_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/regression-analysis_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/hypothesis-testing_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/percentage-increase_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/leasing-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/series-convergence_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/sleep-and-nap/cluster_release/unit.cluster.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/hypothesis-testing_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/time-and-date/cluster_release/unit.cluster.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/pcp-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/number-sequence_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/critical-points_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/loan-to-value_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/log-properties_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/trig-functions_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/distribution_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/loans/hire-purchase_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/pcp-calculator_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/triangle-solver_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/natural-log_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/hire-purchase_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/correlation_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/loans/loan-to-value_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/inverse-trig_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/sample-size_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/trig-functions_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/natural-log_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/distribution_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/unit-circle_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/correlation_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/log-properties_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/common-log_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/derivative_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/loans/car-loan_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/anova_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/derivative_release/unit.calc.test.js  (1 test | 1 skipped)
+ ↓ tests_specs/math/integral_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/log-scale_release/unit.calc.test.js  (1 test | 1 skipped)
  ↓ tests_specs/math/limit_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/integral_release/unit.calc.test.js  (1 test | 1 skipped)
- ↓ tests_specs/math/anova_release/unit.calc.test.js  (1 test | 1 skipped)
 
  Test Files  3 failed | 66 passed | 42 skipped (111)
       Tests  4 failed | 961 passed | 42 skipped (1007)
-   Start at  23:54:55
-   Duration  13.04s (transform 2.28s, setup 15ms, collect 7.08s, tests 2.08s, environment 106.07s, prepare 23.15s)
+   Start at  04:26:53
+   Duration  10.61s (transform 1.32s, setup 7ms, collect 5.04s, tests 1.65s, environment 87.41s, prepare 19.13s)
   - 
 > calchowmuch@1.0.0 test:e2e
 > playwright test
@@ -242,418 +240,418 @@ Scoped CWV budget report written to test-results/performance/scoped-cwv/credit-c
 Running 413 tests using 8 workers
 
   -    1 [chromium] › tests_specs/credit-cards/balance-transfer-installment-plan_release/e2e.calc.spec.js:4:8 › credit-cards/balance-transfer-installment-plan e2e scope placeholder › migrated test content pending for /credit-card-calculators/balance-transfer-credit-card-calculator/
-  ✓    9 [chromium] › tests_specs/credit-cards/cluster_release/seo.cluster.spec.js:6:3 › credit-cards cluster seo smoke › representative route has canonical/title/robots (4.1s)
-  ✓    5 [chromium] › tests_specs/credit-cards/balance-transfer-installment-plan_release/seo.calc.spec.js:4:3 › Balance Transfer Credit Card Calculator SEO › BALANCE-TRANSFER-SEO-1: metadata, social tags, schema, and sitemap (5.0s)
-  ✓    7 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:83:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-2: input edit keeps side/table live and invalid input preserves last valid data (5.0s)
-  ✓    4 [chromium] › tests_specs/credit-cards/cluster_release/e2e.cluster.spec.js:6:3 › credit-cards cluster e2e smoke › cluster representative routes load and show H1 (5.4s)
-  ✓    6 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-consolidation cwv guard › calculator route satisfies CLS/LCP thresholds (5.7s)
-  ✓    2 [chromium] › tests_specs/credit-cards/balance-transfer-installment-plan_release/cwv.calc.spec.js:7:3 › credit-cards/balance-transfer-installment-plan cwv guard › calculator route satisfies CLS/LCP thresholds (5.8s)
-  ✓   10 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:109:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-3: explanation contains required rebuilt sections and 10 FAQs (3.9s)
-  ✓    3 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:15:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-1: single-panel Home Loan UI with calculate, donut, and table toggle (8.3s)
-  ✓   15 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:109:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-3: explanation pane contains required sections and 10 FAQs (3.5s)
-  ✓   14 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:93:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-2: input change keeps outcome visible with updated defaults (3.9s)
-  ✓   11 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/seo.calc.spec.js:4:3 › Credit Card Consolidation Calculator SEO › CONSOLIDATION-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap (4.6s)
-  ✓   12 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-minimum-payment cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  ✓    8 [chromium] › tests_specs/credit-cards/cluster_release/cwv.cluster.spec.js:7:3 › credit-cards cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (11.8s)
-  ✓   20 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:67:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-3: explanation pane has 10 FAQ items (2.7s)
-  ✓   16 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/seo.calc.spec.js:4:3 › Credit Card Minimum Payment Calculator SEO › MINPAY-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap (4.2s)
-  ✓   19 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:50:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-2: projected horizon remains visible after input change (4.0s)
-  ✓   18 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:4:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-1: load, nav, calculate, verify results (5.0s)
-  ✓   21 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/seo.calc.spec.js:4:3 › Credit Card Repayment Calculator SEO › REPAYMENT-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (4.1s)
-  ✘   17 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-repayment-payoff cwv guard › calculator route satisfies CLS/LCP thresholds (5.7s)
-  ✓   23 [chromium] › tests_specs/finance/cluster_release/seo.cluster.spec.js:6:3 › finance cluster seo smoke › representative route has canonical/title/robots (2.7s)
-  ✘   13 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:12:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-1: load, nav, calculate, verify results (9.6s)
-  ✓   24 [chromium] › tests_specs/finance/cluster_release/e2e.cluster.spec.js:6:3 › finance cluster e2e smoke › cluster representative routes load and show H1 (4.8s)
-  ✓   27 [chromium] › tests_specs/finance/compound-interest_release/seo.calc.spec.js:4:3 › Compound Interest Calculator SEO › CI-TEST-SEO-1: metadata, structured data, sitemap (3.3s)
-  ✓   25 [chromium] › tests_specs/finance/compound-interest_release/cwv.calc.spec.js:10:3 › finance/compound-interest cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓   28 [chromium] › tests_specs/finance/effective-annual-rate_release/e2e.calc.spec.js:8:3 › Effective Annual Rate Calculator › EAR-TEST-E2E-1: user journey and results (3.7s)
-  ✓   26 [chromium] › tests_specs/finance/compound-interest_release/e2e.calc.spec.js:8:3 › Compound Interest Calculator › CI-TEST-E2E-1: user journey and projection table frequency toggle (5.2s)
-  ✓   31 [chromium] › tests_specs/finance/future-value_release/seo.calc.spec.js:4:3 › Future Value Calculator SEO › FV-TEST-SEO-1: metadata, structured data, sitemap (3.8s)
-  ✓   30 [chromium] › tests_specs/finance/future-value_release/e2e.calc.spec.js:21:3 › Future Value Calculator › FV-TEST-E2E-1: user journey and results (4.6s)
-  ✘   22 [chromium] › tests_specs/finance/cluster_release/cwv.cluster.spec.js:7:3 › finance cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.6s)
-  ✓   34 [chromium] › tests_specs/finance/effective-annual-rate_release/seo.calc.spec.js:4:3 › Effective Annual Rate Calculator SEO › EAR-TEST-SEO-1: metadata, structured data, sitemap (4.0s)
-  ✘   29 [chromium] › tests_specs/finance/future-value_release/cwv.calc.spec.js:7:3 › finance/future-value cwv guard › calculator route satisfies CLS/LCP thresholds (5.7s)
-  ✓   35 [chromium] › tests_specs/finance/future-value-of-annuity_release/e2e.calc.spec.js:21:3 › Future Value of Annuity Calculator › FVA-TEST-E2E-1: user journey and results (5.0s)
-  ✘   32 [chromium] › tests_specs/finance/effective-annual-rate_release/cwv.calc.spec.js:7:3 › finance/effective-annual-rate cwv guard › calculator route satisfies CLS/LCP thresholds (5.5s)
-  ✓   36 [chromium] › tests_specs/finance/future-value-of-annuity_release/seo.calc.spec.js:4:3 › Future Value of Annuity Calculator SEO › FVA-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
-  ✘   33 [chromium] › tests_specs/finance/future-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/future-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds (5.5s)
-  -   41 [chromium] › tests_specs/finance/monthly-savings-needed_release/e2e.calc.spec.js:4:8 › finance/monthly-savings-needed e2e scope placeholder › migrated test content pending for /finance-calculators/monthly-savings-needed-calculator/
-  ✓   38 [chromium] › tests_specs/finance/investment-growth_release/seo.calc.spec.js:4:3 › Investment Growth Calculator SEO › IG-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
-  ✘   37 [chromium] › tests_specs/finance/investment-growth_release/cwv.calc.spec.js:7:3 › finance/investment-growth cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
-  ✓   42 [chromium] › tests_specs/finance/investment-growth_release/e2e.calc.spec.js:8:3 › Investment Growth Calculator › IG-TEST-E2E-1: user journey and results (4.3s)
-  ✓   39 [chromium] › tests_specs/finance/investment-return_release/e2e.calc.spec.js:10:3 › Investment Return Calculator › IR-E2E-1 core flow, advanced mode, table/graph toggles, and button-only behavior (5.7s)
-  ✓   45 [chromium] › tests_specs/finance/investment-return_release/seo.calc.spec.js:4:3 › Investment Return Calculator SEO › IR-SEO-1 metadata, structured data, and sitemap (3.4s)
-  ✘   40 [chromium] › tests_specs/finance/monthly-savings-needed_release/cwv.calc.spec.js:7:3 › finance/monthly-savings-needed cwv guard › calculator route satisfies CLS/LCP thresholds (5.3s)
-  ✓   46 [chromium] › tests_specs/finance/monthly-savings-needed_release/seo.calc.spec.js:4:3 › Monthly Savings Needed Calculator SEO › MSN-TEST-SEO-1: metadata, structured data, sitemap (2.9s)
-  ✘   43 [chromium] › tests_specs/finance/investment-return_release/cwv.calc.spec.js:7:3 › finance/investment-return cwv guard › calculator route satisfies CLS/LCP thresholds (5.1s)
-  ✘   44 [chromium] › tests_specs/finance/present-value_release/cwv.calc.spec.js:7:3 › finance/present-value cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
-  ✓   47 [chromium] › tests_specs/finance/present-value_release/seo.calc.spec.js:4:3 › Present Value Calculator SEO › PV-TEST-SEO-1: metadata, structured data, sitemap (3.1s)
-  ✓   49 [chromium] › tests_specs/finance/present-value-of-annuity_release/e2e.calc.spec.js:21:3 › Present Value of Annuity Calculator › PVA-TEST-E2E-1: user journey and results (4.1s)
+  ✓    6 [chromium] › tests_specs/credit-cards/cluster_release/seo.cluster.spec.js:6:3 › credit-cards cluster seo smoke › representative route has canonical/title/robots (3.2s)
+  ✓    4 [chromium] › tests_specs/credit-cards/balance-transfer-installment-plan_release/seo.calc.spec.js:4:3 › Balance Transfer Credit Card Calculator SEO › BALANCE-TRANSFER-SEO-1: metadata, social tags, schema, and sitemap (3.8s)
+  ✓    2 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:83:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-2: input edit keeps side/table live and invalid input preserves last valid data (4.1s)
+  ✓    8 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-consolidation cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✓    5 [chromium] › tests_specs/credit-cards/cluster_release/e2e.cluster.spec.js:6:3 › credit-cards cluster e2e smoke › cluster representative routes load and show H1 (4.8s)
+  ✓    9 [chromium] › tests_specs/credit-cards/balance-transfer-installment-plan_release/cwv.calc.spec.js:7:3 › credit-cards/balance-transfer-installment-plan cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✓   10 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:109:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-3: explanation contains required rebuilt sections and 10 FAQs (2.6s)
+  ✓    3 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/e2e.calc.spec.js:15:3 › Credit Card Consolidation Calculator › CONSOLIDATION-TEST-E2E-1: single-panel Home Loan UI with calculate, donut, and table toggle (6.2s)
+  ✓   11 [chromium] › tests_specs/credit-cards/credit-card-consolidation_release/seo.calc.spec.js:4:3 › Credit Card Consolidation Calculator SEO › CONSOLIDATION-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap (3.3s)
+  ✓   14 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:93:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-2: input change keeps outcome visible with updated defaults (3.0s)
+  ✓   15 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:109:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-3: explanation pane contains required sections and 10 FAQs (3.2s)
+  ✓   12 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-minimum-payment cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  ✓   16 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/seo.calc.spec.js:4:3 › Credit Card Minimum Payment Calculator SEO › MINPAY-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap (3.1s)
+  ✓    7 [chromium] › tests_specs/credit-cards/cluster_release/cwv.cluster.spec.js:7:3 › credit-cards cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (10.0s)
+  ✓   20 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:67:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-3: explanation pane has 10 FAQ items (2.3s)
+  ✓   17 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-repayment-payoff cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓   18 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:4:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-1: load, nav, calculate, verify results (3.7s)
+  ✓   19 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/e2e.calc.spec.js:50:3 › Credit Card Repayment Calculator › REPAYMENT-TEST-E2E-2: projected horizon remains visible after input change (3.1s)
+  ✓   21 [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/seo.calc.spec.js:4:3 › Credit Card Repayment Calculator SEO › REPAYMENT-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (2.8s)
+  ✓   24 [chromium] › tests_specs/finance/cluster_release/seo.cluster.spec.js:6:3 › finance cluster seo smoke › representative route has canonical/title/robots (2.5s)
+  ✓   23 [chromium] › tests_specs/finance/cluster_release/e2e.cluster.spec.js:6:3 › finance cluster e2e smoke › cluster representative routes load and show H1 (4.2s)
+  ✓   27 [chromium] › tests_specs/finance/compound-interest_release/seo.calc.spec.js:4:3 › Compound Interest Calculator SEO › CI-TEST-SEO-1: metadata, structured data, sitemap (3.2s)
+  ✘   13 [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:12:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-1: load, nav, calculate, verify results (8.5s)
+  ✓   25 [chromium] › tests_specs/finance/compound-interest_release/cwv.calc.spec.js:10:3 › finance/compound-interest cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
+  ✓   26 [chromium] › tests_specs/finance/compound-interest_release/e2e.calc.spec.js:8:3 › Compound Interest Calculator › CI-TEST-E2E-1: user journey and projection table frequency toggle (4.6s)
+  ✓   29 [chromium] › tests_specs/finance/effective-annual-rate_release/e2e.calc.spec.js:8:3 › Effective Annual Rate Calculator › EAR-TEST-E2E-1: user journey and results (2.7s)
+  ✓   30 [chromium] › tests_specs/finance/effective-annual-rate_release/seo.calc.spec.js:4:3 › Effective Annual Rate Calculator SEO › EAR-TEST-SEO-1: metadata, structured data, sitemap (2.4s)
+  ✘   28 [chromium] › tests_specs/finance/effective-annual-rate_release/cwv.calc.spec.js:7:3 › finance/effective-annual-rate cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓   32 [chromium] › tests_specs/finance/future-value_release/seo.calc.spec.js:4:3 › Future Value Calculator SEO › FV-TEST-SEO-1: metadata, structured data, sitemap (2.8s)
+  ✘   22 [chromium] › tests_specs/finance/cluster_release/cwv.cluster.spec.js:7:3 › finance cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (8.2s)
+  ✓   34 [chromium] › tests_specs/finance/future-value-of-annuity_release/e2e.calc.spec.js:21:3 › Future Value of Annuity Calculator › FVA-TEST-E2E-1: user journey and results (3.6s)
+  ✓   35 [chromium] › tests_specs/finance/future-value-of-annuity_release/seo.calc.spec.js:4:3 › Future Value of Annuity Calculator SEO › FVA-TEST-SEO-1: metadata, structured data, sitemap (3.0s)
+  ✘   31 [chromium] › tests_specs/finance/future-value_release/cwv.calc.spec.js:7:3 › finance/future-value cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓   36 [chromium] › tests_specs/finance/future-value_release/e2e.calc.spec.js:21:3 › Future Value Calculator › FV-TEST-E2E-1: user journey and results (3.2s)
+  ✘   33 [chromium] › tests_specs/finance/future-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/future-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  -   43 [chromium] › tests_specs/finance/monthly-savings-needed_release/e2e.calc.spec.js:4:8 › finance/monthly-savings-needed e2e scope placeholder › migrated test content pending for /finance-calculators/monthly-savings-needed-calculator/
+  ✓   37 [chromium] › tests_specs/finance/investment-growth_release/e2e.calc.spec.js:8:3 › Investment Growth Calculator › IG-TEST-E2E-1: user journey and results (3.0s)
+  ✓   42 [chromium] › tests_specs/finance/investment-growth_release/seo.calc.spec.js:4:3 › Investment Growth Calculator SEO › IG-TEST-SEO-1: metadata, structured data, sitemap (2.6s)
+  ✓   40 [chromium] › tests_specs/finance/investment-return_release/e2e.calc.spec.js:10:3 › Investment Return Calculator › IR-E2E-1 core flow, advanced mode, table/graph toggles, and button-only behavior (4.7s)
+  ✘   38 [chromium] › tests_specs/finance/investment-growth_release/cwv.calc.spec.js:7:3 › finance/investment-growth cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✘   39 [chromium] › tests_specs/finance/investment-return_release/cwv.calc.spec.js:7:3 › finance/investment-return cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓   45 [chromium] › tests_specs/finance/investment-return_release/seo.calc.spec.js:4:3 › Investment Return Calculator SEO › IR-SEO-1 metadata, structured data, and sitemap (2.8s)
+  ✘   41 [chromium] › tests_specs/finance/monthly-savings-needed_release/cwv.calc.spec.js:7:3 › finance/monthly-savings-needed cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓   46 [chromium] › tests_specs/finance/monthly-savings-needed_release/seo.calc.spec.js:4:3 › Monthly Savings Needed Calculator SEO › MSN-TEST-SEO-1: metadata, structured data, sitemap (2.6s)
+  ✓   47 [chromium] › tests_specs/finance/present-value_release/e2e.calc.spec.js:21:3 › Present Value Calculator › PV-TEST-E2E-1: user journey and results (2.9s)
+  ✘   44 [chromium] › tests_specs/finance/present-value_release/cwv.calc.spec.js:7:3 › finance/present-value cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✓   48 [chromium] › tests_specs/finance/present-value_release/seo.calc.spec.js:4:3 › Present Value Calculator SEO › PV-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
   -   54 [chromium] › tests_specs/finance/time-to-savings-goal_release/e2e.calc.spec.js:4:8 › finance/time-to-savings-goal e2e scope placeholder › migrated test content pending for /finance-calculators/time-to-savings-goal-calculator/
-  ✓   51 [chromium] › tests_specs/finance/present-value_release/e2e.calc.spec.js:21:3 › Present Value Calculator › PV-TEST-E2E-1: user journey and results (3.4s)
-  -   58 [chromium] › tests_specs/infrastructure/e2e/above-the-fold-mutation.spec.js:19:3 › Above-the-fold mutation guard › Above-the-fold mutation guard
-  -   59 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:19:3 › Accessibility UX guard › Keyboard traversal + focus visibility
-  -   60 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:38:3 › Accessibility UX guard › Results live region present
-  -   61 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:45:3 › Accessibility UX guard › 200% zoom layout sanity (no horizontal overflow)
-  ✓   50 [chromium] › tests_specs/finance/simple-interest_release/cwv.calc.spec.js:7:3 › finance/simple-interest cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  ✘   48 [chromium] › tests_specs/finance/present-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/present-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
-  ✓   53 [chromium] › tests_specs/finance/present-value-of-annuity_release/seo.calc.spec.js:4:3 › Present Value of Annuity Calculator SEO › PVA-TEST-SEO-1: metadata, structured data, sitemap (3.3s)
-  ✓   55 [chromium] › tests_specs/finance/time-to-savings-goal_release/seo.calc.spec.js:4:3 › Time to Savings Goal Calculator SEO › TSG-TEST-SEO-1: metadata, structured data, sitemap (2.8s)
-  ✓   57 [chromium] › tests_specs/finance/simple-interest_release/seo.calc.spec.js:4:3 › Simple Interest Calculator SEO › SI-TEST-SEO-1: metadata, structured data, sitemap (2.8s)
-  ✓   64 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Terms page metadata (1.4s)
-  ✘   52 [chromium] › tests_specs/finance/time-to-savings-goal_release/cwv.calc.spec.js:7:3 › finance/time-to-savings-goal cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
-  ✓   56 [chromium] › tests_specs/finance/simple-interest_release/e2e.calc.spec.js:8:3 › Simple Interest Calculator › SI-TEST-E2E-1: user journey and calculation output (3.5s)
-  ✓   65 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Contact page metadata (984ms)
-  ✓   67 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › Privacy page uses GTEP layout (1.2s)
-  ✓   68 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › Contact page uses GTEP layout (1.2s)
+  ✓   49 [chromium] › tests_specs/finance/present-value-of-annuity_release/seo.calc.spec.js:4:3 › Present Value of Annuity Calculator SEO › PVA-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
+  -   56 [chromium] › tests_specs/infrastructure/e2e/above-the-fold-mutation.spec.js:19:3 › Above-the-fold mutation guard › Above-the-fold mutation guard
+  -   57 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:19:3 › Accessibility UX guard › Keyboard traversal + focus visibility
+  -   58 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:38:3 › Accessibility UX guard › Results live region present
+  -   59 [chromium] › tests_specs/infrastructure/e2e/accessibility-ux.spec.js:45:3 › Accessibility UX guard › 200% zoom layout sanity (no horizontal overflow)
+  ✓   51 [chromium] › tests_specs/finance/simple-interest_release/seo.calc.spec.js:4:3 › Simple Interest Calculator SEO › SI-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
+  ✓   50 [chromium] › tests_specs/finance/simple-interest_release/e2e.calc.spec.js:8:3 › Simple Interest Calculator › SI-TEST-E2E-1: user journey and calculation output (3.4s)
+  ✓   55 [chromium] › tests_specs/finance/time-to-savings-goal_release/seo.calc.spec.js:4:3 › Time to Savings Goal Calculator SEO › TSG-TEST-SEO-1: metadata, structured data, sitemap (2.3s)
+  ✓   64 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Privacy page metadata (1.5s)
+  ✓   53 [chromium] › tests_specs/finance/present-value-of-annuity_release/e2e.calc.spec.js:21:3 › Present Value of Annuity Calculator › PVA-TEST-E2E-1: user journey and results (3.6s)
+  ✓   65 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Terms page metadata (1.4s)
+  ✘   52 [chromium] › tests_specs/finance/present-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/present-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓   66 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Contact page metadata (1.1s)
+  ✓   61 [chromium] › tests_specs/finance/simple-interest_release/cwv.calc.spec.js:7:3 › finance/simple-interest cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓   68 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › Privacy page uses GTEP layout (1.2s)
+  ✓   69 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › Contact page uses GTEP layout (1.2s)
   ✓   70 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › FAQs page uses GTEP layout (1.3s)
-  ✓   69 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › Privacy page metadata (1.3s)
-  ✓   71 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:4:3 › Official standalone homepage › HOME-MOBILE-001: mobile viewport uses compact cards and disables particle canvas (1.7s)
-  -   76 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:19:3 › Interaction guard › Long task guard during interaction
-  -   77 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:104:3 › Interaction guard › Interaction latency proxy (<200ms)
-  -   78 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:193:3 › Interaction guard › Nav click stability (no layout jumps)
-  ✘   62 [chromium] › tests_specs/infrastructure/e2e/button-only-recalc-finance-percentage.spec.js:152:3 › Button-Only Recalculation (Finance + Percentage) › BTN-ONLY-E2E-1: all target calculators update only after Calculate click (6.3s)
-  ✓   74 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:80:3 › Official standalone homepage › HOME-SEO-001: homepage has Organization/WebSite/WebPage JSON-LD with SearchAction and no FAQPage (1.7s)
+  ✘   62 [chromium] › tests_specs/finance/time-to-savings-goal_release/cwv.calc.spec.js:7:3 › finance/time-to-savings-goal cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
+  ✓   71 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:4:3 › Official standalone homepage › HOME-MOBILE-001: mobile viewport uses compact cards and disables particle canvas (1.5s)
+  -   75 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:19:3 › Interaction guard › Long task guard during interaction
+  -   76 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:104:3 › Interaction guard › Interaction latency proxy (<200ms)
+  -   77 [chromium] › tests_specs/infrastructure/e2e/interaction-guard.spec.js:193:3 › Interaction guard › Nav click stability (no layout jumps)
+  ✘   60 [chromium] › tests_specs/infrastructure/e2e/button-only-recalc-finance-percentage.spec.js:152:3 › Button-Only Recalculation (Finance + Percentage) › BTN-ONLY-E2E-1: all target calculators update only after Calculate click (6.1s)
   ✓   73 [chromium] › tests_specs/infrastructure/e2e/gtep-pages.spec.js:11:3 › Terms page uses GTEP layout (1.8s)
-  ✓   72 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:26:3 › Official standalone homepage › HOME-ISS-001: root route renders standalone cluster cards without calculator shell panes (2.3s)
-  ✓   75 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:116:3 › Official standalone homepage › HOME-SEO-002: /calculators/?q= query contract filters results and handles empty matches (2.4s)
-  ✓   83 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:126:3 › ISS-001: Layout Stability › scrollbars remain visible during navigation (3.2s)
-  ✘   66 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › FAQs page metadata (7.5s)
-  ✓   79 [chromium] › tests_specs/infrastructure/e2e/iss/iss-nav-top-001.spec.js:3:1 › ISS-NAV-TOP-001: Top Navigation Visual Regression Contract (6.1s)
-  ✓   85 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:150:3 › ISS-001: Layout Stability › buttons do not have transform transitions (5.1s)
-  ✓   80 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:69:3 › ISS-001: Layout Stability › left navigation pane has stable dimensions during navigation (11.8s)
+  ✓   74 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:80:3 › Official standalone homepage › HOME-SEO-001: homepage has Organization/WebSite/WebPage JSON-LD with SearchAction and no FAQPage (1.8s)
+  ✓   72 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:26:3 › Official standalone homepage › HOME-ISS-001: root route renders standalone cluster cards without calculator shell panes (2.4s)
+  ✘   67 [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › FAQs page metadata (7.3s)
+  ✓   81 [chromium] › tests_specs/infrastructure/e2e/home-shell.spec.js:116:3 › Official standalone homepage › HOME-SEO-002: /calculators/?q= query contract filters results and handles empty matches (3.3s)
+  ✓   78 [chromium] › tests_specs/infrastructure/e2e/iss/iss-nav-top-001.spec.js:3:1 › ISS-NAV-TOP-001: Top Navigation Visual Regression Contract (5.3s)
+  ✓   84 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:150:3 › ISS-001: Layout Stability › buttons do not have transform transitions (4.2s)
+  ✓   79 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:69:3 › ISS-001: Layout Stability › left navigation pane has stable dimensions during navigation (10.7s)
+  ✓   80 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:88:3 › ISS-001: Layout Stability › center column has stable dimensions during navigation (10.8s)
   -   89 [chromium] › tests_specs/infrastructure/e2e/mobile-ux.spec.js:47:3 › Mobile UX guard › mobile viewport screenshot
   -   90 [chromium] › tests_specs/infrastructure/e2e/mobile-ux.spec.js:62:3 › Mobile UX guard › tap targets are at least 48x48
-  ✓   81 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:88:3 › ISS-001: Layout Stability › center column has stable dimensions during navigation (12.1s)
-  ✓   91 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:19:1 › ROUTE-ARCHETYPE-001: all navigation calculators declare archetype/family/layout metadata (758ms)
-  ✓   82 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:107:3 › ISS-001: Layout Stability › ads column has stable dimensions during navigation (12.7s)
-  ✓   93 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:92:1 › ROUTE-ARCHETYPE-003: home route is content_shell with neutral design family (3.3s)
-  ✓   84 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:47:3 › ISS-001: Layout Stability › page shell maintains fixed dimensions during navigation (13.5s)
-  ✓   95 [chromium] › tests_specs/infrastructure/e2e/sitemap-seo.spec.js:4:3 › Sitemap page SEO baseline › SITEMAP-SEO-1: sitemap xml is reachable and contains canonical URLs (453ms)
-  ✘   88 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability (7.3s)
-  ✓   87 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:170:3 › ISS-001: Layout Stability › no layout shift when clicking nav items rapidly (9.2s)
-  ✓   86 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:188:3 › ISS-001: Layout Stability › category switching does not cause layout shift (12.7s)
-  ✓   97 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:46:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-1: deposit type shows only selected slider input (3.8s)
-  ✓   96 [chromium] › tests_specs/loans/buy-to-let_release/cwv.calc.spec.js:7:3 › loans/buy-to-let cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓   98 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:82:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-3: selected deposit mode drives calculation and syncs inactive control (4.5s)
-  -  103 [chromium] › tests_specs/loans/buy-to-let_release/seo.calc.spec.js:4:8 › loans/buy-to-let seo scope placeholder › migrated SEO content pending for /loan-calculators/buy-to-let-mortgage-calculator/
-  ✘   92 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:40:1 › ROUTE-ARCHETYPE-002: generated body metadata and pane presence match metadata contract (9.2s)
-  ✘   94 [chromium] › tests_specs/infrastructure/e2e/sitemap-footer.spec.js:4:3 › Sitemap footer link › SITEMAP-TEST-E2E-1: footer link navigates to sitemap page (9.2s)
-  ✓   99 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:105:3 › Buy-to-Let calculator requirements › BTL-TEST-I-1: table updates when rent increase toggles (5.7s)
-  ✓  102 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:149:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-5: single-pane structure and labels (3.6s)
-  ✓  100 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:62:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-2: deposit slider displays update and amount max tracks property price (4.5s)
-  ✓  101 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:132:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-4: full user journey with rent increase (5.4s)
-  ✓  104 [chromium] › tests_specs/loans/car-loan_release/cwv.calc.spec.js:7:3 › loans/car-loan cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
-  ✓  107 [chromium] › tests_specs/loans/cluster_release/seo.cluster.spec.js:6:3 › loans cluster seo smoke › representative route has canonical/title/robots (4.0s)
-  ✓  110 [chromium] › tests_specs/loans/car-loan_release/seo.calc.spec.js:4:3 › Car Loan Calculator SEO › CAR-LOAN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (5.0s)
-  ✓  109 [chromium] › tests_specs/loans/hire-purchase_release/cwv.calc.spec.js:7:3 › loans/hire-purchase cwv guard › calculator route satisfies CLS/LCP thresholds (5.3s)
-  ✓  106 [chromium] › tests_specs/loans/cluster_release/e2e.cluster.spec.js:14:3 › loans cluster e2e smoke › cluster representative routes load with visible H1 and no console errors (6.8s)
-  ✓  108 [chromium] › tests_specs/loans/car-loan_release/e2e.calc.spec.js:21:3 › Car Loan Calculator › CAR-LOAN-E2E-1: premium single pane with button-only recalculation and schedule toggles (6.0s)
-  ✓  112 [chromium] › tests_specs/loans/hire-purchase_release/seo.calc.spec.js:4:3 › Hire Purchase Calculator SEO › HIRE-PURCHASE-SEO-1: metadata, heading, FAQ schema, sitemap (4.2s)
-  ✓  111 [chromium] › tests_specs/loans/hire-purchase_release/e2e.calc.spec.js:21:3 › Hire Purchase Calculator › HIRE-PURCHASE-E2E-1: premium single pane, button-only calculate, and full outputs (6.3s)
-  ✓  113 [chromium] › tests_specs/loans/home-loan_release/cwv.calc.spec.js:7:3 › loans/home-loan cwv guard › calculator route satisfies CLS/LCP thresholds (6.3s)
-  ✓  115 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:65:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-2: view toggle switches table visibility and header remains sticky (6.8s)
-  ✓  116 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:88:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-3: renders as single center panel with aligned advanced fields (6.3s)
-  ✓  118 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/cwv.calc.spec.js:7:3 › loans/how-much-can-i-borrow cwv guard › calculator route satisfies CLS/LCP thresholds (5.3s)
-  ✓  117 [chromium] › tests_specs/loans/home-loan_release/seo.calc.spec.js:4:3 › Home Loan calculator SEO › HOME-LOAN-TEST-SEO-1: metadata, schema parity, sitemap, and intent block order (5.7s)
-  ✓  114 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:9:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-1: calculates and populates merged snapshot outputs (8.3s)
-  ✘  105 [chromium] › tests_specs/loans/cluster_release/cwv.cluster.spec.js:7:3 › loans cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (13.4s)
-  ✓  119 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:66:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-1: single-pane layout with no horizontal overflow (5.2s)
-  ✓  120 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:96:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-2: affordability method toggles guided rows (5.0s)
-  ✓  122 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:143:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-4: complete user workflow with income multiple (5.2s)
-  ✓  121 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:117:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-3: no currency symbols in results or displays (6.2s)
-  ✓  123 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:158:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-5: complete user workflow payment-to-income (5.5s)
-  ✓  124 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:177:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-6: error state handling (5.0s)
-  ✓  129 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/seo.calc.spec.js:4:3 › How Much Can I Borrow Calculator SEO › BOR-TEST-SEO-1: metadata, schema, FAQ parity, sitemap (4.1s)
-  ✓  125 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:204:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-8: capacity bar renders segments after calculation (6.2s)
-  ✓  127 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:263:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-10: 10 FAQ cards in grid layout (5.1s)
-  ✓  126 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:225:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-9: scenario table renders with highlighted current rate (6.0s)
-  ✓  131 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:27:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-1: slider badges update live as inputs change (5.0s)
-  ✓  130 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/cwv.calc.spec.js:7:3 › loans/interest-rate-change-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.3s)
-  ✓  128 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:189:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-7: layout stability after calculate and method switch (5.8s)
-  ✓  132 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:39:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-2: after-months slider reveals and display updates with timing toggle (4.8s)
+  ✓   86 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:126:3 › ISS-001: Layout Stability › scrollbars remain visible during navigation (4.2s)
+  ✓   85 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:170:3 › ISS-001: Layout Stability › no layout shift when clicking nav items rapidly (7.7s)
+  ✓   91 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:19:1 › ROUTE-ARCHETYPE-001: all navigation calculators declare archetype/family/layout metadata (527ms)
+  ✓   83 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:47:3 › ISS-001: Layout Stability › page shell maintains fixed dimensions during navigation (11.0s)
+  ✓   82 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:107:3 › ISS-001: Layout Stability › ads column has stable dimensions during navigation (11.4s)
+  ✓   95 [chromium] › tests_specs/infrastructure/e2e/sitemap-seo.spec.js:4:3 › Sitemap page SEO baseline › SITEMAP-SEO-1: sitemap xml is reachable and contains canonical URLs (302ms)
+  ✓   93 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:92:1 › ROUTE-ARCHETYPE-003: home route is content_shell with neutral design family (2.6s)
+  ✓   97 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:46:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-1: deposit type shows only selected slider input (4.1s)
+  ✘   88 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability (5.1s)
+  ✓   87 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:188:3 › ISS-001: Layout Stability › category switching does not cause layout shift (9.7s)
+  ✓   98 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:62:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-2: deposit slider displays update and amount max tracks property price (3.9s)
+  ✘   96 [chromium] › tests_specs/loans/buy-to-let_release/cwv.calc.spec.js:7:3 › loans/buy-to-let cwv guard › calculator route satisfies CLS/LCP thresholds (5.8s)
+  -  102 [chromium] › tests_specs/loans/buy-to-let_release/seo.calc.spec.js:4:8 › loans/buy-to-let seo scope placeholder › migrated SEO content pending for /loan-calculators/buy-to-let-mortgage-calculator/
+  ✓   99 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:82:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-3: selected deposit mode drives calculation and syncs inactive control (3.5s)
+  ✘   94 [chromium] › tests_specs/infrastructure/e2e/sitemap-footer.spec.js:4:3 › Sitemap footer link › SITEMAP-TEST-E2E-1: footer link navigates to sitemap page (8.8s)
+  ✓  101 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:149:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-5: single-pane structure and labels (3.0s)
+  ✘   92 [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:40:1 › ROUTE-ARCHETYPE-002: generated body metadata and pane presence match metadata contract (8.3s)
+  ✓  100 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:132:3 › Buy-to-Let calculator requirements › BTL-TEST-E2E-4: full user journey with rent increase (5.1s)
+  ✓  104 [chromium] › tests_specs/loans/car-loan_release/e2e.calc.spec.js:21:3 › Car Loan Calculator › CAR-LOAN-E2E-1: premium single pane with button-only recalculation and schedule toggles (4.1s)
+  ✓  105 [chromium] › tests_specs/loans/car-loan_release/cwv.calc.spec.js:7:3 › loans/car-loan cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  107 [chromium] › tests_specs/loans/cluster_release/seo.cluster.spec.js:6:3 › loans cluster seo smoke › representative route has canonical/title/robots (3.0s)
+  ✓  103 [chromium] › tests_specs/loans/buy-to-let_release/e2e.calc.spec.js:105:3 › Buy-to-Let calculator requirements › BTL-TEST-I-1: table updates when rent increase toggles (6.6s)
+  ✘  106 [chromium] › tests_specs/loans/cluster_release/cwv.cluster.spec.js:7:3 › loans cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (5.6s)
+  ✓  109 [chromium] › tests_specs/loans/car-loan_release/seo.calc.spec.js:4:3 › Car Loan Calculator SEO › CAR-LOAN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.8s)
+  ✓  108 [chromium] › tests_specs/loans/hire-purchase_release/cwv.calc.spec.js:7:3 › loans/hire-purchase cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  112 [chromium] › tests_specs/loans/hire-purchase_release/seo.calc.spec.js:4:3 › Hire Purchase Calculator SEO › HIRE-PURCHASE-SEO-1: metadata, heading, FAQ schema, sitemap (3.3s)
+  ✓  110 [chromium] › tests_specs/loans/cluster_release/e2e.cluster.spec.js:14:3 › loans cluster e2e smoke › cluster representative routes load with visible H1 and no console errors (5.4s)
+  ✓  111 [chromium] › tests_specs/loans/hire-purchase_release/e2e.calc.spec.js:21:3 › Hire Purchase Calculator › HIRE-PURCHASE-E2E-1: premium single pane, button-only calculate, and full outputs (4.8s)
+  ✓  113 [chromium] › tests_specs/loans/home-loan_release/cwv.calc.spec.js:7:3 › loans/home-loan cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
+  ✓  114 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:65:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-2: view toggle switches table visibility and header remains sticky (4.8s)
+  ✓  115 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:88:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-3: renders as single center panel with aligned advanced fields (5.0s)
+  ✓  116 [chromium] › tests_specs/loans/home-loan_release/seo.calc.spec.js:4:3 › Home Loan calculator SEO › HOME-LOAN-TEST-SEO-1: metadata, schema parity, sitemap, and intent block order (4.4s)
+  ✓  118 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:66:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-1: single-pane layout with no horizontal overflow (4.3s)
+  ✓  120 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:96:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-2: affordability method toggles guided rows (4.3s)
+  ✘  117 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/cwv.calc.spec.js:7:3 › loans/how-much-can-i-borrow cwv guard › calculator route satisfies CLS/LCP thresholds (5.5s)
+  ✓  119 [chromium] › tests_specs/loans/home-loan_release/e2e.calc.spec.js:9:3 › Home Loan calculator › HOME-LOAN-TEST-E2E-1: calculates and populates merged snapshot outputs (7.2s)
+  ✓  121 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:117:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-3: no currency symbols in results or displays (5.2s)
+  ✓  122 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:143:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-4: complete user workflow with income multiple (5.0s)
+  ✓  124 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:177:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-6: error state handling (4.2s)
+  ✓  123 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:158:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-5: complete user workflow payment-to-income (4.7s)
+  ✓  125 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:189:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-7: layout stability after calculate and method switch (4.4s)
+  ✓  128 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/seo.calc.spec.js:4:3 › How Much Can I Borrow Calculator SEO › BOR-TEST-SEO-1: metadata, schema, FAQ parity, sitemap (3.3s)
+  ✓  127 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:263:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-10: 10 FAQ cards in grid layout (4.4s)
+  ✓  126 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:225:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-9: scenario table renders with highlighted current rate (4.8s)
+  ✓  130 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:27:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-1: slider badges update live as inputs change (4.1s)
+  ✓  129 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/cwv.calc.spec.js:7:3 › loans/interest-rate-change-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  131 [chromium] › tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js:204:3 › How Much Can I Borrow Calculator Requirements › BOR-TEST-E2E-8: capacity bar renders segments after calculation (4.7s)
+  ✓  132 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:39:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-2: after-months slider reveals and display updates with timing toggle (4.0s)
   -  139 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/seo.calc.spec.js:4:8 › loans/interest-rate-change-calculator seo scope placeholder › migrated SEO content pending for /loan-calculators/interest-rate-change-calculator/
-  ✓  135 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:84:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-5: FAQ count and layout stability on mobile (4.7s)
-  ✓  134 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:72:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-4: table views both render rows and toggle visibility (5.4s)
-  ✓  136 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:97:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-1: single-pane route with slider inputs and timing toggle behavior (5.1s)
-  ✓  133 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:49:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-3: calculate fills snapshot and explanation lifetime totals (6.0s)
-  ✓  138 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:151:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-3: monthly/yearly table toggle, sticky headers, FAQ count, and no overflow (5.1s)
-  ✓  137 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:122:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-2: calculation populates cards, summary, and yearly table by default (6.2s)
+  ✓  135 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:84:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-5: FAQ count and layout stability on mobile (4.3s)
+  ✓  134 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:72:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-4: table views both render rows and toggle visibility (4.8s)
+  ✓  133 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:49:3 › Interest Rate Change calculator implementation › RATE-CHANGE-CALC-3: calculate fills snapshot and explanation lifetime totals (5.5s)
+  ✓  136 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:97:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-1: single-pane route with slider inputs and timing toggle behavior (4.8s)
+  ✓  137 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:122:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-2: calculation populates cards, summary, and yearly table by default (5.0s)
+  ✓  138 [chromium] › tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js:151:3 › Interest Rate Change calculator route contract › RATE-CHANGE-E2E-3: monthly/yearly table toggle, sticky headers, FAQ count, and no overflow (4.5s)
   -  146 [chromium] › tests_specs/loans/loan-to-value_release/seo.calc.spec.js:4:8 › loans/loan-to-value seo scope placeholder › migrated SEO content pending for /loan-calculators/ltv-calculator/
-  ✓  144 [chromium] › tests_specs/loans/loan-to-value_release/e2e.calc.spec.js:14:3 › Loan-to-Value calculator route contract › LTV-E2E-1: single-pane route with merged calculator and explanation (3.2s)
-  ✓  140 [chromium] › tests_specs/loans/leasing-calculator_release/cwv.calc.spec.js:7:3 › loans/leasing-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
-  ✓  142 [chromium] › tests_specs/loans/leasing-calculator_release/seo.calc.spec.js:4:3 › Leasing Calculator SEO › LEASING-SEO-1: metadata, heading, FAQ schema, sitemap (4.4s)
-  ✓  143 [chromium] › tests_specs/loans/loan-to-value_release/cwv.calc.spec.js:7:3 › loans/loan-to-value cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
-  ✓  145 [chromium] › tests_specs/loans/loan-to-value_release/e2e.calc.spec.js:27:3 › Loan-to-Value calculator route contract › LTV-E2E-2: calculates outputs and toggles LTV table views (4.8s)
-  ✓  141 [chromium] › tests_specs/loans/leasing-calculator_release/e2e.calc.spec.js:21:3 › Leasing Calculator › LEASING-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs (7.1s)
-  ✓  147 [chromium] › tests_specs/loans/multiple-car-loan_release/cwv.calc.spec.js:7:3 › loans/multiple-car-loan cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  ✓  149 [chromium] › tests_specs/loans/multiple-car-loan_release/seo.calc.spec.js:4:3 › Multiple Car Loan Calculator SEO › MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap (4.2s)
-  ✓  148 [chromium] › tests_specs/loans/multiple-car-loan_release/e2e.calc.spec.js:21:3 › Multiple Car Loan Calculator › MULTI-CAR-LOAN-E2E-1: premium single pane with button-only recalculation and full outputs (5.4s)
+  ✓  140 [chromium] › tests_specs/loans/leasing-calculator_release/cwv.calc.spec.js:7:3 › loans/leasing-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓  144 [chromium] › tests_specs/loans/loan-to-value_release/e2e.calc.spec.js:14:3 › Loan-to-Value calculator route contract › LTV-E2E-1: single-pane route with merged calculator and explanation (3.1s)
+  ✓  142 [chromium] › tests_specs/loans/leasing-calculator_release/seo.calc.spec.js:4:3 › Leasing Calculator SEO › LEASING-SEO-1: metadata, heading, FAQ schema, sitemap (3.9s)
+  ✓  145 [chromium] › tests_specs/loans/loan-to-value_release/e2e.calc.spec.js:27:3 › Loan-to-Value calculator route contract › LTV-E2E-2: calculates outputs and toggles LTV table views (4.0s)
+  ✓  143 [chromium] › tests_specs/loans/loan-to-value_release/cwv.calc.spec.js:7:3 › loans/loan-to-value cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
+  ✓  141 [chromium] › tests_specs/loans/leasing-calculator_release/e2e.calc.spec.js:21:3 › Leasing Calculator › LEASING-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs (5.5s)
+  ✓  147 [chromium] › tests_specs/loans/multiple-car-loan_release/cwv.calc.spec.js:7:3 › loans/multiple-car-loan cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  148 [chromium] › tests_specs/loans/multiple-car-loan_release/e2e.calc.spec.js:21:3 › Multiple Car Loan Calculator › MULTI-CAR-LOAN-E2E-1: premium single pane with button-only recalculation and full outputs (4.4s)
+  ✓  149 [chromium] › tests_specs/loans/multiple-car-loan_release/seo.calc.spec.js:4:3 › Multiple Car Loan Calculator SEO › MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap (3.4s)
+  ✓  150 [chromium] › tests_specs/loans/offset-calculator_release/cwv.calc.spec.js:7:3 › loans/offset-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.1s)
   ✓  151 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:40:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-1: renders as single pane without shell Explanation heading (4.1s)
-  ✓  150 [chromium] › tests_specs/loans/offset-calculator_release/cwv.calc.spec.js:7:3 › loans/offset-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.3s)
-  ✓  152 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:52:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-2: slider displays update live and mode toggle remains available (5.4s)
-  ✓  153 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:69:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-3: calculate populates result, summary, and snapshot values (5.9s)
-  ✓  154 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:83:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-4: partial mode changes effective balance relative to full mode (5.7s)
-  ✓  157 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:132:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-7: FAQ section contains 10 cards (4.0s)
+  ✓  152 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:52:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-2: slider displays update live and mode toggle remains available (4.7s)
+  ✓  153 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:69:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-3: calculate populates result, summary, and snapshot values (5.4s)
+  ✓  154 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:83:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-4: partial mode changes effective balance relative to full mode (5.3s)
+  ✓  155 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:98:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-5: donut and lifetime totals populate from offset data (5.3s)
   -  162 [chromium] › tests_specs/loans/offset-calculator_release/seo.calc.spec.js:4:8 › loans/offset-calculator seo scope placeholder › migrated SEO content pending for /loan-calculators/offset-mortgage-calculator/
-  ✓  155 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:98:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-5: donut and lifetime totals populate from offset data (5.5s)
-  ✓  159 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:147:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-9: no horizontal overflow on desktop and mobile (4.5s)
-  ✓  158 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:138:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-8: output text excludes currency symbols (5.8s)
-  ✓  156 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:114:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-6: monthly/yearly table toggle works and headers are sticky (6.5s)
+  ✓  156 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:114:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-6: monthly/yearly table toggle works and headers are sticky (6.2s)
+  ✓  157 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:132:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-7: FAQ section contains 10 cards (4.2s)
+  ✓  159 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:147:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-9: no horizontal overflow on desktop and mobile (4.0s)
+  ✓  158 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:138:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-8: output text excludes currency symbols (5.4s)
   ✓  160 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:156:3 › Offset Calculator Home-Loan Visual Standard › OFFSET-HYBRID-10: validation error appears for zero balance (4.2s)
-  ✓  163 [chromium] › tests_specs/loans/pcp-calculator_release/cwv.calc.spec.js:7:3 › loans/pcp-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
-  ✓  161 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:170:3 › Offset calculator route contract › ISS-OFFSET-HOMELOAN-VISUAL: single-pane route and interaction contract (6.3s)
-  ✓  165 [chromium] › tests_specs/loans/pcp-calculator_release/seo.calc.spec.js:4:3 › PCP Calculator SEO › PCP-SEO-1: metadata, heading, FAQ schema, sitemap (4.0s)
-  ✓  167 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:44:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-1: renders as single pane without Explanation heading (4.2s)
-  ✓  164 [chromium] › tests_specs/loans/pcp-calculator_release/e2e.calc.spec.js:21:3 › PCP Calculator › PCP-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs (6.2s)
-  ✓  166 [chromium] › tests_specs/loans/remortgage-switching_release/cwv.calc.spec.js:7:3 › loans/remortgage-switching cwv guard › calculator route satisfies CLS/LCP thresholds (5.1s)
-  ✓  168 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:69:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-2: removes Additional Fees and uses horizon slider with yearly ticks (4.0s)
-  ✓  169 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:85:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-3: calculates and fills all snapshot metrics (5.1s)
-  ✓  170 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:96:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-4: output text and table values contain no currency symbols (5.1s)
-  ✓  175 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:162:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-9: heading is centered and layout has no horizontal overflow (3.9s)
+  ✓  163 [chromium] › tests_specs/loans/pcp-calculator_release/cwv.calc.spec.js:7:3 › loans/pcp-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✓  161 [chromium] › tests_specs/loans/offset-calculator_release/e2e.calc.spec.js:170:3 › Offset calculator route contract › ISS-OFFSET-HOMELOAN-VISUAL: single-pane route and interaction contract (5.7s)
+  ✓  165 [chromium] › tests_specs/loans/pcp-calculator_release/seo.calc.spec.js:4:3 › PCP Calculator SEO › PCP-SEO-1: metadata, heading, FAQ schema, sitemap (3.8s)
+  ✓  166 [chromium] › tests_specs/loans/remortgage-switching_release/cwv.calc.spec.js:7:3 › loans/remortgage-switching cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓  168 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:69:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-2: removes Additional Fees and uses horizon slider with yearly ticks (3.7s)
+  ✓  164 [chromium] › tests_specs/loans/pcp-calculator_release/e2e.calc.spec.js:21:3 › PCP Calculator › PCP-E2E-1: premium single pane with button-only recalculation, 3-way table toggle, and full outputs (5.6s)
+  ✓  167 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:44:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-1: renders as single pane without Explanation heading (4.4s)
+  ✓  169 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:85:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-3: calculates and fills all snapshot metrics (4.5s)
+  ✓  170 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:96:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-4: output text and table values contain no currency symbols (4.4s)
+  ✓  171 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:113:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-5: horizon slider updates display and monthly row count (4.8s)
   -  178 [chromium] › tests_specs/loans/remortgage-switching_release/seo.calc.spec.js:4:8 › loans/remortgage-switching seo scope placeholder › migrated SEO content pending for /loan-calculators/remortgage-calculator/
-  ✓  171 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:113:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-5: horizon slider updates display and monthly row count (5.4s)
+  ✓  174 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:154:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-8: FAQ section has 10 Signal Arc style cards (3.5s)
   -  180 [chromium] › tests_specs/math/anova_release/e2e.calc.spec.js:4:8 › math/anova e2e scope placeholder › migrated test content pending for /math/statistics/anova/
   -  181 [chromium] › tests_specs/math/anova_release/seo.calc.spec.js:4:8 › math/anova seo scope placeholder › migrated SEO content pending for /math/statistics/anova/
-  ✓  173 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:143:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-7: validation rejects invalid values with errors (4.8s)
+  ✓  175 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:162:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-9: heading is centered and layout has no horizontal overflow (3.6s)
   -  183 [chromium] › tests_specs/math/basic_release/e2e.calc.spec.js:4:8 › math/basic e2e scope placeholder › migrated test content pending for /math/basic/
   -  184 [chromium] › tests_specs/math/basic_release/seo.calc.spec.js:4:8 › math/basic seo scope placeholder › migrated SEO content pending for /math/basic/
-  ✓  174 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:154:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-8: FAQ section has 10 Signal Arc style cards (4.3s)
-  ✓  172 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:129:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-6: table toggle switches monthly and yearly views (5.3s)
-  ✓  187 [chromium] › tests_specs/math/cluster_release/seo.cluster.spec.js:6:3 › math cluster seo smoke › representative route has canonical/title/robots (2.3s)
-  ✓  186 [chromium] › tests_specs/math/cluster_release/e2e.cluster.spec.js:6:3 › math cluster e2e smoke › cluster representative routes load and show H1 (3.5s)
+  ✓  173 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:143:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-7: validation rejects invalid values with errors (4.2s)
+  ✓  172 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:129:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-6: table toggle switches monthly and yearly views (4.4s)
+  ✓  177 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:190:3 › Remortgage / Switching Hybrid › ISS-REMORT-HYBRID: single-pane ownership and interaction contract (3.6s)
+  ✓  187 [chromium] › tests_specs/math/cluster_release/seo.cluster.spec.js:6:3 › math cluster seo smoke › representative route has canonical/title/robots (1.8s)
   -  189 [chromium] › tests_specs/math/common-log_release/e2e.calc.spec.js:4:8 › math/common-log e2e scope placeholder › migrated test content pending for /math/log/common-log/
   -  190 [chromium] › tests_specs/math/common-log_release/seo.calc.spec.js:4:8 › math/common-log seo scope placeholder › migrated SEO content pending for /math/log/common-log/
-  ✓  176 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:174:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-10: layout remains stable after calculate and table view switching (5.0s)
-  -  191 [chromium] › tests_specs/math/confidence-interval_release/e2e.calc.spec.js:4:8 › math/confidence-interval e2e scope placeholder › migrated test content pending for /math/confidence-interval/
-  -  192 [chromium] › tests_specs/math/confidence-interval_release/seo.calc.spec.js:4:8 › math/confidence-interval seo scope placeholder › migrated SEO content pending for /math/confidence-interval/
-  ✓  177 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:190:3 › Remortgage / Switching Hybrid › ISS-REMORT-HYBRID: single-pane ownership and interaction contract (4.4s)
+  ✓  176 [chromium] › tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js:174:3 › Remortgage / Switching Hybrid Requirements › REMO-HYBRID-10: layout remains stable after calculate and table view switching (4.5s)
+  -  192 [chromium] › tests_specs/math/confidence-interval_release/e2e.calc.spec.js:4:8 › math/confidence-interval e2e scope placeholder › migrated test content pending for /math/confidence-interval/
+  -  193 [chromium] › tests_specs/math/confidence-interval_release/seo.calc.spec.js:4:8 › math/confidence-interval seo scope placeholder › migrated SEO content pending for /math/confidence-interval/
+  ✓  186 [chromium] › tests_specs/math/cluster_release/e2e.cluster.spec.js:6:3 › math cluster e2e smoke › cluster representative routes load and show H1 (2.9s)
   -  195 [chromium] › tests_specs/math/correlation_release/e2e.calc.spec.js:4:8 › math/correlation e2e scope placeholder › migrated test content pending for /math/statistics/correlation/
   -  196 [chromium] › tests_specs/math/correlation_release/seo.calc.spec.js:4:8 › math/correlation seo scope placeholder › migrated SEO content pending for /math/statistics/correlation/
-  ✓  182 [chromium] › tests_specs/math/basic_release/cwv.calc.spec.js:7:3 › math/basic cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  182 [chromium] › tests_specs/math/basic_release/cwv.calc.spec.js:7:3 › math/basic cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
   -  198 [chromium] › tests_specs/math/critical-points_release/e2e.calc.spec.js:4:8 › math/critical-points e2e scope placeholder › migrated test content pending for /math/calculus/critical-points/
   -  199 [chromium] › tests_specs/math/critical-points_release/seo.calc.spec.js:4:8 › math/critical-points seo scope placeholder › migrated SEO content pending for /math/calculus/critical-points/
-  ✓  179 [chromium] › tests_specs/math/anova_release/cwv.calc.spec.js:7:3 › math/anova cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  -  201 [chromium] › tests_specs/math/derivative_release/e2e.calc.spec.js:4:8 › math/derivative e2e scope placeholder › migrated test content pending for /math/calculus/derivative/
-  -  202 [chromium] › tests_specs/math/derivative_release/seo.calc.spec.js:4:8 › math/derivative seo scope placeholder › migrated SEO content pending for /math/calculus/derivative/
-  ✓  188 [chromium] › tests_specs/math/common-log_release/cwv.calc.spec.js:7:3 › math/common-log cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  179 [chromium] › tests_specs/math/anova_release/cwv.calc.spec.js:7:3 › math/anova cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  -  200 [chromium] › tests_specs/math/derivative_release/e2e.calc.spec.js:4:8 › math/derivative e2e scope placeholder › migrated test content pending for /math/calculus/derivative/
+  -  201 [chromium] › tests_specs/math/derivative_release/seo.calc.spec.js:4:8 › math/derivative seo scope placeholder › migrated SEO content pending for /math/calculus/derivative/
+  ✓  188 [chromium] › tests_specs/math/common-log_release/cwv.calc.spec.js:7:3 › math/common-log cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
   -  204 [chromium] › tests_specs/math/distribution_release/e2e.calc.spec.js:4:8 › math/distribution e2e scope placeholder › migrated test content pending for /math/statistics/distribution/
   -  205 [chromium] › tests_specs/math/distribution_release/seo.calc.spec.js:4:8 › math/distribution seo scope placeholder › migrated SEO content pending for /math/statistics/distribution/
-  ✓  193 [chromium] › tests_specs/math/confidence-interval_release/cwv.calc.spec.js:7:3 › math/confidence-interval cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  191 [chromium] › tests_specs/math/confidence-interval_release/cwv.calc.spec.js:7:3 › math/confidence-interval cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
   -  207 [chromium] › tests_specs/math/exponential-equations_release/e2e.calc.spec.js:4:8 › math/exponential-equations e2e scope placeholder › migrated test content pending for /math/log/exponential-equations/
   -  208 [chromium] › tests_specs/math/exponential-equations_release/seo.calc.spec.js:4:8 › math/exponential-equations seo scope placeholder › migrated SEO content pending for /math/log/exponential-equations/
-  ✓  197 [chromium] › tests_specs/math/critical-points_release/cwv.calc.spec.js:7:3 › math/critical-points cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
-  ✓  194 [chromium] › tests_specs/math/correlation_release/cwv.calc.spec.js:7:3 › math/correlation cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓  200 [chromium] › tests_specs/math/derivative_release/cwv.calc.spec.js:7:3 › math/derivative cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  ✓  185 [chromium] › tests_specs/math/cluster_release/cwv.cluster.spec.js:7:3 › math cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.9s)
-  ✓  203 [chromium] › tests_specs/math/distribution_release/cwv.calc.spec.js:7:3 › math/distribution cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
-  -  213 [chromium] › tests_specs/math/fraction-calculator_release/e2e.calc.spec.js:4:8 › math/fraction-calculator e2e scope placeholder › migrated test content pending for /math/fraction-calculator/
-  -  214 [chromium] › tests_specs/math/fraction-calculator_release/seo.calc.spec.js:4:8 › math/fraction-calculator seo scope placeholder › migrated SEO content pending for /math/fraction-calculator/
-  ✓  211 [chromium] › tests_specs/math/factoring_release/e2e.calc.spec.js:28:3 › math/factoring e2e › invalid expression error state clears snapshot values deterministically (2.9s)
+  ✓  194 [chromium] › tests_specs/math/correlation_release/cwv.calc.spec.js:7:3 › math/correlation cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  197 [chromium] › tests_specs/math/critical-points_release/cwv.calc.spec.js:7:3 › math/critical-points cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
+  ✓  202 [chromium] › tests_specs/math/derivative_release/cwv.calc.spec.js:7:3 › math/derivative cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  203 [chromium] › tests_specs/math/distribution_release/cwv.calc.spec.js:7:3 › math/distribution cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓  185 [chromium] › tests_specs/math/cluster_release/cwv.cluster.spec.js:7:3 › math cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.0s)
+  -  214 [chromium] › tests_specs/math/fraction-calculator_release/e2e.calc.spec.js:4:8 › math/fraction-calculator e2e scope placeholder › migrated test content pending for /math/fraction-calculator/
+  -  215 [chromium] › tests_specs/math/fraction-calculator_release/seo.calc.spec.js:4:8 › math/fraction-calculator seo scope placeholder › migrated SEO content pending for /math/fraction-calculator/
+  ✓  211 [chromium] › tests_specs/math/factoring_release/e2e.calc.spec.js:28:3 › math/factoring e2e › invalid expression error state clears snapshot values deterministically (2.0s)
   -  217 [chromium] › tests_specs/math/hypothesis-testing_release/e2e.calc.spec.js:4:8 › math/hypothesis-testing e2e scope placeholder › migrated test content pending for /math/statistics/hypothesis-testing/
   -  218 [chromium] › tests_specs/math/hypothesis-testing_release/seo.calc.spec.js:4:8 › math/hypothesis-testing seo scope placeholder › migrated SEO content pending for /math/statistics/hypothesis-testing/
-  ✓  210 [chromium] › tests_specs/math/factoring_release/e2e.calc.spec.js:4:3 › math/factoring e2e › single-pane rendering, right preview panel, and factoring flow (3.6s)
+  ✓  210 [chromium] › tests_specs/math/factoring_release/e2e.calc.spec.js:4:3 › math/factoring e2e › single-pane rendering, right preview panel, and factoring flow (2.4s)
   -  220 [chromium] › tests_specs/math/integral_release/e2e.calc.spec.js:4:8 › math/integral e2e scope placeholder › migrated test content pending for /math/calculus/integral/
   -  221 [chromium] › tests_specs/math/integral_release/seo.calc.spec.js:4:8 › math/integral seo scope placeholder › migrated SEO content pending for /math/calculus/integral/
-  ✓  206 [chromium] › tests_specs/math/exponential-equations_release/cwv.calc.spec.js:7:3 › math/exponential-equations cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
+  ✓  212 [chromium] › tests_specs/math/factoring_release/seo.calc.spec.js:27:3 › math/factoring seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.0s)
   -  223 [chromium] › tests_specs/math/inverse-trig_release/e2e.calc.spec.js:4:8 › math/inverse-trig e2e scope placeholder › migrated test content pending for /math/trigonometry/inverse-trig/
   -  224 [chromium] › tests_specs/math/inverse-trig_release/seo.calc.spec.js:4:8 › math/inverse-trig seo scope placeholder › migrated SEO content pending for /math/trigonometry/inverse-trig/
-  ✓  212 [chromium] › tests_specs/math/factoring_release/seo.calc.spec.js:27:3 › math/factoring seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.8s)
+  ✓  209 [chromium] › tests_specs/math/factoring_release/cwv.calc.spec.js:7:3 › math/factoring cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
   -  226 [chromium] › tests_specs/math/law-of-sines-cosines_release/e2e.calc.spec.js:4:8 › math/law-of-sines-cosines e2e scope placeholder › migrated test content pending for /math/trigonometry/law-of-sines-cosines/
   -  227 [chromium] › tests_specs/math/law-of-sines-cosines_release/seo.calc.spec.js:4:8 › math/law-of-sines-cosines seo scope placeholder › migrated SEO content pending for /math/trigonometry/law-of-sines-cosines/
-  ✓  209 [chromium] › tests_specs/math/factoring_release/cwv.calc.spec.js:7:3 › math/factoring cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  -  228 [chromium] › tests_specs/math/limit_release/e2e.calc.spec.js:4:8 › math/limit e2e scope placeholder › migrated test content pending for /math/calculus/limit/
-  -  229 [chromium] › tests_specs/math/limit_release/seo.calc.spec.js:4:8 › math/limit seo scope placeholder › migrated SEO content pending for /math/calculus/limit/
-  ✓  215 [chromium] › tests_specs/math/fraction-calculator_release/cwv.calc.spec.js:7:3 › math/fraction-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  ✓  206 [chromium] › tests_specs/math/exponential-equations_release/cwv.calc.spec.js:7:3 › math/exponential-equations cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  -  229 [chromium] › tests_specs/math/limit_release/e2e.calc.spec.js:4:8 › math/limit e2e scope placeholder › migrated test content pending for /math/calculus/limit/
+  -  230 [chromium] › tests_specs/math/limit_release/seo.calc.spec.js:4:8 › math/limit seo scope placeholder › migrated SEO content pending for /math/calculus/limit/
+  ✓  213 [chromium] › tests_specs/math/fraction-calculator_release/cwv.calc.spec.js:7:3 › math/fraction-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
   -  232 [chromium] › tests_specs/math/log-properties_release/e2e.calc.spec.js:4:8 › math/log-properties e2e scope placeholder › migrated test content pending for /math/log/log-properties/
   -  233 [chromium] › tests_specs/math/log-properties_release/seo.calc.spec.js:4:8 › math/log-properties seo scope placeholder › migrated SEO content pending for /math/log/log-properties/
-  ✓  216 [chromium] › tests_specs/math/hypothesis-testing_release/cwv.calc.spec.js:7:3 › math/hypothesis-testing cwv guard › calculator route satisfies CLS/LCP thresholds (5.1s)
+  ✓  219 [chromium] › tests_specs/math/integral_release/cwv.calc.spec.js:7:3 › math/integral cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
   -  235 [chromium] › tests_specs/math/log-scale_release/e2e.calc.spec.js:4:8 › math/log-scale e2e scope placeholder › migrated test content pending for /math/log/log-scale/
   -  236 [chromium] › tests_specs/math/log-scale_release/seo.calc.spec.js:4:8 › math/log-scale seo scope placeholder › migrated SEO content pending for /math/log/log-scale/
-  ✓  222 [chromium] › tests_specs/math/inverse-trig_release/cwv.calc.spec.js:7:3 › math/inverse-trig cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  216 [chromium] › tests_specs/math/hypothesis-testing_release/cwv.calc.spec.js:7:3 › math/hypothesis-testing cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
   -  238 [chromium] › tests_specs/math/mean-median-mode-range_release/e2e.calc.spec.js:4:8 › math/mean-median-mode-range e2e scope placeholder › migrated test content pending for /math/mean-median-mode-range/
   -  239 [chromium] › tests_specs/math/mean-median-mode-range_release/seo.calc.spec.js:4:8 › math/mean-median-mode-range seo scope placeholder › migrated SEO content pending for /math/mean-median-mode-range/
-  ✓  225 [chromium] › tests_specs/math/law-of-sines-cosines_release/cwv.calc.spec.js:7:3 › math/law-of-sines-cosines cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
+  ✓  222 [chromium] › tests_specs/math/inverse-trig_release/cwv.calc.spec.js:7:3 › math/inverse-trig cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
   -  241 [chromium] › tests_specs/math/natural-log_release/e2e.calc.spec.js:4:8 › math/natural-log e2e scope placeholder › migrated test content pending for /math/log/natural-log/
   -  242 [chromium] › tests_specs/math/natural-log_release/seo.calc.spec.js:4:8 › math/natural-log seo scope placeholder › migrated SEO content pending for /math/log/natural-log/
-  ✓  231 [chromium] › tests_specs/math/log-properties_release/cwv.calc.spec.js:7:3 › math/log-properties cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  225 [chromium] › tests_specs/math/law-of-sines-cosines_release/cwv.calc.spec.js:7:3 › math/law-of-sines-cosines cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
   -  244 [chromium] › tests_specs/math/number-sequence_release/e2e.calc.spec.js:4:8 › math/number-sequence e2e scope placeholder › migrated test content pending for /math/number-sequence/
   -  245 [chromium] › tests_specs/math/number-sequence_release/seo.calc.spec.js:4:8 › math/number-sequence seo scope placeholder › migrated SEO content pending for /math/number-sequence/
-  ✓  230 [chromium] › tests_specs/math/limit_release/cwv.calc.spec.js:7:3 › math/limit cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  228 [chromium] › tests_specs/math/limit_release/cwv.calc.spec.js:7:3 › math/limit cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
   -  247 [chromium] › tests_specs/math/percentage-increase_release/e2e.calc.spec.js:4:8 › math/percentage-increase e2e scope placeholder › migrated test content pending for /percentage-calculators/percentage-increase/
   -  248 [chromium] › tests_specs/math/percentage-increase_release/seo.calc.spec.js:4:8 › math/percentage-increase seo scope placeholder › migrated SEO content pending for /percentage-calculators/percentage-increase/
-  ✓  219 [chromium] › tests_specs/math/integral_release/cwv.calc.spec.js:7:3 › math/integral cwv guard › calculator route satisfies CLS/LCP thresholds (5.5s)
+  ✓  231 [chromium] › tests_specs/math/log-properties_release/cwv.calc.spec.js:7:3 › math/log-properties cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
   -  250 [chromium] › tests_specs/math/permutation-combination_release/e2e.calc.spec.js:4:8 › math/permutation-combination e2e scope placeholder › migrated test content pending for /math/permutation-combination/
   -  251 [chromium] › tests_specs/math/permutation-combination_release/seo.calc.spec.js:4:8 › math/permutation-combination seo scope placeholder › migrated SEO content pending for /math/permutation-combination/
-  ✘  246 [chromium] › tests_specs/math/percentage-increase_release/cwv.calc.spec.js:7:3 › math/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds (1.3s)
-  ✓  234 [chromium] › tests_specs/math/log-scale_release/cwv.calc.spec.js:7:3 › math/log-scale cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
-  ✓  237 [chromium] › tests_specs/math/mean-median-mode-range_release/cwv.calc.spec.js:7:3 › math/mean-median-mode-range cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
-  ✓  240 [chromium] › tests_specs/math/natural-log_release/cwv.calc.spec.js:7:3 › math/natural-log cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  252 [chromium] › tests_specs/math/polynomial-operations_release/cwv.calc.spec.js:7:3 › math/polynomial-operations cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✘  246 [chromium] › tests_specs/math/percentage-increase_release/cwv.calc.spec.js:7:3 › math/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds (1.2s)
+  ✓  234 [chromium] › tests_specs/math/log-scale_release/cwv.calc.spec.js:7:3 › math/log-scale cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
+  ✓  237 [chromium] › tests_specs/math/mean-median-mode-range_release/cwv.calc.spec.js:7:3 › math/mean-median-mode-range cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
+  ✓  240 [chromium] › tests_specs/math/natural-log_release/cwv.calc.spec.js:7:3 › math/natural-log cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
+  ✓  243 [chromium] › tests_specs/math/number-sequence_release/cwv.calc.spec.js:7:3 › math/number-sequence cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
   -  257 [chromium] › tests_specs/math/probability_release/e2e.calc.spec.js:4:8 › math/probability e2e scope placeholder › migrated test content pending for /math/probability/
   -  258 [chromium] › tests_specs/math/probability_release/seo.calc.spec.js:4:8 › math/probability seo scope placeholder › migrated SEO content pending for /math/probability/
-  ✓  243 [chromium] › tests_specs/math/number-sequence_release/cwv.calc.spec.js:7:3 › math/number-sequence cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  249 [chromium] › tests_specs/math/permutation-combination_release/cwv.calc.spec.js:7:3 › math/permutation-combination cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  253 [chromium] › tests_specs/math/polynomial-operations_release/e2e.calc.spec.js:28:3 › math/polynomial-operations e2e › division by zero polynomial shows deterministic error snapshot state (2.3s)
-  ✓  254 [chromium] › tests_specs/math/polynomial-operations_release/seo.calc.spec.js:27:3 › math/polynomial-operations seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.3s)
-  ✓  260 [chromium] › tests_specs/math/quadratic-equation_release/e2e.calc.spec.js:4:3 › math/quadratic-equation e2e › single-pane render, right preview panel, and happy-path solve (3.8s)
+  ✓  252 [chromium] › tests_specs/math/polynomial-operations_release/cwv.calc.spec.js:7:3 › math/polynomial-operations cwv guard › calculator route satisfies CLS/LCP thresholds (3.7s)
+  ✓  249 [chromium] › tests_specs/math/permutation-combination_release/cwv.calc.spec.js:7:3 › math/permutation-combination cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  253 [chromium] › tests_specs/math/polynomial-operations_release/e2e.calc.spec.js:28:3 › math/polynomial-operations e2e › division by zero polynomial shows deterministic error snapshot state (2.4s)
+  ✓  254 [chromium] › tests_specs/math/polynomial-operations_release/seo.calc.spec.js:27:3 › math/polynomial-operations seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.5s)
+  ✓  255 [chromium] › tests_specs/math/polynomial-operations_release/e2e.calc.spec.js:4:3 › math/polynomial-operations e2e › single-pane flow, right preview panel, and addition result (3.1s)
   -  264 [chromium] › tests_specs/math/regression-analysis_release/e2e.calc.spec.js:4:8 › math/regression-analysis e2e scope placeholder › migrated test content pending for /math/statistics/regression-analysis/
   -  265 [chromium] › tests_specs/math/regression-analysis_release/seo.calc.spec.js:4:8 › math/regression-analysis seo scope placeholder › migrated SEO content pending for /math/statistics/regression-analysis/
-  ✓  261 [chromium] › tests_specs/math/quadratic-equation_release/e2e.calc.spec.js:30:3 › math/quadratic-equation e2e › invalid quadratic input shows deterministic error state (3.6s)
-  -  266 [chromium] › tests_specs/math/sample-size_release/e2e.calc.spec.js:4:8 › math/sample-size e2e scope placeholder › migrated test content pending for /math/sample-size/
-  -  267 [chromium] › tests_specs/math/sample-size_release/seo.calc.spec.js:4:8 › math/sample-size seo scope placeholder › migrated SEO content pending for /math/sample-size/
-  ✓  262 [chromium] › tests_specs/math/quadratic-equation_release/seo.calc.spec.js:27:3 › math/quadratic-equation seo › metadata, explanation order, FAQ depth, schema parity, and sitemap (3.6s)
+  ✓  261 [chromium] › tests_specs/math/quadratic-equation_release/e2e.calc.spec.js:30:3 › math/quadratic-equation e2e › invalid quadratic input shows deterministic error state (2.4s)
+  -  267 [chromium] › tests_specs/math/sample-size_release/e2e.calc.spec.js:4:8 › math/sample-size e2e scope placeholder › migrated test content pending for /math/sample-size/
+  -  268 [chromium] › tests_specs/math/sample-size_release/seo.calc.spec.js:4:8 › math/sample-size seo scope placeholder › migrated SEO content pending for /math/sample-size/
+  ✓  260 [chromium] › tests_specs/math/quadratic-equation_release/e2e.calc.spec.js:4:3 › math/quadratic-equation e2e › single-pane render, right preview panel, and happy-path solve (2.8s)
   -  270 [chromium] › tests_specs/math/series-convergence_release/e2e.calc.spec.js:4:8 › math/series-convergence e2e scope placeholder › migrated test content pending for /math/calculus/series-convergence/
   -  271 [chromium] › tests_specs/math/series-convergence_release/seo.calc.spec.js:4:8 › math/series-convergence seo scope placeholder › migrated SEO content pending for /math/calculus/series-convergence/
-  ✓  255 [chromium] › tests_specs/math/polynomial-operations_release/e2e.calc.spec.js:4:3 › math/polynomial-operations e2e › single-pane flow, right preview panel, and addition result (4.6s)
-  ✓  259 [chromium] › tests_specs/math/quadratic-equation_release/cwv.calc.spec.js:7:3 › math/quadratic-equation cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
-  ✓  256 [chromium] › tests_specs/math/probability_release/cwv.calc.spec.js:7:3 › math/probability cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  ✓  263 [chromium] › tests_specs/math/regression-analysis_release/cwv.calc.spec.js:7:3 › math/regression-analysis cwv guard › calculator route satisfies CLS/LCP thresholds (6.6s)
-  ✓  274 [chromium] › tests_specs/math/slope-distance_release/e2e.calc.spec.js:30:3 › math/slope-distance e2e › vertical-line edge case updates deterministic snapshot state (4.0s)
+  ✓  262 [chromium] › tests_specs/math/quadratic-equation_release/seo.calc.spec.js:27:3 › math/quadratic-equation seo › metadata, explanation order, FAQ depth, schema parity, and sitemap (2.0s)
+  ✓  259 [chromium] › tests_specs/math/quadratic-equation_release/cwv.calc.spec.js:7:3 › math/quadratic-equation cwv guard › calculator route satisfies CLS/LCP thresholds (3.6s)
+  ✓  256 [chromium] › tests_specs/math/probability_release/cwv.calc.spec.js:7:3 › math/probability cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  274 [chromium] › tests_specs/math/slope-distance_release/e2e.calc.spec.js:30:3 › math/slope-distance e2e › vertical-line edge case updates deterministic snapshot state (2.7s)
+  ✓  273 [chromium] › tests_specs/math/slope-distance_release/e2e.calc.spec.js:4:3 › math/slope-distance e2e › single-pane render, right preview panel, and main calculation (3.1s)
   -  277 [chromium] › tests_specs/math/standard-deviation_release/e2e.calc.spec.js:4:8 › math/standard-deviation e2e scope placeholder › migrated test content pending for /math/standard-deviation/
   -  278 [chromium] › tests_specs/math/standard-deviation_release/seo.calc.spec.js:4:8 › math/standard-deviation seo scope placeholder › migrated SEO content pending for /math/standard-deviation/
-  ✓  275 [chromium] › tests_specs/math/slope-distance_release/seo.calc.spec.js:27:3 › math/slope-distance seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (3.6s)
+  ✓  263 [chromium] › tests_specs/math/regression-analysis_release/cwv.calc.spec.js:7:3 › math/regression-analysis cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
   -  280 [chromium] › tests_specs/math/statistics_release/e2e.calc.spec.js:4:8 › math/statistics e2e scope placeholder › migrated test content pending for /math/statistics/
   -  281 [chromium] › tests_specs/math/statistics_release/seo.calc.spec.js:4:8 › math/statistics seo scope placeholder › migrated SEO content pending for /math/statistics/
-  ✓  272 [chromium] › tests_specs/math/slope-distance_release/cwv.calc.spec.js:7:3 › math/slope-distance cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
-  ✓  273 [chromium] › tests_specs/math/slope-distance_release/e2e.calc.spec.js:4:3 › math/slope-distance e2e › single-pane render, right preview panel, and main calculation (4.6s)
-  ✓  269 [chromium] › tests_specs/math/series-convergence_release/cwv.calc.spec.js:7:3 › math/series-convergence cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
-  ✓  268 [chromium] › tests_specs/math/sample-size_release/cwv.calc.spec.js:7:3 › math/sample-size cwv guard › calculator route satisfies CLS/LCP thresholds (5.1s)
-  ✓  284 [chromium] › tests_specs/math/system-of-equations_release/e2e.calc.spec.js:33:3 › math/system-of-equations e2e › 3x3 mode toggles and snapshot state updates (3.3s)
+  ✓  275 [chromium] › tests_specs/math/slope-distance_release/seo.calc.spec.js:27:3 › math/slope-distance seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.4s)
+  ✓  266 [chromium] › tests_specs/math/sample-size_release/cwv.calc.spec.js:7:3 › math/sample-size cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  272 [chromium] › tests_specs/math/slope-distance_release/cwv.calc.spec.js:7:3 › math/slope-distance cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
+  ✓  269 [chromium] › tests_specs/math/series-convergence_release/cwv.calc.spec.js:7:3 › math/series-convergence cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  285 [chromium] › tests_specs/math/system-of-equations_release/seo.calc.spec.js:27:3 › math/system-of-equations seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (2.6s)
   -  287 [chromium] › tests_specs/math/triangle-solver_release/e2e.calc.spec.js:4:8 › math/triangle-solver e2e scope placeholder › migrated test content pending for /math/trigonometry/triangle-solver/
   -  288 [chromium] › tests_specs/math/triangle-solver_release/seo.calc.spec.js:4:8 › math/triangle-solver seo scope placeholder › migrated SEO content pending for /math/trigonometry/triangle-solver/
-  ✓  285 [chromium] › tests_specs/math/system-of-equations_release/seo.calc.spec.js:27:3 › math/system-of-equations seo › metadata, explanation contract, FAQ depth, schema parity, and sitemap (3.3s)
+  ✓  284 [chromium] › tests_specs/math/system-of-equations_release/e2e.calc.spec.js:33:3 › math/system-of-equations e2e › 3x3 mode toggles and snapshot state updates (2.7s)
   -  290 [chromium] › tests_specs/math/trig-functions_release/e2e.calc.spec.js:4:8 › math/trig-functions e2e scope placeholder › migrated test content pending for /math/trigonometry/trig-functions/
   -  291 [chromium] › tests_specs/math/trig-functions_release/seo.calc.spec.js:4:8 › math/trig-functions seo scope placeholder › migrated SEO content pending for /math/trigonometry/trig-functions/
-  ✓  276 [chromium] › tests_specs/math/standard-deviation_release/cwv.calc.spec.js:7:3 › math/standard-deviation cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
+  ✓  283 [chromium] › tests_specs/math/system-of-equations_release/e2e.calc.spec.js:4:3 › math/system-of-equations e2e › single-pane rendering, right preview panel, and 2x2 solve flow (3.6s)
   -  293 [chromium] › tests_specs/math/unit-circle_release/e2e.calc.spec.js:4:8 › math/unit-circle e2e scope placeholder › migrated test content pending for /math/trigonometry/unit-circle/
   -  294 [chromium] › tests_specs/math/unit-circle_release/seo.calc.spec.js:4:8 › math/unit-circle seo scope placeholder › migrated SEO content pending for /math/trigonometry/unit-circle/
-  ✓  283 [chromium] › tests_specs/math/system-of-equations_release/e2e.calc.spec.js:4:3 › math/system-of-equations e2e › single-pane rendering, right preview panel, and 2x2 solve flow (4.2s)
+  ✓  276 [chromium] › tests_specs/math/standard-deviation_release/cwv.calc.spec.js:7:3 › math/standard-deviation cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
   -  296 [chromium] › tests_specs/math/z-score_release/e2e.calc.spec.js:4:8 › math/z-score e2e scope placeholder › migrated test content pending for /math/z-score/
   -  297 [chromium] › tests_specs/math/z-score_release/seo.calc.spec.js:4:8 › math/z-score seo scope placeholder › migrated SEO content pending for /math/z-score/
-  ✓  282 [chromium] › tests_specs/math/system-of-equations_release/cwv.calc.spec.js:7:3 › math/system-of-equations cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓  279 [chromium] › tests_specs/math/statistics_release/cwv.calc.spec.js:7:3 › math/statistics cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  ✓  286 [chromium] › tests_specs/math/triangle-solver_release/cwv.calc.spec.js:7:3 › math/triangle-solver cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
-  ✓  300 [chromium] › tests_specs/percentage/cluster_release/seo.cluster.spec.js:6:3 › percentage cluster seo smoke › representative route has canonical/title/robots (2.3s)
-  ✓  289 [chromium] › tests_specs/math/trig-functions_release/cwv.calc.spec.js:7:3 › math/trig-functions cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  ✓  292 [chromium] › tests_specs/math/unit-circle_release/cwv.calc.spec.js:7:3 › math/unit-circle cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓  295 [chromium] › tests_specs/math/z-score_release/cwv.calc.spec.js:7:3 › math/z-score cwv guard › calculator route satisfies CLS/LCP thresholds (4.9s)
+  ✓  282 [chromium] › tests_specs/math/system-of-equations_release/cwv.calc.spec.js:7:3 › math/system-of-equations cwv guard › calculator route satisfies CLS/LCP thresholds (3.9s)
+  ✓  279 [chromium] › tests_specs/math/statistics_release/cwv.calc.spec.js:7:3 › math/statistics cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  286 [chromium] › tests_specs/math/triangle-solver_release/cwv.calc.spec.js:7:3 › math/triangle-solver cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  300 [chromium] › tests_specs/percentage/cluster_release/seo.cluster.spec.js:6:3 › percentage cluster seo smoke › representative route has canonical/title/robots (1.9s)
+  ✓  289 [chromium] › tests_specs/math/trig-functions_release/cwv.calc.spec.js:7:3 › math/trig-functions cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
+  ✓  299 [chromium] › tests_specs/percentage/cluster_release/e2e.cluster.spec.js:18:3 › percentage cluster e2e smoke › cluster representative routes load with visible H1 and no console errors (3.5s)
+  ✓  292 [chromium] › tests_specs/math/unit-circle_release/cwv.calc.spec.js:7:3 › math/unit-circle cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
   -  305 [chromium] › tests_specs/percentage/discount-calculator_release/e2e.calc.spec.js:4:8 › percentage/discount-calculator e2e scope placeholder › migrated test content pending for /percentage-calculators/discount-calculator/
-  ✓  299 [chromium] › tests_specs/percentage/cluster_release/e2e.cluster.spec.js:18:3 › percentage cluster e2e smoke › cluster representative routes load with visible H1 and no console errors (3.8s)
-  ✓  301 [chromium] › tests_specs/percentage/commission-calculator_release/cwv.calc.spec.js:7:3 › percentage/commission-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
-  ✓  303 [chromium] › tests_specs/percentage/commission-calculator_release/seo.calc.spec.js:4:3 › Commission Calculator SEO › COMM-TEST-SEO-1: metadata, schema, sitemap (3.1s)
-  ✓  306 [chromium] › tests_specs/percentage/discount-calculator_release/seo.calc.spec.js:4:3 › Discount Calculator SEO › DISC-TEST-SEO-1: metadata, structured data, sitemap (3.1s)
-  ✓  302 [chromium] › tests_specs/percentage/commission-calculator_release/e2e.calc.spec.js:8:3 › Commission Calculator › COMM-TEST-E2E-1: flat and tiered commission workflows (4.9s)
-  -  311 [chromium] › tests_specs/percentage/markup-calculator_release/e2e.calc.spec.js:4:8 › percentage/markup-calculator e2e scope placeholder › migrated test content pending for /percentage-calculators/markup-calculator/
+  ✓  295 [chromium] › tests_specs/math/z-score_release/cwv.calc.spec.js:7:3 › math/z-score cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  301 [chromium] › tests_specs/percentage/commission-calculator_release/cwv.calc.spec.js:7:3 › percentage/commission-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  303 [chromium] › tests_specs/percentage/commission-calculator_release/seo.calc.spec.js:4:3 › Commission Calculator SEO › COMM-TEST-SEO-1: metadata, schema, sitemap (2.6s)
+  ✓  306 [chromium] › tests_specs/percentage/discount-calculator_release/seo.calc.spec.js:4:3 › Discount Calculator SEO › DISC-TEST-SEO-1: metadata, structured data, sitemap (2.8s)
+  ✓  302 [chromium] › tests_specs/percentage/commission-calculator_release/e2e.calc.spec.js:8:3 › Commission Calculator › COMM-TEST-E2E-1: flat and tiered commission workflows (4.2s)
+  -  310 [chromium] › tests_specs/percentage/markup-calculator_release/e2e.calc.spec.js:4:8 › percentage/markup-calculator e2e scope placeholder › migrated test content pending for /percentage-calculators/markup-calculator/
   ✓  304 [chromium] › tests_specs/percentage/discount-calculator_release/cwv.calc.spec.js:7:3 › percentage/discount-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  ✓  307 [chromium] › tests_specs/percentage/margin-calculator_release/cwv.calc.spec.js:7:3 › percentage/margin-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓  308 [chromium] › tests_specs/percentage/margin-calculator_release/e2e.calc.spec.js:8:3 › Margin Calculator › MARG-TEST-E2E-1: mode toggle and calculations (3.4s)
-  ✓  298 [chromium] › tests_specs/percentage/cluster_release/cwv.cluster.spec.js:7:3 › percentage cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (10.0s)
-  ✓  312 [chromium] › tests_specs/percentage/markup-calculator_release/seo.calc.spec.js:4:3 › Markup Calculator SEO › MARKUP-TEST-SEO-1: metadata, structured data, sitemap (3.1s)
-  ✓  310 [chromium] › tests_specs/percentage/markup-calculator_release/cwv.calc.spec.js:7:3 › percentage/markup-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
-  ✓  315 [chromium] › tests_specs/percentage/percent-change_release/seo.calc.spec.js:4:3 › Percent Change Calculator SEO › PCHG-TEST-SEO-1: metadata, schema, sitemap (2.7s)
-  ✓  314 [chromium] › tests_specs/percentage/percent-change_release/e2e.calc.spec.js:4:3 › Percent Change Calculator › PCHG-TEST-E2E-1: signed percent, amount, direction, and zero-origin guard (3.7s)
-  ✓  313 [chromium] › tests_specs/percentage/percent-change_release/cwv.calc.spec.js:7:3 › percentage/percent-change cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
-  ✓  318 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/e2e.calc.spec.js:30:3 › Percent to Fraction/Decimal Converter › PTFD-TEST-E2E-2: handles invalid input guard (2.6s)
-  ✓  317 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/e2e.calc.spec.js:4:3 › Percent to Fraction/Decimal Converter › PTFD-TEST-E2E-1: single-pane journey, conversion outputs, and explanation migration contract (3.6s)
-  ✓  316 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/cwv.calc.spec.js:7:3 › percentage/percent-to-fraction-decimal cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  307 [chromium] › tests_specs/percentage/margin-calculator_release/cwv.calc.spec.js:7:3 › percentage/margin-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  308 [chromium] › tests_specs/percentage/margin-calculator_release/e2e.calc.spec.js:8:3 › Margin Calculator › MARG-TEST-E2E-1: mode toggle and calculations (3.6s)
+  ✓  312 [chromium] › tests_specs/percentage/markup-calculator_release/seo.calc.spec.js:4:3 › Markup Calculator SEO › MARKUP-TEST-SEO-1: metadata, structured data, sitemap (2.7s)
+  ✓  298 [chromium] › tests_specs/percentage/cluster_release/cwv.cluster.spec.js:7:3 › percentage cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.5s)
+  ✓  311 [chromium] › tests_specs/percentage/markup-calculator_release/cwv.calc.spec.js:7:3 › percentage/markup-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  ✓  315 [chromium] › tests_specs/percentage/percent-change_release/seo.calc.spec.js:4:3 › Percent Change Calculator SEO › PCHG-TEST-SEO-1: metadata, schema, sitemap (2.4s)
+  ✓  314 [chromium] › tests_specs/percentage/percent-change_release/e2e.calc.spec.js:4:3 › Percent Change Calculator › PCHG-TEST-E2E-1: signed percent, amount, direction, and zero-origin guard (3.3s)
+  ✓  313 [chromium] › tests_specs/percentage/percent-change_release/cwv.calc.spec.js:7:3 › percentage/percent-change cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
+  ✓  317 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/e2e.calc.spec.js:4:3 › Percent to Fraction/Decimal Converter › PTFD-TEST-E2E-1: single-pane journey, conversion outputs, and explanation migration contract (3.0s)
+  ✓  318 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/e2e.calc.spec.js:30:3 › Percent to Fraction/Decimal Converter › PTFD-TEST-E2E-2: handles invalid input guard (2.2s)
+  ✓  316 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/cwv.calc.spec.js:7:3 › percentage/percent-to-fraction-decimal cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
   ✓  319 [chromium] › tests_specs/percentage/percent-to-fraction-decimal_release/seo.calc.spec.js:4:3 › Percent to Fraction/Decimal Converter SEO › PTFD-TEST-SEO-1: metadata, schema, sitemap (2.9s)
-  ✘  309 [chromium] › tests_specs/percentage/margin-calculator_release/seo.calc.spec.js:4:3 › Margin Calculator SEO › MARG-TEST-SEO-1: metadata, schema, sitemap (8.2s)
-  ✓  321 [chromium] › tests_specs/percentage/percentage-composition_release/e2e.calc.spec.js:4:3 › Percentage Composition Calculator › PCOMP-TEST-E2E-1: single-pane structure, calculated mode, known mode, and no legacy blocks (3.7s)
-  ✓  320 [chromium] › tests_specs/percentage/percentage-composition_release/cwv.calc.spec.js:7:3 › percentage/percentage-composition cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
-  ✓  324 [chromium] › tests_specs/percentage/percentage-composition_release/seo.calc.spec.js:4:3 › Percentage Composition Calculator SEO › PCOMP-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity (2.8s)
-  ✓  322 [chromium] › tests_specs/percentage/percentage-composition_release/e2e.calc.spec.js:29:3 › Percentage Composition Calculator › PCOMP-TEST-E2E-2: add/remove rows and zero-total guard (3.6s)
-  ✓  325 [chromium] › tests_specs/percentage/percentage-decrease_release/e2e.calc.spec.js:4:3 › Percentage Decrease Calculator › PDEC-TEST-E2E-1: single-pane journey, formula output, and migrated explanation UX (3.3s)
-  ✓  326 [chromium] › tests_specs/percentage/percentage-decrease_release/seo.calc.spec.js:4:3 › Percentage Decrease Calculator SEO › PDEC-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity (2.3s)
-  ✓  323 [chromium] › tests_specs/percentage/percentage-decrease_release/cwv.calc.spec.js:7:3 › percentage/percentage-decrease cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  329 [chromium] › tests_specs/percentage/percentage-difference_release/e2e.calc.spec.js:40:3 › Percentage Difference Calculator › PDIFF-TEST-E2E-2: handles divide-by-zero baseline (2.6s)
-  ✓  328 [chromium] › tests_specs/percentage/percentage-difference_release/e2e.calc.spec.js:8:3 › Percentage Difference Calculator › PDIFF-TEST-E2E-1: calculates symmetric percentage difference and renders new explanation UX (3.3s)
-  ✓  330 [chromium] › tests_specs/percentage/percentage-difference_release/seo.calc.spec.js:4:3 › Percentage Difference Calculator SEO › PDIFF-TEST-SEO-1: metadata, schema, sitemap, and explanation parity (3.1s)
-  ✓  327 [chromium] › tests_specs/percentage/percentage-difference_release/cwv.calc.spec.js:7:3 › percentage/percentage-difference cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  333 [chromium] › tests_specs/percentage/percentage-decrease_release/e2e.calc.spec.js:30:3 › Percentage Decrease Calculator › PDEC-TEST-E2E-2: handles zero-origin guard (3.3s)
-  ✓  332 [chromium] › tests_specs/percentage/percentage-increase_release/e2e.calc.spec.js:4:3 › Percentage Increase Calculator › PINC-TEST-E2E-1: single-pane journey, formula output, and modern explanation UX (4.0s)
-  ✓  331 [chromium] › tests_specs/percentage/percentage-increase_release/cwv.calc.spec.js:7:3 › percentage/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  ✓  321 [chromium] › tests_specs/percentage/percentage-composition_release/e2e.calc.spec.js:4:3 › Percentage Composition Calculator › PCOMP-TEST-E2E-1: single-pane structure, calculated mode, known mode, and no legacy blocks (3.3s)
+  ✘  309 [chromium] › tests_specs/percentage/margin-calculator_release/seo.calc.spec.js:4:3 › Margin Calculator SEO › MARG-TEST-SEO-1: metadata, schema, sitemap (8.0s)
+  ✓  320 [chromium] › tests_specs/percentage/percentage-composition_release/cwv.calc.spec.js:7:3 › percentage/percentage-composition cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  322 [chromium] › tests_specs/percentage/percentage-composition_release/e2e.calc.spec.js:29:3 › Percentage Composition Calculator › PCOMP-TEST-E2E-2: add/remove rows and zero-total guard (3.2s)
+  ✓  323 [chromium] › tests_specs/percentage/percentage-composition_release/seo.calc.spec.js:4:3 › Percentage Composition Calculator SEO › PCOMP-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity (2.5s)
+  ✓  325 [chromium] › tests_specs/percentage/percentage-decrease_release/e2e.calc.spec.js:4:3 › Percentage Decrease Calculator › PDEC-TEST-E2E-1: single-pane journey, formula output, and migrated explanation UX (3.2s)
+  ✓  324 [chromium] › tests_specs/percentage/percentage-decrease_release/cwv.calc.spec.js:7:3 › percentage/percentage-decrease cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  326 [chromium] › tests_specs/percentage/percentage-decrease_release/e2e.calc.spec.js:30:3 › Percentage Decrease Calculator › PDEC-TEST-E2E-2: handles zero-origin guard (2.6s)
+  ✓  329 [chromium] › tests_specs/percentage/percentage-difference_release/e2e.calc.spec.js:40:3 › Percentage Difference Calculator › PDIFF-TEST-E2E-2: handles divide-by-zero baseline (2.4s)
+  ✓  328 [chromium] › tests_specs/percentage/percentage-difference_release/e2e.calc.spec.js:8:3 › Percentage Difference Calculator › PDIFF-TEST-E2E-1: calculates symmetric percentage difference and renders new explanation UX (2.7s)
+  ✓  327 [chromium] › tests_specs/percentage/percentage-difference_release/cwv.calc.spec.js:7:3 › percentage/percentage-difference cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  330 [chromium] › tests_specs/percentage/percentage-difference_release/seo.calc.spec.js:4:3 › Percentage Difference Calculator SEO › PDIFF-TEST-SEO-1: metadata, schema, sitemap, and explanation parity (3.0s)
   ✓  334 [chromium] › tests_specs/percentage/percentage-increase_release/e2e.calc.spec.js:30:3 › Percentage Increase Calculator › PINC-TEST-E2E-2: handles zero-origin guard (2.8s)
+  ✓  333 [chromium] › tests_specs/percentage/percentage-decrease_release/seo.calc.spec.js:4:3 › Percentage Decrease Calculator SEO › PDEC-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity (3.0s)
   ✓  335 [chromium] › tests_specs/percentage/percentage-increase_release/seo.calc.spec.js:4:3 › Percentage Increase Calculator SEO › PINC-TEST-SEO-1: metadata, schema, sitemap, and explanation parity (2.8s)
-  ✓  337 [chromium] › tests_specs/percentage/percentage-of-a-number_release/e2e.calc.spec.js:4:3 › Find Percentage of a Number Calculator › PON-TEST-E2E-1: single-pane journey, migration contract, and compute output (3.9s)
-  ✓  338 [chromium] › tests_specs/percentage/percentage-of-a-number_release/e2e.calc.spec.js:29:3 › Find Percentage of a Number Calculator › PON-TEST-E2E-2: invalid input guard text (3.3s)
-  ✓  336 [chromium] › tests_specs/percentage/percentage-of-a-number_release/cwv.calc.spec.js:7:3 › percentage/percentage-of-a-number cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
-  ✓  339 [chromium] › tests_specs/percentage/percentage-of-a-number_release/seo.calc.spec.js:4:3 › Find Percentage of a Number Calculator SEO › PON-TEST-SEO-1: metadata, schema, sitemap (3.1s)
-  ✓  341 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e_fast.calc.spec.js:22:3 › Reverse Percentage Calculator (fast e2e) › REVPCT-FAST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.1s)
-  ✓  342 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e_fast.calc.spec.js:49:3 › Reverse Percentage Calculator (fast e2e) › REVPCT-FAST-E2E-2: input validation and zero-percent guard (3.0s)
-  ✓  343 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e.calc.spec.js:4:3 › Reverse Percentage Calculator › REVPCT-TEST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.6s)
-  ✓  345 [chromium] › tests_specs/percentage/reverse-percentage_release/seo.calc.spec.js:4:3 › Reverse Percentage Calculator SEO › REVPCT-TEST-SEO-1: metadata, structured data, sitemap (3.5s)
-  ✓  344 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e.calc.spec.js:29:3 › Reverse Percentage Calculator › REVPCT-TEST-E2E-2: input validation and zero-percent guard (3.7s)
-  ✓  347 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/e2e.calc.spec.js:4:3 › What Percent Is X of Y Calculator › WPXY-TEST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.5s)
-  ✘  340 [chromium] › tests_specs/percentage/reverse-percentage_release/cwv.calc.spec.js:7:3 › percentage/reverse-percentage cwv guard › calculator route satisfies CLS/LCP thresholds (6.2s)
-  ✓  348 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/e2e.calc.spec.js:30:3 › What Percent Is X of Y Calculator › WPXY-TEST-E2E-2: input validation and zero-division guard (3.5s)
-  ✓  346 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/cwv.calc.spec.js:7:3 › percentage/what-percent-is-x-of-y cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
-  ✓  349 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/seo.calc.spec.js:4:3 › What Percent Is X of Y Calculator SEO › WPXY-TEST-SEO-1: metadata, structured data, sitemap (3.1s)
-  ✓  352 [chromium] › tests_specs/sleep-and-nap/cluster_release/seo.cluster.spec.js:6:3 › sleep-and-nap cluster seo smoke › representative route has canonical/title/robots (2.3s)
-  ✓  351 [chromium] › tests_specs/sleep-and-nap/cluster_release/e2e.cluster.spec.js:6:3 › sleep-and-nap cluster e2e smoke › cluster representative routes load and show H1 (3.5s)
-  ✓  354 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:40:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-2: explanation pane and FAQ count (2.4s)
-  ✓  353 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:4:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-1: route journey and deterministic behavior (4.5s)
-  ✓  355 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:49:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-3: primary recommendation keeps dark-row styling with readable text (3.3s)
-  ✓  358 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/e2e.calc.spec.js:6:3 › Nap Time Calculator › NAP-TEST-E2E-1: user journey and outputs (3.8s)
-  ✘  356 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js:4:3 › Energy-Based Nap Selector SEO › ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage (3.9s)
-  ✓  360 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/seo.calc.spec.js:4:3 › Nap Time Calculator SEO › NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (2.5s)
-  ✓  357 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/nap-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  359 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/cwv.calc.spec.js:7:3 › sleep-and-nap/energy-based-nap-selector cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
-  ✓  350 [chromium] › tests_specs/sleep-and-nap/cluster_release/cwv.cluster.spec.js:7:3 › sleep-and-nap cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.7s)
-  ✓  362 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/e2e.calc.spec.js:36:3 › Nap Time Calculator › NAP-TEST-E2E-2: explanation content and FAQs (2.6s)
-  ✓  361 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/power-nap-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
-  ✓  363 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:35:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-2: explanation content and FAQs (2.3s)
-  ✓  364 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:44:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-2B: recommended rows keep dark-row styling with readable text (2.5s)
-  ✓  365 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:71:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-3: evening warning for late start (2.4s)
-  ✓  366 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/seo.calc.spec.js:4:3 › Power Nap Calculator SEO › POWER-NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.1s)
-  ✓  368 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:6:3 › Sleep Time Calculator › SLEEP-TEST-E2E-1: user journey and recommendations (3.5s)
-  ✓  369 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/seo.calc.spec.js:4:3 › Sleep Time Calculator SEO › SLEEP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.4s)
-  ✓  370 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:4:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-1: user journey and outputs (4.1s)
-  ✓  372 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:6:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1: user journey and recommendations (3.9s)
-  ✓  367 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/sleep-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (5.2s)
-  ✓  371 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/wake-up-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
+  ✓  332 [chromium] › tests_specs/percentage/percentage-increase_release/e2e.calc.spec.js:4:3 › Percentage Increase Calculator › PINC-TEST-E2E-1: single-pane journey, formula output, and modern explanation UX (3.4s)
+  ✓  331 [chromium] › tests_specs/percentage/percentage-increase_release/cwv.calc.spec.js:7:3 › percentage/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds (4.0s)
+  ✓  336 [chromium] › tests_specs/percentage/percentage-of-a-number_release/cwv.calc.spec.js:7:3 › percentage/percentage-of-a-number cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  338 [chromium] › tests_specs/percentage/percentage-of-a-number_release/e2e.calc.spec.js:29:3 › Find Percentage of a Number Calculator › PON-TEST-E2E-2: invalid input guard text (3.0s)
+  ✓  339 [chromium] › tests_specs/percentage/percentage-of-a-number_release/seo.calc.spec.js:4:3 › Find Percentage of a Number Calculator SEO › PON-TEST-SEO-1: metadata, schema, sitemap (3.0s)
+  ✓  341 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e_fast.calc.spec.js:22:3 › Reverse Percentage Calculator (fast e2e) › REVPCT-FAST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.0s)
+  ✓  337 [chromium] › tests_specs/percentage/percentage-of-a-number_release/e2e.calc.spec.js:4:3 › Find Percentage of a Number Calculator › PON-TEST-E2E-1: single-pane journey, migration contract, and compute output (3.5s)
+  ✓  342 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e_fast.calc.spec.js:49:3 › Reverse Percentage Calculator (fast e2e) › REVPCT-FAST-E2E-2: input validation and zero-percent guard (2.7s)
+  ✘  340 [chromium] › tests_specs/percentage/reverse-percentage_release/cwv.calc.spec.js:7:3 › percentage/reverse-percentage cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
+  ✓  345 [chromium] › tests_specs/percentage/reverse-percentage_release/seo.calc.spec.js:4:3 › Reverse Percentage Calculator SEO › REVPCT-TEST-SEO-1: metadata, structured data, sitemap (3.0s)
+  ✓  343 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e.calc.spec.js:4:3 › Reverse Percentage Calculator › REVPCT-TEST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.4s)
+  ✓  347 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/e2e.calc.spec.js:4:3 › What Percent Is X of Y Calculator › WPXY-TEST-E2E-1: single-pane journey, formula output, and explanation migration contract (3.3s)
+  ✓  344 [chromium] › tests_specs/percentage/reverse-percentage_release/e2e.calc.spec.js:29:3 › Reverse Percentage Calculator › REVPCT-TEST-E2E-2: input validation and zero-percent guard (3.5s)
+  ✓  348 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/e2e.calc.spec.js:30:3 › What Percent Is X of Y Calculator › WPXY-TEST-E2E-2: input validation and zero-division guard (3.4s)
+  ✓  346 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/cwv.calc.spec.js:7:3 › percentage/what-percent-is-x-of-y cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  351 [chromium] › tests_specs/sleep-and-nap/cluster_release/seo.cluster.spec.js:6:3 › sleep-and-nap cluster seo smoke › representative route has canonical/title/robots (2.0s)
+  ✓  350 [chromium] › tests_specs/sleep-and-nap/cluster_release/e2e.cluster.spec.js:6:3 › sleep-and-nap cluster e2e smoke › cluster representative routes load and show H1 (2.9s)
+  ✓  354 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:40:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-2: explanation pane and FAQ count (2.2s)
+  ✓  352 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/cwv.calc.spec.js:7:3 › sleep-and-nap/energy-based-nap-selector cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
+  ✓  353 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:4:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-1: route journey and deterministic behavior (4.6s)
+  ✓  356 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js:49:3 › Energy-Based Nap Selector › ENAP-TEST-E2E-3: primary recommendation keeps dark-row styling with readable text (3.2s)
+  ✓  355 [chromium] › tests_specs/percentage/what-percent-is-x-of-y_release/seo.calc.spec.js:4:3 › What Percent Is X of Y Calculator SEO › WPXY-TEST-SEO-1: metadata, structured data, sitemap (3.0s)
+  ✘  357 [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js:4:3 › Energy-Based Nap Selector SEO › ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage (2.9s)
+  ✓  358 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/nap-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  360 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/seo.calc.spec.js:4:3 › Nap Time Calculator SEO › NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (2.7s)
+  ✓  359 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/e2e.calc.spec.js:6:3 › Nap Time Calculator › NAP-TEST-E2E-1: user journey and outputs (3.6s)
+  ✓  362 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:4:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-1: user journey and outputs (3.0s)
+  ✓  361 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/power-nap-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (3.8s)
+  ✓  349 [chromium] › tests_specs/sleep-and-nap/cluster_release/cwv.cluster.spec.js:7:3 › sleep-and-nap cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (9.7s)
+  ✓  363 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:44:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-2B: recommended rows keep dark-row styling with readable text (2.6s)
+  ✓  365 [chromium] › tests_specs/sleep-and-nap/nap-time-calculator_release/e2e.calc.spec.js:36:3 › Nap Time Calculator › NAP-TEST-E2E-2: explanation content and FAQs (2.1s)
+  ✓  364 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:71:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-3: evening warning for late start (2.5s)
+  ✓  366 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/seo.calc.spec.js:4:3 › Power Nap Calculator SEO › POWER-NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (2.5s)
+  ✓  367 [chromium] › tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js:35:3 › Power Nap Calculator › POWER-NAP-TEST-E2E-2: explanation content and FAQs (2.7s)
+  ✓  369 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:6:3 › Sleep Time Calculator › SLEEP-TEST-E2E-1: user journey and recommendations (3.6s)
+  ✓  370 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/seo.calc.spec.js:4:3 › Sleep Time Calculator SEO › SLEEP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.2s)
+  ✓  368 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/sleep-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.3s)
   ✓  373 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/seo.calc.spec.js:4:3 › Wake-Up Time Calculator SEO › WAKEUP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (2.8s)
-  ✓  375 [chromium] › tests_specs/time-and-date/age-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/age-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.8s)
-  ✓  374 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:29:3 › Sleep Time Calculator › SLEEP-TEST-E2E-1B: left nav includes nap calculator links and navigation works (4.9s)
-  ✓  376 [chromium] › tests_specs/time-and-date/age-calculator_release/e2e.calc.spec.js:4:3 › Age Calculator › AGE-TEST-E2E-1: user journey and results (4.1s)
-  ✓  378 [chromium] › tests_specs/time-and-date/age-calculator_release/e2e.calc.spec.js:34:3 › Age Calculator › AGE-TEST-E2E-2: layout stability and content (3.6s)
-  ✓  379 [chromium] › tests_specs/time-and-date/age-calculator_release/seo.calc.spec.js:4:3 › Age Calculator SEO › AGE-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.4s)
-  ✓  377 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:39:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1B: left nav includes nap calculator links and navigation works (4.5s)
-  ✓  381 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/e2e.calc.spec.js:4:3 › Birthday Day-of-Week Calculator › BIRTHDAY-DOW-TEST-E2E-1: user journey and results (3.9s)
-  ✓  383 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/e2e.calc.spec.js:23:3 › Birthday Day-of-Week Calculator › BIRTHDAY-DOW-TEST-E2E-2: leap-year handling (3.7s)
-  ✓  382 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:61:3 › Sleep Time Calculator › SLEEP-TEST-E2E-2: mode switch resets results (UI-2.6) (4.2s)
-  ✓  386 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:71:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1C: finance-style accordion groups and link inventory (3.5s)
-  ✘  380 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/cwv.calc.spec.js:7:3 › time-and-date/birthday-day-of-week cwv guard › calculator route satisfies CLS/LCP thresholds (6.3s)
-  ✘  385 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/seo.calc.spec.js:4:3 › Birthday Day-of-Week SEO › BIRTHDAY-DOW-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (4.2s)
-  ✓  388 [chromium] › tests_specs/time-and-date/cluster_release/seo.cluster.spec.js:6:3 › time-and-date cluster seo smoke › representative route has canonical/title/robots (2.5s)
-  ✓  389 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:78:3 › Sleep Time Calculator › SLEEP-TEST-E2E-3: input change resets results (UI-2.6) (3.0s)
-  ✓  390 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:108:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-2: calculate-only updates and explanation content (3.0s)
-  ✓  387 [chromium] › tests_specs/time-and-date/cluster_release/e2e.cluster.spec.js:6:3 › time-and-date cluster e2e smoke › cluster representative routes load and show H1 (3.7s)
-  ✓  391 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/e2e.calc.spec.js:38:3 › Countdown Timer Generator › COUNTDOWN-TEST-E2E-2: layout stability and explanation content (3.7s)
-  ✓  393 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:97:3 › Sleep Time Calculator › SLEEP-TEST-E2E-4: explanation content and FAQs (3.1s)
-  ✓  384 [chromium] › tests_specs/time-and-date/cluster_release/cwv.cluster.spec.js:7:3 › time-and-date cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (10.5s)
-  ✓  396 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/e2e.calc.spec.js:4:3 › Countdown Timer Generator › COUNTDOWN-TEST-E2E-1: user journey and results (3.3s)
-  ✓  395 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/days-until-a-date-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.7s)
-  ✓  392 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/cwv.calc.spec.js:7:3 › time-and-date/countdown-timer-generator cwv guard › calculator route satisfies CLS/LCP thresholds (5.0s)
-  ✓  401 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:4:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-1: single shift calculation (3.5s)
-  ✓  400 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/overtime-hours-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
-  ✓  402 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:28:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-2: input change resets results (UI-2.6) (3.8s)
-  ✘  394 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/seo.calc.spec.js:4:3 › Countdown Timer Generator SEO › COUNTDOWN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (8.2s)
-  ✘  397 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/e2e.calc.spec.js:4:3 › Days Until a Date Calculator › DAYS-UNTIL-TEST-E2E-1: user journey and results (6.7s)
-  ✓  404 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:63:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-4: explanation content and FAQs (2.8s)
-  ✘  399 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/seo.calc.spec.js:4:3 › Days Until a Date Calculator SEO › DAYS-UNTIL-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.5s)
-  ✓  403 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:47:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-3: mode switch resets results (UI-2.6) (3.3s)
-  ✓  407 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/e2e.calc.spec.js:44:3 › Time Between Two Dates Calculator › DATE-DIFF-TEST-E2E-2: layout stability and content (2.9s)
-  ✓  406 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/time-between-two-dates-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
-  ✓  408 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/work-hours-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
-  ✓  409 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/e2e.calc.spec.js:4:3 › Time Between Two Dates Calculator › DATE-DIFF-TEST-E2E-1: user journey, validation, results (3.6s)
-  ✓  411 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/e2e.calc.spec.js:4:3 › Work Hours Calculator › WORK-HOURS-TEST-E2E-1: single shift calculation (2.8s)
-  ✘  405 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/seo.calc.spec.js:4:3 › Overtime Hours Calculator SEO › OVERTIME-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.9s)
-  ✘  410 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/seo.calc.spec.js:4:3 › Time Between Two Dates Calculator SEO › DATE-DIFF-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.4s)
-  ✘  413 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/seo.calc.spec.js:4:3 › Work Hours Calculator SEO › WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.2s)
-  ✘  412 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/e2e.calc.spec.js:29:3 › Work Hours Calculator › WORK-HOURS-TEST-E2E-2: weekly totals with daily lines (7.8s)
-  ✘  398 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/e2e.calc.spec.js:39:3 › Days Until a Date Calculator › DAYS-UNTIL-TEST-E2E-2: layout stability and content (30.7s)
-  ✘   63 [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js:313:3 › Global CWV guard — all calculator routes › UR-TEST-005/006: all calculator routes must satisfy CLS/LCP/INP thresholds in normal and stress modes (18.4m)
+  ✓  372 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:6:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1: user journey and recommendations (3.7s)
+  ✓  371 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/cwv.calc.spec.js:7:3 › sleep-and-nap/wake-up-time-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  374 [chromium] › tests_specs/time-and-date/age-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/age-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.5s)
+  ✓  378 [chromium] › tests_specs/time-and-date/age-calculator_release/seo.calc.spec.js:4:3 › Age Calculator SEO › AGE-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.1s)
+  ✓  377 [chromium] › tests_specs/time-and-date/age-calculator_release/e2e.calc.spec.js:34:3 › Age Calculator › AGE-TEST-E2E-2: layout stability and content (3.3s)
+  ✓  376 [chromium] › tests_specs/time-and-date/age-calculator_release/e2e.calc.spec.js:4:3 › Age Calculator › AGE-TEST-E2E-1: user journey and results (3.7s)
+  ✓  375 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:29:3 › Sleep Time Calculator › SLEEP-TEST-E2E-1B: left nav includes nap calculator links and navigation works (4.9s)
+  ✓  379 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:39:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1B: left nav includes nap calculator links and navigation works (4.6s)
+  ✓  380 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/cwv.calc.spec.js:7:3 › time-and-date/birthday-day-of-week cwv guard › calculator route satisfies CLS/LCP thresholds (4.6s)
+  ✓  381 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/e2e.calc.spec.js:4:3 › Birthday Day-of-Week Calculator › BIRTHDAY-DOW-TEST-E2E-1: user journey and results (3.1s)
+  ✓  382 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/e2e.calc.spec.js:23:3 › Birthday Day-of-Week Calculator › BIRTHDAY-DOW-TEST-E2E-2: leap-year handling (2.9s)
+  ✓  386 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:71:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-1C: finance-style accordion groups and link inventory (2.9s)
+  ✓  385 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:61:3 › Sleep Time Calculator › SLEEP-TEST-E2E-2: mode switch resets results (UI-2.6) (3.4s)
+  ✘  383 [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/seo.calc.spec.js:4:3 › Birthday Day-of-Week SEO › BIRTHDAY-DOW-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (3.7s)
+  ✓  388 [chromium] › tests_specs/time-and-date/cluster_release/seo.cluster.spec.js:6:3 › time-and-date cluster seo smoke › representative route has canonical/title/robots (2.2s)
+  ✓  387 [chromium] › tests_specs/time-and-date/cluster_release/e2e.cluster.spec.js:6:3 › time-and-date cluster e2e smoke › cluster representative routes load and show H1 (3.6s)
+  ✓  389 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/cwv.calc.spec.js:7:3 › time-and-date/countdown-timer-generator cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✓  390 [chromium] › tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js:108:3 › Wake-Up Time Calculator › WAKEUP-TEST-E2E-2: calculate-only updates and explanation content (2.8s)
+  ✓  392 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/e2e.calc.spec.js:38:3 › Countdown Timer Generator › COUNTDOWN-TEST-E2E-2: layout stability and explanation content (2.9s)
+  ✓  391 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:78:3 › Sleep Time Calculator › SLEEP-TEST-E2E-3: input change resets results (UI-2.6) (3.3s)
+  ✓  384 [chromium] › tests_specs/time-and-date/cluster_release/cwv.cluster.spec.js:7:3 › time-and-date cluster cwv guard › cluster routes satisfy CLS/LCP thresholds (10.0s)
+  ✓  395 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/e2e.calc.spec.js:4:3 › Countdown Timer Generator › COUNTDOWN-TEST-E2E-1: user journey and results (3.2s)
+  ✓  398 [chromium] › tests_specs/sleep-and-nap/sleep-time-calculator_release/e2e.calc.spec.js:97:3 › Sleep Time Calculator › SLEEP-TEST-E2E-4: explanation content and FAQs (2.8s)
+  ✓  394 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/days-until-a-date-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  401 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:4:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-1: single shift calculation (3.8s)
+  ✘  393 [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/seo.calc.spec.js:4:3 › Countdown Timer Generator SEO › COUNTDOWN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (8.5s)
+  ✓  402 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:28:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-2: input change resets results (UI-2.6) (3.6s)
+  ✓  400 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/overtime-hours-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.4s)
+  ✘  396 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/e2e.calc.spec.js:4:3 › Days Until a Date Calculator › DAYS-UNTIL-TEST-E2E-1: user journey and results (7.4s)
+  ✓  403 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:47:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-3: mode switch resets results (UI-2.6) (3.1s)
+  ✘  399 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/seo.calc.spec.js:4:3 › Days Until a Date Calculator SEO › DAYS-UNTIL-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.1s)
+  ✓  405 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/time-between-two-dates-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.1s)
+  ✓  406 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/e2e.calc.spec.js:63:3 › Overtime Hours Calculator › OVERTIME-TEST-E2E-4: explanation content and FAQs (2.8s)
+  ✓  408 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/e2e.calc.spec.js:44:3 › Time Between Two Dates Calculator › DATE-DIFF-TEST-E2E-2: layout stability and content (2.9s)
+  ✓  407 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/e2e.calc.spec.js:4:3 › Time Between Two Dates Calculator › DATE-DIFF-TEST-E2E-1: user journey, validation, results (3.7s)
+  ✓  409 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/cwv.calc.spec.js:7:3 › time-and-date/work-hours-calculator cwv guard › calculator route satisfies CLS/LCP thresholds (4.2s)
+  ✓  411 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/e2e.calc.spec.js:4:3 › Work Hours Calculator › WORK-HOURS-TEST-E2E-1: single shift calculation (3.6s)
+  ✘  404 [chromium] › tests_specs/time-and-date/overtime-hours-calculator_release/seo.calc.spec.js:4:3 › Overtime Hours Calculator SEO › OVERTIME-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (8.6s)
+  ✘  410 [chromium] › tests_specs/time-and-date/time-between-two-dates-calculator_release/seo.calc.spec.js:4:3 › Time Between Two Dates Calculator SEO › DATE-DIFF-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.5s)
+  ✘  413 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/seo.calc.spec.js:4:3 › Work Hours Calculator SEO › WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap (7.4s)
+  ✘  412 [chromium] › tests_specs/time-and-date/work-hours-calculator_release/e2e.calc.spec.js:29:3 › Work Hours Calculator › WORK-HOURS-TEST-E2E-2: weekly totals with daily lines (8.4s)
+  ✘  397 [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/e2e.calc.spec.js:39:3 › Days Until a Date Calculator › DAYS-UNTIL-TEST-E2E-2: layout stability and content (30.7s)
+  ✘   63 [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js:313:3 › Global CWV guard — all calculator routes › UR-TEST-005/006: all calculator routes must satisfy CLS/LCP/INP thresholds in normal and stress modes (18.1m)
 
 
   1) [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:12:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-1: load, nav, calculate, verify results 
@@ -668,7 +666,7 @@ Running 413 tests using 8 workers
     Call log:
     [2m  - Expect "toHaveText" with timeout 5000ms[22m
     [2m  - waiting for locator('#calculator-title')[22m
-    [2m    8 × locator resolved to <h1 id="calculator-title">Credit Card Minimum Payment Calculator</h1>[22m
+    [2m    9 × locator resolved to <h1 id="calculator-title">Credit Card Minimum Payment Calculator</h1>[22m
     [2m      - unexpected value "Credit Card Minimum Payment Calculator"[22m
 
 
@@ -699,46 +697,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-repayment-payoff cwv guard › calculator route satisfies CLS/LCP thresholds 
-
-    Error: CLS exceeded on /credit-card-calculators/credit-card-payment-calculator/
-
-    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
-
-    Expected: <= [32m0.1[39m
-    Received:    [31m0.1071[39m
-
-       at infrastructure/e2e/cwv-scope-helper.js:80
-
-      78 |   }
-      79 |
-    > 80 |   expect(metrics.cls, `CLS exceeded on ${route}`).toBeLessThanOrEqual(CLS_THRESHOLD);
-         |                                                   ^
-      81 |   expect(metrics.lcp, `LCP exceeded on ${route}`).toBeLessThanOrEqual(LCP_THRESHOLD_MS);
-      82 | }
-      83 |
-        at assertCwv (/home/kartheek/calchowmuch/tests_specs/infrastructure/e2e/cwv-scope-helper.js:80:51)
-        at /home/kartheek/calchowmuch/tests_specs/credit-cards/credit-card-repayment-payoff_release/cwv.calc.spec.js:9:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/credit-cards-credit-card-r-f24ba-atisfies-CLS-LCP-thresholds-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/credit-cards-credit-card-r-f24ba-atisfies-CLS-LCP-thresholds-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results/credit-cards-credit-card-r-f24ba-atisfies-CLS-LCP-thresholds-chromium/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/credit-cards-credit-card-r-f24ba-atisfies-CLS-LCP-thresholds-chromium/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/credit-cards-credit-card-r-f24ba-atisfies-CLS-LCP-thresholds-chromium/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  3) [chromium] › tests_specs/finance/cluster_release/cwv.cluster.spec.js:7:3 › finance cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
+  2) [chromium] › tests_specs/finance/cluster_release/cwv.cluster.spec.js:7:3 › finance cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/effective-annual-rate-calculator/
 
@@ -777,7 +736,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  4) [chromium] › tests_specs/finance/effective-annual-rate_release/cwv.calc.spec.js:7:3 › finance/effective-annual-rate cwv guard › calculator route satisfies CLS/LCP thresholds 
+  3) [chromium] › tests_specs/finance/effective-annual-rate_release/cwv.calc.spec.js:7:3 › finance/effective-annual-rate cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/effective-annual-rate-calculator/
 
@@ -816,7 +775,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  5) [chromium] › tests_specs/finance/future-value_release/cwv.calc.spec.js:7:3 › finance/future-value cwv guard › calculator route satisfies CLS/LCP thresholds 
+  4) [chromium] › tests_specs/finance/future-value_release/cwv.calc.spec.js:7:3 › finance/future-value cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/future-value-calculator/
 
@@ -855,7 +814,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  6) [chromium] › tests_specs/finance/future-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/future-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds 
+  5) [chromium] › tests_specs/finance/future-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/future-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/future-value-of-annuity-calculator/
 
@@ -894,7 +853,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  7) [chromium] › tests_specs/finance/investment-growth_release/cwv.calc.spec.js:7:3 › finance/investment-growth cwv guard › calculator route satisfies CLS/LCP thresholds 
+  6) [chromium] › tests_specs/finance/investment-growth_release/cwv.calc.spec.js:7:3 › finance/investment-growth cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/investment-growth-calculator/
 
@@ -933,7 +892,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  8) [chromium] › tests_specs/finance/investment-return_release/cwv.calc.spec.js:7:3 › finance/investment-return cwv guard › calculator route satisfies CLS/LCP thresholds 
+  7) [chromium] › tests_specs/finance/investment-return_release/cwv.calc.spec.js:7:3 › finance/investment-return cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/investment-return-calculator/
 
@@ -972,14 +931,14 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  9) [chromium] › tests_specs/finance/monthly-savings-needed_release/cwv.calc.spec.js:7:3 › finance/monthly-savings-needed cwv guard › calculator route satisfies CLS/LCP thresholds 
+  8) [chromium] › tests_specs/finance/monthly-savings-needed_release/cwv.calc.spec.js:7:3 › finance/monthly-savings-needed cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/monthly-savings-needed-calculator/
 
     [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
 
     Expected: <= [32m0.1[39m
-    Received:    [31m0.1607[39m
+    Received:    [31m0.1738[39m
 
        at infrastructure/e2e/cwv-scope-helper.js:80
 
@@ -1011,7 +970,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  10) [chromium] › tests_specs/finance/present-value_release/cwv.calc.spec.js:7:3 › finance/present-value cwv guard › calculator route satisfies CLS/LCP thresholds 
+  9) [chromium] › tests_specs/finance/present-value_release/cwv.calc.spec.js:7:3 › finance/present-value cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/present-value-calculator/
 
@@ -1050,7 +1009,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  11) [chromium] › tests_specs/finance/present-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/present-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds 
+  10) [chromium] › tests_specs/finance/present-value-of-annuity_release/cwv.calc.spec.js:7:3 › finance/present-value-of-annuity cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/present-value-of-annuity-calculator/
 
@@ -1089,7 +1048,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  12) [chromium] › tests_specs/finance/time-to-savings-goal_release/cwv.calc.spec.js:7:3 › finance/time-to-savings-goal cwv guard › calculator route satisfies CLS/LCP thresholds 
+  11) [chromium] › tests_specs/finance/time-to-savings-goal_release/cwv.calc.spec.js:7:3 › finance/time-to-savings-goal cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /finance-calculators/time-to-savings-goal-calculator/
 
@@ -1128,7 +1087,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  13) [chromium] › tests_specs/infrastructure/e2e/button-only-recalc-finance-percentage.spec.js:152:3 › Button-Only Recalculation (Finance + Percentage) › BTN-ONLY-E2E-1: all target calculators update only after Calculate click › /finance/present-value 
+  12) [chromium] › tests_specs/infrastructure/e2e/button-only-recalc-finance-percentage.spec.js:152:3 › Button-Only Recalculation (Finance + Percentage) › BTN-ONLY-E2E-1: all target calculators update only after Calculate click › /finance/present-value 
 
     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
@@ -1171,24 +1130,24 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  14) [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js:313:3 › Global CWV guard — all calculator routes › UR-TEST-005/006: all calculator routes must satisfy CLS/LCP/INP thresholds in normal and stress modes 
+  13) [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js:313:3 › Global CWV guard — all calculator routes › UR-TEST-005/006: all calculator routes must satisfy CLS/LCP/INP thresholds in normal and stress modes 
 
-    Error: CWV guard failed for 42 route checks. Report: /home/kartheek/calchowmuch/test-results/performance/cls-guard-all-calculators.json
-    /car-loan-calculators/auto-loan-calculator/ [normal] cls=0.0586 maxShift=0.058 lcp=1220 inpProxy=88 error=none
-    /car-loan-calculators/auto-loan-calculator/ [stress] cls=0.0586 maxShift=0.058 lcp=2060 inpProxy=448 error=none
-    /car-loan-calculators/car-lease-calculator/ [normal] cls=0.0599 maxShift=0.0599 lcp=1108 inpProxy=272 error=none
-    /car-loan-calculators/car-lease-calculator/ [stress] cls=0.0605 maxShift=0.0599 lcp=1996 inpProxy=200 error=none
-    /car-loan-calculators/car-loan-calculator/ [normal] cls=0 maxShift=0 lcp=668 inpProxy=312 error=none
-    /car-loan-calculators/car-loan-calculator/ [stress] cls=0 maxShift=0 lcp=1476 inpProxy=216 error=none
-    /car-loan-calculators/hire-purchase-calculator/ [normal] cls=0.0596 maxShift=0.0583 lcp=1600 inpProxy=264 error=none
-    /car-loan-calculators/hire-purchase-calculator/ [stress] cls=0.0602 maxShift=0.0596 lcp=2140 inpProxy=264 error=none
-    /car-loan-calculators/pcp-calculator/ [normal] cls=0.0673 maxShift=0.0673 lcp=808 inpProxy=256 error=none
-    /car-loan-calculators/pcp-calculator/ [stress] cls=0.068 maxShift=0.0673 lcp=2264 inpProxy=280 error=none
+    Error: CWV guard failed for 43 route checks. Report: /home/kartheek/calchowmuch/test-results/performance/cls-guard-all-calculators.json
+    /car-loan-calculators/auto-loan-calculator/ [normal] cls=0.0586 maxShift=0.058 lcp=1220 inpProxy=104 error=none
+    /car-loan-calculators/auto-loan-calculator/ [stress] cls=0.0586 maxShift=0.058 lcp=1836 inpProxy=216 error=none
+    /car-loan-calculators/car-lease-calculator/ [normal] cls=0.0599 maxShift=0.0599 lcp=992 inpProxy=208 error=none
+    /car-loan-calculators/car-lease-calculator/ [stress] cls=0.0606 maxShift=0.0599 lcp=1872 inpProxy=240 error=none
+    /car-loan-calculators/car-loan-calculator/ [normal] cls=0 maxShift=0 lcp=632 inpProxy=272 error=none
+    /car-loan-calculators/hire-purchase-calculator/ [normal] cls=0.0596 maxShift=0.0583 lcp=1372 inpProxy=192 error=none
+    /car-loan-calculators/hire-purchase-calculator/ [stress] cls=0.0596 maxShift=0.0583 lcp=1868 inpProxy=248 error=none
+    /car-loan-calculators/pcp-calculator/ [normal] cls=0.0673 maxShift=0.0673 lcp=1324 inpProxy=200 error=none
+    /car-loan-calculators/pcp-calculator/ [stress] cls=0.068 maxShift=0.0673 lcp=1964 inpProxy=112 error=none
+    /credit-card-calculators/balance-transfer-credit-card-calculator/ [normal] cls=0.0698 maxShift=0.0698 lcp=1152 inpProxy=144 error=none
 
     [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
 
     [32m- Expected  -    1[39m
-    [31m+ Received  + 5153[39m
+    [31m+ Received  + 5325[39m
 
     [32m- Array [][39m
     [31m+ Array [[39m
@@ -1221,7 +1180,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 775.6999999880791,[39m
+    [31m+         "startTime": 729.8999999761581,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -1296,11 +1255,11 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1078.0999999940395,[39m
+    [31m+         "startTime": 1153.2999999821186,[39m
     [31m+         "value": 0.057995427508155464,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 88,[39m
+    [31m+     "inpProxy": 104,[39m
     [31m+     "lcp": 1220,[39m
     [31m+     "maxShift": 0.058,[39m
     [31m+     "mode": "normal",[39m
@@ -1336,7 +1295,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1263.3999999761581,[39m
+    [31m+         "startTime": 1199.199999988079,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -1411,12 +1370,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1922.7999999821186,[39m
+    [31m+         "startTime": 1725,[39m
     [31m+         "value": 0.057995427508155464,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 448,[39m
-    [31m+     "lcp": 2060,[39m
+    [31m+     "inpProxy": 216,[39m
+    [31m+     "lcp": 1836,[39m
     [31m+     "maxShift": 0.058,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/auto-loan-calculator/",[39m
@@ -1497,20 +1456,49 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 910.5,[39m
+    [31m+         "startTime": 799.1999999880791,[39m
     [31m+         "value": 0.05990296926399919,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 272,[39m
-    [31m+     "lcp": 1108,[39m
+    [31m+     "inpProxy": 208,[39m
+    [31m+     "lcp": 992,[39m
     [31m+     "maxShift": 0.0599,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/car-loan-calculators/car-lease-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0605,[39m
+    [31m+     "cls": 0.0606,[39m
     [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 159,[39m
+    [31m+               "height": 14,[39m
+    [31m+               "left": 15,[39m
+    [31m+               "right": 186.390625,[39m
+    [31m+               "top": 145,[39m
+    [31m+               "width": 171.390625,[39m
+    [31m+               "x": 15,[39m
+    [31m+               "y": 145,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 159,[39m
+    [31m+               "height": 14,[39m
+    [31m+               "left": 15,[39m
+    [31m+               "right": 186.390625,[39m
+    [31m+               "top": 145,[39m
+    [31m+               "width": 171.390625,[39m
+    [31m+               "x": 15,[39m
+    [31m+               "y": 145,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 629.3000000119209,[39m
+    [31m+         "value": 0.000011340848186183701,[39m
+    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -1537,7 +1525,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1458.6000000238419,[39m
+    [31m+         "startTime": 1213.6000000238419,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -1612,12 +1600,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1790.300000011921,[39m
+    [31m+         "startTime": 1732.300000011921,[39m
     [31m+         "value": 0.05990296926399919,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 200,[39m
-    [31m+     "lcp": 1996,[39m
+    [31m+     "inpProxy": 240,[39m
+    [31m+     "lcp": 1872,[39m
     [31m+     "maxShift": 0.0599,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/car-lease-calculator/",[39m
@@ -1652,54 +1640,14 @@ Running 413 tests using 8 workers
     [31m+             "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 833.9000000059605,[39m
+    [31m+         "startTime": 891,[39m
     [31m+         "value": 0.000005480855945550826,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 312,[39m
-    [31m+     "lcp": 668,[39m
+    [31m+     "inpProxy": 272,[39m
+    [31m+     "lcp": 632,[39m
     [31m+     "maxShift": 0,[39m
     [31m+     "mode": "normal",[39m
-    [31m+     "route": "/car-loan-calculators/car-loan-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 709.578125,[39m
-    [31m+               "height": 17.1875,[39m
-    [31m+               "left": 1059.171875,[39m
-    [31m+               "right": 1073.171875,[39m
-    [31m+               "top": 692.390625,[39m
-    [31m+               "width": 14,[39m
-    [31m+               "x": 1059.171875,[39m
-    [31m+               "y": 692.390625,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 709.578125,[39m
-    [31m+               "height": 17.1875,[39m
-    [31m+               "left": 1041.96875,[39m
-    [31m+               "right": 1072.96875,[39m
-    [31m+               "top": 692.390625,[39m
-    [31m+               "width": 31,[39m
-    [31m+               "x": 1041.96875,[39m
-    [31m+               "y": 692.390625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 3142.800000011921,[39m
-    [31m+         "value": 0.000005480855945550826,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 216,[39m
-    [31m+     "lcp": 1476,[39m
-    [31m+     "maxShift": 0,[39m
-    [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/car-loan-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
@@ -1732,7 +1680,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 749,[39m
+    [31m+         "startTime": 680.9000000059605,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -1807,7 +1755,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1070.7999999821186,[39m
+    [31m+         "startTime": 814.9000000059605,[39m
     [31m+         "value": 0.05825568515311618,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -1836,20 +1784,49 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1193.9000000059605,[39m
+    [31m+         "startTime": 1238.4000000059605,[39m
     [31m+         "value": 0.000670417348608838,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 264,[39m
-    [31m+     "lcp": 1600,[39m
+    [31m+     "inpProxy": 192,[39m
+    [31m+     "lcp": 1372,[39m
     [31m+     "maxShift": 0.0583,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/car-loan-calculators/hire-purchase-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0602,[39m
+    [31m+     "cls": 0.0596,[39m
     [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 56,[39m
+    [31m+               "height": 38,[39m
+    [31m+               "left": 1020,[39m
+    [31m+               "right": 1340,[39m
+    [31m+               "top": 18,[39m
+    [31m+               "width": 320,[39m
+    [31m+               "x": 1020,[39m
+    [31m+               "y": 18,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 56,[39m
+    [31m+               "height": 38,[39m
+    [31m+               "left": 1112.734375,[39m
+    [31m+               "right": 1340,[39m
+    [31m+               "top": 18,[39m
+    [31m+               "width": 227.265625,[39m
+    [31m+               "x": 1112.734375,[39m
+    [31m+               "y": 18,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 1416.2999999821186,[39m
+    [31m+         "value": 0.0006438447635548406,[39m
+    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -1922,8 +1899,8 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2013.300000011921,[39m
-    [31m+         "value": 0.059567674802725665,[39m
+    [31m+         "startTime": 1735.2999999821186,[39m
+    [31m+         "value": 0.05825568515311618,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -1951,13 +1928,13 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 3095.300000011921,[39m
+    [31m+         "startTime": 3294.7999999821186,[39m
     [31m+         "value": 0.000670417348608838,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 264,[39m
-    [31m+     "lcp": 2140,[39m
-    [31m+     "maxShift": 0.0596,[39m
+    [31m+     "inpProxy": 248,[39m
+    [31m+     "lcp": 1868,[39m
+    [31m+     "maxShift": 0.0583,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/hire-purchase-calculator/",[39m
     [31m+     "status": 200,[39m
@@ -2037,12 +2014,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 545,[39m
+    [31m+         "startTime": 904,[39m
     [31m+         "value": 0.06731146102845015,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 256,[39m
-    [31m+     "lcp": 808,[39m
+    [31m+     "inpProxy": 200,[39m
+    [31m+     "lcp": 1324,[39m
     [31m+     "maxShift": 0.0673,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/car-loan-calculators/pcp-calculator/",[39m
@@ -2077,7 +2054,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1582.699999988079,[39m
+    [31m+         "startTime": 1559.1000000238419,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -2152,12 +2129,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2012.2999999821186,[39m
+    [31m+         "startTime": 1837.1000000238419,[39m
     [31m+         "value": 0.06731146102845015,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 280,[39m
-    [31m+     "lcp": 2264,[39m
+    [31m+     "inpProxy": 112,[39m
+    [31m+     "lcp": 1964,[39m
     [31m+     "maxShift": 0.0673,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/pcp-calculator/",[39m
@@ -2238,12 +2215,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.calculator-ui.cc-bt-ui>section.cc-bt-hero>aside.cc-bt-preview-panel>div.cc-bt-preview-main>p#cc-bt-summary.cc-bt-preview-note",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1126.9000000059605,[39m
+    [31m+         "startTime": 976.0999999940395,[39m
     [31m+         "value": 0.06984020521213648,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 160,[39m
-    [31m+     "lcp": 1352,[39m
+    [31m+     "inpProxy": 144,[39m
+    [31m+     "lcp": 1152,[39m
     [31m+     "maxShift": 0.0698,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",[39m
@@ -2278,7 +2255,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1511,[39m
+    [31m+         "startTime": 1486.4000000059605,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -2353,12 +2330,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.calculator-ui.cc-bt-ui>section.cc-bt-hero>aside.cc-bt-preview-panel>div.cc-bt-preview-main>p#cc-bt-summary.cc-bt-preview-note",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 4134.799999982119,[39m
+    [31m+         "startTime": 3430.800000011921,[39m
     [31m+         "value": 0.06984020521213648,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 184,[39m
-    [31m+     "lcp": 4380,[39m
+    [31m+     "inpProxy": 192,[39m
+    [31m+     "lcp": 3536,[39m
     [31m+     "maxShift": 0.0698,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",[39m
@@ -2416,7 +2393,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-con-explanation.explanation-pane>section.cc-con-exp-section.cc-con-exp-section--lifetime",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 796.5,[39m
+    [31m+         "startTime": 701.4000000059605,[39m
     [31m+         "value": 0.0021084872574234277,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -2491,12 +2468,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 964,[39m
+    [31m+         "startTime": 1041,[39m
     [31m+         "value": 0.09322883367119983,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 144,[39m
-    [31m+     "lcp": 1096,[39m
+    [31m+     "inpProxy": 176,[39m
+    [31m+     "lcp": 1176,[39m
     [31m+     "maxShift": 0.0932,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-consolidation-calculator/",[39m
@@ -2531,7 +2508,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1766,[39m
+    [31m+         "startTime": 1507.199999988079,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -2583,7 +2560,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-con-explanation.explanation-pane>section.cc-con-exp-section.cc-con-exp-section--lifetime",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2272.5,[39m
+    [31m+         "startTime": 1691.699999988079,[39m
     [31m+         "value": 0.0021084872574234277,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -2658,19 +2635,19 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 3364.5999999940395,[39m
+    [31m+         "startTime": 3504.4000000059605,[39m
     [31m+         "value": 0.09322883367119983,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 336,[39m
-    [31m+     "lcp": 3516,[39m
+    [31m+     "inpProxy": 176,[39m
+    [31m+     "lcp": 3624,[39m
     [31m+     "maxShift": 0.0932,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-consolidation-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0053,[39m
+    [31m+     "cls": 0.0066,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -2697,9 +2674,32 @@ Running 413 tests using 8 workers
     [31m+             },[39m
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#cc-min-explanation.explanation-pane>section.cc-min-exp-section.cc-min-exp-intro>p",[39m
     [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 56,[39m
+    [31m+               "height": 38,[39m
+    [31m+               "left": 1020,[39m
+    [31m+               "right": 1340,[39m
+    [31m+               "top": 18,[39m
+    [31m+               "width": 320,[39m
+    [31m+               "x": 1020,[39m
+    [31m+               "y": 18,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 56,[39m
+    [31m+               "height": 38,[39m
+    [31m+               "left": 1112.734375,[39m
+    [31m+               "right": 1340,[39m
+    [31m+               "top": 18,[39m
+    [31m+               "width": 227.265625,[39m
+    [31m+               "x": 1112.734375,[39m
+    [31m+               "y": 18,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
+    [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 552.4000000059605,[39m
-    [31m+         "value": 0.00005725716364014236,[39m
+    [31m+         "startTime": 1834.0999999940395,[39m
+    [31m+         "value": 0.0014023743756178873,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -2773,156 +2773,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.calculator-page-single>div#cc-min-explanation.explanation-pane>section.cc-min-exp-section.cc-min-exp-intro>p>span",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 616.0999999940395,[39m
+    [31m+         "startTime": 3381.800000011921,[39m
     [31m+         "value": 0.005215461564939879,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 248,[39m
-    [31m+     "lcp": 916,[39m
-    [31m+     "maxShift": 0.0052,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0.0059,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 56,[39m
-    [31m+               "height": 38,[39m
-    [31m+               "left": 1020,[39m
-    [31m+               "right": 1340,[39m
-    [31m+               "top": 18,[39m
-    [31m+               "width": 320,[39m
-    [31m+               "x": 1020,[39m
-    [31m+               "y": 18,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 56,[39m
-    [31m+               "height": 38,[39m
-    [31m+               "left": 1112.734375,[39m
-    [31m+               "right": 1340,[39m
-    [31m+               "top": 18,[39m
-    [31m+               "width": 227.265625,[39m
-    [31m+               "x": 1112.734375,[39m
-    [31m+               "y": 18,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 1900.2000000178814,[39m
-    [31m+         "value": 0.0006438447635548406,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 11.828125,[39m
-    [31m+               "left": 306.1875,[39m
-    [31m+               "right": 1059.578125,[39m
-    [31m+               "top": 860.171875,[39m
-    [31m+               "width": 753.390625,[39m
-    [31m+               "x": 306.1875,[39m
-    [31m+               "y": 860.171875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 18.828125,[39m
-    [31m+               "left": 306.1875,[39m
-    [31m+               "right": 1059.578125,[39m
-    [31m+               "top": 853.171875,[39m
-    [31m+               "width": 753.390625,[39m
-    [31m+               "x": 306.1875,[39m
-    [31m+               "y": 853.171875,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#cc-min-explanation.explanation-pane>section.cc-min-exp-section.cc-min-exp-intro>p",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 2008.7000000178814,[39m
-    [31m+         "value": 0.00005725716364014236,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 8.828125,[39m
-    [31m+               "left": 306.1875,[39m
-    [31m+               "right": 1058.8125,[39m
-    [31m+               "top": 863.171875,[39m
-    [31m+               "width": 752.625,[39m
-    [31m+               "x": 306.1875,[39m
-    [31m+               "y": 863.171875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 8.828125,[39m
-    [31m+               "left": 306.1875,[39m
-    [31m+               "right": 1059.578125,[39m
-    [31m+               "top": 863.171875,[39m
-    [31m+               "width": 753.390625,[39m
-    [31m+               "x": 306.1875,[39m
-    [31m+               "y": 863.171875,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 672.953125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 1000.46875,[39m
-    [31m+               "right": 1074.203125,[39m
-    [31m+               "top": 655.953125,[39m
-    [31m+               "width": 73.734375,[39m
-    [31m+               "x": 1000.46875,[39m
-    [31m+               "y": 655.953125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 672.953125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 1060.9375,[39m
-    [31m+               "right": 1074.9375,[39m
-    [31m+               "top": 655.953125,[39m
-    [31m+               "width": 14,[39m
-    [31m+               "x": 1060.9375,[39m
-    [31m+               "y": 655.953125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.cc-min-hero>aside.cc-min-preview-panel>div.cc-min-snapshot-list>div.cc-min-snapshot-row>strong",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 11.828125,[39m
-    [31m+               "left": 601.3125,[39m
-    [31m+               "right": 659,[39m
-    [31m+               "top": 860.171875,[39m
-    [31m+               "width": 57.6875,[39m
-    [31m+               "x": 601.3125,[39m
-    [31m+               "y": 860.171875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 11.828125,[39m
-    [31m+               "left": 560.578125,[39m
-    [31m+               "right": 592.46875,[39m
-    [31m+               "top": 860.171875,[39m
-    [31m+               "width": 31.890625,[39m
-    [31m+               "x": 560.578125,[39m
-    [31m+               "y": 860.171875,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.calculator-page-single>div#cc-min-explanation.explanation-pane>section.cc-min-exp-section.cc-min-exp-intro>p>span",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 3395.4000000059605,[39m
-    [31m+         "value": 0.005215461564939879,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 200,[39m
-    [31m+     "lcp": 3704,[39m
+    [31m+     "inpProxy": 152,[39m
+    [31m+     "lcp": 3628,[39m
     [31m+     "maxShift": 0.0052,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",[39m
@@ -2957,7 +2813,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 535.0999999940395,[39m
+    [31m+         "startTime": 506.2000000178814,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3010,6 +2866,16 @@ Running 413 tests using 8 workers
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
     [31m+               "bottom": 0,[39m
     [31m+               "height": 0,[39m
     [31m+               "left": 0,[39m
@@ -3019,20 +2885,10 @@ Running 413 tests using 8 workers
     [31m+               "x": 0,[39m
     [31m+               "y": 0,[39m
     [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 115,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 757,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 757,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section.cc-payoff-exp-section",[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 841.8999999761581,[39m
+    [31m+         "startTime": 800.9000000059605,[39m
     [31m+         "value": 0.11465881694488196,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3062,29 +2918,6 @@ Running 413 tests using 8 workers
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 180.734375,[39m
-    [31m+               "left": 289.1875,[39m
-    [31m+               "right": 1075.8125,[39m
-    [31m+               "top": 691.265625,[39m
-    [31m+               "width": 786.625,[39m
-    [31m+               "x": 289.1875,[39m
-    [31m+               "y": 691.265625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section#cc-payoff-chart-section.cc-payoff-exp-section.cc-payoff-chart-section>div#cc-payoff-chart-wrap.cc-payoff-chart-wrap",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
     [31m+               "bottom": 609.03125,[39m
     [31m+               "height": 125,[39m
     [31m+               "left": 951,[39m
@@ -3106,13 +2939,36 @@ Running 413 tests using 8 workers
     [31m+             },[39m
     [31m+             "selector": "div#calc-cc-payoff>div.calculator-ui.cc-payoff-ui>section.cc-payoff-hero>aside.cc-payoff-preview-panel>::after",[39m
     [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
+    [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1049.2999999821186,[39m
+    [31m+         "startTime": 1026.4000000059605,[39m
     [31m+         "value": 0.03983259452696266,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 256,[39m
-    [31m+     "lcp": 524,[39m
+    [31m+     "inpProxy": 264,[39m
+    [31m+     "lcp": 556,[39m
     [31m+     "maxShift": 0.1147,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-payment-calculator/",[39m
@@ -3147,7 +3003,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1527.9000000059605,[39m
+    [31m+         "startTime": 1303.4000000059605,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3200,6 +3056,16 @@ Running 413 tests using 8 workers
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
     [31m+               "bottom": 0,[39m
     [31m+               "height": 0,[39m
     [31m+               "left": 0,[39m
@@ -3209,20 +3075,10 @@ Running 413 tests using 8 workers
     [31m+               "x": 0,[39m
     [31m+               "y": 0,[39m
     [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 115,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 757,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 757,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section.cc-payoff-exp-section",[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2268.100000023842,[39m
+    [31m+         "startTime": 1743.5999999940395,[39m
     [31m+         "value": 0.11465881694488196,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3252,29 +3108,6 @@ Running 413 tests using 8 workers
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 180.734375,[39m
-    [31m+               "left": 289.1875,[39m
-    [31m+               "right": 1075.8125,[39m
-    [31m+               "top": 691.265625,[39m
-    [31m+               "width": 786.625,[39m
-    [31m+               "x": 289.1875,[39m
-    [31m+               "y": 691.265625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section#cc-payoff-chart-section.cc-payoff-exp-section.cc-payoff-chart-section>div#cc-payoff-chart-wrap.cc-payoff-chart-wrap",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
     [31m+               "bottom": 609.03125,[39m
     [31m+               "height": 125,[39m
     [31m+               "left": 951,[39m
@@ -3296,20 +3129,290 @@ Running 413 tests using 8 workers
     [31m+             },[39m
     [31m+             "selector": "div#calc-cc-payoff>div.calculator-ui.cc-payoff-ui>section.cc-payoff-hero>aside.cc-payoff-preview-panel>::after",[39m
     [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
+    [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 3215.600000023842,[39m
+    [31m+         "startTime": 3464.0999999940395,[39m
     [31m+         "value": 0.03983259452696266,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 256,[39m
-    [31m+     "lcp": 1412,[39m
+    [31m+     "inpProxy": 280,[39m
+    [31m+     "lcp": 904,[39m
     [31m+     "maxShift": 0.1147,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-payment-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.1147,[39m
+    [31m+     "cls": 0.0266,[39m
+    [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 138.90625,[39m
+    [31m+               "left": 249,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 733.09375,[39m
+    [31m+               "width": 877,[39m
+    [31m+               "x": 249,[39m
+    [31m+               "y": 733.09375,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 179.140625,[39m
+    [31m+               "left": 249,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 692.859375,[39m
+    [31m+               "width": 843,[39m
+    [31m+               "x": 249,[39m
+    [31m+               "y": 692.859375,[39m
+    [31m+             },[39m
+    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#ci-explanation.explanation-pane",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 687.078125,[39m
+    [31m+               "height": 247.90625,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1072.609375,[39m
+    [31m+               "top": 439.171875,[39m
+    [31m+               "width": 299.09375,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 439.171875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 599.171875,[39m
+    [31m+               "height": 126,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1072.609375,[39m
+    [31m+               "top": 473.171875,[39m
+    [31m+               "width": 299.09375,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 473.171875,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 744.09375,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 751.125,[39m
+    [31m+               "top": 652.09375,[39m
+    [31m+               "width": 499.125,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 652.09375,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 703.953125,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 611.953125,[39m
+    [31m+               "width": 478.125,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 611.953125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 768.5,[39m
+    [31m+         "value": 0.023609088569121885,[39m
+    [31m+       },[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 117.421875,[39m
+    [31m+               "left": 249,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 754.578125,[39m
+    [31m+               "width": 877,[39m
+    [31m+               "x": 249,[39m
+    [31m+               "y": 754.578125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 138.90625,[39m
+    [31m+               "left": 249,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 733.09375,[39m
+    [31m+               "width": 877,[39m
+    [31m+               "x": 249,[39m
+    [31m+               "y": 733.09375,[39m
+    [31m+             },[39m
+    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#ci-explanation.explanation-pane",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 709.59375,[39m
+    [31m+               "height": 35.609375,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1072.9375,[39m
+    [31m+               "top": 673.984375,[39m
+    [31m+               "width": 299.421875,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 673.984375,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 681.484375,[39m
+    [31m+               "height": 31.59375,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1072.609375,[39m
+    [31m+               "top": 649.890625,[39m
+    [31m+               "width": 299.09375,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 649.890625,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 672.390625,[39m
+    [31m+               "height": 36.609375,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1073.25,[39m
+    [31m+               "top": 635.78125,[39m
+    [31m+               "width": 299.734375,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 635.78125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 648.296875,[39m
+    [31m+               "height": 32.59375,[39m
+    [31m+               "left": 773.515625,[39m
+    [31m+               "right": 1072.609375,[39m
+    [31m+               "top": 615.703125,[39m
+    [31m+               "width": 299.09375,[39m
+    [31m+               "x": 773.515625,[39m
+    [31m+               "y": 615.703125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 878.5,[39m
+    [31m+         "value": 0.0029713330031748315,[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "inpProxy": 256,[39m
+    [31m+     "lcp": 456,[39m
+    [31m+     "maxShift": 0.0236,[39m
+    [31m+     "mode": "normal",[39m
+    [31m+     "route": "/finance-calculators/compound-interest-calculator/",[39m
+    [31m+     "status": 200,[39m
+    [31m+   },[39m
+    [31m+   Object {[39m
+    [31m+     "cls": 0.1133,[39m
+    [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 622.09375,[39m
+    [31m+               "height": 491.09375,[39m
+    [31m+               "left": 694.125,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 131,[39m
+    [31m+               "width": 431.875,[39m
+    [31m+               "x": 694.125,[39m
+    [31m+               "y": 131,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 589,[39m
+    [31m+               "height": 192,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 397,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 397,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-effective-annual-rate>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 521.09375,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 751.125,[39m
+    [31m+               "top": 429.09375,[39m
+    [31m+               "width": 499.125,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 429.09375,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 412,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 320,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 320,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 435.109375,[39m
+    [31m+               "height": 85.390625,[39m
+    [31m+               "left": 256,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 349.71875,[39m
+    [31m+               "width": 474.125,[39m
+    [31m+               "x": 256,[39m
+    [31m+               "y": 349.71875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 362,[39m
+    [31m+               "height": 79,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 283,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 283,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 527.9000000059605,[39m
+    [31m+         "value": 0.11325451716210426,[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "inpProxy": 128,[39m
+    [31m+     "lcp": 764,[39m
+    [31m+     "maxShift": 0.1133,[39m
+    [31m+     "mode": "normal",[39m
+    [31m+     "route": "/finance-calculators/effective-annual-rate-calculator/",[39m
+    [31m+     "status": 200,[39m
+    [31m+   },[39m
+    [31m+   Object {[39m
+    [31m+     "cls": 0.114,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -3327,14 +3430,37 @@ Running 413 tests using 8 workers
     [31m+             "previousRect": Object {[39m
     [31m+               "bottom": 758.8125,[39m
     [31m+               "height": 20,[39m
-    [31m+               "left": 472.078125,[39m
-    [31m+               "right": 575.125,[39m
+    [31m+               "left": 519.25,[39m
+    [31m+               "right": 831.6875,[39m
     [31m+               "top": 738.8125,[39m
-    [31m+               "width": 103.046875,[39m
-    [31m+               "x": 472.078125,[39m
+    [31m+               "width": 312.4375,[39m
+    [31m+               "x": 519.25,[39m
     [31m+               "y": 738.8125,[39m
     [31m+             },[39m
     [31m+             "selector": "div.table-scroll>table.ear-results-table>thead>tr>th",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 780.8125,[39m
+    [31m+               "height": 20,[39m
+    [31m+               "left": 565.21875,[39m
+    [31m+               "right": 906.984375,[39m
+    [31m+               "top": 760.8125,[39m
+    [31m+               "width": 341.765625,[39m
+    [31m+               "x": 565.21875,[39m
+    [31m+               "y": 760.8125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 780.8125,[39m
+    [31m+               "height": 20,[39m
+    [31m+               "left": 519.25,[39m
+    [31m+               "right": 831.6875,[39m
+    [31m+               "top": 760.8125,[39m
+    [31m+               "width": 312.4375,[39m
+    [31m+               "x": 519.25,[39m
+    [31m+               "y": 760.8125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.table-scroll>table.ear-results-table>tbody>tr>td.ear-how-col",[39m
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
@@ -3351,40 +3477,17 @@ Running 413 tests using 8 workers
     [31m+               "bottom": 756.8125,[39m
     [31m+               "height": 17,[39m
     [31m+               "left": 275,[39m
-    [31m+               "right": 384.5625,[39m
+    [31m+               "right": 431.734375,[39m
     [31m+               "top": 739.8125,[39m
-    [31m+               "width": 109.5625,[39m
+    [31m+               "width": 156.734375,[39m
     [31m+               "x": 275,[39m
     [31m+               "y": 739.8125,[39m
     [31m+             },[39m
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 758.8125,[39m
-    [31m+               "height": 20,[39m
-    [31m+               "left": 479.703125,[39m
-    [31m+               "right": 563.21875,[39m
-    [31m+               "top": 738.8125,[39m
-    [31m+               "width": 83.515625,[39m
-    [31m+               "x": 479.703125,[39m
-    [31m+               "y": 738.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 758.8125,[39m
-    [31m+               "height": 20,[39m
-    [31m+               "left": 386.5625,[39m
-    [31m+               "right": 470.078125,[39m
-    [31m+               "top": 738.8125,[39m
-    [31m+               "width": 83.515625,[39m
-    [31m+               "x": 386.5625,[39m
-    [31m+               "y": 738.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.table-scroll>table.ear-results-table>thead>tr>th",[39m
-    [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 950.5,[39m
-    [31m+         "value": 0.0014921080270624343,[39m
+    [31m+         "startTime": 709.8000000119209,[39m
+    [31m+         "value": 0.0007486631560383607,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -3458,12 +3561,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2337.5999999940395,[39m
+    [31m+         "startTime": 2209.5,[39m
     [31m+         "value": 0.11325451716210426,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 112,[39m
-    [31m+     "lcp": 2720,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 2464,[39m
     [31m+     "maxShift": 0.1133,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/effective-annual-rate-calculator/",[39m
@@ -3544,7 +3647,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 766.6999999880791,[39m
+    [31m+         "startTime": 2149.5999999940395,[39m
     [31m+         "value": 0.18056963745620366,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3573,127 +3676,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1333,[39m
+    [31m+         "startTime": 2324.5999999940395,[39m
     [31m+         "value": 0.0000056293951547634035,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 128,[39m
-    [31m+     "lcp": 892,[39m
-    [31m+     "maxShift": 0.1806,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/finance-calculators/future-value-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0.1806,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 808.984375,[39m
-    [31m+               "height": 677.984375,[39m
-    [31m+               "left": 694.125,[39m
-    [31m+               "right": 1126,[39m
-    [31m+               "top": 131,[39m
-    [31m+               "width": 431.875,[39m
-    [31m+               "x": 694.125,[39m
-    [31m+               "y": 131,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 247,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 625,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-future-value>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 483.671875,[39m
-    [31m+               "height": 90.46875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 730.125,[39m
-    [31m+               "top": 393.203125,[39m
-    [31m+               "width": 457.125,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 393.203125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 435,[39m
-    [31m+               "height": 152,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 283,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 283,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 665.3125,[39m
-    [31m+               "height": 85.390625,[39m
-    [31m+               "left": 256,[39m
-    [31m+               "right": 730.125,[39m
-    [31m+               "top": 579.921875,[39m
-    [31m+               "width": 474.125,[39m
-    [31m+               "x": 256,[39m
-    [31m+               "y": 579.921875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 590,[39m
-    [31m+               "height": 127,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 463,[39m
-    [31m+               "width": 840,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 463,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 2345.9000000059605,[39m
-    [31m+         "value": 0.18056963745620366,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 677,[39m
-    [31m+               "height": 18.015625,[39m
-    [31m+               "left": 1045.203125,[39m
-    [31m+               "right": 1073.203125,[39m
-    [31m+               "top": 658.984375,[39m
-    [31m+               "width": 28,[39m
-    [31m+               "x": 1045.203125,[39m
-    [31m+               "y": 658.984375,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 677,[39m
-    [31m+               "height": 18.015625,[39m
-    [31m+               "left": 1064.765625,[39m
-    [31m+               "right": 1072.765625,[39m
-    [31m+               "top": 658.984375,[39m
-    [31m+               "width": 8,[39m
-    [31m+               "x": 1064.765625,[39m
-    [31m+               "y": 658.984375,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 3050.5999999940395,[39m
-    [31m+         "value": 0.0000056293951547634035,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 2412,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 2200,[39m
     [31m+     "maxShift": 0.1806,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/future-value-calculator/",[39m
@@ -3774,7 +3762,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2181,[39m
+    [31m+         "startTime": 2196.399999976158,[39m
     [31m+         "value": 0.18065532709422263,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3803,12 +3791,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#fva-periods-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2304.800000011921,[39m
+    [31m+         "startTime": 2320.5,[39m
     [31m+         "value": 0.0003169457740710956,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2228,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 2244,[39m
     [31m+     "maxShift": 0.1807,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/future-value-of-annuity-calculator/",[39m
@@ -3889,7 +3877,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 577.2000000178814,[39m
+    [31m+         "startTime": 578.7000000178814,[39m
     [31m+         "value": 0.006107435118073416,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -3964,26 +3952,101 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 672,[39m
+    [31m+         "startTime": 667.7000000178814,[39m
     [31m+         "value": 0.1870386709386008,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 708,[39m
+    [31m+     "lcp": 704,[39m
     [31m+     "maxShift": 0.187,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/finance-calculators/investment-growth-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.1967,[39m
+    [31m+     "cls": 0.1931,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 781.46875,[39m
-    [31m+               "height": 650.46875,[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 49,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 823,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 823,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 89,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 783,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 783,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 854,[39m
+    [31m+               "height": 17,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 837,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 837,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 17,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 855,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 855,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 2076.0999999940395,[39m
+    [31m+         "value": 0.006107435118073416,[39m
+    [31m+       },[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 863.96875,[39m
+    [31m+               "height": 732.96875,[39m
     [31m+               "left": 694.125,[39m
     [31m+               "right": 1126,[39m
     [31m+               "top": 131,[39m
@@ -4050,88 +4113,13 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2139.7000000178814,[39m
-    [31m+         "value": 0.18619193208883705,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 784.578125,[39m
-    [31m+               "height": 277.015625,[39m
-    [31m+               "left": 773.515625,[39m
-    [31m+               "right": 1126,[39m
-    [31m+               "top": 507.5625,[39m
-    [31m+               "width": 352.484375,[39m
-    [31m+               "x": 773.515625,[39m
-    [31m+               "y": 507.5625,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 702.078125,[39m
-    [31m+               "height": 248.90625,[39m
-    [31m+               "left": 773.515625,[39m
-    [31m+               "right": 1072.609375,[39m
-    [31m+               "top": 453.171875,[39m
-    [31m+               "width": 299.09375,[39m
-    [31m+               "x": 773.515625,[39m
-    [31m+               "y": 453.171875,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 0.03125,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 871.96875,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 871.96875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 65.6875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 806.3125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 806.3125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#ig-explanation.explanation-pane",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 851.96875,[39m
-    [31m+               "height": 28,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 823.96875,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 823.96875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 786.3125,[39m
-    [31m+               "height": 28,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 758.3125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 758.3125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 2222.5999999940395,[39m
-    [31m+         "value": 0.010504567888467235,[39m
+    [31m+         "startTime": 2256.2999999821186,[39m
+    [31m+         "value": 0.1870386709386008,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2256,[39m
-    [31m+     "maxShift": 0.1862,[39m
+    [31m+     "lcp": 2296,[39m
+    [31m+     "maxShift": 0.187,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/investment-growth-calculator/",[39m
     [31m+     "status": 200,[39m
@@ -4211,11 +4199,11 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 610.0999999940395,[39m
+    [31m+         "startTime": 607.8999999761581,[39m
     [31m+         "value": 0.3280307524605587,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
+    [31m+     "inpProxy": 64,[39m
     [31m+     "lcp": 644,[39m
     [31m+     "maxShift": 0.328,[39m
     [31m+     "mode": "normal",[39m
@@ -4383,7 +4371,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 572.6999999880791,[39m
+    [31m+         "startTime": 577.5,[39m
     [31m+         "value": 0.004559781973345804,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -4458,12 +4446,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 668.1999999880791,[39m
+    [31m+         "startTime": 662.5999999940395,[39m
     [31m+         "value": 0.181800908910083,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 708,[39m
+    [31m+     "lcp": 700,[39m
     [31m+     "maxShift": 0.1818,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/finance-calculators/monthly-savings-needed-calculator/",[39m
@@ -4544,7 +4532,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2140.0999999940395,[39m
+    [31m+         "startTime": 2170,[39m
     [31m+         "value": 0.1810072455731212,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -4573,12 +4561,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2245.5999999940395,[39m
+    [31m+         "startTime": 2273,[39m
     [31m+         "value": 0.013108215649241776,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2284,[39m
+    [31m+     "lcp": 2312,[39m
     [31m+     "maxShift": 0.181,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/monthly-savings-needed-calculator/",[39m
@@ -4659,12 +4647,98 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2125.5,[39m
+    [31m+         "startTime": 663.8999999761581,[39m
     [31m+         "value": 0.1796509854403384,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2168,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 708,[39m
+    [31m+     "maxShift": 0.1797,[39m
+    [31m+     "mode": "normal",[39m
+    [31m+     "route": "/finance-calculators/present-value-calculator/",[39m
+    [31m+     "status": 200,[39m
+    [31m+   },[39m
+    [31m+   Object {[39m
+    [31m+     "cls": 0.1797,[39m
+    [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 770.78125,[39m
+    [31m+               "height": 639.78125,[39m
+    [31m+               "left": 694.125,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 131,[39m
+    [31m+               "width": 431.875,[39m
+    [31m+               "x": 694.125,[39m
+    [31m+               "y": 131,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 815,[39m
+    [31m+               "height": 250,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 565,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 565,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-present-value>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 483.671875,[39m
+    [31m+               "height": 90.46875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 393.203125,[39m
+    [31m+               "width": 457.125,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 393.203125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 435,[39m
+    [31m+               "height": 152,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 283,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 283,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 571.953125,[39m
+    [31m+               "height": 85.390625,[39m
+    [31m+               "left": 256,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 486.5625,[39m
+    [31m+               "width": 474.125,[39m
+    [31m+               "x": 256,[39m
+    [31m+               "y": 486.5625,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 530,[39m
+    [31m+               "height": 127,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 403,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 403,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 2141.699999988079,[39m
+    [31m+         "value": 0.1796509854403384,[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 2188,[39m
     [31m+     "maxShift": 0.1797,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/present-value-calculator/",[39m
@@ -4745,7 +4819,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2157.0999999940395,[39m
+    [31m+         "startTime": 2146.399999976158,[39m
     [31m+         "value": 0.1807956808116675,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -4774,12 +4848,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#pva-periods-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2290.2999999821186,[39m
+    [31m+         "startTime": 2296.699999988079,[39m
     [31m+         "value": 0.0003169457740710956,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2204,[39m
+    [31m+     "inpProxy": 32,[39m
+    [31m+     "lcp": 2188,[39m
     [31m+     "maxShift": 0.1808,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/present-value-of-annuity-calculator/",[39m
@@ -4814,7 +4888,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 581.5999999940395,[39m
+    [31m+         "startTime": 568,[39m
     [31m+         "value": 0.000022847070025290742,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -4889,7 +4963,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#si-explanation.explanation-pane>div#loan-mtg-explanation>section.mtg-exp-section",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 659.5,[39m
+    [31m+         "startTime": 663.5999999940395,[39m
     [31m+         "value": 0.07936382182232077,[39m
     [31m+       },[39m
     [31m+     ],[39m
@@ -4975,78 +5049,210 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#si-explanation.explanation-pane>div#loan-mtg-explanation>section.mtg-exp-section",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2092.5999999940395,[39m
+    [31m+         "startTime": 2146.4000000059605,[39m
     [31m+         "value": 0.07936382182232077,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 437.765625,[39m
-    [31m+               "height": 125,[39m
-    [31m+               "left": 620,[39m
-    [31m+               "right": 766,[39m
-    [31m+               "top": 312.765625,[39m
-    [31m+               "width": 146,[39m
-    [31m+               "x": 620,[39m
-    [31m+               "y": 312.765625,[39m
+    [31m+               "bottom": 439.765625,[39m
+    [31m+               "height": 129,[39m
+    [31m+               "left": 618,[39m
+    [31m+               "right": 768,[39m
+    [31m+               "top": 310.765625,[39m
+    [31m+               "width": 150,[39m
+    [31m+               "x": 618,[39m
+    [31m+               "y": 310.765625,[39m
     [31m+             },[39m
     [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 429.765625,[39m
-    [31m+               "height": 112,[39m
-    [31m+               "left": 650.59375,[39m
-    [31m+               "right": 760.59375,[39m
-    [31m+               "top": 317.765625,[39m
-    [31m+               "width": 110,[39m
-    [31m+               "x": 650.59375,[39m
-    [31m+               "y": 317.765625,[39m
+    [31m+               "bottom": 434.765625,[39m
+    [31m+               "height": 122,[39m
+    [31m+               "left": 645.59375,[39m
+    [31m+               "right": 765.59375,[39m
+    [31m+               "top": 312.765625,[39m
+    [31m+               "width": 120,[39m
+    [31m+               "x": 645.59375,[39m
+    [31m+               "y": 312.765625,[39m
     [31m+             },[39m
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#si-time-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2181.199999988079,[39m
-    [31m+         "value": 0.00026668809913490765,[39m
+    [31m+         "startTime": 2226.699999988079,[39m
+    [31m+         "value": 0.0002827624503156418,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2220,[39m
+    [31m+     "lcp": 2264,[39m
     [31m+     "maxShift": 0.0794,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/simple-interest-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.2039,[39m
+    [31m+     "cls": 0.1944,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 244.671875,[39m
-    [31m+               "height": 19,[39m
-    [31m+               "left": 25,[39m
-    [31m+               "right": 46,[39m
-    [31m+               "top": 225.671875,[39m
-    [31m+               "width": 21,[39m
-    [31m+               "x": 25,[39m
-    [31m+               "y": 225.671875,[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 101,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 771,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 771,[39m
     [31m+             },[39m
     [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 235.78125,[39m
-    [31m+               "height": 19,[39m
-    [31m+               "left": 25,[39m
-    [31m+               "right": 46,[39m
-    [31m+               "top": 216.78125,[39m
-    [31m+               "width": 21,[39m
-    [31m+               "x": 25,[39m
-    [31m+               "y": 216.78125,[39m
+    [31m+               "bottom": 855,[39m
+    [31m+               "height": 144,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 711,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 711,[39m
     [31m+             },[39m
-    [31m+             "selector": "div#left-nav-content>div.fin-nav-container>div.fin-nav-group>button.fin-nav-toggle>span.fin-nav-toggle-icon",[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 836,[39m
+    [31m+               "height": 17,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 819,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 819,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 854,[39m
+    [31m+               "height": 17,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 837,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 837,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 564,[39m
-    [31m+         "value": 0.0000029848084267069537,[39m
+    [31m+         "startTime": 570.5999999940395,[39m
+    [31m+         "value": 0.011115333469721768,[39m
     [31m+       },[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 741,[39m
+    [31m+               "left": 694.125,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 131,[39m
+    [31m+               "width": 431.875,[39m
+    [31m+               "x": 694.125,[39m
+    [31m+               "y": 131,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 263,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 609,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 609,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-time-to-savings-goal>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 715.1875,[39m
+    [31m+               "height": 85.390625,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 629.796875,[39m
+    [31m+               "width": 457.125,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 629.796875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 574,[39m
+    [31m+               "height": 127,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 447,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 447,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 801.171875,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 751.125,[39m
+    [31m+               "top": 709.171875,[39m
+    [31m+               "width": 499.125,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 709.171875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 624,[39m
+    [31m+               "height": 92,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 532,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 532,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 660.7000000178814,[39m
+    [31m+         "value": 0.18327152038739453,[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 700,[39m
+    [31m+     "maxShift": 0.1833,[39m
+    [31m+     "mode": "normal",[39m
+    [31m+     "route": "/finance-calculators/time-to-savings-goal-calculator/",[39m
+    [31m+     "status": 200,[39m
+    [31m+   },[39m
+    [31m+   Object {[39m
+    [31m+     "cls": 0.2039,[39m
+    [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -5119,7 +5325,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2157.300000011921,[39m
+    [31m+         "startTime": 2164.4000000059605,[39m
     [31m+         "value": 0.18179470379836438,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -5171,12 +5377,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#tsg-explanation.explanation-pane",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2247.800000011921,[39m
+    [31m+         "startTime": 2263.800000011921,[39m
     [31m+         "value": 0.02209166172606522,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2288,[39m
+    [31m+     "lcp": 2304,[39m
     [31m+     "maxShift": 0.1818,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/time-to-savings-goal-calculator/",[39m
@@ -5257,12 +5463,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 661.7999999821186,[39m
+    [31m+         "startTime": 672.4000000059605,[39m
     [31m+         "value": 0.10076524638559944,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 96,[39m
-    [31m+     "lcp": 712,[39m
+    [31m+     "inpProxy": 80,[39m
+    [31m+     "lcp": 708,[39m
     [31m+     "maxShift": 0.1008,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/buy-to-let-mortgage-calculator/",[39m
@@ -5343,12 +5549,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-btl-explanation>section.btl-exp-section.btl-exp-section--summary>h2",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1794.9000000059605,[39m
+    [31m+         "startTime": 1812,[39m
     [31m+         "value": 0.09667237212460207,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 80,[39m
-    [31m+     "lcp": 1828,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 1852,[39m
     [31m+     "maxShift": 0.0967,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/buy-to-let-mortgage-calculator/",[39m
@@ -5429,12 +5635,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-how-much-can-borrow>div.calculator-ui.borrow-ui>section.borrow-hero>aside.borrow-result-dashboard>div.borrow-metric-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 657.6000000238419,[39m
+    [31m+         "startTime": 650.2999999821186,[39m
     [31m+         "value": 0.07695304062705279,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 708,[39m
+    [31m+     "inpProxy": 80,[39m
+    [31m+     "lcp": 704,[39m
     [31m+     "maxShift": 0.077,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/how-much-can-i-borrow/",[39m
@@ -5515,7 +5721,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-how-much-can-borrow>div.calculator-ui.borrow-ui>section.borrow-hero>aside.borrow-result-dashboard>div.borrow-metric-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1723.0999999940395,[39m
+    [31m+         "startTime": 1721.800000011921,[39m
     [31m+         "value": 0.0776522022396394,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -5544,12 +5750,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.borrow-form-panel>section.borrow-section>div#bor-multiple-row.input-row.slider-row>div.slider-header>span#bor-multiple-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2566.399999976158,[39m
+    [31m+         "startTime": 2623.699999988079,[39m
     [31m+         "value": 0.000021302128430372528,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 1212,[39m
+    [31m+     "lcp": 1196,[39m
     [31m+     "maxShift": 0.0777,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/how-much-can-i-borrow/",[39m
@@ -5630,7 +5836,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation>section.remo-exp-section.remo-exp-section--table>div#remo-table-yearly-wrap.table-scroll",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 576.9000000059605,[39m
+    [31m+         "startTime": 573,[39m
     [31m+         "value": 0.1270212765957447,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -5705,12 +5911,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation>section.remo-exp-section.remo-exp-section--table>div#remo-table-yearly-wrap.table-scroll",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 652.5999999940395,[39m
+    [31m+         "startTime": 648.3000000119209,[39m
     [31m+         "value": 0.33910050809687675,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 384,[39m
+    [31m+     "inpProxy": 80,[39m
+    [31m+     "lcp": 376,[39m
     [31m+     "maxShift": 0.3391,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/remortgage-calculator/",[39m
@@ -5791,7 +5997,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-remortgage-switching>div.calculator-ui.remo-ui>section.remo-hero>div.remo-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1609.800000011921,[39m
+    [31m+         "startTime": 1617.9000000059605,[39m
     [31m+         "value": 0.16236728568530942,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -5820,95 +6026,20 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2524.800000011921,[39m
+    [31m+         "startTime": 2574.600000023842,[39m
     [31m+         "value": 0.0038073415945756367,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 96,[39m
-    [31m+     "lcp": 1192,[39m
+    [31m+     "inpProxy": 72,[39m
+    [31m+     "lcp": 1184,[39m
     [31m+     "maxShift": 0.1624,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/remortgage-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0533,[39m
+    [31m+     "cls": 0.0526,[39m
     [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 423.125,[39m
-    [31m+               "right": 544.515625,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 121.390625,[39m
-    [31m+               "x": 423.125,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 620.625,[39m
-    [31m+               "right": 742.015625,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 121.390625,[39m
-    [31m+               "x": 620.625,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "selector": "html>body>div.page>footer.site-footer>a",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 596.15625,[39m
-    [31m+               "right": 645.15625,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 49,[39m
-    [31m+               "x": 596.15625,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 793.65625,[39m
-    [31m+               "right": 842.65625,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 49,[39m
-    [31m+               "x": 793.65625,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "selector": "html>body>div.page>footer.site-footer>a",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 325.578125,[39m
-    [31m+               "right": 371.484375,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 45.90625,[39m
-    [31m+               "x": 325.578125,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 923,[39m
-    [31m+               "height": 16,[39m
-    [31m+               "left": 523.078125,[39m
-    [31m+               "right": 568.984375,[39m
-    [31m+               "top": 907,[39m
-    [31m+               "width": 45.90625,[39m
-    [31m+               "x": 523.078125,[39m
-    [31m+               "y": 907,[39m
-    [31m+             },[39m
-    [31m+             "selector": "html>body>div.page>footer.site-footer>a",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 801.2999999821186,[39m
-    [31m+         "value": 0.0007216953674751197,[39m
-    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -5981,12 +6112,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main.layout-main--no-ads>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1876.0999999940395,[39m
+    [31m+         "startTime": 1907.800000011921,[39m
     [31m+         "value": 0.052588590532944055,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 820,[39m
+    [31m+     "lcp": 816,[39m
     [31m+     "maxShift": 0.0526,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/percentage-calculators/commission-calculator/",[39m
@@ -6067,7 +6198,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 597.1999999880791,[39m
+    [31m+         "startTime": 577.2999999821186,[39m
     [31m+         "value": 0.013606529109188683,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -6142,12 +6273,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 634.3000000119209,[39m
+    [31m+         "startTime": 626.5999999940395,[39m
     [31m+         "value": 0.17727810369867447,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 668,[39m
+    [31m+     "inpProxy": 56,[39m
+    [31m+     "lcp": 672,[39m
     [31m+     "maxShift": 0.1773,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/percentage-calculators/reverse-percentage-calculator/",[39m
@@ -6182,7 +6313,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1147.2999999821186,[39m
+    [31m+         "startTime": 1159.5,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -6257,7 +6388,7 @@ Running 413 tests using 8 workers
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1703.7999999821186,[39m
+    [31m+         "startTime": 1690.699999988079,[39m
     [31m+         "value": 0.1701491040596649,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -6332,12 +6463,12 @@ Running 413 tests using 8 workers
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2079.5,[39m
+    [31m+         "startTime": 2126.0999999940395,[39m
     [31m+         "value": 0.021266017825989768,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 2112,[39m
+    [31m+     "inpProxy": 56,[39m
+    [31m+     "lcp": 2164,[39m
     [31m+     "maxShift": 0.1701,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/percentage-calculators/reverse-percentage-calculator/",[39m
@@ -6356,7 +6487,7 @@ Running 413 tests using 8 workers
 
     [31mTest timeout of 30000ms exceeded.[39m
 
-  15) [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › FAQs page metadata ─
+  14) [chromium] › tests_specs/infrastructure/e2e/gtep-pages-seo.spec.js:59:3 › FAQs page metadata ─
 
     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveAttribute[2m([22m[32mexpected[39m[2m)[22m failed
 
@@ -6399,7 +6530,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  16) [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability 
+  15) [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability 
 
     Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveScreenshot[2m([22m[32mexpected[39m[2m)[22m failed
 
@@ -6457,7 +6588,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  17) [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:40:1 › ROUTE-ARCHETYPE-002: generated body metadata and pane presence match metadata contract 
+  16) [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:40:1 › ROUTE-ARCHETYPE-002: generated body metadata and pane presence match metadata contract 
 
     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
 
@@ -6490,7 +6621,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  18) [chromium] › tests_specs/infrastructure/e2e/sitemap-footer.spec.js:4:3 › Sitemap footer link › SITEMAP-TEST-E2E-1: footer link navigates to sitemap page 
+  17) [chromium] › tests_specs/infrastructure/e2e/sitemap-footer.spec.js:4:3 › Sitemap footer link › SITEMAP-TEST-E2E-1: footer link navigates to sitemap page 
 
     Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
 
@@ -6530,14 +6661,53 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  19) [chromium] › tests_specs/loans/cluster_release/cwv.cluster.spec.js:7:3 › loans cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
+  18) [chromium] › tests_specs/loans/buy-to-let_release/cwv.calc.spec.js:7:3 › loans/buy-to-let cwv guard › calculator route satisfies CLS/LCP thresholds 
 
-    Error: CLS exceeded on /car-loan-calculators/hire-purchase-calculator/
+    Error: CLS exceeded on /loan-calculators/buy-to-let-mortgage-calculator/
 
     [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
 
     Expected: <= [32m0.1[39m
-    Received:    [31m0.1539[39m
+    Received:    [31m0.1483[39m
+
+       at infrastructure/e2e/cwv-scope-helper.js:80
+
+      78 |   }
+      79 |
+    > 80 |   expect(metrics.cls, `CLS exceeded on ${route}`).toBeLessThanOrEqual(CLS_THRESHOLD);
+         |                                                   ^
+      81 |   expect(metrics.lcp, `LCP exceeded on ${route}`).toBeLessThanOrEqual(LCP_THRESHOLD_MS);
+      82 | }
+      83 |
+        at assertCwv (/home/kartheek/calchowmuch/tests_specs/infrastructure/e2e/cwv-scope-helper.js:80:51)
+        at /home/kartheek/calchowmuch/tests_specs/loans/buy-to-let_release/cwv.calc.spec.js:9:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/loans-buy-to-let_release-c-92710-atisfies-CLS-LCP-thresholds-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/loans-buy-to-let_release-c-92710-atisfies-CLS-LCP-thresholds-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/loans-buy-to-let_release-c-92710-atisfies-CLS-LCP-thresholds-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/loans-buy-to-let_release-c-92710-atisfies-CLS-LCP-thresholds-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/loans-buy-to-let_release-c-92710-atisfies-CLS-LCP-thresholds-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › tests_specs/loans/cluster_release/cwv.cluster.spec.js:7:3 › loans cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
+
+    Error: CLS exceeded on /loan-calculators/buy-to-let-mortgage-calculator/
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m0.1[39m
+    Received:    [31m0.1483[39m
 
        at infrastructure/e2e/cwv-scope-helper.js:80
 
@@ -6569,7 +6739,46 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  20) [chromium] › tests_specs/math/percentage-increase_release/cwv.calc.spec.js:7:3 › math/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds 
+  20) [chromium] › tests_specs/loans/how-much-can-i-borrow_release/cwv.calc.spec.js:7:3 › loans/how-much-can-i-borrow cwv guard › calculator route satisfies CLS/LCP thresholds 
+
+    Error: CLS exceeded on /loan-calculators/how-much-can-i-borrow/
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: <= [32m0.1[39m
+    Received:    [31m0.146[39m
+
+       at infrastructure/e2e/cwv-scope-helper.js:80
+
+      78 |   }
+      79 |
+    > 80 |   expect(metrics.cls, `CLS exceeded on ${route}`).toBeLessThanOrEqual(CLS_THRESHOLD);
+         |                                                   ^
+      81 |   expect(metrics.lcp, `LCP exceeded on ${route}`).toBeLessThanOrEqual(LCP_THRESHOLD_MS);
+      82 | }
+      83 |
+        at assertCwv (/home/kartheek/calchowmuch/tests_specs/infrastructure/e2e/cwv-scope-helper.js:80:51)
+        at /home/kartheek/calchowmuch/tests_specs/loans/how-much-can-i-borrow_release/cwv.calc.spec.js:9:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/loans-how-much-can-i-borro-1eb95-atisfies-CLS-LCP-thresholds-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/loans-how-much-can-i-borro-1eb95-atisfies-CLS-LCP-thresholds-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/loans-how-much-can-i-borro-1eb95-atisfies-CLS-LCP-thresholds-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/loans-how-much-can-i-borro-1eb95-atisfies-CLS-LCP-thresholds-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/loans-how-much-can-i-borro-1eb95-atisfies-CLS-LCP-thresholds-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › tests_specs/math/percentage-increase_release/cwv.calc.spec.js:7:3 › math/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
 
@@ -6605,7 +6814,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  21) [chromium] › tests_specs/percentage/margin-calculator_release/seo.calc.spec.js:4:3 › Margin Calculator SEO › MARG-TEST-SEO-1: metadata, schema, sitemap 
+  22) [chromium] › tests_specs/percentage/margin-calculator_release/seo.calc.spec.js:4:3 › Margin Calculator SEO › MARG-TEST-SEO-1: metadata, schema, sitemap 
 
     Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveTitle[2m([22m[32mexpected[39m[2m)[22m failed
 
@@ -6615,7 +6824,7 @@ Running 413 tests using 8 workers
 
     Call log:
     [2m  - Expect "toHaveTitle" with timeout 5000ms[22m
-    [2m    9 × unexpected value "Margin Calculator – Calculate Gross Margin & Profit"[22m
+    [2m    8 × unexpected value "Margin Calculator – Calculate Gross Margin & Profit"[22m
 
 
        5 |     await page.goto('/percentage-calculators/margin-calculator/');
@@ -6645,14 +6854,14 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  22) [chromium] › tests_specs/percentage/reverse-percentage_release/cwv.calc.spec.js:7:3 › percentage/reverse-percentage cwv guard › calculator route satisfies CLS/LCP thresholds 
+  23) [chromium] › tests_specs/percentage/reverse-percentage_release/cwv.calc.spec.js:7:3 › percentage/reverse-percentage cwv guard › calculator route satisfies CLS/LCP thresholds 
 
     Error: CLS exceeded on /percentage-calculators/reverse-percentage-calculator/
 
     [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
 
     Expected: <= [32m0.1[39m
-    Received:    [31m0.1585[39m
+    Received:    [31m0.1451[39m
 
        at infrastructure/e2e/cwv-scope-helper.js:80
 
@@ -6684,7 +6893,7 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  23) [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js:4:3 › Energy-Based Nap Selector SEO › ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage 
+  24) [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js:4:3 › Energy-Based Nap Selector SEO › ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage 
 
     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
 
@@ -6715,45 +6924,6 @@ Running 413 tests using 8 workers
     Usage:
 
         npx playwright show-trace test-results/sleep-and-nap-energy-based-f11bf-schema-and-sitemap-coverage-chromium/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  24) [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/cwv.calc.spec.js:7:3 › time-and-date/birthday-day-of-week cwv guard › calculator route satisfies CLS/LCP thresholds 
-
-    Error: CLS exceeded on /time-and-date/birthday-day-of-week/
-
-    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
-
-    Expected: <= [32m0.1[39m
-    Received:    [31m0.1327[39m
-
-       at infrastructure/e2e/cwv-scope-helper.js:80
-
-      78 |   }
-      79 |
-    > 80 |   expect(metrics.cls, `CLS exceeded on ${route}`).toBeLessThanOrEqual(CLS_THRESHOLD);
-         |                                                   ^
-      81 |   expect(metrics.lcp, `LCP exceeded on ${route}`).toBeLessThanOrEqual(LCP_THRESHOLD_MS);
-      82 | }
-      83 |
-        at assertCwv (/home/kartheek/calchowmuch/tests_specs/infrastructure/e2e/cwv-scope-helper.js:80:51)
-        at /home/kartheek/calchowmuch/tests_specs/time-and-date/birthday-day-of-week_release/cwv.calc.spec.js:9:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/time-and-date-birthday-day-06b0e-atisfies-CLS-LCP-thresholds-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/time-and-date-birthday-day-06b0e-atisfies-CLS-LCP-thresholds-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results/time-and-date-birthday-day-06b0e-atisfies-CLS-LCP-thresholds-chromium/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/time-and-date-birthday-day-06b0e-atisfies-CLS-LCP-thresholds-chromium/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/time-and-date-birthday-day-06b0e-atisfies-CLS-LCP-thresholds-chromium/trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -6801,7 +6971,7 @@ Running 413 tests using 8 workers
 
     Call log:
     [2m  - Expect "toHaveTitle" with timeout 5000ms[22m
-    [2m    8 × unexpected value "Countdown Timer Generator – Count Down to Any Date"[22m
+    [2m    9 × unexpected value "Countdown Timer Generator – Count Down to Any Date"[22m
 
 
        5 |     await page.goto('/time-and-date/countdown-timer-generator');
@@ -6918,7 +7088,7 @@ Running 413 tests using 8 workers
 
     Call log:
     [2m  - Expect "toHaveTitle" with timeout 5000ms[22m
-    [2m    8 × unexpected value "Calculate How Much | Free Online Calculators & Tools"[22m
+    [2m    9 × unexpected value "Calculate How Much | Free Online Calculators & Tools"[22m
 
 
        5 |     await page.goto('/#/time-and-date/days-until-a-date-calculator');
@@ -7111,11 +7281,10 @@ Running 413 tests using 8 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  Slow test file: [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js (18.4m)
+  Slow test file: [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js (18.1m)
   Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
   33 failed
     [chromium] › tests_specs/credit-cards/credit-card-minimum-payment_release/e2e.calc.spec.js:12:3 › Credit Card Minimum Payment Calculator › MINPAY-TEST-E2E-1: load, nav, calculate, verify results 
-    [chromium] › tests_specs/credit-cards/credit-card-repayment-payoff_release/cwv.calc.spec.js:7:3 › credit-cards/credit-card-repayment-payoff cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/finance/cluster_release/cwv.cluster.spec.js:7:3 › finance cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
     [chromium] › tests_specs/finance/effective-annual-rate_release/cwv.calc.spec.js:7:3 › finance/effective-annual-rate cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/finance/future-value_release/cwv.calc.spec.js:7:3 › finance/future-value cwv guard › calculator route satisfies CLS/LCP thresholds 
@@ -7132,12 +7301,13 @@ Running 413 tests using 8 workers
     [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability 
     [chromium] › tests_specs/infrastructure/e2e/route-archetype-contract.spec.js:40:1 › ROUTE-ARCHETYPE-002: generated body metadata and pane presence match metadata contract 
     [chromium] › tests_specs/infrastructure/e2e/sitemap-footer.spec.js:4:3 › Sitemap footer link › SITEMAP-TEST-E2E-1: footer link navigates to sitemap page 
+    [chromium] › tests_specs/loans/buy-to-let_release/cwv.calc.spec.js:7:3 › loans/buy-to-let cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/loans/cluster_release/cwv.cluster.spec.js:7:3 › loans cluster cwv guard › cluster routes satisfy CLS/LCP thresholds 
+    [chromium] › tests_specs/loans/how-much-can-i-borrow_release/cwv.calc.spec.js:7:3 › loans/how-much-can-i-borrow cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/math/percentage-increase_release/cwv.calc.spec.js:7:3 › math/percentage-increase cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/percentage/margin-calculator_release/seo.calc.spec.js:4:3 › Margin Calculator SEO › MARG-TEST-SEO-1: metadata, schema, sitemap 
     [chromium] › tests_specs/percentage/reverse-percentage_release/cwv.calc.spec.js:7:3 › percentage/reverse-percentage cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js:4:3 › Energy-Based Nap Selector SEO › ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage 
-    [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/cwv.calc.spec.js:7:3 › time-and-date/birthday-day-of-week cwv guard › calculator route satisfies CLS/LCP thresholds 
     [chromium] › tests_specs/time-and-date/birthday-day-of-week_release/seo.calc.spec.js:4:3 › Birthday Day-of-Week SEO › BIRTHDAY-DOW-TEST-SEO-1: metadata, headings, FAQ schema, sitemap 
     [chromium] › tests_specs/time-and-date/countdown-timer-generator_release/seo.calc.spec.js:4:3 › Countdown Timer Generator SEO › COUNTDOWN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap 
     [chromium] › tests_specs/time-and-date/days-until-a-date-calculator_release/e2e.calc.spec.js:4:3 › Days Until a Date Calculator › DAYS-UNTIL-TEST-E2E-1: user journey and results 
@@ -7148,7 +7318,7 @@ Running 413 tests using 8 workers
     [chromium] › tests_specs/time-and-date/work-hours-calculator_release/e2e.calc.spec.js:29:3 › Work Hours Calculator › WORK-HOURS-TEST-E2E-2: weekly totals with daily lines 
     [chromium] › tests_specs/time-and-date/work-hours-calculator_release/seo.calc.spec.js:4:3 › Work Hours Calculator SEO › WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap 
   83 skipped
-  297 passed (19.6m)
+  297 passed (19.2m)
   - 
 > calchowmuch@1.0.0 test:cwv:all
 > playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1
@@ -7161,28 +7331,80 @@ Running 1 test using 1 worker
 
   1) [chromium] › tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js:313:3 › Global CWV guard — all calculator routes › UR-TEST-005/006: all calculator routes must satisfy CLS/LCP/INP thresholds in normal and stress modes 
 
-    Error: CWV guard failed for 39 route checks. Report: /home/kartheek/calchowmuch/test-results/performance/cls-guard-all-calculators.json
-    /car-loan-calculators/auto-loan-calculator/ [normal] cls=0.0586 maxShift=0.058 lcp=1004 inpProxy=72 error=none
-    /car-loan-calculators/auto-loan-calculator/ [stress] cls=0.0586 maxShift=0.058 lcp=1708 inpProxy=40 error=none
-    /car-loan-calculators/car-lease-calculator/ [normal] cls=0.0599 maxShift=0.0599 lcp=684 inpProxy=80 error=none
-    /car-loan-calculators/car-lease-calculator/ [stress] cls=0.0605 maxShift=0.0599 lcp=1764 inpProxy=64 error=none
-    /car-loan-calculators/hire-purchase-calculator/ [normal] cls=0.0709 maxShift=0.0581 lcp=696 inpProxy=64 error=none
-    /car-loan-calculators/hire-purchase-calculator/ [stress] cls=0.0596 maxShift=0.0583 lcp=1692 inpProxy=48 error=none
-    /car-loan-calculators/pcp-calculator/ [normal] cls=0.0673 maxShift=0.0673 lcp=704 inpProxy=64 error=none
-    /car-loan-calculators/pcp-calculator/ [stress] cls=0.068 maxShift=0.0673 lcp=1712 inpProxy=56 error=none
-    /credit-card-calculators/balance-transfer-credit-card-calculator/ [normal] cls=0.0698 maxShift=0.0698 lcp=692 inpProxy=64 error=none
-    /credit-card-calculators/balance-transfer-credit-card-calculator/ [stress] cls=0.0705 maxShift=0.0698 lcp=2516 inpProxy=72 error=none
+    Error: CWV guard failed for 36 route checks. Report: /home/kartheek/calchowmuch/test-results/performance/cls-guard-all-calculators.json
+    /car-loan-calculators/auto-loan-calculator/ [normal] cls=0.0705 maxShift=0.058 lcp=1248 inpProxy=64 error=none
+    /car-loan-calculators/auto-loan-calculator/ [stress] cls=0.0586 maxShift=0.058 lcp=2024 inpProxy=64 error=none
+    /car-loan-calculators/car-lease-calculator/ [normal] cls=0.0599 maxShift=0.0599 lcp=684 inpProxy=64 error=none
+    /car-loan-calculators/car-lease-calculator/ [stress] cls=0.0605 maxShift=0.0599 lcp=1756 inpProxy=48 error=none
+    /car-loan-calculators/hire-purchase-calculator/ [stress] cls=0.0596 maxShift=0.0583 lcp=1680 inpProxy=56 error=none
+    /car-loan-calculators/pcp-calculator/ [normal] cls=0.0673 maxShift=0.0673 lcp=680 inpProxy=56 error=none
+    /car-loan-calculators/pcp-calculator/ [stress] cls=0.068 maxShift=0.0673 lcp=1696 inpProxy=64 error=none
+    /credit-card-calculators/balance-transfer-credit-card-calculator/ [normal] cls=0.0698 maxShift=0.0698 lcp=684 inpProxy=64 error=none
+    /credit-card-calculators/balance-transfer-credit-card-calculator/ [stress] cls=0.0705 maxShift=0.0698 lcp=2748 inpProxy=64 error=none
+    /credit-card-calculators/credit-card-consolidation-calculator/ [normal] cls=0.1018 maxShift=0.0999 lcp=656 inpProxy=40 error=none
 
     [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
 
     [32m- Expected  -    1[39m
-    [31m+ Received  + 4813[39m
+    [31m+ Received  + 4382[39m
 
     [32m- Array [][39m
     [31m+ Array [[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0586,[39m
+    [31m+     "cls": 0.0705,[39m
     [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 863.8125,[39m
+    [31m+               "height": 35,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 828.8125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 828.8125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 863.8125,[39m
+    [31m+               "height": 35,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 828.8125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 828.8125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 9.1875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 862.8125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 862.8125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "unknown",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 941.5999999940395,[39m
+    [31m+         "value": 0.011819156242693477,[39m
+    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -7209,7 +7431,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 642.0999999940395,[39m
+    [31m+         "startTime": 961.7999999821186,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -7284,12 +7506,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 958.5999999940395,[39m
+    [31m+         "startTime": 1211.5,[39m
     [31m+         "value": 0.057995427508155464,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 1004,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 1248,[39m
     [31m+     "maxShift": 0.058,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/car-loan-calculators/auto-loan-calculator/",[39m
@@ -7324,7 +7546,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1137.3999999761581,[39m
+    [31m+         "startTime": 1446.2999999821186,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -7399,12 +7621,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1658.7999999821186,[39m
+    [31m+         "startTime": 1978.7999999821186,[39m
     [31m+         "value": 0.057995427508155464,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 1708,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 2024,[39m
     [31m+     "maxShift": 0.058,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/auto-loan-calculator/",[39m
@@ -7485,11 +7707,11 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 645.5,[39m
+    [31m+         "startTime": 639.7000000178814,[39m
     [31m+         "value": 0.05990296926399919,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 80,[39m
+    [31m+     "inpProxy": 64,[39m
     [31m+     "lcp": 684,[39m
     [31m+     "maxShift": 0.0599,[39m
     [31m+     "mode": "normal",[39m
@@ -7525,7 +7747,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1143.5999999940395,[39m
+    [31m+         "startTime": 1153.199999988079,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -7600,176 +7822,15 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1710.199999988079,[39m
+    [31m+         "startTime": 1708.5,[39m
     [31m+         "value": 0.05990296926399919,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 1764,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 1756,[39m
     [31m+     "maxShift": 0.0599,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/car-lease-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0.0709,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 13.1875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 858.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 858.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 857.8125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 840.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 840.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 823.8125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 806.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 806.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 823.8125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 806.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 806.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 857.8125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 840.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 840.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 857.8125,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 840.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 840.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 577.1999999880791,[39m
-    [31m+         "value": 0.012802541208791207,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 492.578125,[39m
-    [31m+               "height": 310.1875,[39m
-    [31m+               "left": 731.515625,[39m
-    [31m+               "right": 1114.609375,[39m
-    [31m+               "top": 182.390625,[39m
-    [31m+               "width": 383.09375,[39m
-    [31m+               "x": 731.515625,[39m
-    [31m+               "y": 182.390625,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 389,[39m
-    [31m+               "height": 198,[39m
-    [31m+               "left": 754.125,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 191,[39m
-    [31m+               "width": 337.875,[39m
-    [31m+               "x": 754.125,[39m
-    [31m+               "y": 191,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-preview-main",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 760.34375,[39m
-    [31m+               "height": 307.765625,[39m
-    [31m+               "left": 773.515625,[39m
-    [31m+               "right": 1073.828125,[39m
-    [31m+               "top": 452.578125,[39m
-    [31m+               "width": 300.3125,[39m
-    [31m+               "x": 773.515625,[39m
-    [31m+               "y": 452.578125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 549,[39m
-    [31m+               "height": 144,[39m
-    [31m+               "left": 754.125,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 405,[39m
-    [31m+               "width": 337.875,[39m
-    [31m+               "x": 754.125,[39m
-    [31m+               "y": 405,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 52.1875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092.125,[39m
-    [31m+               "top": 819.8125,[39m
-    [31m+               "width": 819.125,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 819.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 113.09375,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 758.90625,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 758.90625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 654.4000000059605,[39m
-    [31m+         "value": 0.058108949468620386,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 696,[39m
-    [31m+     "maxShift": 0.0581,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/car-loan-calculators/hire-purchase-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
@@ -7801,7 +7862,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1142.800000011921,[39m
+    [31m+         "startTime": 1162.1000000238419,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -7876,7 +7937,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-mtg-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1652.800000011921,[39m
+    [31m+         "startTime": 1643.5,[39m
     [31m+         "value": 0.05825568515311618,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -7905,12 +7966,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2528.300000011921,[39m
+    [31m+         "startTime": 2555.2000000178814,[39m
     [31m+         "value": 0.000670417348608838,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 1692,[39m
+    [31m+     "inpProxy": 56,[39m
+    [31m+     "lcp": 1680,[39m
     [31m+     "maxShift": 0.0583,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/hire-purchase-calculator/",[39m
@@ -7991,12 +8052,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 652.9000000059605,[39m
+    [31m+         "startTime": 644.3999999761581,[39m
     [31m+         "value": 0.06728007461325207,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 704,[39m
+    [31m+     "inpProxy": 56,[39m
+    [31m+     "lcp": 680,[39m
     [31m+     "maxShift": 0.0673,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/car-loan-calculators/pcp-calculator/",[39m
@@ -8031,7 +8092,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1129,[39m
+    [31m+         "startTime": 1146.800000011921,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8106,12 +8167,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1673.699999988079,[39m
+    [31m+         "startTime": 1653.5,[39m
     [31m+         "value": 0.06731146102845015,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 1712,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 1696,[39m
     [31m+     "maxShift": 0.0673,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/car-loan-calculators/pcp-calculator/",[39m
@@ -8192,12 +8253,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.calculator-ui.cc-bt-ui>section.cc-bt-hero>aside.cc-bt-preview-panel>div.cc-bt-preview-main>p#cc-bt-summary.cc-bt-preview-note",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 646.0999999940395,[39m
+    [31m+         "startTime": 637.5,[39m
     [31m+         "value": 0.06984020521213648,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 692,[39m
+    [31m+     "lcp": 684,[39m
     [31m+     "maxShift": 0.0698,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",[39m
@@ -8232,7 +8293,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1205.8999999761581,[39m
+    [31m+         "startTime": 1224.7000000178814,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8307,12 +8368,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.calculator-ui.cc-bt-ui>section.cc-bt-hero>aside.cc-bt-preview-panel>div.cc-bt-preview-main>p#cc-bt-summary.cc-bt-preview-note",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2463.2999999821186,[39m
+    [31m+         "startTime": 2704.800000011921,[39m
     [31m+         "value": 0.06984020521213648,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 2516,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 2748,[39m
     [31m+     "maxShift": 0.0698,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/balance-transfer-credit-card-calculator/",[39m
@@ -8393,7 +8454,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-con-explanation.explanation-pane>section.cc-con-exp-section.cc-con-exp-section--lifetime",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 590.2000000178814,[39m
+    [31m+         "startTime": 586.9000000059605,[39m
     [31m+         "value": 0.09985838212913266,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8445,12 +8506,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-con-explanation.explanation-pane>p",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 627.6000000238419,[39m
+    [31m+         "startTime": 625.9000000059605,[39m
     [31m+         "value": 0.0019467275768421432,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 692,[39m
+    [31m+     "inpProxy": 40,[39m
+    [31m+     "lcp": 656,[39m
     [31m+     "maxShift": 0.0999,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-consolidation-calculator/",[39m
@@ -8485,7 +8546,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1234.4000000059605,[39m
+    [31m+         "startTime": 1239.5999999940395,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8537,7 +8598,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-con-explanation.explanation-pane>section.cc-con-exp-section.cc-con-exp-section--lifetime",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1890.199999988079,[39m
+    [31m+         "startTime": 1891,[39m
     [31m+         "value": 0.0021084872574234277,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8612,19 +8673,19 @@ Running 1 test using 1 worker
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2804.5999999940395,[39m
+    [31m+         "startTime": 2783.7999999821186,[39m
     [31m+         "value": 0.09322883367119983,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 2840,[39m
+    [31m+     "lcp": 2824,[39m
     [31m+     "maxShift": 0.0932,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-consolidation-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.1677,[39m
+    [31m+     "cls": 0.1364,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -8698,8 +8759,8 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.calculator-ui.cc-payoff-ui>section.cc-payoff-hero>aside.cc-payoff-preview-panel>div.cc-payoff-preview-main>div#cc-payoff-summary.result-detail",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 581.3000000119209,[39m
-    [31m+         "value": 0.04919027050158684,[39m
+    [31m+         "startTime": 577.5,[39m
+    [31m+         "value": 0.017904894367835683,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -8770,15 +8831,15 @@ Running 1 test using 1 worker
     [31m+               "x": 0,[39m
     [31m+               "y": 0,[39m
     [31m+             },[39m
-    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section#cc-payoff-chart-section.cc-payoff-exp-section.cc-payoff-chart-section",[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section.cc-payoff-exp-section",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 645.5999999940395,[39m
+    [31m+         "startTime": 641.9000000059605,[39m
     [31m+         "value": 0.11847095354571391,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 80,[39m
-    [31m+     "lcp": 380,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 376,[39m
     [31m+     "maxShift": 0.1185,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-payment-calculator/",[39m
@@ -8813,7 +8874,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1142.5,[39m
+    [31m+         "startTime": 1138,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8866,6 +8927,16 @@ Running 1 test using 1 worker
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
     [31m+               "bottom": 0,[39m
     [31m+               "height": 0,[39m
     [31m+               "left": 0,[39m
@@ -8875,20 +8946,10 @@ Running 1 test using 1 worker
     [31m+               "x": 0,[39m
     [31m+               "y": 0,[39m
     [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 115,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 757,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 757,[39m
-    [31m+             },[39m
-    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section.cc-payoff-exp-section",[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1783.300000011921,[39m
+    [31m+         "startTime": 1764.699999988079,[39m
     [31m+         "value": 0.11465881694488196,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -8918,29 +8979,6 @@ Running 1 test using 1 worker
     [31m+           },[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 180.734375,[39m
-    [31m+               "left": 289.1875,[39m
-    [31m+               "right": 1075.8125,[39m
-    [31m+               "top": 691.265625,[39m
-    [31m+               "width": 786.625,[39m
-    [31m+               "x": 289.1875,[39m
-    [31m+               "y": 691.265625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>section#cc-payoff-chart-section.cc-payoff-exp-section.cc-payoff-chart-section>div#cc-payoff-chart-wrap.cc-payoff-chart-wrap",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
     [31m+               "bottom": 609.03125,[39m
     [31m+               "height": 125,[39m
     [31m+               "left": 951,[39m
@@ -8962,13 +9000,36 @@ Running 1 test using 1 worker
     [31m+             },[39m
     [31m+             "selector": "div#calc-cc-payoff>div.calculator-ui.cc-payoff-ui>section.cc-payoff-hero>aside.cc-payoff-preview-panel>::after",[39m
     [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 0,[39m
+    [31m+               "height": 0,[39m
+    [31m+               "left": 0,[39m
+    [31m+               "right": 0,[39m
+    [31m+               "top": 0,[39m
+    [31m+               "width": 0,[39m
+    [31m+               "x": 0,[39m
+    [31m+               "y": 0,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 33.875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 838.125,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 838.125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#cc-payoff-explanation.cc-payoff-explanation>div.cc-payoff-faq-grid",[39m
+    [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2631.300000011921,[39m
+    [31m+         "startTime": 2539.0999999940395,[39m
     [31m+         "value": 0.03983259452696266,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 536,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 576,[39m
     [31m+     "maxShift": 0.1147,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/credit-card-calculators/credit-card-payment-calculator/",[39m
@@ -8977,35 +9038,6 @@ Running 1 test using 1 worker
     [31m+   Object {[39m
     [31m+     "cls": 0.1133,[39m
     [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 245.671875,[39m
-    [31m+               "height": 19,[39m
-    [31m+               "left": 26,[39m
-    [31m+               "right": 47,[39m
-    [31m+               "top": 226.671875,[39m
-    [31m+               "width": 21,[39m
-    [31m+               "x": 26,[39m
-    [31m+               "y": 226.671875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 237.21875,[39m
-    [31m+               "height": 19,[39m
-    [31m+               "left": 26,[39m
-    [31m+               "right": 47,[39m
-    [31m+               "top": 218.21875,[39m
-    [31m+               "width": 21,[39m
-    [31m+               "x": 26,[39m
-    [31m+               "y": 218.21875,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#left-nav-content>div.fin-nav-container>div.fin-nav-group.is-expanded>button.fin-nav-toggle>span.fin-nav-toggle-icon",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 558,[39m
-    [31m+         "value": 0.0000028379285744261195,[39m
-    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -9078,12 +9110,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2029.2000000178814,[39m
+    [31m+         "startTime": 2015.300000011921,[39m
     [31m+         "value": 0.11325451716210426,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2184,[39m
+    [31m+     "inpProxy": 40,[39m
+    [31m+     "lcp": 2148,[39m
     [31m+     "maxShift": 0.1133,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/effective-annual-rate-calculator/",[39m
@@ -9164,7 +9196,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2164.5999999940395,[39m
+    [31m+         "startTime": 2146.2999999821186,[39m
     [31m+         "value": 0.18056963745620366,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -9193,15 +9225,101 @@ Running 1 test using 1 worker
     [31m+             "selector": "section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list>div.mtg-snapshot-row>strong",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2309.5999999940395,[39m
+    [31m+         "startTime": 2313.399999976158,[39m
     [31m+         "value": 0.0000056293951547634035,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2216,[39m
+    [31m+     "lcp": 2188,[39m
     [31m+     "maxShift": 0.1806,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/future-value-calculator/",[39m
+    [31m+     "status": 200,[39m
+    [31m+   },[39m
+    [31m+   Object {[39m
+    [31m+     "cls": 0.1807,[39m
+    [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 808.984375,[39m
+    [31m+               "height": 677.984375,[39m
+    [31m+               "left": 694.125,[39m
+    [31m+               "right": 1126,[39m
+    [31m+               "top": 131,[39m
+    [31m+               "width": 431.875,[39m
+    [31m+               "x": 694.125,[39m
+    [31m+               "y": 131,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 872,[39m
+    [31m+               "height": 259,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 613,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 613,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-future-value-of-annuity>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 634.859375,[39m
+    [31m+               "height": 167.78125,[39m
+    [31m+               "left": 256,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 467.078125,[39m
+    [31m+               "width": 474.125,[39m
+    [31m+               "x": 256,[39m
+    [31m+               "y": 467.078125,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 578,[39m
+    [31m+               "height": 175,[39m
+    [31m+               "left": 252,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 403,[39m
+    [31m+               "width": 840,[39m
+    [31m+               "x": 252,[39m
+    [31m+               "y": 403,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 464.1875,[39m
+    [31m+               "height": 90.46875,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 730.125,[39m
+    [31m+               "top": 373.71875,[39m
+    [31m+               "width": 457.125,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 373.71875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 435,[39m
+    [31m+               "height": 152,[39m
+    [31m+               "left": 273,[39m
+    [31m+               "right": 1092,[39m
+    [31m+               "top": 283,[39m
+    [31m+               "width": 819,[39m
+    [31m+               "x": 273,[39m
+    [31m+               "y": 283,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 664.2999999821186,[39m
+    [31m+         "value": 0.18065532709422263,[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 708,[39m
+    [31m+     "maxShift": 0.1807,[39m
+    [31m+     "mode": "normal",[39m
+    [31m+     "route": "/finance-calculators/future-value-of-annuity-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
@@ -9279,7 +9397,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2160.800000011921,[39m
+    [31m+         "startTime": 2162.699999988079,[39m
     [31m+         "value": 0.18065532709422263,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -9308,176 +9426,15 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#fva-periods-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2336.9000000059605,[39m
+    [31m+         "startTime": 2314.2999999821186,[39m
     [31m+         "value": 0.0003169457740710956,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2204,[39m
+    [31m+     "lcp": 2212,[39m
     [31m+     "maxShift": 0.1807,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/future-value-of-annuity-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0.1931,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 49,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 823,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 823,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 89,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 783,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 783,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 854,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 837,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 837,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 855,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 855,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 577.5999999940395,[39m
-    [31m+         "value": 0.006107435118073416,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 863.96875,[39m
-    [31m+               "height": 732.96875,[39m
-    [31m+               "left": 694.125,[39m
-    [31m+               "right": 1126,[39m
-    [31m+               "top": 131,[39m
-    [31m+               "width": 431.875,[39m
-    [31m+               "x": 694.125,[39m
-    [31m+               "y": 131,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 191,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 681,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 681,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-investment-growth>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 546.046875,[39m
-    [31m+               "height": 289.6875,[39m
-    [31m+               "left": 265.484375,[39m
-    [31m+               "right": 730.125,[39m
-    [31m+               "top": 256.359375,[39m
-    [31m+               "width": 464.640625,[39m
-    [31m+               "x": 265.484375,[39m
-    [31m+               "y": 256.359375,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 599,[39m
-    [31m+               "height": 392,[39m
-    [31m+               "left": 253,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 207,[39m
-    [31m+               "width": 839,[39m
-    [31m+               "x": 253,[39m
-    [31m+               "y": 207,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.ig-slider-grid",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 769.3125,[39m
-    [31m+               "height": 92,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 751.125,[39m
-    [31m+               "top": 677.3125,[39m
-    [31m+               "width": 499.125,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 677.3125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 696,[39m
-    [31m+               "height": 92,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 604,[39m
-    [31m+               "width": 840,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 604,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 657.7999999821186,[39m
-    [31m+         "value": 0.1870386709386008,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 692,[39m
-    [31m+     "maxShift": 0.187,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/finance-calculators/investment-growth-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
@@ -9555,7 +9512,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2215.7000000178814,[39m
+    [31m+         "startTime": 2198.4000000059605,[39m
     [31m+         "value": 0.18619193208883705,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -9630,12 +9587,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2302.2000000178814,[39m
-    [31m+         "value": 0.010504567888467235,[39m
+    [31m+         "startTime": 2288.800000011921,[39m
+    [31m+         "value": 0.010480468226990322,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2336,[39m
+    [31m+     "inpProxy": 40,[39m
+    [31m+     "lcp": 2320,[39m
     [31m+     "maxShift": 0.1862,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/investment-growth-calculator/",[39m
@@ -9716,12 +9673,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 658.6999999880791,[39m
+    [31m+         "startTime": 655.4000000059605,[39m
     [31m+         "value": 0.3280307524605587,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 696,[39m
+    [31m+     "lcp": 692,[39m
     [31m+     "maxShift": 0.328,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/finance-calculators/investment-return-calculator/",[39m
@@ -9802,12 +9759,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2152.9000000059605,[39m
+    [31m+         "startTime": 2145.699999988079,[39m
     [31m+         "value": 0.3280307524605587,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 2192,[39m
+    [31m+     "lcp": 2184,[39m
     [31m+     "maxShift": 0.328,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/investment-return-calculator/",[39m
@@ -9888,7 +9845,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 580.5999999940395,[39m
+    [31m+         "startTime": 575.7999999821186,[39m
     [31m+         "value": 0.004559781973345804,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -9963,12 +9920,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 663,[39m
+    [31m+         "startTime": 658.2999999821186,[39m
     [31m+         "value": 0.181800908910083,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 704,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 696,[39m
     [31m+     "maxShift": 0.1818,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/finance-calculators/monthly-savings-needed-calculator/",[39m
@@ -9977,6 +9934,35 @@ Running 1 test using 1 worker
     [31m+   Object {[39m
     [31m+     "cls": 0.1941,[39m
     [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 56.5,[39m
+    [31m+               "height": 39,[39m
+    [31m+               "left": 77,[39m
+    [31m+               "right": 233.234375,[39m
+    [31m+               "top": 17.5,[39m
+    [31m+               "width": 156.234375,[39m
+    [31m+               "x": 77,[39m
+    [31m+               "y": 17.5,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 49.5,[39m
+    [31m+               "height": 25,[39m
+    [31m+               "left": 77,[39m
+    [31m+               "right": 213.6875,[39m
+    [31m+               "top": 24.5,[39m
+    [31m+               "width": 136.6875,[39m
+    [31m+               "x": 77,[39m
+    [31m+               "y": 24.5,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-left>div.brand-block",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 522.9000000059605,[39m
+    [31m+         "value": 0.0000243161094224924,[39m
+    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -10049,7 +10035,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.slider-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2163.5999999940395,[39m
+    [31m+         "startTime": 2144.0999999940395,[39m
     [31m+         "value": 0.1810072455731212,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -10078,12 +10064,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2272.7999999821186,[39m
+    [31m+         "startTime": 2240.9000000059605,[39m
     [31m+         "value": 0.013108215649241776,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2312,[39m
+    [31m+     "inpProxy": 32,[39m
+    [31m+     "lcp": 2280,[39m
     [31m+     "maxShift": 0.181,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/monthly-savings-needed-calculator/",[39m
@@ -10164,12 +10150,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 659.9000000059605,[39m
+    [31m+         "startTime": 660,[39m
     [31m+         "value": 0.1796509854403384,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 704,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 708,[39m
     [31m+     "maxShift": 0.1797,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/finance-calculators/present-value-calculator/",[39m
@@ -10250,11 +10236,11 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2155,[39m
+    [31m+         "startTime": 2156.5,[39m
     [31m+         "value": 0.1796509854403384,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
+    [31m+     "inpProxy": 40,[39m
     [31m+     "lcp": 2204,[39m
     [31m+     "maxShift": 0.1797,[39m
     [31m+     "mode": "stress",[39m
@@ -10336,7 +10322,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-grid-2-col",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2151.5,[39m
+    [31m+         "startTime": 2140.5999999940395,[39m
     [31m+         "value": 0.1807956808116675,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -10365,134 +10351,19 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#pva-periods-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2299.9000000059605,[39m
+    [31m+         "startTime": 2311.5,[39m
     [31m+         "value": 0.0003169457740710956,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 2196,[39m
+    [31m+     "inpProxy": 40,[39m
+    [31m+     "lcp": 2184,[39m
     [31m+     "maxShift": 0.1808,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/present-value-of-annuity-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.0794,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 14.1875,[39m
-    [31m+               "left": 424.84375,[39m
-    [31m+               "right": 508.359375,[39m
-    [31m+               "top": 857.8125,[39m
-    [31m+               "width": 83.515625,[39m
-    [31m+               "x": 424.84375,[39m
-    [31m+               "y": 857.8125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 15.1875,[39m
-    [31m+               "left": 424.84375,[39m
-    [31m+               "right": 508.359375,[39m
-    [31m+               "top": 856.8125,[39m
-    [31m+               "width": 83.515625,[39m
-    [31m+               "x": 424.84375,[39m
-    [31m+               "y": 856.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 577,[39m
-    [31m+         "value": 0.000022847070025290742,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 93.21875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 778.78125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 778.78125,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 211.09375,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 660.90625,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 660.90625,[39m
-    [31m+             },[39m
-    [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#si-explanation.explanation-pane",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 493.578125,[39m
-    [31m+               "height": 311.1875,[39m
-    [31m+               "left": 731.515625,[39m
-    [31m+               "right": 1114.609375,[39m
-    [31m+               "top": 182.390625,[39m
-    [31m+               "width": 383.09375,[39m
-    [31m+               "x": 731.515625,[39m
-    [31m+               "y": 182.390625,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 389,[39m
-    [31m+               "height": 198,[39m
-    [31m+               "left": 754.125,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 191,[39m
-    [31m+               "width": 337.875,[39m
-    [31m+               "x": 754.125,[39m
-    [31m+               "y": 191,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-preview-main",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 111.1875,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 760.8125,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 760.8125,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#si-explanation.explanation-pane>div#loan-mtg-explanation>section.mtg-exp-section",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 663.5,[39m
-    [31m+         "value": 0.07936382182232077,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 708,[39m
-    [31m+     "maxShift": 0.0794,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/finance-calculators/simple-interest-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
-    [31m+     "cls": 0.0797,[39m
+    [31m+     "cls": 0.0796,[39m
     [31m+     "entries": Array [[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
@@ -10566,210 +10437,78 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#si-explanation.explanation-pane>div#loan-mtg-explanation>section.mtg-exp-section",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2165.5,[39m
+    [31m+         "startTime": 2119,[39m
     [31m+         "value": 0.07936382182232077,[39m
     [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
     [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 440.765625,[39m
-    [31m+               "height": 131,[39m
-    [31m+               "left": 617,[39m
-    [31m+               "right": 769,[39m
-    [31m+               "top": 309.765625,[39m
-    [31m+               "width": 152,[39m
-    [31m+               "x": 617,[39m
-    [31m+               "y": 309.765625,[39m
+    [31m+               "bottom": 439.765625,[39m
+    [31m+               "height": 129,[39m
+    [31m+               "left": 618,[39m
+    [31m+               "right": 768,[39m
+    [31m+               "top": 310.765625,[39m
+    [31m+               "width": 150,[39m
+    [31m+               "x": 618,[39m
+    [31m+               "y": 310.765625,[39m
     [31m+             },[39m
     [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 434.765625,[39m
-    [31m+               "height": 122,[39m
-    [31m+               "left": 645.59375,[39m
-    [31m+               "right": 765.59375,[39m
-    [31m+               "top": 312.765625,[39m
-    [31m+               "width": 120,[39m
-    [31m+               "x": 645.59375,[39m
-    [31m+               "y": 312.765625,[39m
+    [31m+               "bottom": 432.765625,[39m
+    [31m+               "height": 118,[39m
+    [31m+               "left": 647.59375,[39m
+    [31m+               "right": 763.59375,[39m
+    [31m+               "top": 314.765625,[39m
+    [31m+               "width": 116,[39m
+    [31m+               "x": 647.59375,[39m
+    [31m+               "y": 314.765625,[39m
     [31m+             },[39m
     [31m+             "selector": "div.mtg-form-panel>div.input-grid-2-col>div.input-row.slider-row>div.slider-header>span#si-time-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2244.800000011921,[39m
-    [31m+         "value": 0.00029097498246434414,[39m
+    [31m+         "startTime": 2204.7000000178814,[39m
+    [31m+         "value": 0.0002827624503156418,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2280,[39m
+    [31m+     "lcp": 2244,[39m
     [31m+     "maxShift": 0.0794,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/simple-interest-calculator/",[39m
     [31m+     "status": 200,[39m
     [31m+   },[39m
     [31m+   Object {[39m
-    [31m+     "cls": 0.1944,[39m
-    [31m+     "entries": Array [[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 101,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 771,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 771,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 855,[39m
-    [31m+               "height": 144,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 711,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 711,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel>div.mtg-snapshot-list",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 836,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 819,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 819,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 0,[39m
-    [31m+               "height": 0,[39m
-    [31m+               "left": 0,[39m
-    [31m+               "right": 0,[39m
-    [31m+               "top": 0,[39m
-    [31m+               "width": 0,[39m
-    [31m+               "x": 0,[39m
-    [31m+               "y": 0,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 854,[39m
-    [31m+               "height": 17,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 837,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 837,[39m
-    [31m+             },[39m
-    [31m+             "selector": "unknown",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 580.2999999821186,[39m
-    [31m+         "value": 0.011115333469721768,[39m
-    [31m+       },[39m
-    [31m+       Object {[39m
-    [31m+         "sources": Array [[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 741,[39m
-    [31m+               "left": 694.125,[39m
-    [31m+               "right": 1126,[39m
-    [31m+               "top": 131,[39m
-    [31m+               "width": 431.875,[39m
-    [31m+               "x": 694.125,[39m
-    [31m+               "y": 131,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 872,[39m
-    [31m+               "height": 263,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 609,[39m
-    [31m+               "width": 819,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 609,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-time-to-savings-goal>div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>aside.mtg-preview-panel",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 715.1875,[39m
-    [31m+               "height": 85.390625,[39m
-    [31m+               "left": 273,[39m
-    [31m+               "right": 730.125,[39m
-    [31m+               "top": 629.796875,[39m
-    [31m+               "width": 457.125,[39m
-    [31m+               "x": 273,[39m
-    [31m+               "y": 629.796875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 574,[39m
-    [31m+               "height": 127,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 447,[39m
-    [31m+               "width": 840,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 447,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.pv-toggle-row",[39m
-    [31m+           },[39m
-    [31m+           Object {[39m
-    [31m+             "currentRect": Object {[39m
-    [31m+               "bottom": 801.171875,[39m
-    [31m+               "height": 92,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 751.125,[39m
-    [31m+               "top": 709.171875,[39m
-    [31m+               "width": 499.125,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 709.171875,[39m
-    [31m+             },[39m
-    [31m+             "previousRect": Object {[39m
-    [31m+               "bottom": 624,[39m
-    [31m+               "height": 92,[39m
-    [31m+               "left": 252,[39m
-    [31m+               "right": 1092,[39m
-    [31m+               "top": 532,[39m
-    [31m+               "width": 840,[39m
-    [31m+               "x": 252,[39m
-    [31m+               "y": 532,[39m
-    [31m+             },[39m
-    [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
-    [31m+           },[39m
-    [31m+         ],[39m
-    [31m+         "startTime": 667.6999999880791,[39m
-    [31m+         "value": 0.18327152038739453,[39m
-    [31m+       },[39m
-    [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 708,[39m
-    [31m+     "maxShift": 0.1833,[39m
-    [31m+     "mode": "normal",[39m
-    [31m+     "route": "/finance-calculators/time-to-savings-goal-calculator/",[39m
-    [31m+     "status": 200,[39m
-    [31m+   },[39m
-    [31m+   Object {[39m
     [31m+     "cls": 0.2039,[39m
     [31m+     "entries": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "sources": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "currentRect": Object {[39m
+    [31m+               "bottom": 244.671875,[39m
+    [31m+               "height": 19,[39m
+    [31m+               "left": 25,[39m
+    [31m+               "right": 46,[39m
+    [31m+               "top": 225.671875,[39m
+    [31m+               "width": 21,[39m
+    [31m+               "x": 25,[39m
+    [31m+               "y": 225.671875,[39m
+    [31m+             },[39m
+    [31m+             "previousRect": Object {[39m
+    [31m+               "bottom": 235.78125,[39m
+    [31m+               "height": 19,[39m
+    [31m+               "left": 25,[39m
+    [31m+               "right": 46,[39m
+    [31m+               "top": 216.78125,[39m
+    [31m+               "width": 21,[39m
+    [31m+               "x": 25,[39m
+    [31m+               "y": 216.78125,[39m
+    [31m+             },[39m
+    [31m+             "selector": "div#left-nav-content>div.fin-nav-container>div.fin-nav-group>button.fin-nav-toggle>span.fin-nav-toggle-icon",[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "startTime": 562.5,[39m
+    [31m+         "value": 0.0000029848084267069537,[39m
+    [31m+       },[39m
     [31m+       Object {[39m
     [31m+         "sources": Array [[39m
     [31m+           Object {[39m
@@ -10842,7 +10581,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2151.4000000059605,[39m
+    [31m+         "startTime": 2167.699999988079,[39m
     [31m+         "value": 0.18179470379836438,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -10894,12 +10633,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#tsg-explanation.explanation-pane",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2245.800000011921,[39m
+    [31m+         "startTime": 2274.5999999940395,[39m
     [31m+         "value": 0.02209166172606522,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 40,[39m
-    [31m+     "lcp": 2288,[39m
+    [31m+     "lcp": 2312,[39m
     [31m+     "maxShift": 0.1818,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/finance-calculators/time-to-savings-goal-calculator/",[39m
@@ -10980,12 +10719,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "unknown",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 674.9000000059605,[39m
+    [31m+         "startTime": 671.5999999940395,[39m
     [31m+         "value": 0.10076524638559944,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 72,[39m
-    [31m+     "lcp": 720,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 716,[39m
     [31m+     "maxShift": 0.1008,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/buy-to-let-mortgage-calculator/",[39m
@@ -11066,12 +10805,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-btl-explanation>section.btl-exp-section.btl-exp-section--summary>h2",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1815.0999999940395,[39m
+    [31m+         "startTime": 1808.0999999940395,[39m
     [31m+         "value": 0.09667237212460207,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 80,[39m
-    [31m+     "lcp": 1860,[39m
+    [31m+     "inpProxy": 64,[39m
+    [31m+     "lcp": 1848,[39m
     [31m+     "maxShift": 0.0967,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/buy-to-let-mortgage-calculator/",[39m
@@ -11152,12 +10891,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-how-much-can-borrow>div.calculator-ui.borrow-ui>section.borrow-hero>aside.borrow-result-dashboard>div.borrow-metric-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 653.6999999880791,[39m
+    [31m+         "startTime": 653,[39m
     [31m+         "value": 0.07695304062705279,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 80,[39m
-    [31m+     "lcp": 708,[39m
+    [31m+     "lcp": 704,[39m
     [31m+     "maxShift": 0.077,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/how-much-can-i-borrow/",[39m
@@ -11238,7 +10977,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-how-much-can-borrow>div.calculator-ui.borrow-ui>section.borrow-hero>aside.borrow-result-dashboard>div.borrow-metric-grid",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1707.199999988079,[39m
+    [31m+         "startTime": 1723.5999999940395,[39m
     [31m+         "value": 0.0776522022396394,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11267,12 +11006,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.borrow-form-panel>section.borrow-section>div#bor-multiple-row.input-row.slider-row>div.slider-header>span#bor-multiple-display.slider-value",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2302,[39m
+    [31m+         "startTime": 2660.9000000059605,[39m
     [31m+         "value": 0.000021302128430372528,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 1172,[39m
+    [31m+     "lcp": 1200,[39m
     [31m+     "maxShift": 0.0777,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/how-much-can-i-borrow/",[39m
@@ -11353,7 +11092,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation>section.remo-exp-section.remo-exp-section--table>div#remo-table-yearly-wrap.table-scroll",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 577.5999999940395,[39m
+    [31m+         "startTime": 574.6999999880791,[39m
     [31m+         "value": 0.1270212765957447,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11428,12 +11167,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation>section.remo-exp-section.remo-exp-section--table>div#remo-table-yearly-wrap.table-scroll",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 643.0999999940395,[39m
+    [31m+         "startTime": 645.5999999940395,[39m
     [31m+         "value": 0.33910050809687675,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 376,[39m
+    [31m+     "inpProxy": 48,[39m
+    [31m+     "lcp": 380,[39m
     [31m+     "maxShift": 0.3391,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/loan-calculators/remortgage-calculator/",[39m
@@ -11514,7 +11253,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-remortgage-switching>div.calculator-ui.remo-ui>section.remo-hero>div.remo-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1617.5999999940395,[39m
+    [31m+         "startTime": 1625,[39m
     [31m+         "value": 0.16236728568530942,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11543,12 +11282,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>div#loan-remortgage-explanation",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2547,[39m
+    [31m+         "startTime": 2523,[39m
     [31m+         "value": 0.0038073415945756367,[39m
     [31m+       },[39m
     [31m+     ],[39m
-    [31m+     "inpProxy": 64,[39m
-    [31m+     "lcp": 1196,[39m
+    [31m+     "inpProxy": 80,[39m
+    [31m+     "lcp": 1188,[39m
     [31m+     "maxShift": 0.1624,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/loan-calculators/remortgage-calculator/",[39m
@@ -11629,12 +11368,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main.layout-main--no-ads>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1895.699999988079,[39m
+    [31m+         "startTime": 1910.5,[39m
     [31m+         "value": 0.052588590532944055,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 816,[39m
+    [31m+     "lcp": 812,[39m
     [31m+     "maxShift": 0.0526,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/percentage-calculators/commission-calculator/",[39m
@@ -11715,7 +11454,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 578.9000000059605,[39m
+    [31m+         "startTime": 576.0999999940395,[39m
     [31m+         "value": 0.013606529109188683,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11790,12 +11529,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 625.5,[39m
+    [31m+         "startTime": 628,[39m
     [31m+         "value": 0.17727810369867447,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 48,[39m
-    [31m+     "lcp": 608,[39m
+    [31m+     "lcp": 604,[39m
     [31m+     "maxShift": 0.1773,[39m
     [31m+     "mode": "normal",[39m
     [31m+     "route": "/percentage-calculators/reverse-percentage-calculator/",[39m
@@ -11830,7 +11569,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div.page>header.site-header>div.site-header-inner>div.header-right>div.header-search",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1137.3999999761581,[39m
+    [31m+         "startTime": 1155.2000000178814,[39m
     [31m+         "value": 0.0006438447635548406,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11905,7 +11644,7 @@ Running 1 test using 1 worker
     [31m+             "selector": "div#calc-home-loan>div.calculator-ui.home-loan-ui>section.mtg-hero>div.mtg-form-panel>div.input-row.action-row",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 1707.8999999761581,[39m
+    [31m+         "startTime": 1704.5,[39m
     [31m+         "value": 0.1701491040596649,[39m
     [31m+       },[39m
     [31m+       Object {[39m
@@ -11980,12 +11719,12 @@ Running 1 test using 1 worker
     [31m+             "selector": "main.layout-main>section.center-column>div.panel.panel-scroll>div.calculator-page-single>h3",[39m
     [31m+           },[39m
     [31m+         ],[39m
-    [31m+         "startTime": 2106.199999988079,[39m
+    [31m+         "startTime": 2102.7000000178814,[39m
     [31m+         "value": 0.021266017825989768,[39m
     [31m+       },[39m
     [31m+     ],[39m
     [31m+     "inpProxy": 56,[39m
-    [31m+     "lcp": 2140,[39m
+    [31m+     "lcp": 2136,[39m
     [31m+     "maxShift": 0.1701,[39m
     [31m+     "mode": "stress",[39m
     [31m+     "route": "/percentage-calculators/reverse-percentage-calculator/",[39m
@@ -12015,15 +11754,15 @@ Running 1 test using 1 worker
 
 Running 9 tests using 8 workers
 
-  ✓  6 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:126:3 › ISS-001: Layout Stability › scrollbars remain visible during navigation (4.2s)
-  ✓  8 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:150:3 › ISS-001: Layout Stability › buttons do not have transform transitions (5.1s)
-  ✓  5 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:170:3 › ISS-001: Layout Stability › no layout shift when clicking nav items rapidly (8.0s)
-  ✓  3 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:107:3 › ISS-001: Layout Stability › ads column has stable dimensions during navigation (10.5s)
-  ✓  1 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:69:3 › ISS-001: Layout Stability › left navigation pane has stable dimensions during navigation (10.6s)
-  ✓  7 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:47:3 › ISS-001: Layout Stability › page shell maintains fixed dimensions during navigation (10.5s)
-  ✓  4 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:88:3 › ISS-001: Layout Stability › center column has stable dimensions during navigation (10.6s)
-  ✓  2 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:188:3 › ISS-001: Layout Stability › category switching does not cause layout shift (10.6s)
-  ✘  9 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability (5.9s)
+  ✓  6 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:126:3 › ISS-001: Layout Stability › scrollbars remain visible during navigation (3.8s)
+  ✓  7 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:150:3 › ISS-001: Layout Stability › buttons do not have transform transitions (5.9s)
+  ✓  4 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:170:3 › ISS-001: Layout Stability › no layout shift when clicking nav items rapidly (7.8s)
+  ✓  5 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:47:3 › ISS-001: Layout Stability › page shell maintains fixed dimensions during navigation (10.3s)
+  ✓  3 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:107:3 › ISS-001: Layout Stability › ads column has stable dimensions during navigation (10.4s)
+  ✓  2 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:69:3 › ISS-001: Layout Stability › left navigation pane has stable dimensions during navigation (10.4s)
+  ✓  1 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:188:3 › ISS-001: Layout Stability › category switching does not cause layout shift (10.6s)
+  ✘  9 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability (6.1s)
+  ✓  8 [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:88:3 › ISS-001: Layout Stability › center column has stable dimensions during navigation (10.6s)
 
 
   1) [chromium] › tests_specs/infrastructure/e2e/iss-design-001.spec.js:235:3 › ISS-001: Layout Stability › visual regression - page layout stability 
