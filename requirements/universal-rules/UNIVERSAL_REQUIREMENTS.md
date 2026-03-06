@@ -34,7 +34,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
 - **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`; `NEW_BUILD|ONBOARDING|REDESIGN` require full gates (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
-- **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` and update Master Table per `RELEASE_SIGNOFF.md`.
+- **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` per `RELEASE_SIGNOFF.md`; Master Table updates are optional historical logging.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
 ### 1.3 ADMIN Override

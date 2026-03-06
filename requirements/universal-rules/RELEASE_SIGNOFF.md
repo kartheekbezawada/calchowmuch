@@ -1,155 +1,69 @@
-# 📝 Release Sign-Off Template
+# Release Sign-Off Template (Compact)
 
 > [!IMPORTANT]
-> **This file is a TEMPLATE.** Copy to `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`
+> Copy this template to `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_{RELEASE_ID}.md`.
 
 ## 1) Release Identity
 
 | Field | Value |
 | :--- | :--- |
-| **Release ID** | |
-| **Release Type** | |
-| **Scope (Global/Target)** | |
-| **Cluster ID(s)** | |
-| **Calculator ID (CALC)** | |
-| **Primary Route** | |
-| **Route Archetype** | |
-| **Pane Layout Contract** | |
-| **Pane Layout Evidence Path** | |
-| **Ownership Snapshot Ref** | |
-| **Cluster Manifest Ref** | |
-| **Rollback Contract Ref** | |
-| **Branch / Tag** | |
-| **Commit SHA** | |
-| **Environment** | |
-| **thinContentMode (`soft`/`hard`)** | |
-| **thinContentScore** | |
-| **thinContentGrade** | |
-| **thinContentHardFlags** | |
-| **thinContentArtifactPath** | |
-| **Owner** | |
-| **Date** | |
+| Release ID | |
+| Release Type | |
+| Scope (Global/Cluster/Calc/Route) | |
+| Cluster ID | |
+| Calculator ID (CALC) | |
+| Primary Route | |
+| Owner | |
+| Date | |
+| Commit SHA | |
+| Environment | |
 
 ---
 
-## 2) Release Checklist
+## 2) Gates Executed
 
-| ID | Category | Criteria | Result (Pass/Fail) |
+| Gate | Command | Result (Pass/Fail/Skipped) | Evidence Path |
 | :--- | :--- | :--- | :--- |
-| **A1** | **Rendering** | • Calculator UI renders immediately (no ads blocking)<br>• Initial state in HTML (no JS-only)<br>• No runtime injection above-fold | |
-| **A2** | **CSS Arch** | • No `@import`<br>• Critical CSS early<br>• Max 5 blocking files | |
-| **A3** | **CLS Control** | • No layout shift on load/interaction<br>• Reserved space for ads/images | |
-| **A4** | **JS Discipline** | • No heavy tasks >50ms<br>• Smooth slider/typing interaction | |
-| **A5** | **Caching** | • Long-TTL for static assets<br>• Versioned URLs | |
-| **B1** | **Mobile Layout** | • Single-column layout<br>• No horizontal overflow<br>• Burger nav stable | |
-| **B2** | **Mobile Inputs** | • Numeric keyboard for numbers<br>• Min/max attributes used | |
-| **B3** | **Mobile Ads** | • **No ads above H1** (Hard Rule)<br>• No overlap with UI | |
-| **C1** | **Field Metrics** | • LCP ≤ 2.5s<br>• CLS ≤ 0.10<br>• INP ≤ 200ms | |
-| **C2** | **Lab Gates** | • No filmstrip shifts<br>• No long tasks near start | |
-| **D1-D4**| **CWV Guard** | • Scoped calc gate passed: `CLUSTER={cluster} CALC={calculator} npm run test:calc:cwv`<br>• strict mobile+desktop profiles passed<br>• render-blocking CSS budget passed | |
-| **E1** | **Ad Slots** | • Reserved `min-height`<br>• Non-collapsing | |
-| **E2** | **Ad Loading** | • Lazy loaded (requestIdleCallback)<br>• Single loader script | |
-| **E3** | **Ad Policy** | • No policy violations (AdSense)<br>• No misleading placement | |
-| **F** | **Animation** | • `opacity`/`transform` only<br>• Reduced motion support | |
-| **G1** | **First Load** | • No FOUC/Jump<br>• Usable <3s (throttled) | |
-| **G2** | **Interaction** | • Smooth slider drag<br>• Instant mode toggle | |
-| **G3** | **Navigation** | • Full `href` links<br>• Subcategories collapsed | |
-| **H** | **Accessibility** | • Keyboard navigable<br>• `aria-live` for results<br>• Zoom 200% valid | |
-| **I1** | **Metadata** | • Title follows SEO pattern contract<br>• No ellipsis / mojibake artifacts<br>• No disallowed placeholder boilerplate<br>• Description is independent (not equal to title)<br>• Canonical URL present and valid<br>• OG/Twitter parity with final SEO metadata | |
-| **I2** | **Schema** | • Calculator pages include `SoftwareApplication` + `BreadcrumbList`<br>• `FAQPage` optional and parity-bound when present<br>• No per-page duplicate `WebSite` injection | |
-| **I3** | **Indexability** | • Content in initial HTML<br>• Crawlable without JS | |
-| **I4** | **Sitemap** | • Route present in sitemap.xml | |
-| **NAV-PANE-1** | **Pane Layout** | • `calc_exp` route uses single pane only (`paneLayout=single`)<br>• Combined panel contract rendered (`panel-span-all` + `calculator-page-single`) | |
-| **J** | **Content** | • Explanation present<br>• Worked example<br>• 3+ FAQs | |
-| **J2** | **Important Notes Contract** | • Order: `How to Guide -> FAQ -> Important Notes`<br>• `Important Notes` is final section<br>• Required keys present (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy` exact text)<br>• Notes rendered as bullet list with no container box<br>• Key label color `rgba(186, 230, 253, 0.98)` | |
-| **K** | **Security** | • HTTPS only<br>• Privacy/Terms linked | |
+| Lint | `npm run lint` | | |
+| Unit | `npm run test` or scoped equivalent | | |
+| E2E | `npm run test:e2e` or scoped equivalent | | |
+| SEO | scoped SEO command | | |
+| CWV | `npm run test:cwv:all` or scoped equivalent | | |
+| ISS-001 | `npm run test:iss001` (if applicable) | | |
+| Schema Dedupe | `npm run test:schema:dedupe` (if applicable) | | |
 
 ---
 
-## 3) 🏆 Elite Performance (Addendum)
+## 3) Required Evidence
 
-| ID | Category | Criteria | Result |
-| :--- | :--- | :--- | :--- |
-| **X1** | **Investigate** | • LCP Element identified<br>• Mobile FCP ≤ 1.8s | |
-| **X2** | **Stress Test** | • CPU 4× / Slow 3G<br>• Stress LCP ≤ 2.3s | |
+| Evidence | Path / Notes |
+| :--- | :--- |
+| Release checklist reference | |
+| Scoped route proof (target route + scope lock) | |
+| SEO/schema evidence | |
+| CWV artifact (`scoped-cwv` or global) | |
+| Thin-content artifact (if `calc_exp` / `exp_only`) | |
+| Important Notes contract proof (if applicable) | |
+| Pane layout proof (for `calc_exp`) | |
+
+Notes:
+- Attach only evidence relevant to this release scope.
+- `Release Sign-Off Master Table.md` update is optional historical logging, not a release blocker.
 
 ---
 
-## 4) Evidence & Metrics
+## 4) Exceptions / Known Risks
 
-### Cluster Isolation Governance Evidence (Mandatory)
-| Check | Result (Pass/Fail) | Artifact / Path |
-| :--- | :--- | :--- |
-| Isolation fence validation (owner-cluster + immutable core only) | | |
-| Ownership validation (`config/clusters/route-ownership.json`) | | |
-| Import graph validation (no cross-cluster JS/CSS imports) | | |
-| Manifest integrity validation | | |
-| Global nav parity validation | | |
-| Immutable core usage declaration (`/assets/core/v{n}/...`) | | |
-| Cross-cluster reference violations (must be `0`) | | |
-
-### Performance (Mobile Lab)
-| Metric | Value | Status |
-| :--- | :--- | :--- |
-| **LCP** | | |
-| **CLS** | | |
-| **INP** | | |
-
-### Scoped CWV Strict Profiles (Calculator Release)
-| Profile | CLS | LCP (ms) | Blocking CSS Duration (ms) | Blocking CSS Requests | Pass/Fail |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `mobile_strict` (CPU 3x + Slow 4G, cache disabled) | | | | | |
-| `desktop_strict` (CPU 6x + Slow 4G, cache disabled) | | | | | |
-
-Artifact path (mandatory): `test-results/performance/scoped-cwv/{cluster}/{calculator}.json`
-
-### Lighthouse Governance Evidence (Mandatory)
-| Field | Value |
-| :--- | :--- |
-| `lighthouseMode` (`fast/stable/full`) | |
-| `lhRuns` | |
-| `aggregationType` (`single/median`) | |
-| `desktopPolicyMode` (`native/devtools-override`) | |
-| `runPolicy.resolved` snapshot path/reference | |
-
-### Thin-Content Evidence (Mandatory for `calc_exp` / `exp_only`)
-| Field | Value |
-| :--- | :--- |
-| `thinContentMode` (`soft`/`hard`) | |
-| `thinContentScore` | |
-| `thinContentGrade` | |
-| `thinContentHardFlags` | |
-| `thinContentArtifactPath` | |
-
-### Important Notes Contract Evidence (Mandatory for `calc_exp` / `exp_only`)
-| Field | Value |
-| :--- | :--- |
-| `importantNotesOrderProofPath` (`How to Guide -> FAQ -> Important Notes`) | |
-| `importantNotesFinalSectionProofPath` | |
-| `importantNotesKeysProofPath` (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`) | |
-| `importantNotesPrivacyExactTextProofPath` | |
-| `importantNotesStyleProofPath` (bullet-list + no-container + key-label color) | |
-| `importantNotesLastUpdatedFreshnessEvidence` (month/year updated for touched route) | |
-
-### Metadata and Schema Evidence (Mandatory for SEO-impacting releases)
-| Field | Value |
-| :--- | :--- |
-| `metadataParityProofPath` (SEO artifact path proving title/description/OG/Twitter alignment) | |
-| `charsetProof` (`<meta charset="utf-8">` evidence path/snippet) | |
-| `schemaPresenceFlags` (`has_schema_jsonld`, `has_breadcrumb_schema`, `has_softwareapp_schema`) | |
-| `duplicateChecks` (title/description/canonical duplicate audit result) | |
-
-### Exceptions
-| ID | Issue | Severity | Owner |
+| ID | Description | Severity | Mitigation / Follow-up |
 | :--- | :--- | :--- | :--- |
 | | | | |
 
 ---
 
-## 5) Final Sign-Off
+## 5) Final Decision
 
-**Decision:** [ ] APPROVED / [ ] REJECTED
+Decision: [ ] APPROVED  [ ] REJECTED
 
-| Role | Name | Signature | Date |
-| :--- | :--- | :--- | :--- |
-| Owner | | | |
+| Role | Name | Date |
+| :--- | :--- | :--- |
+| Owner | | |
