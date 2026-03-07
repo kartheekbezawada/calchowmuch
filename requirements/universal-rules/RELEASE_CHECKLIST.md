@@ -295,6 +295,24 @@ HARD: Automation must not consume fixed admin port `8000` by default.
 
 HARD: Release evidence must include port lease lifecycle proof (acquire + release) and conflict diagnostics when fallback occurs (requested port, PID, process, selected fallback).
 
+3.8 Graph/Table UX Contract Checks (HARD when route includes graph or table)
+
+Applicable when the released route contains a graph/chart area or amortization/result tables.
+
+HARD: Graph start-point is data-correct (period `0` equals opening value). No synthetic first-point spikes.
+
+HARD: Axis labels/ticks must be readable and non-overlapping at desktop and mobile widths.
+
+HARD: Graph legend/metadata must be compact and uncluttered; oversized KPI card rows above graph are disallowed unless REQ explicitly demands them.
+
+HARD: Table heading and Yearly/Monthly toggle must be in one row on desktop/tablet; toggle right-aligned.
+
+HARD: Table viewport must remain fixed-height with internal scrolling for overflow (no dynamic height expansion/collapse).
+
+HARD: If yearly/monthly data exceeds viewport capacity, users can scroll to access remaining rows; no hidden truncation unless REQ explicitly approves truncation.
+
+HARD: Include screenshot evidence (desktop + mobile) for graph readability and table/toggle layout contract in release sign-off artifacts.
+
 4. Pre-Release Command Gate (MANDATORY)
 
 HARD: npm run validate passes (lint + format + unit tests + css-import lint).

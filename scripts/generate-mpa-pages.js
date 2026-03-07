@@ -179,6 +179,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'personal-loan': {
+    title: 'Personal Loan Calculator - Monthly Payment, Interest & Total Cost | CalcHowMuch',
+    description:
+      'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.',
+    h1: 'Personal Loan Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'interest-rate-change-calculator': {
     title: 'Interest Rate Change Calculator | Rate Impact | CalcHowMuch',
     description:
@@ -568,6 +576,25 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'mortgage ltv bands',
       'deposit percentage calculator',
       'remortgage ltv',
+    ],
+  },
+  'personal-loan': {
+    breadcrumbLabel: 'Personal Loan Calculator',
+    softwareName: 'Personal Loan Calculator',
+    softwareDescription:
+      'Estimate personal loan monthly payment, total interest, and payoff impact of extra monthly payments across a fixed-rate term.',
+    featureList: [
+      'Fixed-rate monthly payment estimate',
+      'Total repayment and interest breakdown',
+      'Early payoff projection with extra payments',
+      '12-month amortization preview and balance chart',
+    ],
+    keywords: [
+      'personal loan calculator',
+      'loan emi calculator',
+      'monthly payment calculator',
+      'loan interest calculator',
+      'early payoff calculator',
     ],
   },
   'monthly-savings-needed': {

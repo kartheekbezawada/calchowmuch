@@ -39,6 +39,7 @@
 | REQ-20260208-028 | Credit Card Consolidation Calculator — Credit Cards | Calculator | Compute + Explanation + SEO | HIGH | NEW | YES |
 | REQ-20260208-029 | Local SEO & Performance Audit Framework — Calculators | Compliance | SEO + Performance | HIGH | BLOCKED | YES |
 | REQ-20260208-030 | Implement Local SEO & Performance Audit Runner — Calculators | Tooling | SEO + Performance | HIGH | COMPLETE | YES |
+| REQ-20260307-031 | Universal Graph/Table UX Contract Standardization | Governance | Standards + Documentation | HIGH | COMPLETE | NO |
 
 ---
 

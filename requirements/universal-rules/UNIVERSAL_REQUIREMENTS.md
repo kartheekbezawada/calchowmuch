@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.5 (SEO head metadata + structured data standards hardening)
-- **Last Updated:** 2026-03-05
+- **Version:** 4.6 (Graph/Table UX contract standardization)
+- **Last Updated:** 2026-03-07
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -218,7 +218,18 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-UI-035 (P1):** Evidence must include token/class proof and references in artifacts.
 - **UR-UI-036 (P0):** Design family must not change MPA behavior, semantic landmarks, or keyboard/focus behavior.
 
-### 4.6 CSS Architecture and Loading Rules
+### 4.6 Graph/Table UX Contract (Mandatory for Routes That Include Graphs or Tables)
+
+- **UR-UI-040 (P0):** Routes with graphs/tables must comply with `requirements/universal-rules/How to build a calculator.md` sections `5.8`, `5.9`, and `5.10`.
+- **UR-UI-041 (P0):** Graph start-point integrity is mandatory: period `0` must represent true opening value; synthetic start spikes are release fail.
+- **UR-UI-042 (P0):** Axis labels/ticks must not overlap, clip, or overflow at desktop and mobile widths.
+- **UR-UI-043 (P0):** Graph metadata/legend presentation must be compact; large boxed KPI blocks above graph are disallowed unless explicitly required by REQ.
+- **UR-UI-044 (P0):** Table viewport must be fixed height with internal scroll for overflow data; dynamic table height growth is disallowed.
+- **UR-UI-045 (P0):** On desktop/tablet, table title and Yearly/Monthly toggle must share one row with toggle right-aligned; mobile may wrap cleanly.
+- **UR-UI-046 (P0):** Yearly/Monthly toggle must be segmented with clear active/inactive states and keyboard focus visibility.
+- **UR-UI-047 (P0):** Data truncation caps (for example first N years/months only) are forbidden unless explicitly requested by calculator requirement.
+
+### 4.7 CSS Architecture and Loading Rules
 
 - **UR-CSS-001 (P0):** `@import` is **prohibited** in all calculator CSS files. Enforced by `npm run lint:css-import`.
 - **UR-CSS-002 (P0):** Shared layout source requirement is superseded for isolated routes by cluster-owned CSS contracts (`UR-CLUSTER-010`); `@import` prohibition still applies.
@@ -436,6 +447,8 @@ Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wordin
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
 - **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> FAQ -> `Important Notes`) with `Important Notes` as final section, plus required key lines (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`).
 - **UR-TEST-037 (P0):** If a route includes graphs/charts, tests must assert graph readability basics: labeled axes, legible legend, and no horizontal overflow at mobile width.
+- **UR-TEST-038 (P0):** Graph route tests must assert period-0 data correctness (no synthetic start spike) and tooltip clamping inside chart container.
+- **UR-TEST-039 (P0):** Table route tests must assert fixed viewport height + internal scroll behavior, and heading/toggle same-row contract on desktop width.
 
 ### 8.5 Cluster & Calculator Scoped Test Isolation
 

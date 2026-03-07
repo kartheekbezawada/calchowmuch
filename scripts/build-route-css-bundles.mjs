@@ -49,6 +49,7 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/time-and-date/nap-time-calculator/calculator.css',
   'calculators/time-and-date/power-nap-calculator/calculator.css',
   'calculators/time-and-date/energy-based-nap-selector/calculator.css',
+  'calculators/loan-calculators/personal-loan-calculator/calculator.css',
 ]);
 const FULL_CORE_SHELL_CRITICAL_CALCULATORS = new Set([
   'credit-card-repayment-payoff',
@@ -89,6 +90,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/time-and-date/nap-time-calculator/',
   '/time-and-date/power-nap-calculator/',
   '/time-and-date/energy-based-nap-selector/',
+  '/loan-calculators/personal-loan-calculator/',
 ]);
 const STRICT_INLINE_CALCULATORS = new Set([
   'car-loan',
@@ -238,6 +240,12 @@ const LOANS_ISOLATED_ROUTES = [
     route: '/loan-calculators/ltv-calculator/',
     relPath: 'loan-calculators/ltv-calculator',
     routeCss: 'calculators/loan-calculators/ltv-calculator/calculator.css',
+  },
+  {
+    calculatorId: 'personal-loan',
+    route: '/loan-calculators/personal-loan-calculator/',
+    relPath: 'loan-calculators/personal-loan-calculator',
+    routeCss: 'calculators/loan-calculators/personal-loan-calculator/calculator.css',
   },
   {
     calculatorId: 'credit-card-repayment-payoff',

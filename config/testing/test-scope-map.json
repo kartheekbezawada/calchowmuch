@@ -208,7 +208,8 @@
         "/car-loan-calculators/auto-loan-calculator/",
         "/loan-calculators/offset-mortgage-calculator/",
         "/car-loan-calculators/pcp-calculator/",
-        "/loan-calculators/remortgage-calculator/"
+        "/loan-calculators/remortgage-calculator/",
+        "/loan-calculators/personal-loan-calculator/"
       ],
       "calculators": {
         "home-loan": {
@@ -238,6 +239,10 @@
         "loan-to-value": {
           "route": "/loan-calculators/ltv-calculator/",
           "releaseDir": "tests_specs/loans/loan-to-value_release"
+        },
+        "personal-loan": {
+          "route": "/loan-calculators/personal-loan-calculator/",
+          "releaseDir": "tests_specs/loans/personal-loan_release"
         },
         "car-loan": {
           "route": "/car-loan-calculators/car-loan-calculator/",
