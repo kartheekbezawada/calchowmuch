@@ -164,6 +164,33 @@
         "topNavStatic": true
       }
     },
+    "/loan-calculators/personal-loan-calculator/": {
+      "route": "/loan-calculators/personal-loan-calculator/",
+      "calculatorId": "personal-loan",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/assets/css/theme-premium-dark.css?v=20260127",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127",
+          "/assets/css/route-bundles/loan-calculators-personal-loan-calculator.1ad093dd.css"
+        ],
+        "critical": "/assets/css/route-bundles/loan-calculators-personal-loan-calculator.critical.96f0a5bb.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/loan-calculators/personal-loan-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/credit-card-calculators/credit-card-payment-calculator/": {
       "route": "/credit-card-calculators/credit-card-payment-calculator/",
       "calculatorId": "credit-card-repayment-payoff",

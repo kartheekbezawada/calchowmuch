@@ -24,7 +24,8 @@
         "/loan-calculators/buy-to-let-mortgage-calculator/",
         "/loan-calculators/offset-mortgage-calculator/",
         "/loan-calculators/interest-rate-change-calculator/",
-        "/loan-calculators/ltv-calculator/"
+        "/loan-calculators/ltv-calculator/",
+        "/loan-calculators/personal-loan-calculator/"
       ],
       "contractsEnabled": false,
       "owners": [

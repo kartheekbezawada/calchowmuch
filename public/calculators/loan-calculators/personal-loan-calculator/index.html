@@ -1,0 +1,294 @@
+<style>
+  #calc-personal-loan {
+    width: 100%;
+  }
+
+  #calc-personal-loan .is-hidden {
+    display: none;
+  }
+
+  #calc-personal-loan .home-loan-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #calc-personal-loan .mtg-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 1.6rem;
+    align-items: start;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  #calc-personal-loan .mtg-form-panel {
+    display: grid;
+    gap: 1.35rem;
+    align-content: start;
+  }
+
+  #calc-personal-loan .input-row {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  #calc-personal-loan .slider-row {
+    gap: 0.52rem;
+  }
+
+  #calc-personal-loan .slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  #calc-personal-loan .currency-select {
+    min-height: 44px;
+    border-radius: 0.75rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  #calc-personal-loan .inline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  #calc-personal-loan .mtg-action-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  #calc-personal-loan .mtg-action-row .calculator-button {
+    min-height: 50px;
+  }
+
+  #calc-personal-loan .pl-error {
+    margin: 0;
+    min-height: 1.2rem;
+    font-size: 0.93rem;
+    color: #fda4af;
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  #calc-personal-loan .pl-error.is-visible {
+    opacity: 1;
+  }
+
+  #calc-personal-loan .mtg-preview-panel {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.15rem;
+    border-radius: 1.15rem;
+  }
+
+  #calc-personal-loan .mtg-preview-main {
+    display: grid;
+    gap: 0.72rem;
+    padding: 1rem;
+    border-radius: 0.95rem;
+  }
+
+  #calc-personal-loan .mtg-result-card,
+  #calc-personal-loan .mtg-summary-card {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #calc-personal-loan .mtg-summary-card {
+    min-height: 100px;
+  }
+
+  #calc-personal-loan .mtg-snapshot-list {
+    margin: 0;
+    padding: 0.32rem 0;
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  #calc-personal-loan .mtg-snapshot-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.72rem;
+    padding: 0.54rem 0;
+  }
+
+  #calc-personal-loan .advanced-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  @media (max-width: 1220px) {
+    #calc-personal-loan .mtg-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #calc-personal-loan .inline-grid,
+    #calc-personal-loan .advanced-pair,
+    #calc-personal-loan .mtg-action-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div id="calc-personal-loan">
+  <div class="calculator-ui home-loan-ui">
+    <section class="mtg-hero" aria-label="Personal loan calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Calculate monthly payment, total interest, and early payoff impact for a fixed-rate
+          personal loan in your selected currency.
+        </p>
+
+        <div class="input-row">
+          <label for="pl-currency">Currency</label>
+          <select id="pl-currency" class="currency-select" aria-label="Currency selector">
+            <option value="USD" selected>USD - US Dollar</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="AED">AED - UAE Dirham</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+          </select>
+        </div>
+
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="pl-principal">Loan Amount</label>
+            <span class="slider-value" id="pl-principal-display">$25,000.00</span>
+          </div>
+          <input id="pl-principal" type="range" value="25000" min="500" max="5000000" step="500" />
+        </div>
+
+        <div class="inline-grid">
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pl-rate">APR (%)</label>
+              <span class="slider-value" id="pl-rate-display">9.5%</span>
+            </div>
+            <input id="pl-rate" type="range" value="9.5" min="0" max="60" step="0.1" />
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pl-term-years">Loan Term</label>
+              <span class="slider-value" id="pl-term-display">5y</span>
+            </div>
+            <input id="pl-term-years" type="range" value="5" min="1" max="40" step="1" />
+          </div>
+        </div>
+
+        <details class="advanced-options">
+          <summary>
+            <span class="advanced-summary-copy">
+              <span class="advanced-summary-title">Advanced Options</span>
+              <span class="advanced-summary-subtitle">Optional</span>
+            </span>
+            <span class="advanced-caret" aria-hidden="true"></span>
+          </summary>
+
+          <div class="advanced-stack">
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="pl-term-extra-months">Extra Term Months</label>
+                <input id="pl-term-extra-months" type="number" value="0" min="0" max="11" step="1" inputmode="numeric" />
+              </div>
+              <div class="input-row">
+                <label for="pl-setup-fee">One-time Setup Fee</label>
+                <input id="pl-setup-fee" type="number" value="0" min="0" step="0.01" inputmode="decimal" />
+              </div>
+            </div>
+
+            <div class="advanced-pair">
+              <div class="input-row">
+                <label for="pl-extra-monthly">Extra Monthly Payment</label>
+                <input id="pl-extra-monthly" type="number" value="0" min="0" step="0.01" inputmode="decimal" />
+              </div>
+              <div class="input-row">
+                <label for="pl-calculate">Guidance</label>
+                <p class="helper">Small extra monthly payments can reduce both payoff time and total interest.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="pl-calculate">
+            Calculate Payment
+          </button>
+          <button class="calculator-button secondary full-width" type="button" id="pl-reset">
+            Reset
+          </button>
+        </div>
+
+        <p class="pl-error" id="pl-error" aria-live="polite" hidden></p>
+      </div>
+
+      <aside class="mtg-preview-panel" aria-label="Personal loan snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Monthly Payment</p>
+          <div class="result mtg-result-card" id="pl-result" aria-live="polite">
+            <strong>Base Monthly Payment</strong>
+            <span class="mtg-result-value" data-pl="result-base">—</span>
+          </div>
+          <p class="helper mtg-result-note" data-pl="result-summary">
+            Run a calculation to view monthly payment and payoff insights.
+          </p>
+        </div>
+
+        <div class="mtg-summary-card">
+          <div class="mtg-snapshot-list">
+            <div class="mtg-snapshot-row">
+              <span>Payment with Extra</span>
+              <strong data-pl="result-with-extra">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Interest</span>
+              <strong data-pl="result-total-interest">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Repayment</span>
+              <strong data-pl="result-total-repayment">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Total Cost (with Fee)</span>
+              <strong data-pl="result-total-cost">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Payoff with Extra</span>
+              <strong data-pl="result-payoff">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Interest Saved</span>
+              <strong data-pl="result-interest-saved">—</strong>
+            </div>
+            <div class="mtg-snapshot-row">
+              <span>Months Saved</span>
+              <strong data-pl="result-months-saved">—</strong>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/loan-calculators/personal-loan-calculator/calculator.css');
+</style>

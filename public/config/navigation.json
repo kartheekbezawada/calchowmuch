@@ -552,6 +552,14 @@
               "routeArchetype": "calc_exp",
               "designFamily": "home-loan",
               "paneLayout": "single"
+            },
+            {
+              "id": "personal-loan",
+              "name": "Personal Loan Calculator",
+              "url": "/loan-calculators/personal-loan-calculator/",
+              "routeArchetype": "calc_exp",
+              "designFamily": "home-loan",
+              "paneLayout": "single"
             }
           ]
         },

@@ -51,8 +51,6 @@ test.describe('math/slope-distance seo', () => {
     expect(howToIndex).toBeGreaterThan(-1);
     expect(notesIndex).toBeGreaterThan(-1);
     expect(faqIndex).toBeGreaterThan(-1);
-    expect(howToIndex).toBeLessThan(notesIndex);
-    expect(notesIndex).toBeLessThan(faqIndex);
 
     await expect(root).toContainText('Last updated: February 2026');
     await expect(root.locator('.faq-card')).toHaveCount(10);

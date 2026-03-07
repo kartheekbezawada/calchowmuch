@@ -151,8 +151,22 @@ For `calc_exp` and `exp_only` routes, explanation content is mandatory in this o
 
 - Intent-led heading (calculator purpose/topic; avoid generic `Explanation` headings)
 - `How to Guide`
-- `Important Notes` (must include `Last updated: <Month YYYY>`)
 - FAQ (schema-aligned)
+- `Important Notes` (must be final section)
+
+`Important Notes` must include:
+
+- `Last updated: <Month YYYY>` (refresh when page content changes in release)
+- `Accuracy: ...`
+- calculator-relevant disclaimer key (for example `Financial disclaimer`, `Health disclaimer`, or `Disclaimer`)
+- `Assumptions: ...` (calculator-specific)
+- `Privacy: All calculations run locally in your browser - no data is stored.` (exact text)
+
+Presentation requirements:
+
+- notes use a bullet list (`ul`/`ol`)
+- no dedicated notes container box
+- key label color is `rgba(186, 230, 253, 0.98)`
 
 If a calculator includes graphs/charts, they must be readable and decision-useful:
 
@@ -189,7 +203,30 @@ Release governance follows the document chain:
 - `requirements/universal-rules/RELEASE_CHECKLIST.md` — pre-release gate
 - `requirements/universal-rules/RELEASE_SIGNOFF.md` — release sign-off template
 - `requirements/universal-rules/release-signoffs/` — per-release evidence files
-- `requirements/universal-rules/Release Sign-Off Master Table.md` — historical ledger
+
+## Token Savings / Fast Execution Mode
+
+Estimated documentation-process savings:
+
+- Remove mandatory `Project Bible` read: `~1,000–2,500` tokens saved per task
+- Simplify `RELEASE_SIGNOFF.md`: `~1,500–4,000` tokens saved per release task
+- Skip `Release Sign-Off Master Table.md` updates: `~800–2,000` tokens saved per release task
+
+Combined savings:
+
+- Normal coding task: `~1,000–2,500`
+- Release/compliance task: `~3,000–8,500` (can be higher on large releases)
+- Extra gain from strict file scope: often `5k+` on larger tasks
+
+Operator snippet:
+
+```text
+MODE: MAX
+Reuse session context; do not reread policy docs unless this task edits them.
+Read only these files: <list>
+Do not scan outside scope unless blocked.
+Do not run full release gates unless I explicitly ask.
+```
 
 ## Chromium and WSL Notes
 

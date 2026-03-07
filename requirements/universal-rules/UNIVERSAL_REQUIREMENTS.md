@@ -5,8 +5,8 @@
 - **Status:** Authoritative (sole active governance file)
 - **Scope:** All public routes, calculator modules, shared shell, SEO/testing/release gates
 - **Canonical Path:** `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
-- **Version:** 4.5 (SEO head metadata + structured data standards hardening)
-- **Last Updated:** 2026-03-05
+- **Version:** 4.6 (Graph/Table UX contract standardization)
+- **Last Updated:** 2026-03-07
 
 This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
 
@@ -34,7 +34,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
 - **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`; `NEW_BUILD|ONBOARDING|REDESIGN` require full gates (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
-- **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` and update Master Table per `RELEASE_SIGNOFF.md`.
+- **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` per `RELEASE_SIGNOFF.md`; Master Table updates are optional historical logging.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
 ### 1.3 ADMIN Override
@@ -218,7 +218,18 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-UI-035 (P1):** Evidence must include token/class proof and references in artifacts.
 - **UR-UI-036 (P0):** Design family must not change MPA behavior, semantic landmarks, or keyboard/focus behavior.
 
-### 4.6 CSS Architecture and Loading Rules
+### 4.6 Graph/Table UX Contract (Mandatory for Routes That Include Graphs or Tables)
+
+- **UR-UI-040 (P0):** Routes with graphs/tables must comply with `requirements/universal-rules/How to build a calculator.md` sections `5.8`, `5.9`, and `5.10`.
+- **UR-UI-041 (P0):** Graph start-point integrity is mandatory: period `0` must represent true opening value; synthetic start spikes are release fail.
+- **UR-UI-042 (P0):** Axis labels/ticks must not overlap, clip, or overflow at desktop and mobile widths.
+- **UR-UI-043 (P0):** Graph metadata/legend presentation must be compact; large boxed KPI blocks above graph are disallowed unless explicitly required by REQ.
+- **UR-UI-044 (P0):** Table viewport must be fixed height with internal scroll for overflow data; dynamic table height growth is disallowed.
+- **UR-UI-045 (P0):** On desktop/tablet, table title and Yearly/Monthly toggle must share one row with toggle right-aligned; mobile may wrap cleanly.
+- **UR-UI-046 (P0):** Yearly/Monthly toggle must be segmented with clear active/inactive states and keyboard focus visibility.
+- **UR-UI-047 (P0):** Data truncation caps (for example first N years/months only) are forbidden unless explicitly requested by calculator requirement.
+
+### 4.7 CSS Architecture and Loading Rules
 
 - **UR-CSS-001 (P0):** `@import` is **prohibited** in all calculator CSS files. Enforced by `npm run lint:css-import`.
 - **UR-CSS-002 (P0):** Shared layout source requirement is superseded for isolated routes by cluster-owned CSS contracts (`UR-CLUSTER-010`); `@import` prohibition still applies.
@@ -252,11 +263,11 @@ Applicability: `calc_exp`, `exp_only`.
 
 ### 6.1 Mandatory Structure
 
-- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, default SERP explanation block order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `Important Notes` (`H3`) -> `FAQ` (`H3`), unless explicit route-level exception is approved per `UR-EXP-038`.
+- **UR-EXP-001 (P0):** For every `calc_exp` and `exp_only` route, default SERP explanation block order is mandatory: Intent-led heading (`H2`) -> `How to Guide` (`H3`) -> `FAQ` (`H3`) -> `Important Notes` (`H3`).
 - **UR-EXP-002 (P0):** The explanation `H2` must use the calculator's intent/topic (example: `Mortgage Complete Practical Guide`); generic headings like `Explanation` or `Calculator Explanation` are forbidden.
 - **UR-EXP-003 (P0):** Only one `H2` is allowed in the explanation pane.
-- **UR-EXP-004 (P0):** `How to Guide` and `Important Notes` sections are mandatory. Default placement is before FAQ unless explicit route-level exception is approved per `UR-EXP-038`.
-- **UR-EXP-005 (P0):** `Important Notes` must include a visible `Last updated: <Month YYYY>` line.
+- **UR-EXP-004 (P0):** `How to Guide`, FAQ, and `Important Notes` sections are mandatory. `Important Notes` must appear after FAQ and must be the final explanation section.
+- **UR-EXP-005 (P0):** `Important Notes` must include a visible `Last updated: <Month YYYY>` line, and this month/year must be refreshed whenever the calculator page content is updated in a release.
 - **UR-EXP-006 (P0):** No extra heading hierarchy or section insertion between required blocks without explicit REQ approval.
 
 ### 6.2 Dynamic Content and FAQ
@@ -266,7 +277,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-012 (P0):** Default FAQ baseline: 10 items.
 - **UR-EXP-013 (P0):** FAQ layout/text must align with schema.
 - **UR-EXP-014 (P0):** `How to Guide` must use scannable, actionable steps (ordered list or bullets).
-- **UR-EXP-015 (P0):** `Important Notes` must provide concise trust/disclaimer assumptions relevant to calculator behavior.
+- **UR-EXP-015 (P0):** `Important Notes` must include required key lines: `Last updated`, `Accuracy`, calculator-relevant `Disclaimer` (label may vary), calculator-specific `Assumptions`, and `Privacy`.
+- **UR-EXP-016 (P0):** `Privacy` line inside `Important Notes` must match exactly: `All calculations run locally in your browser - no data is stored.`
 
 ### 6.3 Table Baseline
 
@@ -282,12 +294,12 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-034 (P1):** Interactive charts should expose tooltip/focus values with period + value.
 - **UR-EXP-035 (P0):** Graph rendering must not clip labels or create horizontal overflow on mobile.
 - **UR-EXP-036 (P0):** Output insight sections (for example totals tables, amortization tables, graph modules, result interpretation cards) may appear before the required SERP explanation block from `UR-EXP-001`.
-- **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block. Default sequence is `How to Guide` before `Important Notes`, and `Important Notes` before `FAQ`, unless explicit route-level exception is approved per `UR-EXP-038`.
-- **UR-EXP-038 (P0):** Route-level section-order exception (for example, `FAQ -> Important Notes`) is allowed only when explicitly requested by HUMAN and approved in Scope Contract before implementation.
-- **UR-EXP-039 (P0):** Every approved order exception must be documented in release sign-off and Master Table as route-specific exception evidence, and route tests must assert the approved order.
-- **UR-EXP-040 (P0):** SERP `How to Guide` and `Important Notes` visual structure must remain consistent across calculators using existing explanation card/container patterns; content updates must not introduce a new design language by default.
+- **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block. Required sequence is `How to Guide` -> FAQ -> `Important Notes`, with `Important Notes` as the last explanation section.
+- **UR-EXP-038 (P0):** `Important Notes` placement exceptions are not allowed. Route-level overrides that move `Important Notes` above FAQ or away from final position are forbidden.
+- **UR-EXP-039 (P0):** Route tests and release evidence must assert both required order and required `Important Notes` keys (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`).
+- **UR-EXP-040 (P0):** `Important Notes` must render as a bullet list (`ul`/`ol`) and must not be enclosed in a dedicated container box pattern.
 - **UR-EXP-041 (P0):** Default SERP guide typography contract is `H3: 16px`, `H4: 14px`, body/list text `14px`; any typography deviation requires explicit REQ approval.
-- **UR-EXP-042 (P0):** SERP guide and notes must inherit the route calculator font stack by default, and heading/subheading colors must reuse existing route accent token/color already used in calculator data surfaces.
+- **UR-EXP-042 (P0):** SERP guide and notes must inherit the route calculator font stack by default. `Important Notes` key labels (`Last updated`, `Accuracy`, disclaimer label, `Assumptions`, `Privacy`) must use `rgba(186, 230, 253, 0.98)`.
 
 ---
 
@@ -321,8 +333,8 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-030 (P0):** Priority failure/missing evidence = SEO FAIL.
 - **UR-SEO-031 (P0):** SEO results must be recorded in Release Sign-off.
 - **UR-SEO-032 (P0):** Thin-content quality scoring is mandatory for `calc_exp` and `exp_only` routes through `test:content:quality` with weighted model `Core Value 40 + Depth 25 + Uniqueness 15 + Trust 10 + Structure 10`.
-- **UR-SEO-033 (P0):** Thin-content hard flags are mandatory checks: missing result interpretation guidance, missing worked example, explanation content `<150` words, similarity `>80%`, boilerplate FAQ pattern, and tool-only minimal context risk.
-- **UR-SEO-034 (P0):** Phase-1 rollout is `soft` mode, home-loan pilot only (`/loan-calculators/mortgage-calculator/`) for two release cycles; soft mode is non-blocking and must still produce evidence artifacts.
+- **UR-SEO-033 (P0):** Thin-content hard flags are mandatory checks: missing result interpretation guidance, missing worked example, explanation content `<150` words, similarity `>80%`, boilerplate FAQ pattern, tool-only minimal context risk, and `Important Notes` contract failures (order, required keys, privacy statement exact match, `Last updated` format).
+- **UR-SEO-034 (P0):** Phase-1 rollout is `soft` mode for scoped SEO runs. Soft mode is non-blocking and must still produce evidence artifacts for all evaluated routes in scope.
 - **UR-SEO-035 (P0):** Phase-2 rollout is `hard` mode; release fails if thin-content score is `<70` or any hard flag is present. Mode transition must be explicit in release sign-off evidence.
 
 ### 7.5 SEO Head Metadata and Structured Data Standard
@@ -433,8 +445,10 @@ Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wordin
 - **UR-TEST-033 (P0):** `content_shell`: Shell/Nav/SEO. Panes N/A.
 - **UR-TEST-034 (P1):** Layout change? Run ISS-001.
 - **UR-TEST-035 (P0):** Compliance E2E must assert body metadata.
-- **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> `Important Notes` -> FAQ) or approved route-level exception order per `UR-EXP-038` and `UR-EXP-039`.
+- **UR-TEST-036 (P0):** `calc_exp` and `exp_only` route tests must assert required explanation section presence/order (`Intent-led H2` -> `How to Guide` -> FAQ -> `Important Notes`) with `Important Notes` as final section, plus required key lines (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`).
 - **UR-TEST-037 (P0):** If a route includes graphs/charts, tests must assert graph readability basics: labeled axes, legible legend, and no horizontal overflow at mobile width.
+- **UR-TEST-038 (P0):** Graph route tests must assert period-0 data correctness (no synthetic start spike) and tooltip clamping inside chart container.
+- **UR-TEST-039 (P0):** Table route tests must assert fixed viewport height + internal scroll behavior, and heading/toggle same-row contract on desktop width.
 
 ### 8.5 Cluster & Calculator Scoped Test Isolation
 

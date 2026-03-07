@@ -483,6 +483,25 @@
       "outputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.5e856429.css",
       "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-ltv-calculator.critical.ae908fc4.css"
     },
+    "/loan-calculators/personal-loan-calculator/": {
+      "calculatorId": "personal-loan",
+      "relPath": "loan-calculators/personal-loan-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/loan-calculators-personal-loan-calculator.1ad093dd.css",
+      "deferredHref": "/assets/css/route-bundles/loan-calculators-personal-loan-calculator.1ad093dd.css",
+      "criticalCss": "/assets/css/route-bundles/loan-calculators-personal-loan-calculator.critical.96f0a5bb.css",
+      "hash": "1ad093dd",
+      "criticalHash": "96f0a5bb",
+      "fullBytes": 60169,
+      "criticalBytes": 58086,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/loan-calculators/personal-loan-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/loan-calculators-personal-loan-calculator.1ad093dd.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/loan-calculators-personal-loan-calculator.critical.96f0a5bb.css"
+    },
     "/credit-card-calculators/credit-card-payment-calculator/": {
       "calculatorId": "credit-card-repayment-payoff",
       "relPath": "credit-card-calculators/credit-card-payment-calculator",

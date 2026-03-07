@@ -3,11 +3,10 @@
 > **Entry Point:** Read this first. Apply rules verbatim. Do not reinterpret.
 
 ## 0. Cold Start & Precedence
-- **Law:** `AGENTS.md`, `UNIVERSAL_REQUIREMENTS.md`, and `Project Bible.md` are authoritative.
+- **Law:** `AGENTS.md` and `UNIVERSAL_REQUIREMENTS.md` are authoritative.
 - **Precedence:**
     1. `UNIVERSAL_REQUIREMENTS.md` (Highest — wins on conflict)
     2. `AGENTS.md` (Operating rules)
-    3. `Project Bible.md` (Strategy/Design)
 - **Constraint:** Update ledgers with **deltas only** (no history rewrites).
 
 ---
@@ -52,7 +51,7 @@
 **Pipeline:** `REQUIREMENT -> BUILD -> RELEASE CHECKLIST -> RELEASE SIGN-OFF -> READY`
 
 ### Step 1: Requirement In
-- Read: `UNIVERSAL_REQUIREMENTS.md` (How), `Project Bible.md` (Why), Calc Rules.
+- Read: `UNIVERSAL_REQUIREMENTS.md` (How), Calc Rules.
 
 ### Step 2: Build
 - Implement change.
@@ -73,7 +72,6 @@
 ### Step 4: Release Sign-off
 - **Create:** `release-signoffs/RELEASE_SIGNOFF_{ID}.md` from template.
 - **Fill:** Test results, CWV data, Verification evidence.
-- **Log:** Update `Release Sign-Off Master Table.md`.
 
 ### Step 5: Ready
 - **Action:** Inform human "Ready to merge".
@@ -88,10 +86,9 @@
 ---
 
 ## 4. Document Chain
-`Req -> UNIVERSAL_REQUIREMENTS -> Project Bible -> RELEASE_CHECKLIST -> RELEASE_SIGNOFF -> Master Table`
+`Req -> UNIVERSAL_REQUIREMENTS -> RELEASE_CHECKLIST -> RELEASE_SIGNOFF`
 
 - **UNIVERSAL_REQUIREMENTS.md:** The "How" (Rules).
-- **Project Bible.md:** The "Why" (Strategy).
 - **RELEASE_CHECKLIST.md:** Pre-release Gate.
 - **RELEASE_SIGNOFF.md:** Template for evidence.
 
@@ -117,8 +114,7 @@
 **Release Condition:**
 1.  **Checklist:** Every HARD item passes.
 2.  **Evidence:** Sign-off file created & filled.
-3.  **Log:** Master table updated.
-4.  **Ready:** Agent confirms.
+3.  **Ready:** Agent confirms.
 
 ---
 

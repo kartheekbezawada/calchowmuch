@@ -1,0 +1,286 @@
+<div id="loan-personal-explanation">
+  <h3 class="pl-graph-heading">Loan Balance Graph</h3>
+  <section class="pl-exp-section pl-exp-section--chart" id="pl-section-chart">
+    <div class="pl-chart-header" aria-live="polite">
+      <div class="pl-chart-meta">
+        <div class="pl-chart-legend" aria-hidden="true">
+          <span class="pl-legend-item">
+            <span class="pl-legend-line pl-legend-line--baseline"></span>
+            Baseline
+          </span>
+          <span class="pl-legend-item">
+            <span class="pl-legend-line pl-legend-line--extra"></span>
+            With Extra
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="pl-chart-wrap">
+      <p class="pl-chart-overlay-stats" aria-live="polite">
+        Baseline Payoff: <strong data-pl="chart-base-payoff">—</strong>
+        <span aria-hidden="true">|</span>
+        With Extra: <strong data-pl="chart-extra-payoff">—</strong>
+        <span aria-hidden="true">|</span>
+        Interest Saved: <strong data-pl="chart-interest-saved">—</strong>
+      </p>
+      <canvas
+        id="pl-balance-canvas"
+        class="pl-balance-canvas"
+        role="img"
+        aria-label="Personal loan balance chart comparing baseline and extra monthly payment paths"
+      ></canvas>
+      <div id="pl-balance-tooltip" class="pl-balance-tooltip" hidden></div>
+      <div id="pl-balance-status" class="pl-balance-status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="pl-exp-section pl-exp-section--table" id="pl-section-table">
+    <div class="pl-table-toolbar">
+      <h3 class="pl-table-title">Personal Loan Amortization Table</h3>
+      <div class="pl-view-switch" role="group" aria-label="Yearly or monthly table view">
+        <button type="button" class="pl-view-toggle is-active" data-pl-view="yearly" aria-pressed="true">
+          Yearly
+        </button>
+        <button type="button" class="pl-view-toggle" data-pl-view="monthly" aria-pressed="false">
+          Monthly
+        </button>
+      </div>
+    </div>
+    <div class="pl-table-wrap" tabindex="0" aria-label="Amortization table">
+      <table class="calculator-table" id="pl-amortization-table">
+        <thead>
+          <tr>
+            <th scope="col" data-pl-col="period">Year</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Principal</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Extra</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="pl-amortization-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <h2>Personal Loan Complete Practical Guide</h2>
+
+  <section class="pl-exp-section pl-exp-section--howto" id="pl-section-how-to-guide">
+    <h4>Intent</h4>
+    <p>
+      This personal loan calculator is designed to answer one practical question: “If I borrow this
+      amount, what will my monthly payment and total cost look like?” Many people compare only interest
+      rates, but real decisions are usually about cash flow, total repayment, and how quickly debt can
+      be closed. This tool gives those answers in one place.
+    </p>
+    <p>
+      You should use this calculator when you are planning a new personal loan, comparing lender offers,
+      checking affordability before applying, or evaluating whether adding extra monthly payments is worth
+      it. It is especially useful when two offers look similar on the surface but have different terms,
+      fees, or payoff timelines.
+    </p>
+    <p>
+      You should not use this calculator as legal or financial advice. It is also not a guaranteed lender
+      approval tool. Lenders can include additional checks such as credit score, debt-to-income policy,
+      and internal risk rules. Use it as a planning and comparison calculator, then verify final numbers
+      with your lender.
+    </p>
+    <p>
+      In simple terms, the result tells you four things that matter most: your monthly commitment, your
+      total interest cost, your full repayment amount, and what happens if you pay more than the minimum.
+      If the monthly number feels uncomfortable, the loan is usually too aggressive for your budget even if
+      it looks acceptable on paper.
+    </p>
+
+    <h4>Complete Practical Guide</h4>
+    <p>
+      Start with the currency selector. This controls how all money values are shown on the page. It does
+      not change loan math by itself; it only formats the output so you can read it in your preferred
+      currency style. In this version, you can choose USD, GBP, EUR, INR, CAD, AUD, AED, and JPY.
+    </p>
+    <p>
+      Next, set <strong>Loan Amount</strong>. This is your principal (the amount borrowed before interest).
+      Then set <strong>APR</strong>, which is your annual percentage rate. After that, set your
+      <strong>Loan Term</strong> using years and optional extra months. For example, 5 years and 6 months
+      means 66 total monthly payments.
+    </p>
+    <p>
+      Open Advanced Options if needed. You can add a one-time setup fee and an extra monthly payment.
+      Setup fee helps you see full borrowing cost. Extra monthly payment helps you test early payoff and
+      interest savings. If you keep advanced fields at zero, the calculator shows the standard baseline
+      schedule.
+    </p>
+    <p>
+      The core formula for fixed-rate loans is:
+    </p>
+    <p class="pl-formula">
+      M = P × r × (1 + r)<sup>n</sup> / ((1 + r)<sup>n</sup> - 1)
+      <br />
+      where P = <span data-pl="formula-principal">—</span>, r = monthly rate,
+      n = <span data-pl="formula-term">—</span>,
+      M = <span data-pl="formula-payment">—</span>
+    </p>
+    <ul class="pl-guide-list">
+      <li><strong>P</strong> = principal (loan amount).</li>
+      <li><strong>r</strong> = APR / 12 / 100 (monthly rate).</li>
+      <li><strong>n</strong> = total monthly payments.</li>
+      <li><strong>M</strong> = constant monthly installment for baseline schedule.</li>
+    </ul>
+    <p>
+      If APR is zero, the monthly payment is simply principal divided by months. This tool handles that
+      case automatically. Once monthly payment is known, total repayment is payment × months, and total
+      interest is total repayment minus principal.
+    </p>
+    <p>
+      Worked example (easy numbers): suppose you borrow 25,000 at 9.5% APR for 5 years. The calculator
+      computes a monthly payment near 525. If no extra is paid, you make all scheduled payments over the
+      full term and total interest is the cost of borrowing over those months. If you then add 100 extra
+      per month, the payoff typically happens earlier and total interest drops because the balance shrinks
+      faster.
+    </p>
+    <p>
+      The result area gives the fastest summary:
+    </p>
+    <ol class="pl-step-list">
+      <li><strong>Base Monthly Payment</strong>: what you must pay every month.</li>
+      <li><strong>Payment with Extra</strong>: baseline plus your extra monthly amount.</li>
+      <li><strong>Total Interest</strong>: borrowing cost across the baseline schedule.</li>
+      <li><strong>Total Repayment</strong>: principal + interest across baseline schedule.</li>
+      <li><strong>Total Cost (with Fee)</strong>: total repayment plus one-time setup fee.</li>
+      <li><strong>Payoff with Extra</strong>: estimated shorter term with extra payment.</li>
+      <li><strong>Interest Saved / Months Saved</strong>: extra-payment impact.</li>
+    </ol>
+    <p>
+      After reading the summary cards, move to the chart and table. The chart compares baseline balance
+      versus extra-payment balance over time. The gap between lines shows acceleration from extra payment.
+      The table can switch between yearly and monthly view and keeps a fixed panel height with scrolling
+      for longer schedules.
+    </p>
+    <p>
+      How to use this for decision-making:
+    </p>
+    <ul class="pl-guide-list">
+      <li>Run a baseline scenario first with realistic amount, APR, and term.</li>
+      <li>Check if the base monthly payment feels safe in your normal budget.</li>
+      <li>Add setup fee if your lender charges one, then review total cost change.</li>
+      <li>Test two or three extra-payment levels you can sustain every month.</li>
+      <li>Prefer the plan that keeps monthly pressure manageable while reducing interest.</li>
+    </ul>
+    <p>
+      Common mistakes to avoid:
+    </p>
+    <ul class="pl-guide-list">
+      <li>Comparing offers by APR only and ignoring fees or term differences.</li>
+      <li>Choosing the longest term only for lower monthly payment without checking total cost.</li>
+      <li>Setting an extra monthly payment that is not sustainable.</li>
+      <li>Ignoring cash reserve needs and using all spare money for overpayment.</li>
+      <li>Assuming lender-approved amount always equals comfortable affordability.</li>
+    </ul>
+    <p>
+      Practical interpretation rule: if your monthly payment keeps you financially flexible, and the total
+      cost is acceptable, the loan structure is usually workable. If monthly cash flow becomes too tight,
+      consider lower principal, shorter/lower fee options, or postponing borrowing until terms improve.
+      This calculator helps you test those scenarios quickly before making a commitment.
+    </p>
+  </section>
+
+  <section class="pl-exp-section pl-exp-section--faq" id="pl-section-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>Is this payment guaranteed by lenders?</h4>
+        <p>
+          No. The calculator provides an estimate based on your entered inputs. Final lender terms can
+          differ due to credit checks, underwriting, and policy rules.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What does APR include in this calculator?</h4>
+        <p>
+          APR is treated as the annual borrowing rate used to compute monthly interest. It is converted
+          into a monthly rate for installment calculations.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Why does a longer term reduce monthly payment?</h4>
+        <p>
+          Because repayment is spread across more months. Monthly cost goes down, but total interest paid
+          over the loan often goes up.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>How does extra monthly payment help?</h4>
+        <p>
+          Extra payment reduces principal faster. Lower principal means lower future interest, which can
+          reduce total cost and shorten payoff time.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does setup fee affect monthly payment?</h4>
+        <p>
+          In this version, setup fee is added to total cost reporting and does not change installment math
+          directly unless you manually add it into loan amount.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I use decimal values for fee and extra payment?</h4>
+        <p>
+          Yes. Fee and extra monthly fields accept decimal values so you can model realistic amounts.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why does the first year show more interest than later years?</h4>
+        <p>
+          Interest is calculated on remaining balance. Early balance is higher, so the interest share is
+          higher in early payments and gradually falls over time.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Does changing currency change the calculation?</h4>
+        <p>
+          No. Currency selection changes output formatting only. The underlying formulas remain the same.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Can this model variable or step-up rates?</h4>
+        <p>
+          Not in this calculator. It assumes a fixed annual rate for the full term.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>What is the best way to compare two loan offers?</h4>
+        <p>
+          Enter each offer separately and compare monthly payment, total interest, total cost with fee,
+          and payoff impact if you plan to overpay.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pl-exp-section pl-exp-section--notes" id="pl-section-important-notes">
+    <h3>Important Notes</h3>
+    <ul class="pl-important-list">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on entered values.</li>
+      <li>
+        <strong>Financial disclaimer:</strong> For educational planning only; not financial, legal, or
+        investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> Fixed APR and regular monthly payments are assumed for the full
+        calculation period.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
+</div>
