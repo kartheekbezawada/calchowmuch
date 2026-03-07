@@ -1,340 +1,267 @@
 <div id="calc-fraction-calculator">
   <div class="calculator-ui fc-ui">
-    <section class="fc-hero" aria-label="Fraction calculator lesson workspace">
-      <div class="fc-form-panel">
-        <p class="fc-kicker">Student Math Workspace</p>
-        <h2 class="fc-panel-title">Learn fractions while you solve them</h2>
-        <p class="helper">
-          Pick the fraction skill you want, change the example numbers if needed, and the answer
-          panel will show the result and the method together.
-        </p>
+    <div class="fc-header">
+      <div class="fc-badge"><span>&#x1F9EE;</span><span>MATHS HELPER</span></div>
+      <h2 class="fc-title">Fraction Calculator</h2>
+      <p class="fc-subtitle">Pick an operation, enter your fractions, and see every step!</p>
+    </div>
 
-        <section class="fc-operation-panel" aria-label="Choose fraction operation">
-          <div class="fc-section-header">
-            <div>
-              <p class="fc-section-kicker">Choose an operation</p>
-              <h3>Fraction tools</h3>
-            </div>
-            <span class="fc-section-chip">6 lessons</span>
-          </div>
-
-          <div class="fc-op-grid" id="fc-mode-tabs" role="tablist" aria-label="Fraction operations">
+    <div class="fc-workspace">
+      <div class="fc-control-deck">
+        <section class="fc-card fc-op-selector" aria-label="Choose fraction operation">
+          <p class="fc-card-label">What do you want to do?</p>
+          <div class="fc-tab-strip" id="fc-mode-tabs" role="tablist" aria-label="Fraction operations">
             <button type="button" class="fc-op-card is-active" role="tab" aria-selected="true" data-mode="add">
               <span class="fc-op-icon">+</span>
-              <span class="fc-op-copy">
-                <strong>Add</strong>
-                <small>Match denominators, then add numerators.</small>
-              </span>
+              <span class="fc-op-copy"><strong>Add</strong></span>
             </button>
             <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="subtract">
-              <span class="fc-op-icon">-</span>
-              <span class="fc-op-copy">
-                <strong>Subtract</strong>
-                <small>Rename first, then subtract the top numbers.</small>
-              </span>
+              <span class="fc-op-icon">&minus;</span>
+              <span class="fc-op-copy"><strong>Subtract</strong></span>
             </button>
             <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="multiply">
-              <span class="fc-op-icon">x</span>
-              <span class="fc-op-copy">
-                <strong>Multiply</strong>
-                <small>Multiply straight across and simplify.</small>
-              </span>
+              <span class="fc-op-icon">&times;</span>
+              <span class="fc-op-copy"><strong>Multiply</strong></span>
             </button>
             <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="divide">
-              <span class="fc-op-icon">/</span>
-              <span class="fc-op-copy">
-                <strong>Divide</strong>
-                <small>Flip the second fraction, then multiply.</small>
-              </span>
+              <span class="fc-op-icon">&divide;</span>
+              <span class="fc-op-copy"><strong>Divide</strong></span>
             </button>
             <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="simplify">
-              <span class="fc-op-icon">=</span>
-              <span class="fc-op-copy">
-                <strong>Simplify</strong>
-                <small>Use the greatest common divisor.</small>
-              </span>
+              <span class="fc-op-icon">&#x2728;</span>
+              <span class="fc-op-copy"><strong>Simplify</strong></span>
             </button>
             <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="convert">
               <span class="fc-op-icon">&#8646;</span>
-              <span class="fc-op-copy">
-                <strong>Convert</strong>
-                <small>Move between improper and mixed forms.</small>
-              </span>
+              <span class="fc-op-copy"><strong>Convert</strong></span>
             </button>
           </div>
         </section>
 
-        <section class="fc-live-lesson" aria-label="Current lesson summary">
-          <div class="fc-lesson-main">
-            <p class="fc-section-kicker">Current lesson</p>
-            <h3 id="fc-mode-label">Add fractions</h3>
-            <p id="fc-mode-summary-text">
-              Find the least common denominator, rename both fractions, then combine the numerators.
-            </p>
-          </div>
-          <div class="fc-lesson-aside">
-            <div class="fc-lesson-mini-card">
-              <span>Pattern</span>
-              <strong id="fc-mode-pattern">Make denominators match</strong>
-            </div>
-            <div class="fc-lesson-mini-card">
-              <span>Watch out for</span>
-              <strong id="fc-mode-warning">Do not add denominators together</strong>
-            </div>
-          </div>
-        </section>
-
-        <div class="fc-mode-panels">
-          <section class="fc-mode-panel is-active" data-mode-panel="add" role="tabpanel">
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice addition</h3>
-                  <p>Start with fractions that need a common denominator.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 1/4 + 1/8</span>
-              </div>
-              <div class="fc-field-grid fc-field-grid--two">
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-add-num1">First fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-add-num1" type="number" value="1" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-add-den1" type="number" value="4" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-add-num2">Second fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-add-num2" type="number" value="1" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-add-den2" type="number" value="8" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="add">
-                Calculate Addition
-              </button>
-            </div>
-          </section>
-
-          <section class="fc-mode-panel" data-mode-panel="subtract" role="tabpanel" hidden>
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice subtraction</h3>
-                  <p>Rewrite both fractions with the same denominator first.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 3/4 - 1/6</span>
-              </div>
-              <div class="fc-field-grid fc-field-grid--two">
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-sub-num1">First fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-sub-num1" type="number" value="3" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-sub-den1" type="number" value="4" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-sub-num2">Second fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-sub-num2" type="number" value="1" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-sub-den2" type="number" value="6" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="subtract">
-                Calculate Subtraction
-              </button>
-            </div>
-          </section>
-
-          <section class="fc-mode-panel" data-mode-panel="multiply" role="tabpanel" hidden>
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice multiplication</h3>
-                  <p>Multiply top by top and bottom by bottom.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 2/3 x 3/5</span>
-              </div>
-              <div class="fc-field-grid fc-field-grid--two">
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-mul-num1">First fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-mul-num1" type="number" value="2" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-mul-den1" type="number" value="3" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-mul-num2">Second fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-mul-num2" type="number" value="3" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-mul-den2" type="number" value="5" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="multiply">
-                Calculate Multiplication
-              </button>
-            </div>
-          </section>
-
-          <section class="fc-mode-panel" data-mode-panel="divide" role="tabpanel" hidden>
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice division</h3>
-                  <p>Turn division into multiplication by flipping the second fraction.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 2/3 / 4/5</span>
-              </div>
-              <div class="fc-field-grid fc-field-grid--two">
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-div-num1">First fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-div-num1" type="number" value="2" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-div-den1" type="number" value="3" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-div-num2">Second fraction</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-div-num2" type="number" value="4" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-div-den2" type="number" value="5" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="divide">
-                Calculate Division
-              </button>
-            </div>
-          </section>
-
-          <section class="fc-mode-panel" data-mode-panel="simplify" role="tabpanel" hidden>
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice simplification</h3>
-                  <p>Reduce a fraction to its smallest whole-number form.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 6/8</span>
-              </div>
-              <div class="fc-field-grid">
-                <div class="fc-fraction-card fc-fraction-card--single">
-                  <label class="fc-card-title" for="fc-simp-num">Fraction to simplify</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-simp-num" type="number" value="6" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-simp-den" type="number" value="8" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="simplify">
-                Simplify Fraction
-              </button>
-            </div>
-          </section>
-
-          <section class="fc-mode-panel" data-mode-panel="convert" role="tabpanel" hidden>
-            <div class="fc-panel-shell">
-              <div class="fc-panel-head">
-                <div>
-                  <h3>Practice conversion</h3>
-                  <p>Switch between improper fractions and mixed numbers.</p>
-                </div>
-                <span class="fc-panel-badge">Example: 7/3 and 1 2/5</span>
-              </div>
-              <div class="fc-field-grid fc-field-grid--two fc-field-grid--convert">
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-conv-imp-num">Improper to mixed</label>
-                  <div class="fc-fraction-stack">
-                    <input id="fc-conv-imp-num" type="number" value="7" step="1" inputmode="numeric" />
-                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                    <input id="fc-conv-imp-den" type="number" value="3" step="1" inputmode="numeric" />
-                  </div>
-                </div>
-                <div class="fc-fraction-card">
-                  <label class="fc-card-title" for="fc-conv-mix-whole">Mixed to improper</label>
-                  <div class="fc-mixed-stack">
-                    <input id="fc-conv-mix-whole" type="number" value="1" step="1" inputmode="numeric" />
+        <div class="fc-input-deck">
+          <div class="fc-mode-panels">
+            <section class="fc-mode-panel is-active" data-mode-panel="add" role="tabpanel">
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fractions</p>
+                <div class="fc-input-row">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 1</span>
                     <div class="fc-fraction-stack">
-                      <input id="fc-conv-mix-num" type="number" value="2" step="1" inputmode="numeric" />
+                      <input id="fc-add-num1" type="number" value="3" step="1" inputmode="numeric" />
                       <span class="fc-stack-bar" aria-hidden="true"></span>
-                      <input id="fc-conv-mix-den" type="number" value="5" step="1" inputmode="numeric" />
+                      <input id="fc-add-den1" type="number" value="4" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                  <span class="fc-op-sign">+</span>
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 2</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-add-num2" type="number" value="1" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-add-den2" type="number" value="6" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="fc-mode-panel" data-mode-panel="subtract" role="tabpanel" hidden>
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fractions</p>
+                <div class="fc-input-row">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 1</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-sub-num1" type="number" value="3" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-sub-den1" type="number" value="4" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                  <span class="fc-op-sign">&minus;</span>
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 2</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-sub-num2" type="number" value="1" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-sub-den2" type="number" value="6" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="fc-mode-panel" data-mode-panel="multiply" role="tabpanel" hidden>
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fractions</p>
+                <div class="fc-input-row">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 1</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-mul-num1" type="number" value="2" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-mul-den1" type="number" value="3" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                  <span class="fc-op-sign">&times;</span>
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 2</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-mul-num2" type="number" value="3" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-mul-den2" type="number" value="5" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="fc-mode-panel" data-mode-panel="divide" role="tabpanel" hidden>
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fractions</p>
+                <div class="fc-input-row">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 1</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-div-num1" type="number" value="2" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-div-den1" type="number" value="3" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                  <span class="fc-op-sign">&divide;</span>
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction 2</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-div-num2" type="number" value="4" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-div-den2" type="number" value="5" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="fc-mode-panel" data-mode-panel="simplify" role="tabpanel" hidden>
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fraction</p>
+                <div class="fc-input-row fc-input-row--single">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Fraction</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-simp-num" type="number" value="6" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-simp-den" type="number" value="8" step="1" inputmode="numeric" />
+                    </div>
+                    <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="fc-mode-panel" data-mode-panel="convert" role="tabpanel" hidden>
+              <div class="fc-card fc-input-card">
+                <p class="fc-card-label">Enter your fractions</p>
+                <div class="fc-input-row fc-input-row--convert">
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Improper</span>
+                    <div class="fc-fraction-stack">
+                      <input id="fc-conv-imp-num" type="number" value="7" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-conv-imp-den" type="number" value="3" step="1" inputmode="numeric" />
+                    </div>
+                  </div>
+                  <span class="fc-op-sign">&#8646;</span>
+                  <div class="fc-fraction-input">
+                    <span class="fc-input-label">Mixed</span>
+                    <div class="fc-mixed-stack">
+                      <input
+                        id="fc-conv-mix-whole"
+                        type="number"
+                        value="1"
+                        step="1"
+                        inputmode="numeric"
+                        class="fc-whole-input"
+                      />
+                      <div class="fc-fraction-stack">
+                        <input id="fc-conv-mix-num" type="number" value="2" step="1" inputmode="numeric" />
+                        <span class="fc-stack-bar" aria-hidden="true"></span>
+                        <input id="fc-conv-mix-den" type="number" value="5" step="1" inputmode="numeric" />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="button" class="calculator-button full-width" data-calc-mode="convert">
-                Convert Fraction Forms
-              </button>
-            </div>
-          </section>
-        </div>
-      </div>
+            </section>
+          </div>
 
-      <aside class="fc-result-panel" aria-label="Solved answer and teaching steps">
-        <div class="fc-result-shell">
-          <div class="fc-answer-card">
-            <div class="fc-answer-head">
-              <div>
-                <p class="fc-card-label">Answer card</p>
-                <h3 id="fc-answer-title">Solved Answer</h3>
-              </div>
-              <span class="fc-mode-chip" id="fc-mode-chip">Add</span>
-            </div>
+          <button type="button" class="fc-solve-btn" id="fc-solve-btn">&#x2728; Solve Step by Step</button>
+        </div>
+
+        <div class="fc-card fc-steps-card">
+          <p class="fc-card-label">Step-by-step solution</p>
+          <div id="fc-steps" class="fc-step-list"></div>
+          <div class="fc-step-answer">
             <div class="result" id="fc-result-main" aria-live="polite"></div>
             <div class="result-detail" id="fc-result-sub" aria-live="polite"></div>
           </div>
+        </div>
+      </div>
 
-          <div class="fc-summary-list">
-            <div class="fc-summary-row">
-              <span>Current operation</span>
-              <strong id="fc-metric-operation">Addition</strong>
+      <div class="fc-results-stack">
+        <div class="fc-card fc-lesson-panel">
+          <p class="fc-card-label">Lesson guide</p>
+          <div class="fc-lesson-panel-grid">
+            <div class="fc-lesson-panel-block fc-lesson-panel-block--meaning">
+              <p class="fc-card-label fc-card-label--inline">What this means</p>
+              <h3 id="fc-mode-label">Add fractions</h3>
+              <p id="fc-mode-summary-text">
+                To add fractions, first make the bottom numbers the same. Then add the top numbers.
+              </p>
+              <p class="fc-lesson-note" id="fc-teacher-note"></p>
             </div>
-            <div class="fc-summary-row">
-              <span id="fc-metric-simple-label">Simplest form</span>
-              <strong id="fc-metric-simple">3/8</strong>
+
+            <div class="fc-summary-list">
+              <div class="fc-lesson-panel-block">
+                <p class="fc-card-label fc-card-label--inline">Easy rule</p>
+                <h3 id="fc-simple-rule-title">Same-size pieces first</h3>
+                <p id="fc-simple-rule-text">Make the bottom numbers match before you work with the top numbers.</p>
+              </div>
             </div>
-            <div class="fc-summary-row">
-              <span id="fc-metric-mixed-label">Mixed form</span>
-              <strong id="fc-metric-mixed">Not needed</strong>
-            </div>
-            <div class="fc-summary-row">
-              <span id="fc-metric-rule-label">Main rule</span>
-              <strong id="fc-metric-rule">Match denominators first</strong>
+
+            <div class="fc-lesson-panel-block">
+              <p class="fc-card-label fc-card-label--inline">Watch out</p>
+              <h3 id="fc-watch-title">Common mistake</h3>
+              <p id="fc-watch-text">Do not add the bottom numbers together.</p>
             </div>
           </div>
         </div>
 
-        <section class="fc-steps-card">
-          <div class="fc-section-header fc-section-header--compact">
-            <div>
-              <p class="fc-section-kicker">Method</p>
-              <h3>Worked steps</h3>
-            </div>
+        <div class="fc-tips-grid">
+          <div class="fc-tip-card">
+            <span class="fc-tip-icon">&#x1F3AF;</span>
+            <strong id="fc-tip-1-title">Remember</strong>
+            <span id="fc-tip-1-body">Denominator = bottom number</span>
           </div>
-          <ol id="fc-steps"></ol>
-        </section>
-
-        <section class="fc-note-card">
-          <div class="fc-section-header fc-section-header--compact">
-            <div>
-              <p class="fc-section-kicker">Teacher note</p>
-              <h3>How to read this answer</h3>
-            </div>
+          <div class="fc-tip-card">
+            <span class="fc-tip-icon">&#x1F4A1;</span>
+            <strong id="fc-tip-2-title">Tip</strong>
+            <span id="fc-tip-2-body">LCM helps add and subtract</span>
           </div>
-          <p id="fc-teacher-note"></p>
-        </section>
-      </aside>
-    </section>
+          <div class="fc-tip-card">
+            <span class="fc-tip-icon">&#x26A1;</span>
+            <strong id="fc-tip-3-title">Shortcut</strong>
+            <span id="fc-tip-3-body">Always simplify at the end</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

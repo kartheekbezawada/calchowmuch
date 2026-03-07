@@ -31,6 +31,7 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/credit-card-calculators/balance-transfer-credit-card-calculator/calculator.css',
   'calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css',
   'calculators/credit-card-calculators/credit-card-minimum-payment-calculator/calculator.css',
+  'calculators/math/fraction-calculator/calculator.css',
   'calculators/math/algebra/quadratic-equation/calculator.css',
   'calculators/math/algebra/slope-distance/calculator.css',
   'calculators/math/algebra/factoring/calculator.css',
@@ -72,6 +73,7 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/credit-card-calculators/credit-card-minimum-payment-calculator/',
   '/credit-card-calculators/balance-transfer-credit-card-calculator/',
   '/credit-card-calculators/credit-card-consolidation-calculator/',
+  '/math/fraction-calculator/',
   '/math/algebra/quadratic-equation/',
   '/math/algebra/slope-distance/',
   '/math/algebra/factoring/',
@@ -406,6 +408,12 @@ const TIME_AND_DATE_ISOLATED_ROUTES = [
 ];
 
 const MATH_ALGEBRA_ROUTES = [
+  {
+    calculatorId: 'fraction-calculator',
+    route: '/math/fraction-calculator/',
+    relPath: 'math/fraction-calculator',
+    routeCss: 'calculators/math/fraction-calculator/calculator.css',
+  },
   {
     calculatorId: 'quadratic-equation',
     route: '/math/algebra/quadratic-equation/',

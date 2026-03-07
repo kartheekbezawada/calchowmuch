@@ -60,6 +60,7 @@ const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neu
 const PANE_LAYOUTS = new Set(['single', 'split']);
 const FORCED_SINGLE_PANE_CALCULATOR_IDS = new Set(['what-percent-is-x-of-y']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'fraction-calculator',
   'quadratic-equation',
   'slope-distance',
   'factoring',
@@ -192,6 +193,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.',
     h1: 'Interest Rate Change Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'fraction-calculator': {
+    title: 'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch',
+    description:
+      'Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.',
+    h1: 'Fraction Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },

@@ -56,7 +56,11 @@ describe('fraction calculator shared math helpers', () => {
   it('builds a plain-English validation state for invalid denominators', () => {
     const state = evaluateFractionMode('add', { num1: 1, den1: 0, num2: 1, den2: 8 });
     expect(state.teacherNote).toBe('A denominator cannot be zero.');
-    expect(state.steps).toContain('Correct the input values and try again.');
+    expect(state.steps[0]).toMatchObject({
+      tag: 'Check input',
+      note: 'A denominator cannot be zero.',
+    });
+    expect(state.steps[0].expression).toContain('Correct the input values and try again.');
   });
 
   it('builds convert mode output with both directions visible', () => {
@@ -67,8 +71,12 @@ describe('fraction calculator shared math helpers', () => {
       mixNum: 2,
       mixDen: 5,
     });
-    expect(state.tiles[0]).toEqual({ label: 'Improper to mixed', value: '2 1/3' });
-    expect(state.tiles[1]).toEqual({ label: 'Mixed to improper', value: '7/5' });
+    expect(state.metrics).toEqual({
+      primaryLabel: 'Improper to mixed',
+      primaryValue: '2 1/3',
+      secondaryLabel: 'Mixed to improper',
+      secondaryValue: '7/5',
+    });
     expect(state.teacherNote).toContain('mixed number');
   });
 });

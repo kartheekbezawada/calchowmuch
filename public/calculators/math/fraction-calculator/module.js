@@ -128,75 +128,99 @@ const metadata = {
 const MODE_COPY = {
   add: {
     label: 'Add fractions',
-    operationName: 'Addition',
-    chip: 'Add',
-    summary: 'Find the least common denominator, rename both fractions, then combine the numerators.',
-    pattern: 'Make denominators match',
-    warning: 'Do not add denominators together',
-    rule: 'Match denominators first',
+    summary: 'To add fractions, first make the bottom numbers the same. Then add the top numbers.',
+    easyRuleTitle: 'Same-size pieces first',
+    easyRuleText: 'Make both bottom numbers match before you add anything.',
+    watchTitle: 'Common mistake',
+    watchText: 'Do not add the bottom numbers together.',
     lessonTitle: 'Adding fractions with a common denominator plan',
     lessonCopy:
-      'Match the denominators first, then work with the numerators. The denominator stays fixed once both fractions describe the same size parts.',
+      'Start by making the denominators match, then work only with the numerators, and simplify the final answer if possible.',
+    tips: [
+      { title: 'Remember', body: 'Denominator = bottom number' },
+      { title: 'Tip', body: 'LCM helps add and subtract' },
+      { title: 'Shortcut', body: 'Always simplify at the end' },
+    ],
   },
   subtract: {
     label: 'Subtract fractions',
-    operationName: 'Subtraction',
-    chip: 'Subtract',
-    summary: 'Rename both fractions with the same denominator, then subtract only the numerators.',
-    pattern: 'Keep the denominator size the same',
-    warning: 'Only subtract the numerators after renaming',
-    rule: 'Match, then subtract',
+    summary: 'To subtract fractions, first make the bottom numbers the same. Then subtract the top numbers.',
+    easyRuleTitle: 'Keep the parts the same size',
+    easyRuleText: 'Match the bottom numbers first, then take away from the top numbers only.',
+    watchTitle: 'Common mistake',
+    watchText: 'Do not change the size of the parts while subtracting.',
     lessonTitle: 'Subtracting fractions without changing the size of the parts',
     lessonCopy:
-      'Subtraction uses the same denominator idea as addition. Only the numerators change after the fractions have been rewritten in matching parts.',
+      'Use the same denominator idea as addition, then subtract only how many equal parts remain.',
+    tips: [
+      { title: 'Remember', body: 'Same denominator first' },
+      { title: 'Tip', body: 'Only the numerators are subtracted' },
+      { title: 'Shortcut', body: 'Check the sign before you simplify' },
+    ],
   },
   multiply: {
     label: 'Multiply fractions',
-    operationName: 'Multiplication',
-    chip: 'Multiply',
-    summary: 'Multiply straight across and then simplify the answer if possible.',
-    pattern: 'Top x top, bottom x bottom',
-    warning: 'No common denominator is needed',
-    rule: 'Multiply straight across',
+    summary: 'To multiply fractions, multiply the top numbers together and the bottom numbers together.',
+    easyRuleTitle: 'Top with top, bottom with bottom',
+    easyRuleText: 'Multiply straight across. You do not need to match the bottom numbers first.',
+    watchTitle: 'Common mistake',
+    watchText: 'Do not stop to find a common denominator for multiplication.',
     lessonTitle: 'Multiplying fractions by using the top and bottom rows',
     lessonCopy:
-      'You do not need a common denominator here. Multiply top by top and bottom by bottom, then look for a simpler form.',
+      'This is the quickest operation because you do not rename the fractions first. Multiply and then reduce the answer.',
+    tips: [
+      { title: 'Remember', body: 'Multiply top with top' },
+      { title: 'Tip', body: 'Look for common factors before or after' },
+      { title: 'Shortcut', body: 'Cancellation can keep numbers small' },
+    ],
   },
   divide: {
     label: 'Divide fractions',
-    operationName: 'Division',
-    chip: 'Divide',
-    summary: 'Flip the second fraction to its reciprocal and then multiply.',
-    pattern: 'Keep, flip, multiply',
-    warning: 'Flip only the second fraction',
-    rule: 'Use the reciprocal first',
+    summary: 'To divide fractions, keep the first one, flip the second one, and then multiply.',
+    easyRuleTitle: 'Keep, flip, multiply',
+    easyRuleText: 'Leave the first fraction alone. Turn the second one upside down, then multiply.',
+    watchTitle: 'Common mistake',
+    watchText: 'Only flip the second fraction, not the first one.',
     lessonTitle: 'Dividing fractions by flipping the second fraction',
     lessonCopy:
-      'Keep the first fraction, flip the second one, and multiply. That reciprocal step is the key idea students need to remember.',
+      'Turn the division into multiplication by reversing the second fraction. Then solve like a multiplication question.',
+    tips: [
+      { title: 'Remember', body: 'Keep the first fraction the same' },
+      { title: 'Tip', body: 'Flip only the second fraction' },
+      { title: 'Shortcut', body: 'Division becomes multiplication after the flip' },
+    ],
   },
   simplify: {
     label: 'Simplify a fraction',
-    operationName: 'Simplifying',
-    chip: 'Simplify',
-    summary: 'Find the greatest common divisor and divide both numbers by it.',
-    pattern: 'Use the greatest common divisor',
-    warning: 'Divide top and bottom by the same number',
-    rule: 'Reduce both parts together',
+    summary: 'To simplify a fraction, find a number that goes into the top and bottom, then divide both by it.',
+    easyRuleTitle: 'Use the same number on both',
+    easyRuleText: 'Divide the top and bottom by the same biggest factor you can find.',
+    watchTitle: 'Common mistake',
+    watchText: 'If you divide only one part, the fraction changes value.',
     lessonTitle: 'Simplifying fractions without changing their value',
     lessonCopy:
-      'A simplified fraction means the same thing as the original one. It just uses the smallest whole-number parts possible.',
+      'A simpler fraction still means the same amount. You are only rewriting it in its cleanest form.',
+    tips: [
+      { title: 'Remember', body: 'Look for the biggest common factor' },
+      { title: 'Tip', body: 'GCD tells you what to divide by' },
+      { title: 'Shortcut', body: 'If top and bottom share no factor, you are done' },
+    ],
   },
   convert: {
     label: 'Convert fraction forms',
-    operationName: 'Conversion',
-    chip: 'Convert',
-    summary: 'Move between improper fractions and mixed numbers using division and multiplication.',
-    pattern: 'Quotient and remainder, or whole x denominator + numerator',
-    warning: 'Keep the original denominator in the fractional part',
-    rule: 'Switch forms without changing value',
+    summary: 'To convert fractions, change the form but keep the value the same.',
+    easyRuleTitle: 'Same value, different look',
+    easyRuleText: 'Use division to make a mixed number. Use whole x bottom + top to make an improper fraction.',
+    watchTitle: 'Common mistake',
+    watchText: 'Keep the same bottom number in the fractional part of a mixed number.',
     lessonTitle: 'Converting between improper fractions and mixed numbers',
     lessonCopy:
-      'Use quotient and remainder for improper to mixed, and use whole times denominator plus numerator for mixed to improper.',
+      'Improper and mixed forms look different, but they represent the same value. Use the correct conversion rule for each direction.',
+    tips: [
+      { title: 'Remember', body: 'Quotient gives the whole-number part' },
+      { title: 'Tip', body: 'Remainder becomes the new numerator' },
+      { title: 'Shortcut', body: 'Whole x denominator + numerator makes an improper fraction' },
+    ],
   },
 };
 
@@ -335,13 +359,9 @@ export function mixedToImproper(whole, numerator, denominator) {
   return simplifyFraction(sign * improperNumerator, partDenominator);
 }
 
-function isInteger(value) {
-  return Number.isInteger(value);
-}
-
 function parseIntegerInput(input) {
   const value = Number.parseFloat(input?.value ?? '');
-  if (!Number.isFinite(value) || !isInteger(value)) {
+  if (!Number.isFinite(value) || !Number.isInteger(value)) {
     return null;
   }
   return value;
@@ -397,21 +417,6 @@ function expressionHtml(parts) {
   return `<span class="fc-expression">${parts.join(' ')}</span>`;
 }
 
-function buildErrorState(message) {
-  return {
-    primaryHtml: `<span>${message}</span>`,
-    primaryText: message,
-    secondaryText: '',
-    tiles: [
-      { label: 'Simplest form', value: 'Check the input' },
-      { label: 'Mixed number', value: 'Not available' },
-      { label: 'Quick check', value: 'Use whole numbers only' },
-    ],
-    steps: ['Correct the input values and try again.'],
-    teacherNote: message,
-  };
-}
-
 function commonFractionValidation(values) {
   const entries = Object.entries(values);
   for (const [key, value] of entries) {
@@ -425,25 +430,39 @@ function commonFractionValidation(values) {
   return null;
 }
 
-function buildResultTilesForFraction(resultFraction) {
-  const mixed = improperToMixed(resultFraction.numerator, resultFraction.denominator);
+function buildMetricPair(primaryLabel, primaryValue, secondaryLabel, secondaryValue) {
   return {
-    mixed,
-    tiles: [
-      { label: 'Simplest form', value: fractionToText(resultFraction) },
+    primaryLabel,
+    primaryValue,
+    secondaryLabel,
+    secondaryValue,
+  };
+}
+
+function buildErrorState(message) {
+  return {
+    primaryHtml: `<span>${message}</span>`,
+    secondaryText: '',
+    metrics: buildMetricPair('Simplest form', 'Check the input', 'Mixed form', 'Not available'),
+    steps: [
       {
-        label: 'Mixed number',
-        value:
-          Math.abs(resultFraction.numerator) >= resultFraction.denominator
-            ? mixedToText(mixed)
-            : 'Not needed',
-      },
-      {
-        label: 'Quick check',
-        value: resultFraction.denominator === 1 ? 'Whole number answer' : 'Answer is already reduced',
+        tag: 'Check input',
+        note: message,
+        expression: '<span>Correct the input values and try again.</span>',
       },
     ],
+    teacherNote: message,
   };
+}
+
+function buildResultMetrics(resultFraction) {
+  const mixed = improperToMixed(resultFraction.numerator, resultFraction.denominator);
+  return buildMetricPair(
+    'Simplest form',
+    fractionToText(resultFraction),
+    'Mixed form',
+    Math.abs(resultFraction.numerator) >= resultFraction.denominator ? mixedToText(mixed) : 'Not needed'
+  );
 }
 
 function buildAddState(values) {
@@ -459,25 +478,36 @@ function buildAddState(values) {
   const equivalentRight = right.numerator * (commonDenominator / right.denominator);
   const unsimplified = { numerator: equivalentLeft + equivalentRight, denominator: commonDenominator };
   const result = simplifyFraction(unsimplified.numerator, unsimplified.denominator);
-  const tileData = buildResultTilesForFraction(result);
+  const simplified = fractionToText(unsimplified) !== fractionToText(result);
 
   return {
-    primaryHtml: expressionHtml([
-      fractionToHtml(left),
-      '<span>+</span>',
-      fractionToHtml(right),
-      '<span>=</span>',
-      fractionToHtml(result),
-    ]),
-    primaryText: `${fractionToText(left)} + ${fractionToText(right)} = ${fractionToText(result)}`,
-    secondaryText: `Both fractions were renamed in ${commonDenominator}ths before the numerators were added.`,
-    tiles: tileData.tiles,
+    primaryHtml: fractionToHtml(result),
+    secondaryText: `${fractionToText(left)} + ${fractionToText(right)} = ${fractionToText(result)}`,
+    metrics: buildResultMetrics(result),
     steps: [
-      `Find the least common denominator: lcm(${left.denominator}, ${right.denominator}) = ${commonDenominator}.`,
-      `Rename the first fraction: ${fractionToText(left)} = ${equivalentLeft}/${commonDenominator}.`,
-      `Rename the second fraction: ${fractionToText(right)} = ${equivalentRight}/${commonDenominator}.`,
-      `Add the numerators: ${equivalentLeft} + ${equivalentRight} = ${unsimplified.numerator}, so the fraction becomes ${fractionToText(unsimplified)}.`,
-      `Simplify the final answer: ${fractionToText(unsimplified)} = ${fractionToText(result)}.`,
+      {
+        tag: 'Start',
+        expression: expressionHtml([fractionToHtml(left), '<span>+</span>', fractionToHtml(right)]),
+      },
+      {
+        tag: 'Common denominator',
+        note: `LCM of ${left.denominator} and ${right.denominator} = ${commonDenominator}`,
+        expression: expressionHtml([
+          fractionToHtml({ numerator: equivalentLeft, denominator: commonDenominator }),
+          '<span>+</span>',
+          fractionToHtml({ numerator: equivalentRight, denominator: commonDenominator }),
+        ]),
+      },
+      {
+        tag: 'Add numerators',
+        expression: fractionToHtml(unsimplified),
+      },
+      {
+        tag: simplified ? 'Simplify result' : 'Result',
+        note: simplified ? `${fractionToText(unsimplified)} simplifies to ${fractionToText(result)}` : 'Already in simplest form.',
+        expression: fractionToHtml(result),
+        isResult: true,
+      },
     ],
     teacherNote:
       'When denominators match, the size of each part stays the same. That is why only the numerators are added.',
@@ -497,25 +527,36 @@ function buildSubtractState(values) {
   const equivalentRight = right.numerator * (commonDenominator / right.denominator);
   const unsimplified = { numerator: equivalentLeft - equivalentRight, denominator: commonDenominator };
   const result = simplifyFraction(unsimplified.numerator, unsimplified.denominator);
-  const tileData = buildResultTilesForFraction(result);
+  const simplified = fractionToText(unsimplified) !== fractionToText(result);
 
   return {
-    primaryHtml: expressionHtml([
-      fractionToHtml(left),
-      '<span>-</span>',
-      fractionToHtml(right),
-      '<span>=</span>',
-      fractionToHtml(result),
-    ]),
-    primaryText: `${fractionToText(left)} - ${fractionToText(right)} = ${fractionToText(result)}`,
-    secondaryText: `The denominators were matched at ${commonDenominator}, then the numerators were subtracted.`,
-    tiles: tileData.tiles,
+    primaryHtml: fractionToHtml(result),
+    secondaryText: `${fractionToText(left)} - ${fractionToText(right)} = ${fractionToText(result)}`,
+    metrics: buildResultMetrics(result),
     steps: [
-      `Find the least common denominator: lcm(${left.denominator}, ${right.denominator}) = ${commonDenominator}.`,
-      `Rename the first fraction: ${fractionToText(left)} = ${equivalentLeft}/${commonDenominator}.`,
-      `Rename the second fraction: ${fractionToText(right)} = ${equivalentRight}/${commonDenominator}.`,
-      `Subtract the numerators: ${equivalentLeft} - ${equivalentRight} = ${unsimplified.numerator}, so the fraction becomes ${fractionToText(unsimplified)}.`,
-      `Simplify the result if needed: ${fractionToText(unsimplified)} = ${fractionToText(result)}.`,
+      {
+        tag: 'Start',
+        expression: expressionHtml([fractionToHtml(left), '<span>-</span>', fractionToHtml(right)]),
+      },
+      {
+        tag: 'Common denominator',
+        note: `LCM of ${left.denominator} and ${right.denominator} = ${commonDenominator}`,
+        expression: expressionHtml([
+          fractionToHtml({ numerator: equivalentLeft, denominator: commonDenominator }),
+          '<span>-</span>',
+          fractionToHtml({ numerator: equivalentRight, denominator: commonDenominator }),
+        ]),
+      },
+      {
+        tag: 'Subtract numerators',
+        expression: fractionToHtml(unsimplified),
+      },
+      {
+        tag: simplified ? 'Simplify result' : 'Result',
+        note: simplified ? `${fractionToText(unsimplified)} simplifies to ${fractionToText(result)}` : 'Already in simplest form.',
+        expression: fractionToHtml(result),
+        isResult: true,
+      },
     ],
     teacherNote:
       'The denominator tells you the size of the parts. Keep that size fixed and only subtract how many parts are left.',
@@ -535,29 +576,28 @@ function buildMultiplyState(values) {
     denominator: left.denominator * right.denominator,
   };
   const result = simplifyFraction(unsimplified.numerator, unsimplified.denominator);
-  const cancelOne = gcd(left.numerator, right.denominator);
-  const cancelTwo = gcd(right.numerator, left.denominator);
-  const tileData = buildResultTilesForFraction(result);
+  const simplified = fractionToText(unsimplified) !== fractionToText(result);
 
   return {
-    primaryHtml: expressionHtml([
-      fractionToHtml(left),
-      '<span>x</span>',
-      fractionToHtml(right),
-      '<span>=</span>',
-      fractionToHtml(result),
-    ]),
-    primaryText: `${fractionToText(left)} x ${fractionToText(right)} = ${fractionToText(result)}`,
-    secondaryText: 'Multiply the top numbers together and the bottom numbers together, then simplify.',
-    tiles: tileData.tiles,
+    primaryHtml: fractionToHtml(result),
+    secondaryText: `${fractionToText(left)} x ${fractionToText(right)} = ${fractionToText(result)}`,
+    metrics: buildResultMetrics(result),
     steps: [
-      `Multiply the numerators: ${left.numerator} x ${right.numerator} = ${unsimplified.numerator}.`,
-      `Multiply the denominators: ${left.denominator} x ${right.denominator} = ${unsimplified.denominator}.`,
-      cancelOne > 1 || cancelTwo > 1
-        ? `A common factor appears across the diagonal, so you could simplify before multiplying to keep the numbers smaller.`
-        : 'There is no useful diagonal cancellation in this example, so multiplying straight across is fine.',
-      `Write the unsimplified answer: ${fractionToText(unsimplified)}.`,
-      `Simplify the final result: ${fractionToText(unsimplified)} = ${fractionToText(result)}.`,
+      {
+        tag: 'Start',
+        expression: expressionHtml([fractionToHtml(left), '<span>x</span>', fractionToHtml(right)]),
+      },
+      {
+        tag: 'Multiply across',
+        note: `${left.numerator} x ${right.numerator} = ${unsimplified.numerator} and ${left.denominator} x ${right.denominator} = ${unsimplified.denominator}`,
+        expression: fractionToHtml(unsimplified),
+      },
+      {
+        tag: simplified ? 'Simplify result' : 'Result',
+        note: simplified ? `${fractionToText(unsimplified)} simplifies to ${fractionToText(result)}` : 'Already in simplest form.',
+        expression: fractionToHtml(result),
+        isResult: true,
+      },
     ],
     teacherNote:
       'Multiplication does not need a common denominator. The shortcut to remember is top with top, bottom with bottom.',
@@ -582,24 +622,31 @@ function buildDivideState(values) {
     denominator: left.denominator * reciprocal.denominator,
   };
   const result = simplifyFraction(unsimplified.numerator, unsimplified.denominator);
-  const tileData = buildResultTilesForFraction(result);
+  const simplified = fractionToText(unsimplified) !== fractionToText(result);
 
   return {
-    primaryHtml: expressionHtml([
-      fractionToHtml(left),
-      '<span>/</span>',
-      fractionToHtml(right),
-      '<span>=</span>',
-      fractionToHtml(result),
-    ]),
-    primaryText: `${fractionToText(left)} / ${fractionToText(right)} = ${fractionToText(result)}`,
-    secondaryText: `Division became multiplication by the reciprocal ${fractionToText(reciprocal)}.`,
-    tiles: tileData.tiles,
+    primaryHtml: fractionToHtml(result),
+    secondaryText: `${fractionToText(left)} / ${fractionToText(right)} = ${fractionToText(result)}`,
+    metrics: buildResultMetrics(result),
     steps: [
-      `Keep the first fraction as ${fractionToText(left)}.`,
-      `Flip the second fraction to its reciprocal: ${fractionToText(right)} becomes ${fractionToText(reciprocal)}.`,
-      `Multiply instead: ${fractionToText(left)} x ${fractionToText(reciprocal)} = ${fractionToText(unsimplified)}.`,
-      `Simplify the answer: ${fractionToText(unsimplified)} = ${fractionToText(result)}.`,
+      {
+        tag: 'Start',
+        expression: expressionHtml([fractionToHtml(left), '<span>/</span>', fractionToHtml(right)]),
+      },
+      {
+        tag: 'Flip second fraction',
+        expression: expressionHtml([fractionToHtml(left), '<span>x</span>', fractionToHtml(reciprocal)]),
+      },
+      {
+        tag: 'Multiply across',
+        expression: fractionToHtml(unsimplified),
+      },
+      {
+        tag: simplified ? 'Simplify result' : 'Result',
+        note: simplified ? `${fractionToText(unsimplified)} simplifies to ${fractionToText(result)}` : 'Already in simplest form.',
+        expression: fractionToHtml(result),
+        isResult: true,
+      },
     ],
     teacherNote:
       'The key move in fraction division is flipping only the second fraction. After that, it is a multiplication problem.',
@@ -615,29 +662,32 @@ function buildSimplifyState(values) {
   const original = normalizeFraction(values.num, values.den);
   const result = simplifyFraction(original.numerator, original.denominator);
   const divisor = gcd(original.numerator, original.denominator);
-  const mixed = improperToMixed(result.numerator, result.denominator);
 
   return {
-    primaryHtml: expressionHtml([
-      fractionToHtml(original),
-      '<span>=</span>',
-      fractionToHtml(result),
-    ]),
-    primaryText: `${fractionToText(original)} = ${fractionToText(result)}`,
-    secondaryText: `Both the numerator and denominator were divided by ${divisor}.`,
-    tiles: [
-      { label: 'Simplest form', value: fractionToText(result) },
-      { label: 'Greatest common divisor', value: String(divisor) },
-      {
-        label: 'Mixed number',
-        value: Math.abs(result.numerator) >= result.denominator ? mixedToText(mixed) : 'Not needed',
-      },
-    ],
+    primaryHtml: fractionToHtml(result),
+    secondaryText: `${fractionToText(original)} = ${fractionToText(result)}`,
+    metrics: buildMetricPair('Simplest form', fractionToText(result), 'Greatest common divisor', String(divisor)),
     steps: [
-      `Find the greatest common divisor: gcd(${original.numerator}, ${original.denominator}) = ${divisor}.`,
-      `Divide the numerator by ${divisor}: ${original.numerator} / ${divisor} = ${result.numerator}.`,
-      `Divide the denominator by ${divisor}: ${original.denominator} / ${divisor} = ${result.denominator}.`,
-      `The simplest form is ${fractionToText(result)}.`,
+      {
+        tag: 'Start',
+        expression: fractionToHtml(original),
+      },
+      {
+        tag: 'Find GCD',
+        note: `gcd(${original.numerator}, ${original.denominator}) = ${divisor}`,
+        expression: '<span>Use the biggest common factor.</span>',
+      },
+      {
+        tag: `Divide by ${divisor}`,
+        note: `${original.numerator} / ${divisor} = ${result.numerator} and ${original.denominator} / ${divisor} = ${result.denominator}`,
+        expression: fractionToHtml(result),
+      },
+      {
+        tag: 'Result',
+        note: 'The fraction is now in its simplest form.',
+        expression: fractionToHtml(result),
+        isResult: true,
+      },
     ],
     teacherNote:
       'Simplifying keeps the value the same. It only rewrites the fraction in a cleaner form.',
@@ -655,19 +705,38 @@ function buildConvertState(values) {
   const improperFromMixed = mixedToImproper(values.mixWhole, values.mixNum, values.mixDen);
 
   return {
-    primaryHtml: `<span class="fc-expression">${fractionToHtml(improper)} <span>=</span> ${mixedToHtml(mixed)} <span>|</span> ${mixedToHtml({ whole: values.mixWhole, numerator: values.mixNum, denominator: values.mixDen })} <span>=</span> ${fractionToHtml(improperFromMixed)}</span>`,
-    primaryText: `${fractionToText(improper)} = ${mixedToText(mixed)} | ${values.mixWhole} ${values.mixNum}/${values.mixDen} = ${fractionToText(improperFromMixed)}`,
-    secondaryText: 'This mode shows one example in each direction so students can compare both conversion rules side by side.',
-    tiles: [
-      { label: 'Improper to mixed', value: mixedToText(mixed) },
-      { label: 'Mixed to improper', value: fractionToText(improperFromMixed) },
-      { label: 'Quick check', value: `${mixed.whole} remainder ${mixed.numerator}` },
-    ],
+    primaryHtml: expressionHtml([
+      fractionToHtml(improper),
+      '<span>&#8646;</span>',
+      mixedToHtml(mixed),
+      '<span>|</span>',
+      mixedToHtml({ whole: values.mixWhole, numerator: values.mixNum, denominator: values.mixDen }),
+      '<span>&#8646;</span>',
+      fractionToHtml(improperFromMixed),
+    ]),
+    secondaryText: `${fractionToText(improper)} = ${mixedToText(mixed)} | ${values.mixWhole} ${values.mixNum}/${values.mixDen} = ${fractionToText(improperFromMixed)}`,
+    metrics: buildMetricPair('Improper to mixed', mixedToText(mixed), 'Mixed to improper', fractionToText(improperFromMixed)),
     steps: [
-      `Improper to mixed: divide ${improper.numerator} by ${improper.denominator}. The whole-number part is ${mixed.whole} and the remainder is ${mixed.numerator}.`,
-      `Write the mixed number as ${mixedToText(mixed)}.`,
-      `Mixed to improper: (${values.mixWhole} x ${values.mixDen}) + ${values.mixNum} = ${safeAbs(values.mixWhole) * values.mixDen + safeAbs(values.mixNum)}.`,
-      `Write the improper fraction as ${fractionToText(improperFromMixed)}.`,
+      {
+        tag: 'Start',
+        expression: expressionHtml([fractionToHtml(improper), '<span>&#8646;</span>', mixedToHtml({ whole: values.mixWhole, numerator: values.mixNum, denominator: values.mixDen })]),
+      },
+      {
+        tag: 'Improper to mixed',
+        note: `${improper.numerator} / ${improper.denominator} gives ${mixed.whole} remainder ${mixed.numerator}`,
+        expression: mixedToHtml(mixed),
+      },
+      {
+        tag: 'Mixed to improper',
+        note: `(${values.mixWhole} x ${values.mixDen}) + ${values.mixNum} = ${safeAbs(values.mixWhole) * values.mixDen + safeAbs(values.mixNum)}`,
+        expression: fractionToHtml(improperFromMixed),
+      },
+      {
+        tag: 'Result',
+        note: 'Both forms show the same value in different ways.',
+        expression: expressionHtml([mixedToHtml(mixed), '<span>|</span>', fractionToHtml(improperFromMixed)]),
+        isResult: true,
+      },
     ],
     teacherNote:
       'A mixed number splits the answer into whole parts plus leftover parts. An improper fraction keeps everything in one fraction.',
@@ -707,25 +776,23 @@ function initFractionCalculator() {
 
   const tabButtons = Array.from(root.querySelectorAll('.fc-op-card'));
   const panels = Array.from(root.querySelectorAll('.fc-mode-panel'));
+  const solveButton = root.querySelector('#fc-solve-btn');
   const resultMain = root.querySelector('#fc-result-main');
   const resultSub = root.querySelector('#fc-result-sub');
   const stepsList = root.querySelector('#fc-steps');
   const teacherNote = root.querySelector('#fc-teacher-note');
-  const modeChip = root.querySelector('#fc-mode-chip');
   const modeLabel = root.querySelector('#fc-mode-label');
   const modeSummary = root.querySelector('#fc-mode-summary-text');
-  const answerTitle = root.querySelector('#fc-answer-title');
-  const modePattern = root.querySelector('#fc-mode-pattern');
-  const modeWarning = root.querySelector('#fc-mode-warning');
-  const metricOperation = root.querySelector('#fc-metric-operation');
-  const metricSimpleLabel = root.querySelector('#fc-metric-simple-label');
-  const metricSimple = root.querySelector('#fc-metric-simple');
-  const metricMixedLabel = root.querySelector('#fc-metric-mixed-label');
-  const metricMixed = root.querySelector('#fc-metric-mixed');
-  const metricRuleLabel = root.querySelector('#fc-metric-rule-label');
-  const metricRule = root.querySelector('#fc-metric-rule');
-  const lessonTitle = document.querySelector('#fc-lesson-title');
-  const lessonCopy = document.querySelector('#fc-lesson-copy');
+  const simpleRuleTitle = root.querySelector('#fc-simple-rule-title');
+  const simpleRuleText = root.querySelector('#fc-simple-rule-text');
+  const watchTitle = root.querySelector('#fc-watch-title');
+  const watchText = root.querySelector('#fc-watch-text');
+  const explanationLessonTitle = document.querySelector('#fc-lesson-title');
+  const explanationLessonCopy = document.querySelector('#fc-lesson-copy');
+  const tipNodes = [1, 2, 3].map((index) => ({
+    title: root.querySelector(`#fc-tip-${index}-title`),
+    body: root.querySelector(`#fc-tip-${index}-body`),
+  }));
 
   const inputGroups = {
     add: {
@@ -781,62 +848,60 @@ function initFractionCalculator() {
     if (!copy) {
       return;
     }
+
     modeLabel.textContent = copy.label;
     modeSummary.textContent = copy.summary;
-    modeChip.textContent = copy.chip;
-    if (answerTitle) {
-      answerTitle.textContent = `${copy.operationName} answer`;
+    simpleRuleTitle.textContent = copy.easyRuleTitle;
+    simpleRuleText.textContent = copy.easyRuleText;
+    watchTitle.textContent = copy.watchTitle;
+    watchText.textContent = copy.watchText;
+
+    if (explanationLessonTitle) {
+      explanationLessonTitle.textContent = copy.lessonTitle;
     }
-    if (modePattern) {
-      modePattern.textContent = copy.pattern;
+    if (explanationLessonCopy) {
+      explanationLessonCopy.textContent = copy.lessonCopy;
     }
-    if (modeWarning) {
-      modeWarning.textContent = copy.warning;
-    }
-    if (metricOperation) {
-      metricOperation.textContent = copy.operationName;
-    }
-    if (metricRuleLabel) {
-      metricRuleLabel.textContent = 'Main rule';
-    }
-    if (metricRule) {
-      metricRule.textContent = copy.rule;
-    }
-    if (lessonTitle) {
-      lessonTitle.textContent = copy.lessonTitle;
-    }
-    if (lessonCopy) {
-      lessonCopy.textContent = copy.lessonCopy;
-    }
+
+    copy.tips.forEach((tip, index) => {
+      const node = tipNodes[index];
+      if (!node) {
+        return;
+      }
+      node.title.textContent = tip.title;
+      node.body.textContent = tip.body;
+    });
   }
 
-  function renderState(mode, state) {
+  function renderSteps(steps) {
+    stepsList.innerHTML = steps
+      .map(
+        (step, index) => `
+          <div class="fc-step-row${step.isResult ? ' is-result' : ''}">
+            <div class="fc-step-meta">
+              <div class="fc-step-head">
+                <span class="fc-step-index">STEP ${index + 1}</span>
+                <span class="fc-step-tag">${step.tag}</span>
+              </div>
+              ${step.note ? `<span class="fc-step-note">${step.note}</span>` : ''}
+            </div>
+            <div class="fc-step-expression">${step.expression}</div>
+          </div>`
+      )
+      .join('');
+  }
+
+  function renderState(state) {
     resultMain.innerHTML = state.primaryHtml;
     resultSub.textContent = state.secondaryText;
-    stepsList.innerHTML = state.steps.map((step) => `<li>${step}</li>`).join('');
+    renderSteps(state.steps);
     teacherNote.textContent = state.teacherNote;
-    const [firstTile, secondTile] = state.tiles;
-    if (metricSimpleLabel && firstTile) {
-      metricSimpleLabel.textContent = firstTile.label;
-    }
-    if (metricSimple && firstTile) {
-      metricSimple.textContent = firstTile.value;
-    }
-    if (metricMixedLabel && secondTile) {
-      metricMixedLabel.textContent = secondTile.label;
-    }
-    if (metricMixed && secondTile) {
-      metricMixed.textContent = secondTile.value;
-    }
-    if (mode === 'convert' && metricRuleLabel) {
-      metricRuleLabel.textContent = 'Conversion rule';
-    }
   }
 
   function calculateAndRender(mode) {
     const values = readValues(mode);
     const state = evaluateFractionMode(mode, values);
-    renderState(mode, state);
+    renderState(state);
   }
 
   function activateMode(mode) {
@@ -859,15 +924,15 @@ function initFractionCalculator() {
     button.addEventListener('click', () => activateMode(button.dataset.mode));
   });
 
-  root.querySelectorAll('[data-calc-mode]').forEach((button) => {
-    button.addEventListener('click', () => calculateAndRender(button.dataset.calcMode));
+  solveButton?.addEventListener('click', () => {
+    calculateAndRender(currentMode);
   });
 
   Object.entries(inputGroups).forEach(([mode, group]) => {
     Object.values(group).forEach((input) => {
-      input?.addEventListener('change', () => {
+      input?.addEventListener('input', () => {
         if (currentMode === mode) {
-          calculateAndRender(mode);
+          updateModeCopy(mode);
         }
       });
     });

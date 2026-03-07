@@ -254,6 +254,29 @@
       "outputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.624f2a49.css",
       "criticalOutputFile": "public/assets/css/route-bundles/finance-calculators-present-value-of-annuity-calculator.critical.7fce6172.css"
     },
+    "/math/fraction-calculator/": {
+      "calculatorId": "fraction-calculator",
+      "relPath": "math/fraction-calculator",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/math-fraction-calculator.814ca4a7.css",
+      "deferredHref": "/assets/css/route-bundles/math-fraction-calculator.814ca4a7.css",
+      "criticalCss": "/assets/css/route-bundles/math-fraction-calculator.critical.94d762c1.css",
+      "hash": "814ca4a7",
+      "criticalHash": "94d762c1",
+      "fullBytes": 106120,
+      "criticalBytes": 61040,
+      "sources": [
+        "/assets/css/theme-premium-dark.css",
+        "/assets/css/base.css",
+        "/assets/css/core-tokens.css",
+        "/assets/css/core-shell.css",
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/math/fraction-calculator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/math-fraction-calculator.814ca4a7.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/math-fraction-calculator.critical.94d762c1.css"
+    },
     "/math/algebra/quadratic-equation/": {
       "calculatorId": "quadratic-equation",
       "relPath": "math/algebra/quadratic-equation",
