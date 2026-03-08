@@ -28,6 +28,12 @@ test.describe('Commission Calculator', () => {
 
     const flatResult = await page.locator('#comm-result').textContent();
     expect(parseNumber(flatResult)).toBeCloseTo(1500, 2);
+    await expect(page.locator('#comm-tier-summary .comm-tier-summary-item')).toHaveCount(0);
+    await expect(page.locator('#comm-tier-summary')).toContainText('Flat rate 7.50% applies to the full sale amount.');
+    await expect(page.locator('#comm-chart-placeholder')).toBeVisible();
+    await expect(page.locator('#comm-chart-donut')).toBeHidden();
+    await expect(page.locator('#comm-chart-card')).toBeVisible();
+    await expect(page.locator('#comm-chart-legend .comm-chart-legend-item')).toHaveCount(1);
 
     await page.click('label[for="comm-mode-tiered"]');
     const tierSection = page.locator('#comm-tiered-section');
@@ -54,5 +60,16 @@ test.describe('Commission Calculator', () => {
     expect(parseNumber(tieredResult)).toBeCloseTo(3050, 2);
 
     await expect(page.locator('#comm-breakdown-body tr')).toHaveCount(3);
+    await expect(page.locator('#comm-tier-summary .comm-tier-summary-item')).toHaveCount(3);
+    await expect(page.locator('#comm-tier-summary')).toContainText('$0.00 to $10,000.00');
+    await expect(page.locator('#comm-tier-summary')).toContainText('Above $25,000.00');
+    await expect(page.locator('#comm-tier-summary')).toContainText('$1,500.00');
+    await expect(page.locator('#comm-tier-summary')).toContainText('49.18% share');
+    await expect(page.locator('#comm-chart-placeholder')).toBeHidden();
+    await expect(page.locator('#comm-chart-donut')).toBeVisible();
+    await expect(page.locator('#comm-chart-subtitle')).toContainText('3 tiers contributing');
+    await expect(page.locator('#comm-chart-center-value')).toContainText('49.18%');
+    await expect(page.locator('#comm-chart-legend .comm-chart-legend-item')).toHaveCount(3);
+    await expect(page.locator('#comm-chart-legend')).toContainText('$1,500.00');
   });
 });
