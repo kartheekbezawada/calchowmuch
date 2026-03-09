@@ -205,43 +205,125 @@ function updateCapacityBar(data) {
   const root = document.querySelector('#loan-borrow-explanation');
   if (!root) return;
 
-  // Safety check for data
-  const income = data.monthlyIncome || 0;
-  if (income <= 0) {
-    // Clear segments if income is zero or invalid
-    const segments = root.querySelectorAll('[data-bor^="cap-"]');
-    segments.forEach((el) => el.style.setProperty('--seg-width', '0%'));
-    const texts = root.querySelectorAll('[data-bor$="-text"]');
-    texts.forEach((el) => (el.textContent = ''));
-    return;
-  }
+  const stack = root.querySelector('[data-bor="cap-stack"]');
+  const hoverLabel = root.querySelector('[data-bor="cap-hover-label"]');
+  const hoverValue = root.querySelector('[data-bor="cap-hover-value"]');
+  const segExpenses = root.querySelector('[data-bor="seg-expenses"]');
+  const segDebts = root.querySelector('[data-bor="seg-debts"]');
+  const segMortgage = root.querySelector('[data-bor="seg-mortgage"]');
+  const segBuffer = root.querySelector('[data-bor="seg-buffer"]');
 
-  const setSeg = (key, val, max) => {
-    const el = root.querySelector(`[data-bor="${key}"]`);
-    const txt = root.querySelector(`[data-bor="${key}-text"]`);
-    if (el) el.style.setProperty('--seg-width', `${Math.max(0, (val / max) * 100).toFixed(1)}%`);
-    if (txt) txt.textContent = (val / max) * 100 >= 8 ? fmt(Math.round(val)) : '';
-  };
+  const income = Number(data.monthlyIncome) || 0;
+  const expenses = Math.max(0, Number(data.expensesMonthly) || 0);
+  const debts = Math.max(0, Number(data.debtMonthly) || 0);
+  const mortgage = Math.max(0, Number(data.monthlyPayment) || 0);
+  const buffer = Math.max(0, income - expenses - debts - mortgage);
+  const totalChartValue = expenses + debts + mortgage + buffer;
 
-  setSeg('cap-expenses', data.expensesMonthly, income);
-  setSeg('cap-debts', data.debtMonthly, income);
-  setSeg('cap-mortgage', data.monthlyPayment, income);
-
-  const buffer = Math.max(
-    0,
-    income - data.expensesMonthly - data.debtMonthly - data.monthlyPayment
-  );
-  setSeg('cap-buffer', buffer, income);
-
-  // Legend
   const setLeg = (key, val) => {
     const el = root.querySelector(`[data-bor="legend-${key}"]`);
     if (el) el.textContent = fmt(Math.round(val));
   };
-  setLeg('expenses', data.expensesMonthly);
-  setLeg('debts', data.debtMonthly);
-  setLeg('mortgage', data.monthlyPayment);
+
+  setLeg('expenses', expenses);
+  setLeg('debts', debts);
+  setLeg('mortgage', mortgage);
   setLeg('buffer', buffer);
+
+  const setHoverText = (label, pct) => {
+    if (hoverLabel) hoverLabel.textContent = label;
+    if (hoverValue) hoverValue.textContent = `${pct.toFixed(1)}%`;
+  };
+
+  const resetHoverText = () => {
+    if (hoverLabel) hoverLabel.textContent = 'Tap or hover';
+    if (hoverValue) hoverValue.textContent = '--%';
+  };
+
+  if (income <= 0 || totalChartValue <= 0) {
+    if (stack) {
+      stack.setAttribute('aria-label', 'Monthly income capacity breakdown unavailable');
+    }
+    if (hoverLabel) hoverLabel.textContent = 'No data';
+    if (hoverValue) hoverValue.textContent = '--%';
+    [segExpenses, segDebts, segMortgage, segBuffer].forEach((segment) => {
+      if (!segment) return;
+      segment.style.flexBasis = '0%';
+      segment.style.opacity = '0';
+      segment.style.pointerEvents = 'none';
+      segment.classList.remove('is-active');
+    });
+    return;
+  }
+
+  const capPercent = (value) => Math.max(0, (value / totalChartValue) * 100);
+  const expensesPct = capPercent(expenses);
+  const debtsPct = capPercent(debts);
+  const mortgagePct = capPercent(mortgage);
+  const bufferPct = Math.max(0, 100 - expensesPct - debtsPct - mortgagePct);
+
+  const segments = [
+    { el: segExpenses, label: 'Expenses', pct: expensesPct },
+    { el: segDebts, label: 'Debts', pct: debtsPct },
+    { el: segMortgage, label: 'Mortgage', pct: mortgagePct },
+    { el: segBuffer, label: 'Buffer', pct: bufferPct },
+  ];
+
+  const setActiveSegment = (segment) => {
+    segments.forEach((entry) => entry.el?.classList.remove('is-active'));
+    if (!segment || !segment.el || segment.pct <= 0.01) {
+      resetHoverText();
+      return;
+    }
+    segment.el.classList.add('is-active');
+    setHoverText(segment.label, segment.pct);
+  };
+
+  let pinnedSegment = null;
+
+  segments.forEach((segment) => {
+    if (!segment.el) {
+      return;
+    }
+
+    segment.el.style.flexBasis = `${segment.pct.toFixed(1)}%`;
+    segment.el.style.opacity = segment.pct > 0.01 ? '1' : '0';
+    segment.el.style.pointerEvents = segment.pct > 0.01 ? 'auto' : 'none';
+    segment.el.dataset.label = segment.label;
+    segment.el.dataset.pct = segment.pct.toFixed(1);
+    segment.el.setAttribute('tabindex', segment.pct > 0.01 ? '0' : '-1');
+    segment.el.setAttribute('title', `${segment.label}: ${segment.pct.toFixed(1)}%`);
+    segment.el.setAttribute('aria-label', `${segment.label} ${segment.pct.toFixed(1)} percent`);
+
+    segment.el.onmouseenter = () => setActiveSegment(segment);
+    segment.el.onfocus = segment.el.onmouseenter;
+    segment.el.onmouseleave = () => setActiveSegment(pinnedSegment);
+    segment.el.onblur = segment.el.onmouseleave;
+    segment.el.onclick = () => {
+      if (segment.pct <= 0.01) return;
+      pinnedSegment = segment;
+      setActiveSegment(segment);
+    };
+    segment.el.onkeydown = (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      pinnedSegment = segment;
+      setActiveSegment(segment);
+    };
+  });
+
+  pinnedSegment = segments.reduce(
+    (best, current) => (!best || current.pct > best.pct ? current : best),
+    null
+  );
+  setActiveSegment(pinnedSegment);
+
+  if (stack) {
+    stack.setAttribute(
+      'aria-label',
+      `Monthly income capacity breakdown: Expenses ${expensesPct.toFixed(1)} percent, Debts ${debtsPct.toFixed(1)} percent, Mortgage ${mortgagePct.toFixed(1)} percent, Buffer ${bufferPct.toFixed(1)} percent`
+    );
+  }
 }
 
 function renderScenarioTable(data) {

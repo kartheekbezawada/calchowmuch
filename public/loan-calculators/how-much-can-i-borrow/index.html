@@ -1730,6 +1730,122 @@
     <noscript>
       <link rel="stylesheet" href="/assets/css/route-bundles/loan-calculators-how-much-can-i-borrow.81396108.css" />
     </noscript>
+    <style data-route-patch="capacity-stacked-bar-fix">
+      #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
+        grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.35fr);
+        align-items: start;
+        gap: 1rem;
+      }
+
+      #loan-borrow-explanation .bor-capacity-pane,
+      #loan-borrow-explanation .bor-scenarios-pane {
+        display: grid;
+        gap: 0.72rem;
+        min-width: 0;
+      }
+
+      #loan-borrow-explanation .bor-capacity-visual {
+        display: grid;
+        width: 100%;
+      }
+
+      #loan-borrow-explanation .bor-capacity-stack-wrap {
+        width: min(100%, 480px);
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      #loan-borrow-explanation .bor-capacity-stack-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      #loan-borrow-explanation .bor-capacity-stack-meta span {
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: rgba(191, 219, 254, 0.82);
+      }
+
+      #loan-borrow-explanation .bor-capacity-stack-meta strong {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: rgba(248, 250, 252, 0.99);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #loan-borrow-explanation .bor-capacity-stack {
+        display: flex;
+        width: 100%;
+        min-height: 44px;
+        border-radius: 0.8rem;
+        overflow: hidden;
+        border: 1px solid rgba(148, 163, 184, 0.26);
+        background: rgba(15, 23, 42, 0.62);
+      }
+
+      #loan-borrow-explanation .bor-capacity-segment {
+        min-width: 0;
+        border-right: 1px solid rgba(15, 23, 42, 0.5);
+      }
+
+      #loan-borrow-explanation .bor-capacity-segment:last-child {
+        border-right: 0;
+      }
+
+      #loan-borrow-explanation .bor-capacity-segment.is-active {
+        filter: brightness(1.12);
+        box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.55);
+      }
+
+      #loan-borrow-explanation .bor-capacity-segment-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.35rem;
+      }
+
+      #loan-borrow-explanation .bor-capacity-segment--mortgage {
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      }
+
+      #loan-borrow-explanation .bor-capacity-legend {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      #loan-borrow-explanation .bor-capacity-legend-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+      }
+
+      #loan-borrow-explanation .bor-capacity-legend-item strong {
+        justify-self: end;
+        text-align: right;
+        min-width: 7ch;
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (max-width: 1220px) {
+        #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #loan-borrow-explanation .bor-capacity-stack-wrap {
+          width: 100%;
+        }
+
+        #loan-borrow-explanation .bor-capacity-legend {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/#webpage","name":"How Much Can I Borrow | Mortgage Affordability | CalcHowMuch","url":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/","description":"Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/#softwareapplication","name":"How Much Can I Borrow Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/","description":"Estimate your borrowing power using income multiples or payment-to-income affordability checks.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Income multiple borrowing estimate","Payment-to-income affordability mode","Maximum borrow and property budget","Rate and term scenario comparison"],"keywords":"how much can i borrow calculator, mortgage affordability calculator, income multiple mortgage, payment to income calculator, borrowing power calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/#faq","mainEntity":[{"@type":"Question","name":"Is this a guaranteed amount I can borrow?","acceptedAnswer":{"@type":"Answer","text":"No. This is only an estimate. Final approval depends on your credit score, employment stability, and the lender's own policies and affordability criteria."}},{"@type":"Question","name":"Why is my borrowing less than 5x my income?","acceptedAnswer":{"@type":"Answer","text":"Because lenders adjust for your monthly expenses, existing debt commitments, and interest rate stress tests that simulate higher future rates."}},{"@type":"Question","name":"Can I borrow more with a longer loan term?","acceptedAnswer":{"@type":"Answer","text":"Often yes. A longer term lowers monthly payments and can increase affordability, but you will pay significantly more interest over the life of the loan. After estimating borrowing power, test the actual repayment profile in the Home Loan Calculator ."}},{"@type":"Question","name":"Do different lenders give different amounts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each lender has its own criteria for income multiples, expense allowances, and stress test rates. Shopping around or using a broker can help."}},{"@type":"Question","name":"What is an income multiple?","acceptedAnswer":{"@type":"Answer","text":"An income multiple is a simple multiplier applied to your annual salary. For example, at 4.5x on a 90,000 salary, the maximum loan would be 405,000."}},{"@type":"Question","name":"How does the payment-to-income method work?","acceptedAnswer":{"@type":"Answer","text":"It calculates the maximum monthly payment you can afford after subtracting expenses and debts from your monthly income, then works backwards to find the loan amount."}},{"@type":"Question","name":"Does a larger deposit increase how much I can borrow?","acceptedAnswer":{"@type":"Answer","text":"A deposit increases your total purchasing power but does not directly change the loan amount. Lenders base borrowing on income and affordability, not deposit size. To see how deposit changes risk bands, use the Loan-to-Value (LTV) Calculator ."}},{"@type":"Question","name":"Should I use gross or net income?","acceptedAnswer":{"@type":"Answer","text":"Gross income is typically used for income multiple calculations. Net monthly income is more appropriate for payment-to-income checks as it reflects your actual take-home pay."}},{"@type":"Question","name":"How do interest rates affect my borrowing power?","acceptedAnswer":{"@type":"Answer","text":"Higher rates mean higher monthly payments for the same loan amount, which reduces the maximum you can borrow. Even a 0.5% change can shift borrowing power significantly. You can stress-test rate moves further with the Interest Rate Change Calculator ."}},{"@type":"Question","name":"Should I speak to a mortgage broker?","acceptedAnswer":{"@type":"Answer","text":"If you are serious about buying, a broker can match you with the lender most likely to approve your application and secure the best rate for your circumstances."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"How Much Can I Borrow","item":"https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
@@ -2031,95 +2147,394 @@
 
 
     <div id="loan-borrow-explanation">
-  <div class="bor-intro-text">
-    <h3>About This Estimate</h3>
-    <ol>
-      <li>
-        Lenders use a mix of income multiples and affordability checks to estimate how much you can
-        comfortably repay each month.
-      </li>
-      <li>
-        They also stress test applications at higher interest rates to ensure your budget could
-        handle future rate increases.
-      </li>
-      <li>
-        When your income, expenses, debts, interest rate, or loan term change, your estimated
-        borrowing can change too.
-      </li>
-      <li>
-        Different lenders apply different rules, so the amount you are approved for may be higher or
-        lower than this estimate.
-      </li>
-    </ol>
-  </div>
-
-  <section class="bor-exp-section bor-exp-section--capacity">
-    <h3>Your Income Capacity</h3>
-    <div class="bor-capacity-bar" role="img" aria-label="Monthly income capacity breakdown">
-      <div class="bor-capacity-segment bor-capacity-segment--expenses" data-bor="cap-expenses">
-        <span class="bor-capacity-text" data-bor="cap-expenses-text"></span>
+  <section class="bor-exp-section bor-exp-section--capacity-scenarios">
+    <div class="bor-capacity-pane">
+      <h3>Your Income Capacity</h3>
+      <div class="bor-capacity-visual">
+        <div class="bor-capacity-stack-wrap">
+          <div class="bor-capacity-stack-meta">
+            <span data-bor="cap-hover-label">Tap or hover</span>
+            <strong data-bor="cap-hover-value">--%</strong>
+          </div>
+          <div class="bor-capacity-stack" data-bor="cap-stack" role="img" aria-label="Monthly income capacity breakdown">
+            <div class="bor-capacity-segment bor-capacity-segment--expenses" data-bor="seg-expenses" tabindex="0">
+              <span class="bor-capacity-segment-label">Expenses</span>
+            </div>
+            <div class="bor-capacity-segment bor-capacity-segment--debts" data-bor="seg-debts" tabindex="0">
+              <span class="bor-capacity-segment-label">Debts</span>
+            </div>
+            <div class="bor-capacity-segment bor-capacity-segment--mortgage" data-bor="seg-mortgage" tabindex="0">
+              <span class="bor-capacity-segment-label">Mortgage</span>
+            </div>
+            <div class="bor-capacity-segment bor-capacity-segment--buffer" data-bor="seg-buffer" tabindex="0">
+              <span class="bor-capacity-segment-label">Buffer</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="bor-capacity-segment bor-capacity-segment--debts" data-bor="cap-debts">
-        <span class="bor-capacity-text" data-bor="cap-debts-text"></span>
-      </div>
-      <div class="bor-capacity-segment bor-capacity-segment--mortgage" data-bor="cap-mortgage">
-        <span class="bor-capacity-text" data-bor="cap-mortgage-text"></span>
-      </div>
-      <div class="bor-capacity-segment bor-capacity-segment--buffer" data-bor="cap-buffer">
-        <span class="bor-capacity-text" data-bor="cap-buffer-text"></span>
+      <div class="bor-capacity-legend">
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--expenses" data-bor="cap-expenses">
+          <span>Expenses</span>
+          <strong data-bor="legend-expenses"></strong>
+        </div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--debts" data-bor="cap-debts">
+          <span>Debts</span>
+          <strong data-bor="legend-debts"></strong>
+        </div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--mortgage" data-bor="cap-mortgage">
+          <span>Mortgage</span>
+          <strong data-bor="legend-mortgage"></strong>
+        </div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--buffer" data-bor="cap-buffer">
+          <span>Buffer</span>
+          <strong data-bor="legend-buffer"></strong>
+        </div>
       </div>
     </div>
-    <div class="bor-capacity-legend">
-      <div class="bor-capacity-legend-item bor-capacity-legend-item--expenses">
-        <span>Expenses</span>
-        <strong data-bor="legend-expenses"></strong>
+
+    <div class="bor-scenarios-pane">
+      <div class="bor-scenario-header">
+        <h3>Rate Scenarios</h3>
       </div>
-      <div class="bor-capacity-legend-item bor-capacity-legend-item--debts">
-        <span>Debts</span>
-        <strong data-bor="legend-debts"></strong>
-      </div>
-      <div class="bor-capacity-legend-item bor-capacity-legend-item--mortgage">
-        <span>Mortgage</span>
-        <strong data-bor="legend-mortgage"></strong>
-      </div>
-      <div class="bor-capacity-legend-item bor-capacity-legend-item--buffer">
-        <span>Buffer</span>
-        <strong data-bor="legend-buffer"></strong>
+      <div class="table-scroll" id="bor-scenario-wrap" tabindex="0">
+        <table class="calculator-table" id="bor-scenario-table">
+          <thead>
+            <tr>
+              <th scope="col">Rate</th>
+              <th scope="col">Max Borrow</th>
+              <th scope="col">Est. Monthly</th>
+              <th scope="col">Max Property</th>
+            </tr>
+          </thead>
+          <tbody id="bor-scenario-body">
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr aria-hidden="true">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <section class="bor-exp-section bor-exp-section--scenarios">
-    <div class="bor-scenario-header">
-      <h3>Rate Scenarios</h3>
-    </div>
-    <div class="table-scroll" id="bor-scenario-wrap" tabindex="0">
-      <table class="calculator-table" id="bor-scenario-table">
+  <section class="bor-exp-section bor-exp-section--guide" id="bor-section-how-to-guide">
+    <h3>How To Guide</h3>
+
+    <h4>How much can I borrow?</h4>
+    <p>
+      How much you can borrow depends on your income, existing debts, interest rate, loan term,
+      deposit, and the lender's affordability rules. In most cases, borrowing power rises when
+      income is stable, debts are lower, and the repayment period is longer, but total interest
+      usually increases as well.
+    </p>
+
+    <h4>What does a how much can I borrow calculator tell me?</h4>
+    <p>
+      This calculator is built to answer several question-based searches users commonly have:
+    </p>
+    <ul class="bor-guide-list">
+      <li>How much could I borrow based on my income and debts?</li>
+      <li>Can I increase my borrowing amount by lowering debts or expenses?</li>
+      <li>How does changing the interest rate affect borrowing power?</li>
+      <li>Why does changing the loan term change how much I can borrow?</li>
+      <li>Should I borrow the maximum amount or choose a safer borrowing limit?</li>
+    </ul>
+
+    <h4>What affects how much I can borrow?</h4>
+    <p>
+      A borrowing calculator estimates how large a loan may be affordable based on your finances.
+      It is not just about salary. Lenders usually want to know whether the payment fits
+      comfortably into your monthly budget after other obligations are covered.
+    </p>
+    <ul class="bor-guide-list">
+      <li><strong>Income:</strong> higher and more stable income usually supports a larger loan.</li>
+      <li><strong>Existing debt:</strong> car loans, credit cards, student loans, and personal loans reduce borrowing power.</li>
+      <li><strong>Interest rate:</strong> higher rates reduce how much principal the same monthly payment can support.</li>
+      <li><strong>Loan term:</strong> a longer term lowers monthly payments and may increase borrowing capacity.</li>
+      <li><strong>Deposit or down payment:</strong> a larger upfront contribution can reduce risk and improve terms.</li>
+      <li><strong>Credit profile:</strong> stronger credit may help you qualify for better rates.</li>
+      <li><strong>Living costs and commitments:</strong> regular expenses matter because affordability is about real cash flow.</li>
+    </ul>
+
+    <h4>Quick comparison table</h4>
+    <div class="table-scroll" tabindex="0">
+      <table class="calculator-table">
         <thead>
           <tr>
-            <th scope="col">Rate</th>
-            <th scope="col">Max Borrow</th>
-            <th scope="col">Est. Monthly</th>
-            <th scope="col">Max Property</th>
+            <th scope="col">Factor</th>
+            <th scope="col">Usually increases borrowing</th>
+            <th scope="col">Usually reduces borrowing</th>
           </tr>
         </thead>
-        <tbody id="bor-scenario-body"></tbody>
+        <tbody>
+          <tr>
+            <td>Income</td>
+            <td>Higher, stable earnings</td>
+            <td>Irregular or lower earnings</td>
+          </tr>
+          <tr>
+            <td>Debt</td>
+            <td>Low monthly debt payments</td>
+            <td>High existing debt obligations</td>
+          </tr>
+          <tr>
+            <td>Interest rate</td>
+            <td>Lower rate</td>
+            <td>Higher rate</td>
+          </tr>
+          <tr>
+            <td>Loan term</td>
+            <td>Longer repayment period</td>
+            <td>Shorter repayment period</td>
+          </tr>
+          <tr>
+            <td>Deposit</td>
+            <td>Larger deposit</td>
+            <td>Smaller deposit</td>
+          </tr>
+          <tr>
+            <td>Credit profile</td>
+            <td>Strong repayment history</td>
+            <td>Weak or limited credit history</td>
+          </tr>
+        </tbody>
       </table>
     </div>
+
+    <h4>How do lenders calculate how much I can borrow?</h4>
+    <p>
+      Most borrowing decisions combine two ideas: income-based affordability and payment-based
+      affordability.
+    </p>
+    <p class="bor-formula-block">
+      <strong>Gross Monthly Income</strong> = Annual Income / 12
+    </p>
+    <p class="bor-formula-block">
+      <strong>Debt-to-Income Ratio (DTI)</strong> = (Total Monthly Debt Payments / Gross Monthly
+      Income) x 100
+    </p>
+    <p>
+      A lower DTI usually means more room for a new loan payment. If you earn 5,000 per month
+      before tax and already pay 800 toward debts, your DTI is 16%.
+    </p>
+    <p class="bor-formula-block">
+      <strong>Loan Amount</strong> = M x [1 - (1 + r)^-n] / r
+    </p>
+    <ul class="bor-guide-list">
+      <li><strong>M:</strong> monthly payment you can afford.</li>
+      <li><strong>r:</strong> monthly interest rate.</li>
+      <li><strong>n:</strong> total number of monthly payments.</li>
+    </ul>
+    <p>
+      If the rate rises, the same payment supports a smaller loan. If the term gets longer, the
+      same payment supports a bigger loan, but you pay interest for more years.
+    </p>
+    <p class="bor-formula-block">
+      <strong>Loan-to-Value (LTV)</strong> = (Loan Amount / Property Value) x 100
+    </p>
+    <p>
+      Example: if the property costs 300,000 and the loan is 240,000, the LTV is 80%. Lower LTV
+      often reduces risk for the lender and may improve your available options.
+    </p>
+
+    <h4>How to use the calculator</h4>
+    <ol class="bor-guide-list">
+      <li>Enter your income and use realistic figures.</li>
+      <li>Add monthly debts including cards, car finance, and personal loans.</li>
+      <li>Choose a realistic interest rate.</li>
+      <li>Select the loan term.</li>
+      <li>Enter your deposit or down payment.</li>
+      <li>Review maximum borrowing and estimated monthly payment together.</li>
+    </ol>
+    <p>
+      A smart way to use this calculator is to test three scenarios: base case, conservative case,
+      and optimistic case.
+    </p>
+
+    <h4>Why does interest rate change borrowing so much?</h4>
+    <p>
+      Your monthly payment covers both principal and interest. When interest rises, more of each
+      payment goes toward interest, leaving less available to repay principal.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="calculator-table">
+        <thead>
+          <tr>
+            <th scope="col">Monthly Payment</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Term</th>
+            <th scope="col">Estimated Loan Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1,500</td>
+            <td>6%</td>
+            <td>30 years</td>
+            <td>250,187</td>
+          </tr>
+          <tr>
+            <td>1,500</td>
+            <td>6%</td>
+            <td>20 years</td>
+            <td>209,371</td>
+          </tr>
+          <tr>
+            <td>1,500</td>
+            <td>5%</td>
+            <td>30 years</td>
+            <td>279,422</td>
+          </tr>
+          <tr>
+            <td>2,000</td>
+            <td>6%</td>
+            <td>30 years</td>
+            <td>333,583</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Can I increase how much I can borrow?</h4>
+    <ul class="bor-guide-list">
+      <li><strong>Lower existing debt:</strong> improves DTI and frees monthly cash flow.</li>
+      <li><strong>Increase your deposit:</strong> reduces required loan size and may improve terms.</li>
+      <li><strong>Improve your credit profile:</strong> may help you qualify for better rates.</li>
+      <li><strong>Choose a longer term carefully:</strong> can raise borrowing power but usually increases total interest.</li>
+      <li><strong>Apply with realistic numbers:</strong> accurate inputs produce better decisions.</li>
+    </ul>
+
+    <h4>Safe borrowing amount versus maximum borrowing amount</h4>
+    <p>
+      The maximum borrowing amount is the upper estimate a lender or calculator may show. The safe
+      borrowing amount is what still leaves room in your budget for savings, emergencies, repairs,
+      rising costs, and normal life.
+    </p>
+    <p>
+      A useful rule is to compare the estimated payment against your full monthly budget, not only
+      lender approval logic.
+    </p>
+    <ul class="bor-guide-list">
+      <li>Emergency savings</li>
+      <li>Transport costs</li>
+      <li>Utilities</li>
+      <li>Childcare or family support</li>
+      <li>Insurance</li>
+      <li>Maintenance and repairs</li>
+      <li>Future rate changes where applicable</li>
+    </ul>
+
+    <h4>Worked Example</h4>
+    <p>
+      Suppose gross monthly income is 6,000 and existing monthly debts are 700. After reviewing
+      your budget, 1,800 per month is a comfortable maximum for the new loan. If the rate is 5.5%
+      and the term is 25 years, the calculator estimates how much principal that payment can
+      support. If the rate increases, the estimate drops. If the term increases, the estimate
+      rises.
+    </p>
+    <p>
+      This is why a borrowing calculator is best used as a planning tool. It helps you understand
+      the moving parts before you apply.
+    </p>
   </section>
 
-  <section class="bor-exp-section bor-exp-section--faq">
+  <section class="bor-exp-section bor-exp-section--related">
     <h3>Related Calculators</h3>
-    <div class="bor-faq-grid">
-      <div class="bor-faq-card">
+    <style>
+      #loan-borrow-explanation .bor-related-card {
+        padding: 0.75rem 0.82rem;
+        border-radius: 12px;
+        background: linear-gradient(155deg, rgba(10, 20, 38, 0.92), rgba(18, 34, 58, 0.86));
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-top: 2px solid rgba(245, 158, 11, 0.45);
+        display: grid;
+        gap: 0.4rem;
+        transition:
+          transform 0.2s ease,
+          border-color 0.25s ease,
+          box-shadow 0.3s ease;
+      }
+
+      #loan-borrow-explanation .bor-related-card:hover {
+        transform: translateY(-2px);
+        border-top-color: rgba(245, 158, 11, 0.8);
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+      }
+
+      #loan-borrow-explanation .bor-related-card h4 {
+        margin: 0;
+        font-size: 0.86rem;
+        line-height: 1.3;
+        color: rgba(226, 232, 240, 0.98);
+      }
+
+      #loan-borrow-explanation .bor-related-card p {
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        color: rgba(203, 213, 225, 0.92);
+      }
+    </style>
+    <div class="bor-faq-grid bor-related-grid">
+      <div class="bor-related-card">
         <h4><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a></h4>
         <p>Convert your borrowing estimate into an actual monthly repayment and full amortization schedule.</p>
       </div>
-      <div class="bor-faq-card">
+      <div class="bor-related-card">
         <h4><a href="/loan-calculators/ltv-calculator/">Loan-to-Value (LTV) Calculator</a></h4>
         <p>Check whether your deposit is the real limit or whether income and affordability are the bigger constraint.</p>
       </div>
-      <div class="bor-faq-card">
+      <div class="bor-related-card">
         <h4><a href="/loan-calculators/interest-rate-change-calculator/">Interest Rate Change Calculator</a></h4>
         <p>Stress-test borrowing power against higher rates before committing to a target property price.</p>
       </div>
@@ -2227,6 +2642,17 @@
       </div>
     </div>
   </section>
+
+  <section class="bor-exp-section bor-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul class="bor-note-list">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs provided.</li>
+      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+      <li><strong>Assumptions:</strong> Assumes constant interest rate and regular compounding/payment intervals.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>
 
   </div>
@@ -2265,6 +2691,6 @@
 
     </div>
     <script type="module" src="/assets/js/core-shell.js"></script>
-    <script type="module" src="/calculators/loan-calculators/how-much-can-i-borrow/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/loan-calculators/how-much-can-i-borrow/module.js?v=20260309b"></script>
   </body>
 </html>
