@@ -72,54 +72,6 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15 minutes, you should apply that policy separately.',
       },
     },
-    {
-      '@type': 'Question',
-      name: 'How do I calculate split shifts with two work periods?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Switch to Split Shift mode, enter each segment start and end time, then apply one total unpaid break.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I leave Segment 2 blank in split shift mode?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Segment 2 is optional. If left blank, only Segment 1 is used.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I calculate weekly work hours for multiple days?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Use Weekly Total mode, enter days you worked, and the calculator adds total worked time and break deductions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What if my unpaid break is longer than the shift?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The calculator shows an error because unpaid break minutes cannot exceed worked minutes.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does this calculator include overtime pay rules?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. It calculates worked time only. Overtime pay policies depend on employer and local regulations.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I use this for timesheets and payroll prep?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. It helps you prepare hours in HH:MM and decimal format, but your payroll system may apply additional rounding rules.',
-      },
-    },
   ],
 };
 

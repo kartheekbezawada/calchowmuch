@@ -28,49 +28,47 @@ const FAQ_ITEMS = [
   {
     question: 'What does the Energy-Based Nap Selector do?',
     answer:
-      'It recommends a nap length based on your selected goal and start time, then shows wake-up times for the primary and alternative options.',
+      'It maps your selected goal and start time to a deterministic nap duration and wake-up recommendation with alternatives.',
   },
   {
     question: 'How are Quick, Strong, and Full goals mapped?',
-    answer: 'Quick maps to 15 minutes, Strong maps to 25 minutes, and Full maps to 90 minutes.',
+    answer: 'Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.',
   },
   {
-    question: 'Why does the recommendation change at night?',
+    question: 'Why can a late-night recommendation become shorter?',
     answer:
-      'Late-night long naps can disrupt normal sleep timing, so inferred Full goals at night are downgraded to a shorter recommendation.',
+      'Long late-night naps can delay bedtime, so inferred Full recommendations are shortened to reduce disruption risk.',
   },
   {
-    question: 'When is a Full nap not downgraded?',
+    question: 'When does the tool keep a full 90-minute nap at night?',
     answer:
-      'If you explicitly choose Full, the tool keeps the 90-minute recommendation and shows a warning instead of downgrading.',
+      'If you explicitly choose Full, the recommendation stays at 90 minutes and a warning is shown instead of forcing a downgrade.',
   },
   {
-    question: 'Does this calculator account for bedtime routines?',
+    question: 'Does it account for my personal bedtime habits?',
+    answer: 'No. The output is deterministic and does not model individual routines.',
+  },
+  {
+    question: 'Which time buckets are used?',
     answer:
-      'No. It applies deterministic nap-duration rules and does not model personal bedtime habits.',
+      'Results are classified into Day, Afternoon, and Night buckets for recommendation context.',
   },
   {
-    question: 'What time buckets are used for warnings?',
+    question: 'Can shift workers use this calculator?',
+    answer: 'Yes. It uses local clock time and works for daytime or overnight schedules.',
+  },
+  {
+    question: 'Does the calculator set alarms automatically?',
+    answer: 'No. It provides wake-up targets that you can copy into your own alarm app.',
+  },
+  {
+    question: 'Will changing inputs auto-calculate?',
+    answer: 'No. Results update only when you click Calculate.',
+  },
+  {
+    question: 'Is this medical advice?',
     answer:
-      'The calculator groups time into Day, Afternoon, and Night buckets and applies late-night warnings to long naps.',
-  },
-  {
-    question: 'Can I use the selector for shift work?',
-    answer:
-      'Yes. The logic is based on local clock time and works for any schedule, including overnight routines.',
-  },
-  {
-    question: 'Does the calculator set an alarm for me?',
-    answer: 'No. It gives wake-up times that you can use to set an alarm manually.',
-  },
-  {
-    question: 'Will changing inputs recalculate instantly?',
-    answer: 'No. After page load, results update only when you click Calculate.',
-  },
-  {
-    question: 'Is this tool medical advice?',
-    answer:
-      'No. It is a planning aid and does not diagnose sleep conditions or replace professional medical guidance.',
+      'No. It is a practical planning tool and does not replace professional medical guidance.',
   },
 ];
 

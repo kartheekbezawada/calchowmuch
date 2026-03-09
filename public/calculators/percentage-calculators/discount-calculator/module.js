@@ -111,7 +111,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Discount Calculator – CalcHowMuch',
+  title: 'Discount Calculator – Calculate Sale Price',
   description:
     'Calculate the price after X% off and your savings instantly. Use our free discount calculator for sale prices and deals.',
   canonical: 'https://calchowmuch.com/percentage-calculators/discount-calculator/',
