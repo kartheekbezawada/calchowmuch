@@ -2130,19 +2130,68 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <style id="hp-css-guard">
+      body {
+        visibility: hidden;
+      }
+    </style>
+    <noscript>
+      <style>
+        body {
+          visibility: visible !important;
+        }
+      </style>
+    </noscript>
+    <script>
+      (function () {
+        const releaseStyles = () => {
+          const guard = document.getElementById('hp-css-guard');
+          if (guard) guard.remove();
+        };
+
+        const asyncLinks = Array.from(document.querySelectorAll('link[data-async-css="true"]'));
+        if (!asyncLinks.length) {
+          window.addEventListener('DOMContentLoaded', releaseStyles, { once: true });
+          return;
+        }
+
+        let remaining = asyncLinks.length;
+        const markDone = () => {
+          remaining -= 1;
+          if (remaining <= 0) {
+            releaseStyles();
+          }
+        };
+
+        asyncLinks.forEach((link) => {
+          if (link.sheet) {
+            markDone();
+            return;
+          }
+          link.addEventListener('load', markDone, { once: true });
+          link.addEventListener('error', markDone, { once: true });
+        });
+
+        window.addEventListener('load', releaseStyles, { once: true });
+      })();
+    </script>
+    <link rel="preload" as="style" href="/assets/css/theme-premium-dark.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" media="print" data-async-css="true" onload="this.onload=null;this.media='all';" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
     </noscript>
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="preload" as="style" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" media="print" data-async-css="true" onload="this.onload=null;this.media='all';" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     </noscript>
-    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="preload" as="style" href="/assets/css/core-tokens.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" media="print" data-async-css="true" onload="this.onload=null;this.media='all';" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
     </noscript>
-    <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css" media="print" onload="this.onload=null;this.media='all';" />
+    <link rel="preload" as="style" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css" media="print" data-async-css="true" onload="this.onload=null;this.media='all';" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css" />
     </noscript>

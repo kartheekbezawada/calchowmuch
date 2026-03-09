@@ -9,8 +9,9 @@ Commands:
 - `CLUSTER=math CALC=fraction-calculator npm run test:calc:cwv`
 
 Pass criteria:
-- Unit logic tests pass
-- E2E flow + SEO checks pass
+- Unit logic tests pass using shared calculator helpers
+- E2E route flow verifies single-pane teaching UI
+- SEO checks confirm metadata, JSON-LD parity, and sitemap coverage
 - CWV route guard passes
 
 Ownership: calculator route owner.

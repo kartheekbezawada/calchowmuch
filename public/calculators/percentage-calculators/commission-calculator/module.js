@@ -20,6 +20,13 @@ const deckSales = document.querySelector('#comm-deck-sales');
 const deckRates = document.querySelector('#comm-deck-rates');
 const deckCommission = document.querySelector('#comm-deck-commission');
 const deckEffectiveRate = document.querySelector('#comm-deck-effective-rate');
+const tierSummary = document.querySelector('#comm-tier-summary');
+const chartSubtitle = document.querySelector('#comm-chart-subtitle');
+const chartPlaceholder = document.querySelector('#comm-chart-placeholder');
+const chartDonut = document.querySelector('#comm-chart-donut');
+const chartLegend = document.querySelector('#comm-chart-legend');
+const chartCenterMeta = document.querySelector('#comm-chart-center-meta');
+const chartCenterValue = document.querySelector('#comm-chart-center-value');
 
 const explanationRoot = document.querySelector('#comm-explanation');
 const breakdownWrap = explanationRoot?.querySelector('#comm-breakdown-wrap');
@@ -216,6 +223,201 @@ function updateNode(node, value) {
   }
 }
 
+const CHART_COLORS = [
+  '#047857',
+  '#0f766e',
+  '#0891b2',
+  '#2563eb',
+  '#f59e0b',
+  '#dc2626',
+];
+
+function getTierColor(index) {
+  return CHART_COLORS[index % CHART_COLORS.length];
+}
+
+function getTierLabel(row) {
+  return row.to === null
+    ? `Above ${formatCurrency(row.from)}`
+    : `${formatCurrency(row.from)} to ${formatCurrency(row.to)}`;
+}
+
+function hideChartDonut() {
+  if (chartDonut) {
+    chartDonut.hidden = true;
+    chartDonut.setAttribute('aria-hidden', 'true');
+    chartDonut.style.removeProperty('--comm-chart-fill');
+  }
+}
+
+function renderChartLegend(items = []) {
+  if (!chartLegend) {
+    return;
+  }
+
+  chartLegend.innerHTML = '';
+  if (!items.length) {
+    const empty = document.createElement('div');
+    empty.className = 'comm-chart-legend-item is-muted';
+    empty.textContent = 'Tier legend will appear after calculation.';
+    chartLegend.appendChild(empty);
+    return;
+  }
+
+  items.forEach((item) => {
+    const row = document.createElement('div');
+    row.className = 'comm-chart-legend-item';
+    row.innerHTML = `
+      <span class="comm-chart-legend-swatch" style="background:${item.color}"></span>
+      <span class="comm-chart-legend-copy">
+        <span class="comm-chart-legend-label">${item.label}</span>
+        <span class="comm-chart-legend-meta">${item.meta}</span>
+      </span>
+      <span class="comm-chart-legend-value">${item.value}</span>
+    `;
+    chartLegend.appendChild(row);
+  });
+}
+
+function showChartPlaceholder(title, description) {
+  if (chartPlaceholder) {
+    chartPlaceholder.hidden = false;
+  }
+  hideChartDonut();
+  updateNode(chartSubtitle, title);
+  updateNode(chartCenterValue, '0.00%');
+  updateNode(chartCenterMeta, 'Largest commission share');
+  renderChartLegend();
+
+  if (chartPlaceholder) {
+    const heading = chartPlaceholder.querySelector('strong');
+    const body = chartPlaceholder.querySelector('p');
+    updateNode(heading, title);
+    updateNode(body, description);
+  }
+}
+
+function renderFlatRateSummary(rateText) {
+  if (!tierSummary) {
+    return;
+  }
+
+  tierSummary.innerHTML = '';
+  const line = document.createElement('div');
+  line.className = 'comm-tier-summary-empty';
+  line.textContent = `Flat rate ${rateText} applies to the full sale amount.`;
+  tierSummary.appendChild(line);
+}
+
+function renderTierSummary(result) {
+  if (!tierSummary) {
+    return;
+  }
+
+  tierSummary.innerHTML = '';
+  const rows = Array.isArray(result?.breakdown) ? result.breakdown : [];
+  if (!rows.length || !(result.totalCommission > 0)) {
+    const empty = document.createElement('div');
+    empty.className = 'comm-tier-summary-empty';
+    empty.textContent = 'Tier details will appear after a valid tiered calculation.';
+    tierSummary.appendChild(empty);
+    return;
+  }
+
+  rows.forEach((row, index) => {
+    const commissionShare = result.totalCommission > 0 ? (row.commission / result.totalCommission) * 100 : 0;
+    const item = document.createElement('div');
+    item.className = 'comm-tier-summary-item';
+    item.innerHTML = `
+      <div class="comm-tier-summary-top">
+        <span class="comm-tier-summary-label">
+          <span class="comm-tier-swatch" style="background:${getTierColor(index)}"></span>
+          <span class="comm-tier-summary-text">${getTierLabel(row)}</span>
+        </span>
+      </div>
+      <span class="comm-tier-summary-rate">${formatPercent(row.rate)}</span>
+      <span class="comm-tier-summary-commission">${formatCurrency(row.commission)}</span>
+      <span class="comm-tier-summary-share">${formatPercent(commissionShare)} share</span>
+    `;
+    tierSummary.appendChild(item);
+  });
+}
+
+function renderTierChart(result) {
+  const rows = Array.isArray(result?.breakdown) ? result.breakdown : [];
+  if (!rows.length || !chartDonut) {
+    showChartPlaceholder(
+      'Tiered chart appears here',
+      'Switch to Tiered Commission and calculate to see how each tier contributes.'
+    );
+    return;
+  }
+
+  const totalCommission = result.totalCommission > 0 ? result.totalCommission : 0;
+  if (totalCommission <= 0) {
+    showChartPlaceholder(
+      'No commission to chart',
+      'Tiered commission distribution will appear once the calculation produces commission earnings.'
+    );
+    return;
+  }
+
+  let currentAngle = 0;
+  const legendItems = [];
+  const segments = rows.map((row, index) => {
+    const share = (row.commission / totalCommission) * 100;
+    const start = currentAngle;
+    currentAngle += (share / 100) * 360;
+    const color = getTierColor(index);
+    legendItems.push({
+      color,
+      label: getTierLabel(row),
+      meta: `${formatPercent(row.rate)} rate`,
+      value: `${formatCurrency(row.commission)} • ${formatPercent(share)}`,
+    });
+    return `${color} ${start.toFixed(2)}deg ${currentAngle.toFixed(2)}deg`;
+  });
+
+  const topTier = rows.reduce(
+    (best, row, index) =>
+      !best || row.commission > best.row.commission ? { row, index } : best,
+    null
+  );
+
+  if (chartPlaceholder) {
+    chartPlaceholder.hidden = true;
+  }
+  chartDonut.hidden = false;
+  chartDonut.setAttribute('aria-hidden', 'false');
+  chartDonut.style.setProperty('--comm-chart-fill', `conic-gradient(from -90deg, ${segments.join(', ')})`);
+  updateNode(
+    chartSubtitle,
+    `${rows.length} tier${rows.length === 1 ? '' : 's'} contributing to total commission`
+  );
+  updateNode(
+    chartCenterValue,
+    topTier ? formatPercent((topTier.row.commission / totalCommission) * 100) : '0.00%'
+  );
+  updateNode(chartCenterMeta, topTier ? `${formatCurrency(topTier.row.commission)} from ${formatPercent(topTier.row.rate)} tier` : 'Largest commission share');
+  renderChartLegend(legendItems);
+}
+
+function renderDeckState({ mode, ratesText = '', result = null }) {
+  updateNode(deckRates, ratesText);
+
+  if (mode === 'flat') {
+    renderFlatRateSummary(ratesText);
+    showChartPlaceholder(
+      'Tiered chart appears here',
+      'Switch to Tiered Commission and calculate to see how each tier contributes.'
+    );
+    return;
+  }
+
+  renderTierSummary(result);
+  renderTierChart(result);
+}
+
 function renderTierRow({ upTo = '', rate = '' } = {}) {
   const row = document.createElement('div');
   row.className = 'input-row commission-tier-row';
@@ -342,6 +544,7 @@ function calculate() {
   if (!Number.isFinite(sales) || sales < 0) {
     resultOutput.textContent = 'Enter a valid non-negative sales amount.';
     resultDetail.textContent = '';
+    renderDeckState({ mode, ratesText: mode === 'flat' ? formatPercent(Number(flatRateInput.value) || 0) : '' });
     return;
   }
 
@@ -357,6 +560,7 @@ function calculate() {
     if (error) {
       resultOutput.textContent = error;
       resultDetail.textContent = '';
+      renderDeckState({ mode, ratesText: '' });
       return;
     }
     result = calculateCommission({ sales, mode: 'tiered', tiers });
@@ -372,6 +576,7 @@ function calculate() {
   if (!result) {
     resultOutput.textContent = 'Unable to calculate with the current inputs.';
     resultDetail.textContent = 'Check tier ordering and numeric values.';
+    renderDeckState({ mode, ratesText, result: null });
     return;
   }
 
@@ -388,9 +593,9 @@ function calculate() {
   updateTargets(valueTargets?.formula, result.formula);
   updateNode(deckMode, mode === 'flat' ? 'Flat Commission %' : 'Tiered Commission');
   updateNode(deckSales, formatCurrency(result.sales));
-  updateNode(deckRates, ratesText);
   updateNode(deckCommission, formatCurrency(result.totalCommission));
   updateNode(deckEffectiveRate, formatPercent(result.effectiveRate));
+  renderDeckState({ mode, ratesText, result });
 
   if (mode === 'tiered') {
     renderBreakdownRows(result.breakdown);

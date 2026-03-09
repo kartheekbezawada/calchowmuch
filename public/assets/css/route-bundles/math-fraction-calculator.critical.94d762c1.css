@@ -1,0 +1,2690 @@
+/* critical source: /assets/css/core-tokens.css */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+/* critical source: /assets/css/theme-premium-dark.css */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+body {
+  background-color: var(--page-bg);
+  background-image: var(--gradient-bg-main);
+  color: var(--header-text);
+}
+
+body .page {
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+}
+
+body .site-header {
+  color: var(--header-text);
+}
+
+body .site-header span {
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body .top-nav button,
+body .top-nav .top-nav-link {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+  box-shadow: none;
+}
+
+body .top-nav button:hover,
+body .top-nav .top-nav-link:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+body .top-nav button.is-active,
+body .top-nav .top-nav-link.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .nav-category-toggle {
+  color: var(--color-slate-400);
+}
+
+body .nav-category-indicator {
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .panel,
+body .ads-column {
+  background: var(--gradient-bg-card);
+  border-color: var(--shell-border);
+  box-shadow: var(--panel-shadow);
+}
+
+body .ad-panel {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+body .panel h1,
+body .panel h3 {
+  color: var(--header-text);
+}
+
+body .panel h1,
+body .panel h3 {
+  position: relative;
+}
+
+body .panel h1::after,
+body .panel h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
+}
+
+body .calculator-ui label,
+body .calculator-ui .helper,
+body .panel .placeholder {
+  color: var(--muted-text);
+}
+
+body .calculator-ui input[type='number'],
+body .calculator-ui input[type='text'],
+body .calculator-ui input[type='email'],
+body .calculator-ui input[type='password'],
+body .calculator-ui input[type='search'],
+body .calculator-ui input[type='tel'],
+body .calculator-ui input[type='url'],
+body .calculator-ui input[type='date'],
+body .calculator-ui input[type='time'],
+body .calculator-ui input[type='datetime-local'],
+body .calculator-ui input[type='month'],
+body .calculator-ui input[type='week'],
+body .calculator-ui textarea,
+body .nav-search-input {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui input::placeholder,
+body .calculator-ui textarea::placeholder,
+body .nav-search-input::placeholder {
+  color: var(--color-slate-500);
+}
+
+body .calculator-button {
+  background: var(--gradient-brand-primary);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-button.secondary {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-200);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  box-shadow: none;
+}
+
+body .calculator-button.is-active,
+body .calculator-button[aria-pressed='true'] {
+  background: #1d4ed8;
+  color: #fff;
+  box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
+}
+
+body .calculator-ui .result,
+body .calculator-ui .result-detail {
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui .result-scroll,
+body .graph-panel {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table,
+body .calculator-table th,
+body .calculator-table td {
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table thead th,
+body .calculator-table tfoot td {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-300);
+}
+
+body .graph-title {
+  color: var(--color-slate-200);
+}
+
+body .graph-y-axis,
+body .graph-x-axis,
+body .graph-legend,
+body .graph-y-label {
+  color: var(--color-slate-400);
+}
+
+body .site-footer {
+  background: rgba(15, 23, 42, 0.9);
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-400);
+}
+
+body .site-footer a,
+body .site-footer .footer-divider,
+body .site-footer .footer-branding {
+  color: var(--color-slate-400);
+}
+
+body .site-footer a:hover {
+  color: var(--color-blue-400);
+}
+
+body .calculator-ui input[type='range'] {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  margin: 6px 0;
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+  margin-top: -6px;
+}
+
+body .calculator-ui input[type='range']:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.7);
+  outline-offset: 4px;
+}
+
+body .calculator-ui input[type='range']::-moz-range-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-ui input[type='range']::-moz-range-progress {
+  background: rgba(59, 130, 246, 0.6);
+  height: 8px;
+  border-radius: 999px;
+}
+
+body ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body ::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+body ::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* critical source: /assets/css/base.css */
+:root {
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
+  /* Typography scale (Tailwind-inspired) */
+  --text-4xl: 2.25rem;
+  --text-2xl: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+  /* Font weights */
+  --font-bold: 700;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-normal: 400;
+  --header-height: 80px;
+  --nav-height: 64px;
+  --footer-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+}
+
+body {
+  margin: 0;
+  color: var(--header-text);
+  background-color: var(--page-bg);
+  background-image: none;
+}
+
+/* critical source: /assets/css/theme-premium-dark.css */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+body {
+  background-color: var(--page-bg);
+  background-image: var(--gradient-bg-main);
+  color: var(--header-text);
+}
+
+body .page {
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+}
+
+body .site-header {
+  color: var(--header-text);
+}
+
+body .site-header span {
+  background: var(--gradient-brand-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body .top-nav button,
+body .top-nav .top-nav-link {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+  box-shadow: none;
+}
+
+body .top-nav button:hover,
+body .top-nav .top-nav-link:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+body .top-nav button.is-active,
+body .top-nav .top-nav-link.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .nav-category-toggle {
+  color: var(--color-slate-400);
+}
+
+body .nav-category-indicator {
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .left-nav .nav-item.is-active {
+  background: var(--gradient-brand-primary);
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .panel,
+body .ads-column {
+  background: var(--gradient-bg-card);
+  border-color: var(--shell-border);
+  box-shadow: var(--panel-shadow);
+}
+
+body .ad-panel {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+body .panel h1,
+body .panel h3 {
+  color: var(--header-text);
+}
+
+body .panel h1,
+body .panel h3 {
+  position: relative;
+}
+
+body .panel h1::after,
+body .panel h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
+}
+
+body .calculator-ui label,
+body .calculator-ui .helper,
+body .panel .placeholder {
+  color: var(--muted-text);
+}
+
+body .calculator-ui input[type='number'],
+body .calculator-ui input[type='text'],
+body .calculator-ui input[type='email'],
+body .calculator-ui input[type='password'],
+body .calculator-ui input[type='search'],
+body .calculator-ui input[type='tel'],
+body .calculator-ui input[type='url'],
+body .calculator-ui input[type='date'],
+body .calculator-ui input[type='time'],
+body .calculator-ui input[type='datetime-local'],
+body .calculator-ui input[type='month'],
+body .calculator-ui input[type='week'],
+body .calculator-ui textarea,
+body .nav-search-input {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui input::placeholder,
+body .calculator-ui textarea::placeholder,
+body .nav-search-input::placeholder {
+  color: var(--color-slate-500);
+}
+
+body .calculator-button {
+  background: var(--gradient-brand-primary);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-button.secondary {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-200);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  box-shadow: none;
+}
+
+body .calculator-button.is-active,
+body .calculator-button[aria-pressed='true'] {
+  background: #1d4ed8;
+  color: #fff;
+  box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
+}
+
+body .calculator-ui .result,
+body .calculator-ui .result-detail {
+  color: var(--color-slate-200);
+}
+
+body .calculator-ui .result-scroll,
+body .graph-panel {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table,
+body .calculator-table th,
+body .calculator-table td {
+  border-color: rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-table thead th,
+body .calculator-table tfoot td {
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--color-slate-300);
+}
+
+body .graph-title {
+  color: var(--color-slate-200);
+}
+
+body .graph-y-axis,
+body .graph-x-axis,
+body .graph-legend,
+body .graph-y-label {
+  color: var(--color-slate-400);
+}
+
+body .site-footer {
+  background: rgba(15, 23, 42, 0.9);
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
+  color: var(--color-slate-400);
+}
+
+body .site-footer a,
+body .site-footer .footer-divider,
+body .site-footer .footer-branding {
+  color: var(--color-slate-400);
+}
+
+body .site-footer a:hover {
+  color: var(--color-blue-400);
+}
+
+body .calculator-ui input[type='range'] {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  margin: 6px 0;
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+  margin-top: -6px;
+}
+
+body .calculator-ui input[type='range']:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.7);
+  outline-offset: 4px;
+}
+
+body .calculator-ui input[type='range']::-moz-range-track {
+  height: 8px;
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(51, 65, 85, 0.7);
+}
+
+body .calculator-ui input[type='range']::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 999px;
+  background: var(--gradient-brand-primary);
+  border: 2px solid rgba(14, 116, 144, 0.6);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+body .calculator-ui input[type='range']::-moz-range-progress {
+  background: rgba(59, 130, 246, 0.6);
+  height: 8px;
+  border-radius: 999px;
+}
+
+body ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body ::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+body ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+body ::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* critical source: /assets/css/base.css */
+:root {
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
+  /* Typography scale (Tailwind-inspired) */
+  --text-4xl: 2.25rem;
+  --text-2xl: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+  /* Font weights */
+  --font-bold: 700;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-normal: 400;
+  --header-height: 80px;
+  --nav-height: 64px;
+  --footer-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+}
+
+body {
+  margin: 0;
+  color: var(--header-text);
+  background-color: var(--page-bg);
+  background-image: none;
+}
+
+/* critical source: /assets/css/core-tokens.css */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+/* critical source: /assets/css/core-shell.css */
+.page {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: none;
+  width: min(1920px, calc(100vw - 48px));
+  margin: 8px auto 0;
+  padding: 14px 14px 0 14px;
+  background: var(--shell-bg);
+  border-radius: 28px;
+}
+
+body[data-page='calculator'] .page,
+body[data-page='home'] .page {
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body[data-page='calculator'],
+body[data-page='home'] {
+  overflow: hidden;
+}
+
+.site-header {
+  position: relative;
+  z-index: 5;
+  height: 72px !important;
+  min-height: 72px;
+  max-height: 72px;
+  background: rgba(11, 18, 32, 0.7);
+  color: var(--header-text);
+  border-bottom: 1px solid var(--shell-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.site-header-inner {
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--gradient-brand-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: var(--shadow-glow-blue);
+  flex-shrink: 0;
+}
+
+.brand-logo-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+body .site-header .brand-logo-icon,
+body .site-header .brand-badge-icon,
+body .site-header .brand-badge span {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: inherit;
+}
+
+body .site-header .header-search-icon {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--muted-text);
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 12px 0;
+  flex-wrap: nowrap;
+  min-height: 40px;
+  max-height: 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-gutter: stable;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.top-nav button,
+.top-nav .top-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  border: 1px solid var(--accent-strong);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 38px;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.top-nav .nav-icon {
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.top-nav .nav-icon-right {
+  margin-right: 0;
+  margin-left: 2px;
+}
+
+.top-nav .nav-label {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.top-nav button:hover,
+.top-nav .top-nav-link:hover {
+  background: var(--accent-strong);
+}
+
+.top-nav button:focus-visible,
+.top-nav .top-nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.top-nav button.is-active,
+.top-nav .top-nav-link.is-active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.layout-main {
+  display: grid;
+  grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
+  padding: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+  margin-top: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.left-nav {
+  /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
+  /* to give visual dominance to the calculator area */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 14px;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  height: 100%;
+  margin-left: -4px;
+  position: relative;
+}
+
+.left-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(102, 126, 234, 0.4) 20%,
+    rgba(102, 126, 234, 0.6) 50%,
+    rgba(102, 126, 234, 0.4) 80%,
+    transparent 100%
+  );
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.left-nav-title {
+  margin: 0 0 14px;
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+}
+
+.left-nav .subcategory-title {
+  margin: 16px 0 8px;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted-text);
+}
+
+.left-nav .nav-item {
+  width: 100%;
+  text-align: left;
+  background: var(--pill-bg);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--header-text);
+  display: block;
+  text-decoration: none;
+  margin-bottom: 0;
+  border: 1px solid var(--pill-border);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.left-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(102, 126, 234, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.left-nav .nav-item.ripple::after {
+  width: 300%;
+  height: 300%;
+  opacity: 0;
+}
+
+.left-nav .nav-item.is-active {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.9) 0%,
+    rgba(79, 70, 229, 0.95) 50%,
+    rgba(102, 126, 234, 0.9) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  color: #ffffff;
+  border-color: var(--accent-strong);
+  box-shadow:
+    0 8px 14px rgba(102, 126, 234, 0.24),
+    0 0 20px rgba(102, 126, 234, 0.3);
+  position: relative;
+}
+
+.left-nav .nav-item.is-active::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
+  filter: blur(8px);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.left-nav .nav-item.is-hidden {
+  display: none;
+}
+
+.left-nav .nav-item:hover:not(.is-active) {
+  background: rgba(102, 126, 234, 0.08);
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 8px rgba(102, 126, 234, 0.15),
+    0 8px 16px rgba(102, 126, 234, 0.1);
+}
+
+.center-column {
+  display: grid;
+  /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
+  min-height: 0;
+  height: 100%;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 2px solid var(--shell-border);
+  border-radius: 12px;
+  box-shadow: var(--panel-shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  height: 100%;
+}
+
+.panel-span-all {
+  grid-column: 1 / -1;
+}
+
+.panel-scroll {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  flex: 1;
+  min-height: 0;
+}
+
+.panel h1,
+.panel h3 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+}
+
+.panel .placeholder {
+  color: var(--muted-text);
+  font-size: var(--text-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page,
+  .site-header,
+  .top-nav,
+  .layout-main > * {
+    animation: none;
+  }
+
+  .left-nav::before,
+  .left-nav .nav-item.is-active,
+  .left-nav .nav-item.is-active::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .center-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .site-header-inner {
+    padding: 0 16px;
+    grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
+  }
+
+  .layout-main {
+    grid-template-columns: 200px minmax(0, 1fr);
+    padding: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .page {
+    margin: 12px;
+    padding: 16px;
+  }
+
+  .layout-main {
+    grid-template-columns: 1fr;
+  }
+
+  .left-nav {
+    margin-left: 0;
+  }
+}
+
+.mobile-menu-toggle {
+  display: none;
+  /* Desktop default */
+  background: transparent;
+  border: none;
+  color: var(--header-text);
+  padding: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+@media (max-width: 860px) {
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left-nav {
+    position: fixed;
+    top: 72px;
+    /* Below header */
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background: var(--shell-bg);
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid var(--shell-border);
+    margin-left: 0;
+    padding-bottom: 2rem;
+  }
+
+  .left-nav.is-mobile-open {
+    transform: translateX(0);
+  }
+
+  .left-nav.is-mobile-open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: -100vw;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+    pointer-events: auto;
+  }
+}
+
+/* critical source: /assets/css/calculator.css */
+:root {
+  --calculator-input-padding: 10px 12px;
+  --calculator-input-radius: 10px;
+  --calculator-button-padding: 10px 12px;
+  --calculator-button-radius: 10px;
+}
+
+.calculator-ui {
+  display: grid;
+  gap: 18px;
+}
+
+.calculator-ui label {
+  font-size: 14px;
+  color: var(--muted-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.calculator-ui input[type='number'],
+.calculator-ui input[type='text'],
+.calculator-ui input[type='email'],
+.calculator-ui input[type='password'],
+.calculator-ui input[type='search'],
+.calculator-ui input[type='tel'],
+.calculator-ui input[type='url'],
+.calculator-ui input[type='date'],
+.calculator-ui input[type='time'],
+.calculator-ui input[type='datetime-local'],
+.calculator-ui input[type='month'],
+.calculator-ui input[type='week'],
+.calculator-ui textarea {
+  width: 100%;
+  padding: var(--calculator-input-padding);
+  border-radius: var(--calculator-input-radius);
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+  font-family: inherit;
+  background: var(--panel-bg);
+}
+
+.calculator-ui textarea {
+  resize: vertical;
+}
+
+.calculator-ui .helper {
+  color: var(--muted-text);
+  margin: 0;
+  font-size: 14px;
+}
+
+.calculator-ui .input-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.calculator-ui .input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.calculator-ui .calculator-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.calculator-ui .toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.calculator-ui .button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calculator-ui .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calculator-ui .mode-switch-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+}
+
+.calculator-ui .mode-switch-label {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5b6573;
+  line-height: 1.3;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.calculator-ui .mode-switch-label.is-active {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.calculator-ui .mode-switch-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calculator-ui .mode-switch-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.calculator-ui .mode-switch-track {
+  width: 64px;
+  height: 34px;
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease;
+}
+
+.calculator-ui .mode-switch-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+}
+
+.calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+  transform: translateX(30px);
+}
+
+.calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+#calc-percentage-composition .composition-item-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+#calc-commission-calculator .commission-tier-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+#calc-markup-calculator .markup-basket-row .calculator-button {
+  min-height: 42px;
+  align-self: end;
+}
+
+@media (max-width: 720px) {
+  .calculator-ui .mode-switch-control {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .calculator-ui .mode-switch-toggle {
+    justify-self: center;
+  }
+
+  #calc-percentage-composition .composition-item-row .calculator-button {
+    width: 100%;
+  }
+
+  #calc-commission-calculator .commission-tier-row .calculator-button {
+    width: 100%;
+  }
+
+  #calc-markup-calculator .markup-basket-row .calculator-button {
+    width: 100%;
+  }
+}
+
+.calculator-button {
+  padding: var(--calculator-button-padding);
+  border-radius: var(--calculator-button-radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.calculator-button.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.calculator-button.secondary {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.calculator-button.is-active,
+.calculator-button[aria-pressed='true'] {
+  background: var(--button-active-bg, #1d4ed8);
+  color: #fff;
+}
+
+.calculator-button.secondary.is-active,
+.calculator-button.secondary[aria-pressed='true'] {
+  background: var(--button-active-bg, #1d4ed8);
+  color: #fff;
+}
+
+.calculator-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.calculator-ui .result {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 60px;
+}
+
+.calculator-ui .result-detail {
+  font-size: 14px;
+  color: var(--muted-text);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.calculator-ui .result-detail p {
+  margin: 0.25rem 0;
+}
+
+.calculator-ui .result-scroll {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+  max-height: 280px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+  background: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calculator-ui .result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calculator-ui .result-section h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* critical source: /assets/css/shared-calculator-ui.css */
+#calc-home-loan .down-combined-left .calculator-button {
+  min-height: 32px;
+  padding: 0.36rem 0.72rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.76rem;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#calc-home-loan .down-combined-left .calculator-button.is-active {
+  border-color: rgba(56, 189, 248, 0.82);
+  background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+  color: #fff;
+}
+
+#calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
+  background: rgba(59, 130, 246, 0.12);
+  color: #e0f2fe;
+}
+
+#calc-home-loan .mtg-action-row .calculator-button {
+  min-height: 50px;
+  border-radius: 0.82rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+#calc-home-loan .mtg-action-row .calculator-button:hover {
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+}
+
+#calc-home-loan .mtg-action-row .calculator-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+#loan-mtg-explanation .table-view-toggle .calculator-button {
+  min-height: 30px;
+  padding: 0.3rem 0.66rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+#loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
+  border-color: rgba(249, 115, 22, 0.58);
+  background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
+  color: #fff;
+}
+
+#loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.36);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #calc-home-loan .mtg-action-row .calculator-button {
+    transition: none;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-home-loan .down-combined-left .calculator-button,
+  #loan-mtg-explanation .table-view-toggle .calculator-button {
+    flex: 1 1 auto;
+  }
+}
+
+/* critical source: /calculators/math/fraction-calculator/calculator.css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap');
+
+#calc-fraction-calculator,
+#fraction-explanation,
+#fraction-explanation .fc-exp-master {
+  --fc-purple: #7c3aed;
+  --fc-purple-dark: #5b21b6;
+  --fc-indigo: #4f46e5;
+  --fc-purple-50: #f5f3ff;
+  --fc-purple-100: #ede9fe;
+  --fc-purple-200: #ddd6fe;
+  --fc-purple-300: #c4b5fd;
+  --fc-purple-400: #a78bfa;
+  --fc-gray-50: #f9fafb;
+  --fc-gray-100: #f3f4f6;
+  --fc-gray-200: #e5e7eb;
+  --fc-gray-300: #d1d5db;
+  --fc-gray-400: #9ca3af;
+  --fc-gray-500: #6b7280;
+  --fc-gray-700: #374151;
+  --fc-gray-900: #1a1a2e;
+  --fc-card-shadow: 0 14px 28px rgba(124, 58, 237, 0.08);
+  --fc-card-shadow-soft: 0 8px 20px rgba(124, 58, 237, 0.06);
+  --fc-radius: 28px;
+  --fc-radius-md: 20px;
+  --fc-radius-sm: 16px;
+}
+
+.layout-main {
+  grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+}
+
+.ads-column,
+.ad-panel {
+  display: none !important;
+}
+
+.center-column {
+  grid-template-columns: 1fr;
+}
+
+#calculator-title {
+  display: none;
+}
+
+.panel.panel-scroll.panel-span-all {
+  padding: 0.55rem 1rem 1.2rem;
+  background: linear-gradient(135deg, #f0eeff 0%, #fff8f0 50%, #f0f9ff 100%);
+  border: 1px solid rgba(237, 233, 254, 0.98);
+  border-radius: var(--fc-radius);
+  box-shadow: var(--fc-card-shadow-soft);
+}
+
+.calculator-page-single {
+  margin-top: 0;
+}
+
+#calc-fraction-calculator {
+  background: transparent;
+  color: var(--fc-gray-900);
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+#calc-fraction-calculator .fc-ui {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+#calc-fraction-calculator,
+#calc-fraction-calculator h1,
+#calc-fraction-calculator h2,
+#calc-fraction-calculator h3,
+#calc-fraction-calculator h4,
+#calc-fraction-calculator p,
+#calc-fraction-calculator span,
+#calc-fraction-calculator strong,
+#calc-fraction-calculator label,
+#calc-fraction-calculator li,
+#fraction-explanation,
+#fraction-explanation h2,
+#fraction-explanation h3,
+#fraction-explanation h4,
+#fraction-explanation p,
+#fraction-explanation span,
+#fraction-explanation strong,
+#fraction-explanation li,
+#fraction-explanation summary {
+  color: var(--fc-gray-900);
+}
+
+#calc-fraction-calculator h2::after,
+#calc-fraction-calculator h3::after,
+#fraction-explanation h2::after,
+#fraction-explanation h3::after {
+  display: none !important;
+  content: none !important;
+}
+
+#calc-fraction-calculator .fc-header {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#calc-fraction-calculator .fc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.34rem 0.82rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--fc-purple-100);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fc-purple);
+  margin-bottom: 0.55rem;
+}
+
+#calc-fraction-calculator .fc-title {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: clamp(1.65rem, 3.8vw, 2.35rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.2rem;
+}
+
+#calc-fraction-calculator .fc-subtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+#calc-fraction-calculator .fc-control-deck {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.78fr) minmax(0, 1.38fr) minmax(220px, 0.92fr);
+  gap: 0.95rem;
+  align-items: stretch;
+}
+
+#calc-fraction-calculator .fc-input-deck,
+#calc-fraction-calculator .fc-results-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+#calc-fraction-calculator .fc-op-selector,
+#calc-fraction-calculator .fc-input-deck,
+#calc-fraction-calculator .fc-steps-card {
+  height: 100%;
+}
+
+#calc-fraction-calculator .fc-op-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+#calc-fraction-calculator .fc-card,
+#calc-fraction-calculator .fc-final-answer,
+#calc-fraction-calculator .fc-tip-card,
+#fraction-explanation .fc-exp-section,
+#fraction-explanation .fc-guide-card,
+#fraction-explanation .fc-guide-intro,
+#fraction-explanation .fc-faq-item {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(237, 233, 254, 0.95);
+  border-radius: var(--fc-radius);
+  box-shadow: var(--fc-card-shadow-soft);
+}
+
+#calc-fraction-calculator .fc-card,
+#calc-fraction-calculator .fc-final-answer {
+  padding: 1rem 1.05rem;
+}
+
+#calc-fraction-calculator .fc-card-label,
+#fraction-explanation .fc-focus-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fc-gray-400);
+}
+
+#calc-fraction-calculator .fc-op-selector > .fc-card-label,
+#calc-fraction-calculator .fc-input-card > .fc-card-label,
+#calc-fraction-calculator .fc-steps-card > .fc-card-label {
+  width: 100%;
+  text-align: center;
+}
+
+#calc-fraction-calculator .fc-tab-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+}
+
+#calc-fraction-calculator .fc-op-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.6rem 0.55rem;
+  border-radius: var(--fc-radius-sm);
+  border: 2px solid var(--fc-purple-200);
+  background: var(--fc-purple-50);
+  color: var(--fc-purple-dark);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.78rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#calc-fraction-calculator .fc-op-card:hover:not(.is-active) {
+  border-color: var(--fc-purple-300);
+  background: #f7f2ff;
+  transform: translateY(-1px);
+}
+
+#calc-fraction-calculator .fc-op-card.is-active {
+  background: linear-gradient(135deg, var(--fc-purple), var(--fc-indigo));
+  border-color: transparent;
+  color: #fff;
+  transform: scale(1.02);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.28);
+}
+
+#calc-fraction-calculator .fc-op-card.is-active .fc-op-copy strong,
+#calc-fraction-calculator .fc-op-card.is-active .fc-op-icon {
+  color: #fff;
+}
+
+#calc-fraction-calculator .fc-op-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+#calc-fraction-calculator .fc-op-copy strong {
+  color: inherit;
+}
+
+#calc-fraction-calculator .fc-mode-panels {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+#calc-fraction-calculator .fc-mode-panel {
+  display: none;
+}
+
+#calc-fraction-calculator .fc-mode-panel.is-active {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+#calc-fraction-calculator .fc-input-card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#calc-fraction-calculator .fc-input-card > .fc-card-label {
+  flex: 0 0 auto;
+}
+
+#calc-fraction-calculator .fc-input-card .fc-input-row,
+#calc-fraction-calculator .fc-input-card .fc-input-row--single,
+#calc-fraction-calculator .fc-input-card .fc-input-row--convert {
+  flex: 1 1 auto;
+  align-content: center;
+}
+
+#calc-fraction-calculator .fc-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  padding: 0.15rem 0 0.05rem;
+}
+
+#calc-fraction-calculator .fc-input-row--single {
+  justify-content: center;
+}
+
+#calc-fraction-calculator .fc-fraction-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+#calc-fraction-calculator .fc-input-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fc-gray-400);
+}
+
+#calc-fraction-calculator .fc-fraction-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#calc-fraction-calculator .fc-fraction-stack input[type='number'],
+#calc-fraction-calculator .fc-whole-input {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--fc-gray-900);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  padding: 0.1rem 0;
+  -moz-appearance: textfield;
+}
+
+#calc-fraction-calculator .fc-fraction-stack input[type='number'] {
+  width: 4rem;
+}
+
+#calc-fraction-calculator .fc-fraction-stack input[type='number']:focus,
+#calc-fraction-calculator .fc-whole-input:focus {
+  border-bottom-color: var(--fc-purple);
+}
+
+#calc-fraction-calculator .fc-stack-bar {
+  width: 4rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--fc-purple);
+}
+
+#calc-fraction-calculator .fc-input-hints {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
+  font-size: 0.62rem;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-op-sign {
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--fc-purple);
+}
+
+#calc-fraction-calculator .fc-mixed-stack {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+#calc-fraction-calculator .fc-whole-input {
+  width: 2.3rem;
+  border-bottom-color: var(--fc-purple);
+}
+
+#calc-fraction-calculator input[type='number']::-webkit-inner-spin-button,
+#calc-fraction-calculator input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#calc-fraction-calculator .fc-solve-btn {
+  width: 100%;
+  padding: 0.86rem 1rem;
+  border: 0;
+  border-radius: var(--fc-radius-md);
+  background: linear-gradient(135deg, var(--fc-purple), var(--fc-indigo));
+  color: #fff;
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 0.96rem;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: auto;
+}
+
+#calc-fraction-calculator .fc-solve-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.32);
+}
+
+#calc-fraction-calculator .fc-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#calc-fraction-calculator .fc-step-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 170px) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.55rem;
+  padding: 0.55rem 0.68rem;
+  border-radius: 16px;
+  border: 1px solid var(--fc-gray-100);
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+#calc-fraction-calculator .fc-step-row.is-result {
+  border-color: var(--fc-purple-200);
+  background: linear-gradient(180deg, #faf7ff 0%, #f6f2ff 100%);
+}
+
+#calc-fraction-calculator .fc-step-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+#calc-fraction-calculator .fc-step-head {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+  flex-wrap: wrap;
+}
+
+#calc-fraction-calculator .fc-step-index {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fc-gray-400);
+}
+
+#calc-fraction-calculator .fc-step-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.18rem 0.42rem;
+  border-radius: 999px;
+  background: var(--fc-purple-50);
+  color: var(--fc-purple);
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+#calc-fraction-calculator .fc-step-note {
+  font-size: 0.62rem;
+  line-height: 1.25;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-step-expression {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.24rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--fc-gray-900);
+  min-height: 100%;
+}
+
+#calc-fraction-calculator .fc-step-answer {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(221, 214, 254, 0.9);
+  text-align: center;
+}
+
+#calc-fraction-calculator #fc-result-main {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  font-weight: 900;
+  color: var(--fc-purple);
+}
+
+#calc-fraction-calculator #fc-result-sub {
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-lesson-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+#calc-fraction-calculator .fc-lesson-panel-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.8rem 0.85rem;
+  border: 1px solid rgba(237, 233, 254, 0.95);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+#calc-fraction-calculator .fc-lesson-panel-block--meaning {
+  background: linear-gradient(180deg, #faf7ff 0%, #fff 100%);
+}
+
+#calc-fraction-calculator .fc-lesson-panel-grid > .fc-summary-list {
+  display: contents;
+}
+
+#calc-fraction-calculator .fc-lesson-panel-block h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+#calc-fraction-calculator .fc-lesson-panel-block p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--fc-gray-700);
+}
+
+#calc-fraction-calculator .fc-lesson-note {
+  margin-top: auto;
+  padding-top: 0.35rem;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--fc-purple-dark);
+}
+
+#calc-fraction-calculator .fc-card-label--inline {
+  margin-bottom: 0.15rem;
+}
+
+#calc-fraction-calculator .fc-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+#calc-fraction-calculator .fc-tip-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.22rem;
+  padding: 0.75rem 0.7rem;
+  text-align: center;
+}
+
+#calc-fraction-calculator .fc-tip-icon {
+  font-size: 1.15rem;
+}
+
+#calc-fraction-calculator .fc-tip-card strong {
+  font-weight: 800;
+}
+
+#calc-fraction-calculator .fc-tip-card span:last-child {
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-lesson-panel h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.96rem;
+}
+
+#calc-fraction-calculator .fc-lesson-panel p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+#calc-fraction-calculator .fc-summary-list {
+  display: contents;
+  margin-top: 0;
+}
+
+#calc-fraction-calculator .fc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--fc-gray-100);
+}
+
+#calc-fraction-calculator .fc-summary-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-fraction-calculator .fc-summary-row span {
+  font-size: 0.72rem;
+  color: var(--fc-gray-500);
+}
+
+#calc-fraction-calculator .fc-summary-row strong {
+  font-size: 0.78rem;
+  max-width: 56%;
+  text-align: right;
+}
+
+#calc-fraction-calculator .fc-focus-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+
+#calc-fraction-calculator .fc-focus-pill {
+  display: block;
+  padding: 0.32rem 0.52rem;
+  border-radius: 16px;
+  background: var(--fc-purple-50);
+  color: var(--fc-purple-dark);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+#calc-fraction-calculator .fc-focus-pill strong {
+  color: var(--fc-purple-dark);
+}
+
+#calc-fraction-calculator .fc-inline-fraction {
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  min-width: 1.85em;
+  vertical-align: middle;
+}
+
+#calc-fraction-calculator .fc-inline-fraction > span:first-child {
+  padding: 0 0.2em 0.08em;
+  border-bottom: 2px solid currentColor;
+}
+
+#calc-fraction-calculator .fc-inline-fraction > span:last-child {
+  padding: 0.08em 0.2em 0;
+}
+
+#calc-fraction-calculator .fc-mixed-inline,
+#calc-fraction-calculator .fc-expression {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28em;
+  flex-wrap: wrap;
+}
+
+#fraction-explanation.fc-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#fraction-explanation .fc-exp-master {
+  position: relative;
+  overflow: visible;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0.7rem 0 0;
+}
+
+#fraction-explanation .fc-exp-master-section {
+  position: relative;
+}
+
+#fraction-explanation .fc-exp-master-section + .fc-exp-master-section {
+  margin-top: 0.1rem;
+}
+
+#fraction-explanation .fc-exp-divider {
+  height: 1px;
+  margin: 0.95rem 0;
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.16) 0%, rgba(165, 180, 252, 0.5) 50%, rgba(124, 58, 237, 0.16) 100%);
+}
+
+#fraction-explanation .fc-guide-card,
+#fraction-explanation .fc-guide-intro,
+#fraction-explanation .fc-faq-item {
+  padding: 0.95rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(237, 233, 254, 0.9);
+  box-shadow: none;
+}
+
+#fraction-explanation .fc-exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+#fraction-explanation .fc-exp-head h3,
+#fraction-explanation .fc-guide-intro h3,
+#fraction-explanation h2 {
+  margin: 0;
+  color: #1a1a2e;
+}
+
+#fraction-explanation h2 {
+  font-size: clamp(1.24rem, 2.2vw, 1.62rem);
+  margin-bottom: 0.8rem;
+  color: #1a1a2e;
+}
+
+#fraction-explanation .fc-exp-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  background: var(--fc-purple-50);
+  color: var(--fc-purple);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+#fraction-explanation .fc-guide-intro {
+  margin-bottom: 0.85rem;
+  background: linear-gradient(180deg, #faf7ff 0%, #f7f3ff 100%);
+}
+
+#fraction-explanation .fc-guide-intro h3,
+#fraction-explanation .fc-exp-head h3 {
+  font-size: 1rem;
+  color: #1a1a2e;
+}
+
+#fraction-explanation .fc-guide-card h4 {
+  margin: 0 0 0.45rem;
+  font-size: 0.88rem;
+  color: #5b21b6;
+}
+
+#fraction-explanation .fc-guide-intro p,
+#fraction-explanation .fc-guide-card p,
+#fraction-explanation .fc-faq-item p,
+#fraction-explanation .fc-note-list li {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+#fraction-explanation .fc-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+#fraction-explanation .fc-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+#fraction-explanation .fc-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+}
+
+#fraction-explanation .fc-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+#fraction-explanation .fc-faq-item summary span {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fc-purple-50);
+  color: var(--fc-purple);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+#fraction-explanation .fc-faq-item summary strong {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #1a1a2e;
+}
+
+#fraction-explanation .fc-faq-item p {
+  margin: 0.65rem 0 0;
+  padding-left: 2.5rem;
+}
+
+#fraction-explanation .fc-note-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+@media (max-width: 1024px) {
+  #calc-fraction-calculator .fc-control-deck {
+    grid-template-columns: minmax(180px, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  #calc-fraction-calculator .fc-steps-card {
+    grid-column: 1 / -1;
+  }
+
+  #calc-fraction-calculator .fc-lesson-panel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .layout-main {
+    grid-template-columns: 1fr;
+  }
+
+  .left-nav {
+    display: none !important;
+  }
+
+  .panel.panel-scroll.panel-span-all {
+    padding: 0.4rem 0.45rem 0.9rem;
+    border-radius: 22px;
+  }
+
+  #calc-fraction-calculator {
+    padding: 0;
+  }
+
+  #calc-fraction-calculator .fc-ui {
+    gap: 0.75rem;
+  }
+
+  #calc-fraction-calculator .fc-badge {
+    margin-bottom: 0.45rem;
+  }
+
+  #calc-fraction-calculator .fc-title {
+    font-size: clamp(1.45rem, 8vw, 1.95rem);
+  }
+
+  #calc-fraction-calculator .fc-subtitle {
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  #calc-fraction-calculator .fc-card,
+  #calc-fraction-calculator .fc-final-answer,
+  #fraction-explanation .fc-guide-card,
+  #fraction-explanation .fc-guide-intro,
+  #fraction-explanation .fc-faq-item {
+    padding: 1rem;
+  }
+
+  #calc-fraction-calculator .fc-control-deck,
+  #calc-fraction-calculator .fc-tips-grid,
+  #fraction-explanation .fc-guide-grid,
+  #calc-fraction-calculator .fc-lesson-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-fraction-calculator .fc-tab-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  #calc-fraction-calculator .fc-op-card {
+    min-height: 88px;
+    padding: 0.7rem 0.45rem;
+    font-size: 0.88rem;
+  }
+
+  #calc-fraction-calculator .fc-op-icon {
+    font-size: 1.15rem;
+  }
+
+  #calc-fraction-calculator .fc-input-row {
+    display: grid;
+    justify-items: center;
+    gap: 0.8rem;
+  }
+
+  #calc-fraction-calculator .fc-fraction-stack input[type='number'] {
+    width: 3.2rem;
+    font-size: 1.35rem;
+  }
+
+  #calc-fraction-calculator .fc-stack-bar {
+    width: 3.2rem;
+  }
+
+  #calc-fraction-calculator .fc-op-sign {
+    font-size: 1.45rem;
+  }
+
+  #calc-fraction-calculator .fc-step-row {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  #calc-fraction-calculator .fc-step-expression {
+    justify-content: center;
+  }
+
+  #calc-fraction-calculator .fc-summary-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #calc-fraction-calculator .fc-summary-row strong {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  #fraction-explanation .fc-exp-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #fraction-explanation .fc-faq-item p {
+    padding-left: 0;
+  }
+}

@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:loans/personal-loan`
+- Scope: `calc:percentage/commission-calculator`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/loan-calculators/personal-loan-calculator/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: Is this payment guaranteed by lenders? | What does APR include in this calculator?<br>Breadcrumb: Home > Home Loan > Personal Loan Calculator<br>Software: Personal Loan Calculator (FinanceApplication) | OK | UNCHANGED |
+| `public/percentage-calculators/commission-calculator/index.html` | 0 | 0→0 | 0→0 | 0→0 | FAQ []<br>Breadcrumb []<br>Software [] | - | OK | UNCHANGED |
 
