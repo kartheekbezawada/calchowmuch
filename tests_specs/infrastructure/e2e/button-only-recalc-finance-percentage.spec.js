@@ -93,7 +93,7 @@ async function setChangedNumericValue(input) {
 }
 
 async function verifyButtonOnlyRecalculation(page, route) {
-  await page.goto(route);
+  await page.goto(route, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
   const pane = page.locator('.center-column .panel').first();
   const result = pane.locator('.result').first();

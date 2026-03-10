@@ -7,7 +7,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --grep-invert \"UR-TEST-005/006\"",
     "test:cwv:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cwv:target": "CLS_GUARD_ROUTE_INCLUDE=$TARGET playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cls:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",

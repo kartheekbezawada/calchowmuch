@@ -4,7 +4,7 @@ test.describe('Margin Calculator SEO', () => {
   test('MARG-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/margin-calculator/');
 
-    await expect(page).toHaveTitle('Margin Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Margin Calculator – Profit Margin & Markup');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Days Until a Date Calculator SEO', () => {
   test('DAYS-UNTIL-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
-    await page.goto('/#/time-and-date/days-until-a-date-calculator');
+    await page.goto('/time-and-date/days-until-a-date-calculator');
 
     await expect(page).toHaveTitle('Days Until a Date Calculator – How Many Days Until');
 
@@ -35,6 +35,6 @@ test.describe('Days Until a Date Calculator SEO', () => {
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();
     const sitemapText = await sitemapResponse.text();
-    expect(sitemapText).toContain('/calculators/time-and-date/days-until-a-date-calculator/');
+    expect(sitemapText).toContain('/time-and-date/days-until-a-date-calculator/');
   });
 });

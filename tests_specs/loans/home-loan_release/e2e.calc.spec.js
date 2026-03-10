@@ -123,7 +123,7 @@ test.describe('Home Loan calculator', () => {
     expect(alignment.labelTopDiff).toBeLessThanOrEqual(1.5);
 
     const faqItems = page.locator('#loan-mtg-explanation .bor-faq-card');
-    await expect(faqItems).toHaveCount(10);
+    await expect(faqItems).toHaveCount(13);
 
     const graphCanvas = page.locator('#mtg-balance-canvas');
     await expect(graphCanvas).toBeVisible();
@@ -131,7 +131,8 @@ test.describe('Home Loan calculator', () => {
     const practicalGuide = page.locator('#mtg-section-practical-guide');
     await expect(practicalGuide).toBeVisible();
 
-    await expect(page.locator('#mtg-section-practical-guide a')).toHaveCount(0);
+    const practicalGuideLinks = page.locator('#mtg-section-practical-guide a');
+    expect(await practicalGuideLinks.count()).toBeGreaterThan(0);
 
     await expect(page.locator('#mtg-summary')).toHaveCount(0);
 

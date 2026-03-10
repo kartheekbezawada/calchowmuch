@@ -4,7 +4,7 @@ test.describe('Discount Calculator SEO', () => {
   test('DISC-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/discount-calculator/');
 
-    await expect(page).toHaveTitle('Discount Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Discount Calculator – Calculate Sale Price');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBeTruthy();
