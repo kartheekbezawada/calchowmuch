@@ -279,6 +279,9 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-014 (P0):** `How to Guide` must use scannable, actionable steps (ordered list or bullets).
 - **UR-EXP-015 (P0):** `Important Notes` must include required key lines: `Last updated`, `Accuracy`, calculator-relevant `Disclaimer` (label may vary), calculator-specific `Assumptions`, and `Privacy`.
 - **UR-EXP-016 (P0):** `Privacy` line inside `Important Notes` must match exactly: `All calculations run locally in your browser - no data is stored.`
+- **UR-EXP-017 (P0):** For newly built or touched `calc_exp` and `exp_only` routes, the intent-led `H2` must act as the main question/topic and be followed immediately by one short-answer paragraph (`40-50` words, about `250-300` characters), then one additional short paragraph.
+- **UR-EXP-018 (P0):** For newly built or touched `calc_exp` and `exp_only` routes, `How to Guide` content must include at least one scannable list (`ul`/`ol`) and one small comparison table when comparison improves understanding. Paragraph + table is the preferred default calculator explanation pattern.
+- **UR-EXP-019 (P0):** For newly built or touched `calc_exp` and `exp_only` routes, content after the answer-first block must expand into deeper explanation with worked examples, formulas (with variable meanings/units), and FAQ coverage aligned to specific user intent.
 
 ### 6.3 Table Baseline
 
@@ -297,9 +300,13 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block. Required sequence is `How to Guide` -> FAQ -> `Important Notes`, with `Important Notes` as the last explanation section.
 - **UR-EXP-038 (P0):** `Important Notes` placement exceptions are not allowed. Route-level overrides that move `Important Notes` above FAQ or away from final position are forbidden.
 - **UR-EXP-039 (P0):** Route tests and release evidence must assert both required order and required `Important Notes` keys (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`).
-- **UR-EXP-040 (P0):** `Important Notes` must render as a bullet list (`ul`/`ol`) and must not be enclosed in a dedicated container box pattern.
+- **UR-EXP-040 (P0):** `Important Notes` must render as a bullet list (`ul`/`ol`) inside a dedicated notes visual treatment (card/section container) that is visually distinct yet theme-consistent.
 - **UR-EXP-041 (P0):** Default SERP guide typography contract is `H3: 16px`, `H4: 14px`, body/list text `14px`; any typography deviation requires explicit REQ approval.
 - **UR-EXP-042 (P0):** SERP guide and notes must inherit the route calculator font stack by default. `Important Notes` key labels (`Last updated`, `Accuracy`, disclaimer label, `Assumptions`, `Privacy`) must use `rgba(186, 230, 253, 0.98)`.
+- **UR-EXP-043 (P0):** Universal guide/notes baseline for touched routes must match the `How Much Can I Borrow` style contract (heading hierarchy, type scale, line rhythm, and notes marker treatment) unless an explicit REQ-approved override is documented.
+- **UR-EXP-044 (P0):** Guide writing style must remain concise and intent-led: short paragraphs, scannable lists/tables, and question-led subheadings tied to calculator behavior; filler/marketing prose is forbidden.
+- **UR-EXP-045 (P0):** Deviation policy is strict: any route-level SERP guide/notes style override must include REQ approval plus release evidence describing the rationale and exact variance from baseline.
+- **UR-EXP-046 (P1):** Migration audit rubric for legacy routes must be maintained and used for deterministic pass/fail alignment during style harmonization campaigns.
 
 ---
 
@@ -310,7 +317,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-001 (P0):** Baseline metadata presence is mandatory: one unique `<title>`, one unique `<meta name="description">`, one `<h1>`, one canonical URL, viewport, `lang`, and robots in initial HTML. Detailed title/description formatting and quality rules are governed by `UR-SEO-040` to `UR-SEO-052`.
 - **UR-SEO-002 (P0):** Static HTML Robots: `<meta name="robots" content="index,follow">`.
 - **UR-SEO-003 (P0):** Canonical must be absolute and production domain.
-- **UR-SEO-004 (P0):** `calc_exp` and `exp_only` routes must include required explanation blocks from `UR-EXP-001` to `UR-EXP-005` in initial HTML.
+- **UR-SEO-004 (P0):** `calc_exp` and `exp_only` routes must include required explanation blocks from `UR-EXP-001` to `UR-EXP-005` in initial HTML. For newly built or touched routes in release scope, answer-first guide requirements from `UR-EXP-017` to `UR-EXP-019` are also mandatory.
 - **UR-SEO-005 (P0):** Missing Intent-led heading, `How to Guide`, `Important Notes`, or FAQ on applicable routes is SEO FAIL.
 
 ### 7.2 P2 Structured Data and Social
@@ -405,6 +412,15 @@ Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wordin
       - SoftwareApplication name: `Car Loan Calculator`
       - Breadcrumb: `Home > Car Loan Calculators > Car Loan Calculator`
   - Failure conditions: Canonical examples drift from enforced standard or encode deprecated placeholder patterns.
+- **UR-SEO-053 (P0):** For newly built or touched calculator routes, SEO content must prioritize question-led long-tail intent (`how to`, `what is`, `why does`, `can I`) instead of relying only on broad head terms.
+  - Acceptance criteria: Visible guide/FAQ headings and copy include intent-specific question patterns tied to calculator behavior.
+  - Failure conditions: Content targets only broad generic terms and misses clear question-based intent coverage.
+- **UR-SEO-054 (P0):** For routes explicitly designated as "Snippet Hub" in requirement/release scope, content depth must be `1500+` words and include multiple answer blocks, images with descriptive alt text, and coverage of multiple related questions on one page.
+  - Acceptance criteria: Snippet Hub designation evidence exists and all depth/structure/image-alt requirements pass.
+  - Failure conditions: Designated Snippet Hub route missing depth threshold, answer-block density, alt text, or related-question coverage.
+- **UR-SEO-055 (P0):** For any new URL or URL-path change in release scope, calculator URLs must remain short, human-readable, and limited to `1-3` subfolders (example: `/loan-calculators/mortgage-overpayment-calculator/`).
+  - Acceptance criteria: Introduced/changed route path is clean, concise, and within depth limit.
+  - Failure conditions: New/changed URL path is long, messy, or exceeds approved depth without explicit HUMAN approval.
 
 ---
 

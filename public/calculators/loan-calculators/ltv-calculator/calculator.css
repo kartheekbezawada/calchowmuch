@@ -842,6 +842,116 @@
   color: rgba(203, 213, 225, 0.92);
 }
 
+/* --- Practical Guide: universal SERP contract --- */
+
+#loan-ltv-explanation .mtg-exp-section--guide {
+  gap: 0.58rem;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide h3 {
+  margin: 0 0 0.16rem;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #fde68a;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide h4 {
+  margin: 0.34rem 0 0.08rem;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #fde68a;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide p,
+#loan-ltv-explanation .mtg-exp-section--guide li {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide p {
+  margin: 0;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide p + p {
+  margin-top: 0.24rem;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide .ltv-guide-list,
+#loan-ltv-explanation .mtg-exp-section--guide .ltv-step-list {
+  margin: 0.04rem 0 0.2rem;
+  padding-left: 1.02rem;
+  display: grid;
+  gap: 0.18rem;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide .ltv-formula-block {
+  margin: 0.22rem 0 0;
+  padding: 0.44rem 0.6rem;
+  border-radius: 0.56rem;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  background: rgba(15, 23, 42, 0.64);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(186, 230, 253, 0.98);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#loan-ltv-explanation .mtg-exp-section--guide .ltv-guide-table-wrap {
+  margin-top: 0.2rem;
+}
+
+/* --- Important Notes: universal SERP contract --- */
+
+#loan-ltv-explanation .mtg-exp-section--notes {
+  gap: 0.82rem;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-left: 4px solid rgba(56, 189, 248, 0.82);
+  background: linear-gradient(145deg, rgba(11, 25, 47, 0.9), rgba(16, 35, 64, 0.85));
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+}
+
+#loan-ltv-explanation .mtg-exp-section--notes h3 {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(224, 242, 254, 0.98);
+}
+
+#loan-ltv-explanation .mtg-exp-section--notes .ltv-notes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.24rem;
+}
+
+#loan-ltv-explanation .mtg-exp-section--notes .ltv-notes-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  line-height: 1.34;
+  color: rgba(226, 232, 240, 0.95);
+}
+
+#loan-ltv-explanation .mtg-exp-section--notes .ltv-notes-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.48rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+}
+
+#loan-ltv-explanation .mtg-exp-section--notes .ltv-notes-list strong {
+  color: rgba(186, 230, 253, 0.98);
+  font-weight: 700;
+}
+
 @media (prefers-reduced-motion: reduce) {
   #calc-loan-to-value .mtg-result-card .mtg-result-value.is-updated {
     animation: none;

@@ -110,6 +110,272 @@
     </div>
   </section>
 
+    <section class="mtg-exp-section mtg-exp-section--guide" id="rate-section-how-to-guide">
+    <h3>How To Guide</h3>
+
+    <h4>How much does a mortgage rate change affect my monthly payment?</h4>
+    <p>
+      An interest rate change calculator estimates the exact pound impact on your monthly repayment
+      and total lifetime interest when a mortgage rate rises or falls, either immediately or after a
+      chosen number of months, across your remaining loan term.
+    </p>
+    <p>
+      A one or two percentage point rate change can feel abstract until you see the numbers. On a
+      250,000 mortgage with 25 years left, moving from 5% to 6.5% adds about 226 per month and over
+      67,000 in total interest across the full term. That is the kind of figure most borrowers need
+      before making a remortgaging decision, accepting a lender's offer, or planning a budget for a
+      fixed-rate end date. This calculator puts both scenarios side by side so the comparison is
+      immediate.
+    </p>
+
+    <h4>What does an interest rate change calculator help me answer?</h4>
+    <p>This calculator is built to answer the questions most borrowers ask when rates move:</p>
+    <ul class="rate-guide-list">
+      <li>How much will my mortgage payment go up if rates rise?</li>
+      <li>What does a 1% rate increase cost me per month?</li>
+      <li>Can I afford the new payment if my fixed rate expires?</li>
+      <li>How much total interest will I save if I switch to a lower rate?</li>
+      <li>What is the difference in payment if my rate changes in six months versus now?</li>
+      <li>How do I compare my current deal against a new rate offer?</li>
+    </ul>
+
+    <h4>What this interest rate change calculator shows</h4>
+    <p>
+      The calculator runs two parallel amortisation paths and compares them across your remaining
+      term - a baseline using your current rate, and a new scenario using the rate you want to test.
+    </p>
+
+    <h4>Inputs</h4>
+    <ul class="rate-guide-list">
+      <li><strong>Loan Balance</strong> - the current outstanding mortgage balance in pounds</li>
+      <li><strong>Current Rate (APR %)</strong> - the interest rate you are paying now</li>
+      <li><strong>New Rate (APR %)</strong> - the rate you want to test, either higher or lower than the current rate</li>
+      <li><strong>Remaining Term (years)</strong> - how many years are left on the mortgage</li>
+      <li><strong>Rate Change Timing</strong> - whether the new rate applies from the start of the remaining term (Apply Immediately) or takes effect after a certain number of months (After X Months)</li>
+      <li><strong>Change After (months)</strong> - how many months to stay on the current rate before switching to the new rate; only active when After X Months timing is selected</li>
+    </ul>
+
+    <h4>Outputs</h4>
+    <ul class="rate-guide-list">
+      <li><strong>New Monthly Payment</strong> - the recalculated monthly repayment based on the new rate</li>
+      <li><strong>Baseline Monthly Payment</strong> - the monthly repayment at the current rate, for comparison</li>
+      <li><strong>Monthly Difference</strong> - how much more or less the new payment is compared to the baseline, per month</li>
+      <li><strong>Annual Difference</strong> - the monthly difference scaled to a full year</li>
+      <li><strong>Baseline Total Interest</strong> - lifetime interest paid at the current rate over the remaining term</li>
+      <li><strong>New Scenario Total Interest</strong> - lifetime interest paid at the new rate over the remaining term</li>
+      <li><strong>Total Interest Change</strong> - the overall difference between the two paths</li>
+      <li><strong>Rate Change Table</strong> - monthly or yearly breakdown showing payment and balance for both scenarios side by side</li>
+    </ul>
+
+    <h4>Why use an interest rate change calculator?</h4>
+    <p>
+      Mortgage rates rarely stay the same. Fixed deals expire. Tracker rates move with the base
+      rate. Variable rates are adjusted by lenders. Each of those events restarts the payment
+      calculation at a new interest rate, and the impact is not always intuitive.
+    </p>
+    <p>The calculator is useful for:</p>
+    <ul class="rate-guide-list">
+      <li>Stress-testing your budget before a fixed-rate end date by entering a realistic new rate</li>
+      <li>Comparing a current lender SVR against a remortgage offer to see the monthly and lifetime saving</li>
+      <li>Modelling how a delayed rate change - such as a rate fix that kicks in after six months - differs from an immediate switch</li>
+      <li>Understanding why small-sounding rate moves produce large total interest differences on long-term mortgages</li>
+    </ul>
+
+    <h4>How does an interest rate change calculator work?</h4>
+    <p>The calculator runs standard mortgage amortisation for two scenarios and compares the outputs.</p>
+
+    <h4>Step 1 - Baseline monthly payment</h4>
+    <p>The current rate path is calculated using the full remaining term at the current rate.</p>
+    <p class="rate-formula-block">M_current = P x [r_c x (1 + r_c)^n] / [(1 + r_c)^n - 1]</p>
+    <p>Where:</p>
+    <ul class="rate-guide-list">
+      <li><strong>M_current</strong> = monthly payment at current rate</li>
+      <li><strong>P</strong> = loan balance</li>
+      <li><strong>r_c</strong> = monthly current rate = current APR / 12 / 100</li>
+      <li><strong>n</strong> = total remaining months = remaining years x 12</li>
+    </ul>
+
+    <h4>Step 2 - New rate monthly payment</h4>
+    <p>The new rate path recalculates the payment using the same balance and remaining term but the new rate.</p>
+    <p class="rate-formula-block">M_new = P x [r_n x (1 + r_n)^n] / [(1 + r_n)^n - 1]</p>
+    <p>Where:</p>
+    <ul class="rate-guide-list">
+      <li><strong>r_n</strong> = monthly new rate = new APR / 12 / 100</li>
+    </ul>
+
+    <h4>Step 3 - Monthly and annual difference</h4>
+    <p class="rate-formula-block">Monthly Difference = M_new - M_current</p>
+    <p class="rate-formula-block">Annual Difference = Monthly Difference x 12</p>
+    <p>A positive result means the new rate costs more per month. A negative result means it saves money.</p>
+
+    <h4>Step 4 - After X Months timing</h4>
+    <p>
+      When the rate change is set to apply after a chosen number of months rather than immediately,
+      the calculator runs the current rate for those months first. The outstanding balance at the
+      switch point is then used as the new starting principal for the new rate calculation.
+    </p>
+    <p class="rate-formula-block">P_switch = Balance remaining after k months at r_c</p>
+    <p>The new rate payment is then:</p>
+    <p class="rate-formula-block">M_new = P_switch x [r_n x (1 + r_n)^(n - k)] / [(1 + r_n)^(n - k) - 1]</p>
+    <p>
+      This means the delayed scenario produces a slightly lower balance at the switch point, which
+      can make a small difference to the new payment compared to an immediate switch.
+    </p>
+
+    <h4>Step 5 - Total interest comparison</h4>
+    <p class="rate-formula-block">Baseline Interest = sum of interest portions at r_c</p>
+    <p class="rate-formula-block">New Scenario Interest = sum of interest portions at r_n</p>
+    <p class="rate-formula-block">Total Interest Change = New Scenario Interest - Baseline Interest</p>
+    <p>A positive change means the new rate costs more over the full remaining term. A negative change means a saving.</p>
+
+    <h4>What do the calculator inputs mean?</h4>
+    <h4>Loan Balance</h4>
+    <p>
+      The outstanding mortgage balance today, not the original loan amount. Use your most recent
+      statement. This is the amount both payment calculations are based on.
+    </p>
+    <h4>Current Rate (APR %)</h4>
+    <p>
+      The interest rate you are currently paying. This is used to build the baseline scenario for
+      comparison. If you are unsure of your exact APR, check your lender's most recent mortgage
+      statement.
+    </p>
+    <h4>New Rate (APR %)</h4>
+    <p>
+      The rate you want to test. This could be a new deal you have been quoted, a stress-test rate
+      to check budget headroom, a predicted base rate outcome, or your lender's Standard Variable
+      Rate when your fix expires.
+    </p>
+    <h4>Remaining Term (years)</h4>
+    <p>
+      The number of years left on the mortgage. The longer the remaining term, the larger the total
+      interest impact when rates change. This is one of the most sensitive inputs in the calculation.
+    </p>
+    <h4>Rate Change Timing</h4>
+    <ul class="rate-guide-list">
+      <li><strong>Apply Immediately</strong> - the new rate is assumed to start from the first month of the remaining term. Use this when the rate change has already happened or the new product would start right away.</li>
+      <li><strong>After X Months</strong> - the current rate continues for a chosen number of months, then the new rate takes over on the remaining balance. Use this when you know your fix expires in a set period, or when a deal takes time to arrange.</li>
+    </ul>
+    <h4>Change After (months)</h4>
+    <p>
+      Only active when After X Months timing is selected. Sets the number of months before the rate
+      switch. For example, entering 12 means the current rate applies for one more year before the
+      new rate takes effect on the remaining balance.
+    </p>
+
+    <h4>What do the calculator outputs mean?</h4>
+    <h4>New Monthly Payment</h4>
+    <p>
+      The recalculated monthly repayment at the new rate. This is the primary number most borrowers
+      need: it tells you what the new rate means in actual monthly cost.
+    </p>
+    <h4>Baseline Monthly Payment</h4>
+    <p>
+      The comparison payment at your current rate. Reading this alongside the new payment immediately
+      shows the monthly cost difference.
+    </p>
+    <h4>Monthly Difference</h4>
+    <p>
+      How much more or less you would pay per month under the new rate versus the current rate. This
+      is the most budget-relevant figure for day-to-day affordability planning.
+    </p>
+    <h4>Annual Difference</h4>
+    <p>
+      The monthly difference multiplied by twelve. This makes the impact easier to context against
+      annual income or household budget planning.
+    </p>
+    <h4>Total Interest Change</h4>
+    <p>
+      The overall difference in interest paid across the full remaining term. This figure is
+      typically much larger than borrowers expect because small monthly differences compound across
+      many years. It is the most important output for long-term cost decisions.
+    </p>
+
+    <h4>How to use the interest rate change calculator</h4>
+    <ol class="rate-step-list">
+      <li><strong>Enter your current loan balance.</strong> Use your latest statement balance.</li>
+      <li><strong>Set the current rate.</strong> Enter the APR you are paying now.</li>
+      <li><strong>Enter the new rate to test.</strong> Try the rate you have been quoted, your lender's SVR, or a stress-test rate.</li>
+      <li><strong>Set the remaining term.</strong> Use years remaining, not the original mortgage length.</li>
+      <li><strong>Choose timing.</strong> Select Apply Immediately if the change is now, or After X Months if you know when your deal ends.</li>
+      <li><strong>Set months if using delayed timing.</strong> Enter how many months before the rate switches.</li>
+      <li><strong>Review payment difference first.</strong> The monthly and annual difference tells you whether the new rate is affordable.</li>
+      <li><strong>Check total interest change.</strong> This gives you the lifetime perspective - the full cost of the new rate over the remaining term.</li>
+      <li><strong>Adjust the new rate up and down.</strong> Test a range - for example, 5.5%, 6.0%, and 6.5% - to understand how sensitive your costs are to small rate movements.</li>
+    </ol>
+
+    <h4>Example: how much does a 1.5% rate rise cost me?</h4>
+    <p>Using the calculator defaults:</p>
+    <div class="rate-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table rate-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Input</th>
+            <th scope="col">Example Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Loan Balance</td><td>250,000</td></tr>
+          <tr><td>Current Rate</td><td>5.0%</td></tr>
+          <tr><td>New Rate</td><td>6.5%</td></tr>
+          <tr><td>Remaining Term</td><td>25 years</td></tr>
+          <tr><td>Timing</td><td>Apply Immediately</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="rate-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table rate-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Output</th>
+            <th scope="col">Baseline (5.0%)</th>
+            <th scope="col">New Scenario (6.5%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly Payment</td><td>1,461.48</td><td>1,688.02</td></tr>
+          <tr><td>Monthly Difference</td><td>-</td><td>+226.54</td></tr>
+          <tr><td>Annual Difference</td><td>-</td><td>+2,718.51</td></tr>
+          <tr><td>Total Interest</td><td>188,443</td><td>256,405</td></tr>
+          <tr><td>Total Interest Change</td><td>-</td><td>+67,963</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      A 1.5 percentage point rate rise on a 250,000 mortgage with 25 years remaining costs an extra
+      226.54 per month, 2,718 per year, and approximately 67,963 more in total interest across the
+      full remaining term. These numbers explain why borrowers approaching a fixed-rate end date
+      should model their options before the rate change takes effect.
+    </p>
+
+    <h4>Apply Immediately vs After X Months - comparison</h4>
+    <div class="rate-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table rate-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Comparison Point</th>
+            <th scope="col">Apply Immediately</th>
+            <th scope="col">After X Months</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>When to use</td><td>Rate change is happening now or from day one</td><td>You know your fix ends in a set number of months</td></tr>
+          <tr><td>Balance used for new calculation</td><td>Full current balance</td><td>Reduced balance after k months of current rate</td></tr>
+          <tr><td>Monthly payment at new rate</td><td>Calculated from current balance</td><td>Slightly lower, because balance has reduced slightly</td></tr>
+          <tr><td>Total interest</td><td>Full remaining term at new rate</td><td>Mix: current rate for k months, then new rate on remainder</td></tr>
+          <tr><td>Most useful for</td><td>Immediate affordability check</td><td>Fix expiry planning and budget setting</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      The distinction matters when planning around a deal expiry. If you still have 12 months left
+      on your fix, the balance at expiry will be slightly lower - which means the new payment could
+      be marginally less than an immediate calculation suggests. The After X Months mode captures this
+      more accurately.
+    </p>
+  </section>
+
+
   <section class="mtg-exp-section mtg-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -203,5 +469,19 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes" id="rate-section-notes">
+    <h3>Important Notes</h3>
+    <ul class="rate-notes-list">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> Results are estimated from scenario inputs.</li>
+      <li><strong>Financial disclaimer:</strong> This tool supports planning only and is not financial advice.</li>
+      <li>
+        <strong>Assumptions:</strong> Uses standard amortization mathematics, fixed rates inside each
+        scenario period, and selected switch timing; lender-specific compounding/fees are not included.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
   </section>
 </div>

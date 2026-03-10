@@ -188,6 +188,51 @@ function setError(msg) {
 }
 
 /* --- Explanation / Visualization --- */
+const FALLBACK_EXPLANATION_HTML = `
+<div id="loan-borrow-explanation">
+  <section class="bor-exp-section bor-exp-section--capacity-scenarios">
+    <div class="bor-capacity-pane">
+      <h3>Your Income Capacity</h3>
+      <div class="bor-capacity-visual">
+        <div class="bor-capacity-stack-wrap">
+          <div class="bor-capacity-stack-meta">
+            <span data-bor="cap-hover-label">Tap or hover</span>
+            <strong data-bor="cap-hover-value">--%</strong>
+          </div>
+          <div class="bor-capacity-stack" data-bor="cap-stack" role="img" aria-label="Monthly income capacity breakdown">
+            <div class="bor-capacity-segment bor-capacity-segment--expenses" data-bor="seg-expenses" tabindex="0"><span class="bor-capacity-segment-label">Expenses</span></div>
+            <div class="bor-capacity-segment bor-capacity-segment--debts" data-bor="seg-debts" tabindex="0"><span class="bor-capacity-segment-label">Debts</span></div>
+            <div class="bor-capacity-segment bor-capacity-segment--mortgage" data-bor="seg-mortgage" tabindex="0"><span class="bor-capacity-segment-label">Mortgage</span></div>
+            <div class="bor-capacity-segment bor-capacity-segment--buffer" data-bor="seg-buffer" tabindex="0"><span class="bor-capacity-segment-label">Buffer</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="bor-capacity-legend">
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--expenses" data-bor="cap-expenses"><span>Expenses</span><strong data-bor="legend-expenses"></strong></div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--debts" data-bor="cap-debts"><span>Debts</span><strong data-bor="legend-debts"></strong></div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--mortgage" data-bor="cap-mortgage"><span>Mortgage</span><strong data-bor="legend-mortgage"></strong></div>
+        <div class="bor-capacity-legend-item bor-capacity-legend-item--buffer" data-bor="cap-buffer"><span>Buffer</span><strong data-bor="legend-buffer"></strong></div>
+      </div>
+    </div>
+    <div class="bor-scenarios-pane">
+      <div class="bor-scenario-header"><h3>Rate Scenarios</h3></div>
+      <div class="table-scroll" id="bor-scenario-wrap" tabindex="0">
+        <table class="calculator-table" id="bor-scenario-table">
+          <thead>
+            <tr><th scope="col">Rate</th><th scope="col">Max Borrow</th><th scope="col">Est. Monthly</th><th scope="col">Max Property</th></tr>
+          </thead>
+          <tbody id="bor-scenario-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>`;
+
+function injectFallbackExplanation(container) {
+  if (!container || document.querySelector('#loan-borrow-explanation')) return;
+  container.insertAdjacentHTML('beforeend', FALLBACK_EXPLANATION_HTML);
+}
+
 async function ensureExplanation() {
   const container = document.querySelector('#calc-how-much-can-borrow');
   if (document.querySelector('#loan-borrow-explanation') || !container) return;
@@ -195,10 +240,14 @@ async function ensureExplanation() {
     const response = await fetch('/calculators/loan-calculators/how-much-can-i-borrow/explanation.html');
     if (response.ok) {
       container.insertAdjacentHTML('beforeend', await response.text());
+      return;
     }
+    console.warn('Explanation HTML request returned a non-OK status.');
   } catch (e) {
     console.warn('Failed to load explanation HTML:', e);
   }
+  // Keep the graph/table functional even when explanation HTML fails to load.
+  injectFallbackExplanation(container);
 }
 
 function updateCapacityBar(data) {
@@ -248,6 +297,7 @@ function updateCapacityBar(data) {
     if (hoverValue) hoverValue.textContent = '--%';
     [segExpenses, segDebts, segMortgage, segBuffer].forEach((segment) => {
       if (!segment) return;
+      segment.style.flex = '0 0 0%';
       segment.style.flexBasis = '0%';
       segment.style.opacity = '0';
       segment.style.pointerEvents = 'none';
@@ -286,6 +336,9 @@ function updateCapacityBar(data) {
       return;
     }
 
+    const pct = Number(segment.pct.toFixed(1));
+    const basis = `${pct}%`;
+    segment.el.style.flex = `0 0 ${basis}`;
     segment.el.style.flexBasis = `${segment.pct.toFixed(1)}%`;
     segment.el.style.opacity = segment.pct > 0.01 ? '1' : '0';
     segment.el.style.pointerEvents = segment.pct > 0.01 ? 'auto' : 'none';
