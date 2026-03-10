@@ -229,12 +229,42 @@ Writing standards:
 - Target specific user intent and question-led phrasing where natural (`how to`, `what is`, `why does`, `can I`)
 - Use many clear headings (`H1`/`H2`/`H3`) and short scannable sections
 - Avoid giant walls of text
+- Keep sentence rhythm concise and consistent across sections (prefer shorter lines over dense paragraphs)
+
+Universal SERP Guide + Important Notes style blueprint (mandatory for touched `calc_exp` / `exp_only` routes):
+- Baseline source: `How Much Can I Borrow` guide/notes style contract.
+- Typography:
+  - `How To Guide` `H3`: `16px`
+  - guide sub-headings `H4`: `14px`
+  - guide body/list text: `14px`
+- Font:
+  - Guide and `Important Notes` must inherit the route calculator font stack (no standalone font family override).
+- Guide spacing and rhythm:
+  - Keep paragraph/list/table spacing consistent and compact.
+  - Preserve scannable rhythm between `H4`, paragraph, list, and table blocks.
+  - Formula/table blocks should use stable spacing that visually matches guide paragraph rhythm.
+- `Important Notes` visual shape:
+  - Must be the final explanation section after FAQ.
+  - Must use a dedicated notes card/section treatment with visible marker pattern for list items.
+  - Must render as bullet list (`ul`/`ol`), not plain paragraphs.
+  - Key labels (`Last updated`, `Accuracy`, disclaimer label, `Assumptions`, `Privacy`) must use `rgba(186, 230, 253, 0.98)`.
+- Deviation policy:
+  - Any deviation from this blueprint requires explicit REQ approval and release evidence describing the variance.
 
 Snippet Hub pattern (for designated high-priority pages):
 - Aim for 1500+ words
 - Include several answer blocks
 - Include images with descriptive alt text
 - Cover multiple related questions on one page
+
+Future audit rubric (documentation-first migration aid):
+- Run route-by-route pass/fail checks for touched routes using this rubric:
+  - PASS: guide typography matches baseline (`H3 16px`, `H4 14px`, body/list `14px`) or has REQ-approved override evidence.
+  - PASS: guide/notes font inheritance preserved (no isolated font swap).
+  - PASS: section order is `How to Guide -> FAQ -> Important Notes`, with notes last.
+  - PASS: `Important Notes` uses dedicated notes visual treatment + marker-style bullet list.
+  - PASS: required key labels exist and label color matches `rgba(186, 230, 253, 0.98)`.
+  - FAIL: any missing evidence or unapproved style variance.
 
 URL structure standards:
 - Keep URLs short and clean

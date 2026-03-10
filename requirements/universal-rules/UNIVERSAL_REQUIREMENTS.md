@@ -300,9 +300,13 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-EXP-037 (P0):** Output-first ordering does not relax required sequence inside the SERP explanation block. Required sequence is `How to Guide` -> FAQ -> `Important Notes`, with `Important Notes` as the last explanation section.
 - **UR-EXP-038 (P0):** `Important Notes` placement exceptions are not allowed. Route-level overrides that move `Important Notes` above FAQ or away from final position are forbidden.
 - **UR-EXP-039 (P0):** Route tests and release evidence must assert both required order and required `Important Notes` keys (`Last updated`, `Accuracy`, disclaimer, `Assumptions`, `Privacy`).
-- **UR-EXP-040 (P0):** `Important Notes` must render as a bullet list (`ul`/`ol`) and must not be enclosed in a dedicated container box pattern.
+- **UR-EXP-040 (P0):** `Important Notes` must render as a bullet list (`ul`/`ol`) inside a dedicated notes visual treatment (card/section container) that is visually distinct yet theme-consistent.
 - **UR-EXP-041 (P0):** Default SERP guide typography contract is `H3: 16px`, `H4: 14px`, body/list text `14px`; any typography deviation requires explicit REQ approval.
 - **UR-EXP-042 (P0):** SERP guide and notes must inherit the route calculator font stack by default. `Important Notes` key labels (`Last updated`, `Accuracy`, disclaimer label, `Assumptions`, `Privacy`) must use `rgba(186, 230, 253, 0.98)`.
+- **UR-EXP-043 (P0):** Universal guide/notes baseline for touched routes must match the `How Much Can I Borrow` style contract (heading hierarchy, type scale, line rhythm, and notes marker treatment) unless an explicit REQ-approved override is documented.
+- **UR-EXP-044 (P0):** Guide writing style must remain concise and intent-led: short paragraphs, scannable lists/tables, and question-led subheadings tied to calculator behavior; filler/marketing prose is forbidden.
+- **UR-EXP-045 (P0):** Deviation policy is strict: any route-level SERP guide/notes style override must include REQ approval plus release evidence describing the rationale and exact variance from baseline.
+- **UR-EXP-046 (P1):** Migration audit rubric for legacy routes must be maintained and used for deterministic pass/fail alignment during style harmonization campaigns.
 
 ---
 

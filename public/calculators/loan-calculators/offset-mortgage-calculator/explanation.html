@@ -112,6 +112,145 @@
     </div>
   </section>
 
+  <section class="mtg-exp-section mtg-exp-section--guide" id="off-section-how-to-guide">
+    <h3>How To Guide</h3>
+
+    <h4>How much interest can an offset mortgage save me?</h4>
+    <p>
+      An offset mortgage calculator estimates how much interest your linked savings can reduce over
+      the remaining term. It also shows how much earlier you could finish the loan if offset
+      savings are maintained.
+    </p>
+    <p>
+      In most products, offset savings do not earn separate savings interest. Instead, they reduce
+      the balance that mortgage interest is charged on, so more of each repayment goes to principal.
+    </p>
+
+    <h4>What does an offset mortgage calculator help me answer?</h4>
+    <ul class="off-guide-list">
+      <li>How much interest can I save with an offset account?</li>
+      <li>Can my savings balance reduce my mortgage term?</li>
+      <li>How different are Full Offset and Partial / Average results?</li>
+      <li>How do monthly savings contributions change long-term results?</li>
+      <li>How does effective balance change monthly interest charges?</li>
+    </ul>
+
+    <h4>What this offset mortgage calculator shows</h4>
+    <p>
+      The calculator compares two paths: a baseline mortgage with no offset effect, and an offset
+      path using your savings balance, contribution pattern, and selected mode.
+    </p>
+    <h4>Inputs</h4>
+    <ul class="off-guide-list">
+      <li><strong>Mortgage Balance:</strong> outstanding mortgage balance.</li>
+      <li><strong>Interest Rate (APR %):</strong> annual mortgage rate.</li>
+      <li><strong>Remaining Term (years):</strong> years left to repay.</li>
+      <li><strong>Offset Savings Balance:</strong> current linked savings.</li>
+      <li><strong>Monthly Offset Contribution:</strong> savings added each month.</li>
+      <li><strong>Offset Mode:</strong> full offset or partial/average offset.</li>
+    </ul>
+    <h4>Outputs</h4>
+    <ul class="off-guide-list">
+      <li><strong>Monthly Payment (Baseline):</strong> unchanged scheduled repayment.</li>
+      <li><strong>Interest Saved:</strong> estimated lifetime interest reduction.</li>
+      <li><strong>Time Saved:</strong> earlier payoff versus baseline path.</li>
+      <li><strong>Effective Balance:</strong> balance that accrues interest after offset.</li>
+      <li><strong>Baseline vs Offset Interest:</strong> total-cost comparison.</li>
+      <li><strong>Amortization Table:</strong> monthly/yearly breakdown.</li>
+    </ul>
+
+    <h4>How does an offset mortgage calculator work?</h4>
+    <ol class="off-step-list">
+      <li>
+        It first computes a baseline payment using standard amortization:
+        <p class="off-formula-block">M = P x [r x (1 + r)^n] / [(1 + r)^n - 1]</p>
+      </li>
+      <li>
+        It then calculates effective balance each month:
+        <p class="off-formula-block">Full: Effective Balance = Mortgage Balance - Offset Savings</p>
+        <p class="off-formula-block">
+          Partial/Average: Effective Balance = Mortgage Balance - (0.5 x Offset Savings)
+        </p>
+      </li>
+      <li>
+        Monthly interest in the offset path is charged on that effective balance:
+        <p class="off-formula-block">Offset Interest Charge = Effective Balance x r</p>
+      </li>
+      <li>
+        Finally, it compares baseline and offset totals:
+        <p class="off-formula-block">Interest Saved = Baseline Total Interest - Offset Total Interest</p>
+      </li>
+    </ol>
+
+    <h4>How to use the offset mortgage calculator</h4>
+    <ol class="off-step-list">
+      <li>Enter mortgage balance, annual rate, and remaining term.</li>
+      <li>Enter current offset savings and monthly contribution.</li>
+      <li>Review Full Offset results.</li>
+      <li>Switch to Partial / Average for a conservative scenario.</li>
+      <li>Compare interest saved, payoff time, and yearly trend together.</li>
+      <li>Run multiple scenarios before final borrowing decisions.</li>
+    </ol>
+
+    <h4>Example: how much can I save with a 20,000 offset balance?</h4>
+    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table off-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Input</th>
+            <th scope="col">Example Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Mortgage Balance</td><td>250,000</td></tr>
+          <tr><td>Interest Rate</td><td>5.0%</td></tr>
+          <tr><td>Remaining Term</td><td>25 years</td></tr>
+          <tr><td>Offset Savings</td><td>20,000</td></tr>
+          <tr><td>Monthly Contribution</td><td>200 / month</td></tr>
+          <tr><td>Mode</td><td>Full Offset</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table off-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Output</th>
+            <th scope="col">Baseline</th>
+            <th scope="col">With Offset</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly Payment</td><td>1,461.48</td><td>1,461.48 (unchanged)</td></tr>
+          <tr><td>Effective Balance (month 1)</td><td>250,000</td><td>230,000</td></tr>
+          <tr><td>Total Interest</td><td>188,000</td><td>113,000</td></tr>
+          <tr><td>Interest Saved</td><td>-</td><td>75,000</td></tr>
+          <tr><td>Loan Paid Off</td><td>25 years</td><td>20 years 9 months</td></tr>
+          <tr><td>Time Saved</td><td>-</td><td>4 years 3 months</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Full Offset vs Partial / Average - comparison</h4>
+    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+      <table class="calculator-table off-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Comparison Point</th>
+            <th scope="col">Full Offset</th>
+            <th scope="col">Partial / Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Offset factor applied</td><td>100% of savings balance</td><td>50% of savings balance</td></tr>
+          <tr><td>When to use</td><td>Lender credits full linked savings</td><td>Conservative daily-average estimate</td></tr>
+          <tr><td>Interest saving estimate</td><td>Higher estimate</td><td>Lower estimate</td></tr>
+          <tr><td>Decision use</td><td>Upper-bound scenario</td><td>Cautious planning scenario</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="mtg-exp-section mtg-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -204,5 +343,19 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes" id="off-section-notes">
+    <h3>Important Notes</h3>
+    <ul class="off-notes-list">
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on inputs.</li>
+      <li><strong>Financial disclaimer:</strong> For educational purposes only; not financial advice.</li>
+      <li>
+        <strong>Assumptions:</strong> Assumes constant interest rate, regular payment intervals, and
+        modelled offset contribution timing.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
   </section>
 </div>

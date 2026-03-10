@@ -715,10 +715,20 @@ HARD: `Important Notes` must include required key lines:
 
 HARD: SERP guide + Important Notes style consistency must be validated for touched calculators:
 - `Important Notes` rendered as bullet list (`ul`/`ol`)
-- `Important Notes` is not wrapped in a dedicated container box
+- `Important Notes` uses a dedicated notes visual treatment (card/section container) with marker-style list bullets
 - guide typography baseline preserved (`H3 16px`, `H4 14px`, body/list `14px`) unless REQ override is approved
 - font family inherited from calculator theme (no isolated font swap)
 - `Important Notes` key label color is `rgba(186, 230, 253, 0.98)`
+- baseline style aligned to `How Much Can I Borrow` guide/notes contract unless REQ-approved variance exists
+- any style variance has explicit REQ approval + sign-off evidence documenting exact deviation and rationale
+
+HARD: Future audit rubric (for style-harmonization releases) must use deterministic pass/fail checks per touched route:
+- PASS: typography baseline or approved override evidence present
+- PASS: font inheritance proof present
+- PASS: required section order proof present (`How to Guide -> FAQ -> Important Notes`, notes last)
+- PASS: notes visual treatment + marker-style list proof present
+- PASS: key-label color proof present
+- FAIL: missing proof or unapproved deviation
 
 HARD: FAQ count and visible FAQ content must remain schema-aligned.
 
@@ -820,7 +830,7 @@ Intent-led content structure validation notes (`How to Guide -> FAQ -> Important
 
 Answer-first/snippet-hub/URL-hygiene validation notes for touched routes (short-answer block, paragraph/list/table presence, long-tail intent coverage, snippet-hub conditional evidence, URL-depth check)
 
-SERP guide/notes style consistency notes (typography baseline + font inheritance + bullet-list/no-container proof + key-label color proof)
+SERP guide/notes style consistency notes (typography baseline + font inheritance + notes visual treatment + marker-style list proof + key-label color proof + any approved variance evidence)
 
 Thin-content scoring notes (`thinContentMode`, score, grade, hard flags)
 
