@@ -241,3 +241,16 @@ The calculator is a strong decision-support tool, but users should still interpr
 - Is the new term the same, shorter, or longer?
 - Does the monthly saving still look good over the chosen horizon?
 - Does the total saving support the switch, not just the first-month result?
+
+## Important Notes (Place below FAQs in UI)
+
+- This calculator provides directional estimates and is not a lender approval or mortgage offer.
+- Product fees, legal charges, valuation costs, and early repayment charges can materially change results.
+- Break-even timing should be reassessed after all switching costs are included.
+- Users should validate final numbers with a broker or lender before completing a remortgage decision.
+
+## UI Placement Contract
+
+- Render the full remortgage guide content in the explanation area.
+- Keep Related Calculators cards visually consistent, but do not use FAQ selector classes for those cards.
+- Render Important Notes immediately below the FAQ section.

@@ -1,4 +1,69 @@
 <div id="loan-btl-explanation">
+  <style>
+    #loan-btl-explanation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.92rem;
+      min-width: 0;
+    }
+    #loan-btl-explanation .btl-exp-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      min-width: 0;
+    }
+    #loan-btl-explanation .table-scroll {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+    #loan-btl-explanation .btl-guide {
+      display: grid;
+      gap: 0.7rem;
+    }
+    #loan-btl-explanation .btl-guide h4 {
+      margin: 0.16rem 0 0;
+      font-size: 0.82rem;
+      line-height: 1.34;
+      color: rgba(248, 250, 252, 0.98);
+    }
+    #loan-btl-explanation .btl-guide p,
+    #loan-btl-explanation .btl-guide li,
+    #loan-btl-explanation .btl-important-list li {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.56;
+      color: rgba(203, 213, 225, 0.9);
+    }
+    #loan-btl-explanation .btl-guide ul,
+    #loan-btl-explanation .btl-guide ol,
+    #loan-btl-explanation .btl-important-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+    #loan-btl-explanation .btl-formula {
+      border-radius: 0.7rem;
+      border: 1px solid rgba(56, 189, 248, 0.26);
+      background: rgba(15, 23, 42, 0.66);
+      padding: 0.6rem 0.72rem;
+    }
+    #loan-btl-explanation .btl-formula code {
+      display: block;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      color: rgba(125, 211, 252, 0.96);
+      white-space: normal;
+    }
+    #loan-btl-explanation .btl-guide-table {
+      min-width: 640px;
+    }
+    @media (max-width: 640px) {
+      #loan-btl-explanation .btl-guide-table {
+        min-width: 460px;
+      }
+    }
+  </style>
   <section class="btl-exp-section btl-exp-section--summary">
     <h2>Buy-to-Let Summary</h2>
     <p class="btl-dynamic-summary">
@@ -88,6 +153,187 @@
     </div>
   </section>
 
+  <section class="btl-exp-section btl-exp-section--guide">
+    <h3>Buy-to-Let Guide</h3>
+    <div class="btl-guide">
+      <h4>What does a buy-to-let mortgage calculator show?</h4>
+      <p>
+        A buy-to-let calculator estimates whether rental income can support mortgage and operating costs, and
+        whether the property may generate positive cash flow.
+      </p>
+      <p>
+        Instead of looking at only rent or only mortgage, it combines property value, deposit, mortgage type,
+        interest rate, rent, vacancy, and running costs.
+      </p>
+
+      <h4>What this calculator helps you answer</h4>
+      <ul>
+        <li>How to calculate buy-to-let cash flow.</li>
+        <li>What gross and net yield look like on a property.</li>
+        <li>Whether rental income can cover mortgage costs.</li>
+        <li>Why profit can be lower than expected after real costs.</li>
+        <li>How vacancy assumptions change return strength.</li>
+        <li>Interest-only versus repayment outcomes.</li>
+      </ul>
+
+      <h4>Core inputs</h4>
+      <ul>
+        <li><strong>Property Price</strong>: purchase price or valuation.</li>
+        <li><strong>Monthly Rent</strong>: expected monthly rent.</li>
+        <li><strong>Deposit Type</strong>: amount or percentage input.</li>
+        <li><strong>Interest Rate (%)</strong>: mortgage rate.</li>
+        <li><strong>Loan Term (Years)</strong>: mortgage duration.</li>
+        <li><strong>Mortgage Type</strong>: interest only or repayment.</li>
+      </ul>
+
+      <h4>Advanced inputs</h4>
+      <ul>
+        <li>Rent increase on/off and increase method.</li>
+        <li>Increase value and frequency.</li>
+        <li>Vacancy as percent of rent or months per year.</li>
+        <li>Letting agent fee as percent of rent.</li>
+        <li>Maintenance and other monthly costs.</li>
+        <li>Insurance, service charge, or ground rent assumptions.</li>
+      </ul>
+
+      <h4>Outputs shown</h4>
+      <ul>
+        <li><strong>Estimated Net Monthly Cashflow</strong></li>
+        <li><strong>Monthly Mortgage</strong></li>
+        <li><strong>Annual Cashflow</strong></li>
+        <li><strong>Gross Yield</strong></li>
+        <li><strong>Net Yield</strong></li>
+        <li><strong>Stress Coverage</strong></li>
+      </ul>
+
+      <h4>How to use the calculator</h4>
+      <ol>
+        <li>Enter property price.</li>
+        <li>Add realistic monthly rent.</li>
+        <li>Select deposit input type and amount.</li>
+        <li>Set mortgage rate and term.</li>
+        <li>Compare interest-only and repayment.</li>
+        <li>Add vacancy, agent fees, and running costs.</li>
+        <li>Enable rent increases if modeling long-term scenarios.</li>
+      </ol>
+
+      <h4>Why mortgage type matters</h4>
+      <div class="table-scroll" tabindex="0">
+        <table class="calculator-table btl-guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Mortgage Type</th>
+              <th scope="col">Usually Lower Monthly Payment</th>
+              <th scope="col">Builds Equity Faster</th>
+              <th scope="col">Usually Better Short-Term Cash Flow</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Interest Only</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Repayment</td>
+              <td>No</td>
+              <td>Yes</td>
+              <td>Usually No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>What is estimated net monthly cash flow?</h4>
+      <p>
+        This is the amount potentially left after effective rent and main operating costs are deducted.
+      </p>
+      <ul>
+        <li>Mortgage payment</li>
+        <li>Vacancy impact</li>
+        <li>Letting agent fee</li>
+        <li>Maintenance costs</li>
+        <li>Insurance, service charge, and ground rent</li>
+      </ul>
+
+      <h4>Gross yield vs net yield</h4>
+      <p>Gross yield is a quick property-level measure, while net yield includes operating cost impact.</p>
+      <div class="btl-formula"><code>Gross Yield = (Annual Rent / Property Price) * 100</code></div>
+      <div class="btl-formula"><code>Net Yield = (Net Annual Income / Property Price) * 100</code></div>
+      <p>
+        Net yield in this calculator is treated as income after operating costs but before mortgage finance costs,
+        because mortgage impact is already reflected in cashflow outputs.
+      </p>
+
+      <h4>What is stress coverage?</h4>
+      <p>Stress coverage indicates how comfortably effective rent covers monthly mortgage payment.</p>
+      <div class="btl-formula">
+        <code>Stress Coverage = (Effective Monthly Rent / Monthly Mortgage) * 100</code>
+      </div>
+      <p>A higher value usually means more resilience to cost increases or vacancy periods.</p>
+
+      <h4>Why vacancy and running costs matter</h4>
+      <ul>
+        <li>Vacancy can be entered as percentage rent loss or vacant months per year.</li>
+        <li>Agent fees directly reduce available cash flow.</li>
+        <li>Maintenance and fixed charges materially change net outcomes.</li>
+      </ul>
+
+      <h4>What does the cashflow projection table do?</h4>
+      <p>
+        The projection table models performance over time by applying rent growth, vacancy assumptions, ongoing
+        costs, and mortgage cost path year-by-year.
+      </p>
+
+      <h4>Formula reference</h4>
+      <div class="table-scroll" tabindex="0">
+        <table class="calculator-table btl-guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Output</th>
+              <th scope="col">Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loan Amount</td>
+              <td>Property Price - Deposit</td>
+            </tr>
+            <tr>
+              <td>Monthly Mortgage</td>
+              <td>Based on loan amount, rate, term, and mortgage type</td>
+            </tr>
+            <tr>
+              <td>Estimated Net Monthly Cashflow</td>
+              <td>Effective Rent - Mortgage - Agent Fee - Running Costs</td>
+            </tr>
+            <tr>
+              <td>Annual Cashflow</td>
+              <td>Net Monthly Cashflow * 12</td>
+            </tr>
+            <tr>
+              <td>Gross Yield</td>
+              <td>(Annual Rent / Property Price) * 100</td>
+            </tr>
+            <tr>
+              <td>Net Yield</td>
+              <td>(Net Annual Income / Property Price) * 100</td>
+            </tr>
+            <tr>
+              <td>Stress Coverage</td>
+              <td>(Effective Monthly Rent / Monthly Mortgage) * 100</td>
+            </tr>
+            <tr>
+              <td>Projection Table</td>
+              <td>Update rent, apply vacancy and costs, then calculate future cashflow</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="btl-exp-section btl-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="btl-faq-grid">
@@ -145,5 +391,15 @@
         </p>
       </article>
     </div>
+  </section>
+
+  <section class="btl-exp-section btl-exp-section--important-notes">
+    <h3>Important Notes</h3>
+    <ul class="btl-important-list">
+      <li>This calculator provides scenario estimates and is not a lender approval or underwriting result.</li>
+      <li>Tax treatment, legal fees, and purchase transaction costs are outside this estimate.</li>
+      <li>Local market vacancy, arrears, and maintenance spikes can materially change real cashflow.</li>
+      <li>Validate assumptions with your broker, lender, or adviser before committing to a property purchase.</li>
+    </ul>
   </section>
 </div>

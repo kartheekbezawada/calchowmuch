@@ -211,3 +211,16 @@ If rent increase is turned on, the table can project future rent using either:
 | Net Yield | Net Annual Income ÷ Property Price × 100 |
 | Stress Coverage | Effective Monthly Rent ÷ Monthly Mortgage × 100 |
 | Projection Table | Update rent, apply vacancy and costs, then calculate future cashflow |
+
+## Important Notes (Place below FAQs in UI)
+
+- This calculator is a scenario estimate and not a lender affordability approval or product offer.
+- Purchase taxes, conveyancing, financing fees, and portfolio tax treatment are not included.
+- Actual vacancy, arrears, maintenance spikes, and local rent changes can materially alter real cashflow.
+- Validate assumptions with broker, lender, and professional advisers before committing to a purchase.
+
+## UI Placement Contract
+
+- Render full buy-to-let guide content in the explanation area.
+- Keep existing FAQ selector/class contracts unchanged.
+- Render Important Notes immediately below the FAQ section.

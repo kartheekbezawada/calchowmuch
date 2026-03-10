@@ -2086,6 +2086,92 @@
 
 
     <div id="loan-remortgage-explanation">
+  <style>
+    #loan-remortgage-explanation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.95rem;
+      min-width: 0;
+    }
+    #loan-remortgage-explanation .remo-exp-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      min-width: 0;
+    }
+    #loan-remortgage-explanation .table-scroll {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+    #loan-remortgage-explanation .remo-related-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+    #loan-remortgage-explanation .remo-related-card {
+      padding: 0.85rem;
+      border-radius: 0.78rem;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-top: 2px solid rgba(56, 189, 248, 0.55);
+      background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+      display: grid;
+      gap: 0.4rem;
+    }
+    #loan-remortgage-explanation .remo-related-card h4,
+    #loan-remortgage-explanation .remo-related-card p,
+    #loan-remortgage-explanation .remo-guide p,
+    #loan-remortgage-explanation .remo-guide li,
+    #loan-remortgage-explanation .remo-important-list li {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    #loan-remortgage-explanation .remo-related-card h4 a {
+      color: rgba(226, 232, 240, 0.98);
+      text-decoration: none;
+    }
+    #loan-remortgage-explanation .remo-guide {
+      display: grid;
+      gap: 0.72rem;
+    }
+    #loan-remortgage-explanation .remo-guide h4 {
+      margin: 0.15rem 0 0;
+      font-size: 0.86rem;
+      line-height: 1.35;
+      color: rgba(226, 232, 240, 0.98);
+    }
+    #loan-remortgage-explanation .remo-guide ul,
+    #loan-remortgage-explanation .remo-guide ol,
+    #loan-remortgage-explanation .remo-important-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+    #loan-remortgage-explanation .remo-formula {
+      border-radius: 0.68rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(15, 23, 42, 0.64);
+      padding: 0.6rem 0.7rem;
+    }
+    #loan-remortgage-explanation .remo-formula code {
+      font-size: 0.77rem;
+      line-height: 1.5;
+      color: #93c5fd;
+      white-space: normal;
+    }
+    #loan-remortgage-explanation .remo-guide-table {
+      min-width: 560px;
+    }
+    @media (max-width: 720px) {
+      #loan-remortgage-explanation .remo-related-grid {
+        grid-template-columns: 1fr;
+      }
+      #loan-remortgage-explanation .remo-guide-table {
+        min-width: 420px;
+      }
+    }
+  </style>
   <p class="remo-exp-summary" id="remo-exp-summary" aria-live="polite">
     Set your inputs and click calculate to compare cumulative costs over your selected horizon.
   </p>
@@ -2147,18 +2233,211 @@
     </div>
   </section>
 
-  <section class="remo-exp-section remo-exp-section--faq">
+  <section class="remo-exp-section remo-exp-section--guide">
+    <h3>Remortgage Guide</h3>
+    <div class="remo-guide">
+      <h4>How much could I save by remortgaging?</h4>
+      <p>
+        A remortgage calculator estimates whether switching from your current mortgage rate and term to a new
+        one could lower monthly payments and improve total borrowing cost over your chosen horizon.
+      </p>
+      <p>
+        Remortgaging is not only about finding a lower interest rate. Current balance, remaining term, new rate,
+        and new term all interact, so this guide is designed to support a side-by-side decision.
+      </p>
+
+      <h4>What does a remortgage calculator tell me?</h4>
+      <ul>
+        <li>How much you could save by remortgaging.</li>
+        <li>Whether switching rates can lower your monthly payment.</li>
+        <li>When break-even can occur on a remortgage path.</li>
+        <li>How term changes can affect total savings.</li>
+        <li>How to compare lower payments versus shorter payoff.</li>
+      </ul>
+
+      <h4>What this remortgage calculator shows</h4>
+      <p>The calculator compares staying on your current mortgage against switching to a new deal today.</p>
+
+      <h4>Inputs</h4>
+      <ul>
+        <li><strong>Current Balance</strong>: amount still owed.</li>
+        <li><strong>Current Rate (%)</strong>: rate on existing mortgage.</li>
+        <li><strong>Remaining Term</strong>: time left on existing mortgage.</li>
+        <li><strong>New Rate (%)</strong>: remortgage rate to test.</li>
+        <li><strong>New Term</strong>: duration of the remortgage term.</li>
+        <li><strong>Horizon (Years)</strong>: comparison horizon.</li>
+      </ul>
+
+      <h4>Outputs</h4>
+      <ul>
+        <li><strong>Monthly Saving</strong>: current payment minus new payment.</li>
+        <li><strong>Annual Saving</strong>: monthly saving multiplied by 12.</li>
+        <li><strong>Break-Even Month</strong>: first month cumulative benefit becomes positive.</li>
+        <li><strong>Total Saving</strong>: overall cost difference across the selected horizon.</li>
+      </ul>
+
+      <h4>Why use a remortgage calculator before switching?</h4>
+      <p>
+        A lower rate can look attractive, but rate alone does not decide value. Testing affordability and total
+        savings before lender discussions helps avoid one-variable decisions.
+      </p>
+
+      <h4>How does a remortgage calculator work?</h4>
+      <p>
+        It estimates monthly repayment for two repayment paths, then compares those results over your selected
+        horizon:
+      </p>
+      <ol>
+        <li>Stay on current mortgage terms.</li>
+        <li>Switch to new mortgage terms.</li>
+      </ol>
+
+      <h4>Monthly mortgage payment formula</h4>
+      <div class="remo-formula"><code>M = P * (r * (1 + r)^n) / ((1 + r)^n - 1)</code></div>
+      <ul>
+        <li><strong>M</strong>: monthly payment</li>
+        <li><strong>P</strong>: principal or current balance</li>
+        <li><strong>r</strong>: monthly interest rate</li>
+        <li><strong>n</strong>: number of monthly payments</li>
+      </ul>
+      <div class="remo-formula"><code>r = annual_rate / 12</code></div>
+      <p>If your annual rate is a percentage, divide by 100 before applying the formula.</p>
+
+      <h4>Saving formulas</h4>
+      <div class="remo-formula">
+        <code>Monthly Saving = Current Monthly Payment - New Monthly Payment</code>
+      </div>
+      <div class="remo-formula"><code>Annual Saving = Monthly Saving * 12</code></div>
+      <div class="remo-formula">
+        <code>Total Saving = Total Current Path Cost - Total New Path Cost</code>
+      </div>
+
+      <h4>Example: can I save money by remortgaging?</h4>
+      <div class="table-scroll" tabindex="0">
+        <table class="calculator-table remo-guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Input</th>
+              <th scope="col">Example Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Current Balance</td>
+              <td>220,000</td>
+            </tr>
+            <tr>
+              <td>Current Rate</td>
+              <td>6.2%</td>
+            </tr>
+            <tr>
+              <td>Remaining Term</td>
+              <td>22 years</td>
+            </tr>
+            <tr>
+              <td>New Rate</td>
+              <td>4.9%</td>
+            </tr>
+            <tr>
+              <td>New Term</td>
+              <td>22 years</td>
+            </tr>
+            <tr>
+              <td>Horizon</td>
+              <td>5 years</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        If the rate drops while term stays the same, monthly cost often falls. Extending term may reduce payment
+        further, but can increase repayment duration.
+      </p>
+
+      <h4>Why term length matters</h4>
+      <p>Term choice has major impact on affordability and long-run cost profile.</p>
+      <h4>Shorter new term</h4>
+      <ul>
+        <li>Higher monthly payment.</li>
+        <li>Faster principal repayment.</li>
+        <li>Usually lower total long-run interest.</li>
+      </ul>
+      <h4>Longer new term</h4>
+      <ul>
+        <li>Lower monthly payment.</li>
+        <li>Slower balance reduction.</li>
+        <li>More payment flexibility.</li>
+        <li>Potentially higher total interest over full life.</li>
+      </ul>
+
+      <h4>Quick comparison table</h4>
+      <div class="table-scroll" tabindex="0">
+        <table class="calculator-table remo-guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Comparison Point</th>
+              <th scope="col">Stay on Current Mortgage</th>
+              <th scope="col">Remortgage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monthly Payment</td>
+              <td>Current rate and remaining term</td>
+              <td>New rate and new term</td>
+            </tr>
+            <tr>
+              <td>Annual Cost</td>
+              <td>May remain higher if rate is above market</td>
+              <td>May decrease if new terms are stronger</td>
+            </tr>
+            <tr>
+              <td>Flexibility</td>
+              <td>No structural change</td>
+              <td>Can reset term and payment structure</td>
+            </tr>
+            <tr>
+              <td>Horizon Saving</td>
+              <td>Baseline path</td>
+              <td>Shows estimated gain or loss</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>How to use this calculator</h4>
+      <ol>
+        <li>Enter outstanding mortgage balance.</li>
+        <li>Add your current mortgage rate.</li>
+        <li>Enter remaining term on current deal.</li>
+        <li>Add the new remortgage rate to test.</li>
+        <li>Choose new term and compare alternatives.</li>
+        <li>Set a practical horizon for evaluation.</li>
+        <li>Review monthly, annual, break-even, and total savings together.</li>
+      </ol>
+
+      <h4>What to check before trusting the result</h4>
+      <ul>
+        <li>Is the new rate materially lower than your current rate?</li>
+        <li>Is the new term shorter, equal, or longer?</li>
+        <li>Do savings still hold across the full horizon?</li>
+        <li>Does total saving support the switch, not just first-month payment?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="remo-exp-section remo-exp-section--related">
     <h3>Related Calculators</h3>
-    <div class="remo-faq-grid">
-      <div class="remo-faq-card">
+    <div class="remo-related-grid">
+      <div class="remo-related-card">
         <h4><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a></h4>
         <p>Review your current payment schedule first so the switching comparison starts from a solid baseline.</p>
       </div>
-      <div class="remo-faq-card">
+      <div class="remo-related-card">
         <h4><a href="/loan-calculators/ltv-calculator/">Loan-to-Value (LTV) Calculator</a></h4>
         <p>Check whether an improved LTV band could unlock stronger remortgage pricing before your deal expires.</p>
       </div>
-      <div class="remo-faq-card">
+      <div class="remo-related-card">
         <h4><a href="/loan-calculators/interest-rate-change-calculator/">Interest Rate Change Calculator</a></h4>
         <p>Test how sensitive your switching decision is if rates rise or fall over the next reset window.</p>
       </div>
@@ -2254,6 +2533,16 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="remo-exp-section remo-exp-section--important-notes">
+    <h3>Important Notes</h3>
+    <ul class="remo-important-list">
+      <li>This is an estimate tool and not a lender offer or approval decision.</li>
+      <li>Fees, legal costs, valuation charges, and early repayment charges are not included unless stated.</li>
+      <li>Break-even can move once full switching costs are included.</li>
+      <li>Confirm final figures with your lender or broker before making a switch decision.</li>
+    </ul>
   </section>
 </div>
 
