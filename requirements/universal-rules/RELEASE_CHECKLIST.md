@@ -671,15 +671,38 @@ HARD: Page crawlable without JS
 
 Applies to `calc_exp` and `exp_only` routes.
 
+HARD: Answer-first, snippet-hub, and URL-hygiene checks in this section apply to newly built or touched routes in release scope. Unchanged legacy routes are exempt.
+
 HARD: Output insight sections (for example totals, amortization tables, graphs, result cards) may appear before the required SERP explanation block.
 
 HARD: Explanation heading must be intent-led (calculator purpose/topic), not generic labels like `Explanation` or `Calculator Explanation`.
+
+HARD: For touched routes, the intent-led `H2` must act as the main question/topic and be followed immediately by:
+- one short-answer paragraph (`40-50` words, about `250-300` characters)
+- one additional short paragraph
 
 HARD: Default required section order must be visible in initial HTML:
 - Intent-led heading
 - `How to Guide`
 - FAQ
 - `Important Notes` (must be last explanation section)
+
+HARD: `How to Guide` must include:
+- at least one actionable list (`ul`/`ol`)
+- one small comparison table when comparison improves understanding
+- deeper follow-on explanation with worked example(s), formula breakdown, and interpretation guidance
+
+HARD: Long-tail targeting must prioritize question-led intent (`how to`, `what is`, `why does`, `can I`) rather than broad head terms only.
+
+HARD: Content must remain easy to scan (multiple headings, short sections, and no giant wall-of-text blocks).
+
+HARD: When a route is explicitly designated as a "Snippet Hub" in requirement/release scope, it must include:
+- `1500+` words
+- multiple answer blocks
+- images with descriptive alt text
+- multiple related-question answers on the same page
+
+HARD: For any new URL or URL-path change in scope, route paths must stay short and clean, use `1-3` subfolders, and avoid long/deep messy nesting (example: `/loan-calculators/mortgage-overpayment-calculator/`).
 
 HARD: `Important Notes` placement exceptions are not allowed. Any route that places `Important Notes` before FAQ, or not as the final explanation section, fails release.
 
@@ -794,6 +817,8 @@ Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activat
 SERP validation notes (canonical + schema + FAQ parity)
 
 Intent-led content structure validation notes (`How to Guide -> FAQ -> Important Notes`, `Important Notes` final-position evidence, and `Last updated` freshness evidence)
+
+Answer-first/snippet-hub/URL-hygiene validation notes for touched routes (short-answer block, paragraph/list/table presence, long-tail intent coverage, snippet-hub conditional evidence, URL-depth check)
 
 SERP guide/notes style consistency notes (typography baseline + font inheritance + bullet-list/no-container proof + key-label color proof)
 

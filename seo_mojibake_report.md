@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `calc:loans/remortgage-switching`
-- HTML files scanned: **1**
-- Calculator pages scanned: **1**
+- Scope: `cluster:loans`
+- HTML files scanned: **13**
+- Calculator pages scanned: **13**
 - Findings: **0**
 - Status: **PASS**
 

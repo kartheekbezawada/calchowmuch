@@ -220,6 +220,22 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     const legendMortgage = page.locator('[data-bor="legend-mortgage"]');
     await expect(legendExpenses).toContainText(/[0-9]/);
     await expect(legendMortgage).toContainText(/[0-9]/);
+
+    const segmentMetrics = await page.evaluate(() => {
+      const stack = document.querySelector('[data-bor="cap-stack"]');
+      const keys = ['expenses', 'debts', 'mortgage', 'buffer'];
+      const widths = keys.map((key) => {
+        const el = document.querySelector(`[data-bor="seg-${key}"]`);
+        return el ? el.getBoundingClientRect().width : 0;
+      });
+      return {
+        stackWidth: stack ? stack.getBoundingClientRect().width : 0,
+        segmentWidths: widths,
+      };
+    });
+
+    expect(segmentMetrics.stackWidth).toBeGreaterThan(0);
+    expect(segmentMetrics.segmentWidths.every((width) => width > 0)).toBe(true);
   });
 
   test('BOR-TEST-E2E-9: scenario table renders with highlighted current rate', async ({ page }) => {

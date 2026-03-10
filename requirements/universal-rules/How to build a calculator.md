@@ -62,8 +62,8 @@ Out of scope:
 - Hero intent line
 - Calculator interaction block (inputs + results)
 - Optional deeper insight block (table/chart/details)
-- FAQ block
 - How to Guide block
+- FAQ block
 - Important Notes block
 - Calculator interaction block should prioritize:
 - Inputs that can be completed quickly
@@ -179,14 +179,24 @@ Out of scope:
 
 ### 6.1 Mandatory "How to Guide" Requirement
 - Include one long-form "How to Guide" section on the calculator page.
-- Word count must be between 800 and 1200 words.
-- Heading order must be exactly:
-- Intent
-- Complete Practical Guide
-- Important Notes
+- Word count policy:
+- Default guide depth: 800-1200 words.
+- Designated "Snippet Hub" pages: 1500+ words.
+- Main heading and answer-first contract:
+- Use one intent-led `H2` as the main question/topic for the page.
+- Directly below the `H2`, include one clear short-answer paragraph (`40-50` words and about `250-300` characters).
+- Immediately follow that short answer with one additional short paragraph.
+- Include one scannable list (`ul` or `ol`).
+- Include one small comparison table when comparison helps understanding.
+- For calculator pages, paragraph + table is the default preferred content pattern.
+- Required explanation block order:
+- Intent-led heading (`H2`)
+- `How to Guide`
+- FAQ
+- Important Notes (final section)
 - Heading simplification rule:
 - If the page already uses an intent-led `H2` such as `"[Calculator Name] Complete Practical Guide"`, do not add a redundant `H3` titled `How to Guide`.
-- In this pattern, start directly with `H4` blocks (`Intent`, `Complete Practical Guide`) under the `H2`.
+- In this pattern, start directly with `H4` blocks (`Intent`, `Complete Practical Guide`) under the `H2`, then keep FAQ and `Important Notes` in required order.
 
 Intent section must include:
 - What this calculator is for
@@ -197,11 +207,12 @@ Intent section must include:
 Complete Practical Guide section must include:
 - Step-by-step usage instructions
 - Input field explanations with units
-- Formula explanation in plain English
+- Formula explanation in plain English, with variable meaning and units
 - At least one worked example with real numbers
 - How input changes affect outputs
 - Common mistakes and how to avoid them
 - How to interpret the result for real decisions
+- Deeper explanation after the answer-first block (expanded context + examples + formulas + FAQs)
 
 Important Notes section must include:
 - Assumptions
@@ -215,11 +226,27 @@ Writing standards:
 - Define terms before use
 - Avoid filler and marketing language
 - Keep the guide practical and action-oriented
+- Target specific user intent and question-led phrasing where natural (`how to`, `what is`, `why does`, `can I`)
+- Use many clear headings (`H1`/`H2`/`H3`) and short scannable sections
+- Avoid giant walls of text
+
+Snippet Hub pattern (for designated high-priority pages):
+- Aim for 1500+ words
+- Include several answer blocks
+- Include images with descriptive alt text
+- Cover multiple related questions on one page
+
+URL structure standards:
+- Keep URLs short and clean
+- Use 1-3 subfolders
+- Example: `/loan-calculators/mortgage-overpayment-calculator/`
+- Avoid long, messy URL paths
 
 ## 7. SEO and Sitemap Requirements
 - Unique page title and meta description
 - FAQ content aligned to user intent
 - Structured FAQ data where applicable
+- Use short URL paths with clear intent and limited nesting depth
 - Public route must be included in sitemap
 
 ## 8. Test and Release Gate Requirements
@@ -239,7 +266,8 @@ Writing standards:
 ## 10. Acceptance Criteria
 - All functional requirements implemented and validated.
 - Formula outputs match approved test vectors.
-- Mandatory 800-1200 word guide is present and follows required heading order.
+- Mandatory guide is present with answer-first structure and required heading order.
+- Guide depth follows policy: default `800-1200`; designated snippet hubs `1500+`.
 - Universal UI/UX baseline and checklist in section 5 are satisfied.
 - All release gates pass with evidence.
 - Work is ready for human review and merge.
