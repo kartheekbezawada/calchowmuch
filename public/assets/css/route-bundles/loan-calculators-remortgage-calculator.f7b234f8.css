@@ -2151,14 +2151,18 @@
 
 }
 
-/* source: /calculators/loan-calculators/how-much-can-i-borrow/calculator.css */
-/* How Much Can I Borrow — Electric Theme */
+/* source: /calculators/loan-calculators/remortgage-calculator/calculator.css */
+/* Remortgage Switching — Electric Theme (Ported) */
 
-#calc-how-much-can-borrow {
+#calc-remortgage-switching {
   width: 100%;
 }
 
-#calc-how-much-can-borrow .borrow-ui {
+#calculator-title {
+  text-align: center;
+}
+
+#calc-remortgage-switching .remo-ui {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -2166,10 +2170,10 @@
 
 /* --- Hero: 2-column grid (form | result dashboard) --- */
 
-#calc-how-much-can-borrow .borrow-hero {
+#calc-remortgage-switching .remo-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-  gap: 2rem;
+  gap: 1rem;
   align-items: start;
   padding: 0;
   border: 0;
@@ -2178,72 +2182,79 @@
 }
 
 @media (max-width: 900px) {
-  #calc-how-much-can-borrow .borrow-hero {
+  #calc-remortgage-switching .remo-hero {
     grid-template-columns: 1fr;
   }
 }
 
-#calc-how-much-can-borrow .borrow-form-panel {
+#calc-remortgage-switching .remo-form-panel {
   display: grid;
-  gap: 2rem;
+  gap: 0.75rem;
   align-content: start;
-}
-
-#calc-how-much-can-borrow .helper {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
 }
 
 /* --- Sections & Layout --- */
 
-.borrow-section {
+.remo-section {
   display: grid;
-  gap: 1.5rem;
+  gap: 0.75rem;
 }
 
 .input-grid-2-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
+  gap: 0.75rem 1.25rem;
 }
 
 @media (max-width: 600px) {
   .input-grid-2-col {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
 }
 
 /* --- Slider Styling (Electric Theme) --- */
 
-#calc-how-much-can-borrow .input-row.slider-row {
+#calc-remortgage-switching .input-row.slider-row {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 6px 10px;
   border-radius: 12px;
   transition: background 0.2s ease;
 }
 
-#calc-how-much-can-borrow .input-row.slider-row:hover {
+#calc-remortgage-switching .input-row.slider-row:hover {
   background: rgba(255, 255, 255, 0.03);
 }
 
-#calc-how-much-can-borrow .input-row.slider-row:hover label {
+#calc-remortgage-switching .input-row.slider-row:hover label {
   color: #e2e8f0;
   text-shadow: 0 0 12px rgba(226, 232, 240, 0.6);
 }
 
-#calc-how-much-can-borrow .slider-header {
+#calc-remortgage-switching .slider-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#calc-how-much-can-borrow label {
-  font-size: 0.9rem;
+#calc-remortgage-switching .remo-horizon-tick-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  opacity: 0.9;
+  margin-top: 0.1rem;
+}
+
+#calc-remortgage-switching .remo-horizon-tick-row span {
+  text-align: center;
+}
+
+#calc-remortgage-switching label {
+  font-size: 0.85rem;
   font-weight: 600;
   color: #94a3b8;
   transition:
@@ -2251,13 +2262,13 @@
     text-shadow 0.2s ease;
 }
 
-#calc-how-much-can-borrow .slider-value {
+#calc-remortgage-switching .slider-value {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #fff;
   background: rgba(15, 23, 42, 0.6);
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: 6px;
   border: 1px solid rgba(148, 163, 184, 0.2);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -2266,8 +2277,9 @@
 }
 
 /* Range Input - Neon Track */
-#calc-how-much-can-borrow input[type='range'] {
+#calc-remortgage-switching input[type='range'] {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 6px;
   background: rgba(30, 41, 59, 0.8);
@@ -2278,33 +2290,33 @@
   z-index: 1;
 }
 
-/* Gradient Trac k Fill */
-#calc-how-much-can-borrow input[type='range']::-webkit-slider-runnable-track {
+/* Gradient Track Fill */
+#calc-remortgage-switching input[type='range']::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
     #06b6d4 0%,
-    #3b82f6 var(--fill),
-    rgba(30, 41, 59, 0.8) var(--fill)
+    #3b82f6 var(--fill, 0%),
+    rgba(30, 41, 59, 0.8) var(--fill, 0%)
   );
 }
 
-#calc-how-much-can-borrow input[type='range']::-moz-range-track {
+#calc-remortgage-switching input[type='range']::-moz-range-track {
   width: 100%;
   height: 6px;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
     #06b6d4 0%,
-    #3b82f6 var(--fill),
-    rgba(30, 41, 59, 0.8) var(--fill)
+    #3b82f6 var(--fill, 0%),
+    rgba(30, 41, 59, 0.8) var(--fill, 0%)
   );
 }
 
 /* Glowing Thumb */
-#calc-how-much-can-borrow input[type='range']::-webkit-slider-thumb {
+#calc-remortgage-switching input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 22px;
   width: 22px;
@@ -2323,7 +2335,7 @@
   cursor: grab;
 }
 
-#calc-how-much-can-borrow input[type='range']::-moz-range-thumb {
+#calc-remortgage-switching input[type='range']::-moz-range-thumb {
   height: 22px;
   width: 22px;
   border-radius: 50%;
@@ -2340,7 +2352,7 @@
   border: none;
 }
 
-#calc-how-much-can-borrow input[type='range']:hover::-webkit-slider-thumb {
+#calc-remortgage-switching input[type='range']:hover::-webkit-slider-thumb {
   transform: scale(1.15);
   box-shadow:
     0 0 15px rgba(59, 130, 246, 0.8),
@@ -2348,60 +2360,28 @@
   border-color: #06b6d4;
 }
 
-#calc-how-much-can-borrow input[type='range']:active::-webkit-slider-thumb {
+#calc-remortgage-switching input[type='range']:active::-webkit-slider-thumb {
   transform: scale(1.05);
   cursor: grabbing;
   box-shadow: 0 0 8px rgba(59, 130, 246, 0.9);
-}
-
-#calc-how-much-can-borrow input[type='range']:hover::-moz-range-thumb {
-  transform: scale(1.15);
-  box-shadow:
-    0 0 15px rgba(59, 130, 246, 0.8),
-    0 0 30px rgba(6, 182, 212, 0.6);
-  border-color: #06b6d4;
-}
-
-#calc-how-much-can-borrow input[type='range']:active::-moz-range-thumb {
-  transform: scale(1.05);
-  cursor: grabbing;
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.9);
-}
-
-/* --- Toggle Rows --- */
-#calc-how-much-can-borrow .borrow-toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  margin-top: 8px;
-  background: rgba(15, 23, 42, 0.4);
-  border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-#calc-how-much-can-borrow .row-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #cbd5e1;
 }
 
 /* --- Buttons --- */
-#calc-how-much-can-borrow .borrow-action-row {
-  margin-top: 1rem;
+#calc-remortgage-switching .remo-action-row {
+  margin-top: 0.5rem;
 }
 
-#calc-how-much-can-borrow .calculator-button.full-width {
+#calc-remortgage-switching .calculator-button.full-width {
   width: 100%;
   font-size: 1.1rem;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: 1px solid rgba(147, 197, 253, 0.3);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   transition: all 0.2s ease;
 }
 
-#calc-how-much-can-borrow .calculator-button.full-width:hover {
+#calc-remortgage-switching .calculator-button.full-width:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
@@ -2409,43 +2389,41 @@
 
 /* --- Result Dashboard (Glassmorphism) --- */
 
-/* --- Result Dashboard (Glassmorphism) --- */
-
-.borrow-result-dashboard {
+.remo-result-dashboard {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(59, 130, 246, 0.3);
   /* Blue tint border */
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow:
     0 0 25px rgba(59, 130, 246, 0.15),
     0 10px 30px rgba(0, 0, 0, 0.3);
   /* Glow */
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
-.borrow-dashboard-label {
-  font-size: 0.85rem;
+.remo-dashboard-label {
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #94a3b8;
   font-weight: 700;
   margin: 0;
   border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
 }
 
-.borrow-metric-grid {
+.remo-metric-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.borrow-metric {
+.remo-metric {
   background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(148, 163, 184, 0.1);
   border-radius: 12px;
@@ -2458,47 +2436,40 @@
     border-color 0.2s ease;
 }
 
-.borrow-metric:hover {
+.remo-metric:hover {
   transform: translateY(-2px);
   border-color: rgba(59, 130, 246, 0.4);
 }
 
-.borrow-metric--primary {
+.remo-metric--primary {
   grid-column: 1 / -1;
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
   border: 1px solid rgba(59, 130, 246, 0.3);
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
 }
 
-.borrow-metric__label {
+.remo-metric__label {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: #cbd5e1;
 }
 
-.borrow-metric__value {
+.remo-metric__value {
   font-size: 1.6rem;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.borrow-metric--primary .borrow-metric__value {
+.remo-metric--primary .remo-metric__value {
   font-size: 2.2rem;
   color: #60a5fa;
   text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 /* --- Misc --- */
-.borrow-constraint-tag {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  text-align: center;
-  font-style: italic;
-}
-
-.borrow-error {
+.remo-error {
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
@@ -2508,7 +2479,14 @@
   font-size: 0.9rem;
 }
 
-@keyframes bor-result-pop {
+.remo-result-note {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-style: italic;
+  text-align: center;
+}
+
+@keyframes remo-result-pop {
   0% {
     transform: scale(0.95);
     opacity: 0.7;
@@ -2525,21 +2503,23 @@
   }
 }
 
-.borrow-metric__value.is-updated {
-  animation: bor-result-pop 0.3s ease-out;
+.remo-metric__value.is-updated {
+  animation: remo-result-pop 0.3s ease-out;
   color: #38bdf8;
 }
 
 /* ================================================================
-   EXPLANATION PANEL
+   EXPLANATION PANEL (Ported & Adapted)
    ================================================================ */
 
-#loan-borrow-explanation {
+#loan-remortgage-explanation {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.95rem;
+  min-width: 0;
 }
 
-#loan-borrow-explanation h2 {
+#loan-remortgage-explanation h2 {
   margin: 0;
   font-size: 1.08rem;
   font-weight: 700;
@@ -2547,7 +2527,7 @@
   text-align: center;
 }
 
-#loan-borrow-explanation > p {
+#loan-remortgage-explanation > p {
   margin: 0;
   font-size: 0.84rem;
   line-height: 1.55;
@@ -2556,16 +2536,18 @@
 
 /* --- Explanation section cards --- */
 
-.bor-exp-section {
+.remo-exp-section {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.72rem;
   padding: 1rem;
   border-radius: 0.95rem;
   border: 1px solid rgba(148, 163, 184, 0.16);
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+  min-width: 0;
 }
 
-.bor-exp-section h3 {
+.remo-exp-section h3 {
   margin: 0;
   font-size: 0.88rem;
   font-weight: 700;
@@ -2576,142 +2558,51 @@
   padding-bottom: 0;
 }
 
-#loan-borrow-explanation .bor-exp-section h3::after {
-  content: none;
+/* --- Table Header & Toggle --- */
+.remo-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-/* --- Capacity bar: horizontal segmented income bar --- */
-
-#loan-borrow-explanation .bor-capacity-bar {
+.remo-table-view-toggle {
   display: flex;
-  height: 48px;
-  border-radius: 0.75rem;
-  overflow: hidden;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 4px;
+  border-radius: 8px;
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-#loan-borrow-explanation .bor-capacity-segment {
-  flex: 0 0 var(--seg-width, 0%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #fff;
-  min-width: 0;
-  overflow: hidden;
-  transition:
-    flex-basis 0.6s ease,
-    filter 0.3s ease;
-}
-
-#loan-borrow-explanation .bor-capacity-segment:hover {
-  filter: brightness(1.25);
-}
-
-#loan-borrow-explanation .bor-capacity-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 0.25rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-#loan-borrow-explanation .bor-capacity-segment--expenses {
-  background: linear-gradient(135deg, #f43f5e, #e11d48);
-}
-
-#loan-borrow-explanation .bor-capacity-segment--debts {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-}
-
-#loan-borrow-explanation .bor-capacity-segment--mortgage {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-}
-
-#loan-borrow-explanation .bor-capacity-segment--buffer {
-  background: linear-gradient(135deg, #10b981, #059669);
-}
-
-/* --- Capacity legend --- */
-
-#loan-borrow-explanation .bor-capacity-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-#loan-borrow-explanation .bor-capacity-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.42rem;
-  padding: 0.4rem 0.62rem;
-  border-radius: 0.62rem;
+.remo-table-view-toggle .calculator-button.secondary {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  background: transparent;
   border: 1px solid transparent;
-  background: none;
-  cursor: default;
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  color: #94a3b8;
+  box-shadow: none;
 }
 
-#loan-borrow-explanation .bor-capacity-legend-item:hover {
-  background: rgba(139, 92, 246, 0.08);
-  border-color: rgba(139, 92, 246, 0.18);
-  box-shadow: 0 2px 12px rgba(139, 92, 246, 0.08);
+.remo-table-view-toggle .calculator-button.secondary:hover {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-#loan-borrow-explanation .bor-capacity-legend-item::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.remo-table-view-toggle .calculator-button.secondary.is-active {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
-#loan-borrow-explanation .bor-capacity-legend-item--expenses::before {
-  background: #f43f5e;
-  box-shadow: 0 0 6px rgba(244, 63, 94, 0.4);
-}
+/* --- Table Scrolling & Styling --- */
 
-#loan-borrow-explanation .bor-capacity-legend-item--debts::before {
-  background: #f59e0b;
-  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
-}
-
-#loan-borrow-explanation .bor-capacity-legend-item--mortgage::before {
-  background: #8b5cf6;
-  box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
-}
-
-#loan-borrow-explanation .bor-capacity-legend-item--buffer::before {
-  background: #10b981;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
-}
-
-#loan-borrow-explanation .bor-capacity-legend-item span {
-  font-size: 0.74rem;
-  color: rgba(203, 213, 225, 0.9);
-}
-
-#loan-borrow-explanation .bor-capacity-legend-item strong {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: rgba(248, 250, 252, 0.98);
-  margin-left: 0.2rem;
-}
-
-/* --- Rate Scenarios table --- */
-
-#loan-borrow-explanation .bor-scenario-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.68rem;
-}
-
-#loan-borrow-explanation .table-scroll {
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   max-height: 318px;
   overflow: auto;
   border-radius: 0.8rem;
@@ -2719,12 +2610,13 @@
   background: rgba(15, 23, 42, 0.62);
 }
 
-#loan-borrow-explanation .calculator-table {
+.calculator-table {
+  width: 100%;
   min-width: 420px;
   border-collapse: collapse;
 }
 
-#loan-borrow-explanation .calculator-table thead th {
+.calculator-table thead th {
   position: sticky;
   top: 0;
   z-index: 3;
@@ -2733,41 +2625,37 @@
   text-transform: uppercase;
   color: #fde68a;
   background: rgba(30, 41, 59, 0.98);
-}
-
-#loan-borrow-explanation .calculator-table th,
-#loan-borrow-explanation .calculator-table td {
+  padding: 0.8rem 0.5rem;
   text-align: center;
-  border: 1px solid rgba(148, 163, 184, 0.24);
-  padding: 0.5rem;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.24);
 }
 
-#loan-borrow-explanation .calculator-table td {
+.calculator-table th,
+.calculator-table td {
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  padding: 0.6rem 0.5rem;
+}
+
+.calculator-table td {
   font-size: 0.79rem;
   color: rgba(226, 232, 240, 0.94);
   white-space: nowrap;
 }
 
-#loan-borrow-explanation .calculator-table tbody tr:nth-child(even) {
+.calculator-table tbody tr:nth-child(even) {
   background: rgba(30, 41, 59, 0.36);
-}
-
-/* Highlighted current rate row */
-#loan-borrow-explanation .bor-scenario-highlight td {
-  font-weight: 700;
-  color: #c4b5fd;
-  background: rgba(139, 92, 246, 0.12);
 }
 
 /* --- FAQ: 2-column card grid with number badges --- */
 
-#loan-borrow-explanation .bor-faq-grid {
+.remo-faq-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.65rem;
 }
 
-#loan-borrow-explanation .bor-faq-card {
+.remo-faq-card {
   padding: 0.85rem;
   border-radius: 0.78rem;
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
@@ -2781,13 +2669,13 @@
     box-shadow 0.3s ease;
 }
 
-#loan-borrow-explanation .bor-faq-card:hover {
+.remo-faq-card:hover {
   transform: translateY(-2px);
   border-top-color: rgba(245, 158, 11, 0.8);
   box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
 }
 
-#loan-borrow-explanation .bor-faq-number {
+.remo-faq-number {
   display: inline-flex;
   width: 26px;
   height: 26px;
@@ -2802,212 +2690,151 @@
   flex-shrink: 0;
 }
 
-#loan-borrow-explanation .bor-faq-card h4 {
+.remo-faq-card h4 {
   margin: 0;
   font-size: 0.86rem;
   line-height: 1.3;
   color: rgba(226, 232, 240, 0.98);
 }
 
-#loan-borrow-explanation .bor-faq-card p {
+.remo-faq-card p {
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.5;
   color: rgba(203, 213, 225, 0.92);
 }
 
-/* --- Practical Guide: typography alignment with calculator theme --- */
-
-#loan-borrow-explanation .bor-exp-section--guide {
-  font-family: inherit;
-  gap: 0.58rem;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide h3 {
-  margin: 0 0 0.16rem;
-  font-family: inherit;
-  font-size: 16px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: #fde68a;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide h4 {
-  margin: 0.34rem 0 0.08rem;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #fde68a;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide p,
-#loan-borrow-explanation .bor-exp-section--guide li {
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide p {
-  margin: 0;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide p + p {
-  margin-top: 0.24rem;
-}
-
-#loan-borrow-explanation .bor-exp-section--guide .bor-guide-list {
-  margin: 0.04rem 0 0.2rem;
-  padding-left: 1.02rem;
+.remo-related-grid {
   display: grid;
-  gap: 0.18rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
 }
 
-/* --- Important Notes: natural home-loan theme refinement --- */
-
-#loan-borrow-explanation .bor-exp-section--notes {
-  font-family: inherit;
-  gap: 0.82rem;
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  border-left: 4px solid rgba(56, 189, 248, 0.82);
-  background: linear-gradient(145deg, rgba(11, 25, 47, 0.9), rgba(16, 35, 64, 0.85));
-  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
-}
-
-#loan-borrow-explanation .bor-exp-section--notes h3 {
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: rgba(224, 242, 254, 0.98);
-}
-
-#loan-borrow-explanation .bor-note-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.remo-related-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(56, 189, 248, 0.55);
   display: grid;
-  gap: 0.48rem;
+  gap: 0.4rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
 }
 
-#loan-borrow-explanation .bor-note-list li {
-  position: relative;
+.remo-related-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.14);
+}
+
+.remo-related-card h4 {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.3;
+}
+
+.remo-related-card h4 a {
+  color: rgba(226, 232, 240, 0.98);
+  text-decoration: none;
+}
+
+.remo-related-card h4 a:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+.remo-related-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+.remo-guide {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.remo-guide h4 {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: rgba(226, 232, 240, 0.98);
+}
+
+.remo-guide p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+.remo-guide ul,
+.remo-guide ol {
+  margin: 0;
   padding-left: 1.1rem;
-  font-size: 0.85rem;
-  line-height: 1.58;
-  color: rgba(226, 232, 240, 0.95);
+  display: grid;
+  gap: 0.3rem;
 }
 
-#loan-borrow-explanation .bor-note-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.55rem;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+.remo-guide li {
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
 }
 
-#loan-borrow-explanation .bor-note-list strong {
-  color: rgba(186, 230, 253, 0.98);
-  font-weight: 700;
+.remo-formula {
+  border-radius: 0.68rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.64);
+  padding: 0.6rem 0.7rem;
 }
 
-/* ================================================================
-   ACCESSIBILITY & REDUCED MOTION
-   ================================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  #calc-how-much-can-borrow .borrow-metric__value.is-updated {
-    animation: none;
-  }
-
-  #calc-how-much-can-borrow .borrow-action-row .calculator-button {
-    transition: none;
-  }
-
-  #loan-borrow-explanation .bor-capacity-segment {
-    transition: none;
-  }
+.remo-formula code {
+  font-size: 0.77rem;
+  line-height: 1.5;
+  color: #93c5fd;
+  white-space: nowrap;
 }
 
-/* ================================================================
-   RESPONSIVE BREAKPOINTS
-   ================================================================ */
-
-@media (max-width: 1220px) {
-  #calc-how-much-can-borrow .borrow-hero {
-    grid-template-columns: 1fr;
-  }
-
-  #calc-how-much-can-borrow .borrow-form-panel {
-    gap: 1.4rem;
-  }
+.remo-guide-table {
+  min-width: 560px;
 }
 
-@media (max-width: 900px) {
-  #calc-how-much-can-borrow .borrow-pair {
-    grid-template-columns: 1fr;
-    gap: 0.82rem;
-  }
-
-  #calc-how-much-can-borrow .borrow-form-panel {
-    gap: 1.28rem;
-  }
+.remo-important-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.34rem;
 }
+
+.remo-important-list li {
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+/* --- Media Queries --- */
 
 @media (max-width: 720px) {
-  #calculator-title {
-    margin-bottom: 0.45rem;
-  }
-
-  #calc-how-much-can-borrow .borrow-section {
-    gap: 0.92rem;
-    padding-bottom: 0.92rem;
-  }
-
-  #calc-how-much-can-borrow .borrow-section:last-of-type {
-    padding-bottom: 0;
-  }
-
-  #calc-how-much-can-borrow .borrow-toggle-row {
-    padding-top: 0.08rem;
-  }
-
-  #calc-how-much-can-borrow .button-group .calculator-button {
-    flex: 1 1 auto;
-  }
-
-  #loan-borrow-explanation .bor-exp-section {
-    padding: 0.85rem;
-  }
-
-  #loan-borrow-explanation .bor-faq-grid {
+  .remo-faq-grid,
+  .remo-related-grid {
     grid-template-columns: 1fr;
   }
 
-  #loan-borrow-explanation .bor-capacity-bar {
-    height: 38px;
+  .remo-guide-table {
+    min-width: 420px;
+  }
+
+  .remo-formula code {
+    white-space: normal;
   }
 }
 
-/* --- Intro Text List Styling --- */
-.bor-intro-text ol {
-  margin: 0.5rem 0 0 1.5rem;
-  padding: 0;
-  color: rgba(203, 213, 225, 0.9);
-  font-size: 0.84rem;
-  line-height: 1.55;
-  list-style-type: decimal;
-}
-
-.bor-intro-text li {
-  margin-bottom: 0.8rem;
-  padding-left: 0.5rem;
-}
-
-.bor-intro-text li::marker {
-  color: #60a5fa;
-  /* Blue accent for numbers */
-  font-weight: 700;
+/* --- Utility --- */
+.is-hidden {
+  display: none !important;
 }

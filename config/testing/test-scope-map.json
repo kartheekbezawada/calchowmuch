@@ -422,6 +422,38 @@
         }
       }
     },
+    "sleep-and-nap": {
+      "clusterReleaseDir": "tests_specs/sleep-and-nap/cluster_release",
+      "routes": [
+        "/time-and-date/energy-based-nap-selector/",
+        "/time-and-date/nap-time-calculator/",
+        "/time-and-date/power-nap-calculator/",
+        "/time-and-date/sleep-time-calculator/",
+        "/time-and-date/wake-up-time-calculator/"
+      ],
+      "calculators": {
+        "energy-based-nap-selector": {
+          "route": "/time-and-date/energy-based-nap-selector/",
+          "releaseDir": "tests_specs/sleep-and-nap/energy-based-nap-selector_release"
+        },
+        "nap-time-calculator": {
+          "route": "/time-and-date/nap-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/nap-time-calculator_release"
+        },
+        "power-nap-calculator": {
+          "route": "/time-and-date/power-nap-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/power-nap-calculator_release"
+        },
+        "sleep-time-calculator": {
+          "route": "/time-and-date/sleep-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/sleep-time-calculator_release"
+        },
+        "wake-up-time-calculator": {
+          "route": "/time-and-date/wake-up-time-calculator/",
+          "releaseDir": "tests_specs/sleep-and-nap/wake-up-time-calculator_release"
+        }
+      }
+    },
     "percentage": {
       "clusterReleaseDir": "tests_specs/percentage/cluster_release",
       "routes": [

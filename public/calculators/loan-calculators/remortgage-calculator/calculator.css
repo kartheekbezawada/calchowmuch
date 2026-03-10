@@ -360,7 +360,9 @@
 
 #loan-remortgage-explanation {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.95rem;
+  min-width: 0;
 }
 
 #loan-remortgage-explanation h2 {
@@ -382,11 +384,13 @@
 
 .remo-exp-section {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.72rem;
   padding: 1rem;
   border-radius: 0.95rem;
   border: 1px solid rgba(148, 163, 184, 0.16);
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+  min-width: 0;
 }
 
 .remo-exp-section h3 {
@@ -442,6 +446,9 @@
 /* --- Table Scrolling & Styling --- */
 
 .table-scroll {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   max-height: 318px;
   overflow: auto;
   border-radius: 0.8rem;
@@ -543,11 +550,133 @@
   color: rgba(203, 213, 225, 0.92);
 }
 
+.remo-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.remo-related-card {
+  padding: 0.85rem;
+  border-radius: 0.78rem;
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 2px solid rgba(56, 189, 248, 0.55);
+  display: grid;
+  gap: 0.4rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.remo-related-card:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.14);
+}
+
+.remo-related-card h4 {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.3;
+}
+
+.remo-related-card h4 a {
+  color: rgba(226, 232, 240, 0.98);
+  text-decoration: none;
+}
+
+.remo-related-card h4 a:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+.remo-related-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+.remo-guide {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.remo-guide h4 {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: rgba(226, 232, 240, 0.98);
+}
+
+.remo-guide p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+.remo-guide ul,
+.remo-guide ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.remo-guide li {
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
+.remo-formula {
+  border-radius: 0.68rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.64);
+  padding: 0.6rem 0.7rem;
+}
+
+.remo-formula code {
+  font-size: 0.77rem;
+  line-height: 1.5;
+  color: #93c5fd;
+  white-space: nowrap;
+}
+
+.remo-guide-table {
+  min-width: 560px;
+}
+
+.remo-important-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.34rem;
+}
+
+.remo-important-list li {
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.92);
+}
+
 /* --- Media Queries --- */
 
 @media (max-width: 720px) {
-  .remo-faq-grid {
+  .remo-faq-grid,
+  .remo-related-grid {
     grid-template-columns: 1fr;
+  }
+
+  .remo-guide-table {
+    min-width: 420px;
+  }
+
+  .remo-formula code {
+    white-space: normal;
   }
 }
 

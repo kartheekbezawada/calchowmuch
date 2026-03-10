@@ -18,7 +18,7 @@ afterEach(() => {
 
 describe('UI schema guard for FAQPage injection', () => {
   it('does not require FAQPage when no FAQ schema flag is enabled', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     setPageMetadata({
@@ -40,7 +40,7 @@ describe('UI schema guard for FAQPage injection', () => {
   });
 
   it('injects calculator FAQ schema on calculator routes', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     setPageMetadata({
@@ -66,7 +66,7 @@ describe('UI schema guard for FAQPage injection', () => {
   });
 
   it('rejects global FAQ schema on non-FAQ routes', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>
@@ -108,7 +108,7 @@ describe('UI schema guard for FAQPage injection', () => {
   });
 
   it('rejects duplicate FAQPage schema on a single URL', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>
@@ -130,7 +130,7 @@ describe('UI schema guard for FAQPage injection', () => {
   });
 
   it('rejects duplicate BreadcrumbList schema on a single URL', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>
@@ -144,7 +144,7 @@ describe('UI schema guard for FAQPage injection', () => {
   });
 
   it('rejects duplicate SoftwareApplication schema on a single URL', async () => {
-    setupDom('/finance/simple-interest/');
+    setupDom('/finance-calculators/simple-interest-calculator/');
     const { setPageMetadata } = await import('../../../public/assets/js/core/ui.js');
 
     expect(() =>

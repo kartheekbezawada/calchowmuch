@@ -4,9 +4,7 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
   test('DATE-DIFF-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/time-between-two-dates-calculator');
 
-    await expect(page).toHaveTitle(
-      'Time Between Two Dates Calculator – Date Difference in Days, Weeks & Months | CalcHowMuch'
-    );
+    await expect(page).toHaveTitle('Time Between Two Dates Calculator – Date Difference');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(

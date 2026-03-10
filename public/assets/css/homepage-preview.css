@@ -173,6 +173,17 @@ body {
   line-height: 1.6;
 }
 
+.categories {
+  --loading-card-count: 7;
+}
+
+.categories-title {
+  margin: 0 0 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  letter-spacing: 0.02em;
+}
+
 .section-head {
   margin-bottom: 18px;
 }
@@ -227,7 +238,7 @@ body {
 }
 
 .category-card.is-placeholder .card-icon,
-.category-card.is-placeholder .card-title h3,
+.category-card.is-placeholder .card-title-skeleton,
 .category-card.is-placeholder .count-pill,
 .category-card.is-placeholder .route-link,
 .category-card.is-placeholder .card-explore {
@@ -236,7 +247,8 @@ body {
   background: rgba(126, 157, 204, 0.18);
 }
 
-.category-card.is-placeholder .card-title h3 {
+.category-card.is-placeholder .card-title-skeleton {
+  display: inline-block;
   width: 135px;
   height: 18px;
   border-radius: 8px;
@@ -512,6 +524,15 @@ body {
     margin-bottom: 18px;
   }
 
+  .categories-title {
+    margin-bottom: 10px;
+    font-size: 1.26rem;
+  }
+
+  .categories[data-loading='true'] .category-grid {
+    min-height: calc(var(--loading-card-count, 6) * 205px);
+  }
+
   .section-head {
     margin-bottom: 10px;
   }
@@ -527,10 +548,10 @@ body {
   }
 
   .category-card {
-    height: auto;
+    height: 192px;
     width: 80%;
     justify-self: center;
-    min-height: 176px;
+    min-height: 192px;
     border-radius: 13px;
     padding: 11px;
     box-shadow: 0 10px 24px rgba(3, 9, 25, 0.35);

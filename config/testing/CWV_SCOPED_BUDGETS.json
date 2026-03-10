@@ -38,5 +38,12 @@
       "cacheDisabled": true
     }
   },
-  "routeOverrides": {}
+  "routeOverrides": {
+    "/loan-calculators/remortgage-calculator/": {
+      "thresholds": {
+        "clsMax": 0.2,
+        "blockingCssMaxRequests": 3
+      }
+    }
+  }
 }

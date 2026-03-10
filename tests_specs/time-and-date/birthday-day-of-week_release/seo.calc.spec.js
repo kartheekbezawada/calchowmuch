@@ -27,9 +27,9 @@ test.describe('Birthday Day-of-Week SEO', () => {
     const structuredData = JSON.parse(structuredText || '{}');
 
     const types = structuredData['@graph'].map((node) => node['@type']);
-    expect(types).toEqual(
-      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
-    );
+    expect(types).toEqual(expect.arrayContaining(['WebPage', 'FAQPage']));
+    expect(types).not.toContain('SoftwareApplication');
+    expect(types).not.toContain('BreadcrumbList');
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
     expect(faqNode.mainEntity).toHaveLength(10);

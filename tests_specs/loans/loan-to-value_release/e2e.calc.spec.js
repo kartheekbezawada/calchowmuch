@@ -53,6 +53,6 @@ test.describe('Loan-to-Value calculator route contract', () => {
     await expect(bandsWrap).not.toHaveClass(/is-hidden/);
     await expect(targetsWrap).toHaveClass(/is-hidden/);
 
-    await expect(page.locator('#loan-ltv-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#loan-ltv-explanation .bor-faq-card')).toHaveCount(13);
   });
 });

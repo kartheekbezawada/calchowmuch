@@ -10,7 +10,7 @@ function parseWorkerCount(value) {
 
 const resolvedWorkers = process.env.CI
   ? parseWorkerCount(process.env.PW_WORKERS_CI) || 2
-  : parseWorkerCount(process.env.PW_WORKERS_LOCAL);
+  : parseWorkerCount(process.env.PW_WORKERS_LOCAL) || 1;
 const resolvedMaxFailures = parseWorkerCount(process.env.PW_MAX_FAILURES);
 const resolvedWebServerPort = parseWorkerCount(process.env.PW_WEB_SERVER_PORT) || 8001;
 const resolvedBaseUrl = process.env.PW_BASE_URL || `http://localhost:${resolvedWebServerPort}`;
@@ -38,7 +38,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `python3 -m http.server ${resolvedWebServerPort} --directory public`,
+    command: `python3 -m http.server ${resolvedWebServerPort} --directory public >/dev/null 2>&1`,
     url: resolvedBaseUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 10000,

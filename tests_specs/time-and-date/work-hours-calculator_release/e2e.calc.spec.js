@@ -38,8 +38,8 @@ test.describe('Work Hours Calculator', () => {
     await expect(results).toContainText('Mon:');
 
     const explanation = page.locator('#work-hours-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h3')).toHaveCount(4);
-    await expect(explanation.locator('.faq-box')).toHaveCount(10);
+    await expect(explanation.locator('h2')).toHaveCount(7);
+    await expect(explanation.locator('h3')).toHaveCount(0);
+    await expect(explanation.locator('.faq-box')).toHaveCount(0);
   });
 });

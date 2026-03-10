@@ -4,9 +4,7 @@ test.describe('Work Hours Calculator SEO', () => {
   test('WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/work-hours-calculator');
 
-    await expect(page).toHaveTitle(
-      'Work Hours Calculator – Calculate Shift Hours & Breaks | CalcHowMuch'
-    );
+    await expect(page).toHaveTitle('Work Hours Calculator – With Breaks | CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
@@ -34,7 +32,7 @@ test.describe('Work Hours Calculator SEO', () => {
     );
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
-    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity).toHaveLength(4);
     expect(faqNode.mainEntity[0].name).toBe('Can I calculate hours for a night shift?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

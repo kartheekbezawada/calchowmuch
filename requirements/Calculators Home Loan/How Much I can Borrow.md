@@ -1,259 +1,181 @@
-### Important Notes
-Last updated: February 2026.
-Accuracy: This calculator provides estimated results based on the inputs provided.
-Financial disclaimer: For educational purposes only; not financial advice.
-Assumptions: Assumes constant interest rate and regular compounding/payment intervals.
-Privacy: All calculations run locally in your browser - no data is stored. This information box is in for Home Loan. Plan this to be implemeted for how-much-can-i-borrow calculator. THi sbox should be below FAQ's and assumption should be based on calculator itself. For Example One calculator Assumption will be good enough for another calculator. So we need to implement this for each and every credict calculator.
+# How Much Can I Borrow Calculator
 
-### SERP Content Box
-===============
-How Much Can I Borrow?
+## How much can I borrow?
 
-“How much can I borrow?” is the practical starting point for any home purchase plan. It helps you move from a vague budget to a concrete range: how large a loan might be affordable, what that means for a maximum property price, and what monthly payments could look like given an interest rate and term.
+How much you can borrow depends on your income, existing debts, interest rate, loan term, deposit, and the lender's affordability rules. In most cases, borrowing power rises when income is stable, debts are lower, and the repayment period is longer, but total interest usually increases as well.
 
-A How Much Can I Borrow Calculator gives a fast estimate using two common affordability approaches:
+## What does a how much can I borrow calculator tell me?
 
-Income Multiple — a simple estimate based on your gross annual income.
+This calculator is built to answer several question-based searches users commonly have:
 
-Payment Cap — a budget-first approach that limits the monthly payment based on your disposable income after expenses and debt.
+- How much could I borrow based on my income and debts?
+- Can I increase my borrowing amount by lowering debts or expenses?
+- How does changing the interest rate affect borrowing power?
+- Why does changing the loan term change how much I can borrow?
+- Should I borrow the maximum amount or choose a safer borrowing limit?
 
-Both methods are useful. They answer slightly different questions:
+## What affects how much I can borrow?
 
-Income Multiple answers: “What loan size might I qualify for based on income?”
+A borrowing calculator estimates how large a loan may be affordable based on your finances. It is not just about salary. Lenders usually want to know whether the payment fits comfortably into your monthly budget after other obligations are covered.
 
-Payment Cap answers: “What loan size can I comfortably afford each month?”
+The biggest factors are:
 
-This calculator lets you toggle between the two methods (Income Multiple vs Payment Cap) so you can compare a qualification-style estimate with a budget-style estimate.
+- **Income** — higher and more stable income usually supports a larger loan
+- **Existing debt** — car loans, credit cards, student loans, and personal loans reduce borrowing power
+- **Interest rate** — higher rates reduce how much principal the same monthly payment can support
+- **Loan term** — a longer term lowers monthly payments and may increase borrowing capacity
+- **Deposit or down payment** — a larger upfront contribution can reduce risk and improve terms
+- **Credit profile** — stronger credit may help you qualify for better rates
+- **Living costs and commitments** — regular expenses matter because affordability is about real cash flow
 
-What the calculator estimates
+### Quick comparison table
 
-Using your inputs, the calculator produces four key outputs:
+| Factor | Usually increases borrowing | Usually reduces borrowing |
+| --- | --- | --- |
+| Income | Higher, stable earnings | Irregular or lower earnings |
+| Debt | Low monthly debt payments | High existing debt obligations |
+| Interest rate | Lower rate | Higher rate |
+| Loan term | Longer repayment period | Shorter repayment period |
+| Deposit | Larger deposit | Smaller deposit |
+| Credit profile | Strong repayment history | Weak or limited credit history |
 
-Maximum Borrow: the estimated maximum loan amount you could take.
+## How do lenders calculate how much I can borrow?
 
-Max Property: the estimated maximum property price (typically Maximum Borrow + Deposit).
+Most borrowing decisions combine two ideas: income-based affordability and payment-based affordability.
 
-Estimated Monthly: the projected monthly loan payment (principal + interest) based on APR and term.
+### 1) Income-based affordability
 
-Disposable: an estimate of what remains each month after expenses and debt payments (useful for reality-checking affordability).
+A lender starts by reviewing what you earn and what you already owe.
 
-These numbers are estimates to guide planning. Lenders may apply additional checks (credit profile, stress rates, existing commitments, property type, and more). The goal here is clarity: a realistic range you can work with.
+$$\text{Gross Monthly Income} = \frac{\text{Annual Income}}{12}$$
 
-Inputs explained
-1) Gross Annual Income
+$$\text{Debt-to-Income Ratio (DTI)} = \frac{\text{Total Monthly Debt Payments}}{\text{Gross Monthly Income}} \times 100$$
 
-This is your income before tax and deductions. Many affordability rules start here, because it is consistent and easy to verify.
+A lower DTI usually means more room for a new loan payment. For example, if you earn 5,000 per month before tax and already pay 800 toward debts, your DTI is:
 
-Tips:
+$$\text{DTI} = \frac{800}{5{,}000} \times 100 = 16\%$$
 
-If you have variable income (bonuses/commission), you can use a conservative average.
+That is much healthier than a DTI of 40% or 50%, where existing obligations already consume a large share of income.
 
-If you want a safer estimate, use the lower end of expected annual income.
+### 2) Payment-based affordability
 
-2) Deposit Amount
+Next, the lender estimates how much monthly payment you can realistically handle.
 
-Your deposit affects two things directly:
+$$\text{Affordable Monthly Loan Payment} = \text{Monthly Budget for Loan Costs}$$
 
-Max Property: A larger deposit increases the property price you can afford for a given loan size.
+That budget is influenced by income, debts, household spending, and lender rules. Once a monthly payment is known, the calculator estimates the principal that payment can support.
 
-Risk level: A larger deposit means a smaller loan relative to the property price, which usually improves affordability and reduces monthly payments.
+### 3) Loan amount formula
 
-Even small increases in deposit can significantly reduce interest costs over the full term.
+For installment loans such as mortgages, the estimated loan amount is often based on this formula:
 
-3) Monthly Expenses
+$$\text{Loan Amount} = M \times \frac{1 - (1 + r)^{-n}}{r}$$
 
-These are your essential living costs: utilities, food, transport, childcare, insurance, subscriptions, and other regular spending.
+Where:
 
-Be honest here. Underestimating expenses is the quickest way to produce an unrealistic “maximum.” A good affordability estimate should feel comfortable, not stretched.
+- **M** = monthly payment you can afford
+- **r** = monthly interest rate
+- **n** = total number of monthly payments
 
-4) Monthly Debt Payments
+This formula shows why interest rate and term matter so much. If the rate rises, the same payment supports a smaller loan. If the term gets longer, the same payment supports a bigger loan, but you pay interest for more years.
 
-These include regular payments you must make, such as personal loans, credit card minimums, car finance, or other commitments. Debt payments reduce how much room you have for a loan payment.
+### 4) Loan-to-value check
 
-Affordability Method toggle
-Method A: Income Multiple
+For home borrowing, deposit also matters.
 
-This is the quick, commonly used approach:
+$$\text{Loan-to-Value (LTV)} = \frac{\text{Loan Amount}}{\text{Property Value}} \times 100$$
 
-Maximum Borrow = Gross Annual Income × Income Multiple
+If the property costs 300,000 and the loan is 240,000:
 
-The Income Multiple (x) input lets you choose the multiple. A higher multiple increases the borrowing estimate; a lower multiple is more conservative.
+$$\text{LTV} = \frac{240{,}000}{300{,}000} \times 100 = 80\%$$
 
-This method is useful for:
+A lower LTV often reduces risk for the lender and may improve your available options.
 
-quick budget ranges,
+## How to use the how much can I borrow calculator
 
-early-stage planning,
+Use the calculator with realistic numbers. That makes the estimate far more useful.
 
-comparing scenarios (e.g., different incomes or deposit sizes).
+1. **Enter your income**
+   Add salary and any reliable recurring income the calculator allows.
+2. **Add your monthly debts**
+   Include credit card minimums, car finance, student loans, and personal loans.
+3. **Choose an interest rate**
+   Use a realistic rate, not just the best rate you hope to get.
+4. **Select the loan term**
+   Common terms are 10, 15, 20, 25, or 30 years depending on the loan type.
+5. **Enter your deposit or down payment**
+   This matters especially for home loans.
+6. **Review the estimated result**
+   Compare the maximum estimated borrowing with a payment you would still feel comfortable making.
 
-But it does not directly account for your monthly expenses and debt payments. You can still use the outputs (especially Estimated Monthly and Disposable) to sanity-check whether the loan would feel affordable in real life.
+A smart way to use the calculator is to test three scenarios: a base case, a conservative case, and an optimistic case. That gives you a better planning range than relying on one number.
 
-Method B: Payment Cap
+## Why does interest rate change how much I can borrow?
 
-Payment Cap starts from what you can afford each month. Conceptually, it works like this:
+Because your monthly payment covers both principal and interest. When interest rises, more of each payment goes toward interest, leaving less available to repay the principal. That lowers the maximum loan size.
 
-Estimate your monthly disposable amount:
+Here is a simple illustration using estimated loan principal only:
 
-Disposable = Monthly Income (approx.) − Monthly Expenses − Monthly Debt Payments
+| Monthly Payment | Rate | Term | Estimated Loan Amount |
+| --- | --- | --- | --- |
+| 1,500 | 6% | 30 years | 250,187 |
+| 1,500 | 6% | 20 years | 209,371 |
+| 1,500 | 5% | 30 years | 279,422 |
+| 2,000 | 6% | 30 years | 333,583 |
 
-Apply a cap so that your loan payment does not exceed a chosen portion of that disposable amount.
+This is why even a small change in rate can make a big difference. A lower rate may increase borrowing power, while a shorter term may reduce it even though it saves interest over time.
 
-Convert that affordable monthly payment into a maximum loan amount based on:
+### UI placement and single-box contract
 
-Interest Rate (APR %)
+- In `public/calculators/loan-calculators/how-much-can-i-borrow/explanation.html`, keep **Your Income Capacity** and **Rate Scenarios** inside one shared wrapper section (`single box`) and render them side by side on desktop.
+- Use a single horizontal stacked bar for capacity with the same 4-way semantics: **Expenses**, **Debts**, **Mortgage**, **Buffer**.
+- Capacity bar should show interactive hover/tap feedback (`label + percent`) for each segment.
+- Preserve existing `data-bor` hooks for scenario table and capacity legend updates.
+- Render the full structured guide immediately after the shared capacity + rate-scenarios section.
+- Keep this guide inside one wrapper section (`single box`) and preserve heading/subheading/formula/table structure.
+- Keep Related Calculators visually aligned with FAQ styling, but do not use FAQ card selectors for related cards.
 
-Loan Term (years)
+## Can I increase how much I can borrow?
 
-This method is useful for:
+Yes, but the best methods are the ones that improve affordability rather than simply stretching the payment.
 
-preventing budget stress,
+### Lower existing debt
 
-planning with a safety margin,
+- Paying down credit cards or closing out a personal loan can improve your DTI and free up monthly cash flow.
 
-handling complex situations where expenses matter (family costs, multiple debts, variable spending).
+### Increase your deposit
 
-Payment Cap is often the better “real-life” method because it is driven by monthly affordability, not just annual income.
+- A larger deposit reduces the size of the loan required and may also improve the terms you qualify for.
 
-Interest rate and term: why they matter a lot
-Interest Rate (APR %)
+### Improve your credit profile
 
-APR affects your monthly payment and the total cost of the loan.
+- Consistent on-time payments, lower credit utilization, and fewer recent credit applications may help you access better rates.
 
-Higher APR → higher monthly payment → lower affordable borrowing under Payment Cap.
+### Choose a longer term carefully
 
-Lower APR → lower monthly payment → higher affordable borrowing under Payment Cap.
+- A longer term may increase how much you can borrow because the payment is spread over more months. However, that usually means more total interest paid.
 
-Even a small rate change can move the monthly payment meaningfully on long terms.
+### Apply with realistic numbers
 
-Loan Term (years)
+- Do not overstate income or ignore regular expenses. Accurate inputs create better borrowing decisions.
 
-The term changes the balance between monthly affordability and total interest:
+## What is a safe borrowing amount versus a maximum borrowing amount?
 
-Longer term → lower monthly payment → higher “maximum borrow” under Payment Cap (but more total interest over time).
+- The **maximum borrowing amount** is the upper estimate a lender or calculator may show. The **safe borrowing amount** is what still leaves room in your budget for savings, emergencies, repairs, rising costs, and normal life.
+- That distinction matters. Just because a calculator says you may qualify for a certain amount does not mean you should borrow that full amount. A safer target often gives you more flexibility and less stress.
+- A useful rule is to compare the estimated payment against your full monthly budget, not just against lender approval logic. Think about:
+  - emergency savings
+  - transport costs
+  - utilities
+  - childcare or family support
+  - insurance
+  - maintenance and repairs
+  - future rate changes where applicable
 
-Shorter term → higher monthly payment → lower “maximum borrow” under Payment Cap (but less total interest overall).
+## Example: how to estimate borrowing power
 
-A longer term can make a bigger loan “fit” monthly, but you should always check whether that increases total interest beyond what you’re comfortable paying.
+Suppose your gross monthly income is 6,000 and existing monthly debts are 700. After reviewing your budget, you decide that 1,800 per month is a comfortable maximum for the new loan.
 
-How to interpret the outputs
-Maximum Borrow
+If the loan rate is 5.5% and the term is 25 years, the calculator will use those inputs to estimate how much principal that payment can support. If the rate increases, your estimate drops. If the term increases, your estimate rises. If your debts fall, your affordability improves.
 
-Treat this as an upper estimate. Being approved for a maximum amount does not mean it is a good idea to borrow the maximum. Use it as a boundary, then decide what feels safe based on your priorities.
-
-Max Property
-
-This is typically:
-
-Max Property = Maximum Borrow + Deposit Amount
-
-This gives you a purchase price range to explore.
-
-Estimated Monthly
-
-This is your projected monthly loan payment. Use it as your anchor: if the monthly payment feels uncomfortable, the loan is too large (even if the income multiple says it’s “allowed”).
-
-Disposable
-
-This helps you quickly evaluate resilience. If Disposable is low after including the estimated monthly payment (and you feel one unexpected bill would break the budget), the plan is too tight.
-
-A good borrowing plan leaves room for:
-
-emergencies,
-
-repairs/maintenance,
-
-lifestyle flexibility,
-
-future changes (job changes, family costs, rate changes).
-
-Worked examples
-Example 1: Income Multiple approach
-
-Gross Annual Income: 60,000
-
-Income Multiple: 4.0x
-
-Deposit: 30,000
-
-Estimate:
-
-Maximum Borrow ≈ 60,000 × 4.0 = 240,000
-
-Max Property ≈ 240,000 + 30,000 = 270,000
-
-Then you check:
-
-Estimated Monthly (based on APR and term)
-
-Disposable (based on expenses and debts)
-
-If monthly cost feels too high, reduce the target loan even if the multiple suggests you could borrow more.
-
-Example 2: Payment Cap approach
-
-Gross Annual Income: 60,000
-
-Monthly Expenses: 1,500
-
-Monthly Debt Payments: 300
-
-Deposit: 30,000
-
-APR: 5.0%
-
-Term: 25 years
-
-Payment Cap estimates how much monthly payment you can support, then works backwards to a maximum loan. This typically produces a more realistic result if you have meaningful expenses or existing debts.
-
-Practical tips to increase affordability (without guessing)
-
-If your results feel short of your goal, the highest-impact levers are usually:
-
-Reduce monthly debts
-Paying off or consolidating high monthly commitments can directly increase affordable borrowing under Payment Cap.
-
-Increase deposit
-A larger deposit boosts Max Property and reduces risk, often making affordability stronger.
-
-Adjust loan term carefully
-Extending term reduces monthly payment, but increases total interest. Use it strategically.
-
-Shop interest rate
-Rate improvements can change monthly payments dramatically. Even a modest improvement can raise your maximum under Payment Cap.
-
-Be conservative with expenses
-If you underestimate expenses, you overestimate affordability. Conservative inputs create safer decisions.
-
-Common questions
-Is the Income Multiple method accurate?
-
-It’s useful for quick estimates, but it doesn’t fully reflect your monthly budget. It is best used as a starting point and then validated by monthly payment comfort.
-
-Is the Payment Cap method better?
-
-Often yes for real-life budgeting, because it includes expenses and debts and focuses on whether the monthly payment fits your life.
-
-Why does interest rate change the result so much?
-
-Because the monthly payment is driven heavily by interest, especially over long terms. Higher APR means you pay more interest each month, reducing the loan size that fits your payment cap.
-
-Does borrowing the maximum mean I should borrow the maximum?
-
-No. Maximum borrow is the edge of affordability. Many people choose a lower amount to keep monthly life comfortable and resilient.
-
-What should I do if the calculator shows I can borrow more than I expected?
-
-Use the “Estimated Monthly” and “Disposable” outputs to decide whether it feels comfortable. A good plan leaves room for unexpected expenses and future changes.
-
-Use the How Much Can I Borrow Calculator
-
-Use the How Much Can I Borrow Calculator to estimate your maximum affordable loan using either:
-
-Income Multiple (fast qualification-style estimate), or
-
-Payment Cap (budget-first affordability estimate).
-
-Enter your income, deposit, expenses, and debt payments, then choose your method. Adjust the interest rate and loan term to explore scenarios and find a borrowing level that is not only “possible,” but genuinely comfortable.
-
-The best result is not the largest number. It is the one that fits your budget, protects your safety margin, and supports a sustainable purchase plan.
+This is why a borrowing calculator is best used as a planning tool. It helps you understand the moving parts before you apply.

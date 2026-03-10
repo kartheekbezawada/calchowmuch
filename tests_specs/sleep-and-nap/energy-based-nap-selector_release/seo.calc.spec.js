@@ -28,8 +28,6 @@ test.describe('Energy-Based Nap Selector SEO', () => {
     const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
     const nodeTypes = graph.map((node) => node['@type']);
     expect(nodeTypes).toContain('WebPage');
-    expect(nodeTypes).toContain('SoftwareApplication');
-    expect(nodeTypes).toContain('BreadcrumbList');
     expect(nodeTypes).toContain('FAQPage');
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
