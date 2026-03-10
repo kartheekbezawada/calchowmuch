@@ -36,11 +36,25 @@ test.describe('Official standalone homepage', () => {
     await expect(page.locator('.preview-header')).toHaveCount(1);
     await expect(page.locator('#homepage-hero-title')).toHaveText('Calculate How Much');
     await expect(page.locator('#homepage-search')).toHaveCount(1);
+    await expect(page.locator('#homepage-clusters-title')).toHaveText('Browse Calculator Clusters');
 
     await expect(page.locator('.top-nav')).toHaveCount(0);
     await expect(page.locator('.left-nav')).toHaveCount(0);
     await expect(page.locator('.center-column')).toHaveCount(0);
     await expect(page.locator('.ads-column')).toHaveCount(0);
+
+    const headingSnapshot = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('h1, h2, h3')).map((node) => ({
+        tag: node.tagName.toLowerCase(),
+        text: (node.textContent || '').trim(),
+      }))
+    );
+    expect(headingSnapshot[0]?.tag).toBe('h1');
+    const firstH2Index = headingSnapshot.findIndex((heading) => heading.tag === 'h2');
+    const firstH3Index = headingSnapshot.findIndex((heading) => heading.tag === 'h3');
+    expect(firstH2Index).toBeGreaterThan(-1);
+    expect(firstH3Index).toBeGreaterThan(firstH2Index);
+    expect(headingSnapshot.some((heading) => heading.text.length === 0)).toBeFalsy();
 
     const registryResponse = await request.get('/config/clusters/cluster-registry.json');
     expect(registryResponse.ok()).toBeTruthy();

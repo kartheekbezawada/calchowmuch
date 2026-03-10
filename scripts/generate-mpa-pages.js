@@ -2326,14 +2326,10 @@ ${explanationTitleHtml}  ${explanationHtml}
     }
     routeCss
       .filter((href) => typeof href === 'string' && href.trim())
-      .forEach((href) =>
-        lines.push(
-          `    <link rel="stylesheet" href="${href}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${href}" />\n    </noscript>`
-        )
-      );
+      .forEach((href) => lines.push(`    <link rel="stylesheet" href="${href}" />`));
     cssLinksHtml = `${lines.join('\n')}\n`;
   } else if (cssBundleConfig) {
-    cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" media="print" onload="this.onload=null;this.media='all';" />\n    <noscript>\n      <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n    </noscript>\n`;
+    cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(cssBundleConfig.criticalCss, '      ')}\n    </style>\n    <link rel="stylesheet" href="${cssBundleConfig.deferredHref}" />\n`;
   } else {
     cssLinksHtml = `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n`;
   }
@@ -2539,10 +2535,19 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
 ${headMetaHtml}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      />
+    </noscript>
     <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
     <script type="application/ld+json" data-homepage-ld="true" data-calculator-ld="true">${stringifyStructuredData(
       homepageStructuredData
@@ -2578,7 +2583,14 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <h1 id="homepage-hero-title">Calculate How Much</h1>
           <p>Quick calculations for everyday numbers.</p>
         </section>
-        <section class="categories" aria-label="Calculator clusters">
+        <section
+          id="homepage-categories"
+          class="categories"
+          aria-labelledby="homepage-clusters-title"
+          data-loading="true"
+          style="--loading-card-count: 7"
+        >
+          <h2 id="homepage-clusters-title" class="categories-title">Browse Calculator Clusters</h2>
           <div id="homepage-empty" class="empty-state" hidden>
             No calculator matches your search.
           </div>

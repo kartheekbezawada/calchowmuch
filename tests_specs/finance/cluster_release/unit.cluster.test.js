@@ -5,7 +5,10 @@ import { JSDOM } from 'jsdom';
 
 const REPO_ROOT = process.cwd();
 const FINANCE_PUBLIC_DIR = path.join(REPO_ROOT, 'public', 'finance-calculators');
-const FINANCE_MODULES_DIR = path.join(REPO_ROOT, 'public', 'calculators', 'finance-calculators');
+const FINANCE_MODULES_DIR_CANDIDATES = [
+  path.join(REPO_ROOT, 'public', 'assets', 'js', 'calculators', 'finance-calculators'),
+  path.join(REPO_ROOT, 'public', 'calculators', 'finance-calculators'),
+];
 const NAV_PATH = path.join(REPO_ROOT, 'public', 'config', 'navigation.json');
 
 function normalizeText(value) {
@@ -134,6 +137,16 @@ function getFinanceSlugs() {
     .sort();
 }
 
+function resolveModulePath(slug) {
+  for (const baseDir of FINANCE_MODULES_DIR_CANDIDATES) {
+    const candidate = path.join(baseDir, slug, 'module.js');
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
 describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () => {
   it('enforces static head schema + robots + JS FAQ parity + visible FAQ parity for /finance-calculators/*', () => {
     const slugs = getFinanceSlugs();
@@ -149,10 +162,10 @@ describe('Finance static schema source parity guard (SEO-FAQ-SCHEMA-002)', () =>
       const hasExplanationPane =
         routeMetadata.routeArchetype === 'calc_exp' || routeMetadata.routeArchetype === 'exp_only';
       const htmlPath = path.join(FINANCE_PUBLIC_DIR, slug, 'index.html');
-      const modulePath = path.join(FINANCE_MODULES_DIR, slug, 'module.js');
+      const modulePath = resolveModulePath(slug);
 
       expect(fs.existsSync(htmlPath), `${slug}: missing HTML file`).toBe(true);
-      expect(fs.existsSync(modulePath), `${slug}: missing module.js file`).toBe(true);
+      expect(Boolean(modulePath), `${slug}: missing module.js file`).toBe(true);
 
       const html = fs.readFileSync(htmlPath, 'utf8');
       const moduleSource = fs.readFileSync(modulePath, 'utf8');

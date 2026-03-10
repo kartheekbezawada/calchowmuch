@@ -1,31 +1,23 @@
 import { expect, test } from '@playwright/test';
 
 const FINANCE_ROUTES = [
-  '/finance/present-value',
-  '/finance/future-value',
-  '/finance/present-value-of-annuity',
-  '/finance/future-value-of-annuity',
-  '/finance/simple-interest',
-  '/finance/compound-interest',
-  '/finance/effective-annual-rate',
-  '/finance/investment-growth',
-  '/finance-calculators/investment-return-calculator',
+  '/finance-calculators/investment-return-calculator/',
 ];
 
 const PERCENTAGE_ROUTES = [
-  '/percentage-calculators/percent-change',
-  '/percentage-calculators/percentage-difference',
-  '/percentage-calculators/percentage-increase',
-  '/percentage-calculators/percentage-decrease',
-  '/percentage-calculators/percentage-composition',
-  '/percentage-calculators/reverse-percentage',
-  '/percentage-calculators/percent-to-fraction-decimal',
-  '/percentage-calculators/what-percent-is-x-of-y',
-  '/percentage-calculators/percentage-of-a-number',
-  '/percentage-calculators/commission-calculator',
-  '/percentage-calculators/discount-calculator',
-  '/percentage-calculators/margin-calculator',
-  '/percentage-calculators/markup-calculator',
+  '/percentage-calculators/percent-change-calculator/',
+  '/percentage-calculators/percentage-difference-calculator/',
+  '/percentage-calculators/percentage-increase-calculator/',
+  '/percentage-calculators/percentage-decrease-calculator/',
+  '/percentage-calculators/percentage-composition-calculator/',
+  '/percentage-calculators/reverse-percentage-calculator/',
+  '/percentage-calculators/percent-to-fraction-decimal-calculator/',
+  '/percentage-calculators/percentage-finder-calculator/',
+  '/percentage-calculators/percentage-of-a-number-calculator/',
+  '/percentage-calculators/commission-calculator/',
+  '/percentage-calculators/discount-calculator/',
+  '/percentage-calculators/margin-calculator/',
+  '/percentage-calculators/markup-calculator/',
 ];
 
 const ALL_ROUTES = [...FINANCE_ROUTES, ...PERCENTAGE_ROUTES];

@@ -4,7 +4,7 @@ const MIN_CALCULATORS_PER_CARD = 3;
 const MAX_CALCULATORS_PER_CARD = 4;
 const MOBILE_MEDIA_QUERY = '(max-width: 760px)';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-const MOBILE_PLACEHOLDER_CARD_COUNT = 6;
+const MOBILE_PLACEHOLDER_CARD_COUNT = 7;
 const DESKTOP_PLACEHOLDER_CARD_COUNT = 8;
 
 const ROUTE_PREFIX_ALIASES = {
@@ -25,6 +25,8 @@ const CLUSTER_THEME = {
 const gridNode = document.getElementById('homepage-grid') || document.getElementById('homepage-preview-grid');
 const searchNode = document.getElementById('homepage-search') || document.getElementById('homepage-preview-search');
 const emptyNode = document.getElementById('homepage-empty') || document.getElementById('homepage-preview-empty');
+const categoriesNode =
+  document.querySelector('.categories') || document.getElementById('homepage-categories');
 
 function isMobileViewport() {
   return window.matchMedia(MOBILE_MEDIA_QUERY).matches;
@@ -34,6 +36,21 @@ function shouldDisableParticles() {
   const reducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
   const saveData = navigator.connection?.saveData === true;
   return reducedMotion || isMobileViewport() || saveData;
+}
+
+function setLoadingState(isLoading, placeholderCount = 0) {
+  if (!categoriesNode) {
+    return;
+  }
+
+  if (!isLoading) {
+    categoriesNode.removeAttribute('data-loading');
+    categoriesNode.style.removeProperty('--loading-card-count');
+    return;
+  }
+
+  categoriesNode.setAttribute('data-loading', 'true');
+  categoriesNode.style.setProperty('--loading-card-count', String(Math.max(1, placeholderCount)));
 }
 
 function toArray(value) {
@@ -233,6 +250,12 @@ function normalizeClusters(registry, navigation) {
     .filter((cluster) => cluster.routes.length > 0);
 }
 
+function getVisibleClusterCount(registry) {
+  return toArray(registry?.clusters).filter(
+    (cluster) => cluster && cluster.clusterId !== 'homepage' && cluster.showOnHomepage !== false
+  ).length;
+}
+
 function renderClusterCards(clusters) {
   const cardsHtml = clusters
     .map((cluster, index) => {
@@ -277,17 +300,17 @@ function renderClusterCards(clusters) {
   gridNode.innerHTML = cardsHtml;
 }
 
-function renderLoadingPlaceholders() {
-  const placeholderCount = isMobileViewport()
-    ? MOBILE_PLACEHOLDER_CARD_COUNT
-    : DESKTOP_PLACEHOLDER_CARD_COUNT;
+function renderLoadingPlaceholders(countOverride = null) {
+  const defaultCount = isMobileViewport() ? MOBILE_PLACEHOLDER_CARD_COUNT : DESKTOP_PLACEHOLDER_CARD_COUNT;
+  const requestedCount = Number.isFinite(countOverride) ? countOverride : defaultCount;
+  const placeholderCount = Math.max(1, Math.min(12, requestedCount));
   const placeholderRoutes = '<li><span class="route-link"></span></li>'.repeat(4);
   const placeholders = Array.from({ length: placeholderCount }, () => {
     return `<article class="category-card is-placeholder" aria-hidden="true">
       <div class="card-head">
         <div class="card-title">
           <span class="card-icon"></span>
-          <h3></h3>
+          <span class="card-title-skeleton" aria-hidden="true"></span>
         </div>
         <span class="count-pill"></span>
       </div>
@@ -421,25 +444,27 @@ function initParticles() {
 
 async function loadHomepage() {
   renderLoadingPlaceholders();
+  setLoadingState(true, isMobileViewport() ? MOBILE_PLACEHOLDER_CARD_COUNT : DESKTOP_PLACEHOLDER_CARD_COUNT);
   emptyNode.hidden = true;
 
   try {
-    const [registryResponse, navigationResponse] = await Promise.all([
-      fetch(CLUSTER_REGISTRY_URL, { cache: 'no-store' }),
-      fetch(NAVIGATION_CONFIG_URL, { cache: 'no-store' }),
-    ]);
+    const registryResponse = await fetch(CLUSTER_REGISTRY_URL, { cache: 'no-store' });
 
     if (!registryResponse.ok) {
       throw new Error(`Failed to fetch cluster registry (${registryResponse.status})`);
     }
+
+    const registry = await registryResponse.json();
+    const expectedClusterCount = getVisibleClusterCount(registry);
+    renderLoadingPlaceholders(expectedClusterCount);
+    setLoadingState(true, expectedClusterCount);
+
+    const navigationResponse = await fetch(NAVIGATION_CONFIG_URL, { cache: 'no-store' });
     if (!navigationResponse.ok) {
       throw new Error(`Failed to fetch navigation config (${navigationResponse.status})`);
     }
 
-    const [registry, navigation] = await Promise.all([
-      registryResponse.json(),
-      navigationResponse.json(),
-    ]);
+    const navigation = await navigationResponse.json();
     const clusters = normalizeClusters(registry, navigation);
     renderClusterCards(clusters);
     applySearchFilter();
@@ -448,6 +473,8 @@ async function loadHomepage() {
       '<p class="empty-state" role="alert">Unable to load calculator clusters.</p>';
     // eslint-disable-next-line no-console
     console.error(error);
+  } finally {
+    setLoadingState(false);
   }
 }
 

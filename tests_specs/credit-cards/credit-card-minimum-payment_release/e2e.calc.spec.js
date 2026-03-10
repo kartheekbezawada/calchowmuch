@@ -18,7 +18,7 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(singlePanel).toHaveClass(/panel-span-all/);
     await expect(singlePanel.locator(':scope > h3:has-text("Explanation")')).toHaveCount(0);
 
-    await expect(page.locator('#calculator-title')).toHaveText('Credit Card Minimum Payment');
+    await expect(page.locator('#calculator-title')).toHaveText('Credit Card Minimum Payment Calculator');
     await expect(page.locator('label[for="cc-min-floor"]')).toHaveText('Lowest Monthly Payment');
     await expect(page.locator('#calc-cc-min .cc-min-provider-note')).toContainText(
       "Minimum Payment Rate (%) and Minimum Payment Floor (lowest monthly payment) vary by credit card provider. Check your provider's Terms & Conditions for exact values."

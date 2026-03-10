@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:percentage/commission-calculator`
+- Scope: `calc:loans/remortgage-switching`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**
