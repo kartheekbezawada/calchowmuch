@@ -27,58 +27,58 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What does "X is what percent of Y" mean?',
+      name: 'What does “X is what percent of Y” actually mean?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It asks what share of Y is represented by X.',
+        text: 'It means you want to know what percentage share of the whole, Y, is represented by the part, X. The calculator expresses that relationship as a percent so it is easier to read.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is the formula?',
+      name: 'What formula does this calculator use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Use (X / Y) x 100.',
+        text: 'The formula is (X / Y) x 100. Divide the part by the whole, then multiply by 100 to convert the ratio into a percentage.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do I calculate quickly?',
+      name: 'How do I calculate percentage from two numbers quickly?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Divide part by whole, then multiply by 100.',
+        text: 'Put the smaller comparison amount in the part field, put the full total in the whole field, then divide and multiply by 100. The calculator handles that instantly.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if Y is zero?',
+      name: 'What happens if the whole is 0?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The percentage is undefined because division by zero is not valid.',
+        text: 'The result is undefined because you cannot divide by zero. In that case there is no valid percentage share to report.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can the result be above 100%?',
+      name: 'Can the answer be more than 100%?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. If X is larger than Y, the result will exceed 100%.',
+        text: 'Yes. If the part is larger than the whole, the percentage will be greater than 100% because the measured amount exceeds the comparison base.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I use decimals?',
+      name: 'Can I use decimals in both fields?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Decimal values work the same as whole numbers.',
+        text: 'Yes. Decimal values work the same way as whole numbers, so the calculator can be used for averages, measurements, prices, and rates.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do negatives work?',
+      name: 'Do negative numbers work in this calculator?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Signs are preserved in the computed percentage.',
+        text: 'Yes. The sign is preserved in the result, which can be useful in analytical or accounting scenarios where negative values have meaning.',
       },
     },
     {
@@ -86,23 +86,23 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is 50 out of 200 equal to 25%?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, because (50 / 200) x 100 = 25.',
+        text: 'Yes. Divide 50 by 200 to get 0.25, then multiply by 100. That gives 25%, so 50 is one quarter of 200.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Where is this used?',
+      name: 'Where is this percentage finder useful in real life?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Grades, budgets, completion rates, discounts, and comparisons.',
+        text: 'It is commonly used for test scores, budget shares, sales mix, survey results, inventory composition, savings progress, and completion tracking.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why multiply by 100?',
+      name: 'Why do we multiply by 100?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Because percent means "per hundred."',
+        text: 'Because percent means “per hundred.” Multiplying by 100 converts a decimal ratio into a number that shows how many parts out of 100 the part represents.',
       },
     },
   ],
@@ -215,8 +215,8 @@ function calculate() {
     return;
   }
 
-  resultOutput.textContent = `Result: ${fmt(result.percent)}%`;
-  resultDetail.textContent = `Formula: (${fmt(result.part)} \u00f7 ${fmt(result.whole)}) \u00d7 100 = ${fmt(result.percent)}%. That means ${fmt(result.part)} is ${fmt(result.percent)}% of ${fmt(result.whole)}.`;
+  resultOutput.textContent = `${fmt(result.part)} is ${fmt(result.percent)}% of ${fmt(result.whole)}.`;
+  resultDetail.textContent = `Calculation: (${fmt(result.part)} \u00f7 ${fmt(result.whole)}) \u00d7 100 = ${fmt(result.percent)}%. In other words, the part represents ${fmt(result.percent)}% of the whole.`;
 
   updateTargets(valueTargets?.part, fmt(result.part));
   updateTargets(valueTargets?.whole, fmt(result.whole));
