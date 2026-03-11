@@ -2151,138 +2151,191 @@
 
 }
 
-/* source: /calculators/car-loan-calculators/pcp-calculator/calculator.css */
+/* source: /calculators/car-loan-calculators/car-loan-calculator/calculator.css */
+/* Car Loan keeps the exact Home Loan visual language with minor spacing alignment */
+
 #calc-home-loan .mtg-form-panel {
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
 
 #calc-home-loan .mtg-snapshot-row strong {
-  font-size: 0.83rem;
+  font-size: 0.84rem;
 }
 
-#calc-pcp #calc-home-loan .mtg-preview-main {
-  background: linear-gradient(148deg, rgba(15, 23, 42, 0.6), rgba(14, 116, 144, 0.35));
-  border: 1px solid rgba(125, 211, 252, 0.32);
+/* Glassmorphism highlight for the EMI card in Car Loan only */
+#calc-car-loan #calc-home-loan .mtg-preview-main {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
+  border: 1px solid rgba(191, 219, 254, 0.34);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 0 36px rgba(14, 165, 233, 0.12),
     0 14px 28px rgba(2, 6, 23, 0.35);
-  backdrop-filter: blur(9px) saturate(130%);
-  -webkit-backdrop-filter: blur(9px) saturate(130%);
+  backdrop-filter: blur(8px) saturate(125%);
+  -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
-#calc-pcp #calc-home-loan .mtg-preview-main .mtg-preview-label {
-  letter-spacing: 0.07em;
-  color: rgba(186, 230, 253, 0.98);
-}
-
-#calc-pcp #calc-home-loan .mtg-result-card .mtg-result-value {
-  text-shadow:
-    0 0 18px rgba(56, 189, 248, 0.52),
-    0 0 34px rgba(14, 165, 233, 0.28);
-}
-
-#loan-mtg-explanation .pcp-lifetime-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-#loan-mtg-explanation .pcp-lifetime-grid .mtg-lifetime-card:last-child {
-  grid-column: 1 / -1;
-}
-
-#loan-mtg-explanation .pcp-table-view-toggle {
-  gap: 0.16rem;
-  padding: 0.16rem;
-}
-
-#loan-mtg-explanation .pcp-table-view-toggle .calculator-button {
-  min-height: 30px;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.72rem;
-}
-
-#loan-mtg-explanation .pcp-table-view-toggle .calculator-button.is-active {
-  border-color: rgba(45, 212, 191, 0.56);
-  background: linear-gradient(132deg, rgba(6, 182, 212, 0.92), rgba(45, 212, 191, 0.86));
-  box-shadow: 0 0 16px rgba(45, 212, 191, 0.24);
-}
-
-#loan-mtg-explanation .table-scroll[data-glow='monthly'] {
-  border-color: rgba(56, 189, 248, 0.45);
-  box-shadow:
-    inset 0 0 0 1px rgba(14, 165, 233, 0.15),
-    0 0 28px rgba(14, 165, 233, 0.14);
-}
-
-#loan-mtg-explanation .table-scroll[data-glow='yearly'] {
-  border-color: rgba(251, 146, 60, 0.42);
-  box-shadow:
-    inset 0 0 0 1px rgba(249, 115, 22, 0.14),
-    0 0 28px rgba(249, 115, 22, 0.12);
-}
-
-#loan-mtg-explanation .table-scroll[data-glow='cost'] {
-  border-color: rgba(167, 139, 250, 0.44);
-  box-shadow:
-    inset 0 0 0 1px rgba(168, 85, 247, 0.14),
-    0 0 28px rgba(168, 85, 247, 0.14);
-}
-
-#loan-mtg-explanation .pcp-cost-table th,
-#loan-mtg-explanation .pcp-cost-table td {
-  text-align: left;
-}
-
-#loan-mtg-explanation .pcp-cost-table th:first-child,
-#loan-mtg-explanation .pcp-cost-table td:first-child {
-  min-width: 170px;
-}
-
-#loan-mtg-explanation .pcp-cost-table td:nth-child(2),
-#loan-mtg-explanation .pcp-cost-table tfoot td {
-  font-variant-numeric: tabular-nums;
-  color: rgba(224, 242, 254, 0.98);
-  font-weight: 700;
-}
-
-#loan-mtg-explanation .pcp-cost-table tfoot th {
+#calc-car-loan #calc-home-loan .mtg-preview-main .mtg-preview-label {
+  letter-spacing: 0.08em;
+  color: rgba(219, 234, 254, 0.96);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(186, 230, 253, 0.96);
+  font-size: 0.75rem;
 }
 
-#loan-mtg-explanation .pcp-cost-table tfoot th,
-#loan-mtg-explanation .pcp-cost-table tfoot td {
-  background: rgba(15, 23, 42, 0.92);
-  border-top: 1px solid rgba(125, 211, 252, 0.34);
+#calc-car-loan #calc-home-loan .mtg-result-card .mtg-result-value {
+  text-shadow:
+    0 0 18px rgba(125, 211, 252, 0.45),
+    0 0 34px rgba(56, 189, 248, 0.24);
+  font-weight: 800;
 }
 
 #loan-mtg-explanation .bor-faq-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media (max-width: 960px) {
-  #loan-mtg-explanation .pcp-table-view-toggle {
-    width: 100%;
-  }
-
-  #loan-mtg-explanation .pcp-table-view-toggle .calculator-button {
-    flex: 1 1 auto;
-  }
+#loan-mtg-explanation .mtg-exp-section--notes {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  gap: 0.3rem;
 }
 
-@media (max-width: 760px) {
-  #loan-mtg-explanation .pcp-lifetime-grid {
-    grid-template-columns: 1fr;
-  }
+#loan-mtg-explanation .mtg-exp-section--notes h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
 
-  #loan-mtg-explanation .pcp-lifetime-grid .mtg-lifetime-card:last-child {
-    grid-column: auto;
-  }
+#loan-mtg-explanation .car-note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.16rem;
+}
+
+#loan-mtg-explanation .car-note-list li {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#loan-mtg-explanation .car-note-list li::before {
+  content: none;
+}
+
+#loan-mtg-explanation .car-note-list strong {
+  color: rgba(186, 230, 253, 0.98);
 }
 
 @media (max-width: 640px) {
   #loan-mtg-explanation .bor-faq-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* WOW Slider Styling - Electric Theme */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  /* Slightly thicker for impact */
+  background: rgba(255, 255, 255, 0.08);
+  /* Darker track */
+  border-radius: 4px;
+  outline: none;
+  /* Electric Gradient: Cyan to Purple */
+  background-image: linear-gradient(to right, #00f2fe, #4facfe);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  /* Larger thumb */
+  width: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  /* Neon Glow */
+  box-shadow:
+    0 0 15px rgba(79, 172, 254, 0.6),
+    0 0 5px rgba(0, 242, 254, 0.8);
+  cursor: pointer;
+  border: 2px solid #4facfe;
+  transition:
+    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.2s ease;
+  margin-top: -1px;
+  /* Align if needed */
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  box-shadow:
+    0 0 25px rgba(79, 172, 254, 0.8),
+    0 0 10px rgba(0, 242, 254, 1);
+  background: #f0f9ff;
+}
+
+input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(79, 172, 254, 0.9);
+}
+
+/* Hover Interaction on Row */
+.input-row.slider-row {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+  padding: 8px;
+  /* Add padding for hover area */
+  border-radius: 8px;
+  margin: -8px 0 16px 0;
+  /* Offset margin to keep spacing visually similar */
+}
+
+.input-row.slider-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  /* Subtle highlight */
+}
+
+.input-row.slider-row:hover .slider-header label {
+  color: #a5f3fc;
+  /* Light cyan text change */
+  text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
+}
+
+.slider-value {
+  font-weight: 700;
+  color: #e0f2fe;
+  transition: color 0.2s ease;
+}
+
+.input-row.slider-row:hover .slider-value {
+  color: #38bdf8;
+  /* Highlight value on hover */
+}
+
+/* 2-Column Grid Layout - Refined */
+.input-grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  /* More breathing room */
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .input-grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }

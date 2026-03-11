@@ -2328,6 +2328,13 @@ body .site-header .header-search-icon {
   padding-top: 1.1rem;
 }
 
+#loan-personal-explanation .pl-exp-section--notes {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 #loan-personal-explanation .pl-formula {
   margin: 0.7rem 0;
   padding: 0.7rem 0.8rem;
@@ -2350,6 +2357,18 @@ body .site-header .header-search-icon {
 
 #loan-personal-explanation .pl-important-list strong {
   color: rgba(186, 230, 253, 0.98);
+}
+
+#loan-personal-explanation .pl-important-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  gap: 0.16rem;
+}
+
+#loan-personal-explanation .pl-important-list li {
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
 
 #loan-personal-explanation .pl-graph-heading {

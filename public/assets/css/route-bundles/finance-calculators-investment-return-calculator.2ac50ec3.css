@@ -1,73 +1,4 @@
-/* critical source: /assets/css/core-tokens.css */
-/* Core shared design tokens for isolated route bundles. */
-:root {
-  color-scheme: dark;
-  --color-blue-400: #60a5fa;
-  --color-blue-500: #3b82f6;
-  --color-blue-600: #2563eb;
-  --color-cyan-400: #22d3ee;
-  --color-cyan-500: #06b6d4;
-  --color-cyan-600: #0891b2;
-  --color-green-400: #4ade80;
-  --color-green-500: #10b981;
-  --color-emerald-500: #059669;
-  --color-orange-400: #fb923c;
-  --color-orange-500: #f97316;
-  --color-red-500: #dc2626;
-  --color-violet-400: #a78bfa;
-  --color-violet-500: #8b5cf6;
-  --color-indigo-500: #6366f1;
-  --color-yellow-400: #facc15;
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd5e1;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #64748b;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1e293b;
-  --color-slate-900: #0f172a;
-  --color-slate-950: #020617;
-  --gradient-bg-main: linear-gradient(
-    to bottom right,
-    var(--color-slate-900),
-    #172554,
-    var(--color-slate-900)
-  );
-  --gradient-bg-card: linear-gradient(
-    to bottom right,
-    rgba(30, 41, 59, 0.85),
-    rgba(15, 23, 42, 0.85)
-  );
-  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-  --gradient-brand-text: linear-gradient(
-    to right,
-    var(--color-blue-400),
-    var(--color-cyan-400),
-    var(--color-blue-400)
-  );
-  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
-  --page-bg: #0b1220;
-  --page-bg-accent: #0f172a;
-  --scrollbar-track: #0b1220;
-  --scrollbar-thumb: #334155;
-  --scrollbar-thumb-hover: #475569;
-  --shell-bg: rgba(15, 23, 42, 0.65);
-  --panel-bg: #0f172a;
-  --header-bg: transparent;
-  --header-text: #e2e8f0;
-  --muted-text: #94a3b8;
-  --border-color: rgba(51, 65, 85, 0.6);
-  --shell-border: rgba(51, 65, 85, 0.6);
-  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
-  --accent: #3b82f6;
-  --accent-strong: #06b6d4;
-  --pill-bg: rgba(30, 41, 59, 0.8);
-  --pill-border: rgba(51, 65, 85, 0.7);
-}
-
-/* critical source: /assets/css/theme-premium-dark.css */
+/* source: /assets/css/theme-premium-dark.css */
 :root {
   color-scheme: dark;
   --color-blue-400: #60a5fa;
@@ -404,7 +335,7 @@ body ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
 
-/* critical source: /assets/css/base.css */
+/* source: /assets/css/base.css */
 /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
    instead of @import, to eliminate sequential CSS waterfall.
    See known_issues.md KI-007 / KI-010. */
@@ -484,7 +415,76 @@ button {
   background: var(--scrollbar-thumb-hover, #64748b);
 }
 
-/* critical source: /assets/css/core-shell.css */
+/* source: /assets/css/core-tokens.css */
+/* Core shared design tokens for isolated route bundles. */
+:root {
+  color-scheme: dark;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-green-400: #4ade80;
+  --color-green-500: #10b981;
+  --color-emerald-500: #059669;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-red-500: #dc2626;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-indigo-500: #6366f1;
+  --color-yellow-400: #facc15;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --gradient-bg-main: linear-gradient(
+    to bottom right,
+    var(--color-slate-900),
+    #172554,
+    var(--color-slate-900)
+  );
+  --gradient-bg-card: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+  --gradient-brand-text: linear-gradient(
+    to right,
+    var(--color-blue-400),
+    var(--color-cyan-400),
+    var(--color-blue-400)
+  );
+  --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+  --page-bg: #0b1220;
+  --page-bg-accent: #0f172a;
+  --scrollbar-track: #0b1220;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --shell-bg: rgba(15, 23, 42, 0.65);
+  --panel-bg: #0f172a;
+  --header-bg: transparent;
+  --header-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.6);
+  --shell-border: rgba(51, 65, 85, 0.6);
+  --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+  --accent: #3b82f6;
+  --accent-strong: #06b6d4;
+  --pill-bg: rgba(30, 41, 59, 0.8);
+  --pill-border: rgba(51, 65, 85, 0.7);
+}
+
+/* source: /assets/css/core-shell.css */
 .page {
   height: 100vh;
   max-height: 100vh;
@@ -1785,7 +1785,7 @@ body .site-header .header-search-icon {
   }
 }
 
-/* critical source: /assets/css/calculator.css */
+/* source: /assets/css/calculator.css */
 :root {
   --calculator-input-padding: 10px 12px;
   --calculator-input-radius: 10px;
@@ -2568,7 +2568,7 @@ body .site-header .header-search-icon {
   flex-shrink: 0;
 }
 
-/* critical source: /assets/css/shared-calculator-ui.css */
+/* source: /assets/css/shared-calculator-ui.css */
 /* ═══════════════════════════════════════════════════════════════════
    shared-calculator-ui.css
    Shared layout + visual rules for the home-loan calculator design family.
@@ -3938,153 +3938,453 @@ body .site-header .header-search-icon {
 
 }
 
-/* critical source: /calculators/car-loan-calculators/car-loan-calculator/calculator.css */
-/* Car Loan keeps the exact Home Loan visual language with minor spacing alignment */
-
-#calc-home-loan .mtg-form-panel {
-  gap: 1.25rem;
+/* source: /assets/css/calculators/finance-calculators/investment-return-calculator/calculator.css */
+#calc-investment-return .ir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
-#calc-home-loan .mtg-snapshot-row strong {
-  font-size: 0.84rem;
+#calc-investment-return .ir-grid--inline {
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
 }
 
-/* Glassmorphism highlight for the EMI card in Car Loan only */
-#calc-car-loan #calc-home-loan .mtg-preview-main {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
-  border: 1px solid rgba(191, 219, 254, 0.34);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 14px 28px rgba(2, 6, 23, 0.35);
-  backdrop-filter: blur(8px) saturate(125%);
-  -webkit-backdrop-filter: blur(8px) saturate(125%);
+#calc-investment-return .input-row {
+  display: grid;
+  gap: 0.3rem;
 }
 
-#calc-car-loan #calc-home-loan .mtg-preview-main .mtg-preview-label {
-  letter-spacing: 0.08em;
-  color: rgba(219, 234, 254, 0.96);
-  font-weight: 600;
+#calc-investment-return .input-row span {
+  font-size: 0.78rem;
+  color: rgba(191, 219, 254, 0.92);
+}
+
+#calc-investment-return .input-row input {
+  width: 100%;
+}
+
+#calc-investment-return .pv-toggle-row {
+  margin-top: 0.35rem;
+  padding: 0.82rem;
+  border-radius: 0.82rem;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.64), rgba(30, 41, 59, 0.42));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 0.9rem;
+  align-items: start;
+}
+
+#calc-investment-return .pv-toggle-row .pv-toggle-group {
+  display: grid;
+  gap: 0.42rem;
+  min-width: 0;
+  align-content: start;
+}
+
+#calc-investment-return .pv-toggle-row .pv-toggle-label {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.97);
+}
+
+#calc-investment-return .pv-toggle-row .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+#calc-investment-return .pv-toggle-row .calculator-button {
+  min-height: 38px;
+  padding: 0.4rem 0.78rem;
+  border-radius: 0.68rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+#calc-investment-return .ir-advanced-control {
+  margin-top: 0.8rem;
+}
+
+#calc-investment-return #ir-advanced-section {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+#calc-investment-return #ir-advanced-section.is-hidden {
+  display: none;
+}
+
+#calc-investment-return .ir-advanced-card {
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+#calc-investment-return .ir-variable-rows {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+#calc-investment-return .ir-var-row {
+  display: grid;
+  gap: 0.2rem;
+}
+
+#calc-investment-return .ir-var-row label {
+  font-size: 0.7rem;
+  color: rgba(191, 219, 254, 0.92);
+}
+
+#calc-investment-return .ir-events-rows {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+#calc-investment-return .ir-event-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+#calc-investment-return .ir-event-timing {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+#calc-investment-return .ir-event-timing button {
+  min-height: 30px;
+  padding: 0.25rem 0.5rem;
+}
+
+#calc-investment-return .ir-results {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+#calc-investment-return .ir-results-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+#calc-investment-return .ir-breakdown-table,
+#ir-explanation .ir-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calc-investment-return .ir-breakdown-table th,
+#calc-investment-return .ir-breakdown-table td,
+#ir-explanation .ir-results-table th,
+#ir-explanation .ir-results-table td {
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  padding: 0.62rem 0.72rem;
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+#calc-investment-return .ir-breakdown-table th,
+#ir-explanation .ir-results-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.24), rgba(30, 64, 175, 0.35));
+  color: #f8fafc;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
   font-size: 0.75rem;
 }
 
-#calc-car-loan #calc-home-loan .mtg-result-card .mtg-result-value {
-  text-shadow:
-    0 0 18px rgba(125, 211, 252, 0.45),
-    0 0 34px rgba(56, 189, 248, 0.24);
-  font-weight: 800;
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(odd) td {
+  background: rgba(15, 23, 42, 0.45);
 }
 
-#loan-mtg-explanation .bor-faq-grid {
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) td {
+  background: rgba(30, 41, 59, 0.38);
+}
+
+#calc-investment-return .ir-breakdown-table tbody tr:hover td {
+  background: rgba(37, 99, 235, 0.16);
+}
+
+#calc-investment-return .graph-panel {
+  min-height: 320px;
+  display: grid;
+  gap: 0.65rem;
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(59, 130, 246, 0.44);
+  background: linear-gradient(155deg, rgba(23, 37, 84, 0.82), rgba(15, 23, 42, 0.92));
+}
+
+#calc-investment-return .ir-graph-toolbar {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+#calc-investment-return #ir-graph-svg {
+  width: 100%;
+  height: 255px;
+  border-radius: 0.7rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.72));
+  border: 1px solid rgba(148, 163, 184, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.22);
+}
+
+#calc-investment-return #ir-graph-plot-bg {
+  fill: rgba(2, 6, 23, 0.52);
+  stroke: rgba(148, 163, 184, 0.26);
+  stroke-width: 0.32;
+}
+
+#calc-investment-return #ir-graph-main {
+  stroke: #22d3ee;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.5));
+}
+
+#calc-investment-return #ir-graph-main-area {
+  fill: rgba(34, 211, 238, 0.14);
+}
+
+#calc-investment-return #ir-graph-secondary {
+  stroke: #fbbf24;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4));
+}
+
+#calc-investment-return #ir-graph-secondary-area {
+  fill: rgba(251, 191, 36, 0.14);
+}
+
+#calc-investment-return .ir-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(191, 219, 254, 0.92);
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+#calc-investment-return .ir-graph-legend {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+#calc-investment-return .ir-legend {
+  font-size: 0.75rem;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+#calc-investment-return .ir-legend-main::before,
+#calc-investment-return .ir-legend-secondary::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 0.35rem;
+}
+
+#calc-investment-return .ir-legend-main::before {
+  background: #38bdf8;
+}
+
+#calc-investment-return .ir-legend-secondary::before {
+  background: #f59e0b;
+}
+
+#ir-explanation .bor-faq-grid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
 }
 
-@media (max-width: 640px) {
-  #loan-mtg-explanation .bor-faq-grid {
+#ir-explanation .bor-faq-card {
+  padding: 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.48);
+  display: grid;
+  gap: 0.35rem;
+}
+
+#ir-explanation .bor-faq-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.16);
+}
+
+#ir-explanation .ir-serp-guide,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide,
+#ir-explanation .ir-important-notes,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes {
+  display: block;
+}
+
+#ir-explanation .ir-serp-guide h3,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide h3,
+#ir-explanation .ir-important-notes h3,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #93c5fd;
+  text-shadow:
+    0 0 2px rgba(56, 189, 248, 0.4),
+    0 0 16px rgba(56, 189, 248, 0.28);
+}
+
+#ir-explanation .ir-serp-guide h4,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide h4 {
+  margin: 12px 0 6px;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: #93c5fd;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.22);
+}
+
+#ir-explanation .ir-serp-guide p,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide p {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.48;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-serp-guide ul,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide ul {
+  margin: 2px 0 9px 16px;
+  padding: 0;
+}
+
+#ir-explanation .ir-serp-guide li,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide li {
+  margin: 3px 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist {
+  list-style: none;
+  margin: 4px 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist li,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist li {
+  position: relative;
+  margin: 0;
+  padding: 7px 9px 7px 23px;
+  border-radius: 9px;
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  background: rgba(15, 23, 42, 0.46);
+}
+
+#ir-explanation .ir-serp-guide .ir-checklist li::before,
+#loan-mtg-explanation .mtg-exp-section.ir-serp-guide .ir-checklist li::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 11px;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
+}
+
+#ir-explanation .ir-important-notes,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.16rem;
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list li,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list li {
+  position: static;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+#ir-explanation .ir-important-notes .ir-notes-list li::before,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes .ir-notes-list li::before {
+  content: none;
+}
+
+#ir-explanation .ir-important-notes strong,
+#loan-mtg-explanation .mtg-exp-section.ir-important-notes strong {
+  color: #bfdbfe;
+}
+
+@media (max-width: 900px) {
+  #calc-investment-return .pv-toggle-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-variable-rows {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr;
+  }
+
+  #ir-explanation .bor-faq-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* WOW Slider Styling - Electric Theme */
-input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 8px;
-  /* Slightly thicker for impact */
-  background: rgba(255, 255, 255, 0.08);
-  /* Darker track */
-  border-radius: 4px;
-  outline: none;
-  /* Electric Gradient: Cyan to Purple */
-  background-image: linear-gradient(to right, #00f2fe, #4facfe);
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 24px;
-  /* Larger thumb */
-  width: 24px;
-  border-radius: 50%;
-  background: #ffffff;
-  /* Neon Glow */
-  box-shadow:
-    0 0 15px rgba(79, 172, 254, 0.6),
-    0 0 5px rgba(0, 242, 254, 0.8);
-  cursor: pointer;
-  border: 2px solid #4facfe;
-  transition:
-    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    box-shadow 0.2s ease;
-  margin-top: -1px;
-  /* Align if needed */
-}
-
-input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.3);
-  box-shadow:
-    0 0 25px rgba(79, 172, 254, 0.8),
-    0 0 10px rgba(0, 242, 254, 1);
-  background: #f0f9ff;
-}
-
-input[type='range']::-webkit-slider-thumb:active {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(79, 172, 254, 0.9);
-}
-
-/* Hover Interaction on Row */
-.input-row.slider-row {
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-  padding: 8px;
-  /* Add padding for hover area */
-  border-radius: 8px;
-  margin: -8px 0 16px 0;
-  /* Offset margin to keep spacing visually similar */
-}
-
-.input-row.slider-row:hover {
-  background: rgba(255, 255, 255, 0.03);
-  /* Subtle highlight */
-}
-
-.input-row.slider-row:hover .slider-header label {
-  color: #a5f3fc;
-  /* Light cyan text change */
-  text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
-}
-
-.slider-value {
-  font-weight: 700;
-  color: #e0f2fe;
-  transition: color 0.2s ease;
-}
-
-.input-row.slider-row:hover .slider-value {
-  color: #38bdf8;
-  /* Highlight value on hover */
-}
-
-/* 2-Column Grid Layout - Refined */
-.input-grid-2-col {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  /* More breathing room */
-  width: 100%;
-  margin-top: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .input-grid-2-col {
+@media (max-width: 620px) {
+  #calc-investment-return .pv-toggle-row {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
   }
 }

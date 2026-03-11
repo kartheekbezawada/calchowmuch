@@ -2189,6 +2189,44 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+#loan-mtg-explanation .mtg-exp-section--notes {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  gap: 0.3rem;
+}
+
+#loan-mtg-explanation .mtg-exp-section--notes h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+#loan-mtg-explanation .car-note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.16rem;
+}
+
+#loan-mtg-explanation .car-note-list li {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#loan-mtg-explanation .car-note-list li::before {
+  content: none;
+}
+
+#loan-mtg-explanation .car-note-list strong {
+  color: rgba(186, 230, 253, 0.98);
+}
+
 @media (max-width: 760px) {
   #loan-mtg-explanation .hp-lifetime-grid {
     grid-template-columns: 1fr;
