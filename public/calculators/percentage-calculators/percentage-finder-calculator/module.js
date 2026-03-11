@@ -7,6 +7,12 @@ const wholeInput = document.querySelector('#wpxy-whole');
 const calculateButton = document.querySelector('#wpxy-calc');
 const resultOutput = document.querySelector('#wpxy-result');
 const resultDetail = document.querySelector('#wpxy-result-detail');
+const cardTargets = {
+  part: document.querySelector('[data-wpxy-card="part"]'),
+  whole: document.querySelector('[data-wpxy-card="whole"]'),
+  percent: document.querySelector('[data-wpxy-card="percent"]'),
+  formula: document.querySelector('[data-wpxy-card="formula"]'),
+};
 
 const explanationRoot = document.querySelector('#wpxy-explanation');
 const valueTargets = explanationRoot
@@ -188,6 +194,13 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateCardTarget(key, value) {
+  const node = cardTargets[key];
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
@@ -217,6 +230,11 @@ function calculate() {
 
   resultOutput.textContent = `${fmt(result.part)} is ${fmt(result.percent)}% of ${fmt(result.whole)}.`;
   resultDetail.textContent = `Calculation: (${fmt(result.part)} \u00f7 ${fmt(result.whole)}) \u00d7 100 = ${fmt(result.percent)}%. In other words, the part represents ${fmt(result.percent)}% of the whole.`;
+
+  updateCardTarget('part', fmt(result.part));
+  updateCardTarget('whole', fmt(result.whole));
+  updateCardTarget('percent', `${fmt(result.percent)}%`);
+  updateCardTarget('formula', '(X / Y) x 100');
 
   updateTargets(valueTargets?.part, fmt(result.part));
   updateTargets(valueTargets?.whole, fmt(result.whole));

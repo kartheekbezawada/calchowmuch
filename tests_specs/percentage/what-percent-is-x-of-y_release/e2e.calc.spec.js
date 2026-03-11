@@ -48,4 +48,28 @@ test.describe('What Percent Is X of Y Calculator', () => {
       'Result is undefined when the whole (Y) is zero.'
     );
   });
+
+  test('WPXY-TEST-E2E-3: responsive layout keeps answer card right on desktop and stacked on mobile', async ({
+    page,
+  }) => {
+    await page.goto('/percentage-calculators/percentage-finder-calculator/');
+
+    const formPanel = page.locator('.wpxy-form-panel');
+    const answerPanel = page.locator('.wpxy-answer-panel');
+
+    const desktopFormBox = await formPanel.boundingBox();
+    const desktopAnswerBox = await answerPanel.boundingBox();
+    expect(desktopFormBox).toBeTruthy();
+    expect(desktopAnswerBox).toBeTruthy();
+    expect((desktopAnswerBox?.x ?? 0) > (desktopFormBox?.x ?? 0)).toBeTruthy();
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+
+    const mobileFormBox = await formPanel.boundingBox();
+    const mobileAnswerBox = await answerPanel.boundingBox();
+    expect(mobileFormBox).toBeTruthy();
+    expect(mobileAnswerBox).toBeTruthy();
+    expect((mobileAnswerBox?.y ?? 0) > (mobileFormBox?.y ?? 0)).toBeTruthy();
+  });
 });
