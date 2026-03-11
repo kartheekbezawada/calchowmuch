@@ -159,9 +159,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Time to Savings Goal Calculator – CalcHowMuch',
+  title: 'Time to Savings Goal Calculator | Reach Your Target',
   description:
-    'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding. Plan your path to financial goals.',
+    'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
   canonical: 'https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -170,10 +170,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Time to Savings Goal Calculator',
+        name: 'Time to Savings Goal Calculator | Reach Your Target',
         url: 'https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/',
         description:
-          'Estimate how long it will take to reach a savings target with regular contributions and compound interest.',
+          'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
         inLanguage: 'en',
       },
       {
@@ -184,7 +184,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/',
         description:
-          'Free savings timeline calculator. See when you will reach your financial goal with compound interest.',
+          'Free savings timeline calculator. See when your goal could be reached with contributions and compound growth.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

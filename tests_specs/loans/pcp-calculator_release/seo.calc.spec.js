@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('PCP Calculator SEO', () => {
   test('PCP-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch';
+    const expectedTitle = 'PCP Calculator | Monthly Payment, GFV & Cost';
     const expectedDescription =
-      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.';
+      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.';
 
     await page.goto('/car-loan-calculators/pcp-calculator');
 
@@ -63,7 +63,7 @@ test.describe('PCP Calculator SEO', () => {
     const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(webpageSchema?.name).toBe('PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch');
+    expect(webpageSchema?.name).toBe('PCP Calculator | Monthly Payment, GFV & Cost');
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'
     );

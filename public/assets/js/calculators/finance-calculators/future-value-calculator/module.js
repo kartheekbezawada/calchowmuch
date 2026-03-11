@@ -159,9 +159,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Future Value (FV) Calculator – CalcHowMuch',
+  title: 'Future Value Calculator | Growth Over Time',
   description:
-    'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
+    'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
   canonical: 'https://calchowmuch.com/finance-calculators/future-value-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -170,15 +170,15 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Future Value (FV) Calculator',
+        name: 'Future Value Calculator | Growth Over Time',
         url: 'https://calchowmuch.com/finance-calculators/future-value-calculator/',
         description:
-          'Estimate the future value of money using growth rate, time period, and compounding.',
+          'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Future Value (FV) Calculator',
+        name: 'Future Value Calculator',
         applicationCategory: 'FinanceApplication',
         applicationSubCategory: 'Time Value of Money Calculator',
         operatingSystem: 'Web',

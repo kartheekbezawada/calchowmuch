@@ -1,0 +1,148 @@
+# Non-Math SEO Wave Plan
+
+## Purpose
+
+This tracker governs the non-math SEO wave. Work is executed category by category, but each
+calculator must be completed, regenerated, verified, and logged before the next calculator starts.
+
+## Shared Execution Rules
+
+- Scope excludes all math calculators.
+- Default wave type is SEO-first:
+  - title
+  - meta description
+  - schema copy
+  - canonical/sitemap/internal-link cleanup
+  - explanation upgrades
+- Thin-content fixes must follow `requirements/universal-rules/How to build a calculator.md`.
+- Explanation contract for touched calculator pages:
+  - intent-led `H2`
+  - short answer-first paragraph
+  - one additional short paragraph
+  - one scannable list
+  - long-form practical guide
+  - FAQ
+  - Important Notes
+- Default verification for SEO-first waves:
+  - `CLUSTER=<cluster> CALC=<calc> npm run test:calc:seo`
+  - `CLUSTER=<cluster> CALC=<calc> npm run test:schema:dedupe -- --scope=calc`
+  - `CLUSTER=<cluster> CALC=<calc> npm run test:seo:mojibake -- --scope=calc`
+- Add `CLUSTER=<cluster> CALC=<calc> npm run test:content:quality -- --scope=calc` when the
+  explanation guide is materially rewritten.
+- Escalate to full scoped calc gates only if work changes layout, CSS, JS, navigation, or route
+  contracts.
+- Final non-math stress test is run only after all non-math categories are complete.
+
+## Category Order
+
+1. Credit Cards
+2. Car Loans
+3. Finance
+4. Time & Date
+5. Percentage
+6. Loans
+
+## Wave Tracker
+
+| Category | Order | Status | Notes |
+| :--- | :--- | :--- | :--- |
+| Credit Cards | 1 | complete | 4 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 3 warns, 1 pass |
+| Car Loans | 2 | complete | 5 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 5 warns |
+| Finance | 3 | complete | 11 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 11 warns |
+| Time & Date | 4 | pending | Awaiting scope approval |
+| Percentage | 5 | pending | Fix path mismatch before execution |
+| Loans | 6 | pending | Awaiting scope approval |
+
+## Credit Cards Checklist
+
+| Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Credit Card Payment Calculator | `/credit-card-calculators/credit-card-payment-calculator/` | `credit-cards` | `credit-card-repayment-payoff` | `TITLE_TOO_LONG` | metadata + schema + intro guide cleanup | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Credit Card Minimum Payment Calculator | `/credit-card-calculators/credit-card-minimum-payment-calculator/` | `credit-cards` | `credit-card-minimum-payment` | `TITLE_TOO_LONG` | metadata + schema + intro guide cleanup | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Balance Transfer Credit Card Calculator | `/credit-card-calculators/balance-transfer-credit-card-calculator/` | `credit-cards` | `balance-transfer-installment-plan` | `TITLE_TOO_LONG` | metadata + schema + intro guide cleanup | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Credit Card Consolidation Calculator | `/credit-card-calculators/credit-card-consolidation-calculator/` | `credit-cards` | `credit-card-consolidation` | `TITLE_TOO_LONG` | metadata + schema + intro guide cleanup | SEO + schema + mojibake + content quality | complete (`content quality: pass`) |
+
+## Car Loans Checklist
+
+| Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Car Loan Calculator | `/car-loan-calculators/car-loan-calculator/` | `loans` | `car-loan` | `TITLE_TOO_LONG`; `LOW_WORD_COUNT` | metadata + schema + guide + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Auto Loan Comparison Calculator | `/car-loan-calculators/auto-loan-calculator/` | `loans` | `multiple-car-loan` | `TITLE_TOO_LONG` | metadata + schema + guide + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Hire Purchase Calculator | `/car-loan-calculators/hire-purchase-calculator/` | `loans` | `hire-purchase` | `TITLE_TOO_LONG` | metadata + schema + guide + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| PCP Calculator | `/car-loan-calculators/pcp-calculator/` | `loans` | `pcp-calculator` | `TITLE_TOO_LONG` | metadata + schema + guide + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Car Lease Calculator | `/car-loan-calculators/car-lease-calculator/` | `loans` | `leasing-calculator` | `TITLE_TOO_LONG` | metadata + schema + guide + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+
+## Finance Checklist
+
+| Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Present Value Calculator | `/finance-calculators/present-value-calculator/` | `finance` | `present-value` | `DESC_TOO_SHORT` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Future Value Calculator | `/finance-calculators/future-value-calculator/` | `finance` | `future-value` | `DESC_TOO_SHORT` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Present Value of Annuity Calculator | `/finance-calculators/present-value-of-annuity-calculator/` | `finance` | `present-value-of-annuity` | `TITLE_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Future Value of Annuity Calculator | `/finance-calculators/future-value-of-annuity-calculator/` | `finance` | `future-value-of-annuity` | `TITLE_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Simple Interest Calculator | `/finance-calculators/simple-interest-calculator/` | `finance` | `simple-interest` | baseline review | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Compound Interest Calculator | `/finance-calculators/compound-interest-calculator/` | `finance` | `compound-interest` | `DESC_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Effective Annual Rate Calculator | `/finance-calculators/effective-annual-rate-calculator/` | `finance` | `effective-annual-rate` | baseline review | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Investment Growth Calculator | `/finance-calculators/investment-growth-calculator/` | `finance` | `investment-growth` | `DESC_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Investment Return Calculator | `/finance-calculators/investment-return-calculator/` | `finance` | `investment-return` | `TITLE_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Time to Savings Goal Calculator | `/finance-calculators/time-to-savings-goal-calculator/` | `finance` | `time-to-savings-goal` | baseline review | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Monthly Savings Needed Calculator | `/finance-calculators/monthly-savings-needed-calculator/` | `finance` | `monthly-savings-needed` | `TITLE_TOO_LONG`; `DESC_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+
+## Future Category Queue
+
+### Finance
+
+- `future-value`
+- `present-value`
+- `compound-interest`
+- `investment-growth`
+- `investment-return`
+- `future-value-of-annuity`
+- `present-value-of-annuity`
+- `monthly-savings-needed`
+- `effective-annual-rate`
+- `simple-interest`
+- `time-to-savings-goal`
+
+### Time & Date
+
+- `time-and-date`: `birthday-day-of-week`, `countdown-timer-generator`,
+  `days-until-a-date-calculator`, `age-calculator`, `work-hours-calculator`,
+  `overtime-hours-calculator`, `time-between-two-dates-calculator`
+- `sleep-and-nap`: `sleep-time-calculator`, `wake-up-time-calculator`,
+  `nap-time-calculator`, `power-nap-calculator`, `energy-based-nap-selector`
+
+### Percentage
+
+- Fix nav/path mismatch first for `percent-change`
+- Then execute:
+  - `percent-change`
+  - `discount-calculator`
+  - `markup-calculator`
+  - `what-percent-is-x-of-y`
+  - `percentage-of-a-number`
+  - `reverse-percentage`
+  - `commission-calculator`
+  - `margin-calculator`
+  - `percent-to-fraction-decimal`
+  - `percentage-difference`
+  - `percentage-increase`
+  - `percentage-decrease`
+  - `percentage-composition`
+
+### Loans
+
+- `personal-loan`
+- `home-loan`
+- `loan-to-value`
+- `interest-rate-change-calculator`
+- `how-much-can-i-borrow`
+- `remortgage-switching`
+- `buy-to-let`
+- `offset-calculator`
+
+## Final Stress Test
+
+- Required capability: `npm run test:cwv:non-math`
+- Purpose: run the CWV normal + stress guard across non-math calculators only
+- Report target: `test-results/performance/cls-guard-non-math-calculators.json`

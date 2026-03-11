@@ -4,10 +4,12 @@ test.describe('Investment Growth Calculator SEO', () => {
   test('IG-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/investment-growth-calculator');
 
-    await expect(page).toHaveTitle(/Investment Growth Calculator/i);
+    await expect(page).toHaveTitle('Investment Growth Calculator | Future Value Projection');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toMatch(/investment/i);
+    expect(description).toBe(
+      'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.'
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
@@ -19,7 +21,7 @@ test.describe('Investment Growth Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/investment-growth-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toContain('Investment Growth Calculator');
+    expect(ogTitle).toBe('Investment Growth Calculator | Future Value Projection');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);

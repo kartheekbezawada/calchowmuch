@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Leasing Calculator SEO', () => {
   test('LEASING-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch';
+    const expectedTitle = 'Car Lease Calculator | Payment, Residual & Cost';
     const expectedDescription =
-      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.';
+      'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.';
 
     await page.goto('/car-loan-calculators/car-lease-calculator');
 
@@ -63,7 +63,7 @@ test.describe('Leasing Calculator SEO', () => {
     const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(webpageSchema?.name).toBe('Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch');
+    expect(webpageSchema?.name).toBe('Car Lease Calculator | Payment, Residual & Cost');
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'
     );

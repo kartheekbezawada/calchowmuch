@@ -10,6 +10,7 @@
     "test:e2e": "playwright test --grep-invert \"UR-TEST-005/006\"",
     "test:cwv:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cwv:target": "CLS_GUARD_ROUTE_INCLUDE=$TARGET playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
+    "test:cwv:non-math": "CLS_GUARD_ROUTE_EXCLUDE=/math/ CLS_GUARD_REPORT_PATH=test-results/performance/cls-guard-non-math-calculators.json playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:cls:all": "playwright test tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js --workers=1",
     "test:schema:dedupe": "node scripts/schema-structured-data-dedupe.mjs",
     "test:seo:mojibake": "node scripts/validate-seo-mojibake.mjs",

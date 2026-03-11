@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Multiple Car Loan Calculator SEO', () => {
   test('MULTI-CAR-LOAN-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch';
+    const expectedTitle = 'Auto Loan Comparison Calculator | Compare 2 Loans';
     const expectedDescription =
-      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.';
+      'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.';
 
     await page.goto('/car-loan-calculators/auto-loan-calculator');
 
@@ -67,7 +67,7 @@ test.describe('Multiple Car Loan Calculator SEO', () => {
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
     expect(webpageSchema?.name).toBe(
-      'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch'
+      'Auto Loan Comparison Calculator | Compare 2 Loans'
     );
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'

@@ -4,7 +4,16 @@ test.describe('Time to Savings Goal Calculator SEO', () => {
   test('TSG-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/time-to-savings-goal-calculator');
 
-    await expect(page).toHaveTitle(/.+/);
+    await expect(page).toHaveTitle('Time to Savings Goal Calculator | Reach Your Target');
+
+    const description = await page.locator('meta[name="description"]').getAttribute('content');
+    expect(description).toBe(
+      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.'
+    );
+
+    const h1 = page.locator('h1');
+    await expect(h1).toHaveCount(1);
+    await expect(h1).toHaveText('Time to Savings Goal Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -25,6 +34,9 @@ test.describe('Time to Savings Goal Calculator SEO', () => {
     expect(types).toEqual(
       expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
     );
+
+    const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
+    expect(faqNode.mainEntity).toHaveLength(10);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

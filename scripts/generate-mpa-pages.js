@@ -125,41 +125,41 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'car-loan': {
-    title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+    title: 'Car Loan Calculator | Monthly Payment & Cost',
     description:
-      'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
+      'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
     h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
-    title: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
+    title: 'Hire Purchase Calculator | Monthly Payment & Cost',
     description:
-      'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.',
+      'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
     h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
+    title: 'PCP Calculator | Monthly Payment, GFV & Cost',
     description:
-      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
+      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
     h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
+    title: 'Car Lease Calculator | Payment, Residual & Cost',
     description:
-      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.',
+      'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
     h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
+    title: 'Auto Loan Comparison Calculator | Compare 2 Loans',
     description:
-      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.',
+      'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
     h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -205,33 +205,33 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'credit-card-minimum-payment': {
-    title: 'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch',
+    title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
     description:
-      'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
+      'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
     h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'balance-transfer-installment-plan': {
-    title: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
+    title: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
     description:
-      'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
+      'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
     h1: 'Balance Transfer Credit Card Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-repayment-payoff': {
-    title: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
+    title: 'Credit Card Payment Calculator | Payoff & Interest',
     description:
-      'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
+      'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
     h1: 'Credit Card Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-consolidation': {
-    title: 'Credit Card Consolidation Calculator – Compare Debt Savings | CalcHowMuch',
+    title: 'Credit Card Consolidation Calculator | Loan vs Cards',
     description:
-      'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
+      'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
     h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -301,85 +301,93 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Birthday Day-of-Week Calculator',
   },
   'present-value': {
-    title: 'Present Value (PV) Calculator – CalcHowMuch',
+    title: 'Present Value Calculator | Discount Future Money',
     description:
-      'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
+      'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
     h1: 'Present Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value': {
-    title: 'Future Value (FV) Calculator – CalcHowMuch',
+    title: 'Future Value Calculator | Growth Over Time',
     description:
-      'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
+      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
     h1: 'Future Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'present-value-of-annuity': {
-    title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    title: 'Present Value of Annuity Calculator | Ordinary or Due',
     description:
-      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
+      'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
     h1: 'Present Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value-of-annuity': {
-    title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    title: 'Future Value of Annuity Calculator | Ordinary or Due',
     description:
-      'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
+      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
     h1: 'Future Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator – CalcHowMuch',
+    title: 'Simple Interest Calculator | Interest & Final Amount',
     description:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
     h1: 'Simple Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'effective-annual-rate': {
-    title: 'Effective Annual Rate (EAR) Calculator – CalcHowMuch',
+    title: 'Effective Annual Rate Calculator | True Annual Rate',
     description:
-      'Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.',
+      'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
     h1: 'Effective Annual Rate Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'time-to-savings-goal': {
-    title: 'Time to Savings Goal Calculator – CalcHowMuch',
+    title: 'Time to Savings Goal Calculator | Reach Your Target',
     description:
-      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding. Plan your path to financial goals.',
+      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
     h1: 'Time to Savings Goal Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
-  'compound-interest': {
-    title: 'Compound Interest Calculator – CalcHowMuch',
+  'monthly-savings-needed': {
+    title: 'Monthly Savings Needed Calculator | Reach Your Goal',
     description:
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports annual, semi-annual, and quarterly compounding.',
+      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+    h1: 'Monthly Savings Needed Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'compound-interest': {
+    title: 'Compound Interest Calculator | Ending Balance & Growth',
+    description:
+      'Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.',
     h1: 'Compound Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator – CalcHowMuch',
+    title: 'Simple Interest Calculator | Interest & Final Amount',
     description:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
     h1: 'Simple Interest Calculator',
   },
   'investment-growth': {
-    title: 'Investment Growth Calculator \u2013 CalcHowMuch',
+    title: 'Investment Growth Calculator | Future Value Projection',
     description:
-      'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
+      'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
     h1: 'Investment Growth Calculator',
   },
   'investment-return': {
-    title: 'Investment Return Calculator - Portfolio Growth, Profit, CAGR',
+    title: 'Investment Return Calculator | CAGR, Profit & Growth',
     description:
-      'Calculate investment return using lump sum, contributions, compounding, inflation, and tax assumptions. View CAGR and annual or monthly breakdowns.',
+      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
     h1: 'Investment Return Calculator',
     paneLayout: 'single',
     explanationHeading: '',
@@ -610,7 +618,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
     softwareDescription:
-      'Calculate required monthly savings to reach a financial goal with compound interest.',
+      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
     featureList: [
       'Required monthly savings calculation',
       'Total contributions breakdown',

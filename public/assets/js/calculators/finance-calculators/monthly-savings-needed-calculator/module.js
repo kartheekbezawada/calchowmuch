@@ -162,9 +162,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Monthly Savings Needed Calculator – CalcHowMuch',
+  title: 'Monthly Savings Needed Calculator | Reach Your Goal',
   description:
-    'Calculate how much you need to save each month to reach a savings goal within a chosen time period, with optional interest and compounding.',
+    'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
   canonical: 'https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -173,10 +173,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Monthly Savings Needed Calculator',
+        name: 'Monthly Savings Needed Calculator | Reach Your Goal',
         url: 'https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/',
         description:
-          'Calculate required monthly savings to reach a financial goal with compound interest.',
+          'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
         inLanguage: 'en',
       },
       {
@@ -187,7 +187,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/',
         description:
-          'Free monthly savings calculator. Determine the exact monthly savings needed to reach your financial goal on time.',
+          'Free monthly savings calculator. Estimate the monthly amount needed to hit a goal on time.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

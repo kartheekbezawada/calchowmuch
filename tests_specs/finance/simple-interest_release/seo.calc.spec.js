@@ -4,11 +4,11 @@ test.describe('Simple Interest Calculator SEO', () => {
   test('SI-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/simple-interest-calculator');
 
-    await expect(page).toHaveTitle('Simple Interest Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Simple Interest Calculator | Interest & Final Amount');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.'
+      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.'
     );
 
     const h1 = page.locator('h1');
@@ -21,7 +21,7 @@ test.describe('Simple Interest Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/simple-interest-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Simple Interest Calculator – CalcHowMuch');
+    expect(ogTitle).toBe('Simple Interest Calculator | Interest & Final Amount');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
