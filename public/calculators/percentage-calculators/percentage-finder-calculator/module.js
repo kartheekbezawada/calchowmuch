@@ -109,9 +109,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'What Percent Is X of Y Calculator – CalcHowMuch',
+  title: 'What Percent Is X of Y Calculator | Ratio to Percent',
   description:
-    'Find what percent X is of Y instantly. Use our free "X is what % of Y" calculator with a simple ratio-to-percent formula.',
+    'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-finder-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -120,10 +120,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'What Percent Is X of Y Calculator',
+        name: 'What Percent Is X of Y Calculator | Ratio to Percent',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-finder-calculator/',
         description:
-          'Find what percent X is of Y instantly using our free "X is what % of Y" calculator.',
+          'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
         inLanguage: 'en',
       },
       {
@@ -133,7 +133,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-finder-calculator/',
         description:
-          'Free calculator to find what percent X is of Y using a simple ratio-to-percent formula.',
+          'Free calculator for finding what percent one value is of another using a ratio-to-percent formula.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

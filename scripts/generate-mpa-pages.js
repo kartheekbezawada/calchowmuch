@@ -348,6 +348,36 @@ const CALCULATOR_OVERRIDES = {
       'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
     h1: 'Age Calculator',
   },
+  'discount-calculator': {
+    title: 'Discount Calculator | Sale Price and Savings',
+    description:
+      'Calculate the sale price after a percentage discount and see exactly how much you save.',
+    h1: 'Discount Calculator',
+  },
+  'markup-calculator': {
+    title: 'Markup Calculator | Cost to Selling Price',
+    description:
+      'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+    h1: 'Markup Calculator',
+  },
+  'percentage-finder-calculator': {
+    title: 'What Percent Is X of Y Calculator | Ratio to Percent',
+    description:
+      'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
+    h1: 'What Percent Is X of Y',
+  },
+  'percentage-of-a-number-calculator': {
+    title: 'Percentage of a Number Calculator | Find X% of Y',
+    description:
+      'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
+    h1: 'Find Percentage of a Number Calculator',
+  },
+  'reverse-percentage-calculator': {
+    title: 'Reverse Percentage Calculator | Find the Original Value',
+    description:
+      'Find the original number when a known value represents a given percentage of it.',
+    h1: 'Reverse Percentage',
+  },
   'present-value': {
     title: 'Present Value Calculator | Discount Future Money',
     description:
@@ -464,41 +494,41 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
   },
   'percentage-difference': {
-    title: 'Percentage Difference Calculator – CalcHowMuch',
+    title: 'Percentage Difference Calculator | Compare Two Values',
     description:
-      'Calculate percentage difference between two values using a symmetric formula based on their average. Free percent difference calculator.',
+      'Calculate the symmetric percentage difference between two values using their average as the baseline.',
     h1: 'Percentage Difference Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-increase': {
-    title: 'Percentage Increase Calculator – CalcHowMuch',
+    title: 'Percentage Increase Calculator | Growth from Original',
     description:
-      'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
+      'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
     h1: 'Percentage Increase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-decrease': {
-    title: 'Percentage Decrease Calculator – CalcHowMuch',
+    title: 'Percentage Decrease Calculator | Drop from Original',
     description:
-      'Calculate percentage decrease from an original value to a new value instantly. Use our free percent decrease calculator and formula.',
+      'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
     h1: 'Percentage Decrease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-composition': {
-    title: 'Percentage Composition Calculator – CalcHowMuch',
+    title: 'Percentage Composition Calculator | Share of Total',
     description:
-      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator.",
+      "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
     h1: 'Percentage Composition Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
-    title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
+    title: 'Percent to Fraction and Decimal Calculator | Convert %',
     description:
-      'Convert any percentage to a decimal and simplified fraction instantly. Free percent to fraction and percent to decimal converter with steps.',
+      'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
     h1: 'Percent to Fraction & Decimal Converter',
   },
   'percentage-of-a-number': {

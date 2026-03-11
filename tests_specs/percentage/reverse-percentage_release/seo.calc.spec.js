@@ -4,11 +4,12 @@ test.describe('Reverse Percentage Calculator SEO', () => {
   test('REVPCT-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/reverse-percentage-calculator/');
 
-    await expect(page).toHaveTitle('Reverse Percentage Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Reverse Percentage Calculator | Find the Original Value');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBeTruthy();
-    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description).toBe(
+      'Find the original number when a known value represents a given percentage of it.'
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);

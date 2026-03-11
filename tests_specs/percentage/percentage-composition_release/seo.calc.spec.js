@@ -4,11 +4,11 @@ test.describe('Percentage Composition Calculator SEO', () => {
   test('PCOMP-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-composition-calculator/');
 
-    await expect(page).toHaveTitle('Percentage Composition Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Percentage Composition Calculator | Share of Total');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator."
+      "Calculate each item's share of a total and the remainder percentage from a known or calculated total."
     );
 
     const h1 = page.locator('h1');

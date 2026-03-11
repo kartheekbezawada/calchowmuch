@@ -35,7 +35,7 @@
     {
       "clusterId": "percentage",
       "label": "Percentage Calculators",
-      "href": "/percentage-calculators/percent-change/"
+      "href": "/percentage-calculators/percent-change-calculator/"
     }
   ],
   "sections": [
@@ -43,11 +43,11 @@
       "id": "percentage-calculators",
       "name": "Percentage Calculators",
       "calculators": [
-        { "id": "percent-change", "name": "Percent Change", "url": "/percentage-calculators/percent-change/" },
-        { "id": "percentage-difference", "name": "Percentage Difference", "url": "/percentage-calculators/percentage-difference/" },
-        { "id": "percentage-increase", "name": "Percentage Increase", "url": "/percentage-calculators/percentage-increase/" },
-        { "id": "percentage-decrease", "name": "Percentage Decrease", "url": "/percentage-calculators/percentage-decrease/" },
-        { "id": "percentage-composition", "name": "Percentage Composition", "url": "/percentage-calculators/percentage-composition/" },
+        { "id": "percent-change", "name": "Percent Change", "url": "/percentage-calculators/percent-change-calculator/" },
+        { "id": "percentage-difference", "name": "Percentage Difference", "url": "/percentage-calculators/percentage-difference-calculator/" },
+        { "id": "percentage-increase", "name": "Percentage Increase", "url": "/percentage-calculators/percentage-increase-calculator/" },
+        { "id": "percentage-decrease", "name": "Percentage Decrease", "url": "/percentage-calculators/percentage-decrease-calculator/" },
+        { "id": "percentage-composition", "name": "Percentage Composition", "url": "/percentage-calculators/percentage-composition-calculator/" },
         { "id": "reverse-percentage", "name": "Reverse Percentage", "url": "/percentage-calculators/reverse-percentage-calculator/" },
         { "id": "percent-to-fraction-decimal", "name": "Percent to Fraction/Decimal", "url": "/percentage-calculators/percent-to-fraction-decimal-calculator/" },
         { "id": "what-percent-is-x-of-y", "name": "What Percent Is X of Y", "url": "/percentage-calculators/percentage-finder-calculator/" },

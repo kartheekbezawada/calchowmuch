@@ -134,9 +134,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Commission Calculator – CalcHowMuch',
+  title: 'Commission Calculator | Sales and Tiered Rates',
   description:
-    'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
+    'Calculate commission from sales using flat or tiered rates and see the effective commission percentage.',
   canonical: 'https://calchowmuch.com/percentage-calculators/commission-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -145,10 +145,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Commission Calculator',
+        name: 'Commission Calculator | Sales and Tiered Rates',
         url: 'https://calchowmuch.com/percentage-calculators/commission-calculator/',
         description:
-          'Calculate commission from sales using a flat rate or optional tiers with our free commission calculator.',
+          'Calculate commission from sales using flat or tiered rates and see the effective commission percentage.',
         inLanguage: 'en',
       },
       {
@@ -158,7 +158,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/commission-calculator/',
         description:
-          'Free commission calculator to compute commission earnings from sales using a commission percentage or tiered rates.',
+          'Free commission calculator for flat-rate or tiered commission earnings from sales.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

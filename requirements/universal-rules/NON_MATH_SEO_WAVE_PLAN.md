@@ -50,7 +50,7 @@ calculator must be completed, regenerated, verified, and logged before the next 
 | Car Loans | 2 | complete | 5 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 5 warns |
 | Finance | 3 | complete | 11 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 11 warns |
 | Time & Date | 4 | complete | 12 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 12 warns |
-| Percentage | 5 | pending | Fix path mismatch before execution |
+| Percentage | 5 | complete | Route contracts fixed; 13 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 13 warns |
 | Loans | 6 | pending | Awaiting scope approval |
 
 ## Credit Cards Checklist
@@ -146,6 +146,24 @@ calculator must be completed, regenerated, verified, and logged before the next 
   - `percentage-increase`
   - `percentage-decrease`
   - `percentage-composition`
+
+## Percentage Checklist
+
+| Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Percent Change Calculator | `/percentage-calculators/percent-change-calculator/` | `percentage` | `percent-change` | route mismatch cleanup | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality + nav/contracts | complete (`content quality: warn`) |
+| Discount Calculator | `/percentage-calculators/discount-calculator/` | `percentage` | `discount-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Markup Calculator | `/percentage-calculators/markup-calculator/` | `percentage` | `markup-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| What Percent Is X of Y | `/percentage-calculators/percentage-finder-calculator/` | `percentage` | `what-percent-is-x-of-y` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `LOW_WORD_COUNT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Find Percentage of a Number | `/percentage-calculators/percentage-of-a-number-calculator/` | `percentage` | `percentage-of-a-number` | `DESC_TOO_SHORT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Reverse Percentage Calculator | `/percentage-calculators/reverse-percentage-calculator/` | `percentage` | `reverse-percentage` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Commission Calculator | `/percentage-calculators/commission-calculator/` | `percentage` | `commission-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Margin Calculator | `/percentage-calculators/margin-calculator/` | `percentage` | `margin-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Percent to Fraction/Decimal | `/percentage-calculators/percent-to-fraction-decimal-calculator/` | `percentage` | `percent-to-fraction-decimal` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Percentage Difference Calculator | `/percentage-calculators/percentage-difference-calculator/` | `percentage` | `percentage-difference` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Percentage Increase Calculator | `/percentage-calculators/percentage-increase-calculator/` | `percentage` | `percentage-increase` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Percentage Decrease Calculator | `/percentage-calculators/percentage-decrease-calculator/` | `percentage` | `percentage-decrease` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Percentage Composition Calculator | `/percentage-calculators/percentage-composition-calculator/` | `percentage` | `percentage-composition` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 
 ### Loans
 

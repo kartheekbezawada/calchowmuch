@@ -118,9 +118,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Increase Calculator – CalcHowMuch',
+  title: 'Percentage Increase Calculator | Growth from Original',
   description:
-    'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
+    'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-increase-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -132,7 +132,7 @@ const metadata = {
         name: 'Percentage Increase Calculator',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-increase-calculator/',
         description:
-          'Calculate percentage increase from an original value to a new value instantly using our free percent increase calculator.',
+          'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
         inLanguage: 'en',
       },
       {
@@ -142,7 +142,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-increase-calculator/',
         description:
-          'Free percentage increase calculator to find the percent increase from an original value to a new value using a simple formula.',
+          'Free percentage increase calculator to compare original and new values and show the growth percentage.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

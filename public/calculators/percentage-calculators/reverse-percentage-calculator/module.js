@@ -115,9 +115,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Reverse Percentage Calculator – CalcHowMuch',
+  title: 'Reverse Percentage Calculator | Find the Original Value',
   description:
-    'Find the original value when Y is X% of it. Use our free reverse percentage calculator for original price before discount and more.',
+    'Find the original number when a known value represents a given percentage of it.',
   canonical: 'https://calchowmuch.com/percentage-calculators/reverse-percentage-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -126,10 +126,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Reverse Percentage Calculator',
+        name: 'Reverse Percentage Calculator | Find the Original Value',
         url: 'https://calchowmuch.com/percentage-calculators/reverse-percentage-calculator/',
         description:
-          'Find the original value when Y is X% of it using our free reverse percentage calculator.',
+          'Find the original number when a known value represents a given percentage of it.',
         inLanguage: 'en',
       },
       {
@@ -139,7 +139,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/reverse-percentage-calculator/',
         description:
-          'Free reverse percentage calculator to find the original value when a final value is a known percent of it.',
+          'Free reverse percentage calculator for recovering the original value from a known percentage and final number.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

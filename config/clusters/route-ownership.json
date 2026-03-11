@@ -106,7 +106,7 @@
       "generationMode": "cluster"
     },
     {
-      "route": "/percentage-calculators/percent-change/",
+      "route": "/percentage-calculators/percent-change-calculator/",
       "calculatorId": "percent-change",
       "activeOwnerClusterId": "percentage",
       "previousOwnerClusterId": "legacy-shared",

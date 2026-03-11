@@ -124,9 +124,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Composition Calculator – CalcHowMuch',
+  title: 'Percentage Composition Calculator | Share of Total',
   description:
-    "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator.",
+    "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-composition-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -138,7 +138,7 @@ const metadata = {
         name: 'Percentage Composition Calculator',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-composition-calculator/',
         description:
-          "Calculate each item's share of total as a percentage and compute remainder percentage using our free percentage composition calculator.",
+          "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
         inLanguage: 'en',
       },
       {
@@ -148,7 +148,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-composition-calculator/',
         description:
-          'Free percentage composition calculator to compute each item as a percent of total and calculate remainder percentage.',
+          'Free percentage composition calculator to break items into percent shares of a total and show any remainder.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

@@ -4,11 +4,11 @@ test.describe('Margin Calculator SEO', () => {
   test('MARG-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/margin-calculator/');
 
-    await expect(page).toHaveTitle('Margin Calculator – Profit Margin & Markup');
+    await expect(page).toHaveTitle('Margin Calculator | Profit Margin and Selling Price');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.'
+      'Calculate gross margin, profit, or selling price from cost and margin percentage.'
     );
 
     const h1 = page.locator('h1');
