@@ -9,7 +9,14 @@ test.describe('Find Percentage of a Number Calculator', () => {
     await expect(page.locator('#pon-explanation .pv-results-table')).toHaveCount(1);
     await expect(page.locator('#pon-explanation .bor-faq-card')).toHaveCount(10);
     await expect(page.locator('#pon-explanation .faq-box')).toHaveCount(0);
+    await expect(
+      page.locator('link[href*="/percentage-of-a-number-calculator/calculator.css"]')
+    ).toHaveCount(1);
     await expect(page.locator('#pon-explanation')).not.toContainText('Scenario Summary');
+    const heroDisplay = await page.locator('.pon-hero').evaluate((node) => {
+      return window.getComputedStyle(node).display;
+    });
+    expect(heroDisplay).toBe('grid');
 
     await page.fill('#pon-percent', '20');
     await page.fill('#pon-number', '50');
