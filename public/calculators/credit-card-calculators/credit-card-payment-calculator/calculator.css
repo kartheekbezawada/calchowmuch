@@ -472,19 +472,16 @@
 
 #cc-payoff-explanation .cc-payoff-important-notes {
   margin: 0;
-  padding: 0.9rem 0.95rem;
+  padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.46rem;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(245, 158, 11, 0.32);
-  background: linear-gradient(165deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.5));
+  gap: 0.16rem;
 }
 
 #cc-payoff-explanation .cc-payoff-important-notes li {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.58;
+  font-size: 0.8rem;
+  line-height: 1.2;
   color: rgba(226, 232, 240, 0.94);
 }
 

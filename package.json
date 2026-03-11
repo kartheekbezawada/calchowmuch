@@ -45,6 +45,8 @@
     "test:interaction:guard": "playwright test tests_specs/infrastructure/e2e/interaction-guard.spec.js",
     "test:mobile:ux": "playwright test tests_specs/infrastructure/e2e/mobile-ux.spec.js",
     "test:percentage:nav-guard": "node scripts/validate-percentage-nav-guard.mjs",
+    "scope:route": "node scripts/validate-route-scope.mjs",
+    "scope:route:planner": "node scripts/validate-route-scope.mjs --write-planner",
     "test:seo:source-finance": "vitest run tests_specs/finance/unit/finance-static-schema-source-parity.test.js",
     "test:lighthouse:fast": "LH_MODE=fast node scripts/lighthouse-target.mjs",
     "test:lighthouse:stable": "LH_MODE=stable node scripts/lighthouse-target.mjs",

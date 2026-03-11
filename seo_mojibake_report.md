@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:loans/home-loan`
+- Scope: `calc:credit-cards/credit-card-consolidation`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**
