@@ -49,7 +49,7 @@ calculator must be completed, regenerated, verified, and logged before the next 
 | Credit Cards | 1 | complete | 4 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 3 warns, 1 pass |
 | Car Loans | 2 | complete | 5 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 5 warns |
 | Finance | 3 | complete | 11 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 11 warns |
-| Time & Date | 4 | pending | Awaiting scope approval |
+| Time & Date | 4 | complete | 12 calculators regenerated; scoped SEO/schema/mojibake passed; content quality 12 warns |
 | Percentage | 5 | pending | Fix path mismatch before execution |
 | Loans | 6 | pending | Awaiting scope approval |
 
@@ -89,6 +89,23 @@ calculator must be completed, regenerated, verified, and logged before the next 
 | Monthly Savings Needed Calculator | `/finance-calculators/monthly-savings-needed-calculator/` | `finance` | `monthly-savings-needed` | `TITLE_TOO_LONG`; `DESC_TOO_LONG` | metadata + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 
 ## Future Category Queue
+
+## Time & Date Checklist
+
+| Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Birthday Day-of-Week Calculator | `/time-and-date/birthday-day-of-week/` | `time-and-date` | `birthday-day-of-week` | `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Countdown Timer Generator | `/time-and-date/countdown-timer-generator/` | `time-and-date` | `countdown-timer-generator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Days Until a Date Calculator | `/time-and-date/days-until-a-date-calculator/` | `time-and-date` | `days-until-a-date-calculator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `LOW_WORD_COUNT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Age Calculator | `/time-and-date/age-calculator/` | `time-and-date` | `age-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Work Hours Calculator | `/time-and-date/work-hours-calculator/` | `time-and-date` | `work-hours-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Overtime Hours Calculator | `/time-and-date/overtime-hours-calculator/` | `time-and-date` | `overtime-hours-calculator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Time Between Two Dates Calculator | `/time-and-date/time-between-two-dates-calculator/` | `time-and-date` | `time-between-two-dates-calculator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Sleep Time Calculator | `/time-and-date/sleep-time-calculator/` | `sleep-and-nap` | `sleep-time-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Wake-Up Time Calculator | `/time-and-date/wake-up-time-calculator/` | `sleep-and-nap` | `wake-up-time-calculator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Nap Time Calculator | `/time-and-date/nap-time-calculator/` | `sleep-and-nap` | `nap-time-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Power Nap Calculator | `/time-and-date/power-nap-calculator/` | `sleep-and-nap` | `power-nap-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Energy-Based Nap Selector | `/time-and-date/energy-based-nap-selector/` | `sleep-and-nap` | `energy-based-nap-selector` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 
 ### Finance
 

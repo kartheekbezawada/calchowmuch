@@ -92,7 +92,7 @@ const STRUCTURED_DATA = {
       name: 'Energy-Based Nap Selector',
       url: 'https://calchowmuch.com/time-and-date/energy-based-nap-selector/',
       description:
-        'Select an energy goal and nap start time to get a recommended nap length with wake-up time alternatives.',
+        'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
       inLanguage: 'en',
     },
     {
@@ -102,7 +102,7 @@ const STRUCTURED_DATA = {
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/energy-based-nap-selector/',
       description:
-        'Free energy-based nap selector that maps Quick, Strong, and Full goals to deterministic nap durations and wake-up recommendations.',
+        'Free energy-based nap selector for matching Quick, Strong, or Full goals to wake-up recommendations.',
       browserRequirements: 'Requires JavaScript enabled',
       softwareVersion: '1.0',
       creator: {
@@ -142,9 +142,9 @@ const STRUCTURED_DATA = {
 };
 
 setPageMetadata({
-  title: 'Energy-Based Nap Selector - Quick, Strong, or Full Nap Timing',
+  title: 'Energy-Based Nap Selector | Quick, Strong or Full',
   description:
-    'Pick Quick, Strong, or Full and get deterministic nap recommendations with wake-up times, alternatives, and late-night guidance.',
+    'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
   canonical: 'https://calchowmuch.com/time-and-date/energy-based-nap-selector/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

@@ -4,11 +4,11 @@ test.describe('Birthday Day-of-Week SEO', () => {
   test('BIRTHDAY-DOW-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
-    await expect(page).toHaveTitle('Birthday Day-of-Week Calculator – What Day Were You Born?');
+    await expect(page).toHaveTitle('Birthday Day-of-Week Calculator | Find Your Birth Weekday');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.'
+      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.'
     );
 
     const h1 = page.locator('h1');

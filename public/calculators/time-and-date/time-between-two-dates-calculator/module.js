@@ -62,10 +62,10 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Time Between Two Dates Calculator – Date Difference',
+      name: 'Time Between Two Dates Calculator | Date Difference',
       url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
       description:
-        'Calculate the difference between two dates (and times) in days, weeks, months, hours, and minutes.',
+        'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
       inLanguage: 'en',
     },
     {
@@ -100,9 +100,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Time Between Two Dates Calculator – Date Difference',
+  title: 'Time Between Two Dates Calculator | Date Difference',
   description:
-    'Calculate the time between two dates and times. Get the difference in days, weeks, months, hours, and minutes with clear results.',
+    'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
   canonical: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

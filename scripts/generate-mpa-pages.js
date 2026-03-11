@@ -277,28 +277,76 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'overtime-hours-calculator': {
-    title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
+    title: 'Overtime Hours Calculator | Daily, Weekly and Night',
     description:
-      'Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime.',
+      'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
     h1: 'Overtime Hours Calculator',
   },
   'work-hours-calculator': {
-    title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
+    title: 'Work Hours Calculator | Shifts, Breaks and Totals',
     description:
-      'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.',
+      'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
     h1: 'Work Hours Calculator',
   },
-  'nap-time-calculator': {
-    title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
+  'time-between-two-dates-calculator': {
+    title: 'Time Between Two Dates Calculator | Date Difference',
     description:
-      'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.',
+      'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
+    h1: 'Time Between Two Dates Calculator',
+  },
+  'sleep-time-calculator': {
+    title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
+    description:
+      'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
+    h1: 'Sleep Time Calculator',
+  },
+  'wake-up-time-calculator': {
+    title: 'Wake-Up Time Calculator | Sleep Cycle Wake Times',
+    description:
+      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.',
+    h1: 'Wake-Up Time Calculator',
+  },
+  'nap-time-calculator': {
+    title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+    description:
+      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
     h1: 'Nap Time Calculator',
   },
-  'birthday-day-of-week': {
-    title: 'Birthday Day-of-Week Calculator – What Day Were You Born?',
+  'power-nap-calculator': {
+    title: 'Power Nap Calculator | Best Wake-Up Times',
     description:
-      'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
+      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+    h1: 'Power Nap Calculator',
+  },
+  'energy-based-nap-selector': {
+    title: 'Energy-Based Nap Selector | Quick, Strong or Full',
+    description:
+      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
+    h1: 'Energy-Based Nap Selector',
+  },
+  'birthday-day-of-week': {
+    title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+    description:
+      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
     h1: 'Birthday Day-of-Week Calculator',
+  },
+  'countdown-timer-generator': {
+    title: 'Countdown Timer Generator | Time Left to Any Date',
+    description:
+      'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.',
+    h1: 'Countdown Timer Generator',
+  },
+  'days-until-a-date-calculator': {
+    title: 'Days Until a Date Calculator | Count Days to Any Date',
+    description:
+      'Count how many days remain until a future date or how many days have passed since a past date.',
+    h1: 'Days Until a Date Calculator',
+  },
+  'age-calculator': {
+    title: 'Age Calculator | Years, Months and Days',
+    description:
+      'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
+    h1: 'Age Calculator',
   },
   'present-value': {
     title: 'Present Value Calculator | Discount Future Money',

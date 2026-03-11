@@ -168,19 +168,19 @@ const placeholderElements = Array.from(document.querySelectorAll('[data-placehol
 );
 
 const metadata = {
-  title: 'Overtime Hours Calculator – Daily & Weekly | CalcHowMuch',
+  title: 'Overtime Hours Calculator | Daily, Weekly and Night',
   description:
-    'Calculate work hours and split into regular and overtime. Supports daily and weekly limits, split shifts, and night overtime.',
+    'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
   canonical: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Overtime Hours Calculator',
+        name: 'Overtime Hours Calculator | Daily, Weekly and Night',
         url: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
         description:
-          'Calculate total work hours and split them into regular and overtime hours with daily and weekly overtime rules.',
+          'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
         inLanguage: 'en',
       },
       {
@@ -190,7 +190,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
         description:
-          'Free overtime hours calculator supporting single shifts, split shifts, weekly cycles, night shifts, and multiple overtime rules.',
+          'Free overtime hours calculator for daily, weekly, split-shift, and night-hour overtime tracking.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

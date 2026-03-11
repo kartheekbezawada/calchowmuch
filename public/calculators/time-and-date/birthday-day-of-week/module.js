@@ -100,9 +100,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Birthday Day-of-Week Calculator – What Day Were You Born?',
+  title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
   description:
-    'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
+    'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -111,10 +111,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Birthday Day-of-Week Calculator',
+        name: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
         url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
         description:
-          'Find the day of the week you were born on, and see what weekday your birthday falls on in any year.',
+          'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
         inLanguage: 'en',
       },
       {
@@ -124,7 +124,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
         description:
-          'Free birthday weekday calculator to find what day of the week you were born and what weekday your birthday falls on in any year.',
+          'Free birthday weekday calculator to find your birth weekday and check future birthday weekdays.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

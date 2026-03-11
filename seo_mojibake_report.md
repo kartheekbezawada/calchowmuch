@@ -9,4 +9,3 @@
 | Path | Route | Field | Tokens | Snippet |
 | :--- | :--- | :--- | :--- | :--- |
 | - | - | - | - | - |
-

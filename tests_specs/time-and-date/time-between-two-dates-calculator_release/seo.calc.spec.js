@@ -4,11 +4,11 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
   test('DATE-DIFF-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/time-between-two-dates-calculator');
 
-    await expect(page).toHaveTitle('Time Between Two Dates Calculator – Date Difference');
+    await expect(page).toHaveTitle('Time Between Two Dates Calculator | Date Difference');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate the time between two dates and times. Get the difference in days, weeks, months, hours, and minutes with clear results.'
+      'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.'
     );
 
     const h1 = page.locator('h1');
