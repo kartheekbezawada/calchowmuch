@@ -157,9 +157,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Present Value (PV) Calculator – CalcHowMuch',
+  title: 'Present Value Calculator | Discount Future Money',
   description:
-    'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
+    'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
   canonical: 'https://calchowmuch.com/finance-calculators/present-value-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -168,15 +168,15 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Present Value (PV) Calculator',
+        name: 'Present Value Calculator | Discount Future Money',
         url: 'https://calchowmuch.com/finance-calculators/present-value-calculator/',
         description:
-          'Estimate the present value of future money using discount rate and time period.',
+          'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Present Value (PV) Calculator',
+        name: 'Present Value Calculator',
         applicationCategory: 'FinanceApplication',
         applicationSubCategory: 'Time Value of Money Calculator',
         operatingSystem: 'Web',

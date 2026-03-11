@@ -4,11 +4,12 @@ test.describe('Markup Calculator SEO', () => {
   test('MARKUP-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/markup-calculator/');
 
-    await expect(page).toHaveTitle('Markup Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Markup Calculator | Cost to Selling Price');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBeTruthy();
-    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description).toBe(
+      'Calculate selling price from cost and markup, or find markup percentage from cost and price.'
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);

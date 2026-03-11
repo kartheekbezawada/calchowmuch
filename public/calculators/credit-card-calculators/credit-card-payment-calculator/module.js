@@ -117,19 +117,19 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
+  title: 'Credit Card Payment Calculator | Payoff & Interest',
   description:
-    'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
+    'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
+        name: 'Credit Card Payment Calculator | Payoff & Interest',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
         description:
-          'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
+          'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
         inLanguage: 'en',
       },
       {
@@ -139,7 +139,7 @@ const metadata = {
         operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-payment-calculator/',
         description:
-          'Calculate credit card payments, payoff timeline, and total interest based on balance, APR, and payment amount.',
+          'Estimate payoff time, total interest, and total repaid from your credit card balance, APR, and payment plan.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

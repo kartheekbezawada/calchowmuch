@@ -150,9 +150,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Simple Interest Calculator – CalcHowMuch',
+  title: 'Simple Interest Calculator | Interest & Final Amount',
   description:
-    'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+    'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
   canonical: 'https://calchowmuch.com/finance-calculators/simple-interest-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -161,10 +161,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Simple Interest Calculator',
+        name: 'Simple Interest Calculator | Interest & Final Amount',
         url: 'https://calchowmuch.com/finance-calculators/simple-interest-calculator/',
         description:
-          'Calculate simple interest to estimate total interest and ending amount based on principal, rate, and time.',
+          'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
         inLanguage: 'en',
       },
       {

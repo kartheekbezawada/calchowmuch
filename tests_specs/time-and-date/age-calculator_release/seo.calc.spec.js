@@ -4,11 +4,11 @@ test.describe('Age Calculator SEO', () => {
   test('AGE-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/age-calculator');
 
-    await expect(page).toHaveTitle('Age Calculator – Exact Age in Years, Months, and Days');
+    await expect(page).toHaveTitle('Age Calculator | Years, Months and Days');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate your exact age in years, months, and days based on your date of birth. Simple, fast, and free age calculator.'
+      'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.'
     );
 
     const h1 = page.locator('h1');

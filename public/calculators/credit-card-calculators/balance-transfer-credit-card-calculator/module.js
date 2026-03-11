@@ -103,19 +103,19 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
+  title: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
   description:
-    'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
+    'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
+        name: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
         url: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
         description:
-          'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
+          'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
         inLanguage: 'en',
       },
       {
@@ -125,7 +125,7 @@ const metadata = {
         operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/balance-transfer-credit-card-calculator/',
         description:
-          'Estimate balance transfer savings including transfer fees, promotional APR periods, and total repayment cost.',
+          'Estimate balance transfer savings after promo APR, transfer fees, post-promo rate, and monthly payment are all included.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

@@ -1,4 +1,4 @@
-import { setupButtonGroup } from '/assets/js/core/ui.js';
+import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   BUFFER_OPTIONS,
   DEFAULT_BUFFER_MINUTES,
@@ -19,6 +19,109 @@ const errorMessage = document.querySelector('#nap-error');
 const proxyInput = document.querySelector('#nap-latency-proxy');
 const proxyButton = document.querySelector('#nap-calc');
 const proxyResult = document.querySelector('#nap-result');
+
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Which nap is best for work breaks?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Quick naps and power naps are usually the easiest to fit into a workday because they are shorter.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do I sometimes feel worse after a nap?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Will napping ruin my sleep at night?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the best time of day to nap?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does the calculator set an alarm?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It only suggests a wake-up time. You can set an alarm on your phone or device.',
+      },
+    },
+  ],
+};
+
+const metadata = {
+  title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+  description:
+    'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
+  canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        name: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+        url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+        description:
+          'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Nap Time Calculator',
+        applicationCategory: 'HealthApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+        description: 'Free nap time calculator for quick, power, and longer nap wake-up suggestions.',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Nap Time Calculator',
+            item: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');

@@ -170,9 +170,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Sleep Time Calculator – Best Time to Sleep and Wake Up',
+  title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
   description:
-    'Calculate the best time to sleep or wake up based on natural sleep cycles. Simple, fast, and free sleep time calculator.',
+    'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
   canonical: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

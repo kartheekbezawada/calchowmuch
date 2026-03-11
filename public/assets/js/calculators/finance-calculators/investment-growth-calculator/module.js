@@ -134,9 +134,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Investment Growth Calculator - Estimate Future Value',
+  title: 'Investment Growth Calculator | Future Value Projection',
   description:
-    'Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.',
+    'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
   canonical: 'https://calchowmuch.com/finance-calculators/investment-growth-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -145,9 +145,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Investment Growth Calculator',
+        name: 'Investment Growth Calculator | Future Value Projection',
         url: 'https://calchowmuch.com/finance-calculators/investment-growth-calculator/',
-        description: 'Estimate future investment value with compound interest and contributions.',
+        description:
+          'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
         inLanguage: 'en',
       },
       {
@@ -156,6 +157,8 @@ const metadata = {
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/investment-growth-calculator/',
+        description:
+          'Free investment growth calculator with optional contributions and inflation adjustment.',
         offers: {
           '@type': 'Offer',
           price: '0',

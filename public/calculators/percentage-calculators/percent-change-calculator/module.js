@@ -118,9 +118,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percent Change Calculator – CalcHowMuch',
+  title: 'Percent Change Calculator | Increase or Decrease',
   description:
-    'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
+    'Calculate percentage increase or decrease from one value to another with the correct sign and formula.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -129,10 +129,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Percent Change Calculator',
+        name: 'Percent Change Calculator | Increase or Decrease',
         url: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
         description:
-          'Calculate percent change from A to B with the correct +/− sign using our free percentage change calculator.',
+          'Calculate percentage increase or decrease from one value to another with the correct sign and formula.',
         inLanguage: 'en',
       },
       {
@@ -142,7 +142,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
         description:
-          'Free percent change calculator to find the percentage change from an original value to a new value with the correct +/− sign.',
+          'Free percent change calculator for finding percentage increase or decrease from an original value to a new value.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

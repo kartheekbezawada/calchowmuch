@@ -4,10 +4,12 @@ test.describe('Investment Return Calculator SEO', () => {
   test('IR-SEO-1 metadata, structured data, and sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/investment-return-calculator/');
 
-    await expect(page).toHaveTitle(/Investment Return Calculator/i);
+    await expect(page).toHaveTitle('Investment Return Calculator | CAGR, Profit & Growth');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toContain('investment return');
+    expect(description).toBe(
+      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.'
+    );
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -23,7 +25,7 @@ test.describe('Investment Return Calculator SEO', () => {
     await expect(h1).toHaveText('Investment Return Calculator');
 
     await expect(page.locator('#loan-mtg-explanation > h2')).toHaveText(
-      'Investment Return Calculator Summary'
+      'How Is Your Portfolio Performing Over Time?'
     );
     await expect(
       page.locator('#loan-mtg-explanation .mtg-exp-section h3', {

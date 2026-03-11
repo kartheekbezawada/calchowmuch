@@ -232,9 +232,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: "Compound Interest Calculator – CalcHowMuch",
+  title: "Compound Interest Calculator | Ending Balance & Growth",
   description:
-    "Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports annual, semi-annual, and quarterly compounding.",
+    "Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.",
   canonical:
     "https://calchowmuch.com/finance-calculators/compound-interest-calculator/",
   pageSchema,
@@ -244,10 +244,10 @@ const metadata = {
     "@graph": [
       {
         "@type": "WebPage",
-        name: "Compound Interest Calculator",
+        name: "Compound Interest Calculator | Ending Balance & Growth",
         url: "https://calchowmuch.com/finance-calculators/compound-interest-calculator/",
         description:
-          "Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.",
+          "Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.",
         inLanguage: "en",
       },
       {

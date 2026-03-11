@@ -118,9 +118,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Decrease Calculator – CalcHowMuch',
+  title: 'Percentage Decrease Calculator | Drop from Original',
   description:
-    'Calculate percentage decrease from an original value to a new value instantly. Use our free percent decrease calculator and formula.',
+    'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-decrease-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -132,7 +132,7 @@ const metadata = {
         name: 'Percentage Decrease Calculator',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-decrease-calculator/',
         description:
-          'Calculate percentage decrease from an original value to a new value instantly using our free percent decrease calculator.',
+          'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
         inLanguage: 'en',
       },
       {
@@ -142,7 +142,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-decrease-calculator/',
         description:
-          'Free percentage decrease calculator to find the percent decrease from an original value to a new value using a simple formula.',
+          'Free percentage decrease calculator to compare original and new values and show the percentage drop.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

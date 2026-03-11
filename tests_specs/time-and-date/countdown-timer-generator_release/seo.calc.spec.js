@@ -4,11 +4,11 @@ test.describe('Countdown Timer Generator SEO', () => {
   test('COUNTDOWN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/countdown-timer-generator');
 
-    await expect(page).toHaveTitle('Countdown Timer Generator – Count Down to Any Date');
+    await expect(page).toHaveTitle('Countdown Timer Generator | Time Left to Any Date');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Create a countdown timer to any future date and time. See days, hours, minutes, and seconds remaining—fast, free, and accurate.'
+      'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.'
     );
 
     const h1 = page.locator('h1');

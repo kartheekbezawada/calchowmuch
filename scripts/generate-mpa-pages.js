@@ -125,41 +125,41 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'car-loan': {
-    title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+    title: 'Car Loan Calculator | Monthly Payment & Cost',
     description:
-      'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
+      'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
     h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
-    title: 'Hire Purchase Calculator – Monthly Payment & Total Cost | CalcHowMuch',
+    title: 'Hire Purchase Calculator | Monthly Payment & Cost',
     description:
-      'Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.',
+      'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
     h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
+    title: 'PCP Calculator | Monthly Payment, GFV & Cost',
     description:
-      'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
+      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
     h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Car Lease Calculator – Monthly Payment & Lease Cost | CalcHowMuch',
+    title: 'Car Lease Calculator | Payment, Residual & Cost',
     description:
-      'Estimate car lease monthly payments, residual value impact, finance charges, and total lease cost. Compare lease scenarios instantly.',
+      'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
     h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Auto Loan Comparison Calculator – Compare Two Car Loans | CalcHowMuch',
+    title: 'Auto Loan Comparison Calculator | Compare 2 Loans',
     description:
-      'Compare two auto loans side by side. Estimate monthly payments, total interest, and total cost to find the better car financing option.',
+      'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
     h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -205,33 +205,33 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'credit-card-minimum-payment': {
-    title: 'Credit Card Minimum Payment Calculator – Payoff Time & Interest | CalcHowMuch',
+    title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
     description:
-      'Estimate how long it takes to pay off a credit card when making minimum payments. See payoff timeline, total interest, and payment schedule.',
+      'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
     h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'balance-transfer-installment-plan': {
-    title: 'Balance Transfer Credit Card Calculator – Savings & Fees | CalcHowMuch',
+    title: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
     description:
-      'Calculate balance transfer savings including transfer fees, promo APR periods, and post-promo rates. See payoff timeline and total interest costs instantly.',
+      'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
     h1: 'Balance Transfer Credit Card Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-repayment-payoff': {
-    title: 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch',
+    title: 'Credit Card Payment Calculator | Payoff & Interest',
     description:
-      'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.',
+      'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
     h1: 'Credit Card Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-consolidation': {
-    title: 'Credit Card Consolidation Calculator – Compare Debt Savings | CalcHowMuch',
+    title: 'Credit Card Consolidation Calculator | Loan vs Cards',
     description:
-      'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
+      'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
     h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -277,109 +277,195 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'overtime-hours-calculator': {
-    title: 'Overtime Hours Calculator – Regular Hours vs Overtime (Daily & Weekly)',
+    title: 'Overtime Hours Calculator | Daily, Weekly and Night',
     description:
-      'Calculate total work hours and split them into regular and overtime hours. Supports single shifts, split shifts, custom weekly cycles, night shifts, and night overtime.',
+      'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
     h1: 'Overtime Hours Calculator',
   },
   'work-hours-calculator': {
-    title: 'Work Hours Calculator – Calculate Hours Worked (With Breaks)',
+    title: 'Work Hours Calculator | Shifts, Breaks and Totals',
     description:
-      'Calculate total hours worked between start and end times, subtract breaks, and view results in hours and decimal format. Simple, fast, and free.',
+      'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
     h1: 'Work Hours Calculator',
   },
-  'nap-time-calculator': {
-    title: 'Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap',
+  'time-between-two-dates-calculator': {
+    title: 'Time Between Two Dates Calculator | Date Difference',
     description:
-      'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.',
+      'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
+    h1: 'Time Between Two Dates Calculator',
+  },
+  'sleep-time-calculator': {
+    title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
+    description:
+      'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
+    h1: 'Sleep Time Calculator',
+  },
+  'wake-up-time-calculator': {
+    title: 'Wake-Up Time Calculator | Sleep Cycle Wake Times',
+    description:
+      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.',
+    h1: 'Wake-Up Time Calculator',
+  },
+  'nap-time-calculator': {
+    title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+    description:
+      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
     h1: 'Nap Time Calculator',
   },
-  'birthday-day-of-week': {
-    title: 'Birthday Day-of-Week Calculator – What Day Were You Born?',
+  'power-nap-calculator': {
+    title: 'Power Nap Calculator | Best Wake-Up Times',
     description:
-      'Find the day of the week you were born on, and see what weekday your birthday falls on in any year. Simple, fast, and free.',
+      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+    h1: 'Power Nap Calculator',
+  },
+  'energy-based-nap-selector': {
+    title: 'Energy-Based Nap Selector | Quick, Strong or Full',
+    description:
+      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
+    h1: 'Energy-Based Nap Selector',
+  },
+  'birthday-day-of-week': {
+    title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+    description:
+      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
     h1: 'Birthday Day-of-Week Calculator',
   },
-  'present-value': {
-    title: 'Present Value (PV) Calculator – CalcHowMuch',
+  'countdown-timer-generator': {
+    title: 'Countdown Timer Generator | Time Left to Any Date',
     description:
-      'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.',
+      'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.',
+    h1: 'Countdown Timer Generator',
+  },
+  'days-until-a-date-calculator': {
+    title: 'Days Until a Date Calculator | Count Days to Any Date',
+    description:
+      'Count how many days remain until a future date or how many days have passed since a past date.',
+    h1: 'Days Until a Date Calculator',
+  },
+  'age-calculator': {
+    title: 'Age Calculator | Years, Months and Days',
+    description:
+      'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
+    h1: 'Age Calculator',
+  },
+  'discount-calculator': {
+    title: 'Discount Calculator | Sale Price and Savings',
+    description:
+      'Calculate the sale price after a percentage discount and see exactly how much you save.',
+    h1: 'Discount Calculator',
+  },
+  'markup-calculator': {
+    title: 'Markup Calculator | Cost to Selling Price',
+    description:
+      'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+    h1: 'Markup Calculator',
+  },
+  'percentage-finder-calculator': {
+    title: 'What Percent Is X of Y Calculator | Ratio to Percent',
+    description:
+      'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
+    h1: 'What Percent Is X of Y',
+  },
+  'percentage-of-a-number-calculator': {
+    title: 'Percentage of a Number Calculator | Find X% of Y',
+    description:
+      'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
+    h1: 'Find Percentage of a Number Calculator',
+  },
+  'reverse-percentage-calculator': {
+    title: 'Reverse Percentage Calculator | Find the Original Value',
+    description:
+      'Find the original number when a known value represents a given percentage of it.',
+    h1: 'Reverse Percentage',
+  },
+  'present-value': {
+    title: 'Present Value Calculator | Discount Future Money',
+    description:
+      'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
     h1: 'Present Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value': {
-    title: 'Future Value (FV) Calculator – CalcHowMuch',
+    title: 'Future Value Calculator | Growth Over Time',
     description:
-      'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.',
+      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
     h1: 'Future Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'present-value-of-annuity': {
-    title: 'Present Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    title: 'Present Value of Annuity Calculator | Ordinary or Due',
     description:
-      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due using payment amount, rate, and periods with our free calculator.',
+      'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
     h1: 'Present Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value-of-annuity': {
-    title: 'Future Value of Annuity Calculator (Ordinary & Due) – CalcHowMuch',
+    title: 'Future Value of Annuity Calculator | Ordinary or Due',
     description:
-      'Calculate the future value of an annuity. Compare ordinary annuity vs annuity due using payment amount, interest rate, and periods.',
+      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
     h1: 'Future Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator – CalcHowMuch',
+    title: 'Simple Interest Calculator | Interest & Final Amount',
     description:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
     h1: 'Simple Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'effective-annual-rate': {
-    title: 'Effective Annual Rate (EAR) Calculator – CalcHowMuch',
+    title: 'Effective Annual Rate Calculator | True Annual Rate',
     description:
-      'Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.',
+      'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
     h1: 'Effective Annual Rate Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'time-to-savings-goal': {
-    title: 'Time to Savings Goal Calculator – CalcHowMuch',
+    title: 'Time to Savings Goal Calculator | Reach Your Target',
     description:
-      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding. Plan your path to financial goals.',
+      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
     h1: 'Time to Savings Goal Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
-  'compound-interest': {
-    title: 'Compound Interest Calculator – CalcHowMuch',
+  'monthly-savings-needed': {
+    title: 'Monthly Savings Needed Calculator | Reach Your Goal',
     description:
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time. Supports annual, semi-annual, and quarterly compounding.',
+      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+    h1: 'Monthly Savings Needed Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'compound-interest': {
+    title: 'Compound Interest Calculator | Ending Balance & Growth',
+    description:
+      'Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.',
     h1: 'Compound Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator – CalcHowMuch',
+    title: 'Simple Interest Calculator | Interest & Final Amount',
     description:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time. Compare simple vs compound interest quickly.',
+      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
     h1: 'Simple Interest Calculator',
   },
   'investment-growth': {
-    title: 'Investment Growth Calculator \u2013 CalcHowMuch',
+    title: 'Investment Growth Calculator | Future Value Projection',
     description:
-      'Estimate investment growth over time. Calculate future value, total contributions, and total gains using an expected annual return. Optional inflation adjustment.',
+      'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
     h1: 'Investment Growth Calculator',
   },
   'investment-return': {
-    title: 'Investment Return Calculator - Portfolio Growth, Profit, CAGR',
+    title: 'Investment Return Calculator | CAGR, Profit & Growth',
     description:
-      'Calculate investment return using lump sum, contributions, compounding, inflation, and tax assumptions. View CAGR and annual or monthly breakdowns.',
+      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
     h1: 'Investment Return Calculator',
     paneLayout: 'single',
     explanationHeading: '',
@@ -408,41 +494,41 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
   },
   'percentage-difference': {
-    title: 'Percentage Difference Calculator – CalcHowMuch',
+    title: 'Percentage Difference Calculator | Compare Two Values',
     description:
-      'Calculate percentage difference between two values using a symmetric formula based on their average. Free percent difference calculator.',
+      'Calculate the symmetric percentage difference between two values using their average as the baseline.',
     h1: 'Percentage Difference Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-increase': {
-    title: 'Percentage Increase Calculator – CalcHowMuch',
+    title: 'Percentage Increase Calculator | Growth from Original',
     description:
-      'Calculate percentage increase from an original value to a new value instantly. Use our free percent increase calculator and formula.',
+      'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
     h1: 'Percentage Increase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-decrease': {
-    title: 'Percentage Decrease Calculator – CalcHowMuch',
+    title: 'Percentage Decrease Calculator | Drop from Original',
     description:
-      'Calculate percentage decrease from an original value to a new value instantly. Use our free percent decrease calculator and formula.',
+      'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
     h1: 'Percentage Decrease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-composition': {
-    title: 'Percentage Composition Calculator – CalcHowMuch',
+    title: 'Percentage Composition Calculator | Share of Total',
     description:
-      "Calculate each item's share as a percent of the total. Get a full percentage breakdown and remainder % with our free composition calculator.",
+      "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
     h1: 'Percentage Composition Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
-    title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
+    title: 'Percent to Fraction and Decimal Calculator | Convert %',
     description:
-      'Convert any percentage to a decimal and simplified fraction instantly. Free percent to fraction and percent to decimal converter with steps.',
+      'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
     h1: 'Percent to Fraction & Decimal Converter',
   },
   'percentage-of-a-number': {
@@ -610,7 +696,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
     softwareDescription:
-      'Calculate required monthly savings to reach a financial goal with compound interest.',
+      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
     featureList: [
       'Required monthly savings calculation',
       'Total contributions breakdown',

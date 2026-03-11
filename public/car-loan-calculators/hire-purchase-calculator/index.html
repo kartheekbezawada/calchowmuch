@@ -3,20 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Hire Purchase Calculator – Monthly Payment &amp; Total Cost | CalcHowMuch</title>
-    <meta name="description" content="Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle." />
+    <title>Hire Purchase Calculator | Monthly Payment &amp; Cost</title>
+    <meta name="description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
     <link rel="canonical" href="https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/" />
-    <meta property="og:title" content="Hire Purchase Calculator – Monthly Payment &amp; Total Cost | CalcHowMuch" />
-    <meta property="og:description" content="Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle." />
+    <meta property="og:title" content="Hire Purchase Calculator | Monthly Payment &amp; Cost" />
+    <meta property="og:description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hire Purchase Calculator – Monthly Payment &amp; Total Cost | CalcHowMuch" />
-    <meta name="twitter:description" content="Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle." />
+    <meta name="twitter:title" content="Hire Purchase Calculator | Monthly Payment &amp; Cost" />
+    <meta name="twitter:description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#softwareapplication","name":"Hire Purchase Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/","description":"Estimate hire purchase monthly payments, interest cost, and total payable amount. Compare financing options before buying a vehicle.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Hire Purchase Calculator","item":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#softwareapplication","name":"Hire Purchase Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/","description":"Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Hire Purchase Calculator","item":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/"}]}]}</script>
     <style data-route-critical="true">
       /* critical source: /assets/css/core-tokens.css */
       :root {
@@ -2133,13 +2133,13 @@
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.e6cf9d8c.css" />
+    <link rel="stylesheet" href="/assets/css/route-bundles/car-loan-calculators-hire-purchase-calculator.0e30a774.css" />
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans" data-top-nav-static="true">
     <div class="page">
@@ -2429,17 +2429,24 @@
 
 
     <div id="loan-mtg-explanation">
-  <h2>Hire Purchase - Payment Breakdown</h2>
+  <h2>How Much Will a Hire Purchase Deal Cost?</h2>
   <p>
-    Based on a vehicle price of <span data-hp="price">-</span> with a deposit of
-    <span data-hp="deposit">-</span>, your estimated monthly installment is
-    <span data-hp="monthly-payment">-</span>.
+    Use this hire purchase calculator to estimate monthly installments, total interest, final
+    balloon payment, and total payable before you agree to vehicle finance. It helps you test
+    whether a lower monthly amount is actually worth the higher end-of-term obligation.
   </p>
   <p>
-    At <span data-hp="apr">-</span> over <span data-hp="term">-</span>, this scenario includes a
-    final balloon payment of <span data-hp="balloon">-</span> and a total payable amount of
-    <span data-hp="total-payable">-</span>.
+    In this scenario, the estimated monthly installment is <span data-hp="monthly-payment">-</span>
+    at <span data-hp="apr">-</span> over <span data-hp="term">-</span>, with a final balloon of
+    <span data-hp="balloon">-</span> and total payable of <span data-hp="total-payable">-</span>.
   </p>
+  <ul>
+    <li>Vehicle price: <span data-hp="price">-</span></li>
+    <li>Deposit: <span data-hp="deposit">-</span></li>
+    <li>APR: <span data-hp="apr">-</span></li>
+    <li>Term: <span data-hp="term">-</span></li>
+    <li>Balloon payment: <span data-hp="balloon">-</span></li>
+  </ul>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -2540,6 +2547,122 @@
     </div>
   </section>
 
+  <section class="mtg-exp-section mtg-exp-section--guide">
+    <h3>How to Guide</h3>
+
+    <div>
+      <h4>What This Calculator Is For</h4>
+      <p>
+        A hire purchase plan splits repayment into regular installments plus any final balloon
+        amount left at the end. This calculator helps you see the full structure before you focus
+        only on the monthly figure shown in a dealer quote.
+      </p>
+      <p>
+        It is useful when comparing different deposits, different terms, or deciding whether a
+        balloon payment makes the plan more affordable or simply delays too much of the cost.
+      </p>
+    </div>
+
+    <div>
+      <h4>How to Use the Inputs</h4>
+      <p>
+        Enter the vehicle price, your deposit, the APR, the term, and the balloon amount. The
+        calculator then estimates how much principal is repaid during the monthly phase and how much
+        remains due at the end.
+      </p>
+      <ul>
+        <li>Price is the financed vehicle cost before deposit is deducted.</li>
+        <li>Deposit reduces the amount that needs financing.</li>
+        <li>APR controls the interest charged during the contract.</li>
+        <li>Term changes both installment size and total interest paid.</li>
+        <li>Balloon shifts part of principal from monthly installments to the end of the agreement.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Amount Financed and Payment Logic</h4>
+      <p>
+        The core starting point is the financed amount after deposit is taken off the vehicle price.
+        Interest is then applied across the agreement while leaving the balloon still due at the end
+        of the term.
+      </p>
+      <p>Amount financed = Vehicle price - Deposit</p>
+      <p>
+        A larger balloon usually lowers the monthly installment because less principal is repaid
+        during the monthly schedule, but the total cost can remain high because more balance stays
+        outstanding for longer.
+      </p>
+    </div>
+
+    <div>
+      <h4>Worked Example</h4>
+      <p>
+        If a vehicle costs 20,000, the deposit is 3,000, APR is 8%, and the contract runs for 4
+        years with a 5,000 balloon, the monthly payment may look noticeably lower than a fully
+        amortizing loan. But the agreement still leaves a large final amount that must be paid,
+        refinanced, or settled by selling the vehicle.
+      </p>
+      <p>
+        That is why total payable matters just as much as the monthly installment.
+      </p>
+    </div>
+
+    <div>
+      <h4>How Input Changes Affect the Result</h4>
+      <div class="table-scroll" tabindex="0">
+        <table class="calculator-table">
+          <thead>
+            <tr>
+              <th scope="col">Change</th>
+              <th scope="col">Typical Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Higher deposit</td>
+              <td>Lowers financed amount, installment size, and interest exposure.</td>
+            </tr>
+            <tr>
+              <td>Higher balloon</td>
+              <td>Lowers monthly installments but increases the amount left at the end.</td>
+            </tr>
+            <tr>
+              <td>Longer term</td>
+              <td>Usually lowers monthly installments but raises total interest.</td>
+            </tr>
+            <tr>
+              <td>Lower APR</td>
+              <td>Reduces borrowing cost across the full agreement.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h4>How to Interpret the Results</h4>
+      <p>
+        Read monthly installment, total interest, balloon amount, and total payable together.
+        Monthly installment shows affordability now. Balloon shows the end-of-term obligation. Total
+        payable shows the full price of using the finance agreement instead of paying cash.
+      </p>
+      <p>
+        If the balloon looks difficult to clear at the end, test a smaller balloon or higher deposit
+        before assuming the current monthly payment is sustainable.
+      </p>
+    </div>
+
+    <div>
+      <h4>Common Mistakes to Avoid</h4>
+      <ul>
+        <li>Looking only at monthly installments and ignoring the balloon.</li>
+        <li>Choosing a longer term without checking the extra interest cost.</li>
+        <li>Forgetting that total payable includes deposit as well as monthly installments.</li>
+        <li>Assuming the final balloon can always be refinanced cheaply later.</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="mtg-exp-section mtg-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -2615,6 +2738,17 @@
         <p>No. These are fixed-rate estimates and may differ from lender disclosures and fees.</p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li>Results are estimates based on fixed-rate repayment math, not lender-specific quotes.</li>
+      <li>The calculator assumes the balloon is paid in full at the end of the agreement.</li>
+      <li>Fees, insurance products, and option-to-purchase charges are not included unless built into the amount entered.</li>
+      <li>Values are rounded for display, so exact schedules can differ slightly from lender documents.</li>
+      <li>Use the results for planning and comparison, not as financial advice.</li>
+    </ul>
   </section>
 </div>
 

@@ -119,9 +119,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Difference Calculator – CalcHowMuch',
+  title: 'Percentage Difference Calculator | Compare Two Values',
   description:
-    'Calculate percentage difference between two values using a symmetric formula based on their average. Free percent difference calculator.',
+    'Calculate the symmetric percentage difference between two values using their average as the baseline.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -133,7 +133,7 @@ const metadata = {
         name: 'Percentage Difference Calculator',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/',
         description:
-          'Calculate percentage difference between two values using a symmetric formula based on their average.',
+          'Calculate the symmetric percentage difference between two values using their average as the baseline.',
         inLanguage: 'en',
       },
       {
@@ -143,7 +143,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/',
         description:
-          'Free percentage difference calculator to compute a symmetric percent difference between two values.',
+          'Free percentage difference calculator to compare two values using the symmetric average-baseline formula.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

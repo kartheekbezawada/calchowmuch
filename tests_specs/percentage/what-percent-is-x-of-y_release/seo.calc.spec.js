@@ -4,11 +4,12 @@ test.describe('What Percent Is X of Y Calculator SEO', () => {
   test('WPXY-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-finder-calculator/');
 
-    await expect(page).toHaveTitle('What Percent Is X of Y Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('What Percent Is X of Y Calculator | Ratio to Percent');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBeTruthy();
-    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description).toBe(
+      'Find what percent one number is of another using the simple X divided by Y times 100 formula.'
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);

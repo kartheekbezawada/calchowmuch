@@ -3,9 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('Credit Card Repayment Calculator SEO', () => {
   test('REPAYMENT-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     const route = '/credit-card-calculators/credit-card-payment-calculator/';
-    const expectedTitle = 'Credit Card Payment Calculator – Monthly Payment & Payoff Plan | CalcHowMuch';
+    const expectedTitle = 'Credit Card Payment Calculator | Payoff & Interest';
     const expectedDescription =
-      'Calculate monthly credit card payments and payoff timelines. Adjust balance, APR, and payment amount to see interest costs and repayment schedules.';
+      'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.';
 
     await page.goto(route);
 

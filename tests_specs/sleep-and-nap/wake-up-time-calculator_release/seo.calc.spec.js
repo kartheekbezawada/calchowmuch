@@ -4,11 +4,11 @@ test.describe('Wake-Up Time Calculator SEO', () => {
   test('WAKEUP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator');
 
-    await expect(page).toHaveTitle('Wake-Up Time Calculator | Calculate How Much Online Calculator');
+    await expect(page).toHaveTitle('Wake-Up Time Calculator | Sleep Cycle Wake Times');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Wake-Up Time Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.'
+      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.'
     );
 
     const h1 = page.locator('h1');
@@ -28,9 +28,14 @@ test.describe('Wake-Up Time Calculator SEO', () => {
 
     const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
     const nodeTypes = graph.map((node) => node['@type']);
+    expect(nodeTypes).toContain('WebPage');
     expect(nodeTypes).toContain('SoftwareApplication');
     expect(nodeTypes).toContain('BreadcrumbList');
-    expect(nodeTypes).not.toContain('FAQPage');
+    expect(nodeTypes).toContain('FAQPage');
+
+    const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
+    expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
+    expect(faqNode.mainEntity).toHaveLength(10);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

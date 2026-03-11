@@ -4,11 +4,11 @@ test.describe('Energy-Based Nap Selector SEO', () => {
   test('ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage', async ({ page }) => {
     await page.goto('/time-and-date/energy-based-nap-selector');
 
-    await expect(page).toHaveTitle('Energy-Based Nap Selector - Quick, Strong, or Full Nap Timing');
+    await expect(page).toHaveTitle('Energy-Based Nap Selector | Quick, Strong or Full');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Pick Quick, Strong, or Full and get deterministic nap recommendations with wake-up times, alternatives, and late-night guidance.'
+      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.'
     );
 
     const h1 = page.locator('h1');
@@ -29,6 +29,8 @@ test.describe('Energy-Based Nap Selector SEO', () => {
     const nodeTypes = graph.map((node) => node['@type']);
     expect(nodeTypes).toContain('WebPage');
     expect(nodeTypes).toContain('FAQPage');
+    expect(nodeTypes).not.toContain('SoftwareApplication');
+    expect(nodeTypes).not.toContain('BreadcrumbList');
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();

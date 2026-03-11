@@ -1,3 +1,4 @@
+import { setPageMetadata } from '/assets/js/core/ui.js';
 import { parseTimeString, calculateWakeTime } from '/assets/js/core/nap-utils.js';
 
 const startTimeInput = document.querySelector('#power-nap-start-time');
@@ -15,6 +16,129 @@ const NAP_DURATIONS = [
   { label: 'Recovery Nap', minutes: 60, recommended: false },
   { label: 'Full Cycle', minutes: 90, recommended: false },
 ];
+
+export const pageSchema = {
+  calculatorFAQ: true,
+  globalFAQ: false,
+};
+
+const FAQ_ITEMS = [
+  {
+    question: 'What is the best power nap length?',
+    answer:
+      'Many people do best with 20 to 30 minutes because that range supports alertness while reducing the chance of waking from deeper sleep.',
+  },
+  {
+    question: 'Why are 20- and 30-minute options marked as best?',
+    answer:
+      'They are commonly used power-nap targets that balance recovery speed and daytime practicality.',
+  },
+  {
+    question: 'Can a 10-minute micro nap still help?',
+    answer:
+      'Yes. A short micro nap can reduce sleepiness and provide a quick mental reset when time is limited.',
+  },
+  {
+    question: 'When should I avoid a long nap?',
+    answer:
+      'Avoid long naps later in the day, especially in the evening, because they can make nighttime sleep harder.',
+  },
+  {
+    question: 'What does the evening warning mean?',
+    answer:
+      'It flags that long naps started after 6:00 PM may delay bedtime and reduce overnight sleep quality.',
+  },
+  {
+    question: 'Does this calculator set an alarm for me?',
+    answer:
+      'No. It gives wake-up targets only. Set an alarm on your phone or device based on your selected result.',
+  },
+  {
+    question: 'Can I use this calculator for shift work?',
+    answer:
+      'Yes. Enter any start time. The calculation handles rollover across midnight and works for non-standard schedules.',
+  },
+  {
+    question: 'Is a 60-minute nap better than a 30-minute nap?',
+    answer:
+      'Not always. A 60-minute nap can be restorative but may increase grogginess risk after waking. A 30-minute nap is often easier to recover from quickly.',
+  },
+  {
+    question: 'What is a full-cycle 90-minute nap for?',
+    answer:
+      'A 90-minute option is useful when you are highly sleep-deprived and have enough time for a deeper recovery window.',
+  },
+  {
+    question: 'Will napping hurt my nighttime sleep?',
+    answer:
+      'Early, short naps usually have less impact. Late or long naps are more likely to interfere with nighttime sleep.',
+  },
+];
+
+const CALCULATOR_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+
+const metadata = {
+  title: 'Power Nap Calculator | Best Wake-Up Times',
+  description:
+    'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+  canonical: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
+  pageSchema,
+  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        name: 'Power Nap Calculator | Best Wake-Up Times',
+        url: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
+        description:
+          'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Power Nap Calculator',
+        applicationCategory: 'HealthApplication',
+        operatingSystem: 'Web',
+        url: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
+        description:
+          'Free power nap calculator for comparing fixed nap lengths and wake-up targets.',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Power Nap Calculator',
+            item: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');

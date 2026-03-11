@@ -166,9 +166,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Investment Return Calculator - Portfolio Growth, Profit, CAGR',
+  title: 'Investment Return Calculator | CAGR, Profit & Growth',
   description:
-    'Calculate investment return using lump sum, contributions, compounding, inflation, and tax assumptions. View CAGR and annual or monthly breakdowns.',
+    'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
   canonical: 'https://calchowmuch.com/finance-calculators/investment-return-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -177,10 +177,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Investment Return Calculator',
+        name: 'Investment Return Calculator | CAGR, Profit & Growth',
         url: 'https://calchowmuch.com/finance-calculators/investment-return-calculator/',
         description:
-          'Estimate portfolio growth with lump sum and recurring contributions, with optional tax and inflation adjustment.',
+          'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
         inLanguage: 'en',
       },
       {
@@ -189,6 +189,8 @@ const metadata = {
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/investment-return-calculator/',
+        description:
+          'Free investment return calculator with CAGR, tax, inflation, and contribution settings.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {

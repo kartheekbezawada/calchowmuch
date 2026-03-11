@@ -4,11 +4,11 @@ test.describe('Present Value Calculator SEO', () => {
   test('PV-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/present-value-calculator');
 
-    await expect(page).toHaveTitle('Present Value (PV) Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Present Value Calculator | Discount Future Money');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.'
+      'Estimate the present value of future money using discount rate, time period, and compounding frequency.'
     );
 
     const h1 = page.locator('h1');
@@ -21,11 +21,11 @@ test.describe('Present Value Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/present-value-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Present Value (PV) Calculator – CalcHowMuch');
+    expect(ogTitle).toBe('Present Value Calculator | Discount Future Money');
 
     const ogDescription = await page.locator('meta[property="og:description"]').getAttribute('content');
     expect(ogDescription).toBe(
-      'Calculate the present value of future money using discount rate and time period. Simple, accurate PV calculator.'
+      'Estimate the present value of future money using discount rate, time period, and compounding frequency.'
     );
 
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');

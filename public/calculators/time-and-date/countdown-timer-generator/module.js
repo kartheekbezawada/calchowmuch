@@ -62,10 +62,10 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Countdown Timer Generator – Count Down to Any Date',
+      name: 'Countdown Timer Generator | Time Left to Any Date',
       url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
       description:
-        'Generate a countdown timer to a future date and time and see the time remaining in days, hours, minutes, and seconds.',
+        'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.',
       inLanguage: 'en',
     },
     {
@@ -74,7 +74,7 @@ const STRUCTURED_DATA = {
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
-      description: 'Free countdown timer generator to count down to any future date and time.',
+      description: 'Free countdown timer generator for tracking the time left until any future date and time.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'CalcHowMuch' },
     },
@@ -100,9 +100,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Countdown Timer Generator – Count Down to Any Date',
+  title: 'Countdown Timer Generator | Time Left to Any Date',
   description:
-    'Create a countdown timer to any future date and time. See days, hours, minutes, and seconds remaining—fast, free, and accurate.',
+    'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.',
   canonical: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

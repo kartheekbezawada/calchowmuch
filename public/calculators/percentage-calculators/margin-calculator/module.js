@@ -118,9 +118,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Margin Calculator – Profit Margin & Markup',
+  title: 'Margin Calculator | Profit Margin and Selling Price',
   description:
-    'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
+    'Calculate gross margin, profit, or selling price from cost and margin percentage.',
   canonical: 'https://calchowmuch.com/percentage-calculators/margin-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -129,10 +129,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Margin Calculator – Calculate Gross Margin & Profit',
+        name: 'Margin Calculator | Profit Margin and Selling Price',
         url: 'https://calchowmuch.com/percentage-calculators/margin-calculator/',
         description:
-          'Calculate gross margin %, profit, and selling price instantly using our free margin calculator.',
+          'Calculate gross margin, profit, or selling price from cost and margin percentage.',
         inLanguage: 'en',
       },
       {
@@ -142,7 +142,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/margin-calculator/',
         description:
-          'Free margin calculator to compute gross margin percentage, profit, and selling price from cost and margin.',
+          'Free margin calculator for gross margin, profit, and target selling price from cost.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

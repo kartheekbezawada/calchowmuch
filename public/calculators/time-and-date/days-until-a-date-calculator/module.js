@@ -53,10 +53,10 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Days Until a Date Calculator – How Many Days Until',
+  title: 'Days Until a Date Calculator | Count Days to Any Date',
   description:
-    'Calculate how many days are left until a specific date. Simple, fast, and free days until a date calculator.',
-  canonical: 'https://calchowmuch.com/calculators/time-and-date/days-until-a-date-calculator/',
+    'Count how many days remain until a future date or how many days have passed since a past date.',
+  canonical: 'https://calchowmuch.com/time-and-date/days-until-a-date-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };

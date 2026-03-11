@@ -44,6 +44,9 @@ function deriveRoutePath(filePath) {
 }
 
 function isCalculatorRoute(routePath) {
+  if (routePath.startsWith('/time-and-date/') && routePath !== '/time-and-date/') {
+    return true;
+  }
   return routePath.includes('-calculators/') || routePath.endsWith('-calculator/');
 }
 

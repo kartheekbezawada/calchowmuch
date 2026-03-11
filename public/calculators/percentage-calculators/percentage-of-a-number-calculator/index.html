@@ -1,4 +1,16 @@
 <div id="calc-percentage-of-a-number">
+  <link
+    rel="preload"
+    href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
+    />
+  </noscript>
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="pon-hero" aria-label="Find percentage of a number calculator">
@@ -8,12 +20,15 @@
             percentage.
           </p>
 
-          <div class="input-row">
+          <div class="input-row pon-input-row pon-input-row--percent">
             <label for="pon-percent">Percentage (X)</label>
-            <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
+            <div class="pon-input-wrap">
+              <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
+              <span class="pon-input-suffix" aria-hidden="true">%</span>
+            </div>
           </div>
 
-          <div class="input-row">
+          <div class="input-row pon-input-row">
             <label for="pon-number">Number (Y)</label>
             <input id="pon-number" type="number" value="50" step="any" inputmode="decimal" />
           </div>

@@ -4,11 +4,11 @@ test.describe('Nap Time Calculator SEO', () => {
   test('NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/nap-time-calculator');
 
-    await expect(page).toHaveTitle('Nap Time Calculator – Quick Nap, Power Nap, or Afternoon Nap');
+    await expect(page).toHaveTitle('Nap Time Calculator | Quick, Power or Afternoon Nap');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Choose a nap type and start time to get a recommended wake-up time. Compare quick naps, power naps, and afternoon naps with pros, cons, and FAQs.'
+      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.'
     );
 
     const h1 = page.locator('h1');
@@ -28,9 +28,14 @@ test.describe('Nap Time Calculator SEO', () => {
 
     const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
     const nodeTypes = graph.map((node) => node['@type']);
+    expect(nodeTypes).toContain('WebPage');
     expect(nodeTypes).toContain('SoftwareApplication');
     expect(nodeTypes).toContain('BreadcrumbList');
-    expect(nodeTypes).not.toContain('FAQPage');
+    expect(nodeTypes).toContain('FAQPage');
+
+    const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
+    expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
+    expect(faqNode.mainEntity).toHaveLength(5);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

@@ -101,9 +101,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Age Calculator – Exact Age in Years, Months, and Days',
+  title: 'Age Calculator | Years, Months and Days',
   description:
-    'Calculate your exact age in years, months, and days based on your date of birth. Simple, fast, and free age calculator.',
+    'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
   canonical: 'https://calchowmuch.com/time-and-date/age-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -112,10 +112,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Age Calculator',
+        name: 'Age Calculator | Years, Months and Days',
         url: 'https://calchowmuch.com/time-and-date/age-calculator/',
         description:
-          'Calculate your exact age in years, months, and days based on your date of birth.',
+          'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
         inLanguage: 'en',
       },
       {
@@ -125,7 +125,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/time-and-date/age-calculator/',
         description:
-          'Free age calculator to compute your exact age in years, months, and days from your date of birth.',
+          'Free age calculator to compute exact age in years, months, and days from a date of birth.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

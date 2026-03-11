@@ -4,11 +4,12 @@ test.describe('Discount Calculator SEO', () => {
   test('DISC-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/discount-calculator/');
 
-    await expect(page).toHaveTitle('Discount Calculator – Calculate Sale Price');
+    await expect(page).toHaveTitle('Discount Calculator | Sale Price and Savings');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
-    expect(description).toBeTruthy();
-    expect(description.length).toBeLessThanOrEqual(160);
+    expect(description).toBe(
+      'Calculate the sale price after a percentage discount and see exactly how much you save.'
+    );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);

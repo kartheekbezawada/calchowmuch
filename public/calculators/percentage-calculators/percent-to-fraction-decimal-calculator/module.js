@@ -89,9 +89,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percent to Fraction & Decimal Converter – CalcHowMuch',
+  title: 'Percent to Fraction and Decimal Calculator | Convert %',
   description:
-    'Convert any percentage to a decimal and simplified fraction instantly. Free percent to fraction and percent to decimal converter with steps.',
+    'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -103,7 +103,7 @@ const metadata = {
         name: 'Percent to Fraction & Decimal Converter',
         url: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal-calculator/',
         description:
-          'Convert any percentage to a decimal and simplified fraction instantly using our free percent converter.',
+          'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
         inLanguage: 'en',
       },
       {
@@ -113,7 +113,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal-calculator/',
         description:
-          'Free percent to fraction and percent to decimal converter that outputs simplified fractions and decimals with steps.',
+          'Free percent converter that shows the decimal form and simplified fraction for any percentage input.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

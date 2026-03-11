@@ -131,19 +131,19 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Consolidation Calculator – Compare Debt Savings | CalcHowMuch',
+  title: 'Credit Card Consolidation Calculator | Loan vs Cards',
   description:
-    'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
+    'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Credit Card Consolidation Calculator',
+        name: 'Credit Card Consolidation Calculator | Loan vs Cards',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
         description:
-          'Compare paying credit cards separately versus consolidating into a fixed-rate loan. Estimate monthly payments, interest savings, and total repayment cost.',
+          'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
         inLanguage: 'en',
       },
       {
@@ -153,7 +153,7 @@ const metadata = {
         operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
         description:
-          'Compare paying credit cards separately versus consolidating debt into a fixed-rate loan.',
+          'Compare your current card payoff with a consolidation loan across payment size, payoff speed, fees, total interest, and total cost.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

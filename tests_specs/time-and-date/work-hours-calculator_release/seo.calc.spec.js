@@ -4,11 +4,11 @@ test.describe('Work Hours Calculator SEO', () => {
   test('WORK-HOURS-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/work-hours-calculator');
 
-    await expect(page).toHaveTitle('Work Hours Calculator – With Breaks | CalcHowMuch');
+    await expect(page).toHaveTitle('Work Hours Calculator | Shifts, Breaks and Totals');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours.'
+      'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.'
     );
 
     const h1 = page.locator('h1');

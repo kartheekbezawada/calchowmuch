@@ -117,9 +117,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
-      name: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
+      name: 'PCP Calculator | Monthly Payment, GFV & Cost',
       description:
-        'Calculate PCP monthly payments, final balloon payment (GFV), total interest, and total payable cost.',
+        'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -139,7 +139,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
       description:
-        'Calculate PCP monthly payments, final balloon payment (GFV), total interest, and total payable cost.',
+        'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -169,9 +169,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'PCP Car Finance Calculator – Monthly Payment & GFV | CalcHowMuch',
+  title: 'PCP Calculator | Monthly Payment, GFV & Cost',
   description:
-    'Calculate PCP car finance payments including deposit, monthly payments, final balloon payment (GFV), and total interest.',
+    'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

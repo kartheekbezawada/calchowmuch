@@ -10,17 +10,18 @@ test.describe('What Percent Is X of Y Calculator', () => {
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
     await expect(page.locator('#wpxy-explanation .pv-results-table')).toHaveCount(1);
-    await expect(page.locator('#wpxy-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#wpxy-explanation .wpxy-faq-item')).toHaveCount(10);
     await expect(page.locator('#wpxy-explanation .faq-box')).toHaveCount(0);
     await expect(page.locator('#wpxy-explanation')).not.toContainText('Scenario Summary');
+    await expect(page.locator('#wpxy-explanation')).toContainText('Worked Example');
 
     await page.fill('#wpxy-part', '25');
     await page.fill('#wpxy-whole', '200');
     await page.click('#wpxy-calc', { force: true });
 
-    await expect(page.locator('#wpxy-result')).toContainText('Result: 12.50%');
+    await expect(page.locator('#wpxy-result')).toContainText('25.00 is 12.50% of 200.00.');
     await expect(page.locator('#wpxy-result-detail')).toContainText(
-      'Formula: (25.00 ÷ 200.00) × 100 = 12.50%.'
+      'Calculation: (25.00 ÷ 200.00) × 100 = 12.50%.'
     );
     await expect(page.locator('#wpxy-explanation [data-wpxy="percent"]').first()).toHaveText(
       '12.50%'

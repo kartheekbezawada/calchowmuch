@@ -4,11 +4,11 @@ test.describe('Future Value Calculator SEO', () => {
   test('FV-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/future-value-calculator');
 
-    await expect(page).toHaveTitle('Future Value (FV) Calculator – CalcHowMuch');
+    await expect(page).toHaveTitle('Future Value Calculator | Growth Over Time');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.'
+      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.'
     );
 
     const h1 = page.locator('h1');
@@ -21,11 +21,11 @@ test.describe('Future Value Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/future-value-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Future Value (FV) Calculator – CalcHowMuch');
+    expect(ogTitle).toBe('Future Value Calculator | Growth Over Time');
 
     const ogDescription = await page.locator('meta[property="og:description"]').getAttribute('content');
     expect(ogDescription).toBe(
-      'Calculate how much your money could grow in the future using interest rate and time period. Simple FV calculator.'
+      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.'
     );
 
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');

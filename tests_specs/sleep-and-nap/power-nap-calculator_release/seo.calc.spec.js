@@ -4,11 +4,11 @@ test.describe('Power Nap Calculator SEO', () => {
   test('POWER-NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/power-nap-calculator');
 
-    await expect(page).toHaveTitle('Power Nap Calculator | Calculate How Much Online Calculator');
+    await expect(page).toHaveTitle('Power Nap Calculator | Best Wake-Up Times');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Power Nap Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.'
+      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.'
     );
 
     const h1 = page.locator('h1');
@@ -26,9 +26,17 @@ test.describe('Power Nap Calculator SEO', () => {
     expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
 
-    const types = structuredData['@graph'].map((node) => node['@type']);
-    expect(types).toEqual(expect.arrayContaining(['SoftwareApplication', 'BreadcrumbList']));
-    expect(types).not.toContain('FAQPage');
+    const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
+    const nodeTypes = graph.map((node) => node['@type']);
+    expect(nodeTypes).toContain('WebPage');
+    expect(nodeTypes).toContain('SoftwareApplication');
+    expect(nodeTypes).toContain('BreadcrumbList');
+    expect(nodeTypes).toContain('FAQPage');
+
+    const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
+    expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
+    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity[0].name).toBe('What is the best power nap length?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

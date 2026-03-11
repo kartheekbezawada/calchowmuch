@@ -4,11 +4,11 @@ test.describe('Overtime Hours Calculator SEO', () => {
   test('OVERTIME-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/overtime-hours-calculator');
 
-    await expect(page).toHaveTitle('Overtime Hours Calculator – Daily & Weekly | CalcHowMuch');
+    await expect(page).toHaveTitle('Overtime Hours Calculator | Daily, Weekly and Night');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate work hours and split into regular and overtime. Supports daily and weekly limits, split shifts, and night overtime.'
+      'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.'
     );
 
     const h1 = page.locator('h1');

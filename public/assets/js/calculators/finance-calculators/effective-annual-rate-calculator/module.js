@@ -136,9 +136,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Effective Annual Rate (EAR) Calculator – CalcHowMuch',
+  title: 'Effective Annual Rate Calculator | True Annual Rate',
   description:
-    'Calculate the effective annual rate (EAR) from a nominal interest rate and compounding frequency. Compare true annual interest rates accurately.',
+    'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
   canonical: 'https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -147,10 +147,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Effective Annual Rate Calculator',
+        name: 'Effective Annual Rate Calculator | True Annual Rate',
         url: 'https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/',
         description:
-          'Convert a nominal interest rate into an effective annual rate using compounding frequency.',
+          'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
         inLanguage: 'en',
       },
       {
@@ -161,7 +161,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/',
         description:
-          'Free EAR calculator. Convert nominal rates to effective annual rates for accurate comparisons.',
+          'Free EAR calculator. Convert a nominal rate into the true annual rate after compounding.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

@@ -2151,905 +2151,208 @@
 
 }
 
-/* source: /calculators/credit-card-calculators/credit-card-consolidation-calculator/calculator.css */
-/* Credit Card Consolidation in Home Loan visual system */
-
-#calc-cc-con .is-hidden {
-  display: none;
+/* source: /calculators/car-loan-calculators/car-lease-calculator/calculator.css */
+#calc-home-loan .mtg-form-panel {
+  gap: 1.22rem;
 }
 
-#calc-cc-con .cc-con-ui {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-#calc-cc-con .cc-con-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-  gap: 1.5rem;
-  align-items: start;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-}
-
-#calc-cc-con .cc-con-form-panel {
-  display: grid;
-  gap: 1.65rem;
-  align-content: start;
-}
-
-#calc-cc-con .helper {
-  margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.45;
-  color: rgba(226, 232, 240, 0.88);
-}
-
-#calc-cc-con .input-row {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.34rem;
-  min-width: 0;
-}
-
-#calc-cc-con label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: rgba(226, 232, 240, 0.94);
-  line-height: 1.28;
-}
-
-#calc-cc-con input[type='number'] {
-  width: 100%;
-  min-height: 38px;
-  border-radius: 0.78rem;
-  border: 1px solid rgba(148, 163, 184, 0.42);
-  background: rgba(15, 23, 42, 0.72);
-  color: #fff;
-  padding: 0.42rem 0.68rem;
-  font-size: 0.84rem;
-  line-height: 1.2;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-#calc-cc-con input[type='number']:hover {
-  border-color: rgba(148, 163, 184, 0.62);
-}
-
-#calc-cc-con input[type='number']:focus-visible {
-  outline: 2px solid rgba(125, 211, 252, 0.64);
-  outline-offset: 1px;
-  border-color: rgba(125, 211, 252, 0.85);
-}
-
-#calc-cc-con .slider-row {
-  gap: 0.52rem;
-}
-
-#calc-cc-con .slider-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-#calc-cc-con .slider-value {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.24rem 0.72rem;
-  border-radius: 0.52rem;
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(34, 197, 94, 0.45);
-  color: #4ade80;
-  font-size: 0.9rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+#calc-lease #calc-home-loan label {
+  color: rgba(236, 254, 255, 0.98);
   text-shadow:
-    0 0 8px rgba(74, 222, 128, 0.7),
-    0 0 20px rgba(74, 222, 128, 0.4),
-    0 0 40px rgba(34, 197, 94, 0.2);
-  box-shadow:
-    0 0 8px rgba(34, 197, 94, 0.2),
-    0 0 20px rgba(34, 197, 94, 0.08);
-  transition:
-    border-color 0.25s ease,
-    color 0.25s ease,
-    text-shadow 0.25s ease,
-    box-shadow 0.25s ease;
+    0 0 10px rgba(103, 232, 249, 0.52),
+    0 0 22px rgba(20, 184, 166, 0.28);
 }
 
-#calc-cc-con .slider-row:hover .slider-value {
-  border-color: rgba(251, 113, 133, 0.55);
-  color: #fb7185;
+#calc-lease #calc-home-loan .slider-value {
+  border-color: rgba(45, 212, 191, 0.74);
+  color: rgba(209, 250, 229, 0.98);
   text-shadow:
-    0 0 8px rgba(251, 113, 133, 0.7),
-    0 0 20px rgba(251, 113, 133, 0.45),
-    0 0 40px rgba(251, 113, 133, 0.2);
+    0 0 14px rgba(45, 212, 191, 0.9),
+    0 0 28px rgba(20, 184, 166, 0.56),
+    0 0 48px rgba(20, 184, 166, 0.3);
   box-shadow:
-    0 0 8px rgba(251, 113, 133, 0.2),
-    0 0 20px rgba(251, 113, 133, 0.08);
+    0 0 14px rgba(20, 184, 166, 0.3),
+    0 0 30px rgba(20, 184, 166, 0.14);
 }
 
-#calc-cc-con input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  border-radius: 9999px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    #22c55e 0%,
-    #fb7185 var(--fill, 50%),
-    rgba(148, 163, 184, 0.14) var(--fill, 50%)
-  );
-  transition: box-shadow 0.2s ease;
-}
-
-#calc-cc-con input[type='range']:hover {
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
-}
-
-#calc-cc-con input[type='range']:focus-visible {
-  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
-}
-
-#calc-cc-con input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid rgba(34, 197, 94, 0.5);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-  cursor: grab;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
-}
-
-#calc-cc-con input[type='range']::-webkit-slider-thumb:hover {
-  transform: scale(1.18);
-  border-color: rgba(251, 113, 133, 0.7);
+#calc-lease #calc-home-loan .slider-row:hover .slider-value {
+  border-color: rgba(14, 165, 233, 0.84);
+  color: rgba(224, 242, 254, 0.99);
+  text-shadow:
+    0 0 14px rgba(56, 189, 248, 0.92),
+    0 0 28px rgba(14, 165, 233, 0.62),
+    0 0 52px rgba(14, 165, 233, 0.34);
   box-shadow:
-    0 1px 8px rgba(0, 0, 0, 0.3),
-    0 0 10px rgba(251, 113, 133, 0.2);
+    0 0 14px rgba(14, 165, 233, 0.34),
+    0 0 30px rgba(14, 165, 233, 0.18);
 }
 
-#calc-cc-con input[type='range']:active::-webkit-slider-thumb {
-  cursor: grabbing;
-  transform: scale(1.08);
-}
-
-#calc-cc-con input[type='range']::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid rgba(34, 197, 94, 0.5);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-  cursor: grab;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
-}
-
-#calc-cc-con input[type='range']::-moz-range-thumb:hover {
-  transform: scale(1.18);
-  border-color: rgba(251, 113, 133, 0.7);
+#calc-lease #calc-home-loan .mtg-preview-main {
+  background: linear-gradient(145deg, rgba(6, 78, 59, 0.46), rgba(3, 105, 161, 0.36));
+  border: 1px solid rgba(153, 246, 228, 0.48);
   box-shadow:
-    0 1px 8px rgba(0, 0, 0, 0.3),
-    0 0 10px rgba(251, 113, 133, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 0 58px rgba(20, 184, 166, 0.16),
+    0 20px 36px rgba(2, 6, 23, 0.44);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
 }
 
-#calc-cc-con input[type='range']::-moz-range-track {
-  height: 5px;
-  border-radius: 9999px;
-  background: transparent;
+#calc-lease #calc-home-loan .mtg-preview-main .mtg-preview-label {
+  letter-spacing: 0.09em;
+  color: rgba(204, 251, 241, 0.98);
+  text-shadow:
+    0 0 10px rgba(45, 212, 191, 0.6),
+    0 0 24px rgba(20, 184, 166, 0.36);
 }
 
-#calc-cc-con .advanced-options {
-  margin-top: 0.18rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.28);
-  padding-top: 0.74rem;
+#calc-lease #calc-home-loan .mtg-result-card .mtg-result-value {
+  text-shadow:
+    0 0 22px rgba(45, 212, 191, 0.62),
+    0 0 40px rgba(14, 165, 233, 0.4);
 }
 
-#calc-cc-con .advanced-options summary {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.58rem;
-  padding: 0.48rem 0.58rem;
-  border-radius: 0.78rem;
-  border: 1px solid rgba(56, 189, 248, 0.56);
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
-  color: rgba(224, 242, 254, 0.98);
-  font-size: 0.78rem;
-  font-weight: 700;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-#calc-cc-con .advanced-options summary:hover {
-  border-color: rgba(56, 189, 248, 0.72);
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
-}
-
-#calc-cc-con .advanced-options summary::-webkit-details-marker {
-  display: none;
-}
-
-#calc-cc-con .advanced-options summary:focus-visible {
-  outline: 2px solid rgba(125, 211, 252, 0.74);
-  outline-offset: 2px;
-}
-
-#calc-cc-con .advanced-summary-pill {
-  min-width: 102px;
-  min-height: 24px;
-  border-radius: 9999px;
-  border: 1px solid rgba(125, 211, 252, 0.58);
-  background: rgba(15, 23, 42, 0.88);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.5rem;
-  flex-shrink: 0;
-}
-
-#calc-cc-con .summary-state {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.26rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-}
-
-#calc-cc-con .summary-icon {
-  font-size: 0.86rem;
-  line-height: 1;
-}
-
-#calc-cc-con .summary-state-close {
-  display: none;
-}
-
-#calc-cc-con .advanced-options[open] .summary-state-expand {
-  display: none;
-}
-
-#calc-cc-con .advanced-options[open] .summary-state-close {
-  display: inline-flex;
-}
-
-#calc-cc-con .advanced-options[open] summary {
-  border-color: rgba(125, 211, 252, 0.86);
-}
-
-#calc-cc-con .advanced-stack {
-  margin-top: 0.76rem;
-  display: grid;
-  gap: 0.72rem;
-}
-
-#calc-cc-con .advanced-pair {
-  display: grid;
+#loan-mtg-explanation .lease-lifetime-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
-  align-items: end;
 }
 
-#calc-cc-con .advanced-pair label {
-  min-height: 1.2em;
-}
-
-#calc-cc-con .cc-con-action-row {
-  margin-top: 0.35rem;
-}
-
-#calc-cc-con .cc-con-action-row .calculator-button {
-  min-height: 50px;
-  border-radius: 0.82rem;
-  font-size: 0.88rem;
-  font-weight: 700;
-  transition:
-    box-shadow 0.25s ease,
-    transform 0.15s ease;
-}
-
-#calc-cc-con .cc-con-action-row .calculator-button:hover {
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
-  transform: translateY(-1px);
-}
-
-#calc-cc-con .cc-con-action-row .calculator-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-}
-
-#calc-cc-con .cc-con-preview-panel {
-  border-radius: 1.15rem;
-  border: 1px solid rgba(125, 211, 252, 0.22);
-  background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
-  padding: 1.15rem;
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-  box-shadow:
-    0 4px 24px rgba(2, 6, 23, 0.45),
-    0 0 40px rgba(59, 130, 246, 0.06);
-}
-
-#calc-cc-con .cc-con-preview-main {
-  border-radius: 0.95rem;
-  padding: 1rem;
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  display: grid;
-  gap: 0.65rem;
-}
-
-#calc-cc-con .cc-con-result-card,
-#calc-cc-con .cc-con-summary-card {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-#calc-cc-con .cc-con-result-card {
-  color: rgba(239, 246, 255, 0.99);
-  font-size: 0.9rem;
-  line-height: 1.35;
-}
-
-#calc-cc-con .cc-con-result-card strong {
-  display: block;
-  margin-bottom: 0.45rem;
-  font-size: 0.74rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.8);
-}
-
-#calc-cc-con .cc-con-result-card .cc-con-result-value {
-  display: block;
-  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-  line-height: 1;
-  font-weight: 800;
-  color: #e0f2fe;
-  text-shadow:
-    0 0 20px rgba(125, 211, 252, 0.35),
-    0 0 40px rgba(59, 130, 246, 0.15);
-  letter-spacing: -0.02em;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-@keyframes cc-con-result-pop {
-  0% {
-    opacity: 0.4;
-    transform: scale(0.92);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-#calc-cc-con .cc-con-result-card .cc-con-result-value.is-updated {
-  animation: cc-con-result-pop 0.4s ease-out;
-}
-
-#calc-cc-con .cc-con-summary-card {
-  font-size: 0.83rem;
-  line-height: 1.52;
-  color: rgba(203, 213, 225, 0.92);
-}
-
-#calc-cc-con .cc-con-summary-card p {
-  margin: 0;
-}
-
-#calc-cc-con .cc-con-summary-card p + p {
-  margin-top: 0.42rem;
-}
-
-#calc-cc-con .cc-con-summary-card .form-error {
-  color: #fecaca;
-}
-
-#calc-cc-con .cc-con-snapshot-list {
-  margin: 0;
-  padding: 0.35rem 0;
-  display: grid;
-  gap: 0.1rem;
-}
-
-#calc-cc-con .cc-con-snapshot-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.72rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-#calc-cc-con .cc-con-snapshot-row:last-child {
-  border-bottom: 0;
-}
-
-#calc-cc-con .cc-con-snapshot-row span {
-  font-size: 0.75rem;
-  color: rgba(148, 163, 184, 0.85);
-}
-
-#calc-cc-con .cc-con-snapshot-row strong {
-  font-size: 0.88rem;
-  color: rgba(248, 250, 252, 0.99);
-  text-align: right;
-  line-height: 1.28;
-  font-variant-numeric: tabular-nums;
-}
-
-#cc-con-explanation {
-  display: grid;
-  gap: 0.95rem;
-}
-
-#cc-con-explanation h2 {
-  margin: 0;
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: rgba(226, 232, 240, 0.97);
-}
-
-#cc-con-explanation > p {
-  margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: rgba(203, 213, 225, 0.9);
-}
-
-#cc-con-explanation [data-cc-con] {
-  font-weight: 700;
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 8px;
-  line-height: 1.22;
-  white-space: nowrap;
-  background: rgba(59, 130, 246, 0.45);
-  outline: 1px solid rgba(59, 130, 246, 0.65);
-  color: rgba(226, 232, 240, 0.99);
-}
-
-#cc-con-explanation .cc-con-exp-section {
-  display: grid;
-  gap: 0.72rem;
-  padding: 1rem;
-  border-radius: 0.95rem;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
-}
-
-#cc-con-explanation .cc-con-exp-section h3 {
-  margin: 0;
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(191, 219, 254, 0.94);
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-#cc-con-explanation .cc-con-exp-section h3::after {
-  content: none;
-}
-
-#cc-con-explanation .cc-con-exp-section--lifetime {
-  grid-template-columns: auto 1fr;
-}
-
-#cc-con-explanation .cc-con-lifetime-header {
+#loan-mtg-explanation .lease-lifetime-grid .mtg-lifetime-card:last-child {
   grid-column: 1 / -1;
 }
 
-#cc-con-explanation .cc-con-lifetime-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.85rem;
+#loan-mtg-explanation .lease-table-view-toggle {
+  gap: 0.16rem;
+  padding: 0.16rem;
+  border-color: rgba(153, 246, 228, 0.36);
+  background: rgba(15, 23, 42, 0.78);
 }
 
-#cc-con-explanation .cc-con-lifetime-donut {
-  --principal-share: 70%;
-  width: 200px;
-  min-width: 200px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
-  position: relative;
-  cursor: pointer;
-  transition:
-    box-shadow 0.35s ease,
-    transform 0.35s ease;
-}
-
-#cc-con-explanation .cc-con-lifetime-donut:hover {
-  box-shadow:
-    0 0 32px rgba(34, 197, 94, 0.35),
-    0 0 60px rgba(251, 113, 133, 0.22),
-    0 0 80px rgba(34, 197, 94, 0.1);
-  transform: scale(1.06);
-}
-
-#cc-con-explanation .cc-con-lifetime-donut::after {
-  content: '';
-  position: absolute;
-  inset: 26%;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.96);
-}
-
-#cc-con-explanation .cc-con-lifetime-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  width: 100%;
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.42rem;
-  padding: 0.45rem 0.62rem;
-  border-radius: 0.62rem;
-  border: 1px solid transparent;
-  background: none;
-  cursor: default;
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(125, 211, 252, 0.18);
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item--principal::before {
-  background: #22c55e;
-  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item--interest::before {
-  background: #fb7185;
-  box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item span {
-  font-size: 0.74rem;
-  color: rgba(203, 213, 225, 0.9);
-}
-
-#cc-con-explanation .cc-con-lifetime-legend-item strong {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: rgba(248, 250, 252, 0.98);
-  margin-left: 0.2rem;
-}
-
-#cc-con-explanation .cc-con-lifetime-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-self: center;
-}
-
-#cc-con-explanation .cc-con-lifetime-card {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.72rem;
-  padding: 0.72rem 0.8rem;
-  border: 1px solid transparent;
-  border-radius: 0.62rem;
-  background: none;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-  cursor: default;
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.2s ease;
-}
-
-#cc-con-explanation .cc-con-lifetime-card:last-child {
-  border-bottom-color: transparent;
-}
-
-#cc-con-explanation .cc-con-lifetime-card:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(125, 211, 252, 0.2);
-  box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
-  transform: translateX(4px);
-}
-
-#cc-con-explanation .cc-con-lifetime-card span {
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.78);
-  white-space: nowrap;
-}
-
-#cc-con-explanation .cc-con-lifetime-card strong {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: rgba(248, 250, 252, 0.98);
-  font-variant-numeric: tabular-nums;
-}
-
-#cc-con-explanation .cc-con-lifetime-summary {
-  display: none;
-}
-
-#cc-con-explanation .amortization-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.72rem;
-}
-
-#cc-con-explanation .table-view-toggle {
-  display: inline-flex;
-  gap: 0.2rem;
-  padding: 0.18rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.36);
-  background: rgba(15, 23, 42, 0.7);
-}
-
-#cc-con-explanation .table-view-toggle .calculator-button {
+#loan-mtg-explanation .lease-table-view-toggle .calculator-button {
   min-height: 30px;
-  padding: 0.3rem 0.66rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: rgba(191, 219, 254, 0.92);
-  font-size: 0.74rem;
-  font-weight: 600;
+  padding: 0.3rem 0.62rem;
+  font-size: 0.72rem;
 }
 
-#cc-con-explanation .table-view-toggle .calculator-button.is-active {
-  border-color: rgba(249, 115, 22, 0.58);
-  background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
-  color: #fff;
+#loan-mtg-explanation .lease-table-view-toggle .calculator-button.is-active {
+  border-color: rgba(45, 212, 191, 0.72);
+  background: linear-gradient(132deg, rgba(20, 184, 166, 0.96), rgba(14, 165, 233, 0.86));
+  box-shadow: 0 0 18px rgba(20, 184, 166, 0.3);
 }
 
-#cc-con-explanation .table-scroll {
-  max-height: 318px;
-  overflow: auto;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(148, 163, 184, 0.32);
-  background: rgba(15, 23, 42, 0.62);
+#loan-mtg-explanation .table-scroll[data-glow='monthly'] {
+  border-color: rgba(45, 212, 191, 0.48);
+  box-shadow:
+    inset 0 0 0 1px rgba(20, 184, 166, 0.16),
+    0 0 30px rgba(20, 184, 166, 0.16);
 }
 
-#cc-con-explanation .calculator-table {
-  min-width: 420px;
-  border-collapse: collapse;
+#loan-mtg-explanation .table-scroll[data-glow='yearly'] {
+  border-color: rgba(14, 165, 233, 0.5);
+  box-shadow:
+    inset 0 0 0 1px rgba(14, 165, 233, 0.15),
+    0 0 30px rgba(14, 165, 233, 0.14);
 }
 
-#cc-con-explanation .calculator-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  font-size: 0.74rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #fde68a;
-  background: rgba(30, 41, 59, 0.98);
+#loan-mtg-explanation .table-scroll[data-glow='cost'] {
+  border-color: rgba(251, 146, 60, 0.44);
+  box-shadow:
+    inset 0 0 0 1px rgba(249, 115, 22, 0.15),
+    0 0 30px rgba(249, 115, 22, 0.13);
 }
 
-#cc-con-explanation .calculator-table th,
-#cc-con-explanation .calculator-table td {
-  text-align: center;
-  border: 1px solid rgba(148, 163, 184, 0.24);
-  padding: 0.5rem;
+#loan-mtg-explanation .lease-cost-table th,
+#loan-mtg-explanation .lease-cost-table td {
+  text-align: left;
 }
 
-#cc-con-explanation .calculator-table td {
-  font-size: 0.79rem;
-  color: rgba(226, 232, 240, 0.94);
-  white-space: nowrap;
+#loan-mtg-explanation .lease-cost-table th:first-child,
+#loan-mtg-explanation .lease-cost-table td:first-child {
+  min-width: 170px;
 }
 
-#cc-con-explanation .calculator-table tbody tr:nth-child(even) {
-  background: rgba(30, 41, 59, 0.36);
-}
-
-#cc-con-explanation .cc-con-table-placeholder-row td {
-  text-align: center;
-  font-style: italic;
-  color: var(--muted-text);
-}
-
-#cc-con-explanation .cc-con-exp-section--explain p {
-  margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: rgba(203, 213, 225, 0.92);
-}
-
-#cc-con-explanation .bor-faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.65rem;
-}
-
-#cc-con-explanation .bor-faq-card {
-  padding: 0.85rem;
-  border-radius: 0.78rem;
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-top: 2px solid rgba(245, 158, 11, 0.45);
-  display: grid;
-  gap: 0.4rem;
-  transition:
-    transform 0.2s ease,
-    border-color 0.25s ease,
-    box-shadow 0.3s ease;
-}
-
-#cc-con-explanation .bor-faq-card:hover {
-  transform: translateY(-2px);
-  border-top-color: rgba(245, 158, 11, 0.8);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
-}
-
-#cc-con-explanation .bor-faq-number {
-  display: inline-flex;
-  width: 26px;
-  height: 26px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(139, 92, 246, 0.2);
-  border: 1px solid rgba(139, 92, 246, 0.4);
-  color: #c4b5fd;
-  font-size: 0.68rem;
+#loan-mtg-explanation .lease-cost-table td:nth-child(2),
+#loan-mtg-explanation .lease-cost-table tfoot td {
+  font-variant-numeric: tabular-nums;
   font-weight: 700;
-  flex-shrink: 0;
+  color: rgba(236, 254, 255, 0.99);
 }
 
-#cc-con-explanation .bor-faq-card h4 {
-  margin: 0;
-  font-size: 0.86rem;
-  line-height: 1.3;
-  color: rgba(226, 232, 240, 0.98);
+#loan-mtg-explanation .lease-cost-table tfoot th {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(204, 251, 241, 0.98);
 }
 
-#cc-con-explanation .bor-faq-card p {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: rgba(203, 213, 225, 0.92);
+#loan-mtg-explanation .lease-cost-table tfoot th,
+#loan-mtg-explanation .lease-cost-table tfoot td {
+  background: rgba(15, 23, 42, 0.92);
+  border-top: 1px solid rgba(153, 246, 228, 0.32);
 }
 
-#cc-con-explanation .cc-con-important-notes {
+#loan-mtg-explanation .bor-faq-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#loan-mtg-explanation .mtg-exp-section--notes {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  gap: 0.3rem;
+}
+
+#loan-mtg-explanation .mtg-exp-section--notes h3 {
   margin: 0;
-  padding: 0.9rem 0.96rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+#loan-mtg-explanation .car-note-list {
+  margin: 0;
+  padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.46rem;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(245, 158, 11, 0.34);
-  background: linear-gradient(165deg, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.45));
+  gap: 0.16rem;
 }
 
-#cc-con-explanation .cc-con-important-notes li {
+#loan-mtg-explanation .car-note-list li {
   margin: 0;
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.8rem;
+  line-height: 1.2;
   color: rgba(226, 232, 240, 0.94);
 }
 
-#cc-con-explanation .cc-con-important-notes strong {
-  color: rgba(253, 230, 138, 0.98);
+#loan-mtg-explanation .car-note-list li::before {
+  content: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  #calc-cc-con .cc-con-result-card .cc-con-result-value.is-updated {
-    animation: none;
-  }
-
-  #calc-cc-con .cc-con-action-row .calculator-button {
-    transition: none;
-  }
+#loan-mtg-explanation .car-note-list strong {
+  color: rgba(186, 230, 253, 0.98);
 }
 
-@media (max-width: 1220px) {
-  #calc-cc-con .cc-con-hero {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 900px) {
-  #calc-cc-con .advanced-pair {
-    grid-template-columns: 1fr;
-  }
-
-  #cc-con-explanation .table-scroll {
-    border-radius: 0.7rem;
-  }
-
-  #cc-con-explanation .calculator-table {
-    min-width: 360px;
-  }
-
-  #cc-con-explanation .amortization-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 720px) {
-  #cc-con-explanation .cc-con-exp-section {
-    padding: 0.85rem;
-  }
-
-  #cc-con-explanation .bor-faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #cc-con-explanation .table-view-toggle .calculator-button {
-    flex: 1 1 auto;
-  }
-
-  #cc-con-explanation .table-view-toggle {
+@media (max-width: 960px) {
+  #loan-mtg-explanation .lease-table-view-toggle {
     width: 100%;
   }
 
-  #cc-con-explanation .cc-con-exp-section--lifetime {
+  #loan-mtg-explanation .lease-table-view-toggle .calculator-button {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 760px) {
+  #loan-mtg-explanation .lease-lifetime-grid {
     grid-template-columns: 1fr;
   }
 
-  #cc-con-explanation .cc-con-lifetime-visual {
-    align-items: center;
+  #loan-mtg-explanation .lease-lifetime-grid .mtg-lifetime-card:last-child {
+    grid-column: auto;
   }
+}
 
-  #cc-con-explanation .cc-con-lifetime-donut {
-    width: 160px;
-    min-width: 160px;
+@media (max-width: 640px) {
+  #loan-mtg-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
   }
 }

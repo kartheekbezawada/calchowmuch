@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
 const NAVIGATION_PATH = path.resolve(process.cwd(), 'public/config/navigation.json');
 const REPORT_PATH = path.resolve(
   process.cwd(),
-  'test-results/performance/cls-guard-all-calculators.json'
+  process.env.CLS_GUARD_REPORT_PATH || 'test-results/performance/cls-guard-all-calculators.json'
 );
 
 const CLS_THRESHOLD = 0.1;
@@ -44,13 +44,16 @@ function normalizeRoute(route) {
   return normalized;
 }
 
-function resolveRouteFilter() {
-  const rawFilter = process.env.CLS_GUARD_ROUTE_INCLUDE;
-  if (!rawFilter || typeof rawFilter !== 'string') {
-    return null;
+function resolveRouteFilters(envName) {
+  const rawValue = process.env[envName];
+  if (!rawValue || typeof rawValue !== 'string') {
+    return [];
   }
-  const normalized = normalizeRoute(rawFilter);
-  return normalized || rawFilter.trim();
+  return rawValue
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => normalizeRoute(item) || item);
 }
 
 function resolveThresholds(route, mode) {
@@ -336,11 +339,19 @@ test.describe('Global CWV guard — all calculator routes', () => {
     expect(routes.length).toBeGreaterThan(0);
 
     const maxRoutes = Number.parseInt(process.env.CLS_GUARD_MAX_ROUTES || '', 10);
-    const routeFilter = resolveRouteFilter();
+    const includeFilters = resolveRouteFilters('CLS_GUARD_ROUTE_INCLUDE');
+    const excludeFilters = resolveRouteFilters('CLS_GUARD_ROUTE_EXCLUDE');
 
     let selectedRoutes = routes;
-    if (routeFilter) {
-      selectedRoutes = routes.filter((route) => route.includes(routeFilter));
+    if (includeFilters.length > 0) {
+      selectedRoutes = routes.filter((route) =>
+        includeFilters.some((filterValue) => route.includes(filterValue))
+      );
+    }
+    if (excludeFilters.length > 0) {
+      selectedRoutes = selectedRoutes.filter(
+        (route) => !excludeFilters.some((filterValue) => route.includes(filterValue))
+      );
     }
     if (Number.isFinite(maxRoutes) && maxRoutes > 0) {
       selectedRoutes = selectedRoutes.slice(0, maxRoutes);
@@ -397,6 +408,8 @@ test.describe('Global CWV guard — all calculator routes', () => {
         stressSingleShiftRouteOverrides: STRESS_SHIFT_ROUTE_OVERRIDES,
       },
       routeCount: selectedRoutes.length,
+      includeFilters,
+      excludeFilters,
       modeCountPerRoute: 2,
       totalChecks: results.length,
       violationCount: violations.length,

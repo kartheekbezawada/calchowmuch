@@ -85,9 +85,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Find Percentage of a Number Calculator – CalcHowMuch',
+  title: 'Percentage of a Number Calculator | Find X% of Y',
   description:
-    'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
+    'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -96,10 +96,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Find Percentage of a Number Calculator',
+        name: 'Percentage of a Number Calculator | Find X% of Y',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/',
         description:
-          'Calculate what X% of Y is instantly using our free Find Percentage of a Number calculator.',
+          'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
         inLanguage: 'en',
       },
       {
@@ -109,7 +109,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/',
         description:
-          'Free calculator to find what X percent of Y is using a simple percentage formula.',
+          'Free calculator for finding what X percent of Y is using the standard percentage formula.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

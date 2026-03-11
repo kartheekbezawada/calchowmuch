@@ -95,9 +95,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
-      name: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+      name: 'Car Loan Calculator | Monthly Payment & Cost',
       description:
-        'Calculate car loan monthly payments, total interest, and total cost based on loan amount, APR, and term.',
+        'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -117,7 +117,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
       description:
-        'Calculate car loan monthly payments, total interest, and total cost based on loan amount, APR, and term.',
+        'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -147,9 +147,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Car Loan Calculator – Monthly Payment & Interest | CalcHowMuch',
+  title: 'Car Loan Calculator | Monthly Payment & Cost',
   description:
-    'Calculate car loan monthly payments, interest cost, and payoff schedule. Adjust loan amount, APR, and term to see total loan cost.',
+    'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/car-loan-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

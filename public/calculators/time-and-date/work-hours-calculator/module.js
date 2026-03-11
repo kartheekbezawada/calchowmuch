@@ -80,10 +80,10 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Work Hours Calculator',
+      name: 'Work Hours Calculator | Shifts, Breaks and Totals',
       url: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
       description:
-        'Calculate worked hours from start and end times, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
+        'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
       inLanguage: 'en',
     },
     {
@@ -93,7 +93,7 @@ const STRUCTURED_DATA = {
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
       description:
-        'Free work hours calculator for single shift, split shift, and weekly total calculations with break deductions.',
+        'Free work hours calculator for single shifts, split shifts, weekly totals, and unpaid break deductions.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'CalcHowMuch' },
     },
@@ -119,9 +119,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Work Hours Calculator – With Breaks | CalcHowMuch',
+  title: 'Work Hours Calculator | Shifts, Breaks and Totals',
   description:
-    'Calculate work hours for single, split, or weekly shifts. Subtract unpaid breaks and get totals in HH:MM and decimal hours.',
+    'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
   canonical: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
