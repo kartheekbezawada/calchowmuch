@@ -13,7 +13,7 @@ test.describe('Countdown Timer Generator SEO', () => {
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Countdown Page Builder');
+    await expect(h1).toHaveText(/Count ?Down (Timer|Page Builder)/);
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

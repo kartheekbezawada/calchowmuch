@@ -36,7 +36,7 @@ test.describe('Power Nap Calculator', () => {
     await page.goto('/time-and-date/power-nap-calculator');
 
     const explanation = page.locator('#power-nap-explanation');
-    await expect(explanation).toContainText('What is a Power Nap Calculator?');
+    await expect(explanation).toContainText('When Should You Wake Up From a Power Nap?');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.power-nap-faq-item')).toHaveCount(10);
   });

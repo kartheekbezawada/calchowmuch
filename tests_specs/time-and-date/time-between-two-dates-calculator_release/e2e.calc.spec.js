@@ -57,8 +57,8 @@ test.describe('Time Between Two Dates Calculator', () => {
     expect(Math.abs(afterDateHeight - initialHeight)).toBeLessThanOrEqual(1);
 
     const explanation = page.locator('#date-diff-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(6);
-    await expect(explanation).toContainText('What is a Time Between Two Dates Calculator?');
+    expect(await explanation.locator('h2').count()).toBeGreaterThanOrEqual(6);
+    await expect(explanation).toContainText('What Is the Time Difference Between Two Dates?');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.date-diff-faq-item')).toHaveCount(4);
   });

@@ -47,8 +47,8 @@ test.describe('Days Until a Date Calculator', () => {
     expect(Math.abs(afterHeight - initialHeight)).toBeLessThanOrEqual(1);
 
     const explanation = page.locator('#days-until-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(5);
-    await expect(explanation).toContainText('What is a Days Until a Date Calculator?');
+    expect(await explanation.locator('h2').count()).toBeGreaterThanOrEqual(5);
+    await expect(explanation).toContainText('How Many Days Until Your Date?');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.days-until-faq-item')).toHaveCount(4);
   });

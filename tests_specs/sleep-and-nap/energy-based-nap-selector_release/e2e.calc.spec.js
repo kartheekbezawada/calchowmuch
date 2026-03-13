@@ -41,7 +41,8 @@ test.describe('Energy-Based Nap Selector', () => {
     await page.goto('/time-and-date/energy-based-nap-selector');
 
     const explanation = page.locator('#energy-nap-explanation');
-    await expect(explanation).toContainText('Summary');
+    await expect(explanation).toContainText('Which Nap Length Matches the Energy You Need?');
+    await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.faq-box')).toHaveCount(10);
   });

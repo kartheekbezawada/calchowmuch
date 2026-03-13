@@ -37,9 +37,7 @@ test.describe('Nap Time Calculator', () => {
     await page.goto('/time-and-date/nap-time-calculator');
 
     const explanation = page.locator('#nap-time-explanation');
-    await expect(explanation).toContainText(
-      'A Nap Time Calculator helps you choose a wake-up time'
-    );
+    await expect(explanation).toContainText('When Should You Wake Up From a Nap?');
     await expect(explanation).toContainText('Which nap is best for work breaks?');
     await expect(explanation.locator('.nap-faq-item')).toHaveCount(5);
   });
