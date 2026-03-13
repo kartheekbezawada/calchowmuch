@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Birthday Day-of-Week SEO', () => {
-  test('BIRTHDAY-DOW-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
+  test('BIRTHDAY-DOW-TEST-SEO-1: metadata, single-pane layout, FAQ schema, sitemap', async ({
+    page,
+  }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
     await expect(page).toHaveTitle('Birthday Day-of-Week Calculator | Find Your Birth Weekday');
@@ -15,15 +17,19 @@ test.describe('Birthday Day-of-Week SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Birthday Day-of-Week Calculator');
 
+    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
-    const canonicalHref = await canonical.getAttribute('href');
-    expect(canonicalHref).toBe('https://calchowmuch.com/time-and-date/birthday-day-of-week/');
+    await expect(canonical).toHaveAttribute(
+      'href',
+      'https://calchowmuch.com/time-and-date/birthday-day-of-week/'
+    );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
     const structuredText = await structuredDataScript.textContent();
-    expect(structuredText).toBeTruthy();
     const structuredData = JSON.parse(structuredText || '{}');
 
     const types = structuredData['@graph'].map((node) => node['@type']);
@@ -32,8 +38,11 @@ test.describe('Birthday Day-of-Week SEO', () => {
     expect(types).not.toContain('BreadcrumbList');
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
-    expect(faqNode.mainEntity).toHaveLength(10);
-    expect(faqNode.mainEntity[0].name).toBe('Is the result accurate?');
+    expect(faqNode.mainEntity).toHaveLength(6);
+    expect(faqNode.mainEntity[0].name).toBe('Is the birth weekday accurate?');
+
+    await expect(page.locator('#birthday-dow-explanation')).toContainText('12-year recurrence map');
+    await expect(page.locator('#birthday-dow-explanation')).toContainText('weekend radar');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

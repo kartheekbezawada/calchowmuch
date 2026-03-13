@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:credit-cards/credit-card-consolidation`
+- Scope: `calc:time-and-date/countdown-timer-generator`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**
@@ -9,3 +9,4 @@
 | Path | Route | Field | Tokens | Snippet |
 | :--- | :--- | :--- | :--- | :--- |
 | - | - | - | - | - |
+

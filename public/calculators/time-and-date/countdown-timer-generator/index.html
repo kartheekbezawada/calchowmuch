@@ -1,35 +1,98 @@
 <div id="calc-countdown-timer">
-  <div class="calculator-ui">
-    <p class="helper">Create a live countdown to a future date and time.</p>
+  <div class="cd-page-meta">
+    <span class="cd-timezone" id="countdown-timezone">Local time zone: Detecting...</span>
+    <span class="cd-date-meta" id="countdown-preview-date">Date &amp; time: --</span>
+  </div>
 
-    <div class="input-row" id="countdown-datetime-row">
-      <label for="countdown-datetime">Target date &amp; time</label>
-      <input id="countdown-datetime" type="datetime-local" step="60" data-maxlength="16" />
-    </div>
+  <div class="cd-main-cards">
+    <section class="cd-input-card">
+      <div class="cd-input-grid">
+        <div class="cd-fallback">
+          <label class="cd-field-label">
+            Region
+            <select id="countdown-region" aria-label="Region" class="cd-field">
+              <option value="United States" selected>United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </label>
+          <label class="cd-field-label">
+            Event
+            <select id="countdown-region-event" aria-label="Event" class="cd-field">
+              <option value="">Custom event</option>
+            </select>
+          </label>
+        </div>
 
-    <div class="countdown-fallback is-hidden" id="countdown-fallback">
-      <div class="input-row">
-        <label for="countdown-date">Date</label>
-        <input id="countdown-date" type="date" />
+        <label class="cd-field-label cd-field-full">
+          Event name
+          <input
+            id="countdown-event-name"
+            type="text"
+            maxlength="48"
+            placeholder="e.g. Product launch, Wedding..."
+            autocomplete="off"
+            aria-label="Event name"
+            class="cd-field"
+          />
+        </label>
+
+        <div class="cd-fallback" id="countdown-fallback">
+          <label class="cd-field-label">
+            Target date
+            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
+          </label>
+          <label class="cd-field-label">
+            Time
+            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
+          </label>
+        </div>
+
+        <div class="cd-cta-row">
+          <button class="cd-btn" type="button" id="countdown-start">Start countdown</button>
+          <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-stop">Stop countdown</button>
+        </div>
       </div>
-      <div class="input-row">
-        <label for="countdown-time">Time</label>
-        <input id="countdown-time" type="time" step="60" />
+      <p class="cd-error is-hidden" id="countdown-error"></p>
+    </section>
+
+    <section class="cd-countdown-card is-hidden" id="countdown-preview-card" data-theme="launch">
+      <header class="cd-countdown-header">
+        <p class="cd-kicker" id="countdown-preview-heading">Counting down to</p>
+        <h3 class="cd-title" id="countdown-preview-title">Your event countdown</h3>
+      </header>
+
+      <div class="cd-tiles" id="countdown-preview-grid" aria-live="polite">
+        <div class="cd-tile"><span class="cd-num" id="countdown-days">--</span><span class="cd-unit">Days</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-hours">--</span><span class="cd-unit">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-minutes">--</span><span class="cd-unit">Min</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-seconds">--</span><span class="cd-unit">Sec</span></div>
       </div>
-    </div>
 
-    <button class="calculator-button full-width" type="button" id="countdown-start">
-      Start countdown
-    </button>
+      <p class="cd-expired is-hidden" id="countdown-expired">This moment has arrived.</p>
 
-    <div class="result" id="countdown-results" aria-live="polite">
-      <p class="placeholder" id="countdown-placeholder">
-        Choose a future date and time, then start the countdown.
-      </p>
-      <p class="form-error is-hidden" id="countdown-error"></p>
-      <div class="countdown-results-list is-hidden" id="countdown-results-list"></div>
-      <p class="countdown-status is-hidden" id="countdown-status"></p>
-    </div>
+      <footer class="cd-countdown-footer">
+        <span class="cd-live">
+          <span class="cd-live-dot" aria-hidden="true"></span>
+          <span id="countdown-status">Live updates Every Second</span>
+        </span>
+      </footer>
+    </section>
+  </div>
+
+  <section class="cd-milestone-section is-hidden" id="countdown-milestones-wrap">
+    <p class="cd-section-label">Milestones</p>
+    <div class="cd-milestones" id="countdown-milestones"></div>
+  </section>
+
+  <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
+    <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-summary">Copy summary</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-date">Copy date</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-google">Google Calendar</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-outlook">Outlook</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-ics">Download .ics</button>
+    <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
   </div>
 </div>
 
