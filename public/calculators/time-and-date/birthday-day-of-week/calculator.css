@@ -14,7 +14,7 @@
   --birthday-mint: #9ad8cc;
   position: relative;
   overflow: hidden;
-  padding: clamp(22px, 4vw, 42px);
+  padding: clamp(10px, 1.8vw, 18px) clamp(22px, 4vw, 40px) clamp(20px, 3.6vw, 34px);
   border-radius: 32px;
   background:
     radial-gradient(circle at 14% 18%, rgba(255, 144, 115, 0.18), transparent 24%),
@@ -68,15 +68,29 @@
 
 .panel-span-all .calculator-page-single {
   display: grid;
-  gap: clamp(30px, 4vw, 46px);
-  margin-top: -6px;
+  gap: clamp(22px, 3vw, 34px);
+  margin-top: -20px;
+}
+
+@supports selector(.layout-main:has(#calc-birthday-dow)) {
+  body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) {
+    grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) > .ads-column {
+    display: none;
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) > .center-column {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 #calc-birthday-dow .birthday-dow-product {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: clamp(30px, 4vw, 48px);
+  gap: clamp(18px, 2.8vw, 28px);
 }
 
 #calc-birthday-dow .birthday-dow-section-kicker,
@@ -155,9 +169,9 @@
 
 #calc-birthday-dow .birthday-dow-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
-  gap: clamp(24px, 4vw, 44px);
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.8vw, 26px);
+  align-items: stretch;
 }
 
 #calc-birthday-dow .birthday-dow-hero-copy {
@@ -177,23 +191,33 @@
   grid-column: 1 / -1;
   justify-self: center;
   text-align: center;
+  margin-top: -10px;
 }
 
 #calc-birthday-dow .birthday-dow-top-form {
   grid-column: 1;
+  align-self: stretch;
+  height: 100%;
+  min-height: 320px;
 }
 
 #calc-birthday-dow .birthday-dow-spotlight {
   grid-column: 2;
+  align-self: stretch;
+  height: 100%;
+  min-height: 320px;
 }
 
 #calc-birthday-dow .birthday-dow-top-form {
   display: grid;
+  align-content: start;
   gap: 12px;
-  padding: 18px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 18px 20px 20px;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.045);
 }
 
 #calc-birthday-dow .birthday-dow-input-row-top {
@@ -214,11 +238,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  min-height: 50px;
   width: 100%;
   padding: 0 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.035);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
   color: var(--birthday-ink);
   text-align: center;
 }
@@ -246,10 +270,12 @@
 
 #calc-birthday-dow .birthday-dow-spotlight {
   display: grid;
-  gap: 14px;
-  padding: clamp(22px, 3vw, 30px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.22);
+  align-content: center;
+  justify-items: start;
+  gap: 10px;
+  padding: clamp(22px, 2.6vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 16px 34px rgba(2, 6, 23, 0.18);
 }
 
 #calc-birthday-dow .birthday-dow-spotlight::after {
@@ -262,21 +288,6 @@
   background: radial-gradient(circle, rgba(242, 203, 130, 0.15), transparent 68%);
 }
 
-#calc-birthday-dow .birthday-dow-spotlight-meta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-#calc-birthday-dow .birthday-dow-spotlight-chip {
-  display: grid;
-  gap: 6px;
-  padding: 13px 15px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-#calc-birthday-dow .birthday-dow-spotlight-chip-value,
 #calc-birthday-dow .birthday-dow-fact-value,
 #calc-birthday-dow .birthday-dow-mini-weekday,
 #calc-birthday-dow .birthday-dow-weekend-title,
@@ -290,30 +301,38 @@
 #calc-birthday-dow .birthday-dow-spotlight-answer {
   margin: 0;
   font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-size: clamp(3rem, 5vw, 4.6rem);
   line-height: 0.92;
   letter-spacing: -0.06em;
   color: var(--birthday-ink);
+}
+
+#calc-birthday-dow .birthday-dow-spotlight-title {
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
+}
+
+#calc-birthday-dow .birthday-dow-spotlight-subanswer {
+  display: none;
 }
 
 #calc-birthday-dow .birthday-dow-workspace {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  padding: clamp(22px, 3vw, 32px);
-  box-shadow: 0 20px 46px rgba(2, 6, 23, 0.24);
+  padding: clamp(18px, 2.6vw, 26px);
+  box-shadow: 0 18px 38px rgba(2, 6, 23, 0.2);
 }
 
 #calc-birthday-dow .birthday-dow-board {
   display: grid;
   align-content: start;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
   min-width: 0;
 }
 
 #calc-birthday-dow .birthday-dow-board {
-  gap: 20px;
+  gap: 14px;
 }
 
 #calc-birthday-dow .birthday-dow-board-head,
@@ -435,9 +454,9 @@
 #calc-birthday-dow .birthday-dow-copy-btn {
   margin-left: auto;
   width: auto;
-  min-width: 92px;
-  padding-inline: 18px;
-  background: rgba(255, 255, 255, 0.03);
+  min-width: 84px;
+  padding-inline: 16px;
+  background: rgba(255, 255, 255, 0.022);
 }
 
 #calc-birthday-dow .birthday-dow-calc-btn {
@@ -465,84 +484,88 @@
 
 #calc-birthday-dow .birthday-dow-facts {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
 }
 
 #calc-birthday-dow .birthday-dow-fact,
 #calc-birthday-dow .birthday-dow-plan-panel,
 #calc-birthday-dow .birthday-dow-recurrence-item,
 #calc-birthday-dow .birthday-dow-weekend-item {
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.022);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 #calc-birthday-dow .birthday-dow-fact {
   display: grid;
-  grid-column: span 3;
   align-content: start;
   gap: 6px;
   min-width: 0;
-  padding: 16px 18px;
+  min-height: 158px;
+  padding: 16px;
 }
 
 #calc-birthday-dow .birthday-dow-fact-value {
-  font-size: clamp(1.7rem, 2.2vw, 2.15rem);
+  font-size: clamp(1.7rem, 2vw, 2.05rem);
   line-height: 0.96;
   text-wrap: balance;
   word-break: break-word;
 }
 
 #calc-birthday-dow .birthday-dow-fact-next {
-  grid-column: span 6;
   background:
-    linear-gradient(135deg, rgba(242, 203, 130, 0.08), rgba(255, 144, 115, 0.03)),
+    linear-gradient(180deg, rgba(242, 203, 130, 0.05), rgba(255, 144, 115, 0.015)),
     rgba(255, 255, 255, 0.032);
 }
 
 #calc-birthday-dow .birthday-dow-fact-note {
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 #calc-birthday-dow .birthday-dow-planner {
   display: grid;
-  gap: 16px;
-  margin-top: 6px;
-  padding: 18px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.022);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 14px;
+  margin-top: 2px;
+  padding: 14px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.012)),
+    rgba(255, 255, 255, 0.014);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 #calc-birthday-dow .birthday-dow-plan-panel {
-  padding: clamp(18px, 2.4vw, 22px);
+  padding: clamp(16px, 2.1vw, 20px);
+  background: rgba(255, 255, 255, 0.018);
+  border-color: rgba(255, 255, 255, 0.03);
 }
 
 #calc-birthday-dow .birthday-dow-next-snapshot {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
-  gap: 22px;
+  gap: 18px;
   align-items: start;
 }
 
 #calc-birthday-dow .birthday-dow-next-copy {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 #calc-birthday-dow .birthday-dow-next-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 #calc-birthday-dow .birthday-dow-next-stat {
   display: grid;
   gap: 6px;
-  padding: 14px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.034);
+  padding: 13px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.026);
 }
 
 #calc-birthday-dow .birthday-dow-next-stat strong {
@@ -559,7 +582,7 @@
 #calc-birthday-dow .birthday-dow-recurrence-item {
   display: grid;
   gap: 6px;
-  padding: 14px;
+  padding: 13px;
 }
 
 #calc-birthday-dow .birthday-dow-recurrence-item.is-selected {
@@ -611,7 +634,7 @@
 #calc-birthday-dow .birthday-dow-weekend-item {
   display: grid;
   gap: 8px;
-  padding: 16px;
+  padding: 14px;
 }
 
 #calc-birthday-dow .birthday-dow-empty-state {
@@ -671,12 +694,13 @@
     grid-column: 1;
   }
 
-  #calc-birthday-dow .birthday-dow-fact {
-    grid-column: span 6;
+  #calc-birthday-dow .birthday-dow-top-form,
+  #calc-birthday-dow .birthday-dow-spotlight {
+    min-height: 0;
   }
 
-  #calc-birthday-dow .birthday-dow-fact-next {
-    grid-column: span 12;
+  #calc-birthday-dow .birthday-dow-fact {
+    min-height: 0;
   }
 
   #calc-birthday-dow .birthday-dow-facts,
@@ -688,7 +712,7 @@
 
 @media (max-width: 760px) {
   #calc-birthday-dow {
-    padding: 18px;
+    padding: 14px 18px 18px;
     border-radius: 26px;
   }
 
@@ -717,7 +741,7 @@
   }
 
   #calc-birthday-dow .birthday-dow-planner {
-    padding: 16px;
+    padding: 14px;
     border-radius: 22px;
   }
 
