@@ -49,8 +49,9 @@ test.describe('Countdown Timer Generator', () => {
 
     const explanation = page.locator('#countdown-explanation');
     await expect(explanation.locator('h2')).toHaveCount(5);
-    await expect(explanation).toContainText('yearly date presets');
+    await expect(explanation).toContainText('Yearly date presets can vary by region');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.countdown-faq-item')).toHaveCount(4);
+    await expect(explanation.locator('.countdown-faq-list li')).toHaveCount(4);
+    await expect(explanation.locator('.countdown-faq-item')).toHaveCount(0);
   });
 });

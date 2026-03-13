@@ -1,107 +1,83 @@
 <div id="birthday-dow-explanation">
-  <h2>What You Learn at a Glance</h2>
-  <p>
-    This birthday day-of-week calculator is built like a planning surface, not a plain answer box.
-    It tells you the weekday you were born on, how your birthday lands in a selected year, when the
-    next birthday arrives, and which future birthdays are best positioned for long weekends.
-  </p>
-  <p>
-    For the current selection, <span data-birthday-field="dob-label">your birthday date</span> was
-    on <span data-birthday-field="birth-weekday">its birth weekday</span>. In
-    <span data-birthday-field="target-year">the selected year</span>, it lands on
-    <span data-birthday-field="target-weekday">that year's weekday</span>. Your next birthday is
-    <span data-birthday-field="next-birthday">still to be calculated</span>.
-  </p>
-
-  <h2>How to Use the Product</h2>
-  <p>
-    Enter your date of birth, keep the default target year or tap one of the quick year shortcuts,
-    then select Calculate. The top result area becomes your birthday snapshot, while the lower
-    sections turn into a planning view for future celebrations.
-  </p>
-  <p>
-    The target year is useful when you want to answer specific planning questions such as whether a
-    birthday lands on a weekday, a weekend, or close to travel-friendly dates.
-  </p>
-
-  <h2>Why the Weekday Changes Over Time</h2>
-  <p>
-    A normal year has 365 days, which is 52 full weeks plus one extra day. That extra day shifts a
-    repeating date like a birthday forward by one weekday each year. Leap years add an extra day in
-    February, which creates a bigger shift for birthdays after February 28.
-  </p>
-  <p>
-    This is why a birthday can move from Friday to Sunday over the years and why weekend birthdays
-    appear in repeating but uneven patterns.
-  </p>
-
-  <h2>How the Next Birthday Snapshot Helps</h2>
-  <p>
-    The next birthday card turns a curiosity tool into a planning tool. It shows the next
-    occurrence date, the weekday, the age reached on that date, and how many days remain. That is
-    the information people usually need when deciding whether to host an event, book a trip, or set
-    reminders.
-  </p>
-  <p>
-    The weekend radar below it extends that idea further by surfacing the next Friday, Saturday,
-    and Sunday birthday opportunities in the 12-year map.
-  </p>
-
-  <h2>Leap-Day Birthdays</h2>
-  <p>
-    If you were born on February 29, the calculator keeps February 29 in leap years. In non-leap
-    target years and non-leap next-birthday calculations, it maps the recurring birthday to
-    February 28 so the preview stays usable for planning.
-  </p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>Is the birth weekday accurate?</strong></p>
-    <p>Yes. The weekday is calculated using standard Gregorian calendar rules for the date entered.</p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>Why does the same birthday move to different weekdays?</strong></p>
+  <section class="birthday-dow-help-intro">
+    <p class="birthday-dow-help-kicker">Secondary help</p>
+    <h2>Use the answer first. Open the rest only when you need it.</h2>
     <p>
-      Because calendar years are not made of an exact number of full weeks. The leftover day or leap
-      day shifts the weekday each year.
+      For the current selection, <span data-birthday-field="dob-label">your birthday date</span>
+      fell on <span data-birthday-field="birth-weekday">its birth weekday</span>. In
+      <span data-birthday-field="target-year">the selected year</span>, it lands on
+      <span data-birthday-field="target-weekday">that year's weekday</span>. Your next birthday is
+      <span data-birthday-field="next-birthday">still to be calculated</span>.
     </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>Can I use this to plan future birthday weekends?</strong></p>
     <p>
-      Yes. The 12-year recurrence map and weekend radar are designed specifically to help you spot
-      better Friday, Saturday, and Sunday birthday years.
+      The top of the page gives the answer immediately. The 12-year recurrence map and weekend
+      radar are there for planning, not for clutter.
     </p>
-  </div>
+  </section>
 
-  <div class="birthday-dow-faq-item">
-    <p><strong>What happens for February 29 birthdays?</strong></p>
-    <p>
-      Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview
-      years.
-    </p>
-  </div>
+  <details class="birthday-dow-detail" open>
+    <summary>How to use it</summary>
+    <div class="birthday-dow-detail-body">
+      <p>
+        Enter your date of birth, keep the default year or tap a quick year, then calculate. Use
+        the top result for the instant answer and open the look-ahead section only when you want to
+        plan a future birthday.
+      </p>
+    </div>
+  </details>
 
-  <div class="birthday-dow-faq-item">
-    <p><strong>Does this store my birthday?</strong></p>
-    <p>No. The calculator runs in your browser and does not save the birthday you enter.</p>
-  </div>
+  <details class="birthday-dow-detail">
+    <summary>Why the weekday moves</summary>
+    <div class="birthday-dow-detail-body">
+      <p>
+        A normal year is 365 days, which is 52 full weeks plus one extra day. That leftover day
+        shifts a repeating date like a birthday forward by one weekday. Leap years add an extra day
+        in February, which creates a larger shift for birthdays after February 28.
+      </p>
+    </div>
+  </details>
 
-  <div class="birthday-dow-faq-item">
-    <p><strong>How far forward can I preview?</strong></p>
-    <p>
-      You can preview target years from 1600 to 2100, which covers the supported range of this
-      calculator.
-    </p>
-  </div>
+  <details class="birthday-dow-detail">
+    <summary>Leap-day birthdays</summary>
+    <div class="birthday-dow-detail-body">
+      <p>
+        If you were born on February 29, the calculator keeps February 29 in leap years and uses
+        February 28 in non-leap preview years and non-leap next-birthday calculations so the result
+        stays practical for planning.
+      </p>
+    </div>
+  </details>
 
-  <h2>Important Notes</h2>
-  <p>This calculator:</p>
-  <p>Uses the Gregorian calendar across the supported date range</p>
-  <p>Handles leap years and the February 29 fallback described above</p>
-  <p>Works best as a planning and reference tool rather than an official historical record</p>
-  <p>Keeps your date of birth in the browser and does not submit it anywhere</p>
+  <details class="birthday-dow-detail">
+    <summary>Planning ideas</summary>
+    <div class="birthday-dow-detail-body">
+      <ul>
+        <li>Check whether your next birthday is easy to celebrate on a Friday, Saturday, or Sunday.</li>
+        <li>Use the selected year to answer one planning question fast instead of browsing a calendar.</li>
+        <li>Use the 12-year recurrence map to spot better future birthday years for travel or events.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="birthday-dow-detail">
+    <summary>FAQ and privacy</summary>
+    <div class="birthday-dow-detail-body birthday-dow-faq-stack">
+      <p>
+        <strong>Is the birth weekday accurate?</strong> Yes. The result uses standard Gregorian
+        calendar rules across the supported date range.
+      </p>
+      <p>
+        <strong>Can I use this to plan future birthday weekends?</strong> Yes. That is exactly what
+        the weekend radar and 12-year recurrence map are for.
+      </p>
+      <p>
+        <strong>How far forward can I preview?</strong> The supported target year range is 1600 to
+        2100.
+      </p>
+      <p>
+        <strong>Does this store my birthday?</strong> No. Your date stays in the browser and is not
+        submitted anywhere.
+      </p>
+    </div>
+  </details>
 </div>
