@@ -22,7 +22,7 @@ body[data-page='calculator'] .panel {
 }
 
 #calculator-title {
-  margin: 0 0 18px;
+  margin: 0;
   text-align: center;
   font-family: 'DM Serif Display', 'Georgia', serif;
   font-size: clamp(28px, 4vw, 42px);
@@ -32,6 +32,11 @@ body[data-page='calculator'] .panel {
   text-shadow:
     0 0 14px rgba(76, 142, 255, 0.16),
     0 0 32px rgba(76, 142, 255, 0.08);
+}
+
+#calc-days-until .du-header-row {
+  display: block;
+  margin: 0 0 10px;
 }
 
 #calc-days-until {
@@ -47,28 +52,15 @@ body[data-page='calculator'] .panel {
   position: relative;
   max-width: 1180px;
   margin: 0 auto;
-  padding-top: 48px;
+  padding-top: 0;
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
-}
-
-#calc-days-until .du-page-meta {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: grid;
-  justify-items: end;
-  gap: 4px;
-}
-
-#calc-days-until .du-meta-line {
-  font-size: 12px;
-  color: var(--du-muted);
 }
 
 #calc-days-until .du-main-cards {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(360px, 0.95fr) minmax(420px, 1.15fr);
+  gap: 24px;
+  align-items: stretch;
   margin-bottom: 20px;
 }
 
@@ -95,6 +87,7 @@ body[data-page='calculator'] .panel {
     linear-gradient(160deg, rgba(21, 46, 92, 0.95), rgba(18, 33, 64, 0.96)),
     #15295a;
   color: #f8fbff;
+  min-height: 100%;
   box-shadow:
     0 30px 70px rgba(16, 38, 78, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -442,14 +435,21 @@ body[data-page='calculator'] .panel {
 }
 
 @media (max-width: 760px) {
+  #calc-days-until .du-header-row {
+    margin-bottom: 12px;
+  }
+
+  #calculator-title {
+    text-align: center;
+  }
+
   #calc-days-until {
     padding-top: 0;
   }
 
-  #calc-days-until .du-page-meta {
-    position: static;
-    justify-items: start;
-    margin-bottom: 14px;
+  #calc-days-until .du-main-cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   #calc-days-until .du-input-card,

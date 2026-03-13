@@ -4001,27 +4001,9 @@
         margin: 0;
         font-family: 'DM Sans', 'Segoe UI', sans-serif;
         position: relative;
-        padding-top: 44px;
+        padding-top: 8px;
         margin-left: auto;
         margin-right: auto;
-      }
-
-      #calc-countdown-timer .cd-page-meta {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: inline-grid;
-        justify-items: end;
-        text-align: right;
-        gap: 4px;
-        margin: 0;
-      }
-
-      #calc-countdown-timer .cd-page-meta .cd-timezone,
-      #calc-countdown-timer .cd-date-meta {
-        color: var(--muted2);
-        font-size: 12px;
-        line-height: 1.2;
       }
 
       #calc-countdown-timer .cd-main-cards {
@@ -4552,13 +4534,6 @@
       }
 
       @media (max-width: 720px) {
-        #calc-countdown-timer .cd-page-meta {
-          position: static;
-          justify-items: start;
-          text-align: left;
-          margin-bottom: 14px;
-        }
-
         #calc-countdown-timer .cd-main-cards {
           grid-template-columns: 1fr;
         }
@@ -4768,11 +4743,6 @@
   <h1 id="calculator-title">Countdown Timer</h1>
   <div class="calculator-page-single">
     <div id="calc-countdown-timer">
-  <div class="cd-page-meta">
-    <span class="cd-timezone" id="countdown-timezone">Local time zone: Detecting...</span>
-    <span class="cd-date-meta" id="countdown-preview-date">Date &amp; time: --</span>
-  </div>
-
   <div class="cd-main-cards">
     <section class="cd-input-card">
       <div class="cd-input-grid">

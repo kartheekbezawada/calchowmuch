@@ -61,10 +61,8 @@ const previewCard = document.querySelector('#countdown-preview-card');
 const previewBadge = document.querySelector('#countdown-preview-badge');
 const previewKicker = document.querySelector('#countdown-preview-heading');
 const previewTitle = document.querySelector('#countdown-preview-title');
-const previewDate = document.querySelector('#countdown-preview-date');
 const previewSummary = document.querySelector('#countdown-preview-summary');
 const statusMessage = document.querySelector('#countdown-status');
-const timezoneMessage = document.querySelector('#countdown-timezone');
 const milestonesWrap = document.querySelector('#countdown-milestones');
 const milestonesSection = document.querySelector('#countdown-milestones-wrap');
 const actionsWrap = document.querySelector('#countdown-actions');
@@ -551,17 +549,11 @@ function setPreviewWaitingState() {
   if (previewTitle) {
     previewTitle.textContent = 'Your event countdown';
   }
-  if (previewDate) {
-    previewDate.textContent = 'Date & time: --';
-  }
   if (previewSummary) {
     previewSummary.textContent = 'Live countdown appears after Start.';
   }
   if (statusMessage) {
     statusMessage.textContent = 'Live updates Every Second';
-  }
-  if (timezoneMessage) {
-    timezoneMessage.textContent = `Local time zone: ${getLocalTimeZone()}`;
   }
   updateCountdownTiles({ days: '--', hours: '--', minutes: '--', seconds: '--' });
   renderMilestones();
@@ -603,9 +595,6 @@ function renderPreview(target, countdown, isComplete = false) {
   if (previewTitle) {
     previewTitle.textContent = eventName;
   }
-  if (previewDate) {
-    previewDate.textContent = `Date & time: ${formatTargetLabel(target)}`;
-  }
   if (previewSummary) {
     previewSummary.textContent = isComplete
       ? `${eventName} is happening now.`
@@ -615,9 +604,6 @@ function renderPreview(target, countdown, isComplete = false) {
     statusMessage.textContent = isComplete
       ? 'This moment has arrived.'
       : 'Live updates Every Second';
-  }
-  if (timezoneMessage) {
-    timezoneMessage.textContent = `Local time zone: ${getLocalTimeZone()}`;
   }
 
   updateCountdownTiles(countdown);

@@ -41,27 +41,9 @@ body[data-page='calculator'] .ads-column {
   margin: 0;
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
   position: relative;
-  padding-top: 44px;
+  padding-top: 8px;
   margin-left: auto;
   margin-right: auto;
-}
-
-#calc-countdown-timer .cd-page-meta {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: inline-grid;
-  justify-items: end;
-  text-align: right;
-  gap: 4px;
-  margin: 0;
-}
-
-#calc-countdown-timer .cd-page-meta .cd-timezone,
-#calc-countdown-timer .cd-date-meta {
-  color: var(--muted2);
-  font-size: 12px;
-  line-height: 1.2;
 }
 
 #calc-countdown-timer .cd-main-cards {
@@ -592,13 +574,6 @@ body[data-page='calculator'] .ads-column {
 }
 
 @media (max-width: 720px) {
-  #calc-countdown-timer .cd-page-meta {
-    position: static;
-    justify-items: start;
-    text-align: left;
-    margin-bottom: 14px;
-  }
-
   #calc-countdown-timer .cd-main-cards {
     grid-template-columns: 1fr;
   }
