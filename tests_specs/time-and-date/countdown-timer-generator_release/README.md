@@ -16,4 +16,4 @@ Pass criteria:
 Ownership: calculator route owner.
 
 Route:
-- /time-and-date/countdown-timer-generator/
+- /time-and-date/countdown-timer/

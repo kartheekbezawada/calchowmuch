@@ -190,8 +190,8 @@
         ]
       }
     },
-    "/time-and-date/countdown-timer-generator/": {
-      "route": "/time-and-date/countdown-timer-generator/",
+    "/time-and-date/countdown-timer/": {
+      "route": "/time-and-date/countdown-timer/",
       "calculatorId": "countdown-timer-generator",
       "clusterId": "time-and-date",
       "buildId": "wave0-20260220",

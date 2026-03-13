@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:time-and-date/birthday-day-of-week`
+- Scope: `calc:time-and-date/countdown-timer-generator`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/time-and-date/birthday-day-of-week/index.html` | 0 | 0→0 | 0→0 | 0→0 | FAQ []<br>Breadcrumb []<br>Software [] | - | OK | UNCHANGED |
+| `public/time-and-date/countdown-timer/index.html` | 0 | 0→0 | 0→0 | 0→0 | FAQ []<br>Breadcrumb []<br>Software [] | - | OK | UNCHANGED |
 

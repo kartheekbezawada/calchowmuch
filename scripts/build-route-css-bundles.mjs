@@ -45,6 +45,8 @@ const CRITICAL_FULL_SOURCES = new Set([
   'calculators/percentage-calculators/reverse-percentage-calculator/calculator.css',
   'calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css',
   'calculators/percentage-calculators/commission-calculator/calculator.css',
+  'calculators/time-and-date/birthday-day-of-week/calculator.css',
+  'calculators/time-and-date/countdown-timer-generator/calculator.css',
   'calculators/time-and-date/sleep-time-calculator/calculator.css',
   'calculators/time-and-date/wake-up-time-calculator/calculator.css',
   'calculators/time-and-date/nap-time-calculator/calculator.css',
@@ -87,6 +89,8 @@ const UX_FIRST_DEFER_CORE_ROUTES = new Set([
   '/percentage-calculators/reverse-percentage-calculator/',
   '/percentage-calculators/percent-to-fraction-decimal-calculator/',
   '/percentage-calculators/commission-calculator/',
+  '/time-and-date/birthday-day-of-week/',
+  '/time-and-date/countdown-timer/',
   '/time-and-date/sleep-time-calculator/',
   '/time-and-date/wake-up-time-calculator/',
   '/time-and-date/nap-time-calculator/',
@@ -108,6 +112,8 @@ const STRICT_INLINE_CALCULATORS = new Set([
   'percentage-composition',
   'percent-to-fraction-decimal',
   'commission-calculator',
+  'birthday-day-of-week',
+  'countdown-timer-generator',
   'sleep-time-calculator',
   'wake-up-time-calculator',
   'nap-time-calculator',
@@ -370,6 +376,21 @@ const PERCENTAGE_ISOLATED_ROUTES = [
 ];
 
 const TIME_AND_DATE_ISOLATED_ROUTES = [
+  {
+    calculatorId: 'birthday-day-of-week',
+    route: '/time-and-date/birthday-day-of-week/',
+    relPath: 'time-and-date/birthday-day-of-week',
+    routeCss: 'calculators/time-and-date/birthday-day-of-week/calculator.css',
+    topNavStatic: false,
+  },
+  {
+    calculatorId: 'countdown-timer-generator',
+    route: '/time-and-date/countdown-timer/',
+    relPath: 'time-and-date/countdown-timer',
+    sourceRelPath: 'time-and-date/countdown-timer-generator',
+    routeCss: 'calculators/time-and-date/countdown-timer-generator/calculator.css',
+    topNavStatic: false,
+  },
   {
     calculatorId: 'sleep-time-calculator',
     route: '/time-and-date/sleep-time-calculator/',
@@ -723,7 +744,7 @@ function buildAssetManifest(routeBundleManifest) {
       },
       js: {
         core: ['/assets/js/core-shell.js'],
-        route: [`/calculators/${routeConfig.relPath}/module.js`],
+        route: [`/calculators/${routeConfig.sourceRelPath || routeConfig.relPath}/module.js`],
       },
       options: {
         topNavStatic: routeConfig.topNavStatic !== false,

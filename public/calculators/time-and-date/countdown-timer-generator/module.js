@@ -102,34 +102,33 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Can I use this for birthdays, launches, or trips?',
+      name: 'How do I make a countdown timer for a future date?',
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          'Yes. It works for launches, travel, birthdays, exams, and any event where you need a clear live countdown.',
+          'Enter an event name, choose the future date and time, then start the countdown to see the live time remaining.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does this use my local time zone?',
+      name: 'Does the countdown use my local time zone?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text:
-          'Yes. The countdown follows your device clock and local time zone.',
+        text: 'Yes. The countdown follows your device clock and local time zone.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I pick events by region quickly?',
+      name: 'Can I add the event to Google Calendar or Outlook?',
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          'Yes. Use Region and Event to auto-fill common dates, then edit name, date, or time before starting.',
+          'Yes. After you start the countdown, you can copy the summary or send the event to Google Calendar, Outlook, or an .ics file.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens when the event time arrives?',
+      name: 'What happens when the timer reaches zero?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'The countdown reaches zero and shows that the event is live.',
@@ -143,20 +142,20 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Countdown Page Builder | Annual Dates and Holiday Presets',
-      url: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+      name: 'Countdown Timer | Live Time Left to Any Date',
+      url: 'https://calchowmuch.com/time-and-date/countdown-timer/',
       description:
-        'Build a live countdown page for launches, deadlines, annual dates, holidays, birthdays, and trips.',
+        'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
       inLanguage: 'en',
     },
   ],
 };
 
 const metadata = {
-  title: 'Countdown Page Builder | Annual Dates and Holiday Presets',
+  title: 'Countdown Timer | Live Time Left to Any Date',
   description:
-    'Build a live countdown page for launches, deadlines, annual dates, holidays, birthdays, and trips.',
-  canonical: 'https://calchowmuch.com/time-and-date/countdown-timer-generator/',
+    'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+  canonical: 'https://calchowmuch.com/time-and-date/countdown-timer/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -169,7 +168,7 @@ function ensureH1Title() {
   if (!title) {
     return;
   }
-  const desired = 'Count Down Timer';
+  const desired = 'Countdown Timer';
   if (title.tagName !== 'H1') {
     const h1 = document.createElement('h1');
     h1.id = 'calculator-title';

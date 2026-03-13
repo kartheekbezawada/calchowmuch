@@ -912,12 +912,12 @@
             },
             {
               "id": "countdown-timer-generator",
-              "name": "Countdown Timer Generator",
-              "url": "/time-and-date/countdown-timer-generator/",
+              "name": "Countdown Timer",
+              "url": "/time-and-date/countdown-timer/",
               "keywords": [
-                "countdown",
-                "timer",
-                "date and time",
+                "countdown timer",
+                "time left",
+                "date countdown",
                 "event countdown"
               ],
               "routeArchetype": "calc_exp",

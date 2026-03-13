@@ -1,21 +1,26 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Birthday Day-of-Week Calculator', () => {
-  test('BIRTHDAY-DOW-TEST-E2E-1: single-pane journey, product modules, and copy summary', async ({
+  test('BIRTHDAY-DOW-TEST-E2E-1: single-pane journey, intent options, planner views, and copy summary', async ({
     page,
   }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.birthday-dow-studio')).toBeVisible();
-    await expect(page.locator('.birthday-dow-lookahead')).toBeVisible();
+    await expect(page.locator('.birthday-dow-workspace')).toBeVisible();
+    await expect(page.locator('[data-birthday-intent]')).toHaveCount(3);
+    await expect(page.locator('[data-plan-view]')).toHaveCount(3);
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
 
     const leftActive = page.locator('.fin-nav-item.is-active');
     await expect(leftActive).toContainText('Birthday Day-of-Week');
+
+    await page.locator('[data-birthday-intent="weekend"]').click();
+    await expect(page.locator('[data-birthday-intent="weekend"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-plan-view="weekend"]')).toHaveAttribute('aria-pressed', 'true');
 
     await page.locator('#birthday-dow-dob').fill('1990-06-15');
     await page.locator('#birthday-dow-year').fill('2025');
@@ -28,6 +33,11 @@ test.describe('Birthday Day-of-Week Calculator', () => {
     await expect(page.locator('#birthday-dow-weekend-highlights .birthday-dow-weekend-item')).toHaveCount(3);
     await expect(page.locator('#birthday-dow-next-age')).not.toHaveText('--');
     await expect(page.locator('#birthday-dow-next-days')).not.toHaveText('--');
+    await expect(page.locator('#birthday-dow-next-panel-title')).toContainText(',');
+
+    await page.locator('[data-plan-view="timeline"]').click();
+    await expect(page.locator('[data-plan-view="timeline"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-plan-panel="timeline"]')).toBeVisible();
 
     await page.evaluate(() => {
       Object.defineProperty(navigator, 'clipboard', {

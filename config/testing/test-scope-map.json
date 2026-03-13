@@ -367,7 +367,7 @@
         "/time-and-date/overtime-hours-calculator/",
         "/time-and-date/time-between-two-dates-calculator/",
         "/time-and-date/days-until-a-date-calculator/",
-        "/time-and-date/countdown-timer-generator/",
+        "/time-and-date/countdown-timer/",
         "/time-and-date/age-calculator/",
         "/time-and-date/birthday-day-of-week/"
       ],
@@ -409,7 +409,7 @@
           "releaseDir": "tests_specs/time-and-date/days-until-a-date-calculator_release"
         },
         "countdown-timer-generator": {
-          "route": "/time-and-date/countdown-timer-generator/",
+          "route": "/time-and-date/countdown-timer/",
           "releaseDir": "tests_specs/time-and-date/countdown-timer-generator_release"
         },
         "age-calculator": {

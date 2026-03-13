@@ -3,20 +3,19 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Sleep Time Calculator | Bedtime and Wake-Up Cycles</title>
-    <meta name="description" content="Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer." />
-    <link rel="canonical" href="https://calchowmuch.com/time-and-date/sleep-time-calculator/" />
-    <meta property="og:title" content="Sleep Time Calculator | Bedtime and Wake-Up Cycles" />
-    <meta property="og:description" content="Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer." />
+    <title>Countdown Timer | Live Time Left to Any Date</title>
+    <meta name="description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
+    <link rel="canonical" href="https://calchowmuch.com/time-and-date/countdown-timer/" />
+    <meta property="og:title" content="Countdown Timer | Live Time Left to Any Date" />
+    <meta property="og:description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/time-and-date/sleep-time-calculator/" />
+    <meta property="og:url" content="https://calchowmuch.com/time-and-date/countdown-timer/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sleep Time Calculator | Bedtime and Wake-Up Cycles" />
-    <meta name="twitter:description" content="Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer." />
+    <meta name="twitter:title" content="Countdown Timer | Live Time Left to Any Date" />
+    <meta name="twitter:description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/time-and-date/sleep-time-calculator/#softwareapplication","name":"Sleep Time Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/time-and-date/sleep-time-calculator/","description":"Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/time-and-date/sleep-time-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Time And Date","item":"https://calchowmuch.com/time-and-date/"},{"@type":"ListItem","position":3,"name":"Sleep Time Calculator","item":"https://calchowmuch.com/time-and-date/sleep-time-calculator/"}]}]}</script>
     <style data-route-critical="true">
       /* critical source: /assets/css/core-tokens.css */
       /* Core shared design tokens for isolated route bundles. */
@@ -3958,753 +3957,675 @@
 
       }
 
-      /* critical source: /calculators/time-and-date/sleep-time-calculator/calculator.css */
-      #calc-sleep-time {
-        --ink: #0a0a1a;
-        --deep: #07091a;
-        --mid: #0f1535;
-        --mist: #1a2048;
-        --lavender: #8b8fff;
-        --moon: #e8e4d8;
-        --gold: #f5c842;
-        --teal: #5ee8c8;
+      /* critical source: /calculators/time-and-date/countdown-timer-generator/calculator.css */
+      /* Shared calculator styles live in /assets/css/calculator.css */
+
+      #calculator-title {
+        margin: 0 0 14px;
+        text-align: center;
+        font-family: 'DM Serif Display', 'Georgia', serif;
+        font-size: clamp(30px, 4.8vw, 44px);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: #f2cb66;
+        text-shadow:
+          0 0 12px rgba(232, 201, 122, 0.38),
+          0 0 28px rgba(232, 201, 122, 0.2);
+      }
+
+      body[data-page='calculator'] .layout-main {
+        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+      }
+
+      body[data-page='calculator'] .ads-column {
+        display: none;
+      }
+
+      #calc-countdown-timer {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --surface2: #16161f;
+        --border: rgba(255, 255, 255, 0.06);
+        --border-bright: rgba(255, 255, 255, 0.12);
+        --accent: #e8c97a;
+        --accent-dim: rgba(232, 201, 122, 0.12);
+        --accent-glow: rgba(232, 201, 122, 0.25);
+        --glass-fill: rgba(255, 255, 255, 0.03);
+        --text: #f0ede8;
+        --muted: #6b6878;
+        --muted2: #9996a8;
+        --red: #e87a7a;
+        --green: #7ae8a8;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0;
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
         position: relative;
+        padding-top: 44px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #calc-countdown-timer .cd-page-meta {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline-grid;
+        justify-items: end;
+        text-align: right;
+        gap: 4px;
+        margin: 0;
+      }
+
+      #calc-countdown-timer .cd-page-meta .cd-timezone,
+      #calc-countdown-timer .cd-date-meta {
+        color: var(--muted2);
+        font-size: 12px;
+        line-height: 1.2;
+      }
+
+      #calc-countdown-timer .cd-main-cards {
+        display: grid;
+        grid-template-columns: minmax(360px, 1fr) minmax(420px, 1.2fr);
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+
+      #calc-countdown-timer .cd-input-card {
+        background:
+          linear-gradient(140deg, rgba(24, 24, 35, 0.86), rgba(13, 13, 20, 0.8)),
+          var(--glass-fill);
+        border: 1px solid var(--border-bright);
+        border-radius: 16px;
+        padding: 34px;
+        margin-bottom: 0;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      #calc-countdown-timer .cd-input-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-countdown-timer .cd-field-full {
+        grid-column: 1 / -1;
+      }
+
+      #calc-countdown-timer .cd-fallback {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      #calc-countdown-timer .cd-field-label {
+        display: grid;
+        gap: 8px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-field {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 13px 16px;
+        color: var(--text);
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
+        font-size: 15px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        -webkit-appearance: none;
+        color-scheme: dark;
+      }
+
+      #calc-countdown-timer #countdown-event-name {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--accent-dim);
+      }
+
+      #calc-countdown-timer .cd-field:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-dim);
+      }
+
+      #calc-countdown-timer .cd-field::placeholder {
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-btn {
+        width: auto;
+        background: var(--accent);
+        color: #0a0a0f;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition:
+          opacity 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+
+      #calc-countdown-timer .cd-btn:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px var(--accent-glow);
+      }
+
+      #calc-countdown-timer .cd-btn:active {
+        transform: translateY(0);
+      }
+
+      #calc-countdown-timer .cd-btn-sm {
+        width: auto;
+        background: var(--surface2);
+        border: 1px solid var(--border-bright);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+
+      #calc-countdown-timer .cd-btn-ghost:hover {
+        border-color: var(--accent);
+        background: var(--accent-dim);
+        box-shadow: none;
+      }
+
+      #calc-countdown-timer .cd-cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+        align-items: stretch;
+      }
+
+      #calc-countdown-timer #countdown-start {
+        flex: 1 1 auto;
+      }
+
+      #calc-countdown-timer #countdown-stop {
+        flex: 1 1 auto;
+      }
+
+      #calc-countdown-timer .cd-error {
+        margin: 12px 0 0;
+        color: var(--red);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      #calc-countdown-timer .cd-countdown-card {
+        background:
+          linear-gradient(145deg, rgba(22, 22, 33, 0.9), rgba(12, 12, 20, 0.82)),
+          var(--glass-fill);
+        border: 1px solid var(--border-bright);
         border-radius: 20px;
         overflow: hidden;
-        background: radial-gradient(ellipse at 20% 0%, rgba(94, 232, 200, 0.1), transparent 45%),
-          radial-gradient(ellipse at 85% 0%, rgba(139, 143, 255, 0.14), transparent 42%),
-          linear-gradient(180deg, #050715 0%, #04061a 100%);
-        border: 1px solid rgba(139, 143, 255, 0.18);
+        margin-bottom: 0;
+        min-height: 100%;
+        position: relative;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
 
-      /* Keep route H1 in DOM for SEO/accessibility, but remove it visually */
-      .panel-span-all > #calculator-title {
+      #calc-countdown-timer .cd-tile,
+      #calc-countdown-timer .countdown-milestone {
+        transition:
+          border-color 0.28s ease,
+          box-shadow 0.28s ease,
+          transform 0.28s ease;
+      }
+
+      #calc-countdown-timer .cd-tile::after,
+      #calc-countdown-timer .countdown-milestone::before {
+        content: '';
         position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      .panel-span-all > #calculator-title::after {
-        content: none;
-      }
-
-      /* Pull visual hero area upward after hiding title */
-      .panel-span-all .calculator-page-single {
-        margin-top: -14px;
-      }
-
-      #calc-sleep-time .sleep-scene {
-        position: absolute;
-        inset: 0;
+        inset: -35% -18%;
+        background:
+          radial-gradient(circle at 80% 8%, rgba(232, 201, 122, 0.42), transparent 44%),
+          radial-gradient(circle at 10% 100%, rgba(122, 232, 168, 0.24), transparent 36%);
+        opacity: 0;
+        transform: translateY(10px) scale(1.05);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
         pointer-events: none;
         z-index: 0;
       }
 
-      #calc-sleep-time .sleep-aurora {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(ellipse 80% 40% at 20% 0%, rgba(94, 232, 200, 0.11) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 30% at 80% 10%, rgba(139, 143, 255, 0.13) 0%, transparent 60%),
-          radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 123, 156, 0.06) 0%, transparent 70%);
-        animation: sleep-aurora-shift 12s ease-in-out infinite alternate;
+      #calc-countdown-timer .cd-countdown-header {
+        padding: 28px 32px 24px;
+        border-bottom: 1px solid var(--border);
       }
 
-      #calc-sleep-time .sleep-starfield {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-      }
-
-      #calc-sleep-time .sleep-star {
-        position: absolute;
-        border-radius: 999px;
-        background: #fff;
-        opacity: var(--base-op, 0.5);
-        animation: sleep-twinkle var(--dur, 3s) ease-in-out infinite alternate;
-      }
-
-      #calc-sleep-time .sleep-moon-wrap {
-        position: absolute;
-        top: 24px;
-        right: 26px;
-      }
-
-      #calc-sleep-time .sleep-moon-circle {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 35% 35%, #fff8dc, #f5c842 40%, #d4a017 80%);
-        box-shadow: 0 0 35px 12px rgba(245, 200, 66, 0.23), 0 0 80px 24px rgba(245, 200, 66, 0.09);
-        animation: sleep-moon-glow 6s ease-in-out infinite alternate;
-      }
-
-      #calc-sleep-time .sleep-container {
-        position: relative;
-        z-index: 1;
-        max-width: 640px;
-        margin: 0 auto;
-        padding: 18px 24px 56px;
-      }
-
-      #calc-sleep-time .sleep-hero-tag {
-        font-size: 11px;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--teal);
-        opacity: 0.85;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      #calc-sleep-time .sleep-hero-tag::before {
-        content: '';
-        width: 30px;
-        height: 1px;
-        background: var(--teal);
-      }
-
-      #calc-sleep-time .sleep-hero-title {
+      #calc-countdown-timer .cd-kicker {
         margin: 0 0 8px;
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: clamp(1.95rem, 5vw, 2.9rem);
-        font-weight: 700;
-        line-height: 1.08;
-        color: var(--moon);
-      }
-
-      #calc-sleep-time .sleep-hero-title em {
-        color: var(--lavender);
-        font-style: italic;
-      }
-
-      #calc-sleep-time .sleep-tagline {
-        margin: 0 0 30px;
-        font-size: 14px;
-        line-height: 1.6;
-        color: rgba(232, 228, 216, 0.58);
-      }
-
-      /* Keep tagline in DOM but hide visually */
-      #calc-sleep-time .sleep-tagline {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      #calc-sleep-time .sleep-card {
-        background: rgba(15, 21, 53, 0.7);
-        border: 1px solid rgba(139, 143, 255, 0.18);
-        border-radius: 24px;
-        padding: 22px;
-        backdrop-filter: blur(16px);
-        box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-        animation: sleep-card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-
-      #calc-sleep-time .sleep-two-box {
-        width: 100%;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: minmax(0, 1.8fr) minmax(300px, 1.25fr);
-        gap: 14px;
-        align-items: stretch;
-      }
-
-      #calc-sleep-time .sleep-card-answer {
-        min-height: 100%;
-      }
-
-      #calc-sleep-time .sleep-card {
-        height: 100%;
-      }
-
-      #calc-sleep-time .sleep-answer-title {
-        font-size: 0.9rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgba(186, 230, 253, 0.88);
-        margin-bottom: 8px;
-      }
-
-      #calc-sleep-time .sleep-answer-note {
-        margin: 0 0 14px;
-        font-size: 0.78rem;
-        line-height: 1.4;
-        color: rgba(203, 213, 225, 0.78);
-      }
-
-      #calc-sleep-time .sleep-mode-label,
-      #calc-sleep-time .sleep-field-label {
-        font-size: 11px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(232, 228, 216, 0.42);
-        margin-bottom: 10px;
-      }
-
-      #calc-sleep-time .sleep-toggle-wrap {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 26px;
-      }
-
-      #calc-sleep-time .sleep-toggle-btn {
-        flex: 1;
-        min-height: 48px;
-        border-radius: 12px;
-        border: 1px solid rgba(139, 143, 255, 0.24);
-        background: transparent;
-        color: rgba(232, 228, 216, 0.58);
-        font-size: 14px;
-        font-weight: 600;
-      }
-
-      #calc-sleep-time .sleep-toggle-btn.is-active,
-      #calc-sleep-time .sleep-toggle-btn[aria-pressed='true'] {
-        background: linear-gradient(135deg, rgba(139, 143, 255, 0.32), rgba(94, 232, 200, 0.2));
-        border-color: rgba(139, 143, 255, 0.56);
-        color: var(--moon);
-        box-shadow: 0 0 20px rgba(139, 143, 255, 0.22);
-      }
-
-      #calc-sleep-time .sleep-time-input-wrap {
-        position: relative;
-        margin-bottom: 14px;
-      }
-
-      #calc-sleep-time .sleep-test-proxy {
-        display: none !important;
-      }
-
-      #calc-sleep-time .sleep-time-input {
-        width: 100%;
-        padding: 18px 52px 18px 20px;
-        background: rgba(7, 9, 26, 0.6);
-        border: 1px solid rgba(139, 143, 255, 0.22);
-        border-radius: 14px;
-        color: var(--moon);
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 24px;
-        letter-spacing: 0.05em;
-        outline: none;
-        transition: border-color 0.25s, box-shadow 0.25s;
-        color-scheme: dark;
-      }
-
-      #calc-sleep-time .sleep-time-input:focus {
-        border-color: rgba(139, 143, 255, 0.62);
-        box-shadow: 0 0 0 3px rgba(139, 143, 255, 0.12);
-      }
-
-      #calc-sleep-time .sleep-time-icon {
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(232, 228, 216, 0.9);
-        font-size: 22px;
-      }
-
-      #calc-sleep-time .sleep-advanced {
-        margin: 0 0 18px;
-        border: 1px solid rgba(139, 143, 255, 0.24);
-        border-radius: 14px;
-        background: linear-gradient(165deg, rgba(8, 11, 32, 0.86), rgba(6, 9, 26, 0.72));
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        overflow: clip;
-      }
-
-      #calc-sleep-time .sleep-advanced summary {
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 12px 14px;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.045em;
-        color: rgba(232, 228, 216, 0.88);
-        transition: background-color 0.2s ease, color 0.2s ease;
-      }
-
-      #calc-sleep-time .sleep-advanced summary:hover {
-        background: rgba(139, 143, 255, 0.08);
-      }
-
-      #calc-sleep-time .sleep-advanced summary:focus-visible {
-        outline: 2px solid rgba(94, 232, 200, 0.55);
-        outline-offset: -2px;
-      }
-
-      #calc-sleep-time .sleep-advanced summary::-webkit-details-marker {
-        display: none;
-      }
-
-      #calc-sleep-time .sleep-advanced summary::after {
-        content: '+';
-        font-size: 16px;
-        line-height: 1;
-        color: rgba(125, 211, 252, 0.9);
-        transform: rotate(0deg);
-        transition: transform 0.22s ease, color 0.22s ease;
-      }
-
-      #calc-sleep-time .sleep-advanced[open] summary {
-        background: rgba(125, 211, 252, 0.06);
-        color: rgba(232, 228, 216, 0.95);
-      }
-
-      #calc-sleep-time .sleep-advanced[open] summary::after {
-        content: '−';
-        color: rgba(94, 232, 200, 0.95);
-      }
-
-      #calc-sleep-time .sleep-advanced-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        padding: 12px 12px 12px;
-        border-top: 1px solid rgba(139, 143, 255, 0.14);
-      }
-
-      #calc-sleep-time .sleep-advanced-grid .input-row {
-        display: grid;
-        gap: 6px;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid rgba(139, 143, 255, 0.2);
-        background: rgba(7, 9, 26, 0.64);
-      }
-
-      #calc-sleep-time .sleep-advanced-grid .input-row label {
-        margin: 0;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(186, 230, 253, 0.88);
-      }
-
-      #calc-sleep-time .sleep-advanced-grid .input-row input {
-        width: 100%;
-        min-height: 38px;
-        padding: 8px 10px;
-        border: 1px solid rgba(139, 143, 255, 0.3);
-        border-radius: 9px;
-        background: rgba(3, 6, 24, 0.92);
-        color: rgba(232, 228, 216, 0.95);
-        font-size: 0.95rem;
-        font-weight: 600;
-        letter-spacing: 0.015em;
-        color-scheme: dark;
-        appearance: none;
-        -webkit-appearance: none;
-      }
-
-      #calc-sleep-time .sleep-advanced-grid .input-row input:focus {
-        outline: none;
-        border-color: rgba(94, 232, 200, 0.58);
-        box-shadow: 0 0 0 3px rgba(94, 232, 200, 0.14);
-      }
-
-      #calc-sleep-time .sleep-advanced-grid .input-row input::-webkit-calendar-picker-indicator {
-        filter: invert(0.9) sepia(0.22) saturate(1.4) hue-rotate(150deg);
-        opacity: 0.8;
-        cursor: pointer;
-      }
-
-      #calc-sleep-time .sleep-calc-btn {
-        width: 100%;
-        min-height: 54px;
-        margin-top: 14px;
-        padding: 14px;
-        border: none;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #6b6fff 0%, #5ee8c8 100%);
-        color: var(--ink);
-        font-size: 15px;
-        font-weight: 800;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.3s;
-        box-shadow: 0 12px 34px rgba(107, 111, 255, 0.36);
-      }
-
-      #calc-sleep-time .sleep-calc-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 42px rgba(107, 111, 255, 0.48);
-      }
-
-      #calc-sleep-time #sleep-results {
-        margin-top: 0;
-      }
-
-      #calc-sleep-time #sleep-placeholder {
-        margin: 0;
-        color: rgba(232, 228, 216, 0.62);
-      }
-
-      #calc-sleep-time #sleep-placeholder.is-hidden {
-        display: none;
-      }
-
-      #calc-sleep-time .sleep-results-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      #calc-sleep-time .sleep-result {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-areas:
-          'time badge'
-          'meta meta';
-        align-items: center;
-        gap: 4px 10px;
-        padding: 14px 14px;
-        background: rgba(7, 9, 26, 0.52);
-        border: 1px solid rgba(139, 143, 255, 0.14);
-        border-radius: 12px;
-        animation: sleep-card-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-
-      #calc-sleep-time .sleep-result:nth-child(1) {
-        animation-delay: 0.05s;
-      }
-
-      #calc-sleep-time .sleep-result:nth-child(2) {
-        animation-delay: 0.12s;
-      }
-
-      #calc-sleep-time .sleep-result:nth-child(3) {
-        animation-delay: 0.19s;
-      }
-
-      #calc-sleep-time .sleep-result.is-primary {
-        border-color: rgba(94, 232, 200, 0.48);
-        background: rgba(94, 232, 200, 0.07);
-        box-shadow: 0 0 28px rgba(94, 232, 200, 0.12);
-      }
-
-      #calc-sleep-time .sleep-result-info {
-        display: contents;
-      }
-
-      #calc-sleep-time .cycle-label {
-        display: none;
-      }
-
-      #calc-sleep-time .sleep-result.is-primary .cycle-label {
-        color: var(--teal);
-      }
-
-      #calc-sleep-time .sleep-result-hours {
-        grid-area: meta;
-        font-size: 12px;
-        color: rgba(226, 232, 240, 0.82);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.3;
-      }
-
-      #calc-sleep-time .sleep-result-time {
-        grid-area: time;
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        color: var(--moon);
-      }
-
-      #calc-sleep-time .sleep-result.is-primary .sleep-result-time {
-        color: var(--teal);
-      }
-
-      #calc-sleep-time .sleep-recommended-badge {
-        grid-area: badge;
-        display: none;
+        font-family: 'DM Mono', 'Consolas', monospace;
         font-size: 10px;
-        letter-spacing: 0.2em;
         text-transform: uppercase;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(94, 232, 200, 0.32);
-        background: rgba(94, 232, 200, 0.16);
-        color: var(--teal);
+        letter-spacing: 0.14em;
+        color: var(--accent);
       }
 
-      #calc-sleep-time .sleep-result.is-primary .sleep-recommended-badge {
-        display: inline-flex;
+      #calc-countdown-timer .cd-title {
+        margin: 0 0 6px;
+        font-family: 'DM Serif Display', 'Georgia', serif;
+        font-size: clamp(22px, 4vw, 34px);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        position: static;
       }
 
-      #calc-sleep-time .sleep-footer-note {
-        margin: 26px 0 0;
-        text-align: center;
-        font-size: 12px;
-        line-height: 1.8;
-        color: rgba(232, 228, 216, 0.3);
-      }
-
-      #calc-sleep-time .sleep-footer-note span {
-        color: rgba(94, 232, 200, 0.56);
-      }
-
-      #sleep-time-explanation {
-        margin-top: 20px;
-        display: grid;
-        gap: 0.95rem;
-        background: linear-gradient(160deg, rgba(13, 20, 40, 0.72), rgba(8, 14, 30, 0.64));
-        border: 1px solid rgba(125, 211, 252, 0.18);
-        border-radius: 16px;
-        padding: 1.15rem;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 36px rgba(2, 8, 23, 0.35);
-      }
-
-      /* Remove shared panel heading underlines in explanation area (and its title row) */
-      .panel-span-all > h3::after,
-      .panel.panel-span-all > h3::after,
-      .panel.panel-scroll.panel-span-all > h3::after,
-      #sleep-time-explanation h2::after,
-      #sleep-time-explanation h3::after {
+      #calc-countdown-timer .cd-title::after {
         content: none !important;
         display: none !important;
       }
 
-      #sleep-time-explanation .sleep-exp-section {
+      #calc-countdown-timer .cd-tiles {
         display: grid;
-        gap: 0.6rem;
-        padding: 0.68rem 0.72rem;
-        border: 1px solid rgba(148, 163, 184, 0.14);
-        border-radius: 12px;
-        background: rgba(10, 17, 34, 0.48);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
       }
 
-      #sleep-time-explanation h2,
-      #sleep-time-explanation h3 {
-        margin: 0;
-        color: #f1f5f9;
-        font-family: Georgia, 'Times New Roman', serif;
-      }
-
-      #sleep-time-explanation h2 {
-        font-size: 1.08rem;
-        letter-spacing: 0.01em;
-      }
-
-      #sleep-time-explanation h3 {
-        font-size: 0.92rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(125, 211, 252, 0.92);
-        margin-top: 0.2rem;
-      }
-
-      #sleep-time-explanation .sleep-formula-heading {
-        margin: 0.12rem 0 0;
-        font-size: 0.74rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(125, 211, 252, 0.9);
-        font-family: ui-sans-serif, system-ui, sans-serif;
-      }
-
-      #sleep-time-explanation p {
-        margin: 0;
-        line-height: 1.62;
-        color: rgba(226, 232, 240, 0.92);
-        font-family: ui-sans-serif, system-ui, sans-serif;
-        font-size: 0.92rem;
-      }
-
-      #sleep-time-explanation .sleep-explanation-list {
-        margin: 0;
-        padding-left: 1.05rem;
-        display: grid;
-        gap: 0.3rem;
-      }
-
-      #sleep-time-explanation .sleep-explanation-list li {
-        color: rgba(186, 230, 253, 0.92);
-        line-height: 1.58;
-        font-family: ui-sans-serif, system-ui, sans-serif;
-        font-size: 0.9rem;
-      }
-
-      #sleep-time-explanation .sleep-formula-block {
+      #calc-countdown-timer .cd-tile {
+        background: var(--surface2);
+        padding: 32px 12px 24px;
         text-align: center;
-        font-size: 0.86rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        padding: 0.55rem 0.72rem;
-        border-radius: 10px;
-        background: rgba(7, 14, 28, 0.72);
-        border: 1px solid rgba(56, 189, 248, 0.24);
-        color: rgba(186, 230, 253, 0.95);
+        position: relative;
+        overflow: hidden;
       }
 
-      #sleep-time-explanation .sleep-faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.72rem;
+      #calc-countdown-timer .cd-tile > *,
+      #calc-countdown-timer .countdown-milestone > * {
+        position: relative;
+        z-index: 1;
       }
 
-      #sleep-time-explanation .sleep-faq-item {
-        display: grid;
-        gap: 0.42rem;
-        padding: 0.78rem 0.82rem;
-        border: 1px solid rgba(148, 163, 184, 0.2);
+      #calc-countdown-timer .cd-tile::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent);
+        opacity: 0.2;
+      }
+
+      #calc-countdown-timer .cd-num {
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: clamp(36px, 6vw, 58px);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: var(--text);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #calc-countdown-timer .cd-unit {
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-expired {
+        background: rgba(232, 122, 122, 0.08);
+        border: 1px solid rgba(232, 122, 122, 0.2);
         border-radius: 12px;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.64), rgba(8, 15, 28, 0.6));
-        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+        padding: 16px 20px;
+        color: var(--red);
+        font-size: 14px;
+        margin: 16px 32px 0;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        text-align: center;
+        letter-spacing: 0.04em;
       }
 
-      #sleep-time-explanation .sleep-faq-item:hover {
-        transform: translateY(-1px);
-        border-color: rgba(125, 211, 252, 0.3);
-        box-shadow: 0 10px 24px rgba(2, 8, 23, 0.24);
+      #calc-countdown-timer .cd-countdown-footer {
+        padding: 0 32px 6px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        position: relative;
+        min-height: 52px;
       }
 
-      #sleep-time-explanation .sleep-faq-item p:first-child {
-        color: #e0f2fe;
-        font-size: 0.84rem;
-        font-family: ui-sans-serif, system-ui, sans-serif;
+      #calc-countdown-timer .cd-badge {
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-glow);
+        color: var(--accent);
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 11px;
+        padding: 6px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.06em;
       }
 
-      #sleep-time-explanation .sleep-faq-item p:last-child {
-        font-size: 0.8rem;
-        color: rgba(226, 232, 240, 0.86);
-        font-family: ui-sans-serif, system-ui, sans-serif;
+      #calc-countdown-timer .cd-summary {
+        color: var(--muted2);
+        font-size: 12px;
       }
 
-      @keyframes sleep-twinkle {
-        from {
-          opacity: var(--base-op, 0.3);
-          transform: scale(1);
-        }
-
-        to {
-          opacity: 1;
-          transform: scale(1.35);
-        }
+      #calc-countdown-timer .cd-live {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        width: max-content;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        transform: translateX(-50%);
+        white-space: nowrap;
       }
 
-      @keyframes sleep-aurora-shift {
-        0% {
-          opacity: 0.6;
-          transform: translateY(0) scaleX(1);
-        }
+      #calc-countdown-timer .cd-live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        animation: pulse 2s infinite;
+      }
 
-        50% {
-          opacity: 1;
-          transform: translateY(-18px) scaleX(1.05);
-        }
-
+      @keyframes pulse {
+        0%,
         100% {
-          opacity: 0.7;
-          transform: translateY(4px) scaleX(0.97);
-        }
-      }
-
-      @keyframes sleep-moon-glow {
-        from {
-          box-shadow: 0 0 35px 12px rgba(245, 200, 66, 0.2), 0 0 80px 24px rgba(245, 200, 66, 0.08);
-        }
-
-        to {
-          box-shadow: 0 0 52px 22px rgba(245, 200, 66, 0.34), 0 0 96px 42px rgba(245, 200, 66, 0.14);
-        }
-      }
-
-      @keyframes sleep-card-in {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        to {
           opacity: 1;
-          transform: translateY(0);
+        }
+        50% {
+          opacity: 0.3;
         }
       }
 
-      @keyframes sleep-card-pop {
-        from {
-          opacity: 0;
-          transform: scale(0.95) translateY(10px);
+      #calc-countdown-timer .cd-milestone-section {
+        margin-bottom: 20px;
+      }
+
+      #calc-countdown-timer .cd-section-label {
+        margin: 0 0 12px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-milestones {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      #calc-countdown-timer .countdown-milestone {
+        background:
+          linear-gradient(145deg, rgba(24, 24, 34, 0.86), rgba(14, 14, 22, 0.78)),
+          var(--glass-fill);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 14px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #calc-countdown-timer .countdown-milestone-label {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      #calc-countdown-timer .countdown-milestone-state {
+        margin: 0;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .countdown-milestone.is-passed {
+        border-color: rgba(232, 201, 122, 0.2);
+      }
+
+      #calc-countdown-timer .countdown-milestone.is-live {
+        border-color: var(--accent);
+      }
+
+      @media (hover: hover) {
+        #calc-countdown-timer .cd-tile:hover {
+          border-color: rgba(232, 201, 122, 0.36);
+          box-shadow:
+            0 22px 56px rgba(6, 9, 18, 0.58),
+            0 0 0 1px rgba(232, 201, 122, 0.2),
+            0 0 52px rgba(232, 201, 122, 0.36),
+            0 0 96px rgba(122, 232, 168, 0.14);
+          transform: translateY(-4px) scale(1.015);
+          z-index: 2;
         }
 
-        to {
-          opacity: 1;
-          transform: scale(1) translateY(0);
+        #calc-countdown-timer .cd-tile:hover::before {
+          opacity: 0.95;
+          box-shadow: 0 0 20px rgba(232, 201, 122, 0.42);
         }
+
+        #calc-countdown-timer .countdown-milestone:hover {
+          border-color: rgba(232, 201, 122, 0.42);
+          box-shadow:
+            0 18px 44px rgba(6, 9, 18, 0.52),
+            0 0 0 1px rgba(232, 201, 122, 0.16),
+            0 0 44px rgba(232, 201, 122, 0.28),
+            0 0 80px rgba(122, 232, 168, 0.1);
+          transform: translateY(-3px) scale(1.01);
+        }
+
+        #calc-countdown-timer .cd-tile:hover::after,
+        #calc-countdown-timer .countdown-milestone:hover::before {
+          opacity: 0.95;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      #calc-countdown-timer .cd-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 10px 0 2px;
+      }
+
+      #calc-countdown-timer .cd-actions-label {
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-actions .cd-btn {
+        background: linear-gradient(145deg, rgba(232, 201, 122, 0.2), rgba(232, 201, 122, 0.1));
+        border: 1px solid rgba(232, 201, 122, 0.45);
+        color: #f7e9bf;
+        font-weight: 600;
+        box-shadow:
+          0 6px 16px rgba(232, 201, 122, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      #calc-countdown-timer .cd-actions .cd-btn:hover {
+        background: linear-gradient(145deg, rgba(232, 201, 122, 0.34), rgba(232, 201, 122, 0.18));
+        border-color: rgba(232, 201, 122, 0.7);
+        color: #fff6dd;
+        box-shadow:
+          0 10px 24px rgba(232, 201, 122, 0.22),
+          0 0 28px rgba(232, 201, 122, 0.18);
+      }
+
+      #calc-countdown-timer .cd-copy-msg {
+        color: var(--green);
+        font-size: 12px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+      }
+
+      #calc-countdown-timer .is-hidden {
+        display: none;
+      }
+
+      #calc-countdown-timer .countdown-expl-heading {
+        text-decoration: none;
+        color: #f2cb66;
+        text-shadow:
+          0 0 10px rgba(232, 201, 122, 0.45),
+          0 0 22px rgba(232, 201, 122, 0.25);
+      }
+
+      #calc-countdown-timer .countdown-expl-heading::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      #countdown-explanation {
+        display: grid;
+        gap: 10px;
+      }
+
+      #countdown-explanation h2 {
+        margin: 0;
+        font-size: 15px;
+        color: #f2cb66;
+        text-shadow:
+          0 0 8px rgba(232, 201, 122, 0.38),
+          0 0 16px rgba(232, 201, 122, 0.22);
+      }
+
+      #countdown-explanation p {
+        margin: 0;
+        line-height: 1.45;
+        font-size: 14px;
+      }
+
+      #countdown-explanation ul {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 4px;
+      }
+
+      #countdown-explanation li {
+        line-height: 1.4;
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      #countdown-explanation .countdown-faq-list li {
+        margin-bottom: 1px;
       }
 
       @media (max-width: 860px) {
-        #calc-sleep-time .sleep-container {
-          padding: 12px 16px 34px;
-        }
-
-        #calc-sleep-time .sleep-hero-title {
-          font-size: clamp(1.7rem, 7.3vw, 2.25rem);
-        }
-
-        #calc-sleep-time .sleep-two-box {
-          width: 100%;
+        body[data-page='calculator'] .layout-main {
           grid-template-columns: 1fr;
         }
 
-        #calc-sleep-time .sleep-card {
-          padding: 18px;
-          border-radius: 18px;
+        body[data-page='calculator'] .left-nav {
+          display: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #calc-countdown-timer .cd-page-meta {
+          position: static;
+          justify-items: start;
+          text-align: left;
+          margin-bottom: 14px;
         }
 
-        #calc-sleep-time .sleep-toggle-wrap {
+        #calc-countdown-timer .cd-main-cards {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-countdown-timer .cd-input-card {
+          padding: 20px;
+        }
+
+        #calc-countdown-timer .cd-fallback {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-countdown-timer .cd-cta-row {
           flex-direction: column;
+          flex-wrap: wrap;
         }
 
-        #calc-sleep-time .sleep-advanced-grid {
+        #calc-countdown-timer #countdown-start,
+        #calc-countdown-timer #countdown-stop {
+          width: 100%;
+        }
+
+        #calc-countdown-timer .cd-countdown-header,
+        #calc-countdown-timer .cd-countdown-footer {
+          padding: 20px;
+        }
+
+        #calc-countdown-timer .cd-countdown-footer {
+          min-height: 50px;
+        }
+
+        #calc-countdown-timer .cd-live {
+          bottom: 2px;
+        }
+
+        #calc-countdown-timer .cd-tiles {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        #calc-countdown-timer .cd-milestones {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        #calc-countdown-timer .cd-actions {
+          display: grid;
           grid-template-columns: 1fr;
+          gap: 10px;
+          align-items: stretch;
         }
 
-        #calc-sleep-time .sleep-result {
-          padding: 12px;
+        #calc-countdown-timer .cd-actions-label {
+          margin-bottom: 2px;
         }
 
-        #calc-sleep-time .sleep-result-time {
-          font-size: 22px;
+        #calc-countdown-timer .cd-actions .cd-btn {
+          width: 100%;
+          min-height: 42px;
+          justify-content: center;
+          box-shadow:
+            0 4px 12px rgba(232, 201, 122, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
-        #calc-sleep-time .sleep-moon-wrap {
-          top: 14px;
-          right: 14px;
-        }
-
-        #calc-sleep-time .sleep-moon-circle {
-          width: 48px;
-          height: 48px;
-        }
-
-        #sleep-time-explanation .sleep-faq-grid {
-          grid-template-columns: 1fr;
+        #calc-countdown-timer .cd-actions .cd-btn:hover {
+          box-shadow:
+            0 6px 16px rgba(232, 201, 122, 0.14),
+            0 0 16px rgba(232, 201, 122, 0.12);
         }
       }
     </style>
@@ -4715,7 +4636,7 @@
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
-  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
     <div class="page">
       <header class="site-header">
   <div class="site-header-inner">
@@ -4801,14 +4722,14 @@
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true" data-fin-nav-cluster="time-and-date">
-<div class="fin-nav-group is-expanded" data-fin-subcategory="sleep-time">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+<div class="fin-nav-group" data-fin-subcategory="sleep-time">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
     <span class="fin-nav-toggle-icon" aria-hidden="true">🌙</span>
     <span class="fin-nav-toggle-label">Sleep Time</span>
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item is-active" href="/time-and-date/sleep-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌙</span>Sleep Time Calculator</a><a class="fin-nav-item" href="/time-and-date/wake-up-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌅</span>Wake-Up Time Calculator</a><a class="fin-nav-item" href="/time-and-date/nap-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">😴</span>Nap Time Calculator</a><a class="fin-nav-item" href="/time-and-date/power-nap-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚡</span>Power Nap Calculator</a><a class="fin-nav-item" href="/time-and-date/energy-based-nap-selector/"><span class="fin-nav-item-icon" aria-hidden="true">🔋</span>Energy-Based Nap Selector</a>
+    <a class="fin-nav-item" href="/time-and-date/sleep-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌙</span>Sleep Time Calculator</a><a class="fin-nav-item" href="/time-and-date/wake-up-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌅</span>Wake-Up Time Calculator</a><a class="fin-nav-item" href="/time-and-date/nap-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">😴</span>Nap Time Calculator</a><a class="fin-nav-item" href="/time-and-date/power-nap-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚡</span>Power Nap Calculator</a><a class="fin-nav-item" href="/time-and-date/energy-based-nap-selector/"><span class="fin-nav-item-icon" aria-hidden="true">🔋</span>Energy-Based Nap Selector</a>
   </div>
 </div>
 <div class="fin-nav-group" data-fin-subcategory="work-hours">
@@ -4821,14 +4742,14 @@
     <a class="fin-nav-item" href="/time-and-date/work-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🕒</span>Work Hours Calculator</a><a class="fin-nav-item" href="/time-and-date/overtime-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⌛</span>Overtime Hours Calculator</a>
   </div>
 </div>
-<div class="fin-nav-group" data-fin-subcategory="date-time">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+<div class="fin-nav-group is-expanded" data-fin-subcategory="date-time">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
     <span class="fin-nav-toggle-icon" aria-hidden="true">📅</span>
     <span class="fin-nav-toggle-label">Date & Time</span>
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
+    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
   </div>
 </div>
 <div class="fin-nav-group" data-fin-subcategory="age-calculator">
@@ -4844,243 +4765,166 @@
         </aside>
         <section class="center-column">
           <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Sleep Time Calculator</h1>
+  <h1 id="calculator-title">Countdown Timer</h1>
   <div class="calculator-page-single">
-    <div id="calc-sleep-time">
-  <div class="sleep-scene" aria-hidden="true">
-    <div class="sleep-aurora"></div>
-    <div class="sleep-starfield" id="sleep-starfield"></div>
-    <div class="sleep-moon-wrap">
-      <div class="sleep-moon-circle"></div>
-    </div>
+    <div id="calc-countdown-timer">
+  <div class="cd-page-meta">
+    <span class="cd-timezone" id="countdown-timezone">Local time zone: Detecting...</span>
+    <span class="cd-date-meta" id="countdown-preview-date">Date &amp; time: --</span>
   </div>
 
-  <div class="sleep-container">
-    <div class="sleep-hero-tag">Sleep Science</div>
-    <h2 class="sleep-hero-title">Rest like the <em>stars</em> sleep in cycles</h2>
-    <p class="sleep-tagline">
-      Each 90-minute cycle brings you deeper rest. Wake at the right moment - refreshed, not groggy.
-    </p>
-
-    <div class="sleep-two-box">
-      <div class="sleep-card sleep-card-calc">
-        <div class="sleep-mode-label">I want to know my...</div>
-        <div
-          class="sleep-toggle-wrap"
-          role="group"
-          aria-labelledby="sleep-mode-label"
-          data-button-group="sleep-mode"
-        >
-          <button
-            class="sleep-toggle-btn calculator-button secondary is-active"
-            id="sleep-wake-btn"
-            type="button"
-            data-value="wake"
-            aria-pressed="true"
-          >
-            Wake-Up Time
-          </button>
-          <button
-            class="sleep-toggle-btn calculator-button secondary"
-            id="sleep-bed-btn"
-            type="button"
-            data-value="sleep"
-            aria-pressed="false"
-          >
-            Bedtime
-          </button>
+  <div class="cd-main-cards">
+    <section class="cd-input-card">
+      <div class="cd-input-grid">
+        <div class="cd-fallback">
+          <label class="cd-field-label">
+            Region
+            <select id="countdown-region" aria-label="Region" class="cd-field">
+              <option value="United States" selected>United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </label>
+          <label class="cd-field-label">
+            Event
+            <select id="countdown-region-event" aria-label="Event" class="cd-field">
+              <option value="">Custom event</option>
+            </select>
+          </label>
         </div>
 
-        <div class="sleep-field-label" id="sleep-field-label">I want to wake up at...</div>
-        <div class="sleep-time-input-wrap">
-          <input id="sleep-time-primary" class="sleep-time-input" type="time" step="900" />
+        <label class="cd-field-label cd-field-full">
+          Event name
+          <input
+            id="countdown-event-name"
+            type="text"
+            maxlength="48"
+            placeholder="e.g. Product launch, Wedding..."
+            autocomplete="off"
+            aria-label="Event name"
+            class="cd-field"
+          />
+        </label>
+
+        <div class="cd-fallback" id="countdown-fallback">
+          <label class="cd-field-label">
+            Target date
+            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
+          </label>
+          <label class="cd-field-label">
+            Time
+            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
+          </label>
         </div>
-        <input
-          id="sleep-latency-proxy"
-          class="sleep-test-proxy"
-          type="number"
-          inputmode="numeric"
-          min="0"
-          max="1439"
-          step="15"
-          value="0"
-          aria-hidden="true"
-          tabindex="-1"
-        />
-        <button
-          id="sleep-calc"
-          class="sleep-test-proxy"
-          type="button"
-          aria-hidden="true"
-          tabindex="-1"
-        >
-          Calc
-        </button>
-        <div id="sleep-result" class="sleep-test-proxy" aria-hidden="true"></div>
 
-        <button class="sleep-calc-btn" type="button" id="sleep-calculate">Calculate My Sleep Plan</button>
-      </div>
-
-      <div class="sleep-card sleep-card-answer">
-        <div class="sleep-answer-title">Your Ideal Options</div>
-        <p class="sleep-answer-note">Default values are shown. Update inputs and click calculate.</p>
-        <div class="result" id="sleep-results" aria-live="polite">
-          <p class="placeholder" id="sleep-placeholder">Select a time and click Calculate.</p>
-          <div class="sleep-results-list" id="sleep-results-list"></div>
+        <div class="cd-cta-row">
+          <button class="cd-btn" type="button" id="countdown-start">Start countdown</button>
+          <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-stop">Stop countdown</button>
         </div>
       </div>
-    </div>
+      <p class="cd-error is-hidden" id="countdown-error"></p>
+    </section>
 
-    <p class="sleep-footer-note">
-      Based on <span>90-minute ultradian sleep cycles</span> + ~14 min to fall asleep.<br />
-      Your body knows the rhythm - trust the science.
-    </p>
+    <section class="cd-countdown-card is-hidden" id="countdown-preview-card" data-theme="launch">
+      <header class="cd-countdown-header">
+        <p class="cd-kicker" id="countdown-preview-heading">Counting down to</p>
+        <h3 class="cd-title" id="countdown-preview-title">Your countdown timer</h3>
+      </header>
+
+      <div class="cd-tiles" id="countdown-preview-grid" aria-live="polite">
+        <div class="cd-tile"><span class="cd-num" id="countdown-days">--</span><span class="cd-unit">Days</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-hours">--</span><span class="cd-unit">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-minutes">--</span><span class="cd-unit">Min</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-seconds">--</span><span class="cd-unit">Sec</span></div>
+      </div>
+
+      <p class="cd-expired is-hidden" id="countdown-expired">This moment has arrived.</p>
+
+      <footer class="cd-countdown-footer">
+        <span class="cd-live">
+          <span class="cd-live-dot" aria-hidden="true"></span>
+          <span id="countdown-status">Live updates Every Second</span>
+        </span>
+      </footer>
+    </section>
+  </div>
+
+  <section class="cd-milestone-section is-hidden" id="countdown-milestones-wrap">
+    <p class="cd-section-label">Milestones</p>
+    <div class="cd-milestones" id="countdown-milestones"></div>
+  </section>
+
+  <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
+    <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-summary">Copy summary</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-date">Copy date</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-google">Google Calendar</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-outlook">Outlook</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-ics">Download .ics</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-generate-share-card">Generate share card</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-share-png">Download PNG</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-share-image">Copy image</button>
+    <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
   </div>
 </div>
 
+
+
+<script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js?v=20260224"></script>
+
   <h3>Explanation</h3>
-    <div id="sleep-time-explanation">
-  <section class="sleep-exp-section">
-    <h2>When Should You Go to Sleep or Wake Up?</h2>
-    <p>
-      Use this sleep time calculator to estimate bedtimes or wake-up times that line up with
-      typical 90-minute sleep cycles. The goal is to help you wake closer to the end of a cycle,
-      which often feels easier than waking during deep sleep.
-    </p>
-  </section>
+    <div id="countdown-explanation">
+  <h2>Why Use This Countdown Timer?</h2>
+  <ul>
+    <li>Shows live time left in days, hours, minutes, and seconds for any future event.</li>
+    <li>Works for birthdays, launches, trips, deadlines, exams, holidays, and milestone dates.</li>
+    <li>Keeps the setup fast while still offering calendar exports and share-ready summaries.</li>
+  </ul>
 
-  <section class="sleep-exp-section">
-    <h3>How This Sleep Time Calculator Works</h3>
-    <p>
-      Most people move through sleep in repeating cycles that average about 90 minutes. The calculator
-      uses 90-minute cycles and adds about 15 minutes to allow time to fall asleep.
-    </p>
-    <ul class="sleep-explanation-list">
-      <li>If you choose a wake-up time, it works backwards to suggest bedtimes.</li>
-      <li>If you choose a fall-asleep time, it works forwards to suggest wake-up times.</li>
-    </ul>
-    <h4 class="sleep-formula-heading">Formula</h4>
-    <div class="sleep-formula-block">Sleep Target +/- (90 min × cycles) + 15 min buffer</div>
-  </section>
+  <h2>How To Use This Countdown Timer</h2>
+  <ul>
+    <li>Choose a region and preset event for a quick start, or type a custom event name.</li>
+    <li>Set the target date and time for the moment you want to count down to.</li>
+    <li>Press <strong>Start countdown</strong> to begin the live timer and milestone tracking.</li>
+    <li>Use the share and calendar actions to copy the summary or export the event after the timer starts.</li>
+  </ul>
 
-  <section class="sleep-exp-section">
-    <h3>Best Time to Sleep and Wake Up (Examples)</h3>
-    <p>
-      If you want to wake up at 6:00 AM, you may feel better waking after 4, 5, or 6 full cycles.
-      That's why the calculator shows several options.
-    </p>
-    <p>
-      Example: If you fall asleep at 11:30 PM, your wake-up options are roughly 6:45 AM (4 cycles),
-      8:15 AM (5 cycles), or 9:45 AM (6 cycles).
-    </p>
-  </section>
+  <h2>What The Countdown Shows</h2>
+  <ul>
+    <li>A live timer that updates every second using your device clock and local time zone.</li>
+    <li>Milestone markers for 30 days, 7 days, 24 hours, and the final hour before the event.</li>
+    <li>A simple event summary plus options for Google Calendar, Outlook, and `.ics` download.</li>
+  </ul>
 
-  <section class="sleep-exp-section">
-    <h3>Assumptions and Limitations</h3>
-    <p>This calculator uses averages:</p>
-    <ul class="sleep-explanation-list">
-      <li>Sleep cycle length is assumed to be 90 minutes (real cycles can vary).</li>
-      <li>Time to fall asleep is assumed to be 15 minutes.</li>
-    </ul>
-    <p>
-      Results are general estimates and are not medical advice. If you have persistent sleep problems,
-      consider speaking with a healthcare professional.
-    </p>
-  </section>
+  <h2>Frequently Asked Questions</h2>
+  <ul class="countdown-faq-list">
+    <li>
+      <strong>How do I make a countdown timer for a future date?</strong> Enter the event name,
+      choose the future date and time, then start the timer to see the live countdown.
+    </li>
+    <li>
+      <strong>Does the countdown use my local time zone?</strong> Yes. The timer follows your
+      device clock and local time zone.
+    </li>
+    <li>
+      <strong>Can I add the event to Google Calendar or Outlook?</strong> Yes. After starting the
+      timer, you can send the event to Google Calendar, Outlook, or download an `.ics` file.
+    </li>
+    <li>
+      <strong>What happens when the timer reaches zero?</strong> The countdown reaches zero and
+      the page marks the event as live.
+    </li>
+  </ul>
 
-  <section class="sleep-exp-section">
-    <h3>Important Notes</h3>
-    <ul class="sleep-explanation-list">
-      <li>Sleep cycles vary by person, so the suggested times are estimates rather than guarantees.</li>
-      <li>The calculator assumes a 15-minute fall-asleep buffer and 90-minute cycles.</li>
-      <li>Shift work, caffeine, stress, and sleep debt can change how rested you feel.</li>
-      <li>Use this for planning, not as a substitute for medical advice or treatment.</li>
-    </ul>
-  </section>
-
-  <section class="sleep-exp-section">
-    <h3>Frequently Asked Questions</h3>
-
-    <div class="sleep-faq-grid">
-    <div class="sleep-faq-item">
-      <p><strong>How many hours of sleep do I need?</strong></p>
-      <p>Most adults do best with 7–9 hours per night (about 5–6 cycles).</p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>What is a sleep cycle?</strong></p>
-      <p>
-        A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often
-        lasts about 90 minutes.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Is 6 hours of sleep enough?</strong></p>
-      <p>
-        Six hours is roughly 4 cycles. Some people manage short-term, but many perform better with
-        7+ hours consistently.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Why are multiple sleep times shown?</strong></p>
-      <p>
-        The calculator shows options for 4, 5, and 6 cycles so you can choose a schedule that fits
-        your day.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Why might I still feel tired after following the suggestions?</strong></p>
-      <p>
-        Cycle length varies by person and by night, and factors like stress, caffeine, sleep debt,
-        or sleep disorders can affect how rested you feel.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Does this calculator account for time to fall asleep?</strong></p>
-      <p>
-        Yes. When calculating bedtimes, it adds a 15-minute buffer to allow time to fall asleep
-        before the first sleep cycle begins.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Can I use this calculator if I work night shifts?</strong></p>
-      <p>
-        Yes. Enter your target wake-up or fall-asleep time regardless of the hour. The calculator
-        handles cross-day rollover and works for any schedule.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>What happens if I wake up in the middle of a sleep cycle?</strong></p>
-      <p>
-        Waking during deep sleep can cause sleep inertia, a temporary feeling of grogginess and
-        reduced alertness that may last several minutes.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Should I go to bed at the same time every night?</strong></p>
-      <p>
-        A consistent bedtime helps regulate your body clock and can improve sleep quality over time.
-        The calculator can help you find a schedule to stick to.
-      </p>
-    </div>
-
-    <div class="sleep-faq-item">
-      <p><strong>Is it better to get 4 or 5 sleep cycles?</strong></p>
-      <p>
-        Five cycles (about 7.5 hours) is generally better for most adults. Four cycles (about 6
-        hours) may leave you short on rest unless time is limited.
-      </p>
-    </div>
-    </div>
-  </section>
-  </div>
+  <h2>Important Notes</h2>
+  <ul>
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Accuracy:</strong> The timer depends on your device clock and local time zone, so results are only as accurate as your device settings.</li>
+    <li><strong>Disclaimer:</strong> Use official schedules or calendar confirmations for flights, exams, launches, and other events where exact timing matters.</li>
+    <li><strong>Assumptions:</strong> Region-based presets are convenience examples and may change from year to year, so review the auto-filled date and time before relying on them.</li>
+    <li><strong>Privacy:</strong> The countdown runs in your browser and does not require an account or server-side save to start.</li>
+  </ul>
+</div>
 
   </div>
 </div>
@@ -5118,6 +4962,6 @@
 
     </div>
     <script type="module" src="/assets/js/core-shell.js"></script>
-    <script type="module" src="/calculators/time-and-date/sleep-time-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js?v=20260224"></script>
   </body>
 </html>

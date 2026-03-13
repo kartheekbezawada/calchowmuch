@@ -4,23 +4,4691 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Birthday Day-of-Week Calculator | Find Your Birth Weekday</title>
-    <meta name="description" content="Find the weekday you were born on and see what weekday your birthday falls on in any target year." />
+    <meta name="description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/birthday-day-of-week/" />
     <meta property="og:title" content="Birthday Day-of-Week Calculator | Find Your Birth Weekday" />
-    <meta property="og:description" content="Find the weekday you were born on and see what weekday your birthday falls on in any target year." />
+    <meta property="og:description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/birthday-day-of-week/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Birthday Day-of-Week Calculator | Find Your Birth Weekday" />
-    <meta name="twitter:description" content="Find the weekday you were born on and see what weekday your birthday falls on in any target year." />
+    <meta name="twitter:description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-route-critical="true">
+      /* critical source: /assets/css/core-tokens.css */
+      /* Core shared design tokens for isolated route bundles. */
+      :root {
+        color-scheme: dark;
+        --color-blue-400: #60a5fa;
+        --color-blue-500: #3b82f6;
+        --color-blue-600: #2563eb;
+        --color-cyan-400: #22d3ee;
+        --color-cyan-500: #06b6d4;
+        --color-cyan-600: #0891b2;
+        --color-green-400: #4ade80;
+        --color-green-500: #10b981;
+        --color-emerald-500: #059669;
+        --color-orange-400: #fb923c;
+        --color-orange-500: #f97316;
+        --color-red-500: #dc2626;
+        --color-violet-400: #a78bfa;
+        --color-violet-500: #8b5cf6;
+        --color-indigo-500: #6366f1;
+        --color-yellow-400: #facc15;
+        --color-slate-50: #f8fafc;
+        --color-slate-100: #f1f5f9;
+        --color-slate-200: #e2e8f0;
+        --color-slate-300: #cbd5e1;
+        --color-slate-400: #94a3b8;
+        --color-slate-500: #64748b;
+        --color-slate-600: #475569;
+        --color-slate-700: #334155;
+        --color-slate-800: #1e293b;
+        --color-slate-900: #0f172a;
+        --color-slate-950: #020617;
+        --gradient-bg-main: linear-gradient(
+          to bottom right,
+          var(--color-slate-900),
+          #172554,
+          var(--color-slate-900)
+        );
+        --gradient-bg-card: linear-gradient(
+          to bottom right,
+          rgba(30, 41, 59, 0.85),
+          rgba(15, 23, 42, 0.85)
+        );
+        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+        --gradient-brand-text: linear-gradient(
+          to right,
+          var(--color-blue-400),
+          var(--color-cyan-400),
+          var(--color-blue-400)
+        );
+        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+        --page-bg: #0b1220;
+        --page-bg-accent: #0f172a;
+        --scrollbar-track: #0b1220;
+        --scrollbar-thumb: #334155;
+        --scrollbar-thumb-hover: #475569;
+        --shell-bg: rgba(15, 23, 42, 0.65);
+        --panel-bg: #0f172a;
+        --header-bg: transparent;
+        --header-text: #e2e8f0;
+        --muted-text: #94a3b8;
+        --border-color: rgba(51, 65, 85, 0.6);
+        --shell-border: rgba(51, 65, 85, 0.6);
+        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+        --accent: #3b82f6;
+        --accent-strong: #06b6d4;
+        --pill-bg: rgba(30, 41, 59, 0.8);
+        --pill-border: rgba(51, 65, 85, 0.7);
+      }
+
+      /* critical source: /assets/css/theme-premium-dark.css */
+      :root {
+        color-scheme: dark;
+        --color-blue-400: #60a5fa;
+        --color-blue-500: #3b82f6;
+        --color-blue-600: #2563eb;
+        --color-cyan-400: #22d3ee;
+        --color-cyan-500: #06b6d4;
+        --color-cyan-600: #0891b2;
+        --color-green-400: #4ade80;
+        --color-green-500: #10b981;
+        --color-emerald-500: #059669;
+        --color-orange-400: #fb923c;
+        --color-orange-500: #f97316;
+        --color-red-500: #dc2626;
+        --color-violet-400: #a78bfa;
+        --color-violet-500: #8b5cf6;
+        --color-indigo-500: #6366f1;
+        --color-yellow-400: #facc15;
+        --color-slate-50: #f8fafc;
+        --color-slate-100: #f1f5f9;
+        --color-slate-200: #e2e8f0;
+        --color-slate-300: #cbd5e1;
+        --color-slate-400: #94a3b8;
+        --color-slate-500: #64748b;
+        --color-slate-600: #475569;
+        --color-slate-700: #334155;
+        --color-slate-800: #1e293b;
+        --color-slate-900: #0f172a;
+        --color-slate-950: #020617;
+        --gradient-bg-main: linear-gradient(
+          to bottom right,
+          var(--color-slate-900),
+          #172554,
+          var(--color-slate-900)
+        );
+        --gradient-bg-card: linear-gradient(
+          to bottom right,
+          rgba(30, 41, 59, 0.85),
+          rgba(15, 23, 42, 0.85)
+        );
+        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
+        --gradient-brand-text: linear-gradient(
+          to right,
+          var(--color-blue-400),
+          var(--color-cyan-400),
+          var(--color-blue-400)
+        );
+        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
+        --page-bg: #0b1220;
+        --page-bg-accent: #0f172a;
+        --scrollbar-track: #0b1220;
+        --scrollbar-thumb: #334155;
+        --scrollbar-thumb-hover: #475569;
+        --shell-bg: rgba(15, 23, 42, 0.65);
+        --panel-bg: #0f172a;
+        --header-bg: transparent;
+        --header-text: #e2e8f0;
+        --muted-text: #94a3b8;
+        --border-color: rgba(51, 65, 85, 0.6);
+        --shell-border: rgba(51, 65, 85, 0.6);
+        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
+        --accent: #3b82f6;
+        --accent-strong: #06b6d4;
+        --pill-bg: rgba(30, 41, 59, 0.8);
+        --pill-border: rgba(51, 65, 85, 0.7);
+      }
+
+      body {
+        background-color: var(--page-bg);
+        background-image: var(--gradient-bg-main);
+        color: var(--header-text);
+      }
+
+      body .page {
+        background: var(--shell-bg);
+        border: 1px solid var(--shell-border);
+      }
+
+      body .site-header {
+        color: var(--header-text);
+      }
+
+      body .site-header span {
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      body .top-nav button,
+      body .top-nav .top-nav-link {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(51, 65, 85, 0.7);
+        color: var(--color-slate-200);
+        box-shadow: none;
+      }
+
+      body .top-nav button:hover,
+      body .top-nav .top-nav-link:hover {
+        background: rgba(51, 65, 85, 0.8);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+
+      body .top-nav button.is-active,
+      body .top-nav .top-nav-link.is-active {
+        background: var(--gradient-brand-primary);
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: var(--shadow-glow-blue);
+      }
+
+      body .nav-category-toggle {
+        color: var(--color-slate-400);
+      }
+
+      body .nav-category-indicator {
+        color: var(--color-slate-200);
+      }
+
+      body .left-nav .nav-item {
+        background: rgba(30, 41, 59, 0.7);
+        border-color: rgba(51, 65, 85, 0.7);
+        color: var(--color-slate-200);
+      }
+
+      body .left-nav .nav-item.is-active {
+        background: var(--gradient-brand-primary);
+        border-color: rgba(59, 130, 246, 0.7);
+        box-shadow: var(--shadow-glow-blue);
+      }
+
+      body .panel,
+      body .ads-column {
+        background: var(--gradient-bg-card);
+        border-color: var(--shell-border);
+        box-shadow: var(--panel-shadow);
+      }
+
+      body .ad-panel {
+        background: rgba(15, 23, 42, 0.78);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+
+      body .panel h1,
+      body .panel h3 {
+        color: var(--header-text);
+      }
+
+      body .panel h1,
+      body .panel h3 {
+        position: relative;
+      }
+
+      body .panel h1::after,
+      body .panel h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -6px;
+        height: 2px;
+        background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
+      }
+
+      body .calculator-ui label,
+      body .calculator-ui .helper,
+      body .panel .placeholder {
+        color: var(--muted-text);
+      }
+
+      body .calculator-ui input[type='number'],
+      body .calculator-ui input[type='text'],
+      body .calculator-ui input[type='email'],
+      body .calculator-ui input[type='password'],
+      body .calculator-ui input[type='search'],
+      body .calculator-ui input[type='tel'],
+      body .calculator-ui input[type='url'],
+      body .calculator-ui input[type='date'],
+      body .calculator-ui input[type='time'],
+      body .calculator-ui input[type='datetime-local'],
+      body .calculator-ui input[type='month'],
+      body .calculator-ui input[type='week'],
+      body .calculator-ui textarea,
+      body .nav-search-input {
+        background: rgba(15, 23, 42, 0.9);
+        border-color: rgba(51, 65, 85, 0.7);
+        color: var(--color-slate-200);
+      }
+
+      body .calculator-ui input::placeholder,
+      body .calculator-ui textarea::placeholder,
+      body .nav-search-input::placeholder {
+        color: var(--color-slate-500);
+      }
+
+      body .calculator-button {
+        background: var(--gradient-brand-primary);
+        box-shadow: var(--shadow-glow-blue);
+      }
+
+      body .calculator-button.secondary {
+        background: rgba(30, 41, 59, 0.85);
+        color: var(--color-slate-200);
+        border: 1px solid rgba(51, 65, 85, 0.7);
+        box-shadow: none;
+      }
+
+      body .calculator-button.is-active,
+      body .calculator-button[aria-pressed='true'] {
+        background: #1d4ed8;
+        color: #fff;
+        box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
+      }
+
+      body .calculator-ui .result,
+      body .calculator-ui .result-detail {
+        color: var(--color-slate-200);
+      }
+
+      body .calculator-ui .result-scroll,
+      body .graph-panel {
+        background: rgba(15, 23, 42, 0.85);
+        border-color: rgba(51, 65, 85, 0.7);
+      }
+
+      body .calculator-table,
+      body .calculator-table th,
+      body .calculator-table td {
+        border-color: rgba(51, 65, 85, 0.7);
+      }
+
+      body .calculator-table thead th,
+      body .calculator-table tfoot td {
+        background: rgba(30, 41, 59, 0.85);
+        color: var(--color-slate-300);
+      }
+
+      body .graph-title {
+        color: var(--color-slate-200);
+      }
+
+      body .graph-y-axis,
+      body .graph-x-axis,
+      body .graph-legend,
+      body .graph-y-label {
+        color: var(--color-slate-400);
+      }
+
+      body .site-footer {
+        background: rgba(15, 23, 42, 0.9);
+        border-top: 1px solid rgba(51, 65, 85, 0.7);
+        color: var(--color-slate-400);
+      }
+
+      body .site-footer a,
+      body .site-footer .footer-divider,
+      body .site-footer .footer-branding {
+        color: var(--color-slate-400);
+      }
+
+      body .site-footer a:hover {
+        color: var(--color-blue-400);
+      }
+
+      body .calculator-ui input[type='range'] {
+        appearance: none;
+        width: 100%;
+        height: 8px;
+        background: transparent;
+        margin: 6px 0;
+      }
+
+      body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
+        height: 8px;
+        background: rgba(30, 41, 59, 0.9);
+        border-radius: 999px;
+        border: 1px solid rgba(51, 65, 85, 0.7);
+      }
+
+      body .calculator-ui input[type='range']::-webkit-slider-thumb {
+        appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 999px;
+        background: var(--gradient-brand-primary);
+        border: 2px solid rgba(14, 116, 144, 0.6);
+        box-shadow: var(--shadow-glow-blue);
+        margin-top: -6px;
+      }
+
+      body .calculator-ui input[type='range']:focus-visible {
+        outline: 2px solid rgba(59, 130, 246, 0.7);
+        outline-offset: 4px;
+      }
+
+      body .calculator-ui input[type='range']::-moz-range-track {
+        height: 8px;
+        background: rgba(30, 41, 59, 0.9);
+        border-radius: 999px;
+        border: 1px solid rgba(51, 65, 85, 0.7);
+      }
+
+      body .calculator-ui input[type='range']::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 999px;
+        background: var(--gradient-brand-primary);
+        border: 2px solid rgba(14, 116, 144, 0.6);
+        box-shadow: var(--shadow-glow-blue);
+      }
+
+      body .calculator-ui input[type='range']::-moz-range-progress {
+        background: rgba(59, 130, 246, 0.6);
+        height: 8px;
+        border-radius: 999px;
+      }
+
+      body ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      body ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+        border-radius: 4px;
+      }
+
+      body ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track);
+      }
+
+      body ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover);
+      }
+
+      /* critical source: /assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* critical source: /assets/css/core-shell.css */
+      .page {
+        height: 100vh;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: none;
+        width: min(1920px, calc(100vw - 48px));
+        margin: 8px auto 0;
+        padding: 14px 14px 0 14px;
+        background: var(--shell-bg);
+        border-radius: 28px;
+      }
+
+      body[data-page='calculator'] .page,
+      body[data-page='home'] .page {
+        width: 100vw;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        gap: 0;
+        overflow: hidden;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body[data-page='calculator'],
+      body[data-page='home'] {
+        overflow: hidden;
+      }
+
+      .site-header {
+        position: relative;
+        z-index: 5;
+        height: 72px !important;
+        min-height: 72px;
+        max-height: 72px;
+        background: rgba(11, 18, 32, 0.7);
+        color: var(--header-text);
+        border-bottom: 1px solid var(--shell-border);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      .site-header-inner {
+        height: 72px;
+        min-height: 72px;
+        max-height: 72px;
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
+        align-items: center;
+        gap: 16px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--gradient-brand-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        box-shadow: var(--shadow-glow-blue);
+        flex-shrink: 0;
+      }
+
+      .brand-logo-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .brand-block {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .brand-name {
+        font-size: var(--text-xl);
+        font-weight: var(--font-bold);
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        white-space: nowrap;
+      }
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: var(--font-semibold);
+        color: var(--color-orange-400, #fb923c);
+        text-transform: none;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-badge:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+
+      .brand-badge-icon {
+        font-size: 12px;
+      }
+
+      body .site-header .brand-logo-icon,
+      body .site-header .brand-badge-icon,
+      body .site-header .brand-badge span {
+        background: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        color: inherit;
+      }
+
+      .header-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-width: 0;
+      }
+
+      .header-title {
+        font-size: var(--text-2xl);
+        font-weight: var(--font-semibold);
+        background: var(--gradient-brand-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .header-subtitle {
+        font-size: var(--text-xs);
+        color: var(--muted-text);
+        margin-top: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .header-search {
+        position: relative;
+        width: min(320px, 40vw);
+        min-width: 180px;
+      }
+
+      .header-search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted-text);
+        display: inline-flex;
+      }
+
+      body .site-header .header-search-icon {
+        background: none;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        color: var(--muted-text);
+      }
+
+      .header-search-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .header-search-input {
+        width: 100%;
+        padding: 10px 12px 10px 38px;
+        border-radius: 999px;
+        border: 1px solid var(--border-color);
+        background: rgba(15, 23, 42, 0.85);
+        color: var(--header-text);
+        font-size: var(--text-sm);
+        outline: none;
+      }
+
+      .header-search-input::placeholder {
+        color: var(--muted-text);
+      }
+
+      .header-search-input:focus-visible {
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+      }
+
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 2px 12px 0;
+        flex-wrap: nowrap;
+        min-height: 40px;
+        max-height: 40px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-gutter: stable;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .top-nav button,
+      .top-nav .top-nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+        border: 1px solid var(--accent-strong);
+        color: #ffffff;
+        padding: 8px 18px;
+        border-radius: 10px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-height: 38px;
+        line-height: 1.4;
+        text-decoration: none;
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      .top-nav .nav-icon {
+        font-size: 14px;
+        line-height: 1;
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 4px;
+      }
+
+      .top-nav .nav-icon-right {
+        margin-right: 0;
+        margin-left: 2px;
+      }
+
+      .top-nav .nav-label {
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      .top-nav button:hover,
+      .top-nav .top-nav-link:hover {
+        background: var(--accent-strong);
+      }
+
+      .top-nav button:focus-visible,
+      .top-nav .top-nav-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .top-nav button.is-active,
+      .top-nav .top-nav-link.is-active {
+        background: var(--accent);
+        color: #ffffff;
+        border-color: var(--accent);
+      }
+
+      .layout-main {
+        display: grid;
+        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
+        grid-template-rows: minmax(0, 1fr);
+        gap: 16px;
+        padding: 0;
+        min-height: 0;
+        flex: 1 1 auto;
+        margin-top: 12px;
+        margin-bottom: 0.5rem;
+      }
+
+      .left-nav {
+        /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
+        /* to give visual dominance to the calculator area */
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 14px;
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        height: 100%;
+        margin-left: -4px;
+        position: relative;
+      }
+
+      /* Edge glow effect */
+      .left-nav::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(102, 126, 234, 0.4) 20%,
+          rgba(102, 126, 234, 0.6) 50%,
+          rgba(102, 126, 234, 0.4) 80%,
+          transparent 100%
+        );
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .left-nav-title {
+        margin: 0 0 14px;
+        font-size: var(--text-xl);
+        font-weight: var(--font-semibold);
+      }
+
+      #left-nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-search {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--panel-bg);
+        padding-bottom: 8px;
+      }
+
+      .nav-search-input {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: var(--text-sm);
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .nav-category {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-category-toggle {
+        width: 100%;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 4px;
+        color: var(--muted-text);
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        cursor: pointer;
+      }
+
+      .nav-category-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 8px;
+      }
+
+      .nav-category-label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .nav-category-indicator {
+        font-weight: 600;
+        color: var(--header-text);
+        flex-shrink: 0;
+      }
+
+      .nav-category-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* ── Finance Premium Nav — glassmorphism accordion ── */
+
+      .fin-nav-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* ── Category Group ── */
+      .fin-nav-group {
+        border-radius: 12px;
+        transition:
+          background 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+
+      .fin-nav-group.is-expanded {
+        background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
+        border: 1.5px solid rgba(56, 189, 248, 0.6);
+        box-shadow:
+          0 0 8px rgba(56, 189, 248, 0.3),
+          inset 0 0 5px rgba(56, 189, 248, 0.15),
+          0 8px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ── Toggle Button ── */
+      .fin-nav-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border: none;
+        border-radius: 12px;
+        background: transparent;
+        color: #e2e8f0;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition:
+          background 0.12s ease,
+          box-shadow 0.12s ease,
+          padding-left 0.15s ease;
+      }
+
+      .fin-nav-toggle:hover {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: rgba(59, 130, 246, 0.1);
+        box-shadow:
+          0 0 24px rgba(0, 120, 255, 0.35),
+          0 0 48px rgba(59, 130, 246, 0.12);
+        padding-left: 18px;
+      }
+
+      .fin-nav-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 12px;
+      }
+
+      /* Subcategory icon */
+      .fin-nav-toggle-icon {
+        font-size: 16px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      /* Label — allow wrapping so full text is always visible */
+      .fin-nav-toggle-label {
+        flex: 1;
+        text-align: left;
+        white-space: normal;
+        overflow: visible;
+        line-height: 1.3;
+      }
+
+      /* ── Chevron Arrow ── */
+      .fin-nav-chevron {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1.5px solid rgba(96, 165, 250, 0.65);
+        color: #7dd3fc;
+        flex-shrink: 0;
+        box-shadow:
+          0 0 10px rgba(56, 189, 248, 0.35),
+          0 0 20px rgba(59, 130, 246, 0.15);
+        transition:
+          transform 0.2s ease,
+          background 0.12s ease,
+          border-color 0.12s ease,
+          box-shadow 0.12s ease;
+      }
+
+      .fin-nav-chevron-svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .fin-nav-group.is-expanded .fin-nav-chevron {
+        transform: rotate(90deg);
+        background: rgba(37, 99, 235, 0.4);
+        border-color: rgba(125, 211, 252, 1);
+        color: #bae6fd;
+        box-shadow:
+          0 0 16px rgba(56, 189, 248, 0.65),
+          0 0 32px rgba(59, 130, 246, 0.35),
+          0 0 48px rgba(96, 165, 250, 0.15);
+      }
+
+      .fin-nav-toggle:hover .fin-nav-chevron {
+        border-color: rgba(125, 211, 252, 1);
+        color: #bae6fd;
+        box-shadow:
+          0 0 14px rgba(56, 189, 248, 0.55),
+          0 0 30px rgba(59, 130, 246, 0.25);
+      }
+
+      /* ── Items Container — animated expand/collapse ── */
+      .fin-nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 8px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.22s ease,
+          opacity 0.15s ease,
+          padding 0.22s ease;
+      }
+
+      .fin-nav-group.is-expanded .fin-nav-items {
+        max-height: 600px;
+        opacity: 1;
+        padding: 6px 8px 10px;
+      }
+
+      /* ── Calculator Item (Pill) ── */
+      .fin-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(15, 23, 42, 0.35);
+        color: #cbd5e1;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.12s ease,
+          border-color 0.12s ease,
+          box-shadow 0.12s ease,
+          transform 0.12s ease,
+          color 0.12s ease;
+      }
+
+      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
+        align-items: flex-start;
+        white-space: normal;
+        line-height: 1.32;
+        overflow: visible;
+        text-overflow: clip;
+      }
+
+      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
+        margin-top: 2px;
+      }
+
+      .fin-nav-item-icon {
+        font-size: 14px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .fin-nav-item:hover {
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+        transform: scale(1.02);
+        color: #e0f2fe;
+      }
+
+      .fin-nav-item.is-active {
+        border: 1px solid rgba(147, 197, 253, 0.8);
+        border-left: 3px solid #f8fafc;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.85) 0%,
+          rgba(79, 70, 229, 0.9) 50%,
+          rgba(102, 126, 234, 0.85) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        font-weight: 600;
+        box-shadow:
+          0 6px 12px rgba(102, 126, 234, 0.22),
+          0 0 14px rgba(59, 130, 246, 0.25);
+      }
+
+      .fin-nav-item.is-active:hover {
+        transform: none;
+      }
+
+      /* Search integration */
+      .fin-nav-item.is-hidden {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group .fin-nav-items {
+        max-height: 600px;
+        opacity: 1;
+        padding: 6px 8px 10px;
+      }
+
+      #left-nav-content.is-searching .fin-nav-group.is-hidden {
+        display: none;
+      }
+
+      .nav-category.is-collapsed .nav-category-items {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .nav-category.is-search-open .nav-category-items {
+        display: flex;
+      }
+
+      #left-nav-content.is-searching .nav-category.is-hidden {
+        display: none;
+      }
+
+      .left-nav .subcategory-title {
+        margin: 16px 0 8px;
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--muted-text);
+      }
+
+      .left-nav .nav-item {
+        width: 100%;
+        text-align: left;
+        background: var(--pill-bg);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        color: var(--header-text);
+        display: block;
+        text-decoration: none;
+        margin-bottom: 0;
+        border: 1px solid var(--pill-border);
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      /* Ripple effect structure */
+      .left-nav .nav-item::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(102, 126, 234, 0.3);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s ease,
+          height 0.6s ease,
+          opacity 0.6s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .left-nav .nav-item.ripple::after {
+        width: 300%;
+        height: 300%;
+        opacity: 0;
+      }
+
+      .left-nav .nav-item.is-active {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        border-color: var(--accent-strong);
+        box-shadow:
+          0 8px 14px rgba(102, 126, 234, 0.24),
+          0 0 20px rgba(102, 126, 234, 0.3);
+        position: relative;
+      }
+
+      /* Pulsing glow effect on active item */
+      .left-nav .nav-item.is-active::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
+        filter: blur(8px);
+        animation: pulse 2s ease-in-out infinite;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .left-nav .nav-item.is-hidden {
+        display: none;
+      }
+
+      /* Enhanced hover with multi-layer shadows */
+      .left-nav .nav-item:hover:not(.is-active) {
+        background: rgba(102, 126, 234, 0.08);
+        border-color: rgba(102, 126, 234, 0.6);
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.05),
+          0 4px 8px rgba(102, 126, 234, 0.15),
+          0 8px 16px rgba(102, 126, 234, 0.1);
+      }
+
+      /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
+      .nav-category[data-id='home-loan'] .nav-item,
+      .nav-category[data-id='credit-cards'] .nav-item,
+      .nav-category[data-id='auto-loans'] .nav-item,
+      .nav-category[data-id='time-and-date'] .nav-item {
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-left: 4px solid rgba(102, 126, 234, 0.5);
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          border-left-color 0.15s ease;
+      }
+
+      .nav-category[data-id='home-loan'] .nav-item:hover,
+      .nav-category[data-id='credit-cards'] .nav-item:hover,
+      .nav-category[data-id='auto-loans'] .nav-item:hover,
+      .nav-category[data-id='time-and-date'] .nav-item:hover {
+        border-left: 4px solid rgba(102, 126, 234, 0.9);
+        border-color: rgba(102, 126, 234, 0.4);
+        background: rgba(102, 126, 234, 0.1);
+      }
+
+      .nav-category[data-id='home-loan'] .nav-item.is-active,
+      .nav-category[data-id='credit-cards'] .nav-item.is-active,
+      .nav-category[data-id='auto-loans'] .nav-item.is-active,
+      .nav-category[data-id='time-and-date'] .nav-item.is-active {
+        border: 2px solid var(--accent-strong);
+        border-left: 4px solid #ffffff;
+      }
+
+      .center-column {
+        display: grid;
+        /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
+        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+        grid-template-rows: minmax(0, 1fr);
+        gap: 16px;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .panel {
+        background: var(--panel-bg);
+        border: 2px solid var(--shell-border);
+        border-radius: 12px;
+        box-shadow: var(--panel-shadow);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .panel-span-all {
+        grid-column: 1 / -1;
+      }
+
+      .panel-scroll {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .panel h1,
+      .panel h3 {
+        margin: 0;
+        font-size: var(--text-2xl);
+        font-weight: var(--font-bold);
+      }
+
+      .panel .placeholder {
+        color: var(--muted-text);
+        font-size: var(--text-sm);
+      }
+
+      .ads-column {
+        display: grid;
+        grid-template-rows: minmax(220px, 1fr);
+        gap: 12px;
+        min-height: 0;
+        background: var(--panel-bg);
+        border: 2px solid var(--shell-border);
+        border-radius: 12px;
+        padding: 12px;
+        height: 100%;
+      }
+
+      .ad-panel {
+        background: #f8f9fa;
+        border: 1px solid #d9e2ef;
+        border-radius: 12px;
+        padding: 10px;
+        min-height: 250px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .ad-panel .adsbygoogle {
+        display: block;
+        width: 100%;
+        min-height: 250px;
+      }
+
+      .site-footer {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        background: #ffffff;
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        border-radius: 0;
+        margin-top: 0.5rem;
+        padding: 1rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        color: #4b5563;
+        font-size: var(--text-sm);
+        font-weight: 400;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+
+      .site-footer a {
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.15s ease;
+      }
+
+      .site-footer a:hover {
+        color: #4f46e5;
+      }
+
+      .site-footer .footer-divider {
+        color: #4b5563;
+        user-select: none;
+      }
+
+      .site-footer .footer-branding {
+        color: #4b5563;
+      }
+
+      @keyframes shellLift {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes headerSlide {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes panelReveal {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Keyframe animations for navigation enhancements */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes edgeGlow {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .page,
+        .site-header,
+        .top-nav,
+        .layout-main > * {
+          animation: none;
+        }
+
+        .left-nav::before,
+        .left-nav .nav-item.is-active,
+        .left-nav .nav-item.is-active::before {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .center-column {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .site-header-inner {
+          padding: 0 16px;
+          grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
+        }
+
+        .header-title {
+          font-size: var(--text-xl);
+        }
+
+        .layout-main {
+          grid-template-columns: 200px minmax(0, 1fr);
+          padding: 0;
+        }
+
+        .ads-column {
+          grid-column: 1 / -1;
+          grid-template-columns: minmax(200px, 1fr);
+          grid-template-rows: minmax(220px, 1fr);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .header-subtitle {
+          display: none;
+        }
+
+        .header-search {
+          width: min(240px, 46vw);
+          min-width: 140px;
+        }
+
+        .page {
+          margin: 12px;
+          padding: 16px;
+        }
+
+        .layout-main {
+          grid-template-columns: 1fr;
+        }
+
+        .left-nav {
+          margin-left: 0;
+        }
+
+        .ads-column {
+          display: none;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .brand-name {
+          font-size: var(--text-base);
+        }
+
+        .header-title {
+          font-size: var(--text-base);
+        }
+
+        .header-search {
+          width: 160px;
+        }
+      }
+
+      /* Math Navigation Styles */
+      .math-nav-container {
+        background: var(--shell-bg);
+        border-radius: 12px;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+        width: 256px;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .math-nav-category {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .math-nav-category-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        gap: 8px;
+        transition: background-color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover {
+        background: rgba(99, 102, 241, 0.08);
+      }
+
+      .math-nav-category-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .math-nav-category-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .math-nav-category-icon {
+        width: 14px;
+        height: 14px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-icon {
+        color: var(--accent);
+      }
+
+      .math-nav-category-name {
+        font-size: var(--text-sm);
+        font-weight: var(--font-semibold);
+        color: var(--muted-text);
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-name {
+        color: var(--header-text);
+      }
+
+      .math-nav-category-chevron {
+        width: 14px;
+        height: 14px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+        transition: color 0.15s ease;
+      }
+
+      .math-nav-category-toggle:hover .math-nav-category-chevron {
+        color: var(--accent);
+      }
+
+      .math-nav-category-items {
+        margin-left: 0;
+        margin-top: 4px;
+        padding-left: 0;
+        border-left: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .math-nav-category.is-collapsed .math-nav-category-items {
+        display: none;
+      }
+
+      #left-nav-content.is-searching .math-nav-category.is-search-open .math-nav-category-items {
+        display: flex;
+      }
+
+      #left-nav-content.is-searching .math-nav-category.is-hidden {
+        display: none;
+      }
+
+      .math-nav-item {
+        width: 100%;
+        text-align: left;
+        padding: 10px 8px;
+        border-radius: 12px;
+        font-size: var(--text-sm);
+        font-weight: var(--font-medium);
+        color: var(--header-text);
+        background: var(--pill-bg);
+        border: 1px solid var(--pill-border);
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        transition:
+          background 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          color 0.15s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .math-nav-item:hover {
+        background: rgba(102, 126, 234, 0.08);
+        border-color: rgba(102, 126, 234, 0.6);
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.05),
+          0 4px 8px rgba(102, 126, 234, 0.15),
+          0 8px 16px rgba(102, 126, 234, 0.1);
+      }
+
+      .math-nav-item:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+      }
+
+      .math-nav-item.is-active {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 4s ease infinite;
+        color: #ffffff;
+        border-color: var(--accent-strong);
+        box-shadow:
+          0 8px 14px rgba(102, 126, 234, 0.24),
+          0 0 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .math-nav-item.is-active:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.9) 0%,
+          rgba(79, 70, 229, 0.95) 50%,
+          rgba(102, 126, 234, 0.9) 100%
+        );
+        color: #ffffff;
+      }
+
+      .math-nav-item.is-hidden {
+        display: none;
+      }
+
+      /* Mobile Navigation Drawer */
+      .mobile-menu-toggle {
+        display: none;
+        /* Desktop default */
+        background: transparent;
+        border: none;
+        color: var(--header-text);
+        padding: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      @media (max-width: 860px) {
+        .mobile-menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .left-nav {
+          position: fixed;
+          top: 72px;
+          /* Below header */
+          left: 0;
+          bottom: 0;
+          width: 280px;
+          background: var(--shell-bg);
+          z-index: 100;
+          transform: translateX(-100%);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+          border-right: 1px solid var(--shell-border);
+          margin-left: 0;
+          padding-bottom: 2rem;
+        }
+
+        .left-nav.is-mobile-open {
+          transform: translateX(0);
+        }
+
+        /* Overlay backdrop */
+        .left-nav.is-mobile-open::after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 280px;
+          right: -100vw;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(4px);
+          z-index: -1;
+          pointer-events: auto;
+        }
+      }
+
+      /* critical source: /assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* critical source: /assets/css/shared-calculator-ui.css */
+      /* ═══════════════════════════════════════════════════════════════════
+         shared-calculator-ui.css
+         Shared layout + visual rules for the home-loan calculator design family.
+         Used by: home-loan, car-loan, pcp, hire-purchase, leasing,
+                  multiple-car-loan, and all finance calculators.
+
+         DO NOT add @import to this file.
+         ═══════════════════════════════════════════════════════════════════ */
+
+      /* ── Page layout ── */
+
+      .calculator-page-single {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      #calc-home-loan .is-hidden {
+        display: none;
+      }
+
+      #calc-home-loan .home-loan-ui {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      /* ── Finance time-value route overrides (pilot bundle source) ── */
+
+      #calc-present-value,
+      #calc-future-value,
+      #calc-present-value-of-annuity,
+      #calc-future-value-of-annuity {
+        width: 100%;
+      }
+
+      #calc-present-value .home-loan-ui,
+      #calc-future-value .home-loan-ui,
+      #calc-present-value-of-annuity .home-loan-ui,
+      #calc-future-value-of-annuity .home-loan-ui {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      #calc-present-value .mtg-hero,
+      #calc-future-value .mtg-hero,
+      #calc-present-value-of-annuity .mtg-hero,
+      #calc-future-value-of-annuity .mtg-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      #calc-present-value .mtg-form-panel,
+      #calc-future-value .mtg-form-panel,
+      #calc-present-value-of-annuity .mtg-form-panel,
+      #calc-future-value-of-annuity .mtg-form-panel {
+        display: grid;
+        gap: 1rem;
+        align-content: start;
+      }
+
+      #calc-present-value .mtg-preview-panel,
+      #calc-future-value .mtg-preview-panel,
+      #calc-present-value-of-annuity .mtg-preview-panel,
+      #calc-future-value-of-annuity .mtg-preview-panel {
+        display: grid;
+        gap: 1rem;
+        align-content: start;
+      }
+
+      #calc-present-value .mtg-result-card,
+      #calc-future-value .mtg-result-card,
+      #calc-present-value-of-annuity .mtg-result-card,
+      #calc-future-value-of-annuity .mtg-result-card {
+        min-height: 44px;
+      }
+
+      #calc-present-value .mtg-summary-card,
+      #calc-future-value .mtg-summary-card,
+      #calc-present-value-of-annuity .mtg-summary-card,
+      #calc-future-value-of-annuity .mtg-summary-card {
+        min-height: 96px;
+      }
+
+      /* ── Hero grid (form + preview) ── */
+
+      #calc-home-loan .mtg-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
+        gap: 1.5rem;
+        align-items: start;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+      }
+
+      #calc-home-loan .mtg-form-panel {
+        display: grid;
+        gap: 1.65rem;
+        align-content: start;
+      }
+
+      #calc-home-loan .helper {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.45;
+        color: rgba(226, 232, 240, 0.88);
+      }
+
+      /* ── Form inputs ── */
+
+      #calc-home-loan .input-row {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.34rem;
+        min-width: 0;
+      }
+
+      #calc-home-loan label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: rgba(226, 232, 240, 0.94);
+        line-height: 1.28;
+      }
+
+      #calc-home-loan input[type='number'],
+      #calc-home-loan input[type='month'] {
+        width: 100%;
+        min-height: 38px;
+        border-radius: 0.78rem;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        background: rgba(15, 23, 42, 0.72);
+        color: #fff;
+        padding: 0.42rem 0.68rem;
+        font-size: 0.84rem;
+        line-height: 1.2;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      #calc-home-loan input[type='number']:hover,
+      #calc-home-loan input[type='month']:hover {
+        border-color: rgba(148, 163, 184, 0.62);
+      }
+
+      #calc-home-loan input[type='number']:focus-visible,
+      #calc-home-loan input[type='month']:focus-visible {
+        outline: 2px solid rgba(125, 211, 252, 0.64);
+        outline-offset: 1px;
+        border-color: rgba(125, 211, 252, 0.85);
+      }
+
+      /* ── Slider inputs ── */
+
+      #calc-home-loan .slider-row {
+        gap: 0.52rem;
+      }
+
+      #calc-home-loan .slider-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      #calc-home-loan .slider-value {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.24rem 0.72rem;
+        border-radius: 0.52rem;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(34, 197, 94, 0.45);
+        color: #4ade80;
+        font-size: 0.9rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        text-shadow:
+          0 0 8px rgba(74, 222, 128, 0.7),
+          0 0 20px rgba(74, 222, 128, 0.4),
+          0 0 40px rgba(34, 197, 94, 0.2);
+        box-shadow:
+          0 0 8px rgba(34, 197, 94, 0.2),
+          0 0 20px rgba(34, 197, 94, 0.08);
+        transition:
+          border-color 0.25s ease,
+          color 0.25s ease,
+          text-shadow 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      #calc-home-loan .slider-row:hover .slider-value {
+        border-color: rgba(251, 113, 133, 0.55);
+        color: #fb7185;
+        text-shadow:
+          0 0 8px rgba(251, 113, 133, 0.7),
+          0 0 20px rgba(251, 113, 133, 0.45),
+          0 0 40px rgba(251, 113, 133, 0.2);
+        box-shadow:
+          0 0 8px rgba(251, 113, 133, 0.2),
+          0 0 20px rgba(251, 113, 133, 0.08);
+      }
+
+      #calc-home-loan input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 5px;
+        border-radius: 9999px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: linear-gradient(
+          90deg,
+          #22c55e 0%,
+          #fb7185 var(--fill, 50%),
+          rgba(148, 163, 184, 0.14) var(--fill, 50%)
+        );
+        transition: box-shadow 0.2s ease;
+      }
+
+      #calc-home-loan input[type='range']:hover {
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
+      }
+
+      #calc-home-loan input[type='range']:focus-visible {
+        box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
+      }
+
+      #calc-home-loan input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid rgba(34, 197, 94, 0.5);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+        cursor: grab;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      #calc-home-loan input[type='range']::-webkit-slider-thumb:hover {
+        transform: scale(1.18);
+        border-color: rgba(251, 113, 133, 0.7);
+        box-shadow:
+          0 1px 8px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(251, 113, 133, 0.2);
+      }
+
+      #calc-home-loan input[type='range']:active::-webkit-slider-thumb {
+        cursor: grabbing;
+        transform: scale(1.08);
+      }
+
+      #calc-home-loan input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid rgba(34, 197, 94, 0.5);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+        cursor: grab;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      #calc-home-loan input[type='range']::-moz-range-thumb:hover {
+        transform: scale(1.18);
+        border-color: rgba(251, 113, 133, 0.7);
+        box-shadow:
+          0 1px 8px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(251, 113, 133, 0.2);
+      }
+
+      #calc-home-loan input[type='range']::-moz-range-track {
+        height: 5px;
+        border-radius: 9999px;
+        background: transparent;
+      }
+
+      /* ── Advanced options ── */
+
+      #calc-home-loan .advanced-pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.1rem;
+        align-items: end;
+      }
+
+      #calc-home-loan .down-combined-left .button-group {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 3px;
+        border-radius: 9999px;
+        border: 1px solid rgba(148, 163, 184, 0.36);
+        background: rgba(15, 23, 42, 0.78);
+      }
+
+      #calc-home-loan .down-combined-left .calculator-button {
+        min-height: 32px;
+        padding: 0.36rem 0.72rem;
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: rgba(191, 219, 254, 0.92);
+        font-size: 0.76rem;
+        font-weight: 600;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      #calc-home-loan .down-combined-left .calculator-button.is-active {
+        border-color: rgba(56, 189, 248, 0.82);
+        background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
+        color: #fff;
+      }
+
+      #calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
+        background: rgba(59, 130, 246, 0.12);
+        color: #e0f2fe;
+      }
+
+      #calc-home-loan .advanced-options {
+        margin-top: 0.18rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.28);
+        padding-top: 0.74rem;
+      }
+
+      #calc-home-loan .advanced-options summary {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.58rem;
+        padding: 0.48rem 0.58rem;
+        border-radius: 0.78rem;
+        border: 1px solid rgba(56, 189, 248, 0.56);
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
+        color: rgba(224, 242, 254, 0.98);
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      #calc-home-loan .advanced-options summary:hover {
+        border-color: rgba(56, 189, 248, 0.72);
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
+      }
+
+      #calc-home-loan .advanced-options summary::-webkit-details-marker {
+        display: none;
+      }
+
+      #calc-home-loan .advanced-options summary:focus-visible {
+        outline: 2px solid rgba(125, 211, 252, 0.74);
+        outline-offset: 2px;
+      }
+
+      #calc-home-loan .advanced-summary-pill {
+        min-width: 102px;
+        min-height: 24px;
+        border-radius: 9999px;
+        border: 1px solid rgba(125, 211, 252, 0.58);
+        background: rgba(15, 23, 42, 0.88);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.5rem;
+        flex-shrink: 0;
+      }
+
+      #calc-home-loan .summary-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.26rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+      }
+
+      #calc-home-loan .summary-icon {
+        font-size: 0.86rem;
+        line-height: 1;
+      }
+
+      #calc-home-loan .summary-state-close {
+        display: none;
+      }
+
+      #calc-home-loan .advanced-options[open] .summary-state-expand {
+        display: none;
+      }
+
+      #calc-home-loan .advanced-options[open] .summary-state-close {
+        display: inline-flex;
+      }
+
+      #calc-home-loan .advanced-options[open] summary {
+        border-color: rgba(125, 211, 252, 0.86);
+      }
+
+      #calc-home-loan .advanced-stack {
+        margin-top: 0.76rem;
+        display: grid;
+        gap: 0.72rem;
+      }
+
+      #calc-home-loan .advanced-pair label {
+        min-height: 1.2em;
+      }
+
+      /* ── Action row ── */
+
+      #calc-home-loan .mtg-action-row {
+        margin-top: 0.35rem;
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button {
+        min-height: 50px;
+        border-radius: 0.82rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        transition:
+          box-shadow 0.25s ease,
+          transform 0.15s ease;
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button:hover {
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+        transform: translateY(-1px);
+      }
+
+      #calc-home-loan .mtg-action-row .calculator-button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      }
+
+      /* ── Preview panel ── */
+
+      #calc-home-loan .mtg-preview-panel {
+        border-radius: 1.15rem;
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
+        padding: 1.15rem;
+        display: grid;
+        gap: 1rem;
+        align-content: start;
+        box-shadow:
+          0 4px 24px rgba(2, 6, 23, 0.45),
+          0 0 40px rgba(59, 130, 246, 0.06);
+      }
+
+      #calc-home-loan .mtg-preview-main {
+        border-radius: 0.95rem;
+        padding: 1rem;
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      #calc-home-loan .mtg-preview-label {
+        margin: 0;
+        font-size: 0.73rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.94);
+        font-weight: 700;
+      }
+
+      #calc-home-loan .mtg-result-card {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      #calc-home-loan .mtg-result-card {
+        color: rgba(239, 246, 255, 0.99);
+        font-size: 0.9rem;
+        line-height: 1.35;
+      }
+
+      #calc-home-loan .mtg-result-card strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.8);
+      }
+
+      #calc-home-loan .mtg-result-card .mtg-result-value {
+        display: block;
+        font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+        line-height: 1;
+        font-weight: 800;
+        color: #e0f2fe;
+        text-shadow:
+          0 0 20px rgba(125, 211, 252, 0.35),
+          0 0 40px rgba(59, 130, 246, 0.15);
+        letter-spacing: -0.02em;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      @keyframes mtg-result-pop {
+        0% {
+          opacity: 0.4;
+          transform: scale(0.92);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.03);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
+        animation: mtg-result-pop 0.4s ease-out;
+      }
+
+      /* ── Snapshot rows ── */
+
+      #calc-home-loan .mtg-snapshot-list {
+        margin: 0;
+        padding: 0.35rem 0;
+        display: grid;
+        gap: 0.1rem;
+      }
+
+      #calc-home-loan .mtg-snapshot-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.72rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      #calc-home-loan .mtg-snapshot-row:last-child {
+        border-bottom: 0;
+      }
+
+      #calc-home-loan .mtg-snapshot-row span {
+        font-size: 0.75rem;
+        color: rgba(148, 163, 184, 0.85);
+      }
+
+      #calc-home-loan .mtg-snapshot-row strong {
+        font-size: 0.88rem;
+        color: rgba(248, 250, 252, 0.99);
+        text-align: right;
+        line-height: 1.28;
+      }
+
+      /* ── Explanation section ── */
+
+      #loan-mtg-explanation {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      #loan-mtg-explanation h2 {
+        margin: 0;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: rgba(226, 232, 240, 0.97);
+      }
+
+      #loan-mtg-explanation > p {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.55;
+        color: rgba(203, 213, 225, 0.9);
+      }
+
+      #loan-mtg-explanation .mtg-exp-section {
+        display: grid;
+        gap: 0.72rem;
+        padding: 1rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+      }
+
+      #loan-mtg-explanation .mtg-exp-section h3 {
+        margin: 0;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.94);
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      #loan-mtg-explanation .mtg-exp-section h3::after {
+        content: none;
+      }
+
+      #loan-mtg-explanation .mtg-exp-section h4 {
+        margin: 0.25rem 0 0;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: rgba(191, 219, 254, 0.96);
+      }
+
+      /* ── Lifetime Totals: 2-column layout (visual | totals) ── */
+
+      #loan-mtg-explanation .mtg-exp-section--lifetime {
+        grid-template-columns: auto 1fr;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-header {
+        grid-column: 1 / -1;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-visual {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-donut {
+        --principal-share: 70%;
+        width: 200px;
+        min-width: 200px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
+        position: relative;
+        cursor: pointer;
+        transition:
+          box-shadow 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-donut:hover {
+        box-shadow:
+          0 0 32px rgba(34, 197, 94, 0.35),
+          0 0 60px rgba(251, 113, 133, 0.22),
+          0 0 80px rgba(34, 197, 94, 0.1);
+        transform: scale(1.06);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-donut::after {
+        content: '';
+        position: absolute;
+        inset: 26%;
+        border-radius: 50%;
+        background: rgba(15, 23, 42, 0.96);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        width: 100%;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.42rem;
+        padding: 0.45rem 0.62rem;
+        border-radius: 0.62rem;
+        border: 1px solid transparent;
+        background: none;
+        cursor: default;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(125, 211, 252, 0.18);
+        box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item--principal::before {
+        background: #22c55e;
+        box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item--interest::before {
+        background: #fb7185;
+        box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item span {
+        font-size: 0.74rem;
+        color: rgba(203, 213, 225, 0.9);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-legend-item strong {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: rgba(248, 250, 252, 0.98);
+        margin-left: 0.2rem;
+      }
+
+      /* ── Totals: single column stacked, right side ── */
+
+      #loan-mtg-explanation .mtg-lifetime-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-self: center;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-card {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.72rem;
+        padding: 0.72rem 0.8rem;
+        border: 1px solid transparent;
+        border-radius: 0.62rem;
+        background: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        cursor: default;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.2s ease;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-card:last-child {
+        border-bottom-color: transparent;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-card:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(125, 211, 252, 0.2);
+        box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
+        transform: translateX(4px);
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-card span {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.78);
+        white-space: nowrap;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-card strong {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: rgba(248, 250, 252, 0.98);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #loan-mtg-explanation .mtg-lifetime-summary {
+        display: none;
+      }
+
+      /* ── Amortization table ── */
+
+      #loan-mtg-explanation .amortization-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.72rem;
+      }
+
+      #loan-mtg-explanation .table-view-toggle {
+        display: inline-flex;
+        gap: 0.2rem;
+        padding: 0.18rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.36);
+        background: rgba(15, 23, 42, 0.7);
+      }
+
+      #loan-mtg-explanation .table-view-toggle .calculator-button {
+        min-height: 30px;
+        padding: 0.3rem 0.66rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: rgba(191, 219, 254, 0.92);
+        font-size: 0.74rem;
+        font-weight: 600;
+      }
+
+      #loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
+        border-color: rgba(249, 115, 22, 0.58);
+        background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
+        color: #fff;
+      }
+
+      #loan-mtg-explanation .table-scroll {
+        max-height: 318px;
+        overflow-y: scroll;
+        border-radius: 0.8rem;
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        background: rgba(15, 23, 42, 0.62);
+      }
+
+      #loan-mtg-explanation .calculator-table {
+        min-width: 420px;
+        border-collapse: collapse;
+      }
+
+      #loan-mtg-explanation .calculator-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        font-size: 0.74rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fde68a;
+        background: rgba(30, 41, 59, 0.98);
+      }
+
+      #loan-mtg-explanation .calculator-table th,
+      #loan-mtg-explanation .calculator-table td {
+        text-align: center;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        padding: 0.5rem;
+      }
+
+      #loan-mtg-explanation .calculator-table td {
+        font-size: 0.79rem;
+        color: rgba(226, 232, 240, 0.94);
+        white-space: nowrap;
+      }
+
+      #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
+        background: rgba(30, 41, 59, 0.36);
+      }
+
+      /* ── FAQ grid ── */
+
+      #loan-mtg-explanation .bor-faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+      }
+
+      #loan-mtg-explanation .bor-faq-card {
+        padding: 0.85rem;
+        border-radius: 0.78rem;
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-top: 2px solid rgba(245, 158, 11, 0.45);
+        display: grid;
+        gap: 0.4rem;
+        transition:
+          transform 0.2s ease,
+          border-color 0.25s ease,
+          box-shadow 0.3s ease;
+      }
+
+      #loan-mtg-explanation .bor-faq-card:hover {
+        transform: translateY(-2px);
+        border-top-color: rgba(245, 158, 11, 0.8);
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+      }
+
+      #loan-mtg-explanation .bor-faq-number {
+        display: inline-flex;
+        width: 26px;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(139, 92, 246, 0.2);
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        color: #c4b5fd;
+        font-size: 0.68rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      #loan-mtg-explanation .bor-faq-card h4 {
+        margin: 0;
+        font-size: 0.86rem;
+        line-height: 1.3;
+        color: rgba(226, 232, 240, 0.98);
+      }
+
+      #loan-mtg-explanation .bor-faq-card p {
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      #loan-mtg-explanation .mtg-exp-section--authority {
+        gap: 0.6rem;
+      }
+
+      #loan-mtg-explanation .mtg-authority-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+
+      #loan-mtg-explanation .mtg-authority-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.32rem 0.62rem;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        background: rgba(15, 23, 42, 0.72);
+        color: rgba(186, 230, 253, 0.92);
+        font-size: 0.72rem;
+        line-height: 1.2;
+      }
+
+      #loan-mtg-explanation .mtg-authority-link {
+        text-decoration: none;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      #loan-mtg-explanation .mtg-authority-link:hover {
+        border-color: rgba(56, 189, 248, 0.78);
+        color: #fff;
+        background: rgba(2, 132, 199, 0.26);
+      }
+
+      #loan-mtg-explanation .mtg-step-list {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      #loan-mtg-explanation .mtg-step-list li {
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      #loan-mtg-explanation .mtg-guide-list {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.32rem;
+      }
+
+      #loan-mtg-explanation .mtg-guide-list li {
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide,
+      #loan-mtg-explanation #mtg-section-how-to-guide {
+        gap: 0.62rem;
+        padding: 0.98rem 1.05rem;
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide {
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.46));
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide p,
+      #loan-mtg-explanation #mtg-section-how-to-guide p {
+        margin: 0;
+        width: 100%;
+        max-width: none;
+        color: rgba(226, 232, 240, 0.97);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide h4,
+      #loan-mtg-explanation #mtg-section-how-to-guide h4 {
+        margin: 0.34rem 0 0.02rem;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: rgba(224, 242, 254, 0.99);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list,
+      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list,
+      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list {
+        margin: 0.04rem 0 0.14rem;
+        padding-left: 1.28rem;
+        width: 100%;
+        max-width: none;
+        gap: 0.24rem;
+      }
+
+      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list li,
+      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list li,
+      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list li {
+        color: rgba(226, 232, 240, 0.96);
+        font-size: 0.88rem;
+        line-height: 1.56;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-formula-block {
+        margin: 0.02rem 0 0.14rem;
+        width: 100%;
+        max-width: none;
+        padding: 0.64rem 0.76rem;
+        font-size: 0.95rem;
+      }
+
+      #loan-mtg-explanation .mtg-definition-list {
+        margin: 0;
+        padding-left: 1rem;
+        display: grid;
+        gap: 0.28rem;
+      }
+
+      #loan-mtg-explanation .mtg-definition-list li {
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      #loan-mtg-explanation .mtg-formula-block {
+        margin: 0;
+        padding: 0.66rem 0.8rem;
+        border-radius: 0.7rem;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        background: linear-gradient(140deg, rgba(15, 23, 42, 0.88), rgba(2, 132, 199, 0.14));
+        color: #e0f2fe;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      #loan-mtg-explanation .mtg-graph-kpis {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      #loan-mtg-explanation .mtg-graph-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.52rem;
+      }
+
+      #loan-mtg-explanation .mtg-graph-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.38rem 0.72rem;
+        border-radius: 999px;
+        border: 1px solid rgba(125, 211, 252, 0.32);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.55));
+        color: rgba(226, 232, 240, 0.98);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      #loan-mtg-explanation .mtg-graph-legend-item::before {
+        content: '';
+        width: 20px;
+        height: 3px;
+        border-radius: 999px;
+      }
+
+      #loan-mtg-explanation .mtg-graph-legend-item--baseline::before {
+        background: #f59e0b;
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+      }
+
+      #loan-mtg-explanation .mtg-graph-legend-item--extra::before {
+        background: #22d3ee;
+        box-shadow: 0 0 10px rgba(34, 211, 238, 0.55);
+      }
+
+      #loan-mtg-explanation .mtg-graph-kpi {
+        display: grid;
+        gap: 0.22rem;
+        padding: 0.62rem 0.72rem;
+        border-radius: 0.8rem;
+        border: 1px solid rgba(125, 211, 252, 0.3);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(30, 41, 59, 0.62));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      #loan-mtg-explanation .mtg-graph-kpi-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.88);
+      }
+
+      #loan-mtg-explanation .mtg-graph-kpi-value {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(226, 232, 240, 0.98);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #loan-mtg-explanation .mtg-graph-canvas-wrap {
+        position: relative;
+        border: 1px solid rgba(125, 211, 252, 0.32);
+        border-radius: 0.95rem;
+        overflow: hidden;
+        background:
+          radial-gradient(80% 100% at 0% 0%, rgba(14, 116, 144, 0.12), rgba(2, 6, 23, 0) 70%),
+          radial-gradient(80% 100% at 100% 0%, rgba(99, 102, 241, 0.12), rgba(2, 6, 23, 0) 70%),
+          linear-gradient(160deg, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.9));
+        box-shadow:
+          inset 0 0 0 1px rgba(125, 211, 252, 0.08),
+          0 8px 24px rgba(2, 6, 23, 0.32);
+      }
+
+      #loan-mtg-explanation .mtg-balance-canvas {
+        display: block;
+        width: 100%;
+        height: 320px;
+      }
+
+      #loan-mtg-explanation .mtg-balance-status {
+        position: absolute;
+        left: 0.7rem;
+        bottom: 0.6rem;
+        padding: 0.28rem 0.56rem;
+        border-radius: 0.6rem;
+        background: rgba(15, 23, 42, 0.86);
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        color: rgba(186, 230, 253, 0.96);
+        font-size: 0.7rem;
+        line-height: 1.25;
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip {
+        position: absolute;
+        z-index: 4;
+        min-width: 230px;
+        max-width: 280px;
+        padding: 0.58rem 0.68rem;
+        border-radius: 0.72rem;
+        border: 1px solid rgba(125, 211, 252, 0.42);
+        background: linear-gradient(150deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
+        box-shadow:
+          0 16px 32px rgba(2, 6, 23, 0.52),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip p {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        font-size: 0.74rem;
+        color: rgba(203, 213, 225, 0.94);
+        line-height: 1.45;
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip p + p {
+        margin-top: 0.2rem;
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip .mtg-tooltip-period {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #dbeafe;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        padding-bottom: 0.2rem;
+        margin-bottom: 0.2rem;
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip span {
+        color: rgba(191, 219, 254, 0.86);
+      }
+
+      #loan-mtg-explanation .mtg-balance-tooltip strong {
+        color: rgba(248, 250, 252, 0.98);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #loan-mtg-explanation .mtg-trust-list {
+        margin: 0;
+        padding-left: 1rem;
+        display: grid;
+        gap: 0.34rem;
+      }
+
+      #loan-mtg-explanation .mtg-trust-list li {
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      /* ── Slider hover effects (from auto-loan family) ── */
+
+      .home-loan-ui .input-row.slider-row {
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+        padding: 8px;
+        border-radius: 8px;
+        margin: -8px 0 16px 0;
+      }
+
+      .home-loan-ui .input-row.slider-row:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .home-loan-ui .input-row.slider-row:hover .slider-header label {
+        color: #a5f3fc;
+        text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
+      }
+
+      .home-loan-ui .slider-value {
+        font-weight: 700;
+        color: #e0f2fe;
+        transition: color 0.2s ease;
+      }
+
+      .home-loan-ui .input-row.slider-row:hover .slider-value {
+        color: #38bdf8;
+      }
+
+      /* ── 2-Column Grid Layout ── */
+
+      .home-loan-ui .input-grid-2-col {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        width: 100%;
+        margin-top: 1.5rem;
+      }
+
+      /* ── Accessibility ── */
+
+      @media (prefers-reduced-motion: reduce) {
+        #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
+          animation: none;
+        }
+        #calc-home-loan .mtg-action-row .calculator-button {
+          transition: none;
+        }
+      }
+
+      /* ── Responsive breakpoints ── */
+
+      @media (max-width: 1220px) {
+        #calc-home-loan .mtg-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        #calc-home-loan .advanced-pair {
+          grid-template-columns: 1fr;
+        }
+
+        #loan-mtg-explanation .table-scroll {
+          border-radius: 0.7rem;
+        }
+
+        #loan-mtg-explanation .calculator-table {
+          min-width: 360px;
+        }
+
+        #loan-mtg-explanation .amortization-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        #loan-mtg-explanation .mtg-graph-kpis {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .home-loan-ui .input-grid-2-col {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #loan-mtg-explanation .mtg-exp-section {
+          padding: 0.85rem;
+        }
+
+        #loan-mtg-explanation .bor-faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-home-loan .down-combined-left .calculator-button,
+        #loan-mtg-explanation .table-view-toggle .calculator-button {
+          flex: 1 1 auto;
+        }
+
+        #loan-mtg-explanation .table-view-toggle {
+          width: 100%;
+        }
+
+        #loan-mtg-explanation .mtg-exp-section--lifetime {
+          grid-template-columns: 1fr;
+        }
+
+        #loan-mtg-explanation .mtg-lifetime-visual {
+          align-items: center;
+        }
+
+        #loan-mtg-explanation .mtg-lifetime-donut {
+          width: 160px;
+          min-width: 160px;
+        }
+
+        #loan-mtg-explanation .mtg-graph-kpis {
+          grid-template-columns: 1fr;
+        }
+
+        #loan-mtg-explanation .mtg-balance-canvas {
+          height: 280px;
+        }
+
+        #loan-mtg-explanation .mtg-authority-badge {
+          width: 100%;
+        }
+
+      }
+
+      /* critical source: /calculators/time-and-date/birthday-day-of-week/calculator.css */
+      #calc-birthday-dow {
+        --birthday-page: #06111f;
+        --birthday-page-alt: #0a1b31;
+        --birthday-surface: rgba(10, 19, 34, 0.7);
+        --birthday-surface-soft: rgba(255, 255, 255, 0.04);
+        --birthday-surface-strong: rgba(9, 17, 30, 0.9);
+        --birthday-line: rgba(255, 255, 255, 0.08);
+        --birthday-line-strong: rgba(255, 255, 255, 0.16);
+        --birthday-ink: #f7f1e7;
+        --birthday-muted: rgba(233, 239, 247, 0.76);
+        --birthday-faint: rgba(233, 239, 247, 0.5);
+        --birthday-gold: #f2cb82;
+        --birthday-coral: #ff9073;
+        --birthday-mint: #9ad8cc;
+        position: relative;
+        overflow: hidden;
+        padding: clamp(22px, 4vw, 42px);
+        border-radius: 32px;
+        background:
+          radial-gradient(circle at 14% 18%, rgba(255, 144, 115, 0.18), transparent 24%),
+          radial-gradient(circle at 82% 16%, rgba(242, 203, 130, 0.2), transparent 24%),
+          radial-gradient(circle at 70% 76%, rgba(154, 216, 204, 0.12), transparent 20%),
+          linear-gradient(155deg, #06111f 0%, #0a1830 48%, #081321 100%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 30px 100px rgba(2, 6, 23, 0.45);
+      }
+
+      #calc-birthday-dow::before,
+      #calc-birthday-dow::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      #calc-birthday-dow::before {
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(circle at 86% 20%, rgba(255, 255, 255, 0.88), transparent 46%);
+        opacity: 0.26;
+      }
+
+      #calc-birthday-dow::after {
+        background:
+          radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.92) 0 1px, transparent 1.6px),
+          radial-gradient(circle at 84% 16%, rgba(242, 203, 130, 0.9) 0 1.25px, transparent 1.8px),
+          radial-gradient(circle at 76% 31%, rgba(255, 144, 115, 0.9) 0 1.25px, transparent 1.8px),
+          radial-gradient(circle at 66% 78%, rgba(154, 216, 204, 0.9) 0 1.25px, transparent 1.8px);
+        opacity: 0.38;
+      }
+
+      .panel-span-all > #calculator-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .panel-span-all > #calculator-title::after {
+        content: none;
+      }
+
+      .panel-span-all .calculator-page-single {
+        display: grid;
+        gap: clamp(30px, 4vw, 46px);
+        margin-top: -6px;
+      }
+
+      #calc-birthday-dow .birthday-dow-product {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: clamp(30px, 4vw, 48px);
+      }
+
+      #calc-birthday-dow .birthday-dow-section-kicker,
+      #calc-birthday-dow .birthday-dow-field-label,
+      #calc-birthday-dow .birthday-dow-result-label,
+      #calc-birthday-dow .birthday-dow-block-label,
+      #calc-birthday-dow .birthday-dow-mini-label,
+      #calc-birthday-dow .birthday-dow-spotlight-kicker,
+      #calc-birthday-dow .birthday-dow-spotlight-chip-label,
+      #birthday-dow-explanation .birthday-dow-help-kicker,
+      #birthday-dow-explanation summary {
+        margin: 0;
+        font-family: 'Consolas', 'SFMono-Regular', monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--birthday-faint);
+      }
+
+      #calc-birthday-dow .birthday-dow-hero-title,
+      #calc-birthday-dow .birthday-dow-section-title,
+      #calc-birthday-dow .birthday-dow-board-title,
+      #calc-birthday-dow .birthday-dow-spotlight-title,
+      #calc-birthday-dow .birthday-dow-planner-title,
+      #calc-birthday-dow .birthday-dow-next-title,
+      #birthday-dow-explanation h2 {
+        margin: 0;
+        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+        letter-spacing: -0.05em;
+        color: var(--birthday-ink);
+      }
+
+      #calc-birthday-dow .birthday-dow-hero-title {
+        max-width: none;
+        white-space: nowrap;
+        font-size: clamp(2rem, 4.2vw, 4.5rem);
+        line-height: 0.95;
+      }
+
+      #calc-birthday-dow .birthday-dow-section-title,
+      #calc-birthday-dow .birthday-dow-board-title,
+      #calc-birthday-dow .birthday-dow-planner-title,
+      #birthday-dow-explanation h2 {
+        font-size: clamp(1.35rem, 2vw, 1.95rem);
+        line-height: 1;
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight-title,
+      #calc-birthday-dow .birthday-dow-next-title {
+        font-size: clamp(1.45rem, 2.5vw, 2.3rem);
+        line-height: 0.98;
+      }
+
+      #calc-birthday-dow .birthday-dow-hero-text,
+      #calc-birthday-dow .birthday-dow-setup-copy,
+      #calc-birthday-dow .birthday-dow-form-note,
+      #calc-birthday-dow .birthday-dow-placeholder,
+      #calc-birthday-dow .birthday-dow-summary-line,
+      #calc-birthday-dow .birthday-dow-fact-note,
+      #calc-birthday-dow .birthday-dow-copy-feedback,
+      #calc-birthday-dow .birthday-dow-spotlight-text,
+      #calc-birthday-dow .birthday-dow-spotlight-subanswer,
+      #calc-birthday-dow .birthday-dow-intent-copy,
+      #calc-birthday-dow .birthday-dow-mini-date,
+      #calc-birthday-dow .birthday-dow-weekend-copy,
+      #calc-birthday-dow .birthday-dow-empty-state,
+      #calc-birthday-dow .birthday-dow-next-copy-text,
+      #birthday-dow-explanation p,
+      #birthday-dow-explanation li {
+        margin: 0;
+        font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--birthday-muted);
+      }
+
+      #calc-birthday-dow .birthday-dow-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+        gap: clamp(24px, 4vw, 44px);
+        align-items: start;
+      }
+
+      #calc-birthday-dow .birthday-dow-hero-copy {
+        display: contents;
+      }
+
+      #calc-birthday-dow .birthday-dow-intent-switch {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        width: min(100%, 740px);
+        margin: 0 auto;
+      }
+
+      #calc-birthday-dow .birthday-dow-hero-title {
+        grid-column: 1 / -1;
+        justify-self: center;
+        text-align: center;
+      }
+
+      #calc-birthday-dow .birthday-dow-top-form {
+        grid-column: 1;
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight {
+        grid-column: 2;
+      }
+
+      #calc-birthday-dow .birthday-dow-top-form {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      #calc-birthday-dow .birthday-dow-input-row-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-birthday-dow .birthday-dow-intent,
+      #calc-birthday-dow .birthday-dow-year-chip,
+      #calc-birthday-dow .birthday-dow-copy-btn,
+      #calc-birthday-dow .birthday-dow-plan-tab {
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background 180ms ease, border-color 180ms ease, color 180ms ease,
+          transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      #calc-birthday-dow .birthday-dow-intent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        width: 100%;
+        padding: 0 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--birthday-ink);
+        text-align: center;
+      }
+
+      #calc-birthday-dow .birthday-dow-intent:hover,
+      #calc-birthday-dow .birthday-dow-intent[aria-pressed='true'] {
+        background: linear-gradient(135deg, rgba(242, 203, 130, 0.14), rgba(255, 144, 115, 0.07));
+        border-color: rgba(242, 203, 130, 0.22);
+      }
+
+      #calc-birthday-dow .birthday-dow-intent-title {
+        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight,
+      #calc-birthday-dow .birthday-dow-workspace {
+        position: relative;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+          var(--birthday-surface);
+        backdrop-filter: blur(18px);
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight {
+        display: grid;
+        gap: 14px;
+        padding: clamp(22px, 3vw, 30px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 18px 40px rgba(2, 6, 23, 0.22);
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight::after {
+        content: '';
+        position: absolute;
+        inset: auto -50px -50px auto;
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(242, 203, 130, 0.15), transparent 68%);
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight-chip {
+        display: grid;
+        gap: 6px;
+        padding: 13px 15px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight-chip-value,
+      #calc-birthday-dow .birthday-dow-fact-value,
+      #calc-birthday-dow .birthday-dow-mini-weekday,
+      #calc-birthday-dow .birthday-dow-weekend-title,
+      #calc-birthday-dow .birthday-dow-next-stat strong {
+        margin: 0;
+        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+        letter-spacing: -0.04em;
+        color: var(--birthday-ink);
+      }
+
+      #calc-birthday-dow .birthday-dow-spotlight-answer {
+        margin: 0;
+        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+        font-size: clamp(3rem, 6vw, 4.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.06em;
+        color: var(--birthday-ink);
+      }
+
+      #calc-birthday-dow .birthday-dow-workspace {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: clamp(22px, 3vw, 32px);
+        box-shadow: 0 20px 46px rgba(2, 6, 23, 0.24);
+      }
+
+      #calc-birthday-dow .birthday-dow-board {
+        display: grid;
+        align-content: start;
+        gap: 18px;
+        width: 100%;
+        min-width: 0;
+      }
+
+      #calc-birthday-dow .birthday-dow-board {
+        gap: 20px;
+      }
+
+      #calc-birthday-dow .birthday-dow-board-head,
+      #calc-birthday-dow .birthday-dow-planner-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      #calc-birthday-dow .birthday-dow-board-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #calc-birthday-dow .birthday-dow-planner-head {
+        display: block;
+      }
+
+      #calc-birthday-dow .birthday-dow-results,
+      #calc-birthday-dow .birthday-dow-results-list {
+        width: 100%;
+        min-width: 0;
+      }
+
+      #calc-birthday-dow .birthday-dow-planner-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #calc-birthday-dow .birthday-dow-input-row {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-birthday-dow .birthday-dow-field {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-birthday-dow .birthday-dow-field input {
+        width: 100%;
+        min-height: 58px;
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 18px;
+        background: rgba(5, 12, 24, 0.76);
+        color: var(--birthday-ink);
+        font-size: 1rem;
+        color-scheme: dark;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      #calc-birthday-dow .birthday-dow-field input:focus {
+        outline: none;
+        border-color: rgba(242, 203, 130, 0.42);
+        box-shadow: 0 0 0 4px rgba(242, 203, 130, 0.12);
+        transform: translateY(-1px);
+      }
+
+      #calc-birthday-dow .birthday-dow-year-presets,
+      #calc-birthday-dow .birthday-dow-plan-switch {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-birthday-dow .birthday-dow-year-presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #calc-birthday-dow .birthday-dow-plan-switch {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      #calc-birthday-dow .birthday-dow-year-chip,
+      #calc-birthday-dow .birthday-dow-copy-btn,
+      #calc-birthday-dow .birthday-dow-plan-tab {
+        min-height: 42px;
+        width: 100%;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--birthday-muted);
+        font-size: 13px;
+        font-weight: 700;
+        justify-content: center;
+      }
+
+      #calc-birthday-dow .birthday-dow-year-chip:hover,
+      #calc-birthday-dow .birthday-dow-year-chip[aria-pressed='true'],
+      #calc-birthday-dow .birthday-dow-copy-btn:hover:not(:disabled),
+      #calc-birthday-dow .birthday-dow-plan-tab:hover,
+      #calc-birthday-dow .birthday-dow-plan-tab[aria-pressed='true'] {
+        color: var(--birthday-ink);
+        border-color: rgba(242, 203, 130, 0.3);
+        background: linear-gradient(135deg, rgba(242, 203, 130, 0.18), rgba(255, 144, 115, 0.08));
+      }
+
+      #calc-birthday-dow .birthday-dow-copy-btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+
+      #calc-birthday-dow .birthday-dow-copy-btn {
+        margin-left: auto;
+        width: auto;
+        min-width: 92px;
+        padding-inline: 18px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      #calc-birthday-dow .birthday-dow-calc-btn {
+        width: 100%;
+        min-height: 58px;
+        border: 0;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #f2cb82 0%, #ff9073 100%);
+        color: #081223;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        box-shadow: 0 18px 34px rgba(242, 203, 130, 0.2);
+      }
+
+      #calc-birthday-dow .birthday-dow-placeholder,
+      #calc-birthday-dow .birthday-dow-summary-line {
+        max-width: 60ch;
+      }
+
+      #calc-birthday-dow .birthday-dow-summary-line {
+        display: none;
+      }
+
+      #calc-birthday-dow .birthday-dow-facts {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-birthday-dow .birthday-dow-fact,
+      #calc-birthday-dow .birthday-dow-plan-panel,
+      #calc-birthday-dow .birthday-dow-recurrence-item,
+      #calc-birthday-dow .birthday-dow-weekend-item {
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.045);
+      }
+
+      #calc-birthday-dow .birthday-dow-fact {
+        display: grid;
+        grid-column: span 3;
+        align-content: start;
+        gap: 6px;
+        min-width: 0;
+        padding: 16px 18px;
+      }
+
+      #calc-birthday-dow .birthday-dow-fact-value {
+        font-size: clamp(1.7rem, 2.2vw, 2.15rem);
+        line-height: 0.96;
+        text-wrap: balance;
+        word-break: break-word;
+      }
+
+      #calc-birthday-dow .birthday-dow-fact-next {
+        grid-column: span 6;
+        background:
+          linear-gradient(135deg, rgba(242, 203, 130, 0.08), rgba(255, 144, 115, 0.03)),
+          rgba(255, 255, 255, 0.032);
+      }
+
+      #calc-birthday-dow .birthday-dow-fact-note {
+        line-height: 1.5;
+      }
+
+      #calc-birthday-dow .birthday-dow-planner {
+        display: grid;
+        gap: 16px;
+        margin-top: 6px;
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.022);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      #calc-birthday-dow .birthday-dow-plan-panel {
+        padding: clamp(18px, 2.4vw, 22px);
+      }
+
+      #calc-birthday-dow .birthday-dow-next-snapshot {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+        gap: 22px;
+        align-items: start;
+      }
+
+      #calc-birthday-dow .birthday-dow-next-copy {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-birthday-dow .birthday-dow-next-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-birthday-dow .birthday-dow-next-stat {
+        display: grid;
+        gap: 6px;
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.034);
+      }
+
+      #calc-birthday-dow .birthday-dow-next-stat strong {
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+        line-height: 0.95;
+      }
+
+      #calc-birthday-dow .birthday-dow-recurrence {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-birthday-dow .birthday-dow-recurrence-item {
+        display: grid;
+        gap: 6px;
+        padding: 14px;
+      }
+
+      #calc-birthday-dow .birthday-dow-recurrence-item.is-selected {
+        background: linear-gradient(135deg, rgba(242, 203, 130, 0.16), rgba(255, 144, 115, 0.08));
+        border: 1px solid rgba(242, 203, 130, 0.22);
+      }
+
+      #calc-birthday-dow .birthday-dow-recurrence-item.is-weekend .birthday-dow-mini-badge {
+        background: rgba(154, 216, 204, 0.14);
+        color: var(--birthday-mint);
+      }
+
+      #calc-birthday-dow .birthday-dow-mini-year,
+      #calc-birthday-dow .birthday-dow-weekend-day {
+        margin: 0;
+        font-family: 'Consolas', 'SFMono-Regular', monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--birthday-faint);
+      }
+
+      #calc-birthday-dow .birthday-dow-mini-weekday,
+      #calc-birthday-dow .birthday-dow-weekend-title {
+        font-size: 1.28rem;
+        line-height: 1;
+      }
+
+      #calc-birthday-dow .birthday-dow-mini-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--birthday-gold);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #calc-birthday-dow .birthday-dow-weekend-highlights {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-birthday-dow .birthday-dow-weekend-item {
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+      }
+
+      #calc-birthday-dow .birthday-dow-empty-state {
+        padding: 8px 0;
+      }
+
+      #birthday-dow-explanation {
+        display: grid;
+        gap: 16px;
+      }
+
+      #birthday-dow-explanation .birthday-dow-help-intro {
+        display: grid;
+        gap: 12px;
+        max-width: 58rem;
+      }
+
+      #birthday-dow-explanation .birthday-dow-detail {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 14px;
+      }
+
+      #birthday-dow-explanation .birthday-dow-detail[open] {
+        padding-bottom: 4px;
+      }
+
+      #birthday-dow-explanation summary {
+        list-style: none;
+        cursor: pointer;
+      }
+
+      #birthday-dow-explanation summary::-webkit-details-marker {
+        display: none;
+      }
+
+      #birthday-dow-explanation .birthday-dow-detail-body {
+        display: grid;
+        gap: 10px;
+        max-width: 54rem;
+        padding-top: 10px;
+      }
+
+      #birthday-dow-explanation ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      @media (max-width: 1100px) {
+        #calc-birthday-dow .birthday-dow-hero,
+        #calc-birthday-dow .birthday-dow-workspace,
+        #calc-birthday-dow .birthday-dow-next-snapshot {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-birthday-dow .birthday-dow-top-form,
+        #calc-birthday-dow .birthday-dow-spotlight {
+          grid-column: 1;
+        }
+
+        #calc-birthday-dow .birthday-dow-fact {
+          grid-column: span 6;
+        }
+
+        #calc-birthday-dow .birthday-dow-fact-next {
+          grid-column: span 12;
+        }
+
+        #calc-birthday-dow .birthday-dow-facts,
+        #calc-birthday-dow .birthday-dow-recurrence,
+        #calc-birthday-dow .birthday-dow-weekend-highlights {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        #calc-birthday-dow {
+          padding: 18px;
+          border-radius: 26px;
+        }
+
+        #calc-birthday-dow .birthday-dow-intent-switch,
+        #calc-birthday-dow .birthday-dow-facts,
+        #calc-birthday-dow .birthday-dow-spotlight-meta,
+        #calc-birthday-dow .birthday-dow-recurrence,
+        #calc-birthday-dow .birthday-dow-weekend-highlights,
+        #calc-birthday-dow .birthday-dow-next-stats,
+        #calc-birthday-dow .birthday-dow-input-row-top,
+        #calc-birthday-dow .birthday-dow-year-presets,
+        #calc-birthday-dow .birthday-dow-plan-switch {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-birthday-dow .birthday-dow-board-head,
+        #calc-birthday-dow .birthday-dow-planner-head {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        #calc-birthday-dow .birthday-dow-plan-tab,
+        #calc-birthday-dow .birthday-dow-copy-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        #calc-birthday-dow .birthday-dow-planner {
+          padding: 16px;
+          border-radius: 22px;
+        }
+
+        #calc-birthday-dow .birthday-dow-fact,
+        #calc-birthday-dow .birthday-dow-plan-panel,
+        #calc-birthday-dow .birthday-dow-spotlight,
+        #calc-birthday-dow .birthday-dow-workspace {
+          border-radius: 24px;
+        }
+      }
+    </style>
  
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
@@ -28,7 +4696,7 @@
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
-  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
     <div class="page">
       <header class="site-header">
   <div class="site-header-inner">
@@ -141,7 +4809,7 @@
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer-generator/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer Generator</a>
+    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
   </div>
 </div>
 <div class="fin-nav-group is-expanded" data-fin-subcategory="age-calculator">
@@ -160,187 +4828,230 @@
   <h1 id="calculator-title">Birthday Day-of-Week Calculator</h1>
   <div class="calculator-page-single">
     <div id="calc-birthday-dow">
-  <div class="birthday-dow-shell">
+  <div class="birthday-dow-product">
     <section class="birthday-dow-hero" aria-labelledby="birthday-dow-hero-title">
       <div class="birthday-dow-hero-copy">
-        <p class="birthday-dow-kicker">Celebration Calendar</p>
-        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">
-          Find your birthday. Then plan the years worth celebrating.
-        </h2>
-        <p class="birthday-dow-hero-text">
-          One date in. Clean answers out. Check the day you were born, preview any year, and spot
-          the next weekend-friendly birthday without scanning calendars by hand.
-        </p>
+        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">Birthday planner</h2>
+
+        <div class="birthday-dow-intent-switch" role="group" aria-label="What do you want to do?">
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="born"
+            aria-pressed="true"
+          >
+            <span class="birthday-dow-intent-title">Birth day</span>
+          </button>
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="year"
+            aria-pressed="false"
+          >
+            <span class="birthday-dow-intent-title">Future year</span>
+          </button>
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="weekend"
+            aria-pressed="false"
+          >
+            <span class="birthday-dow-intent-title">Weekend</span>
+          </button>
+        </div>
+
+        <div class="birthday-dow-top-form">
+          <div class="birthday-dow-input-row birthday-dow-input-row-top">
+            <label class="birthday-dow-field" for="birthday-dow-dob">
+              <span class="birthday-dow-field-label">Date of birth</span>
+              <input id="birthday-dow-dob" type="date" />
+            </label>
+
+            <label class="birthday-dow-field" for="birthday-dow-year">
+              <span class="birthday-dow-field-label">Target year</span>
+              <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
+            </label>
+          </div>
+
+          <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="current"
+              aria-pressed="false"
+            >
+              This year
+            </button>
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="next"
+              aria-pressed="false"
+            >
+              Next year
+            </button>
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="plus-5"
+              aria-pressed="false"
+            >
+              +5 years
+            </button>
+          </div>
+
+          <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
+            Show
+          </button>
+
+          <p class="birthday-dow-form-note">Private in browser.</p>
+          <p class="form-error is-hidden" id="birthday-dow-error"></p>
+        </div>
       </div>
 
-      <aside class="birthday-dow-hero-marquee" aria-live="polite">
-        <p class="birthday-dow-marquee-label">Born on</p>
-        <p class="birthday-dow-hero-weekday" id="birthday-dow-hero-weekday">Waiting for a date</p>
-        <p class="birthday-dow-hero-date" id="birthday-dow-hero-date">
-          Add your birthday to turn this into a clean planning view.
-        </p>
+      <aside class="birthday-dow-spotlight" aria-live="polite">
+        <p class="birthday-dow-spotlight-kicker" id="birthday-dow-spotlight-kicker">Birth day</p>
 
-        <div class="birthday-dow-hero-strip">
-          <div class="birthday-dow-hero-chip">
-            <span class="birthday-dow-hero-chip-label">Target year</span>
-            <strong class="birthday-dow-hero-chip-value" id="birthday-dow-hero-target-year"
+        <div class="birthday-dow-spotlight-meta">
+          <div class="birthday-dow-spotlight-chip">
+            <span class="birthday-dow-spotlight-chip-label">Birth date</span>
+            <strong class="birthday-dow-spotlight-chip-value" id="birthday-dow-hero-date"
+              >Waiting for a date</strong
+            >
+          </div>
+          <div class="birthday-dow-spotlight-chip">
+            <span class="birthday-dow-spotlight-chip-label">Target year</span>
+            <strong class="birthday-dow-spotlight-chip-value" id="birthday-dow-hero-target-year"
               >----</strong
             >
           </div>
-          <div class="birthday-dow-hero-chip">
-            <span class="birthday-dow-hero-chip-label">Lands on</span>
-            <strong class="birthday-dow-hero-chip-value" id="birthday-dow-hero-target-weekday"
-              >--</strong
-            >
-          </div>
         </div>
+
+        <p class="birthday-dow-spotlight-answer" id="birthday-dow-hero-weekday">--</p>
+        <h3 class="birthday-dow-spotlight-title" id="birthday-dow-spotlight-title">Add your date</h3>
+        <p class="birthday-dow-spotlight-subanswer" id="birthday-dow-hero-target-weekday">
+          Clean answer, no calendar clutter.
+        </p>
       </aside>
     </section>
 
-    <section class="birthday-dow-studio" aria-labelledby="birthday-dow-studio-title">
-      <div class="birthday-dow-controls">
-        <p class="birthday-dow-section-kicker">Core tool</p>
-        <h3 class="birthday-dow-section-title" id="birthday-dow-studio-title">
-          Pick a date and year.
-        </h3>
-
-        <div class="birthday-dow-input-row">
-          <label class="birthday-dow-field" for="birthday-dow-dob">
-            <span class="birthday-dow-field-label">Date of birth</span>
-            <input id="birthday-dow-dob" type="date" />
-          </label>
-
-          <label class="birthday-dow-field" for="birthday-dow-year">
-            <span class="birthday-dow-field-label">Target year</span>
-            <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
-          </label>
-        </div>
-
-        <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="current"
-            aria-pressed="false"
-          >
-            This year
-          </button>
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="next"
-            aria-pressed="false"
-          >
-            Next year
-          </button>
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="plus-5"
-            aria-pressed="false"
-          >
-            +5 years
-          </button>
-        </div>
-
-        <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
-          Reveal birthday insights
-        </button>
-
-        <p class="birthday-dow-form-note">
-          Private by default. Your birthday stays in the browser and never leaves the page.
-        </p>
-        <p class="form-error is-hidden" id="birthday-dow-error"></p>
-      </div>
-
-      <div class="birthday-dow-results-panel">
-        <div class="birthday-dow-results-head">
-          <div>
-            <p class="birthday-dow-section-kicker">Key outputs</p>
-            <h3 class="birthday-dow-section-title">Birthday snapshot</h3>
-          </div>
+    <section class="birthday-dow-workspace" aria-labelledby="birthday-dow-workspace-title">
+      <div class="birthday-dow-board">
+        <div class="birthday-dow-board-head">
+          <h3 class="birthday-dow-board-title" id="birthday-dow-workspace-title">Birthday board</h3>
           <button
             class="birthday-dow-copy-btn"
             type="button"
             id="birthday-dow-copy-summary"
             disabled
           >
-            Copy summary
+            Copy
           </button>
         </div>
 
         <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
           <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
-            Enter your birthday to unlock the answer, the next birthday, and the best weekend years
-            ahead.
+            Add your birthday to see the answer.
           </p>
 
           <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
-            <article class="birthday-dow-primary-result">
-              <p class="birthday-dow-result-label">You were born on</p>
-              <p class="birthday-dow-primary-value" id="birthday-dow-birth-weekday">--</p>
-              <p class="birthday-dow-primary-note" id="birthday-dow-birth-note">
-                Your birth weekday appears here.
-              </p>
-            </article>
+            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
 
-            <div class="birthday-dow-secondary-metrics">
-              <article class="birthday-dow-metric">
+            <div class="birthday-dow-facts" role="list">
+              <article class="birthday-dow-fact">
+                <p class="birthday-dow-result-label">Born on</p>
+                <p class="birthday-dow-fact-value" id="birthday-dow-birth-weekday">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-birth-note">
+                  Your birth weekday appears here.
+                </p>
+              </article>
+
+              <article class="birthday-dow-fact">
                 <p class="birthday-dow-result-label" id="birthday-dow-target-label">Birthday in ----</p>
-                <p class="birthday-dow-metric-value" id="birthday-dow-target-weekday-card">--</p>
-                <p class="birthday-dow-result-note" id="birthday-dow-target-note">
+                <p class="birthday-dow-fact-value" id="birthday-dow-target-weekday-card">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-target-note">
                   Your selected-year weekday appears here.
                 </p>
               </article>
 
-              <article class="birthday-dow-metric birthday-dow-metric-next">
+              <article class="birthday-dow-fact birthday-dow-fact-next">
                 <p class="birthday-dow-result-label">Next birthday</p>
-                <p class="birthday-dow-metric-value" id="birthday-dow-next-weekday">--</p>
-                <p class="birthday-dow-result-note" id="birthday-dow-next-date">--</p>
-                <div class="birthday-dow-next-inline">
-                  <span>Turns <strong id="birthday-dow-next-age">--</strong></span>
-                  <span>In <strong id="birthday-dow-next-days">--</strong> days</span>
-                </div>
+                <p class="birthday-dow-fact-value" id="birthday-dow-next-weekday">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-next-date">--</p>
               </article>
             </div>
 
-            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
+            <section class="birthday-dow-planner" aria-labelledby="birthday-dow-planner-title">
+              <div class="birthday-dow-planner-head">
+                <h4 class="birthday-dow-planner-title" id="birthday-dow-planner-title">Planning views</h4>
+                <div class="birthday-dow-plan-switch" role="tablist" aria-label="Birthday planning views">
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="next"
+                    aria-pressed="true"
+                  >
+                    Next birthday
+                  </button>
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="weekend"
+                    aria-pressed="false"
+                  >
+                    Weekend years
+                  </button>
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="timeline"
+                    aria-pressed="false"
+                  >
+                    12-year map
+                  </button>
+                </div>
+              </div>
+
+              <div class="birthday-dow-plan-panel" data-plan-panel="next">
+                <div class="birthday-dow-next-snapshot">
+                  <div class="birthday-dow-next-copy">
+                    <h4 class="birthday-dow-next-title" id="birthday-dow-next-panel-title">Next birthday</h4>
+                    <p class="birthday-dow-next-copy-text" id="birthday-dow-next-panel-copy">
+                      Date, age, and countdown.
+                    </p>
+                  </div>
+
+                  <div class="birthday-dow-next-stats">
+                    <div class="birthday-dow-next-stat">
+                      <span class="birthday-dow-mini-label">Age turning</span>
+                      <strong id="birthday-dow-next-age">--</strong>
+                    </div>
+                    <div class="birthday-dow-next-stat">
+                      <span class="birthday-dow-mini-label">Days away</span>
+                      <strong id="birthday-dow-next-days">--</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="weekend">
+                <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
+              </div>
+
+              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="timeline">
+                <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
+              </div>
+            </section>
           </div>
         </div>
 
         <p class="birthday-dow-copy-feedback is-hidden" id="birthday-dow-copy-feedback"></p>
       </div>
     </section>
-
-    <section class="birthday-dow-lookahead" aria-labelledby="birthday-dow-lookahead-title">
-      <div class="birthday-dow-section-head">
-        <div>
-          <p class="birthday-dow-section-kicker">Look ahead</p>
-          <h3 class="birthday-dow-section-title" id="birthday-dow-lookahead-title">
-            12-year map and weekend radar
-          </h3>
-        </div>
-        <p class="birthday-dow-section-side-note">Use this when you want planning context, not calendar clutter.</p>
-      </div>
-
-      <div class="birthday-dow-lookahead-grid">
-        <div class="birthday-dow-lookahead-block birthday-dow-recurrence-block">
-          <p class="birthday-dow-block-label">12-year recurrence map</p>
-          <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
-        </div>
-
-        <div class="birthday-dow-lookahead-block birthday-dow-weekend-block">
-          <p class="birthday-dow-block-label">Weekend radar</p>
-          <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
 
-<style>
-  @import url('/calculators/time-and-date/birthday-day-of-week/calculator.css?v=20260224');
-</style>
+
 
 <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
 
@@ -348,82 +5059,63 @@
     <div id="birthday-dow-explanation">
   <section class="birthday-dow-help-intro">
     <p class="birthday-dow-help-kicker">Secondary help</p>
-    <h2>Use the answer first. Open the rest only when you need it.</h2>
+    <h2>Simple birthday answers.</h2>
     <p>
-      For the current selection, <span data-birthday-field="dob-label">your birthday date</span>
-      fell on <span data-birthday-field="birth-weekday">its birth weekday</span>. In
+      For <span data-birthday-field="dob-label">your birthday date</span>, the birth weekday is
+      <span data-birthday-field="birth-weekday">still waiting</span>. In
       <span data-birthday-field="target-year">the selected year</span>, it lands on
-      <span data-birthday-field="target-weekday">that year's weekday</span>. Your next birthday is
+      <span data-birthday-field="target-weekday">that year's weekday</span>. The next birthday is
       <span data-birthday-field="next-birthday">still to be calculated</span>.
     </p>
-    <p>
-      The top of the page gives the answer immediately. The 12-year recurrence map and weekend
-      radar are there for planning, not for clutter.
-    </p>
+    <p>Open more only if you need it.</p>
   </section>
 
   <details class="birthday-dow-detail" open>
-    <summary>How to use it</summary>
-    <div class="birthday-dow-detail-body">
-      <p>
-        Enter your date of birth, keep the default year or tap a quick year, then calculate. Use
-        the top result for the instant answer and open the look-ahead section only when you want to
-        plan a future birthday.
-      </p>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>Why the weekday moves</summary>
-    <div class="birthday-dow-detail-body">
-      <p>
-        A normal year is 365 days, which is 52 full weeks plus one extra day. That leftover day
-        shifts a repeating date like a birthday forward by one weekday. Leap years add an extra day
-        in February, which creates a larger shift for birthdays after February 28.
-      </p>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>Leap-day birthdays</summary>
-    <div class="birthday-dow-detail-body">
-      <p>
-        If you were born on February 29, the calculator keeps February 29 in leap years and uses
-        February 28 in non-leap preview years and non-leap next-birthday calculations so the result
-        stays practical for planning.
-      </p>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>Planning ideas</summary>
+    <summary>What you can do here</summary>
     <div class="birthday-dow-detail-body">
       <ul>
-        <li>Check whether your next birthday is easy to celebrate on a Friday, Saturday, or Sunday.</li>
-        <li>Use the selected year to answer one planning question fast instead of browsing a calendar.</li>
-        <li>Use the 12-year recurrence map to spot better future birthday years for travel or events.</li>
+        <li>Use <strong>Know my birth day</strong> when you only want the original weekday.</li>
+        <li>Use <strong>Check a future year</strong> when you need one fast planning answer.</li>
+        <li>Use <strong>Plan a weekend birthday</strong> when the real question is celebration timing.</li>
       </ul>
     </div>
   </details>
 
   <details class="birthday-dow-detail">
-    <summary>FAQ and privacy</summary>
+    <summary>How the weekday shifts over time</summary>
+    <div class="birthday-dow-detail-body">
+      <p>
+        Birthdays move because a calendar year is not an exact number of weeks. A normal year adds
+        one leftover day, and a leap year adds an extra day in February. That is why the same date
+        rotates through different weekdays over time.
+      </p>
+    </div>
+  </details>
+
+  <details class="birthday-dow-detail">
+    <summary>Leap-day rule</summary>
+    <div class="birthday-dow-detail-body">
+      <p>
+        February 29 birthdays stay on February 29 in leap years. In non-leap preview years and
+        non-leap next-birthday calculations, the planner uses February 28 so the answer stays
+        practical for real-world planning.
+      </p>
+    </div>
+  </details>
+
+  <details class="birthday-dow-detail">
+    <summary>Accuracy and privacy</summary>
     <div class="birthday-dow-detail-body birthday-dow-faq-stack">
       <p>
-        <strong>Is the birth weekday accurate?</strong> Yes. The result uses standard Gregorian
-        calendar rules across the supported date range.
+        <strong>Is the birth weekday accurate?</strong> Yes. The result follows standard Gregorian
+        calendar rules across the supported range.
       </p>
       <p>
-        <strong>Can I use this to plan future birthday weekends?</strong> Yes. That is exactly what
-        the weekend radar and 12-year recurrence map are for.
+        <strong>How far forward can I preview?</strong> The target year range is 1600 to 2100.
       </p>
       <p>
-        <strong>How far forward can I preview?</strong> The supported target year range is 1600 to
-        2100.
-      </p>
-      <p>
-        <strong>Does this store my birthday?</strong> No. Your date stays in the browser and is not
-        submitted anywhere.
+        <strong>Does this store my birthday?</strong> No. Everything runs in the browser and the
+        page does not submit your birthday anywhere.
       </p>
     </div>
   </details>
@@ -464,7 +5156,7 @@
 </footer>
 
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/assets/js/core-shell.js"></script>
     <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
   </body>
 </html>

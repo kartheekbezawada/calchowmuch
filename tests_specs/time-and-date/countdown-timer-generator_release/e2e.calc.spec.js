@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Countdown Timer Generator', () => {
+test.describe('Countdown Timer', () => {
   test('COUNTDOWN-TEST-E2E-1: builder flow, static region events, and live preview', async ({ page }) => {
-    await page.goto('/time-and-date/countdown-timer-generator');
+    await page.goto('/time-and-date/countdown-timer');
 
     await expect(page.locator('.panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
@@ -11,11 +11,11 @@ test.describe('Countdown Timer Generator', () => {
     await expect(topNavActive).toContainText('Time & Date');
 
     const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Countdown Timer Generator');
+    await expect(leftActive).toContainText('Countdown Timer');
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
-      'Build a live countdown page for launches, deadlines, annual dates, holidays, birthdays, and trips.'
+      'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.'
     );
 
     await page.locator('#countdown-region').selectOption('United Kingdom');
@@ -43,7 +43,7 @@ test.describe('Countdown Timer Generator', () => {
   });
 
   test('COUNTDOWN-TEST-E2E-2: layout stability and explanation content', async ({ page }) => {
-    await page.goto('/time-and-date/countdown-timer-generator');
+    await page.goto('/time-and-date/countdown-timer');
 
     const calcPanel = page.locator('.center-column .panel.panel-span-all').first();
     const initialHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
@@ -54,8 +54,9 @@ test.describe('Countdown Timer Generator', () => {
 
     const explanation = page.locator('#countdown-explanation');
     await expect(explanation.locator('h2')).toHaveCount(5);
-    await expect(explanation).toContainText('Yearly date presets can vary by region');
+    await expect(explanation).toContainText('Last updated: March 2026');
     await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.countdown-faq-list li')).toHaveCount(4);
     await expect(explanation.locator('.countdown-faq-item')).toHaveCount(0);
   });

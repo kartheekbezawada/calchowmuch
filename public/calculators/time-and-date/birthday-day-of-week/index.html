@@ -1,177 +1,222 @@
 <div id="calc-birthday-dow">
-  <div class="birthday-dow-shell">
+  <div class="birthday-dow-product">
     <section class="birthday-dow-hero" aria-labelledby="birthday-dow-hero-title">
       <div class="birthday-dow-hero-copy">
-        <p class="birthday-dow-kicker">Celebration Calendar</p>
-        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">
-          Find your birthday. Then plan the years worth celebrating.
-        </h2>
-        <p class="birthday-dow-hero-text">
-          One date in. Clean answers out. Check the day you were born, preview any year, and spot
-          the next weekend-friendly birthday without scanning calendars by hand.
-        </p>
+        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">Birthday planner</h2>
+
+        <div class="birthday-dow-intent-switch" role="group" aria-label="What do you want to do?">
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="born"
+            aria-pressed="true"
+          >
+            <span class="birthday-dow-intent-title">Birth day</span>
+          </button>
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="year"
+            aria-pressed="false"
+          >
+            <span class="birthday-dow-intent-title">Future year</span>
+          </button>
+          <button
+            class="birthday-dow-intent"
+            type="button"
+            data-birthday-intent="weekend"
+            aria-pressed="false"
+          >
+            <span class="birthday-dow-intent-title">Weekend</span>
+          </button>
+        </div>
+
+        <div class="birthday-dow-top-form">
+          <div class="birthday-dow-input-row birthday-dow-input-row-top">
+            <label class="birthday-dow-field" for="birthday-dow-dob">
+              <span class="birthday-dow-field-label">Date of birth</span>
+              <input id="birthday-dow-dob" type="date" />
+            </label>
+
+            <label class="birthday-dow-field" for="birthday-dow-year">
+              <span class="birthday-dow-field-label">Target year</span>
+              <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
+            </label>
+          </div>
+
+          <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="current"
+              aria-pressed="false"
+            >
+              This year
+            </button>
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="next"
+              aria-pressed="false"
+            >
+              Next year
+            </button>
+            <button
+              class="birthday-dow-year-chip"
+              type="button"
+              data-year-preset="plus-5"
+              aria-pressed="false"
+            >
+              +5 years
+            </button>
+          </div>
+
+          <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
+            Show
+          </button>
+
+          <p class="birthday-dow-form-note">Private in browser.</p>
+          <p class="form-error is-hidden" id="birthday-dow-error"></p>
+        </div>
       </div>
 
-      <aside class="birthday-dow-hero-marquee" aria-live="polite">
-        <p class="birthday-dow-marquee-label">Born on</p>
-        <p class="birthday-dow-hero-weekday" id="birthday-dow-hero-weekday">Waiting for a date</p>
-        <p class="birthday-dow-hero-date" id="birthday-dow-hero-date">
-          Add your birthday to turn this into a clean planning view.
-        </p>
+      <aside class="birthday-dow-spotlight" aria-live="polite">
+        <p class="birthday-dow-spotlight-kicker" id="birthday-dow-spotlight-kicker">Birth day</p>
 
-        <div class="birthday-dow-hero-strip">
-          <div class="birthday-dow-hero-chip">
-            <span class="birthday-dow-hero-chip-label">Target year</span>
-            <strong class="birthday-dow-hero-chip-value" id="birthday-dow-hero-target-year"
+        <div class="birthday-dow-spotlight-meta">
+          <div class="birthday-dow-spotlight-chip">
+            <span class="birthday-dow-spotlight-chip-label">Birth date</span>
+            <strong class="birthday-dow-spotlight-chip-value" id="birthday-dow-hero-date"
+              >Waiting for a date</strong
+            >
+          </div>
+          <div class="birthday-dow-spotlight-chip">
+            <span class="birthday-dow-spotlight-chip-label">Target year</span>
+            <strong class="birthday-dow-spotlight-chip-value" id="birthday-dow-hero-target-year"
               >----</strong
             >
           </div>
-          <div class="birthday-dow-hero-chip">
-            <span class="birthday-dow-hero-chip-label">Lands on</span>
-            <strong class="birthday-dow-hero-chip-value" id="birthday-dow-hero-target-weekday"
-              >--</strong
-            >
-          </div>
         </div>
+
+        <p class="birthday-dow-spotlight-answer" id="birthday-dow-hero-weekday">--</p>
+        <h3 class="birthday-dow-spotlight-title" id="birthday-dow-spotlight-title">Add your date</h3>
+        <p class="birthday-dow-spotlight-subanswer" id="birthday-dow-hero-target-weekday">
+          Clean answer, no calendar clutter.
+        </p>
       </aside>
     </section>
 
-    <section class="birthday-dow-studio" aria-labelledby="birthday-dow-studio-title">
-      <div class="birthday-dow-controls">
-        <p class="birthday-dow-section-kicker">Core tool</p>
-        <h3 class="birthday-dow-section-title" id="birthday-dow-studio-title">
-          Pick a date and year.
-        </h3>
-
-        <div class="birthday-dow-input-row">
-          <label class="birthday-dow-field" for="birthday-dow-dob">
-            <span class="birthday-dow-field-label">Date of birth</span>
-            <input id="birthday-dow-dob" type="date" />
-          </label>
-
-          <label class="birthday-dow-field" for="birthday-dow-year">
-            <span class="birthday-dow-field-label">Target year</span>
-            <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
-          </label>
-        </div>
-
-        <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="current"
-            aria-pressed="false"
-          >
-            This year
-          </button>
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="next"
-            aria-pressed="false"
-          >
-            Next year
-          </button>
-          <button
-            class="birthday-dow-year-chip"
-            type="button"
-            data-year-preset="plus-5"
-            aria-pressed="false"
-          >
-            +5 years
-          </button>
-        </div>
-
-        <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
-          Reveal birthday insights
-        </button>
-
-        <p class="birthday-dow-form-note">
-          Private by default. Your birthday stays in the browser and never leaves the page.
-        </p>
-        <p class="form-error is-hidden" id="birthday-dow-error"></p>
-      </div>
-
-      <div class="birthday-dow-results-panel">
-        <div class="birthday-dow-results-head">
-          <div>
-            <p class="birthday-dow-section-kicker">Key outputs</p>
-            <h3 class="birthday-dow-section-title">Birthday snapshot</h3>
-          </div>
+    <section class="birthday-dow-workspace" aria-labelledby="birthday-dow-workspace-title">
+      <div class="birthday-dow-board">
+        <div class="birthday-dow-board-head">
+          <h3 class="birthday-dow-board-title" id="birthday-dow-workspace-title">Birthday board</h3>
           <button
             class="birthday-dow-copy-btn"
             type="button"
             id="birthday-dow-copy-summary"
             disabled
           >
-            Copy summary
+            Copy
           </button>
         </div>
 
         <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
           <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
-            Enter your birthday to unlock the answer, the next birthday, and the best weekend years
-            ahead.
+            Add your birthday to see the answer.
           </p>
 
           <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
-            <article class="birthday-dow-primary-result">
-              <p class="birthday-dow-result-label">You were born on</p>
-              <p class="birthday-dow-primary-value" id="birthday-dow-birth-weekday">--</p>
-              <p class="birthday-dow-primary-note" id="birthday-dow-birth-note">
-                Your birth weekday appears here.
-              </p>
-            </article>
+            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
 
-            <div class="birthday-dow-secondary-metrics">
-              <article class="birthday-dow-metric">
+            <div class="birthday-dow-facts" role="list">
+              <article class="birthday-dow-fact">
+                <p class="birthday-dow-result-label">Born on</p>
+                <p class="birthday-dow-fact-value" id="birthday-dow-birth-weekday">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-birth-note">
+                  Your birth weekday appears here.
+                </p>
+              </article>
+
+              <article class="birthday-dow-fact">
                 <p class="birthday-dow-result-label" id="birthday-dow-target-label">Birthday in ----</p>
-                <p class="birthday-dow-metric-value" id="birthday-dow-target-weekday-card">--</p>
-                <p class="birthday-dow-result-note" id="birthday-dow-target-note">
+                <p class="birthday-dow-fact-value" id="birthday-dow-target-weekday-card">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-target-note">
                   Your selected-year weekday appears here.
                 </p>
               </article>
 
-              <article class="birthday-dow-metric birthday-dow-metric-next">
+              <article class="birthday-dow-fact birthday-dow-fact-next">
                 <p class="birthday-dow-result-label">Next birthday</p>
-                <p class="birthday-dow-metric-value" id="birthday-dow-next-weekday">--</p>
-                <p class="birthday-dow-result-note" id="birthday-dow-next-date">--</p>
-                <div class="birthday-dow-next-inline">
-                  <span>Turns <strong id="birthday-dow-next-age">--</strong></span>
-                  <span>In <strong id="birthday-dow-next-days">--</strong> days</span>
-                </div>
+                <p class="birthday-dow-fact-value" id="birthday-dow-next-weekday">--</p>
+                <p class="birthday-dow-fact-note" id="birthday-dow-next-date">--</p>
               </article>
             </div>
 
-            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
+            <section class="birthday-dow-planner" aria-labelledby="birthday-dow-planner-title">
+              <div class="birthday-dow-planner-head">
+                <h4 class="birthday-dow-planner-title" id="birthday-dow-planner-title">Planning views</h4>
+                <div class="birthday-dow-plan-switch" role="tablist" aria-label="Birthday planning views">
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="next"
+                    aria-pressed="true"
+                  >
+                    Next birthday
+                  </button>
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="weekend"
+                    aria-pressed="false"
+                  >
+                    Weekend years
+                  </button>
+                  <button
+                    class="birthday-dow-plan-tab"
+                    type="button"
+                    data-plan-view="timeline"
+                    aria-pressed="false"
+                  >
+                    12-year map
+                  </button>
+                </div>
+              </div>
+
+              <div class="birthday-dow-plan-panel" data-plan-panel="next">
+                <div class="birthday-dow-next-snapshot">
+                  <div class="birthday-dow-next-copy">
+                    <h4 class="birthday-dow-next-title" id="birthday-dow-next-panel-title">Next birthday</h4>
+                    <p class="birthday-dow-next-copy-text" id="birthday-dow-next-panel-copy">
+                      Date, age, and countdown.
+                    </p>
+                  </div>
+
+                  <div class="birthday-dow-next-stats">
+                    <div class="birthday-dow-next-stat">
+                      <span class="birthday-dow-mini-label">Age turning</span>
+                      <strong id="birthday-dow-next-age">--</strong>
+                    </div>
+                    <div class="birthday-dow-next-stat">
+                      <span class="birthday-dow-mini-label">Days away</span>
+                      <strong id="birthday-dow-next-days">--</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="weekend">
+                <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
+              </div>
+
+              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="timeline">
+                <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
+              </div>
+            </section>
           </div>
         </div>
 
         <p class="birthday-dow-copy-feedback is-hidden" id="birthday-dow-copy-feedback"></p>
-      </div>
-    </section>
-
-    <section class="birthday-dow-lookahead" aria-labelledby="birthday-dow-lookahead-title">
-      <div class="birthday-dow-section-head">
-        <div>
-          <p class="birthday-dow-section-kicker">Look ahead</p>
-          <h3 class="birthday-dow-section-title" id="birthday-dow-lookahead-title">
-            12-year map and weekend radar
-          </h3>
-        </div>
-        <p class="birthday-dow-section-side-note">Use this when you want planning context, not calendar clutter.</p>
-      </div>
-
-      <div class="birthday-dow-lookahead-grid">
-        <div class="birthday-dow-lookahead-block birthday-dow-recurrence-block">
-          <p class="birthday-dow-block-label">12-year recurrence map</p>
-          <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
-        </div>
-
-        <div class="birthday-dow-lookahead-block birthday-dow-weekend-block">
-          <p class="birthday-dow-block-label">Weekend radar</p>
-          <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
-        </div>
       </div>
     </section>
   </div>
