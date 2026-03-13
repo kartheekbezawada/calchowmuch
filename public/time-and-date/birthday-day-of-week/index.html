@@ -156,32 +156,198 @@
 </div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Birthday Day-of-Week Calculator</h1>
-  <div id="calc-birthday-dow">
-  <div class="calculator-ui">
-    <p class="helper">Find the weekday you were born and the weekday your birthday falls on.</p>
+  <div class="calculator-page-single">
+    <div id="calc-birthday-dow">
+  <div class="birthday-dow-shell">
+    <section class="birthday-dow-hero" aria-labelledby="birthday-dow-hero-title">
+      <div class="birthday-dow-hero-copy">
+        <p class="birthday-dow-kicker">Celebration Calendar</p>
+        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">
+          See the <em>weekday story</em> behind every birthday.
+        </h2>
+        <p class="birthday-dow-hero-text">
+          Go beyond the answer. Find the day you were born, preview how your birthday lands in any
+          year, and spot the next weekend-friendly celebrations worth circling on the calendar.
+        </p>
+        <div class="birthday-dow-hero-pills" aria-label="Product highlights">
+          <span class="birthday-dow-pill">Birth weekday</span>
+          <span class="birthday-dow-pill">Next birthday countdown</span>
+          <span class="birthday-dow-pill">12-year recurrence map</span>
+        </div>
+      </div>
 
-    <div class="input-row">
-      <label for="birthday-dow-dob">Date of birth</label>
-      <input id="birthday-dow-dob" type="date" />
+      <aside class="birthday-dow-hero-card" aria-live="polite">
+        <p class="birthday-dow-card-label">Birth weekday</p>
+        <p class="birthday-dow-hero-weekday" id="birthday-dow-hero-weekday">Waiting for a date</p>
+        <p class="birthday-dow-hero-date" id="birthday-dow-hero-date">
+          Choose a date of birth and reveal the weekday pattern.
+        </p>
+        <div class="birthday-dow-hero-meta">
+          <div class="birthday-dow-hero-meta-item">
+            <span class="birthday-dow-hero-meta-label">Target year</span>
+            <strong class="birthday-dow-hero-meta-value" id="birthday-dow-hero-target-year"
+              >----</strong
+            >
+          </div>
+          <div class="birthday-dow-hero-meta-item">
+            <span class="birthday-dow-hero-meta-label">Birthday lands on</span>
+            <strong class="birthday-dow-hero-meta-value" id="birthday-dow-hero-target-weekday"
+              >--</strong
+            >
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="birthday-dow-stage">
+      <section class="birthday-dow-card birthday-dow-form-card">
+        <p class="birthday-dow-section-kicker">Build the view</p>
+        <h3 class="birthday-dow-section-title">Find your birthday pattern</h3>
+        <p class="birthday-dow-section-text">
+          Keep the input simple. Pick your date of birth, choose a year to preview, then calculate
+          to unlock the next birthday snapshot and longer weekday rhythm.
+        </p>
+
+        <div class="birthday-dow-input-grid">
+          <label class="birthday-dow-field" for="birthday-dow-dob">
+            <span class="birthday-dow-field-label">Date of birth</span>
+            <input id="birthday-dow-dob" type="date" />
+          </label>
+
+          <label class="birthday-dow-field" for="birthday-dow-year">
+            <span class="birthday-dow-field-label">Target year</span>
+            <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
+          </label>
+        </div>
+
+        <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="current"
+            aria-pressed="false"
+          >
+            This year
+          </button>
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="next"
+            aria-pressed="false"
+          >
+            Next year
+          </button>
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="plus-5"
+            aria-pressed="false"
+          >
+            +5 years
+          </button>
+        </div>
+
+        <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
+          Reveal birthday insights
+        </button>
+
+        <p class="birthday-dow-form-note">
+          Private by default. Your birthday stays in the browser and never leaves the page.
+        </p>
+        <p class="form-error is-hidden" id="birthday-dow-error"></p>
+      </section>
+
+      <section class="birthday-dow-card birthday-dow-results-card">
+        <div class="birthday-dow-results-head">
+          <div>
+            <p class="birthday-dow-section-kicker">Insight-first results</p>
+            <h3 class="birthday-dow-section-title">Your birthday snapshot</h3>
+          </div>
+          <button
+            class="birthday-dow-copy-btn"
+            type="button"
+            id="birthday-dow-copy-summary"
+            disabled
+          >
+            Copy summary
+          </button>
+        </div>
+
+        <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
+          <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
+            Enter your birthday and calculate to unlock the weekday, next celebration, and weekend
+            planning view.
+          </p>
+
+          <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
+            <div class="birthday-dow-result-grid">
+              <article class="birthday-dow-result-card">
+                <p class="birthday-dow-result-label">You were born on</p>
+                <p class="birthday-dow-result-value" id="birthday-dow-birth-weekday">--</p>
+                <p class="birthday-dow-result-note" id="birthday-dow-birth-note">
+                  Your birth weekday appears here.
+                </p>
+              </article>
+
+              <article class="birthday-dow-result-card">
+                <p class="birthday-dow-result-label" id="birthday-dow-target-label">Birthday in ----</p>
+                <p class="birthday-dow-result-value" id="birthday-dow-target-weekday-card">--</p>
+                <p class="birthday-dow-result-note" id="birthday-dow-target-note">
+                  Your selected-year weekday appears here.
+                </p>
+              </article>
+            </div>
+
+            <article class="birthday-dow-next-card" id="birthday-dow-next-card">
+              <div>
+                <p class="birthday-dow-result-label">Next birthday snapshot</p>
+                <h4 class="birthday-dow-next-title" id="birthday-dow-next-weekday">--</h4>
+                <p class="birthday-dow-next-date" id="birthday-dow-next-date">--</p>
+              </div>
+              <div class="birthday-dow-next-metrics">
+                <div class="birthday-dow-next-metric">
+                  <span class="birthday-dow-next-metric-label">Turns</span>
+                  <strong class="birthday-dow-next-metric-value" id="birthday-dow-next-age">--</strong>
+                </div>
+                <div class="birthday-dow-next-metric">
+                  <span class="birthday-dow-next-metric-label">Days away</span>
+                  <strong class="birthday-dow-next-metric-value" id="birthday-dow-next-days">--</strong>
+                </div>
+              </div>
+            </article>
+
+            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
+          </div>
+        </div>
+
+        <p class="birthday-dow-copy-feedback is-hidden" id="birthday-dow-copy-feedback"></p>
+      </section>
     </div>
 
-    <div class="input-row">
-      <label for="birthday-dow-year">Birthday weekday in year</label>
-      <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
-    </div>
+    <div class="birthday-dow-insight-grid">
+      <section class="birthday-dow-card birthday-dow-recurrence-card">
+        <div class="birthday-dow-section-head">
+          <div>
+            <p class="birthday-dow-section-kicker">12-year rhythm</p>
+            <h3 class="birthday-dow-section-title">Birthday weekday map</h3>
+          </div>
+          <p class="birthday-dow-section-side-note">Starting from the current year</p>
+        </div>
+        <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
+      </section>
 
-    <button class="calculator-button full-width" type="button" id="birthday-dow-calculate">
-      Calculate
-    </button>
-
-    <div class="result" id="birthday-dow-results" aria-live="polite">
-      <p class="placeholder" id="birthday-dow-placeholder">
-        Enter your date of birth to calculate weekdays.
-      </p>
-      <p class="form-error is-hidden" id="birthday-dow-error"></p>
-      <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list"></div>
+      <section class="birthday-dow-card birthday-dow-weekend-card">
+        <div class="birthday-dow-section-head">
+          <div>
+            <p class="birthday-dow-section-kicker">Weekend radar</p>
+            <h3 class="birthday-dow-section-title">Next Friday, Saturday, Sunday birthdays</h3>
+          </div>
+          <p class="birthday-dow-section-side-note">Use these to plan ahead</p>
+        </div>
+        <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
+      </section>
     </div>
   </div>
 </div>
@@ -192,126 +358,116 @@
 
 <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
 
-</div>
-<div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="birthday-dow-explanation">
-  <h2>What Day of the Week Were You Born On?</h2>
+    <div id="birthday-dow-explanation">
+  <h2>What You Learn at a Glance</h2>
   <p>
-    Use this birthday day-of-week calculator to find the weekday for your birth date and see which
-    weekday your birthday falls on in another year. It is useful for curiosity, planning, and
-    checking future birthdays quickly.
+    This birthday day-of-week calculator is built like a planning surface, not a plain answer box.
+    It tells you the weekday you were born on, how your birthday lands in a selected year, when the
+    next birthday arrives, and which future birthdays are best positioned for long weekends.
   </p>
   <p>
-    For the current inputs, <span data-placeholder="dob">{DOB}</span> falls on
-    <span data-placeholder="birth-weekday">{BIRTH_WEEKDAY}</span>. In
-    <span data-placeholder="target-year">{TARGET_YEAR}</span>, that birthday falls on
-    <span data-placeholder="target-weekday">{TARGET_YEAR_WEEKDAY}</span>.
-  </p>
-
-  <h2>Why Your Birthday Falls on Different Weekdays</h2>
-  <p>
-    A year is not an exact number of whole weeks. Because of that, the weekday of a fixed date
-    changes as years pass. Leap years add an extra day in February, which can shift weekdays
-    differently over time.
+    For the current selection, <span data-birthday-field="dob-label">your birthday date</span> was
+    on <span data-birthday-field="birth-weekday">its birth weekday</span>. In
+    <span data-birthday-field="target-year">the selected year</span>, it lands on
+    <span data-birthday-field="target-weekday">that year's weekday</span>. Your next birthday is
+    <span data-birthday-field="next-birthday">still to be calculated</span>.
   </p>
 
-  <h2>Birthday Weekday in Another Year</h2>
+  <h2>How to Use the Product</h2>
   <p>
-    If you choose a target year, the calculator tells you what weekday your birthday falls on in
-    that year. For example, in <span data-placeholder="target-year">{TARGET_YEAR}</span> your
-    birthday falls on <span data-placeholder="target-weekday">{TARGET_YEAR_WEEKDAY}</span>. This can
-    help you plan parties, trips, or annual reminders.
+    Enter your date of birth, keep the default target year or tap one of the quick year shortcuts,
+    then select Calculate. The top result area becomes your birthday snapshot, while the lower
+    sections turn into a planning view for future celebrations.
+  </p>
+  <p>
+    The target year is useful when you want to answer specific planning questions such as whether a
+    birthday lands on a weekday, a weekend, or close to travel-friendly dates.
   </p>
 
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator:</p>
-  <p>Uses standard calendar rules to determine weekdays</p>
-  <p>Handles leap years correctly</p>
-  <p>Treats February 29 birthdays as February 28 in non-leap years for target-year calculations</p>
-  <p>Does not provide astrology, personality traits, or predictions</p>
+  <h2>Why the Weekday Changes Over Time</h2>
+  <p>
+    A normal year has 365 days, which is 52 full weeks plus one extra day. That extra day shifts a
+    repeating date like a birthday forward by one weekday each year. Leap years add an extra day in
+    February, which creates a bigger shift for birthdays after February 28.
+  </p>
+  <p>
+    This is why a birthday can move from Friday to Sunday over the years and why weekend birthdays
+    appear in repeating but uneven patterns.
+  </p>
+
+  <h2>How the Next Birthday Snapshot Helps</h2>
+  <p>
+    The next birthday card turns a curiosity tool into a planning tool. It shows the next
+    occurrence date, the weekday, the age reached on that date, and how many days remain. That is
+    the information people usually need when deciding whether to host an event, book a trip, or set
+    reminders.
+  </p>
+  <p>
+    The weekend radar below it extends that idea further by surfacing the next Friday, Saturday,
+    and Sunday birthday opportunities in the 12-year map.
+  </p>
+
+  <h2>Leap-Day Birthdays</h2>
+  <p>
+    If you were born on February 29, the calculator keeps February 29 in leap years. In non-leap
+    target years and non-leap next-birthday calculations, it maps the recurring birthday to
+    February 28 so the preview stays usable for planning.
+  </p>
 
   <h2>Frequently Asked Questions</h2>
 
   <div class="birthday-dow-faq-item">
-    <p><strong>Is the result accurate?</strong></p>
-    <p>Yes. The day-of-week is calculated using standard calendar rules for the date you enter.</p>
+    <p><strong>Is the birth weekday accurate?</strong></p>
+    <p>Yes. The weekday is calculated using standard Gregorian calendar rules for the date entered.</p>
   </div>
 
   <div class="birthday-dow-faq-item">
-    <p><strong>What if I was born on February 29?</strong></p>
+    <p><strong>Why does the same birthday move to different weekdays?</strong></p>
     <p>
-      You were born on the weekday for February 29 in your birth year. For non-leap target years,
-      this calculator uses February 28 for the birthday weekday.
+      Because calendar years are not made of an exact number of full weeks. The leftover day or leap
+      day shifts the weekday each year.
     </p>
   </div>
 
   <div class="birthday-dow-faq-item">
-    <p><strong>Can I check future or past years?</strong></p>
-    <p>Yes. Enter any target year from 1600 to 2100.</p>
+    <p><strong>Can I use this to plan future birthday weekends?</strong></p>
+    <p>
+      Yes. The 12-year recurrence map and weekend radar are designed specifically to help you spot
+      better Friday, Saturday, and Sunday birthday years.
+    </p>
+  </div>
+
+  <div class="birthday-dow-faq-item">
+    <p><strong>What happens for February 29 birthdays?</strong></p>
+    <p>
+      Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview
+      years.
+    </p>
   </div>
 
   <div class="birthday-dow-faq-item">
     <p><strong>Does this store my birthday?</strong></p>
-    <p>No. This runs in your browser and does not save your inputs.</p>
+    <p>No. The calculator runs in your browser and does not save the birthday you enter.</p>
   </div>
 
   <div class="birthday-dow-faq-item">
-    <p><strong>Why does my birthday fall on a different weekday each year?</strong></p>
+    <p><strong>How far forward can I preview?</strong></p>
     <p>
-      A common year has 365 days, which is 52 weeks plus 1 day. This shifts your birthday forward by
-      one weekday each year, or two days after a leap year.
-    </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>How far back or forward can this calculator go?</strong></p>
-    <p>
-      The calculator supports target years from 1600 to 2100, covering the Gregorian calendar era
-      used in most countries.
-    </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>Can I use this to plan a birthday party?</strong></p>
-    <p>
-      Yes. Enter a future year to see what weekday your birthday falls on, so you can plan around
-      weekends or weekdays.
-    </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>What calendar system does this calculator use?</strong></p>
-    <p>
-      It uses the Gregorian calendar, which is the standard calendar system used in most of the
-      world today.
-    </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>Does the calculator account for historical calendar changes?</strong></p>
-    <p>
-      No. It applies Gregorian calendar rules uniformly. For dates before a country adopted the
-      Gregorian calendar, the result may differ from the historical weekday.
-    </p>
-  </div>
-
-  <div class="birthday-dow-faq-item">
-    <p><strong>How often does my birthday fall on the same weekday?</strong></p>
-    <p>
-      The pattern repeats in cycles of 5, 6, or 11 years depending on leap year positions. On
-      average, your birthday falls on the same weekday roughly every 5 to 6 years.
+      You can preview target years from 1600 to 2100, which covers the supported range of this
+      calculator.
     </p>
   </div>
 
   <h2>Important Notes</h2>
   <p>This calculator:</p>
-  <p>Uses Gregorian calendar rules for the dates you enter</p>
-  <p>Handles leap years and February 29 birthdays with the stated fallback logic</p>
-  <p>Applies modern calendar rules uniformly, which can differ from some historical local calendars</p>
-  <p>Runs in your browser and does not save your birthday details</p>
+  <p>Uses the Gregorian calendar across the supported date range</p>
+  <p>Handles leap years and the February 29 fallback described above</p>
+  <p>Works best as a planning and reference tool rather than an official historical record</p>
+  <p>Keeps your date of birth in the browser and does not submit it anywhere</p>
 </div>
 
+  </div>
 </div>
         </section>
         <section class="ads-column" aria-label="Ad placeholders">

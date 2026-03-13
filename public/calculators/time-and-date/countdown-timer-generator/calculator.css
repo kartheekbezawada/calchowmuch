@@ -1,6 +1,5 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
 
-/* ── Hide page H1 visually (keep for SEO) ── */
 #calculator-title {
   position: absolute;
   width: 1px;
@@ -13,336 +12,524 @@
   border: 0;
 }
 
-/* ── Variables ── */
+body[data-page='calculator'] .layout-main {
+  grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+}
+
+body[data-page='calculator'] .ads-column {
+  display: none;
+}
+
 #calc-countdown-timer {
-  --cd-bg: #1e293b;
-  --cd-text: #e2e8f0;
-  --cd-dim: rgba(148, 163, 184, 0.6);
-  --cd-accent: #60a5fa;
-  --cd-radius: 16px;
-}
-
-/* ── Card ── */
-#calc-countdown-timer .cd-card {
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-  border-radius: var(--cd-radius);
-  background: var(--cd-bg);
-}
-
-/* ── Inputs row ── */
-#calc-countdown-timer .cd-inputs {
-  display: flex;
-  gap: 8px;
-  align-items: flex-end;
-}
-
-#calc-countdown-timer .cd-field {
-  flex: 1;
-  min-width: 0;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 0;
-  background: transparent;
-  color: var(--cd-text);
-  font-size: 14px;
-  font-family: inherit;
-  transition: border-color 150ms ease;
-}
-
-#calc-countdown-timer .cd-field:focus {
-  border-bottom-color: var(--cd-accent);
-  outline: none;
-}
-
-#calc-countdown-timer .cd-field::placeholder {
-  color: var(--cd-dim);
-}
-
-#calc-countdown-timer .cd-field-wrap {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-}
-
-#calc-countdown-timer .cd-field-wrap .cd-field {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #16161f;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-bright: rgba(255, 255, 255, 0.12);
+  --accent: #e8c97a;
+  --accent-dim: rgba(232, 201, 122, 0.12);
+  --accent-glow: rgba(232, 201, 122, 0.25);
+  --glass-fill: rgba(255, 255, 255, 0.03);
+  --text: #f0ede8;
+  --muted: #6b6878;
+  --muted2: #9996a8;
+  --red: #e87a7a;
+  --green: #7ae8a8;
+  max-width: 1200px;
   width: 100%;
+  margin: 0;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  position: relative;
+  padding-top: 44px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ── Button ── */
-#calc-countdown-timer .cd-btn {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 999px;
-  background: var(--cd-accent);
-  color: #0f172a;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 120ms ease;
+#calc-countdown-timer .cd-page-meta {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-grid;
+  justify-items: end;
+  text-align: right;
+  gap: 4px;
+  margin: 0;
 }
 
-#calc-countdown-timer .cd-btn:hover { opacity: 0.85; }
-
-#calc-countdown-timer .cd-btn-sm {
-  padding: 5px 14px;
+#calc-countdown-timer .cd-page-meta .cd-timezone,
+#calc-countdown-timer .cd-date-meta {
+  color: var(--muted2);
   font-size: 12px;
+  line-height: 1.2;
 }
 
-#calc-countdown-timer .cd-btn-ghost {
-  background: transparent;
-  color: var(--cd-dim);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+#calc-countdown-timer .cd-main-cards {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(420px, 1.2fr);
+  gap: 24px;
+  margin-bottom: 20px;
 }
 
-#calc-countdown-timer .cd-btn-ghost:hover {
-  border-color: rgba(148, 163, 184, 0.4);
-  color: var(--cd-text);
-  opacity: 1;
+#calc-countdown-timer .cd-input-card {
+  background:
+    linear-gradient(140deg, rgba(24, 24, 35, 0.86), rgba(13, 13, 20, 0.8)),
+    var(--glass-fill);
+  border: 1px solid var(--border-bright);
+  border-radius: 16px;
+  padding: 34px;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-#calc-countdown-timer .cd-error {
-  margin: -4px 0 0;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fca5a5;
+#calc-countdown-timer .cd-input-grid {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-countdown-timer .cd-field-full {
+  grid-column: 1 / -1;
 }
 
 #calc-countdown-timer .cd-fallback {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-/* ── Display ── */
-#calc-countdown-timer .cd-display {
+#calc-countdown-timer .cd-field-label {
   display: grid;
-  gap: 6px;
-  text-align: center;
-  padding: 8px 0 4px;
+  gap: 8px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+#calc-countdown-timer .cd-field {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  -webkit-appearance: none;
+  color-scheme: dark;
+}
+
+#calc-countdown-timer #countdown-event-name {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+
+#calc-countdown-timer .cd-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+#calc-countdown-timer .cd-field::placeholder {
+  color: var(--muted);
+}
+
+#calc-countdown-timer .cd-btn {
+  width: auto;
+  background: var(--accent);
+  color: #0a0a0f;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+}
+
+#calc-countdown-timer .cd-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+#calc-countdown-timer .cd-btn:active {
+  transform: translateY(0);
+}
+
+#calc-countdown-timer .cd-btn-sm {
+  width: auto;
+  background: var(--surface2);
+  border: 1px solid var(--border-bright);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 13px;
+}
+
+#calc-countdown-timer .cd-btn-ghost:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  box-shadow: none;
+}
+
+#calc-countdown-timer .cd-cta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+#calc-countdown-timer #countdown-start {
+  flex: 1 1 auto;
+}
+
+#calc-countdown-timer #countdown-stop {
+  flex: 1 1 auto;
+}
+
+#calc-countdown-timer .cd-error {
+  margin: 12px 0 0;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-countdown-timer .cd-countdown-card {
+  background:
+    linear-gradient(145deg, rgba(22, 22, 33, 0.9), rgba(12, 12, 20, 0.82)),
+    var(--glass-fill);
+  border: 1px solid var(--border-bright);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 0;
+  min-height: 100%;
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#calc-countdown-timer .cd-tile,
+#calc-countdown-timer .countdown-milestone {
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+#calc-countdown-timer .cd-tile::after,
+#calc-countdown-timer .countdown-milestone::before {
+  content: '';
+  position: absolute;
+  inset: -35% -18%;
+  background:
+    radial-gradient(circle at 80% 8%, rgba(232, 201, 122, 0.42), transparent 44%),
+    radial-gradient(circle at 10% 100%, rgba(122, 232, 168, 0.24), transparent 36%);
+  opacity: 0;
+  transform: translateY(10px) scale(1.05);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#calc-countdown-timer .cd-countdown-header {
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 #calc-countdown-timer .cd-kicker {
-  margin: 0;
+  margin: 0 0 8px;
+  font-family: 'DM Mono', 'Consolas', monospace;
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cd-dim);
+  letter-spacing: 0.14em;
+  color: var(--accent);
 }
 
 #calc-countdown-timer .cd-title {
-  margin: 0;
-  font-size: clamp(18px, 3vw, 24px);
-  font-weight: 700;
+  margin: 0 0 6px;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(22px, 4vw, 34px);
+  letter-spacing: -0.02em;
   line-height: 1.15;
-  color: #fff;
+  position: static;
 }
 
-#calc-countdown-timer .cd-date {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--cd-dim);
+#calc-countdown-timer .cd-title::after {
+  content: none !important;
+  display: none !important;
 }
 
-/* ── Tiles ── */
 #calc-countdown-timer .cd-tiles {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin: 4px 0;
+  gap: 1px;
+  background: var(--border);
 }
 
 #calc-countdown-timer .cd-tile {
-  display: grid;
-  gap: 2px;
-  padding: 10px 4px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface2);
+  padding: 32px 12px 24px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#calc-countdown-timer .cd-tile > *,
+#calc-countdown-timer .countdown-milestone > * {
+  position: relative;
+  z-index: 1;
+}
+
+#calc-countdown-timer .cd-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.2;
 }
 
 #calc-countdown-timer .cd-num {
-  color: #fff;
-  font-size: clamp(22px, 3vw, 32px);
-  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: clamp(36px, 6vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
   line-height: 1;
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 
 #calc-countdown-timer .cd-unit {
-  color: var(--cd-dim);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 9px;
   text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
 }
 
-#calc-countdown-timer .cd-summary {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.4;
-  color: rgba(226, 232, 240, 0.7);
+#calc-countdown-timer .cd-expired {
+  background: rgba(232, 122, 122, 0.08);
+  border: 1px solid rgba(232, 122, 122, 0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: var(--red);
+  font-size: 14px;
+  margin: 16px 32px 0;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  text-align: center;
+  letter-spacing: 0.04em;
 }
 
-/* ── Meta row ── */
-#calc-countdown-timer .cd-meta {
+#calc-countdown-timer .cd-countdown-footer {
+  padding: 0 32px 6px;
   display: flex;
-  gap: 8px;
+  align-items: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
-  align-items: center;
-  font-size: 11px;
-  color: var(--cd-dim);
+  gap: 12px;
+  position: relative;
+  min-height: 52px;
 }
 
 #calc-countdown-timer .cd-badge {
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  font-weight: 600;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-glow);
+  color: var(--accent);
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
 }
 
-/* ── Options ── */
-#calc-countdown-timer .cd-options {
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.15);
-}
-
-#calc-countdown-timer .cd-options summary {
-  padding: 8px 12px;
+#calc-countdown-timer .cd-summary {
+  color: var(--muted2);
   font-size: 12px;
-  font-weight: 600;
-  color: var(--cd-accent);
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
 }
 
-#calc-countdown-timer .cd-options summary::-webkit-details-marker { display: none; }
-#calc-countdown-timer .cd-options summary::before { content: '▸ '; }
-#calc-countdown-timer .cd-options[open] summary::before { content: '▾ '; }
-
-#calc-countdown-timer .cd-options-body {
-  display: grid;
-  gap: 10px;
-  padding: 0 12px 12px;
-}
-
-#calc-countdown-timer .cd-opt-row {
-  display: grid;
-  gap: 4px;
-}
-
-/* ── Chips ── */
-#calc-countdown-timer .cd-chip-group {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  display: grid;
-  gap: 6px;
-}
-
-#calc-countdown-timer .cd-chip-group legend {
-  padding: 0;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--cd-dim);
-}
-
-#calc-countdown-timer .cd-chips {
+#calc-countdown-timer .cd-live {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  width: max-content;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
-#calc-countdown-timer .cd-chip {
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  background: transparent;
-  color: var(--cd-dim);
-  font-size: 11px;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 120ms ease;
+#calc-countdown-timer .cd-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
 }
 
-#calc-countdown-timer .cd-chip:hover,
-#calc-countdown-timer .cd-chip:focus-visible {
-  border-color: rgba(148, 163, 184, 0.35);
-  color: var(--cd-text);
-  outline: none;
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
-#calc-countdown-timer .cd-chip.is-selected {
-  border-color: var(--cd-accent);
-  background: rgba(96, 165, 250, 0.12);
-  color: var(--cd-text);
+#calc-countdown-timer .cd-milestone-section {
+  margin-bottom: 20px;
 }
 
-/* ── Milestones ── */
+#calc-countdown-timer .cd-section-label {
+  margin: 0 0 12px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
 #calc-countdown-timer .cd-milestones {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 8px;
 }
 
-#calc-countdown-timer .cd-milestones:empty { display: none; }
-
 #calc-countdown-timer .countdown-milestone {
-  display: grid;
-  gap: 2px;
-  padding: 8px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  background:
+    linear-gradient(145deg, rgba(24, 24, 34, 0.86), rgba(14, 14, 22, 0.78)),
+    var(--glass-fill);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 14px;
+  position: relative;
+  overflow: hidden;
 }
 
 #calc-countdown-timer .countdown-milestone-label {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 #calc-countdown-timer .countdown-milestone-state {
   margin: 0;
-  font-size: 11px;
-  color: var(--cd-dim);
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  color: var(--muted);
 }
 
-#calc-countdown-timer .countdown-milestone.is-passed { opacity: 0.4; }
-#calc-countdown-timer .countdown-milestone.is-live { border: 1px solid rgba(250, 204, 21, 0.45); }
+#calc-countdown-timer .countdown-milestone.is-passed {
+  border-color: rgba(232, 201, 122, 0.2);
+}
 
-/* ── Actions ── */
+#calc-countdown-timer .countdown-milestone.is-live {
+  border-color: var(--accent);
+}
+
+@media (hover: hover) {
+  #calc-countdown-timer .cd-tile:hover {
+    border-color: rgba(232, 201, 122, 0.36);
+    box-shadow:
+      0 22px 56px rgba(6, 9, 18, 0.58),
+      0 0 0 1px rgba(232, 201, 122, 0.2),
+      0 0 52px rgba(232, 201, 122, 0.36),
+      0 0 96px rgba(122, 232, 168, 0.14);
+    transform: translateY(-4px) scale(1.015);
+    z-index: 2;
+  }
+
+  #calc-countdown-timer .cd-tile:hover::before {
+    opacity: 0.95;
+    box-shadow: 0 0 20px rgba(232, 201, 122, 0.42);
+  }
+
+  #calc-countdown-timer .countdown-milestone:hover {
+    border-color: rgba(232, 201, 122, 0.42);
+    box-shadow:
+      0 18px 44px rgba(6, 9, 18, 0.52),
+      0 0 0 1px rgba(232, 201, 122, 0.16),
+      0 0 44px rgba(232, 201, 122, 0.28),
+      0 0 80px rgba(122, 232, 168, 0.1);
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  #calc-countdown-timer .cd-tile:hover::after,
+  #calc-countdown-timer .countdown-milestone:hover::before {
+    opacity: 0.95;
+    transform: translateY(0) scale(1);
+  }
+}
+
 #calc-countdown-timer .cd-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
   flex-wrap: wrap;
+  padding: 10px 0 2px;
 }
 
 #calc-countdown-timer .cd-actions-label {
+  font-family: 'DM Mono', 'Consolas', monospace;
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cd-accent);
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn {
+  background: linear-gradient(145deg, rgba(232, 201, 122, 0.2), rgba(232, 201, 122, 0.1));
+  border: 1px solid rgba(232, 201, 122, 0.45);
+  color: #f7e9bf;
+  font-weight: 600;
+  box-shadow:
+    0 6px 16px rgba(232, 201, 122, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn:hover {
+  background: linear-gradient(145deg, rgba(232, 201, 122, 0.34), rgba(232, 201, 122, 0.18));
+  border-color: rgba(232, 201, 122, 0.7);
+  color: #fff6dd;
+  box-shadow:
+    0 10px 24px rgba(232, 201, 122, 0.22),
+    0 0 28px rgba(232, 201, 122, 0.18);
 }
 
 #calc-countdown-timer .cd-copy-msg {
+  color: var(--green);
   font-size: 12px;
-  font-weight: 600;
-  color: var(--cd-accent);
+  font-family: 'DM Mono', 'Consolas', monospace;
 }
 
-#calc-countdown-timer .is-hidden { display: none; }
+#calc-countdown-timer .is-hidden {
+  display: none;
+}
 
-/* ── Explanation ── */
 #countdown-explanation {
   display: grid;
   gap: 14px;
@@ -358,45 +545,106 @@
   line-height: 1.55;
 }
 
-#countdown-explanation .countdown-faq-item {
+#countdown-explanation ul {
+  margin: 0;
+  padding-left: 20px;
   display: grid;
-  gap: 4px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  background: rgba(15, 23, 42, 0.5);
+  gap: 8px;
 }
 
-/* ── Responsive ── */
-@media (max-width: 720px) {
-  #calc-countdown-timer .cd-inputs {
-    flex-direction: column;
-    align-items: stretch;
+#countdown-explanation li {
+  line-height: 1.55;
+  color: var(--text);
+}
+
+#countdown-explanation .countdown-faq-list li {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 860px) {
+  body[data-page='calculator'] .layout-main {
+    grid-template-columns: 1fr;
   }
 
-  #calc-countdown-timer .cd-tiles,
-  #calc-countdown-timer .cd-milestones {
+  body[data-page='calculator'] .left-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-countdown-timer .cd-page-meta {
+    position: static;
+    justify-items: start;
+    text-align: left;
+    margin-bottom: 14px;
+  }
+
+  #calc-countdown-timer .cd-main-cards {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-countdown-timer .cd-input-card {
+    padding: 20px;
+  }
+
+  #calc-countdown-timer .cd-fallback {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-countdown-timer .cd-cta-row {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  #calc-countdown-timer #countdown-start,
+  #calc-countdown-timer #countdown-stop {
+    width: 100%;
+  }
+
+  #calc-countdown-timer .cd-countdown-header,
+  #calc-countdown-timer .cd-countdown-footer {
+    padding: 20px;
+  }
+
+  #calc-countdown-timer .cd-countdown-footer {
+    min-height: 50px;
+  }
+
+  #calc-countdown-timer .cd-live {
+    bottom: 2px;
+  }
+
+  #calc-countdown-timer .cd-tiles {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #calc-countdown-timer .cd-meta {
-    flex-direction: column;
-    align-items: flex-start;
+  #calc-countdown-timer .cd-milestones {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   #calc-countdown-timer .cd-actions {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  #calc-countdown-timer .cd-card {
-    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: stretch;
   }
 
-  #calc-countdown-timer .cd-tiles,
-  #calc-countdown-timer .cd-milestones {
-    grid-template-columns: repeat(2, 1fr);
+  #calc-countdown-timer .cd-actions-label {
+    margin-bottom: 2px;
+  }
+
+  #calc-countdown-timer .cd-actions .cd-btn {
+    width: 100%;
+    min-height: 42px;
+    justify-content: center;
+    box-shadow:
+      0 4px 12px rgba(232, 201, 122, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  #calc-countdown-timer .cd-actions .cd-btn:hover {
+    box-shadow:
+      0 6px 16px rgba(232, 201, 122, 0.14),
+      0 0 16px rgba(232, 201, 122, 0.12);
   }
 }

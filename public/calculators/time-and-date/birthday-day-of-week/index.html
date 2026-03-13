@@ -1,27 +1,192 @@
 <div id="calc-birthday-dow">
-  <div class="calculator-ui">
-    <p class="helper">Find the weekday you were born and the weekday your birthday falls on.</p>
+  <div class="birthday-dow-shell">
+    <section class="birthday-dow-hero" aria-labelledby="birthday-dow-hero-title">
+      <div class="birthday-dow-hero-copy">
+        <p class="birthday-dow-kicker">Celebration Calendar</p>
+        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">
+          See the <em>weekday story</em> behind every birthday.
+        </h2>
+        <p class="birthday-dow-hero-text">
+          Go beyond the answer. Find the day you were born, preview how your birthday lands in any
+          year, and spot the next weekend-friendly celebrations worth circling on the calendar.
+        </p>
+        <div class="birthday-dow-hero-pills" aria-label="Product highlights">
+          <span class="birthday-dow-pill">Birth weekday</span>
+          <span class="birthday-dow-pill">Next birthday countdown</span>
+          <span class="birthday-dow-pill">12-year recurrence map</span>
+        </div>
+      </div>
 
-    <div class="input-row">
-      <label for="birthday-dow-dob">Date of birth</label>
-      <input id="birthday-dow-dob" type="date" />
+      <aside class="birthday-dow-hero-card" aria-live="polite">
+        <p class="birthday-dow-card-label">Birth weekday</p>
+        <p class="birthday-dow-hero-weekday" id="birthday-dow-hero-weekday">Waiting for a date</p>
+        <p class="birthday-dow-hero-date" id="birthday-dow-hero-date">
+          Choose a date of birth and reveal the weekday pattern.
+        </p>
+        <div class="birthday-dow-hero-meta">
+          <div class="birthday-dow-hero-meta-item">
+            <span class="birthday-dow-hero-meta-label">Target year</span>
+            <strong class="birthday-dow-hero-meta-value" id="birthday-dow-hero-target-year"
+              >----</strong
+            >
+          </div>
+          <div class="birthday-dow-hero-meta-item">
+            <span class="birthday-dow-hero-meta-label">Birthday lands on</span>
+            <strong class="birthday-dow-hero-meta-value" id="birthday-dow-hero-target-weekday"
+              >--</strong
+            >
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="birthday-dow-stage">
+      <section class="birthday-dow-card birthday-dow-form-card">
+        <p class="birthday-dow-section-kicker">Build the view</p>
+        <h3 class="birthday-dow-section-title">Find your birthday pattern</h3>
+        <p class="birthday-dow-section-text">
+          Keep the input simple. Pick your date of birth, choose a year to preview, then calculate
+          to unlock the next birthday snapshot and longer weekday rhythm.
+        </p>
+
+        <div class="birthday-dow-input-grid">
+          <label class="birthday-dow-field" for="birthday-dow-dob">
+            <span class="birthday-dow-field-label">Date of birth</span>
+            <input id="birthday-dow-dob" type="date" />
+          </label>
+
+          <label class="birthday-dow-field" for="birthday-dow-year">
+            <span class="birthday-dow-field-label">Target year</span>
+            <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
+          </label>
+        </div>
+
+        <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="current"
+            aria-pressed="false"
+          >
+            This year
+          </button>
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="next"
+            aria-pressed="false"
+          >
+            Next year
+          </button>
+          <button
+            class="birthday-dow-year-chip"
+            type="button"
+            data-year-preset="plus-5"
+            aria-pressed="false"
+          >
+            +5 years
+          </button>
+        </div>
+
+        <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
+          Reveal birthday insights
+        </button>
+
+        <p class="birthday-dow-form-note">
+          Private by default. Your birthday stays in the browser and never leaves the page.
+        </p>
+        <p class="form-error is-hidden" id="birthday-dow-error"></p>
+      </section>
+
+      <section class="birthday-dow-card birthday-dow-results-card">
+        <div class="birthday-dow-results-head">
+          <div>
+            <p class="birthday-dow-section-kicker">Insight-first results</p>
+            <h3 class="birthday-dow-section-title">Your birthday snapshot</h3>
+          </div>
+          <button
+            class="birthday-dow-copy-btn"
+            type="button"
+            id="birthday-dow-copy-summary"
+            disabled
+          >
+            Copy summary
+          </button>
+        </div>
+
+        <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
+          <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
+            Enter your birthday and calculate to unlock the weekday, next celebration, and weekend
+            planning view.
+          </p>
+
+          <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
+            <div class="birthday-dow-result-grid">
+              <article class="birthday-dow-result-card">
+                <p class="birthday-dow-result-label">You were born on</p>
+                <p class="birthday-dow-result-value" id="birthday-dow-birth-weekday">--</p>
+                <p class="birthday-dow-result-note" id="birthday-dow-birth-note">
+                  Your birth weekday appears here.
+                </p>
+              </article>
+
+              <article class="birthday-dow-result-card">
+                <p class="birthday-dow-result-label" id="birthday-dow-target-label">Birthday in ----</p>
+                <p class="birthday-dow-result-value" id="birthday-dow-target-weekday-card">--</p>
+                <p class="birthday-dow-result-note" id="birthday-dow-target-note">
+                  Your selected-year weekday appears here.
+                </p>
+              </article>
+            </div>
+
+            <article class="birthday-dow-next-card" id="birthday-dow-next-card">
+              <div>
+                <p class="birthday-dow-result-label">Next birthday snapshot</p>
+                <h4 class="birthday-dow-next-title" id="birthday-dow-next-weekday">--</h4>
+                <p class="birthday-dow-next-date" id="birthday-dow-next-date">--</p>
+              </div>
+              <div class="birthday-dow-next-metrics">
+                <div class="birthday-dow-next-metric">
+                  <span class="birthday-dow-next-metric-label">Turns</span>
+                  <strong class="birthday-dow-next-metric-value" id="birthday-dow-next-age">--</strong>
+                </div>
+                <div class="birthday-dow-next-metric">
+                  <span class="birthday-dow-next-metric-label">Days away</span>
+                  <strong class="birthday-dow-next-metric-value" id="birthday-dow-next-days">--</strong>
+                </div>
+              </div>
+            </article>
+
+            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
+          </div>
+        </div>
+
+        <p class="birthday-dow-copy-feedback is-hidden" id="birthday-dow-copy-feedback"></p>
+      </section>
     </div>
 
-    <div class="input-row">
-      <label for="birthday-dow-year">Birthday weekday in year</label>
-      <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
-    </div>
+    <div class="birthday-dow-insight-grid">
+      <section class="birthday-dow-card birthday-dow-recurrence-card">
+        <div class="birthday-dow-section-head">
+          <div>
+            <p class="birthday-dow-section-kicker">12-year rhythm</p>
+            <h3 class="birthday-dow-section-title">Birthday weekday map</h3>
+          </div>
+          <p class="birthday-dow-section-side-note">Starting from the current year</p>
+        </div>
+        <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
+      </section>
 
-    <button class="calculator-button full-width" type="button" id="birthday-dow-calculate">
-      Calculate
-    </button>
-
-    <div class="result" id="birthday-dow-results" aria-live="polite">
-      <p class="placeholder" id="birthday-dow-placeholder">
-        Enter your date of birth to calculate weekdays.
-      </p>
-      <p class="form-error is-hidden" id="birthday-dow-error"></p>
-      <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list"></div>
+      <section class="birthday-dow-card birthday-dow-weekend-card">
+        <div class="birthday-dow-section-head">
+          <div>
+            <p class="birthday-dow-section-kicker">Weekend radar</p>
+            <h3 class="birthday-dow-section-title">Next Friday, Saturday, Sunday birthdays</h3>
+          </div>
+          <p class="birthday-dow-section-side-note">Use these to plan ahead</p>
+        </div>
+        <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
+      </section>
     </div>
   </div>
 </div>

@@ -1,24 +1,66 @@
 <div id="calc-countdown-timer">
-  <div class="cd-card" id="countdown-preview-card" data-theme="launch">
+  <div class="cd-page-meta">
+    <span class="cd-timezone" id="countdown-timezone">Local time zone: Detecting...</span>
+    <span class="cd-date-meta" id="countdown-preview-date">Date &amp; time: --</span>
+  </div>
 
-    <div class="cd-inputs">
-      <input id="countdown-event-name" type="text" maxlength="48" placeholder="Event name" autocomplete="off" aria-label="Event name" class="cd-field" />
-      <div class="cd-field-wrap" id="countdown-datetime-row">
-        <input id="countdown-datetime" type="datetime-local" step="60" data-maxlength="16" aria-label="Target date and time" class="cd-field" />
+  <div class="cd-main-cards">
+    <section class="cd-input-card">
+      <div class="cd-input-grid">
+        <div class="cd-fallback">
+          <label class="cd-field-label">
+            Region
+            <select id="countdown-region" aria-label="Region" class="cd-field">
+              <option value="United States" selected>United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </label>
+          <label class="cd-field-label">
+            Event
+            <select id="countdown-region-event" aria-label="Event" class="cd-field">
+              <option value="">Custom event</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="cd-field-label cd-field-full">
+          Event name
+          <input
+            id="countdown-event-name"
+            type="text"
+            maxlength="48"
+            placeholder="e.g. Product launch, Wedding..."
+            autocomplete="off"
+            aria-label="Event name"
+            class="cd-field"
+          />
+        </label>
+
+        <div class="cd-fallback" id="countdown-fallback">
+          <label class="cd-field-label">
+            Target date
+            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
+          </label>
+          <label class="cd-field-label">
+            Time
+            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
+          </label>
+        </div>
+
+        <div class="cd-cta-row">
+          <button class="cd-btn" type="button" id="countdown-start">Start countdown</button>
+          <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-stop">Stop countdown</button>
+        </div>
       </div>
-      <button class="cd-btn" type="button" id="countdown-start">Start</button>
-    </div>
-    <p class="cd-error is-hidden" id="countdown-error"></p>
+      <p class="cd-error is-hidden" id="countdown-error"></p>
+    </section>
 
-    <div class="cd-fallback is-hidden" id="countdown-fallback">
-      <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
-      <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
-    </div>
-
-    <div class="cd-display">
-      <p class="cd-kicker" id="countdown-preview-heading">Launch countdown</p>
-      <h3 class="cd-title" id="countdown-preview-title">Your event countdown</h3>
-      <p class="cd-date" id="countdown-preview-date">Enter a name and date, then press Start.</p>
+    <section class="cd-countdown-card is-hidden" id="countdown-preview-card" data-theme="launch">
+      <header class="cd-countdown-header">
+        <p class="cd-kicker" id="countdown-preview-heading">Counting down to</p>
+        <h3 class="cd-title" id="countdown-preview-title">Your event countdown</h3>
+      </header>
 
       <div class="cd-tiles" id="countdown-preview-grid" aria-live="polite">
         <div class="cd-tile"><span class="cd-num" id="countdown-days">--</span><span class="cd-unit">Days</span></div>
@@ -27,84 +69,30 @@
         <div class="cd-tile"><span class="cd-num" id="countdown-seconds">--</span><span class="cd-unit">Sec</span></div>
       </div>
 
-      <p class="cd-summary" id="countdown-preview-summary">Keep one important moment visible.</p>
-    </div>
+      <p class="cd-expired is-hidden" id="countdown-expired">This moment has arrived.</p>
 
-    <div class="cd-meta">
-      <span id="countdown-timezone">Local time zone: Detecting...</span>
-      <span class="cd-badge" id="countdown-preview-badge">Waiting</span>
-      <span id="countdown-status">Ready when you are.</span>
-    </div>
+      <footer class="cd-countdown-footer">
+        <span class="cd-live">
+          <span class="cd-live-dot" aria-hidden="true"></span>
+          <span id="countdown-status">Live updates Every Second</span>
+        </span>
+      </footer>
+    </section>
+  </div>
 
-    <details class="cd-options" id="countdown-options">
-      <summary>Presets &amp; options</summary>
-      <div class="cd-options-body">
-        <div class="cd-opt-row">
-          <input id="countdown-annual-preset" type="text" maxlength="32" list="countdown-annual-options" placeholder="Quick preset (e.g. Christmas)" autocomplete="off" aria-label="Quick preset" class="cd-field" />
-          <datalist id="countdown-annual-options">
-            <option value="New Year's Day"></option>
-            <option value="Valentine's Day"></option>
-            <option value="Earth Day"></option>
-            <option value="Mother's Day"></option>
-            <option value="Father's Day"></option>
-            <option value="Independence Day"></option>
-            <option value="Halloween"></option>
-            <option value="Thanksgiving"></option>
-            <option value="Christmas Eve"></option>
-            <option value="Christmas Day"></option>
-            <option value="New Year's Eve"></option>
-          </datalist>
-        </div>
-
-        <fieldset class="cd-chip-group">
-          <legend>Event type</legend>
-          <div class="cd-chips" id="countdown-event-type-group">
-            <button class="cd-chip is-selected" type="button" data-event-type="launch" aria-pressed="true">Launch</button>
-            <button class="cd-chip" type="button" data-event-type="birthday" aria-pressed="false">Birthday</button>
-            <button class="cd-chip" type="button" data-event-type="trip" aria-pressed="false">Trip</button>
-            <button class="cd-chip" type="button" data-event-type="exam" aria-pressed="false">Exam</button>
-            <button class="cd-chip" type="button" data-event-type="deadline" aria-pressed="false">Deadline</button>
-            <button class="cd-chip" type="button" data-event-type="holiday" aria-pressed="false">Holiday</button>
-          </div>
-        </fieldset>
-
-        <div class="cd-opt-row countdown-holiday-field is-hidden" id="countdown-holiday-field">
-          <input id="countdown-holiday-preset" type="text" maxlength="32" list="countdown-holiday-options" placeholder="Choose a holiday" autocomplete="off" aria-label="Holiday preset" class="cd-field" />
-          <datalist id="countdown-holiday-options">
-            <option value="New Year's Day"></option>
-            <option value="Memorial Day"></option>
-            <option value="Independence Day"></option>
-            <option value="Labor Day"></option>
-            <option value="Halloween"></option>
-            <option value="Thanksgiving"></option>
-            <option value="Christmas Eve"></option>
-            <option value="Christmas Day"></option>
-            <option value="New Year's Eve"></option>
-          </datalist>
-        </div>
-
-        <fieldset class="cd-chip-group">
-          <legend>Theme</legend>
-          <div class="cd-chips" id="countdown-theme-group">
-            <button class="cd-chip is-selected" type="button" data-theme="launch" aria-pressed="true">Launch</button>
-            <button class="cd-chip" type="button" data-theme="celebration" aria-pressed="false">Celebration</button>
-            <button class="cd-chip" type="button" data-theme="travel" aria-pressed="false">Travel</button>
-            <button class="cd-chip" type="button" data-theme="focus" aria-pressed="false">Focus</button>
-            <button class="cd-chip" type="button" data-theme="minimal" aria-pressed="false">Minimal</button>
-          </div>
-        </fieldset>
-      </div>
-    </details>
-
+  <section class="cd-milestone-section is-hidden" id="countdown-milestones-wrap">
+    <p class="cd-section-label">Milestones</p>
     <div class="cd-milestones" id="countdown-milestones"></div>
+  </section>
 
-    <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
-      <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
-      <button class="cd-btn cd-btn-sm" type="button" id="countdown-copy-summary">Copy summary</button>
-      <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-date">Copy date</button>
-      <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
-    </div>
-
+  <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
+    <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-summary">Copy summary</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-date">Copy date</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-google">Google Calendar</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-outlook">Outlook</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-ics">Download .ics</button>
+    <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
   </div>
 </div>
 

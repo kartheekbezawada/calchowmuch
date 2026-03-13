@@ -19,109 +19,43 @@ const MILESTONES = [
   { label: 'Final hour', thresholdSeconds: 60 * 60 },
 ];
 
-const PRESETS = [
-  {
-    label: "New Year's Day",
-    rule: { type: 'fixed', month: 0, day: 1 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: "Valentine's Day",
-    rule: { type: 'fixed', month: 1, day: 14 },
-    eventType: 'birthday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Earth Day',
-    rule: { type: 'fixed', month: 3, day: 22 },
-    eventType: 'deadline',
-    theme: 'travel',
-  },
-  {
-    label: "Mother's Day",
-    rule: { type: 'nthWeekday', month: 4, weekday: 0, nth: 2 },
-    eventType: 'birthday',
-    theme: 'celebration',
-  },
-  {
-    label: "Father's Day",
-    rule: { type: 'nthWeekday', month: 5, weekday: 0, nth: 3 },
-    eventType: 'birthday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Memorial Day',
-    rule: { type: 'lastWeekday', month: 4, weekday: 1 },
-    eventType: 'holiday',
-    theme: 'focus',
-  },
-  {
-    label: 'Independence Day',
-    rule: { type: 'fixed', month: 6, day: 4 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Labor Day',
-    rule: { type: 'nthWeekday', month: 8, weekday: 1, nth: 1 },
-    eventType: 'holiday',
-    theme: 'focus',
-  },
-  {
-    label: 'Halloween',
-    rule: { type: 'fixed', month: 9, day: 31 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Thanksgiving',
-    rule: { type: 'nthWeekday', month: 10, weekday: 4, nth: 4 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Christmas Eve',
-    rule: { type: 'fixed', month: 11, day: 24 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: 'Christmas Day',
-    rule: { type: 'fixed', month: 11, day: 25 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-  {
-    label: "New Year's Eve",
-    rule: { type: 'fixed', month: 11, day: 31 },
-    eventType: 'holiday',
-    theme: 'celebration',
-  },
-];
-
-const HOLIDAY_PRESET_LABELS = new Set([
-  "New Year's Day",
-  'Memorial Day',
-  'Independence Day',
-  'Labor Day',
-  'Halloween',
-  'Thanksgiving',
-  'Christmas Eve',
-  'Christmas Day',
-  "New Year's Eve",
-]);
+const STATIC_REGION_EVENTS = {
+  'United States': [
+    { id: 'us-memorial-day', name: 'Memorial Day', date: '2026-05-25', time: '09:00' },
+    { id: 'us-independence-day', name: 'Independence Day', date: '2026-07-04', time: '09:00' },
+    { id: 'us-thanksgiving', name: 'Thanksgiving Day', date: '2026-11-26', time: '09:00' },
+    { id: 'us-new-year', name: 'New Year', date: '2027-01-01', time: '00:00' },
+  ],
+  'United Kingdom': [
+    {
+      id: 'uk-early-may-bank-holiday',
+      name: 'Early May Bank Holiday',
+      date: '2026-05-04',
+      time: '09:00',
+    },
+    { id: 'uk-summer-bank-holiday', name: 'Summer Bank Holiday', date: '2026-08-31', time: '09:00' },
+    { id: 'uk-guy-fawkes-night', name: 'Guy Fawkes Night', date: '2026-11-05', time: '19:00' },
+    { id: 'uk-boxing-day', name: 'Boxing Day', date: '2026-12-26', time: '09:00' },
+  ],
+  Canada: [
+    { id: 'ca-victoria-day', name: 'Victoria Day', date: '2026-05-18', time: '09:00' },
+    { id: 'ca-canada-day', name: 'Canada Day', date: '2026-07-01', time: '09:00' },
+    { id: 'ca-thanksgiving', name: 'Thanksgiving Day', date: '2026-10-12', time: '09:00' },
+    { id: 'ca-boxing-day', name: 'Boxing Day', date: '2026-12-26', time: '09:00' },
+  ],
+};
 
 const dateTimeInput = document.querySelector('#countdown-datetime');
 const dateTimeRow = document.querySelector('#countdown-datetime-row');
+const regionInput = document.querySelector('#countdown-region');
+const regionEventInput = document.querySelector('#countdown-region-event');
 const eventNameInput = document.querySelector('#countdown-event-name');
-const annualPresetInput = document.querySelector('#countdown-annual-preset');
-const holidayPresetInput = document.querySelector('#countdown-holiday-preset');
 const holidayField = document.querySelector('#countdown-holiday-field');
 const fallbackWrap = document.querySelector('#countdown-fallback');
 const fallbackDateInput = document.querySelector('#countdown-date');
 const fallbackTimeInput = document.querySelector('#countdown-time');
 const startButton = document.querySelector('#countdown-start');
+const stopButton = document.querySelector('#countdown-stop');
 const errorMessage = document.querySelector('#countdown-error');
 const previewCard = document.querySelector('#countdown-preview-card');
 const previewBadge = document.querySelector('#countdown-preview-badge');
@@ -132,9 +66,14 @@ const previewSummary = document.querySelector('#countdown-preview-summary');
 const statusMessage = document.querySelector('#countdown-status');
 const timezoneMessage = document.querySelector('#countdown-timezone');
 const milestonesWrap = document.querySelector('#countdown-milestones');
+const milestonesSection = document.querySelector('#countdown-milestones-wrap');
 const actionsWrap = document.querySelector('#countdown-actions');
+const expiredBanner = document.querySelector('#countdown-expired');
 const copySummaryButton = document.querySelector('#countdown-copy-summary');
 const copyDateButton = document.querySelector('#countdown-copy-date');
+const addGoogleButton = document.querySelector('#countdown-add-google');
+const addOutlookButton = document.querySelector('#countdown-add-outlook');
+const downloadIcsButton = document.querySelector('#countdown-download-ics');
 const copyFeedback = document.querySelector('#countdown-copy-feedback');
 const countdownDays = document.querySelector('#countdown-days');
 const countdownHours = document.querySelector('#countdown-hours');
@@ -164,7 +103,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          'Yes. It works for any event where you want a clear live countdown.',
+          'Yes. It works for launches, travel, birthdays, exams, and any event where you need a clear live countdown.',
       },
     },
     {
@@ -178,11 +117,11 @@ const CALCULATOR_FAQ_SCHEMA = {
     },
     {
       '@type': 'Question',
-      name: 'Can I jump to common yearly dates quickly?',
+      name: 'Can I pick events by region quickly?',
       acceptedAnswer: {
         '@type': 'Answer',
         text:
-          'Yes. Open Presets and options and use Quick preset to fill the next upcoming occurrence for common annual dates and holidays.',
+          'Yes. Use Region and Event to auto-fill common dates, then edit name, date, or time before starting.',
       },
     },
     {
@@ -336,24 +275,6 @@ function getTargetDate() {
   return null;
 }
 
-function getSelectedTimeParts() {
-  if (hasDateTimeSupport && dateTimeInput?.value) {
-    const parsed = new Date(dateTimeInput.value);
-    if (!Number.isNaN(parsed.getTime())) {
-      return { hours: parsed.getHours(), minutes: parsed.getMinutes() };
-    }
-  }
-
-  if (fallbackTimeInput?.value) {
-    const time = parseTimeValue(fallbackTimeInput.value);
-    if (time) {
-      return time;
-    }
-  }
-
-  return { hours: 9, minutes: 0 };
-}
-
 function setTargetInputs(target) {
   if (dateTimeInput) {
     dateTimeInput.value = formatDateTimeLocalValue(target);
@@ -363,6 +284,84 @@ function setTargetInputs(target) {
   }
   if (fallbackTimeInput) {
     fallbackTimeInput.value = formatTimeValue(target);
+  }
+}
+
+function getRegionEvents() {
+  const region = regionInput?.value || 'United States';
+  return STATIC_REGION_EVENTS[region] || [];
+}
+
+function populateRegionEventOptions() {
+  if (!regionEventInput) {
+    return;
+  }
+
+  const previousValue = regionEventInput.value;
+  regionEventInput.innerHTML = '';
+
+  const customOption = document.createElement('option');
+  customOption.value = '';
+  customOption.textContent = 'Custom event';
+  regionEventInput.appendChild(customOption);
+
+  const events = getRegionEvents();
+  events.forEach((eventPreset) => {
+    const option = document.createElement('option');
+    option.value = eventPreset.id;
+    option.textContent = eventPreset.name;
+    regionEventInput.appendChild(option);
+  });
+
+  const hasPrevious = events.some((eventPreset) => eventPreset.id === previousValue);
+  regionEventInput.value = hasPrevious ? previousValue : '';
+}
+
+function getStaticRegionEventById(eventId) {
+  if (!eventId) {
+    return null;
+  }
+  return getRegionEvents().find((eventPreset) => eventPreset.id === eventId) || null;
+}
+
+function buildStaticRegionTarget(eventPreset) {
+  if (!eventPreset) {
+    return null;
+  }
+  const date = parseDateValue(eventPreset.date);
+  const time = parseTimeValue(eventPreset.time);
+  if (!date || !time) {
+    return null;
+  }
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    time.hours,
+    time.minutes,
+    0,
+    0
+  );
+}
+
+function applyStaticRegionEvent(eventId) {
+  const eventPreset = getStaticRegionEventById(eventId);
+  if (!eventPreset) {
+    return;
+  }
+  if (eventNameInput) {
+    eventNameInput.value = eventPreset.name;
+  }
+  const target = buildStaticRegionTarget(eventPreset);
+  if (target) {
+    setTargetInputs(target);
+  }
+  markPreviewStale();
+}
+
+function clearRegionEventSelection() {
+  if (regionEventInput && regionEventInput.value) {
+    regionEventInput.value = '';
   }
 }
 
@@ -443,7 +442,7 @@ function updateCountdownTiles(countdown) {
 }
 
 function formatTargetLabel(target) {
-  const formatted = target.toLocaleString(undefined, {
+  return target.toLocaleString(undefined, {
     weekday: 'short',
     month: 'long',
     day: 'numeric',
@@ -451,7 +450,6 @@ function formatTargetLabel(target) {
     hour: 'numeric',
     minute: '2-digit',
   });
-  return `${formatted} (${getLocalTimeZone()})`;
 }
 
 function pluralize(value, label) {
@@ -496,6 +494,9 @@ function renderMilestones(totalSeconds, isComplete = false) {
   }
 
   milestonesWrap.innerHTML = '';
+  if (typeof totalSeconds !== 'number' && !isComplete) {
+    return;
+  }
 
   MILESTONES.forEach((milestone) => {
     const item = document.createElement('article');
@@ -510,17 +511,15 @@ function renderMilestones(totalSeconds, isComplete = false) {
 
     if (isComplete) {
       item.classList.add('is-passed');
-      state.textContent = 'Event reached';
-    } else if (typeof totalSeconds !== 'number') {
-      state.textContent = 'Build the countdown to activate this marker';
+      state.textContent = 'Reached';
     } else if (totalSeconds > milestone.thresholdSeconds) {
-      state.textContent = 'Ahead of this milestone';
+      state.textContent = 'Upcoming';
     } else if (totalSeconds > 0) {
       item.classList.add('is-live');
       state.textContent = 'Active now';
     } else {
       item.classList.add('is-passed');
-      state.textContent = 'Passed';
+      state.textContent = 'Reached';
     }
 
     item.append(label, state);
@@ -530,23 +529,27 @@ function renderMilestones(totalSeconds, isComplete = false) {
 
 function setPreviewWaitingState() {
   previewCard?.setAttribute('data-theme', selectedTheme);
+  previewCard?.classList.add('is-hidden');
+  actionsWrap?.classList.add('is-hidden');
+  milestonesSection?.classList.add('is-hidden');
+  expiredBanner?.classList.add('is-hidden');
   if (previewBadge) {
-    previewBadge.textContent = 'Waiting';
+    previewBadge.textContent = 'Ready';
   }
   if (previewKicker) {
-    previewKicker.textContent = `${EVENT_TYPES[selectedEventType].label} countdown`;
+    previewKicker.textContent = 'Counting down to';
   }
   if (previewTitle) {
     previewTitle.textContent = 'Your event countdown';
   }
   if (previewDate) {
-    previewDate.textContent = 'Enter a name and date, then press Start.';
+    previewDate.textContent = 'Date & time: --';
   }
   if (previewSummary) {
-    previewSummary.textContent = 'Keep one important moment visible.';
+    previewSummary.textContent = 'Live countdown appears after Start.';
   }
   if (statusMessage) {
-    statusMessage.textContent = 'Ready when you are.';
+    statusMessage.textContent = 'Live updates Every Second';
   }
   if (timezoneMessage) {
     timezoneMessage.textContent = `Local time zone: ${getLocalTimeZone()}`;
@@ -576,12 +579,14 @@ function renderPreview(target, countdown, isComplete = false) {
     return;
   }
 
-  const eventType = EVENT_TYPES[activeBuild.eventType];
   const eventName = activeBuild.eventName;
 
   previewCard?.setAttribute('data-theme', activeBuild.theme);
+  previewCard?.classList.remove('is-hidden');
+  milestonesSection?.classList.remove('is-hidden');
+  expiredBanner?.classList.toggle('is-hidden', !isComplete);
   if (previewKicker) {
-    previewKicker.textContent = eventType.kicker;
+    previewKicker.textContent = 'Counting down to';
   }
   if (previewBadge) {
     previewBadge.textContent = buildBadgeText(countdown, isComplete);
@@ -590,7 +595,7 @@ function renderPreview(target, countdown, isComplete = false) {
     previewTitle.textContent = eventName;
   }
   if (previewDate) {
-    previewDate.textContent = formatTargetLabel(target);
+    previewDate.textContent = `Date & time: ${formatTargetLabel(target)}`;
   }
   if (previewSummary) {
     previewSummary.textContent = isComplete
@@ -599,8 +604,8 @@ function renderPreview(target, countdown, isComplete = false) {
   }
   if (statusMessage) {
     statusMessage.textContent = isComplete
-      ? 'The countdown has reached zero.'
-      : 'Live preview updates every second in your local time zone.';
+      ? 'This moment has arrived.'
+      : 'Live updates Every Second';
   }
   if (timezoneMessage) {
     timezoneMessage.textContent = `Local time zone: ${getLocalTimeZone()}`;
@@ -608,6 +613,7 @@ function renderPreview(target, countdown, isComplete = false) {
 
   updateCountdownTiles(countdown);
   renderMilestones(countdown.totalSeconds, isComplete);
+  milestonesSection?.classList.toggle('is-hidden', milestonesWrap ? milestonesWrap.children.length === 0 : true);
   actionsWrap?.classList.remove('is-hidden');
 }
 
@@ -656,94 +662,21 @@ function markPreviewStale() {
     return;
   }
   if (previewBadge) {
-    previewBadge.textContent = 'Needs rebuild';
+    previewBadge.textContent = 'Needs update';
   }
   if (statusMessage) {
-    statusMessage.textContent = 'Inputs changed. Click Build countdown to refresh the preview.';
+    statusMessage.textContent = 'Inputs changed. Press Start to update.';
   }
 }
 
-function getNthWeekday(year, month, weekday, nth) {
-  const date = new Date(year, month, 1);
-  const offset = (weekday - date.getDay() + 7) % 7;
-  date.setDate(1 + offset + (nth - 1) * 7);
-  return date;
-}
-
-function getLastWeekday(year, month, weekday) {
-  const date = new Date(year, month + 1, 0);
-  while (date.getDay() !== weekday) {
-    date.setDate(date.getDate() - 1);
+function stopCountdown() {
+  clearCountdownInterval();
+  if (previewBadge) {
+    previewBadge.textContent = 'Paused';
   }
-  return date;
-}
-
-function buildPresetDate(preset, year, timeParts) {
-  let date;
-  if (preset.rule.type === 'fixed') {
-    date = new Date(year, preset.rule.month, preset.rule.day, timeParts.hours, timeParts.minutes, 0, 0);
-  } else if (preset.rule.type === 'nthWeekday') {
-    date = getNthWeekday(year, preset.rule.month, preset.rule.weekday, preset.rule.nth);
-    date.setHours(timeParts.hours, timeParts.minutes, 0, 0);
-  } else {
-    date = getLastWeekday(year, preset.rule.month, preset.rule.weekday);
-    date.setHours(timeParts.hours, timeParts.minutes, 0, 0);
+  if (statusMessage) {
+    statusMessage.textContent = 'Countdown stopped.';
   }
-  return date;
-}
-
-function getPresetByLabel(label, holidayOnly = false) {
-  const normalized = (label || '').trim().toLowerCase();
-  if (!normalized) {
-    return null;
-  }
-  return (
-    PRESETS.find((preset) => {
-      if (holidayOnly && !HOLIDAY_PRESET_LABELS.has(preset.label)) {
-        return false;
-      }
-      return preset.label.toLowerCase() === normalized;
-    }) || null
-  );
-}
-
-function applyPreset(preset, source) {
-  if (!preset) {
-    return;
-  }
-
-  const timeParts = getSelectedTimeParts();
-  const now = new Date();
-  let target = buildPresetDate(preset, now.getFullYear(), timeParts);
-  if (target.getTime() <= now.getTime()) {
-    target = buildPresetDate(preset, now.getFullYear() + 1, timeParts);
-  }
-
-  eventNameInput && (eventNameInput.value = preset.label);
-  setTargetInputs(target);
-
-  selectedEventType = preset.eventType;
-  selectedTheme = preset.theme;
-  setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
-  setSelectedButton(themeButtons, selectedTheme, 'theme');
-  updateHolidayFieldVisibility();
-
-  if (source === 'annual' && annualPresetInput) {
-    annualPresetInput.value = preset.label;
-  }
-  if ((source === 'holiday' || preset.eventType === 'holiday') && holidayPresetInput) {
-    holidayPresetInput.value = preset.label;
-  }
-
-  markPreviewStale();
-}
-
-function handlePresetInput(input, holidayOnly = false, source = 'annual') {
-  const preset = getPresetByLabel(input?.value, holidayOnly);
-  if (!preset) {
-    return;
-  }
-  applyPreset(preset, source);
 }
 
 function calculate(startTimer = true) {
@@ -830,6 +763,109 @@ function getActiveDateSnapshot() {
   return `${activeBuild.eventName}: ${formatTargetLabel(target)}`;
 }
 
+function getCalendarSnapshot() {
+  if (!activeBuild || !activeBuild.target) {
+    return null;
+  }
+  const start = new Date(activeBuild.target.getTime());
+  const end = new Date(start.getTime() + 60 * 60 * 1000);
+  return {
+    title: activeBuild.eventName,
+    start,
+    end,
+    details: `Countdown event from CalcHowMuch: ${activeBuild.eventName}`,
+  };
+}
+
+function toIcsUtcStamp(date) {
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}T${pad(
+    date.getUTCHours()
+  )}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}Z`;
+}
+
+function toIsoNoMillis(date) {
+  return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
+function openCalendarUrl(url) {
+  const opened = window.open(url, '_blank', 'noopener,noreferrer');
+  if (!opened) {
+    showCopyFeedback('Popup blocked. Please allow popups for calendar links.');
+    return;
+  }
+  showCopyFeedback('Calendar opened.');
+}
+
+function addToGoogleCalendar() {
+  const snapshot = getCalendarSnapshot();
+  if (!snapshot) {
+    showCopyFeedback('Build the countdown first.');
+    return;
+  }
+  const url = new URL('https://calendar.google.com/calendar/render');
+  url.searchParams.set('action', 'TEMPLATE');
+  url.searchParams.set('text', snapshot.title);
+  url.searchParams.set(
+    'dates',
+    `${toIcsUtcStamp(snapshot.start)}/${toIcsUtcStamp(snapshot.end)}`
+  );
+  url.searchParams.set('details', snapshot.details);
+  url.searchParams.set('ctz', getLocalTimeZone());
+  openCalendarUrl(url.toString());
+}
+
+function addToOutlookCalendar() {
+  const snapshot = getCalendarSnapshot();
+  if (!snapshot) {
+    showCopyFeedback('Build the countdown first.');
+    return;
+  }
+  const url = new URL('https://outlook.live.com/calendar/0/deeplink/compose');
+  url.searchParams.set('subject', snapshot.title);
+  url.searchParams.set('body', snapshot.details);
+  url.searchParams.set('startdt', toIsoNoMillis(snapshot.start));
+  url.searchParams.set('enddt', toIsoNoMillis(snapshot.end));
+  openCalendarUrl(url.toString());
+}
+
+function downloadIcsFile() {
+  const snapshot = getCalendarSnapshot();
+  if (!snapshot) {
+    showCopyFeedback('Build the countdown first.');
+    return;
+  }
+
+  const uid = `countdown-${snapshot.start.getTime()}@calchowmuch.com`;
+  const nowStamp = toIcsUtcStamp(new Date());
+  const content = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//CalcHowMuch//Countdown Timer//EN',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${nowStamp}`,
+    `DTSTART:${toIcsUtcStamp(snapshot.start)}`,
+    `DTEND:${toIcsUtcStamp(snapshot.end)}`,
+    `SUMMARY:${snapshot.title.replace(/\n/g, ' ')}`,
+    `DESCRIPTION:${snapshot.details.replace(/\n/g, ' ')}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+
+  const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
+  const fileUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.download = `${snapshot.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'event'}.ics`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(fileUrl);
+  showCopyFeedback('.ics file downloaded.');
+}
+
 const defaultTarget = roundToMinute(new Date());
 defaultTarget.setDate(defaultTarget.getDate() + 30);
 defaultTarget.setHours(9, 0, 0, 0);
@@ -839,19 +875,30 @@ if (eventNameInput) {
 setTargetInputs(defaultTarget);
 
 startButton?.addEventListener('click', () => calculate(true));
+stopButton?.addEventListener('click', stopCountdown);
 copySummaryButton?.addEventListener('click', async () => {
   await copyText(getActiveCountdownSnapshot(), 'Countdown summary copied.');
 });
 copyDateButton?.addEventListener('click', async () => {
   await copyText(getActiveDateSnapshot(), 'Event date copied.');
 });
+addGoogleButton?.addEventListener('click', addToGoogleCalendar);
+addOutlookButton?.addEventListener('click', addToOutlookCalendar);
+downloadIcsButton?.addEventListener('click', downloadIcsFile);
 
-annualPresetInput?.addEventListener('input', () => handlePresetInput(annualPresetInput, false, 'annual'));
-annualPresetInput?.addEventListener('change', () => handlePresetInput(annualPresetInput, false, 'annual'));
-annualPresetInput?.addEventListener('blur', () => handlePresetInput(annualPresetInput, false, 'annual'));
-holidayPresetInput?.addEventListener('input', () => handlePresetInput(holidayPresetInput, true, 'holiday'));
-holidayPresetInput?.addEventListener('change', () => handlePresetInput(holidayPresetInput, true, 'holiday'));
-holidayPresetInput?.addEventListener('blur', () => handlePresetInput(holidayPresetInput, true, 'holiday'));
+regionInput?.addEventListener('change', () => {
+  populateRegionEventOptions();
+  markPreviewStale();
+});
+
+regionEventInput?.addEventListener('change', () => {
+  const eventId = regionEventInput.value;
+  if (!eventId) {
+    markPreviewStale();
+    return;
+  }
+  applyStaticRegionEvent(eventId);
+});
 
 eventTypeButtons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -873,18 +920,24 @@ themeButtons.forEach((button) => {
   });
 });
 
-[eventNameInput, dateTimeInput, fallbackDateInput, fallbackTimeInput, annualPresetInput, holidayPresetInput].forEach(
-  (input) => {
-    input?.addEventListener('input', markPreviewStale);
-    input?.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        calculate(true);
-      }
-    });
-  }
-);
+[eventNameInput, dateTimeInput, fallbackDateInput, fallbackTimeInput].forEach((input) => {
+  input?.addEventListener('input', () => {
+    clearRegionEventSelection();
+    markPreviewStale();
+  });
+  input?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      calculate(true);
+    }
+  });
+});
 
 setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
 setSelectedButton(themeButtons, selectedTheme, 'theme');
+if (regionInput && !regionInput.value) {
+  regionInput.value = 'United States';
+}
+populateRegionEventOptions();
 updateHolidayFieldVisibility();
 setPreviewWaitingState();
+calculate(true);

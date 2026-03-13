@@ -1,12 +1,45 @@
 import { setPageMetadata } from '/assets/js/core/ui.js';
-import { calculateBirthdayWeekdays, getWeekdayName } from '/assets/js/core/date-diff-utils.js';
+import {
+  buildBirthdayViewModel,
+  formatLongDate,
+} from './engine.js';
 
 const dobInput = document.querySelector('#birthday-dow-dob');
 const yearInput = document.querySelector('#birthday-dow-year');
 const calculateButton = document.querySelector('#birthday-dow-calculate');
+const copySummaryButton = document.querySelector('#birthday-dow-copy-summary');
+const yearPresetButtons = Array.from(document.querySelectorAll('[data-year-preset]'));
 const resultsList = document.querySelector('#birthday-dow-results-list');
 const placeholder = document.querySelector('#birthday-dow-placeholder');
 const errorMessage = document.querySelector('#birthday-dow-error');
+const copyFeedback = document.querySelector('#birthday-dow-copy-feedback');
+
+const heroWeekday = document.querySelector('#birthday-dow-hero-weekday');
+const heroDate = document.querySelector('#birthday-dow-hero-date');
+const heroTargetYear = document.querySelector('#birthday-dow-hero-target-year');
+const heroTargetWeekday = document.querySelector('#birthday-dow-hero-target-weekday');
+const birthWeekdayCard = document.querySelector('#birthday-dow-birth-weekday');
+const birthNote = document.querySelector('#birthday-dow-birth-note');
+const targetLabel = document.querySelector('#birthday-dow-target-label');
+const targetWeekdayCard = document.querySelector('#birthday-dow-target-weekday-card');
+const targetNote = document.querySelector('#birthday-dow-target-note');
+const nextWeekday = document.querySelector('#birthday-dow-next-weekday');
+const nextDate = document.querySelector('#birthday-dow-next-date');
+const nextAge = document.querySelector('#birthday-dow-next-age');
+const nextDays = document.querySelector('#birthday-dow-next-days');
+const summaryLine = document.querySelector('#birthday-dow-summary-line');
+const recurrenceWrap = document.querySelector('#birthday-dow-recurrence');
+const weekendWrap = document.querySelector('#birthday-dow-weekend-highlights');
+
+const explanationFields = {
+  dobLabel: document.querySelector('[data-birthday-field="dob-label"]'),
+  birthWeekday: document.querySelector('[data-birthday-field="birth-weekday"]'),
+  targetYear: document.querySelector('[data-birthday-field="target-year"]'),
+  targetWeekday: document.querySelector('[data-birthday-field="target-weekday"]'),
+  nextBirthday: document.querySelector('[data-birthday-field="next-birthday"]'),
+};
+
+let activeViewModel = null;
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -18,26 +51,34 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Is the result accurate?',
+      name: 'Is the birth weekday accurate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The day-of-week is calculated using standard calendar rules for the date you enter.',
+        text: 'Yes. The weekday is calculated using standard Gregorian calendar rules for the date entered.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What if I was born on February 29?',
+      name: 'Why does the same birthday move to different weekdays?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You were born on the weekday for February 29 in your birth year. For non-leap target years, this calculator uses February 28 for the birthday weekday.',
+        text: 'Because calendar years are not made of an exact number of full weeks. The leftover day or leap day shifts the weekday each year.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I check future or past years?',
+      name: 'Can I use this to plan future birthday weekends?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Enter any target year from 1600 to 2100.',
+        text: 'Yes. The 12-year recurrence map and weekend radar help you spot Friday, Saturday, and Sunday birthday years ahead of time.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens for February 29 birthdays?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview years.',
       },
     },
     {
@@ -45,55 +86,15 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Does this store my birthday?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. This runs in your browser and does not save your inputs.',
+        text: 'No. The calculator runs in your browser and does not save the birthday you enter.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why does my birthday fall on a different weekday each year?',
+      name: 'How far forward can I preview?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A common year has 365 days, which is 52 weeks plus 1 day. This shifts your birthday forward by one weekday each year, or two days after a leap year.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How far back or forward can this calculator go?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The calculator supports target years from 1600 to 2100, covering the Gregorian calendar era used in most countries.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I use this to plan a birthday party?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Enter a future year to see what weekday your birthday falls on, so you can plan around weekends or weekdays.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What calendar system does this calculator use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It uses the Gregorian calendar, which is the standard calendar system used in most of the world today.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does the calculator account for historical calendar changes?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. It applies Gregorian calendar rules uniformly. For dates before a country adopted the Gregorian calendar, the result may differ from the historical weekday.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How often does my birthday fall on the same weekday?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The pattern repeats in cycles of 5, 6, or 11 years depending on leap year positions. On average, your birthday falls on the same weekday roughly every 5 to 6 years.',
+        text: 'You can preview target years from 1600 to 2100 inside the supported range of the calculator.',
       },
     },
   ],
@@ -117,49 +118,6 @@ const metadata = {
           'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
         inLanguage: 'en',
       },
-      {
-        '@type': 'SoftwareApplication',
-        name: 'Birthday Day-of-Week Calculator',
-        applicationCategory: 'UtilityApplication',
-        operatingSystem: 'Web',
-        url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
-        description:
-          'Free birthday weekday calculator to find your birth weekday and check future birthday weekdays.',
-        browserRequirements: 'Requires JavaScript enabled',
-        softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Time & Date',
-            item: 'https://calchowmuch.com/time-and-date/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Birthday Day-of-Week Calculator',
-            item: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
-          },
-        ],
-      },
     ],
   },
 };
@@ -168,101 +126,31 @@ setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title || title.tagName === 'H1') {
+  if (!title) {
     return;
   }
-  const h1 = document.createElement('h1');
-  h1.id = 'calculator-title';
-  h1.textContent = 'Birthday Day-of-Week Calculator';
-  title.replaceWith(h1);
+  if (title.tagName !== 'H1') {
+    const h1 = document.createElement('h1');
+    h1.id = 'calculator-title';
+    h1.textContent = 'Birthday Day-of-Week Calculator';
+    title.replaceWith(h1);
+    return;
+  }
+  title.textContent = 'Birthday Day-of-Week Calculator';
 }
 
 ensureH1Title();
-
-const weekdayPlaceholders = {
-  dob: document.querySelector('[data-placeholder="dob"]'),
-  birthWeekday: document.querySelector('[data-placeholder="birth-weekday"]'),
-  targetYear: document.querySelector('[data-placeholder="target-year"]'),
-  targetWeekday: document.querySelector('[data-placeholder="target-weekday"]'),
-};
-
-function formatDateLabel(date) {
-  return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-}
-
-function formatWeekday(date) {
-  return getWeekdayName(date) ?? '';
-}
-
-function clearError() {
-  if (errorMessage) {
-    errorMessage.textContent = '';
-    errorMessage.classList.add('is-hidden');
-  }
-}
-
-function showError(message) {
-  if (!errorMessage) {
-    return;
-  }
-  errorMessage.textContent = message;
-  errorMessage.classList.remove('is-hidden');
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function addResultRow(label, value) {
-  if (!resultsList) {
-    return;
-  }
-  const row = document.createElement('div');
-  row.className = 'result-row';
-
-  const labelSpan = document.createElement('span');
-  labelSpan.textContent = label;
-
-  const valueSpan = document.createElement('span');
-  valueSpan.textContent = value;
-
-  row.append(labelSpan, valueSpan);
-  resultsList.appendChild(row);
-}
-
-function updateExplanation(dobLabel, birthWeekday, targetYear, targetWeekday) {
-  if (weekdayPlaceholders.dob) {
-    weekdayPlaceholders.dob.textContent = dobLabel;
-  }
-  if (weekdayPlaceholders.birthWeekday) {
-    weekdayPlaceholders.birthWeekday.textContent = birthWeekday;
-  }
-  if (weekdayPlaceholders.targetYear) {
-    weekdayPlaceholders.targetYear.textContent = String(targetYear);
-  }
-  if (weekdayPlaceholders.targetWeekday) {
-    weekdayPlaceholders.targetWeekday.textContent = targetWeekday;
-  }
-}
 
 function parseDate(value) {
   if (!value) {
     return null;
   }
+
   const [year, month, day] = value.split('-').map(Number);
   if (!year || !month || !day) {
     return null;
   }
+
   const candidate = new Date(year, month - 1, day);
   if (
     Number.isNaN(candidate.getTime()) ||
@@ -272,32 +160,322 @@ function parseDate(value) {
   ) {
     return null;
   }
+
   return candidate;
 }
 
-function parseTargetYear(value, fallbackYear) {
-  if (!value) {
-    return fallbackYear;
-  }
-  const year = Number.parseInt(value, 10);
-  if (!Number.isInteger(year)) {
-    return null;
-  }
-  return year;
+function parseTargetYear(value) {
+  const parsed = Number.parseInt(String(value || ''), 10);
+  return Number.isInteger(parsed) ? parsed : null;
 }
 
-function showResults({ birthWeekday, targetWeekday, targetYear }) {
-  if (!resultsList || !placeholder) {
+function normalizeDate(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function formatDayCount(value) {
+  if (!Number.isInteger(value)) {
+    return '--';
+  }
+  return String(value);
+}
+
+function syncYearPresetButtons() {
+  const currentYear = new Date().getFullYear();
+  const selectedYear = parseTargetYear(yearInput?.value ?? '');
+  const matchingPreset = {
+    current: currentYear,
+    next: currentYear + 1,
+    'plus-5': currentYear + 5,
+  };
+
+  yearPresetButtons.forEach((button) => {
+    const preset = button.dataset.yearPreset;
+    const isActive = selectedYear === matchingPreset[preset];
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function setIdleInsights() {
+  if (recurrenceWrap) {
+    recurrenceWrap.innerHTML =
+      '<p class="birthday-dow-empty-state">Calculate to reveal a 12-year birthday weekday map.</p>';
+  }
+
+  if (weekendWrap) {
+    weekendWrap.innerHTML =
+      '<p class="birthday-dow-empty-state">Calculate to see the next Friday, Saturday, and Sunday birthday opportunities.</p>';
+  }
+}
+
+function setExplanationDefaults() {
+  if (explanationFields.dobLabel) {
+    explanationFields.dobLabel.textContent = 'your birthday date';
+  }
+  if (explanationFields.birthWeekday) {
+    explanationFields.birthWeekday.textContent = 'its birth weekday';
+  }
+  if (explanationFields.targetYear) {
+    explanationFields.targetYear.textContent = 'the selected year';
+  }
+  if (explanationFields.targetWeekday) {
+    explanationFields.targetWeekday.textContent = 'that year\'s weekday';
+  }
+  if (explanationFields.nextBirthday) {
+    explanationFields.nextBirthday.textContent = 'still to be calculated';
+  }
+}
+
+function setIdleSummary() {
+  if (heroWeekday) {
+    heroWeekday.textContent = 'Waiting for a date';
+  }
+  if (heroDate) {
+    heroDate.textContent = 'Choose a date of birth and reveal the weekday pattern.';
+  }
+  if (heroTargetYear) {
+    heroTargetYear.textContent = '----';
+  }
+  if (heroTargetWeekday) {
+    heroTargetWeekday.textContent = '--';
+  }
+  if (birthWeekdayCard) {
+    birthWeekdayCard.textContent = '--';
+  }
+  if (birthNote) {
+    birthNote.textContent = 'Your birth weekday appears here.';
+  }
+  if (targetLabel) {
+    targetLabel.textContent = 'Birthday in ----';
+  }
+  if (targetWeekdayCard) {
+    targetWeekdayCard.textContent = '--';
+  }
+  if (targetNote) {
+    targetNote.textContent = 'Your selected-year weekday appears here.';
+  }
+  if (nextWeekday) {
+    nextWeekday.textContent = '--';
+  }
+  if (nextDate) {
+    nextDate.textContent = '--';
+  }
+  if (nextAge) {
+    nextAge.textContent = '--';
+  }
+  if (nextDays) {
+    nextDays.textContent = '--';
+  }
+  if (summaryLine) {
+    summaryLine.textContent = '';
+  }
+}
+
+function clearError() {
+  if (!errorMessage) {
     return;
   }
+  errorMessage.textContent = '';
+  errorMessage.classList.add('is-hidden');
+}
+
+function showCopyFeedback(message) {
+  if (!copyFeedback) {
+    return;
+  }
+  copyFeedback.textContent = message;
+  copyFeedback.classList.remove('is-hidden');
+  window.clearTimeout(showCopyFeedback.timeoutId);
+  showCopyFeedback.timeoutId = window.setTimeout(() => {
+    copyFeedback.classList.add('is-hidden');
+  }, 2200);
+}
+
+function showPlaceholder() {
   clearError();
-  resultsList.innerHTML = '';
+  placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  copySummaryButton?.setAttribute('disabled', 'true');
+  activeViewModel = null;
+  setIdleSummary();
+  setIdleInsights();
+  setExplanationDefaults();
+}
 
-  addResultRow('You were born on:', birthWeekday);
-  addResultRow(`In ${targetYear}, your birthday falls on:`, targetWeekday);
+function showError(message) {
+  if (!errorMessage) {
+    return;
+  }
+  errorMessage.textContent = message;
+  errorMessage.classList.remove('is-hidden');
+  placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  copySummaryButton?.setAttribute('disabled', 'true');
+  activeViewModel = null;
+  setIdleSummary();
+  setIdleInsights();
+  setExplanationDefaults();
+}
 
-  placeholder.classList.add('is-hidden');
-  resultsList.classList.remove('is-hidden');
+function renderRecurrence(recurrence, selectedYear) {
+  if (!recurrenceWrap) {
+    return;
+  }
+
+  recurrenceWrap.innerHTML = '';
+
+  recurrence.forEach((entry) => {
+    const item = document.createElement('article');
+    item.className = 'birthday-dow-recurrence-item';
+    if (entry.year === selectedYear) {
+      item.classList.add('is-selected');
+    }
+    if (entry.isWeekend) {
+      item.classList.add('is-weekend');
+    }
+
+    const badgeLabel = entry.daysUntil < 0 ? 'Passed' : `Turns ${entry.ageTurning}`;
+    item.innerHTML = `
+      <p class="birthday-dow-mini-year">${entry.year}</p>
+      <h4 class="birthday-dow-mini-weekday">${entry.weekday}</h4>
+      <p class="birthday-dow-mini-date">${formatLongDate(entry.date)}</p>
+      <span class="birthday-dow-mini-badge">${badgeLabel}</span>
+    `;
+    recurrenceWrap.appendChild(item);
+  });
+}
+
+function renderWeekendHighlights(highlights) {
+  if (!weekendWrap) {
+    return;
+  }
+
+  weekendWrap.innerHTML = '';
+
+  highlights.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'birthday-dow-weekend-item';
+
+    if (item.entry) {
+      const dayLabel = item.entry.daysUntil === 1 ? 'day' : 'days';
+      card.innerHTML = `
+        <p class="birthday-dow-weekend-day">${item.weekday}</p>
+        <h4 class="birthday-dow-weekend-title">${item.entry.year}</h4>
+        <p class="birthday-dow-weekend-copy">${formatLongDate(item.entry.date)}. Turns ${item.entry.ageTurning} in ${item.entry.daysUntil} ${dayLabel}.</p>
+      `;
+    } else {
+      card.innerHTML = `
+        <p class="birthday-dow-weekend-day">${item.weekday}</p>
+        <h4 class="birthday-dow-weekend-title">No upcoming match</h4>
+        <p class="birthday-dow-weekend-copy">No ${item.weekday.toLowerCase()} birthday appears in the current 12-year map.</p>
+      `;
+    }
+
+    weekendWrap.appendChild(card);
+  });
+}
+
+function updateExplanation(viewModel) {
+  if (explanationFields.dobLabel) {
+    explanationFields.dobLabel.textContent = formatLongDate(viewModel.birthDate);
+  }
+  if (explanationFields.birthWeekday) {
+    explanationFields.birthWeekday.textContent = viewModel.birthWeekday;
+  }
+  if (explanationFields.targetYear) {
+    explanationFields.targetYear.textContent = String(viewModel.targetYear);
+  }
+  if (explanationFields.targetWeekday) {
+    explanationFields.targetWeekday.textContent = viewModel.targetWeekday;
+  }
+  if (explanationFields.nextBirthday) {
+    explanationFields.nextBirthday.textContent = formatLongDate(viewModel.nextBirthday.date, {
+      includeWeekday: true,
+    });
+  }
+}
+
+function showResults(viewModel) {
+  clearError();
+  activeViewModel = viewModel;
+
+  if (heroWeekday) {
+    heroWeekday.textContent = viewModel.birthWeekday;
+  }
+  if (heroDate) {
+    heroDate.textContent = `${formatLongDate(viewModel.birthDate)} landed on ${viewModel.birthWeekday}.`;
+  }
+  if (heroTargetYear) {
+    heroTargetYear.textContent = String(viewModel.targetYear);
+  }
+  if (heroTargetWeekday) {
+    heroTargetWeekday.textContent = viewModel.targetWeekday;
+  }
+
+  if (birthWeekdayCard) {
+    birthWeekdayCard.textContent = viewModel.birthWeekday;
+  }
+  if (birthNote) {
+    birthNote.textContent = formatLongDate(viewModel.birthDate);
+  }
+  if (targetLabel) {
+    targetLabel.textContent = `Birthday in ${viewModel.targetYear}`;
+  }
+  if (targetWeekdayCard) {
+    targetWeekdayCard.textContent = viewModel.targetWeekday;
+  }
+  if (targetNote) {
+    targetNote.textContent = formatLongDate(viewModel.targetDate, { includeWeekday: true });
+  }
+  if (nextWeekday) {
+    nextWeekday.textContent = viewModel.nextBirthday.weekday;
+  }
+  if (nextDate) {
+    nextDate.textContent = formatLongDate(viewModel.nextBirthday.date);
+  }
+  if (nextAge) {
+    nextAge.textContent = String(viewModel.nextBirthday.ageTurning);
+  }
+  if (nextDays) {
+    nextDays.textContent = formatDayCount(viewModel.nextBirthday.daysRemaining);
+  }
+  if (summaryLine) {
+    summaryLine.textContent = viewModel.summary;
+  }
+
+  renderRecurrence(viewModel.recurrence, viewModel.targetYear);
+  renderWeekendHighlights(viewModel.weekendHighlights);
+  updateExplanation(viewModel);
+
+  placeholder?.classList.add('is-hidden');
+  resultsList?.classList.remove('is-hidden');
+  copySummaryButton?.removeAttribute('disabled');
+}
+
+async function copySummary() {
+  if (!activeViewModel?.summary) {
+    showCopyFeedback('Calculate a birthday summary first.');
+    return;
+  }
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(activeViewModel.summary);
+    } else {
+      const helper = document.createElement('textarea');
+      helper.value = activeViewModel.summary;
+      helper.setAttribute('readonly', 'true');
+      helper.style.position = 'absolute';
+      helper.style.left = '-9999px';
+      document.body.appendChild(helper);
+      helper.select();
+      document.execCommand('copy');
+      helper.remove();
+    }
+    showCopyFeedback('Birthday summary copied.');
+  } catch (error) {
+    showCopyFeedback('Copy failed on this device.');
+  }
 }
 
 function calculate() {
@@ -307,26 +485,25 @@ function calculate() {
     return;
   }
 
-  const currentYear = new Date().getFullYear();
-  const targetYear = parseTargetYear(yearInput?.value ?? '', currentYear);
+  const today = normalizeDate(new Date());
+  if (birthDate > today) {
+    showError('Date of birth cannot be in the future.');
+    return;
+  }
+
+  const targetYear = parseTargetYear(yearInput?.value ?? '');
   if (!Number.isInteger(targetYear) || targetYear < 1600 || targetYear > 2100) {
-    showError('Enter a year between 1600 and 2100.');
+    showError('Enter a target year between 1600 and 2100.');
     return;
   }
 
-  const weekdays = calculateBirthdayWeekdays(birthDate, targetYear);
-  if (!weekdays) {
-    showError('Please enter a valid date and year.');
+  const viewModel = buildBirthdayViewModel(birthDate, targetYear, today);
+  if (!viewModel) {
+    showError('Please enter a supported date and year.');
     return;
   }
 
-  const dobLabel = formatDateLabel(birthDate);
-  updateExplanation(dobLabel, weekdays.birthWeekday, targetYear, weekdays.targetWeekday);
-  showResults({
-    birthWeekday: weekdays.birthWeekday,
-    targetWeekday: weekdays.targetWeekday,
-    targetYear,
-  });
+  showResults(viewModel);
 }
 
 const initialYear = new Date().getFullYear();
@@ -334,16 +511,29 @@ if (yearInput) {
   yearInput.value = String(initialYear);
 }
 
-calculateButton?.addEventListener('click', calculate);
-dobInput?.addEventListener('change', () => {
-  if (!resultsList?.classList.contains('is-hidden')) {
-    calculate();
-  }
-});
-yearInput?.addEventListener('change', () => {
-  if (!resultsList?.classList.contains('is-hidden')) {
-    calculate();
-  }
+yearPresetButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const currentYear = new Date().getFullYear();
+    const preset = button.dataset.yearPreset;
+    const yearMap = {
+      current: currentYear,
+      next: currentYear + 1,
+      'plus-5': currentYear + 5,
+    };
+    const nextYearValue = yearMap[preset];
+    if (Number.isInteger(nextYearValue) && yearInput) {
+      yearInput.value = String(nextYearValue);
+      syncYearPresetButtons();
+    }
+  });
 });
 
+calculateButton?.addEventListener('click', calculate);
+copySummaryButton?.addEventListener('click', copySummary);
+
+yearInput?.addEventListener('input', syncYearPresetButtons);
+dobInput?.addEventListener('input', clearError);
+yearInput?.addEventListener('input', clearError);
+
+syncYearPresetButtons();
 showPlaceholder();
