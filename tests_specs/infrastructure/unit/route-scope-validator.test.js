@@ -110,13 +110,17 @@ describe('route-scope validator behavior', () => {
     ).toThrow(/Unknown route/);
   });
 
-  it('surfaces percent-change ownership mismatch warning', () => {
-    const warning = planner.warnings.find(
-      (item) =>
-        item.includes('calculatorId=percent-change') &&
-        item.includes('/percentage-calculators/percent-change-calculator/') &&
-        item.includes('/percentage-calculators/percent-change/')
+  it('keeps percent-change aligned on the canonical calculator route', () => {
+    const percentChangeWarnings = planner.warnings.filter((item) =>
+      item.includes('calculatorId=percent-change')
     );
-    expect(warning).toBeTruthy();
+
+    expect(percentChangeWarnings).toHaveLength(0);
+
+    const row = planner.rows.find(
+      (item) => item.route === '/percentage-calculators/percent-change-calculator/'
+    );
+    expect(row).toBeTruthy();
+    expect(row?.ownerState).toBe('cluster-owned:percentage');
   });
 });

@@ -8,6 +8,8 @@ test.describe('Birthday Day-of-Week Calculator', () => {
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.birthday-dow-studio')).toBeVisible();
+    await expect(page.locator('.birthday-dow-lookahead')).toBeVisible();
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');

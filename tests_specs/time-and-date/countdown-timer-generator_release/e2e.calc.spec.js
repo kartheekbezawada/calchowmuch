@@ -34,6 +34,11 @@ test.describe('Countdown Timer Generator', () => {
     await expect(page.locator('#countdown-add-google')).toBeVisible();
     await expect(page.locator('#countdown-add-outlook')).toBeVisible();
     await expect(page.locator('#countdown-download-ics')).toBeVisible();
+    await expect(page.locator('#countdown-generate-share-card')).toBeVisible();
+    await expect(page.locator('#countdown-download-share-png')).toBeVisible();
+    await expect(page.locator('#countdown-copy-share-image')).toBeVisible();
+    await page.locator('#countdown-generate-share-card').click();
+    await expect(page.locator('#countdown-copy-feedback')).toContainText('Share card generated.');
     await expect(page.locator('#countdown-milestones .countdown-milestone')).toHaveCount(4);
   });
 

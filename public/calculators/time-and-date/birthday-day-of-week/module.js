@@ -103,7 +103,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
   description:
-    'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
+    'Find the weekday you were born on, preview future birthday weekdays, and spot the next weekend-friendly birthday years.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -115,7 +115,7 @@ const metadata = {
         name: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
         url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
         description:
-          'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
+          'Find the weekday you were born on, preview future birthday weekdays, and spot the next weekend-friendly birthday years.',
         inLanguage: 'en',
       },
     ],
@@ -180,6 +180,13 @@ function formatDayCount(value) {
   return String(value);
 }
 
+function formatShortDate(date) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+  }).format(date);
+}
+
 function syncYearPresetButtons() {
   const currentYear = new Date().getFullYear();
   const selectedYear = parseTargetYear(yearInput?.value ?? '');
@@ -199,12 +206,12 @@ function syncYearPresetButtons() {
 function setIdleInsights() {
   if (recurrenceWrap) {
     recurrenceWrap.innerHTML =
-      '<p class="birthday-dow-empty-state">Calculate to reveal a 12-year birthday weekday map.</p>';
+      '<p class="birthday-dow-empty-state">Calculate to reveal the 12-year recurrence map.</p>';
   }
 
   if (weekendWrap) {
     weekendWrap.innerHTML =
-      '<p class="birthday-dow-empty-state">Calculate to see the next Friday, Saturday, and Sunday birthday opportunities.</p>';
+      '<p class="birthday-dow-empty-state">Calculate to reveal the weekend radar for Friday, Saturday, and Sunday birthdays.</p>';
   }
 }
 
@@ -231,7 +238,7 @@ function setIdleSummary() {
     heroWeekday.textContent = 'Waiting for a date';
   }
   if (heroDate) {
-    heroDate.textContent = 'Choose a date of birth and reveal the weekday pattern.';
+    heroDate.textContent = 'Add your birthday to turn this into a clean planning view.';
   }
   if (heroTargetYear) {
     heroTargetYear.textContent = '----';
@@ -338,7 +345,7 @@ function renderRecurrence(recurrence, selectedYear) {
     item.innerHTML = `
       <p class="birthday-dow-mini-year">${entry.year}</p>
       <h4 class="birthday-dow-mini-weekday">${entry.weekday}</h4>
-      <p class="birthday-dow-mini-date">${formatLongDate(entry.date)}</p>
+      <p class="birthday-dow-mini-date">${formatShortDate(entry.date)}</p>
       <span class="birthday-dow-mini-badge">${badgeLabel}</span>
     `;
     recurrenceWrap.appendChild(item);
@@ -361,7 +368,7 @@ function renderWeekendHighlights(highlights) {
       card.innerHTML = `
         <p class="birthday-dow-weekend-day">${item.weekday}</p>
         <h4 class="birthday-dow-weekend-title">${item.entry.year}</h4>
-        <p class="birthday-dow-weekend-copy">${formatLongDate(item.entry.date)}. Turns ${item.entry.ageTurning} in ${item.entry.daysUntil} ${dayLabel}.</p>
+        <p class="birthday-dow-weekend-copy">${formatShortDate(item.entry.date)}. Turns ${item.entry.ageTurning} in ${item.entry.daysUntil} ${dayLabel}.</p>
       `;
     } else {
       card.innerHTML = `

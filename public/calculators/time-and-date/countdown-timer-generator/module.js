@@ -74,6 +74,9 @@ const copyDateButton = document.querySelector('#countdown-copy-date');
 const addGoogleButton = document.querySelector('#countdown-add-google');
 const addOutlookButton = document.querySelector('#countdown-add-outlook');
 const downloadIcsButton = document.querySelector('#countdown-download-ics');
+const generateShareCardButton = document.querySelector('#countdown-generate-share-card');
+const downloadSharePngButton = document.querySelector('#countdown-download-share-png');
+const copyShareImageButton = document.querySelector('#countdown-copy-share-image');
 const copyFeedback = document.querySelector('#countdown-copy-feedback');
 const countdownDays = document.querySelector('#countdown-days');
 const countdownHours = document.querySelector('#countdown-hours');
@@ -166,13 +169,14 @@ function ensureH1Title() {
   if (!title) {
     return;
   }
+  const desired = 'Count Down Timer';
   if (title.tagName !== 'H1') {
     const h1 = document.createElement('h1');
     h1.id = 'calculator-title';
-    h1.textContent = 'Countdown Page Builder';
+    h1.textContent = desired;
     title.replaceWith(h1);
   } else {
-    title.textContent = 'Countdown Page Builder';
+    title.textContent = desired;
   }
 }
 
@@ -377,6 +381,7 @@ let selectedEventType = 'launch';
 let selectedTheme = 'launch';
 let activeBuild = null;
 let countdownInterval = null;
+let shareCardCache = null;
 
 function updateHolidayFieldVisibility() {
   const showHoliday = selectedEventType === 'holiday';
@@ -407,6 +412,10 @@ function clearCopyFeedback() {
   }
   copyFeedback.textContent = '';
   copyFeedback.classList.add('is-hidden');
+}
+
+function clearShareCardCache() {
+  shareCardCache = null;
 }
 
 function showCopyFeedback(message) {
@@ -528,6 +537,7 @@ function renderMilestones(totalSeconds, isComplete = false) {
 }
 
 function setPreviewWaitingState() {
+  clearShareCardCache();
   previewCard?.setAttribute('data-theme', selectedTheme);
   previewCard?.classList.add('is-hidden');
   actionsWrap?.classList.add('is-hidden');
@@ -658,6 +668,7 @@ function updateCountdown(target) {
 function markPreviewStale() {
   clearError();
   clearCopyFeedback();
+  clearShareCardCache();
   if (!activeBuild) {
     return;
   }
@@ -682,6 +693,7 @@ function stopCountdown() {
 function calculate(startTimer = true) {
   clearError();
   clearCopyFeedback();
+  clearShareCardCache();
 
   const target = getTargetDate();
   if (!target) {
@@ -732,6 +744,261 @@ async function copyText(text, successMessage) {
     showCopyFeedback(successMessage);
   } catch (error) {
     showCopyFeedback('Copy failed on this device.');
+  }
+}
+
+function formatCompactCountdown(countdown, isComplete) {
+  if (isComplete) {
+    return 'Event live now';
+  }
+  if (!countdown) {
+    return '--';
+  }
+  if (countdown.days > 0) {
+    return `${countdown.days}d ${countdown.hours}h ${countdown.minutes}m`;
+  }
+  if (countdown.hours > 0) {
+    return `${countdown.hours}h ${countdown.minutes}m ${countdown.seconds}s`;
+  }
+  if (countdown.minutes > 0) {
+    return `${countdown.minutes}m ${countdown.seconds}s`;
+  }
+  return `${countdown.seconds}s`;
+}
+
+function getShareCardSnapshot() {
+  if (!activeBuild || !activeBuild.target) {
+    return null;
+  }
+  const now = new Date();
+  const target = activeBuild.target;
+  const isComplete = target.getTime() <= now.getTime();
+  const countdown = isComplete ? buildZeroCountdown() : calculateCountdown(target, now);
+  if (!isComplete && !countdown) {
+    return null;
+  }
+  return {
+    title: activeBuild.eventName,
+    target,
+    timezone: getLocalTimeZone(),
+    targetLabel: formatTargetLabel(target),
+    countdown: countdown || buildZeroCountdown(),
+    isComplete,
+  };
+}
+
+function getShareCardCacheKey(snapshot) {
+  const { countdown, isComplete, title, target, timezone } = snapshot;
+  return [
+    title,
+    target.getTime(),
+    timezone,
+    isComplete ? '1' : '0',
+    countdown.days,
+    countdown.hours,
+    countdown.minutes,
+  ].join('|');
+}
+
+function drawRoundedRect(context, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  context.beginPath();
+  context.moveTo(x + r, y);
+  context.arcTo(x + width, y, x + width, y + height, r);
+  context.arcTo(x + width, y + height, x, y + height, r);
+  context.arcTo(x, y + height, x, y, r);
+  context.arcTo(x, y, x + width, y, r);
+  context.closePath();
+}
+
+function drawWrappedText(context, text, x, y, maxWidth, lineHeight, maxLines) {
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = '';
+
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (context.measureText(next).width <= maxWidth || !current) {
+      current = next;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
+  if (current) {
+    lines.push(current);
+  }
+
+  const limit = Math.max(1, maxLines || lines.length);
+  const visibleLines = lines.slice(0, limit);
+  if (lines.length > limit) {
+    const lastIndex = visibleLines.length - 1;
+    let clipped = visibleLines[lastIndex];
+    while (clipped.length > 1 && context.measureText(`${clipped}...`).width > maxWidth) {
+      clipped = clipped.slice(0, -1);
+    }
+    visibleLines[lastIndex] = `${clipped}...`;
+  }
+
+  visibleLines.forEach((line, index) => {
+    context.fillText(line, x, y + index * lineHeight);
+  });
+  return y + visibleLines.length * lineHeight;
+}
+
+function renderShareCardBlob(snapshot) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 630;
+  const context = canvas.getContext('2d');
+  if (!context) {
+    return Promise.reject(new Error('Canvas not available.'));
+  }
+
+  const background = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+  background.addColorStop(0, '#0e1c36');
+  background.addColorStop(1, '#081227');
+  context.fillStyle = background;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  const glow = context.createRadialGradient(940, 84, 20, 940, 84, 340);
+  glow.addColorStop(0, 'rgba(232, 201, 122, 0.30)');
+  glow.addColorStop(1, 'rgba(232, 201, 122, 0)');
+  context.fillStyle = glow;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  drawRoundedRect(context, 62, 58, 1076, 514, 28);
+  const cardGradient = context.createLinearGradient(62, 58, 1138, 572);
+  cardGradient.addColorStop(0, 'rgba(17, 24, 39, 0.94)');
+  cardGradient.addColorStop(1, 'rgba(11, 18, 33, 0.96)');
+  context.fillStyle = cardGradient;
+  context.fill();
+  context.strokeStyle = 'rgba(232, 201, 122, 0.35)';
+  context.lineWidth = 2;
+  context.stroke();
+
+  context.fillStyle = '#e8c97a';
+  context.font = "600 26px 'DM Sans', 'Segoe UI', sans-serif";
+  context.fillText('COUNTDOWN SHARE CARD', 110, 130);
+
+  context.fillStyle = '#f3f4f6';
+  context.font = "700 66px 'DM Serif Display', Georgia, serif";
+  const titleBottom = drawWrappedText(context, snapshot.title, 110, 212, 980, 74, 2);
+
+  context.fillStyle = '#8ea0c8';
+  context.font = "500 26px 'DM Sans', 'Segoe UI', sans-serif";
+  context.fillText('TIME LEFT', 110, titleBottom + 44);
+
+  context.fillStyle = '#ffffff';
+  context.font = "700 72px 'DM Mono', Consolas, monospace";
+  context.fillText(
+    formatCompactCountdown(snapshot.countdown, snapshot.isComplete),
+    110,
+    titleBottom + 128
+  );
+
+  context.fillStyle = '#9fb0d6';
+  context.font = "500 28px 'DM Sans', 'Segoe UI', sans-serif";
+  context.fillText(`Target: ${snapshot.targetLabel}`, 110, titleBottom + 184);
+  context.fillText(`Time zone: ${snapshot.timezone}`, 110, titleBottom + 222);
+
+  context.fillStyle = 'rgba(232, 201, 122, 0.94)';
+  context.font = "600 24px 'DM Sans', 'Segoe UI', sans-serif";
+  context.fillText('Generated on CalcHowMuch', 110, 540);
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        resolve(blob);
+      } else {
+        reject(new Error('Could not create PNG.'));
+      }
+    }, 'image/png');
+  });
+}
+
+async function ensureShareCardBlob() {
+  const snapshot = getShareCardSnapshot();
+  if (!snapshot) {
+    showCopyFeedback('Build the countdown first.');
+    return null;
+  }
+
+  const cacheKey = getShareCardCacheKey(snapshot);
+  if (shareCardCache?.key === cacheKey && shareCardCache.blob) {
+    return { blob: shareCardCache.blob, snapshot };
+  }
+
+  const blob = await renderShareCardBlob(snapshot);
+  shareCardCache = { key: cacheKey, blob };
+  return { blob, snapshot };
+}
+
+function toSafeSlug(value) {
+  return (value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function downloadBlob(blob, filename) {
+  const fileUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(fileUrl);
+}
+
+async function generateShareCard() {
+  try {
+    const payload = await ensureShareCardBlob();
+    if (!payload) {
+      return;
+    }
+    showCopyFeedback('Share card generated.');
+  } catch (error) {
+    showCopyFeedback('Could not generate share card.');
+  }
+}
+
+async function downloadShareCardPng() {
+  try {
+    const payload = await ensureShareCardBlob();
+    if (!payload) {
+      return;
+    }
+    const slug = toSafeSlug(payload.snapshot.title) || 'countdown';
+    downloadBlob(payload.blob, `${slug}-share-card.png`);
+    showCopyFeedback('Share card PNG downloaded.');
+  } catch (error) {
+    showCopyFeedback('Could not download share card.');
+  }
+}
+
+async function copyShareCardImage() {
+  try {
+    const payload = await ensureShareCardBlob();
+    if (!payload) {
+      return;
+    }
+
+    if (navigator.clipboard?.write && window.ClipboardItem) {
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': payload.blob })]);
+      showCopyFeedback('Share card image copied.');
+      return;
+    }
+
+    const fallbackText = getActiveCountdownSnapshot();
+    if (fallbackText) {
+      await copyText(fallbackText, 'Image copy not supported. Summary copied instead.');
+      return;
+    }
+    showCopyFeedback('Image copy not supported on this device.');
+  } catch (error) {
+    showCopyFeedback('Could not copy share card image.');
   }
 }
 
@@ -885,6 +1152,9 @@ copyDateButton?.addEventListener('click', async () => {
 addGoogleButton?.addEventListener('click', addToGoogleCalendar);
 addOutlookButton?.addEventListener('click', addToOutlookCalendar);
 downloadIcsButton?.addEventListener('click', downloadIcsFile);
+generateShareCardButton?.addEventListener('click', generateShareCard);
+downloadSharePngButton?.addEventListener('click', downloadShareCardPng);
+copyShareImageButton?.addEventListener('click', copyShareCardImage);
 
 regionInput?.addEventListener('change', () => {
   populateRegionEventOptions();

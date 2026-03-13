@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:time-and-date/countdown-timer-generator`
+- Scope: `calc:time-and-date/birthday-day-of-week`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**

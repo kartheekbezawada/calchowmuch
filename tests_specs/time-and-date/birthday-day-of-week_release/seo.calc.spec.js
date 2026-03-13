@@ -10,7 +10,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.'
+      'Find the weekday you were born on, preview future birthday weekdays, and spot the next weekend-friendly birthday years.'
     );
 
     const h1 = page.locator('h1');
@@ -19,6 +19,8 @@ test.describe('Birthday Day-of-Week SEO', () => {
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.birthday-dow-studio')).toHaveCount(1);
+    await expect(page.locator('.birthday-dow-lookahead')).toHaveCount(1);
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
