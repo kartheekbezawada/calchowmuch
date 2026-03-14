@@ -3961,17 +3961,16 @@
       /* critical source: /calculators/percentage-calculators/percent-change-calculator/calculator.css */
       /* Percent Change calculator route overrides */
 
-      html {
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-      }
-
       #calc-percent-change #calc-home-loan .mtg-hero {
         grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
       }
 
       #calc-percent-change #calc-home-loan .input-row input[type='number'] {
-        min-height: 46px;
+        min-height: 48px;
+      }
+
+      #calc-percent-change #calc-home-loan #pct-change-calc {
+        min-height: 48px;
       }
 
       #calc-percent-change #calc-home-loan .mtg-preview-main {
@@ -4268,7 +4267,7 @@
 </header>
 
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link is-active" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
+      <main class="layout-main layout-main--no-ads">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
 <div class="fin-nav-group is-expanded" data-fin-subcategory="percentage-core">
@@ -4297,6 +4296,12 @@
   <h1 id="calculator-title">Percent Change Calculator</h1>
   <div class="calculator-page-single">
     <div id="calc-percent-change">
+  <style>
+    .layout-main.layout-main--no-ads {
+      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+    }
+  </style>
+
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Percent change calculator">
@@ -4308,12 +4313,28 @@
 
           <div class="input-row">
             <label for="pct-change-a">Original Value (A)</label>
-            <input id="pct-change-a" type="number" value="50" step="0.01" inputmode="decimal" />
+            <input
+              id="pct-change-a"
+              type="number"
+              value="50"
+              min="-1000000000"
+              max="1000000000"
+              step="0.01"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row">
             <label for="pct-change-b">New Value (B)</label>
-            <input id="pct-change-b" type="number" value="60" step="0.01" inputmode="decimal" />
+            <input
+              id="pct-change-b"
+              type="number"
+              value="60"
+              min="-1000000000"
+              max="1000000000"
+              step="0.01"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row action-row mtg-action-row">
@@ -4549,22 +4570,6 @@
 
   </div>
 </div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
       <footer class="site-footer">

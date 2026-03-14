@@ -112,7 +112,7 @@
 </header>
 
       <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link is-active" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
+      <main class="layout-main layout-main--no-ads">
         <aside class="left-nav" aria-label="Left navigation">
           <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
 <div class="fin-nav-group" data-fin-subcategory="percentage-core">
@@ -137,9 +137,16 @@
 </div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
+          <div class="panel panel-scroll panel-span-all">
   <h1 id="calculator-title">Discount Calculator</h1>
-  <div id="calc-discount-calculator">
+  <div class="calculator-page-single">
+    <div id="calc-discount-calculator">
+  <style>
+    .layout-main.layout-main--no-ads {
+      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+    }
+  </style>
+
   <div class="calculator-ui">
     <p class="helper">Calculate the price after a percentage discount and how much you save.</p>
 
@@ -169,10 +176,8 @@
   src="/calculators/percentage-calculators/discount-calculator/module.js?v=20260224"
 ></script>
 
-</div>
-<div class="panel panel-scroll">
   <h3>Explanation</h3>
-  <div id="discount-explanation" class="explanation-pane">
+    <div id="discount-explanation" class="explanation-pane">
   <section>
     <h2>What Price Will You Pay After the Discount?</h2>
     <p><strong>The short answer:</strong> enter the original price and the discount rate to see the sale price and savings amount instantly.</p>
@@ -345,23 +350,8 @@
   </ul>
 </div>
 
+  </div>
 </div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
       <footer class="site-footer">

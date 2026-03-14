@@ -1,4 +1,10 @@
 <div id="calc-reverse-percentage">
+  <style>
+    .layout-main.layout-main--no-ads {
+      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+    }
+  </style>
+
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Reverse percentage calculator">
@@ -7,12 +13,28 @@
 
           <div class="input-row">
             <label for="revpct-percent">Percentage (X%)</label>
-            <input id="revpct-percent" type="number" value="20" step="any" inputmode="decimal" />
+            <input
+              id="revpct-percent"
+              type="number"
+              value="20"
+              min="0.000001"
+              max="1000000000"
+              step="any"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row">
             <label for="revpct-final">Final Value (Y)</label>
-            <input id="revpct-final" type="number" value="60" step="any" inputmode="decimal" />
+            <input
+              id="revpct-final"
+              type="number"
+              value="60"
+              min="0"
+              max="1000000000"
+              step="any"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row action-row mtg-action-row">

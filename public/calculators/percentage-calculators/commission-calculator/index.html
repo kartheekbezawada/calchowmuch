@@ -74,6 +74,11 @@
 
     #calc-commission-calculator .comm-mode-radio {
       position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      margin: 0;
       opacity: 0;
       pointer-events: none;
     }
@@ -82,8 +87,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 34px;
-      padding: 0 12px;
+      min-height: 48px;
+      padding: 0 14px;
       border-radius: 999px;
       border: 1px solid rgba(16, 185, 129, 0.35);
       color: #14532d;
@@ -113,7 +118,7 @@
     }
 
     #calc-commission-calculator .comm-form-panel .input-row input[type='number'] {
-      min-height: 42px;
+      min-height: 48px;
       max-width: 520px;
       background: rgba(255, 255, 255, 0.88);
       border-color: rgba(20, 83, 45, 0.22);
@@ -143,22 +148,22 @@
 
     #calc-commission-calculator .commission-tier-row input[type='number'] {
       max-width: none;
-      min-height: 38px;
-      padding: 8px 11px;
+      min-height: 48px;
+      padding: 10px 11px;
       background: rgba(255, 255, 255, 0.92);
       color: #052e16;
     }
 
     #calc-commission-calculator .commission-tier-row .calculator-button {
-      min-height: 38px;
-      padding: 8px 10px;
+      min-height: 48px;
+      padding: 10px 10px;
       min-width: 86px;
     }
 
     #calc-commission-calculator #comm-add-tier {
       width: fit-content;
-      min-height: 36px;
-      padding: 7px 11px;
+      min-height: 48px;
+      padding: 10px 13px;
     }
 
     #calc-commission-calculator .comm-sticky-action {
@@ -173,7 +178,7 @@
 
     #calc-commission-calculator #comm-calc {
       max-width: 520px;
-      min-height: 42px;
+      min-height: 48px;
     }
 
     #calc-commission-calculator .comm-answer-deck {
@@ -796,13 +801,29 @@
 
           <div class="input-row">
             <label for="comm-sales">Total Sales (S)</label>
-            <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
+            <input
+              id="comm-sales"
+              type="number"
+              value="30000"
+              min="0"
+              max="1000000000"
+              step="0.01"
+              inputmode="decimal"
+            />
           </div>
 
           <div id="comm-flat-section" class="input-stack">
             <div class="input-row">
               <label for="comm-rate">Commission Rate % (R)</label>
-              <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+              <input
+                id="comm-rate"
+                type="number"
+                value="7.5"
+                min="0"
+                max="1000"
+                step="0.01"
+                inputmode="decimal"
+              />
             </div>
           </div>
 

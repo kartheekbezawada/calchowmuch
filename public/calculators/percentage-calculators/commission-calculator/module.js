@@ -424,11 +424,11 @@ function renderTierRow({ upTo = '', rate = '' } = {}) {
   row.innerHTML = `
     <div class="commission-tier-field">
       <label>Tier Up to</label>
-      <input type="number" class="comm-tier-up-to" min="0" step="0.01" value="${upTo}" placeholder="Leave blank for above last threshold" />
+      <input type="number" class="comm-tier-up-to" min="0" max="1000000000" step="0.01" inputmode="decimal" value="${upTo}" placeholder="Leave blank for above last threshold" />
     </div>
     <div class="commission-tier-field">
       <label>Tier Rate %</label>
-      <input type="number" class="comm-tier-rate" min="0" step="0.01" value="${rate}" />
+      <input type="number" class="comm-tier-rate" min="0" max="1000" step="0.01" inputmode="decimal" value="${rate}" />
     </div>
     <button type="button" class="calculator-button secondary comm-remove-tier">Remove</button>
   `;

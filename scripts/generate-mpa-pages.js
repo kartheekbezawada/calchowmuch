@@ -355,30 +355,40 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate the sale price after a percentage discount and see exactly how much you save.',
     h1: 'Discount Calculator',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'markup-calculator': {
     title: 'Markup Calculator | Cost to Selling Price',
     description:
       'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
     h1: 'Markup Calculator',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-finder-calculator': {
     title: 'What Percent Is X of Y Calculator | Ratio to Percent',
     description:
       'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
     h1: 'What Percent Is X of Y',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-of-a-number-calculator': {
     title: 'Percentage of a Number Calculator | Find X% of Y',
     description:
       'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
     h1: 'Find Percentage of a Number Calculator',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'reverse-percentage-calculator': {
     title: 'Reverse Percentage Calculator | Find the Original Value',
     description:
       'Find the original number when a known value represents a given percentage of it.',
     h1: 'Reverse Percentage',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'present-value': {
     title: 'Present Value Calculator | Discount Future Money',
@@ -487,6 +497,8 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
     h1: 'Margin Calculator',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percent-change': {
     title: 'Percent Change Calculator – CalcHowMuch',
@@ -494,6 +506,8 @@ const CALCULATOR_OVERRIDES = {
       'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
     h1: 'Percent Change Calculator',
     explanationHeading: '',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-difference': {
     title: 'Percentage Difference Calculator | Compare Two Values',
@@ -502,6 +516,8 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Percentage Difference Calculator',
     explanationHeading: '',
     paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-increase': {
     title: 'Percentage Increase Calculator | Growth from Original',
@@ -510,6 +526,8 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Percentage Increase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-decrease': {
     title: 'Percentage Decrease Calculator | Drop from Original',
@@ -518,6 +536,8 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Percentage Decrease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-composition': {
     title: 'Percentage Composition Calculator | Share of Total',
@@ -526,18 +546,42 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Percentage Composition Calculator',
     explanationHeading: '',
     paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percent-to-fraction-decimal': {
     title: 'Percent to Fraction and Decimal Calculator | Convert %',
     description:
       'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
     h1: 'Percent to Fraction & Decimal Converter',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
+  },
+  'what-percent-is-x-of-y': {
+    title: 'What Percent Is X of Y Calculator | Ratio to Percent',
+    description:
+      'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
+    h1: 'What Percent Is X of Y',
+    paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
   'percentage-of-a-number': {
     title: 'Find Percentage of a Number Calculator – CalcHowMuch',
     description:
       'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
     h1: 'Find Percentage of a Number Calculator',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
+  },
+  'reverse-percentage': {
+    title: 'Reverse Percentage Calculator | Find the Original Value',
+    description:
+      'Find the original number when a known value represents a given percentage of it.',
+    h1: 'Reverse Percentage',
+    paneLayout: 'single',
+    suppressAdsColumn: true,
+    layoutMainClass: 'layout-main--no-ads',
   },
 };
 

@@ -1,4 +1,10 @@
 <div id="calc-percent-change">
+  <style>
+    .layout-main.layout-main--no-ads {
+      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
+    }
+  </style>
+
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="mtg-hero" aria-label="Percent change calculator">
@@ -10,12 +16,28 @@
 
           <div class="input-row">
             <label for="pct-change-a">Original Value (A)</label>
-            <input id="pct-change-a" type="number" value="50" step="0.01" inputmode="decimal" />
+            <input
+              id="pct-change-a"
+              type="number"
+              value="50"
+              min="-1000000000"
+              max="1000000000"
+              step="0.01"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row">
             <label for="pct-change-b">New Value (B)</label>
-            <input id="pct-change-b" type="number" value="60" step="0.01" inputmode="decimal" />
+            <input
+              id="pct-change-b"
+              type="number"
+              value="60"
+              min="-1000000000"
+              max="1000000000"
+              step="0.01"
+              inputmode="decimal"
+            />
           </div>
 
           <div class="input-row action-row mtg-action-row">

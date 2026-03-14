@@ -1,10 +1,5 @@
 /* Percentage Composition calculator route overrides */
 
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
-
 #calc-percentage-composition #calc-home-loan .comp-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
@@ -55,24 +50,30 @@ html {
 
 #calc-percentage-composition #calc-home-loan .composition-toggle input {
   position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  margin: 0;
   opacity: 0;
   pointer-events: none;
 }
 
 #calc-percentage-composition #calc-home-loan .composition-toggle-track {
   display: inline-flex;
-  width: 42px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
   border-radius: 999px;
   background: rgba(71, 85, 105, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.36);
-  padding: 2px;
+  padding: 3px;
+  align-items: center;
   transition: background 0.2s ease;
 }
 
 #calc-percentage-composition #calc-home-loan .composition-toggle-thumb {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 999px;
   background: #e2e8f0;
   transition: transform 0.2s ease;
@@ -83,7 +84,7 @@ html {
 }
 
 #calc-percentage-composition #calc-home-loan #composition-known-toggle:checked + .composition-toggle-track .composition-toggle-thumb {
-  transform: translateX(18px);
+  transform: translateX(20px);
 }
 
 #calc-percentage-composition #calc-home-loan #composition-known-total-section {
@@ -106,12 +107,13 @@ html {
   background: rgba(2, 6, 23, 0.25);
 }
 
-#calc-percentage-composition #calc-home-loan .composition-row-field input {
-  min-height: 42px;
+#calc-percentage-composition #calc-home-loan .composition-row-field input,
+#calc-percentage-composition #calc-home-loan #composition-known-total {
+  min-height: 48px;
 }
 
 #calc-percentage-composition #calc-home-loan .composition-remove-row {
-  min-height: 42px;
+  min-height: 48px;
 }
 
 #calc-percentage-composition #calc-home-loan .comp-actions {
@@ -120,6 +122,11 @@ html {
 
 #calc-percentage-composition #calc-home-loan .comp-action-row {
   margin-top: 0.8rem;
+}
+
+#calc-percentage-composition #calc-home-loan #composition-add-row,
+#calc-percentage-composition #calc-home-loan #composition-calc {
+  min-height: 48px;
 }
 
 #calc-percentage-composition #calc-home-loan .comp-action-row .calculator-button {
