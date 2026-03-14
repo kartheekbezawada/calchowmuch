@@ -3,6 +3,13 @@ import { formatNumber } from '/assets/js/core/format.js';
 import { roundToMinute } from '/assets/js/core/sleep-utils.js';
 import { calculateCountdown } from '/assets/js/core/date-diff-utils.js';
 
+const MODULE_INIT_KEY = '__countdownTimerGeneratorInitialized';
+const isDuplicateModuleInit = Boolean(window[MODULE_INIT_KEY]);
+
+if (!isDuplicateModuleInit) {
+  window[MODULE_INIT_KEY] = true;
+}
+
 const EVENT_TYPES = {
   launch: { label: 'Launch', kicker: 'Launch countdown', defaultName: 'Product launch' },
   birthday: { label: 'Birthday', kicker: 'Birthday countdown', defaultName: 'Birthday party' },
@@ -159,7 +166,9 @@ const metadata = {
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
 };
 
-setPageMetadata(metadata);
+if (!isDuplicateModuleInit) {
+  setPageMetadata(metadata);
+}
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
@@ -177,7 +186,9 @@ function ensureH1Title() {
   }
 }
 
-ensureH1Title();
+if (!isDuplicateModuleInit) {
+  ensureH1Title();
+}
 
 function supportsDateTimeLocal() {
   if (!dateTimeInput) {
@@ -189,7 +200,7 @@ function supportsDateTimeLocal() {
 }
 
 const hasDateTimeSupport = supportsDateTimeLocal();
-if (!hasDateTimeSupport && fallbackWrap) {
+if (!isDuplicateModuleInit && !hasDateTimeSupport && fallbackWrap) {
   dateTimeRow?.classList.add('is-hidden');
   fallbackWrap.classList.remove('is-hidden');
   dateTimeInput?.setAttribute('disabled', 'true');
@@ -1118,81 +1129,83 @@ function downloadIcsFile() {
   showCopyFeedback('.ics file downloaded.');
 }
 
-const defaultTarget = roundToMinute(new Date());
-defaultTarget.setDate(defaultTarget.getDate() + 30);
-defaultTarget.setHours(9, 0, 0, 0);
-if (eventNameInput) {
-  eventNameInput.value = EVENT_TYPES.launch.defaultName;
-}
-setTargetInputs(defaultTarget);
-
-startButton?.addEventListener('click', () => calculate(true));
-stopButton?.addEventListener('click', stopCountdown);
-copySummaryButton?.addEventListener('click', async () => {
-  await copyText(getActiveCountdownSnapshot(), 'Countdown summary copied.');
-});
-copyDateButton?.addEventListener('click', async () => {
-  await copyText(getActiveDateSnapshot(), 'Event date copied.');
-});
-addGoogleButton?.addEventListener('click', addToGoogleCalendar);
-addOutlookButton?.addEventListener('click', addToOutlookCalendar);
-downloadIcsButton?.addEventListener('click', downloadIcsFile);
-generateShareCardButton?.addEventListener('click', generateShareCard);
-downloadSharePngButton?.addEventListener('click', downloadShareCardPng);
-copyShareImageButton?.addEventListener('click', copyShareCardImage);
-
-regionInput?.addEventListener('change', () => {
-  populateRegionEventOptions();
-  markPreviewStale();
-});
-
-regionEventInput?.addEventListener('change', () => {
-  const eventId = regionEventInput.value;
-  if (!eventId) {
-    markPreviewStale();
-    return;
+if (!isDuplicateModuleInit) {
+  const defaultTarget = roundToMinute(new Date());
+  defaultTarget.setDate(defaultTarget.getDate() + 30);
+  defaultTarget.setHours(9, 0, 0, 0);
+  if (eventNameInput) {
+    eventNameInput.value = EVENT_TYPES.launch.defaultName;
   }
-  applyStaticRegionEvent(eventId);
-});
+  setTargetInputs(defaultTarget);
 
-eventTypeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    selectedEventType = button.dataset.eventType || 'launch';
-    setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
-    updateHolidayFieldVisibility();
-    if (eventNameInput && !eventNameInput.value.trim()) {
-      eventNameInput.placeholder = EVENT_TYPES[selectedEventType].defaultName;
+  startButton?.addEventListener('click', () => calculate(true));
+  stopButton?.addEventListener('click', stopCountdown);
+  copySummaryButton?.addEventListener('click', async () => {
+    await copyText(getActiveCountdownSnapshot(), 'Countdown summary copied.');
+  });
+  copyDateButton?.addEventListener('click', async () => {
+    await copyText(getActiveDateSnapshot(), 'Event date copied.');
+  });
+  addGoogleButton?.addEventListener('click', addToGoogleCalendar);
+  addOutlookButton?.addEventListener('click', addToOutlookCalendar);
+  downloadIcsButton?.addEventListener('click', downloadIcsFile);
+  generateShareCardButton?.addEventListener('click', generateShareCard);
+  downloadSharePngButton?.addEventListener('click', downloadShareCardPng);
+  copyShareImageButton?.addEventListener('click', copyShareCardImage);
+
+  regionInput?.addEventListener('change', () => {
+    populateRegionEventOptions();
+    markPreviewStale();
+  });
+
+  regionEventInput?.addEventListener('change', () => {
+    const eventId = regionEventInput.value;
+    if (!eventId) {
+      markPreviewStale();
+      return;
     }
-    markPreviewStale();
+    applyStaticRegionEvent(eventId);
   });
-});
 
-themeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    selectedTheme = button.dataset.theme || 'launch';
-    setSelectedButton(themeButtons, selectedTheme, 'theme');
-    markPreviewStale();
+  eventTypeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedEventType = button.dataset.eventType || 'launch';
+      setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
+      updateHolidayFieldVisibility();
+      if (eventNameInput && !eventNameInput.value.trim()) {
+        eventNameInput.placeholder = EVENT_TYPES[selectedEventType].defaultName;
+      }
+      markPreviewStale();
+    });
   });
-});
 
-[eventNameInput, dateTimeInput, fallbackDateInput, fallbackTimeInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    clearRegionEventSelection();
-    markPreviewStale();
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedTheme = button.dataset.theme || 'launch';
+      setSelectedButton(themeButtons, selectedTheme, 'theme');
+      markPreviewStale();
+    });
   });
-  input?.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      calculate(true);
-    }
-  });
-});
 
-setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
-setSelectedButton(themeButtons, selectedTheme, 'theme');
-if (regionInput && !regionInput.value) {
-  regionInput.value = 'United States';
+  [eventNameInput, dateTimeInput, fallbackDateInput, fallbackTimeInput].forEach((input) => {
+    input?.addEventListener('input', () => {
+      clearRegionEventSelection();
+      markPreviewStale();
+    });
+    input?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        calculate(true);
+      }
+    });
+  });
+
+  setSelectedButton(eventTypeButtons, selectedEventType, 'eventType');
+  setSelectedButton(themeButtons, selectedTheme, 'theme');
+  if (regionInput && !regionInput.value) {
+    regionInput.value = 'United States';
+  }
+  populateRegionEventOptions();
+  updateHolidayFieldVisibility();
+  setPreviewWaitingState();
+  calculate(true);
 }
-populateRegionEventOptions();
-updateHolidayFieldVisibility();
-setPreviewWaitingState();
-calculate(true);
