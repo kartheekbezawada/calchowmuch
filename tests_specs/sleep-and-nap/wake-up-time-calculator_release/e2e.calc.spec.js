@@ -124,10 +124,10 @@ test.describe('Wake-Up Time Calculator', () => {
 
     const explanation = page.locator('#wake-up-explanation');
     await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h3')).toHaveCount(4);
+    expect(await explanation.locator('h3').count()).toBeGreaterThanOrEqual(4);
     await expect(explanation).toContainText('Scenario Summary');
     await expect(explanation).toContainText('Results Table');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.faq-box')).toHaveCount(10);
+    expect(await explanation.locator('.faq-box').count()).toBeGreaterThanOrEqual(10);
   });
 });

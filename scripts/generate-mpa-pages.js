@@ -60,6 +60,8 @@ const DESIGN_FAMILIES = new Set(['home-loan', 'auto-loans', 'credit-cards', 'neu
 const PANE_LAYOUTS = new Set(['single', 'split']);
 const FORCED_SINGLE_PANE_CALCULATOR_IDS = new Set(['what-percent-is-x-of-y']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
+  'birthday-day-of-week',
+  'countdown-timer-generator',
   'fraction-calculator',
   'quadratic-equation',
   'slope-distance',
@@ -327,14 +329,14 @@ const CALCULATOR_OVERRIDES = {
   'birthday-day-of-week': {
     title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
     description:
-      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
+      'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
     h1: 'Birthday Day-of-Week Calculator',
   },
   'countdown-timer-generator': {
-    title: 'Countdown Timer Generator | Time Left to Any Date',
+    title: 'Countdown Timer | Live Time Left to Any Date',
     description:
-      'Create a countdown to any future date and time and see the remaining days, hours, minutes, and seconds.',
-    h1: 'Countdown Timer Generator',
+      'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+    h1: 'Countdown Timer',
   },
   'days-until-a-date-calculator': {
     title: 'Days Until a Date Calculator | Count Days to Any Date',
@@ -2880,6 +2882,10 @@ function main() {
     category.subcategories.forEach((subcategory) => {
       subcategory.calculators.forEach((calculator) => {
         let relPath = null;
+        const declaredUrl =
+          typeof calculator.url === 'string' && calculator.url.trim()
+            ? normalizeRoutePath(calculator.url)
+            : null;
         if (typeof calculator.url === 'string' && calculator.url.trim()) {
           const routeDerived = calculator.url.replace(/^\/+|\/+$/g, '');
           const candidateDir = path.join(CALC_DIR, routeDerived);
@@ -2907,8 +2913,12 @@ function main() {
           calculator,
           override,
         });
-        calculator.url = normalizeRoutePath(`/${relPath}`);
-        const entry = { category, subcategory, calculator, governance, relPath };
+        const outputRelPath = (declaredUrl || normalizeRoutePath(`/${relPath}`)).replace(
+          /^\/+|\/+$/g,
+          ''
+        );
+        calculator.url = declaredUrl || normalizeRoutePath(`/${relPath}`);
+        const entry = { category, subcategory, calculator, governance, relPath, outputRelPath };
         calcLookup.set(calculator.id, entry);
         allCalculatorEntries.push(entry);
       });
@@ -2939,7 +2949,7 @@ function main() {
   const footerHtml = readFile(FOOTER_PATH);
 
   selectedEntries.forEach((entry) => {
-    const { category, subcategory, calculator, governance, relPath } = entry;
+    const { category, subcategory, calculator, governance, relPath, outputRelPath } = entry;
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (assetConfig?.options?.generationMode === 'manual') {
       console.log(`  SKIP (manual): ${relPath}`);
@@ -3056,7 +3066,7 @@ function main() {
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
     });
 
-    const outputDir = path.join(PUBLIC_DIR, relPath);
+    const outputDir = path.join(PUBLIC_DIR, outputRelPath);
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 

@@ -90,8 +90,8 @@
         },
         {
           "id": "countdown-timer-generator",
-          "name": "Countdown Timer Generator",
-          "url": "/time-and-date/countdown-timer-generator/"
+          "name": "Countdown Timer",
+          "url": "/time-and-date/countdown-timer/"
         },
         {
           "id": "age-calculator",

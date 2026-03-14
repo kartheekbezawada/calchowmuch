@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Birthday Day-of-Week Calculator | Find Your Birth Weekday</title>
-    <meta name="description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
-    <link rel="canonical" href="https://calchowmuch.com/time-and-date/birthday-day-of-week/" />
-    <meta property="og:title" content="Birthday Day-of-Week Calculator | Find Your Birth Weekday" />
-    <meta property="og:description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
+    <title>Countdown Timer | Live Time Left to Any Date</title>
+    <meta name="description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
+    <link rel="canonical" href="https://calchowmuch.com/time-and-date/countdown-timer/" />
+    <meta property="og:title" content="Countdown Timer | Live Time Left to Any Date" />
+    <meta property="og:description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/time-and-date/birthday-day-of-week/" />
+    <meta property="og:url" content="https://calchowmuch.com/time-and-date/countdown-timer/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Birthday Day-of-Week Calculator | Find Your Birth Weekday" />
-    <meta name="twitter:description" content="Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday." />
+    <meta name="twitter:title" content="Countdown Timer | Live Time Left to Any Date" />
+    <meta name="twitter:description" content="Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-route-critical="true">
@@ -3957,755 +3957,654 @@
 
       }
 
-      /* critical source: /calculators/time-and-date/birthday-day-of-week/calculator.css */
-      #calc-birthday-dow {
-        --birthday-page: #06111f;
-        --birthday-page-alt: #0a1b31;
-        --birthday-surface: rgba(10, 19, 34, 0.7);
-        --birthday-surface-soft: rgba(255, 255, 255, 0.04);
-        --birthday-surface-strong: rgba(9, 17, 30, 0.9);
-        --birthday-line: rgba(255, 255, 255, 0.08);
-        --birthday-line-strong: rgba(255, 255, 255, 0.16);
-        --birthday-ink: #f7f1e7;
-        --birthday-muted: rgba(233, 239, 247, 0.76);
-        --birthday-faint: rgba(233, 239, 247, 0.5);
-        --birthday-gold: #f2cb82;
-        --birthday-coral: #ff9073;
-        --birthday-mint: #9ad8cc;
-        position: relative;
-        overflow: hidden;
-        padding: clamp(10px, 1.8vw, 18px) clamp(22px, 4vw, 40px) clamp(20px, 3.6vw, 34px);
-        border-radius: 32px;
-        background:
-          radial-gradient(circle at 14% 18%, rgba(255, 144, 115, 0.18), transparent 24%),
-          radial-gradient(circle at 82% 16%, rgba(242, 203, 130, 0.2), transparent 24%),
-          radial-gradient(circle at 70% 76%, rgba(154, 216, 204, 0.12), transparent 20%),
-          linear-gradient(155deg, #06111f 0%, #0a1830 48%, #081321 100%);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 30px 100px rgba(2, 6, 23, 0.45);
+      /* critical source: /calculators/time-and-date/countdown-timer-generator/calculator.css */
+      /* Shared calculator styles live in /assets/css/calculator.css */
+
+      #calculator-title {
+        margin: 0 0 14px;
+        text-align: center;
+        font-family: 'DM Serif Display', 'Georgia', serif;
+        font-size: clamp(30px, 4.8vw, 44px);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: #f2cb66;
+        text-shadow:
+          0 0 12px rgba(232, 201, 122, 0.38),
+          0 0 28px rgba(232, 201, 122, 0.2);
       }
 
-      #calc-birthday-dow::before,
-      #calc-birthday-dow::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      #calc-birthday-dow::before {
-        background:
-          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-        background-size: 60px 60px;
-        mask-image: radial-gradient(circle at 86% 20%, rgba(255, 255, 255, 0.88), transparent 46%);
-        opacity: 0.26;
-      }
-
-      #calc-birthday-dow::after {
-        background:
-          radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.92) 0 1px, transparent 1.6px),
-          radial-gradient(circle at 84% 16%, rgba(242, 203, 130, 0.9) 0 1.25px, transparent 1.8px),
-          radial-gradient(circle at 76% 31%, rgba(255, 144, 115, 0.9) 0 1.25px, transparent 1.8px),
-          radial-gradient(circle at 66% 78%, rgba(154, 216, 204, 0.9) 0 1.25px, transparent 1.8px);
-        opacity: 0.38;
-      }
-
-      .panel-span-all > #calculator-title {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      .panel-span-all > #calculator-title::after {
+      #calculator-title::after {
         content: none;
       }
 
-      .panel-span-all .calculator-page-single {
-        display: grid;
-        gap: clamp(22px, 3vw, 34px);
-        margin-top: -20px;
+      body[data-page='calculator'] .layout-main {
+        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
       }
 
-      @supports selector(.layout-main:has(#calc-birthday-dow)) {
-        body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) {
-          grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-        }
-
-        body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) > .ads-column {
-          display: none;
-        }
-
-        body[data-page='calculator'] .layout-main:has(#calc-birthday-dow) > .center-column {
-          grid-template-columns: minmax(0, 1fr);
-        }
+      body[data-page='calculator'] .ads-column {
+        display: none;
       }
 
-      #calc-birthday-dow .birthday-dow-product {
+      #calc-countdown-timer {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --surface2: #16161f;
+        --border: rgba(255, 255, 255, 0.06);
+        --border-bright: rgba(255, 255, 255, 0.12);
+        --accent: #e8c97a;
+        --accent-dim: rgba(232, 201, 122, 0.12);
+        --accent-glow: rgba(232, 201, 122, 0.25);
+        --glass-fill: rgba(255, 255, 255, 0.03);
+        --text: #f0ede8;
+        --muted: #6b6878;
+        --muted2: #9996a8;
+        --red: #e87a7a;
+        --green: #7ae8a8;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0;
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
         position: relative;
-        z-index: 1;
-        display: grid;
-        gap: clamp(18px, 2.8vw, 28px);
+        padding-top: 8px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      #calc-birthday-dow .birthday-dow-section-kicker,
-      #calc-birthday-dow .birthday-dow-field-label,
-      #calc-birthday-dow .birthday-dow-result-label,
-      #calc-birthday-dow .birthday-dow-block-label,
-      #calc-birthday-dow .birthday-dow-mini-label,
-      #calc-birthday-dow .birthday-dow-spotlight-kicker,
-      #calc-birthday-dow .birthday-dow-spotlight-chip-label,
-      #birthday-dow-explanation .birthday-dow-help-kicker,
-      #birthday-dow-explanation summary {
-        margin: 0;
-        font-family: 'Consolas', 'SFMono-Regular', monospace;
-        font-size: 11px;
-        letter-spacing: 0.2em;
+      #calc-countdown-timer .cd-main-cards {
+        display: grid;
+        grid-template-columns: minmax(360px, 1fr) minmax(420px, 1.2fr);
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+
+      #calc-countdown-timer .cd-input-card {
+        background:
+          linear-gradient(140deg, rgba(24, 24, 35, 0.86), rgba(13, 13, 20, 0.8)),
+          var(--glass-fill);
+        border: 1px solid var(--border-bright);
+        border-radius: 16px;
+        padding: 34px;
+        margin-bottom: 0;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      #calc-countdown-timer .cd-input-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-countdown-timer .cd-field-full {
+        grid-column: 1 / -1;
+      }
+
+      #calc-countdown-timer .cd-fallback {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      #calc-countdown-timer .cd-field-label {
+        display: grid;
+        gap: 8px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
         text-transform: uppercase;
-        color: var(--birthday-faint);
+        letter-spacing: 0.14em;
+        color: var(--muted);
       }
 
-      #calc-birthday-dow .birthday-dow-hero-title,
-      #calc-birthday-dow .birthday-dow-section-title,
-      #calc-birthday-dow .birthday-dow-board-title,
-      #calc-birthday-dow .birthday-dow-spotlight-title,
-      #calc-birthday-dow .birthday-dow-planner-title,
-      #calc-birthday-dow .birthday-dow-next-title,
-      #birthday-dow-explanation h2 {
-        margin: 0;
-        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-        letter-spacing: -0.05em;
-        color: var(--birthday-ink);
-      }
-
-      #calc-birthday-dow .birthday-dow-hero-title {
-        max-width: none;
-        white-space: nowrap;
-        font-size: clamp(2rem, 4.2vw, 4.5rem);
-        line-height: 0.95;
-      }
-
-      #calc-birthday-dow .birthday-dow-section-title,
-      #calc-birthday-dow .birthday-dow-board-title,
-      #calc-birthday-dow .birthday-dow-planner-title,
-      #birthday-dow-explanation h2 {
-        font-size: clamp(1.35rem, 2vw, 1.95rem);
-        line-height: 1;
-      }
-
-      #calc-birthday-dow .birthday-dow-spotlight-title,
-      #calc-birthday-dow .birthday-dow-next-title {
-        font-size: clamp(1.45rem, 2.5vw, 2.3rem);
-        line-height: 0.98;
-      }
-
-      #calc-birthday-dow .birthday-dow-hero-text,
-      #calc-birthday-dow .birthday-dow-setup-copy,
-      #calc-birthday-dow .birthday-dow-form-note,
-      #calc-birthday-dow .birthday-dow-placeholder,
-      #calc-birthday-dow .birthday-dow-summary-line,
-      #calc-birthday-dow .birthday-dow-fact-note,
-      #calc-birthday-dow .birthday-dow-copy-feedback,
-      #calc-birthday-dow .birthday-dow-spotlight-text,
-      #calc-birthday-dow .birthday-dow-spotlight-subanswer,
-      #calc-birthday-dow .birthday-dow-intent-copy,
-      #calc-birthday-dow .birthday-dow-mini-date,
-      #calc-birthday-dow .birthday-dow-weekend-copy,
-      #calc-birthday-dow .birthday-dow-empty-state,
-      #calc-birthday-dow .birthday-dow-next-copy-text,
-      #birthday-dow-explanation p,
-      #birthday-dow-explanation li {
-        margin: 0;
-        font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+      #calc-countdown-timer .cd-field {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 13px 16px;
+        color: var(--text);
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
         font-size: 15px;
-        line-height: 1.75;
-        color: var(--birthday-muted);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        -webkit-appearance: none;
+        color-scheme: dark;
       }
 
-      #calc-birthday-dow .birthday-dow-hero {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(18px, 2.8vw, 26px);
+      #calc-countdown-timer #countdown-event-name {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--accent-dim);
+      }
+
+      #calc-countdown-timer .cd-field:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-dim);
+      }
+
+      #calc-countdown-timer .cd-field::placeholder {
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-btn {
+        width: auto;
+        background: var(--accent);
+        color: #0a0a0f;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition:
+          opacity 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+
+      #calc-countdown-timer .cd-btn:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px var(--accent-glow);
+      }
+
+      #calc-countdown-timer .cd-btn:active {
+        transform: translateY(0);
+      }
+
+      #calc-countdown-timer .cd-btn-sm {
+        width: auto;
+        background: var(--surface2);
+        border: 1px solid var(--border-bright);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+
+      #calc-countdown-timer .cd-btn-ghost:hover {
+        border-color: var(--accent);
+        background: var(--accent-dim);
+        box-shadow: none;
+      }
+
+      #calc-countdown-timer .cd-cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
         align-items: stretch;
       }
 
-      #calc-birthday-dow .birthday-dow-hero-copy {
-        display: contents;
+      #calc-countdown-timer #countdown-start {
+        flex: 1 1 auto;
       }
 
-      #calc-birthday-dow .birthday-dow-intent-switch {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        width: min(100%, 740px);
-        margin: 0 auto;
+      #calc-countdown-timer #countdown-stop {
+        flex: 1 1 auto;
       }
 
-      #calc-birthday-dow .birthday-dow-hero-title {
-        grid-column: 1 / -1;
-        justify-self: center;
-        text-align: center;
-        margin-top: -10px;
+      #calc-countdown-timer .cd-error {
+        margin: 12px 0 0;
+        color: var(--red);
+        font-size: 13px;
+        font-weight: 600;
       }
 
-      #calc-birthday-dow .birthday-dow-top-form {
-        grid-column: 1;
-        align-self: stretch;
-        height: 100%;
-        min-height: 320px;
-      }
-
-      #calc-birthday-dow .birthday-dow-spotlight {
-        grid-column: 2;
-        align-self: stretch;
-        height: 100%;
-        min-height: 320px;
-      }
-
-      #calc-birthday-dow .birthday-dow-top-form {
-        display: grid;
-        align-content: start;
-        gap: 12px;
-        padding: 18px 20px 20px;
-        border-radius: 26px;
+      #calc-countdown-timer .cd-countdown-card {
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.018)),
-          rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.045);
-      }
-
-      #calc-birthday-dow .birthday-dow-input-row-top {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      #calc-birthday-dow .birthday-dow-intent,
-      #calc-birthday-dow .birthday-dow-year-chip,
-      #calc-birthday-dow .birthday-dow-copy-btn,
-      #calc-birthday-dow .birthday-dow-plan-tab {
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: background 180ms ease, border-color 180ms ease, color 180ms ease,
-          transform 180ms ease, box-shadow 180ms ease;
-      }
-
-      #calc-birthday-dow .birthday-dow-intent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        width: 100%;
-        padding: 0 18px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--birthday-ink);
-        text-align: center;
-      }
-
-      #calc-birthday-dow .birthday-dow-intent:hover,
-      #calc-birthday-dow .birthday-dow-intent[aria-pressed='true'] {
-        background: linear-gradient(135deg, rgba(242, 203, 130, 0.14), rgba(255, 144, 115, 0.07));
-        border-color: rgba(242, 203, 130, 0.22);
-      }
-
-      #calc-birthday-dow .birthday-dow-intent-title {
-        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-        font-size: 1rem;
-        letter-spacing: -0.02em;
-      }
-
-      #calc-birthday-dow .birthday-dow-spotlight,
-      #calc-birthday-dow .birthday-dow-workspace {
+          linear-gradient(145deg, rgba(22, 22, 33, 0.9), rgba(12, 12, 20, 0.82)),
+          var(--glass-fill);
+        border: 1px solid var(--border-bright);
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 0;
+        min-height: 100%;
         position: relative;
-        border-radius: 28px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
-          var(--birthday-surface);
-        backdrop-filter: blur(18px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
 
-      #calc-birthday-dow .birthday-dow-spotlight {
-        display: grid;
-        align-content: center;
-        justify-items: start;
-        gap: 10px;
-        padding: clamp(22px, 2.6vw, 28px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 16px 34px rgba(2, 6, 23, 0.18);
+      #calc-countdown-timer .cd-tile,
+      #calc-countdown-timer .countdown-milestone {
+        transition:
+          border-color 0.28s ease,
+          box-shadow 0.28s ease,
+          transform 0.28s ease;
       }
 
-      #calc-birthday-dow .birthday-dow-spotlight::after {
+      #calc-countdown-timer .cd-tile::after,
+      #calc-countdown-timer .countdown-milestone::before {
         content: '';
         position: absolute;
-        inset: auto -50px -50px auto;
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(242, 203, 130, 0.15), transparent 68%);
+        inset: -35% -18%;
+        background:
+          radial-gradient(circle at 80% 8%, rgba(232, 201, 122, 0.42), transparent 44%),
+          radial-gradient(circle at 10% 100%, rgba(122, 232, 168, 0.24), transparent 36%);
+        opacity: 0;
+        transform: translateY(10px) scale(1.05);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+        pointer-events: none;
+        z-index: 0;
       }
 
-      #calc-birthday-dow .birthday-dow-fact-value,
-      #calc-birthday-dow .birthday-dow-mini-weekday,
-      #calc-birthday-dow .birthday-dow-weekend-title,
-      #calc-birthday-dow .birthday-dow-next-stat strong {
-        margin: 0;
-        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-        letter-spacing: -0.04em;
-        color: var(--birthday-ink);
+      #calc-countdown-timer .cd-countdown-header {
+        padding: 28px 32px 24px;
+        border-bottom: 1px solid var(--border);
       }
 
-      #calc-birthday-dow .birthday-dow-spotlight-answer {
-        margin: 0;
-        font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-        font-size: clamp(3rem, 5vw, 4.6rem);
-        line-height: 0.92;
-        letter-spacing: -0.06em;
-        color: var(--birthday-ink);
+      #calc-countdown-timer .cd-kicker {
+        margin: 0 0 8px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent);
       }
 
-      #calc-birthday-dow .birthday-dow-spotlight-title {
-        font-size: clamp(1.55rem, 2.2vw, 2rem);
+      #calc-countdown-timer .cd-title {
+        margin: 0 0 6px;
+        font-family: 'DM Serif Display', 'Georgia', serif;
+        font-size: clamp(22px, 4vw, 34px);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        position: static;
       }
 
-      #calc-birthday-dow .birthday-dow-spotlight-subanswer {
-        display: none;
+      #calc-countdown-timer .cd-title::after {
+        content: none !important;
+        display: none !important;
       }
 
-      #calc-birthday-dow .birthday-dow-workspace {
+      #calc-countdown-timer .cd-tiles {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: clamp(18px, 2.6vw, 26px);
-        box-shadow: 0 18px 38px rgba(2, 6, 23, 0.2);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
       }
 
-      #calc-birthday-dow .birthday-dow-board {
-        display: grid;
-        align-content: start;
-        gap: 14px;
-        width: 100%;
-        min-width: 0;
-      }
-
-      #calc-birthday-dow .birthday-dow-board-head,
-      #calc-birthday-dow .birthday-dow-planner-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-      }
-
-      #calc-birthday-dow .birthday-dow-board-title {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
+      #calc-countdown-timer .cd-tile {
+        background: var(--surface2);
+        padding: 32px 12px 24px;
+        text-align: center;
+        position: relative;
         overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
       }
 
-      #calc-birthday-dow .birthday-dow-planner-head {
+      #calc-countdown-timer .cd-tile > *,
+      #calc-countdown-timer .countdown-milestone > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      #calc-countdown-timer .cd-tile::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent);
+        opacity: 0.2;
+      }
+
+      #calc-countdown-timer .cd-num {
         display: block;
-      }
-
-      #calc-birthday-dow .birthday-dow-results,
-      #calc-birthday-dow .birthday-dow-results-list {
-        width: 100%;
-        min-width: 0;
-      }
-
-      #calc-birthday-dow .birthday-dow-planner-title {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      #calc-birthday-dow .birthday-dow-input-row {
-        display: grid;
-        gap: 16px;
-      }
-
-      #calc-birthday-dow .birthday-dow-field {
-        display: grid;
-        gap: 10px;
-      }
-
-      #calc-birthday-dow .birthday-dow-field input {
-        width: 100%;
-        min-height: 58px;
-        padding: 16px 18px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 18px;
-        background: rgba(5, 12, 24, 0.76);
-        color: var(--birthday-ink);
-        font-size: 1rem;
-        color-scheme: dark;
-        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-      }
-
-      #calc-birthday-dow .birthday-dow-field input:focus {
-        outline: none;
-        border-color: rgba(242, 203, 130, 0.42);
-        box-shadow: 0 0 0 4px rgba(242, 203, 130, 0.12);
-        transform: translateY(-1px);
-      }
-
-      #calc-birthday-dow .birthday-dow-year-presets,
-      #calc-birthday-dow .birthday-dow-plan-switch {
-        display: grid;
-        gap: 10px;
-      }
-
-      #calc-birthday-dow .birthday-dow-year-presets {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      #calc-birthday-dow .birthday-dow-plan-switch {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        width: 100%;
-      }
-
-      #calc-birthday-dow .birthday-dow-year-chip,
-      #calc-birthday-dow .birthday-dow-copy-btn,
-      #calc-birthday-dow .birthday-dow-plan-tab {
-        min-height: 42px;
-        width: 100%;
-        padding: 0 14px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--birthday-muted);
-        font-size: 13px;
-        font-weight: 700;
-        justify-content: center;
-      }
-
-      #calc-birthday-dow .birthday-dow-year-chip:hover,
-      #calc-birthday-dow .birthday-dow-year-chip[aria-pressed='true'],
-      #calc-birthday-dow .birthday-dow-copy-btn:hover:not(:disabled),
-      #calc-birthday-dow .birthday-dow-plan-tab:hover,
-      #calc-birthday-dow .birthday-dow-plan-tab[aria-pressed='true'] {
-        color: var(--birthday-ink);
-        border-color: rgba(242, 203, 130, 0.3);
-        background: linear-gradient(135deg, rgba(242, 203, 130, 0.18), rgba(255, 144, 115, 0.08));
-      }
-
-      #calc-birthday-dow .birthday-dow-copy-btn:disabled {
-        cursor: not-allowed;
-        opacity: 0.45;
-      }
-
-      #calc-birthday-dow .birthday-dow-copy-btn {
-        margin-left: auto;
-        width: auto;
-        min-width: 84px;
-        padding-inline: 16px;
-        background: rgba(255, 255, 255, 0.022);
-      }
-
-      #calc-birthday-dow .birthday-dow-calc-btn {
-        width: 100%;
-        min-height: 58px;
-        border: 0;
-        border-radius: 20px;
-        background: linear-gradient(135deg, #f2cb82 0%, #ff9073 100%);
-        color: #081223;
-        font-size: 14px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        box-shadow: 0 18px 34px rgba(242, 203, 130, 0.2);
-      }
-
-      #calc-birthday-dow .birthday-dow-placeholder,
-      #calc-birthday-dow .birthday-dow-summary-line {
-        max-width: 60ch;
-      }
-
-      #calc-birthday-dow .birthday-dow-summary-line {
-        display: none;
-      }
-
-      #calc-birthday-dow .birthday-dow-facts {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        align-items: stretch;
-      }
-
-      #calc-birthday-dow .birthday-dow-fact,
-      #calc-birthday-dow .birthday-dow-plan-panel,
-      #calc-birthday-dow .birthday-dow-recurrence-item,
-      #calc-birthday-dow .birthday-dow-weekend-item {
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.022);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-      }
-
-      #calc-birthday-dow .birthday-dow-fact {
-        display: grid;
-        align-content: start;
-        gap: 6px;
-        min-width: 0;
-        min-height: 158px;
-        padding: 16px;
-      }
-
-      #calc-birthday-dow .birthday-dow-fact-value {
-        font-size: clamp(1.7rem, 2vw, 2.05rem);
-        line-height: 0.96;
-        text-wrap: balance;
-        word-break: break-word;
-      }
-
-      #calc-birthday-dow .birthday-dow-fact-next {
-        background:
-          linear-gradient(180deg, rgba(242, 203, 130, 0.05), rgba(255, 144, 115, 0.015)),
-          rgba(255, 255, 255, 0.032);
-      }
-
-      #calc-birthday-dow .birthday-dow-fact-note {
-        line-height: 1.45;
-      }
-
-      #calc-birthday-dow .birthday-dow-planner {
-        display: grid;
-        gap: 14px;
-        margin-top: 2px;
-        padding: 14px;
-        border-radius: 22px;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.012)),
-          rgba(255, 255, 255, 0.014);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-      }
-
-      #calc-birthday-dow .birthday-dow-plan-panel {
-        padding: clamp(16px, 2.1vw, 20px);
-        background: rgba(255, 255, 255, 0.018);
-        border-color: rgba(255, 255, 255, 0.03);
-      }
-
-      #calc-birthday-dow .birthday-dow-next-snapshot {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
-        gap: 18px;
-        align-items: start;
-      }
-
-      #calc-birthday-dow .birthday-dow-next-copy {
-        display: grid;
-        gap: 8px;
-      }
-
-      #calc-birthday-dow .birthday-dow-next-stats {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      #calc-birthday-dow .birthday-dow-next-stat {
-        display: grid;
-        gap: 6px;
-        padding: 13px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.026);
-      }
-
-      #calc-birthday-dow .birthday-dow-next-stat strong {
-        font-size: clamp(1.6rem, 3vw, 2.25rem);
-        line-height: 0.95;
-      }
-
-      #calc-birthday-dow .birthday-dow-recurrence {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      #calc-birthday-dow .birthday-dow-recurrence-item {
-        display: grid;
-        gap: 6px;
-        padding: 13px;
-      }
-
-      #calc-birthday-dow .birthday-dow-recurrence-item.is-selected {
-        background: linear-gradient(135deg, rgba(242, 203, 130, 0.16), rgba(255, 144, 115, 0.08));
-        border: 1px solid rgba(242, 203, 130, 0.22);
-      }
-
-      #calc-birthday-dow .birthday-dow-recurrence-item.is-weekend .birthday-dow-mini-badge {
-        background: rgba(154, 216, 204, 0.14);
-        color: var(--birthday-mint);
-      }
-
-      #calc-birthday-dow .birthday-dow-mini-year,
-      #calc-birthday-dow .birthday-dow-weekend-day {
-        margin: 0;
-        font-family: 'Consolas', 'SFMono-Regular', monospace;
-        font-size: 11px;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--birthday-faint);
-      }
-
-      #calc-birthday-dow .birthday-dow-mini-weekday,
-      #calc-birthday-dow .birthday-dow-weekend-title {
-        font-size: 1.28rem;
+        margin-bottom: 10px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: clamp(36px, 6vw, 58px);
+        font-weight: 500;
+        letter-spacing: -0.04em;
         line-height: 1;
+        color: var(--text);
+        font-variant-numeric: tabular-nums;
       }
 
-      #calc-birthday-dow .birthday-dow-mini-badge {
-        display: inline-flex;
+      #calc-countdown-timer .cd-unit {
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-expired {
+        background: rgba(232, 122, 122, 0.08);
+        border: 1px solid rgba(232, 122, 122, 0.2);
+        border-radius: 12px;
+        padding: 16px 20px;
+        color: var(--red);
+        font-size: 14px;
+        margin: 16px 32px 0;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        text-align: center;
+        letter-spacing: 0.04em;
+      }
+
+      #calc-countdown-timer .cd-countdown-footer {
+        padding: 0 32px 6px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        position: relative;
+        min-height: 52px;
+      }
+
+      #calc-countdown-timer .cd-badge {
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-glow);
+        color: var(--accent);
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 11px;
+        padding: 6px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.06em;
+      }
+
+      #calc-countdown-timer .cd-summary {
+        color: var(--muted2);
+        font-size: 12px;
+      }
+
+      #calc-countdown-timer .cd-live {
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: fit-content;
-        min-height: 28px;
-        padding: 0 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        color: var(--birthday-gold);
+        gap: 6px;
+        color: var(--muted);
         font-size: 12px;
-        font-weight: 700;
+        width: max-content;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        transform: translateX(-50%);
+        white-space: nowrap;
       }
 
-      #calc-birthday-dow .birthday-dow-weekend-highlights {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+      #calc-countdown-timer .cd-live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        animation: pulse 2s infinite;
       }
 
-      #calc-birthday-dow .birthday-dow-weekend-item {
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      #calc-countdown-timer .cd-milestone-section {
+        margin-bottom: 20px;
+      }
+
+      #calc-countdown-timer .cd-section-label {
+        margin: 0 0 12px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-milestones {
         display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 8px;
-        padding: 14px;
       }
 
-      #calc-birthday-dow .birthday-dow-empty-state {
-        padding: 8px 0;
+      #calc-countdown-timer .countdown-milestone {
+        background:
+          linear-gradient(145deg, rgba(24, 24, 34, 0.86), rgba(14, 14, 22, 0.78)),
+          var(--glass-fill);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 14px;
+        position: relative;
+        overflow: hidden;
       }
 
-      #birthday-dow-explanation {
-        display: grid;
-        gap: 16px;
+      #calc-countdown-timer .countdown-milestone-label {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 500;
       }
 
-      #birthday-dow-explanation .birthday-dow-help-intro {
-        display: grid;
-        gap: 12px;
-        max-width: 58rem;
+      #calc-countdown-timer .countdown-milestone-state {
+        margin: 0;
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        color: var(--muted);
       }
 
-      #birthday-dow-explanation .birthday-dow-detail {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding-top: 14px;
+      #calc-countdown-timer .countdown-milestone.is-passed {
+        border-color: rgba(232, 201, 122, 0.2);
       }
 
-      #birthday-dow-explanation .birthday-dow-detail[open] {
-        padding-bottom: 4px;
+      #calc-countdown-timer .countdown-milestone.is-live {
+        border-color: var(--accent);
       }
 
-      #birthday-dow-explanation summary {
-        list-style: none;
-        cursor: pointer;
+      @media (hover: hover) {
+        #calc-countdown-timer .cd-tile:hover {
+          border-color: rgba(232, 201, 122, 0.36);
+          box-shadow:
+            0 22px 56px rgba(6, 9, 18, 0.58),
+            0 0 0 1px rgba(232, 201, 122, 0.2),
+            0 0 52px rgba(232, 201, 122, 0.36),
+            0 0 96px rgba(122, 232, 168, 0.14);
+          transform: translateY(-4px) scale(1.015);
+          z-index: 2;
+        }
+
+        #calc-countdown-timer .cd-tile:hover::before {
+          opacity: 0.95;
+          box-shadow: 0 0 20px rgba(232, 201, 122, 0.42);
+        }
+
+        #calc-countdown-timer .countdown-milestone:hover {
+          border-color: rgba(232, 201, 122, 0.42);
+          box-shadow:
+            0 18px 44px rgba(6, 9, 18, 0.52),
+            0 0 0 1px rgba(232, 201, 122, 0.16),
+            0 0 44px rgba(232, 201, 122, 0.28),
+            0 0 80px rgba(122, 232, 168, 0.1);
+          transform: translateY(-3px) scale(1.01);
+        }
+
+        #calc-countdown-timer .cd-tile:hover::after,
+        #calc-countdown-timer .countdown-milestone:hover::before {
+          opacity: 0.95;
+          transform: translateY(0) scale(1);
+        }
       }
 
-      #birthday-dow-explanation summary::-webkit-details-marker {
+      #calc-countdown-timer .cd-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 10px 0 2px;
+      }
+
+      #calc-countdown-timer .cd-actions-label {
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-actions .cd-btn {
+        background: linear-gradient(145deg, rgba(232, 201, 122, 0.2), rgba(232, 201, 122, 0.1));
+        border: 1px solid rgba(232, 201, 122, 0.45);
+        color: #f7e9bf;
+        font-weight: 600;
+        box-shadow:
+          0 6px 16px rgba(232, 201, 122, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      #calc-countdown-timer .cd-actions .cd-btn:hover {
+        background: linear-gradient(145deg, rgba(232, 201, 122, 0.34), rgba(232, 201, 122, 0.18));
+        border-color: rgba(232, 201, 122, 0.7);
+        color: #fff6dd;
+        box-shadow:
+          0 10px 24px rgba(232, 201, 122, 0.22),
+          0 0 28px rgba(232, 201, 122, 0.18);
+      }
+
+      #calc-countdown-timer .cd-copy-msg {
+        color: var(--green);
+        font-size: 12px;
+        font-family: 'DM Mono', 'Consolas', monospace;
+      }
+
+      #calc-countdown-timer .is-hidden {
         display: none;
       }
 
-      #birthday-dow-explanation .birthday-dow-detail-body {
+      #calc-countdown-timer .countdown-expl-heading {
+        text-decoration: none;
+        color: #f2cb66;
+        text-shadow:
+          0 0 10px rgba(232, 201, 122, 0.45),
+          0 0 22px rgba(232, 201, 122, 0.25);
+      }
+
+      .countdown-expl-heading::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      #countdown-explanation {
         display: grid;
         gap: 10px;
-        max-width: 54rem;
-        padding-top: 10px;
       }
 
-      #birthday-dow-explanation ul {
+      #countdown-explanation h2 {
         margin: 0;
-        padding-left: 18px;
+        font-size: 15px;
+        color: #f2cb66;
+        text-shadow:
+          0 0 8px rgba(232, 201, 122, 0.38),
+          0 0 16px rgba(232, 201, 122, 0.22);
       }
 
-      @media (max-width: 1100px) {
-        #calc-birthday-dow .birthday-dow-hero,
-        #calc-birthday-dow .birthday-dow-workspace,
-        #calc-birthday-dow .birthday-dow-next-snapshot {
+      #countdown-explanation p {
+        margin: 0;
+        line-height: 1.45;
+        font-size: 14px;
+      }
+
+      #countdown-explanation ul {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 4px;
+      }
+
+      #countdown-explanation li {
+        line-height: 1.4;
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      #countdown-explanation .countdown-faq-list li {
+        margin-bottom: 1px;
+      }
+
+      @media (max-width: 860px) {
+        body[data-page='calculator'] .layout-main {
           grid-template-columns: 1fr;
         }
 
-        #calc-birthday-dow .birthday-dow-top-form,
-        #calc-birthday-dow .birthday-dow-spotlight {
-          grid-column: 1;
-        }
-
-        #calc-birthday-dow .birthday-dow-top-form,
-        #calc-birthday-dow .birthday-dow-spotlight {
-          min-height: 0;
-        }
-
-        #calc-birthday-dow .birthday-dow-fact {
-          min-height: 0;
-        }
-
-        #calc-birthday-dow .birthday-dow-facts,
-        #calc-birthday-dow .birthday-dow-recurrence,
-        #calc-birthday-dow .birthday-dow-weekend-highlights {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        body[data-page='calculator'] .left-nav {
+          display: none;
         }
       }
 
-      @media (max-width: 760px) {
-        #calc-birthday-dow {
-          padding: 14px 18px 18px;
-          border-radius: 26px;
-        }
-
-        #calc-birthday-dow .birthday-dow-intent-switch,
-        #calc-birthday-dow .birthday-dow-facts,
-        #calc-birthday-dow .birthday-dow-spotlight-meta,
-        #calc-birthday-dow .birthday-dow-recurrence,
-        #calc-birthday-dow .birthday-dow-weekend-highlights,
-        #calc-birthday-dow .birthday-dow-next-stats,
-        #calc-birthday-dow .birthday-dow-input-row-top,
-        #calc-birthday-dow .birthday-dow-year-presets,
-        #calc-birthday-dow .birthday-dow-plan-switch {
+      @media (max-width: 720px) {
+        #calc-countdown-timer .cd-main-cards {
           grid-template-columns: 1fr;
         }
 
-        #calc-birthday-dow .birthday-dow-board-head,
-        #calc-birthday-dow .birthday-dow-planner-head {
+        #calc-countdown-timer .cd-input-card {
+          padding: 20px;
+        }
+
+        #calc-countdown-timer .cd-fallback {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-countdown-timer .cd-cta-row {
           flex-direction: column;
+          flex-wrap: wrap;
+        }
+
+        #calc-countdown-timer #countdown-start,
+        #calc-countdown-timer #countdown-stop {
+          width: 100%;
+        }
+
+        #calc-countdown-timer .cd-countdown-header,
+        #calc-countdown-timer .cd-countdown-footer {
+          padding: 20px;
+        }
+
+        #calc-countdown-timer .cd-countdown-footer {
+          min-height: 50px;
+        }
+
+        #calc-countdown-timer .cd-live {
+          bottom: 2px;
+        }
+
+        #calc-countdown-timer .cd-tiles {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        #calc-countdown-timer .cd-milestones {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        #calc-countdown-timer .cd-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 10px;
           align-items: stretch;
         }
 
-        #calc-birthday-dow .birthday-dow-plan-tab,
-        #calc-birthday-dow .birthday-dow-copy-btn {
+        #calc-countdown-timer .cd-actions-label {
+          margin-bottom: 2px;
+        }
+
+        #calc-countdown-timer .cd-actions .cd-btn {
           width: 100%;
+          min-height: 42px;
           justify-content: center;
+          box-shadow:
+            0 4px 12px rgba(232, 201, 122, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
-        #calc-birthday-dow .birthday-dow-planner {
-          padding: 14px;
-          border-radius: 22px;
-        }
-
-        #calc-birthday-dow .birthday-dow-fact,
-        #calc-birthday-dow .birthday-dow-plan-panel,
-        #calc-birthday-dow .birthday-dow-spotlight,
-        #calc-birthday-dow .birthday-dow-workspace {
-          border-radius: 24px;
+        #calc-countdown-timer .cd-actions .cd-btn:hover {
+          box-shadow:
+            0 6px 16px rgba(232, 201, 122, 0.14),
+            0 0 16px rgba(232, 201, 122, 0.12);
         }
       }
     </style>
@@ -4822,305 +4721,181 @@
     <a class="fin-nav-item" href="/time-and-date/work-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🕒</span>Work Hours Calculator</a><a class="fin-nav-item" href="/time-and-date/overtime-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⌛</span>Overtime Hours Calculator</a>
   </div>
 </div>
-<div class="fin-nav-group" data-fin-subcategory="date-time">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
+<div class="fin-nav-group is-expanded" data-fin-subcategory="date-time">
+  <button type="button" class="fin-nav-toggle" aria-expanded="true">
     <span class="fin-nav-toggle-icon" aria-hidden="true">📅</span>
     <span class="fin-nav-toggle-label">Date & Time</span>
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
+    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
   </div>
 </div>
-<div class="fin-nav-group is-expanded" data-fin-subcategory="age-calculator">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
+<div class="fin-nav-group" data-fin-subcategory="age-calculator">
+  <button type="button" class="fin-nav-toggle" aria-expanded="false">
     <span class="fin-nav-toggle-icon" aria-hidden="true">🎂</span>
     <span class="fin-nav-toggle-label">Age Calculator</span>
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/age-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧬</span>Age Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/birthday-day-of-week/"><span class="fin-nav-item-icon" aria-hidden="true">🎉</span>Birthday Day-of-Week</a>
+    <a class="fin-nav-item" href="/time-and-date/age-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧬</span>Age Calculator</a><a class="fin-nav-item" href="/time-and-date/birthday-day-of-week/"><span class="fin-nav-item-icon" aria-hidden="true">🎉</span>Birthday Day-of-Week</a>
   </div>
 </div></div></div>
         </aside>
         <section class="center-column">
           <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Birthday Day-of-Week Calculator</h1>
+  <h1 id="calculator-title">Countdown Timer</h1>
   <div class="calculator-page-single">
-    <div id="calc-birthday-dow">
-  <div class="birthday-dow-product">
-    <section class="birthday-dow-hero" aria-labelledby="birthday-dow-hero-title">
-      <div class="birthday-dow-hero-copy">
-        <h2 class="birthday-dow-hero-title" id="birthday-dow-hero-title">Birthday planner</h2>
-
-        <div class="birthday-dow-intent-switch" role="group" aria-label="What do you want to do?">
-          <button
-            class="birthday-dow-intent"
-            type="button"
-            data-birthday-intent="born"
-            aria-pressed="true"
-          >
-            <span class="birthday-dow-intent-title">Birth day</span>
-          </button>
-          <button
-            class="birthday-dow-intent"
-            type="button"
-            data-birthday-intent="year"
-            aria-pressed="false"
-          >
-            <span class="birthday-dow-intent-title">Future year</span>
-          </button>
-          <button
-            class="birthday-dow-intent"
-            type="button"
-            data-birthday-intent="weekend"
-            aria-pressed="false"
-          >
-            <span class="birthday-dow-intent-title">Weekend</span>
-          </button>
+    <div id="calc-countdown-timer">
+  <div class="cd-main-cards">
+    <section class="cd-input-card">
+      <div class="cd-input-grid">
+        <div class="cd-fallback">
+          <label class="cd-field-label">
+            Region
+            <select id="countdown-region" aria-label="Region" class="cd-field">
+              <option value="United States" selected>United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </label>
+          <label class="cd-field-label">
+            Event
+            <select id="countdown-region-event" aria-label="Event" class="cd-field">
+              <option value="">Custom event</option>
+            </select>
+          </label>
         </div>
 
-        <div class="birthday-dow-top-form">
-          <div class="birthday-dow-input-row birthday-dow-input-row-top">
-            <label class="birthday-dow-field" for="birthday-dow-dob">
-              <span class="birthday-dow-field-label">Date of birth</span>
-              <input id="birthday-dow-dob" type="date" />
-            </label>
+        <label class="cd-field-label cd-field-full">
+          Event name
+          <input
+            id="countdown-event-name"
+            type="text"
+            maxlength="48"
+            placeholder="e.g. Product launch, Wedding..."
+            autocomplete="off"
+            aria-label="Event name"
+            class="cd-field"
+          />
+        </label>
 
-            <label class="birthday-dow-field" for="birthday-dow-year">
-              <span class="birthday-dow-field-label">Target year</span>
-              <input id="birthday-dow-year" type="number" min="1600" max="2100" step="1" />
-            </label>
-          </div>
+        <div class="cd-fallback" id="countdown-fallback">
+          <label class="cd-field-label">
+            Target date
+            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
+          </label>
+          <label class="cd-field-label">
+            Time
+            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
+          </label>
+        </div>
 
-          <div class="birthday-dow-year-presets" role="group" aria-label="Quick target year">
-            <button
-              class="birthday-dow-year-chip"
-              type="button"
-              data-year-preset="current"
-              aria-pressed="false"
-            >
-              This year
-            </button>
-            <button
-              class="birthday-dow-year-chip"
-              type="button"
-              data-year-preset="next"
-              aria-pressed="false"
-            >
-              Next year
-            </button>
-            <button
-              class="birthday-dow-year-chip"
-              type="button"
-              data-year-preset="plus-5"
-              aria-pressed="false"
-            >
-              +5 years
-            </button>
-          </div>
-
-          <button class="calculator-button birthday-dow-calc-btn" type="button" id="birthday-dow-calculate">
-            Show
-          </button>
-
-          <p class="birthday-dow-form-note">Private in browser.</p>
-          <p class="form-error is-hidden" id="birthday-dow-error"></p>
+        <div class="cd-cta-row">
+          <button class="cd-btn" type="button" id="countdown-start">Start countdown</button>
+          <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-stop">Stop countdown</button>
         </div>
       </div>
-
-      <aside class="birthday-dow-spotlight" aria-live="polite">
-        <p class="birthday-dow-spotlight-kicker" id="birthday-dow-spotlight-kicker">Birth day</p>
-
-        <p class="birthday-dow-spotlight-answer" id="birthday-dow-hero-weekday">--</p>
-        <h3 class="birthday-dow-spotlight-title" id="birthday-dow-spotlight-title">Add your date</h3>
-      </aside>
+      <p class="cd-error is-hidden" id="countdown-error"></p>
     </section>
 
-    <section class="birthday-dow-workspace" aria-labelledby="birthday-dow-workspace-title">
-      <div class="birthday-dow-board">
-        <div class="birthday-dow-board-head">
-          <h3 class="birthday-dow-board-title" id="birthday-dow-workspace-title">Birthday board</h3>
-          <button
-            class="birthday-dow-copy-btn"
-            type="button"
-            id="birthday-dow-copy-summary"
-            disabled
-          >
-            Copy
-          </button>
-        </div>
+    <section class="cd-countdown-card is-hidden" id="countdown-preview-card" data-theme="launch">
+      <header class="cd-countdown-header">
+        <p class="cd-kicker" id="countdown-preview-heading">Counting down to</p>
+        <h3 class="cd-title" id="countdown-preview-title">Your countdown timer</h3>
+      </header>
 
-        <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
-          <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
-            Add your birthday to see the answer.
-          </p>
-
-          <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
-            <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
-
-            <div class="birthday-dow-facts" role="list">
-              <article class="birthday-dow-fact">
-                <p class="birthday-dow-result-label">Born on</p>
-                <p class="birthday-dow-fact-value" id="birthday-dow-birth-weekday">--</p>
-                <p class="birthday-dow-fact-note" id="birthday-dow-birth-note">
-                  Your birth weekday appears here.
-                </p>
-              </article>
-
-              <article class="birthday-dow-fact">
-                <p class="birthday-dow-result-label" id="birthday-dow-target-label">Birthday in ----</p>
-                <p class="birthday-dow-fact-value" id="birthday-dow-target-weekday-card">--</p>
-                <p class="birthday-dow-fact-note" id="birthday-dow-target-note">
-                  Your selected-year weekday appears here.
-                </p>
-              </article>
-
-              <article class="birthday-dow-fact birthday-dow-fact-next">
-                <p class="birthday-dow-result-label">Next birthday</p>
-                <p class="birthday-dow-fact-value" id="birthday-dow-next-weekday">--</p>
-                <p class="birthday-dow-fact-note" id="birthday-dow-next-date">--</p>
-              </article>
-            </div>
-
-            <section class="birthday-dow-planner" aria-labelledby="birthday-dow-planner-title">
-              <div class="birthday-dow-planner-head">
-                <h4 class="birthday-dow-planner-title" id="birthday-dow-planner-title">Planning views</h4>
-                <div class="birthday-dow-plan-switch" role="tablist" aria-label="Birthday planning views">
-                  <button
-                    class="birthday-dow-plan-tab"
-                    type="button"
-                    data-plan-view="next"
-                    aria-pressed="true"
-                  >
-                    Next birthday
-                  </button>
-                  <button
-                    class="birthday-dow-plan-tab"
-                    type="button"
-                    data-plan-view="weekend"
-                    aria-pressed="false"
-                  >
-                    Weekend years
-                  </button>
-                  <button
-                    class="birthday-dow-plan-tab"
-                    type="button"
-                    data-plan-view="timeline"
-                    aria-pressed="false"
-                  >
-                    12-year map
-                  </button>
-                </div>
-              </div>
-
-              <div class="birthday-dow-plan-panel" data-plan-panel="next">
-                <div class="birthday-dow-next-snapshot">
-                  <div class="birthday-dow-next-copy">
-                    <h4 class="birthday-dow-next-title" id="birthday-dow-next-panel-title">Next birthday</h4>
-                    <p class="birthday-dow-next-copy-text" id="birthday-dow-next-panel-copy">
-                      Date, age, and countdown.
-                    </p>
-                  </div>
-
-                  <div class="birthday-dow-next-stats">
-                    <div class="birthday-dow-next-stat">
-                      <span class="birthday-dow-mini-label">Age turning</span>
-                      <strong id="birthday-dow-next-age">--</strong>
-                    </div>
-                    <div class="birthday-dow-next-stat">
-                      <span class="birthday-dow-mini-label">Days away</span>
-                      <strong id="birthday-dow-next-days">--</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="weekend">
-                <div class="birthday-dow-weekend-highlights" id="birthday-dow-weekend-highlights"></div>
-              </div>
-
-              <div class="birthday-dow-plan-panel is-hidden" data-plan-panel="timeline">
-                <div class="birthday-dow-recurrence" id="birthday-dow-recurrence"></div>
-              </div>
-            </section>
-          </div>
-        </div>
-
-        <p class="birthday-dow-copy-feedback is-hidden" id="birthday-dow-copy-feedback"></p>
+      <div class="cd-tiles" id="countdown-preview-grid" aria-live="polite">
+        <div class="cd-tile"><span class="cd-num" id="countdown-days">--</span><span class="cd-unit">Days</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-hours">--</span><span class="cd-unit">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-minutes">--</span><span class="cd-unit">Min</span></div>
+        <div class="cd-tile"><span class="cd-num" id="countdown-seconds">--</span><span class="cd-unit">Sec</span></div>
       </div>
+
+      <p class="cd-expired is-hidden" id="countdown-expired">This moment has arrived.</p>
+
+      <footer class="cd-countdown-footer">
+        <span class="cd-live">
+          <span class="cd-live-dot" aria-hidden="true"></span>
+          <span id="countdown-status">Live updates Every Second</span>
+        </span>
+      </footer>
     </section>
+  </div>
+
+  <section class="cd-milestone-section is-hidden" id="countdown-milestones-wrap">
+    <p class="cd-section-label">Milestones</p>
+    <div class="cd-milestones" id="countdown-milestones"></div>
+  </section>
+
+  <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
+    <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-summary">Copy summary</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-date">Copy date</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-google">Google Calendar</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-add-outlook">Outlook</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-ics">Download .ics</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-generate-share-card">Generate share card</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-download-share-png">Download PNG</button>
+    <button class="cd-btn cd-btn-sm cd-btn-ghost" type="button" id="countdown-copy-share-image">Copy image</button>
+    <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
   </div>
 </div>
 
 
 
-<script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
+  <h3 class="countdown-expl-heading">Explanation</h3>
+    <div id="countdown-explanation">
+  <h2>Why Use This Countdown Timer?</h2>
+  <ul>
+    <li>Shows live time left in days, hours, minutes, and seconds for any future event.</li>
+    <li>Works for birthdays, launches, trips, deadlines, exams, holidays, and milestone dates.</li>
+    <li>Keeps the setup fast while still offering calendar exports and share-ready summaries.</li>
+  </ul>
 
-  <h3>Explanation</h3>
-    <div id="birthday-dow-explanation">
-  <section class="birthday-dow-help-intro">
-    <p class="birthday-dow-help-kicker">Secondary help</p>
-    <h2>Simple birthday answers.</h2>
-    <p>
-      For <span data-birthday-field="dob-label">your birthday date</span>, the birth weekday is
-      <span data-birthday-field="birth-weekday">still waiting</span>. In
-      <span data-birthday-field="target-year">the selected year</span>, it lands on
-      <span data-birthday-field="target-weekday">that year's weekday</span>. The next birthday is
-      <span data-birthday-field="next-birthday">still to be calculated</span>.
-    </p>
-    <p>Open more only if you need it.</p>
-  </section>
+  <h2>How To Use This Countdown Timer</h2>
+  <ul>
+    <li>Choose a region and preset event for a quick start, or type a custom event name.</li>
+    <li>Set the target date and time for the moment you want to count down to.</li>
+    <li>Press <strong>Start countdown</strong> to begin the live timer and milestone tracking.</li>
+    <li>Use the share and calendar actions to copy the summary or export the event after the timer starts.</li>
+  </ul>
 
-  <details class="birthday-dow-detail" open>
-    <summary>What you can do here</summary>
-    <div class="birthday-dow-detail-body">
-      <ul>
-        <li>Use <strong>Know my birth day</strong> when you only want the original weekday.</li>
-        <li>Use <strong>Check a future year</strong> when you need one fast planning answer.</li>
-        <li>Use <strong>Plan a weekend birthday</strong> when the real question is celebration timing.</li>
-      </ul>
-    </div>
-  </details>
+  <h2>What The Countdown Shows</h2>
+  <ul>
+    <li>A live timer that updates every second using your device clock and local time zone.</li>
+    <li>Milestone markers for 30 days, 7 days, 24 hours, and the final hour before the event.</li>
+    <li>A simple event summary plus options for Google Calendar, Outlook, and `.ics` download.</li>
+  </ul>
 
-  <details class="birthday-dow-detail">
-    <summary>How the weekday shifts over time</summary>
-    <div class="birthday-dow-detail-body">
-      <p>
-        Birthdays move because a calendar year is not an exact number of weeks. A normal year adds
-        one leftover day, and a leap year adds an extra day in February. That is why the same date
-        rotates through different weekdays over time.
-      </p>
-    </div>
-  </details>
+  <h2>Frequently Asked Questions</h2>
+  <ul class="countdown-faq-list">
+    <li>
+      <strong>How do I make a countdown timer for a future date?</strong> Enter the event name,
+      choose the future date and time, then start the timer to see the live countdown.
+    </li>
+    <li>
+      <strong>Does the countdown use my local time zone?</strong> Yes. The timer follows your
+      device clock and local time zone.
+    </li>
+    <li>
+      <strong>Can I add the event to Google Calendar or Outlook?</strong> Yes. After starting the
+      timer, you can send the event to Google Calendar, Outlook, or download an `.ics` file.
+    </li>
+    <li>
+      <strong>What happens when the timer reaches zero?</strong> The countdown reaches zero and
+      the page marks the event as live.
+    </li>
+  </ul>
 
-  <details class="birthday-dow-detail">
-    <summary>Leap-day rule</summary>
-    <div class="birthday-dow-detail-body">
-      <p>
-        February 29 birthdays stay on February 29 in leap years. In non-leap preview years and
-        non-leap next-birthday calculations, the planner uses February 28 so the answer stays
-        practical for real-world planning.
-      </p>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>Accuracy and privacy</summary>
-    <div class="birthday-dow-detail-body birthday-dow-faq-stack">
-      <p>
-        <strong>Is the birth weekday accurate?</strong> Yes. The result follows standard Gregorian
-        calendar rules across the supported range.
-      </p>
-      <p>
-        <strong>How far forward can I preview?</strong> The target year range is 1600 to 2100.
-      </p>
-      <p>
-        <strong>Does this store my birthday?</strong> No. Everything runs in the browser and the
-        page does not submit your birthday anywhere.
-      </p>
-    </div>
-  </details>
+  <h2>Important Notes</h2>
+  <ul>
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Accuracy:</strong> The timer depends on your device clock and local time zone, so results are only as accurate as your device settings.</li>
+    <li><strong>Disclaimer:</strong> Use official schedules or calendar confirmations for flights, exams, launches, and other events where exact timing matters.</li>
+    <li><strong>Assumptions:</strong> Region-based presets are convenience examples and may change from year to year, so review the auto-filled date and time before relying on them.</li>
+    <li><strong>Privacy:</strong> The countdown runs in your browser and does not require an account or server-side save to start.</li>
+  </ul>
 </div>
 
   </div>
@@ -5159,6 +4934,6 @@
 
     </div>
     <script type="module" src="/assets/js/core-shell.js"></script>
-    <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js"></script>
   </body>
 </html>

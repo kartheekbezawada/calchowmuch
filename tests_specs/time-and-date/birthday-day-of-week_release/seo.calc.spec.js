@@ -10,7 +10,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the weekday you were born on and see what weekday your birthday falls on in any target year.'
+      'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.'
     );
 
     const h1 = page.locator('h1');
@@ -19,6 +19,9 @@ test.describe('Birthday Day-of-Week SEO', () => {
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.birthday-dow-workspace')).toHaveCount(1);
+    await expect(page.locator('[data-birthday-intent]')).toHaveCount(3);
+    await expect(page.locator('[data-plan-view]')).toHaveCount(3);
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
@@ -41,8 +44,8 @@ test.describe('Birthday Day-of-Week SEO', () => {
     expect(faqNode.mainEntity).toHaveLength(6);
     expect(faqNode.mainEntity[0].name).toBe('Is the birth weekday accurate?');
 
-    await expect(page.locator('#birthday-dow-explanation')).toContainText('12-year recurrence map');
-    await expect(page.locator('#birthday-dow-explanation')).toContainText('weekend radar');
+    await expect(page.locator('#birthday-dow-explanation')).toContainText('What you can do here');
+    await expect(page.locator('#birthday-dow-explanation')).toContainText('celebration timing');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

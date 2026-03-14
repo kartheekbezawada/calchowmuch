@@ -98,7 +98,7 @@ test.describe('Sleep Time Calculator', () => {
     await page.goto('/time-and-date/sleep-time-calculator');
 
     const explanation = page.locator('#sleep-time-explanation');
-    await expect(explanation).toContainText('What is a Sleep Time Calculator?');
+    await expect(explanation).toContainText('When Should You Go to Sleep or Wake Up?');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.sleep-faq-item')).toHaveCount(10);
   });

@@ -848,6 +848,44 @@
       "outputFile": "public/assets/css/route-bundles/percentage-calculators-commission-calculator.4e45cae0.css",
       "criticalOutputFile": "public/assets/css/route-bundles/percentage-calculators-commission-calculator.critical.2942ae79.css"
     },
+    "/time-and-date/birthday-day-of-week/": {
+      "calculatorId": "birthday-day-of-week",
+      "relPath": "time-and-date/birthday-day-of-week",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-birthday-day-of-week.a26ad08d.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-birthday-day-of-week.a26ad08d.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-birthday-day-of-week.critical.f3937ebb.css",
+      "hash": "a26ad08d",
+      "criticalHash": "f3937ebb",
+      "fullBytes": 65590,
+      "criticalBytes": 103181,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/birthday-day-of-week/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-birthday-day-of-week.a26ad08d.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-birthday-day-of-week.critical.f3937ebb.css"
+    },
+    "/time-and-date/countdown-timer/": {
+      "calculatorId": "countdown-timer-generator",
+      "relPath": "time-and-date/countdown-timer",
+      "mode": "inline-critical-deferred-bundle",
+      "href": "/assets/css/route-bundles/time-and-date-countdown-timer.86658127.css",
+      "deferredHref": "/assets/css/route-bundles/time-and-date-countdown-timer.86658127.css",
+      "criticalCss": "/assets/css/route-bundles/time-and-date-countdown-timer.critical.61b53e12.css",
+      "hash": "86658127",
+      "criticalHash": "61b53e12",
+      "fullBytes": 61576,
+      "criticalBytes": 99167,
+      "sources": [
+        "/assets/css/calculator.css",
+        "/assets/css/shared-calculator-ui.css",
+        "/calculators/time-and-date/countdown-timer-generator/calculator.css"
+      ],
+      "outputFile": "public/assets/css/route-bundles/time-and-date-countdown-timer.86658127.css",
+      "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-countdown-timer.critical.61b53e12.css"
+    },
     "/time-and-date/sleep-time-calculator/": {
       "calculatorId": "sleep-time-calculator",
       "relPath": "time-and-date/sleep-time-calculator",

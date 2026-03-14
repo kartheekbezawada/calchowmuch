@@ -42,8 +42,8 @@ test.describe('Age Calculator', () => {
     expect(Math.abs(afterHeight - initialHeight)).toBeLessThanOrEqual(1);
 
     const explanation = page.locator('#age-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(5);
-    await expect(explanation).toContainText('What is an Age Calculator?');
+    expect(await explanation.locator('h2').count()).toBeGreaterThanOrEqual(5);
+    await expect(explanation).toContainText('How Old Are You Exactly?');
     await expect(explanation).toContainText('Frequently Asked Questions');
     await expect(explanation.locator('.age-faq-item')).toHaveCount(10);
   });

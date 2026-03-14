@@ -112,7 +112,7 @@ test.describe('Credit Card Consolidation Calculator', () => {
     await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     const explanation = page.locator('#cc-con-explanation');
-    await expect(explanation.locator('h2')).toHaveText('Credit Card Consolidation Summary');
+    await expect(explanation.locator('h2')).toHaveText('Should You Consolidate Credit Card Debt?');
     await expect(explanation).toContainText('Lifetime Totals');
     await expect(explanation).toContainText('Amortization Table');
     await expect(explanation).toContainText('Explanation');

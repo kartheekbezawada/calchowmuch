@@ -610,6 +610,50 @@
         "deferCoreCss": true
       }
     },
+    "/time-and-date/birthday-day-of-week/": {
+      "route": "/time-and-date/birthday-day-of-week/",
+      "calculatorId": "birthday-day-of-week",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-birthday-day-of-week.critical.f3937ebb.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/birthday-day-of-week/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
+    "/time-and-date/countdown-timer/": {
+      "route": "/time-and-date/countdown-timer/",
+      "calculatorId": "countdown-timer-generator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": "/assets/css/route-bundles/time-and-date-countdown-timer.critical.61b53e12.css"
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/countdown-timer-generator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
     "/time-and-date/sleep-time-calculator/": {
       "route": "/time-and-date/sleep-time-calculator/",
       "calculatorId": "sleep-time-calculator",

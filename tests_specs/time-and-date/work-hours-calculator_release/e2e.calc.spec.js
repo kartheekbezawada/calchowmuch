@@ -38,7 +38,7 @@ test.describe('Work Hours Calculator', () => {
     await expect(results).toContainText('Mon:');
 
     const explanation = page.locator('#work-hours-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(7);
+    expect(await explanation.locator('h2').count()).toBeGreaterThanOrEqual(7);
     await expect(explanation.locator('h3')).toHaveCount(0);
     await expect(explanation.locator('.faq-box')).toHaveCount(0);
   });

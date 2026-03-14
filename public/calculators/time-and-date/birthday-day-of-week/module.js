@@ -1,23 +1,27 @@
 import { setPageMetadata } from '/assets/js/core/ui.js';
-import {
-  buildBirthdayViewModel,
-  formatLongDate,
-} from './engine.js';
+import { buildBirthdayViewModel, formatLongDate } from './engine.js';
 
 const dobInput = document.querySelector('#birthday-dow-dob');
 const yearInput = document.querySelector('#birthday-dow-year');
 const calculateButton = document.querySelector('#birthday-dow-calculate');
 const copySummaryButton = document.querySelector('#birthday-dow-copy-summary');
 const yearPresetButtons = Array.from(document.querySelectorAll('[data-year-preset]'));
+const intentButtons = Array.from(document.querySelectorAll('[data-birthday-intent]'));
+const planTabButtons = Array.from(document.querySelectorAll('[data-plan-view]'));
+const planPanels = Array.from(document.querySelectorAll('[data-plan-panel]'));
 const resultsList = document.querySelector('#birthday-dow-results-list');
 const placeholder = document.querySelector('#birthday-dow-placeholder');
 const errorMessage = document.querySelector('#birthday-dow-error');
 const copyFeedback = document.querySelector('#birthday-dow-copy-feedback');
 
+const spotlightKicker = document.querySelector('#birthday-dow-spotlight-kicker');
+const spotlightTitle = document.querySelector('#birthday-dow-spotlight-title');
+const spotlightText = document.querySelector('#birthday-dow-spotlight-text');
 const heroWeekday = document.querySelector('#birthday-dow-hero-weekday');
 const heroDate = document.querySelector('#birthday-dow-hero-date');
 const heroTargetYear = document.querySelector('#birthday-dow-hero-target-year');
 const heroTargetWeekday = document.querySelector('#birthday-dow-hero-target-weekday');
+
 const birthWeekdayCard = document.querySelector('#birthday-dow-birth-weekday');
 const birthNote = document.querySelector('#birthday-dow-birth-note');
 const targetLabel = document.querySelector('#birthday-dow-target-label');
@@ -27,6 +31,8 @@ const nextWeekday = document.querySelector('#birthday-dow-next-weekday');
 const nextDate = document.querySelector('#birthday-dow-next-date');
 const nextAge = document.querySelector('#birthday-dow-next-age');
 const nextDays = document.querySelector('#birthday-dow-next-days');
+const nextPanelTitle = document.querySelector('#birthday-dow-next-panel-title');
+const nextPanelCopy = document.querySelector('#birthday-dow-next-panel-copy');
 const summaryLine = document.querySelector('#birthday-dow-summary-line');
 const recurrenceWrap = document.querySelector('#birthday-dow-recurrence');
 const weekendWrap = document.querySelector('#birthday-dow-weekend-highlights');
@@ -40,6 +46,14 @@ const explanationFields = {
 };
 
 let activeViewModel = null;
+let activeIntent = 'born';
+let activePlanView = 'next';
+
+const INTENT_TO_PLAN_VIEW = {
+  born: 'next',
+  year: 'timeline',
+  weekend: 'weekend',
+};
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -70,7 +84,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Can I use this to plan future birthday weekends?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The 12-year recurrence map and weekend radar help you spot Friday, Saturday, and Sunday birthday years ahead of time.',
+        text: 'Yes. The 12-year map and weekend view help you spot Friday, Saturday, and Sunday birthday years ahead of time.',
       },
     },
     {
@@ -103,7 +117,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
   description:
-    'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
+    'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -115,7 +129,7 @@ const metadata = {
         name: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
         url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
         description:
-          'Find the weekday you were born on and see what weekday your birthday falls on in any target year.',
+          'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
         inLanguage: 'en',
       },
     ],
@@ -129,6 +143,7 @@ function ensureH1Title() {
   if (!title) {
     return;
   }
+
   if (title.tagName !== 'H1') {
     const h1 = document.createElement('h1');
     h1.id = 'calculator-title';
@@ -136,6 +151,7 @@ function ensureH1Title() {
     title.replaceWith(h1);
     return;
   }
+
   title.textContent = 'Birthday Day-of-Week Calculator';
 }
 
@@ -180,6 +196,32 @@ function formatDayCount(value) {
   return String(value);
 }
 
+function formatShortDate(date) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+  }).format(date);
+}
+
+function formatRemainingDays(daysRemaining) {
+  if (!Number.isInteger(daysRemaining)) {
+    return '';
+  }
+
+  const dayLabel = daysRemaining === 1 ? 'day' : 'days';
+  return `${daysRemaining} ${dayLabel} away`;
+}
+
+function getSoonestWeekendOption(weekendHighlights) {
+  if (!Array.isArray(weekendHighlights)) {
+    return null;
+  }
+
+  return weekendHighlights
+    .filter((item) => item?.entry)
+    .sort((left, right) => left.entry.daysUntil - right.entry.daysUntil)[0] ?? null;
+}
+
 function syncYearPresetButtons() {
   const currentYear = new Date().getFullYear();
   const selectedYear = parseTargetYear(yearInput?.value ?? '');
@@ -196,15 +238,140 @@ function syncYearPresetButtons() {
   });
 }
 
+function syncIntentButtons() {
+  intentButtons.forEach((button) => {
+    const isActive = button.dataset.birthdayIntent === activeIntent;
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function syncPlanTabs() {
+  planTabButtons.forEach((button) => {
+    const isActive = button.dataset.planView === activePlanView;
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  planPanels.forEach((panel) => {
+    const isActive = panel.dataset.planPanel === activePlanView;
+    panel.classList.toggle('is-hidden', !isActive);
+  });
+}
+
+function setActivePlanView(view) {
+  activePlanView = planPanels.some((panel) => panel.dataset.planPanel === view) ? view : 'next';
+  syncPlanTabs();
+}
+
+function getIdleSpotlight() {
+  switch (activeIntent) {
+    case 'year':
+      return {
+        kicker: 'Future year',
+        title: 'Pick a year',
+        text: '',
+        answer: '--',
+        subanswer: 'One answer.',
+      };
+    case 'weekend':
+      return {
+        kicker: 'Weekend',
+        title: 'Find the easy one',
+        text: '',
+        answer: '--',
+        subanswer: 'Best weekend option.',
+      };
+    default:
+      return {
+        kicker: 'Birth day',
+        title: 'Add your date',
+        text: '',
+        answer: '--',
+        subanswer: 'Simple answer.',
+      };
+  }
+}
+
+function getSpotlightContent(viewModel) {
+  if (!viewModel) {
+    return getIdleSpotlight();
+  }
+
+  if (activeIntent === 'year') {
+    return {
+      kicker: 'Future year',
+      title: `In ${viewModel.targetYear}`,
+      text: '',
+      answer: viewModel.targetWeekday,
+      subanswer: formatLongDate(viewModel.targetDate, { includeWeekday: true }),
+    };
+  }
+
+  if (activeIntent === 'weekend') {
+    const weekendOption = getSoonestWeekendOption(viewModel.weekendHighlights);
+    if (!weekendOption?.entry) {
+      return {
+        kicker: 'Weekend',
+        title: 'No match yet',
+        text: '',
+        answer: 'No match',
+        subanswer: 'Open the 12-year map.',
+      };
+    }
+
+    return {
+      kicker: 'Weekend',
+      title: 'Next easy birthday',
+      text: '',
+      answer: weekendOption.weekday,
+      subanswer: `${formatLongDate(weekendOption.entry.date)} in ${weekendOption.entry.year}`,
+    };
+  }
+
+  return {
+    kicker: 'Birth day',
+    title: 'Born on',
+    text: '',
+    answer: viewModel.birthWeekday,
+    subanswer: formatLongDate(viewModel.birthDate),
+  };
+}
+
+function renderSpotlight(viewModel) {
+  const content = getSpotlightContent(viewModel);
+
+  if (spotlightKicker) {
+    spotlightKicker.textContent = content.kicker;
+  }
+  if (spotlightTitle) {
+    spotlightTitle.textContent = content.title;
+  }
+  if (spotlightText) {
+    spotlightText.textContent = content.text;
+  }
+  if (heroWeekday) {
+    heroWeekday.textContent = content.answer;
+  }
+  if (heroTargetWeekday) {
+    heroTargetWeekday.textContent = content.subanswer;
+  }
+
+  if (heroDate) {
+    heroDate.textContent = viewModel ? formatLongDate(viewModel.birthDate) : 'Waiting for a date';
+  }
+  if (heroTargetYear) {
+    heroTargetYear.textContent = viewModel ? String(viewModel.targetYear) : '----';
+  }
+}
+
 function setIdleInsights() {
   if (recurrenceWrap) {
     recurrenceWrap.innerHTML =
-      '<p class="birthday-dow-empty-state">Calculate to reveal a 12-year birthday weekday map.</p>';
+      '<p class="birthday-dow-empty-state">Open the 12-year map after you calculate.</p>';
   }
 
   if (weekendWrap) {
     weekendWrap.innerHTML =
-      '<p class="birthday-dow-empty-state">Calculate to see the next Friday, Saturday, and Sunday birthday opportunities.</p>';
+      '<p class="birthday-dow-empty-state">Open the weekend view after you calculate.</p>';
   }
 }
 
@@ -213,13 +380,13 @@ function setExplanationDefaults() {
     explanationFields.dobLabel.textContent = 'your birthday date';
   }
   if (explanationFields.birthWeekday) {
-    explanationFields.birthWeekday.textContent = 'its birth weekday';
+    explanationFields.birthWeekday.textContent = 'still waiting';
   }
   if (explanationFields.targetYear) {
     explanationFields.targetYear.textContent = 'the selected year';
   }
   if (explanationFields.targetWeekday) {
-    explanationFields.targetWeekday.textContent = 'that year\'s weekday';
+    explanationFields.targetWeekday.textContent = "that year's weekday";
   }
   if (explanationFields.nextBirthday) {
     explanationFields.nextBirthday.textContent = 'still to be calculated';
@@ -227,18 +394,8 @@ function setExplanationDefaults() {
 }
 
 function setIdleSummary() {
-  if (heroWeekday) {
-    heroWeekday.textContent = 'Waiting for a date';
-  }
-  if (heroDate) {
-    heroDate.textContent = 'Choose a date of birth and reveal the weekday pattern.';
-  }
-  if (heroTargetYear) {
-    heroTargetYear.textContent = '----';
-  }
-  if (heroTargetWeekday) {
-    heroTargetWeekday.textContent = '--';
-  }
+  renderSpotlight(null);
+
   if (birthWeekdayCard) {
     birthWeekdayCard.textContent = '--';
   }
@@ -266,6 +423,12 @@ function setIdleSummary() {
   if (nextDays) {
     nextDays.textContent = '--';
   }
+  if (nextPanelTitle) {
+    nextPanelTitle.textContent = 'Next birthday';
+  }
+  if (nextPanelCopy) {
+    nextPanelCopy.textContent = 'Date, age, countdown.';
+  }
   if (summaryLine) {
     summaryLine.textContent = '';
   }
@@ -275,6 +438,7 @@ function clearError() {
   if (!errorMessage) {
     return;
   }
+
   errorMessage.textContent = '';
   errorMessage.classList.add('is-hidden');
 }
@@ -283,6 +447,7 @@ function showCopyFeedback(message) {
   if (!copyFeedback) {
     return;
   }
+
   copyFeedback.textContent = message;
   copyFeedback.classList.remove('is-hidden');
   window.clearTimeout(showCopyFeedback.timeoutId);
@@ -291,8 +456,7 @@ function showCopyFeedback(message) {
   }, 2200);
 }
 
-function showPlaceholder() {
-  clearError();
+function applyIdleState() {
   placeholder?.classList.remove('is-hidden');
   resultsList?.classList.add('is-hidden');
   copySummaryButton?.setAttribute('disabled', 'true');
@@ -302,19 +466,19 @@ function showPlaceholder() {
   setExplanationDefaults();
 }
 
+function showPlaceholder() {
+  clearError();
+  applyIdleState();
+}
+
 function showError(message) {
+  applyIdleState();
   if (!errorMessage) {
     return;
   }
+
   errorMessage.textContent = message;
   errorMessage.classList.remove('is-hidden');
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  copySummaryButton?.setAttribute('disabled', 'true');
-  activeViewModel = null;
-  setIdleSummary();
-  setIdleInsights();
-  setExplanationDefaults();
 }
 
 function renderRecurrence(recurrence, selectedYear) {
@@ -337,8 +501,8 @@ function renderRecurrence(recurrence, selectedYear) {
     const badgeLabel = entry.daysUntil < 0 ? 'Passed' : `Turns ${entry.ageTurning}`;
     item.innerHTML = `
       <p class="birthday-dow-mini-year">${entry.year}</p>
-      <h4 class="birthday-dow-mini-weekday">${entry.weekday}</h4>
-      <p class="birthday-dow-mini-date">${formatLongDate(entry.date)}</p>
+      <h5 class="birthday-dow-mini-weekday">${entry.weekday}</h5>
+      <p class="birthday-dow-mini-date">${formatShortDate(entry.date)}</p>
       <span class="birthday-dow-mini-badge">${badgeLabel}</span>
     `;
     recurrenceWrap.appendChild(item);
@@ -360,13 +524,13 @@ function renderWeekendHighlights(highlights) {
       const dayLabel = item.entry.daysUntil === 1 ? 'day' : 'days';
       card.innerHTML = `
         <p class="birthday-dow-weekend-day">${item.weekday}</p>
-        <h4 class="birthday-dow-weekend-title">${item.entry.year}</h4>
-        <p class="birthday-dow-weekend-copy">${formatLongDate(item.entry.date)}. Turns ${item.entry.ageTurning} in ${item.entry.daysUntil} ${dayLabel}.</p>
+        <h5 class="birthday-dow-weekend-title">${item.entry.year}</h5>
+        <p class="birthday-dow-weekend-copy">${formatShortDate(item.entry.date)}. Turns ${item.entry.ageTurning} in ${item.entry.daysUntil} ${dayLabel}.</p>
       `;
     } else {
       card.innerHTML = `
         <p class="birthday-dow-weekend-day">${item.weekday}</p>
-        <h4 class="birthday-dow-weekend-title">No upcoming match</h4>
+        <h5 class="birthday-dow-weekend-title">No match</h5>
         <p class="birthday-dow-weekend-copy">No ${item.weekday.toLowerCase()} birthday appears in the current 12-year map.</p>
       `;
     }
@@ -399,18 +563,7 @@ function showResults(viewModel) {
   clearError();
   activeViewModel = viewModel;
 
-  if (heroWeekday) {
-    heroWeekday.textContent = viewModel.birthWeekday;
-  }
-  if (heroDate) {
-    heroDate.textContent = `${formatLongDate(viewModel.birthDate)} landed on ${viewModel.birthWeekday}.`;
-  }
-  if (heroTargetYear) {
-    heroTargetYear.textContent = String(viewModel.targetYear);
-  }
-  if (heroTargetWeekday) {
-    heroTargetWeekday.textContent = viewModel.targetWeekday;
-  }
+  renderSpotlight(viewModel);
 
   if (birthWeekdayCard) {
     birthWeekdayCard.textContent = viewModel.birthWeekday;
@@ -438,6 +591,12 @@ function showResults(viewModel) {
   }
   if (nextDays) {
     nextDays.textContent = formatDayCount(viewModel.nextBirthday.daysRemaining);
+  }
+  if (nextPanelTitle) {
+    nextPanelTitle.textContent = `${viewModel.nextBirthday.weekday}, ${formatLongDate(viewModel.nextBirthday.date)}`;
+  }
+  if (nextPanelCopy) {
+    nextPanelCopy.textContent = `${formatLongDate(viewModel.nextBirthday.date)}. Turn ${viewModel.nextBirthday.ageTurning}. ${formatRemainingDays(viewModel.nextBirthday.daysRemaining)}.`;
   }
   if (summaryLine) {
     summaryLine.textContent = viewModel.summary;
@@ -506,34 +665,57 @@ function calculate() {
   showResults(viewModel);
 }
 
+function setActiveIntent(intent, { syncPlan = true } = {}) {
+  activeIntent = Object.prototype.hasOwnProperty.call(INTENT_TO_PLAN_VIEW, intent) ? intent : 'born';
+  syncIntentButtons();
+
+  if (syncPlan) {
+    setActivePlanView(INTENT_TO_PLAN_VIEW[activeIntent]);
+  }
+
+  renderSpotlight(activeViewModel);
+}
+
 const initialYear = new Date().getFullYear();
 if (yearInput) {
   yearInput.value = String(initialYear);
 }
 
+intentButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    setActiveIntent(button.dataset.birthdayIntent ?? 'born');
+  });
+});
+
+planTabButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    setActivePlanView(button.dataset.planView ?? 'next');
+  });
+});
+
 yearPresetButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const currentYear = new Date().getFullYear();
     const preset = button.dataset.yearPreset;
-    const yearMap = {
+    const presetYear = {
       current: currentYear,
       next: currentYear + 1,
       'plus-5': currentYear + 5,
-    };
-    const nextYearValue = yearMap[preset];
-    if (Number.isInteger(nextYearValue) && yearInput) {
-      yearInput.value = String(nextYearValue);
+    }[preset];
+
+    if (yearInput && Number.isInteger(presetYear)) {
+      yearInput.value = String(presetYear);
       syncYearPresetButtons();
     }
   });
 });
 
-calculateButton?.addEventListener('click', calculate);
-copySummaryButton?.addEventListener('click', copySummary);
-
 yearInput?.addEventListener('input', syncYearPresetButtons);
 dobInput?.addEventListener('input', clearError);
 yearInput?.addEventListener('input', clearError);
+calculateButton?.addEventListener('click', calculate);
+copySummaryButton?.addEventListener('click', copySummary);
 
+setActiveIntent(activeIntent);
 syncYearPresetButtons();
 showPlaceholder();

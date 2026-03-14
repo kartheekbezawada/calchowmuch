@@ -112,7 +112,9 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     const explanation = page.locator('#cc-min-explanation');
-    await expect(explanation.locator('h2')).toHaveText('Minimum Payment Payoff Summary');
+    await expect(explanation.locator('h2')).toHaveText(
+      'How Much Do Minimum Credit Card Payments Really Cost?'
+    );
     await expect(explanation).not.toContainText('Scenario Summary');
     await expect(explanation.locator('#cc-min-scenario-table')).toHaveCount(0);
     await expect(explanation).toContainText('Results Table (Yearly Payoff Snapshot)');

@@ -142,7 +142,7 @@
     <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
   <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer-generator/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer Generator</a>
+    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
   </div>
 </div>
 <div class="fin-nav-group" data-fin-subcategory="age-calculator">
@@ -157,32 +157,102 @@
 </div></div></div>
         </aside>
         <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Days Until a Date Calculator</h1>
+          <div class="panel panel-scroll panel-span-all">
+  <div class="du-header-row">
+    <h1 id="calculator-title">Days Until Date Calculator</h1>
+  </div>
   <div id="calc-days-until">
-  <div class="calculator-ui">
-    <p class="helper">Find the number of full days between today and a target date.</p>
 
-    <div class="input-row">
-      <label for="days-until-date">Target date</label>
-      <input id="days-until-date" type="date" />
-    </div>
+  <div class="du-main-cards">
+    <section class="du-input-card">
+      <p class="du-kicker">Date planning made practical</p>
+      <div class="du-mode-tabs" id="days-until-mode-tabs" aria-label="Calculation mode">
+        <button class="du-mode-tab is-selected" type="button" data-mode="today" aria-pressed="true">From today</button>
+        <button class="du-mode-tab" type="button" data-mode="range" aria-pressed="false">Date range</button>
+      </div>
 
-    <button class="calculator-button full-width" type="button" id="days-until-calculate">
-      Calculate
-    </button>
+      <div class="du-grid">
+        <label class="du-field-label du-start-wrap is-hidden" id="days-until-start-wrap">
+          Start date
+          <input id="days-until-start-date" type="date" class="du-field" />
+        </label>
 
-    <div class="result" id="days-until-results" aria-live="polite">
-      <p class="placeholder" id="days-until-placeholder">Select a date and click Calculate.</p>
-      <p class="form-error is-hidden" id="days-until-error"></p>
-      <div class="days-until-results-list is-hidden" id="days-until-results-list"></div>
-      <p class="days-until-clarification is-hidden" id="days-until-clarification"></p>
-    </div>
+        <label class="du-field-label">
+          Target date
+          <input id="days-until-date" type="date" class="du-field" />
+        </label>
+
+        <label class="du-field-label">
+          Quick preset
+          <select id="days-until-preset" class="du-field">
+            <option value="">Choose a preset</option>
+            <option value="next-7">In 7 days</option>
+            <option value="next-30">In 30 days</option>
+            <option value="next-weekend">Next weekend</option>
+            <option value="end-of-month">End of this month</option>
+            <option value="first-next-month">First day of next month</option>
+            <option value="new-year">Next New Year</option>
+          </select>
+        </label>
+
+        <div class="du-toggle-row">
+          <label class="du-toggle">
+            <input id="days-until-include-end" type="checkbox" />
+            <span>Include both dates</span>
+          </label>
+          <label class="du-toggle">
+            <input id="days-until-business-days" type="checkbox" />
+            <span>Weekdays only</span>
+          </label>
+        </div>
+
+        <div class="du-cta-row">
+          <button class="du-btn" type="button" id="days-until-calculate">Calculate</button>
+          <button class="du-btn du-btn-ghost" type="button" id="days-until-reset">Reset</button>
+        </div>
+      </div>
+
+      <p class="du-error is-hidden" id="days-until-error"></p>
+    </section>
+
+    <section class="du-result-card" id="days-until-results" aria-live="polite">
+      <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
+      <div class="du-result-main">
+        <span class="du-result-value" id="days-until-result-value">--</span>
+        <span class="du-result-unit" id="days-until-result-unit">days</span>
+      </div>
+      <p class="du-result-summary" id="days-until-result-summary">Choose a target date to see the date plan.</p>
+      <div class="du-status" id="days-until-status"></div>
+      <div class="du-breakdown" id="days-until-breakdown"></div>
+      <p class="du-clarification" id="days-until-clarification">The result updates using your local date.</p>
+    </section>
+  </div>
+
+  <section class="du-milestones is-hidden" id="days-until-milestones-wrap">
+    <p class="du-section-label">Planning markers</p>
+    <div class="du-milestone-grid" id="days-until-milestones"></div>
+  </section>
+
+  <div class="du-actions is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-heading">
+    <span class="du-actions-label" id="days-until-actions-heading">Share</span>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-generate-share-card">Generate share card</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
+    <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
+    <span class="du-feedback is-hidden" id="days-until-copy-feedback"></span>
   </div>
 </div>
 
 <style>
   @import url('/calculators/time-and-date/days-until-a-date-calculator/calculator.css?v=20260224');
+
+  #calculator-title::after {
+    content: none;
+  }
 </style>
 
 <script
@@ -190,72 +260,48 @@
   src="/calculators/time-and-date/days-until-a-date-calculator/module.js?v=20260224"
 ></script>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
+<div class="du-explanation-shell">
+  <h3 class="days-expl-heading">Explanation</h3>
   <div id="days-until-explanation">
-  <h2>How Many Days Until Your Date?</h2>
-  <p>
-    Use this days-until calculator to count the number of full days between today and a chosen
-    date. It works for future events, deadlines, holidays, and past dates when you want a quick
-    calendar-day count.
-  </p>
-  <p>
-    Choose any date and the calculator will tell you whether that date is still ahead, is today,
-    or already passed.
-  </p>
+  <h2>Why This Date Calculator Helps</h2>
+  <ul>
+    <li>Counts days until a future date, days since a past date, or the gap between two chosen dates.</li>
+    <li>Shows both calendar days and optional weekday-only totals for planning work schedules.</li>
+    <li>Adds practical presets, breakdowns, and sharing tools so users can act on the result quickly.</li>
+  </ul>
 
-  <h2>How This Days Until Calculator Works</h2>
-  <p>
-    The calculator compares today's date with the date you select and counts the number of full
-    calendar days between them. It uses dates only, not hours or minutes, so the result stays
-    consistent regardless of time of day.
-  </p>
+  <h2>How To Use It</h2>
+  <ul>
+    <li>Choose <strong>From today</strong> for a fast countdown or <strong>Date range</strong> to compare any two dates.</li>
+    <li>Pick a preset or enter the target date manually.</li>
+    <li>Turn on <strong>Include both dates</strong> or <strong>Weekdays only</strong> when needed.</li>
+    <li>Press <strong>Calculate</strong> to see the summary, breakdown, planning markers, and share actions.</li>
+  </ul>
 
-  <h2>Examples</h2>
-  <p>If today is 1 March and you select 15 March, the calculator shows 14 days until that date.</p>
-  <p>If you select today's date, the result shows that the date is today.</p>
-  <p>If you select a past date, the calculator shows how many days have passed since that date.</p>
-
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator:</p>
-  <p>Uses your device's local date</p>
-  <p>Counts calendar days only</p>
-  <p>Does not include business days or holidays</p>
-  <p>
-    Results are general date calculations and should not be used for legal or contractual deadlines.
-  </p>
+  <h2>What The Results Show</h2>
+  <ul>
+    <li>A primary result for calendar days or weekday-only days, depending on the selected mode.</li>
+    <li>Helpful breakdowns such as weeks plus days, approximate months or years, and the target weekday.</li>
+    <li>Planning markers and a local time-zone reference so the date context stays clear.</li>
+  </ul>
 
   <h2>Frequently Asked Questions</h2>
+  <ul class="days-until-faq-list">
+    <li><strong>Can I use this for past dates?</strong> Yes. The result automatically switches to days since the selected date.</li>
+    <li><strong>What does weekdays only mean?</strong> It excludes Saturdays and Sundays and gives a workweek-style count.</li>
+    <li><strong>What does include both dates do?</strong> It adds the start date into the count, which is useful for itinerary or schedule planning.</li>
+    <li><strong>Can I share the result?</strong> Yes. You can copy the summary, copy the dates, export to calendar, or create a share card image.</li>
+  </ul>
 
-  <div class="days-until-faq-item">
-    <p><strong>Does the calculator include today in the count?</strong></p>
-    <p>No. It counts the number of full days between today and the selected date.</p>
-  </div>
+  <h2>Quick Notes</h2>
+  <ul>
+    <li>The calculator uses your device's local date and time zone.</li>
+    <li>Weekday mode excludes weekends only and does not apply regional holiday calendars.</li>
+    <li>Calendar exports create an all-day event on the selected target date.</li>
+    <li>Quick presets are static date helpers generated from the current local date.</li>
+  </ul>
+</div>
 
-  <div class="days-until-faq-item">
-    <p><strong>Can I use this for past dates?</strong></p>
-    <p>
-      Yes. If the date is in the past, the calculator shows how many days have passed since then.
-    </p>
-  </div>
-
-  <div class="days-until-faq-item">
-    <p><strong>Does daylight saving time affect the result?</strong></p>
-    <p>No. The calculator works with dates only, not hours.</p>
-  </div>
-
-  <div class="days-until-faq-item">
-    <p><strong>Is this suitable for deadlines or legal use?</strong></p>
-    <p>It's useful for planning, but always verify important deadlines with official sources.</p>
-  </div>
-
-  <h2>Important Notes</h2>
-  <p>This calculator:</p>
-  <p>Uses your local date rather than a server-based clock</p>
-  <p>Counts full calendar days only, not business days or working days</p>
-  <p>Can be used for both future dates and dates that already passed</p>
-  <p>Should not be used as the only source for legal, regulatory, or contractual deadlines</p>
 </div>
 
 </div>

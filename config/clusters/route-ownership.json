@@ -82,7 +82,7 @@
       "generationMode": "cluster"
     },
     {
-      "route": "/time-and-date/countdown-timer-generator/",
+      "route": "/time-and-date/countdown-timer/",
       "calculatorId": "countdown-timer-generator",
       "activeOwnerClusterId": "time-and-date",
       "previousOwnerClusterId": "legacy-shared",
