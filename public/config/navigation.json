@@ -1133,7 +1133,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             },
             {
               "id": "margin-calculator",
@@ -1147,7 +1147,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             },
             {
               "id": "markup-calculator",
@@ -1162,7 +1162,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "single"
+              "paneLayout": "split"
             }
           ]
         }

@@ -1,10 +1,4 @@
 <div id="calc-what-percent-is-x-of-y">
-  <style>
-    .layout-main.layout-main--no-ads {
-      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-    }
-  </style>
-
   <link
     rel="preload"
     href="/calculators/percentage-calculators/percentage-finder-calculator/calculator.css"
@@ -26,28 +20,12 @@
         <div class="input-stack">
           <div class="input-row wpxy-input-row">
             <label for="wpxy-part">Part (X)</label>
-            <input
-              id="wpxy-part"
-              type="number"
-              value="25"
-              min="0"
-              max="1000000000"
-              step="any"
-              inputmode="decimal"
-            />
+            <input id="wpxy-part" type="number" value="25" step="any" />
           </div>
 
           <div class="input-row wpxy-input-row">
             <label for="wpxy-whole">Whole / Total (Y)</label>
-            <input
-              id="wpxy-whole"
-              type="number"
-              value="200"
-              min="0.000001"
-              max="1000000000"
-              step="any"
-              inputmode="decimal"
-            />
+            <input id="wpxy-whole" type="number" value="200" step="any" />
           </div>
         </div>
 

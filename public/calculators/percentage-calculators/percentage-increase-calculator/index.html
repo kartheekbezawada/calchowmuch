@@ -1,10 +1,4 @@
 <div id="calc-percentage-increase">
-  <style>
-    .layout-main.layout-main--no-ads {
-      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-    }
-  </style>
-
   <div id="calc-home-loan">
     <div class="calculator-ui home-loan-ui">
       <section class="inc-hero" aria-label="Percentage increase calculator">
@@ -16,28 +10,12 @@
 
           <div class="input-row">
             <label for="pct-inc-x">Original Value (X)</label>
-            <input
-              id="pct-inc-x"
-              type="number"
-              value="80"
-              min="-1000000000"
-              max="1000000000"
-              step="0.01"
-              inputmode="decimal"
-            />
+            <input id="pct-inc-x" type="number" value="80" step="0.01" inputmode="decimal" />
           </div>
 
           <div class="input-row">
             <label for="pct-inc-y">New Value (Y)</label>
-            <input
-              id="pct-inc-y"
-              type="number"
-              value="100"
-              min="-1000000000"
-              max="1000000000"
-              step="0.01"
-              inputmode="decimal"
-            />
+            <input id="pct-inc-y" type="number" value="100" step="0.01" inputmode="decimal" />
           </div>
 
           <div class="input-row action-row inc-action-row">

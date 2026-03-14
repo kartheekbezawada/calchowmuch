@@ -1,15 +1,16 @@
 /* Percentage Difference calculator route overrides */
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 #calc-percentage-difference #calc-home-loan .mtg-hero {
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
 }
 
 #calc-percentage-difference #calc-home-loan .input-row input[type='number'] {
-  min-height: 48px;
-}
-
-#calc-percentage-difference #calc-home-loan #pct-diff-calc {
-  min-height: 48px;
+  min-height: 46px;
 }
 
 #calc-percentage-difference #calc-home-loan .mtg-form-panel {

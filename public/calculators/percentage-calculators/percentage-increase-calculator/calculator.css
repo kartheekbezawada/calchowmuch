@@ -1,5 +1,10 @@
 /* Percentage Increase calculator route overrides */
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 #calc-percentage-increase #calc-home-loan .inc-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
@@ -36,15 +41,11 @@
 }
 
 #calc-percentage-increase #calc-home-loan .input-row input[type='number'] {
-  min-height: 48px;
+  min-height: 46px;
 }
 
 #calc-percentage-increase #calc-home-loan .inc-action-row {
   margin-top: 0.9rem;
-}
-
-#calc-percentage-increase #calc-home-loan #pct-inc-calc {
-  min-height: 48px;
 }
 
 #calc-percentage-increase #calc-home-loan .inc-action-row .calculator-button {

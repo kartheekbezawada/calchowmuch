@@ -229,8 +229,6 @@ async function runLighthouse({
 }) {
   const profileDir = `/tmp/lighthouse-target-${slugFolder}-${Date.now()}`;
   const chromeFlags = buildChromeFlags(profileDir);
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, '', 'utf8');
   const args = [
     'lighthouse',
     url,
@@ -239,6 +237,8 @@ async function runLighthouse({
     '--chrome-flags',
     chromeFlags,
     '--output=json',
+    '--output-path',
+    outputPath,
     '--quiet',
   ];
 
@@ -258,7 +258,6 @@ async function runLighthouse({
   }
 
   const run = spawnSync('npx', args, {
-    cwd: ROOT,
     env: {
       ...process.env,
       CHROME_PATH: chromePath,
@@ -270,7 +269,6 @@ async function runLighthouse({
 
   if (run.status !== 0) {
     const errorLogPath = outputPath.replace(/\.json$/, '.error.log');
-    await fs.mkdir(path.dirname(errorLogPath), { recursive: true });
     const errorPayload = [
       `command: npx ${args.join(' ')}`,
       `exitCode: ${run.status ?? 'null'}`,
@@ -286,8 +284,7 @@ async function runLighthouse({
     throw new Error(`Lighthouse failed. See ${errorLogPath}`);
   }
 
-  const raw = run.stdout ?? '';
-  await fs.writeFile(outputPath, raw, 'utf8');
+  const raw = await fs.readFile(outputPath, 'utf8');
   return JSON.parse(raw);
 }
 
@@ -458,7 +455,7 @@ async function main() {
         }
         return `http://localhost:${lease.port}`;
       })();
-  const outputDir = path.resolve(ROOT, process.env.LH_OUTPUT_DIR || DEFAULTS.outputDir);
+  const outputDir = process.env.LH_OUTPUT_DIR || DEFAULTS.outputDir;
   const presetInput = process.env.LH_PRESET || getArgValue('--preset') || DEFAULTS.preset;
   const { publicPreset: preset, lighthousePreset, isDesktop } = resolveLighthousePreset(presetInput);
 
@@ -625,7 +622,6 @@ async function main() {
       warnings,
     };
 
-    await fs.mkdir(path.dirname(summaryPath), { recursive: true });
     await fs.writeFile(summaryPath, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
     console.log(`Lighthouse summary written to ${summaryPath}`);
   } finally {

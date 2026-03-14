@@ -1,5 +1,10 @@
 /* Percent to Fraction & Decimal calculator route overrides */
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
@@ -28,8 +33,7 @@
 }
 
 #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-form-panel input[type='text'] {
-  min-height: 48px;
-  height: 48px;
+  min-height: 46px;
 }
 
 #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-action-row {
@@ -37,8 +41,6 @@
 }
 
 #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-action-row .calculator-button {
-  min-height: 48px;
-  height: 48px;
   background: linear-gradient(130deg, #0891b2, #2563eb 76%);
   box-shadow:
     0 12px 26px rgba(8, 145, 178, 0.3),

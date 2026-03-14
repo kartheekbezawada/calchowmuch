@@ -171,8 +171,7 @@
 }
 
 #calc-reverse-percentage #calc-home-loan .input-row input[type='number'] {
-  min-height: 48px;
-  height: 48px;
+  min-height: 46px;
 }
 
 #calc-reverse-percentage #calc-home-loan .mtg-form-panel .helper {

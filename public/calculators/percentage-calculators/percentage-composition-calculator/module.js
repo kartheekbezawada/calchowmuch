@@ -248,7 +248,7 @@ function renderItemRow({ name = '', value = '' } = {}) {
     </div>
     <div class="composition-row-field">
       <label>Value</label>
-      <input type="number" class="composition-row-value" value="${escapeHtml(value)}" min="0" max="1000000000" step="any" inputmode="decimal" />
+      <input type="number" class="composition-row-value" value="${escapeHtml(value)}" min="0" step="any" />
     </div>
     <button type="button" class="calculator-button secondary composition-remove-row">Remove</button>
   `;
