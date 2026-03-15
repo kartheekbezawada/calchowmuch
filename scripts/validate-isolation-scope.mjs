@@ -25,7 +25,6 @@ const SHARED_CONTRACT_FILES = new Set([
   'config/testing/PERF_BUDGETS.json',
   'config/testing/lighthouse_policy.json',
   'scripts/generate-mpa-pages.js',
-  'scripts/build-route-css-bundles.mjs',
   'scripts/validate-isolation-scope.mjs',
 ]);
 

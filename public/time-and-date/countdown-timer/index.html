@@ -3973,10 +3973,6 @@
           0 0 28px rgba(232, 201, 122, 0.2);
       }
 
-      #calculator-title::after {
-        content: none;
-      }
-
       body[data-page='calculator'] .layout-main {
         grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
       }
@@ -4485,7 +4481,7 @@
           0 0 22px rgba(232, 201, 122, 0.25);
       }
 
-      .countdown-expl-heading::after {
+      #calc-countdown-timer .countdown-expl-heading::after {
         content: none !important;
         display: none !important;
       }
@@ -4844,7 +4840,9 @@
 
 
 
-  <h3 class="countdown-expl-heading">Explanation</h3>
+<script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js?v=20260224"></script>
+
+  <h3>Explanation</h3>
     <div id="countdown-explanation">
   <h2>Why Use This Countdown Timer?</h2>
   <ul>
@@ -4934,6 +4932,6 @@
 
     </div>
     <script type="module" src="/assets/js/core-shell.js"></script>
-    <script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js"></script>
+    <script type="module" src="/calculators/time-and-date/countdown-timer-generator/module.js?v=20260224"></script>
   </body>
 </html>

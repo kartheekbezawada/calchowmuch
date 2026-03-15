@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `calc:time-and-date/countdown-timer-generator`
+- Scope: `calc:math/sample-size`
 - HTML files scanned: **1**
-- Calculator pages scanned: **1**
+- Calculator pages scanned: **0**
 - Findings: **0**
 - Status: **PASS**
 

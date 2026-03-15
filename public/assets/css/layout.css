@@ -1042,8 +1042,13 @@ body .site-header .header-search-icon {
     padding: 16px;
   }
 
+  .top-nav {
+    display: none;
+  }
+
   .layout-main {
     grid-template-columns: 1fr;
+    margin-top: 0;
   }
 
   .left-nav {
@@ -1058,6 +1063,21 @@ body .site-header .header-search-icon {
 @media (max-width: 700px) {
   .brand-name {
     font-size: var(--text-base);
+  }
+
+  .brand-badge,
+  .header-center,
+  .header-right {
+    display: none;
+  }
+
+  .site-header-inner {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+  }
+
+  .header-left {
+    min-width: 0;
   }
 
   .header-title {
