@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch</title>
-    <meta name="description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance. Free, no sign-up." />
+    <title>Sample Size | Calculate How Much Online Calculator</title>
+    <meta name="description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
     <link rel="canonical" href="https://calchowmuch.com/math/sample-size/" />
-    <meta property="og:title" content="Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch" />
-    <meta property="og:description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance." />
+    <meta property="og:title" content="Sample Size | Calculate How Much Online Calculator" />
+    <meta property="og:description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/sample-size/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch" />
-    <meta name="twitter:description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance." />
+    <meta name="twitter:title" content="Sample Size | Calculate How Much Online Calculator" />
+    <meta name="twitter:description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
@@ -22,7 +22,10 @@
     <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
     <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
  
-
+    <!-- CHM_ADSENSE_HEAD_START -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
+         crossorigin="anonymous"></script>
+    <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -190,31 +193,33 @@
   <div class="calculator-page-single">
     <div id="calc-sample-size">
   <div class="ss-shell">
-    <section class="ss-card ss-hero-card" aria-label="Academic research overview">
-      <div class="ss-hero-copy">
-        <div class="ss-hero-block">
-          <p class="ss-kicker">Academic research planner</p>
-          <p class="ss-hero-text">
-            Plan sample size for proportion studies or mean-estimate studies with optional
-            finite-population correction, worked examples, and research-ready notes.
+    <section class="ss-card ss-intro-band" aria-label="Research planning overview">
+      <p class="ss-kicker">Research sample planner</p>
+      <div class="ss-intro-layout">
+        <div class="ss-intro-copy">
+          <h2 class="ss-intro-title">Calculate a defensible sample target without reading the whole guide first.</h2>
+          <p class="ss-intro-text">
+            Pick the study type, set confidence and margin, and use the result card to brief your
+            fieldwork plan before you drop into the deeper formulas and examples.
           </p>
         </div>
-        <div class="ss-hero-note">
-          <p class="ss-note-label">Best fit</p>
-          <p class="ss-note-text">
-            Surveys, prevalence estimation, protocol drafting, lab planning, and small-population
-            study design.
-          </p>
-        </div>
+
+        <p class="ss-intro-best">
+          <span class="ss-note-label">Best for</span>
+          <span>Surveys, prevalence checks, and continuous outcomes with a justified sigma.</span>
+        </p>
       </div>
     </section>
 
     <section class="ss-card ss-mode-card" aria-label="Sample size planning mode">
-      <div class="ss-card-head">
-        <p class="ss-section-label">Study target</p>
-        <p class="ss-card-help">
-          Choose whether the study outcome is a proportion or a continuous mean.
-        </p>
+      <div class="ss-mode-bar">
+        <div class="ss-mode-bar-copy">
+          <p class="ss-section-label">Quick start</p>
+          <p class="ss-mode-copy" id="ss-mode-copy">
+            Plan a proportion or prevalence estimate with optional finite-population correction.
+          </p>
+        </div>
+        <p class="ss-preset-state" id="ss-preset-state">Loaded preset: General survey baseline</p>
       </div>
 
       <div
@@ -240,186 +245,147 @@
           Mean study
         </button>
       </div>
-
-      <p class="ss-mode-copy" id="ss-mode-copy">
-        Plan a proportion or prevalence estimate with optional finite-population correction.
-      </p>
     </section>
 
-    <div class="ss-main-grid">
-      <div class="ss-control-stack">
-        <section class="ss-card ss-presets-card" aria-label="Academic presets">
-          <div class="ss-card-head">
-            <p class="ss-section-label">Academic presets</p>
-            <p class="ss-card-help">
-              Load a realistic starting point, then tune the assumptions before you calculate.
-            </p>
-          </div>
+    <div class="ss-workbench-grid">
+      <section class="ss-card ss-input-card" aria-label="Study planning inputs">
+        <div class="ss-card-head">
+          <p class="ss-section-label">Core inputs</p>
+          <p class="ss-card-help">
+            Enter the study assumptions, then calculate. Manual edits do not auto-run and the
+            last valid result stays visible.
+          </p>
+        </div>
 
-          <div class="ss-preset-grid">
-            <button
-              class="ss-preset-card"
-              type="button"
-              data-ss-preset="general-survey"
-              aria-pressed="false"
+        <div class="ss-input-grid">
+          <div class="ss-field-group">
+            <label id="ss-confidence-label">Confidence level</label>
+            <div
+              class="ss-confidence-switch"
+              role="group"
+              aria-labelledby="ss-confidence-label"
+              data-button-group="ss-confidence"
             >
-              <span class="ss-preset-kicker">Survey</span>
-              <strong>General survey baseline</strong>
-              <span>95% confidence, 5% margin, p = 50%.</span>
-            </button>
-            <button
-              class="ss-preset-card"
-              type="button"
-              data-ss-preset="prevalence-study"
-              aria-pressed="false"
-            >
-              <span class="ss-preset-kicker">Prevalence</span>
-              <strong>Prevalence planning</strong>
-              <span>95% confidence, 3% margin, p = 20%.</span>
-            </button>
-            <button
-              class="ss-preset-card"
-              type="button"
-              data-ss-preset="finite-survey"
-              aria-pressed="false"
-            >
-              <span class="ss-preset-kicker">Finite N</span>
-              <strong>Campus population survey</strong>
-              <span>95% confidence, 5% margin, p = 50%, N = 1200.</span>
-            </button>
-            <button
-              class="ss-preset-card"
-              type="button"
-              data-ss-preset="lab-mean"
-              aria-pressed="false"
-            >
-              <span class="ss-preset-kicker">Mean</span>
-              <strong>Laboratory mean estimate</strong>
-              <span>95% confidence, margin = 2, sigma = 8.</span>
-            </button>
-          </div>
-        </section>
-
-        <section class="ss-card ss-input-card" aria-label="Study planning inputs">
-          <div class="ss-card-head">
-            <p class="ss-section-label">Inputs</p>
-            <p class="ss-card-help">
-              The calculator updates only when you click Calculate Sample Size.
-            </p>
-          </div>
-
-          <div class="ss-input-grid">
-            <div class="ss-field-group">
-              <label id="ss-confidence-label">Confidence level</label>
-              <div
-                class="ss-confidence-switch"
-                role="group"
-                aria-labelledby="ss-confidence-label"
-                data-button-group="ss-confidence"
+              <button
+                class="ss-confidence-button"
+                type="button"
+                data-value="1.645"
+                aria-pressed="false"
               >
-                <button
-                  class="ss-confidence-button"
-                  type="button"
-                  data-value="1.645"
-                  aria-pressed="false"
-                >
-                  90%
-                </button>
-                <button
-                  class="ss-confidence-button is-active"
-                  type="button"
-                  data-value="1.96"
-                  aria-pressed="true"
-                >
-                  95%
-                </button>
-                <button
-                  class="ss-confidence-button"
-                  type="button"
-                  data-value="2.576"
-                  aria-pressed="false"
-                >
-                  99%
-                </button>
-              </div>
+                90%
+              </button>
+              <button
+                class="ss-confidence-button is-active"
+                type="button"
+                data-value="1.96"
+                aria-pressed="true"
+              >
+                95%
+              </button>
+              <button
+                class="ss-confidence-button"
+                type="button"
+                data-value="2.576"
+                aria-pressed="false"
+              >
+                99%
+              </button>
             </div>
+            <small class="ss-field-help">Standard z-based planning confidence levels.</small>
+          </div>
 
-            <label class="ss-field" for="ss-margin">
-              <span id="ss-margin-label">Margin of error (%)</span>
+          <label class="ss-field" data-field="margin" for="ss-margin">
+            <span id="ss-margin-label">Margin of error (%)</span>
+            <input
+              id="ss-margin"
+              type="number"
+              value="5"
+              min="0.01"
+              step="0.1"
+              inputmode="decimal"
+              data-maxlength="12"
+              aria-describedby="ss-margin-hint ss-margin-error"
+            />
+            <small id="ss-margin-hint">Percent precision around the estimated proportion.</small>
+            <span class="ss-field-error is-hidden" id="ss-margin-error" role="alert"></span>
+          </label>
+
+          <div class="ss-mode-panel is-active" data-mode-panel="proportion">
+            <label class="ss-field" data-field="proportion" for="ss-proportion">
+              <span>Estimated proportion (%)</span>
               <input
-                id="ss-margin"
+                id="ss-proportion"
                 type="number"
-                value="5"
-                min="0.01"
+                value="50"
+                min="0"
+                max="100"
                 step="0.1"
                 inputmode="decimal"
                 data-maxlength="12"
+                aria-describedby="ss-proportion-hint ss-proportion-error"
               />
-              <small id="ss-margin-hint">
-                Percent precision around the estimated proportion.
+              <small id="ss-proportion-hint">
+                Use 50% when prior evidence is limited and you want the largest safe sample.
               </small>
-            </label>
-
-            <div class="ss-mode-panel is-active" data-mode-panel="proportion">
-              <label class="ss-field" for="ss-proportion">
-                <span>Estimated proportion (%)</span>
-                <input
-                  id="ss-proportion"
-                  type="number"
-                  value="50"
-                  min="0"
-                  max="100"
-                  step="0.1"
-                  inputmode="decimal"
-                  data-maxlength="12"
-                />
-                <small>Use 50% when prior evidence is limited and you want the largest safe sample.</small>
-              </label>
-            </div>
-
-            <div class="ss-mode-panel" data-mode-panel="mean" hidden>
-              <label class="ss-field" for="ss-sigma">
-                <span>Population standard deviation</span>
-                <input
-                  id="ss-sigma"
-                  type="number"
-                  value="8"
-                  min="0.0001"
-                  step="0.1"
-                  inputmode="decimal"
-                  data-maxlength="12"
-                />
-                <small>Use the known or justified sigma for the study outcome.</small>
-              </label>
-            </div>
-
-            <label class="ss-field" for="ss-population">
-              <span>Population size (optional)</span>
-              <input
-                id="ss-population"
-                type="number"
-                value=""
-                min="1"
-                step="1"
-                inputmode="numeric"
-                data-maxlength="12"
-                placeholder="Leave blank for an infinite population"
-              />
-              <small>Add this only when the full study population is small enough to matter.</small>
+              <span class="ss-field-error is-hidden" id="ss-proportion-error" role="alert"></span>
             </label>
           </div>
 
-          <button class="calculator-button ss-calculate-button" type="button" id="ss-calculate">
-            Calculate Sample Size
-          </button>
-          <p class="ss-error is-hidden" id="ss-error" role="alert"></p>
-        </section>
-      </div>
+          <div class="ss-mode-panel" data-mode-panel="mean" hidden>
+            <label class="ss-field" data-field="sigma" for="ss-sigma">
+              <span>Population standard deviation</span>
+              <input
+                id="ss-sigma"
+                type="number"
+                value="8"
+                min="0.0001"
+                step="0.1"
+                inputmode="decimal"
+                data-maxlength="12"
+                aria-describedby="ss-sigma-hint ss-sigma-error"
+              />
+              <small id="ss-sigma-hint">
+                Use a known or pilot-justified sigma in the same units as the outcome.
+              </small>
+              <span class="ss-field-error is-hidden" id="ss-sigma-error" role="alert"></span>
+            </label>
+          </div>
 
-      <div class="ss-results-stack" id="ss-answer-section">
-        <section class="ss-card ss-answer-card" aria-live="polite">
-          <p class="ss-section-label">Required sample</p>
-          <p class="ss-result-kicker" id="ss-result-mode">Not calculated yet</p>
+          <label class="ss-field" data-field="population" for="ss-population">
+            <span>Population size (optional)</span>
+            <input
+              id="ss-population"
+              type="number"
+              value=""
+              min="1"
+              step="1"
+              inputmode="numeric"
+              data-maxlength="12"
+              placeholder="Leave blank for an infinite population"
+              aria-describedby="ss-population-hint ss-population-error"
+            />
+            <small id="ss-population-hint">
+              Add this only when the full study population is known and small enough to matter.
+            </small>
+            <span class="ss-field-error is-hidden" id="ss-population-error" role="alert"></span>
+          </label>
+        </div>
+
+        <button class="calculator-button ss-calculate-button" type="button" id="ss-calculate">
+          Calculate Sample Size
+        </button>
+      </section>
+
+      <div class="ss-results-stack">
+        <section class="ss-card ss-answer-card" id="ss-answer-section" aria-live="polite">
+          <div class="ss-answer-head">
+            <div>
+              <p class="ss-section-label">Required sample</p>
+              <p class="ss-result-kicker" id="ss-result-mode">Proportion study</p>
+            </div>
+            <span class="ss-answer-state" id="ss-answer-state">Solved example loaded</span>
+          </div>
+
           <p class="ss-result-value" id="ss-result-value">--</p>
           <p class="ss-result-summary" id="ss-result-summary">
             Pick a study mode, adjust the assumptions, and click Calculate Sample Size.
@@ -456,49 +422,136 @@
             </article>
           </div>
         </section>
+      </div>
+    </div>
 
-        <section class="ss-card ss-assumptions-card">
-          <div class="ss-card-head">
-            <p class="ss-section-label">Interpretation and assumptions</p>
-          </div>
+    <section class="ss-card ss-presets-card" aria-label="Academic presets">
+      <div class="ss-presets-head">
+        <div class="ss-card-head">
+          <p class="ss-section-label">Quick-load presets</p>
+          <p class="ss-card-help">
+            Start from a realistic study profile, then customise the assumptions before final
+            sign-off.
+          </p>
+        </div>
+        <p class="ss-presets-note">Cards outside the active mode stay available but visually secondary.</p>
+      </div>
+
+      <div class="ss-preset-grid">
+        <button
+          class="ss-preset-card"
+          type="button"
+          data-ss-preset="general-survey"
+          data-ss-preset-mode="proportion"
+          aria-pressed="false"
+        >
+          <span class="ss-preset-kicker">Survey</span>
+          <strong>General survey baseline</strong>
+          <span class="ss-preset-meta">95% confidence · 5% margin · p = 50%</span>
+          <span class="ss-preset-outcome">n 385</span>
+        </button>
+        <button
+          class="ss-preset-card"
+          type="button"
+          data-ss-preset="prevalence-study"
+          data-ss-preset-mode="proportion"
+          aria-pressed="false"
+        >
+          <span class="ss-preset-kicker">Prevalence</span>
+          <strong>Prevalence planning</strong>
+          <span class="ss-preset-meta">95% confidence · 3% margin · p = 20%</span>
+          <span class="ss-preset-outcome">n 683</span>
+        </button>
+        <button
+          class="ss-preset-card"
+          type="button"
+          data-ss-preset="finite-survey"
+          data-ss-preset-mode="proportion"
+          aria-pressed="false"
+        >
+          <span class="ss-preset-kicker">Finite N</span>
+          <strong>Campus population survey</strong>
+          <span class="ss-preset-meta">95% confidence · 5% margin · p = 50% · N = 1200</span>
+          <span class="ss-preset-outcome">n 292</span>
+        </button>
+        <button
+          class="ss-preset-card"
+          type="button"
+          data-ss-preset="lab-mean"
+          data-ss-preset-mode="mean"
+          aria-pressed="false"
+        >
+          <span class="ss-preset-kicker">Mean</span>
+          <strong>Laboratory mean estimate</strong>
+          <span class="ss-preset-meta">95% confidence · margin 2 · sigma 8</span>
+          <span class="ss-preset-outcome">n 62</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="ss-study-grid">
+      <section class="ss-card ss-assumptions-card">
+        <div class="ss-card-head">
+          <p class="ss-section-label">Interpretation</p>
+          <p class="ss-card-help">Protocol-ready wording plus the assumptions behind the estimate.</p>
+        </div>
+        <div class="ss-interpretation-panel">
           <p class="ss-interpretation" id="ss-interpretation">
             The interpretation will appear here after you calculate.
           </p>
-          <ul class="ss-assumption-list" id="ss-assumptions">
-            <li>Choose a study mode that matches the planned outcome.</li>
-            <li>Use realistic assumptions before you commit to a protocol or fieldwork plan.</li>
-            <li>Finite-population correction is optional and only applies when population size is known.</li>
-          </ul>
-        </section>
+        </div>
+        <ul class="ss-assumption-list" id="ss-assumptions">
+          <li class="ss-assumption-item">
+            Choose a study mode that matches the planned outcome.
+          </li>
+          <li class="ss-assumption-item">
+            Use realistic assumptions before you commit to a protocol or fieldwork plan.
+          </li>
+          <li class="ss-assumption-item">
+            Finite-population correction only matters when the total population is bounded.
+          </li>
+        </ul>
+      </section>
 
-        <section class="ss-card ss-steps-card">
-          <div class="ss-card-head">
-            <p class="ss-section-label">Calculation breakdown</p>
-          </div>
-          <ol class="ss-step-list" id="ss-steps">
-            <li class="ss-step-item">Your step-by-step calculation will appear here after you calculate.</li>
-          </ol>
-        </section>
+      <section class="ss-card ss-steps-card">
+        <div class="ss-card-head">
+          <p class="ss-section-label">Calculation breakdown</p>
+          <p class="ss-card-help">Real numbers are substituted into each step for auditability.</p>
+        </div>
+        <ol class="ss-step-list" id="ss-steps">
+          <li class="ss-step-item">
+            Your step-by-step calculation will appear here after you calculate.
+          </li>
+        </ol>
+      </section>
 
-        <section class="ss-card ss-sensitivity-card">
-          <div class="ss-card-head">
-            <p class="ss-section-label">Sensitivity analysis</p>
-            <p class="ss-card-help">See how the required sample changes when the margin of error is adjusted.</p>
-          </div>
+      <section class="ss-card ss-sensitivity-card ss-study-wide">
+        <div class="ss-card-head">
+          <p class="ss-section-label">Sensitivity table</p>
+          <p class="ss-card-help">
+            See how the sample requirement changes as the margin tightens or loosens while the
+            other assumptions stay fixed.
+          </p>
+        </div>
+        <div class="ss-sensitivity-wrap">
           <table class="ss-sensitivity-table">
             <thead>
               <tr>
                 <th id="ss-sensitivity-margin-header">Margin of error</th>
-                <th>Base n₀</th>
+                <th>Base n0</th>
                 <th>Final n</th>
               </tr>
             </thead>
             <tbody id="ss-sensitivity-body">
-              <tr><td colspan="3" class="ss-table-empty">Calculate a result to see the sensitivity table.</td></tr>
+              <tr>
+                <td colspan="3" class="ss-table-empty">
+                  Calculate a result to see the sensitivity table.
+                </td>
+              </tr>
             </tbody>
           </table>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -511,7 +564,7 @@
           "@id": "https://calchowmuch.com/math/sample-size/#webpage",
           "name": "Sample Size Calculator | Proportion and Mean Study Planner",
           "url": "https://calchowmuch.com/math/sample-size/",
-          "description": "Plan sample size for proportions or means with optional finite-population correction, worked examples, and research-ready guidance.",
+          "description": "Plan sample size for proportions or means with optional finite-population correction, worked examples, formulas, and research-ready guidance.",
           "inLanguage": "en"
         },
         {
@@ -521,7 +574,7 @@
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "Web",
           "url": "https://calchowmuch.com/math/sample-size/",
-          "description": "Study-planning calculator for proportion and mean sample size with optional finite-population correction.",
+          "description": "Study-planning calculator for proportion and mean sample size with optional finite-population correction and sensitivity analysis.",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -558,18 +611,18 @@
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "When should I use the proportion mode?",
+              "name": "When should I use the proportion study mode?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Use proportion mode when the study outcome is a percentage, share, prevalence, response rate, or any other proportion."
+                "text": "Use proportion study mode when the outcome is a percentage, response rate, prevalence, share, or any other binary proportion."
               }
             },
             {
               "@type": "Question",
-              "name": "When should I use the mean mode?",
+              "name": "When should I use the mean study mode?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Use mean mode when the study outcome is continuous and you know the population standard deviation in the same units as the margin of error."
+                "text": "Use mean study mode when the outcome is continuous and a justified population standard deviation is available in the same units as the margin of error."
               }
             },
             {
@@ -577,7 +630,7 @@
               "name": "Why does the calculator default to 50% for the estimated proportion?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A 50% proportion gives the largest variance term and therefore the most conservative sample-size estimate when prior evidence is limited."
+                "text": "A 50% planning proportion maximizes p times 1 minus p, which produces the largest conservative sample size when prior evidence is limited."
               }
             },
             {
@@ -585,15 +638,15 @@
               "name": "What does finite-population correction do?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "It reduces the required sample size when the full population is known and relatively small compared with the uncorrected sample-size estimate."
+                "text": "Finite-population correction lowers the required sample when the total population is known and small relative to the uncorrected sample size."
               }
             },
             {
               "@type": "Question",
-              "name": "Do I need a population size for every study?",
+              "name": "Do I always need to enter a population size?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. Leave population size blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula."
+                "text": "No. Leave population size blank for large or effectively infinite populations and the calculator will keep the standard uncorrected sample size."
               }
             },
             {
@@ -601,20 +654,20 @@
               "name": "Why is the final sample size rounded up?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "The final answer is rounded up so the achieved sample is at least as large as the planned requirement."
+                "text": "The final answer is rounded up so the planned study always meets or exceeds the precision target."
               }
             },
             {
               "@type": "Question",
-              "name": "What happens if I tighten the margin of error?",
+              "name": "What happens when I tighten the margin of error?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A tighter margin of error requires a larger sample size because the estimate must be more precise."
+                "text": "A tighter margin of error requires a larger sample because the estimate must be more precise."
               }
             },
             {
               "@type": "Question",
-              "name": "What happens if I increase the confidence level?",
+              "name": "What happens when I increase the confidence level?",
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Higher confidence levels use larger z-values, which increases the required sample size."
@@ -625,7 +678,7 @@
               "name": "Can this replace a full power analysis?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. This calculator is for estimation planning, not for hypothesis-test power analysis or multi-arm experimental design."
+                "text": "No. This calculator supports estimation planning, not hypothesis-test power analysis, multi-arm trial design, or effect-size planning."
               }
             },
             {
@@ -633,7 +686,7 @@
               "name": "Does the calculator store my study inputs?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. The calculation runs in your browser and does not store the values you enter."
+                "text": "No. The calculator runs in the browser and does not save the values you enter."
               }
             }
           ]
@@ -650,61 +703,163 @@
   <h3>Explanation</h3>
     <div id="sample-size-explanation">
   <section class="ss-exp-intro">
-    <h2>Sample Size Planning Practical Guide</h2>
+    <h2>Sample Size Calculator Complete Practical Guide</h2>
     <p>
-      Use this calculator to plan a study sample for proportions or means, review finite-population
-      correction when the research population is known, and document the assumptions behind the
-      final target.
+      This page helps you justify how many responses or observations you need before data
+      collection begins. It combines the calculator, formulas, scenario comparisons, and protocol
+      language in one place so the final sample target is easier to defend in coursework, research
+      proposals, and stakeholder reviews.
     </p>
   </section>
 
   <section class="ss-exp-block">
     <h3>How to Guide</h3>
     <ol class="ss-guide-list">
-      <li>Choose <strong>Proportion study</strong> for percentages, prevalence, response rates, or shares.</li>
-      <li>Choose <strong>Mean study</strong> for continuous outcomes when the population standard deviation is known.</li>
-      <li>Select the confidence level, enter the margin of error, and add the study-specific input for the active mode.</li>
-      <li>Add population size only when the full research population is known and not very large.</li>
-      <li>Click <strong>Calculate Sample Size</strong> to review the required sample, assumptions, and step-by-step derivation.</li>
-      <li>Review the <strong>sensitivity table</strong> to see how the sample changes as the margin of error varies.</li>
+      <li>Choose <strong>Proportion study</strong> for percentages, prevalence, response rates, and other shares.</li>
+      <li>Choose <strong>Mean study</strong> for continuous outcomes when you can justify a population standard deviation.</li>
+      <li>Pick the confidence level and enter the margin of error that matches the precision you need.</li>
+      <li>Enter the mode-specific planning input: estimated proportion for proportion studies or sigma for mean studies.</li>
+      <li>Add a population size only when the full population is known and small enough for finite-population correction to matter.</li>
+      <li>Click <strong>Calculate Sample Size</strong> and review the required sample, interpretation paragraph, assumptions, and derivation steps.</li>
+      <li>Use the sensitivity table to judge whether a slightly looser or tighter margin is realistic for time, budget, and recruitment constraints.</li>
     </ol>
+
+    <div class="ss-exp-table-wrap">
+      <table class="ss-exp-table">
+        <thead>
+          <tr>
+            <th>Decision</th>
+            <th>Choose</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Outcome is a percentage, rate, or share</td>
+            <td>Proportion mode</td>
+            <td>Uses the variance term p(1 - p).</td>
+          </tr>
+          <tr>
+            <td>Outcome is a continuous measurement</td>
+            <td>Mean mode</td>
+            <td>Uses the known or defensible sigma.</td>
+          </tr>
+          <tr>
+            <td>Population is small and known</td>
+            <td>Enter population size</td>
+            <td>Finite-population correction can lower the required n.</td>
+          </tr>
+          <tr>
+            <td>No prior estimate of p</td>
+            <td>Use p = 50%</td>
+            <td>Produces the most conservative sample size.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="ss-exp-block">
-    <h3>All Formulas Used</h3>
-    <h4>Proportion mode (base sample)</h4>
-    <p>n&#8320; = z&sup2; &times; p &times; (1 &minus; p) &frasl; E&sup2;</p>
-    <p>Where <strong>z</strong> is the z-score for the chosen confidence level, <strong>p</strong> is the estimated proportion, and <strong>E</strong> is the margin of error as a decimal.</p>
+    <h3>All Formulas Used on This Page</h3>
 
-    <h4>Mean mode (base sample)</h4>
-    <p>n&#8320; = z&sup2; &times; &sigma;&sup2; &frasl; E&sup2;</p>
-    <p>Where <strong>&sigma;</strong> is the population standard deviation and <strong>E</strong> is the margin of error in the same units.</p>
+    <h4>Proportion sample size for an effectively infinite population</h4>
+    <p><strong>n0 = z^2 x p x (1 - p) / E^2</strong></p>
+    <p>
+      Use this when the study outcome is a percentage or prevalence and the total population is
+      large enough that finite-population correction is not needed.
+    </p>
+    <div class="ss-exp-table-wrap">
+      <table class="ss-exp-table">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>z</td>
+            <td>Z-score for the chosen confidence level: 1.645, 1.960, or 2.576.</td>
+          </tr>
+          <tr>
+            <td>p</td>
+            <td>Estimated proportion as a decimal.</td>
+          </tr>
+          <tr>
+            <td>E</td>
+            <td>Margin of error as a decimal.</td>
+          </tr>
+          <tr>
+            <td>n0</td>
+            <td>Base sample size before finite-population correction.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Mean sample size for an effectively infinite population</h4>
+    <p><strong>n0 = (z x sigma / E)^2</strong></p>
+    <p>
+      Use this when the outcome is continuous and the standard deviation is known or supported by
+      pilot data, prior studies, or domain evidence.
+    </p>
+    <div class="ss-exp-table-wrap">
+      <table class="ss-exp-table">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>z</td>
+            <td>Z-score for the chosen confidence level.</td>
+          </tr>
+          <tr>
+            <td>sigma</td>
+            <td>Population standard deviation in the same units as the outcome.</td>
+          </tr>
+          <tr>
+            <td>E</td>
+            <td>Margin of error in the same units as sigma.</td>
+          </tr>
+          <tr>
+            <td>n0</td>
+            <td>Base sample size before any correction for a finite cohort.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h4>Finite-population correction</h4>
-    <p>n = n&#8320; &frasl; (1 + (n&#8320; &minus; 1) &frasl; N)</p>
-    <p>Applied when the population size <strong>N</strong> is known. Reduces the required sample when N is small relative to n&#8320;.</p>
+    <p><strong>n = n0 / (1 + (n0 - 1) / N)</strong></p>
+    <p>
+      Apply this only when the full population size <strong>N</strong> is known and the planned
+      sample would otherwise represent a meaningful share of that population.
+    </p>
   </section>
 
   <section class="ss-exp-block">
-    <h3>What Does the Sample Size Calculator Tell You?</h3>
+    <h3>What Does the Sample Size Calculator Tell Me?</h3>
     <p>
-      The calculator answers one question: <strong>how many observations do you need</strong> so that
-      the result falls within a stated margin of error at a given confidence level?
+      The calculator tells you how many observations you need so the final estimate lands within a
+      chosen margin of error at a chosen confidence level. That planning target is what you use to
+      size recruitment, fieldwork, incentives, and data-collection effort.
     </p>
     <p>
-      A larger sample narrows the margin of error, which means the estimate is closer to the true
-      population value. A smaller sample saves resources but widens the margin, leaving more
-      uncertainty in the final number.
+      Bigger samples increase precision because the margin of error shrinks. Higher confidence also
+      increases the sample because the interval must be wide enough to cover the true population
+      value more often.
     </p>
     <p>
-      The trade-off between sample size, precision, and confidence is governed entirely by the
-      formulas above. This calculator automates that trade-off so you can plan fieldwork, justify a
-      budget, or draft a protocol with a defensible sample target.
+      The page also shows the assumptions behind the number. That matters because a sample-size
+      estimate is only defensible when the mode, variance assumption, and population logic all fit
+      the study design.
     </p>
     <p>
-      The sensitivity table adds one more dimension: it shows what happens to the sample requirement
-      when the margin of error shifts up or down. This helps you negotiate realistic targets with
-      stakeholders or supervisors without re-running the calculator manually for every scenario.
+      Finally, the sensitivity table helps you negotiate tradeoffs. It shows how the requirement
+      shifts when you tighten or relax the margin of error while everything else stays fixed.
     </p>
   </section>
 
@@ -712,113 +867,141 @@
     <h3>Worked Examples</h3>
     <div class="ss-example-grid">
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 1</p>
-        <p><strong>General survey baseline.</strong> 95&percnt; confidence, 5&percnt; margin, p&nbsp;=&nbsp;50&percnt;.</p>
-        <p>n&#8320;&nbsp;=&nbsp;1.96&sup2;&nbsp;&times;&nbsp;0.5&nbsp;&times;&nbsp;0.5&nbsp;&frasl;&nbsp;0.05&sup2;&nbsp;=&nbsp;384.16 &rarr; <strong>385</strong></p>
+        <p class="ss-example-label">Worked example 1</p>
+        <p><strong>General survey baseline.</strong> Use 95% confidence, a 5% margin, and p = 50%.</p>
+        <p>The base formula gives n0 = 384.16, which rounds up to <strong>385</strong> responses.</p>
       </article>
 
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 2</p>
-        <p><strong>Tighter margin.</strong> 95&percnt; confidence, 4&percnt; margin, p&nbsp;=&nbsp;50&percnt;.</p>
-        <p>n&#8320;&nbsp;=&nbsp;1.96&sup2;&nbsp;&times;&nbsp;0.25&nbsp;&frasl;&nbsp;0.04&sup2;&nbsp;=&nbsp;600.25 &rarr; <strong>601</strong></p>
+        <p class="ss-example-label">Worked example 2</p>
+        <p><strong>Conservative p = 50% planning.</strong> Tighten the margin to 4% while keeping 95% confidence.</p>
+        <p>The sample rises to <strong>601</strong>, showing how fast precision increases the recruitment burden.</p>
       </article>
 
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 3</p>
-        <p><strong>Finite population.</strong> Same as Example 1 with N&nbsp;=&nbsp;1,200.</p>
-        <p>n&nbsp;=&nbsp;384.16&nbsp;&frasl;&nbsp;(1&nbsp;+&nbsp;383.16&nbsp;&frasl;&nbsp;1200)&nbsp;=&nbsp;291.2 &rarr; <strong>292</strong></p>
+        <p class="ss-example-label">Worked example 3</p>
+        <p><strong>Finite-population survey.</strong> A campus survey uses 95% confidence, a 5% margin, p = 50%, and N = 1200.</p>
+        <p>The uncorrected n0 is 384.16, but finite-population correction lowers the final target to <strong>292</strong>.</p>
       </article>
 
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 4</p>
-        <p><strong>Prevalence study.</strong> 95&percnt; confidence, 3&percnt; margin, p&nbsp;=&nbsp;20&percnt;.</p>
-        <p>n&#8320;&nbsp;=&nbsp;1.96&sup2;&nbsp;&times;&nbsp;0.2&nbsp;&times;&nbsp;0.8&nbsp;&frasl;&nbsp;0.03&sup2;&nbsp;=&nbsp;682.95 &rarr; <strong>683</strong></p>
+        <p class="ss-example-label">Worked example 4</p>
+        <p><strong>Prevalence planning.</strong> Assume 20% prevalence and a 3% margin at 95% confidence.</p>
+        <p>The study needs <strong>683</strong> observations because tighter precision still dominates even with a lower prevalence.</p>
       </article>
 
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 5</p>
-        <p><strong>Lab mean study.</strong> 95&percnt; confidence, &sigma;&nbsp;=&nbsp;8, margin&nbsp;=&nbsp;2.</p>
-        <p>n&#8320;&nbsp;=&nbsp;1.96&sup2;&nbsp;&times;&nbsp;64&nbsp;&frasl;&nbsp;4&nbsp;=&nbsp;61.47 &rarr; <strong>62</strong></p>
+        <p class="ss-example-label">Worked example 5</p>
+        <p><strong>Mean-estimate laboratory study.</strong> Use mean mode with 95% confidence, sigma = 8, and margin = 2 units.</p>
+        <p>The base calculation gives n0 = 61.47, so the study should plan for <strong>62</strong> observations.</p>
       </article>
 
       <article class="ss-example-card">
-        <p class="ss-example-label">Example 6</p>
-        <p><strong>Small cohort mean.</strong> Same as Example 5 with N&nbsp;=&nbsp;180.</p>
-        <p>n&nbsp;=&nbsp;61.47&nbsp;&frasl;&nbsp;(1&nbsp;+&nbsp;60.47&nbsp;&frasl;&nbsp;180)&nbsp;=&nbsp;46.0 &rarr; <strong>46</strong></p>
+        <p class="ss-example-label">Worked example 6</p>
+        <p><strong>Small-cohort mean estimate.</strong> Keep the same mean-study assumptions and add N = 180.</p>
+        <p>Finite correction lowers the sample target to <strong>47</strong>, which is more realistic for a bounded cohort.</p>
       </article>
     </div>
   </section>
 
   <section class="ss-exp-block">
-    <h3>Scenario Analysis — How Inputs Affect Sample Size</h3>
-    <h4>Confidence level comparison (proportion, p = 50%, E = 5%)</h4>
-    <p>90% &rarr; 271 &nbsp;|&nbsp; 95% &rarr; 385 &nbsp;|&nbsp; 99% &rarr; 664</p>
-    <p>Higher confidence requires a wider z-score, which increases the sample.</p>
+    <h3>Scenario Analysis</h3>
+    <div class="ss-scenario-grid">
+      <article class="ss-scenario-card">
+        <h4>Confidence level comparison</h4>
+        <p>Proportion study with p = 50% and a 5% margin:</p>
+        <p><strong>90%</strong> -> 271 | <strong>95%</strong> -> 385 | <strong>99%</strong> -> 664</p>
+        <p>Higher confidence raises z, which pushes the sample requirement upward.</p>
+      </article>
 
-    <h4>Margin of error comparison (proportion, p = 50%, 95% confidence)</h4>
-    <p>1% &rarr; 9,604 &nbsp;|&nbsp; 3% &rarr; 1,068 &nbsp;|&nbsp; 5% &rarr; 385 &nbsp;|&nbsp; 10% &rarr; 97</p>
-    <p>Halving the margin roughly quadruples the required sample.</p>
+      <article class="ss-scenario-card">
+        <h4>Margin comparison</h4>
+        <p>Proportion study with p = 50% at 95% confidence:</p>
+        <p><strong>3%</strong> -> 1068 | <strong>5%</strong> -> 385 | <strong>7%</strong> -> 196</p>
+        <p>Tightening the margin is usually the fastest way to increase recruitment pressure.</p>
+      </article>
 
-    <h4>Population size effect (proportion, p = 50%, 95% confidence, 5% margin)</h4>
-    <p>N = 500 &rarr; 218 &nbsp;|&nbsp; N = 1,200 &rarr; 292 &nbsp;|&nbsp; N = 10,000 &rarr; 370 &nbsp;|&nbsp; Infinite &rarr; 385</p>
-    <p>Finite correction becomes negligible when the population exceeds about 20&times; the base sample.</p>
+      <article class="ss-scenario-card">
+        <h4>Finite-population impact</h4>
+        <p>When the population is only 1200, the 95% / 5% / 50% survey target falls from 385 to 292.</p>
+        <p>Correction matters most when the planned sample is a meaningful fraction of the total pool.</p>
+      </article>
+    </div>
+  </section>
 
-    <h4>Estimated proportion effect (95% confidence, 5% margin)</h4>
-    <p>p = 10% &rarr; 139 &nbsp;|&nbsp; p = 30% &rarr; 323 &nbsp;|&nbsp; p = 50% &rarr; 385</p>
-    <p>p = 50% is the worst-case because variance p(1&minus;p) peaks at 0.25.</p>
+  <section class="ss-exp-block">
+    <h3>Visual Reference</h3>
+    <div class="ss-visual-grid">
+      <article class="ss-visual-card">
+        <h4>Mode-choice reference</h4>
+        <ul class="ss-notes-list">
+          <li>Use <strong>Proportion study</strong> for yes/no outcomes, rates, and prevalence.</li>
+          <li>Use <strong>Mean study</strong> for time, weight, score, concentration, or any continuous measurement.</li>
+        </ul>
+      </article>
+
+      <article class="ss-visual-card">
+        <h4>Parameter impact summary</h4>
+        <ul class="ss-notes-list">
+          <li>Higher confidence -> larger required sample.</li>
+          <li>Smaller margin of error -> much larger required sample.</li>
+          <li>Using p = 50% -> largest conservative proportion sample.</li>
+        </ul>
+      </article>
+
+      <article class="ss-visual-card">
+        <h4>Finite-population decision aid</h4>
+        <ul class="ss-notes-list">
+          <li>Leave population blank for large populations.</li>
+          <li>Enter population when the full cohort is known and limited.</li>
+          <li>If corrected n is much lower than n0, recruitment can be scaled down safely.</li>
+        </ul>
+      </article>
+    </div>
   </section>
 
   <section class="ss-exp-block">
     <h3>FAQ</h3>
     <div class="ss-faq-grid">
       <article class="ss-faq-card">
-        <h4>When should I use the proportion mode?</h4>
-        <p>Use proportion mode when the study outcome is a percentage, prevalence, response rate, or any other proportion.</p>
+        <h4>When should I use the proportion study mode?</h4>
+        <p>Use proportion study mode when the outcome is a percentage, response rate, prevalence, share, or other binary proportion.</p>
       </article>
-
       <article class="ss-faq-card">
-        <h4>When should I use the mean mode?</h4>
-        <p>Use mean mode when the study outcome is continuous and you know the population standard deviation in the same units as the margin of error.</p>
+        <h4>When should I use the mean study mode?</h4>
+        <p>Use mean study mode when the outcome is continuous and the standard deviation is known or can be justified from prior evidence.</p>
       </article>
-
       <article class="ss-faq-card">
         <h4>Why does the calculator default to 50% for the estimated proportion?</h4>
-        <p>A 50% proportion gives the largest variance term and therefore the most conservative sample-size estimate when prior evidence is limited.</p>
+        <p>A 50% planning proportion maximizes the variance term and therefore produces the most conservative sample-size estimate.</p>
       </article>
-
       <article class="ss-faq-card">
         <h4>What does finite-population correction do?</h4>
-        <p>It reduces the required sample size when the full population is known and relatively small compared with the uncorrected sample-size estimate.</p>
+        <p>It reduces the sample requirement when the total population is known and the uncorrected sample would otherwise cover a large share of that population.</p>
       </article>
-
       <article class="ss-faq-card">
-        <h4>Do I need a population size for every study?</h4>
-        <p>No. Leave population size blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula.</p>
+        <h4>Do I always need to enter a population size?</h4>
+        <p>No. Leave it blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula.</p>
       </article>
-
       <article class="ss-faq-card">
         <h4>Why is the final sample size rounded up?</h4>
-        <p>The final answer is rounded up so the achieved sample is at least as large as the planned requirement.</p>
+        <p>Rounding up ensures the planned study always meets or exceeds the requested level of precision.</p>
       </article>
-
       <article class="ss-faq-card">
-        <h4>What happens if I tighten the margin of error?</h4>
-        <p>A tighter margin of error requires a larger sample size because the estimate must be more precise.</p>
+        <h4>What happens when I tighten the margin of error?</h4>
+        <p>The sample requirement increases, often sharply, because tighter precision is more demanding.</p>
       </article>
-
       <article class="ss-faq-card">
-        <h4>What happens if I increase the confidence level?</h4>
-        <p>Higher confidence levels use larger z-values, which increases the required sample size.</p>
+        <h4>What happens when I increase the confidence level?</h4>
+        <p>The z-score increases, which pushes the required sample size higher.</p>
       </article>
-
       <article class="ss-faq-card">
         <h4>Can this replace a full power analysis?</h4>
-        <p>No. This calculator is for estimation planning, not for hypothesis-test power analysis or multi-arm experimental design.</p>
+        <p>No. This calculator supports estimation planning and does not replace power calculations for effect detection or experimental design.</p>
       </article>
-
       <article class="ss-faq-card">
         <h4>Does the calculator store my study inputs?</h4>
-        <p>No. The calculation runs in your browser and does not store the values you enter.</p>
+        <p>No. The calculation runs in your browser and does not save the values you enter.</p>
       </article>
     </div>
   </section>
@@ -828,11 +1011,11 @@
     <ul class="ss-notes-list">
       <li><strong>Last updated:</strong> March 2026.</li>
       <li><strong>Accuracy:</strong> The calculator uses standard z-based planning formulas for proportions and means.</li>
-      <li><strong>Disclaimer:</strong> These results help with estimation planning but do not replace protocol review, institutional guidance, or full power analysis.</li>
+      <li><strong>Disclaimer:</strong> The output supports estimation planning but does not replace institutional guidance, protocol review, or a full power analysis.</li>
       <li><strong>Assumptions:</strong> The formulas assume simple random sampling, independent observations, and a justified standard deviation for mean studies.</li>
-      <li><strong>Privacy:</strong> The calculation runs in your browser and does not save your study inputs.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
       <li>Use p = 50% when prior evidence is uncertain and you want the largest conservative proportion estimate.</li>
-      <li>Finite-population correction matters most when the study sample would otherwise cover a meaningful share of the total population.</li>
+      <li>Finite-population correction matters most when the target sample would cover a meaningful share of the total population.</li>
     </ul>
   </section>
 </div>
@@ -840,7 +1023,22 @@
   </div>
 </div>
         </section>
-
+        <section class="ads-column" aria-label="Ad placeholders">
+          <div class="ad-panel">
+            <!-- CHM_AD_SLOT_START -->
+            <!-- Right_Pane_Responsive -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1063975431106361"
+                 data-ad-slot="3901083802"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <!-- CHM_AD_SLOT_END -->
+          </div>
+        </section>
       </main>
       <footer class="site-footer">
   <a href="/privacy/">Privacy</a>

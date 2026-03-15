@@ -1,16 +1,18 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Sample Size Calculator SEO', () => {
-  test('SAMPLE-SIZE-SEO-1: metadata, single-pane layout, FAQ schema, and explanation contract', async ({
+  test('SAMPLE-SIZE-SEO-1: metadata, schema, and explanation contract are present', async ({
     page,
   }) => {
     await page.goto('/math/sample-size/');
 
-    await expect(page).toHaveTitle('Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch');
+    await expect(page).toHaveTitle(
+      'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch'
+    );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance. Free, no sign-up.'
+      'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.'
     );
 
     const h1 = page.locator('h1');
@@ -24,15 +26,26 @@ test.describe('Sample Size Calculator SEO', () => {
     await expect(canonical).toHaveCount(1);
     await expect(canonical).toHaveAttribute('href', 'https://calchowmuch.com/math/sample-size/');
 
-    await expect(page.locator('#sample-size-explanation h2')).toHaveText(
-      'Sample Size Planning Practical Guide'
-    );
-    await expect(page.locator('#sample-size-explanation')).toContainText('How to Guide');
-    await expect(page.locator('#sample-size-explanation')).toContainText('FAQ');
-    await expect(page.locator('#sample-size-explanation')).toContainText('Important Notes');
-    await expect(page.locator('#sample-size-explanation')).toContainText('Last updated: March 2026.');
-    await expect(page.locator('#sample-size-explanation .ss-example-card')).toHaveCount(6);
-    await expect(page.locator('#sample-size-explanation .ss-faq-card')).toHaveCount(10);
+    const explanation = page.locator('#sample-size-explanation');
+    await expect(explanation.locator('h2')).toHaveText('Sample Size Calculator Complete Practical Guide');
+
+    const headingTexts = await explanation.locator('h2, h3').allTextContents();
+    expect(headingTexts).toEqual([
+      'Sample Size Calculator Complete Practical Guide',
+      'How to Guide',
+      'All Formulas Used on This Page',
+      'What Does the Sample Size Calculator Tell Me?',
+      'Worked Examples',
+      'Scenario Analysis',
+      'Visual Reference',
+      'FAQ',
+      'Important Notes',
+    ]);
+
+    await expect(explanation).toContainText('Last updated: March 2026.');
+    await expect(explanation.locator('.ss-example-card')).toHaveCount(6);
+    await expect(explanation.locator('.ss-faq-card')).toHaveCount(10);
+    await expect(explanation.locator('.ss-visual-card')).toHaveCount(3);
 
     const structuredDataScript = page.locator('script[data-calculator-ld]').first();
     await expect(structuredDataScript).toHaveCount(1);
@@ -46,7 +59,7 @@ test.describe('Sample Size Calculator SEO', () => {
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(faqNode.mainEntity).toHaveLength(10);
-    expect(faqNode.mainEntity[0].name).toBe('When should I use the proportion mode?');
+    expect(faqNode.mainEntity[0].name).toBe('When should I use the proportion study mode?');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

@@ -11,7 +11,7 @@ import {
 const metadata = {
   title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
   description:
-    'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance. Free, no sign-up.',
+    'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
   canonical: 'https://calchowmuch.com/math/sample-size/',
 };
 
@@ -32,6 +32,7 @@ const presetButtons = Array.from(document.querySelectorAll('[data-ss-preset]'));
 const modePanels = Array.from(document.querySelectorAll('[data-mode-panel]'));
 
 const modeCopy = document.querySelector('#ss-mode-copy');
+const presetState = document.querySelector('#ss-preset-state');
 const marginLabel = document.querySelector('#ss-margin-label');
 const marginHint = document.querySelector('#ss-margin-hint');
 
@@ -40,7 +41,6 @@ const proportionInput = document.querySelector('#ss-proportion');
 const sigmaInput = document.querySelector('#ss-sigma');
 const populationInput = document.querySelector('#ss-population');
 const calculateButton = document.querySelector('#ss-calculate');
-const errorMessage = document.querySelector('#ss-error');
 
 const resultMode = document.querySelector('#ss-result-mode');
 const resultValue = document.querySelector('#ss-result-value');
@@ -59,14 +59,39 @@ const stepsList = document.querySelector('#ss-steps');
 const sensitivityBody = document.querySelector('#ss-sensitivity-body');
 const sensitivityMarginHeader = document.querySelector('#ss-sensitivity-margin-header');
 const answerSection = document.querySelector('#ss-answer-section');
+const answerState = document.querySelector('#ss-answer-state');
 
-const presetLookup = new Map(RESEARCH_PRESETS.map((p) => [p.id, p]));
+const fieldRefs = {
+  margin: {
+    wrapper: document.querySelector('[data-field="margin"]'),
+    input: marginInput,
+    error: document.querySelector('#ss-margin-error'),
+  },
+  proportion: {
+    wrapper: document.querySelector('[data-field="proportion"]'),
+    input: proportionInput,
+    error: document.querySelector('#ss-proportion-error'),
+  },
+  sigma: {
+    wrapper: document.querySelector('[data-field="sigma"]'),
+    input: sigmaInput,
+    error: document.querySelector('#ss-sigma-error'),
+  },
+  population: {
+    wrapper: document.querySelector('[data-field="population"]'),
+    input: populationInput,
+    error: document.querySelector('#ss-population-error'),
+  },
+};
+
+const presetLookup = new Map(RESEARCH_PRESETS.map((preset) => [preset.id, preset]));
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 let activeMode = 'proportion';
 let activePresetId = null;
-let hasCalculated = false;
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let lastValidResult = null;
+let isDirty = false;
+let isInvalid = false;
 
 const modeSwitch = setupButtonGroup(modeGroup, {
   defaultValue: 'proportion',
@@ -79,30 +104,74 @@ const modeSwitch = setupButtonGroup(modeGroup, {
 const confidenceSwitch = setupButtonGroup(confidenceGroup, {
   defaultValue: '1.96',
   onChange: () => {
-    clearActivePreset();
-    markResultsDirty();
+    handleManualChange();
   },
 });
 
-function setError(message = '') {
-  if (!errorMessage) return;
-  errorMessage.textContent = message;
-  errorMessage.classList.toggle('is-hidden', !message);
+function clearFieldErrors() {
+  Object.values(fieldRefs).forEach((field) => {
+    field.wrapper?.classList.remove('has-error');
+    field.input?.removeAttribute('aria-invalid');
+    if (field.error) {
+      field.error.textContent = '';
+      field.error.classList.add('is-hidden');
+    }
+  });
+}
+
+function renderFieldErrors(errors = {}) {
+  clearFieldErrors();
+
+  Object.entries(errors).forEach(([key, message]) => {
+    const field = fieldRefs[key];
+    if (!field || !message) return;
+    field.wrapper?.classList.add('has-error');
+    field.input?.setAttribute('aria-invalid', 'true');
+    if (field.error) {
+      field.error.textContent = message;
+      field.error.classList.remove('is-hidden');
+    }
+  });
+}
+
+function setAnswerState(text) {
+  if (answerState) answerState.textContent = text;
+}
+
+function setResultState({ dirty = false, invalid = false } = {}) {
+  isDirty = dirty;
+  isInvalid = invalid;
+  answerSection?.classList.toggle('is-dirty', dirty);
+  answerSection?.classList.toggle('is-invalid', invalid);
 }
 
 function clearActivePreset() {
   activePresetId = null;
-  presetButtons.forEach((btn) => {
-    btn.classList.remove('is-active');
-    btn.setAttribute('aria-pressed', 'false');
+  presetButtons.forEach((button) => {
+    button.classList.remove('is-active');
+    button.setAttribute('aria-pressed', 'false');
   });
 }
 
 function syncPresetButtons() {
-  presetButtons.forEach((btn) => {
-    const isActive = btn.dataset.ssPreset === activePresetId;
-    btn.classList.toggle('is-active', isActive);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  presetButtons.forEach((button) => {
+    const isActive = button.dataset.ssPreset === activePresetId;
+    const isMuted = button.dataset.ssPresetMode !== activeMode;
+    button.classList.toggle('is-active', isActive);
+    button.classList.toggle('is-muted', isMuted);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function updatePresetStateLabel(label) {
+  if (presetState) presetState.textContent = label;
+}
+
+function updateModePanels() {
+  modePanels.forEach((panel) => {
+    const isActive = panel.dataset.modePanel === activeMode;
+    panel.classList.toggle('is-active', isActive);
+    panel.hidden = !isActive;
   });
 }
 
@@ -114,49 +183,34 @@ function setActiveMode(mode, options = {}) {
     modeSwitch.setValue(activeMode);
   }
 
-  modePanels.forEach((panel) => {
-    const isActive = panel.dataset.modePanel === activeMode;
-    if (!prefersReducedMotion.matches) {
-      panel.style.transition = 'opacity 200ms ease';
-      panel.style.opacity = isActive ? '1' : '0';
-      if (isActive) {
-        panel.hidden = false;
-        panel.classList.add('is-active');
-      } else {
-        setTimeout(() => {
-          panel.hidden = true;
-          panel.classList.remove('is-active');
-        }, 200);
-      }
-    } else {
-      panel.classList.toggle('is-active', isActive);
-      panel.hidden = !isActive;
-    }
-  });
+  updateModePanels();
+  syncPresetButtons();
 
   const content = MODE_CONTENT[activeMode];
   if (modeCopy) modeCopy.textContent = content.hero;
   if (marginLabel) marginLabel.textContent = content.marginLabel;
   if (marginHint) marginHint.textContent = content.marginHint;
+  if (variableLabel) variableLabel.textContent = content.variableLabel;
 
-  if (options.clearPreset) clearActivePreset();
-  if (options.markDirty) markResultsDirty();
+  if (options.clearPreset) {
+    clearActivePreset();
+    updatePresetStateLabel('Customised inputs');
+  }
+
+  if (options.markDirty) {
+    markResultsDirty();
+  }
 }
 
 function renderList(target, items, className) {
   if (!target) return;
-  target.innerHTML = items
-    .map((item) => `<li class="${className}">${item}</li>`)
-    .join('');
+  target.innerHTML = items.map((item) => `<li class="${className}">${item}</li>`).join('');
 }
 
 function renderSteps(steps) {
   if (!stepsList) return;
   stepsList.innerHTML = steps
-    .map(
-      (step) =>
-        `<li class="ss-step-item"><strong>${step.label}.</strong> ${step.text}</li>`
-    )
+    .map((step) => `<li class="ss-step-item"><strong>${step.label}.</strong> ${step.text}</li>`)
     .join('');
 }
 
@@ -176,32 +230,37 @@ function renderSensitivityTable(result) {
 
   const rows = generateSensitivityTable(result);
   sensitivityBody.innerHTML = rows
-    .map(
-      (row) =>
-        `<tr class="${row.isActive ? 'ss-row-active' : ''}">` +
+    .map((row) => {
+      const classes = row.isActive ? 'ss-row-active' : '';
+      return (
+        `<tr class="${classes}">` +
         `<td>${row.marginLabel}</td>` +
-        `<td>${formatNumber(row.baseN, { maximumFractionDigits: 0 })}</td>` +
-        `<td>${formatNumber(row.finalN, { maximumFractionDigits: 0 })}</td>` +
+        `<td><span>${formatNumber(row.baseRounded, { maximumFractionDigits: 0 })}</span><small>${formatNumber(
+          row.baseN,
+          { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+        )}</small></td>` +
+        `<td><span>${formatNumber(row.finalRounded, { maximumFractionDigits: 0 })}</span><small>${formatNumber(
+          row.finalN,
+          { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+        )}</small></td>` +
         `</tr>`
-    )
+      );
+    })
     .join('');
 }
 
-function renderIdleState(message) {
+function renderIdleState() {
   const copy = MODE_CONTENT[activeMode];
   if (resultMode) resultMode.textContent = copy.label;
   if (resultValue) resultValue.textContent = '--';
   if (resultSummary) {
     resultSummary.textContent =
-      message || 'Pick a study mode, adjust the assumptions, and click Calculate Sample Size.';
+      'Pick a study mode, adjust the assumptions, and click Calculate Sample Size.';
   }
   if (methodOutput) methodOutput.textContent = copy.label;
   if (confidenceOutput) confidenceOutput.textContent = '--';
   if (marginOutput) marginOutput.textContent = '--';
-  if (variableLabel) {
-    variableLabel.textContent =
-      activeMode === 'proportion' ? 'Estimated proportion' : 'Population σ';
-  }
+  if (variableLabel) variableLabel.textContent = copy.variableLabel;
   if (variableOutput) variableOutput.textContent = '--';
   if (populationOutput) populationOutput.textContent = '--';
   if (baseOutput) baseOutput.textContent = '--';
@@ -214,34 +273,22 @@ function renderIdleState(message) {
   }
   renderList(assumptionsList, copy.idleAssumptions, 'ss-assumption-item');
   renderSteps([
-    { label: 'Choose a study mode', text: 'Select proportion for percentages or mean for continuous outcomes.' },
-    { label: 'Set the planning assumptions', text: 'Enter confidence, margin of error, and the study-specific input.' },
-    { label: 'Calculate the sample target', text: 'Click Calculate Sample Size to generate the result.' },
+    {
+      label: 'Choose a study mode',
+      text: 'Select proportion for percentages or mean for continuous outcomes.',
+    },
+    {
+      label: 'Set the planning assumptions',
+      text: 'Enter confidence, margin of error, and the mode-specific planning input.',
+    },
+    {
+      label: 'Calculate the sample target',
+      text: 'Click Calculate Sample Size to generate the result and sensitivity table.',
+    },
   ]);
   renderSensitivityTable(null);
-}
-
-function markResultsDirty() {
-  hasCalculated = false;
-  setError('');
-  renderIdleState('Inputs changed. Click Calculate Sample Size to refresh.');
-}
-
-function applyPreset(presetId) {
-  const preset = presetLookup.get(presetId);
-  if (!preset) return;
-
-  activePresetId = preset.id;
-  syncPresetButtons();
-
-  setActiveMode(preset.mode, { clearPreset: false, markDirty: false });
-  confidenceSwitch?.setValue(preset.values.confidenceZ);
-  if (marginInput) marginInput.value = preset.values.margin;
-  if (proportionInput) proportionInput.value = preset.values.proportion;
-  if (sigmaInput) sigmaInput.value = preset.values.sigma;
-  if (populationInput) populationInput.value = preset.values.population;
-
-  runCalculation();
+  setAnswerState('Ready for calculation');
+  setResultState({ dirty: false, invalid: false });
 }
 
 function readInputs() {
@@ -257,42 +304,66 @@ function readInputs() {
 
 function renderResult(result) {
   if (!result.ok) {
-    setError(result.message || 'Unable to calculate the requested sample size.');
-    renderIdleState('Fix the highlighted input and calculate again.');
+    renderFieldErrors(result.errors);
+    setResultState({ dirty: false, invalid: true });
+    setAnswerState('Fix highlighted field');
+
+    if (resultSummary) {
+      resultSummary.textContent = lastValidResult
+        ? 'Inputs are invalid. Showing the last valid result until you calculate again.'
+        : 'Inputs are invalid. Fix the highlighted field and calculate again.';
+    }
+
+    if (!lastValidResult) {
+      if (resultMode) resultMode.textContent = MODE_CONTENT[activeMode].label;
+      if (resultValue) resultValue.textContent = '--';
+      renderSensitivityTable(null);
+    }
     return;
   }
 
-  setError('');
-  hasCalculated = true;
+  clearFieldErrors();
+  lastValidResult = result;
 
   if (resultMode) resultMode.textContent = result.methodLabel;
   if (resultValue) {
-    resultValue.textContent = formatNumber(result.requiredSampleSize, { maximumFractionDigits: 0 });
+    resultValue.textContent = formatNumber(result.requiredSampleSize, {
+      maximumFractionDigits: 0,
+    });
   }
   if (resultSummary) resultSummary.textContent = result.summary;
   if (methodOutput) methodOutput.textContent = result.methodLabel;
   if (confidenceOutput) confidenceOutput.textContent = result.confidenceLabel;
-  if (variableLabel) variableLabel.textContent = result.variableLabel;
-
-  if (result.mode === 'proportion') {
-    if (marginOutput) marginOutput.textContent = `±${result.marginPercent}%`;
-    if (variableOutput) variableOutput.textContent = `${result.proportionPercent}%`;
-  } else {
-    if (marginOutput) marginOutput.textContent = `±${formatNumber(result.marginValue)}`;
-    if (variableOutput) variableOutput.textContent = formatNumber(result.sigmaValue);
+  if (marginOutput) {
+    marginOutput.textContent =
+      result.mode === 'proportion'
+        ? `±${result.marginPercent}%`
+        : `±${formatNumber(result.marginValue, { maximumFractionDigits: 2 })}`;
   }
-
+  if (variableLabel) variableLabel.textContent = result.variableLabel;
+  if (variableOutput) {
+    variableOutput.textContent =
+      result.mode === 'proportion'
+        ? `${result.proportionPercent}%`
+        : formatNumber(result.sigmaValue, { maximumFractionDigits: 2 });
+  }
   if (populationOutput) {
     populationOutput.textContent = result.hasPopulation
       ? formatNumber(result.populationSize, { maximumFractionDigits: 0 })
       : 'Infinite';
   }
   if (baseOutput) {
-    baseOutput.textContent = formatNumber(result.n0, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    baseOutput.textContent = formatNumber(result.n0, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   }
   if (correctedOutput) {
     correctedOutput.textContent = result.hasPopulation
-      ? formatNumber(result.correctedN, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      ? formatNumber(result.correctedN, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
       : 'Not applied';
   }
 
@@ -300,14 +371,56 @@ function renderResult(result) {
   renderList(assumptionsList, result.assumptions, 'ss-assumption-item');
   renderSteps(result.steps);
   renderSensitivityTable(result);
+  setResultState({ dirty: false, invalid: false });
+  setAnswerState(activePresetId ? 'Solved preset' : 'Updated calculation');
 
   if (answerSection && !prefersReducedMotion.matches) {
-    answerSection.style.opacity = '0';
+    answerSection.classList.remove('is-flashed');
     requestAnimationFrame(() => {
-      answerSection.style.transition = 'opacity 250ms ease';
-      answerSection.style.opacity = '1';
+      answerSection.classList.add('is-flashed');
     });
   }
+}
+
+function markResultsDirty() {
+  clearFieldErrors();
+  setResultState({ dirty: true, invalid: false });
+  setAnswerState('Calculate to refresh');
+
+  if (resultSummary && lastValidResult) {
+    resultSummary.textContent =
+      'Inputs changed. Showing the last valid result until you calculate again.';
+  } else if (resultSummary) {
+    resultSummary.textContent = 'Inputs changed. Click Calculate Sample Size to generate a result.';
+  }
+}
+
+function handleManualChange() {
+  if (activePresetId) {
+    clearActivePreset();
+    updatePresetStateLabel('Customised inputs');
+  } else {
+    updatePresetStateLabel('Customised inputs');
+  }
+  markResultsDirty();
+}
+
+function applyPreset(presetId) {
+  const preset = presetLookup.get(presetId);
+  if (!preset) return;
+
+  activePresetId = preset.id;
+  setActiveMode(preset.mode, { clearPreset: false, markDirty: false });
+  syncPresetButtons();
+  updatePresetStateLabel(preset.stateLabel);
+
+  confidenceSwitch?.setValue(preset.values.confidenceZ);
+  if (marginInput) marginInput.value = preset.values.margin;
+  if (proportionInput) proportionInput.value = preset.values.proportion;
+  if (sigmaInput) sigmaInput.value = preset.values.sigma;
+  if (populationInput) populationInput.value = preset.values.population;
+
+  runCalculation();
 }
 
 function runCalculation() {
@@ -321,16 +434,14 @@ function runCalculation() {
 
 calculateButton?.addEventListener('click', runCalculation);
 
-presetButtons.forEach((btn) => {
-  btn.addEventListener('click', () => applyPreset(btn.dataset.ssPreset));
+presetButtons.forEach((button) => {
+  button.addEventListener('click', () => applyPreset(button.dataset.ssPreset));
 });
 
 [marginInput, proportionInput, sigmaInput, populationInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    clearActivePreset();
-    markResultsDirty();
-  });
+  input?.addEventListener('input', handleManualChange);
 });
 
 setActiveMode('proportion', { syncButton: false, markDirty: false });
+renderIdleState();
 applyPreset('general-survey');

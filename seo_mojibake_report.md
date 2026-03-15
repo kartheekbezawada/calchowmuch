@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:math`
-- HTML files scanned: **37**
-- Calculator pages scanned: **2**
+- Scope: `calc:math/sample-size`
+- HTML files scanned: **1**
+- Calculator pages scanned: **0**
 - Findings: **0**
 - Status: **PASS**
 

@@ -3,6 +3,7 @@ import {
   applyFinitePopulationCorrection,
   calculateMeanSampleSize,
   calculateProportionSampleSize,
+  generateSensitivityTable,
   validateSampleSizeInputs,
 } from '../../../public/calculators/math/sample-size/engine.js';
 
@@ -63,20 +64,26 @@ describe('math/sample-size engine', () => {
     expect(result.requiredSampleSize).toBe(47);
   });
 
-  it('returns validation errors for invalid planning inputs', () => {
-    expect(validateSampleSizeInputs({ mode: 'proportion', z: 1.96, margin: 0, proportion: 50 })).toMatchObject({
+  it('returns field-specific validation errors for invalid planning inputs', () => {
+    expect(
+      validateSampleSizeInputs({ mode: 'proportion', z: 1.96, margin: 0, proportion: 50 })
+    ).toMatchObject({
       valid: false,
-      message: 'Margin of error must be greater than 0%.',
+      errors: { margin: 'Margin of error must be greater than 0%.' },
     });
 
-    expect(validateSampleSizeInputs({ mode: 'proportion', z: 1.96, margin: 5, proportion: 140 })).toMatchObject({
+    expect(
+      validateSampleSizeInputs({ mode: 'proportion', z: 1.96, margin: 5, proportion: 140 })
+    ).toMatchObject({
       valid: false,
-      message: 'Estimated proportion must be between 0% and 100%.',
+      errors: { proportion: 'Estimated proportion must be between 0% and 100%.' },
     });
 
-    expect(validateSampleSizeInputs({ mode: 'mean', z: 1.96, margin: 2, sigma: 0 })).toMatchObject({
+    expect(
+      validateSampleSizeInputs({ mode: 'mean', z: 1.96, margin: 2, sigma: 0 })
+    ).toMatchObject({
       valid: false,
-      message: 'Population standard deviation must be greater than 0.',
+      errors: { sigma: 'Population standard deviation must be greater than 0.' },
     });
 
     expect(
@@ -89,7 +96,23 @@ describe('math/sample-size engine', () => {
       })
     ).toMatchObject({
       valid: false,
-      message: 'Population size must be at least 1 if provided.',
+      errors: { population: 'Population size must be at least 1 if provided.' },
+    });
+  });
+
+  it('builds a sensitivity table with the active planning margin highlighted', () => {
+    const result = calculateProportionSampleSize({
+      z: 1.96,
+      margin: 5,
+      proportion: 50,
+      populationSize: 1200,
+    });
+    const rows = generateSensitivityTable(result);
+
+    expect(rows).toHaveLength(7);
+    expect(rows.find((row) => row.isActive)).toMatchObject({
+      margin: 5,
+      finalRounded: 292,
     });
   });
 });

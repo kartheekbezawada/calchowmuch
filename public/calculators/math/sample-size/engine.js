@@ -14,9 +14,10 @@ export const MODE_CONTENT = {
       'Plan a proportion or prevalence estimate with optional finite-population correction.',
     marginLabel: 'Margin of error (%)',
     marginHint: 'Percent precision around the estimated proportion.',
+    variableLabel: 'Estimated proportion',
     idleAssumptions: [
       'Use proportion mode for surveys, prevalence studies, and other percentage-based outcomes.',
-      'Choose 50% when prior evidence is limited and you want the most conservative planning estimate.',
+      'Choose 50% when prior evidence is limited and you want the largest conservative planning estimate.',
       'Add population size only when the full study population is known and relatively small.',
     ],
   },
@@ -26,10 +27,11 @@ export const MODE_CONTENT = {
       'Plan a mean estimate when the outcome is continuous and the population standard deviation is known.',
     marginLabel: 'Margin of error (units)',
     marginHint: 'Precision in the original measurement units.',
+    variableLabel: 'Population standard deviation',
     idleAssumptions: [
       'Use mean mode for continuous outcomes such as scores, time, weight, concentration, or signal level.',
       'The mean formula assumes the population standard deviation is known or credibly justified.',
-      'Add population size only when the available cohort is bounded and small enough for correction to matter.',
+      'Add population size only when the available cohort is bounded and correction will materially change the plan.',
     ],
   },
 };
@@ -39,6 +41,7 @@ export const RESEARCH_PRESETS = [
     id: 'general-survey',
     mode: 'proportion',
     title: 'General survey baseline',
+    stateLabel: 'Loaded preset: General survey baseline',
     values: {
       confidenceZ: '1.96',
       margin: '5',
@@ -51,6 +54,7 @@ export const RESEARCH_PRESETS = [
     id: 'prevalence-study',
     mode: 'proportion',
     title: 'Prevalence planning',
+    stateLabel: 'Loaded preset: Prevalence planning',
     values: {
       confidenceZ: '1.96',
       margin: '3',
@@ -63,6 +67,7 @@ export const RESEARCH_PRESETS = [
     id: 'finite-survey',
     mode: 'proportion',
     title: 'Campus population survey',
+    stateLabel: 'Loaded preset: Campus population survey',
     values: {
       confidenceZ: '1.96',
       margin: '5',
@@ -75,6 +80,7 @@ export const RESEARCH_PRESETS = [
     id: 'lab-mean',
     mode: 'mean',
     title: 'Laboratory mean estimate',
+    stateLabel: 'Loaded preset: Laboratory mean estimate',
     values: {
       confidenceZ: '1.96',
       margin: '2',
@@ -99,6 +105,10 @@ function pickFirstError(errors) {
 
 function formatEquationNumber(value, digits = 4) {
   return Number(value).toFixed(digits).replace(/\.?0+$/, '');
+}
+
+function formatFinalSummaryLabel(mode) {
+  return mode === 'mean' ? 'observations' : 'responses';
 }
 
 export function getConfidenceLabel(value) {
@@ -202,8 +212,8 @@ export function calculateProportionSampleSize(input = {}) {
   const varianceTerm = proportion * (1 - proportion);
   const n0 = (z * z * varianceTerm) / (marginDecimal * marginDecimal);
   const correctedN = hasPopulation ? applyFinitePopulationCorrection(n0, populationSize) : null;
-  const finalN = hasPopulation ? correctedN : n0;
-  const requiredSampleSize = Math.ceil(finalN);
+  const finalWorkingN = hasPopulation ? correctedN : n0;
+  const requiredSampleSize = Math.ceil(finalWorkingN);
 
   return {
     ok: true,
@@ -213,29 +223,44 @@ export function calculateProportionSampleSize(input = {}) {
     confidenceLabel,
     z,
     marginPercent: marginValue,
+    marginValue,
     proportionPercent,
     populationSize,
     hasPopulation,
     n0,
     correctedN,
+    finalWorkingN,
     requiredSampleSize,
-    summary: `Plan for at least ${requiredSampleSize} responses at ${confidenceLabel} confidence with a +/- ${marginValue}% margin of error.`,
+    summary: `Plan for at least ${requiredSampleSize} ${formatFinalSummaryLabel(
+      'proportion'
+    )} at ${confidenceLabel} confidence with a +/- ${marginValue}% margin of error.`,
     interpretation: hasPopulation
-      ? `Because the full study population is ${populationSize}, finite-population correction reduces the required sample from ${Math.ceil(
-          n0
-        )} to ${requiredSampleSize}.`
-      : `Without finite-population correction, this is the conservative sample target for the requested percentage precision.`,
+      ? `With ${confidenceLabel} confidence, a +/- ${marginValue}% margin of error, an estimated proportion of ${proportionPercent}%, and a known population of ${populationSize}, the corrected sample target is ${requiredSampleSize}. The uncorrected base sample is ${formatEquationNumber(
+          n0,
+          2
+        )}, and finite-population correction lowers the working estimate to ${formatEquationNumber(
+          correctedN,
+          2
+        )} before rounding up.`
+      : `With ${confidenceLabel} confidence, a +/- ${marginValue}% margin of error, and an estimated proportion of ${proportionPercent}%, you need at least ${requiredSampleSize} responses. The base formula gives n0 = ${formatEquationNumber(
+          n0,
+          2
+        )}, which is rounded up to the next whole response.`,
     assumptions: [
       'Uses the standard normal-approximation formula for a single proportion.',
       'Assumes simple random sampling and independent observations.',
       proportionPercent === 50
         ? 'A 50% planning proportion is conservative because it maximizes the variance term.'
-        : 'The estimated proportion should be based on prior evidence, pilot data, or a defensible planning assumption.',
+        : 'The estimated proportion should come from prior evidence, pilot data, or a defensible planning assumption.',
       hasPopulation
         ? 'Finite-population correction is applied because a total population size was provided.'
-        : 'Population size was left blank, so the calculator uses the standard infinite-population version of the formula.',
+        : 'Population size was left blank, so the calculator uses the standard infinite-population formula.',
     ],
     steps: [
+      {
+        label: 'Identify the confidence z-score',
+        text: `${confidenceLabel} confidence maps to z = ${formatEquationNumber(z, 3)}.`,
+      },
       {
         label: 'Convert the planning inputs',
         text: `Margin ${marginValue}% becomes ${formatEquationNumber(
@@ -247,18 +272,18 @@ export function calculateProportionSampleSize(input = {}) {
         )}.`,
       },
       {
-        label: 'Compute the variability term',
-        text: `p * (1 - p) = ${formatEquationNumber(proportion, 4)} * ${formatEquationNumber(
+        label: 'Compute the variance term',
+        text: `p x (1 - p) = ${formatEquationNumber(proportion, 4)} x ${formatEquationNumber(
           1 - proportion,
           4
         )} = ${formatEquationNumber(varianceTerm, 4)}.`,
       },
       {
         label: 'Calculate the base sample size n0',
-        text: `n0 = (z^2 * p * (1 - p)) / E^2 = (${formatEquationNumber(
+        text: `n0 = z^2 x p x (1 - p) / E^2 = (${formatEquationNumber(
           z,
           3
-        )}^2 * ${formatEquationNumber(varianceTerm, 4)}) / ${formatEquationNumber(
+        )}^2 x ${formatEquationNumber(varianceTerm, 4)}) / ${formatEquationNumber(
           marginDecimal,
           4
         )}^2 = ${formatEquationNumber(n0, 2)}.`,
@@ -280,7 +305,7 @@ export function calculateProportionSampleSize(input = {}) {
           },
       {
         label: 'Round up to the final sample target',
-        text: `Round ${formatEquationNumber(finalN, 2)} up to ${requiredSampleSize} so the planned sample is large enough for the requested precision.`,
+        text: `Round ${formatEquationNumber(finalWorkingN, 2)} up to ${requiredSampleSize} so the planned sample is large enough for the requested precision.`,
       },
     ],
   };
@@ -308,8 +333,8 @@ export function calculateMeanSampleSize(input = {}) {
 
   const n0 = (z * z * sigmaValue * sigmaValue) / (marginValue * marginValue);
   const correctedN = hasPopulation ? applyFinitePopulationCorrection(n0, populationSize) : null;
-  const finalN = hasPopulation ? correctedN : n0;
-  const requiredSampleSize = Math.ceil(finalN);
+  const finalWorkingN = hasPopulation ? correctedN : n0;
+  const requiredSampleSize = Math.ceil(finalWorkingN);
 
   return {
     ok: true,
@@ -324,41 +349,64 @@ export function calculateMeanSampleSize(input = {}) {
     hasPopulation,
     n0,
     correctedN,
+    finalWorkingN,
     requiredSampleSize,
-    summary: `Plan for at least ${requiredSampleSize} observations at ${confidenceLabel} confidence with a margin of error of ${formatEquationNumber(
+    summary: `Plan for at least ${requiredSampleSize} ${formatFinalSummaryLabel(
+      'mean'
+    )} at ${confidenceLabel} confidence with a margin of error of ${formatEquationNumber(
       marginValue,
       2
     )} units.`,
     interpretation: hasPopulation
-      ? `Because the available cohort is ${populationSize}, finite-population correction reduces the required sample from ${Math.ceil(
-          n0
-        )} to ${requiredSampleSize}.`
-      : 'Without finite-population correction, this is the standard sample target for a mean estimate with the requested precision.',
+      ? `With ${confidenceLabel} confidence, a margin of error of ${formatEquationNumber(
+          marginValue,
+          2
+        )} units, a population standard deviation of ${formatEquationNumber(
+          sigmaValue,
+          2
+        )}, and a finite cohort of ${populationSize}, the corrected sample target is ${requiredSampleSize}. The uncorrected base sample is ${formatEquationNumber(
+          n0,
+          2
+        )}, and correction lowers the working estimate to ${formatEquationNumber(
+          correctedN,
+          2
+        )} before rounding up.`
+      : `With ${confidenceLabel} confidence, a margin of error of ${formatEquationNumber(
+          marginValue,
+          2
+        )} units, and a population standard deviation of ${formatEquationNumber(
+          sigmaValue,
+          2
+        )}, you need at least ${requiredSampleSize} observations. The base formula gives n0 = ${formatEquationNumber(
+          n0,
+          2
+        )}, which is rounded up to the next whole observation.`,
     assumptions: [
       'Uses the z-based formula for planning the sample size of a single mean.',
       'Assumes the population standard deviation is known or credibly justified from prior evidence.',
       'Assumes simple random sampling and independent observations.',
       hasPopulation
         ? 'Finite-population correction is applied because a total cohort size was provided.'
-        : 'Population size was left blank, so the calculator uses the standard infinite-population version of the formula.',
+        : 'Population size was left blank, so the calculator uses the standard infinite-population formula.',
     ],
     steps: [
       {
-        label: 'Square the precision terms',
-        text: `sigma^2 = ${formatEquationNumber(sigmaValue, 2)}^2 and margin^2 = ${formatEquationNumber(
-          marginValue,
+        label: 'Identify the confidence z-score',
+        text: `${confidenceLabel} confidence maps to z = ${formatEquationNumber(z, 3)}.`,
+      },
+      {
+        label: 'Substitute sigma and precision',
+        text: `sigma = ${formatEquationNumber(
+          sigmaValue,
           2
-        )}^2.`,
+        )} and margin = ${formatEquationNumber(marginValue, 2)} units.`,
       },
       {
         label: 'Calculate the base sample size n0',
-        text: `n0 = (z^2 * sigma^2) / E^2 = (${formatEquationNumber(
-          z,
-          3
-        )}^2 * ${formatEquationNumber(sigmaValue, 2)}^2) / ${formatEquationNumber(
-          marginValue,
+        text: `n0 = (z x sigma / E)^2 = (${formatEquationNumber(z, 3)} x ${formatEquationNumber(
+          sigmaValue,
           2
-        )}^2 = ${formatEquationNumber(n0, 2)}.`,
+        )} / ${formatEquationNumber(marginValue, 2)})^2 = ${formatEquationNumber(n0, 2)}.`,
       },
       hasPopulation
         ? {
@@ -377,7 +425,7 @@ export function calculateMeanSampleSize(input = {}) {
           },
       {
         label: 'Round up to the final sample target',
-        text: `Round ${formatEquationNumber(finalN, 2)} up to ${requiredSampleSize} so the planned sample is large enough for the requested precision.`,
+        text: `Round ${formatEquationNumber(finalWorkingN, 2)} up to ${requiredSampleSize} so the planned sample is large enough for the requested precision.`,
       },
     ],
   };
@@ -394,26 +442,28 @@ export function generateSensitivityTable(result) {
   const currentMargin =
     result.mode === 'proportion' ? result.marginPercent : result.marginValue;
 
-  return margins.map((m) => {
-    let n0;
+  return margins.map((margin) => {
+    let baseN;
     if (result.mode === 'proportion') {
-      const E = m / 100;
+      const E = margin / 100;
       const p = result.proportionPercent / 100;
-      n0 = (result.z * result.z * p * (1 - p)) / (E * E);
+      baseN = (result.z * result.z * p * (1 - p)) / (E * E);
     } else {
-      n0 = (result.z * result.z * result.sigmaValue * result.sigmaValue) / (m * m);
+      baseN = (result.z * result.z * result.sigmaValue * result.sigmaValue) / (margin * margin);
     }
 
-    const finalN = result.hasPopulation
-      ? applyFinitePopulationCorrection(n0, result.populationSize)
-      : n0;
+    const finalWorkingN = result.hasPopulation
+      ? applyFinitePopulationCorrection(baseN, result.populationSize)
+      : baseN;
 
     return {
-      margin: m,
-      marginLabel: result.mode === 'proportion' ? `${m}%` : String(m),
-      baseN: Math.ceil(n0),
-      finalN: Math.ceil(finalN),
-      isActive: m === currentMargin,
+      margin,
+      marginLabel: result.mode === 'proportion' ? `${margin}%` : `${margin}`,
+      baseN,
+      finalN: finalWorkingN,
+      baseRounded: Math.ceil(baseN),
+      finalRounded: Math.ceil(finalWorkingN),
+      isActive: margin === currentMargin,
     };
   });
 }
