@@ -4,6 +4,9 @@ const CONFIDENCE_LABELS = new Map([
   ['2.576', '99%'],
 ]);
 
+const PROPORTION_SENSITIVITY_MARGINS = [1, 2, 3, 4, 5, 7, 10];
+const MEAN_SENSITIVITY_MARGINS = [0.5, 1, 1.5, 2, 3, 5, 10];
+
 export const MODE_CONTENT = {
   proportion: {
     label: 'Proportion study',
@@ -378,4 +381,39 @@ export function calculateMeanSampleSize(input = {}) {
       },
     ],
   };
+}
+
+export function generateSensitivityTable(result) {
+  if (!result || !result.ok) return [];
+
+  const margins =
+    result.mode === 'proportion'
+      ? PROPORTION_SENSITIVITY_MARGINS
+      : MEAN_SENSITIVITY_MARGINS;
+
+  const currentMargin =
+    result.mode === 'proportion' ? result.marginPercent : result.marginValue;
+
+  return margins.map((m) => {
+    let n0;
+    if (result.mode === 'proportion') {
+      const E = m / 100;
+      const p = result.proportionPercent / 100;
+      n0 = (result.z * result.z * p * (1 - p)) / (E * E);
+    } else {
+      n0 = (result.z * result.z * result.sigmaValue * result.sigmaValue) / (m * m);
+    }
+
+    const finalN = result.hasPopulation
+      ? applyFinitePopulationCorrection(n0, result.populationSize)
+      : n0;
+
+    return {
+      margin: m,
+      marginLabel: result.mode === 'proportion' ? `${m}%` : String(m),
+      baseN: Math.ceil(n0),
+      finalN: Math.ceil(finalN),
+      isActive: m === currentMargin,
+    };
+  });
 }

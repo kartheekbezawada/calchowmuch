@@ -6,11 +6,11 @@ test.describe('Sample Size Calculator SEO', () => {
   }) => {
     await page.goto('/math/sample-size/');
 
-    await expect(page).toHaveTitle('Sample Size Calculator | Proportion and Mean Study Planner');
+    await expect(page).toHaveTitle('Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Plan sample size for proportions or means with optional finite-population correction, worked examples, and research-ready guidance.'
+      'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance. Free, no sign-up.'
     );
 
     const h1 = page.locator('h1');

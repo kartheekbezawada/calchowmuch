@@ -1,16 +1,17 @@
-import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import {
   MODE_CONTENT,
   RESEARCH_PRESETS,
   calculateMeanSampleSize,
   calculateProportionSampleSize,
+  generateSensitivityTable,
 } from './engine.js';
 
 const metadata = {
-  title: 'Sample Size Calculator | Proportion and Mean Study Planner',
+  title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
   description:
-    'Plan sample size for proportions or means with optional finite-population correction, worked examples, and research-ready guidance.',
+    'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, sensitivity tables, and research-ready guidance. Free, no sign-up.',
   canonical: 'https://calchowmuch.com/math/sample-size/',
 };
 
@@ -18,10 +19,7 @@ setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title) {
-    return;
-  }
-
+  if (!title) return;
   title.textContent = 'Sample Size Calculator';
 }
 
@@ -58,12 +56,17 @@ const correctedOutput = document.querySelector('#ss-corrected-output');
 const interpretation = document.querySelector('#ss-interpretation');
 const assumptionsList = document.querySelector('#ss-assumptions');
 const stepsList = document.querySelector('#ss-steps');
+const sensitivityBody = document.querySelector('#ss-sensitivity-body');
+const sensitivityMarginHeader = document.querySelector('#ss-sensitivity-margin-header');
+const answerSection = document.querySelector('#ss-answer-section');
 
-const presetLookup = new Map(RESEARCH_PRESETS.map((preset) => [preset.id, preset]));
+const presetLookup = new Map(RESEARCH_PRESETS.map((p) => [p.id, p]));
 
 let activeMode = 'proportion';
 let activePresetId = null;
 let hasCalculated = false;
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const modeSwitch = setupButtonGroup(modeGroup, {
   defaultValue: 'proportion',
@@ -82,27 +85,24 @@ const confidenceSwitch = setupButtonGroup(confidenceGroup, {
 });
 
 function setError(message = '') {
-  if (!errorMessage) {
-    return;
-  }
-
+  if (!errorMessage) return;
   errorMessage.textContent = message;
   errorMessage.classList.toggle('is-hidden', !message);
 }
 
 function clearActivePreset() {
   activePresetId = null;
-  presetButtons.forEach((button) => {
-    button.classList.remove('is-active');
-    button.setAttribute('aria-pressed', 'false');
+  presetButtons.forEach((btn) => {
+    btn.classList.remove('is-active');
+    btn.setAttribute('aria-pressed', 'false');
   });
 }
 
 function syncPresetButtons() {
-  presetButtons.forEach((button) => {
-    const isActive = button.dataset.ssPreset === activePresetId;
-    button.classList.toggle('is-active', isActive);
-    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  presetButtons.forEach((btn) => {
+    const isActive = btn.dataset.ssPreset === activePresetId;
+    btn.classList.toggle('is-active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
 }
 
@@ -116,44 +116,42 @@ function setActiveMode(mode, options = {}) {
 
   modePanels.forEach((panel) => {
     const isActive = panel.dataset.modePanel === activeMode;
-    panel.classList.toggle('is-active', isActive);
-    panel.hidden = !isActive;
+    if (!prefersReducedMotion.matches) {
+      panel.style.transition = 'opacity 200ms ease';
+      panel.style.opacity = isActive ? '1' : '0';
+      if (isActive) {
+        panel.hidden = false;
+        panel.classList.add('is-active');
+      } else {
+        setTimeout(() => {
+          panel.hidden = true;
+          panel.classList.remove('is-active');
+        }, 200);
+      }
+    } else {
+      panel.classList.toggle('is-active', isActive);
+      panel.hidden = !isActive;
+    }
   });
 
-  const modeCopyContent = MODE_CONTENT[activeMode];
-  if (modeCopy) {
-    modeCopy.textContent = modeCopyContent.hero;
-  }
-  if (marginLabel) {
-    marginLabel.textContent = modeCopyContent.marginLabel;
-  }
-  if (marginHint) {
-    marginHint.textContent = modeCopyContent.marginHint;
-  }
+  const content = MODE_CONTENT[activeMode];
+  if (modeCopy) modeCopy.textContent = content.hero;
+  if (marginLabel) marginLabel.textContent = content.marginLabel;
+  if (marginHint) marginHint.textContent = content.marginHint;
 
-  if (options.clearPreset) {
-    clearActivePreset();
-  }
-  if (options.markDirty) {
-    markResultsDirty();
-  }
+  if (options.clearPreset) clearActivePreset();
+  if (options.markDirty) markResultsDirty();
 }
 
 function renderList(target, items, className) {
-  if (!target) {
-    return;
-  }
-
+  if (!target) return;
   target.innerHTML = items
     .map((item) => `<li class="${className}">${item}</li>`)
     .join('');
 }
 
 function renderSteps(steps) {
-  if (!stepsList) {
-    return;
-  }
-
+  if (!stepsList) return;
   stepsList.innerHTML = steps
     .map(
       (step) =>
@@ -162,43 +160,52 @@ function renderSteps(steps) {
     .join('');
 }
 
+function renderSensitivityTable(result) {
+  if (!sensitivityBody) return;
+
+  if (!result || !result.ok) {
+    sensitivityBody.innerHTML =
+      '<tr><td colspan="3" class="ss-table-empty">Calculate a result to see the sensitivity table.</td></tr>';
+    return;
+  }
+
+  if (sensitivityMarginHeader) {
+    sensitivityMarginHeader.textContent =
+      result.mode === 'proportion' ? 'Margin of error' : 'Margin (units)';
+  }
+
+  const rows = generateSensitivityTable(result);
+  sensitivityBody.innerHTML = rows
+    .map(
+      (row) =>
+        `<tr class="${row.isActive ? 'ss-row-active' : ''}">` +
+        `<td>${row.marginLabel}</td>` +
+        `<td>${formatNumber(row.baseN, { maximumFractionDigits: 0 })}</td>` +
+        `<td>${formatNumber(row.finalN, { maximumFractionDigits: 0 })}</td>` +
+        `</tr>`
+    )
+    .join('');
+}
+
 function renderIdleState(message) {
   const copy = MODE_CONTENT[activeMode];
-  if (resultMode) {
-    resultMode.textContent = copy.label;
-  }
-  if (resultValue) {
-    resultValue.textContent = '--';
-  }
+  if (resultMode) resultMode.textContent = copy.label;
+  if (resultValue) resultValue.textContent = '--';
   if (resultSummary) {
     resultSummary.textContent =
       message || 'Pick a study mode, adjust the assumptions, and click Calculate Sample Size.';
   }
-  if (methodOutput) {
-    methodOutput.textContent = copy.label;
-  }
-  if (confidenceOutput) {
-    confidenceOutput.textContent = '--';
-  }
-  if (marginOutput) {
-    marginOutput.textContent = '--';
-  }
+  if (methodOutput) methodOutput.textContent = copy.label;
+  if (confidenceOutput) confidenceOutput.textContent = '--';
+  if (marginOutput) marginOutput.textContent = '--';
   if (variableLabel) {
     variableLabel.textContent =
-      activeMode === 'proportion' ? 'Estimated proportion' : 'Population standard deviation';
+      activeMode === 'proportion' ? 'Estimated proportion' : 'Population σ';
   }
-  if (variableOutput) {
-    variableOutput.textContent = '--';
-  }
-  if (populationOutput) {
-    populationOutput.textContent = '--';
-  }
-  if (baseOutput) {
-    baseOutput.textContent = '--';
-  }
-  if (correctedOutput) {
-    correctedOutput.textContent = '--';
-  }
+  if (variableOutput) variableOutput.textContent = '--';
+  if (populationOutput) populationOutput.textContent = '--';
+  if (baseOutput) baseOutput.textContent = '--';
+  if (correctedOutput) correctedOutput.textContent = '--';
   if (interpretation) {
     interpretation.textContent =
       activeMode === 'proportion'
@@ -207,48 +214,34 @@ function renderIdleState(message) {
   }
   renderList(assumptionsList, copy.idleAssumptions, 'ss-assumption-item');
   renderSteps([
-    {
-      label: 'Choose a study mode',
-      text: 'Select proportion for percentages or mean for continuous outcomes.',
-    },
-    {
-      label: 'Set the planning assumptions',
-      text: 'Enter confidence, margin of error, and the study-specific input for the active mode.',
-    },
-    {
-      label: 'Calculate the sample target',
-      text: 'Click Calculate Sample Size to generate the required sample, assumptions, and breakdown.',
-    },
+    { label: 'Choose a study mode', text: 'Select proportion for percentages or mean for continuous outcomes.' },
+    { label: 'Set the planning assumptions', text: 'Enter confidence, margin of error, and the study-specific input.' },
+    { label: 'Calculate the sample target', text: 'Click Calculate Sample Size to generate the result.' },
   ]);
+  renderSensitivityTable(null);
 }
 
 function markResultsDirty() {
   hasCalculated = false;
   setError('');
-  renderIdleState(
-    'Inputs changed. Click Calculate Sample Size again to refresh the study plan.'
-  );
+  renderIdleState('Inputs changed. Click Calculate Sample Size to refresh.');
 }
 
 function applyPreset(presetId) {
   const preset = presetLookup.get(presetId);
-  if (!preset) {
-    return;
-  }
+  if (!preset) return;
 
   activePresetId = preset.id;
   syncPresetButtons();
 
   setActiveMode(preset.mode, { clearPreset: false, markDirty: false });
   confidenceSwitch?.setValue(preset.values.confidenceZ);
-  marginInput.value = preset.values.margin;
-  proportionInput.value = preset.values.proportion;
-  sigmaInput.value = preset.values.sigma;
-  populationInput.value = preset.values.population;
+  if (marginInput) marginInput.value = preset.values.margin;
+  if (proportionInput) proportionInput.value = preset.values.proportion;
+  if (sigmaInput) sigmaInput.value = preset.values.sigma;
+  if (populationInput) populationInput.value = preset.values.population;
 
-  hasCalculated = false;
-  setError('');
-  renderIdleState('Preset loaded. Click Calculate Sample Size to generate the study plan.');
+  runCalculation();
 }
 
 function readInputs() {
@@ -272,85 +265,72 @@ function renderResult(result) {
   setError('');
   hasCalculated = true;
 
-  if (resultMode) {
-    resultMode.textContent = result.methodLabel;
-  }
+  if (resultMode) resultMode.textContent = result.methodLabel;
   if (resultValue) {
-    resultValue.textContent = formatNumber(result.requiredSampleSize, {
-      maximumFractionDigits: 0,
-    });
+    resultValue.textContent = formatNumber(result.requiredSampleSize, { maximumFractionDigits: 0 });
   }
-  if (resultSummary) {
-    resultSummary.textContent = result.summary;
+  if (resultSummary) resultSummary.textContent = result.summary;
+  if (methodOutput) methodOutput.textContent = result.methodLabel;
+  if (confidenceOutput) confidenceOutput.textContent = result.confidenceLabel;
+  if (variableLabel) variableLabel.textContent = result.variableLabel;
+
+  if (result.mode === 'proportion') {
+    if (marginOutput) marginOutput.textContent = `±${result.marginPercent}%`;
+    if (variableOutput) variableOutput.textContent = `${result.proportionPercent}%`;
+  } else {
+    if (marginOutput) marginOutput.textContent = `±${formatNumber(result.marginValue)}`;
+    if (variableOutput) variableOutput.textContent = formatNumber(result.sigmaValue);
   }
-  if (methodOutput) {
-    methodOutput.textContent = result.methodLabel;
-  }
-  if (confidenceOutput) {
-    confidenceOutput.textContent = `${result.confidenceLabel} (z = ${result.z})`;
-  }
-  if (marginOutput) {
-    marginOutput.textContent =
-      result.mode === 'proportion'
-        ? formatPercent(result.marginPercent, { maximumFractionDigits: 2 })
-        : formatNumber(result.marginValue, { maximumFractionDigits: 2 });
-  }
-  if (variableLabel) {
-    variableLabel.textContent = result.variableLabel;
-  }
-  if (variableOutput) {
-    variableOutput.textContent =
-      result.mode === 'proportion'
-        ? formatPercent(result.proportionPercent, { maximumFractionDigits: 2 })
-        : formatNumber(result.sigmaValue, { maximumFractionDigits: 2 });
-  }
+
   if (populationOutput) {
     populationOutput.textContent = result.hasPopulation
       ? formatNumber(result.populationSize, { maximumFractionDigits: 0 })
-      : 'Not applied';
+      : 'Infinite';
   }
   if (baseOutput) {
-    baseOutput.textContent = formatNumber(result.n0, { maximumFractionDigits: 2 });
+    baseOutput.textContent = formatNumber(result.n0, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
   if (correctedOutput) {
     correctedOutput.textContent = result.hasPopulation
-      ? formatNumber(result.correctedN, { maximumFractionDigits: 2 })
+      ? formatNumber(result.correctedN, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
       : 'Not applied';
   }
-  if (interpretation) {
-    interpretation.textContent = result.interpretation;
-  }
 
+  if (interpretation) interpretation.textContent = result.interpretation;
   renderList(assumptionsList, result.assumptions, 'ss-assumption-item');
   renderSteps(result.steps);
+  renderSensitivityTable(result);
+
+  if (answerSection && !prefersReducedMotion.matches) {
+    answerSection.style.opacity = '0';
+    requestAnimationFrame(() => {
+      answerSection.style.transition = 'opacity 250ms ease';
+      answerSection.style.opacity = '1';
+    });
+  }
 }
 
-function calculate() {
+function runCalculation() {
   const inputs = readInputs();
   const result =
-    activeMode === 'mean'
+    inputs.mode === 'mean'
       ? calculateMeanSampleSize(inputs)
       : calculateProportionSampleSize(inputs);
   renderResult(result);
 }
 
-presetButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    applyPreset(button.dataset.ssPreset);
-  });
+calculateButton?.addEventListener('click', runCalculation);
+
+presetButtons.forEach((btn) => {
+  btn.addEventListener('click', () => applyPreset(btn.dataset.ssPreset));
 });
 
 [marginInput, proportionInput, sigmaInput, populationInput].forEach((input) => {
-  if (!input) {
-    return;
-  }
-  input.addEventListener('input', () => {
+  input?.addEventListener('input', () => {
     clearActivePreset();
     markResultsDirty();
   });
 });
 
-calculateButton?.addEventListener('click', calculate);
-
-setActiveMode('proportion', { syncButton: true, markDirty: false });
-renderIdleState();
+setActiveMode('proportion', { syncButton: false, markDirty: false });
+applyPreset('general-survey');

@@ -16,9 +16,6 @@ test.describe('Sample Size Calculator', () => {
       'aria-pressed',
       'true'
     );
-    await expect(page.locator('#ss-result-value')).toHaveText('--');
-
-    await page.locator('#ss-calculate').click();
 
     await expect(page.locator('#ss-result-value')).toHaveText('385');
     await expect(page.locator('#ss-method-output')).toHaveText('Proportion estimate');
@@ -39,7 +36,6 @@ test.describe('Sample Size Calculator', () => {
     await expect(page.locator('[data-mode-panel="proportion"]')).toBeHidden();
 
     await page.locator('[data-ss-preset="lab-mean"]').click();
-    await page.locator('#ss-calculate').click();
 
     await expect(page.locator('#ss-result-value')).toHaveText('62');
     await expect(page.locator('#ss-method-output')).toHaveText('Mean estimate');
