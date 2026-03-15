@@ -60,7 +60,7 @@ Current calculator volume to migrate: 88 routes.
 | Shared theme/base/tokens | `public/assets/css/theme-premium-dark.css`, `public/assets/css/base.css`, `public/assets/css/core-tokens.css` |
 | Shared calculator CSS | `public/assets/css/layout.css`, `public/assets/css/calculator.css`, `public/assets/css/shared-calculator-ui.css` |
 | Shared shell JS | `public/assets/js/core-shell.js`, `public/assets/js/core/mpa-nav.js` |
-| Shared global builders | `scripts/generate-mpa-pages.js`, `scripts/build-route-css-bundles.mjs` |
+| Shared global builders | `scripts/generate-mpa-pages.js` |
 
 ## 6) Target Architecture
 
@@ -191,7 +191,6 @@ clusters/
       js/
     build/
       generate-pages.mjs
-      build-route-css-bundles.mjs
       validate-isolation-scope.mjs
       validate-contracts.mjs
 

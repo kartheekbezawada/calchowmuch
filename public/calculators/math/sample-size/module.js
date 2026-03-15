@@ -1,93 +1,356 @@
-import { formatNumber } from '/assets/js/core/format.js';
-import { setupButtonGroup } from '/assets/js/core/ui.js';
-import { toNumber } from '/assets/js/core/validate.js';
+import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
+import {
+  MODE_CONTENT,
+  RESEARCH_PRESETS,
+  calculateMeanSampleSize,
+  calculateProportionSampleSize,
+} from './engine.js';
 
-const confidenceGroup = document.querySelector('[data-button-group="ss-confidence"]');
-const confidenceButtons = setupButtonGroup(confidenceGroup, {
-  defaultValue: '1.96',
-  onChange: () => {
-    calculate();
-  },
-});
-const marginInput = document.querySelector('#ss-margin');
-const proportionInput = document.querySelector('#ss-proportion');
-const populationInput = document.querySelector('#ss-population');
-const calculateButton = document.querySelector('#ss-calculate');
-const resultDiv = document.querySelector('#ss-result');
-const detailDiv = document.querySelector('#ss-detail');
+const metadata = {
+  title: 'Sample Size Calculator | Proportion and Mean Study Planner',
+  description:
+    'Plan sample size for proportions or means with optional finite-population correction, worked examples, and research-ready guidance.',
+  canonical: 'https://calchowmuch.com/math/sample-size/',
+};
 
-function calculate() {
-  resultDiv.textContent = '';
-  detailDiv.textContent = '';
+setPageMetadata(metadata);
 
-  const confidenceValue = confidenceButtons?.getValue() ?? '1.96';
-  const z = toNumber(confidenceValue, 1.96);
-  const marginPercent = toNumber(marginInput.value, 0);
-  const proportionPercent = toNumber(proportionInput.value, 50);
-  const populationStr = populationInput.value.trim();
-
-  // Convert percentages to decimals
-  const E = marginPercent / 100;
-  const p = proportionPercent / 100;
-
-  // Validation
-  if (E <= 0) {
-    resultDiv.textContent = 'Margin of error must be greater than 0%.';
+function ensureH1Title() {
+  const title = document.getElementById('calculator-title');
+  if (!title) {
     return;
   }
 
-  if (p < 0 || p > 1) {
-    resultDiv.textContent = 'Estimated proportion must be between 0% and 100%.';
-    return;
-  }
-
-  // Base formula: n0 = (z² * p * (1-p)) / E²
-  const n0 = (Math.pow(z, 2) * p * (1 - p)) / Math.pow(E, 2);
-
-  let finalN = n0;
-  let hasPopulation = false;
-  let N = null;
-
-  // Finite population correction if N is provided
-  if (populationStr !== '') {
-    N = toNumber(populationStr, 0);
-    if (N < 1) {
-      resultDiv.textContent = 'Population size must be at least 1 if provided.';
-      return;
-    }
-    hasPopulation = true;
-    // n = n0 / (1 + (n0 - 1) / N)
-    finalN = n0 / (1 + (n0 - 1) / N);
-  }
-
-  // Round up to whole number
-  const sampleSize = Math.ceil(finalN);
-
-  // Get confidence label
-  const confidenceLabels = {
-    1.645: '90%',
-    1.96: '95%',
-    2.576: '99%',
-  };
-  const confidenceLabel = confidenceLabels[confidenceValue] || 'Custom';
-
-  resultDiv.innerHTML = `<strong>Required Sample Size:</strong> ${formatNumber(sampleSize, { maximumFractionDigits: 0 })}`;
-
-  let detailHTML = `
-    <p><strong>Confidence Level:</strong> ${confidenceLabel} (z = ${z})</p>
-    <p><strong>Margin of Error:</strong> ${marginPercent}%</p>
-    <p><strong>Estimated Proportion:</strong> ${proportionPercent}%</p>
-  `;
-
-  if (hasPopulation) {
-    detailHTML += `<p><strong>Population Size:</strong> ${formatNumber(N, { maximumFractionDigits: 0 })}</p>`;
-    detailHTML += `<p><strong>Uncorrected n₀:</strong> ${formatNumber(n0, { maximumFractionDigits: 2 })}</p>`;
-  }
-
-  detailDiv.innerHTML = detailHTML;
+  title.textContent = 'Sample Size Calculator';
 }
 
-calculateButton.addEventListener('click', calculate);
+ensureH1Title();
 
-// Calculate on load with default values
-calculate();
+const calcRoot = document.getElementById('calc-sample-size');
+const modeGroup = document.querySelector('[data-button-group="ss-mode"]');
+const confidenceGroup = document.querySelector('[data-button-group="ss-confidence"]');
+const presetButtons = Array.from(document.querySelectorAll('[data-ss-preset]'));
+const modePanels = Array.from(document.querySelectorAll('[data-mode-panel]'));
+
+const modeCopy = document.querySelector('#ss-mode-copy');
+const marginLabel = document.querySelector('#ss-margin-label');
+const marginHint = document.querySelector('#ss-margin-hint');
+
+const marginInput = document.querySelector('#ss-margin');
+const proportionInput = document.querySelector('#ss-proportion');
+const sigmaInput = document.querySelector('#ss-sigma');
+const populationInput = document.querySelector('#ss-population');
+const calculateButton = document.querySelector('#ss-calculate');
+const errorMessage = document.querySelector('#ss-error');
+
+const resultMode = document.querySelector('#ss-result-mode');
+const resultValue = document.querySelector('#ss-result-value');
+const resultSummary = document.querySelector('#ss-result-summary');
+const methodOutput = document.querySelector('#ss-method-output');
+const confidenceOutput = document.querySelector('#ss-confidence-output');
+const marginOutput = document.querySelector('#ss-margin-output');
+const variableLabel = document.querySelector('#ss-variable-label');
+const variableOutput = document.querySelector('#ss-variable-output');
+const populationOutput = document.querySelector('#ss-population-output');
+const baseOutput = document.querySelector('#ss-base-output');
+const correctedOutput = document.querySelector('#ss-corrected-output');
+const interpretation = document.querySelector('#ss-interpretation');
+const assumptionsList = document.querySelector('#ss-assumptions');
+const stepsList = document.querySelector('#ss-steps');
+
+const presetLookup = new Map(RESEARCH_PRESETS.map((preset) => [preset.id, preset]));
+
+let activeMode = 'proportion';
+let activePresetId = null;
+let hasCalculated = false;
+
+const modeSwitch = setupButtonGroup(modeGroup, {
+  defaultValue: 'proportion',
+  ariaAttribute: 'aria-selected',
+  onChange: (value) => {
+    setActiveMode(value, { clearPreset: true, markDirty: true });
+  },
+});
+
+const confidenceSwitch = setupButtonGroup(confidenceGroup, {
+  defaultValue: '1.96',
+  onChange: () => {
+    clearActivePreset();
+    markResultsDirty();
+  },
+});
+
+function setError(message = '') {
+  if (!errorMessage) {
+    return;
+  }
+
+  errorMessage.textContent = message;
+  errorMessage.classList.toggle('is-hidden', !message);
+}
+
+function clearActivePreset() {
+  activePresetId = null;
+  presetButtons.forEach((button) => {
+    button.classList.remove('is-active');
+    button.setAttribute('aria-pressed', 'false');
+  });
+}
+
+function syncPresetButtons() {
+  presetButtons.forEach((button) => {
+    const isActive = button.dataset.ssPreset === activePresetId;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function setActiveMode(mode, options = {}) {
+  activeMode = mode === 'mean' ? 'mean' : 'proportion';
+  calcRoot?.setAttribute('data-active-mode', activeMode);
+
+  if (modeSwitch && options.syncButton !== false) {
+    modeSwitch.setValue(activeMode);
+  }
+
+  modePanels.forEach((panel) => {
+    const isActive = panel.dataset.modePanel === activeMode;
+    panel.classList.toggle('is-active', isActive);
+    panel.hidden = !isActive;
+  });
+
+  const modeCopyContent = MODE_CONTENT[activeMode];
+  if (modeCopy) {
+    modeCopy.textContent = modeCopyContent.hero;
+  }
+  if (marginLabel) {
+    marginLabel.textContent = modeCopyContent.marginLabel;
+  }
+  if (marginHint) {
+    marginHint.textContent = modeCopyContent.marginHint;
+  }
+
+  if (options.clearPreset) {
+    clearActivePreset();
+  }
+  if (options.markDirty) {
+    markResultsDirty();
+  }
+}
+
+function renderList(target, items, className) {
+  if (!target) {
+    return;
+  }
+
+  target.innerHTML = items
+    .map((item) => `<li class="${className}">${item}</li>`)
+    .join('');
+}
+
+function renderSteps(steps) {
+  if (!stepsList) {
+    return;
+  }
+
+  stepsList.innerHTML = steps
+    .map(
+      (step) =>
+        `<li class="ss-step-item"><strong>${step.label}.</strong> ${step.text}</li>`
+    )
+    .join('');
+}
+
+function renderIdleState(message) {
+  const copy = MODE_CONTENT[activeMode];
+  if (resultMode) {
+    resultMode.textContent = copy.label;
+  }
+  if (resultValue) {
+    resultValue.textContent = '--';
+  }
+  if (resultSummary) {
+    resultSummary.textContent =
+      message || 'Pick a study mode, adjust the assumptions, and click Calculate Sample Size.';
+  }
+  if (methodOutput) {
+    methodOutput.textContent = copy.label;
+  }
+  if (confidenceOutput) {
+    confidenceOutput.textContent = '--';
+  }
+  if (marginOutput) {
+    marginOutput.textContent = '--';
+  }
+  if (variableLabel) {
+    variableLabel.textContent =
+      activeMode === 'proportion' ? 'Estimated proportion' : 'Population standard deviation';
+  }
+  if (variableOutput) {
+    variableOutput.textContent = '--';
+  }
+  if (populationOutput) {
+    populationOutput.textContent = '--';
+  }
+  if (baseOutput) {
+    baseOutput.textContent = '--';
+  }
+  if (correctedOutput) {
+    correctedOutput.textContent = '--';
+  }
+  if (interpretation) {
+    interpretation.textContent =
+      activeMode === 'proportion'
+        ? 'Estimate the number of responses needed for a percentage, prevalence, or survey outcome.'
+        : 'Estimate the number of observations needed when the target outcome is a continuous mean.';
+  }
+  renderList(assumptionsList, copy.idleAssumptions, 'ss-assumption-item');
+  renderSteps([
+    {
+      label: 'Choose a study mode',
+      text: 'Select proportion for percentages or mean for continuous outcomes.',
+    },
+    {
+      label: 'Set the planning assumptions',
+      text: 'Enter confidence, margin of error, and the study-specific input for the active mode.',
+    },
+    {
+      label: 'Calculate the sample target',
+      text: 'Click Calculate Sample Size to generate the required sample, assumptions, and breakdown.',
+    },
+  ]);
+}
+
+function markResultsDirty() {
+  hasCalculated = false;
+  setError('');
+  renderIdleState(
+    'Inputs changed. Click Calculate Sample Size again to refresh the study plan.'
+  );
+}
+
+function applyPreset(presetId) {
+  const preset = presetLookup.get(presetId);
+  if (!preset) {
+    return;
+  }
+
+  activePresetId = preset.id;
+  syncPresetButtons();
+
+  setActiveMode(preset.mode, { clearPreset: false, markDirty: false });
+  confidenceSwitch?.setValue(preset.values.confidenceZ);
+  marginInput.value = preset.values.margin;
+  proportionInput.value = preset.values.proportion;
+  sigmaInput.value = preset.values.sigma;
+  populationInput.value = preset.values.population;
+
+  hasCalculated = false;
+  setError('');
+  renderIdleState('Preset loaded. Click Calculate Sample Size to generate the study plan.');
+}
+
+function readInputs() {
+  return {
+    mode: activeMode,
+    z: Number(confidenceSwitch?.getValue() ?? '1.96'),
+    margin: marginInput?.value ?? '',
+    proportion: proportionInput?.value ?? '',
+    sigma: sigmaInput?.value ?? '',
+    populationSize: populationInput?.value ?? '',
+  };
+}
+
+function renderResult(result) {
+  if (!result.ok) {
+    setError(result.message || 'Unable to calculate the requested sample size.');
+    renderIdleState('Fix the highlighted input and calculate again.');
+    return;
+  }
+
+  setError('');
+  hasCalculated = true;
+
+  if (resultMode) {
+    resultMode.textContent = result.methodLabel;
+  }
+  if (resultValue) {
+    resultValue.textContent = formatNumber(result.requiredSampleSize, {
+      maximumFractionDigits: 0,
+    });
+  }
+  if (resultSummary) {
+    resultSummary.textContent = result.summary;
+  }
+  if (methodOutput) {
+    methodOutput.textContent = result.methodLabel;
+  }
+  if (confidenceOutput) {
+    confidenceOutput.textContent = `${result.confidenceLabel} (z = ${result.z})`;
+  }
+  if (marginOutput) {
+    marginOutput.textContent =
+      result.mode === 'proportion'
+        ? formatPercent(result.marginPercent, { maximumFractionDigits: 2 })
+        : formatNumber(result.marginValue, { maximumFractionDigits: 2 });
+  }
+  if (variableLabel) {
+    variableLabel.textContent = result.variableLabel;
+  }
+  if (variableOutput) {
+    variableOutput.textContent =
+      result.mode === 'proportion'
+        ? formatPercent(result.proportionPercent, { maximumFractionDigits: 2 })
+        : formatNumber(result.sigmaValue, { maximumFractionDigits: 2 });
+  }
+  if (populationOutput) {
+    populationOutput.textContent = result.hasPopulation
+      ? formatNumber(result.populationSize, { maximumFractionDigits: 0 })
+      : 'Not applied';
+  }
+  if (baseOutput) {
+    baseOutput.textContent = formatNumber(result.n0, { maximumFractionDigits: 2 });
+  }
+  if (correctedOutput) {
+    correctedOutput.textContent = result.hasPopulation
+      ? formatNumber(result.correctedN, { maximumFractionDigits: 2 })
+      : 'Not applied';
+  }
+  if (interpretation) {
+    interpretation.textContent = result.interpretation;
+  }
+
+  renderList(assumptionsList, result.assumptions, 'ss-assumption-item');
+  renderSteps(result.steps);
+}
+
+function calculate() {
+  const inputs = readInputs();
+  const result =
+    activeMode === 'mean'
+      ? calculateMeanSampleSize(inputs)
+      : calculateProportionSampleSize(inputs);
+  renderResult(result);
+}
+
+presetButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    applyPreset(button.dataset.ssPreset);
+  });
+});
+
+[marginInput, proportionInput, sigmaInput, populationInput].forEach((input) => {
+  if (!input) {
+    return;
+  }
+  input.addEventListener('input', () => {
+    clearActivePreset();
+    markResultsDirty();
+  });
+});
+
+calculateButton?.addEventListener('click', calculate);
+
+setActiveMode('proportion', { syncButton: true, markDirty: false });
+renderIdleState();

@@ -9,8 +9,8 @@ Commands:
 - `CLUSTER=math CALC=sample-size npm run test:calc:cwv`
 
 Pass criteria:
-- Unit logic tests pass
-- E2E flow + SEO checks pass
+- Unit logic tests pass for proportion, mean, finite-population correction, and validation
+- E2E flow + SEO checks pass for single-pane layout, presets, schema, and explanation contract
 - CWV route guard passes
 
 Ownership: calculator route owner.

@@ -1536,26 +1536,6 @@ function normalizeRoutePath(routePath) {
   return normalized;
 }
 
-function buildRouteBundles() {
-  execSync('node scripts/build-route-css-bundles.mjs', {
-    cwd: ROOT,
-    stdio: 'inherit',
-  });
-}
-
-function shouldBuildRouteBundles(scope) {
-  if (scope.fullSite) {
-    return true;
-  }
-  if (process.env.REBUILD_ROUTE_BUNDLES === '1' || hasFlag('--rebuild-bundles')) {
-    return true;
-  }
-  if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH) || !fs.existsSync(ASSET_MANIFEST_PATH)) {
-    return true;
-  }
-  return false;
-}
-
 function readRouteBundleManifest() {
   if (!fs.existsSync(ROUTE_BUNDLE_MANIFEST_PATH)) {
     throw new Error(`Missing route CSS bundle manifest: ${ROUTE_BUNDLE_MANIFEST_PATH}`);
@@ -2868,11 +2848,6 @@ function main() {
 
   const navigation = JSON.parse(readFile(NAV_PATH));
   const calculatorDirs = findCalculatorDirs(CALC_DIR);
-  if (shouldBuildRouteBundles(scope)) {
-    buildRouteBundles();
-  } else {
-    console.log('Skipping route bundle rebuild for scoped generation (use REBUILD_ROUTE_BUNDLES=1 to force).');
-  }
   const routeBundleManifest = readRouteBundleManifest();
   const assetManifest = readAssetManifest();
 

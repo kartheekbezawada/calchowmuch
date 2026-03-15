@@ -368,11 +368,11 @@
             },
             {
               "id": "sample-size",
-              "name": "Sample Size Calculator",
+              "name": "Sample Size",
               "url": "/math/sample-size/",
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "number-sequence",

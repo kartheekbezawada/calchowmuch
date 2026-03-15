@@ -1,73 +1,437 @@
 <div id="calc-sample-size">
-  <div class="calculator-ui">
-    <p class="helper">Determine the required sample size for a proportion estimate.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label id="ss-confidence-label">Confidence Level</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ss-confidence-label"
-          data-button-group="ss-confidence"
-        >
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="1.645"
-            aria-pressed="false"
-          >
-            90%
-          </button>
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="1.96"
-            aria-pressed="true"
-          >
-            95%
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="2.576"
-            aria-pressed="false"
-          >
-            99%
-          </button>
+  <div class="ss-shell">
+    <section class="ss-card ss-hero-card" aria-label="Academic research overview">
+      <div class="ss-hero-copy">
+        <div class="ss-hero-block">
+          <p class="ss-kicker">Academic research planner</p>
+          <p class="ss-hero-text">
+            Plan sample size for proportion studies or mean-estimate studies with optional
+            finite-population correction, worked examples, and research-ready notes.
+          </p>
+        </div>
+        <div class="ss-hero-note">
+          <p class="ss-note-label">Best fit</p>
+          <p class="ss-note-text">
+            Surveys, prevalence estimation, protocol drafting, lab planning, and small-population
+            study design.
+          </p>
         </div>
       </div>
+    </section>
 
-      <div class="input-row">
-        <label for="ss-margin">Margin of Error (%)</label>
-        <input id="ss-margin" type="number" value="5" min="0.01" step="0.1" />
+    <section class="ss-card ss-mode-card" aria-label="Sample size planning mode">
+      <div class="ss-card-head">
+        <p class="ss-section-label">Study target</p>
+        <p class="ss-card-help">
+          Choose whether the study outcome is a proportion or a continuous mean.
+        </p>
       </div>
 
-      <div class="input-row">
-        <label for="ss-proportion">Estimated Proportion (%)</label>
-        <input id="ss-proportion" type="number" value="50" min="0" max="100" step="1" />
+      <div
+        class="ss-mode-switch"
+        role="tablist"
+        aria-label="Sample size mode"
+        data-button-group="ss-mode"
+      >
+        <button
+          class="ss-mode-button is-active"
+          type="button"
+          data-value="proportion"
+          aria-selected="true"
+        >
+          Proportion study
+        </button>
+        <button
+          class="ss-mode-button"
+          type="button"
+          data-value="mean"
+          aria-selected="false"
+        >
+          Mean study
+        </button>
       </div>
 
-      <div class="input-row">
-        <label for="ss-population">Population Size (optional)</label>
-        <input
-          id="ss-population"
-          type="number"
-          value=""
-          min="1"
-          step="1"
-          placeholder="Leave blank for infinite"
-        />
+      <p class="ss-mode-copy" id="ss-mode-copy">
+        Plan a proportion or prevalence estimate with optional finite-population correction.
+      </p>
+    </section>
+
+    <div class="ss-main-grid">
+      <div class="ss-control-stack">
+        <section class="ss-card ss-presets-card" aria-label="Academic presets">
+          <div class="ss-card-head">
+            <p class="ss-section-label">Academic presets</p>
+            <p class="ss-card-help">
+              Load a realistic starting point, then tune the assumptions before you calculate.
+            </p>
+          </div>
+
+          <div class="ss-preset-grid">
+            <button
+              class="ss-preset-card"
+              type="button"
+              data-ss-preset="general-survey"
+              aria-pressed="false"
+            >
+              <span class="ss-preset-kicker">Survey</span>
+              <strong>General survey baseline</strong>
+              <span>95% confidence, 5% margin, p = 50%.</span>
+            </button>
+            <button
+              class="ss-preset-card"
+              type="button"
+              data-ss-preset="prevalence-study"
+              aria-pressed="false"
+            >
+              <span class="ss-preset-kicker">Prevalence</span>
+              <strong>Prevalence planning</strong>
+              <span>95% confidence, 3% margin, p = 20%.</span>
+            </button>
+            <button
+              class="ss-preset-card"
+              type="button"
+              data-ss-preset="finite-survey"
+              aria-pressed="false"
+            >
+              <span class="ss-preset-kicker">Finite N</span>
+              <strong>Campus population survey</strong>
+              <span>95% confidence, 5% margin, p = 50%, N = 1200.</span>
+            </button>
+            <button
+              class="ss-preset-card"
+              type="button"
+              data-ss-preset="lab-mean"
+              aria-pressed="false"
+            >
+              <span class="ss-preset-kicker">Mean</span>
+              <strong>Laboratory mean estimate</strong>
+              <span>95% confidence, margin = 2, sigma = 8.</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="ss-card ss-input-card" aria-label="Study planning inputs">
+          <div class="ss-card-head">
+            <p class="ss-section-label">Inputs</p>
+            <p class="ss-card-help">
+              The calculator updates only when you click Calculate Sample Size.
+            </p>
+          </div>
+
+          <div class="ss-input-grid">
+            <div class="ss-field-group">
+              <label id="ss-confidence-label">Confidence level</label>
+              <div
+                class="ss-confidence-switch"
+                role="group"
+                aria-labelledby="ss-confidence-label"
+                data-button-group="ss-confidence"
+              >
+                <button
+                  class="ss-confidence-button"
+                  type="button"
+                  data-value="1.645"
+                  aria-pressed="false"
+                >
+                  90%
+                </button>
+                <button
+                  class="ss-confidence-button is-active"
+                  type="button"
+                  data-value="1.96"
+                  aria-pressed="true"
+                >
+                  95%
+                </button>
+                <button
+                  class="ss-confidence-button"
+                  type="button"
+                  data-value="2.576"
+                  aria-pressed="false"
+                >
+                  99%
+                </button>
+              </div>
+            </div>
+
+            <label class="ss-field" for="ss-margin">
+              <span id="ss-margin-label">Margin of error (%)</span>
+              <input
+                id="ss-margin"
+                type="number"
+                value="5"
+                min="0.01"
+                step="0.1"
+                inputmode="decimal"
+                data-maxlength="12"
+              />
+              <small id="ss-margin-hint">
+                Percent precision around the estimated proportion.
+              </small>
+            </label>
+
+            <div class="ss-mode-panel is-active" data-mode-panel="proportion">
+              <label class="ss-field" for="ss-proportion">
+                <span>Estimated proportion (%)</span>
+                <input
+                  id="ss-proportion"
+                  type="number"
+                  value="50"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  inputmode="decimal"
+                  data-maxlength="12"
+                />
+                <small>Use 50% when prior evidence is limited and you want the largest safe sample.</small>
+              </label>
+            </div>
+
+            <div class="ss-mode-panel" data-mode-panel="mean" hidden>
+              <label class="ss-field" for="ss-sigma">
+                <span>Population standard deviation</span>
+                <input
+                  id="ss-sigma"
+                  type="number"
+                  value="8"
+                  min="0.0001"
+                  step="0.1"
+                  inputmode="decimal"
+                  data-maxlength="12"
+                />
+                <small>Use the known or justified sigma for the study outcome.</small>
+              </label>
+            </div>
+
+            <label class="ss-field" for="ss-population">
+              <span>Population size (optional)</span>
+              <input
+                id="ss-population"
+                type="number"
+                value=""
+                min="1"
+                step="1"
+                inputmode="numeric"
+                data-maxlength="12"
+                placeholder="Leave blank for an infinite population"
+              />
+              <small>Add this only when the full study population is small enough to matter.</small>
+            </label>
+          </div>
+
+          <button class="calculator-button ss-calculate-button" type="button" id="ss-calculate">
+            Calculate Sample Size
+          </button>
+          <p class="ss-error is-hidden" id="ss-error" role="alert"></p>
+        </section>
+      </div>
+
+      <div class="ss-results-stack">
+        <section class="ss-card ss-answer-card" aria-live="polite">
+          <p class="ss-section-label">Required sample</p>
+          <p class="ss-result-kicker" id="ss-result-mode">Not calculated yet</p>
+          <p class="ss-result-value" id="ss-result-value">--</p>
+          <p class="ss-result-summary" id="ss-result-summary">
+            Pick a study mode, adjust the assumptions, and click Calculate Sample Size.
+          </p>
+
+          <div class="ss-metric-grid">
+            <article class="ss-metric">
+              <span class="ss-metric-label">Method</span>
+              <strong class="ss-metric-value" id="ss-method-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label">Confidence</span>
+              <strong class="ss-metric-value" id="ss-confidence-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label">Margin</span>
+              <strong class="ss-metric-value" id="ss-margin-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label" id="ss-variable-label">Estimated proportion</span>
+              <strong class="ss-metric-value" id="ss-variable-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label">Population</span>
+              <strong class="ss-metric-value" id="ss-population-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label">Base n0</span>
+              <strong class="ss-metric-value" id="ss-base-output">--</strong>
+            </article>
+            <article class="ss-metric">
+              <span class="ss-metric-label">Corrected n</span>
+              <strong class="ss-metric-value" id="ss-corrected-output">--</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="ss-card ss-assumptions-card">
+          <div class="ss-card-head">
+            <p class="ss-section-label">Interpretation and assumptions</p>
+          </div>
+          <p class="ss-interpretation" id="ss-interpretation">
+            The interpretation will appear here after you calculate.
+          </p>
+          <ul class="ss-assumption-list" id="ss-assumptions">
+            <li>Choose a study mode that matches the planned outcome.</li>
+            <li>Use realistic assumptions before you commit to a protocol or fieldwork plan.</li>
+            <li>Finite-population correction is optional and only applies when population size is known.</li>
+          </ul>
+        </section>
+
+        <section class="ss-card ss-steps-card">
+          <div class="ss-card-head">
+            <p class="ss-section-label">Calculation breakdown</p>
+          </div>
+          <ol class="ss-step-list" id="ss-steps">
+            <li class="ss-step-item">Your step-by-step calculation will appear here after you calculate.</li>
+          </ol>
+        </section>
       </div>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="ss-calculate">
-      Calculate Sample Size
-    </button>
-
-    <div class="result" id="ss-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="ss-detail" aria-live="polite"></div>
   </div>
+
+  <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://calchowmuch.com/math/sample-size/#webpage",
+          "name": "Sample Size Calculator | Proportion and Mean Study Planner",
+          "url": "https://calchowmuch.com/math/sample-size/",
+          "description": "Plan sample size for proportions or means with optional finite-population correction, worked examples, and research-ready guidance.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://calchowmuch.com/math/sample-size/#softwareapplication",
+          "name": "Sample Size Calculator",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://calchowmuch.com/math/sample-size/",
+          "description": "Study-planning calculator for proportion and mean sample size with optional finite-population correction.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://calchowmuch.com/math/sample-size/#breadcrumbs",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://calchowmuch.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Math",
+              "item": "https://calchowmuch.com/math/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Sample Size Calculator",
+              "item": "https://calchowmuch.com/math/sample-size/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://calchowmuch.com/math/sample-size/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "When should I use the proportion mode?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use proportion mode when the study outcome is a percentage, share, prevalence, response rate, or any other proportion."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When should I use the mean mode?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use mean mode when the study outcome is continuous and you know the population standard deviation in the same units as the margin of error."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the calculator default to 50% for the estimated proportion?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A 50% proportion gives the largest variance term and therefore the most conservative sample-size estimate when prior evidence is limited."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does finite-population correction do?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It reduces the required sample size when the full population is known and relatively small compared with the uncorrected sample-size estimate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need a population size for every study?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Leave population size blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is the final sample size rounded up?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The final answer is rounded up so the achieved sample is at least as large as the planned requirement."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens if I tighten the margin of error?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A tighter margin of error requires a larger sample size because the estimate must be more precise."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens if I increase the confidence level?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Higher confidence levels use larger z-values, which increases the required sample size."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can this replace a full power analysis?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. This calculator is for estimation planning, not for hypothesis-test power analysis or multi-arm experimental design."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the calculator store my study inputs?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The calculation runs in your browser and does not store the values you enter."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
 </div>
 
 <style>

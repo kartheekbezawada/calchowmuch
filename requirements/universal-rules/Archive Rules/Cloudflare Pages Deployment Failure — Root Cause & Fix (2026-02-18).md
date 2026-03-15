@@ -55,12 +55,10 @@ Updated Cloudflare Pages Build Command
 
 In Cloudflare Pages → Settings → Build configuration, change build command to:
 
-pnpm run build:css:route-bundles && GENERATE_ALL_ROUTES=1 node scripts/generate-mpa-pages.js
+GENERATE_ALL_ROUTES=1 node scripts/generate-mpa-pages.js
 
 
 This ensures:
-
-required CSS route bundles are generated first
 
 generator safe mode is explicitly overridden for CI
 

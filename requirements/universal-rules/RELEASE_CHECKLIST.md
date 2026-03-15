@@ -319,7 +319,7 @@ HARD: npm run validate passes (lint + format + unit tests + css-import lint).
 
 HARD: No runtime CSS @import anywhere.
 
-HARD (route-bundle pilots): `npm run build:css:route-bundles && npm run verify:css:route-bundles`.
+HARD (route-bundle pilots): route-bundle rebuild commands are retired; verify route assets via the active manifest/generation workflow instead.
 
 5. CRITICAL RENDERING PATH GUARD — HARD (TOP 1% RULE)
 

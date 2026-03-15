@@ -210,7 +210,6 @@ Wave 1 route:
 - `public/calculators/percentage-calculators/percent-change/calculator.css`
 - `public/config/navigation.json`
 - `public/config/asset-manifest.json`
-- `scripts/build-route-css-bundles.mjs`
 - `scripts/generate-mpa-pages.js` (generation wiring only if needed)
 
 Release evidence:
@@ -220,8 +219,7 @@ Release evidence:
 ## 7) Build/Test/Release Checklist Command Matrix
 
 Build/update:
-1. `npm run build:css:route-bundles`
-2. `TARGET_ROUTE=/percentage-calculators/percent-change/ node scripts/generate-mpa-pages.js`
+1. `TARGET_ROUTE=/percentage-calculators/percent-change/ node scripts/generate-mpa-pages.js`
 
 Scoped release gates (default for cluster/calculator releases):
 1. `CLUSTER=percentage npm run test:cluster:unit`
@@ -310,8 +308,7 @@ Mandatory files to add/update per calculator:
   - `requirements/universal-rules/Release Sign-Off Master Table.md`
 
 Build/regenerate contract:
-1. `npm run build:css:route-bundles`
-2. `TARGET_ROUTE=/percentage-calculators/<slug>/ node scripts/generate-mpa-pages.js`
+1. `TARGET_ROUTE=/percentage-calculators/<slug>/ node scripts/generate-mpa-pages.js`
 
 Mandatory scoped gates (exact order):
 1. `CLUSTER=percentage npm run test:cluster:unit`

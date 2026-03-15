@@ -15,7 +15,7 @@
 | Item | Status | Evidence |
 | :--- | :--- | :--- |
 | Internal docs created | done | `docs/internal/math-algebra-release-playbook.md`, `docs/internal/math-algebra-wave-checklists.md`, `docs/internal/math-algebra-wave-status.md` |
-| Algebra route-bundle onboarding | done | `scripts/build-route-css-bundles.mjs` |
+| Algebra route-bundle onboarding | retired | Route-bundle builder removed from repo |
 | Generator override updates | done | `scripts/generate-mpa-pages.js` |
 | Bundles/manifests rebuilt | done | `public/assets/css/route-bundles/manifest.json`, `public/config/asset-manifest.json` |
 
