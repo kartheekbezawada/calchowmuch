@@ -309,6 +309,23 @@ body[data-page='calculator'] .center-column {
   max-width: none;
 }
 
+@media (min-width: 861px) {
+  body[data-page='calculator'] .center-column.calculator-page-single {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator'] .center-column.calculator-page-single > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-age,
+  #age-explanation {
+    width: min(100%, 1380px);
+    margin-inline: auto;
+  }
+}
+
 body[data-page='calculator'] .panel.panel-scroll.panel-span-all > h3 {
   display: none !important;
 }
