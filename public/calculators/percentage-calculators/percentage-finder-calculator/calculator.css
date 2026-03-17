@@ -446,3 +446,27 @@
     padding: 0.75rem 0.7rem;
   }
 }
+
+@media (min-width: 861px) {
+  body[data-page='calculator'] .layout-main:has(#calc-what-percent-is-x-of-y) > .ads-column {
+    display: none !important;
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-what-percent-is-x-of-y) > .center-column {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator']
+    .layout-main:has(#calc-what-percent-is-x-of-y)
+    > .center-column
+    > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-what-percent-is-x-of-y,
+  #wpxy-explanation {
+    width: min(100%, 980px);
+    margin-inline: auto;
+  }
+}
