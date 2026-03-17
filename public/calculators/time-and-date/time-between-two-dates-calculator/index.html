@@ -1,67 +1,166 @@
 <div id="calc-date-diff">
-  <div class="calculator-ui">
-    <p class="helper">
-      Measure the exact time between two dates, including calendar months and years.
+  <section class="td-intro-band" aria-labelledby="date-diff-intro-title">
+    <p class="td-kicker">Days between dates, business days, and exact time.</p>
+    <p class="td-intro" id="date-diff-intro-title">
+      Enter two dates, press calculate, and get one clean answer.
     </p>
+  </section>
 
-    <div class="input-row">
-      <label id="date-diff-mode-label">Mode</label>
+  <section class="td-quick-start" aria-label="Quick start">
+    <div class="td-quick-card">
       <div
-        class="button-group"
+        class="td-segmented"
         role="group"
-        aria-labelledby="date-diff-mode-label"
+        aria-label="Mode"
         data-button-group="date-diff-mode"
       >
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="date"
-          aria-pressed="true"
-        >
+        <button class="td-segment is-active" type="button" data-value="date" aria-pressed="true">
           Dates only
         </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="datetime"
-          aria-pressed="false"
-        >
+        <button class="td-segment" type="button" data-value="datetime" aria-pressed="false">
           Date &amp; time
         </button>
       </div>
     </div>
 
-    <div class="input-grid">
-      <div class="input-row">
-        <label for="date-diff-start-date">Start date</label>
-        <input id="date-diff-start-date" type="date" />
-      </div>
-      <div class="input-row">
-        <label for="date-diff-end-date">End date</label>
-        <input id="date-diff-end-date" type="date" />
-      </div>
-    </div>
-
-    <div class="input-grid time-inputs is-collapsed" id="date-diff-time-inputs" aria-hidden="true">
-      <div class="input-row">
-        <label for="date-diff-start-time">Start time</label>
-        <input id="date-diff-start-time" type="time" step="60" />
-      </div>
-      <div class="input-row">
-        <label for="date-diff-end-time">End time</label>
-        <input id="date-diff-end-time" type="time" step="60" />
+    <div class="td-quick-card">
+      <div class="td-preset-grid" role="group" aria-label="Quick start presets">
+        <button class="td-preset is-active" type="button" data-preset="today-plus-7">
+          Today → +7 days
+        </button>
+        <button class="td-preset" type="button" data-preset="today-plus-30">
+          Today → +30 days
+        </button>
+        <button class="td-preset" type="button" data-preset="this-month">This month</button>
+        <button class="td-preset" type="button" data-preset="custom">Custom</button>
       </div>
     </div>
+  </section>
 
-    <button class="calculator-button full-width" type="button" id="date-diff-calculate">
-      Calculate
-    </button>
+  <div class="td-workbench">
+    <section class="td-card td-input-card" aria-labelledby="date-diff-inputs-title">
+      <div class="td-card-head">
+        <h2 id="date-diff-inputs-title">Choose dates.</h2>
+      </div>
 
-    <div class="result" id="date-diff-results" aria-live="polite">
-      <p class="placeholder" id="date-diff-placeholder">Select dates and click Calculate.</p>
-      <p class="form-error is-hidden" id="date-diff-error"></p>
-      <div class="date-diff-results-list is-hidden" id="date-diff-results-list"></div>
-    </div>
+      <div class="td-input-grid">
+        <label class="td-field-label">
+          Start date
+          <input id="date-diff-start-date" type="date" class="td-field" />
+        </label>
+        <label class="td-field-label">
+          End date
+          <input id="date-diff-end-date" type="date" class="td-field" />
+        </label>
+      </div>
+
+      <div class="td-input-grid td-time-grid is-collapsed" id="date-diff-time-inputs" aria-hidden="true">
+        <label class="td-field-label">
+          Start time
+          <input id="date-diff-start-time" type="time" step="60" class="td-field" />
+        </label>
+        <label class="td-field-label">
+          End time
+          <input id="date-diff-end-time" type="time" step="60" class="td-field" />
+        </label>
+      </div>
+
+      <label class="td-toggle-row" for="date-diff-include-end">
+        <input id="date-diff-include-end" type="checkbox" />
+        <span>Include end date in day counts</span>
+      </label>
+
+      <div class="td-action-row">
+        <button class="td-btn td-btn-primary" type="button" id="date-diff-calculate">
+          Calculate difference
+        </button>
+        <button class="td-btn td-btn-secondary" type="button" id="date-diff-swap">
+          Swap dates
+        </button>
+      </div>
+
+      <p class="td-input-note" id="date-diff-input-note"></p>
+      <p class="td-error is-hidden" id="date-diff-error"></p>
+    </section>
+
+    <section class="td-card td-result-card" id="date-diff-result-card" aria-live="polite">
+      <div class="td-result-top">
+        <div>
+          <p class="td-section-kicker" id="date-diff-direction">Future interval</p>
+        </div>
+        <div class="td-result-actions">
+          <button class="td-btn td-btn-secondary" type="button" id="date-diff-copy-summary">
+            Copy summary
+          </button>
+        </div>
+      </div>
+
+      <div class="td-hero-answer">
+        <p class="td-hero-value" id="date-diff-headline">30 days</p>
+        <p class="td-hero-summary" id="date-diff-summary">
+          Mar 17 to Apr 16. 22 business days.
+        </p>
+      </div>
+
+      <div class="td-breakdown-strip" aria-label="Calendar breakdown">
+        <div class="td-breakdown-pill">
+          <span class="td-breakdown-label">Years</span>
+          <span class="td-breakdown-value" id="date-diff-years">0</span>
+        </div>
+        <div class="td-breakdown-pill">
+          <span class="td-breakdown-label">Months</span>
+          <span class="td-breakdown-value" id="date-diff-months">0</span>
+        </div>
+        <div class="td-breakdown-pill">
+          <span class="td-breakdown-label">Days</span>
+          <span class="td-breakdown-value" id="date-diff-days">30</span>
+        </div>
+      </div>
+
+      <div class="td-metrics-grid">
+        <div class="td-metric-tile" data-result="total-days">
+          <span class="td-metric-label">Total days</span>
+          <span class="td-metric-value" id="date-diff-total-days">30</span>
+        </div>
+        <div class="td-metric-tile" data-result="total-weeks">
+          <span class="td-metric-label">Total weeks</span>
+          <span class="td-metric-value" id="date-diff-total-weeks">4.29</span>
+        </div>
+        <div class="td-metric-tile" data-result="business-days">
+          <span class="td-metric-label">Business days</span>
+          <span class="td-metric-value" id="date-diff-business-days">22</span>
+        </div>
+        <div class="td-metric-tile" data-result="total-hours">
+          <span class="td-metric-label">Total hours</span>
+          <span class="td-metric-value" id="date-diff-total-hours">720</span>
+        </div>
+        <div class="td-metric-tile" data-result="total-minutes">
+          <span class="td-metric-label">Total minutes</span>
+          <span class="td-metric-value" id="date-diff-total-minutes">43,200</span>
+        </div>
+      </div>
+
+      <div class="td-result-meta">
+        <span class="td-meta-chip" id="date-diff-options-chip">End date excluded</span>
+        <span class="td-meta-chip" id="date-diff-dirty-note">Up to date</span>
+        <span class="td-copy-feedback is-hidden" id="date-diff-copy-feedback">Copied</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="td-details-grid">
+    <section class="td-card td-detail-card">
+      <h3>Calendar breakdown</h3>
+      <div class="td-detail-list" id="date-diff-calendar-list"></div>
+    </section>
+    <section class="td-card td-detail-card">
+      <h3>Elapsed totals</h3>
+      <div class="td-detail-list" id="date-diff-elapsed-list"></div>
+    </section>
+    <section class="td-card td-detail-card">
+      <h3>Planning notes</h3>
+      <div class="td-detail-list" id="date-diff-notes-list"></div>
+    </section>
   </div>
 </div>
 
