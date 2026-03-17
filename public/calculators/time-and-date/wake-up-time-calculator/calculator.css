@@ -451,6 +451,27 @@
   }
 }
 
+@media (min-width: 861px) {
+  body[data-page='calculator'] .ads-column {
+    display: none !important;
+  }
+
+  body[data-page='calculator'] .center-column.calculator-page-single {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator'] .center-column.calculator-page-single > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-wake-up,
+  #wake-up-explanation {
+    width: min(100%, 1140px);
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 900px) {
   #calc-wake-up .wake-container {
     padding: 14px 16px 34px;
