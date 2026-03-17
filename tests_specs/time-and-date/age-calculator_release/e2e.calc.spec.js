@@ -1,8 +1,12 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Age Calculator', () => {
-  test('AGE-TEST-E2E-1: user journey and results', async ({ page }) => {
-    await page.goto('/time-and-date/age-calculator');
+  test('AGE-TEST-E2E-1: single-pane journey, explicit calculate, and copy summary', async ({
+    page,
+    context,
+  }) => {
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await page.goto('/time-and-date/age-calculator/');
 
     const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
     await expect(topNavActive).toContainText('Time & Date');
@@ -10,41 +14,68 @@ test.describe('Age Calculator', () => {
     const leftActive = page.locator('.fin-nav-item.is-active');
     await expect(leftActive).toContainText('Age Calculator');
 
+    await expect(page.locator('.center-column .panel.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.ads-column')).toBeHidden();
+
+    const headline = page.locator('#age-headline');
+    const initialHeadline = (await headline.textContent())?.trim();
+    expect(initialHeadline).toBeTruthy();
+
     await page.locator('#age-dob').fill('1990-06-15');
     await page.locator('#age-as-of').fill('2025-09-01');
-    await page.locator('#age-calculate').click();
+    await expect(headline).toHaveText(initialHeadline || '');
 
-    const resultsList = page.locator('#age-results-list');
-    await expect(resultsList).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('.result-row span').last()).toHaveText(
-      '35 years, 2 months, 17 days'
-    );
-    await expect(page.locator('#age-clarification')).toHaveText(
-      'That is your exact age as of 2025-09-01.'
-    );
+    await page.locator('#age-calculate').click();
+    await expect(headline).toHaveText('35 years, 2 months, 17 days');
+    await expect(page.locator('#age-summary')).toHaveText('As of Sep 1, 2025. Born on Friday.');
+    await expect(page.locator('#age-total-months')).toHaveText('422');
+    await expect(page.locator('#age-born-weekday')).toHaveText('Friday');
+    await expect(page.locator('#age-next-birthday-detail')).toContainText('Jun 15, 2026');
+
+    await page.locator('#age-copy-summary').click();
+    await expect(page.locator('#age-copy-summary')).toHaveText('Copied');
+
+    const clipboardText = await page.evaluate(async () => navigator.clipboard.readText());
+    expect(clipboardText).toContain('exact age is 35 years, 2 months, 17 days');
+  });
+
+  test('AGE-TEST-E2E-2: helper action, validation, and mobile layout', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/time-and-date/age-calculator/');
+
+    await page.locator('#age-dob').fill('1990-06-15');
+    await page.locator('#age-as-of').fill('2025-09-01');
+    await page.locator('#age-use-today').click();
+
+    const todayValue = await page.evaluate(() => {
+      const now = new Date();
+      const pad = (value) => String(value).padStart(2, '0');
+      return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    });
+    await expect(page.locator('#age-as-of')).toHaveValue(todayValue);
 
     await page.locator('#age-dob').fill('2025-10-01');
     await page.locator('#age-as-of').fill('2025-09-01');
     await page.locator('#age-calculate').click();
     await expect(page.locator('#age-error')).toContainText(
-      'Date of birth must be on or before the comparison date.'
+      'Date of birth must be on or before the as-of date.'
     );
-  });
 
-  test('AGE-TEST-E2E-2: layout stability and content', async ({ page }) => {
-    await page.goto('/time-and-date/age-calculator');
+    const workbench = page.locator('.age-workbench');
+    const fieldCard = page.locator('.age-input-card');
+    const answerCard = page.locator('.age-answer-card');
+    const workbenchBox = await workbench.boundingBox();
+    const fieldBox = await fieldCard.boundingBox();
+    const answerBox = await answerCard.boundingBox();
 
-    const calcPanel = page.locator('.center-column .panel').first();
-    const initialHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
+    expect(workbenchBox).not.toBeNull();
+    expect(fieldBox).not.toBeNull();
+    expect(answerBox).not.toBeNull();
+    expect((answerBox?.y ?? 0) > (fieldBox?.y ?? 0)).toBeTruthy();
 
-    await page.locator('#age-calculate').click();
-    const afterHeight = await calcPanel.evaluate((el) => el.getBoundingClientRect().height);
-    expect(Math.abs(afterHeight - initialHeight)).toBeLessThanOrEqual(1);
-
-    const explanation = page.locator('#age-explanation');
-    expect(await explanation.locator('h2').count()).toBeGreaterThanOrEqual(5);
-    await expect(explanation).toContainText('How Old Are You Exactly?');
-    await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.age-faq-item')).toHaveCount(10);
+    const hasOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth + 1
+    );
+    expect(hasOverflow).toBeFalsy();
   });
 });

@@ -1,33 +1,68 @@
-import { describe, it, expect } from 'vitest';
-import { calculateExactAge } from '../../../public/assets/js/core/date-diff-utils.js';
+import { describe, expect, it } from 'vitest';
+import {
+  buildAgeViewModel,
+  getNextBirthdayModel,
+} from '../../../public/calculators/time-and-date/age-calculator/engine.js';
 
-describe('Age Calculator - calendar-aware exact age', () => {
-  it('should calculate exact age using calendar months and days', () => {
-    const birth = new Date(1990, 5, 15);
-    const asOf = new Date(2025, 8, 1);
-    const age = calculateExactAge(birth, asOf);
+describe('Age Calculator - view model', () => {
+  it('builds the hero age answer and total counts', () => {
+    const result = buildAgeViewModel({
+      birthDate: new Date(1990, 5, 15),
+      asOfDate: new Date(2025, 8, 1),
+    });
 
-    expect(age).toEqual({ years: 35, months: 2, days: 17 });
+    expect(result).not.toBeNull();
+    expect(result?.headline).toBe('35 years, 2 months, 17 days');
+    expect(result?.bornWeekday).toBe('Friday');
+    expect(result?.totals.months).toBe(422);
+    expect(result?.totals.days).toBeGreaterThan(12000);
+    expect(result?.nextBirthday?.headline).toContain('In ');
   });
 
-  it('should return exact years for matching anniversary', () => {
-    const birth = new Date(2000, 0, 1);
-    const asOf = new Date(2001, 0, 1);
-    const age = calculateExactAge(birth, asOf);
+  it('treats the anniversary date as birthday today', () => {
+    const result = buildAgeViewModel({
+      birthDate: new Date(2000, 0, 1),
+      asOfDate: new Date(2001, 0, 1),
+    });
 
-    expect(age).toEqual({ years: 1, months: 0, days: 0 });
+    expect(result).not.toBeNull();
+    expect(result?.headline).toBe('1 year, 0 months, 0 days');
+    expect(result?.totals.months).toBe(12);
+    expect(result?.totals.days).toBe(366);
+    expect(result?.totals.weeks).toBeCloseTo(366 / 7, 5);
+    expect(result?.nextBirthday?.headline).toBe('Birthday today');
+    expect(result?.copySummary).toContain('As of Jan 1, 2001, exact age is 1 year, 0 months, 0 days.');
   });
 
-  it('should handle leap year birthdays', () => {
-    const birth = new Date(2000, 1, 29);
-    const asOf = new Date(2001, 1, 28);
-    const age = calculateExactAge(birth, asOf);
+  it('uses February 28 for next-birthday guidance on leap-day birthdays', () => {
+    const result = buildAgeViewModel({
+      birthDate: new Date(2000, 1, 29),
+      asOfDate: new Date(2001, 1, 28),
+    });
 
-    expect(age).toEqual({ years: 1, months: 0, days: 0 });
+    expect(result).not.toBeNull();
+    expect(result?.headline).toBe('1 year, 0 months, 0 days');
+    expect(result?.nextBirthday?.headline).toBe('Birthday today');
+    expect(result?.nextBirthday?.dateLabel).toBe('Feb 28, 2001');
   });
 
-  it('should return null for invalid dates', () => {
-    const invalid = new Date('invalid');
-    expect(calculateExactAge(invalid, new Date())).toBeNull();
+  it('returns null when the as-of date is before the birth date', () => {
+    expect(
+      buildAgeViewModel({
+        birthDate: new Date(2025, 8, 1),
+        asOfDate: new Date(2025, 7, 1),
+      })
+    ).toBeNull();
+  });
+});
+
+describe('Age Calculator - next birthday helper', () => {
+  it('calculates the next birthday countdown for standard birthdays', () => {
+    const nextBirthday = getNextBirthdayModel(new Date(1990, 5, 15), new Date(2026, 2, 17), 35);
+
+    expect(nextBirthday).not.toBeNull();
+    expect(nextBirthday?.headline).toBe('In 90 days');
+    expect(nextBirthday?.weekday).toBe('Monday');
+    expect(nextBirthday?.detail).toContain('Turns 36 on Monday, Jun 15, 2026');
   });
 });
