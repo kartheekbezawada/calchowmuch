@@ -13,6 +13,12 @@ Pass criteria:
 - E2E flow + SEO checks pass
 - CWV route guard passes
 
+Release notes:
+- Route is single-pane and result-first.
+- Reverse ranges are supported.
+- Business-day counting and Include end date are covered.
+- Copy summary, presets, and mobile no-overflow are part of scoped validation.
+
 Ownership: calculator route owner.
 
 Route:

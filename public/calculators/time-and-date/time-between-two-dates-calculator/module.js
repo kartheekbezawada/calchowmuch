@@ -1,7 +1,7 @@
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatNumber } from '/assets/js/core/format.js';
-import { roundToNextQuarterHour } from '/assets/js/core/sleep-utils.js';
-import { calculateTimeBetweenDates } from '/assets/js/core/date-diff-utils.js';
+import { roundToMinute } from '/assets/js/core/sleep-utils.js';
+import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
+import { buildPresetRange, calculateDateDiffViewModel } from './engine.js';
 
 const modeGroup = document.querySelector('[data-button-group="date-diff-mode"]');
 const startDateInput = document.querySelector('#date-diff-start-date');
@@ -9,10 +9,36 @@ const endDateInput = document.querySelector('#date-diff-end-date');
 const startTimeInput = document.querySelector('#date-diff-start-time');
 const endTimeInput = document.querySelector('#date-diff-end-time');
 const timeInputsRow = document.querySelector('#date-diff-time-inputs');
+const includeEndInput = document.querySelector('#date-diff-include-end');
 const calculateButton = document.querySelector('#date-diff-calculate');
-const resultsList = document.querySelector('#date-diff-results-list');
-const placeholder = document.querySelector('#date-diff-placeholder');
+const swapButton = document.querySelector('#date-diff-swap');
+const copySummaryButton = document.querySelector('#date-diff-copy-summary');
 const errorMessage = document.querySelector('#date-diff-error');
+const directionLabel = document.querySelector('#date-diff-direction');
+const headline = document.querySelector('#date-diff-headline');
+const summary = document.querySelector('#date-diff-summary');
+const yearsOutput = document.querySelector('#date-diff-years');
+const monthsOutput = document.querySelector('#date-diff-months');
+const daysOutput = document.querySelector('#date-diff-days');
+const totalDaysOutput = document.querySelector('#date-diff-total-days');
+const totalWeeksOutput = document.querySelector('#date-diff-total-weeks');
+const businessDaysOutput = document.querySelector('#date-diff-business-days');
+const totalHoursOutput = document.querySelector('#date-diff-total-hours');
+const totalMinutesOutput = document.querySelector('#date-diff-total-minutes');
+const optionsChip = document.querySelector('#date-diff-options-chip');
+const dirtyNote = document.querySelector('#date-diff-dirty-note');
+const copyFeedback = document.querySelector('#date-diff-copy-feedback');
+const calendarList = document.querySelector('#date-diff-calendar-list');
+const elapsedList = document.querySelector('#date-diff-elapsed-list');
+const notesList = document.querySelector('#date-diff-notes-list');
+const presetButtons = Array.from(document.querySelectorAll('[data-preset]'));
+
+const state = {
+  activePresetId: 'today-plus-30',
+  lastViewModel: null,
+  isDirty: false,
+  copyTimer: null,
+};
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -24,34 +50,55 @@ const CALCULATOR_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Why do months and days give different answers?',
+      name: 'How do I calculate the days between two dates?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Days count elapsed time, while months follow calendar boundaries. Month length changes throughout the year.',
+        text:
+          'Choose a start date and an end date, then calculate. The page shows a straight answer first, followed by total days, weeks, business days, and time totals.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does the calculator include the start date?',
+      name: 'Does this calculator show business days?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. It calculates the time from the start date/time up to the end date/time.',
+        text: 'Yes. It shows business days by excluding Saturdays and Sundays.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What happens if the end date is before the start date?',
+      name: 'What does Include end date do?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The calculator will show an error and ask you to choose an end date that is after the start date.',
+        text:
+          'It adds the ending calendar date to day-based planning counts, which is useful for schedules, leave windows, and project spans.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does daylight saving time affect the result?',
+      name: 'Can the start date be after the end date?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It can affect results in Date & time mode, because a day can be 23 or 25 hours when clocks change.',
+        text:
+          'Yes. The calculator labels the range as a past interval and shows the absolute duration instead of throwing a blocking error.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why can months and days tell different stories?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Calendar months follow real month boundaries, while total days and hours measure elapsed time directly. Both are useful, so the page shows both.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does daylight saving time affect Date and time mode?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Date and time mode uses your local device clock, so clock changes can affect total hours and minutes.',
       },
     },
   ],
@@ -62,10 +109,10 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Time Between Two Dates Calculator | Date Difference',
+      name: 'Time Between Two Dates Calculator | Days, Months & Business Days',
       url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
       description:
-        'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
+        'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
       inLanguage: 'en',
     },
     {
@@ -74,7 +121,8 @@ const STRUCTURED_DATA = {
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
-      description: 'Free date difference calculator to find the time between two dates and times.',
+      description:
+        'Free date difference calculator for days between dates, business days, inclusive counts, and exact time intervals.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       creator: { '@type': 'Organization', name: 'CalcHowMuch' },
     },
@@ -99,57 +147,33 @@ const STRUCTURED_DATA = {
   ],
 };
 
-const metadata = {
-  title: 'Time Between Two Dates Calculator | Date Difference',
+setPageMetadata({
+  title: 'Time Between Two Dates Calculator | Days, Months & Business Days',
   description:
-    'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
+    'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
   canonical: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
-};
-
-setPageMetadata(metadata);
+});
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title || title.tagName === 'H1') {
+  if (!title) {
     return;
   }
-  const h1 = document.createElement('h1');
-  h1.id = 'calculator-title';
-  h1.textContent = 'Time Between Two Dates Calculator';
-  title.replaceWith(h1);
+  const desired = 'Time Between Two Dates Calculator';
+  if (title.tagName !== 'H1') {
+    const h1 = document.createElement('h1');
+    h1.id = 'calculator-title';
+    h1.textContent = desired;
+    title.replaceWith(h1);
+    return;
+  }
+  title.textContent = desired;
 }
 
 ensureH1Title();
-
-function updateTimeVisibility(mode) {
-  if (!timeInputsRow) {
-    return;
-  }
-  const showTimeInputs = mode === 'datetime';
-  timeInputsRow.classList.toggle('is-collapsed', !showTimeInputs);
-  timeInputsRow.setAttribute('aria-hidden', String(!showTimeInputs));
-  if (startTimeInput) {
-    startTimeInput.disabled = !showTimeInputs;
-  }
-  if (endTimeInput) {
-    endTimeInput.disabled = !showTimeInputs;
-  }
-}
-
-const modeButtons = setupButtonGroup(modeGroup, {
-  defaultValue: 'date',
-  onChange: (value) => {
-    updateTimeVisibility(value);
-    if (!resultsList?.classList.contains('is-hidden')) {
-      calculate();
-    }
-  },
-});
-
-updateTimeVisibility(modeButtons?.getValue() ?? 'date');
 
 function formatDateValue(date) {
   const pad = (value) => String(value).padStart(2, '0');
@@ -159,26 +183,6 @@ function formatDateValue(date) {
 function formatTimeValue(date) {
   const pad = (value) => String(value).padStart(2, '0');
   return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
-}
-
-function addDays(date, days) {
-  const next = new Date(date.getTime());
-  next.setDate(next.getDate() + days);
-  return next;
-}
-
-const defaultTime = roundToNextQuarterHour(new Date());
-if (startDateInput) {
-  startDateInput.value = formatDateValue(defaultTime);
-}
-if (endDateInput) {
-  endDateInput.value = formatDateValue(addDays(defaultTime, 7));
-}
-if (startTimeInput) {
-  startTimeInput.value = formatTimeValue(defaultTime);
-}
-if (endTimeInput) {
-  endTimeInput.value = formatTimeValue(defaultTime);
 }
 
 function parseDateValue(value) {
@@ -226,11 +230,41 @@ function buildDateTime(dateValue, timeValue, includeTime) {
   );
 }
 
-function clearError() {
-  if (errorMessage) {
-    errorMessage.textContent = '';
-    errorMessage.classList.add('is-hidden');
+function formatSmartNumber(value, digits = 2) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: digits,
+  });
+}
+
+function renderDetailList(container, rows) {
+  if (!container) {
+    return;
   }
+  container.innerHTML = '';
+  rows.forEach((row) => {
+    const item = document.createElement('div');
+    item.className = 'td-detail-row';
+
+    const key = document.createElement('span');
+    key.className = 'td-detail-key';
+    key.textContent = row.label;
+
+    const value = document.createElement('span');
+    value.className = 'td-detail-value';
+    value.textContent = row.value;
+
+    item.append(key, value);
+    container.appendChild(item);
+  });
+}
+
+function clearError() {
+  if (!errorMessage) {
+    return;
+  }
+  errorMessage.textContent = '';
+  errorMessage.classList.add('is-hidden');
 }
 
 function showError(message) {
@@ -239,130 +273,331 @@ function showError(message) {
   }
   errorMessage.textContent = message;
   errorMessage.classList.remove('is-hidden');
-  placeholder?.classList.add('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
 }
 
-function showPlaceholder() {
-  clearError();
-  placeholder?.classList.remove('is-hidden');
-  resultsList?.classList.add('is-hidden');
-  if (resultsList) {
-    resultsList.innerHTML = '';
-  }
-}
-
-function formatYearsMonths(years, months) {
-  const parts = [];
-  if (years) {
-    parts.push(`${years} year${years === 1 ? '' : 's'}`);
-  }
-  if (months || parts.length === 0) {
-    parts.push(`${months} month${months === 1 ? '' : 's'}`);
-  }
-  return parts.join(' ');
-}
-
-function addResultRow(key, label, value) {
-  if (!resultsList) {
+function updateDirtyState() {
+  if (!dirtyNote) {
     return;
   }
-  const row = document.createElement('div');
-  row.className = 'result-row';
-  row.dataset.result = key;
-
-  const labelSpan = document.createElement('span');
-  labelSpan.textContent = label;
-
-  const valueSpan = document.createElement('span');
-  valueSpan.textContent = value;
-
-  row.append(labelSpan, valueSpan);
-  resultsList.appendChild(row);
+  dirtyNote.textContent = state.isDirty ? 'Inputs changed' : 'Up to date';
+  dirtyNote.classList.toggle('is-warning', state.isDirty);
 }
 
-function showResults(result, includeTime) {
-  if (!resultsList || !placeholder) {
+function syncPresetButtons() {
+  presetButtons.forEach((button) => {
+    const isActive = button.dataset.preset === state.activePresetId;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+}
+
+function markDirty() {
+  state.isDirty = true;
+  if (state.activePresetId !== 'custom') {
+    state.activePresetId = 'custom';
+    syncPresetButtons();
+  }
+  updateDirtyState();
+}
+
+function markClean() {
+  state.isDirty = false;
+  updateDirtyState();
+}
+
+function updateTimeVisibility(mode) {
+  if (!timeInputsRow) {
     return;
   }
+  const showTimeInputs = mode === 'datetime';
+  timeInputsRow.classList.toggle('is-collapsed', !showTimeInputs);
+  timeInputsRow.setAttribute('aria-hidden', String(!showTimeInputs));
+  if (startTimeInput) {
+    startTimeInput.disabled = !showTimeInputs;
+  }
+  if (endTimeInput) {
+    endTimeInput.disabled = !showTimeInputs;
+  }
+}
 
-  clearError();
-  resultsList.innerHTML = '';
+const modeButtons = setupButtonGroup(modeGroup, {
+  defaultValue: 'date',
+  onChange: (value) => {
+    updateTimeVisibility(value);
+    markDirty();
+    clearError();
+  },
+});
 
-  addResultRow(
-    'total-days',
-    'Total days',
-    formatNumber(result.totalDays, { maximumFractionDigits: 2 })
-  );
-  addResultRow(
-    'total-weeks',
-    'Total weeks',
-    formatNumber(result.totalWeeks, { maximumFractionDigits: 2 })
-  );
-  addResultRow('years-months', 'Years and months', formatYearsMonths(result.years, result.months));
-  addResultRow(
-    'total-months',
-    'Total months',
-    formatNumber(result.totalMonths, { maximumFractionDigits: 0 })
-  );
+updateTimeVisibility(modeButtons?.getValue() ?? 'date');
 
-  if (includeTime) {
-    addResultRow(
-      'total-hours',
-      'Total hours',
-      formatNumber(result.totalHours, { maximumFractionDigits: 2 })
-    );
-    addResultRow(
-      'total-minutes',
-      'Total minutes',
-      formatNumber(result.totalMinutes, { maximumFractionDigits: 0 })
+function buildShortSummary(viewModel) {
+  const range = `${viewModel.startLabel} to ${viewModel.endLabel}`;
+  if (viewModel.mode === 'datetime') {
+    return `${range}. ${formatSmartNumber(viewModel.elapsed.totalHours, 2)} hours.`;
+  }
+  return `${range}. ${formatNumber(viewModel.counts.businessDays)} business days.`;
+}
+
+function renderViewModel(viewModel) {
+  state.lastViewModel = viewModel;
+
+  if (directionLabel) {
+    directionLabel.textContent = viewModel.directionLabel;
+  }
+  if (headline) {
+    headline.textContent = viewModel.headline;
+  }
+  if (summary) {
+    summary.textContent = buildShortSummary(viewModel);
+  }
+  if (yearsOutput) {
+    yearsOutput.textContent = formatNumber(viewModel.calendar.years);
+  }
+  if (monthsOutput) {
+    monthsOutput.textContent = formatNumber(viewModel.calendar.months);
+  }
+  if (daysOutput) {
+    daysOutput.textContent = formatNumber(viewModel.calendar.days);
+  }
+  if (totalDaysOutput) {
+    totalDaysOutput.textContent = formatSmartNumber(
+      viewModel.elapsed.totalDays,
+      viewModel.mode === 'datetime' ? 2 : 0
     );
   }
+  if (totalWeeksOutput) {
+    totalWeeksOutput.textContent = formatSmartNumber(viewModel.elapsed.totalWeeks, 2);
+  }
+  if (businessDaysOutput) {
+    businessDaysOutput.textContent = formatNumber(viewModel.counts.businessDays);
+  }
+  if (totalHoursOutput) {
+    totalHoursOutput.textContent = formatSmartNumber(
+      viewModel.elapsed.totalHours,
+      viewModel.mode === 'datetime' ? 2 : 0
+    );
+  }
+  if (totalMinutesOutput) {
+    totalMinutesOutput.textContent = formatNumber(viewModel.elapsed.totalMinutes);
+  }
+  if (optionsChip) {
+    optionsChip.textContent = viewModel.optionsLabel;
+  }
 
-  placeholder.classList.add('is-hidden');
-  resultsList.classList.remove('is-hidden');
+  renderDetailList(calendarList, [
+    { label: 'Years', value: formatNumber(viewModel.calendar.years) },
+    { label: 'Months', value: formatNumber(viewModel.calendar.months) },
+    { label: 'Days', value: formatNumber(viewModel.calendar.days) },
+    {
+      label: 'Total months',
+      value: formatNumber(viewModel.calendar.totalMonths),
+    },
+    {
+      label: 'Clock remainder',
+      value:
+        viewModel.calendar.hours || viewModel.calendar.minutes
+          ? `${formatNumber(viewModel.calendar.hours)} h ${formatNumber(viewModel.calendar.minutes)} min`
+          : 'None',
+    },
+  ]);
+
+  renderDetailList(elapsedList, [
+    {
+      label: 'Total days',
+      value: formatSmartNumber(viewModel.elapsed.totalDays, viewModel.mode === 'datetime' ? 2 : 0),
+    },
+    { label: 'Total weeks', value: formatSmartNumber(viewModel.elapsed.totalWeeks, 2) },
+    {
+      label: 'Total hours',
+      value: formatSmartNumber(
+        viewModel.elapsed.totalHours,
+        viewModel.mode === 'datetime' ? 2 : 0
+      ),
+    },
+    { label: 'Total minutes', value: formatNumber(viewModel.elapsed.totalMinutes) },
+    {
+      label: 'Headline breakdown',
+      value:
+        viewModel.mode === 'datetime'
+          ? `${formatNumber(viewModel.elapsed.days)} d ${formatNumber(viewModel.elapsed.hours)} h ${formatNumber(viewModel.elapsed.minutes)} min`
+          : viewModel.elapsed.weeksAndDays,
+    },
+  ]);
+
+  const planningRows = [
+    { label: 'Direction', value: viewModel.directionNote },
+    { label: 'Business days', value: formatNumber(viewModel.counts.businessDays) },
+    { label: 'Weekend days', value: formatNumber(viewModel.counts.weekendDays) },
+    {
+      label: 'Inclusive day count',
+      value:
+        viewModel.counts.inclusiveDayCount === null
+          ? 'Not applied'
+          : formatNumber(viewModel.counts.inclusiveDayCount),
+    },
+    {
+      label: 'Exclusive day count',
+      value: formatNumber(viewModel.counts.exclusiveDayCount),
+    },
+  ];
+
+  renderDetailList(notesList, planningRows);
+  markClean();
+  clearError();
+}
+
+function getCurrentInputs() {
+  const mode = modeButtons?.getValue() ?? 'date';
+  const includeTime = mode === 'datetime';
+  const start = buildDateTime(startDateInput?.value, startTimeInput?.value, includeTime);
+  const end = buildDateTime(endDateInput?.value, endTimeInput?.value, includeTime);
+  return {
+    mode,
+    start,
+    end,
+    includeEndDate: Boolean(includeEndInput?.checked),
+  };
 }
 
 function calculate() {
-  const mode = modeButtons?.getValue() ?? 'date';
-  const includeTime = mode === 'datetime';
-  const startDateTime = buildDateTime(startDateInput?.value, startTimeInput?.value, includeTime);
-  const endDateTime = buildDateTime(endDateInput?.value, endTimeInput?.value, includeTime);
+  const { start, end, mode, includeEndDate } = getCurrentInputs();
 
-  if (!startDateTime || !endDateTime) {
-    showPlaceholder();
+  if (!start || !end) {
+    showError('Enter both dates before calculating.');
     return;
   }
 
-  if (endDateTime < startDateTime) {
-    showError('End date/time must be after the start date/time.');
+  if (mode === 'datetime' && (!startTimeInput?.value || !endTimeInput?.value)) {
+    showError('Enter both times to use Date & time mode.');
     return;
   }
 
-  const results = calculateTimeBetweenDates({
-    start: startDateTime,
-    end: endDateTime,
-    includeTime,
+  const viewModel = calculateDateDiffViewModel({
+    start,
+    end,
+    mode,
+    includeEndDate,
   });
 
-  if (!results) {
-    showPlaceholder();
+  if (!viewModel) {
+    showError('Enter valid dates and try again.');
     return;
   }
 
-  showResults(results, includeTime);
+  renderViewModel(viewModel);
 }
 
-calculateButton?.addEventListener('click', calculate);
+function setCopyFeedback(message) {
+  if (!copyFeedback) {
+    return;
+  }
+  copyFeedback.textContent = message;
+  copyFeedback.classList.remove('is-hidden');
+  window.clearTimeout(state.copyTimer);
+  state.copyTimer = window.setTimeout(() => {
+    copyFeedback.classList.add('is-hidden');
+  }, 1800);
+}
 
-const inputs = [startDateInput, endDateInput, startTimeInput, endTimeInput].filter(Boolean);
-inputs.forEach((input) => {
-  input.addEventListener('change', () => {
-    if (!resultsList?.classList.contains('is-hidden')) {
-      calculate();
+async function copySummary() {
+  if (!state.lastViewModel?.copySummary) {
+    return;
+  }
+  const text = state.lastViewModel.copySummary;
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const fallback = document.createElement('textarea');
+      fallback.value = text;
+      document.body.appendChild(fallback);
+      fallback.select();
+      document.execCommand('copy');
+      fallback.remove();
     }
-  });
+    setCopyFeedback('Copied');
+  } catch (error) {
+    setCopyFeedback('Copy failed');
+  }
+}
+
+function applyPreset(presetId) {
+  if (presetId === 'custom') {
+    state.activePresetId = 'custom';
+    setPresetStatus('Custom range');
+    syncPresetButtons();
+    markDirty();
+    return;
+  }
+
+  const preset = buildPresetRange(presetId, roundToMinute(new Date()));
+  if (!preset) {
+    return;
+  }
+
+  if (startDateInput) {
+    startDateInput.value = formatDateValue(preset.start);
+  }
+  if (endDateInput) {
+    endDateInput.value = formatDateValue(preset.end);
+  }
+  if (startTimeInput) {
+    startTimeInput.value = formatTimeValue(preset.start);
+  }
+  if (endTimeInput) {
+    endTimeInput.value = formatTimeValue(preset.end);
+  }
+  if (includeEndInput) {
+    includeEndInput.checked = Boolean(preset.includeEndDate);
+  }
+
+  state.activePresetId = preset.id;
+  syncPresetButtons();
+  calculate();
+}
+
+function swapInputs() {
+  if (!startDateInput || !endDateInput || !startTimeInput || !endTimeInput) {
+    return;
+  }
+
+  const startDateValue = startDateInput.value;
+  const endDateValue = endDateInput.value;
+  const startTimeValue = startTimeInput.value;
+  const endTimeValue = endTimeInput.value;
+
+  startDateInput.value = endDateValue;
+  endDateInput.value = startDateValue;
+  startTimeInput.value = endTimeValue;
+  endTimeInput.value = startTimeValue;
+
+  state.activePresetId = 'custom';
+  setPresetStatus('Custom range');
+  syncPresetButtons();
+  calculate();
+}
+
+const editableInputs = [
+  startDateInput,
+  endDateInput,
+  startTimeInput,
+  endTimeInput,
+  includeEndInput,
+].filter(Boolean);
+
+editableInputs.forEach((input) => {
+  input.addEventListener('input', markDirty);
+  input.addEventListener('change', markDirty);
 });
+
+presetButtons.forEach((button) => {
+  button.addEventListener('click', () => applyPreset(button.dataset.preset || 'custom'));
+});
+
+calculateButton?.addEventListener('click', calculate);
+swapButton?.addEventListener('click', swapInputs);
+copySummaryButton?.addEventListener('click', copySummary);
+
+syncPresetButtons();
+applyPreset('today-plus-30');

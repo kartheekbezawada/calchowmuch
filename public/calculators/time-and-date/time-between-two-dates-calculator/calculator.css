@@ -1,84 +1,647 @@
 /* Shared calculator styles live in /assets/css/calculator.css */
 
-#calc-date-diff .button-group {
-  flex-wrap: wrap;
-  gap: 8px;
+#calculator-title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(30px, 4.6vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #f6dd9b;
+  text-shadow:
+    0 0 18px rgba(246, 221, 155, 0.26),
+    0 0 34px rgba(246, 221, 155, 0.12);
 }
 
-#calc-date-diff .input-grid {
+#calculator-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+body[data-page='calculator'] .layout-main {
+  grid-template-columns: minmax(210px, 236px) minmax(0, 1fr);
+}
+
+body[data-page='calculator'] .ads-column {
+  display: none;
+}
+
+body[data-page='calculator'] .panel.panel-scroll.panel-span-all > h3 {
+  display: none !important;
+}
+
+body[data-page='calculator'] .panel.panel-scroll.panel-span-all > h3::after {
+  display: none !important;
+}
+
+#calc-date-diff {
+  --td-bg: #090b10;
+  --td-surface: rgba(18, 21, 31, 0.95);
+  --td-surface-strong: rgba(24, 28, 41, 0.98);
+  --td-surface-soft: rgba(15, 18, 27, 0.8);
+  --td-border: rgba(255, 255, 255, 0.08);
+  --td-border-strong: rgba(255, 222, 160, 0.18);
+  --td-accent: #f6dd9b;
+  --td-accent-2: #8de0ff;
+  --td-accent-soft: rgba(246, 221, 155, 0.12);
+  --td-text: #f4efe4;
+  --td-muted: #b1b5c6;
+  --td-muted-2: #7b8197;
+  --td-danger: #f19a8a;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-top: 6px;
+  color: var(--td-text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+#calc-date-diff *,
+#date-diff-explanation *,
+#date-diff-explanation *::before,
+#date-diff-explanation *::after,
+#calc-date-diff *::before,
+#calc-date-diff *::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+#calc-date-diff .td-intro-band {
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at top right, rgba(141, 224, 255, 0.11), transparent 34%),
+    linear-gradient(135deg, rgba(18, 21, 31, 0.95), rgba(9, 11, 16, 0.92));
+}
+
+#calc-date-diff .td-kicker,
+#calc-date-diff .td-section-kicker,
+#date-diff-explanation .td-exp-kicker {
+  margin: 0 0 6px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--td-accent);
+}
+
+#calc-date-diff .td-intro {
+  margin: 0;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.5;
+  color: #f8f4eb;
+}
+
+#calc-date-diff .td-quick-start,
+#calc-date-diff .td-details-grid {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-date-diff .td-quick-start {
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  margin-bottom: 18px;
+}
+
+#calc-date-diff .td-workbench {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+  gap: 22px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+#calc-date-diff .td-card,
+#calc-date-diff .td-quick-card,
+#date-diff-explanation .td-exp-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--td-border);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(246, 221, 155, 0.08), transparent 28%),
+    linear-gradient(150deg, var(--td-surface), var(--td-surface-soft));
+  box-shadow:
+    0 22px 50px rgba(2, 4, 10, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+#calc-date-diff .td-card {
+  padding: 24px;
+  height: 100%;
+}
+
+#calc-date-diff .td-quick-card {
+  padding: 18px;
+}
+
+#calc-date-diff .td-card-head {
+  margin-bottom: 14px;
+}
+
+#calc-date-diff .td-card-head h2 {
+  margin: 0;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(20px, 2.5vw, 24px);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #fff7e5;
+}
+
+#calc-date-diff .td-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+#calc-date-diff .td-head-row-wrap {
+  flex-wrap: wrap;
+}
+
+#calc-date-diff .td-head-row label {
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--td-muted);
+}
+
+#calc-date-diff .td-inline-note,
+#calc-date-diff .td-meta-chip,
+#calc-date-diff .td-copy-feedback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(141, 224, 255, 0.12);
+  border: 1px solid rgba(141, 224, 255, 0.16);
+  color: var(--td-accent-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#calc-date-diff .td-segmented {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
-#calc-date-diff .time-inputs {
-  transition: opacity 0.2s ease;
+#calc-date-diff .td-segment,
+#calc-date-diff .td-preset,
+#calc-date-diff .td-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-#calc-date-diff .time-inputs.is-collapsed {
+#calc-date-diff .td-segment {
+  min-height: 56px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: var(--td-muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+#calc-date-diff .td-segment.is-active,
+#calc-date-diff .td-segment[aria-pressed='true'] {
+  background: linear-gradient(135deg, #f6dd9b, #8de0ff);
+  color: #091018;
+  border-color: rgba(246, 221, 155, 0.45);
+  box-shadow: 0 14px 30px rgba(141, 224, 255, 0.18);
+}
+
+#calc-date-diff .td-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#calc-date-diff .td-quick-card .td-segmented,
+#calc-date-diff .td-quick-card .td-preset-grid {
+  margin-top: 0;
+}
+
+#calc-date-diff .td-preset {
+  min-height: 52px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: #ebedf5;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#calc-date-diff .td-preset.is-active {
+  background: rgba(246, 221, 155, 0.12);
+  border-color: rgba(246, 221, 155, 0.34);
+  color: var(--td-accent);
+  box-shadow: 0 12px 28px rgba(246, 221, 155, 0.1);
+}
+
+#calc-date-diff .td-segment:hover,
+#calc-date-diff .td-preset:hover,
+#calc-date-diff .td-btn:hover {
+  transform: translateY(-1px);
+}
+
+#calc-date-diff .td-field-label {
+  display: grid;
+  gap: 8px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--td-muted);
+}
+
+#calc-date-diff .td-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#calc-date-diff .td-time-grid {
+  margin-top: 14px;
+  min-height: 86px;
+  transition: opacity 0.18s ease;
+}
+
+#calc-date-diff .td-time-grid.is-collapsed {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
 
-#calc-date-diff .date-diff-results-list {
-  display: grid;
-  gap: 8px;
-  margin-top: 8px;
+#calc-date-diff .td-field {
+  width: 100%;
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(8, 10, 15, 0.55);
+  color: #fff7e5;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  outline: none;
+  color-scheme: dark;
 }
 
-#calc-date-diff .result-row {
+#calc-date-diff .td-field:focus {
+  border-color: rgba(246, 221, 155, 0.48);
+  box-shadow: 0 0 0 3px rgba(246, 221, 155, 0.12);
+}
+
+#calc-date-diff .td-toggle-row {
   display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #eef2fb;
+  font-size: 14px;
+}
+
+#calc-date-diff .td-toggle-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: #f6dd9b;
+}
+
+#calc-date-diff .td-action-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+#calc-date-diff .td-btn {
+  min-height: 52px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#calc-date-diff .td-btn-primary {
+  flex: 1 1 auto;
+  background: linear-gradient(135deg, #f6dd9b, #8de0ff);
+  color: #091018;
+  box-shadow: 0 16px 30px rgba(141, 224, 255, 0.16);
+}
+
+#calc-date-diff .td-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.07);
+  color: #edf1fa;
+}
+
+#calc-date-diff .td-input-note {
+  margin: 10px 0 0;
+  min-height: 0;
+  color: var(--td-muted);
+  font-size: 0;
+  line-height: 0;
+}
+
+#calc-date-diff .td-error {
+  margin: 12px 0 0;
+  color: var(--td-danger);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#calc-date-diff .is-hidden {
+  display: none !important;
+}
+
+#calc-date-diff .td-result-card {
+  position: sticky;
+  top: 24px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at top right, rgba(246, 221, 155, 0.12), transparent 24%),
+    linear-gradient(145deg, rgba(18, 21, 31, 0.98), rgba(9, 11, 16, 0.97));
+  border-color: var(--td-border-strong);
+}
+
+#calc-date-diff .td-input-card {
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+#calc-date-diff .td-result-top,
+#calc-date-diff .td-result-meta {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+}
+
+#calc-date-diff .td-hero-answer {
+  padding: 12px 0 18px;
+}
+
+#calc-date-diff .td-hero-value {
+  margin: 0 0 12px;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #fff8ea;
+}
+
+#calc-date-diff .td-hero-summary {
+  margin: 0;
+  color: #e9edf7;
   font-size: 14px;
-  background: var(--panel-bg);
+  line-height: 1.45;
+  max-width: 52ch;
 }
 
-#calc-date-diff .result-row span:last-child {
-  font-weight: 600;
+#calc-date-diff .td-breakdown-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
-#calc-date-diff .form-error {
-  margin: 8px 0 0;
-  color: #dc2626;
+#calc-date-diff .td-breakdown-pill,
+#calc-date-diff .td-metric-tile {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#calc-date-diff .td-breakdown-label,
+#calc-date-diff .td-metric-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--td-muted-2);
+}
+
+#calc-date-diff .td-breakdown-value,
+#calc-date-diff .td-metric-value {
+  display: block;
+  color: #fff7e5;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+#calc-date-diff .td-breakdown-value {
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+#calc-date-diff .td-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#calc-date-diff .td-metric-value {
+  font-size: clamp(19px, 2.4vw, 26px);
+}
+
+#calc-date-diff .td-result-meta {
+  margin-top: auto;
+  padding-top: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#calc-date-diff .td-meta-chip.is-warning {
+  background: rgba(246, 221, 155, 0.12);
+  border-color: rgba(246, 221, 155, 0.22);
+  color: var(--td-accent);
+}
+
+#calc-date-diff .td-details-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#calc-date-diff .td-detail-card h3,
+#date-diff-explanation h2 {
+  margin: 0 0 16px;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(23px, 3vw, 30px);
+  letter-spacing: -0.03em;
+  color: #fff8ea;
+  position: static;
+}
+
+#calc-date-diff .td-detail-card h3::after,
+#date-diff-explanation h2::after {
+  content: none !important;
+  display: none !important;
+}
+
+#calc-date-diff .td-detail-list {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-date-diff .td-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#calc-date-diff .td-detail-row:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+#calc-date-diff .td-detail-key {
+  color: var(--td-muted);
+  font-size: 13px;
+}
+
+#calc-date-diff .td-detail-value {
+  color: #f5f0e6;
   font-size: 13px;
   font-weight: 600;
-}
-
-#calc-date-diff #date-diff-results {
-  min-height: 190px;
+  text-align: right;
 }
 
 #date-diff-explanation {
+  width: 100%;
   display: grid;
   gap: 16px;
+  margin-top: 18px;
 }
 
-#date-diff-explanation h2 {
+#date-diff-explanation .td-exp-card {
+  padding: 22px 24px;
+}
+
+#date-diff-explanation p,
+#date-diff-explanation li {
   margin: 0;
-  font-size: 18px;
+  color: #e7eaf4;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
-#date-diff-explanation p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-#date-diff-explanation .date-diff-faq-item {
+#date-diff-explanation ul {
   display: grid;
-  gap: 6px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+#date-diff-explanation .td-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#date-diff-explanation .td-exp-faq {
+  display: grid;
+  gap: 12px;
+}
+
+#date-diff-explanation .td-faq-item {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#date-diff-explanation .td-faq-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff7e5;
+  font-size: 15px;
+}
+
+@media (max-width: 1180px) {
+  #calc-date-diff .td-workbench,
+  #calc-date-diff .td-quick-start,
+  #calc-date-diff .td-details-grid,
+  #date-diff-explanation .td-exp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-date-diff .td-result-card {
+    position: static;
+    min-height: 0;
+  }
+
+  #calc-date-diff .td-input-card {
+    min-height: 0;
+  }
+
+  #calc-date-diff .td-metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
-  #calc-date-diff .input-grid {
+  body[data-page='calculator'] .layout-main {
     grid-template-columns: 1fr;
+  }
+
+  #calc-date-diff .td-card,
+  #calc-date-diff .td-quick-card,
+  #date-diff-explanation .td-exp-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  #calc-date-diff .td-input-grid,
+  #calc-date-diff .td-breakdown-strip,
+  #calc-date-diff .td-metrics-grid,
+  #calc-date-diff .td-preset-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-date-diff .td-action-row,
+  #calc-date-diff .td-head-row,
+  #calc-date-diff .td-result-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #calc-date-diff .td-hero-value {
+    font-size: clamp(34px, 12vw, 46px);
+  }
+
+  #calc-date-diff .td-time-grid {
+    min-height: 0;
+  }
+
+  #calc-date-diff .td-detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #calc-date-diff .td-detail-value {
+    text-align: left;
   }
 }
