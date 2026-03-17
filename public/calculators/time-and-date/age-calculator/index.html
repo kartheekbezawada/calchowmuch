@@ -1,25 +1,87 @@
-<div id="calc-age">
-  <div class="calculator-ui">
-    <p class="helper">Calculate your exact age in years, months, and days.</p>
+<div id="calc-age" class="age-page">
+  <p class="age-intro">
+    Find exact age, total days, and the next birthday from one birth date.
+  </p>
 
-    <div class="input-row">
-      <label for="age-dob">Date of birth</label>
-      <input id="age-dob" type="date" />
-    </div>
+  <div class="age-workbench">
+    <section class="age-card age-input-card" aria-labelledby="age-input-title">
+      <div class="age-card-head">
+        <p class="age-kicker">Set the dates</p>
+        <h2 id="age-input-title">Choose dates.</h2>
+      </div>
 
-    <div class="input-row">
-      <label for="age-as-of">Calculate age as of</label>
-      <input id="age-as-of" type="date" />
-    </div>
+      <div class="age-field-grid">
+        <label class="age-field" for="age-dob">
+          <span>Date of birth</span>
+          <input id="age-dob" type="date" />
+        </label>
 
-    <button class="calculator-button full-width" type="button" id="age-calculate">Calculate</button>
+        <label class="age-field" for="age-as-of">
+          <span>Age as of</span>
+          <input id="age-as-of" type="date" />
+        </label>
+      </div>
 
-    <div class="result" id="age-results" aria-live="polite">
-      <p class="placeholder" id="age-placeholder">Enter your date of birth to calculate age.</p>
-      <p class="form-error is-hidden" id="age-error"></p>
-      <div class="age-results-list is-hidden" id="age-results-list"></div>
-      <p class="age-clarification is-hidden" id="age-clarification"></p>
-    </div>
+      <div class="age-action-row">
+        <button class="calculator-button age-primary-button" type="button" id="age-calculate">
+          Calculate age
+        </button>
+        <button class="calculator-button age-secondary-button" type="button" id="age-use-today">
+          Use today
+        </button>
+      </div>
+
+      <div class="age-error-slot" aria-live="polite">
+        <p class="form-error is-hidden" id="age-error"></p>
+      </div>
+    </section>
+
+    <section class="age-card age-answer-card" id="age-answer-section" aria-live="polite">
+      <div class="age-answer-head">
+        <div class="age-answer-copy">
+          <p class="age-kicker">Exact age</p>
+          <h2 id="age-headline">0 years, 0 months, 0 days</h2>
+          <p id="age-summary">As of today.</p>
+        </div>
+
+        <button class="calculator-button age-copy-button" type="button" id="age-copy-summary">
+          Copy summary
+        </button>
+      </div>
+
+      <div class="age-stat-grid">
+        <div class="age-stat-tile">
+          <span class="age-stat-label">Total months</span>
+          <strong id="age-total-months">0</strong>
+        </div>
+
+        <div class="age-stat-tile">
+          <span class="age-stat-label">Total weeks</span>
+          <strong id="age-total-weeks">0</strong>
+        </div>
+
+        <div class="age-stat-tile">
+          <span class="age-stat-label">Total days</span>
+          <strong id="age-total-days">0</strong>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="age-detail-grid">
+    <section class="age-card age-detail-card" aria-labelledby="age-born-label">
+      <p class="age-kicker">Born on</p>
+      <h2 id="age-born-label">Weekday of birth</h2>
+      <strong id="age-born-weekday">Friday</strong>
+      <p id="age-born-detail">Jun 15, 1990</p>
+    </section>
+
+    <section class="age-card age-detail-card" aria-labelledby="age-next-birthday-label">
+      <p class="age-kicker">Next birthday</p>
+      <h2 id="age-next-birthday-label">Birthday countdown</h2>
+      <strong id="age-next-birthday-headline">In 0 days</strong>
+      <p id="age-next-birthday-detail">Turns 0 on Jan 1, 2000</p>
+    </section>
   </div>
 </div>
 

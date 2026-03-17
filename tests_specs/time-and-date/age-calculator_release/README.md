@@ -12,6 +12,7 @@ Pass criteria:
 - Unit logic tests pass
 - E2E flow + SEO checks pass
 - CWV route guard passes
+- Generated route stays single-pane with no ad pane
 
 Ownership: calculator route owner.
 
