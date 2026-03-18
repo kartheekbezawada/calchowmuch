@@ -218,3 +218,27 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 861px) {
+  body[data-page='calculator'] .layout-main:has(#calc-percentage-difference) > .ads-column {
+    display: none !important;
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-percentage-difference) > .center-column {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator']
+    .layout-main:has(#calc-percentage-difference)
+    > .center-column
+    > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-percentage-difference,
+  #pct-diff-explanation {
+    width: min(100%, 980px);
+    margin-inline: auto;
+  }
+}

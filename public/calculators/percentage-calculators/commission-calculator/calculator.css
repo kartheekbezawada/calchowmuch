@@ -1,1 +1,25 @@
 /* Commission calculator route styles are primarily delivered from shared calculator bundles. */
+
+@media (min-width: 861px) {
+  body[data-page='calculator'] .layout-main:has(#calc-commission-calculator) > .ads-column {
+    display: none !important;
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-commission-calculator) > .center-column {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator']
+    .layout-main:has(#calc-commission-calculator)
+    > .center-column
+    > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-commission-calculator,
+  #comm-explanation {
+    width: min(100%, 1240px);
+    margin-inline: auto;
+  }
+}

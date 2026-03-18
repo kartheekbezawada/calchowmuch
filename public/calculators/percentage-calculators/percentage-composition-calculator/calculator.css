@@ -381,3 +381,27 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 861px) {
+  body[data-page='calculator'] .layout-main:has(#calc-percentage-composition) > .ads-column {
+    display: none !important;
+  }
+
+  body[data-page='calculator'] .layout-main:has(#calc-percentage-composition) > .center-column {
+    grid-column: 2 / -1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body[data-page='calculator']
+    .layout-main:has(#calc-percentage-composition)
+    > .center-column
+    > .panel.panel-span-all {
+    align-items: center;
+  }
+
+  #calc-percentage-composition,
+  #composition-explanation {
+    width: min(100%, 980px);
+    margin-inline: auto;
+  }
+}
