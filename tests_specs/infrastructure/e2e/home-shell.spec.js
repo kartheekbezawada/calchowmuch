@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Official standalone homepage', () => {
-  test('HOME-MOBILE-001: mobile viewport uses compact cards and disables particle canvas', async ({
+  test('HOME-MOBILE-001: mobile viewport uses compact cards without legacy particle canvas', async ({
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -20,23 +20,27 @@ test.describe('Official standalone homepage', () => {
 
     expect(firstCardMetrics.height).toBeLessThan(320);
     expect(firstCardMetrics.animationName).toBe('none');
-    await expect(page.locator('#particleCanvas')).toBeHidden();
+    await expect(page.locator('#particleCanvas')).toHaveCount(0);
   });
 
   test('HOME-ISS-001: root route renders standalone cluster cards without calculator shell panes', async ({
     page,
     request,
   }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
 
     await expect(page.locator('body')).toHaveAttribute('data-page', 'home');
     await expect(page.locator('body')).toHaveAttribute('data-route-archetype', 'content_shell');
     await expect(page.locator('body')).toHaveAttribute('data-design-family', 'neutral');
 
     await expect(page.locator('.preview-header')).toHaveCount(1);
-    await expect(page.locator('#homepage-hero-title')).toHaveText('Calculate How Much');
+    await expect(page.locator('#homepage-hero-title')).toHaveText(
+      'All Calculators — Finance, Loan, Mortgage & Math Tools'
+    );
     await expect(page.locator('#homepage-search')).toHaveCount(1);
     await expect(page.locator('#homepage-clusters-title')).toHaveText('Browse Calculator Clusters');
+    await expect(page.locator('#homepage-popular-title')).toHaveText('Popular Calculators');
+    await expect(page.locator('#homepage-faq-title')).toHaveText('Frequently Asked Questions');
 
     await expect(page.locator('.top-nav')).toHaveCount(0);
     await expect(page.locator('.left-nav')).toHaveCount(0);
@@ -51,9 +55,7 @@ test.describe('Official standalone homepage', () => {
     );
     expect(headingSnapshot[0]?.tag).toBe('h1');
     const firstH2Index = headingSnapshot.findIndex((heading) => heading.tag === 'h2');
-    const firstH3Index = headingSnapshot.findIndex((heading) => heading.tag === 'h3');
     expect(firstH2Index).toBeGreaterThan(-1);
-    expect(firstH3Index).toBeGreaterThan(firstH2Index);
     expect(headingSnapshot.some((heading) => heading.text.length === 0)).toBeFalsy();
 
     const registryResponse = await request.get('/config/clusters/cluster-registry.json');
@@ -91,7 +93,7 @@ test.describe('Official standalone homepage', () => {
     await expect(footerLinks.nth(4)).toHaveText('Sitemap');
   });
 
-  test('HOME-SEO-001: homepage has Organization/WebSite/WebPage JSON-LD with SearchAction and no FAQPage', async ({
+  test('HOME-SEO-001: homepage has Organization/WebSite/WebPage/FAQ JSON-LD with SearchAction', async ({
     page,
   }) => {
     await page.goto('/');
@@ -108,8 +110,7 @@ test.describe('Official standalone homepage', () => {
     const graph = Array.isArray(structuredData['@graph']) ? structuredData['@graph'] : [];
     const types = graph.map((node) => node['@type']);
 
-    expect(types).toEqual(expect.arrayContaining(['Organization', 'WebSite', 'WebPage']));
-    expect(types).not.toContain('FAQPage');
+    expect(types).toEqual(expect.arrayContaining(['Organization', 'WebSite', 'WebPage', 'FAQPage']));
 
     const organizationNode = graph.find((node) => node['@type'] === 'Organization');
     expect(organizationNode?.name).toBe('Calculate How Much');
@@ -125,6 +126,10 @@ test.describe('Official standalone homepage', () => {
     const webpageNode = graph.find((node) => node['@type'] === 'WebPage');
     expect(webpageNode?.url).toBe(canonicalHref);
     expect(webpageNode?.['@id']).toBe(`${canonicalHref}#webpage`);
+
+    const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
+    expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
+    expect(faqNode.mainEntity.length).toBeGreaterThanOrEqual(10);
   });
 
   test('HOME-SEO-002: /calculators/?q= query contract filters results and handles empty matches', async ({

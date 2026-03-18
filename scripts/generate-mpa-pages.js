@@ -2761,7 +2761,7 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
     seoTitle: title,
     seoDescription: description,
     ogImageUrl: OG_IMAGE,
-    h1: 'Calculate How Much',
+    h1: 'All Calculators — Finance, Loan, Mortgage & Math Tools',
     isCalculatorPage: isCalculatorPathFromCanonical(canonical),
   });
   return `<!doctype html>
@@ -2769,21 +2769,6 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 ${headMetaHtml}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
-      />
-    </noscript>
     <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
     <script type="application/ld+json" data-homepage-ld="true" data-calculator-ld="true">${stringifyStructuredData(
       homepageStructuredData
@@ -2791,63 +2776,169 @@ ${headMetaHtml}
 ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="home" data-route-archetype="content_shell" data-design-family="neutral">
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
-    <div class="homepage-preview-shell">
-      <header class="preview-header">
-        <div class="preview-header-inner">
-          <a class="brand-link" href="/" aria-label="CalcHowMuch home">
-            <span class="brand-logo" aria-hidden="true">#</span>
-            <span class="brand-copy">
-              <strong>CalcHowMuch</strong>
-              <small>Premium Calculator Suite</small>
-            </span>
-          </a>
-          <label class="search-wrap" for="homepage-search">
-            <span class="sr-only">Search calculators</span>
+    <header class="header preview-header">
+      <div class="wrap header-inner preview-header-inner">
+        <a class="brand" href="/" aria-label="CalcHowMuch home">
+          <span class="brand-mark" aria-hidden="true">#</span>
+          <span>CalcHowMuch</span>
+        </a>
+        <nav class="header-nav preview-nav" aria-label="Homepage sections">
+          <a href="#homepage-popular">Popular</a>
+          <a href="#homepage-categories">Clusters</a>
+          <a href="#homepage-guides">Categories</a>
+          <a href="#homepage-faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap preview-main">
+      <section class="hero" aria-labelledby="homepage-hero-title">
+        <div class="hero-inner">
+          <h1 id="homepage-hero-title">All Calculators — Finance, Loan, Mortgage &amp; Math Tools</h1>
+          <p>
+            Explore mortgage, loan, credit card, finance, percentage, and time
+            calculators. Get instant results with simple and accurate tools.
+          </p>
+          <div class="search" role="search">
+            <label class="sr-only" for="homepage-search">Search calculators</label>
             <input
               id="homepage-search"
               type="search"
-              placeholder="Search calculators..."
+              value=""
+              placeholder="Search calculators…"
               autocomplete="off"
               spellcheck="false"
             />
-          </label>
-        </div>
-      </header>
-      <main class="preview-main">
-        <section class="hero" aria-labelledby="homepage-hero-title">
-          <h1 id="homepage-hero-title">Calculate How Much</h1>
-          <p>Quick calculations for everyday numbers.</p>
-        </section>
-        <section
-          id="homepage-categories"
-          class="categories"
-          aria-labelledby="homepage-clusters-title"
-          data-loading="true"
-          style="--loading-card-count: 7"
-        >
-          <h2 id="homepage-clusters-title" class="categories-title">Browse Calculator Clusters</h2>
-          <div id="homepage-empty" class="empty-state" hidden>
-            No calculator matches your search.
+            <button type="button">Search</button>
           </div>
-          <div id="homepage-grid" class="category-grid" aria-live="polite"></div>
-        </section>
-      </main>
-      <footer class="site-footer">
-        <nav aria-label="Footer links">
-          <a href="/privacy/">Privacy</a>
-          <span class="footer-divider">|</span>
-          <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-          <span class="footer-divider">|</span>
-          <a href="/contact-us/">Contact</a>
-          <span class="footer-divider">|</span>
-          <a href="/faq/">FAQs</a>
-          <span class="footer-divider">|</span>
-          <a href="/sitemap.xml">Sitemap</a>
-        </nav>
-        <p class="footer-branding">&copy; 2026 @CalcHowMuch</p>
-      </footer>
-    </div>
+        </div>
+      </section>
+
+      <section id="homepage-popular" class="section" aria-labelledby="homepage-popular-title">
+        <div class="section-head">
+          <div>
+            <h2 id="homepage-popular-title">Popular Calculators</h2>
+          </div>
+        </div>
+        <div class="chip-row" aria-label="Popular calculators">
+          <a class="chip" href="/loan-calculators/mortgage-calculator/">Mortgage Calculator</a>
+          <a class="chip" href="/loan-calculators/personal-loan-calculator/">Loan Calculator</a>
+          <a class="chip" href="/credit-card-calculators/credit-card-payment-calculator/">Credit Card Calculator</a>
+          <a class="chip" href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a>
+          <a class="chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a>
+          <a class="chip" href="/time-and-date/age-calculator/">Age Calculator</a>
+        </div>
+      </section>
+
+      <section
+        id="homepage-categories"
+        class="section categories"
+        aria-labelledby="homepage-clusters-title"
+        data-loading="true"
+        style="--loading-card-count: 7"
+      >
+        <div class="section-head">
+          <div>
+            <h2 id="homepage-clusters-title">Browse Calculator Clusters</h2>
+          </div>
+        </div>
+        <div id="homepage-empty" class="empty-state" hidden>No calculator matches your search.</div>
+        <div id="homepage-grid" class="card-grid category-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="homepage-guides" class="section" aria-label="Category guides">
+        <div class="section-head">
+          <div>
+            <h2>Category Guides</h2>
+          </div>
+        </div>
+        <div class="seo-grid">
+          <section class="seo-block">
+            <h3>Mortgage &amp; Loan Calculators</h3>
+            <p>
+              Estimate monthly payments and total interest using our
+              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>, compare borrowing costs with the
+              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, or analyse rate changes using the
+              <a href="/loan-calculators/interest-rate-change-calculator/">interest rate change calculator</a>.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Credit Card Calculators</h3>
+            <p>
+              Compare payoff plans with the <a href="/credit-card-calculators/credit-card-payment-calculator/">credit card repayment tool</a>,
+              review minimum payment costs, and explore
+              <a href="/credit-card-calculators/balance-transfer-savings-calculator/">balance transfer calculators</a>.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Finance &amp; Savings Calculators</h3>
+            <p>
+              Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
+              plan targets using the <a href="/finance-calculators/savings-goal-calculator/">savings goal calculator</a>,
+              and compare scenarios with future value tools.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Percentage &amp; Time Calculators</h3>
+            <p>
+              Solve everyday problems with the <a href="/percentage-calculators/percent-change-calculator/">percentage calculator</a>,
+              compare dates with the <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
+              and use practical planning tools for daily use.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="trust" aria-labelledby="homepage-why-title">
+          <h2 id="homepage-why-title">Why Use CalcHowMuch</h2>
+          <p>
+            CalcHowMuch helps you make better financial and everyday decisions by providing
+            simple, fast, and accurate calculators. Each tool is designed to give clear
+            results, including breakdowns, formulas, and insights so you can compare scenarios
+            and understand outcomes.
+          </p>
+        </div>
+      </section>
+
+      <section id="homepage-faq" class="section" aria-labelledby="homepage-faq-title">
+        <div class="faq">
+          <div class="section-head">
+            <div>
+              <h2 id="homepage-faq-title">Frequently Asked Questions</h2>
+            </div>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <h3>What calculators are available?</h3>
+              <p>We offer mortgage, loan, credit card, finance, percentage, and time calculators.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are these calculators free?</h3>
+              <p>Yes, all calculators on CalcHowMuch are free and easy to use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are the results accurate?</h3>
+              <p>Calculations are based on standard formulas and provide reliable estimates.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer site-footer wrap">
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <a href="/contact-us/">Contact</a>
+        <a href="/faq/">FAQs</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+      <span class="muted">&copy; 2026 @CalcHowMuch</span>
+    </footer>
     <script type="module" src="/assets/js/homepage-preview.js"></script>
   </body>
 </html>`;
