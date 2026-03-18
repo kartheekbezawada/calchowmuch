@@ -35,14 +35,11 @@ const ISSUE_ORDER = [
 ];
 
 const OUTPUT_COLUMNS = [
-  'source_file_path',
-  'source_url',
+  'calculator_name',
   'page_title',
   'meta_description',
-  'canonical_url',
   'title_length',
   'meta_description_length',
-  'canonical_host',
   'canonical_path',
   'title_has_brand',
   'description_has_brand',
@@ -88,6 +85,15 @@ function normalizeForDuplicate(value) {
   return collapseWhitespace(value).toLowerCase();
 }
 
+function toTitleCaseSlug(value) {
+  return String(value ?? '')
+    .split(/[-_]+/g)
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .map((token) => token[0].toUpperCase() + token.slice(1))
+    .join(' ');
+}
+
 function slugFromUrl(loc) {
   try {
     return new URL(loc).pathname;
@@ -112,6 +118,26 @@ function sitemapPathToFilePath(slugPath, publicDir) {
   }
 
   return path.join(publicDir, cleanPath, 'index.html');
+}
+
+function deriveCalculatorName({ h1Text, pageTitle, canonicalPath, slugPath }) {
+  if (collapseWhitespace(h1Text)) {
+    return collapseWhitespace(h1Text);
+  }
+
+  const normalizedTitle = collapseWhitespace(pageTitle);
+  if (normalizedTitle) {
+    return normalizedTitle.split(/\s+[|-]\s+/)[0].trim();
+  }
+
+  const pathValue = collapseWhitespace(canonicalPath || slugPath);
+  if (!pathValue || pathValue === '/') {
+    return 'Home';
+  }
+
+  const segments = pathValue.split('/').filter(Boolean);
+  const lastSegment = segments[segments.length - 1] || 'page';
+  return toTitleCaseSlug(lastSegment);
 }
 
 function collectTypes(payload, types = []) {
@@ -415,8 +441,12 @@ async function buildRow({ sourceUrl, slugPath, sourceFilePath }) {
   });
 
   const row = {
-    source_file_path: sourceFilePath,
-    source_url: sourceUrl,
+    calculator_name: deriveCalculatorName({
+      h1Text,
+      pageTitle,
+      canonicalPath: effectiveCanonicalPath,
+      slugPath,
+    }),
     page_title: pageTitle,
     meta_description: metaDescription,
     canonical_url: canonicalUrl,
