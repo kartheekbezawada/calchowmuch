@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:time-and-date/time-between-two-dates-calculator`
+- Scope: `calc:sleep-and-nap/energy-based-nap-selector`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**

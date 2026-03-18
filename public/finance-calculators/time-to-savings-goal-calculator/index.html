@@ -2173,6 +2173,24 @@
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <style>
+      @media (min-width: 861px) {
+        body[data-page='calculator'] .layout-main:has(#calc-time-to-savings-goal) > .ads-column {
+          display: none !important;
+        }
+
+        body[data-page='calculator'] .layout-main:has(#calc-time-to-savings-goal) > .center-column {
+          grid-column: 2 / -1;
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        body[data-page='calculator'] .layout-main:has(#calc-time-to-savings-goal) > .center-column > .panel.panel-span-all {
+          width: 100%;
+          max-width: none;
+          margin-inline: 0;
+        }
+      }
+    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
     <div class="page">
