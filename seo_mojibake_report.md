@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:credit-cards`
-- HTML files scanned: **4**
-- Calculator pages scanned: **4**
+- Scope: `calc:loans/personal-loan`
+- HTML files scanned: **1**
+- Calculator pages scanned: **1**
 - Findings: **0**
 - Status: **PASS**
 

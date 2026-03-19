@@ -60,18 +60,21 @@ function parseNumber(text) {
 test.describe('How Much Can I Borrow Calculator Requirements', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-how-much-can-borrow')).toBeVisible();
   });
 
   test('BOR-TEST-E2E-1: single-pane layout with no horizontal overflow', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
     await page.waitForTimeout(250);
 
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    const clusterPanel = page.locator('.hl-cluster-panel');
+    await expect(clusterPanel).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
-    const calcPanel = centerPanels.first();
+    const calcPanel = clusterPanel.first();
     const panelBox = await calcPanel.boundingBox();
     const grossBox = await page.locator('#bor-gross-income').boundingBox();
     const rateBox = await page.locator('#bor-rate').boundingBox();

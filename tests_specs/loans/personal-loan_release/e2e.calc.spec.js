@@ -20,22 +20,36 @@ async function openAdvancedOptions(page) {
 }
 
 test.describe('Personal Loan calculator route contract', () => {
-  test('PL-E2E-1: single-pane route with merged calculator and explanation', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
+    await expect(page.locator('.hl-cluster-panel')).toBeVisible();
+    await expect(page.locator('#calc-personal-loan')).toBeVisible();
+  });
 
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-
-    const panel = centerPanels.first();
-    await expect(panel).toHaveClass(/panel-span-all/);
+  test('PL-E2E-1: single-pane route with merged calculator and explanation', async ({ page }) => {
+    const panel = page.locator('.hl-cluster-panel');
+    await expect(panel).toHaveCount(1);
     await expect(panel.locator('#calc-personal-loan')).toBeVisible();
     await expect(panel.locator('#loan-personal-explanation')).toBeVisible();
     await expect(panel.locator('h3:has-text("Explanation")')).toHaveCount(0);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
+
+    const overflow = await page.evaluate(() => {
+      const panelNode = document.querySelector('.hl-cluster-panel');
+      return {
+        root: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        panel: panelNode ? panelNode.scrollWidth - panelNode.clientWidth : 0,
+      };
+    });
+
+    expect(overflow.root).toBeLessThanOrEqual(1);
+    expect(overflow.panel).toBeLessThanOrEqual(1);
   });
 
   test('PL-E2E-2: calculate and reset flow updates key metrics', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
-
     await setSliderValue(page, '#pl-principal', 32000);
     await setSliderValue(page, '#pl-rate', 11.2);
     await setSliderValue(page, '#pl-term-years', 6);
@@ -54,8 +68,6 @@ test.describe('Personal Loan calculator route contract', () => {
   });
 
   test('PL-E2E-3: currency selector switches displayed symbols', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
-
     await page.selectOption('#pl-currency', 'GBP');
     await page.click('#pl-calculate');
     await expect(page.locator('[data-pl="result-base"]')).toContainText('£');
@@ -66,7 +78,6 @@ test.describe('Personal Loan calculator route contract', () => {
   });
 
   test('PL-E2E-4: chart and table render after calculation', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
     await page.click('#pl-calculate');
 
     await expect(page.locator('.pl-chart-legend .pl-legend-item')).toHaveCount(2);
@@ -101,8 +112,6 @@ test.describe('Personal Loan calculator route contract', () => {
   });
 
   test('PL-E2E-5: invalid extra payment shows inline validation', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
-
     await openAdvancedOptions(page);
     await page.fill('#pl-extra-monthly', '9999999');
     await page.click('#pl-calculate');
@@ -111,12 +120,10 @@ test.describe('Personal Loan calculator route contract', () => {
   });
 
   test('PL-E2E-6: explanation FAQ has 10 cards', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
-    await expect(page.locator('#loan-personal-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#pl-section-faq .bor-faq-card')).toHaveCount(10);
   });
 
   test('PL-E2E-7: advanced options disclosure uses compact optional pattern', async ({ page }) => {
-    await page.goto(CALCULATOR_URL);
     const summary = page.locator('#calc-personal-loan details.advanced-options summary');
     await expect(summary.locator('.advanced-summary-title')).toHaveText('Advanced Options');
     await expect(summary.locator('.advanced-summary-subtitle')).toHaveText('Optional');

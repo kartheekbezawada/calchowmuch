@@ -39,8 +39,8 @@ async function setBaseInputs(page) {
 test.describe('Buy-to-Let calculator requirements', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/loan-calculators/buy-to-let-mortgage-calculator/');
-    await page.waitForSelector('#btl-calculate');
-    await page.waitForTimeout(300);
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#btl-calculate')).toBeVisible();
   });
 
   test('BTL-TEST-E2E-1: deposit type shows only selected slider input', async ({ page }) => {
@@ -147,7 +147,11 @@ test.describe('Buy-to-Let calculator requirements', () => {
   });
 
   test('BTL-TEST-E2E-5: single-pane structure and labels', async ({ page }) => {
-    await expect(page.locator('.panel.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('#loan-btl-explanation #btl-section-faq .btl-faq-card')).toHaveCount(6);
 
     const allLabeled = await page.$$eval('input', (inputs) =>
       inputs.every((input) => {
@@ -159,5 +163,12 @@ test.describe('Buy-to-Let calculator requirements', () => {
     );
 
     expect(allLabeled).toBe(true);
+
+    const panel = page.locator('.hl-cluster-panel').first();
+    expect(await panel.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(250);
+    expect(await panel.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
   });
 });

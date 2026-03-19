@@ -86,9 +86,11 @@ test.describe('Home Loan calculator', () => {
   });
 
   test('HOME-LOAN-TEST-E2E-3: renders as single center panel with aligned advanced fields', async ({ page }) => {
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    const clusterPanel = page.locator('.hl-cluster-panel');
+    await expect(clusterPanel).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     await expect(page.locator('#loan-mtg-explanation h3', { hasText: 'Current Inputs' })).toHaveCount(0);
     await expect(page.locator('#calc-home-loan .mtg-preview-label')).toHaveText(

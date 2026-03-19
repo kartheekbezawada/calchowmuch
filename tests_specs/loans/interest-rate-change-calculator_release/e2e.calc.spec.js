@@ -21,7 +21,8 @@ async function runCalculation(page) {
 test.describe('Interest Rate Change calculator implementation', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-interest-rate-change')).toBeVisible();
   });
 
   test('RATE-CHANGE-CALC-1: slider badges update live as inputs change', async ({ page }) => {
@@ -83,8 +84,11 @@ test.describe('Interest Rate Change calculator implementation', () => {
 
   test('RATE-CHANGE-CALC-5: FAQ count and layout stability on mobile', async ({ page }) => {
     await expect(page.locator('#loan-rate-change-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
-    const panel = page.locator('.center-column > .panel').first();
+    const panel = page.locator('.hl-cluster-panel').first();
     expect(await panel.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -97,11 +101,13 @@ test.describe('Interest Rate Change calculator route contract', () => {
   test('RATE-CHANGE-E2E-1: single-pane route with slider inputs and timing toggle behavior', async ({ page }) => {
     await page.goto(CALCULATOR_URL);
 
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
     await expect(centerPanels).toHaveCount(1);
 
     const panel = centerPanels.first();
-    await expect(panel).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(panel.locator('#calc-interest-rate-change')).toBeVisible();
     await expect(panel.locator('#loan-rate-change-explanation')).toBeVisible();
     await expect(panel.locator('h3:has-text("Explanation")')).toHaveCount(0);
@@ -121,6 +127,7 @@ test.describe('Interest Rate Change calculator route contract', () => {
 
   test('RATE-CHANGE-E2E-2: calculation populates cards, summary, and yearly table by default', async ({ page }) => {
     await page.goto(CALCULATOR_URL);
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
 
     await setSliderValue(page, '#rate-balance', 350000);
     await setSliderValue(page, '#rate-current', 5.2);
@@ -150,6 +157,7 @@ test.describe('Interest Rate Change calculator route contract', () => {
 
   test('RATE-CHANGE-E2E-3: monthly/yearly table toggle, sticky headers, FAQ count, and no overflow', async ({ page }) => {
     await page.goto(CALCULATOR_URL);
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
     await runCalculation(page);
 
     await expect(page.locator('#rate-table-yearly-wrap')).not.toHaveClass(/is-hidden/);

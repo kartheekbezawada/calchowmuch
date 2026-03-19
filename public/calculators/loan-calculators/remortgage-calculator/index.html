@@ -1,102 +1,3 @@
-<style>
-  #calc-remortgage-switching {
-    width: 100%;
-  }
-
-  #calc-remortgage-switching .remo-ui {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  #calc-remortgage-switching .remo-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-    gap: 1rem;
-    align-items: start;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: none;
-  }
-
-  #calc-remortgage-switching .remo-form-panel {
-    display: grid;
-    gap: 0.75rem;
-    align-content: start;
-  }
-
-  #calc-remortgage-switching .remo-section {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  #calc-remortgage-switching .input-grid-2-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem 1.25rem;
-  }
-
-  #calc-remortgage-switching .input-row.slider-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 6px 10px;
-    border-radius: 12px;
-  }
-
-  #calc-remortgage-switching .slider-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #calc-remortgage-switching .remo-result-dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    padding: 1.25rem;
-    border-radius: 20px;
-  }
-
-  #calc-remortgage-switching .remo-metric-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  #calc-remortgage-switching .remo-metric {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    border-radius: 12px;
-  }
-
-  #calc-remortgage-switching .remo-metric--primary {
-    grid-column: 1 / -1;
-  }
-
-  @media (max-width: 900px) {
-    #calc-remortgage-switching .remo-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 720px) {
-    #calc-remortgage-switching .remo-metric-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    #calc-remortgage-switching .input-grid-2-col {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-  }
-</style>
-
 <div id="calc-remortgage-switching">
   <div class="calculator-ui remo-ui">
     <section class="remo-hero" aria-label="Remortgage switching calculator">
@@ -182,7 +83,7 @@
           </div>
         </section>
 
-        <div class="input-row action-row remo-action-row" style="margin-top: 2rem">
+        <div class="input-row action-row remo-action-row">
           <button class="calculator-button full-width" type="button" id="remo-calculate">
             Calculate Savings
           </button>
@@ -220,12 +121,7 @@
           </div>
         </div>
 
-        <p
-          class="remo-result-note"
-          id="remo-result-note"
-          aria-live="polite"
-          style="margin-top: 1.5rem"
-        >
+        <p class="remo-result-note" id="remo-result-note" aria-live="polite">
           You save 124/mo by switching.
         </p>
         <div class="remo-error" id="remo-error" aria-live="polite"></div>
@@ -233,7 +129,3 @@
     </section>
   </div>
 </div>
-
-<style>
-  @import url('/calculators/loan-calculators/remortgage-calculator/calculator.css');
-</style>

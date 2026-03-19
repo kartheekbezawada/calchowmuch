@@ -34,14 +34,17 @@ function parseNumber(text) {
 test.describe('Offset Calculator Home-Loan Visual Standard', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-offset-calculator')).toBeVisible();
   });
 
   test('OFFSET-HYBRID-1: renders as single pane without shell Explanation heading', async ({ page }) => {
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
 
     await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     const panel = centerPanels.first();
     await expect(panel.locator('#calc-offset-calculator')).toBeVisible();
@@ -145,7 +148,7 @@ test.describe('Offset Calculator Home-Loan Visual Standard', () => {
   });
 
   test('OFFSET-HYBRID-9: no horizontal overflow on desktop and mobile', async ({ page }) => {
-    const panel = page.locator('.center-column > .panel').first();
+    const panel = page.locator('.hl-cluster-panel').first();
     expect(await panel.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(false);
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -170,11 +173,13 @@ test.describe('Offset calculator route contract', () => {
   test('ISS-OFFSET-HOMELOAN-VISUAL: single-pane route and interaction contract', async ({ page }) => {
     await page.goto('/loan-calculators/offset-mortgage-calculator/');
 
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
     await expect(centerPanels).toHaveCount(1);
 
     const panel = centerPanels.first();
-    await expect(panel).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(panel.locator('#calc-offset-calculator')).toBeVisible();
     await expect(panel.locator('#loan-offset-explanation')).toBeVisible();
     await expect(panel.locator('h3:has-text("Explanation")')).toHaveCount(0);

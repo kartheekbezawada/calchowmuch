@@ -38,15 +38,18 @@ async function runCalculation(page) {
 test.describe('Remortgage / Switching Hybrid Requirements', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-remortgage-switching')).toBeVisible();
   });
 
   test('REMO-HYBRID-1: renders as single pane without Explanation heading', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
 
     await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     const singlePanel = centerPanels.first();
     await expect(singlePanel.locator('#calc-remortgage-switching')).toBeVisible();
@@ -163,7 +166,7 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     const titleAlign = await page.locator('#calculator-title').evaluate((el) => getComputedStyle(el).textAlign);
     expect(titleAlign).toBe('center');
 
-    const panel = page.locator('.center-column > .panel').first();
+    const panel = page.locator('.hl-cluster-panel').first();
     expect(await panel.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(false);
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -190,11 +193,13 @@ test.describe('Remortgage / Switching Hybrid', () => {
   test('ISS-REMORT-HYBRID: single-pane ownership and interaction contract', async ({ page }) => {
     await page.goto('/loan-calculators/remortgage-calculator/');
 
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
     await expect(centerPanels).toHaveCount(1);
 
     const panel = centerPanels.first();
-    await expect(panel).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(panel.locator('#calc-remortgage-switching')).toBeVisible();
     await expect(panel.locator('#loan-remortgage-explanation')).toBeVisible();
 
