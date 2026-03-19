@@ -1982,6 +1982,88 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
   return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
 }
 
+function resolveCalculatorCssHref(calculatorRelPath) {
+  if (!calculatorRelPath) {
+    return null;
+  }
+  return appendVersionParam(`/calculators/${calculatorRelPath}/calculator.css`);
+}
+
+function buildCreditCardClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'credit-card-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildCreditCardClusterHeaderHtml() {
+  return `<header class="cc-cluster-site-header">
+  <div class="cc-cluster-wrap cc-cluster-site-header-inner">
+    <a class="cc-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="cc-cluster-brand-mark" aria-hidden="true">#</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="cc-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildCreditCardClusterFooterHtml() {
+  return `<footer class="cc-cluster-site-footer">
+  <div class="cc-cluster-wrap cc-cluster-site-footer-inner">
+    <nav class="cc-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="cc-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      return `<a class="cc-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>${calculator.name}</a>`;
+    })
+    .join('');
+
+  return `<section class="cc-cluster-related" aria-labelledby="cc-cluster-related-title">
+  <h2 id="cc-cluster-related-title">Related Credit Card Calculators</h2>
+  <div class="cc-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
 const mathIcons = {
   simple:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>',
@@ -2409,10 +2491,13 @@ function buildPageHtml({
   topNavStatic = false,
   staticStructuredData = null,
   injectStaticStructuredData = false,
+  relatedCalculatorsHtml = '',
 }) {
+  const isCreditCardClusterRoute =
+    designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
   const versionedCalculatorHtml = applyCalculatorFragmentVersioning(calculatorHtml);
   const sanitizedCalculatorHtml =
-    assetConfig && typeof versionedCalculatorHtml === 'string'
+    (assetConfig || isCreditCardClusterRoute) && typeof versionedCalculatorHtml === 'string'
       ? versionedCalculatorHtml.replace(
           /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>/gi,
           ''
@@ -2464,7 +2549,18 @@ function buildPageHtml({
 </div>`;
   } else if (routeArchetype === 'calc_exp') {
     calcContent =
-      paneLayout === 'single'
+      isCreditCardClusterRoute
+        ? `<div class="panel panel-scroll panel-span-all cc-cluster-panel${calculatorPanelClassSuffix}">
+  <div class="cc-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+  </div>
+  <div class="calculator-page-single cc-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
+  </div>
+</div>`
+        : paneLayout === 'single'
         ? `<div class="panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
@@ -2480,19 +2576,21 @@ ${explanationTitleHtml}    ${explanationHtml}
 ${explanationTitleHtml}  ${explanationHtml}
 </div>`;
   } else if (routeArchetype === 'calc_only') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${sanitizedCalculatorHtml}
+    ${isCreditCardClusterRoute ? relatedCalculatorsHtml : ''}
   </div>
 </div>`;
   } else if (routeArchetype === 'exp_only') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   ${contentHtml}
 </div>`;
@@ -2507,7 +2605,13 @@ ${explanationTitleHtml}  ${explanationHtml}
   const routeModuleScriptHref = resolveCalculatorModuleScriptHref(calculatorRelPath);
 
   let scriptTagsHtml = '';
-  if (assetConfig) {
+  if (isCreditCardClusterRoute) {
+    const defaultScripts = [];
+    if (routeModuleScriptHref) {
+      defaultScripts.push(routeModuleScriptHref);
+    }
+    scriptTagsHtml = defaultScripts.map((src) => `    <script type="module" src="${src}"></script>`).join('\n');
+  } else if (assetConfig) {
     const coreScripts = Array.isArray(assetConfig?.js?.core) ? assetConfig.js.core : [];
     const routeScripts = Array.isArray(assetConfig?.js?.route) ? assetConfig.js.route : [];
     const allScripts = [...coreScripts, ...routeScripts];
@@ -2540,7 +2644,12 @@ ${explanationTitleHtml}  ${explanationHtml}
     isCalculatorPage: shouldEmitCalculatorHeadJsonLd,
   });
   let cssLinksHtml = '';
-  if (assetConfig) {
+  if (isCreditCardClusterRoute) {
+    cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(
+      buildCreditCardClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (assetConfig) {
     const deferCoreCss = assetConfig?.options?.deferCoreCss === true;
     const coreCss = Array.isArray(assetConfig?.css?.core) ? assetConfig.css.core : [];
     const routeCss = Array.isArray(assetConfig?.css?.route) ? assetConfig.css.route : [];
@@ -2571,23 +2680,25 @@ ${explanationTitleHtml}  ${explanationHtml}
   }
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
-  const adsColumnHtml = suppressAdsColumn
-    ? ''
-    : `        <section class="ads-column" aria-label="Ad placeholders">
+  const adsColumnHtml =
+    suppressAdsColumn || isCreditCardClusterRoute
+      ? ''
+      : `        <section class="ads-column" aria-label="Ad placeholders">
 ${adPanelHtml}
         </section>
 `;
 
-  return `<!doctype html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-${headMetaHtml}
-${cssLinksHtml} 
-${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-  </head>
-  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
-    <div class="page">
+  const pageShellHtml = isCreditCardClusterRoute
+    ? `    <div class="page cc-cluster-page-shell">
+      ${buildCreditCardClusterHeaderHtml()}
+      <main class="layout-main cc-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="center-column cc-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildCreditCardClusterFooterHtml()}
+    </div>`
+    : `    <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
       <main class="layout-main${layoutMainClassSuffix}">
@@ -2599,7 +2710,18 @@ ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (ma
         </section>
 ${adsColumnHtml}      </main>
       ${footerHtml}
-    </div>
+    </div>`;
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+${headMetaHtml}
+${cssLinksHtml} 
+${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
+${pageShellHtml}
 ${scriptTagsHtml}
   </body>
 </html>
@@ -3184,6 +3306,8 @@ function main() {
 
   selectedEntries.forEach((entry) => {
     const { category, subcategory, calculator, governance, relPath, outputRelPath } = entry;
+    const isCreditCardClusterRoute =
+      subcategory.id === 'credit-cards' && calculator.url.startsWith('/credit-card-calculators/');
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (assetConfig?.options?.generationMode === 'manual') {
       console.log(`  SKIP (manual): ${relPath}`);
@@ -3214,7 +3338,7 @@ function main() {
     const pageTitle = override?.title ?? buildTitle(calculator.name);
     const pageDescription = override?.description ?? buildDescription(calculator.name);
     const pageCanonical = buildCanonical(calculator.url);
-    const routeBundleEntry = !assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+    const routeBundleEntry = !assetConfig && !isCreditCardClusterRoute && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
       ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
       : null;
     let cssBundleConfig = null;
@@ -3298,6 +3422,9 @@ function main() {
       calculatorPanelClass:
         typeof override?.calculatorPanelClass === 'string' ? override.calculatorPanelClass : '',
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
+      relatedCalculatorsHtml: isCreditCardClusterRoute
+        ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
+        : '',
     });
 
     const outputDir = path.join(PUBLIC_DIR, outputRelPath);

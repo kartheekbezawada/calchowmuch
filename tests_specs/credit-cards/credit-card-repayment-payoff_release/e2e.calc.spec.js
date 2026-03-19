@@ -9,12 +9,11 @@ test.describe('Credit Card Repayment Calculator', () => {
     const singlePanel = centerPanels.first();
     await expect(singlePanel).toHaveClass(/panel-span-all/);
     await expect(singlePanel.locator('h3:has-text("Explanation")')).toHaveCount(0);
-
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Credit Card');
-
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Repayment');
+    await expect(page.locator('.cc-cluster-site-header')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.cc-cluster-related-link')).toHaveCount(4);
+    await expect(page.locator('.cc-cluster-related-link[aria-current="page"]')).toHaveText('Repayment');
 
     await page.locator('#cc-payoff-balance').fill('5000');
     await page.locator('#cc-payoff-apr').fill('18');

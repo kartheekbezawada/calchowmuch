@@ -17,6 +17,13 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     const singlePanel = centerPanels.first();
     await expect(singlePanel).toHaveClass(/panel-span-all/);
     await expect(singlePanel.locator(':scope > h3:has-text("Explanation")')).toHaveCount(0);
+    await expect(page.locator('.cc-cluster-site-header')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.cc-cluster-related-link')).toHaveCount(4);
+    await expect(page.locator('.cc-cluster-related-link[aria-current="page"]')).toHaveText(
+      'Minimum Payment'
+    );
 
     await expect(page.locator('#calculator-title')).toHaveText('Credit Card Minimum Payment Calculator');
     await expect(page.locator('label[for="cc-min-floor"]')).toHaveText('Lowest Monthly Payment');
@@ -31,15 +38,10 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-rate')).toHaveAttribute('max', '10');
     await expect(page.locator('#cc-min-rate')).toHaveAttribute('step', '0.5');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Credit Card');
-
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Minimum Payment');
-
     await expect(page.locator('select')).toHaveCount(0);
-    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
-    await expect(page.locator('#cc-min-table-body tr')).toHaveCount(21);
+    await expect(page.locator('#cc-min-placeholder')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(1);
 
     await setSliderValue(page, '#cc-min-balance', 5000);
     await setSliderValue(page, '#cc-min-apr', 19.5);
@@ -95,15 +97,19 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
   }) => {
     await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
-    await expect(page.locator('#cc-min-placeholder')).toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-placeholder')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
 
     await setSliderValue(page, '#cc-min-balance', 6400);
     await expect(page.locator('#cc-min-floor')).toHaveAttribute('max', '6400');
 
-    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-min-summary')).toHaveCount(0);
+
+    await page.locator('#cc-min-calc').click();
+    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
     await expect(page.locator('[data-cc-min="months"]').first()).not.toHaveText('—');
+    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
   });
 
   test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 10 FAQs', async ({

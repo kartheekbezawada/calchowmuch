@@ -21,6 +21,9 @@
   <section class="cc-con-exp-section cc-con-exp-section--lifetime">
     <div class="cc-con-lifetime-header">
       <h3>Lifetime Totals</h3>
+      <p class="cc-con-lifetime-subtitle">
+        A clean summary of principal, interest, and total repayment across the full consolidation plan.
+      </p>
     </div>
 
     <div class="cc-con-lifetime-visual">
@@ -362,8 +365,8 @@
 
     <h4>Example: should I consolidate 12,000 of card debt?</h4>
     <p>Using typical defaults:</p>
-    <div class="cc-con-guide-table-wrap table-scroll" tabindex="0">
-      <table class="calculator-table cc-con-guide-table">
+    <div class="cc-con-guide-table-wrap cc-con-guide-table-wrap--inputs table-scroll" tabindex="0">
+      <table class="calculator-table cc-con-guide-table cc-con-guide-table--inputs">
         <thead>
           <tr>
             <th scope="col">Input</th>
@@ -380,8 +383,8 @@
         </tbody>
       </table>
     </div>
-    <div class="cc-con-guide-table-wrap table-scroll" tabindex="0">
-      <table class="calculator-table cc-con-guide-table">
+    <div class="cc-con-guide-table-wrap cc-con-guide-table-wrap--outputs table-scroll" tabindex="0">
+      <table class="calculator-table cc-con-guide-table cc-con-guide-table--outputs">
         <thead>
           <tr>
             <th scope="col">Output</th>
@@ -407,8 +410,8 @@
     </p>
 
     <h4>When consolidation saves money and when it does not</h4>
-    <div class="cc-con-guide-table-wrap table-scroll" tabindex="0">
-      <table class="calculator-table cc-con-guide-table">
+    <div class="cc-con-guide-table-wrap cc-con-guide-table-wrap--scenarios table-scroll" tabindex="0">
+      <table class="calculator-table cc-con-guide-table cc-con-guide-table--scenarios">
         <thead>
           <tr>
             <th scope="col">Scenario</th>
@@ -435,95 +438,105 @@
   <section class="cc-con-exp-section cc-con-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
-        <h4>What is credit card debt consolidation?</h4>
-        <p>
-          Credit card debt consolidation combines multiple card balances into one loan with a fixed
-          APR and repayment term so you can simplify payments and compare total cost.
-        </p>
-      </div>
+      <details class="bor-faq-card" open>
+        <summary>What is credit card debt consolidation?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Credit card debt consolidation combines multiple card balances into one loan with a fixed
+            APR and repayment term so you can simplify payments and compare total cost.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
-        <h4>How does a consolidation loan reduce interest costs?</h4>
-        <p>
-          If the consolidation APR is lower than your current card APR, a larger share of each
-          payment goes to principal, which can reduce total interest.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>How does a consolidation loan reduce interest costs?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            If the consolidation APR is lower than your current card APR, a larger share of each
+            payment goes to principal, which can reduce total interest.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>When is consolidation not worth it?</h4>
-        <p>
-          Consolidation may not be worth it when fees are high, the new APR is not lower enough, or
-          the new term is too long and increases total cost.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>When is consolidation not worth it?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Consolidation may not be worth it when fees are high, the new APR is not lower enough, or
+            the new term is too long and increases total cost.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
-        <h4>How are consolidation fees handled in the calculation?</h4>
-        <p>
-          Fees are added to the balance financed by the consolidation loan, which can raise monthly
-          payment and total cost.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>How are consolidation fees handled in the calculation?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Fees are added to the balance financed by the consolidation loan, which can raise monthly
+            payment and total cost.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>What APR can I expect for a consolidation loan?</h4>
-        <p>
-          APR depends on credit profile, lender policy, loan amount, and term. Compare multiple
-          offers to estimate realistic rates.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>What APR can I expect for a consolidation loan?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            APR depends on credit profile, lender policy, loan amount, and term. Compare multiple
+            offers to estimate realistic rates.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
-        <h4>Does consolidation affect my credit score?</h4>
-        <p>
-          It can. Opening a new loan and paying off cards may change utilization and account mix.
-          Long-term impact depends on repayment behavior.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>Does consolidation affect my credit score?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            It can. Opening a new loan and paying off cards may change utilization and account mix.
+            Long-term impact depends on repayment behavior.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>Can I consolidate cards with different APRs?</h4>
-        <p>
-          Yes. This calculator uses one average current APR input, so combine your card balances and
-          use a reasonable weighted average APR.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>Can I consolidate cards with different APRs?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Yes. This calculator uses one average current APR input, so combine your card balances and
+            use a reasonable weighted average APR.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>What happens if I miss a payment on a consolidation loan?</h4>
-        <p>
-          Missing payments may trigger fees, possible APR changes, and credit-score damage, which
-          can reduce or erase expected savings.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>What happens if I miss a payment on a consolidation loan?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Missing payments may trigger fees, possible APR changes, and credit-score damage, which
+            can reduce or erase expected savings.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
-        <h4>Does this calculator include origination fees?</h4>
-        <p>
-          Yes. Enter origination or setup fees in Consolidation Fees so the comparison reflects the
-          full financed amount.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>Does this calculator include origination fees?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Yes. Enter origination or setup fees in Consolidation Fees so the comparison reflects the
+            full financed amount.
+          </p>
+        </div>
+      </details>
 
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
-        <h4>How do I compare consolidation vs. balance transfer?</h4>
-        <p>
-          Compare APR, fees, repayment term, and payoff discipline. Use both calculators and select
-          the option with lower total paid and realistic monthly payment.
-        </p>
-      </div>
+      <details class="bor-faq-card">
+        <summary>How do I compare consolidation vs. balance transfer?</summary>
+        <div class="bor-faq-answer">
+          <p>
+            Compare APR, fees, repayment term, and payoff discipline. Use both calculators and select
+            the option with lower total paid and realistic monthly payment.
+          </p>
+        </div>
+      </details>
     </div>
   </section>
 

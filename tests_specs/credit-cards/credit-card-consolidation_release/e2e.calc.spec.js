@@ -18,12 +18,13 @@ test.describe('Credit Card Consolidation Calculator', () => {
     await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Credit Card Consolidation Calculator');
-
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Credit Card');
-
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toHaveText('Card Consolidation');
+    await expect(page.locator('.cc-cluster-site-header')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.cc-cluster-related-link')).toHaveCount(4);
+    await expect(page.locator('.cc-cluster-related-link[aria-current="page"]')).toHaveText(
+      'Card Consolidation'
+    );
 
     const centerPanels = page.locator('.center-column > .panel');
     await expect(centerPanels).toHaveCount(1);
@@ -33,8 +34,8 @@ test.describe('Credit Card Consolidation Calculator', () => {
     await expect(page.locator('#calc-cc-con .advanced-options')).toHaveCount(1);
     await expect(page.locator('#calc-cc-con .cc-con-preview-panel')).toHaveCount(1);
     await expect(page.getByText('Estimated Consolidation Payment')).toHaveCount(0);
-    await expect(page.locator('#cc-con-result .cc-con-result-value')).toContainText(/[0-9]/);
-    await expect(page.locator('[data-cc-con="current-months"]').first()).not.toHaveText('—');
+    await expect(page.locator('#cc-con-result .placeholder')).toHaveCount(1);
+    await expect(page.locator('[data-cc-con="current-months"]').first()).toHaveText('—');
 
     const yearlyWrap = page.locator('#cc-con-table-yearly-wrap');
     const monthlyWrap = page.locator('#cc-con-table-monthly-wrap');
@@ -42,8 +43,7 @@ test.describe('Credit Card Consolidation Calculator', () => {
     await expect(monthlyWrap).toHaveClass(/is-hidden/);
 
     const yearlyPlaceholder = page.locator('#cc-con-table-yearly-body .cc-con-table-placeholder-row');
-    await expect(yearlyPlaceholder).toHaveCount(0);
-    expect(await page.locator('#cc-con-table-yearly-body tr').count()).toBeGreaterThan(1);
+    await expect(yearlyPlaceholder).toHaveCount(1);
 
     await setRangeValue(page, '#cc-con-balance', 15000);
     await setRangeValue(page, '#cc-con-apr', 21.2);
@@ -84,6 +84,8 @@ test.describe('Credit Card Consolidation Calculator', () => {
     page,
   }) => {
     await page.goto('/credit-card-calculators/credit-card-consolidation-calculator/');
+
+    await page.locator('#cc-con-calc').click();
 
     const currentMonthsValue = page.locator('[data-cc-con="current-months"]').first();
     const yearlyPlaceholder = page.locator('#cc-con-table-yearly-body .cc-con-table-placeholder-row');

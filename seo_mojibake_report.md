@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `calc:sleep-and-nap/energy-based-nap-selector`
-- HTML files scanned: **1**
-- Calculator pages scanned: **1**
+- Scope: `cluster:credit-cards`
+- HTML files scanned: **4**
+- Calculator pages scanned: **4**
 - Findings: **0**
 - Status: **PASS**
 

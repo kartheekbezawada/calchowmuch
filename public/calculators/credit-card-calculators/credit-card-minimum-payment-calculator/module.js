@@ -166,6 +166,8 @@ const metadata = {
 
 setPageMetadata(metadata);
 
+let hasCalculated = false;
+
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
@@ -432,27 +434,11 @@ function validateInputs(values) {
 
 function resetAfterInputChange() {
   syncSliderUI();
-  const values = readInputs();
-  setInputSpans(values);
-
-  const validationError = validateInputs(values);
-  if (validationError) {
-    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
-    setOutputPlaceholders();
+  clearError();
+  if (!hasCalculated) {
     return;
   }
-
-  setDerivedInputSpans(values);
-  const data = calculateMinimumPayment(values);
-  if (data.error) {
-    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
-    setOutputPlaceholders();
-    return;
-  }
-
-  renderOutcomeCard(data.months);
-  updateTable(data.yearly);
-  setOutputSpans(data, values);
+  calculate();
 }
 
 function calculate() {
@@ -483,6 +469,7 @@ function calculate() {
 }
 
 calculateButton?.addEventListener('click', () => {
+  hasCalculated = true;
   calculate();
 });
 
@@ -492,28 +479,6 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 
 (function initializeExplanation() {
   syncSliderUI();
-  const values = readInputs();
-  setInputSpans(values);
-  setDerivedInputSpans(values);
   setOutputPlaceholders();
-
-  const validationError = validateInputs(values);
-  if (validationError) {
-    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
-    showPlaceholder();
-    renderTablePlaceholder();
-    return;
-  }
-
-  const defaultData = calculateMinimumPayment(values);
-  if (defaultData.error) {
-    setDerivedInputSpans({ balance: NaN, apr: NaN, minRate: NaN });
-    showPlaceholder();
-    renderTablePlaceholder();
-    return;
-  }
-
-  renderOutcomeCard(defaultData.months);
-  updateTable(defaultData.yearly);
-  setOutputSpans(defaultData, values);
+  showPlaceholder();
 })();
