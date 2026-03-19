@@ -1,15 +1,26 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLease } from '/assets/js/core/auto-loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/car-loan-calculators/shared/cluster-ux.js';
 
 const priceInput = document.querySelector('#lease-price');
 const residualInput = document.querySelector('#lease-residual-value');
 const termInput = document.querySelector('#lease-term');
 const factorInput = document.querySelector('#lease-factor');
 const upfrontInput = document.querySelector('#lease-upfront');
+const priceField = document.querySelector('#lease-price-field');
+const residualField = document.querySelector('#lease-residual-value-field');
+const termField = document.querySelector('#lease-term-field');
+const factorField = document.querySelector('#lease-factor-field');
+const upfrontField = document.querySelector('#lease-upfront-field');
 const calculateButton = document.querySelector('#lease-calc');
 const resultDiv = document.querySelector('#lease-result');
 const summaryDiv = document.querySelector('#lease-summary');
+const previewPanel = document.querySelector('#lease-preview');
 
 const residualLabel = document.querySelector('#lease-residual-value-label');
 const termLabel = document.querySelector('#lease-term-label');
@@ -46,6 +57,9 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-lease]')).r
 let scheduleView = 'yearly';
 let lastResidualType = 'amount';
 let lastTermUnit = 'years';
+let residualBinding;
+let termBinding;
+let upfrontBinding;
 
 const FAQ_ITEMS = [
   {
@@ -203,6 +217,19 @@ function formatValue(value, options = {}) {
   });
 }
 
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function formatFieldValue(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits,
+    useGrouping: false,
+  });
+}
+
 function formatMoneyFactor(value) {
   return Number(value).toFixed(4);
 }
@@ -212,17 +239,6 @@ function setSpan(key, value) {
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function setSliderFill(input) {
-  if (!input) {
-    return;
-  }
-  const min = Number(input.min || 0);
-  const max = Number(input.max || 100);
-  const value = Number(input.value);
-  const percentage = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
 }
 
 function getCurrentResidualType() {
@@ -317,7 +333,7 @@ function updateSliderDisplays() {
     upfrontDisplay.textContent = formatValue(Number(upfrontInput.value));
   }
 
-  [priceInput, residualInput, termInput, factorInput, upfrontInput].forEach(setSliderFill);
+  [priceInput, residualInput, termInput, factorInput, upfrontInput].forEach(updateRangeFill);
 }
 
 function handleResidualTypeChange(type) {
@@ -348,6 +364,8 @@ function handleResidualTypeChange(type) {
   lastResidualType = type;
   syncDependentRanges();
   updateSliderDisplays();
+  residualBinding?.syncFromRange();
+  upfrontBinding?.syncFromRange();
 }
 
 function handleTermUnitChange(unit) {
@@ -388,6 +406,7 @@ function handleTermUnitChange(unit) {
 
   lastTermUnit = unit;
   updateSliderDisplays();
+  termBinding?.syncFromRange();
 }
 
 function clearOutputs() {
@@ -721,22 +740,67 @@ function calculate() {
   }
 
   syncDependentRanges();
-  updateSliderDisplays();
+  residualBinding?.syncFromRange();
+  termBinding?.syncFromRange();
+  upfrontBinding?.syncFromRange();
   updatePreview(enriched);
   updateExplanation(enriched);
   renderMonthlyTable(enriched);
   renderYearlyTable(enriched);
   renderCostTable(enriched);
   applyView(scheduleView);
+  revealResultPanel({
+    resultPanel: previewPanel,
+    focusTarget: resultDiv,
+  });
 }
 
-[priceInput, residualInput, termInput, factorInput, upfrontInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (input === priceInput || input === residualInput || input === upfrontInput) {
-      syncDependentRanges();
-    }
-    updateSliderDisplays();
-  });
+wireRangeWithField({
+  rangeInput: priceInput,
+  textInput: priceField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+residualBinding = wireRangeWithField({
+  rangeInput: residualInput,
+  textInput: residualField,
+  formatFieldValue: (value) =>
+    formatFieldValue(value, getCurrentResidualType() === 'percent' ? 2 : 0),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+termBinding = wireRangeWithField({
+  rangeInput: termInput,
+  textInput: termField,
+  formatFieldValue: (value) =>
+    formatFieldValue(value, getCurrentTermUnit() === 'years' ? 1 : 0),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: factorInput,
+  textInput: factorField,
+  formatFieldValue: (value) => formatFieldValue(value, 4),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+upfrontBinding = wireRangeWithField({
+  rangeInput: upfrontInput,
+  textInput: upfrontField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+priceInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  residualBinding?.syncFromRange();
+  upfrontBinding?.syncFromRange();
 });
 
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));

@@ -1,6 +1,11 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculatePcp } from '/assets/js/core/auto-loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/car-loan-calculators/shared/cluster-ux.js';
 
 const priceInput = document.querySelector('#pcp-price');
 const depositInput = document.querySelector('#pcp-deposit-value');
@@ -8,9 +13,16 @@ const aprInput = document.querySelector('#pcp-apr');
 const termInput = document.querySelector('#pcp-term');
 const gfvInput = document.querySelector('#pcp-gfv');
 const optionFeeInput = document.querySelector('#pcp-option-fee');
+const priceField = document.querySelector('#pcp-price-field');
+const depositField = document.querySelector('#pcp-deposit-value-field');
+const aprField = document.querySelector('#pcp-apr-field');
+const termField = document.querySelector('#pcp-term-field');
+const gfvField = document.querySelector('#pcp-gfv-field');
+const optionFeeField = document.querySelector('#pcp-option-fee-field');
 const calculateButton = document.querySelector('#pcp-calc');
 const resultDiv = document.querySelector('#pcp-result');
 const summaryDiv = document.querySelector('#pcp-summary');
+const previewPanel = document.querySelector('#pcp-preview');
 
 const depositLabel = document.querySelector('#pcp-deposit-value-label');
 const termLabel = document.querySelector('#pcp-term-label');
@@ -48,6 +60,10 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-pcp]')).red
 let scheduleView = 'yearly';
 let lastDepositType = 'amount';
 let lastTermUnit = 'years';
+let depositBinding;
+let termBinding;
+let gfvBinding;
+let optionFeeBinding;
 
 const FAQ_ITEMS = [
   {
@@ -204,22 +220,24 @@ function formatValue(value, options = {}) {
   });
 }
 
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function formatFieldValue(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits,
+    useGrouping: false,
+  });
+}
+
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function setSliderFill(input) {
-  if (!input) {
-    return;
-  }
-  const min = Number(input.min || 0);
-  const max = Number(input.max || 100);
-  const value = Number(input.value);
-  const percentage = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
 }
 
 function getCurrentDepositType() {
@@ -337,7 +355,9 @@ function updateSliderDisplays() {
     });
   }
 
-  [priceInput, depositInput, aprInput, termInput, gfvInput, optionFeeInput].forEach(setSliderFill);
+  [priceInput, depositInput, aprInput, termInput, gfvInput, optionFeeInput].forEach(
+    updateRangeFill
+  );
 }
 
 function handleDepositTypeChange(type) {
@@ -369,6 +389,9 @@ function handleDepositTypeChange(type) {
   lastDepositType = type;
   syncDependentRanges();
   updateSliderDisplays();
+  depositBinding?.syncFromRange();
+  optionFeeBinding?.syncFromRange();
+  gfvBinding?.syncFromRange();
 }
 
 function handleTermUnitChange(unit) {
@@ -409,6 +432,7 @@ function handleTermUnitChange(unit) {
 
   lastTermUnit = unit;
   updateSliderDisplays();
+  termBinding?.syncFromRange();
 }
 
 function clearOutputs() {
@@ -734,27 +758,88 @@ function calculate() {
   }
 
   syncDependentRanges();
-  updateSliderDisplays();
+  depositBinding?.syncFromRange();
+  termBinding?.syncFromRange();
+  gfvBinding?.syncFromRange();
+  optionFeeBinding?.syncFromRange();
   updatePreview(data);
   updateExplanation(data);
   renderMonthlyTable(data.schedule);
   renderYearlyTable(data.yearly);
   renderCostTable(data);
   applyView(scheduleView);
+  revealResultPanel({
+    resultPanel: previewPanel,
+    focusTarget: resultDiv,
+  });
 }
 
-[priceInput, depositInput, aprInput, termInput, gfvInput, optionFeeInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (
-      input === priceInput ||
-      input === depositInput ||
-      input === gfvInput ||
-      input === optionFeeInput
-    ) {
-      syncDependentRanges();
-    }
-    updateSliderDisplays();
-  });
+wireRangeWithField({
+  rangeInput: priceInput,
+  textInput: priceField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+depositBinding = wireRangeWithField({
+  rangeInput: depositInput,
+  textInput: depositField,
+  formatFieldValue: (value) =>
+    formatFieldValue(value, getCurrentDepositType() === 'percent' ? 2 : 0),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: aprInput,
+  textInput: aprField,
+  formatFieldValue: (value) => formatFieldValue(value, 1),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+termBinding = wireRangeWithField({
+  rangeInput: termInput,
+  textInput: termField,
+  formatFieldValue: (value) =>
+    formatFieldValue(value, getCurrentTermUnit() === 'years' ? 1 : 0),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+gfvBinding = wireRangeWithField({
+  rangeInput: gfvInput,
+  textInput: gfvField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+optionFeeBinding = wireRangeWithField({
+  rangeInput: optionFeeInput,
+  textInput: optionFeeField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+priceInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  depositBinding?.syncFromRange();
+  optionFeeBinding?.syncFromRange();
+  gfvBinding?.syncFromRange();
+});
+
+depositInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  optionFeeBinding?.syncFromRange();
+  gfvBinding?.syncFromRange();
+});
+
+optionFeeInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  gfvBinding?.syncFromRange();
 });
 
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));

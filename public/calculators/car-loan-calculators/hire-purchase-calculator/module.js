@@ -1,15 +1,26 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateHirePurchase } from '/assets/js/core/auto-loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/car-loan-calculators/shared/cluster-ux.js';
 
 const priceInput = document.querySelector('#hp-price');
 const depositInput = document.querySelector('#hp-deposit');
 const aprInput = document.querySelector('#hp-apr');
 const termInput = document.querySelector('#hp-term');
 const balloonInput = document.querySelector('#hp-balloon');
+const priceField = document.querySelector('#hp-price-field');
+const depositField = document.querySelector('#hp-deposit-field');
+const aprField = document.querySelector('#hp-apr-field');
+const termField = document.querySelector('#hp-term-field');
+const balloonField = document.querySelector('#hp-balloon-field');
 const calculateButton = document.querySelector('#hp-calc');
 const resultDiv = document.querySelector('#hp-result');
 const summaryDiv = document.querySelector('#hp-summary');
+const previewPanel = document.querySelector('#hp-preview');
 
 const termLabel = document.querySelector('#hp-term-label');
 const termUnitGroup = document.querySelector('[data-button-group="hp-term-unit"]');
@@ -38,6 +49,9 @@ const explanationSpans = Array.from(document.querySelectorAll('[data-hp]')).redu
 
 let scheduleView = 'yearly';
 let lastTermUnit = 'years';
+let termBinding;
+let depositBinding;
+let balloonBinding;
 
 const FAQ_ITEMS = [
   {
@@ -186,22 +200,24 @@ function formatValue(value, options = {}) {
   });
 }
 
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function formatFieldValue(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits,
+    useGrouping: false,
+  });
+}
+
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function setSliderFill(input) {
-  if (!input) {
-    return;
-  }
-  const min = Number(input.min || 0);
-  const max = Number(input.max || 100);
-  const value = Number(input.value);
-  const percentage = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
 }
 
 function getCurrentTermUnit() {
@@ -266,7 +282,7 @@ function updateSliderDisplays() {
     balloonDisplay.textContent = formatValue(Number(balloonInput.value));
   }
 
-  [priceInput, depositInput, aprInput, termInput, balloonInput].forEach(setSliderFill);
+  [priceInput, depositInput, aprInput, termInput, balloonInput].forEach(updateRangeFill);
 }
 
 function handleTermUnitChange(unit) {
@@ -307,6 +323,7 @@ function handleTermUnitChange(unit) {
 
   lastTermUnit = unit;
   updateSliderDisplays();
+  termBinding?.syncFromRange();
 }
 
 function clearOutputs() {
@@ -512,21 +529,70 @@ function calculate() {
   }
 
   syncDependentRanges();
-  updateSliderDisplays();
+  depositBinding?.syncFromRange();
+  termBinding?.syncFromRange();
+  balloonBinding?.syncFromRange();
   updatePreview(data, termMonths);
   updateExplanation(data);
   renderMonthlyTable(data.schedule);
   renderYearlyTable(data.yearly);
   applyView(scheduleView);
+  revealResultPanel({
+    resultPanel: previewPanel,
+    focusTarget: resultDiv,
+  });
 }
 
-[priceInput, depositInput, aprInput, termInput, balloonInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (input === priceInput || input === depositInput || input === balloonInput) {
-      syncDependentRanges();
-    }
-    updateSliderDisplays();
-  });
+wireRangeWithField({
+  rangeInput: priceInput,
+  textInput: priceField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+depositBinding = wireRangeWithField({
+  rangeInput: depositInput,
+  textInput: depositField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: aprInput,
+  textInput: aprField,
+  formatFieldValue: (value) => formatFieldValue(value, 1),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+termBinding = wireRangeWithField({
+  rangeInput: termInput,
+  textInput: termField,
+  formatFieldValue: (value) =>
+    formatFieldValue(value, getCurrentTermUnit() === 'years' ? 1 : 0),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+balloonBinding = wireRangeWithField({
+  rangeInput: balloonInput,
+  textInput: balloonField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+priceInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  depositBinding?.syncFromRange();
+  balloonBinding?.syncFromRange();
+});
+
+depositInput?.addEventListener('input', () => {
+  syncDependentRanges();
+  balloonBinding?.syncFromRange();
 });
 
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));

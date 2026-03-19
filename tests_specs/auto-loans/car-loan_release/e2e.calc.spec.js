@@ -18,34 +18,36 @@ function normalize(text) {
 }
 
 test.describe('Car Loan Calculator', () => {
-  test('CAR-LOAN-E2E-1: premium single pane with button-only recalculation and schedule toggles', async ({
+  test('CAR-LOAN-E2E-1: auto-loan shell with button-only recalculation and schedule toggles', async ({
     page,
   }) => {
     await page.goto('/car-loan-calculators/car-loan-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Car Loan Calculator');
+    await expect(page.locator('body[data-design-family="auto-loans"]')).toHaveCount(1);
+    await expect(page.locator('.al-cluster-site-header')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.al-cluster-related-link')).toHaveCount(5);
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Auto Loans');
-
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toContainText('Car Loan Calculator');
-
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    const panel = page.locator('.al-cluster-panel');
+    await expect(panel).toHaveCount(1);
 
     await expect(page.locator('#calc-car-loan .slider-row')).toHaveCount(7);
+    await expect(page.locator('#calc-car-loan .slider-precision-input')).toHaveCount(7);
     await expect(page.locator('#calc-car-loan .mtg-preview-panel')).toHaveCount(1);
 
     const result = page.locator('#car-result');
-    const explanation = page.locator('#loan-mtg-explanation');
+    const explanation = page.locator('#car-auto-loan-explanation');
     await expect(result.locator('.mtg-result-value')).toContainText(/[0-9]/);
 
     const baselineResult = normalize(await result.textContent());
     const baselineExplanation = normalize(await explanation.textContent());
 
     await setRangeValue(page, '#car-price', 35000);
+    await page.locator('#car-price-field').fill('35000');
+    await page.locator('#car-price-field').press('Tab');
     await setRangeValue(page, '#car-apr', 7.2);
     await page.waitForTimeout(150);
 
@@ -87,6 +89,6 @@ test.describe('Car Loan Calculator', () => {
     expect(await page.locator('#car-table-monthly-body tr').count()).toBeGreaterThan(1);
     expect(await page.locator('#car-table-yearly-body tr').count()).toBeGreaterThan(0);
 
-    await expect(page.locator('#loan-mtg-explanation .bor-faq-card')).toHaveCount(6);
+    await expect(page.locator('#car-auto-loan-explanation .bor-faq-card')).toHaveCount(6);
   });
 });

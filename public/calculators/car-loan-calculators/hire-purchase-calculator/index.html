@@ -1,72 +1,49 @@
-<style>
-  #calc-hire-purchase {
-    width: 100%;
-  }
-
-  #calc-hire-purchase .home-loan-ui {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  #calc-hire-purchase .mtg-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  #calc-hire-purchase .mtg-form-panel {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-  }
-
-  #calc-hire-purchase .mtg-preview-panel {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-  }
-
-  #calc-hire-purchase .mtg-result-card {
-    min-height: 44px;
-  }
-
-  #calc-hire-purchase .mtg-summary-card {
-    min-height: 96px;
-  }
-
-  @media (max-width: 1220px) {
-    #calc-hire-purchase .mtg-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
 <div id="calc-hire-purchase">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="mtg-hero" aria-label="Hire purchase calculator">
-        <div class="mtg-form-panel">
-          <p class="helper">
-            Estimate hire purchase monthly installments, final balloon payment, and total payable
-            with the same premium calculator flow as car loan.
-          </p>
+  <div class="calculator-ui auto-loan-ui">
+    <section class="mtg-hero" aria-label="Hire purchase calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Estimate monthly installments, the final balloon payment, and the total amount payable so
+          you can compare headline affordability with full-contract cost.
+        </p>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="hp-price">Vehicle Price</label>
-              <span class="slider-value" id="hp-price-display">24,000</span>
-            </div>
-            <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="hp-price">Vehicle Price</label>
+            <span class="slider-value" id="hp-price-display">24,000</span>
           </div>
+          <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="hp-price-field">Exact vehicle price</label>
+            <input
+              class="slider-precision-input"
+              id="hp-price-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="24000"
+            />
+          </div>
+        </div>
 
+        <div class="input-grid-2-col">
           <div class="input-row slider-row">
             <div class="slider-header">
               <label for="hp-deposit">Deposit</label>
               <span class="slider-value" id="hp-deposit-display">2,000</span>
             </div>
             <input id="hp-deposit" type="range" value="2000" min="0" max="150000" step="100" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="hp-deposit-field">Exact deposit</label>
+              <input
+                class="slider-precision-input"
+                id="hp-deposit-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="2000"
+              />
+            </div>
           </div>
 
           <div class="input-row slider-row">
@@ -75,41 +52,65 @@
               <span class="slider-value" id="hp-apr-display">6.2%</span>
             </div>
             <input id="hp-apr" type="range" value="6.2" min="0" max="25" step="0.1" />
-          </div>
-
-          <div class="input-row down-combined-left">
-            <label id="hp-term-unit-label">Term Unit</label>
-            <div
-              class="button-group"
-              role="group"
-              aria-labelledby="hp-term-unit-label"
-              data-button-group="hp-term-unit"
-            >
-              <button
-                class="calculator-button secondary is-active"
-                type="button"
-                data-value="years"
-                aria-pressed="true"
-              >
-                Years
-              </button>
-              <button
-                class="calculator-button secondary"
-                type="button"
-                data-value="months"
-                aria-pressed="false"
-              >
-                Months
-              </button>
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="hp-apr-field">Exact APR percent</label>
+              <input
+                class="slider-precision-input"
+                id="hp-apr-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="6.2"
+              />
             </div>
           </div>
+        </div>
 
+        <div class="input-row down-combined-left">
+          <label id="hp-term-unit-label">Term Unit</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="hp-term-unit-label"
+            data-button-group="hp-term-unit"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="years"
+              aria-pressed="true"
+            >
+              Years
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="months"
+              aria-pressed="false"
+            >
+              Months
+            </button>
+          </div>
+        </div>
+
+        <div class="input-grid-2-col">
           <div class="input-row slider-row">
             <div class="slider-header">
               <label id="hp-term-label" for="hp-term">Term (years)</label>
               <span class="slider-value" id="hp-term-display">4 yrs</span>
             </div>
             <input id="hp-term" type="range" value="4" min="1" max="8" step="0.5" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="hp-term-field">Exact term value</label>
+              <input
+                class="slider-precision-input"
+                id="hp-term-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="4"
+              />
+            </div>
           </div>
 
           <div class="input-row slider-row">
@@ -118,71 +119,80 @@
               <span class="slider-value" id="hp-balloon-display">0</span>
             </div>
             <input id="hp-balloon" type="range" value="0" min="0" max="150000" step="100" />
-          </div>
-
-          <div class="input-row action-row mtg-action-row">
-            <button class="calculator-button full-width" type="button" id="hp-calc">
-              Calculate Hire Purchase
-            </button>
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="hp-balloon-field">Exact final balloon</label>
+              <input
+                class="slider-precision-input"
+                id="hp-balloon-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="0"
+              />
+            </div>
           </div>
         </div>
 
-        <aside class="mtg-preview-panel" aria-label="Hire purchase scenario snapshot">
-          <div class="mtg-preview-main">
-            <p class="mtg-preview-label">Estimated Monthly Payment</p>
-            <div class="result mtg-result-card" id="hp-result" aria-live="polite">
-              <span class="mtg-result-value">518.69</span>
-            </div>
-            <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite">
-              <p><strong>Amount Financed:</strong> 22,000</p>
-              <p><strong>Total Interest:</strong> 2,897.14</p>
-              <p><strong>Total Payable:</strong> 26,897.14</p>
-            </div>
-          </div>
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="hp-calc">
+            Calculate Hire Purchase
+          </button>
+        </div>
+      </div>
 
-          <div class="mtg-snapshot-list">
-            <div class="mtg-snapshot-row">
-              <span>Vehicle Price</span>
-              <strong data-hp="price">24,000</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Deposit</span>
-              <strong
-                ><span data-hp="deposit">2,000</span> (<span data-hp="deposit-percent">8.33%</span
-                >)</strong
-              >
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Amount Financed</span>
-              <strong data-hp="financed">22,000</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>APR</span>
-              <strong data-hp="apr">6.2%</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Term</span>
-              <strong data-hp="term">4 years (48 months)</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Final Balloon</span>
-              <strong data-hp="balloon">0</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Total Interest</span>
-              <strong data-hp="total-interest">2,897.14</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Total Payable</span>
-              <strong data-hp="total-payable">26,897.14</strong>
-            </div>
+      <aside class="mtg-preview-panel" id="hp-preview" aria-label="Hire purchase scenario snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Monthly Payment</p>
+          <div class="result mtg-result-card" id="hp-result" aria-live="polite">
+            <strong>Monthly payment</strong>
+            <span class="mtg-result-value">518.69</span>
           </div>
-        </aside>
-      </section>
-    </div>
+        </div>
+
+        <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite">
+          <p><strong>Amount Financed:</strong> <span>22,000</span></p>
+          <p><strong>Total Interest:</strong> <span>2,897.14</span></p>
+          <p><strong>Total Payable:</strong> <span>26,897.14</span></p>
+        </div>
+
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Vehicle Price</span>
+            <strong data-hp="price">24,000</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Deposit</span>
+            <strong
+              ><span data-hp="deposit">2,000</span> (<span data-hp="deposit-percent">8.33%</span
+              >)</strong
+            >
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Amount Financed</span>
+            <strong data-hp="financed">22,000</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>APR</span>
+            <strong data-hp="apr">6.2%</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Term</span>
+            <strong data-hp="term">4 years (48 months)</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Final Balloon</span>
+            <strong data-hp="balloon">0</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Total Interest</span>
+            <strong data-hp="total-interest">2,897.14</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Total Payable</span>
+            <strong data-hp="total-payable">26,897.14</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
-
-<style>
-  @import url('/calculators/car-loan-calculators/hire-purchase-calculator/calculator.css');
-</style>

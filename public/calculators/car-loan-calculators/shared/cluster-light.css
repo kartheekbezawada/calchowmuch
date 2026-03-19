@@ -1,0 +1,1073 @@
+body[data-design-family='auto-loans'] {
+  --al-bg: #f5f7fb;
+  --al-bg-soft: #edf2f7;
+  --al-bg-strong: #dfe6ee;
+  --al-surface: rgba(255, 255, 255, 0.97);
+  --al-surface-soft: #f8fafc;
+  --al-surface-soft-2: #f1f4f8;
+  --al-text: #102033;
+  --al-muted: #5b697b;
+  --al-line: rgba(151, 168, 186, 0.34);
+  --al-line-strong: rgba(114, 134, 157, 0.52);
+  --al-accent: #2f5d83;
+  --al-accent-soft: #e7eff5;
+  --al-accent-strong: #1e4364;
+  --al-warm: #c58c45;
+  --al-positive: #2d7d62;
+  --al-danger: #b44b4b;
+  --al-shadow: 0 18px 52px rgba(16, 32, 51, 0.08);
+  --al-shadow-soft: 0 10px 28px rgba(16, 32, 51, 0.06);
+  --al-radius-xl: 28px;
+  --al-radius-lg: 22px;
+  --al-radius-md: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(47, 93, 131, 0.12), transparent 34%),
+    radial-gradient(circle at 86% 8%, rgba(197, 140, 69, 0.12), transparent 26%),
+    linear-gradient(180deg, #fafbfd 0%, #f3f6f9 100%);
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] a {
+  color: var(--al-accent);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-page-shell {
+  min-height: 100vh;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-wrap,
+body[data-design-family='auto-loans'] .al-cluster-center-column {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(18px);
+  background: rgba(250, 251, 253, 0.82);
+  border-bottom: 1px solid rgba(221, 228, 236, 0.94);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--al-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-brand:hover {
+  text-decoration: none;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-brand-mark {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #102033, #41576b);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-site-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-layout-main {
+  padding: 54px 0 68px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-panel {
+  display: grid;
+  gap: 30px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-page-header {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-page-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--al-line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--al-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body[data-design-family='auto-loans'] #calculator-title {
+  margin: 18px 0 0;
+  font-size: clamp(42px, 6vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-page-intro {
+  max-width: 720px;
+  margin: 16px auto 0;
+  color: var(--al-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-flow {
+  display: grid;
+  gap: 26px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related {
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-xl);
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+  box-shadow: var(--al-shadow-soft);
+  padding: 28px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related h2 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--al-line);
+  background: #ffffff;
+  color: var(--al-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(47, 93, 131, 0.34);
+  box-shadow: var(--al-shadow-soft);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-related-link.is-active,
+body[data-design-family='auto-loans'] .al-cluster-related-link[aria-current='page'] {
+  background: var(--al-accent-soft);
+  border-color: rgba(47, 93, 131, 0.18);
+  color: var(--al-accent);
+}
+
+body[data-design-family='auto-loans'] .al-cluster-site-footer {
+  padding: 0 0 54px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 26px 28px;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--al-shadow-soft);
+  text-align: center;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+body[data-design-family='auto-loans'] .al-cluster-footer-copy {
+  color: var(--al-muted);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui {
+  display: grid;
+  gap: 24px;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .helper {
+  margin: 0;
+  color: var(--al-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  padding: 28px;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-xl);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 246, 250, 0.98));
+  box-shadow: var(--al-shadow);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel {
+  gap: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(197, 140, 69, 0.14), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(239, 244, 248, 0.98));
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .input-row {
+  display: grid;
+  gap: 8px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .inline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui label {
+  margin: 0;
+  color: #243247;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui :is(input[type='number'], input[type='text'], input[type='month'], textarea) {
+  min-height: 48px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--al-line-strong);
+  background: #ffffff;
+  color: var(--al-text);
+  padding: 12px 14px;
+  font-size: 16px;
+  line-height: 1.35;
+  box-shadow: inset 0 1px 2px rgba(16, 32, 51, 0.03);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui :is(input[type='number'], input[type='text'], input[type='month'], textarea):focus-visible {
+  outline: 0;
+  border-color: rgba(47, 93, 131, 0.58);
+  box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-row {
+  padding: 14px 16px;
+  border-radius: var(--al-radius-md);
+  border: 1px solid rgba(203, 214, 224, 0.92);
+  background: linear-gradient(180deg, #ffffff, #f7fafc);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-row:hover {
+  transform: translateY(-1px);
+  border-color: rgba(47, 93, 131, 0.24);
+  box-shadow: var(--al-shadow-soft);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--al-accent-soft);
+  border: 1px solid rgba(47, 93, 131, 0.14);
+  color: var(--al-accent);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--al-accent) 0%,
+    var(--al-accent) var(--fill, 50%),
+    rgba(198, 207, 217, 0.88) var(--fill, 50%)
+  );
+  cursor: pointer;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--al-accent);
+  box-shadow: 0 4px 14px rgba(47, 93, 131, 0.24);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: var(--al-accent);
+  box-shadow: 0 4px 14px rgba(47, 93, 131, 0.24);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']:hover::-webkit-slider-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(47, 93, 131, 0.32);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-label {
+  margin: 0;
+  color: var(--al-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-input {
+  min-height: 42px;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--al-accent), var(--al-accent-strong));
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 14px 28px rgba(47, 93, 131, 0.16);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(47, 93, 131, 0.22);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button:focus-visible {
+  outline: 0;
+  box-shadow:
+    0 18px 34px rgba(47, 93, 131, 0.22),
+    0 0 0 4px rgba(47, 93, 131, 0.12);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary {
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+  border-color: var(--al-line);
+  color: var(--al-text);
+  box-shadow: none;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary.is-active,
+body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary[aria-pressed='true'] {
+  background: var(--al-accent-soft);
+  border-color: rgba(47, 93, 131, 0.18);
+  color: var(--al-accent);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .full-width {
+  width: 100%;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-main {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border-radius: var(--al-radius-lg);
+  background: linear-gradient(160deg, rgba(16, 32, 51, 0.96), rgba(48, 64, 79, 0.92));
+  color: #f8fafc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-label {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(230, 236, 241, 0.84);
+  font-weight: 700;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f8fafc;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(230, 236, 241, 0.72);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value {
+  display: block;
+  font-size: clamp(2.35rem, 4.4vw, 3.4rem);
+  line-height: 1;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+@keyframes auto-loan-result-pop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.94);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value.is-updated {
+  animation: auto-loan-result-pop 0.4s ease-out;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: var(--al-radius-lg);
+  border: 1px solid rgba(176, 189, 201, 0.42);
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--al-text);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card strong {
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-list {
+  display: grid;
+  gap: 0;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(207, 216, 224, 0.86);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row:last-child {
+  border-bottom: 0;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row span {
+  color: var(--al-muted);
+  font-size: 13px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row strong {
+  color: var(--al-text);
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .form-error {
+  margin: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(180, 75, 75, 0.18);
+  background: rgba(255, 242, 242, 0.94);
+  color: var(--al-danger);
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options {
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-md);
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options[open] {
+  box-shadow: var(--al-shadow-soft);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-stack {
+  display: grid;
+  gap: 14px;
+  padding: 0 16px 16px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-ui .advanced-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation {
+  display: grid;
+  gap: 22px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation > h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation > p,
+body[data-design-family='auto-loans'] .auto-loan-explanation > ul,
+body[data-design-family='auto-loans'] .auto-loan-explanation li,
+body[data-design-family='auto-loans'] .auto-loan-explanation td,
+body[data-design-family='auto-loans'] .auto-loan-explanation th {
+  color: #314156;
+  font-size: 14px;
+  line-height: 1.68;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation > ul,
+body[data-design-family='auto-loans'] .auto-loan-explanation ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section {
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-xl);
+  background: var(--al-surface);
+  box-shadow: var(--al-shadow-soft);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation h4 {
+  margin: 22px 0 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--al-text);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section--lifetime {
+  grid-template-columns: minmax(200px, 220px) minmax(0, 1fr);
+  align-items: center;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-header {
+  grid-column: 1 / -1;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-visual {
+  display: grid;
+  gap: 14px;
+  align-items: center;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-donut {
+  --principal-share: 68%;
+  width: 188px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      var(--al-positive) 0 var(--principal-share),
+      rgba(197, 140, 69, 0.92) var(--principal-share) 100%
+    );
+  position: relative;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-donut::after {
+  content: '';
+  position: absolute;
+  inset: 26%;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(151, 168, 186, 0.16);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend {
+  display: grid;
+  gap: 10px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--al-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item--principal::before {
+  background: var(--al-positive);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item--interest::before {
+  background: var(--al-warm);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item span {
+  color: var(--al-muted);
+  font-size: 13px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item strong {
+  color: var(--al-text);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid {
+  display: grid;
+  gap: 12px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--al-line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card span {
+  color: var(--al-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card strong {
+  color: var(--al-text);
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-summary {
+  margin: 0;
+  color: var(--al-muted);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .amortization-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--al-line);
+  background: var(--al-surface-soft);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle .calculator-button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll {
+  height: clamp(320px, 46vh, 440px);
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(237, 242, 247, 0.94) 0, rgba(255, 255, 255, 0.98) 64px, #ffffff 64px);
+  box-shadow: var(--al-shadow-soft);
+  overflow: auto;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll:focus-visible {
+  outline: 0;
+  box-shadow:
+    var(--al-shadow-soft),
+    0 0 0 4px rgba(47, 93, 131, 0.12);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  table-layout: fixed;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th,
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--al-line);
+  text-align: left;
+  color: var(--al-text);
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.98);
+  overflow-wrap: anywhere;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid var(--al-line-strong);
+  background: linear-gradient(180deg, #edf2f7, #e6edf4);
+  color: #5d6b83;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td:first-child,
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th:first-child {
+  text-align: left;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th + th,
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td + td {
+  border-left: 1px solid rgba(221, 229, 241, 0.9);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tbody tr:nth-child(even) td {
+  background: #f7fafc;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tbody tr:last-child td,
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tfoot td,
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tfoot th {
+  border-bottom: 0;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table thead th:first-child {
+  border-top-left-radius: 18px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table thead th:last-child {
+  border-top-right-radius: 18px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
+  border: 1px solid var(--al-line);
+  border-radius: var(--al-radius-lg);
+  background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+  box-shadow: var(--al-shadow-soft);
+  padding: 20px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 38px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: rgba(197, 140, 69, 0.14);
+  color: var(--al-warm);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list strong {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin-right: 6px;
+  border-radius: 999px;
+  background: #102033;
+  color: rgba(239, 245, 251, 0.98);
+  font-weight: 700;
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-formula-block {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--al-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--al-surface-soft), #ffffff);
+}
+
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.hp-lifetime-grid,
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.pcp-lifetime-grid,
+body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 980px) {
+  body[data-design-family='auto-loans'] .auto-loan-ui .mtg-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
+    min-height: 64px;
+  }
+
+  body[data-design-family='auto-loans'] .al-cluster-site-links {
+    display: none;
+  }
+
+  body[data-design-family='auto-loans'] .al-cluster-layout-main {
+    padding: 34px 0 52px;
+  }
+
+  body[data-design-family='auto-loans'] .al-cluster-page-intro {
+    font-size: 15px;
+  }
+
+  body[data-design-family='auto-loans'] .al-cluster-related,
+  body[data-design-family='auto-loans'] .al-cluster-site-footer-inner,
+  body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
+  body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
+    padding: 22px;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col,
+  body[data-design-family='auto-loans'] .auto-loan-ui .inline-grid,
+  body[data-design-family='auto-loans'] .auto-loan-ui .advanced-pair,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.hp-lifetime-grid,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.pcp-lifetime-grid,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation > h2 {
+    font-size: 24px;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section--lifetime {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .amortization-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle .calculator-button {
+    flex: 1 1 auto;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll {
+    height: 360px;
+  }
+
+  body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th,
+  body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value.is-updated {
+    animation: none;
+  }
+}

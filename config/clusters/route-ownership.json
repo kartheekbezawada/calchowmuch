@@ -144,6 +144,46 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-percentage-of-a-number-wave9-20260219",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/car-loan-calculator/",
+      "calculatorId": "car-loan",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/auto-loan-calculator/",
+      "calculatorId": "multiple-car-loan",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/hire-purchase-calculator/",
+      "calculatorId": "hire-purchase",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/pcp-calculator/",
+      "calculatorId": "pcp-calculator",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/car-lease-calculator/",
+      "calculatorId": "leasing-calculator",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
     }
   ]
 }

@@ -1,6 +1,11 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
 import { calculateMultipleCarLoan } from '/assets/js/core/auto-loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/car-loan-calculators/shared/cluster-ux.js';
 
 const loanAAmountInput = document.querySelector('#multi-loan-a-amount');
 const loanAAprInput = document.querySelector('#multi-loan-a-apr');
@@ -8,6 +13,12 @@ const loanATermInput = document.querySelector('#multi-loan-a-term');
 const loanBAmountInput = document.querySelector('#multi-loan-b-amount');
 const loanBAprInput = document.querySelector('#multi-loan-b-apr');
 const loanBTermInput = document.querySelector('#multi-loan-b-term');
+const loanAAmountField = document.querySelector('#multi-loan-a-amount-field');
+const loanAAprField = document.querySelector('#multi-loan-a-apr-field');
+const loanATermField = document.querySelector('#multi-loan-a-term-field');
+const loanBAmountField = document.querySelector('#multi-loan-b-amount-field');
+const loanBAprField = document.querySelector('#multi-loan-b-apr-field');
+const loanBTermField = document.querySelector('#multi-loan-b-term-field');
 
 const loanAAmountDisplay = document.querySelector('#multi-loan-a-amount-display');
 const loanAAprDisplay = document.querySelector('#multi-loan-a-apr-display');
@@ -19,6 +30,7 @@ const loanBTermDisplay = document.querySelector('#multi-loan-b-term-display');
 const calculateButton = document.querySelector('#multi-loan-calc');
 const resultDiv = document.querySelector('#multi-loan-result');
 const summaryDiv = document.querySelector('#multi-loan-summary');
+const previewPanel = document.querySelector('#multi-loan-preview');
 
 const viewMonthlyButton = document.querySelector('#multi-view-monthly');
 const viewYearlyButton = document.querySelector('#multi-view-yearly');
@@ -180,22 +192,24 @@ function formatValue(value, options = {}) {
   });
 }
 
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function formatFieldValue(value, fractionDigits = 0) {
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits,
+    useGrouping: false,
+  });
+}
+
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
     node.textContent = value;
   });
-}
-
-function setSliderFill(input) {
-  if (!input) {
-    return;
-  }
-  const min = Number(input.min || 0);
-  const max = Number(input.max || 100);
-  const value = Number(input.value);
-  const percentage = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, percentage))}%`);
 }
 
 function updateSliderDisplays() {
@@ -225,7 +239,7 @@ function updateSliderDisplays() {
     loanBAmountInput,
     loanBAprInput,
     loanBTermInput,
-  ].forEach(setSliderFill);
+  ].forEach(updateRangeFill);
 }
 
 function clearOutputs() {
@@ -535,17 +549,58 @@ function calculate() {
   renderMonthlyTable(combinedSchedule.monthly);
   renderYearlyTable(combinedSchedule.yearly);
   applyView(scheduleView);
+  revealResultPanel({
+    resultPanel: previewPanel,
+    focusTarget: resultDiv,
+  });
 }
 
-[
-  loanAAmountInput,
-  loanAAprInput,
-  loanATermInput,
-  loanBAmountInput,
-  loanBAprInput,
-  loanBTermInput,
-].forEach((input) => {
-  input?.addEventListener('input', updateSliderDisplays);
+wireRangeWithField({
+  rangeInput: loanAAmountInput,
+  textInput: loanAAmountField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: loanAAprInput,
+  textInput: loanAAprField,
+  formatFieldValue: (value) => formatFieldValue(value, 1),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: loanATermInput,
+  textInput: loanATermField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: loanBAmountInput,
+  textInput: loanBAmountField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: loanBAprInput,
+  textInput: loanBAprField,
+  formatFieldValue: (value) => formatFieldValue(value, 1),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: loanBTermInput,
+  textInput: loanBTermField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
 });
 
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));

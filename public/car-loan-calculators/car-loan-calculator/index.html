@@ -17,414 +17,8 @@
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/car-loan-calculator/#softwareapplication","name":"Car Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/car-loan-calculator/","description":"Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/car-loan-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Car Loan Calculator","item":"https://calchowmuch.com/car-loan-calculators/car-loan-calculator/"}]}]}</script>
-    <style data-route-critical="true">
-      /* critical source: /assets/css/core-tokens.css */
-      /* Core shared design tokens for isolated route bundles. */
-      :root {
-        color-scheme: dark;
-        --color-blue-400: #60a5fa;
-        --color-blue-500: #3b82f6;
-        --color-blue-600: #2563eb;
-        --color-cyan-400: #22d3ee;
-        --color-cyan-500: #06b6d4;
-        --color-cyan-600: #0891b2;
-        --color-green-400: #4ade80;
-        --color-green-500: #10b981;
-        --color-emerald-500: #059669;
-        --color-orange-400: #fb923c;
-        --color-orange-500: #f97316;
-        --color-red-500: #dc2626;
-        --color-violet-400: #a78bfa;
-        --color-violet-500: #8b5cf6;
-        --color-indigo-500: #6366f1;
-        --color-yellow-400: #facc15;
-        --color-slate-50: #f8fafc;
-        --color-slate-100: #f1f5f9;
-        --color-slate-200: #e2e8f0;
-        --color-slate-300: #cbd5e1;
-        --color-slate-400: #94a3b8;
-        --color-slate-500: #64748b;
-        --color-slate-600: #475569;
-        --color-slate-700: #334155;
-        --color-slate-800: #1e293b;
-        --color-slate-900: #0f172a;
-        --color-slate-950: #020617;
-        --gradient-bg-main: linear-gradient(
-          to bottom right,
-          var(--color-slate-900),
-          #172554,
-          var(--color-slate-900)
-        );
-        --gradient-bg-card: linear-gradient(
-          to bottom right,
-          rgba(30, 41, 59, 0.85),
-          rgba(15, 23, 42, 0.85)
-        );
-        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-        --gradient-brand-text: linear-gradient(
-          to right,
-          var(--color-blue-400),
-          var(--color-cyan-400),
-          var(--color-blue-400)
-        );
-        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
-        --page-bg: #0b1220;
-        --page-bg-accent: #0f172a;
-        --scrollbar-track: #0b1220;
-        --scrollbar-thumb: #334155;
-        --scrollbar-thumb-hover: #475569;
-        --shell-bg: rgba(15, 23, 42, 0.65);
-        --panel-bg: #0f172a;
-        --header-bg: transparent;
-        --header-text: #e2e8f0;
-        --muted-text: #94a3b8;
-        --border-color: rgba(51, 65, 85, 0.6);
-        --shell-border: rgba(51, 65, 85, 0.6);
-        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
-        --accent: #3b82f6;
-        --accent-strong: #06b6d4;
-        --pill-bg: rgba(30, 41, 59, 0.8);
-        --pill-border: rgba(51, 65, 85, 0.7);
-      }
-
-      /* critical source: /assets/css/theme-premium-dark.css */
-      :root {
-        color-scheme: dark;
-        --color-blue-400: #60a5fa;
-        --color-blue-500: #3b82f6;
-        --color-blue-600: #2563eb;
-        --color-cyan-400: #22d3ee;
-        --color-cyan-500: #06b6d4;
-        --color-cyan-600: #0891b2;
-        --color-green-400: #4ade80;
-        --color-green-500: #10b981;
-        --color-emerald-500: #059669;
-        --color-orange-400: #fb923c;
-        --color-orange-500: #f97316;
-        --color-red-500: #dc2626;
-        --color-violet-400: #a78bfa;
-        --color-violet-500: #8b5cf6;
-        --color-indigo-500: #6366f1;
-        --color-yellow-400: #facc15;
-        --color-slate-50: #f8fafc;
-        --color-slate-100: #f1f5f9;
-        --color-slate-200: #e2e8f0;
-        --color-slate-300: #cbd5e1;
-        --color-slate-400: #94a3b8;
-        --color-slate-500: #64748b;
-        --color-slate-600: #475569;
-        --color-slate-700: #334155;
-        --color-slate-800: #1e293b;
-        --color-slate-900: #0f172a;
-        --color-slate-950: #020617;
-        --gradient-bg-main: linear-gradient(
-          to bottom right,
-          var(--color-slate-900),
-          #172554,
-          var(--color-slate-900)
-        );
-        --gradient-bg-card: linear-gradient(
-          to bottom right,
-          rgba(30, 41, 59, 0.85),
-          rgba(15, 23, 42, 0.85)
-        );
-        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-        --gradient-brand-text: linear-gradient(
-          to right,
-          var(--color-blue-400),
-          var(--color-cyan-400),
-          var(--color-blue-400)
-        );
-        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
-        --page-bg: #0b1220;
-        --page-bg-accent: #0f172a;
-        --scrollbar-track: #0b1220;
-        --scrollbar-thumb: #334155;
-        --scrollbar-thumb-hover: #475569;
-        --shell-bg: rgba(15, 23, 42, 0.65);
-        --panel-bg: #0f172a;
-        --header-bg: transparent;
-        --header-text: #e2e8f0;
-        --muted-text: #94a3b8;
-        --border-color: rgba(51, 65, 85, 0.6);
-        --shell-border: rgba(51, 65, 85, 0.6);
-        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
-        --accent: #3b82f6;
-        --accent-strong: #06b6d4;
-        --pill-bg: rgba(30, 41, 59, 0.8);
-        --pill-border: rgba(51, 65, 85, 0.7);
-      }
-
-      body {
-        background-color: var(--page-bg);
-        background-image: var(--gradient-bg-main);
-        color: var(--header-text);
-      }
-
-      body .page {
-        background: var(--shell-bg);
-        border: 1px solid var(--shell-border);
-      }
-
-      body .site-header {
-        color: var(--header-text);
-      }
-
-      body .site-header span {
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      body .top-nav button,
-      body .top-nav .top-nav-link {
-        background: rgba(30, 41, 59, 0.7);
-        border: 1px solid rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-        box-shadow: none;
-      }
-
-      body .top-nav button:hover,
-      body .top-nav .top-nav-link:hover {
-        background: rgba(51, 65, 85, 0.8);
-        border-color: rgba(59, 130, 246, 0.5);
-      }
-
-      body .top-nav button.is-active,
-      body .top-nav .top-nav-link.is-active {
-        background: var(--gradient-brand-primary);
-        border-color: rgba(59, 130, 246, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .nav-category-toggle {
-        color: var(--color-slate-400);
-      }
-
-      body .nav-category-indicator {
-        color: var(--color-slate-200);
-      }
-
-      body .left-nav .nav-item {
-        background: rgba(30, 41, 59, 0.7);
-        border-color: rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-      }
-
-      body .left-nav .nav-item.is-active {
-        background: var(--gradient-brand-primary);
-        border-color: rgba(59, 130, 246, 0.7);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .panel,
-      body .ads-column {
-        background: var(--gradient-bg-card);
-        border-color: var(--shell-border);
-        box-shadow: var(--panel-shadow);
-      }
-
-      body .ad-panel {
-        background: rgba(15, 23, 42, 0.78);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-      }
-
-      body .panel h1,
-      body .panel h3 {
-        color: var(--header-text);
-      }
-
-      body .panel h1,
-      body .panel h3 {
-        position: relative;
-      }
-
-      body .panel h1::after,
-      body .panel h3::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -6px;
-        height: 2px;
-        background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
-      }
-
-      body .calculator-ui label,
-      body .calculator-ui .helper,
-      body .panel .placeholder {
-        color: var(--muted-text);
-      }
-
-      body .calculator-ui input[type='number'],
-      body .calculator-ui input[type='text'],
-      body .calculator-ui input[type='email'],
-      body .calculator-ui input[type='password'],
-      body .calculator-ui input[type='search'],
-      body .calculator-ui input[type='tel'],
-      body .calculator-ui input[type='url'],
-      body .calculator-ui input[type='date'],
-      body .calculator-ui input[type='time'],
-      body .calculator-ui input[type='datetime-local'],
-      body .calculator-ui input[type='month'],
-      body .calculator-ui input[type='week'],
-      body .calculator-ui textarea,
-      body .nav-search-input {
-        background: rgba(15, 23, 42, 0.9);
-        border-color: rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-      }
-
-      body .calculator-ui input::placeholder,
-      body .calculator-ui textarea::placeholder,
-      body .nav-search-input::placeholder {
-        color: var(--color-slate-500);
-      }
-
-      body .calculator-button {
-        background: var(--gradient-brand-primary);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .calculator-button.secondary {
-        background: rgba(30, 41, 59, 0.85);
-        color: var(--color-slate-200);
-        border: 1px solid rgba(51, 65, 85, 0.7);
-        box-shadow: none;
-      }
-
-      body .calculator-button.is-active,
-      body .calculator-button[aria-pressed='true'] {
-        background: #1d4ed8;
-        color: #fff;
-        box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
-      }
-
-      body .calculator-ui .result,
-      body .calculator-ui .result-detail {
-        color: var(--color-slate-200);
-      }
-
-      body .calculator-ui .result-scroll,
-      body .graph-panel {
-        background: rgba(15, 23, 42, 0.85);
-        border-color: rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-table,
-      body .calculator-table th,
-      body .calculator-table td {
-        border-color: rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-table thead th,
-      body .calculator-table tfoot td {
-        background: rgba(30, 41, 59, 0.85);
-        color: var(--color-slate-300);
-      }
-
-      body .graph-title {
-        color: var(--color-slate-200);
-      }
-
-      body .graph-y-axis,
-      body .graph-x-axis,
-      body .graph-legend,
-      body .graph-y-label {
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer {
-        background: rgba(15, 23, 42, 0.9);
-        border-top: 1px solid rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer a,
-      body .site-footer .footer-divider,
-      body .site-footer .footer-branding {
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer a:hover {
-        color: var(--color-blue-400);
-      }
-
-      body .calculator-ui input[type='range'] {
-        appearance: none;
-        width: 100%;
-        height: 8px;
-        background: transparent;
-        margin: 6px 0;
-      }
-
-      body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
-        height: 8px;
-        background: rgba(30, 41, 59, 0.9);
-        border-radius: 999px;
-        border: 1px solid rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-ui input[type='range']::-webkit-slider-thumb {
-        appearance: none;
-        height: 20px;
-        width: 20px;
-        border-radius: 999px;
-        background: var(--gradient-brand-primary);
-        border: 2px solid rgba(14, 116, 144, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-        margin-top: -6px;
-      }
-
-      body .calculator-ui input[type='range']:focus-visible {
-        outline: 2px solid rgba(59, 130, 246, 0.7);
-        outline-offset: 4px;
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-track {
-        height: 8px;
-        background: rgba(30, 41, 59, 0.9);
-        border-radius: 999px;
-        border: 1px solid rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-thumb {
-        height: 20px;
-        width: 20px;
-        border-radius: 999px;
-        background: var(--gradient-brand-primary);
-        border: 2px solid rgba(14, 116, 144, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-progress {
-        background: rgba(59, 130, 246, 0.6);
-        height: 8px;
-        border-radius: 999px;
-      }
-
-      body ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-
-      body ::-webkit-scrollbar-track {
-        background: var(--scrollbar-track);
-        border-radius: 4px;
-      }
-
-      body ::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb);
-        border-radius: 4px;
-        border: 2px solid var(--scrollbar-track);
-      }
-
-      body ::-webkit-scrollbar-thumb:hover {
-        background: var(--scrollbar-thumb-hover);
-      }
-
-      /* critical source: /assets/css/base.css */
+    <style data-auto-loan-cluster="true">
+      /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
@@ -504,1308 +98,7 @@
         background: var(--scrollbar-thumb-hover, #64748b);
       }
 
-      /* critical source: /assets/css/core-shell.css */
-      .page {
-        height: 100vh;
-        max-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: none;
-        width: min(1920px, calc(100vw - 48px));
-        margin: 8px auto 0;
-        padding: 14px 14px 0 14px;
-        background: var(--shell-bg);
-        border-radius: 28px;
-      }
-
-      body[data-page='calculator'] .page,
-      body[data-page='home'] .page {
-        width: 100vw;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        border-radius: 0;
-        gap: 0;
-        overflow: hidden;
-      }
-
-      html,
-      body {
-        height: 100%;
-      }
-
-      body[data-page='calculator'],
-      body[data-page='home'] {
-        overflow: hidden;
-      }
-
-      .site-header {
-        position: relative;
-        z-index: 5;
-        height: 72px !important;
-        min-height: 72px;
-        max-height: 72px;
-        background: rgba(11, 18, 32, 0.7);
-        color: var(--header-text);
-        border-bottom: 1px solid var(--shell-border);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        overflow: hidden;
-      }
-
-      .site-header-inner {
-        height: 72px;
-        min-height: 72px;
-        max-height: 72px;
-        max-width: 1800px;
-        margin: 0 auto;
-        padding: 0 24px;
-        display: grid;
-        grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
-        align-items: center;
-        gap: 16px;
-      }
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .brand-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: var(--gradient-brand-primary);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        box-shadow: var(--shadow-glow-blue);
-        flex-shrink: 0;
-      }
-
-      .brand-logo-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-
-      .brand-block {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-width: 0;
-      }
-
-      .brand-name {
-        font-size: var(--text-xl);
-        font-weight: var(--font-bold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-      }
-
-      .brand-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 11px;
-        font-weight: var(--font-semibold);
-        color: var(--color-orange-400, #fb923c);
-        text-transform: none;
-        letter-spacing: 0.02em;
-      }
-
-      .brand-badge:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 6px;
-      }
-
-      .brand-badge-icon {
-        font-size: 12px;
-      }
-
-      body .site-header .brand-logo-icon,
-      body .site-header .brand-badge-icon,
-      body .site-header .brand-badge span {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: inherit;
-      }
-
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        min-width: 0;
-      }
-
-      .header-title {
-        font-size: var(--text-2xl);
-        font-weight: var(--font-semibold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .header-subtitle {
-        font-size: var(--text-xs);
-        color: var(--muted-text);
-        margin-top: 2px;
-      }
-
-      .header-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        min-width: 0;
-      }
-
-      .header-search {
-        position: relative;
-        width: min(320px, 40vw);
-        min-width: 180px;
-      }
-
-      .header-search-icon {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted-text);
-        display: inline-flex;
-      }
-
-      body .site-header .header-search-icon {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: var(--muted-text);
-      }
-
-      .header-search-icon svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .header-search-input {
-        width: 100%;
-        padding: 10px 12px 10px 38px;
-        border-radius: 999px;
-        border: 1px solid var(--border-color);
-        background: rgba(15, 23, 42, 0.85);
-        color: var(--header-text);
-        font-size: var(--text-sm);
-        outline: none;
-      }
-
-      .header-search-input::placeholder {
-        color: var(--muted-text);
-      }
-
-      .header-search-input:focus-visible {
-        border-color: rgba(59, 130, 246, 0.6);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
-      }
-
-      .top-nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 2px 12px 0;
-        flex-wrap: nowrap;
-        min-height: 40px;
-        max-height: 40px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-gutter: stable;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .top-nav button,
-      .top-nav .top-nav-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-        border: 1px solid var(--accent-strong);
-        color: #ffffff;
-        padding: 8px 18px;
-        border-radius: 10px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        cursor: pointer;
-        white-space: nowrap;
-        flex-shrink: 0;
-        min-height: 38px;
-        line-height: 1.4;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          color 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      .top-nav .nav-icon {
-        font-size: 14px;
-        line-height: 1;
-        vertical-align: middle;
-        display: inline-block;
-        margin-right: 4px;
-      }
-
-      .top-nav .nav-icon-right {
-        margin-right: 0;
-        margin-left: 2px;
-      }
-
-      .top-nav .nav-label {
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      .top-nav button:hover,
-      .top-nav .top-nav-link:hover {
-        background: var(--accent-strong);
-      }
-
-      .top-nav button:focus-visible,
-      .top-nav .top-nav-link:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .top-nav button.is-active,
-      .top-nav .top-nav-link.is-active {
-        background: var(--accent);
-        color: #ffffff;
-        border-color: var(--accent);
-      }
-
-      .layout-main {
-        display: grid;
-        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        padding: 0;
-        min-height: 0;
-        flex: 1 1 auto;
-        margin-top: 12px;
-        margin-bottom: 0.5rem;
-      }
-
-      .left-nav {
-        /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
-        /* to give visual dominance to the calculator area */
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 14px;
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        height: 100%;
-        margin-left: -4px;
-        position: relative;
-      }
-
-      /* Edge glow effect */
-      .left-nav::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(
-          180deg,
-          transparent 0%,
-          rgba(102, 126, 234, 0.4) 20%,
-          rgba(102, 126, 234, 0.6) 50%,
-          rgba(102, 126, 234, 0.4) 80%,
-          transparent 100%
-        );
-        opacity: 0.45;
-        pointer-events: none;
-      }
-
-      .left-nav-title {
-        margin: 0 0 14px;
-        font-size: var(--text-xl);
-        font-weight: var(--font-semibold);
-      }
-
-      #left-nav-content {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-search {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background: var(--panel-bg);
-        padding-bottom: 8px;
-      }
-
-      .nav-search-input {
-        width: 100%;
-        padding: var(--calculator-input-padding);
-        border-radius: var(--calculator-input-radius);
-        border: 1px solid var(--border-color);
-        font-size: var(--text-sm);
-        font-family: inherit;
-        background: var(--panel-bg);
-      }
-
-      .nav-category {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .nav-category-toggle {
-        width: 100%;
-        border: none;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 6px 4px;
-        color: var(--muted-text);
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        cursor: pointer;
-      }
-
-      .nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 8px;
-      }
-
-      .nav-category-label {
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .nav-category-indicator {
-        font-weight: 600;
-        color: var(--header-text);
-        flex-shrink: 0;
-      }
-
-      .nav-category-items {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      /* ── Finance Premium Nav — glassmorphism accordion ── */
-
-      .fin-nav-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      /* ── Category Group ── */
-      .fin-nav-group {
-        border-radius: 12px;
-        transition:
-          background 0.22s ease,
-          box-shadow 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded {
-        background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
-        border: 1.5px solid rgba(56, 189, 248, 0.6);
-        box-shadow:
-          0 0 8px rgba(56, 189, 248, 0.3),
-          inset 0 0 5px rgba(56, 189, 248, 0.15),
-          0 8px 24px rgba(0, 0, 0, 0.2);
-      }
-
-      /* ── Toggle Button ── */
-      .fin-nav-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border: none;
-        border-radius: 12px;
-        background: transparent;
-        color: #e2e8f0;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          box-shadow 0.12s ease,
-          padding-left 0.15s ease;
-      }
-
-      .fin-nav-toggle:hover {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        background: rgba(59, 130, 246, 0.1);
-        box-shadow:
-          0 0 24px rgba(0, 120, 255, 0.35),
-          0 0 48px rgba(59, 130, 246, 0.12);
-        padding-left: 18px;
-      }
-
-      .fin-nav-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-
-      /* Subcategory icon */
-      .fin-nav-toggle-icon {
-        font-size: 16px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      /* Label — allow wrapping so full text is always visible */
-      .fin-nav-toggle-label {
-        flex: 1;
-        text-align: left;
-        white-space: normal;
-        overflow: visible;
-        line-height: 1.3;
-      }
-
-      /* ── Chevron Arrow ── */
-      .fin-nav-chevron {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1.5px solid rgba(96, 165, 250, 0.65);
-        color: #7dd3fc;
-        flex-shrink: 0;
-        box-shadow:
-          0 0 10px rgba(56, 189, 248, 0.35),
-          0 0 20px rgba(59, 130, 246, 0.15);
-        transition:
-          transform 0.2s ease,
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease;
-      }
-
-      .fin-nav-chevron-svg {
-        width: 15px;
-        height: 15px;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-chevron {
-        transform: rotate(90deg);
-        background: rgba(37, 99, 235, 0.4);
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 16px rgba(56, 189, 248, 0.65),
-          0 0 32px rgba(59, 130, 246, 0.35),
-          0 0 48px rgba(96, 165, 250, 0.15);
-      }
-
-      .fin-nav-toggle:hover .fin-nav-chevron {
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 14px rgba(56, 189, 248, 0.55),
-          0 0 30px rgba(59, 130, 246, 0.25);
-      }
-
-      /* ── Items Container — animated expand/collapse ── */
-      .fin-nav-items {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding: 0 8px;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition:
-          max-height 0.22s ease,
-          opacity 0.15s ease,
-          padding 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      /* ── Calculator Item (Pill) ── */
-      .fin-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 14px;
-        border-radius: 24px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        background: rgba(15, 23, 42, 0.35);
-        color: #cbd5e1;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease,
-          transform 0.12s ease,
-          color 0.12s ease;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
-        align-items: flex-start;
-        white-space: normal;
-        line-height: 1.32;
-        overflow: visible;
-        text-overflow: clip;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
-        margin-top: 2px;
-      }
-
-      .fin-nav-item-icon {
-        font-size: 14px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      .fin-nav-item:hover {
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
-        border-color: rgba(96, 165, 250, 0.5);
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-        transform: scale(1.02);
-        color: #e0f2fe;
-      }
-
-      .fin-nav-item.is-active {
-        border: 1px solid rgba(147, 197, 253, 0.8);
-        border-left: 3px solid #f8fafc;
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.85) 0%,
-          rgba(79, 70, 229, 0.9) 50%,
-          rgba(102, 126, 234, 0.85) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        font-weight: 600;
-        box-shadow:
-          0 6px 12px rgba(102, 126, 234, 0.22),
-          0 0 14px rgba(59, 130, 246, 0.25);
-      }
-
-      .fin-nav-item.is-active:hover {
-        transform: none;
-      }
-
-      /* Search integration */
-      .fin-nav-item.is-hidden {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group {
-        background: transparent;
-        box-shadow: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group.is-hidden {
-        display: none;
-      }
-
-      .nav-category.is-collapsed .nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-search-open .nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-hidden {
-        display: none;
-      }
-
-      .left-nav .subcategory-title {
-        margin: 16px 0 8px;
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        color: var(--muted-text);
-      }
-
-      .left-nav .nav-item {
-        width: 100%;
-        text-align: left;
-        background: var(--pill-bg);
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        display: block;
-        text-decoration: none;
-        margin-bottom: 0;
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      /* Ripple effect structure */
-      .left-nav .nav-item::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(102, 126, 234, 0.3);
-        transform: translate(-50%, -50%);
-        transition:
-          width 0.6s ease,
-          height 0.6s ease,
-          opacity 0.6s ease;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.ripple::after {
-        width: 300%;
-        height: 300%;
-        opacity: 0;
-      }
-
-      .left-nav .nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
-        box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
-        position: relative;
-      }
-
-      /* Pulsing glow effect on active item */
-      .left-nav .nav-item.is-active::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
-        filter: blur(8px);
-        animation: pulse 2s ease-in-out infinite;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Enhanced hover with multi-layer shadows */
-      .left-nav .nav-item:hover:not(.is-active) {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
-      }
-
-      /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
-      .nav-category[data-id='home-loan'] .nav-item,
-      .nav-category[data-id='credit-cards'] .nav-item,
-      .nav-category[data-id='auto-loans'] .nav-item,
-      .nav-category[data-id='time-and-date'] .nav-item {
-        border: 2px solid rgba(102, 126, 234, 0.3);
-        border-left: 4px solid rgba(102, 126, 234, 0.5);
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          border-left-color 0.15s ease;
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item:hover,
-      .nav-category[data-id='credit-cards'] .nav-item:hover,
-      .nav-category[data-id='auto-loans'] .nav-item:hover,
-      .nav-category[data-id='time-and-date'] .nav-item:hover {
-        border-left: 4px solid rgba(102, 126, 234, 0.9);
-        border-color: rgba(102, 126, 234, 0.4);
-        background: rgba(102, 126, 234, 0.1);
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item.is-active,
-      .nav-category[data-id='credit-cards'] .nav-item.is-active,
-      .nav-category[data-id='auto-loans'] .nav-item.is-active,
-      .nav-category[data-id='time-and-date'] .nav-item.is-active {
-        border: 2px solid var(--accent-strong);
-        border-left: 4px solid #ffffff;
-      }
-
-      .center-column {
-        display: grid;
-        /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
-        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel {
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        box-shadow: var(--panel-shadow);
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel-span-all {
-        grid-column: 1 / -1;
-      }
-
-      .panel-scroll {
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .panel h1,
-      .panel h3 {
-        margin: 0;
-        font-size: var(--text-2xl);
-        font-weight: var(--font-bold);
-      }
-
-      .panel .placeholder {
-        color: var(--muted-text);
-        font-size: var(--text-sm);
-      }
-
-      .ads-column {
-        display: grid;
-        grid-template-rows: minmax(220px, 1fr);
-        gap: 12px;
-        min-height: 0;
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        padding: 12px;
-        height: 100%;
-      }
-
-      .ad-panel {
-        background: #f8f9fa;
-        border: 1px solid #d9e2ef;
-        border-radius: 12px;
-        padding: 10px;
-        min-height: 250px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .ad-panel .adsbygoogle {
-        display: block;
-        width: 100%;
-        min-height: 250px;
-      }
-
-      .site-footer {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        background: #ffffff;
-        border: none;
-        border-top: 1px solid #e5e7eb;
-        border-radius: 0;
-        margin-top: 0.5rem;
-        padding: 1rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        color: #4b5563;
-        font-size: var(--text-sm);
-        font-weight: 400;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-      }
-
-      .site-footer a {
-        color: #4b5563;
-        text-decoration: none;
-        transition: color 0.15s ease;
-      }
-
-      .site-footer a:hover {
-        color: #4f46e5;
-      }
-
-      .site-footer .footer-divider {
-        color: #4b5563;
-        user-select: none;
-      }
-
-      .site-footer .footer-branding {
-        color: #4b5563;
-      }
-
-      @keyframes shellLift {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes headerSlide {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes panelReveal {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Keyframe animations for navigation enhancements */
-      @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.4;
-          transform: scale(1);
-        }
-
-        50% {
-          opacity: 0.8;
-          transform: scale(1.05);
-        }
-      }
-
-      @keyframes edgeGlow {
-        0%,
-        100% {
-          opacity: 0.3;
-        }
-
-        50% {
-          opacity: 1;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .page,
-        .site-header,
-        .top-nav,
-        .layout-main > * {
-          animation: none;
-        }
-
-        .left-nav::before,
-        .left-nav .nav-item.is-active,
-        .left-nav .nav-item.is-active::before {
-          animation: none;
-        }
-      }
-
-      @media (max-width: 1200px) {
-        .center-column {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .site-header-inner {
-          padding: 0 16px;
-          grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
-        }
-
-        .header-title {
-          font-size: var(--text-xl);
-        }
-
-        .layout-main {
-          grid-template-columns: 200px minmax(0, 1fr);
-          padding: 0;
-        }
-
-        .ads-column {
-          grid-column: 1 / -1;
-          grid-template-columns: minmax(200px, 1fr);
-          grid-template-rows: minmax(220px, 1fr);
-        }
-      }
-
-      @media (max-width: 860px) {
-        .header-subtitle {
-          display: none;
-        }
-
-        .header-search {
-          width: min(240px, 46vw);
-          min-width: 140px;
-        }
-
-        .page {
-          margin: 12px;
-          padding: 16px;
-        }
-
-        .layout-main {
-          grid-template-columns: 1fr;
-        }
-
-        .left-nav {
-          margin-left: 0;
-        }
-
-        .ads-column {
-          display: none;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .brand-name {
-          font-size: var(--text-base);
-        }
-
-        .header-title {
-          font-size: var(--text-base);
-        }
-
-        .header-search {
-          width: 160px;
-        }
-      }
-
-      /* Math Navigation Styles */
-      .math-nav-container {
-        background: var(--shell-bg);
-        border-radius: 12px;
-        box-shadow:
-          0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        padding: 1rem;
-        width: 256px;
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .math-nav-category {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .math-nav-category-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 12px;
-        border-radius: 8px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        gap: 8px;
-        transition: background-color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover {
-        background: rgba(99, 102, 241, 0.08);
-      }
-
-      .math-nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .math-nav-category-left {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .math-nav-category-icon {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-icon {
-        color: var(--accent);
-      }
-
-      .math-nav-category-name {
-        font-size: var(--text-sm);
-        font-weight: var(--font-semibold);
-        color: var(--muted-text);
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-name {
-        color: var(--header-text);
-      }
-
-      .math-nav-category-chevron {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-chevron {
-        color: var(--accent);
-      }
-
-      .math-nav-category-items {
-        margin-left: 0;
-        margin-top: 4px;
-        padding-left: 0;
-        border-left: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .math-nav-category.is-collapsed .math-nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-search-open .math-nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-hidden {
-        display: none;
-      }
-
-      .math-nav-item {
-        width: 100%;
-        text-align: left;
-        padding: 10px 8px;
-        border-radius: 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        background: var(--pill-bg);
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          color 0.15s ease;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .math-nav-item:hover {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
-      }
-
-      .math-nav-item:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: -2px;
-      }
-
-      .math-nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
-        box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
-      }
-
-      .math-nav-item.is-active:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        color: #ffffff;
-      }
-
-      .math-nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Mobile Navigation Drawer */
-      .mobile-menu-toggle {
-        display: none;
-        /* Desktop default */
-        background: transparent;
-        border: none;
-        color: var(--header-text);
-        padding: 8px;
-        margin-right: 8px;
-        cursor: pointer;
-        z-index: 20;
-      }
-
-      @media (max-width: 860px) {
-        .mobile-menu-toggle {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .left-nav {
-          position: fixed;
-          top: 72px;
-          /* Below header */
-          left: 0;
-          bottom: 0;
-          width: 280px;
-          background: var(--shell-bg);
-          z-index: 100;
-          transform: translateX(-100%);
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
-          border-right: 1px solid var(--shell-border);
-          margin-left: 0;
-          padding-bottom: 2rem;
-        }
-
-        .left-nav.is-mobile-open {
-          transform: translateX(0);
-        }
-
-        /* Overlay backdrop */
-        .left-nav.is-mobile-open::after {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 280px;
-          right: -100vw;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(4px);
-          z-index: -1;
-          pointer-events: auto;
-        }
-      }
-
-      /* critical source: /assets/css/calculator.css */
+      /* assets/css/calculator.css */
       :root {
         --calculator-input-padding: 10px 12px;
         --calculator-input-radius: 10px;
@@ -2588,538 +881,541 @@
         flex-shrink: 0;
       }
 
-      /* critical source: /assets/css/shared-calculator-ui.css */
-      /* ═══════════════════════════════════════════════════════════════════
-         shared-calculator-ui.css
-         Shared layout + visual rules for the home-loan calculator design family.
-         Used by: home-loan, car-loan, pcp, hire-purchase, leasing,
-                  multiple-car-loan, and all finance calculators.
-
-         DO NOT add @import to this file.
-         ═══════════════════════════════════════════════════════════════════ */
-
-      /* ── Page layout ── */
-
-      .calculator-page-single {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
+      /* calculators/car-loan-calculators/shared/cluster-light.css */
+      body[data-design-family='auto-loans'] {
+        --al-bg: #f5f7fb;
+        --al-bg-soft: #edf2f7;
+        --al-bg-strong: #dfe6ee;
+        --al-surface: rgba(255, 255, 255, 0.97);
+        --al-surface-soft: #f8fafc;
+        --al-surface-soft-2: #f1f4f8;
+        --al-text: #102033;
+        --al-muted: #5b697b;
+        --al-line: rgba(151, 168, 186, 0.34);
+        --al-line-strong: rgba(114, 134, 157, 0.52);
+        --al-accent: #2f5d83;
+        --al-accent-soft: #e7eff5;
+        --al-accent-strong: #1e4364;
+        --al-warm: #c58c45;
+        --al-positive: #2d7d62;
+        --al-danger: #b44b4b;
+        --al-shadow: 0 18px 52px rgba(16, 32, 51, 0.08);
+        --al-shadow-soft: 0 10px 28px rgba(16, 32, 51, 0.06);
+        --al-radius-xl: 28px;
+        --al-radius-lg: 22px;
+        --al-radius-md: 18px;
+        background:
+          radial-gradient(circle at top left, rgba(47, 93, 131, 0.12), transparent 34%),
+          radial-gradient(circle at 86% 8%, rgba(197, 140, 69, 0.12), transparent 26%),
+          linear-gradient(180deg, #fafbfd 0%, #f3f6f9 100%);
+        color: var(--al-text);
       }
 
-      #calc-home-loan .is-hidden {
-        display: none;
+      body[data-design-family='auto-loans'] a {
+        color: var(--al-accent);
       }
 
-      #calc-home-loan .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+      body[data-design-family='auto-loans'] .al-cluster-page-shell {
+        min-height: 100vh;
       }
 
-      /* ── Finance time-value route overrides (pilot bundle source) ── */
-
-      #calc-present-value,
-      #calc-future-value,
-      #calc-present-value-of-annuity,
-      #calc-future-value-of-annuity {
-        width: 100%;
+      body[data-design-family='auto-loans'] .al-cluster-wrap,
+      body[data-design-family='auto-loans'] .al-cluster-center-column {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
       }
 
-      #calc-present-value .home-loan-ui,
-      #calc-future-value .home-loan-ui,
-      #calc-present-value-of-annuity .home-loan-ui,
-      #calc-future-value-of-annuity .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+      body[data-design-family='auto-loans'] .al-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(18px);
+        background: rgba(250, 251, 253, 0.82);
+        border-bottom: 1px solid rgba(221, 228, 236, 0.94);
       }
 
-      #calc-present-value .mtg-hero,
-      #calc-future-value .mtg-hero,
-      #calc-present-value-of-annuity .mtg-hero,
-      #calc-future-value-of-annuity .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-      }
-
-      #calc-present-value .mtg-form-panel,
-      #calc-future-value .mtg-form-panel,
-      #calc-present-value-of-annuity .mtg-form-panel,
-      #calc-future-value-of-annuity .mtg-form-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-preview-panel,
-      #calc-future-value .mtg-preview-panel,
-      #calc-present-value-of-annuity .mtg-preview-panel,
-      #calc-future-value-of-annuity .mtg-preview-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-result-card,
-      #calc-future-value .mtg-result-card,
-      #calc-present-value-of-annuity .mtg-result-card,
-      #calc-future-value-of-annuity .mtg-result-card {
-        min-height: 44px;
-      }
-
-      #calc-present-value .mtg-summary-card,
-      #calc-future-value .mtg-summary-card,
-      #calc-present-value-of-annuity .mtg-summary-card,
-      #calc-future-value-of-annuity .mtg-summary-card {
-        min-height: 96px;
-      }
-
-      /* ── Hero grid (form + preview) ── */
-
-      #calc-home-loan .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        background: none;
-      }
-
-      #calc-home-loan .mtg-form-panel {
-        display: grid;
-        gap: 1.65rem;
-        align-content: start;
-      }
-
-      #calc-home-loan .helper {
-        margin: 0;
-        font-size: 0.84rem;
-        line-height: 1.45;
-        color: rgba(226, 232, 240, 0.88);
-      }
-
-      /* ── Form inputs ── */
-
-      #calc-home-loan .input-row {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.34rem;
-        min-width: 0;
-      }
-
-      #calc-home-loan label {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: rgba(226, 232, 240, 0.94);
-        line-height: 1.28;
-      }
-
-      #calc-home-loan input[type='number'],
-      #calc-home-loan input[type='month'] {
-        width: 100%;
-        min-height: 38px;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(148, 163, 184, 0.42);
-        background: rgba(15, 23, 42, 0.72);
-        color: #fff;
-        padding: 0.42rem 0.68rem;
-        font-size: 0.84rem;
-        line-height: 1.2;
-        transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease;
-      }
-
-      #calc-home-loan input[type='number']:hover,
-      #calc-home-loan input[type='month']:hover {
-        border-color: rgba(148, 163, 184, 0.62);
-      }
-
-      #calc-home-loan input[type='number']:focus-visible,
-      #calc-home-loan input[type='month']:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.64);
-        outline-offset: 1px;
-        border-color: rgba(125, 211, 252, 0.85);
-      }
-
-      /* ── Slider inputs ── */
-
-      #calc-home-loan .slider-row {
-        gap: 0.52rem;
-      }
-
-      #calc-home-loan .slider-header {
+      body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
+        min-height: 74px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 0.5rem;
+        gap: 20px;
       }
 
-      #calc-home-loan .slider-value {
+      body[data-design-family='auto-loans'] .al-cluster-brand {
         display: inline-flex;
         align-items: center;
-        padding: 0.24rem 0.72rem;
-        border-radius: 0.52rem;
-        background: rgba(15, 23, 42, 0.92);
-        border: 1px solid rgba(34, 197, 94, 0.45);
-        color: #4ade80;
-        font-size: 0.9rem;
+        gap: 12px;
+        color: var(--al-text);
+        font-size: 18px;
         font-weight: 700;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        text-shadow:
-          0 0 8px rgba(74, 222, 128, 0.7),
-          0 0 20px rgba(74, 222, 128, 0.4),
-          0 0 40px rgba(34, 197, 94, 0.2);
-        box-shadow:
-          0 0 8px rgba(34, 197, 94, 0.2),
-          0 0 20px rgba(34, 197, 94, 0.08);
-        transition:
-          border-color 0.25s ease,
-          color 0.25s ease,
-          text-shadow 0.25s ease,
-          box-shadow 0.25s ease;
       }
 
-      #calc-home-loan .slider-row:hover .slider-value {
-        border-color: rgba(251, 113, 133, 0.55);
-        color: #fb7185;
-        text-shadow:
-          0 0 8px rgba(251, 113, 133, 0.7),
-          0 0 20px rgba(251, 113, 133, 0.45),
-          0 0 40px rgba(251, 113, 133, 0.2);
-        box-shadow:
-          0 0 8px rgba(251, 113, 133, 0.2),
-          0 0 20px rgba(251, 113, 133, 0.08);
+      body[data-design-family='auto-loans'] .al-cluster-brand:hover {
+        text-decoration: none;
       }
 
-      #calc-home-loan input[type='range'] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 100%;
-        height: 5px;
-        border-radius: 9999px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: linear-gradient(
-          90deg,
-          #22c55e 0%,
-          #fb7185 var(--fill, 50%),
-          rgba(148, 163, 184, 0.14) var(--fill, 50%)
-        );
-        transition: box-shadow 0.2s ease;
-      }
-
-      #calc-home-loan input[type='range']:hover {
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
-      }
-
-      #calc-home-loan input[type='range']:focus-visible {
-        box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']:active::-webkit-slider-thumb {
-        cursor: grabbing;
-        transform: scale(1.08);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-track {
-        height: 5px;
-        border-radius: 9999px;
-        background: transparent;
-      }
-
-      /* ── Advanced options ── */
-
-      #calc-home-loan .advanced-pair {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.1rem;
-        align-items: end;
-      }
-
-      #calc-home-loan .down-combined-left .button-group {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2rem;
-        padding: 3px;
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.78);
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button {
-        min-height: 32px;
-        padding: 0.36rem 0.72rem;
-        border-radius: 9999px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.76rem;
-        font-weight: 600;
-        transition:
-          background 0.2s ease,
-          border-color 0.2s ease,
-          color 0.2s ease;
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button.is-active {
-        border-color: rgba(56, 189, 248, 0.82);
-        background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
-        color: #fff;
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
-        background: rgba(59, 130, 246, 0.12);
-        color: #e0f2fe;
-      }
-
-      #calc-home-loan .advanced-options {
-        margin-top: 0.18rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.28);
-        padding-top: 0.74rem;
-      }
-
-      #calc-home-loan .advanced-options summary {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.58rem;
-        padding: 0.48rem 0.58rem;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(56, 189, 248, 0.56);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
-        color: rgba(224, 242, 254, 0.98);
-        font-size: 0.78rem;
-        font-weight: 700;
-        transition:
-          border-color 0.2s ease,
-          background 0.2s ease;
-      }
-
-      #calc-home-loan .advanced-options summary:hover {
-        border-color: rgba(56, 189, 248, 0.72);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
-      }
-
-      #calc-home-loan .advanced-options summary::-webkit-details-marker {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options summary:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.74);
-        outline-offset: 2px;
-      }
-
-      #calc-home-loan .advanced-summary-pill {
-        min-width: 102px;
-        min-height: 24px;
-        border-radius: 9999px;
-        border: 1px solid rgba(125, 211, 252, 0.58);
-        background: rgba(15, 23, 42, 0.88);
+      body[data-design-family='auto-loans'] .al-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0 0.5rem;
-        flex-shrink: 0;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #102033, #41576b);
+        color: #fff;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        font-weight: 800;
       }
 
-      #calc-home-loan .summary-state {
+      body[data-design-family='auto-loans'] .al-cluster-site-links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 14px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-layout-main {
+        padding: 54px 0 68px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-panel {
+        display: grid;
+        gap: 30px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-page-header {
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-page-kicker {
         display: inline-flex;
         align-items: center;
-        gap: 0.26rem;
-        font-size: 0.68rem;
+        justify-content: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--al-line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--al-muted);
+        font-size: 12px;
         font-weight: 700;
-      }
-
-      #calc-home-loan .summary-icon {
-        font-size: 0.86rem;
-        line-height: 1;
-      }
-
-      #calc-home-loan .summary-state-close {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-expand {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-close {
-        display: inline-flex;
-      }
-
-      #calc-home-loan .advanced-options[open] summary {
-        border-color: rgba(125, 211, 252, 0.86);
-      }
-
-      #calc-home-loan .advanced-stack {
-        margin-top: 0.76rem;
-        display: grid;
-        gap: 0.72rem;
-      }
-
-      #calc-home-loan .advanced-pair label {
-        min-height: 1.2em;
-      }
-
-      /* ── Action row ── */
-
-      #calc-home-loan .mtg-action-row {
-        margin-top: 0.35rem;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button {
-        min-height: 50px;
-        border-radius: 0.82rem;
-        font-size: 0.88rem;
-        font-weight: 700;
-        transition:
-          box-shadow 0.25s ease,
-          transform 0.15s ease;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:hover {
-        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
-        transform: translateY(-1px);
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:active {
-        transform: translateY(0);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      }
-
-      /* ── Preview panel ── */
-
-      #calc-home-loan .mtg-preview-panel {
-        border-radius: 1.15rem;
-        border: 1px solid rgba(125, 211, 252, 0.22);
-        background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
-        padding: 1.15rem;
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-        box-shadow:
-          0 4px 24px rgba(2, 6, 23, 0.45),
-          0 0 40px rgba(59, 130, 246, 0.06);
-      }
-
-      #calc-home-loan .mtg-preview-main {
-        border-radius: 0.95rem;
-        padding: 1rem;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        display: grid;
-        gap: 0.65rem;
-      }
-
-      #calc-home-loan .mtg-preview-label {
-        margin: 0;
-        font-size: 0.73rem;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.94);
+      }
+
+      body[data-design-family='auto-loans'] #calculator-title {
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        color: var(--al-text);
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-page-intro {
+        max-width: 720px;
+        margin: 16px auto 0;
+        color: var(--al-muted);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-flow {
+        display: grid;
+        gap: 26px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related {
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-xl);
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+        box-shadow: var(--al-shadow-soft);
+        padding: 28px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related h2 {
+        margin: 0 0 18px;
+        font-size: 18px;
+        color: var(--al-text);
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 11px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--al-line);
+        background: #ffffff;
+        color: var(--al-text);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-link:hover {
+        transform: translateY(-1px);
+        border-color: rgba(47, 93, 131, 0.34);
+        box-shadow: var(--al-shadow-soft);
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-link.is-active,
+      body[data-design-family='auto-loans'] .al-cluster-related-link[aria-current='page'] {
+        background: var(--al-accent-soft);
+        border-color: rgba(47, 93, 131, 0.18);
+        color: var(--al-accent);
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-site-footer {
+        padding: 0 0 54px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 26px 28px;
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-lg);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: var(--al-shadow-soft);
+        text-align: center;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-footer-copy {
+        color: var(--al-muted);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui {
+        display: grid;
+        gap: 24px;
+        color: var(--al-text);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .helper {
+        margin: 0;
+        color: var(--al-muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel {
+        display: grid;
+        gap: 20px;
+        align-content: start;
+        padding: 28px;
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-xl);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 246, 250, 0.98));
+        box-shadow: var(--al-shadow);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel {
+        gap: 18px;
+        background:
+          radial-gradient(circle at top right, rgba(197, 140, 69, 0.14), transparent 36%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(239, 244, 248, 0.98));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .input-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .inline-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui label {
+        margin: 0;
+        color: #243247;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui :is(input[type='number'], input[type='text'], input[type='month'], textarea) {
+        min-height: 48px;
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid var(--al-line-strong);
+        background: #ffffff;
+        color: var(--al-text);
+        padding: 12px 14px;
+        font-size: 16px;
+        line-height: 1.35;
+        box-shadow: inset 0 1px 2px rgba(16, 32, 51, 0.03);
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui :is(input[type='number'], input[type='text'], input[type='month'], textarea):focus-visible {
+        outline: 0;
+        border-color: rgba(47, 93, 131, 0.58);
+        box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-row {
+        padding: 14px 16px;
+        border-radius: var(--al-radius-md);
+        border: 1px solid rgba(203, 214, 224, 0.92);
+        background: linear-gradient(180deg, #ffffff, #f7fafc);
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          transform 0.18s ease;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-row:hover {
+        transform: translateY(-1px);
+        border-color: rgba(47, 93, 131, 0.24);
+        box-shadow: var(--al-shadow-soft);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-value {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 82px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--al-accent-soft);
+        border: 1px solid rgba(47, 93, 131, 0.14);
+        color: var(--al-accent);
+        font-size: 13px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--al-accent) 0%,
+          var(--al-accent) var(--fill, 50%),
+          rgba(198, 207, 217, 0.88) var(--fill, 50%)
+        );
+        cursor: pointer;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        margin-top: -7px;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        background: var(--al-accent);
+        box-shadow: 0 4px 14px rgba(47, 93, 131, 0.24);
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        background: var(--al-accent);
+        box-shadow: 0 4px 14px rgba(47, 93, 131, 0.24);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']:hover::-webkit-slider-thumb {
+        transform: scale(1.08);
+        box-shadow: 0 6px 18px rgba(47, 93, 131, 0.32);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
+        display: grid;
+        grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-label {
+        margin: 0;
+        color: var(--al-muted);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-input {
+        min-height: 42px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 18px;
+        border: 1px solid transparent;
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--al-accent), var(--al-accent-strong));
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        box-shadow: 0 14px 28px rgba(47, 93, 131, 0.16);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 34px rgba(47, 93, 131, 0.22);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button:focus-visible {
+        outline: 0;
+        box-shadow:
+          0 18px 34px rgba(47, 93, 131, 0.22),
+          0 0 0 4px rgba(47, 93, 131, 0.12);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary {
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+        border-color: var(--al-line);
+        color: var(--al-text);
+        box-shadow: none;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary.is-active,
+      body[data-design-family='auto-loans'] .auto-loan-ui .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--al-accent-soft);
+        border-color: rgba(47, 93, 131, 0.18);
+        color: var(--al-accent);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .full-width {
+        width: 100%;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-main {
+        display: grid;
+        gap: 12px;
+        padding: 20px;
+        border-radius: var(--al-radius-lg);
+        background: linear-gradient(160deg, rgba(16, 32, 51, 0.96), rgba(48, 64, 79, 0.92));
+        color: #f8fafc;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-label {
+        margin: 0;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(230, 236, 241, 0.84);
         font-weight: 700;
       }
 
-      #calc-home-loan .mtg-result-card {
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card {
         margin: 0;
         padding: 0;
         border: 0;
         background: transparent;
+        color: #f8fafc;
       }
 
-      #calc-home-loan .mtg-result-card {
-        color: rgba(239, 246, 255, 0.99);
-        font-size: 0.9rem;
-        line-height: 1.35;
-      }
-
-      #calc-home-loan .mtg-result-card strong {
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card strong {
         display: block;
-        margin-bottom: 0.45rem;
-        font-size: 0.74rem;
-        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+        font-size: 12px;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.8);
+        color: rgba(230, 236, 241, 0.72);
       }
 
-      #calc-home-loan .mtg-result-card .mtg-result-value {
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value {
         display: block;
-        font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+        font-size: clamp(2.35rem, 4.4vw, 3.4rem);
         line-height: 1;
         font-weight: 800;
-        color: #e0f2fe;
-        text-shadow:
-          0 0 20px rgba(125, 211, 252, 0.35),
-          0 0 40px rgba(59, 130, 246, 0.15);
-        letter-spacing: -0.02em;
+        color: #ffffff;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
         transition:
           opacity 0.3s ease,
           transform 0.3s ease;
       }
 
-      @keyframes mtg-result-pop {
+      @keyframes auto-loan-result-pop {
         0% {
           opacity: 0.4;
-          transform: scale(0.92);
+          transform: scale(0.94);
         }
-        50% {
+        55% {
           opacity: 1;
-          transform: scale(1.03);
+          transform: scale(1.02);
         }
         100% {
           opacity: 1;
@@ -3127,172 +1423,224 @@
         }
       }
 
-      #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-        animation: mtg-result-pop 0.4s ease-out;
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value.is-updated {
+        animation: auto-loan-result-pop 0.4s ease-out;
       }
 
-      /* ── Snapshot rows ── */
-
-      #calc-home-loan .mtg-snapshot-list {
-        margin: 0;
-        padding: 0.35rem 0;
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card {
         display: grid;
-        gap: 0.1rem;
+        gap: 10px;
+        padding: 18px 20px;
+        border-radius: var(--al-radius-lg);
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
       }
 
-      #calc-home-loan .mtg-snapshot-row {
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card p {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--al-text);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card strong {
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-list {
+        display: grid;
+        gap: 0;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: 0.72rem;
-        padding: 0.55rem 0;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(207, 216, 224, 0.86);
       }
 
-      #calc-home-loan .mtg-snapshot-row:last-child {
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row:last-child {
         border-bottom: 0;
       }
 
-      #calc-home-loan .mtg-snapshot-row span {
-        font-size: 0.75rem;
-        color: rgba(148, 163, 184, 0.85);
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row span {
+        color: var(--al-muted);
+        font-size: 13px;
       }
 
-      #calc-home-loan .mtg-snapshot-row strong {
-        font-size: 0.88rem;
-        color: rgba(248, 250, 252, 0.99);
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row strong {
+        color: var(--al-text);
+        font-size: 14px;
+        line-height: 1.35;
         text-align: right;
-        line-height: 1.28;
+        font-variant-numeric: tabular-nums;
       }
 
-      /* ── Explanation section ── */
+      body[data-design-family='auto-loans'] .auto-loan-ui .form-error {
+        margin: 0;
+        border-radius: 16px;
+        border: 1px solid rgba(180, 75, 75, 0.18);
+        background: rgba(255, 242, 242, 0.94);
+        color: var(--al-danger);
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
 
-      #loan-mtg-explanation {
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options {
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-md);
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary::-webkit-details-marker {
+        display: none;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options summary:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 4px rgba(47, 93, 131, 0.12);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-options[open] {
+        box-shadow: var(--al-shadow-soft);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-stack {
         display: grid;
-        gap: 0.95rem;
+        gap: 14px;
+        padding: 0 16px 16px;
       }
 
-      #loan-mtg-explanation h2 {
-        margin: 0;
-        font-size: 1.08rem;
-        font-weight: 700;
-        color: rgba(226, 232, 240, 0.97);
-      }
-
-      #loan-mtg-explanation > p {
-        margin: 0;
-        font-size: 0.84rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.9);
-      }
-
-      #loan-mtg-explanation .mtg-exp-section {
+      body[data-design-family='auto-loans'] .auto-loan-ui .advanced-pair {
         display: grid;
-        gap: 0.72rem;
-        padding: 1rem;
-        border-radius: 0.95rem;
-        border: 1px solid rgba(148, 163, 184, 0.16);
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
       }
 
-      #loan-mtg-explanation .mtg-exp-section h3 {
+      body[data-design-family='auto-loans'] .auto-loan-explanation {
+        display: grid;
+        gap: 22px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation > h2 {
         margin: 0;
-        font-size: 0.88rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.94);
-        border-bottom: 0;
-        padding-bottom: 0;
+        font-size: 28px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--al-text);
       }
 
-      #loan-mtg-explanation .mtg-exp-section h3::after {
-        content: none;
+      body[data-design-family='auto-loans'] .auto-loan-explanation > p,
+      body[data-design-family='auto-loans'] .auto-loan-explanation > ul,
+      body[data-design-family='auto-loans'] .auto-loan-explanation li,
+      body[data-design-family='auto-loans'] .auto-loan-explanation td,
+      body[data-design-family='auto-loans'] .auto-loan-explanation th {
+        color: #314156;
+        font-size: 14px;
+        line-height: 1.68;
       }
 
-      #loan-mtg-explanation .mtg-exp-section h4 {
-        margin: 0.25rem 0 0;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: rgba(191, 219, 254, 0.96);
+      body[data-design-family='auto-loans'] .auto-loan-explanation > ul,
+      body[data-design-family='auto-loans'] .auto-loan-explanation ol {
+        margin: 0;
+        padding-left: 20px;
       }
 
-      /* ── Lifetime Totals: 2-column layout (visual | totals) ── */
-
-      #loan-mtg-explanation .mtg-exp-section--lifetime {
-        grid-template-columns: auto 1fr;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section {
+        display: grid;
+        gap: 18px;
+        padding: 28px;
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-xl);
+        background: var(--al-surface);
+        box-shadow: var(--al-shadow-soft);
       }
 
-      #loan-mtg-explanation .mtg-lifetime-header {
+      body[data-design-family='auto-loans'] .auto-loan-explanation h3 {
+        margin: 0 0 16px;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+        color: var(--al-text);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation h4 {
+        margin: 22px 0 8px;
+        font-size: 14px;
+        line-height: 1.45;
+        color: var(--al-text);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section--lifetime {
+        grid-template-columns: minmax(200px, 220px) minmax(0, 1fr);
+        align-items: center;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-header {
         grid-column: 1 / -1;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-visual {
-        display: flex;
-        flex-direction: column;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-visual {
+        display: grid;
+        gap: 14px;
         align-items: center;
-        gap: 0.85rem;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-donut {
-        --principal-share: 70%;
-        width: 200px;
-        min-width: 200px;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-donut {
+        --principal-share: 68%;
+        width: 188px;
         aspect-ratio: 1;
+        margin: 0 auto;
         border-radius: 50%;
-        background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
+        background:
+          conic-gradient(
+            var(--al-positive) 0 var(--principal-share),
+            rgba(197, 140, 69, 0.92) var(--principal-share) 100%
+          );
         position: relative;
-        cursor: pointer;
-        transition:
-          box-shadow 0.35s ease,
-          transform 0.35s ease;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-donut:hover {
-        box-shadow:
-          0 0 32px rgba(34, 197, 94, 0.35),
-          0 0 60px rgba(251, 113, 133, 0.22),
-          0 0 80px rgba(34, 197, 94, 0.1);
-        transform: scale(1.06);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-donut::after {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-donut::after {
         content: '';
         position: absolute;
         inset: 26%;
         border-radius: 50%;
-        background: rgba(15, 23, 42, 0.96);
+        background: #ffffff;
+        box-shadow: inset 0 0 0 1px rgba(151, 168, 186, 0.16);
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-        width: 100%;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend {
+        display: grid;
+        gap: 10px;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item {
         display: flex;
         align-items: center;
-        gap: 0.42rem;
-        padding: 0.45rem 0.62rem;
-        border-radius: 0.62rem;
-        border: 1px solid transparent;
-        background: none;
-        cursor: default;
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          box-shadow 0.25s ease;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1px solid var(--al-line);
+        border-radius: 16px;
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(125, 211, 252, 0.18);
-        box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item::before {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item::before {
         content: '';
         width: 10px;
         height: 10px;
@@ -3300,850 +1648,327 @@
         flex-shrink: 0;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item--principal::before {
-        background: #22c55e;
-        box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item--principal::before {
+        background: var(--al-positive);
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item--interest::before {
-        background: #fb7185;
-        box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item--interest::before {
+        background: var(--al-warm);
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item span {
-        font-size: 0.74rem;
-        color: rgba(203, 213, 225, 0.9);
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item span {
+        color: var(--al-muted);
+        font-size: 13px;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-legend-item strong {
-        font-size: 0.82rem;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-legend-item strong {
+        color: var(--al-text);
+        font-size: 14px;
         font-weight: 700;
-        color: rgba(248, 250, 252, 0.98);
-        margin-left: 0.2rem;
+        font-variant-numeric: tabular-nums;
       }
 
-      /* ── Totals: single column stacked, right side ── */
-
-      #loan-mtg-explanation .mtg-lifetime-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        align-self: center;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid {
+        display: grid;
+        gap: 12px;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-card {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: 0.72rem;
-        padding: 0.72rem 0.8rem;
-        border: 1px solid transparent;
-        border-radius: 0.62rem;
-        background: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-        cursor: default;
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          box-shadow 0.25s ease,
-          transform 0.2s ease;
+        gap: 12px;
+        padding: 16px 18px;
+        border: 1px solid var(--al-line);
+        border-radius: 18px;
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
       }
 
-      #loan-mtg-explanation .mtg-lifetime-card:last-child {
-        border-bottom-color: transparent;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(125, 211, 252, 0.2);
-        box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
-        transform: translateX(4px);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card span {
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card span {
+        color: var(--al-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.78);
-        white-space: nowrap;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-card strong {
-        font-size: 1.05rem;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-card strong {
+        color: var(--al-text);
+        font-size: 18px;
         font-weight: 800;
-        color: rgba(248, 250, 252, 0.98);
         font-variant-numeric: tabular-nums;
       }
 
-      #loan-mtg-explanation .mtg-lifetime-summary {
-        display: none;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-summary {
+        margin: 0;
+        color: var(--al-muted);
       }
 
-      /* ── Amortization table ── */
-
-      #loan-mtg-explanation .amortization-header {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .amortization-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 0.72rem;
+        gap: 12px;
       }
 
-      #loan-mtg-explanation .table-view-toggle {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle {
         display: inline-flex;
-        gap: 0.2rem;
-        padding: 0.18rem;
+        gap: 6px;
+        padding: 6px;
         border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--al-line);
+        background: var(--al-surface-soft);
       }
 
-      #loan-mtg-explanation .table-view-toggle .calculator-button {
-        min-height: 30px;
-        padding: 0.3rem 0.66rem;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle .calculator-button {
+        min-height: 36px;
+        padding: 8px 14px;
         border-radius: 999px;
-        border: 1px solid transparent;
+        box-shadow: none;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll {
+        height: clamp(320px, 46vh, 440px);
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-lg);
+        background:
+          linear-gradient(180deg, rgba(237, 242, 247, 0.94) 0, rgba(255, 255, 255, 0.98) 64px, #ffffff 64px);
+        box-shadow: var(--al-shadow-soft);
+        overflow: auto;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll:focus-visible {
+        outline: 0;
+        box-shadow:
+          var(--al-shadow-soft),
+          0 0 0 4px rgba(47, 93, 131, 0.12);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table {
+        width: 100%;
+        min-width: 0;
+        border-collapse: separate;
+        border-spacing: 0;
         background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.74rem;
-        font-weight: 600;
+        table-layout: fixed;
       }
 
-      #loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
-        border-color: rgba(249, 115, 22, 0.58);
-        background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
-        color: #fff;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--al-line);
+        text-align: left;
+        color: var(--al-text);
+        vertical-align: middle;
+        background: rgba(255, 255, 255, 0.98);
+        overflow-wrap: anywhere;
       }
 
-      #loan-mtg-explanation .table-scroll {
-        max-height: 318px;
-        overflow-y: scroll;
-        border-radius: 0.8rem;
-        border: 1px solid rgba(148, 163, 184, 0.32);
-        background: rgba(15, 23, 42, 0.62);
-      }
-
-      #loan-mtg-explanation .calculator-table {
-        min-width: 420px;
-        border-collapse: collapse;
-      }
-
-      #loan-mtg-explanation .calculator-table thead th {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th {
         position: sticky;
         top: 0;
-        z-index: 3;
-        font-size: 0.74rem;
-        letter-spacing: 0.04em;
+        z-index: 2;
+        border-bottom: 1px solid var(--al-line-strong);
+        background: linear-gradient(180deg, #edf2f7, #e6edf4);
+        color: #5d6b83;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: #fde68a;
-        background: rgba(30, 41, 59, 0.98);
       }
 
-      #loan-mtg-explanation .calculator-table th,
-      #loan-mtg-explanation .calculator-table td {
-        text-align: center;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-        padding: 0.5rem;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+        font-variant-numeric: tabular-nums;
       }
 
-      #loan-mtg-explanation .calculator-table td {
-        font-size: 0.79rem;
-        color: rgba(226, 232, 240, 0.94);
-        white-space: nowrap;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td:first-child,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th:first-child {
+        text-align: left;
       }
 
-      #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
-        background: rgba(30, 41, 59, 0.36);
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th + th,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td + td {
+        border-left: 1px solid rgba(221, 229, 241, 0.9);
       }
 
-      /* ── FAQ grid ── */
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tbody tr:nth-child(even) td {
+        background: #f7fafc;
+      }
 
-      #loan-mtg-explanation .bor-faq-grid {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tbody tr:last-child td,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tfoot td,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table tfoot th {
+        border-bottom: 0;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table thead th:first-child {
+        border-top-left-radius: 18px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table thead th:last-child {
+        border-top-right-radius: 18px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.65rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
       }
 
-      #loan-mtg-explanation .bor-faq-card {
-        padding: 0.85rem;
-        border-radius: 0.78rem;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
-        border: 1px solid rgba(148, 163, 184, 0.12);
-        border-top: 2px solid rgba(245, 158, 11, 0.45);
-        display: grid;
-        gap: 0.4rem;
-        transition:
-          transform 0.2s ease,
-          border-color 0.25s ease,
-          box-shadow 0.3s ease;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
+        border: 1px solid var(--al-line);
+        border-radius: var(--al-radius-lg);
+        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+        box-shadow: var(--al-shadow-soft);
+        padding: 20px;
       }
 
-      #loan-mtg-explanation .bor-faq-card:hover {
-        transform: translateY(-2px);
-        border-top-color: rgba(245, 158, 11, 0.8);
-        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
-      }
-
-      #loan-mtg-explanation .bor-faq-number {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
         display: inline-flex;
-        width: 26px;
-        height: 26px;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: rgba(139, 92, 246, 0.2);
-        border: 1px solid rgba(139, 92, 246, 0.4);
-        color: #c4b5fd;
-        font-size: 0.68rem;
-        font-weight: 700;
-        flex-shrink: 0;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: rgba(197, 140, 69, 0.14);
+        color: var(--al-warm);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
       }
 
-      #loan-mtg-explanation .bor-faq-card h4 {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
+        display: grid;
+        gap: 12px;
         margin: 0;
-        font-size: 0.86rem;
-        line-height: 1.3;
-        color: rgba(226, 232, 240, 0.98);
+        padding-left: 20px;
       }
 
-      #loan-mtg-explanation .bor-faq-card p {
-        margin: 0;
-        font-size: 0.8rem;
-        line-height: 1.5;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-exp-section--authority {
-        gap: 0.6rem;
-      }
-
-      #loan-mtg-explanation .mtg-authority-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-      }
-
-      #loan-mtg-explanation .mtg-authority-badge {
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list strong {
         display: inline-flex;
         align-items: center;
-        padding: 0.32rem 0.62rem;
+        padding: 4px 8px;
+        margin-right: 6px;
         border-radius: 999px;
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        background: rgba(15, 23, 42, 0.72);
-        color: rgba(186, 230, 253, 0.92);
-        font-size: 0.72rem;
-        line-height: 1.2;
-      }
-
-      #loan-mtg-explanation .mtg-authority-link {
-        text-decoration: none;
-        transition:
-          border-color 0.2s ease,
-          color 0.2s ease,
-          background 0.2s ease;
-      }
-
-      #loan-mtg-explanation .mtg-authority-link:hover {
-        border-color: rgba(56, 189, 248, 0.78);
-        color: #fff;
-        background: rgba(2, 132, 199, 0.26);
-      }
-
-      #loan-mtg-explanation .mtg-step-list {
-        margin: 0;
-        padding-left: 1.15rem;
-        display: grid;
-        gap: 0.35rem;
-      }
-
-      #loan-mtg-explanation .mtg-step-list li {
-        font-size: 0.82rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-guide-list {
-        margin: 0;
-        padding-left: 1.15rem;
-        display: grid;
-        gap: 0.32rem;
-      }
-
-      #loan-mtg-explanation .mtg-guide-list li {
-        font-size: 0.82rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide,
-      #loan-mtg-explanation #mtg-section-how-to-guide {
-        gap: 0.62rem;
-        padding: 0.98rem 1.05rem;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide {
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.46));
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide p,
-      #loan-mtg-explanation #mtg-section-how-to-guide p {
-        margin: 0;
-        width: 100%;
-        max-width: none;
-        color: rgba(226, 232, 240, 0.97);
-        font-size: 0.9rem;
-        line-height: 1.6;
-        text-align: justify;
-        text-justify: inter-word;
-        hyphens: auto;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide h4,
-      #loan-mtg-explanation #mtg-section-how-to-guide h4 {
-        margin: 0.34rem 0 0.02rem;
-        padding: 0;
-        border: 0;
-        background: none;
-        color: rgba(224, 242, 254, 0.99);
-        font-size: 0.88rem;
+        background: #102033;
+        color: rgba(239, 245, 251, 0.98);
         font-weight: 700;
-        letter-spacing: 0;
-        text-transform: none;
       }
 
-      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list {
-        margin: 0.04rem 0 0.14rem;
-        padding-left: 1.28rem;
-        width: 100%;
-        max-width: none;
-        gap: 0.24rem;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-formula-block {
+        margin: 14px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--al-line);
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--al-surface-soft), #ffffff);
       }
 
-      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list li,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list li,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list li {
-        color: rgba(226, 232, 240, 0.96);
-        font-size: 0.88rem;
-        line-height: 1.56;
-        text-align: justify;
-        text-justify: inter-word;
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.hp-lifetime-grid,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.pcp-lifetime-grid,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-formula-block {
-        margin: 0.02rem 0 0.14rem;
-        width: 100%;
-        max-width: none;
-        padding: 0.64rem 0.76rem;
-        font-size: 0.95rem;
-      }
-
-      #loan-mtg-explanation .mtg-definition-list {
-        margin: 0;
-        padding-left: 1rem;
-        display: grid;
-        gap: 0.28rem;
-      }
-
-      #loan-mtg-explanation .mtg-definition-list li {
-        font-size: 0.82rem;
-        line-height: 1.5;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-formula-block {
-        margin: 0;
-        padding: 0.66rem 0.8rem;
-        border-radius: 0.7rem;
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        background: linear-gradient(140deg, rgba(15, 23, 42, 0.88), rgba(2, 132, 199, 0.14));
-        color: #e0f2fe;
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpis {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.6rem;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.52rem;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.38rem 0.72rem;
-        border-radius: 999px;
-        border: 1px solid rgba(125, 211, 252, 0.32);
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.55));
-        color: rgba(226, 232, 240, 0.98);
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item::before {
-        content: '';
-        width: 20px;
-        height: 3px;
-        border-radius: 999px;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item--baseline::before {
-        background: #f59e0b;
-        box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item--extra::before {
-        background: #22d3ee;
-        box-shadow: 0 0 10px rgba(34, 211, 238, 0.55);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi {
-        display: grid;
-        gap: 0.22rem;
-        padding: 0.62rem 0.72rem;
-        border-radius: 0.8rem;
-        border: 1px solid rgba(125, 211, 252, 0.3);
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(30, 41, 59, 0.62));
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.88);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi-value {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: rgba(226, 232, 240, 0.98);
-        font-variant-numeric: tabular-nums;
-      }
-
-      #loan-mtg-explanation .mtg-graph-canvas-wrap {
-        position: relative;
-        border: 1px solid rgba(125, 211, 252, 0.32);
-        border-radius: 0.95rem;
-        overflow: hidden;
-        background:
-          radial-gradient(80% 100% at 0% 0%, rgba(14, 116, 144, 0.12), rgba(2, 6, 23, 0) 70%),
-          radial-gradient(80% 100% at 100% 0%, rgba(99, 102, 241, 0.12), rgba(2, 6, 23, 0) 70%),
-          linear-gradient(160deg, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.9));
-        box-shadow:
-          inset 0 0 0 1px rgba(125, 211, 252, 0.08),
-          0 8px 24px rgba(2, 6, 23, 0.32);
-      }
-
-      #loan-mtg-explanation .mtg-balance-canvas {
-        display: block;
-        width: 100%;
-        height: 320px;
-      }
-
-      #loan-mtg-explanation .mtg-balance-status {
-        position: absolute;
-        left: 0.7rem;
-        bottom: 0.6rem;
-        padding: 0.28rem 0.56rem;
-        border-radius: 0.6rem;
-        background: rgba(15, 23, 42, 0.86);
-        border: 1px solid rgba(125, 211, 252, 0.22);
-        color: rgba(186, 230, 253, 0.96);
-        font-size: 0.7rem;
-        line-height: 1.25;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip {
-        position: absolute;
-        z-index: 4;
-        min-width: 230px;
-        max-width: 280px;
-        padding: 0.58rem 0.68rem;
-        border-radius: 0.72rem;
-        border: 1px solid rgba(125, 211, 252, 0.42);
-        background: linear-gradient(150deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
-        box-shadow:
-          0 16px 32px rgba(2, 6, 23, 0.52),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip p {
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 0.75rem;
-        font-size: 0.74rem;
-        color: rgba(203, 213, 225, 0.94);
-        line-height: 1.45;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip p + p {
-        margin-top: 0.2rem;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip .mtg-tooltip-period {
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: #dbeafe;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-        padding-bottom: 0.2rem;
-        margin-bottom: 0.2rem;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip span {
-        color: rgba(191, 219, 254, 0.86);
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip strong {
-        color: rgba(248, 250, 252, 0.98);
-        font-variant-numeric: tabular-nums;
-      }
-
-      #loan-mtg-explanation .mtg-trust-list {
-        margin: 0;
-        padding-left: 1rem;
-        display: grid;
-        gap: 0.34rem;
-      }
-
-      #loan-mtg-explanation .mtg-trust-list li {
-        font-size: 0.8rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      /* ── Slider hover effects (from auto-loan family) ── */
-
-      .home-loan-ui .input-row.slider-row {
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
-        padding: 8px;
-        border-radius: 8px;
-        margin: -8px 0 16px 0;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-header label {
-        color: #a5f3fc;
-        text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
-      }
-
-      .home-loan-ui .slider-value {
-        font-weight: 700;
-        color: #e0f2fe;
-        transition: color 0.2s ease;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-value {
-        color: #38bdf8;
-      }
-
-      /* ── 2-Column Grid Layout ── */
-
-      .home-loan-ui .input-grid-2-col {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        width: 100%;
-        margin-top: 1.5rem;
-      }
-
-      /* ── Accessibility ── */
-
-      @media (prefers-reduced-motion: reduce) {
-        #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-          animation: none;
-        }
-        #calc-home-loan .mtg-action-row .calculator-button {
-          transition: none;
-        }
-      }
-
-      /* ── Responsive breakpoints ── */
-
-      @media (max-width: 1220px) {
-        #calc-home-loan .mtg-hero {
+      @media (max-width: 980px) {
+        body[data-design-family='auto-loans'] .auto-loan-ui .mtg-hero {
           grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 900px) {
-        #calc-home-loan .advanced-pair {
-          grid-template-columns: 1fr;
-        }
-
-        #loan-mtg-explanation .table-scroll {
-          border-radius: 0.7rem;
-        }
-
-        #loan-mtg-explanation .calculator-table {
-          min-width: 360px;
-        }
-
-        #loan-mtg-explanation .amortization-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        #loan-mtg-explanation .mtg-graph-kpis {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
-      @media (max-width: 768px) {
-        .home-loan-ui .input-grid-2-col {
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
         }
       }
 
       @media (max-width: 720px) {
-        #loan-mtg-explanation .mtg-exp-section {
-          padding: 0.85rem;
+        body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
+          min-height: 64px;
         }
 
-        #loan-mtg-explanation .bor-faq-grid {
+        body[data-design-family='auto-loans'] .al-cluster-site-links {
+          display: none;
+        }
+
+        body[data-design-family='auto-loans'] .al-cluster-layout-main {
+          padding: 34px 0 52px;
+        }
+
+        body[data-design-family='auto-loans'] .al-cluster-page-intro {
+          font-size: 15px;
+        }
+
+        body[data-design-family='auto-loans'] .al-cluster-related,
+        body[data-design-family='auto-loans'] .al-cluster-site-footer-inner,
+        body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
+        body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
+          padding: 22px;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col,
+        body[data-design-family='auto-loans'] .auto-loan-ui .inline-grid,
+        body[data-design-family='auto-loans'] .auto-loan-ui .advanced-pair,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.hp-lifetime-grid,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.pcp-lifetime-grid,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid {
           grid-template-columns: 1fr;
         }
 
-        #calc-home-loan .down-combined-left .calculator-button,
-        #loan-mtg-explanation .table-view-toggle .calculator-button {
+        body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
+          grid-template-columns: 1fr;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation > h2 {
+          font-size: 24px;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section--lifetime {
+          grid-template-columns: 1fr;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .amortization-header {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .table-view-toggle .calculator-button {
           flex: 1 1 auto;
         }
 
-        #loan-mtg-explanation .table-view-toggle {
-          width: 100%;
+        body[data-design-family='auto-loans'] .auto-loan-explanation .table-scroll {
+          height: 360px;
         }
 
-        #loan-mtg-explanation .mtg-exp-section--lifetime {
+        body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
+          padding: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value.is-updated {
+          animation: none;
+        }
+      }
+
+      /* calculators/car-loan-calculators/car-loan-calculator/calculator.css */
+      #car-auto-loan-explanation .mtg-lifetime-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #car-auto-loan-explanation .calculator-table td:not(:first-child),
+      #car-auto-loan-explanation .calculator-table th:not(:first-child) {
+        text-align: right;
+      }
+
+      @media (max-width: 900px) {
+        #car-auto-loan-explanation .mtg-lifetime-grid {
           grid-template-columns: 1fr;
-        }
-
-        #loan-mtg-explanation .mtg-lifetime-visual {
-          align-items: center;
-        }
-
-        #loan-mtg-explanation .mtg-lifetime-donut {
-          width: 160px;
-          min-width: 160px;
-        }
-
-        #loan-mtg-explanation .mtg-graph-kpis {
-          grid-template-columns: 1fr;
-        }
-
-        #loan-mtg-explanation .mtg-balance-canvas {
-          height: 280px;
-        }
-
-        #loan-mtg-explanation .mtg-authority-badge {
-          width: 100%;
-        }
-
-      }
-
-      /* critical source: /calculators/car-loan-calculators/car-loan-calculator/calculator.css */
-      /* Car Loan keeps the exact Home Loan visual language with minor spacing alignment */
-
-      #calc-home-loan .mtg-form-panel {
-        gap: 1.25rem;
-      }
-
-      #calc-home-loan .mtg-snapshot-row strong {
-        font-size: 0.84rem;
-      }
-
-      /* Glassmorphism highlight for the EMI card in Car Loan only */
-      #calc-car-loan #calc-home-loan .mtg-preview-main {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.46), rgba(37, 99, 235, 0.2));
-        border: 1px solid rgba(191, 219, 254, 0.34);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.2),
-          0 14px 28px rgba(2, 6, 23, 0.35);
-        backdrop-filter: blur(8px) saturate(125%);
-        -webkit-backdrop-filter: blur(8px) saturate(125%);
-      }
-
-      #calc-car-loan #calc-home-loan .mtg-preview-main .mtg-preview-label {
-        letter-spacing: 0.08em;
-        color: rgba(219, 234, 254, 0.96);
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-      }
-
-      #calc-car-loan #calc-home-loan .mtg-result-card .mtg-result-value {
-        text-shadow:
-          0 0 18px rgba(125, 211, 252, 0.45),
-          0 0 34px rgba(56, 189, 248, 0.24);
-        font-weight: 800;
-      }
-
-      #loan-mtg-explanation .bor-faq-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      #loan-mtg-explanation .mtg-exp-section--notes {
-        padding: 0;
-        border: 0;
-        background: none;
-        box-shadow: none;
-        gap: 0.3rem;
-      }
-
-      #loan-mtg-explanation .mtg-exp-section--notes h3 {
-        margin: 0;
-        font-size: 0.9rem;
-        letter-spacing: 0.01em;
-        text-transform: none;
-      }
-
-      #loan-mtg-explanation .car-note-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 0.16rem;
-      }
-
-      #loan-mtg-explanation .car-note-list li {
-        margin: 0;
-        font-size: 0.8rem;
-        line-height: 1.2;
-        color: rgba(226, 232, 240, 0.94);
-      }
-
-      #loan-mtg-explanation .car-note-list li::before {
-        content: none;
-      }
-
-      #loan-mtg-explanation .car-note-list strong {
-        color: rgba(186, 230, 253, 0.98);
-      }
-
-      @media (max-width: 640px) {
-        #loan-mtg-explanation .bor-faq-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* WOW Slider Styling - Electric Theme */
-      input[type='range'] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 100%;
-        height: 8px;
-        /* Slightly thicker for impact */
-        background: rgba(255, 255, 255, 0.08);
-        /* Darker track */
-        border-radius: 4px;
-        outline: none;
-        /* Electric Gradient: Cyan to Purple */
-        background-image: linear-gradient(to right, #00f2fe, #4facfe);
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-      }
-
-      input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 24px;
-        /* Larger thumb */
-        width: 24px;
-        border-radius: 50%;
-        background: #ffffff;
-        /* Neon Glow */
-        box-shadow:
-          0 0 15px rgba(79, 172, 254, 0.6),
-          0 0 5px rgba(0, 242, 254, 0.8);
-        cursor: pointer;
-        border: 2px solid #4facfe;
-        transition:
-          transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          box-shadow 0.2s ease;
-        margin-top: -1px;
-        /* Align if needed */
-      }
-
-      input[type='range']::-webkit-slider-thumb:hover {
-        transform: scale(1.3);
-        box-shadow:
-          0 0 25px rgba(79, 172, 254, 0.8),
-          0 0 10px rgba(0, 242, 254, 1);
-        background: #f0f9ff;
-      }
-
-      input[type='range']::-webkit-slider-thumb:active {
-        transform: scale(1.1);
-        box-shadow: 0 0 10px rgba(79, 172, 254, 0.9);
-      }
-
-      /* Hover Interaction on Row */
-      .input-row.slider-row {
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
-        padding: 8px;
-        /* Add padding for hover area */
-        border-radius: 8px;
-        margin: -8px 0 16px 0;
-        /* Offset margin to keep spacing visually similar */
-      }
-
-      .input-row.slider-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-        /* Subtle highlight */
-      }
-
-      .input-row.slider-row:hover .slider-header label {
-        color: #a5f3fc;
-        /* Light cyan text change */
-        text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
-      }
-
-      .slider-value {
-        font-weight: 700;
-        color: #e0f2fe;
-        transition: color 0.2s ease;
-      }
-
-      .input-row.slider-row:hover .slider-value {
-        color: #38bdf8;
-        /* Highlight value on hover */
-      }
-
-      /* 2-Column Grid Layout - Refined */
-      .input-grid-2-col {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        /* More breathing room */
-        width: 100%;
-        margin-top: 1.5rem;
-      }
-
-      @media (max-width: 768px) {
-        .input-grid-2-col {
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
         }
       }
     </style>
@@ -4154,293 +1979,249 @@
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
-  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans" data-top-nav-static="true">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans">
+    <div class="page al-cluster-page-shell">
+      <header class="al-cluster-site-header">
+  <div class="al-cluster-wrap al-cluster-site-header-inner">
+    <a class="al-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="al-cluster-brand-mark" aria-hidden="true">AL</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="al-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link is-active" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content">
-<div class="nav-category" data-id="auto-loans">
-  <button type="button" class="nav-category-toggle" aria-expanded="true">
-    <span class="nav-category-label">Auto Loans</span>
-    <span class="nav-category-indicator">-</span>
-  </button>
-  <div class="nav-category-items">
-    <a class="nav-item is-active" href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a><a class="nav-item" href="/car-loan-calculators/auto-loan-calculator/">Multiple Car Loan Calculator</a><a class="nav-item" href="/car-loan-calculators/hire-purchase-calculator/">Hire Purchase Calculator</a><a class="nav-item" href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a><a class="nav-item" href="/car-loan-calculators/car-lease-calculator/">Leasing Calculator</a>
+      <main class="al-cluster-layout-main">
+        <section class="al-cluster-center-column">
+          <div class="al-cluster-panel">
+  <div class="al-cluster-page-header">
+    <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
+    <h1 id="calculator-title">Car Loan Calculator</h1>
+    <p class="al-cluster-page-intro">Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.</p>
   </div>
-</div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Car Loan Calculator</h1>
-  <div class="calculator-page-single">
-    <style>
-  #calc-car-loan {
-    width: 100%;
-  }
+  <div class="calculator-page-single al-cluster-flow">
+    <div id="calc-car-loan">
+  <div class="calculator-ui auto-loan-ui">
+    <section class="mtg-hero" aria-label="Car loan calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Estimate monthly payment, financed amount, and lifetime borrowing cost before you compare
+          dealer or lender offers.
+        </p>
 
-  #calc-car-loan .home-loan-ui {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  #calc-car-loan .mtg-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  #calc-car-loan .mtg-form-panel {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-  }
-
-  #calc-car-loan .mtg-preview-panel {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-  }
-
-  #calc-car-loan .mtg-result-card {
-    min-height: 44px;
-  }
-
-  #calc-car-loan .mtg-summary-card {
-    min-height: 96px;
-  }
-
-  @media (max-width: 1220px) {
-    #calc-car-loan .mtg-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<div id="calc-car-loan">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="mtg-hero" aria-label="Car loan calculator">
-        <div class="mtg-form-panel">
-          <p class="helper">
-            Enter your car loan inputs to estimate monthly EMI, total interest, and total payment in
-            the same premium calculator flow.
-          </p>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-price">Vehicle Price</label>
-              <span class="slider-value" id="car-price-display">28,000</span>
-            </div>
-            <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
+        <div class="input-row slider-row">
+          <div class="slider-header">
+            <label for="car-price">Vehicle Price</label>
+            <span class="slider-value" id="car-price-display">28,000</span>
           </div>
-
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label id="car-down-value-label" for="car-down-value">Down Payment</label>
-                <span class="slider-value" id="car-down-display">3,000</span>
-              </div>
-              <input
-                id="car-down-value"
-                type="range"
-                value="3000"
-                min="0"
-                max="150000"
-                step="100"
-              />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="car-trade">Trade-in Value</label>
-                <span class="slider-value" id="car-trade-display">1,500</span>
-              </div>
-              <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="car-fees">Dealer Fees</label>
-                <span class="slider-value" id="car-fees-display">600</span>
-              </div>
-              <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="car-tax">Sales Tax (%)</label>
-                <span class="slider-value" id="car-tax-display">7%</span>
-              </div>
-              <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="car-term">Loan Term (years)</label>
-                <span class="slider-value" id="car-term-display">5 yrs</span>
-              </div>
-              <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="car-apr">Interest Rate (APR %)</label>
-                <span class="slider-value" id="car-apr-display">6.5%</span>
-              </div>
-              <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
-            </div>
-          </div>
-
-          <div class="input-row action-row mtg-action-row">
-            <button class="calculator-button full-width" type="button" id="car-calculate">
-              Calculate Car Loan
-            </button>
+          <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="car-price-field">Exact vehicle price</label>
+            <input
+              class="slider-precision-input"
+              id="car-price-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="28000"
+            />
           </div>
         </div>
 
-        <aside class="mtg-preview-panel" aria-label="Car loan scenario snapshot">
-          <div class="mtg-preview-main">
-            <p class="mtg-preview-label">Estimated Monthly EMI</p>
-            <div class="result mtg-result-card" id="car-result" aria-live="polite">
-              <span class="mtg-result-value">507.84</span>
+        <div class="input-grid-2-col">
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label id="car-down-value-label" for="car-down-value">Down Payment</label>
+              <span class="slider-value" id="car-down-display">3,000</span>
             </div>
-            <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite">
-              <p><strong>Amount Financed:</strong> 25,955</p>
-              <p><strong>Total Interest:</strong> 4,515.36</p>
-              <p><strong>Total Payment:</strong> 30,470.36</p>
+            <input
+              id="car-down-value"
+              type="range"
+              value="3000"
+              min="0"
+              max="150000"
+              step="100"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-down-value-field"
+                >Exact down payment</label
+              >
+              <input
+                class="slider-precision-input"
+                id="car-down-value-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="3000"
+              />
             </div>
           </div>
 
-          <div class="mtg-snapshot-list">
-            <div class="mtg-snapshot-row">
-              <span>Vehicle Price</span>
-              <strong data-car="price">28,000</strong>
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-trade">Trade-in Value</label>
+              <span class="slider-value" id="car-trade-display">1,500</span>
             </div>
-            <div class="mtg-snapshot-row">
-              <span>Down Payment</span>
-              <strong
-                ><span data-car="down-payment">3,000</span> (<span data-car="down-percent"
-                  >10.71%</span
-                >)</strong
-              >
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Trade-in Value</span>
-              <strong data-car="trade-in">1,500</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Dealer Fees</span>
-              <strong data-car="fees">600</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Sales Tax</span>
-              <strong data-car="tax">1,855</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Amount Financed</span>
-              <strong data-car="amount-financed">25,955</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Interest Rate</span>
-              <strong data-car="apr">6.5%</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Loan Term</span>
-              <strong data-car="term">5 years</strong>
+            <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-trade-field">Exact trade-in value</label>
+              <input
+                class="slider-precision-input"
+                id="car-trade-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="1500"
+              />
             </div>
           </div>
-        </aside>
-      </section>
-    </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-fees">Dealer Fees</label>
+              <span class="slider-value" id="car-fees-display">600</span>
+            </div>
+            <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-fees-field">Exact dealer fees</label>
+              <input
+                class="slider-precision-input"
+                id="car-fees-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="600"
+              />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-tax">Sales Tax (%)</label>
+              <span class="slider-value" id="car-tax-display">7%</span>
+            </div>
+            <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-tax-field">Exact sales tax percent</label>
+              <input
+                class="slider-precision-input"
+                id="car-tax-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="7"
+              />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-term">Loan Term (years)</label>
+              <span class="slider-value" id="car-term-display">5 yrs</span>
+            </div>
+            <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-term-field">Exact loan term in years</label>
+              <input
+                class="slider-precision-input"
+                id="car-term-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="5"
+              />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="car-apr">Interest Rate (APR %)</label>
+              <span class="slider-value" id="car-apr-display">6.5%</span>
+            </div>
+            <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="car-apr-field">Exact APR percent</label>
+              <input
+                class="slider-precision-input"
+                id="car-apr-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="6.5"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="input-row action-row mtg-action-row">
+          <button class="calculator-button full-width" type="button" id="car-calculate">
+            Calculate Car Loan
+          </button>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="car-preview" aria-label="Car loan scenario snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Monthly Payment</p>
+          <div class="result mtg-result-card" id="car-result" aria-live="polite">
+            <strong>Monthly payment</strong>
+            <span class="mtg-result-value">507.84</span>
+          </div>
+        </div>
+
+        <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite">
+          <p><strong>Amount Financed:</strong> <span>25,955</span></p>
+          <p><strong>Total Interest:</strong> <span>4,515.36</span></p>
+          <p><strong>Total Payment:</strong> <span>30,470.36</span></p>
+        </div>
+
+        <div class="mtg-snapshot-list">
+          <div class="mtg-snapshot-row">
+            <span>Vehicle Price</span>
+            <strong data-car="price">28,000</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Down Payment</span>
+            <strong
+              ><span data-car="down-payment">3,000</span> (<span data-car="down-percent"
+                >10.71%</span
+              >)</strong
+            >
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Trade-in Value</span>
+            <strong data-car="trade-in">1,500</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Dealer Fees</span>
+            <strong data-car="fees">600</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Sales Tax</span>
+            <strong data-car="tax">1,855</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Amount Financed</span>
+            <strong data-car="amount-financed">25,955</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Interest Rate</span>
+            <strong data-car="apr">6.5%</strong>
+          </div>
+          <div class="mtg-snapshot-row">
+            <span>Loan Term</span>
+            <strong data-car="term">5 years</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
-
-
-    <div id="loan-mtg-explanation">
+    <div id="car-auto-loan-explanation" class="auto-loan-explanation">
   <h2>How Much Will Your Car Loan Cost?</h2>
   <p>
     Use this car loan calculator to estimate monthly payment, total interest, and total amount
@@ -4745,42 +2526,29 @@
   </section>
 </div>
 
+    <section class="al-cluster-related" aria-labelledby="al-cluster-related-title">
+  <h2 id="al-cluster-related-title">Related Auto Loan Calculators</h2>
+  <div class="al-cluster-related-links">
+    <a class="al-cluster-related-link is-active" href="/car-loan-calculators/car-loan-calculator/" aria-current="page">Car Loan Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/auto-loan-calculator/">Multiple Car Loan Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/hire-purchase-calculator/">Hire Purchase Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/car-lease-calculator/">Leasing Calculator</a>
+  </div>
+</section>
   </div>
 </div>
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
-        </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="al-cluster-site-footer">
+  <div class="al-cluster-wrap al-cluster-site-footer-inner">
+    <nav class="al-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="al-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core-shell.js"></script>
     <script type="module" src="/calculators/car-loan-calculators/car-loan-calculator/module.js?v=20260224"></script>
   </body>
 </html>

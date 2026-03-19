@@ -24,28 +24,27 @@ test.describe('Multiple Car Loan Calculator', () => {
     await page.goto('/car-loan-calculators/auto-loan-calculator/');
 
     await expect(page.locator('#calculator-title')).toHaveText('Auto Loan Comparison Calculator');
-
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Auto Loans');
-
-    const leftActive = page.locator('.nav-item.is-active');
-    await expect(leftActive).toContainText('Multiple Car Loan');
-
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    await expect(page.locator('body[data-design-family="auto-loans"]')).toHaveCount(1);
+    await expect(page.locator('.al-cluster-site-header')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.al-cluster-related-link')).toHaveCount(5);
 
     await expect(page.locator('#calc-multi-car-loan .slider-row')).toHaveCount(6);
+    await expect(page.locator('#calc-multi-car-loan .slider-precision-input')).toHaveCount(6);
     await expect(page.locator('#calc-multi-car-loan .mtg-preview-panel')).toHaveCount(1);
 
     const result = page.locator('#multi-loan-result');
-    const explanation = page.locator('#loan-mtg-explanation');
+    const explanation = page.locator('#multi-auto-loan-explanation');
     await expect(result.locator('.mtg-result-value')).toContainText(/[0-9]/);
 
     const baselineResult = normalize(await result.textContent());
     const baselineExplanation = normalize(await explanation.textContent());
 
     await setRangeValue(page, '#multi-loan-a-amount', 30000);
+    await page.locator('#multi-loan-b-apr-field').fill('9.5');
+    await page.locator('#multi-loan-b-apr-field').press('Tab');
     await page.waitForTimeout(150);
 
     const afterInputResult = normalize(await result.textContent());
@@ -91,6 +90,6 @@ test.describe('Multiple Car Loan Calculator', () => {
     expect(await page.locator('#multi-table-monthly-body tr').count()).toBeGreaterThan(1);
     expect(await page.locator('#multi-table-yearly-body tr').count()).toBeGreaterThan(0);
 
-    await expect(page.locator('#loan-mtg-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#multi-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
   });
 });

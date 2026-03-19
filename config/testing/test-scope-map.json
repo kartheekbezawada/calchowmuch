@@ -198,16 +198,11 @@
       "clusterReleaseDir": "tests_specs/loans/cluster_release",
       "routes": [
         "/loan-calculators/buy-to-let-mortgage-calculator/",
-        "/car-loan-calculators/car-loan-calculator/",
-        "/car-loan-calculators/hire-purchase-calculator/",
         "/loan-calculators/mortgage-calculator/",
         "/loan-calculators/how-much-can-i-borrow/",
         "/loan-calculators/interest-rate-change-calculator/",
-        "/car-loan-calculators/car-lease-calculator/",
         "/loan-calculators/ltv-calculator/",
-        "/car-loan-calculators/auto-loan-calculator/",
         "/loan-calculators/offset-mortgage-calculator/",
-        "/car-loan-calculators/pcp-calculator/",
         "/loan-calculators/remortgage-calculator/",
         "/loan-calculators/personal-loan-calculator/"
       ],
@@ -243,26 +238,38 @@
         "personal-loan": {
           "route": "/loan-calculators/personal-loan-calculator/",
           "releaseDir": "tests_specs/loans/personal-loan_release"
-        },
+        }
+      }
+    },
+    "auto-loans": {
+      "clusterReleaseDir": "tests_specs/auto-loans/cluster_release",
+      "routes": [
+        "/car-loan-calculators/car-loan-calculator/",
+        "/car-loan-calculators/auto-loan-calculator/",
+        "/car-loan-calculators/hire-purchase-calculator/",
+        "/car-loan-calculators/pcp-calculator/",
+        "/car-loan-calculators/car-lease-calculator/"
+      ],
+      "calculators": {
         "car-loan": {
           "route": "/car-loan-calculators/car-loan-calculator/",
-          "releaseDir": "tests_specs/loans/car-loan_release"
+          "releaseDir": "tests_specs/auto-loans/car-loan_release"
         },
         "multiple-car-loan": {
           "route": "/car-loan-calculators/auto-loan-calculator/",
-          "releaseDir": "tests_specs/loans/multiple-car-loan_release"
+          "releaseDir": "tests_specs/auto-loans/multiple-car-loan_release"
         },
         "hire-purchase": {
           "route": "/car-loan-calculators/hire-purchase-calculator/",
-          "releaseDir": "tests_specs/loans/hire-purchase_release"
+          "releaseDir": "tests_specs/auto-loans/hire-purchase_release"
         },
         "pcp-calculator": {
           "route": "/car-loan-calculators/pcp-calculator/",
-          "releaseDir": "tests_specs/loans/pcp-calculator_release"
+          "releaseDir": "tests_specs/auto-loans/pcp-calculator_release"
         },
         "leasing-calculator": {
           "route": "/car-loan-calculators/car-lease-calculator/",
-          "releaseDir": "tests_specs/loans/leasing-calculator_release"
+          "releaseDir": "tests_specs/auto-loans/leasing-calculator_release"
         }
       }
     },
