@@ -22,6 +22,19 @@ const CLUSTER_THEME = {
   default: { icon: '*', accent: '#60a5fa' },
 };
 
+const CLUSTER_CARD_ROUTE_POLICY = {
+  'home-loan': {
+    hiddenRouteIds: ['home-loan'],
+    preferredRouteIds: [
+      'how-much-can-i-borrow',
+      'loan-to-value',
+      'personal-loan',
+      'interest-rate-change-calculator',
+    ],
+    exploreRouteId: 'how-much-can-i-borrow',
+  },
+};
+
 const gridNode = document.getElementById('homepage-grid') || document.getElementById('homepage-preview-grid');
 const searchNode = document.getElementById('homepage-search') || document.getElementById('homepage-preview-search');
 const emptyNode = document.getElementById('homepage-empty') || document.getElementById('homepage-preview-empty');
@@ -176,6 +189,50 @@ function chooseEntryPointRoutes(routes, clusterName) {
   return routes.slice(0, MIN_CALCULATORS_PER_CARD);
 }
 
+function applyClusterCardRoutePolicy(clusterId, routes) {
+  const policy = CLUSTER_CARD_ROUTE_POLICY[clusterId];
+  if (!policy) {
+    return {
+      routes,
+      exploreRoute: routes[0] || null,
+    };
+  }
+
+  const hiddenRouteIds = new Set(toArray(policy.hiddenRouteIds));
+  const preferredRouteOrder = new Map(
+    toArray(policy.preferredRouteIds).map((routeId, index) => [routeId, index])
+  );
+  const originalIndex = new Map(routes.map((route, index) => [route.url, index]));
+
+  let filteredRoutes = routes.filter((route) => !hiddenRouteIds.has(route.id));
+  if (!filteredRoutes.length) {
+    filteredRoutes = routes;
+  }
+
+  filteredRoutes.sort((left, right) => {
+    const leftRank = preferredRouteOrder.has(left.id)
+      ? preferredRouteOrder.get(left.id)
+      : Number.POSITIVE_INFINITY;
+    const rightRank = preferredRouteOrder.has(right.id)
+      ? preferredRouteOrder.get(right.id)
+      : Number.POSITIVE_INFINITY;
+
+    if (leftRank !== rightRank) {
+      return leftRank - rightRank;
+    }
+
+    return (originalIndex.get(left.url) || 0) - (originalIndex.get(right.url) || 0);
+  });
+
+  const exploreRoute =
+    filteredRoutes.find((route) => route.id === policy.exploreRouteId) || filteredRoutes[0] || null;
+
+  return {
+    routes: filteredRoutes,
+    exploreRoute,
+  };
+}
+
 function flattenNavigationRoutes(navigation) {
   return toArray(navigation?.categories).flatMap((category) =>
     toArray(category?.subcategories).flatMap((subcategory) =>
@@ -235,8 +292,9 @@ function normalizeClusters(registry, navigation) {
     .filter((cluster) => cluster && cluster.clusterId !== 'homepage' && cluster.showOnHomepage !== false)
     .map((cluster) => {
       const resolvedRoutes = resolveClusterRoutes(cluster, allRoutes);
+      const routePolicy = applyClusterCardRoutePolicy(cluster?.clusterId, resolvedRoutes);
       const selectedRoutes = chooseEntryPointRoutes(
-        resolvedRoutes,
+        routePolicy.routes,
         cluster?.displayName || cluster?.clusterId || 'Cluster'
       );
 
@@ -245,6 +303,7 @@ function normalizeClusters(registry, navigation) {
         name: cluster?.displayName || cluster?.clusterId || 'Cluster',
         routes: selectedRoutes,
         totalRoutes: resolvedRoutes.length,
+        exploreUrl: routePolicy.exploreRoute?.url || selectedRoutes[0]?.url || '/calculators/',
       };
     })
     .filter((cluster) => cluster.routes.length > 0);
@@ -271,7 +330,7 @@ function renderClusterCards(clusters) {
         })
         .join('');
 
-      const exploreHref = cluster.routes[0]?.url || '/calculators/';
+      const exploreHref = cluster.exploreUrl || cluster.routes[0]?.url || '/calculators/';
       const totalCalculators = Math.max(cluster.totalRoutes, cluster.routes.length);
       return `<article
         class="category-card${theme.warm ? ' is-warm' : ''}"

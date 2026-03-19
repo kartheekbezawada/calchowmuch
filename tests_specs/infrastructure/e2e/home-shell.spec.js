@@ -82,6 +82,15 @@ test.describe('Official standalone homepage', () => {
       }
     }
 
+    const homeLoanCard = page.locator('[data-cluster-id="home-loan"]');
+    await expect(homeLoanCard).toHaveCount(1);
+    await expect(homeLoanCard.locator('[data-route-link]')).toHaveCount(4);
+    await expect(homeLoanCard.locator('[data-route-link]', { hasText: 'Home Loan' })).toHaveCount(0);
+    await expect(homeLoanCard.locator('.card-explore')).toHaveAttribute(
+      'href',
+      '/loan-calculators/how-much-can-i-borrow/'
+    );
+
     await expect(page.getByText('Create Your Own')).toHaveCount(0);
 
     const footerLinks = page.locator('.site-footer a');
