@@ -2009,6 +2009,26 @@ function buildCreditCardClusterInlineCss(calculatorRelPath) {
     .join('\n\n');
 }
 
+function buildHomeLoanInlineCss(calculatorRelPath) {
+  const sources = [];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  sources.push(
+    path.join(PUBLIC_DIR, 'calculators', 'loan-calculators', 'shared', 'cluster-light.css')
+  );
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
 function buildCreditCardClusterHeaderHtml() {
   return `<header class="cc-cluster-site-header">
   <div class="cc-cluster-wrap cc-cluster-site-header-inner">
@@ -2495,9 +2515,12 @@ function buildPageHtml({
 }) {
   const isCreditCardClusterRoute =
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
+  const isHomeLoanDesignRoute =
+    designFamily === 'home-loan' && canonical.includes('/loan-calculators/');
   const versionedCalculatorHtml = applyCalculatorFragmentVersioning(calculatorHtml);
   const sanitizedCalculatorHtml =
-    (assetConfig || isCreditCardClusterRoute) && typeof versionedCalculatorHtml === 'string'
+    (assetConfig || isCreditCardClusterRoute || isHomeLoanDesignRoute) &&
+    typeof versionedCalculatorHtml === 'string'
       ? versionedCalculatorHtml.replace(
           /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>/gi,
           ''
@@ -2649,6 +2672,17 @@ ${isCreditCardClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
       buildCreditCardClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
+  } else if (isHomeLoanDesignRoute) {
+    cssLinksHtml =
+      `    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n` +
+      `    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n` +
+      `    <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />\n` +
+      `    <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />\n` +
+      `    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=${CSS_VERSION}" />\n` +
+      `    <style data-home-loan-design="true">\n${indentBlock(
+        buildHomeLoanInlineCss(calculatorRelPath),
+        '      '
+      )}\n    </style>\n`;
   } else if (assetConfig) {
     const deferCoreCss = assetConfig?.options?.deferCoreCss === true;
     const coreCss = Array.isArray(assetConfig?.css?.core) ? assetConfig.css.core : [];

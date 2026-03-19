@@ -16,1681 +16,249 @@
     <meta name="twitter:description" content="Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <style data-route-critical="true">
-      /* critical source: /assets/css/core-shell.css */
-      .page {
-        height: 100vh;
-        max-height: 100vh;
+    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
+    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-home-loan-design="true">
+      /* calculators/loan-calculators/interest-rate-change-calculator/calculator.css */
+      /* Home Loan single-pane styling */
+
+      .calculator-page-single {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        max-width: none;
-        width: min(1920px, calc(100vw - 48px));
-        margin: 8px auto 0;
-        padding: 14px 14px 0 14px;
-        background: var(--shell-bg);
-        border-radius: 28px;
+        gap: 1.25rem;
       }
 
-      body[data-page='calculator'] .page,
-      body[data-page='home'] .page {
-        width: 100vw;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        border-radius: 0;
-        gap: 0;
-        overflow: hidden;
+      #calc-interest-rate-change .is-hidden {
+        display: none;
       }
 
-      html,
-      body {
-        height: 100%;
+      #calc-interest-rate-change .home-loan-ui {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
 
-      body[data-page='calculator'],
-      body[data-page='home'] {
-        overflow: hidden;
-      }
-
-      .site-header {
-        position: relative;
-        z-index: 5;
-        height: 72px !important;
-        min-height: 72px;
-        max-height: 72px;
-        background: rgba(11, 18, 32, 0.7);
-        color: var(--header-text);
-        border-bottom: 1px solid var(--shell-border);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        overflow: hidden;
-      }
-
-      .site-header-inner {
-        height: 72px;
-        min-height: 72px;
-        max-height: 72px;
-        max-width: 1800px;
-        margin: 0 auto;
-        padding: 0 24px;
+      #calc-interest-rate-change .mtg-hero {
         display: grid;
-        grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
-        align-items: center;
-        gap: 16px;
-      }
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .brand-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: var(--gradient-brand-primary);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        box-shadow: var(--shadow-glow-blue);
-        flex-shrink: 0;
-      }
-
-      .brand-logo-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-
-      .brand-block {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-width: 0;
-      }
-
-      .brand-name {
-        font-size: var(--text-xl);
-        font-weight: var(--font-bold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-      }
-
-      .brand-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 11px;
-        font-weight: var(--font-semibold);
-        color: var(--color-orange-400, #fb923c);
-        text-transform: none;
-        letter-spacing: 0.02em;
-      }
-
-      .brand-badge:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 6px;
-      }
-
-      .brand-badge-icon {
-        font-size: 12px;
-      }
-
-      body .site-header .brand-logo-icon,
-      body .site-header .brand-badge-icon,
-      body .site-header .brand-badge span {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: inherit;
-      }
-
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        min-width: 0;
-      }
-
-      .header-title {
-        font-size: var(--text-2xl);
-        font-weight: var(--font-semibold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .header-subtitle {
-        font-size: var(--text-xs);
-        color: var(--muted-text);
-        margin-top: 2px;
-      }
-
-      .header-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        min-width: 0;
-      }
-
-      .header-search {
-        position: relative;
-        width: min(320px, 40vw);
-        min-width: 180px;
-      }
-
-      .header-search-icon {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted-text);
-        display: inline-flex;
-      }
-
-      body .site-header .header-search-icon {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: var(--muted-text);
-      }
-
-      .header-search-icon svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .header-search-input {
-        width: 100%;
-        padding: 10px 12px 10px 38px;
-        border-radius: 999px;
-        border: 1px solid var(--border-color);
-        background: rgba(15, 23, 42, 0.85);
-        color: var(--header-text);
-        font-size: var(--text-sm);
-        outline: none;
-      }
-
-      .header-search-input::placeholder {
-        color: var(--muted-text);
-      }
-
-      .header-search-input:focus-visible {
-        border-color: rgba(59, 130, 246, 0.6);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
-      }
-
-      .top-nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 2px 12px 0;
-        flex-wrap: nowrap;
-        min-height: 40px;
-        max-height: 40px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-gutter: stable;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .top-nav button,
-      .top-nav .top-nav-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-        border: 1px solid var(--accent-strong);
-        color: #ffffff;
-        padding: 8px 18px;
-        border-radius: 10px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        cursor: pointer;
-        white-space: nowrap;
-        flex-shrink: 0;
-        min-height: 38px;
-        line-height: 1.4;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          color 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      .top-nav .nav-icon {
-        font-size: 14px;
-        line-height: 1;
-        vertical-align: middle;
-        display: inline-block;
-        margin-right: 4px;
-      }
-
-      .top-nav .nav-icon-right {
-        margin-right: 0;
-        margin-left: 2px;
-      }
-
-      .top-nav .nav-label {
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      .top-nav button:hover,
-      .top-nav .top-nav-link:hover {
-        background: var(--accent-strong);
-      }
-
-      .top-nav button:focus-visible,
-      .top-nav .top-nav-link:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .top-nav button.is-active,
-      .top-nav .top-nav-link.is-active {
-        background: var(--accent);
-        color: #ffffff;
-        border-color: var(--accent);
-      }
-
-      .layout-main {
-        display: grid;
-        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        padding: 0;
-        min-height: 0;
-        flex: 1 1 auto;
-        margin-top: 12px;
-        margin-bottom: 0.5rem;
-      }
-
-      .left-nav {
-        /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
-        /* to give visual dominance to the calculator area */
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 14px;
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        height: 100%;
-        margin-left: -4px;
-        position: relative;
-      }
-
-      /* Edge glow effect */
-      .left-nav::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(
-          180deg,
-          transparent 0%,
-          rgba(102, 126, 234, 0.4) 20%,
-          rgba(102, 126, 234, 0.6) 50%,
-          rgba(102, 126, 234, 0.4) 80%,
-          transparent 100%
-        );
-        opacity: 0.45;
-        pointer-events: none;
-      }
-
-      .left-nav-title {
-        margin: 0 0 14px;
-        font-size: var(--text-xl);
-        font-weight: var(--font-semibold);
-      }
-
-      #left-nav-content {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-search {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background: var(--panel-bg);
-        padding-bottom: 8px;
-      }
-
-      .nav-search-input {
-        width: 100%;
-        padding: var(--calculator-input-padding);
-        border-radius: var(--calculator-input-radius);
-        border: 1px solid var(--border-color);
-        font-size: var(--text-sm);
-        font-family: inherit;
-        background: var(--panel-bg);
-      }
-
-      .nav-category {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .nav-category-toggle {
-        width: 100%;
-        border: none;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 6px 4px;
-        color: var(--muted-text);
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        cursor: pointer;
-      }
-
-      .nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 8px;
-      }
-
-      .nav-category-label {
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .nav-category-indicator {
-        font-weight: 600;
-        color: var(--header-text);
-        flex-shrink: 0;
-      }
-
-      .nav-category-items {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      /* ── Finance Premium Nav — glassmorphism accordion ── */
-
-      .fin-nav-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      /* ── Category Group ── */
-      .fin-nav-group {
-        border-radius: 12px;
-        transition:
-          background 0.22s ease,
-          box-shadow 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded {
-        background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
-        border: 1.5px solid rgba(56, 189, 248, 0.6);
-        box-shadow:
-          0 0 8px rgba(56, 189, 248, 0.3),
-          inset 0 0 5px rgba(56, 189, 248, 0.15),
-          0 8px 24px rgba(0, 0, 0, 0.2);
-      }
-
-      /* ── Toggle Button ── */
-      .fin-nav-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border: none;
-        border-radius: 12px;
-        background: transparent;
-        color: #e2e8f0;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          box-shadow 0.12s ease,
-          padding-left 0.15s ease;
-      }
-
-      .fin-nav-toggle:hover {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        background: rgba(59, 130, 246, 0.1);
-        box-shadow:
-          0 0 24px rgba(0, 120, 255, 0.35),
-          0 0 48px rgba(59, 130, 246, 0.12);
-        padding-left: 18px;
-      }
-
-      .fin-nav-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-
-      /* Subcategory icon */
-      .fin-nav-toggle-icon {
-        font-size: 16px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      /* Label — allow wrapping so full text is always visible */
-      .fin-nav-toggle-label {
-        flex: 1;
-        text-align: left;
-        white-space: normal;
-        overflow: visible;
-        line-height: 1.3;
-      }
-
-      /* ── Chevron Arrow ── */
-      .fin-nav-chevron {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1.5px solid rgba(96, 165, 250, 0.65);
-        color: #7dd3fc;
-        flex-shrink: 0;
-        box-shadow:
-          0 0 10px rgba(56, 189, 248, 0.35),
-          0 0 20px rgba(59, 130, 246, 0.15);
-        transition:
-          transform 0.2s ease,
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease;
-      }
-
-      .fin-nav-chevron-svg {
-        width: 15px;
-        height: 15px;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-chevron {
-        transform: rotate(90deg);
-        background: rgba(37, 99, 235, 0.4);
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 16px rgba(56, 189, 248, 0.65),
-          0 0 32px rgba(59, 130, 246, 0.35),
-          0 0 48px rgba(96, 165, 250, 0.15);
-      }
-
-      .fin-nav-toggle:hover .fin-nav-chevron {
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 14px rgba(56, 189, 248, 0.55),
-          0 0 30px rgba(59, 130, 246, 0.25);
-      }
-
-      /* ── Items Container — animated expand/collapse ── */
-      .fin-nav-items {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding: 0 8px;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition:
-          max-height 0.22s ease,
-          opacity 0.15s ease,
-          padding 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      /* ── Calculator Item (Pill) ── */
-      .fin-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 14px;
-        border-radius: 24px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        background: rgba(15, 23, 42, 0.35);
-        color: #cbd5e1;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease,
-          transform 0.12s ease,
-          color 0.12s ease;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
-        align-items: flex-start;
-        white-space: normal;
-        line-height: 1.32;
-        overflow: visible;
-        text-overflow: clip;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
-        margin-top: 2px;
-      }
-
-      .fin-nav-item-icon {
-        font-size: 14px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      .fin-nav-item:hover {
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
-        border-color: rgba(96, 165, 250, 0.5);
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-        transform: scale(1.02);
-        color: #e0f2fe;
-      }
-
-      .fin-nav-item.is-active {
-        border: 1px solid rgba(147, 197, 253, 0.8);
-        border-left: 3px solid #f8fafc;
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.85) 0%,
-          rgba(79, 70, 229, 0.9) 50%,
-          rgba(102, 126, 234, 0.85) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        font-weight: 600;
-        box-shadow:
-          0 6px 12px rgba(102, 126, 234, 0.22),
-          0 0 14px rgba(59, 130, 246, 0.25);
-      }
-
-      .fin-nav-item.is-active:hover {
-        transform: none;
-      }
-
-      /* Search integration */
-      .fin-nav-item.is-hidden {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group {
-        background: transparent;
-        box-shadow: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group.is-hidden {
-        display: none;
-      }
-
-      .nav-category.is-collapsed .nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-search-open .nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-hidden {
-        display: none;
-      }
-
-      .left-nav .subcategory-title {
-        margin: 16px 0 8px;
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        color: var(--muted-text);
-      }
-
-      .left-nav .nav-item {
-        width: 100%;
-        text-align: left;
-        background: var(--pill-bg);
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        display: block;
-        text-decoration: none;
-        margin-bottom: 0;
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      /* Ripple effect structure */
-      .left-nav .nav-item::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(102, 126, 234, 0.3);
-        transform: translate(-50%, -50%);
-        transition:
-          width 0.6s ease,
-          height 0.6s ease,
-          opacity 0.6s ease;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.ripple::after {
-        width: 300%;
-        height: 300%;
-        opacity: 0;
-      }
-
-      .left-nav .nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
-        box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
-        position: relative;
-      }
-
-      /* Pulsing glow effect on active item */
-      .left-nav .nav-item.is-active::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
-        filter: blur(8px);
-        animation: pulse 2s ease-in-out infinite;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Enhanced hover with multi-layer shadows */
-      .left-nav .nav-item:hover:not(.is-active) {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
-      }
-
-      /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
-      .nav-category[data-id='home-loan'] .nav-item,
-      .nav-category[data-id='credit-cards'] .nav-item,
-      .nav-category[data-id='auto-loans'] .nav-item,
-      .nav-category[data-id='time-and-date'] .nav-item {
-        border: 2px solid rgba(102, 126, 234, 0.3);
-        border-left: 4px solid rgba(102, 126, 234, 0.5);
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          border-left-color 0.15s ease;
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item:hover,
-      .nav-category[data-id='credit-cards'] .nav-item:hover,
-      .nav-category[data-id='auto-loans'] .nav-item:hover,
-      .nav-category[data-id='time-and-date'] .nav-item:hover {
-        border-left: 4px solid rgba(102, 126, 234, 0.9);
-        border-color: rgba(102, 126, 234, 0.4);
-        background: rgba(102, 126, 234, 0.1);
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item.is-active,
-      .nav-category[data-id='credit-cards'] .nav-item.is-active,
-      .nav-category[data-id='auto-loans'] .nav-item.is-active,
-      .nav-category[data-id='time-and-date'] .nav-item.is-active {
-        border: 2px solid var(--accent-strong);
-        border-left: 4px solid #ffffff;
-      }
-
-      .center-column {
-        display: grid;
-        /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
-        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel {
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        box-shadow: var(--panel-shadow);
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel-span-all {
-        grid-column: 1 / -1;
-      }
-
-      .panel-scroll {
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .panel h1,
-      .panel h3 {
-        margin: 0;
-        font-size: var(--text-2xl);
-        font-weight: var(--font-bold);
-      }
-
-      .panel .placeholder {
-        color: var(--muted-text);
-        font-size: var(--text-sm);
-      }
-
-      .ads-column {
-        display: grid;
-        grid-template-rows: minmax(220px, 1fr);
-        gap: 12px;
-        min-height: 0;
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        padding: 12px;
-        height: 100%;
-      }
-
-      .ad-panel {
-        background: #f8f9fa;
-        border: 1px solid #d9e2ef;
-        border-radius: 12px;
-        padding: 10px;
-        min-height: 250px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .ad-panel .adsbygoogle {
-        display: block;
-        width: 100%;
-        min-height: 250px;
-      }
-
-      .site-footer {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        background: #ffffff;
-        border: none;
-        border-top: 1px solid #e5e7eb;
-        border-radius: 0;
-        margin-top: 0.5rem;
-        padding: 1rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
         gap: 1.5rem;
-        color: #4b5563;
-        font-size: var(--text-sm);
-        font-weight: 400;
-        flex-wrap: nowrap;
-        white-space: nowrap;
+        align-items: start;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
       }
 
-      .site-footer a {
-        color: #4b5563;
-        text-decoration: none;
-        transition: color 0.15s ease;
+      #calc-interest-rate-change .mtg-form-panel {
+        display: grid;
+        gap: 1.65rem;
+        align-content: start;
       }
 
-      .site-footer a:hover {
-        color: #4f46e5;
+      #calc-interest-rate-change .helper {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.45;
+        color: rgba(226, 232, 240, 0.88);
       }
 
-      .site-footer .footer-divider {
-        color: #4b5563;
-        user-select: none;
-      }
-
-      .site-footer .footer-branding {
-        color: #4b5563;
-      }
-
-      @keyframes shellLift {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes headerSlide {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes panelReveal {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Keyframe animations for navigation enhancements */
-      @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.4;
-          transform: scale(1);
-        }
-
-        50% {
-          opacity: 0.8;
-          transform: scale(1.05);
-        }
-      }
-
-      @keyframes edgeGlow {
-        0%,
-        100% {
-          opacity: 0.3;
-        }
-
-        50% {
-          opacity: 1;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .page,
-        .site-header,
-        .top-nav,
-        .layout-main > * {
-          animation: none;
-        }
-
-        .left-nav::before,
-        .left-nav .nav-item.is-active,
-        .left-nav .nav-item.is-active::before {
-          animation: none;
-        }
-      }
-
-      @media (max-width: 1200px) {
-        .center-column {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .site-header-inner {
-          padding: 0 16px;
-          grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
-        }
-
-        .header-title {
-          font-size: var(--text-xl);
-        }
-
-        .layout-main {
-          grid-template-columns: 200px minmax(0, 1fr);
-          padding: 0;
-        }
-
-        .ads-column {
-          grid-column: 1 / -1;
-          grid-template-columns: minmax(200px, 1fr);
-          grid-template-rows: minmax(220px, 1fr);
-        }
-      }
-
-      @media (max-width: 860px) {
-        .header-subtitle {
-          display: none;
-        }
-
-        .header-search {
-          width: min(240px, 46vw);
-          min-width: 140px;
-        }
-
-        .page {
-          margin: 12px;
-          padding: 16px;
-        }
-
-        .layout-main {
-          grid-template-columns: 1fr;
-        }
-
-        .left-nav {
-          margin-left: 0;
-        }
-
-        .ads-column {
-          display: none;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .brand-name {
-          font-size: var(--text-base);
-        }
-
-        .header-title {
-          font-size: var(--text-base);
-        }
-
-        .header-search {
-          width: 160px;
-        }
-      }
-
-      /* Math Navigation Styles */
-      .math-nav-container {
-        background: var(--shell-bg);
-        border-radius: 12px;
-        box-shadow:
-          0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        padding: 1rem;
-        width: 256px;
-        max-width: 100%;
+      #calc-interest-rate-change .input-row {
+        margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 0.34rem;
+        min-width: 0;
       }
 
-      .math-nav-category {
-        display: flex;
-        flex-direction: column;
+      #calc-interest-rate-change label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: rgba(226, 232, 240, 0.94);
+        line-height: 1.28;
       }
 
-      .math-nav-category-toggle {
+      #calc-interest-rate-change input[type='number'],
+      #calc-interest-rate-change input[type='month'] {
         width: 100%;
+        min-height: 38px;
+        border-radius: 0.78rem;
+        border: 1px solid rgba(148, 163, 184, 0.42);
+        background: rgba(15, 23, 42, 0.72);
+        color: #fff;
+        padding: 0.42rem 0.68rem;
+        font-size: 0.84rem;
+        line-height: 1.2;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      #calc-interest-rate-change input[type='number']:hover,
+      #calc-interest-rate-change input[type='month']:hover {
+        border-color: rgba(148, 163, 184, 0.62);
+      }
+
+      #calc-interest-rate-change input[type='number']:focus-visible,
+      #calc-interest-rate-change input[type='month']:focus-visible {
+        outline: 2px solid rgba(125, 211, 252, 0.64);
+        outline-offset: 1px;
+        border-color: rgba(125, 211, 252, 0.85);
+      }
+
+      /* --- Slider inputs --- */
+
+      #calc-interest-rate-change .slider-row {
+        gap: 0.52rem;
+      }
+
+      #calc-interest-rate-change .slider-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 12px;
-        border-radius: 8px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        gap: 8px;
-        transition: background-color 0.15s ease;
+        gap: 0.5rem;
       }
 
-      .math-nav-category-toggle:hover {
-        background: rgba(99, 102, 241, 0.08);
-      }
-
-      .math-nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .math-nav-category-left {
-        display: flex;
+      #calc-interest-rate-change .slider-value {
+        display: inline-flex;
         align-items: center;
-        gap: 8px;
-      }
-
-      .math-nav-category-icon {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-icon {
-        color: var(--accent);
-      }
-
-      .math-nav-category-name {
-        font-size: var(--text-sm);
-        font-weight: var(--font-semibold);
-        color: var(--muted-text);
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-name {
-        color: var(--header-text);
-      }
-
-      .math-nav-category-chevron {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-chevron {
-        color: var(--accent);
-      }
-
-      .math-nav-category-items {
-        margin-left: 0;
-        margin-top: 4px;
-        padding-left: 0;
-        border-left: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .math-nav-category.is-collapsed .math-nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-search-open .math-nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-hidden {
-        display: none;
-      }
-
-      .math-nav-item {
-        width: 100%;
-        text-align: left;
-        padding: 10px 8px;
-        border-radius: 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        background: var(--pill-bg);
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          color 0.15s ease;
+        padding: 0.24rem 0.72rem;
+        border-radius: 0.52rem;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(34, 197, 94, 0.45);
+        color: #4ade80;
+        font-size: 0.9rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .math-nav-item:hover {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
+        text-shadow:
+          0 0 8px rgba(74, 222, 128, 0.7),
+          0 0 20px rgba(74, 222, 128, 0.4),
+          0 0 40px rgba(34, 197, 94, 0.2);
         box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
+          0 0 8px rgba(34, 197, 94, 0.2),
+          0 0 20px rgba(34, 197, 94, 0.08);
+        transition:
+          border-color 0.25s ease,
+          color 0.25s ease,
+          text-shadow 0.25s ease,
+          box-shadow 0.25s ease;
       }
 
-      .math-nav-item:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: -2px;
-      }
-
-      .math-nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
+      #calc-interest-rate-change .slider-row:hover .slider-value {
+        border-color: rgba(251, 113, 133, 0.55);
+        color: #fb7185;
+        text-shadow:
+          0 0 8px rgba(251, 113, 133, 0.7),
+          0 0 20px rgba(251, 113, 133, 0.45),
+          0 0 40px rgba(251, 113, 133, 0.2);
         box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
+          0 0 8px rgba(251, 113, 133, 0.2),
+          0 0 20px rgba(251, 113, 133, 0.08);
       }
 
-      .math-nav-item.is-active:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        color: #ffffff;
-      }
-
-      .math-nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Mobile Navigation Drawer */
-      .mobile-menu-toggle {
-        display: none;
-        /* Desktop default */
-        background: transparent;
-        border: none;
-        color: var(--header-text);
-        padding: 8px;
-        margin-right: 8px;
-        cursor: pointer;
-        z-index: 20;
-      }
-
-      @media (max-width: 860px) {
-        .mobile-menu-toggle {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .left-nav {
-          position: fixed;
-          top: 72px;
-          /* Below header */
-          left: 0;
-          bottom: 0;
-          width: 280px;
-          background: var(--shell-bg);
-          z-index: 100;
-          transform: translateX(-100%);
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
-          border-right: 1px solid var(--shell-border);
-          margin-left: 0;
-          padding-bottom: 2rem;
-        }
-
-        .left-nav.is-mobile-open {
-          transform: translateX(0);
-        }
-
-        /* Overlay backdrop */
-        .left-nav.is-mobile-open::after {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 280px;
-          right: -100vw;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(4px);
-          z-index: -1;
-          pointer-events: auto;
-        }
-      }
-
-      /* critical source: /assets/css/calculator.css */
-      :root {
-        --calculator-input-padding: 10px 12px;
-        --calculator-input-radius: 10px;
-        --calculator-button-padding: 10px 12px;
-        --calculator-button-radius: 10px;
-      }
-
-      .calculator-ui {
-        display: grid;
-        gap: 18px;
-      }
-
-      .calculator-ui label {
-        font-size: 14px;
-        color: var(--muted-text);
-        display: block;
-        margin-bottom: 6px;
-      }
-
-      .calculator-ui input[type='number'],
-      .calculator-ui input[type='text'],
-      .calculator-ui input[type='email'],
-      .calculator-ui input[type='password'],
-      .calculator-ui input[type='search'],
-      .calculator-ui input[type='tel'],
-      .calculator-ui input[type='url'],
-      .calculator-ui input[type='date'],
-      .calculator-ui input[type='time'],
-      .calculator-ui input[type='datetime-local'],
-      .calculator-ui input[type='month'],
-      .calculator-ui input[type='week'],
-      .calculator-ui textarea {
+      #calc-interest-rate-change input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
         width: 100%;
-        padding: var(--calculator-input-padding);
-        border-radius: var(--calculator-input-radius);
-        border: 1px solid var(--border-color);
-        font-size: 16px;
-        font-family: inherit;
-        background: var(--panel-bg);
+        height: 5px;
+        border-radius: 9999px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: linear-gradient(
+          90deg,
+          #22c55e 0%,
+          #fb7185 var(--fill, 50%),
+          rgba(148, 163, 184, 0.14) var(--fill, 50%)
+        );
+        transition: box-shadow 0.2s ease;
       }
 
-      .calculator-ui textarea {
-        resize: vertical;
+      #calc-interest-rate-change input[type='range']:hover {
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
       }
 
-      .calculator-ui .helper {
-        color: var(--muted-text);
-        margin: 0;
-        font-size: 14px;
+      #calc-interest-rate-change input[type='range']:focus-visible {
+        box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
       }
 
-      .calculator-ui .input-stack {
-        display: grid;
-        gap: 16px;
+      #calc-interest-rate-change input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid rgba(34, 197, 94, 0.5);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+        cursor: grab;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
       }
 
-      .calculator-ui .input-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 16px;
+      #calc-interest-rate-change input[type='range']::-webkit-slider-thumb:hover {
+        transform: scale(1.18);
+        border-color: rgba(251, 113, 133, 0.7);
+        box-shadow:
+          0 1px 8px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(251, 113, 133, 0.2);
       }
 
-      .calculator-ui .calculator-toolbar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
+      #calc-interest-rate-change input[type='range']:active::-webkit-slider-thumb {
+        cursor: grabbing;
+        transform: scale(1.08);
       }
 
-      .calculator-ui .toolbar-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+      #calc-interest-rate-change input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid rgba(34, 197, 94, 0.5);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+        cursor: grab;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
       }
 
-      .calculator-ui .button-row {
+      #calc-interest-rate-change input[type='range']::-moz-range-thumb:hover {
+        transform: scale(1.18);
+        border-color: rgba(251, 113, 133, 0.7);
+        box-shadow:
+          0 1px 8px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(251, 113, 133, 0.2);
+      }
+
+      #calc-interest-rate-change input[type='range']::-moz-range-track {
+        height: 5px;
+        border-radius: 9999px;
+        background: transparent;
+      }
+
+      #calc-interest-rate-change .advanced-pair {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        gap: 1.1rem;
+        align-items: end;
       }
 
-      .calculator-ui .button-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .calculator-ui .mode-switch-control {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        gap: 12px;
-        margin: 2px 0 6px;
-        padding: 10px 12px;
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
-      }
-
-      .calculator-ui .mode-switch-label {
-        text-align: center;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.01em;
-        color: #5b6573;
-        line-height: 1.3;
-        transition:
-          color 0.2s ease,
-          transform 0.2s ease;
-      }
-
-      .calculator-ui .mode-switch-label.is-active {
-        color: #0f172a;
-        transform: translateY(-1px);
-      }
-
-      .calculator-ui .mode-switch-toggle {
-        position: relative;
+      #calc-interest-rate-change .down-combined-left .button-group {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .calculator-ui .mode-switch-toggle input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .calculator-ui .mode-switch-track {
-        width: 64px;
-        height: 34px;
-        border-radius: 999px;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-        transition: background 0.2s ease;
-      }
-
-      .calculator-ui .mode-switch-thumb {
-        width: 26px;
-        height: 26px;
-        border-radius: 999px;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
-        transform: translateX(0);
-        transition: transform 0.2s ease;
-      }
-
-      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
-        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
-      }
-
-      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
-        transform: translateX(30px);
-      }
-
-      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
-        outline: 3px solid rgba(59, 130, 246, 0.35);
-        outline-offset: 2px;
-      }
-
-      #calc-percentage-composition .composition-item-row .calculator-button {
-        min-height: 42px;
-        align-self: end;
-      }
-
-      #calc-commission-calculator .commission-tier-row .calculator-button {
-        min-height: 42px;
-        align-self: end;
-      }
-
-      #calc-markup-calculator .markup-basket-row .calculator-button {
-        min-height: 42px;
-        align-self: end;
-      }
-
-      @media (max-width: 720px) {
-        .calculator-ui .mode-switch-control {
-          grid-template-columns: 1fr;
-          gap: 8px;
-        }
-
-        .calculator-ui .mode-switch-toggle {
-          justify-self: center;
-        }
-
-        #calc-percentage-composition .composition-item-row .calculator-button {
-          width: 100%;
-        }
-
-        #calc-commission-calculator .commission-tier-row .calculator-button {
-          width: 100%;
-        }
-
-        #calc-markup-calculator .markup-basket-row .calculator-button {
-          width: 100%;
-        }
-      }
-
-      .calculator-button {
-        padding: var(--calculator-button-padding);
-        border-radius: var(--calculator-button-radius);
-        border: none;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        line-height: 1.2;
-        white-space: nowrap;
-      }
-
-      .calculator-button.primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .calculator-button.secondary {
-        background: #f8f9fa;
-        color: #495057;
-      }
-
-      .calculator-button.is-active,
-      .calculator-button[aria-pressed='true'] {
-        background: var(--button-active-bg, #1d4ed8);
-        color: #fff;
-      }
-
-      .calculator-button.secondary.is-active,
-      .calculator-button.secondary[aria-pressed='true'] {
-        background: var(--button-active-bg, #1d4ed8);
-        color: #fff;
-      }
-
-      .calculator-button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .calculator-ui .result {
-        margin: 0;
-        font-size: 18px;
-        font-weight: 600;
-        min-height: 60px;
-      }
-
-      .calculator-ui .result-detail {
-        font-size: 14px;
-        color: var(--muted-text);
-        margin-top: 8px;
-        font-weight: 400;
-      }
-
-      .calculator-ui .result-detail p {
-        margin: 0.25rem 0;
-      }
-
-      .calculator-ui .result-scroll {
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 12px;
-        max-height: 280px;
-        overflow-y: scroll;
-        overflow-x: auto;
-        scrollbar-gutter: stable;
-        background: var(--panel-bg);
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .calculator-ui .result-section {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .calculator-ui .result-section h4 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 600;
-      }
-
-      /* critical source: /assets/css/shared-calculator-ui.css */
-      #calc-home-loan .down-combined-left .calculator-button {
-        min-height: 32px;
-        padding: 0.36rem 0.72rem;
+        gap: 0.2rem;
+        padding: 3px;
         border-radius: 9999px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.76rem;
-        font-weight: 600;
-        transition:
-          background 0.2s ease,
-          border-color 0.2s ease,
-          color 0.2s ease;
+        border: 1px solid rgba(148, 163, 184, 0.36);
+        background: rgba(15, 23, 42, 0.78);
       }
 
-      #calc-home-loan .down-combined-left .calculator-button.is-active {
-        border-color: rgba(56, 189, 248, 0.82);
-        background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
-        color: #fff;
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
-        background: rgba(59, 130, 246, 0.12);
-        color: #e0f2fe;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button {
-        min-height: 50px;
-        border-radius: 0.82rem;
-        font-size: 0.88rem;
-        font-weight: 700;
-        transition:
-          box-shadow 0.25s ease,
-          transform 0.15s ease;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:hover {
-        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
-        transform: translateY(-1px);
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:active {
-        transform: translateY(0);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      }
-
-      #loan-mtg-explanation .table-view-toggle .calculator-button {
-        min-height: 30px;
-        padding: 0.3rem 0.66rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.74rem;
-        font-weight: 600;
-      }
-
-      #loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
-        border-color: rgba(249, 115, 22, 0.58);
-        background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
-        color: #fff;
-      }
-
-      #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
-        background: rgba(30, 41, 59, 0.36);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        #calc-home-loan .mtg-action-row .calculator-button {
-          transition: none;
-        }
-      }
-
-      @media (max-width: 720px) {
-        #calc-home-loan .down-combined-left .calculator-button,
-        #loan-mtg-explanation .table-view-toggle .calculator-button {
-          flex: 1 1 auto;
-        }
-      }
-
-      /* critical source: /calculators/loan-calculators/interest-rate-change-calculator/calculator.css */
       #calc-interest-rate-change .down-combined-left .calculator-button {
         min-height: 32px;
         padding: 0.36rem 0.72rem;
@@ -1717,6 +285,100 @@
         color: #e0f2fe;
       }
 
+      #calc-interest-rate-change .advanced-options {
+        margin-top: 0.18rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.28);
+        padding-top: 0.74rem;
+      }
+
+      #calc-interest-rate-change .advanced-options summary {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.58rem;
+        padding: 0.48rem 0.58rem;
+        border-radius: 0.78rem;
+        border: 1px solid rgba(56, 189, 248, 0.56);
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
+        color: rgba(224, 242, 254, 0.98);
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      #calc-interest-rate-change .advanced-options summary:hover {
+        border-color: rgba(56, 189, 248, 0.72);
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
+      }
+
+      #calc-interest-rate-change .advanced-options summary::-webkit-details-marker {
+        display: none;
+      }
+
+      #calc-interest-rate-change .advanced-options summary:focus-visible {
+        outline: 2px solid rgba(125, 211, 252, 0.74);
+        outline-offset: 2px;
+      }
+
+      #calc-interest-rate-change .advanced-summary-pill {
+        min-width: 102px;
+        min-height: 24px;
+        border-radius: 9999px;
+        border: 1px solid rgba(125, 211, 252, 0.58);
+        background: rgba(15, 23, 42, 0.88);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.5rem;
+        flex-shrink: 0;
+      }
+
+      #calc-interest-rate-change .summary-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.26rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+      }
+
+      #calc-interest-rate-change .summary-icon {
+        font-size: 0.86rem;
+        line-height: 1;
+      }
+
+      #calc-interest-rate-change .summary-state-close {
+        display: none;
+      }
+
+      #calc-interest-rate-change .advanced-options[open] .summary-state-expand {
+        display: none;
+      }
+
+      #calc-interest-rate-change .advanced-options[open] .summary-state-close {
+        display: inline-flex;
+      }
+
+      #calc-interest-rate-change .advanced-options[open] summary {
+        border-color: rgba(125, 211, 252, 0.86);
+      }
+
+      #calc-interest-rate-change .advanced-stack {
+        margin-top: 0.76rem;
+        display: grid;
+        gap: 0.72rem;
+      }
+
+      #calc-interest-rate-change .advanced-pair label {
+        min-height: 1.2em;
+      }
+
+      #calc-interest-rate-change .mtg-action-row {
+        margin-top: 0.35rem;
+      }
+
       #calc-interest-rate-change .mtg-action-row .calculator-button {
         min-height: 50px;
         border-radius: 0.82rem;
@@ -1737,6 +399,368 @@
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       }
 
+      #calc-interest-rate-change .mtg-preview-panel {
+        border-radius: 1.15rem;
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
+        padding: 1.15rem;
+        display: grid;
+        gap: 1rem;
+        align-content: start;
+        box-shadow:
+          0 4px 24px rgba(2, 6, 23, 0.45),
+          0 0 40px rgba(59, 130, 246, 0.06);
+      }
+
+      #calc-interest-rate-change .mtg-preview-main {
+        border-radius: 0.95rem;
+        padding: 1rem;
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      #calc-interest-rate-change .mtg-preview-label {
+        margin: 0;
+        font-size: 0.73rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.94);
+        font-weight: 700;
+      }
+
+      #calc-interest-rate-change .mtg-result-card,
+      #calc-interest-rate-change .mtg-summary-card {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      #calc-interest-rate-change .mtg-result-card {
+        color: rgba(239, 246, 255, 0.99);
+        font-size: 0.9rem;
+        line-height: 1.35;
+      }
+
+      #calc-interest-rate-change .mtg-result-card strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.8);
+      }
+
+      #calc-interest-rate-change .mtg-result-card .mtg-result-value {
+        display: block;
+        font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+        line-height: 1;
+        font-weight: 800;
+        color: #e0f2fe;
+        text-shadow:
+          0 0 20px rgba(125, 211, 252, 0.35),
+          0 0 40px rgba(59, 130, 246, 0.15);
+        letter-spacing: -0.02em;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      @keyframes mtg-result-pop {
+        0% {
+          opacity: 0.4;
+          transform: scale(0.92);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.03);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      #calc-interest-rate-change .mtg-result-card .mtg-result-value.is-updated {
+        animation: mtg-result-pop 0.4s ease-out;
+      }
+
+      #calc-interest-rate-change .mtg-result-card .mtg-result-sub {
+        margin: 0.5rem 0 0;
+        font-size: 0.8rem;
+        color: rgba(203, 213, 225, 0.9);
+      }
+
+      #calc-interest-rate-change .mtg-summary-card {
+        font-size: 0.83rem;
+        line-height: 1.52;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      #calc-interest-rate-change .mtg-summary-card p {
+        margin: 0;
+      }
+
+      #calc-interest-rate-change .mtg-summary-card p + p {
+        margin-top: 0.42rem;
+      }
+
+      #calc-interest-rate-change .mtg-snapshot-list {
+        margin: 0;
+        padding: 0.35rem 0;
+        display: grid;
+        gap: 0.1rem;
+      }
+
+      #calc-interest-rate-change .mtg-snapshot-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.72rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      #calc-interest-rate-change .mtg-snapshot-row:last-child {
+        border-bottom: 0;
+      }
+
+      #calc-interest-rate-change .mtg-snapshot-row span {
+        font-size: 0.75rem;
+        color: rgba(148, 163, 184, 0.85);
+      }
+
+      #calc-interest-rate-change .mtg-snapshot-row strong {
+        font-size: 0.88rem;
+        color: rgba(248, 250, 252, 0.99);
+        text-align: right;
+        line-height: 1.28;
+      }
+
+      #loan-rate-change-explanation {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      #loan-rate-change-explanation h2 {
+        margin: 0;
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: rgba(226, 232, 240, 0.97);
+      }
+
+      #loan-rate-change-explanation > p {
+        margin: 0;
+        font-size: 0.84rem;
+        line-height: 1.55;
+        color: rgba(203, 213, 225, 0.9);
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section {
+        display: grid;
+        gap: 0.72rem;
+        padding: 1rem;
+        border-radius: 0.95rem;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section h3 {
+        margin: 0;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.94);
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section h3::after {
+        content: none;
+      }
+
+      /* --- Lifetime Totals: 2-column layout (visual | totals) --- */
+
+      #loan-rate-change-explanation .mtg-exp-section--lifetime {
+        grid-template-columns: auto 1fr;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-header {
+        grid-column: 1 / -1;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-visual {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-donut {
+        --principal-share: 70%;
+        width: 200px;
+        min-width: 200px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
+        position: relative;
+        cursor: pointer;
+        transition:
+          box-shadow 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-donut:hover {
+        box-shadow:
+          0 0 32px rgba(34, 197, 94, 0.35),
+          0 0 60px rgba(251, 113, 133, 0.22),
+          0 0 80px rgba(34, 197, 94, 0.1);
+        transform: scale(1.06);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-donut::after {
+        content: '';
+        position: absolute;
+        inset: 26%;
+        border-radius: 50%;
+        background: rgba(15, 23, 42, 0.96);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        width: 100%;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.42rem;
+        padding: 0.45rem 0.62rem;
+        border-radius: 0.62rem;
+        border: 1px solid transparent;
+        background: none;
+        cursor: default;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(125, 211, 252, 0.18);
+        box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item--principal::before {
+        background: #22c55e;
+        box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item--interest::before {
+        background: #fb7185;
+        box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item span {
+        font-size: 0.74rem;
+        color: rgba(203, 213, 225, 0.9);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-legend-item strong {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: rgba(248, 250, 252, 0.98);
+        margin-left: 0.2rem;
+      }
+
+      /* --- Totals: single column stacked, right side --- */
+
+      #loan-rate-change-explanation .mtg-lifetime-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-self: center;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-card {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.72rem;
+        padding: 0.72rem 0.8rem;
+        border: 1px solid transparent;
+        border-radius: 0.62rem;
+        background: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        cursor: default;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.2s ease;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-card:last-child {
+        border-bottom-color: transparent;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-card:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(125, 211, 252, 0.2);
+        box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
+        transform: translateX(4px);
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-card span {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.78);
+        white-space: nowrap;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-card strong {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: rgba(248, 250, 252, 0.98);
+        font-variant-numeric: tabular-nums;
+      }
+
+      #loan-rate-change-explanation .mtg-lifetime-summary {
+        display: none;
+      }
+
+      #loan-rate-change-explanation .amortization-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 0.68rem;
+      }
+
+      #loan-rate-change-explanation .table-view-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 3px;
+        border-radius: 9999px;
+        border: 1px solid rgba(148, 163, 184, 0.36);
+        background: rgba(15, 23, 42, 0.78);
+      }
+
       #loan-rate-change-explanation .table-view-toggle .calculator-button {
         min-width: 90px;
         min-height: 34px;
@@ -1754,27 +778,1023 @@
         color: #fff;
       }
 
+      #loan-rate-change-explanation .table-scroll {
+        margin-top: 0.32rem;
+        max-height: 320px;
+        overflow: auto;
+        border-radius: 0.82rem;
+        border: 1px solid rgba(148, 163, 184, 0.32);
+        background: rgba(15, 23, 42, 0.56);
+      }
+
+      #loan-rate-change-explanation .calculator-table {
+        min-width: 640px;
+      }
+
+      #loan-rate-change-explanation .calculator-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        font-size: 0.74rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: rgba(191, 219, 254, 0.9);
+        background: rgba(30, 41, 59, 0.98);
+      }
+
+      #loan-rate-change-explanation .calculator-table th,
+      #loan-rate-change-explanation .calculator-table td {
+        text-align: center;
+      }
+
+      #loan-rate-change-explanation .calculator-table td {
+        font-size: 0.79rem;
+        color: rgba(226, 232, 240, 0.93);
+        white-space: nowrap;
+      }
+
       #loan-rate-change-explanation .calculator-table tbody tr:nth-child(even) {
         background: rgba(30, 41, 59, 0.22);
       }
 
+      #loan-rate-change-explanation .bor-faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+      }
+
+      #loan-rate-change-explanation .bor-faq-card {
+        padding: 0.85rem;
+        border-radius: 0.78rem;
+        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-top: 2px solid rgba(245, 158, 11, 0.45);
+        display: grid;
+        gap: 0.4rem;
+        transition:
+          transform 0.2s ease,
+          border-color 0.25s ease,
+          box-shadow 0.3s ease;
+      }
+
+      #loan-rate-change-explanation .bor-faq-card:hover {
+        transform: translateY(-2px);
+        border-top-color: rgba(245, 158, 11, 0.8);
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
+      }
+
+      #loan-rate-change-explanation .bor-faq-number {
+        display: inline-flex;
+        width: 26px;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(139, 92, 246, 0.2);
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        color: #c4b5fd;
+        font-size: 0.68rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      #loan-rate-change-explanation .bor-faq-card h4 {
+        margin: 0;
+        font-size: 0.86rem;
+        line-height: 1.3;
+        color: rgba(226, 232, 240, 0.98);
+      }
+
+      #loan-rate-change-explanation .bor-faq-card p {
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        color: rgba(203, 213, 225, 0.92);
+      }
+
+      /* --- Practical Guide: universal SERP contract --- */
+
+      #loan-rate-change-explanation .mtg-exp-section--guide {
+        gap: 0.58rem;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide h3 {
+        margin: 0 0 0.16rem;
+        font-size: 16px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: #fde68a;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide h4 {
+        margin: 0.34rem 0 0.08rem;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #fde68a;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide p,
+      #loan-rate-change-explanation .mtg-exp-section--guide li {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide p {
+        margin: 0;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide p + p {
+        margin-top: 0.24rem;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide .rate-guide-list,
+      #loan-rate-change-explanation .mtg-exp-section--guide .rate-step-list {
+        margin: 0.04rem 0 0.2rem;
+        padding-left: 1.02rem;
+        display: grid;
+        gap: 0.18rem;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide .rate-formula-block {
+        margin: 0.22rem 0 0;
+        padding: 0.44rem 0.6rem;
+        border-radius: 0.56rem;
+        border: 1px solid rgba(148, 163, 184, 0.26);
+        background: rgba(15, 23, 42, 0.64);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+        font-size: 0.78rem;
+        color: rgba(186, 230, 253, 0.98);
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--guide .rate-guide-table-wrap {
+        margin-top: 0.2rem;
+      }
+
+      /* --- Important Notes: universal SERP contract --- */
+
+      #loan-rate-change-explanation .mtg-exp-section--notes {
+        gap: 0.82rem;
+        border: 1px solid rgba(56, 189, 248, 0.28);
+        border-left: 4px solid rgba(56, 189, 248, 0.82);
+        background: linear-gradient(145deg, rgba(11, 25, 47, 0.9), rgba(16, 35, 64, 0.85));
+        box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--notes h3 {
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        color: rgba(224, 242, 254, 0.98);
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--notes .rate-notes-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.24rem;
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--notes .rate-notes-list li {
+        position: relative;
+        padding-left: 1.1rem;
+        font-size: 0.82rem;
+        line-height: 1.34;
+        color: rgba(226, 232, 240, 0.95);
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--notes .rate-notes-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.48rem;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #38bdf8;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.22);
+      }
+
+      #loan-rate-change-explanation .mtg-exp-section--notes .rate-notes-list strong {
+        color: rgba(186, 230, 253, 0.98);
+        font-weight: 700;
+      }
+
       @media (prefers-reduced-motion: reduce) {
+        #calc-interest-rate-change .mtg-result-card .mtg-result-value.is-updated {
+          animation: none;
+        }
         #calc-interest-rate-change .mtg-action-row .calculator-button {
           transition: none;
         }
       }
 
+      @media (max-width: 1220px) {
+        #calc-interest-rate-change .mtg-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        #calc-interest-rate-change .advanced-pair {
+          grid-template-columns: 1fr;
+        }
+
+        #loan-rate-change-explanation .amortization-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
       @media (max-width: 720px) {
+        #loan-rate-change-explanation .mtg-exp-section {
+          padding: 0.85rem;
+        }
+
+        #loan-rate-change-explanation .bor-faq-grid {
+          grid-template-columns: 1fr;
+        }
+
         #calc-interest-rate-change .down-combined-left .calculator-button,
         #loan-rate-change-explanation .table-view-toggle .calculator-button {
           flex: 1 1 auto;
         }
+
+        #loan-rate-change-explanation .table-view-toggle {
+          width: 100%;
+        }
+
+        #loan-rate-change-explanation .mtg-exp-section--lifetime {
+          grid-template-columns: 1fr;
+        }
+
+        #loan-rate-change-explanation .mtg-lifetime-visual {
+          align-items: center;
+        }
+
+        #loan-rate-change-explanation .mtg-lifetime-donut {
+          width: 160px;
+          min-width: 160px;
+        }
+      }
+
+      /* calculators/loan-calculators/shared/cluster-light.css */
+      body[data-design-family='home-loan'] {
+        --hl-bg: #f5f9fd;
+        --hl-bg-soft: #eef5fb;
+        --hl-surface: rgba(255, 255, 255, 0.96);
+        --hl-surface-soft: rgba(248, 251, 255, 0.98);
+        --hl-text: #102132;
+        --hl-muted: #5c6c7b;
+        --hl-border: rgba(166, 191, 217, 0.42);
+        --hl-border-strong: rgba(79, 125, 170, 0.28);
+        --hl-accent: #0f6d8c;
+        --hl-accent-strong: #135ea8;
+        --hl-accent-soft: rgba(14, 165, 233, 0.1);
+        --hl-preview-bg: linear-gradient(165deg, #10324a 0%, #0c2436 100%);
+        --hl-preview-border: rgba(125, 211, 252, 0.24);
+        --hl-preview-text: #f8fbff;
+        --hl-preview-muted: rgba(221, 235, 245, 0.82);
+        --hl-shadow: 0 24px 56px rgba(18, 38, 63, 0.1);
+        --hl-shadow-soft: 0 16px 34px rgba(18, 38, 63, 0.08);
+        background:
+          radial-gradient(circle at top left, rgba(14, 165, 233, 0.14), transparent 26%),
+          radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 22%),
+          linear-gradient(180deg, #f9fbfe 0%, #f3f7fb 100%);
+        color: var(--hl-text);
+      }
+
+      body[data-design-family='home-loan'] .page {
+        background: transparent;
+      }
+
+      body[data-design-family='home-loan'] .site-header {
+        background: rgba(248, 251, 255, 0.88);
+        border-bottom-color: rgba(166, 191, 217, 0.32);
+        color: var(--hl-text);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      body[data-design-family='home-loan'] .header-subtitle,
+      body[data-design-family='home-loan'] .header-search-icon,
+      body[data-design-family='home-loan'] .brand-badge {
+        color: var(--hl-muted);
+      }
+
+      body[data-design-family='home-loan'] .header-search-input {
+        border-color: rgba(166, 191, 217, 0.4);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--hl-text);
+      }
+
+      body[data-design-family='home-loan'] .top-nav {
+        background: transparent;
+        padding-top: 10px;
+        padding-bottom: 4px;
+      }
+
+      body[data-design-family='home-loan'] .top-nav .top-nav-link {
+        border: 1px solid rgba(166, 191, 217, 0.36);
+        background: rgba(255, 255, 255, 0.86);
+        color: #1c3448;
+        box-shadow: 0 8px 18px rgba(18, 38, 63, 0.06);
+      }
+
+      body[data-design-family='home-loan'] .top-nav .top-nav-link.is-active {
+        border-color: rgba(19, 94, 168, 0.38);
+        background: linear-gradient(135deg, #0f6d8c 0%, #135ea8 100%);
+        color: #ffffff;
+      }
+
+      body[data-design-family='home-loan'] .left-nav,
+      body[data-design-family='home-loan'] .ads-column .ad-panel {
+        background: rgba(255, 255, 255, 0.78);
+        border-color: rgba(166, 191, 217, 0.3);
+        box-shadow: 0 16px 34px rgba(18, 38, 63, 0.06);
+      }
+
+      body[data-design-family='home-loan'] .nav-category-toggle,
+      body[data-design-family='home-loan'] .nav-item {
+        color: #1c3448;
+      }
+
+      body[data-design-family='home-loan'] .nav-item.is-active {
+        background: rgba(14, 165, 233, 0.12);
+        color: var(--hl-accent-strong);
+      }
+
+      body[data-design-family='home-loan'] .center-column > .panel.panel-span-all {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        overflow: visible;
+      }
+
+      body[data-design-family='home-loan'] #calculator-title {
+        margin: 0 0 1.8rem;
+        text-align: center;
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        color: var(--hl-text);
+      }
+
+      body[data-design-family='home-loan'] .calculator-page-single {
+        gap: 2rem;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        ) {
+        color: var(--hl-text);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.mtg-hero, .borrow-hero, .remo-hero, .btl-hero) {
+        gap: 1.5rem;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.mtg-form-panel, .borrow-form-panel, .remo-form-panel, .btl-form-panel) {
+        padding: clamp(1.35rem, 2.2vw, 1.9rem);
+        border-radius: 1.7rem;
+        border: 1px solid var(--hl-border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(248, 251, 255, 0.95));
+        box-shadow: var(--hl-shadow);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.mtg-preview-panel, .borrow-result-dashboard, .remo-result-dashboard, .btl-preview-panel) {
+        padding: clamp(1.25rem, 2vw, 1.8rem);
+        border-radius: 1.7rem;
+        border: 1px solid var(--hl-preview-border);
+        background: var(--hl-preview-bg);
+        box-shadow: 0 26px 52px rgba(7, 23, 39, 0.16);
+        color: var(--hl-preview-text);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.helper, .borrow-context-note) {
+        color: var(--hl-muted);
+      }
+
+      body[data-design-family='home-loan']
+        :is(#calc-home-loan, #calc-offset-calculator, #calc-interest-rate-change, #calc-loan-to-value, #calc-personal-loan)
+        :is(.mtg-preview-label, .mtg-result-note, .helper),
+      body[data-design-family='home-loan']
+        :is(#calc-how-much-can-borrow, #calc-remortgage-switching, #calc-buy-to-let)
+        :is(.borrow-dashboard-label, .borrow-constraint-tag, .remo-dashboard-label, .remo-result-note, .btl-preview-label) {
+        color: var(--hl-preview-muted);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        .input-row {
+        gap: 0.45rem;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        label {
+        color: #21394e;
+        font-size: 0.82rem;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(input[type='number'], input[type='month'], input[type='text'], textarea, select) {
+        min-height: 3rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(166, 191, 217, 0.5);
+        background: #ffffff;
+        color: var(--hl-text);
+        box-shadow: inset 0 1px 1px rgba(18, 38, 63, 0.04);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(input[type='number'], input[type='month'], input[type='text'], textarea, select):focus-visible {
+        outline: 0;
+        border-color: rgba(15, 109, 140, 0.44);
+        box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        .slider-row {
+        padding: 0.85rem 0.95rem;
+        border-radius: 1.15rem;
+        background: var(--hl-bg-soft);
+        transition:
+          background 180ms ease,
+          box-shadow 180ms ease,
+          transform 180ms ease;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        .slider-row:hover {
+        background: rgba(14, 165, 233, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(15, 109, 140, 0.08);
+        transform: translateY(-1px);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        .slider-value {
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 109, 140, 0.14);
+        background: rgba(14, 165, 233, 0.1);
+        color: var(--hl-accent-strong);
+        text-shadow: none;
+        box-shadow: none;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        input[type='range'] {
+        height: 6px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          #0f6d8c 0%,
+          #2f83d5 var(--fill, 50%),
+          rgba(166, 191, 217, 0.32) var(--fill, 50%)
+        );
+        box-shadow: none;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        input[type='range']::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+        margin-top: -7px;
+        border: 2px solid #ffffff;
+        background: #0f6d8c;
+        box-shadow: 0 6px 18px rgba(15, 109, 140, 0.28);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        input[type='range']::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff;
+        background: #0f6d8c;
+        box-shadow: 0 6px 18px rgba(15, 109, 140, 0.28);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.calculator-button.full-width, .calculator-button.is-active, .calculator-button.secondary.is-active) {
+        border-color: transparent;
+        background: linear-gradient(135deg, #0f6d8c 0%, #135ea8 100%);
+        color: #ffffff;
+        box-shadow: 0 14px 28px rgba(19, 94, 168, 0.2);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.calculator-button.secondary, .button-group .calculator-button) {
+        border-color: rgba(166, 191, 217, 0.48);
+        background: rgba(255, 255, 255, 0.92);
+        color: #214260;
+        box-shadow: none;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #calc-home-loan,
+          #calc-how-much-can-borrow,
+          #calc-remortgage-switching,
+          #calc-buy-to-let,
+          #calc-offset-calculator,
+          #calc-interest-rate-change,
+          #calc-loan-to-value,
+          #calc-personal-loan
+        )
+        :is(.advanced-options, .borrow-toggle-row) {
+        border-top-color: rgba(166, 191, 217, 0.34);
+      }
+
+      body[data-design-family='home-loan']
+        :is(#calc-home-loan, #calc-buy-to-let, #calc-personal-loan)
+        .advanced-options
+        summary {
+        border-color: rgba(166, 191, 217, 0.4);
+        background: var(--hl-bg-soft);
+        color: #204058;
+      }
+
+      body[data-design-family='home-loan']
+        :is(#calc-home-loan, #calc-buy-to-let)
+        .advanced-summary-pill {
+        border-color: rgba(15, 109, 140, 0.14);
+        background: rgba(14, 165, 233, 0.1);
+      }
+
+      body[data-design-family='home-loan']
+        :is(#calc-home-loan, #calc-offset-calculator, #calc-interest-rate-change, #calc-loan-to-value, #calc-personal-loan)
+        :is(.mtg-preview-main, .mtg-snapshot-list, .mtg-summary-card, .mtg-result-card),
+      body[data-design-family='home-loan']
+        :is(#calc-how-much-can-borrow, #calc-remortgage-switching, #calc-buy-to-let)
+        :is(.borrow-metric, .borrow-constraint-tag, .remo-metric, .btl-metric-card, .btl-result-card) {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1.2rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      body[data-design-family='home-loan']
+        :is(#calc-home-loan, #calc-offset-calculator, #calc-interest-rate-change, #calc-loan-to-value, #calc-personal-loan)
+        .mtg-snapshot-row,
+      body[data-design-family='home-loan']
+        :is(#calc-buy-to-let)
+        .btl-metric-card,
+      body[data-design-family='home-loan']
+        :is(#calc-remortgage-switching)
+        .remo-metric {
+        color: var(--hl-preview-text);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        ) {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        > section,
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        :is(.faq-box, .bor-faq-card, .remo-faq-card) {
+        padding: clamp(1.25rem, 2vw, 1.7rem);
+        border-radius: 1.55rem;
+        border: 1px solid var(--hl-border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(248, 251, 255, 0.96));
+        box-shadow: var(--hl-shadow-soft);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        h3,
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        h4 {
+        color: var(--hl-text);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        :is(p, li, span, strong, td, th, code) {
+        color: inherit;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .table-scroll {
+        border: 1px solid rgba(166, 191, 217, 0.34);
+        border-radius: 1.1rem;
+        background: #ffffff;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .calculator-table {
+        min-width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #ffffff;
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .calculator-table
+        thead
+        th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #edf4fb;
+        color: #294760;
+        border-bottom: 1px solid rgba(166, 191, 217, 0.36);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .calculator-table
+        tbody
+        tr:nth-child(even)
+        td {
+        background: rgba(248, 251, 255, 0.82);
+      }
+
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .calculator-table
+        td,
+      body[data-design-family='home-loan']
+        :is(
+          #loan-mtg-explanation,
+          #loan-borrow-explanation,
+          #loan-remortgage-explanation,
+          #loan-btl-explanation,
+          #loan-offset-explanation,
+          #loan-rate-change-explanation,
+          #loan-ltv-explanation,
+          #loan-personal-explanation
+        )
+        .calculator-table
+        th {
+        border-right-color: rgba(166, 191, 217, 0.18);
+      }
+
+      body[data-design-family='home-loan']
+        :is(#loan-borrow-explanation)
+        .bor-capacity-pane,
+      body[data-design-family='home-loan']
+        :is(#loan-borrow-explanation)
+        .bor-scenarios-pane,
+      body[data-design-family='home-loan']
+        :is(#loan-mtg-explanation)
+        .mtg-lifetime-card,
+      body[data-design-family='home-loan']
+        :is(#loan-mtg-explanation)
+        .mtg-graph-kpi,
+      body[data-design-family='home-loan']
+        :is(#loan-remortgage-explanation)
+        .remo-related-card {
+        border: 1px solid rgba(166, 191, 217, 0.34);
+        border-radius: 1rem;
+        background: rgba(248, 251, 255, 0.9);
+        box-shadow: none;
+      }
+
+      body[data-design-family='home-loan'] .site-footer {
+        background: transparent;
+      }
+
+      @media (max-width: 1220px) {
+        body[data-design-family='home-loan'] #calculator-title {
+          margin-bottom: 1.4rem;
+        }
+      }
+
+      @media (max-width: 900px) {
+        body[data-design-family='home-loan']
+          :is(
+            #calc-home-loan,
+            #calc-how-much-can-borrow,
+            #calc-remortgage-switching,
+            #calc-buy-to-let,
+            #calc-offset-calculator,
+            #calc-interest-rate-change,
+            #calc-loan-to-value,
+            #calc-personal-loan
+          )
+          :is(.mtg-form-panel, .borrow-form-panel, .remo-form-panel, .btl-form-panel, .mtg-preview-panel, .borrow-result-dashboard, .remo-result-dashboard, .btl-preview-panel) {
+          padding: 1.2rem;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body[data-design-family='home-loan'] #calculator-title {
+          font-size: 2rem;
+        }
+
+        body[data-design-family='home-loan']
+          :is(
+            #loan-mtg-explanation,
+            #loan-borrow-explanation,
+            #loan-remortgage-explanation,
+            #loan-btl-explanation,
+            #loan-offset-explanation,
+            #loan-rate-change-explanation,
+            #loan-ltv-explanation,
+            #loan-personal-explanation
+          )
+          > section,
+        body[data-design-family='home-loan']
+          :is(
+            #loan-mtg-explanation,
+            #loan-borrow-explanation,
+            #loan-remortgage-explanation,
+            #loan-btl-explanation,
+            #loan-offset-explanation,
+            #loan-rate-change-explanation,
+            #loan-ltv-explanation,
+            #loan-personal-explanation
+          )
+          :is(.faq-box, .bor-faq-card, .remo-faq-card) {
+          padding: 1rem;
+          border-radius: 1.2rem;
+        }
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/core-tokens.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/route-bundles/loan-calculators-interest-rate-change-calculator.ee6c66a7.css" />
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#webpage","name":"Interest Rate Change Calculator | Rate Impact | CalcHowMuch","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#softwareapplication","name":"Interest Rate Change Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Compare payment and total interest impact when mortgage rates change now or after a selected period.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Current versus new rate comparison","Immediate or delayed rate-change timing","Monthly payment impact estimate","Total interest and cost difference"],"keywords":"interest rate change calculator, mortgage payment change, rate rise impact calculator, mortgage interest comparison, refinance impact calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this calculator compare?","acceptedAnswer":{"@type":"Answer","text":"It compares baseline mortgage payments and interest against a new rate scenario over your remaining term."}},{"@type":"Question","name":"Why can small rate moves matter so much?","acceptedAnswer":{"@type":"Answer","text":"Mortgage balances are large and terms are long, so even small rate differences can compound into meaningful payment and interest changes."}},{"@type":"Question","name":"What does Apply Immediately mean?","acceptedAnswer":{"@type":"Answer","text":"It assumes the new rate starts from month one of your remaining term, so all projected payments use the updated rate."}},{"@type":"Question","name":"What does After X Months mean?","acceptedAnswer":{"@type":"Answer","text":"It keeps the current rate for the selected months, then recalculates payment for the remaining term at the new rate."}},{"@type":"Question","name":"Does this include taxes and insurance?","acceptedAnswer":{"@type":"Answer","text":"No. This tool focuses on principal and interest so you can isolate the effect of rate changes on core mortgage cost."}},{"@type":"Question","name":"Can a lower rate reduce total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. If all else is unchanged, a lower rate generally reduces both monthly payment and total interest paid."}},{"@type":"Question","name":"Can a higher rate increase total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. Higher rates typically raise monthly payment and can significantly increase lifetime interest over the remaining term."}},{"@type":"Question","name":"Why view both monthly and yearly tables?","acceptedAnswer":{"@type":"Answer","text":"Monthly view helps with timing and budget detail, while yearly view makes long-term trend comparison easier."}},{"@type":"Question","name":"Is this an official lender quote?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning estimate. Final lender terms may differ due to product rules, fees, and underwriting."}},{"@type":"Question","name":"How should I use this to make decisions?","acceptedAnswer":{"@type":"Answer","text":"Run multiple new-rate and timing scenarios, then compare monthly affordability and lifetime interest direction before choosing a strategy."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Interest Rate Change Calculator","item":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
