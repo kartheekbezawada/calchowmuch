@@ -2125,6 +2125,37 @@
         gap: 14px;
       }
 
+      body[data-design-family='home-loan'] #calc-remortgage-switching .slider-precision-row {
+        display: grid;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      body[data-design-family='home-loan'] #calc-remortgage-switching .slider-precision-label {
+        color: var(--hl-muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='home-loan'] #calc-remortgage-switching .slider-precision-input {
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid rgba(160, 179, 206, 0.4);
+        border-radius: 14px;
+        background: rgba(248, 251, 255, 0.92);
+        color: var(--hl-text);
+        font-size: 15px;
+        font-weight: 700;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='home-loan'] #calc-remortgage-switching .slider-precision-input:focus-visible {
+        outline: 0;
+        border-color: rgba(34, 89, 210, 0.58);
+        box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+      }
+
       body[data-design-family='home-loan'] #calc-remortgage-switching .remo-horizon-tick-row {
         display: grid;
         grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -2328,6 +2359,18 @@
       }
 
       @media (max-width: 720px) {
+        body[data-design-family='home-loan'] #calc-remortgage-switching .remo-action-row {
+          position: sticky;
+          bottom: 10px;
+          z-index: 3;
+          padding: 12px;
+          margin-inline: -2px;
+          border: 1px solid rgba(219, 229, 243, 0.94);
+          border-radius: 20px;
+          background: rgba(251, 253, 255, 0.94);
+          backdrop-filter: blur(12px);
+        }
+
         body[data-design-family='home-loan'] #calc-remortgage-switching .input-grid-2-col,
         body[data-design-family='home-loan'] #calc-remortgage-switching .remo-metric-grid,
         body[data-design-family='home-loan'] #loan-remortgage-explanation .remo-related-grid {
@@ -2408,6 +2451,17 @@
                 step="1000"
                 value="220000"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="remo-balance-field">Exact current balance</label>
+                <input
+                  class="slider-precision-input"
+                  id="remo-balance-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="220000"
+                />
+              </div>
             </div>
 
             <!-- Rate -->
@@ -2424,6 +2478,17 @@
                 step="0.05"
                 value="6.00"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="remo-current-rate-field">Exact current rate</label>
+                <input
+                  class="slider-precision-input"
+                  id="remo-current-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="6.00"
+                />
+              </div>
             </div>
 
             <!-- Term -->
@@ -2433,6 +2498,17 @@
                 <span class="slider-value" id="remo-term-display">20 yrs</span>
               </div>
               <input id="remo-term" type="range" min="1" max="40" step="1" value="20" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="remo-term-field">Exact remaining term in years</label>
+                <input
+                  class="slider-precision-input"
+                  id="remo-term-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="20"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -2446,6 +2522,17 @@
                 <span class="slider-value" id="remo-new-rate-display">5.00%</span>
               </div>
               <input id="remo-new-rate" type="range" min="0" max="15" step="0.05" value="5.00" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="remo-new-rate-field">Exact new rate</label>
+                <input
+                  class="slider-precision-input"
+                  id="remo-new-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5.00"
+                />
+              </div>
             </div>
 
             <!-- New Term -->
@@ -2455,6 +2542,17 @@
                 <span class="slider-value" id="remo-new-term-display">20 yrs</span>
               </div>
               <input id="remo-new-term" type="range" min="1" max="40" step="1" value="20" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="remo-new-term-field">Exact new term in years</label>
+                <input
+                  class="slider-precision-input"
+                  id="remo-new-term-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="20"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -2466,6 +2564,17 @@
               <span class="slider-value" id="remo-horizon-display">5 years</span>
             </div>
             <input id="remo-horizon-years" type="range" min="2" max="10" step="1" value="5" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="remo-horizon-field">Exact comparison horizon in years</label>
+              <input
+                class="slider-precision-input"
+                id="remo-horizon-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="5"
+              />
+            </div>
             <div class="remo-horizon-tick-row" aria-hidden="true">
               <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span
               ><span>9</span><span>10</span>
@@ -2480,7 +2589,7 @@
         </div>
       </div>
 
-      <aside class="remo-result-dashboard" aria-label="Switching summary">
+      <aside class="remo-result-dashboard" id="remo-results" aria-label="Switching summary">
         <p class="remo-dashboard-label">Switching Snapshot</p>
 
         <div class="remo-metric-grid">

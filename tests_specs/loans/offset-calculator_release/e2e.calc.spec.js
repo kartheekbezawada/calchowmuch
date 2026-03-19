@@ -10,6 +10,12 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 async function fillStandardInputs(page) {
   await setSliderValue(page, '#off-balance', 320000);
   await setSliderValue(page, '#off-rate', 5.8);
@@ -83,7 +89,25 @@ test.describe('Offset Calculator Home-Loan Visual Standard', () => {
     await expect(page.locator('[data-off="interest-saved-preview"]')).toContainText(/[0-9]/);
   });
 
-  test('OFFSET-HYBRID-4: partial mode changes effective balance relative to full mode', async ({ page }) => {
+  test('OFFSET-HYBRID-3A: exact-value fields sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    const beforeText = await page.locator('#off-result .mtg-result-value').innerText();
+
+    await setTextFieldValue(page, '#off-balance-field', 410000);
+    await expect(page.locator('#off-balance')).toHaveValue('410000');
+
+    const afterEditText = await page.locator('#off-result .mtg-result-value').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await runCalculation(page);
+    const afterCalcText = await page.locator('#off-result .mtg-result-value').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
+  });
+
+  test('OFFSET-HYBRID-4: partial mode changes effective balance relative to full mode after calculate', async ({
+    page,
+  }) => {
     await setSliderValue(page, '#off-balance', 300000);
     await setSliderValue(page, '#off-savings', 40000);
     await setSliderValue(page, '#off-contribution', 200);
@@ -92,8 +116,14 @@ test.describe('Offset Calculator Home-Loan Visual Standard', () => {
     const fullEffective = parseNumber(await page.locator('[data-off="effective-balance"]').innerText());
 
     await page.click('[data-button-group="off-mode"] button[data-value="partial"]');
-    await page.waitForTimeout(100);
+    await expect(
+      page.locator('[data-button-group="off-mode"] button[data-value="partial"]')
+    ).toHaveAttribute('aria-pressed', 'true');
 
+    const afterToggleText = parseNumber(await page.locator('[data-off="effective-balance"]').innerText());
+    expect(afterToggleText).toBe(fullEffective);
+
+    await runCalculation(page);
     const partialEffective = parseNumber(await page.locator('[data-off="effective-balance"]').innerText());
     expect(partialEffective).toBeGreaterThan(fullEffective);
   });
@@ -167,6 +197,19 @@ test.describe('Offset Calculator Home-Loan Visual Standard', () => {
 
     await expect(page.locator('#off-result')).toContainText('greater than 0');
   });
+
+  test('OFFSET-HYBRID-11: mobile calculate reveals the offset summary', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await runCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#off-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#off-result')).toBeFocused();
+  });
 });
 
 test.describe('Offset calculator route contract', () => {
@@ -189,6 +232,11 @@ test.describe('Offset calculator route contract', () => {
     await expect(page.locator('#off-term')).toHaveAttribute('type', 'range');
     await expect(page.locator('#off-savings')).toHaveAttribute('type', 'range');
     await expect(page.locator('#off-contribution')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#off-balance-field')).toHaveValue('250000');
+    await expect(page.locator('#off-rate-field')).toHaveValue('5.0');
+    await expect(page.locator('#off-term-field')).toHaveValue('25');
+    await expect(page.locator('#off-savings-field')).toHaveValue('20000');
+    await expect(page.locator('#off-contribution-field')).toHaveValue('200');
 
     await page.locator('#off-calculate').click();
     await page.waitForFunction(() => {

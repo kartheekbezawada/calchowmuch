@@ -19,6 +19,17 @@
             max="2000000"
             step="5000"
           />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="rate-balance-field">Exact loan balance</label>
+            <input
+              class="slider-precision-input"
+              id="rate-balance-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="250000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -27,6 +38,17 @@
             <span class="slider-value" id="rate-current-display">5.0%</span>
           </div>
           <input id="rate-current" type="range" value="5" min="0" max="20" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="rate-current-field">Exact current rate</label>
+            <input
+              class="slider-precision-input"
+              id="rate-current-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="5.0"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -35,6 +57,17 @@
             <span class="slider-value" id="rate-new-display">6.5%</span>
           </div>
           <input id="rate-new" type="range" value="6.5" min="0" max="20" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="rate-new-field">Exact new rate</label>
+            <input
+              class="slider-precision-input"
+              id="rate-new-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="6.5"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -43,6 +76,17 @@
             <span class="slider-value" id="rate-term-display">25 yrs</span>
           </div>
           <input id="rate-term" type="range" value="25" min="1" max="40" step="1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="rate-term-field">Exact remaining term in years</label>
+            <input
+              class="slider-precision-input"
+              id="rate-term-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="25"
+            />
+          </div>
         </div>
 
         <div class="input-row down-combined-left">
@@ -78,6 +122,17 @@
             <span class="slider-value" id="rate-change-months-display">12 mo</span>
           </div>
           <input id="rate-change-months" type="range" value="12" min="1" max="480" step="1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="rate-change-months-field">Exact change timing in months</label>
+            <input
+              class="slider-precision-input"
+              id="rate-change-months-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="12"
+            />
+          </div>
         </div>
 
         <div class="input-row action-row mtg-action-row">
@@ -87,7 +142,7 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Rate change scenario snapshot">
+      <aside class="mtg-preview-panel" id="rate-results" aria-label="Rate change scenario snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Updated Monthly Payment</p>
           <div class="result mtg-result-card" id="rate-result" aria-live="polite">
@@ -100,6 +155,9 @@
             <p><strong>Annual difference:</strong> 2,718.51</p>
             <p><strong>Total interest change:</strong> 67,962.84</p>
           </div>
+          <p class="mtg-result-note" id="rate-result-note" aria-live="polite">
+            A higher rate increases monthly cost and lifetime interest unless the change is delayed or reduced.
+          </p>
         </div>
 
         <div class="mtg-snapshot-list">

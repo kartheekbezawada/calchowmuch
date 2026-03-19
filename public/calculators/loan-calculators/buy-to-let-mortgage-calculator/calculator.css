@@ -60,6 +60,37 @@ body[data-design-family='home-loan'] #calc-buy-to-let .slider-row {
   gap: 10px;
 }
 
+body[data-design-family='home-loan'] #calc-buy-to-let .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body[data-design-family='home-loan'] #calc-buy-to-let .slider-precision-label {
+  color: var(--hl-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] #calc-buy-to-let .slider-precision-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 179, 206, 0.4);
+  border-radius: 14px;
+  background: rgba(248, 251, 255, 0.92);
+  color: var(--hl-text);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='home-loan'] #calc-buy-to-let .slider-precision-input:focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
 body[data-design-family='home-loan'] #calc-buy-to-let .input-grid {
   display: grid;
   gap: 14px;
@@ -129,6 +160,10 @@ body[data-design-family='home-loan'] #calc-buy-to-let .btl-rent-increase-options
   border: 1px solid var(--hl-line);
   border-radius: 18px;
   background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+}
+
+body[data-design-family='home-loan'] #calc-buy-to-let .btl-action-row {
+  margin-top: 12px;
 }
 
 body[data-design-family='home-loan'] #calc-buy-to-let .btl-action-row .calculator-button {
@@ -204,6 +239,16 @@ body[data-design-family='home-loan'] #calc-buy-to-let .btl-hero-value.is-negativ
 
 body[data-design-family='home-loan'] #calc-buy-to-let .btl-hero-value.is-updated {
   animation: btl-result-pop 0.28s ease-out;
+}
+
+body[data-design-family='home-loan'] #calc-buy-to-let .btl-result-note {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(239, 245, 255, 0.88);
+  color: #304056;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 body[data-design-family='home-loan'] #calc-buy-to-let .btl-key-metrics {
@@ -495,6 +540,18 @@ body[data-design-family='home-loan'] #loan-btl-explanation .btl-faq-card p {
 
   body[data-design-family='home-loan'] #calc-buy-to-let .input-row > .button-group .calculator-button {
     flex: 1 1 auto;
+  }
+
+  body[data-design-family='home-loan'] #calc-buy-to-let .btl-action-row {
+    position: sticky;
+    bottom: 10px;
+    z-index: 3;
+    padding: 12px;
+    margin-inline: -2px;
+    border: 1px solid rgba(219, 229, 243, 0.94);
+    border-radius: 20px;
+    background: rgba(251, 253, 255, 0.94);
+    backdrop-filter: blur(12px);
   }
 
   body[data-design-family='home-loan'] #calc-buy-to-let .btl-key-metrics {

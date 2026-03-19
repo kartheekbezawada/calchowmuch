@@ -2114,6 +2114,37 @@
         position: relative;
       }
 
+      body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-row {
+        display: grid;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-label {
+        color: var(--hl-muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-input {
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid rgba(160, 179, 206, 0.4);
+        border-radius: 14px;
+        background: rgba(248, 251, 255, 0.92);
+        color: var(--hl-text);
+        font-size: 15px;
+        font-weight: 700;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-input:focus-visible {
+        outline: 0;
+        border-color: rgba(34, 89, 210, 0.58);
+        box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+      }
+
       body[data-design-family='home-loan'] #calc-loan-to-value .slider-row {
         gap: 10px;
       }
@@ -2143,6 +2174,10 @@
         #calc-loan-to-value
         :is(#ltv-deposit-type-row, #ltv-deposit-amount-row, #ltv-deposit-percent-row).is-hidden {
         display: none;
+      }
+
+      body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row {
+        margin-top: 12px;
       }
 
       body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row .calculator-button {
@@ -2212,6 +2247,16 @@
 
       body[data-design-family='home-loan'] #calc-loan-to-value .mtg-summary-card p {
         margin: 0;
+      }
+
+      body[data-design-family='home-loan'] #calc-loan-to-value .mtg-result-note {
+        margin: 0;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(239, 245, 255, 0.88);
+        color: #304056;
+        font-size: 14px;
+        line-height: 1.65;
       }
 
       body[data-design-family='home-loan'] #calc-loan-to-value .mtg-snapshot-list {
@@ -2622,6 +2667,18 @@
           width: 100%;
         }
 
+        body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row {
+          position: sticky;
+          bottom: 10px;
+          z-index: 3;
+          padding: 12px;
+          margin-inline: -2px;
+          border: 1px solid rgba(219, 229, 243, 0.94);
+          border-radius: 20px;
+          background: rgba(251, 253, 255, 0.94);
+          backdrop-filter: blur(12px);
+        }
+
         body[data-design-family='home-loan'] #calc-loan-to-value .mtg-snapshot-list {
           grid-template-columns: 1fr;
         }
@@ -2699,6 +2756,17 @@
             max="3000000"
             step="5000"
           />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="ltv-property-field">Exact property value</label>
+            <input
+              class="slider-precision-input"
+              id="ltv-property-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="350000"
+            />
+          </div>
         </div>
 
         <div class="input-row down-combined-left">
@@ -2734,6 +2802,17 @@
             <span class="slider-value" id="ltv-loan-display">280,000</span>
           </div>
           <input id="ltv-loan" type="range" value="280000" min="0" max="3000000" step="5000" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="ltv-loan-field">Exact loan amount</label>
+            <input
+              class="slider-precision-input"
+              id="ltv-loan-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="280000"
+            />
+          </div>
         </div>
 
         <div class="input-row down-combined-left is-hidden" id="ltv-deposit-type-row">
@@ -2776,6 +2855,17 @@
             max="3000000"
             step="5000"
           />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="ltv-deposit-amount-field">Exact deposit amount</label>
+            <input
+              class="slider-precision-input"
+              id="ltv-deposit-amount-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="70000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row is-hidden" id="ltv-deposit-percent-row">
@@ -2784,6 +2874,17 @@
             <span class="slider-value" id="ltv-deposit-percent-display">20.0%</span>
           </div>
           <input id="ltv-deposit-percent" type="range" value="20" min="0" max="99.9" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="ltv-deposit-percent-field">Exact deposit percent</label>
+            <input
+              class="slider-precision-input"
+              id="ltv-deposit-percent-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="20.0"
+            />
+          </div>
         </div>
 
         <div class="input-row action-row mtg-action-row">
@@ -2793,7 +2894,7 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="LTV snapshot">
+      <aside class="mtg-preview-panel" id="ltv-results" aria-label="LTV snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Current LTV Position</p>
           <div class="result mtg-result-card" id="ltv-result" aria-live="polite">
@@ -2805,6 +2906,9 @@
             <p><strong>Risk Level:</strong> Moderate</p>
             <p>You are within a commonly available LTV range.</p>
           </div>
+          <p class="mtg-result-note" id="ltv-result-note" aria-live="polite">
+            An 80% LTV means 20% of the property value is covered by deposit or equity.
+          </p>
         </div>
 
         <div class="mtg-snapshot-list">

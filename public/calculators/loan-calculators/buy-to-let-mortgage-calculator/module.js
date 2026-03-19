@@ -3,6 +3,11 @@ import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBuyToLet } from '/assets/js/core/loan-utils.js';
 import { buildPolyline, getPaddedMinMax, sampleValues } from '/assets/js/core/graph-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const priceInput = document.querySelector('#btl-price');
 const depositAmountInput = document.querySelector('#btl-deposit-amount');
@@ -28,8 +33,16 @@ const otherCostsInput = document.querySelector('#btl-other-costs');
 const calculateButton = document.querySelector('#btl-calculate');
 const resultDiv = document.querySelector('#btl-result');
 const heroValue = resultDiv?.querySelector('.btl-hero-value');
-const previewPanel = document.querySelector('.btl-preview-panel');
+const previewPanel = document.querySelector('#btl-results');
+const resultNote = document.querySelector('#btl-result-note');
 const formatLoanCurrency = (value) => formatNumber(value, 'GBP');
+
+const priceField = document.querySelector('#btl-price-field');
+const rentField = document.querySelector('#btl-rent-field');
+const depositAmountField = document.querySelector('#btl-deposit-amount-field');
+const depositPercentField = document.querySelector('#btl-deposit-percent-field');
+const rateField = document.querySelector('#btl-rate-field');
+const termField = document.querySelector('#btl-term-field');
 
 const priceDisplay = document.querySelector('#btl-price-display');
 const rentDisplay = document.querySelector('#btl-rent-display');
@@ -132,13 +145,9 @@ function enforceMaxLength(input) {
   });
 }
 
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') return;
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const val = parseFloat(input.value) || 0;
-  const pct = max > min ? ((val - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${pct}%`);
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 function formatPercentInput(value) {
@@ -170,31 +179,51 @@ function syncDepositBounds() {
 }
 
 function updateSliderDisplays() {
+  syncDepositBounds();
+
   if (priceInput && priceDisplay) {
     priceDisplay.textContent = formatNumber(Number(priceInput.value), { maximumFractionDigits: 0 });
-    updateSliderFill(priceInput);
+    updateRangeFill(priceInput);
+    if (priceField) priceField.value = String(Math.round(Number(priceInput.value) || 0));
   }
   if (depositAmountInput && depositAmountDisplay) {
     depositAmountDisplay.textContent = formatNumber(Number(depositAmountInput.value), {
       maximumFractionDigits: 0,
     });
-    updateSliderFill(depositAmountInput);
+    updateRangeFill(depositAmountInput);
+    if (depositAmountField) {
+      depositAmountField.value = String(Math.round(Number(depositAmountInput.value) || 0));
+    }
   }
   if (depositPercentInput && depositPercentDisplay) {
     depositPercentDisplay.textContent = formatPercentInput(Number(depositPercentInput.value));
-    updateSliderFill(depositPercentInput);
+    updateRangeFill(depositPercentInput);
+    if (depositPercentField) {
+      depositPercentField.value = formatNumber(Number(depositPercentInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+    }
   }
   if (rentInput && rentDisplay) {
     rentDisplay.textContent = formatNumber(Number(rentInput.value), { maximumFractionDigits: 0 });
-    updateSliderFill(rentInput);
+    updateRangeFill(rentInput);
+    if (rentField) rentField.value = String(Math.round(Number(rentInput.value) || 0));
   }
   if (rateInput && rateDisplay) {
     rateDisplay.textContent = `${rateInput.value}%`;
-    updateSliderFill(rateInput);
+    updateRangeFill(rateInput);
+    if (rateField) {
+      rateField.value = formatNumber(Number(rateInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+    }
   }
   if (termInput && termDisplay) {
     termDisplay.textContent = `${termInput.value} yrs`;
-    updateSliderFill(termInput);
+    updateRangeFill(termInput);
+    if (termField) termField.value = String(Math.round(Number(termInput.value) || 0));
   }
 }
 
@@ -202,20 +231,18 @@ const depositButtons = setupButtonGroup(depositGroup, {
   defaultValue: 'amount',
   onChange: (value) => {
     setDepositVisibility(value);
-    calculate();
+    updateSliderDisplays();
   },
 });
 
 const mortgageButtons = setupButtonGroup(mortgageGroup, {
   defaultValue: 'interest-only',
-  onChange: () => calculate(),
 });
 
 const vacancyButtons = setupButtonGroup(vacancyGroup, {
   defaultValue: 'percent',
   onChange: (value) => {
     setVacancyVisibility(value);
-    calculate();
   },
 });
 
@@ -223,7 +250,6 @@ const rentIncreaseButtons = setupButtonGroup(rentIncreaseGroup, {
   defaultValue: 'off',
   onChange: (value) => {
     setRentIncreaseVisibility(value === 'on');
-    calculate();
   },
 });
 
@@ -231,7 +257,6 @@ const rentIncreaseTypeButtons = setupButtonGroup(rentIncreaseTypeGroup, {
   defaultValue: 'percent',
   onChange: (value) => {
     setRentIncreaseTypeVisibility(value);
-    calculate();
   },
 });
 
@@ -340,6 +365,10 @@ function setError(message) {
     heroValue.classList.remove('is-positive', 'is-negative', 'is-updated');
   } else if (resultDiv) {
     resultDiv.textContent = message;
+  }
+  if (resultNote) {
+    resultNote.textContent =
+      'Adjust the price, deposit, rent, rate, or advanced assumptions, then calculate again to refresh the rental summary.';
   }
   clearOutputs();
 }
@@ -678,7 +707,9 @@ function hideCashflowTooltip() {
   cashflowTooltip.setAttribute('aria-hidden', 'true');
 }
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
+
   if (!resultDiv) {
     return;
   }
@@ -709,12 +740,18 @@ function calculate() {
   const invalidLength = inputsToValidate.find((input) => !hasMaxDigits(input.value, 10));
   if (invalidLength) {
     setError('Inputs must be 10 digits or fewer.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const price = Number(priceInput?.value);
   if (!Number.isFinite(price) || price <= 0) {
     setError('Enter a property price greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
   syncDepositBounds();
@@ -726,11 +763,17 @@ function calculate() {
   if (depositType === 'amount') {
     if (!Number.isFinite(depositAmount) || depositAmount < 0 || depositAmount >= price) {
       setError('Deposit amount must be between 0 and the property price.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   } else {
     if (!Number.isFinite(depositPercent) || depositPercent < 0 || depositPercent >= 100) {
       setError('Deposit percent must be between 0 and 100.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   }
@@ -738,18 +781,27 @@ function calculate() {
   const annualRate = Number(rateInput?.value);
   if (!Number.isFinite(annualRate) || annualRate < 0) {
     setError('Interest rate must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const termYears = Number(termInput?.value);
   if (!Number.isFinite(termYears) || termYears < 1) {
     setError('Loan term must be at least 1 year.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const monthlyRent = Number(rentInput?.value);
   if (!Number.isFinite(monthlyRent) || monthlyRent <= 0) {
     setError('Monthly rent must be greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -763,10 +815,16 @@ function calculate() {
   if (rentIncreaseEnabled) {
     if (!Number.isFinite(rentIncreaseValue) || rentIncreaseValue < 0) {
       setError('Rent increase must be 0 or more.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
     if (!Number.isFinite(rentIncreaseInterval) || rentIncreaseInterval < 1) {
       setError('Rent increase interval must be at least 1 year.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   }
@@ -778,11 +836,17 @@ function calculate() {
   if (vacancyType === 'percent') {
     if (!Number.isFinite(vacancyPercent) || vacancyPercent < 0 || vacancyPercent > 100) {
       setError('Vacancy percent must be between 0 and 100.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   } else {
     if (!Number.isFinite(vacancyMonths) || vacancyMonths < 0 || vacancyMonths > 12) {
       setError('Vacancy months must be between 0 and 12.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   }
@@ -790,18 +854,27 @@ function calculate() {
   const agentFeePercent = Number(agentFeeInput?.value);
   if (!Number.isFinite(agentFeePercent) || agentFeePercent < 0) {
     setError('Letting agent fee must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const maintenanceMonthly = Number(maintenanceInput?.value);
   if (!Number.isFinite(maintenanceMonthly) || maintenanceMonthly < 0) {
     setError('Maintenance costs must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const otherCostsMonthly = Number(otherCostsInput?.value);
   if (!Number.isFinite(otherCostsMonthly) || otherCostsMonthly < 0) {
     setError('Other monthly costs must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -869,6 +942,20 @@ function calculate() {
   updateExplanation(data);
   updateTable(data);
   updateSliderDisplays();
+
+  if (resultNote) {
+    const direction = data.netMonthlyCashflow >= 0 ? 'positive' : 'negative';
+    resultNote.textContent =
+      `This scenario produces ${direction} monthly cashflow of ${formatLoanCurrency(
+        data.netMonthlyCashflow
+      )}, with stress coverage at ${formatNumber(data.stressCoverage, {
+        maximumFractionDigits: 2,
+      })}.`;
+  }
+
+  if (shouldReveal) {
+    revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+  }
 }
 
 setDepositVisibility(depositButtons?.getValue() ?? 'amount');
@@ -877,40 +964,54 @@ setRentIncreaseVisibility(rentIncreaseButtons?.getValue() === 'on');
 setRentIncreaseTypeVisibility(rentIncreaseTypeButtons?.getValue() ?? 'percent');
 syncDepositBounds();
 
-calculateButton?.addEventListener('click', calculate);
+[
+  {
+    rangeInput: priceInput,
+    textInput: priceField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: depositAmountInput,
+    textInput: depositAmountField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: depositPercentInput,
+    textInput: depositPercentField,
+    formatFieldValue: (value) =>
+      formatNumber(value, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+  },
+  {
+    rangeInput: rentInput,
+    textInput: rentField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: rateInput,
+    textInput: rateField,
+    formatFieldValue: (value) =>
+      formatNumber(value, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+  },
+  {
+    rangeInput: termInput,
+    textInput: termField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+].forEach((config) => {
+  wireRangeWithField({
+    ...config,
+    parseFieldValue: parseLooseNumber,
+    onVisualUpdate: updateSliderDisplays,
+  });
+});
 
-// Live calculation on slider drag (debounced)
-let calcDebounceTimer = null;
-function debouncedCalculate() {
-  clearTimeout(calcDebounceTimer);
-  calcDebounceTimer = setTimeout(calculate, 80);
-}
-
-priceInput?.addEventListener('input', () => {
-  syncDepositBounds();
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-depositAmountInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-depositPercentInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-rentInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-rateInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-termInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 updateSliderDisplays();
-calculate();
+calculate({ reveal: false });

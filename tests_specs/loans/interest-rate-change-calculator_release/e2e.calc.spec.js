@@ -10,6 +10,12 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 async function runCalculation(page) {
   await page.click('#rate-calculate');
   await page.waitForFunction(() => {
@@ -45,6 +51,22 @@ test.describe('Interest Rate Change calculator implementation', () => {
 
     await setSliderValue(page, '#rate-change-months', 24);
     await expect(page.locator('#rate-change-months-display')).toContainText('24 mo');
+  });
+
+  test('RATE-CHANGE-CALC-2A: exact-value fields sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    const beforeText = await page.locator('#rate-result .mtg-result-value').innerText();
+
+    await setTextFieldValue(page, '#rate-balance-field', 410000);
+    await expect(page.locator('#rate-balance')).toHaveValue('410000');
+
+    const afterEditText = await page.locator('#rate-result .mtg-result-value').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await runCalculation(page);
+    const afterCalcText = await page.locator('#rate-result .mtg-result-value').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
   });
 
   test('RATE-CHANGE-CALC-3: calculate fills snapshot and explanation lifetime totals', async ({ page }) => {
@@ -95,6 +117,19 @@ test.describe('Interest Rate Change calculator implementation', () => {
     await page.waitForTimeout(250);
     expect(await panel.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
   });
+
+  test('RATE-CHANGE-CALC-6: mobile calculate reveals the updated payment summary', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await runCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#rate-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#rate-result')).toBeFocused();
+  });
 });
 
 test.describe('Interest Rate Change calculator route contract', () => {
@@ -117,6 +152,11 @@ test.describe('Interest Rate Change calculator route contract', () => {
     await expect(page.locator('#rate-new')).toHaveAttribute('type', 'range');
     await expect(page.locator('#rate-term')).toHaveAttribute('type', 'range');
     await expect(page.locator('#rate-change-months')).toHaveAttribute('type', 'range');
+    await expect(page.locator('#rate-balance-field')).toHaveValue('250000');
+    await expect(page.locator('#rate-current-field')).toHaveValue('5.0');
+    await expect(page.locator('#rate-new-field')).toHaveValue('6.5');
+    await expect(page.locator('#rate-term-field')).toHaveValue('25');
+    await expect(page.locator('#rate-change-months-field')).toHaveValue('12');
 
     await expect(page.locator('#rate-change-months-row')).toHaveClass(/is-hidden/);
     await page.click('[data-button-group="rate-change-timing"] button[data-value="after"]');

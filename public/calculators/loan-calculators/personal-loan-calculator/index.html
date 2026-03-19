@@ -27,6 +27,17 @@
             <span class="slider-value" id="pl-principal-display">$25,000.00</span>
           </div>
           <input id="pl-principal" type="range" value="25000" min="500" max="5000000" step="500" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="pl-principal-field">Exact loan amount</label>
+            <input
+              class="slider-precision-input"
+              id="pl-principal-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="25000"
+            />
+          </div>
         </div>
 
         <div class="inline-grid">
@@ -36,6 +47,17 @@
               <span class="slider-value" id="pl-rate-display">9.5%</span>
             </div>
             <input id="pl-rate" type="range" value="9.5" min="0" max="60" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="pl-rate-field">Exact APR</label>
+              <input
+                class="slider-precision-input"
+                id="pl-rate-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="9.5"
+              />
+            </div>
           </div>
 
           <div class="input-row slider-row">
@@ -44,6 +66,17 @@
               <span class="slider-value" id="pl-term-display">5y</span>
             </div>
             <input id="pl-term-years" type="range" value="5" min="1" max="40" step="1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="pl-term-years-field">Exact loan term in years</label>
+              <input
+                class="slider-precision-input"
+                id="pl-term-years-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="5"
+              />
+            </div>
           </div>
         </div>
 
@@ -93,14 +126,14 @@
         <p class="pl-error" id="pl-error" aria-live="polite" hidden></p>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Personal loan snapshot">
+      <aside class="mtg-preview-panel" id="pl-results" aria-label="Personal loan snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Estimated Monthly Payment</p>
           <div class="result mtg-result-card" id="pl-result" aria-live="polite">
             <strong>Base Monthly Payment</strong>
             <span class="mtg-result-value" data-pl="result-base">—</span>
           </div>
-          <p class="helper mtg-result-note" data-pl="result-summary">
+          <p class="helper mtg-result-note" id="pl-result-note" data-pl="result-summary" aria-live="polite">
             Run a calculation to view monthly payment and payoff insights.
           </p>
         </div>

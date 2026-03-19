@@ -2131,6 +2131,37 @@
         min-width: 120px;
       }
 
+      body[data-design-family='home-loan'] #calc-home-loan .slider-precision-row {
+        display: grid;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      body[data-design-family='home-loan'] #calc-home-loan .slider-precision-label {
+        color: var(--hl-muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='home-loan'] #calc-home-loan .slider-precision-input {
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid rgba(160, 179, 206, 0.4);
+        border-radius: 14px;
+        background: rgba(248, 251, 255, 0.92);
+        color: var(--hl-text);
+        font-size: 15px;
+        font-weight: 700;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='home-loan'] #calc-home-loan .slider-precision-input:focus-visible {
+        outline: 0;
+        border-color: rgba(34, 89, 210, 0.58);
+        box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+      }
+
       body[data-design-family='home-loan'] #calc-home-loan .advanced-summary-title {
         color: var(--hl-text);
         font-size: 14px;
@@ -2217,6 +2248,13 @@
         font-size: 13px;
         font-weight: 700;
         line-height: 1.45;
+      }
+
+      body[data-design-family='home-loan'] #calc-home-loan .mtg-result-note {
+        margin: 0;
+        color: var(--hl-muted);
+        font-size: 14px;
+        line-height: 1.6;
       }
 
       body[data-design-family='home-loan'] #calc-home-loan .mtg-result-value {
@@ -2533,6 +2571,18 @@
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
+        body[data-design-family='home-loan'] #calc-home-loan .mtg-action-row {
+          position: sticky;
+          bottom: 10px;
+          z-index: 3;
+          padding: 12px;
+          margin-inline: -2px;
+          border: 1px solid rgba(219, 229, 243, 0.94);
+          border-radius: 20px;
+          background: rgba(251, 253, 255, 0.94);
+          backdrop-filter: blur(12px);
+        }
+
         body[data-design-family='home-loan'] #calc-home-loan .mtg-snapshot-list,
         body[data-design-family='home-loan'] #loan-mtg-explanation .mtg-lifetime-grid,
         body[data-design-family='home-loan'] #loan-mtg-explanation .mtg-graph-kpis {
@@ -2614,6 +2664,17 @@
             <span class="slider-value" id="mtg-price-display">400,000</span>
           </div>
           <input id="mtg-price" type="range" value="400000" min="10000" max="2000000" step="5000" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="mtg-price-field">Exact home price</label>
+            <input
+              class="slider-precision-input"
+              id="mtg-price-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="400000"
+            />
+          </div>
         </div>
 
         <div class="input-row down-combined-left">
@@ -2649,6 +2710,17 @@
             <span class="slider-value" id="mtg-down-display">80,000</span>
           </div>
           <input id="mtg-down-value" type="range" value="80000" min="0" max="2000000" step="5000" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="mtg-down-value-field">Exact down payment value</label>
+            <input
+              class="slider-precision-input"
+              id="mtg-down-value-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="80000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -2657,6 +2729,17 @@
             <span class="slider-value" id="mtg-term-display">30 yrs</span>
           </div>
           <input id="mtg-term" type="range" value="30" min="1" max="40" step="1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="mtg-term-field">Exact loan term in years</label>
+            <input
+              class="slider-precision-input"
+              id="mtg-term-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="30"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -2665,6 +2748,17 @@
             <span class="slider-value" id="mtg-rate-display">6.5%</span>
           </div>
           <input id="mtg-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="mtg-rate-field">Exact APR percent</label>
+            <input
+              class="slider-precision-input"
+              id="mtg-rate-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="6.5"
+            />
+          </div>
         </div>
 
         <details class="advanced-options">
@@ -2732,13 +2826,16 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Mortgage scenario snapshot">
+      <aside class="mtg-preview-panel" id="mtg-preview" aria-label="Mortgage scenario snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Estimated Monthly Payment</p>
           <div class="result mtg-result-card" id="mtg-result" aria-live="polite">
             <strong>Monthly Payment (Principal + Interest)</strong>
             <span class="mtg-result-value">2,022.62</span>
           </div>
+          <p class="mtg-result-note" id="mtg-result-note" aria-live="polite">
+            Start with the core payment, then add optional extras to compare payoff speed and total interest.
+          </p>
         </div>
 
         <div class="mtg-snapshot-list">

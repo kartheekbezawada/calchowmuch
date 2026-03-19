@@ -16,6 +16,14 @@
   gap: 18px;
 }
 
+#calc-how-much-can-borrow .borrow-assumptions {
+  margin-top: -2px;
+}
+
+#calc-how-much-can-borrow .borrow-assumptions summary .helper {
+  font-size: 13px;
+}
+
 #calc-how-much-can-borrow .input-grid-2-col {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -37,6 +45,37 @@
   color: #23324a;
   font-size: 14px;
   font-weight: 700;
+}
+
+#calc-how-much-can-borrow .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+#calc-how-much-can-borrow .slider-precision-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #60718b;
+}
+
+#calc-how-much-can-borrow .slider-precision-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 179, 206, 0.4);
+  border-radius: 14px;
+  background: rgba(248, 251, 255, 0.92);
+  color: #102033;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-how-much-can-borrow .slider-precision-input:focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
 }
 
 #calc-how-much-can-borrow .borrow-payment-note {
@@ -116,6 +155,24 @@
   line-height: 1.55;
 }
 
+#calc-how-much-can-borrow .borrow-summary-note {
+  margin: 0;
+  color: #5a697c;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+#calc-how-much-can-borrow .borrow-action-row {
+  position: sticky;
+  bottom: 16px;
+  z-index: 3;
+  padding-top: 4px;
+}
+
+#calc-how-much-can-borrow .borrow-action-row .calculator-button {
+  box-shadow: 0 18px 36px rgba(34, 89, 210, 0.18);
+}
+
 #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -148,9 +205,17 @@
   #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
     grid-template-columns: 1fr;
   }
+
+  #calc-how-much-can-borrow .borrow-form-panel {
+    gap: 22px;
+  }
 }
 
 @media (max-width: 720px) {
+  #calc-how-much-can-borrow .borrow-section {
+    gap: 16px;
+  }
+
   #calc-how-much-can-borrow .borrow-toggle-row {
     align-items: start;
     flex-direction: column;
@@ -162,5 +227,15 @@
 
   #calc-how-much-can-borrow .borrow-metric--primary {
     grid-column: auto;
+  }
+
+  #calc-how-much-can-borrow .borrow-action-row {
+    bottom: 10px;
+    padding: 12px;
+    margin-inline: -2px;
+    border: 1px solid rgba(219, 229, 243, 0.94);
+    border-radius: 20px;
+    background: rgba(251, 253, 255, 0.94);
+    backdrop-filter: blur(12px);
   }
 }

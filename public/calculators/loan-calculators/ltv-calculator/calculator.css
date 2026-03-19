@@ -21,6 +21,37 @@ body[data-design-family='home-loan'] #calc-loan-to-value .mtg-form-panel > * {
   position: relative;
 }
 
+body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-label {
+  color: var(--hl-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 179, 206, 0.4);
+  border-radius: 14px;
+  background: rgba(248, 251, 255, 0.92);
+  color: var(--hl-text);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='home-loan'] #calc-loan-to-value .slider-precision-input:focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
 body[data-design-family='home-loan'] #calc-loan-to-value .slider-row {
   gap: 10px;
 }
@@ -50,6 +81,10 @@ body[data-design-family='home-loan']
   #calc-loan-to-value
   :is(#ltv-deposit-type-row, #ltv-deposit-amount-row, #ltv-deposit-percent-row).is-hidden {
   display: none;
+}
+
+body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row {
+  margin-top: 12px;
 }
 
 body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row .calculator-button {
@@ -119,6 +154,16 @@ body[data-design-family='home-loan'] #calc-loan-to-value .mtg-summary-card {
 
 body[data-design-family='home-loan'] #calc-loan-to-value .mtg-summary-card p {
   margin: 0;
+}
+
+body[data-design-family='home-loan'] #calc-loan-to-value .mtg-result-note {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(239, 245, 255, 0.88);
+  color: #304056;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 body[data-design-family='home-loan'] #calc-loan-to-value .mtg-snapshot-list {
@@ -527,6 +572,18 @@ body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-notes-list li::b
 
   body[data-design-family='home-loan'] #calc-loan-to-value .down-combined-left .calculator-button {
     width: 100%;
+  }
+
+  body[data-design-family='home-loan'] #calc-loan-to-value .mtg-action-row {
+    position: sticky;
+    bottom: 10px;
+    z-index: 3;
+    padding: 12px;
+    margin-inline: -2px;
+    border: 1px solid rgba(219, 229, 243, 0.94);
+    border-radius: 20px;
+    background: rgba(251, 253, 255, 0.94);
+    backdrop-filter: blur(12px);
   }
 
   body[data-design-family='home-loan'] #calc-loan-to-value .mtg-snapshot-list {

@@ -18,6 +18,12 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 async function fillStandardInputs(page) {
   await setNumberValue(page, '#remo-balance', 220000);
   await setNumberValue(page, '#remo-current-rate', 6);
@@ -94,6 +100,22 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     await expect(page.locator('#remo-metric-break-even')).toContainText(/Month|Not within horizon/);
     await expect(page.locator('#remo-metric-total')).toContainText(/[0-9]/);
     await expect(page.locator('#remo-exp-summary')).toContainText(/Over 5 years/);
+  });
+
+  test('REMO-HYBRID-3A: exact-value fields sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    const beforeText = await page.locator('#remo-metric-monthly').innerText();
+
+    await setTextFieldValue(page, '#remo-balance-field', 260000);
+    await expect(page.locator('#remo-balance')).toHaveValue('260000');
+
+    const afterEditText = await page.locator('#remo-metric-monthly').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await runCalculation(page);
+    const afterCalcText = await page.locator('#remo-metric-monthly').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
   });
 
   test('REMO-HYBRID-4: output text and table values contain no currency symbols', async ({ page }) => {
@@ -186,6 +208,19 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     await page.click('#remo-view-yearly');
     const afterToggleBox = await page.locator('#calc-remortgage-switching').boundingBox();
     expect(afterToggleBox?.width).toBe(initialBox?.width);
+  });
+
+  test('REMO-HYBRID-11: mobile calculate reveals the switching summary', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await runCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#remo-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#remo-metric-monthly')).toBeFocused();
   });
 });
 

@@ -187,3 +187,30 @@ Every migrated route should look like:
 - intentionally designed for desktop and mobile
 - consistent with the other completed Home Loan pages
 - cleaner than the old shell and dark theme in every visible section
+
+---
+
+## 2026-03-19 Enhancement Addendum
+
+### Interaction polish
+
+- after calculate, the answer must feel revealed, not merely updated somewhere below the fold
+- mobile routes should either keep the CTA within first-screen reach or use progressive disclosure to prevent form bloat
+- updated result summaries should expose a clear live-region message and a stable visual focus target
+
+### Precision entry
+
+- slider-heavy routes should prefer hybrid entry: a precise value field paired with the slider, not slider-only control for key money/rate inputs
+- precision fields should preserve button-only calculation behavior
+- precision affordances should feel lightweight and premium rather than spreadsheet-like
+
+### Information density
+
+- dense routes should lead with one decisive answer block before detailed tables
+- secondary data should use progressive disclosure where it reduces scroll fatigue without hiding required information
+- the page should feel guided before it feels exhaustive
+
+### Related-next-step guidance
+
+- every route should help the user choose the next calculator or next question
+- related cards should read like curated product guidance, not generic leftovers

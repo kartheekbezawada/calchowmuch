@@ -2109,6 +2109,14 @@
         gap: 18px;
       }
 
+      #calc-how-much-can-borrow .borrow-assumptions {
+        margin-top: -2px;
+      }
+
+      #calc-how-much-can-borrow .borrow-assumptions summary .helper {
+        font-size: 13px;
+      }
+
       #calc-how-much-can-borrow .input-grid-2-col {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2130,6 +2138,37 @@
         color: #23324a;
         font-size: 14px;
         font-weight: 700;
+      }
+
+      #calc-how-much-can-borrow .slider-precision-row {
+        display: grid;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      #calc-how-much-can-borrow .slider-precision-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #60718b;
+      }
+
+      #calc-how-much-can-borrow .slider-precision-input {
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid rgba(160, 179, 206, 0.4);
+        border-radius: 14px;
+        background: rgba(248, 251, 255, 0.92);
+        color: #102033;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      #calc-how-much-can-borrow .slider-precision-input:focus-visible {
+        outline: 0;
+        border-color: rgba(34, 89, 210, 0.58);
+        box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
       }
 
       #calc-how-much-can-borrow .borrow-payment-note {
@@ -2209,6 +2248,24 @@
         line-height: 1.55;
       }
 
+      #calc-how-much-can-borrow .borrow-summary-note {
+        margin: 0;
+        color: #5a697c;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      #calc-how-much-can-borrow .borrow-action-row {
+        position: sticky;
+        bottom: 16px;
+        z-index: 3;
+        padding-top: 4px;
+      }
+
+      #calc-how-much-can-borrow .borrow-action-row .calculator-button {
+        box-shadow: 0 18px 36px rgba(34, 89, 210, 0.18);
+      }
+
       #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
         display: grid;
         grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -2241,9 +2298,17 @@
         #loan-borrow-explanation .bor-exp-section--capacity-scenarios {
           grid-template-columns: 1fr;
         }
+
+        #calc-how-much-can-borrow .borrow-form-panel {
+          gap: 22px;
+        }
       }
 
       @media (max-width: 720px) {
+        #calc-how-much-can-borrow .borrow-section {
+          gap: 16px;
+        }
+
         #calc-how-much-can-borrow .borrow-toggle-row {
           align-items: start;
           flex-direction: column;
@@ -2255,6 +2320,16 @@
 
         #calc-how-much-can-borrow .borrow-metric--primary {
           grid-column: auto;
+        }
+
+        #calc-how-much-can-borrow .borrow-action-row {
+          bottom: 10px;
+          padding: 12px;
+          margin-inline: -2px;
+          border: 1px solid rgba(219, 229, 243, 0.94);
+          border-radius: 20px;
+          background: rgba(251, 253, 255, 0.94);
+          backdrop-filter: blur(12px);
         }
       }
     </style>
@@ -2299,33 +2374,32 @@
         </p>
 
         <section class="borrow-section" aria-label="Income and outgoings inputs">
-          <!-- Row 1: Income & Deposit -->
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-gross-income">Gross Annual Income</label>
-                <span class="slider-value" id="bor-gross-income-display">90,000</span>
-              </div>
-              <input
-                id="bor-gross-income"
-                type="range"
-                value="90000"
-                min="0"
-                max="500000"
-                step="1000"
-              />
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="bor-gross-income">Gross Annual Income</label>
+              <span class="slider-value" id="bor-gross-income-display">90,000</span>
             </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-deposit">Deposit Amount</label>
-                <span class="slider-value" id="bor-deposit-display">0</span>
-              </div>
-              <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
+            <input
+              id="bor-gross-income"
+              type="range"
+              value="90000"
+              min="0"
+              max="500000"
+              step="1000"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="bor-gross-income-field">Exact annual income</label>
+              <input
+                class="slider-precision-input"
+                id="bor-gross-income-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="90000"
+              />
             </div>
           </div>
 
-          <!-- Row 2: Expenses & Debts -->
           <div class="input-grid-2-col">
             <div class="input-row slider-row">
               <div class="slider-header">
@@ -2333,6 +2407,17 @@
                 <span class="slider-value" id="bor-expenses-display">1,200</span>
               </div>
               <input id="bor-expenses" type="range" value="1200" min="0" max="15000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="bor-expenses-field">Exact monthly expenses</label>
+                <input
+                  class="slider-precision-input"
+                  id="bor-expenses-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="1200"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -2341,6 +2426,17 @@
                 <span class="slider-value" id="bor-debts-display">300</span>
               </div>
               <input id="bor-debts" type="range" value="300" min="0" max="15000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="bor-debts-field">Exact monthly debt payments</label>
+                <input
+                  class="slider-precision-input"
+                  id="bor-debts-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="300"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -2364,26 +2460,85 @@
               <span class="slider-value" id="bor-multiple-display">4.5x</span>
             </div>
             <input id="bor-multiple" type="range" value="4.5" min="2.5" max="7.0" step="0.1" />
-          </div>
-
-          <!-- Row 3: Rate & Term -->
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-rate">Interest Rate (APR %)</label>
-                <span class="slider-value" id="bor-rate-display">6.50%</span>
-              </div>
-              <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-term">Loan Term (years)</label>
-                <span class="slider-value" id="bor-term-display">25 yrs</span>
-              </div>
-              <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="bor-multiple-field">Exact income multiple</label>
+              <input
+                class="slider-precision-input"
+                id="bor-multiple-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="4.5"
+              />
             </div>
           </div>
+
+          <details class="advanced-options borrow-assumptions" id="bor-assumptions">
+            <summary>
+              <span>Loan assumptions</span>
+              <span class="helper">Deposit, rate, and term</span>
+            </summary>
+            <div class="advanced-stack">
+              <div class="input-row slider-row">
+                <div class="slider-header">
+                  <label for="bor-deposit">Deposit Amount</label>
+                  <span class="slider-value" id="bor-deposit-display">0</span>
+                </div>
+                <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
+                <div class="slider-precision-row">
+                  <label class="slider-precision-label" for="bor-deposit-field">Exact deposit amount</label>
+                  <input
+                    class="slider-precision-input"
+                    id="bor-deposit-field"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="12"
+                    value="0"
+                  />
+                </div>
+              </div>
+
+              <div class="input-grid-2-col">
+                <div class="input-row slider-row">
+                  <div class="slider-header">
+                    <label for="bor-rate">Interest Rate (APR %)</label>
+                    <span class="slider-value" id="bor-rate-display">6.50%</span>
+                  </div>
+                  <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
+                  <div class="slider-precision-row">
+                    <label class="slider-precision-label" for="bor-rate-field">Exact APR percent</label>
+                    <input
+                      class="slider-precision-input"
+                      id="bor-rate-field"
+                      type="text"
+                      inputmode="decimal"
+                      maxlength="12"
+                      value="6.5"
+                    />
+                  </div>
+                </div>
+
+                <div class="input-row slider-row">
+                  <div class="slider-header">
+                    <label for="bor-term">Loan Term (years)</label>
+                    <span class="slider-value" id="bor-term-display">25 yrs</span>
+                  </div>
+                  <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
+                  <div class="slider-precision-row">
+                    <label class="slider-precision-label" for="bor-term-field">Exact loan term in years</label>
+                    <input
+                      class="slider-precision-input"
+                      id="bor-term-field"
+                      type="text"
+                      inputmode="numeric"
+                      maxlength="12"
+                      value="25"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
 
           <!-- Hidden input for logic compatibility -->
           <input type="hidden" id="bor-net-income" value="0" />
@@ -2407,7 +2562,7 @@
         </div>
       </div>
 
-      <aside class="borrow-result-dashboard" aria-label="Borrowing capacity results">
+      <aside class="borrow-result-dashboard" id="bor-results" aria-label="Borrowing capacity results">
         <p class="borrow-dashboard-label">Your Borrowing Capacity</p>
 
         <div class="borrow-metric-grid">
@@ -2440,6 +2595,9 @@
         <div class="borrow-constraint-tag" id="bor-constraint" aria-live="polite">
           Limit determined by monthly budget (affordability)
         </div>
+        <p class="borrow-summary-note" id="bor-summary-note" aria-live="polite">
+          Based on the current assumptions, this gives you a starting property budget and monthly payment check.
+        </p>
         <div class="borrow-error" id="bor-error" aria-live="polite"></div>
       </aside>
     </section>

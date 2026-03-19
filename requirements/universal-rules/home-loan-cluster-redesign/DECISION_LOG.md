@@ -174,3 +174,51 @@ Reason:
 Impact:
 
 - Home Loan schema generation now reflects only the FAQ section and remains aligned with visible FAQ content.
+
+---
+
+## D-012
+
+Decision:
+
+- The post-release enhancement pass will prioritize mobile result reveal and precision entry before any new visual flourish.
+
+Reason:
+
+- The shipped shell is already in good shape; the biggest remaining customer friction is operational, not stylistic.
+
+Impact:
+
+- Implementation work should focus first on after-calculate reveal behavior, hybrid precise entry, and first-screen depth.
+
+---
+
+## D-013
+
+Decision:
+
+- Slider-only control for key money/rate fields is enhancement debt on Home Loan routes and may be replaced with hybrid slider-plus-input controls.
+
+Reason:
+
+- Exact financial entry is a usability requirement, especially on mobile, and the current slider-only pattern is too coarse for several routes.
+
+Impact:
+
+- Route source HTML, CSS, and JS may introduce companion precise entry fields while preserving button-only calculation behavior.
+
+---
+
+## D-014
+
+Decision:
+
+- Shared interaction polish in this pass may be centralized in a Home Loan-owned helper file rather than duplicated route-by-route.
+
+Reason:
+
+- Result reveal, focus, and value-sync behavior should stay consistent across the cluster.
+
+Impact:
+
+- A new cluster-owned shared JS helper under `public/calculators/loan-calculators/shared/` is allowed in this pass.

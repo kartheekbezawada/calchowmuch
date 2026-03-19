@@ -269,6 +269,496 @@ Closeout notes:
 
 ---
 
+## 2026-03-19 — Enhancement Route 8 Complete — `personal-loan`
+
+Status:
+
+- completed
+- personal-loan now matches the cluster precision-entry and result-reveal contract
+
+Files touched:
+
+- `public/calculators/loan-calculators/personal-loan-calculator/index.html`
+- `public/calculators/loan-calculators/personal-loan-calculator/calculator.css`
+- `public/calculators/loan-calculators/personal-loan-calculator/module.js`
+- `public/loan-calculators/personal-loan-calculator/index.html`
+- `tests_specs/loans/personal-loan_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for loan amount, APR, and loan term so the route is no longer slider-only for its primary decisions.
+- Removed pre-click recomputation from slider and precision edits while keeping the initial baseline calculation on load.
+- Kept advanced fee and extra-payment inputs explicit behind the existing disclosure instead of adding more first-screen noise.
+- Added an answer note under the primary payment card so the route explains the baseline payoff case separately from the extra-payment case.
+- Added deliberate mobile result reveal and focus behavior for the personal-loan summary panel.
+- Expanded the personal-loan E2E suite to cover precision-entry sync, button-only recalculation, reset-state sync, and mobile result reveal.
+- Ran the grouped Playwright route pass to validate design-facing behavior in addition to the standard release gates.
+
+Evidence:
+
+- Grouped Playwright summary: `test-results/playwright/calc/loans/personal-loan/2026-03-19T20-08-05-100Z/playwright-all.summary.json`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/personal-loan.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/personal-loan.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/personal-loan-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:calc:unit` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:schema:dedupe -- --scope=calc` — pass
+- `CLUSTER=loans CALC=personal-loan npm run test:calc:playwright` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring remains `warn`, not `fail`, for the personal-loan route in this enhancement pass.
+- The route now keeps loan sizing and APR edits calm and explicit by waiting for the Calculate CTA before recomputing the answer state.
+
+---
+
+## 2026-03-19 — Final Enhancement Verification Complete
+
+Status:
+
+- completed
+- Home Loan enhancement rollout is fully verified and signed off
+
+What changed:
+
+- Re-ran final cluster verification after route 8 closed: `npm run lint`, `npm run test:cluster:contracts`, `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope`, and `npm run test:iss001`.
+- Confirmed the enhancement ledger now shows all 8 routes complete with precision-entry, result-reveal, and design-QA status marked `Pass`.
+- Created the enhancement release sign-off for the completed Home Loan refinement pass.
+
+Evidence:
+
+- Action ledger: `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- Enhancement sign-off: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_REL-20260319-HOME-LOAN-ENHANCEMENT.md`
+- Layout stability gate: `tests_specs/infrastructure/e2e/iss-design-001.spec.js`
+
+Test results:
+
+- `npm run lint` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+- `npm run test:iss001` — pass
+
+Notes:
+
+- The enhancement rollout finishes with 8 completed route passes, 8 route-level CWV artifacts, 5 grouped Playwright summaries, 6 desktop/mobile screenshot proofs, and a final enhancement sign-off.
+- Remaining non-blocking warnings are limited to the four thin-content `warn` artifacts already recorded in the sign-off.
+
+---
+
+## 2026-03-19 — Enhancement Pass Start
+
+Status:
+
+- scope approved
+- enhancement plan logged
+- implementation not started yet at this entry
+
+Enhancement priorities:
+
+1. result reveal after calculate
+2. precision entry for slider-heavy routes
+3. mobile first-screen density
+4. answer-first hierarchy and related-next-step consistency
+5. table/graph heaviness reduction where needed
+
+Execution order:
+
+1. `how-much-can-i-borrow`
+2. `home-loan`
+3. `remortgage-switching`
+4. `offset-calculator`
+5. `interest-rate-change-calculator`
+6. `loan-to-value`
+7. `buy-to-let`
+8. `personal-loan`
+
+---
+
+## 2026-03-19 — Enhancement Route 1 Complete — `how-much-can-i-borrow`
+
+Status:
+
+- completed
+- first enhancement route now sets the cluster pattern for precision entry and result reveal
+
+Files touched:
+
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/DECISION_LOG.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/DESIGN_SYSTEM.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+- `public/calculators/loan-calculators/shared/cluster-ux.js`
+- `public/calculators/loan-calculators/how-much-can-i-borrow/index.html`
+- `public/calculators/loan-calculators/how-much-can-i-borrow/calculator.css`
+- `public/calculators/loan-calculators/how-much-can-i-borrow/module.js`
+- `public/loan-calculators/how-much-can-i-borrow/index.html`
+- `tests_specs/loans/how-much-can-i-borrow_release/e2e.calc.spec.js`
+
+What changed:
+
+- Logged the enhancement pass in the existing Home Loan redesign ledger before implementation.
+- Added a shared Home Loan interaction helper for range-fill, precision-input sync, and mobile result reveal.
+- Added companion precise text inputs for the route’s core slider values.
+- Moved deposit, rate, and term into a calmer `Loan assumptions` disclosure block to reduce first-screen depth.
+- Kept the explicit Calculate CTA and removed pre-click recomputation from slider/precision edits.
+- Added a clearer result summary note and focused mobile reveal behavior after calculate.
+- Expanded route E2E coverage to lock the new precision-entry and mobile-reveal behavior.
+
+Evidence:
+
+- Enhancement desktop: `test-results/visual/home-loan-enhancement/how-much-can-i-borrow/desktop.png`
+- Enhancement mobile: `test-results/visual/home-loan-enhancement/how-much-can-i-borrow/mobile.png`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/how-much-can-i-borrow.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/how-much-can-i-borrow.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/how-much-can-i-borrow/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:unit` — pass
+- `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=how-much-can-i-borrow npm run test:schema:dedupe -- --scope=calc` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+- `npm run test:iss001` — pass
+
+Notes:
+
+- The route now conforms to the button-only calculation rule for post-load edits while preserving the initial baseline calculation on load.
+- Mobile result reveal is now explicit and test-covered instead of relying on the user to scroll to the answer.
+
+---
+
+## 2026-03-19 — Enhancement Route 2 Complete — `home-loan`
+
+Status:
+
+- completed
+- flagship mortgage route now matches the enhancement contract set by the first route
+
+Files touched:
+
+- `public/calculators/loan-calculators/mortgage-calculator/index.html`
+- `public/calculators/loan-calculators/mortgage-calculator/calculator.css`
+- `public/calculators/loan-calculators/mortgage-calculator/module.js`
+- `public/loan-calculators/mortgage-calculator/index.html`
+- `tests_specs/loans/home-loan_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for price, down payment, term, and rate.
+- Removed pre-click recalculation from the down-payment type toggle while keeping the initial baseline calculation on load.
+- Added a clearer result note under the monthly payment card.
+- Added deliberate mobile result reveal and focus behavior after calculate.
+- Expanded the mortgage E2E suite to lock the new precision-entry and result-reveal behavior.
+
+Evidence:
+
+- Enhancement desktop: `test-results/visual/home-loan-enhancement/home-loan/desktop.png`
+- Enhancement mobile: `test-results/visual/home-loan-enhancement/home-loan/mobile.png`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/home-loan.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/home-loan.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/mortgage-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `CLUSTER=loans CALC=home-loan npm run test:calc:unit` — pass
+- `CLUSTER=loans CALC=home-loan npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=home-loan npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=home-loan npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=home-loan npm run test:schema:dedupe -- --scope=calc` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring remains `warn`, not `fail`, for mortgage.
+- The mortgage route now shares the same precision/reveal interaction language as `how-much-can-i-borrow`.
+
+---
+
+## 2026-03-19 — Enhancement Route 3 Complete — `remortgage-switching`
+
+Status:
+
+- completed
+- remortgage route now follows the same precision-entry and result-reveal contract as the first two routes
+
+Files touched:
+
+- `public/calculators/loan-calculators/remortgage-calculator/index.html`
+- `public/calculators/loan-calculators/remortgage-calculator/calculator.css`
+- `public/calculators/loan-calculators/remortgage-calculator/module.js`
+- `public/loan-calculators/remortgage-calculator/index.html`
+- `tests_specs/loans/remortgage-switching_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for the current balance, current/new rates, current/new terms, and horizon slider.
+- Removed pre-click recomputation from slider/precision edits while keeping the initial baseline calculation on load.
+- Added deliberate mobile result reveal for the switching summary card.
+- Expanded the remortgage E2E suite to cover the new precision-entry and mobile-reveal behavior.
+
+Evidence:
+
+- Enhancement desktop: `test-results/visual/home-loan-enhancement/remortgage-switching/desktop.png`
+- Enhancement mobile: `test-results/visual/home-loan-enhancement/remortgage-switching/mobile.png`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/remortgage-switching.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/remortgage-switching.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/remortgage-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `CLUSTER=loans CALC=remortgage-switching npm run test:calc:unit` — skipped by existing route suite
+- `CLUSTER=loans CALC=remortgage-switching npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=remortgage-switching npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=remortgage-switching npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=remortgage-switching npm run test:schema:dedupe -- --scope=calc` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring remains `warn`, not `fail`, for remortgage.
+- The route no longer recomputes during slider movement; users now control recalculation explicitly through the CTA.
+
+---
+
+## 2026-03-19 — Enhancement Route 4 Complete — `offset-calculator`
+
+Status:
+
+- completed
+- offset route now matches the cluster precision-entry and result-reveal contract
+
+Files touched:
+
+- `public/calculators/loan-calculators/offset-mortgage-calculator/index.html`
+- `public/calculators/loan-calculators/offset-mortgage-calculator/calculator.css`
+- `public/calculators/loan-calculators/offset-mortgage-calculator/module.js`
+- `public/loan-calculators/offset-mortgage-calculator/index.html`
+- `tests_specs/loans/offset-calculator_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for mortgage balance, rate, term, offset savings, and monthly offset contribution.
+- Removed pre-click recomputation from slider/precision edits and from the offset-mode toggle while keeping the initial baseline calculation on load.
+- Added an answer note under the primary payment card so the page explains the offset effect in plain language.
+- Added deliberate mobile result reveal and focus behavior for the offset summary card.
+- Expanded the offset E2E suite to cover precision-entry sync, button-only recalculation, and mobile result reveal.
+- Ran the grouped Playwright route pass to validate design-facing behavior in addition to the standard release gates.
+
+Evidence:
+
+- Grouped Playwright summary: `test-results/playwright/calc/loans/offset-calculator/2026-03-19T18-56-13-376Z/playwright-all.summary.json`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/offset-calculator.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/offset-calculator.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/offset-mortgage-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=offset-calculator npm run test:calc:unit` — skipped by existing route suite
+- `CLUSTER=loans CALC=offset-calculator npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=offset-calculator npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=offset-calculator npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=offset-calculator npm run test:schema:dedupe -- --scope=calc` — pass
+- `CLUSTER=loans CALC=offset-calculator npm run test:calc:playwright` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring passed for the offset route in this enhancement pass.
+- The route now requires an explicit Calculate action after edits, including offset-mode changes, which keeps the first-screen experience calmer and more predictable.
+
+---
+
+## 2026-03-19 — Enhancement Route 5 Complete — `interest-rate-change-calculator`
+
+Status:
+
+- completed
+- rate-change route now matches the cluster precision-entry and result-reveal contract
+
+Files touched:
+
+- `public/calculators/loan-calculators/interest-rate-change-calculator/index.html`
+- `public/calculators/loan-calculators/interest-rate-change-calculator/calculator.css`
+- `public/calculators/loan-calculators/interest-rate-change-calculator/module.js`
+- `public/loan-calculators/interest-rate-change-calculator/index.html`
+- `tests_specs/loans/interest-rate-change-calculator_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for loan balance, current rate, new rate, remaining term, and delayed change timing.
+- Removed pre-click recomputation from slider/precision edits and from the rate-change timing toggle while keeping the initial baseline calculation on load.
+- Added an answer note under the primary payment card so the route explains monthly and lifetime-interest impact in plain language.
+- Added deliberate mobile result reveal and focus behavior for the updated payment summary.
+- Expanded the rate-change E2E suite to cover precision-entry sync, button-only recalculation, and mobile result reveal.
+- Ran the grouped Playwright route pass to validate design-facing behavior in addition to the standard release gates.
+
+Evidence:
+
+- Grouped Playwright summary: `test-results/playwright/calc/loans/interest-rate-change-calculator/2026-03-19T19-13-17-634Z/playwright-all.summary.json`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/interest-rate-change-calculator.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/interest-rate-change-calculator.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/interest-rate-change-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:unit` — skipped by existing route suite
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:schema:dedupe -- --scope=calc` — pass
+- `CLUSTER=loans CALC=interest-rate-change-calculator npm run test:calc:playwright` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring passed for the rate-change route in this enhancement pass.
+- The route now keeps timing changes and precision edits calm and explicit by waiting for the Calculate CTA before recomputing.
+
+---
+
+## 2026-03-19 — Enhancement Route 6 Complete — `loan-to-value`
+
+Status:
+
+- completed
+- LTV route now matches the cluster precision-entry and result-reveal contract
+
+Files touched:
+
+- `public/calculators/loan-calculators/ltv-calculator/index.html`
+- `public/calculators/loan-calculators/ltv-calculator/calculator.css`
+- `public/calculators/loan-calculators/ltv-calculator/module.js`
+- `public/loan-calculators/ltv-calculator/index.html`
+- `tests_specs/loans/loan-to-value_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for property value, loan amount, deposit amount, and deposit percent.
+- Removed pre-click recomputation from slider/precision edits and from both LTV mode toggles while keeping the initial baseline calculation on load.
+- Removed the old debounced auto-calc path so the route now waits for the Calculate CTA after post-load edits.
+- Added an answer note under the primary LTV card so the route explains deposit/equity coverage in plain language.
+- Added deliberate mobile result reveal and focus behavior for the LTV snapshot.
+- Expanded the LTV E2E suite to cover precision-entry sync, button-only recalculation, and mobile result reveal.
+- Ran the grouped Playwright route pass to validate design-facing behavior in addition to the standard release gates.
+
+Evidence:
+
+- Grouped Playwright summary: `test-results/playwright/calc/loans/loan-to-value/2026-03-19T19-29-47-862Z/playwright-all.summary.json`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/loan-to-value.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/loan-to-value.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/ltv-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=loan-to-value npm run test:calc:unit` — skipped by existing route suite
+- `CLUSTER=loans CALC=loan-to-value npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=loan-to-value npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=loan-to-value npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=loan-to-value npm run test:schema:dedupe -- --scope=calc` — pass
+- `CLUSTER=loans CALC=loan-to-value npm run test:calc:playwright` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring passed for the LTV route in this enhancement pass.
+- The route now keeps loan/deposit mode changes calm and explicit by waiting for the Calculate CTA before recomputing the band and risk state.
+
+---
+
+## 2026-03-19 — Enhancement Route 7 Complete — `buy-to-let`
+
+Status:
+
+- completed
+- buy-to-let route now matches the cluster precision-entry and result-reveal contract
+
+Files touched:
+
+- `public/calculators/loan-calculators/buy-to-let-mortgage-calculator/index.html`
+- `public/calculators/loan-calculators/buy-to-let-mortgage-calculator/calculator.css`
+- `public/calculators/loan-calculators/buy-to-let-mortgage-calculator/module.js`
+- `public/loan-calculators/buy-to-let-mortgage-calculator/index.html`
+- `tests_specs/loans/buy-to-let_release/e2e.calc.spec.js`
+- `requirements/universal-rules/home-loan-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/home-loan-cluster-redesign/EXECUTION_LOG.md`
+
+What changed:
+
+- Added precise companion inputs for property price, monthly rent, deposit amount, deposit percent, interest rate, and term.
+- Removed pre-click recomputation from slider/precision edits and from deposit, mortgage, vacancy, and rent-increase toggle groups while keeping the initial baseline calculation on load.
+- Removed the old debounced auto-calc path so the route now waits for the Calculate CTA after post-load edits.
+- Added an answer note under the primary cashflow card so the route explains direction and stress coverage in plain language.
+- Added deliberate mobile result reveal and focus behavior for the buy-to-let result panel.
+- Expanded the buy-to-let E2E suite to cover precision-entry sync and mobile result reveal.
+- Ran the grouped Playwright route pass to validate design-facing behavior in addition to the standard release gates.
+
+Evidence:
+
+- Grouped Playwright summary: `test-results/playwright/calc/loans/buy-to-let/2026-03-19T19-48-11-591Z/playwright-all.summary.json`
+- Scoped CWV artifact: `test-results/performance/scoped-cwv/loans/buy-to-let.json`
+- Thin-content artifact: `test-results/content-quality/scoped/loans/buy-to-let.json`
+- Schema dedupe reports: `schema_duplicates_report.md`, `schema_duplicates_report.csv`
+
+Test results:
+
+- `TARGET_ROUTE=/loan-calculators/buy-to-let-mortgage-calculator/ node scripts/generate-mpa-pages.js` — pass
+- `npm run lint` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:calc:unit` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:calc:e2e` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:calc:seo` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:calc:cwv` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:schema:dedupe -- --scope=calc` — pass
+- `CLUSTER=loans CALC=buy-to-let npm run test:calc:playwright` — pass
+- `npm run test:cluster:contracts` — pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` — pass
+
+Notes:
+
+- Thin-content scoring remains `warn`, not `fail`, for the buy-to-let route in this enhancement pass.
+- The route now keeps deposit/mortgage strategy changes calm and explicit by waiting for the Calculate CTA before recomputing the cashflow outcome.
+
+---
+
 ## 2026-03-19 — Route 7 Complete — `buy-to-let`
 
 Status:

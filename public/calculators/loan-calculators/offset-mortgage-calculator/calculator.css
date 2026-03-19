@@ -21,6 +21,41 @@ body[data-design-family='home-loan'] #calc-offset-calculator .mtg-form-panel > *
   position: relative;
 }
 
+body[data-design-family='home-loan'] #calc-offset-calculator .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body[data-design-family='home-loan'] #calc-offset-calculator .slider-precision-label {
+  color: var(--hl-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] #calc-offset-calculator .slider-precision-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 179, 206, 0.4);
+  border-radius: 14px;
+  background: rgba(248, 251, 255, 0.92);
+  color: var(--hl-text);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='home-loan'] #calc-offset-calculator .slider-precision-input:focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan'] #calc-offset-calculator .mtg-action-row {
+  margin-top: 12px;
+}
+
 body[data-design-family='home-loan'] #calc-offset-calculator .mtg-action-row .calculator-button {
   min-height: 50px;
 }
@@ -85,6 +120,16 @@ body[data-design-family='home-loan'] #calc-offset-calculator .mtg-summary-card {
 
 body[data-design-family='home-loan'] #calc-offset-calculator .mtg-summary-card p {
   margin: 0;
+}
+
+body[data-design-family='home-loan'] #calc-offset-calculator .mtg-result-note {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(239, 245, 255, 0.88);
+  color: #304056;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 body[data-design-family='home-loan'] #calc-offset-calculator .mtg-result-card strong {
@@ -307,6 +352,18 @@ body[data-design-family='home-loan'] #loan-offset-explanation .off-notes-list li
 }
 
 @media (max-width: 720px) {
+  body[data-design-family='home-loan'] #calc-offset-calculator .mtg-action-row {
+    position: sticky;
+    bottom: 10px;
+    z-index: 3;
+    padding: 12px;
+    margin-inline: -2px;
+    border: 1px solid rgba(219, 229, 243, 0.94);
+    border-radius: 20px;
+    background: rgba(251, 253, 255, 0.94);
+    backdrop-filter: blur(12px);
+  }
+
   body[data-design-family='home-loan'] #calc-offset-calculator .mtg-snapshot-list,
   body[data-design-family='home-loan'] #loan-offset-explanation .mtg-lifetime-grid {
     grid-template-columns: minmax(0, 1fr);

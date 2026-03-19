@@ -38,6 +38,37 @@ body[data-design-family='home-loan'] #calc-home-loan .down-combined-left .calcul
   min-width: 120px;
 }
 
+body[data-design-family='home-loan'] #calc-home-loan .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+body[data-design-family='home-loan'] #calc-home-loan .slider-precision-label {
+  color: var(--hl-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] #calc-home-loan .slider-precision-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(160, 179, 206, 0.4);
+  border-radius: 14px;
+  background: rgba(248, 251, 255, 0.92);
+  color: var(--hl-text);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='home-loan'] #calc-home-loan .slider-precision-input:focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
 body[data-design-family='home-loan'] #calc-home-loan .advanced-summary-title {
   color: var(--hl-text);
   font-size: 14px;
@@ -124,6 +155,13 @@ body[data-design-family='home-loan'] #calc-home-loan .mtg-result-card strong {
   font-size: 13px;
   font-weight: 700;
   line-height: 1.45;
+}
+
+body[data-design-family='home-loan'] #calc-home-loan .mtg-result-note {
+  margin: 0;
+  color: var(--hl-muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 body[data-design-family='home-loan'] #calc-home-loan .mtg-result-value {
@@ -438,6 +476,18 @@ body[data-design-family='home-loan'] #loan-mtg-explanation .mtg-trust-list stron
   body[data-design-family='home-loan'] #calc-home-loan .down-combined-left .button-group {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-design-family='home-loan'] #calc-home-loan .mtg-action-row {
+    position: sticky;
+    bottom: 10px;
+    z-index: 3;
+    padding: 12px;
+    margin-inline: -2px;
+    border: 1px solid rgba(219, 229, 243, 0.94);
+    border-radius: 20px;
+    background: rgba(251, 253, 255, 0.94);
+    backdrop-filter: blur(12px);
   }
 
   body[data-design-family='home-loan'] #calc-home-loan .mtg-snapshot-list,

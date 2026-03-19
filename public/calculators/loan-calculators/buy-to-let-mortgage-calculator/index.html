@@ -13,6 +13,17 @@
             <span class="slider-value" id="btl-price-display">250,000</span>
           </div>
           <input id="btl-price" type="range" value="250000" min="50000" max="2000000" step="5000" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="btl-price-field">Exact property price</label>
+            <input
+              class="slider-precision-input"
+              id="btl-price-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="250000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -21,6 +32,17 @@
             <span class="slider-value" id="btl-rent-display">1,400</span>
           </div>
           <input id="btl-rent" type="range" value="1400" min="200" max="10000" step="50" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="btl-rent-field">Exact monthly rent</label>
+            <input
+              class="slider-precision-input"
+              id="btl-rent-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="1400"
+            />
+          </div>
         </div>
 
         <div class="input-row">
@@ -64,6 +86,17 @@
               max="250000"
               step="1000"
             />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="btl-deposit-amount-field">Exact deposit amount</label>
+              <input
+                class="slider-precision-input"
+                id="btl-deposit-amount-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="50000"
+              />
+            </div>
           </div>
 
           <div class="input-row slider-row is-hidden" id="btl-deposit-percent-row">
@@ -72,6 +105,17 @@
               <span class="slider-value" id="btl-deposit-percent-display">20.0%</span>
             </div>
             <input id="btl-deposit-percent" type="range" value="20" min="0" max="99.9" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="btl-deposit-percent-field">Exact deposit percent</label>
+              <input
+                class="slider-precision-input"
+                id="btl-deposit-percent-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="20.0"
+              />
+            </div>
           </div>
         </div>
 
@@ -81,6 +125,17 @@
             <span class="slider-value" id="btl-rate-display">5.5%</span>
           </div>
           <input id="btl-rate" type="range" value="5.5" min="0.5" max="15" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="btl-rate-field">Exact interest rate</label>
+            <input
+              class="slider-precision-input"
+              id="btl-rate-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="5.5"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -89,6 +144,17 @@
             <span class="slider-value" id="btl-term-display">25 yrs</span>
           </div>
           <input id="btl-term" type="range" value="25" min="1" max="40" step="1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="btl-term-field">Exact loan term in years</label>
+            <input
+              class="slider-precision-input"
+              id="btl-term-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="25"
+            />
+          </div>
         </div>
 
         <div class="input-row">
@@ -319,12 +385,15 @@
         </div>
       </div>
 
-      <aside class="btl-preview-panel" aria-label="Buy-to-let results">
+      <aside class="btl-preview-panel" id="btl-results" aria-label="Buy-to-let results">
         <div class="btl-preview-main">
           <p class="btl-preview-label">Estimated Net Monthly Cashflow</p>
           <div class="result btl-result-card" id="btl-result" aria-live="polite">
             <span class="btl-hero-value">80.33</span>
           </div>
+          <p class="btl-result-note" id="btl-result-note" aria-live="polite">
+            Positive cashflow means rent covers mortgage and operating costs with money left over each month.
+          </p>
         </div>
 
         <div class="btl-key-metrics" id="btl-key-metrics" aria-live="polite">

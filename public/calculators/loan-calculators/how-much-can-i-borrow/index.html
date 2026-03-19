@@ -7,33 +7,32 @@
         </p>
 
         <section class="borrow-section" aria-label="Income and outgoings inputs">
-          <!-- Row 1: Income & Deposit -->
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-gross-income">Gross Annual Income</label>
-                <span class="slider-value" id="bor-gross-income-display">90,000</span>
-              </div>
-              <input
-                id="bor-gross-income"
-                type="range"
-                value="90000"
-                min="0"
-                max="500000"
-                step="1000"
-              />
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="bor-gross-income">Gross Annual Income</label>
+              <span class="slider-value" id="bor-gross-income-display">90,000</span>
             </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-deposit">Deposit Amount</label>
-                <span class="slider-value" id="bor-deposit-display">0</span>
-              </div>
-              <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
+            <input
+              id="bor-gross-income"
+              type="range"
+              value="90000"
+              min="0"
+              max="500000"
+              step="1000"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="bor-gross-income-field">Exact annual income</label>
+              <input
+                class="slider-precision-input"
+                id="bor-gross-income-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="90000"
+              />
             </div>
           </div>
 
-          <!-- Row 2: Expenses & Debts -->
           <div class="input-grid-2-col">
             <div class="input-row slider-row">
               <div class="slider-header">
@@ -41,6 +40,17 @@
                 <span class="slider-value" id="bor-expenses-display">1,200</span>
               </div>
               <input id="bor-expenses" type="range" value="1200" min="0" max="15000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="bor-expenses-field">Exact monthly expenses</label>
+                <input
+                  class="slider-precision-input"
+                  id="bor-expenses-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="1200"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -49,6 +59,17 @@
                 <span class="slider-value" id="bor-debts-display">300</span>
               </div>
               <input id="bor-debts" type="range" value="300" min="0" max="15000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="bor-debts-field">Exact monthly debt payments</label>
+                <input
+                  class="slider-precision-input"
+                  id="bor-debts-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="300"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -72,26 +93,85 @@
               <span class="slider-value" id="bor-multiple-display">4.5x</span>
             </div>
             <input id="bor-multiple" type="range" value="4.5" min="2.5" max="7.0" step="0.1" />
-          </div>
-
-          <!-- Row 3: Rate & Term -->
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-rate">Interest Rate (APR %)</label>
-                <span class="slider-value" id="bor-rate-display">6.50%</span>
-              </div>
-              <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
-            </div>
-
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="bor-term">Loan Term (years)</label>
-                <span class="slider-value" id="bor-term-display">25 yrs</span>
-              </div>
-              <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="bor-multiple-field">Exact income multiple</label>
+              <input
+                class="slider-precision-input"
+                id="bor-multiple-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="4.5"
+              />
             </div>
           </div>
+
+          <details class="advanced-options borrow-assumptions" id="bor-assumptions">
+            <summary>
+              <span>Loan assumptions</span>
+              <span class="helper">Deposit, rate, and term</span>
+            </summary>
+            <div class="advanced-stack">
+              <div class="input-row slider-row">
+                <div class="slider-header">
+                  <label for="bor-deposit">Deposit Amount</label>
+                  <span class="slider-value" id="bor-deposit-display">0</span>
+                </div>
+                <input id="bor-deposit" type="range" value="0" min="0" max="1000000" step="1000" />
+                <div class="slider-precision-row">
+                  <label class="slider-precision-label" for="bor-deposit-field">Exact deposit amount</label>
+                  <input
+                    class="slider-precision-input"
+                    id="bor-deposit-field"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="12"
+                    value="0"
+                  />
+                </div>
+              </div>
+
+              <div class="input-grid-2-col">
+                <div class="input-row slider-row">
+                  <div class="slider-header">
+                    <label for="bor-rate">Interest Rate (APR %)</label>
+                    <span class="slider-value" id="bor-rate-display">6.50%</span>
+                  </div>
+                  <input id="bor-rate" type="range" value="6.5" min="0.1" max="20" step="0.1" />
+                  <div class="slider-precision-row">
+                    <label class="slider-precision-label" for="bor-rate-field">Exact APR percent</label>
+                    <input
+                      class="slider-precision-input"
+                      id="bor-rate-field"
+                      type="text"
+                      inputmode="decimal"
+                      maxlength="12"
+                      value="6.5"
+                    />
+                  </div>
+                </div>
+
+                <div class="input-row slider-row">
+                  <div class="slider-header">
+                    <label for="bor-term">Loan Term (years)</label>
+                    <span class="slider-value" id="bor-term-display">25 yrs</span>
+                  </div>
+                  <input id="bor-term" type="range" value="25" min="1" max="40" step="1" />
+                  <div class="slider-precision-row">
+                    <label class="slider-precision-label" for="bor-term-field">Exact loan term in years</label>
+                    <input
+                      class="slider-precision-input"
+                      id="bor-term-field"
+                      type="text"
+                      inputmode="numeric"
+                      maxlength="12"
+                      value="25"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
 
           <!-- Hidden input for logic compatibility -->
           <input type="hidden" id="bor-net-income" value="0" />
@@ -115,7 +195,7 @@
         </div>
       </div>
 
-      <aside class="borrow-result-dashboard" aria-label="Borrowing capacity results">
+      <aside class="borrow-result-dashboard" id="bor-results" aria-label="Borrowing capacity results">
         <p class="borrow-dashboard-label">Your Borrowing Capacity</p>
 
         <div class="borrow-metric-grid">
@@ -148,6 +228,9 @@
         <div class="borrow-constraint-tag" id="bor-constraint" aria-live="polite">
           Limit determined by monthly budget (affordability)
         </div>
+        <p class="borrow-summary-note" id="bor-summary-note" aria-live="polite">
+          Based on the current assumptions, this gives you a starting property budget and monthly payment check.
+        </p>
         <div class="borrow-error" id="bor-error" aria-live="polite"></div>
       </aside>
     </section>

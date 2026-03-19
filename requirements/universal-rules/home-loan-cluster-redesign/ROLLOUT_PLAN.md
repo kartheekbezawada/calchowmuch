@@ -85,3 +85,58 @@ The rollout is complete only when:
 - logs are current and complete
 - final release verification passes
 - release sign-off is created
+
+---
+
+## 2026-03-19 Enhancement Pass
+
+Status:
+
+- approved for execution after the initial redesign release
+- scope remains the same 8 Home Loan routes
+
+## Enhancement Objective
+
+Refine the shipped Home Loan cluster so the experience feels lighter, faster, and more precise for real customers, especially on mobile.
+
+Primary enhancement outcomes:
+
+- bring the main calculate action back into the first-screen flow on mobile where possible
+- reveal and focus the result summary more intentionally after calculate
+- improve precise value entry for slider-heavy routes
+- reduce table-first heaviness on the densest routes
+- normalize explanation rhythm, related-next-step patterns, and answer-first hierarchy
+
+## Enhancement Execution Sequence
+
+Route order:
+
+1. `how-much-can-i-borrow`
+2. `home-loan`
+3. `remortgage-switching`
+4. `offset-calculator`
+5. `interest-rate-change-calculator`
+6. `loan-to-value`
+7. `buy-to-let`
+8. `personal-loan`
+
+For each route in this pass:
+
+- log baseline enhancement issues and target outcome
+- implement mobile result-reveal polish
+- implement precision-input improvements if the route is slider-heavy
+- tighten first-screen density and progressive disclosure
+- improve result summary hierarchy and related-next-step clarity
+- regenerate the route
+- run scoped release gates
+- update the execution log and action page
+
+## Enhancement Acceptance Criteria
+
+- calculate CTA remains easy to reach on mobile
+- result reveal feels deliberate after calculate
+- touched routes do not rely on slider-only precision for key money/rate values
+- no new page-level overflow is introduced
+- tables and graphs still satisfy the universal contract
+- FAQ, notes, and related sections remain SEO/schema safe
+- route-by-route gates pass before the next calculator begins

@@ -10,6 +10,11 @@ import {
   aggregateYearly,
   buildMonthlySeries,
 } from '/assets/js/core/home-loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 import { createMortgageBalanceChart } from '/calculators/loan-calculators/mortgage-calculator/mortgage-balance-chart.js?v=20260224';
 
 const priceInput = document.querySelector('#mtg-price');
@@ -25,10 +30,17 @@ const lumpInput = document.querySelector('#mtg-lump');
 const lumpMonthInput = document.querySelector('#mtg-lump-month');
 const calculateButton = document.querySelector('#mtg-calculate');
 const resultDiv = document.querySelector('#mtg-result');
+const previewPanel = document.querySelector('#mtg-preview');
+const resultNote = document.querySelector('#mtg-result-note');
 
 const downTypeGroup = document.querySelector('[data-button-group="mtg-down-type"]');
 const viewMonthlyButton = document.querySelector('#mtg-view-monthly');
 const viewYearlyButton = document.querySelector('#mtg-view-yearly');
+
+const priceField = document.querySelector('#mtg-price-field');
+const downValueField = document.querySelector('#mtg-down-value-field');
+const termField = document.querySelector('#mtg-term-field');
+const rateField = document.querySelector('#mtg-rate-field');
 
 const priceValue = document.querySelector('[data-mtg="price"]');
 const downPaymentValue = document.querySelector('[data-mtg="down-payment"]');
@@ -68,18 +80,23 @@ const downTypeButtons = setupButtonGroup(downTypeGroup, {
   defaultValue: 'amount',
   onChange: (value) => {
     handleDownTypeChange(value);
-    calculate();
   },
 });
 
 let lastDownType = downTypeButtons?.getValue() ?? 'amount';
 let currentData = null;
 let scheduleView = 'monthly';
+let downValueBinding = null;
 const balanceChart = createMortgageBalanceChart({
   canvas: balanceChartCanvas,
   tooltip: balanceChartTooltip,
   status: balanceChartStatus,
 });
+
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
 
 function handleDownTypeChange(type) {
   const price = Number(priceInput?.value);
@@ -117,6 +134,7 @@ function handleDownTypeChange(type) {
 
   lastDownType = type;
   updateSliderDisplays();
+  downValueBinding?.syncFromRange();
 }
 
 function formatMoney(value) {
@@ -324,13 +342,18 @@ function setError(message) {
   if (resultDiv) {
     resultDiv.textContent = message;
   }
+  if (resultNote) {
+    resultNote.textContent =
+      'Adjust the price, deposit, or loan settings, then calculate again to rebuild the payment plan.';
+  }
   clearOutputs();
   clearChartKpis();
   renderBalanceChart(null);
   currentData = null;
 }
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
   if (!resultDiv) {
     return;
   }
@@ -341,6 +364,9 @@ function calculate() {
   const price = Number(priceInput?.value);
   if (!Number.isFinite(price) || price <= 0) {
     setError('Please enter a valid home price greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -353,6 +379,9 @@ function calculate() {
   if (downType === 'percent') {
     if (!Number.isFinite(downInputValue) || downInputValue < 0 || downInputValue >= 100) {
       setError('Down payment percent must be between 0 and 100.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
     downPercent = downInputValue;
@@ -360,18 +389,27 @@ function calculate() {
   } else {
     if (!Number.isFinite(downInputValue) || downInputValue < 0) {
       setError('Down payment amount must be 0 or more.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
     downAmount = downInputValue;
     downPercent = price > 0 ? (downAmount / price) * 100 : 0;
     if (downPercent >= 100) {
       setError('Down payment must be less than the home price.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
   }
 
   if (downAmount >= price) {
     setError('Down payment must be less than the home price.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -383,48 +421,72 @@ function calculate() {
   const principal = price - downAmount;
   if (principal <= 0) {
     setError('Loan amount must be greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const years = Number(termInput?.value);
   if (!Number.isFinite(years) || years < 1) {
     setError('Loan term must be at least 1 year.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const annualRate = Number(rateInput?.value);
   if (!Number.isFinite(annualRate) || annualRate < 0) {
     setError('Interest rate must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const taxAnnual = Number(taxInput?.value);
   if (!Number.isFinite(taxAnnual) || taxAnnual < 0) {
     setError('Property tax must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const insuranceAnnual = Number(insuranceInput?.value);
   if (!Number.isFinite(insuranceAnnual) || insuranceAnnual < 0) {
     setError('Home insurance must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const extraMonthly = Number(extraInput?.value);
   if (!Number.isFinite(extraMonthly) || extraMonthly < 0) {
     setError('Extra monthly payment must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const lumpSum = Number(lumpInput?.value);
   if (!Number.isFinite(lumpSum) || lumpSum < 0) {
     setError('Lump sum payment must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
   const months = Math.round(years * 12);
   if (!Number.isFinite(months) || months < 1) {
     setError('Loan term must be at least 1 year.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -433,10 +495,16 @@ function calculate() {
     const lumpMonthValue = Number(lumpMonthInput?.value);
     if (!Number.isFinite(lumpMonthValue) || lumpMonthValue < 1) {
       setError('Lump sum month must be at least 1.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
     if (lumpMonthValue > months) {
       setError('Lump sum month must be within the loan term.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+      }
       return;
     }
     lumpSumMonth = Math.round(lumpMonthValue);
@@ -446,6 +514,9 @@ function calculate() {
   const payment = computeMonthlyPayment(principal, annualRate, months);
   if (!Number.isFinite(payment) || payment <= 0) {
     setError('Unable to compute payment with the current inputs.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: previewPanel, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -515,30 +586,34 @@ function calculate() {
     });
   }
 
+  if (resultNote) {
+    if (extraMonthly > 0 || lumpSum > 0) {
+      resultNote.textContent = `With the current overpayment plan, payoff shortens to ${formatExplanationNumber(
+        overpayment.months
+      )} months and interest savings reach ${formatMoney(interestSaved)}.`;
+    } else {
+      resultNote.textContent = `This baseline monthly payment excludes taxes and insurance. Add optional extras to compare a faster payoff path.`;
+    }
+  }
+
   scheduleView = 'monthly';
   renderMonthlyTable(overpayment.schedule, startDate);
   renderYearlyTable(yearlyOver);
   updateExplanation(currentData);
   applyView(scheduleView);
+  if (shouldReveal) {
+    revealResultPanel({ resultPanel: previewPanel, focusTarget: resultValue || resultDiv });
+  }
 }
 
 handleDownTypeChange(lastDownType);
-
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') return;
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const val = parseFloat(input.value) || 0;
-  const pct = ((val - min) / (max - min)) * 100;
-  input.style.setProperty('--fill', `${pct}%`);
-}
 
 function updateSliderDisplays() {
   if (priceInput && priceDisplay) {
     priceDisplay.textContent = formatNumber(Number(priceInput.value), {
       maximumFractionDigits: 0,
     });
-    updateSliderFill(priceInput);
+    updateRangeFill(priceInput);
   }
   if (downValueInput && downDisplay) {
     const downType = downTypeButtons?.getValue() ?? 'amount';
@@ -549,26 +624,56 @@ function updateSliderDisplays() {
         maximumFractionDigits: 0,
       });
     }
-    updateSliderFill(downValueInput);
+    updateRangeFill(downValueInput);
   }
   if (termInput && termDisplay) {
     termDisplay.textContent = `${termInput.value} yrs`;
-    updateSliderFill(termInput);
+    updateRangeFill(termInput);
   }
   if (rateInput && rateDisplay) {
     rateDisplay.textContent = `${rateInput.value}%`;
-    updateSliderFill(rateInput);
+    updateRangeFill(rateInput);
   }
 }
 
-priceInput?.addEventListener('input', updateSliderDisplays);
-downValueInput?.addEventListener('input', updateSliderDisplays);
-termInput?.addEventListener('input', updateSliderDisplays);
-rateInput?.addEventListener('input', updateSliderDisplays);
+wireRangeWithField({
+  rangeInput: priceInput,
+  textInput: priceField,
+  formatFieldValue: (value) => String(Math.round(value)),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+downValueBinding = wireRangeWithField({
+  rangeInput: downValueInput,
+  textInput: downValueField,
+  formatFieldValue: (value) => {
+    const downType = downTypeButtons?.getValue() ?? 'amount';
+    return downType === 'percent' ? String(Math.round(value)) : String(Math.round(value));
+  },
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: termInput,
+  textInput: termField,
+  formatFieldValue: (value) => String(Math.round(value)),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: rateInput,
+  textInput: rateField,
+  formatFieldValue: (value) => String(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
 
 updateSliderDisplays();
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 // Segmented control for table view (Monthly/Yearly)
 viewMonthlyButton?.addEventListener('click', () => {
@@ -587,4 +692,4 @@ viewYearlyButton?.addEventListener('click', () => {
   applyView(scheduleView);
 });
 
-calculate();
+calculate({ reveal: false });

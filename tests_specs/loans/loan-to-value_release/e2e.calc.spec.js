@@ -10,6 +10,20 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
+async function runCalculation(page) {
+  await page.click('#ltv-calculate');
+  await page.waitForFunction(() => {
+    const valueNode = document.querySelector('#ltv-result .ltv-result-value');
+    return valueNode && valueNode.textContent.trim() !== '';
+  });
+}
+
 test.describe('Loan-to-Value calculator route contract', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
@@ -28,6 +42,10 @@ test.describe('Loan-to-Value calculator route contract', () => {
     await expect(panel.locator('#calc-loan-to-value')).toBeVisible();
     await expect(panel.locator('#loan-ltv-explanation')).toBeVisible();
     await expect(panel.locator('h3:has-text("Explanation")')).toHaveCount(0);
+    await expect(page.locator('#ltv-property-field')).toHaveValue('350000');
+    await expect(page.locator('#ltv-loan-field')).toHaveValue('280000');
+    await expect(page.locator('#ltv-deposit-amount-field')).toHaveValue('70000');
+    await expect(page.locator('#ltv-deposit-percent-field')).toHaveValue('20.0');
   });
 
   test('LTV-E2E-2: mode toggles reveal the correct input rows', async ({ page }) => {
@@ -46,10 +64,24 @@ test.describe('Loan-to-Value calculator route contract', () => {
     await expect(page.locator('#ltv-deposit-percent-row')).not.toHaveClass(/is-hidden/);
   });
 
+  test('LTV-E2E-2A: exact-value fields sync without pre-click recalculation', async ({ page }) => {
+    const beforeText = await page.locator('#ltv-result .ltv-result-value').innerText();
+
+    await setTextFieldValue(page, '#ltv-property-field', 425000);
+    await expect(page.locator('#ltv-property')).toHaveValue('425000');
+
+    const afterEditText = await page.locator('#ltv-result .ltv-result-value').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await runCalculation(page);
+    const afterCalcText = await page.locator('#ltv-result .ltv-result-value').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
+  });
+
   test('LTV-E2E-3: calculates outputs and toggles LTV table views', async ({ page }) => {
     await setSliderValue(page, '#ltv-property', 500000);
     await setSliderValue(page, '#ltv-loan', 350000);
-    await page.click('#ltv-calculate');
+    await runCalculation(page);
 
     await expect(page.locator('#ltv-result')).toContainText('Current LTV');
     await expect(page.locator('[data-ltv="snapshot-ltv"]')).toContainText(/[0-9]/);
@@ -80,7 +112,7 @@ test.describe('Loan-to-Value calculator route contract', () => {
   test('LTV-E2E-4: sticky headers, section counts, and no horizontal overflow hold on desktop and mobile', async ({
     page,
   }) => {
-    await page.click('#ltv-calculate');
+    await runCalculation(page);
 
     const stickyHeader = page.locator('#ltv-table-bands thead th').first();
     await expect(stickyHeader).toHaveCSS('position', 'sticky');
@@ -92,5 +124,18 @@ test.describe('Loan-to-Value calculator route contract', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.waitForTimeout(250);
     expect(await panel.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
+  });
+
+  test('LTV-E2E-5: mobile calculate reveals the LTV snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await runCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#ltv-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#ltv-result')).toBeFocused();
   });
 });
