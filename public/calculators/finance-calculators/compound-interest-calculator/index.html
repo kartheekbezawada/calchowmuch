@@ -1,0 +1,164 @@
+<div id="calc-compound-interest">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Compound interest calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Estimate your ending balance, total interest earned, and contribution impact using a
+          fixed compound-growth scenario.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="ci-section-start">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="ci-section-start">Starting amount</h2>
+              <p class="fi-form-section-copy">
+                Begin with the balance you already have invested or saved today.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ci-principal">Initial Principal (P)</label>
+              <span class="slider-value" id="ci-principal-display">10,000</span>
+            </div>
+            <input
+              id="ci-principal"
+              type="range"
+              value="10000"
+              min="100"
+              max="1000000"
+              step="100"
+            />
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="ci-section-growth">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="ci-section-growth">Growth assumptions</h2>
+              <p class="fi-form-section-copy">
+                Set the annual rate, time horizon, recurring contribution, and compounding pattern.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ci-rate">Annual Interest Rate (%)</label>
+                <span class="slider-value" id="ci-rate-display">5%</span>
+              </div>
+              <input id="ci-rate" type="range" value="5" min="0" max="30" step="0.1" />
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="ci-time">Time Period (Years)</label>
+                <span class="slider-value" id="ci-time-display">10 yrs</span>
+              </div>
+              <input id="ci-time" type="range" value="10" min="1" max="50" step="1" />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ci-contribution">Regular Contribution - Yearly</label>
+              <span class="slider-value" id="ci-contrib-display">0</span>
+            </div>
+            <input id="ci-contribution" type="range" value="0" min="0" max="10000" step="50" />
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="ci-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semi
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Qtr
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="ci-calc">
+            Calculate Compound Interest
+          </button>
+          <p class="fi-action-note">
+            Projection rows and chart values update from the current inputs.
+          </p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" aria-label="Compound interest result snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Ending Balance</p>
+          <div class="result mtg-result-card" id="ci-result" aria-live="polite"></div>
+          <div
+            class="result-detail mtg-summary-card"
+            id="ci-result-detail"
+            aria-live="polite"
+          ></div>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Principal (P)</span>
+            <strong data-ci="snap-principal"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest Rate</span>
+            <strong data-ci="snap-rate"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time Period</span>
+            <strong data-ci="snap-time"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-ci="snap-compounding"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Contribution / Period</span>
+            <strong data-ci="snap-contribution"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Rate Per Period</span>
+            <strong data-ci="snap-periodic-rate"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Periods</span>
+            <strong data-ci="snap-total-periods"></strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,222 @@
+<div id="ci-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h2>How Fast Could This Balance Compound?</h2>
+    <p>
+      This calculator estimates how a starting balance and recurring contributions can grow when
+      interest compounds over time.
+    </p>
+    <p>
+      Use the ending balance first, then compare total contributions and total interest to see how
+      much of the result came from your deposits versus compounding.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="ci-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Initial Principal</td>
+            <td><span data-ci="principal"></span></td>
+            <td>The balance already invested at the beginning.</td>
+          </tr>
+          <tr>
+            <td>Annual Interest Rate</td>
+            <td><span data-ci="rate"></span></td>
+            <td>The headline annual growth assumption.</td>
+          </tr>
+          <tr>
+            <td>Time Period</td>
+            <td><span data-ci="time"></span></td>
+            <td>The full compounding horizon.</td>
+          </tr>
+          <tr>
+            <td>Contribution Per Period</td>
+            <td><span data-ci="contribution-per-period"></span></td>
+            <td>The recurring amount added at each period.</td>
+          </tr>
+          <tr>
+            <td>Total Contributions</td>
+            <td><span data-ci="total-contributions"></span></td>
+            <td>Your additional deposits over the full term.</td>
+          </tr>
+          <tr>
+            <td>Total Interest Earned</td>
+            <td><span data-ci="total-interest"></span></td>
+            <td>The growth created by compounding.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Ending Balance</td>
+            <td><span data-ci="ending-balance"></span></td>
+            <td>Principal plus contributions plus compound growth.</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>How to Guide</h3>
+    <div>
+      <h4>1. Start with the opening balance</h4>
+      <p>
+        Enter the amount already invested or saved. This base begins compounding immediately.
+      </p>
+    </div>
+    <div>
+      <h4>2. Add the rate and time horizon</h4>
+      <p>
+        The annual rate and the total years determine how much time the balance has to compound.
+      </p>
+    </div>
+    <div>
+      <h4>3. Add recurring contributions only if they are consistent</h4>
+      <p>
+        Recurring contributions can materially change the ending balance because each deposit also
+        compounds for the remainder of the plan.
+      </p>
+    </div>
+    <div>
+      <h4>4. Compare contribution growth and interest growth</h4>
+      <p>
+        Read ending balance first, then total contributions, then total interest. That sequence
+        shows whether progress is being driven mostly by deposits or by time in the market.
+      </p>
+    </div>
+    <div>
+      <h4>5. Use the projection table and chart as secondary tools</h4>
+      <p>
+        The table and chart help you inspect the path. They are useful for pacing and comparison,
+        but the primary decision is still the ending balance and contribution burden.
+      </p>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <div class="ci-projection-header">
+      <h3>Growth Projection Table</h3>
+      <div
+        class="ci-table-frequency-toggle"
+        role="group"
+        aria-label="Growth projection frequency"
+        data-button-group="ci-table-frequency"
+      >
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="annual"
+          aria-pressed="true"
+        >
+          Annual
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="semiannual"
+          aria-pressed="false"
+        >
+          Semi-Annual
+        </button>
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="quarterly"
+          aria-pressed="false"
+        >
+          Quarterly
+        </button>
+      </div>
+    </div>
+    <div class="table-scroll" id="ci-projection-wrap" tabindex="0">
+      <table id="ci-projection-table" class="ci-projection-table">
+        <thead>
+          <tr>
+            <th scope="col">Period</th>
+            <th scope="col">Opening Balance</th>
+            <th scope="col">Contribution</th>
+            <th scope="col">Interest Earned</th>
+            <th scope="col">Ending Balance</th>
+          </tr>
+        </thead>
+        <tbody id="ci-projection-body">
+          <tr class="ci-projection-placeholder-row">
+            <td colspan="5">Run a valid calculation to view projection rows.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section ci-growth-section" id="ci-growth-chart-section">
+    <div class="ci-growth-header">
+      <h3>Growth Visualization</h3>
+      <div class="ci-chart-scale-toggle" role="group" aria-label="Growth chart scale" data-button-group="ci-chart-scale">
+        <button
+          class="calculator-button secondary is-active"
+          type="button"
+          data-value="linear"
+          aria-pressed="true"
+        >
+          Linear
+        </button>
+        <button class="calculator-button secondary" type="button" data-value="log" aria-pressed="false">
+          Log
+        </button>
+      </div>
+    </div>
+    <div class="ci-growth-shell">
+      <div class="fi-metric-grid">
+        <article class="fi-metric-card">
+          <span class="fi-metric-label">Ending balance</span>
+          <strong class="fi-metric-value" data-ci="chart-ending-balance">—</strong>
+        </article>
+        <article class="fi-metric-card">
+          <span class="fi-metric-label">Principal base</span>
+          <strong class="fi-metric-value" data-ci="chart-principal-base">—</strong>
+        </article>
+        <article class="fi-metric-card">
+          <span class="fi-metric-label">Interest total</span>
+          <strong class="fi-metric-value" data-ci="chart-interest-total">—</strong>
+        </article>
+      </div>
+      <p class="helper" id="ci-growth-status">Run a valid calculation to render chart data.</p>
+      <div class="ci-growth-chart-wrap">
+        <canvas id="ci-growth-canvas" width="920" height="380"></canvas>
+        <div class="ci-growth-tooltip" id="ci-growth-tooltip" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="ci-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card"><span class="bor-faq-number">01</span><h4>What is compound interest?</h4><p>Compound interest means interest is earned on both the principal and prior accumulated interest.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">02</span><h4>What changes the ending balance most?</h4><p>Time, rate, and consistent contributions usually have the biggest long-term effect.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">03</span><h4>Do recurring contributions matter?</h4><p>Yes. They can become a major share of the final balance, especially over longer periods.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">04</span><h4>Does compounding frequency matter?</h4><p>Yes. More frequent compounding usually produces a slightly higher ending balance under the same nominal rate.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">05</span><h4>What if the rate is 0%?</h4><p>The ending balance becomes principal plus total contributions because no growth is applied.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">06</span><h4>Why can small rate changes matter so much?</h4><p>Because even small differences compound over every period and become larger over time.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">07</span><h4>Can I use this for savings planning?</h4><p>Yes. It works well for deterministic savings and investment scenarios with a fixed rate assumption.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">08</span><h4>Is the chart the main answer?</h4><p>No. Use the chart for inspection, but make the decision from ending balance, contributions, and interest.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">09</span><h4>Why can spreadsheet results differ slightly?</h4><p>Display rounding can differ even when the formula logic is effectively the same.</p></div>
+      <div class="bor-faq-card"><span class="bor-faq-number">10</span><h4>Is this a guaranteed forecast?</h4><p>No. It is a fixed-assumption estimate for planning and comparison.</p></div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
+      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+      <li><strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution amount, and the selected compounding schedule for the full time horizon.</li>
+      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+    </ul>
+  </section>
+</div>

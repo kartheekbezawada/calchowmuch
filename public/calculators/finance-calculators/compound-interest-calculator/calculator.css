@@ -1,0 +1,94 @@
+@import url("/assets/css/calculators/finance-calculators/compound-interest-calculator/calculator.css");
+
+#calc-compound-interest .ci-results-table thead th,
+#calc-compound-interest .ci-projection-table thead th,
+#ci-explanation .ci-results-table thead th,
+#ci-explanation .ci-projection-table thead th {
+  background: #f7faf8;
+  color: #163e59;
+}
+
+#calc-compound-interest .ci-results-table td,
+#calc-compound-interest .ci-projection-table td,
+#ci-explanation .ci-results-table td,
+#ci-explanation .ci-projection-table td {
+  color: #3f5665;
+}
+
+#calc-compound-interest .ci-how-col,
+#ci-explanation .ci-how-col {
+  color: #6e8390;
+}
+
+#calc-compound-interest .ci-growth-header,
+#ci-explanation .ci-growth-header,
+#ci-explanation .ci-projection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#calc-compound-interest .ci-table-frequency-toggle,
+#calc-compound-interest .ci-chart-scale-toggle,
+#ci-explanation .ci-table-frequency-toggle,
+#ci-explanation .ci-chart-scale-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-compound-interest .ci-growth-shell,
+#ci-explanation .ci-growth-shell {
+  border: 1px solid rgba(143, 158, 167, 0.18);
+  border-radius: 20px;
+  background: rgba(248, 250, 248, 0.96);
+  padding: 18px;
+}
+
+#calc-compound-interest .ci-growth-chart-wrap,
+#ci-explanation .ci-growth-chart-wrap {
+  position: relative;
+}
+
+#calc-compound-interest #ci-growth-canvas,
+#ci-explanation #ci-growth-canvas {
+  width: 100%;
+  max-width: 100%;
+  min-height: 320px;
+  display: block;
+}
+
+#calc-compound-interest .ci-growth-tooltip,
+#ci-explanation .ci-growth-tooltip {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  max-width: 220px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(17, 24, 39, 0.92);
+  color: #fff;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+#ci-explanation .ci-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  #calc-compound-interest #ci-growth-canvas,
+  #ci-explanation #ci-growth-canvas {
+    min-height: 260px;
+  }
+}

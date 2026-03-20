@@ -1,0 +1,51 @@
+@import url("/assets/css/calculators/finance-calculators/investment-return-calculator/calculator.css");
+
+#calc-investment-return .ir-results {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-investment-return .ir-results-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#calc-investment-return .ir-advanced-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid rgba(143, 158, 167, 0.18);
+  border-radius: 20px;
+  background: rgba(248, 250, 248, 0.96);
+}
+
+#calc-investment-return .ir-variable-rows,
+#calc-investment-return .ir-events-rows {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-investment-return .ir-var-row,
+#calc-investment-return .ir-event-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(143, 158, 167, 0.18);
+  border-radius: 16px;
+  background: #fff;
+}
+
+#calc-investment-return .ir-breakdown-table thead th,
+#ir-explanation .ir-results-table thead th {
+  background: #f7faf8;
+  color: #163e59;
+}
+
+#calc-investment-return .ir-breakdown-table td,
+#ir-explanation .ir-results-table td {
+  color: #3f5665;
+}
+
+#calc-investment-return .is-hidden {
+  display: none;
+}

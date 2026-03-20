@@ -1,0 +1,29 @@
+@import url("/assets/css/calculators/finance-calculators/investment-growth-calculator/calculator.css");
+
+#calc-investment-growth .ig-results-table thead th,
+#ig-explanation .ig-results-table thead th {
+  background: #f7faf8;
+  color: #163e59;
+}
+
+#calc-investment-growth .ig-results-table td,
+#ig-explanation .ig-results-table td {
+  color: #3f5665;
+}
+
+#calc-investment-growth .ig-how-col,
+#ig-explanation .ig-how-col {
+  color: #6e8390;
+}
+
+#ig-explanation .ig-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}

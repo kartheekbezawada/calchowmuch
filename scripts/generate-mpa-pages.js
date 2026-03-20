@@ -2173,6 +2173,11 @@ const FINANCE_CLUSTER_REDESIGN_IDS = new Set([
   'future-value-of-annuity',
   'effective-annual-rate',
   'simple-interest',
+  'compound-interest',
+  'investment-growth',
+  'time-to-savings-goal',
+  'monthly-savings-needed',
+  'investment-return',
 ]);
 
 FINANCE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {

@@ -11,6 +11,8 @@ test.describe('Investment Return Calculator', () => {
     await page.goto('/finance-calculators/investment-return-calculator/');
 
     await expect(page.locator('h1')).toHaveText('Investment Return Calculator');
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
 
     const result = page.locator('#ir-result');
     await expect(result).toBeVisible();

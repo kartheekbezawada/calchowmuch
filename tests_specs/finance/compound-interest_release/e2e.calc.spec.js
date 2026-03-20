@@ -13,31 +13,28 @@ test.describe("Compound Interest Calculator", () => {
     await expect(page.locator("h1").first()).toHaveText(
       "Compound Interest Calculator",
     );
+    await expect(page.locator(".top-nav")).toHaveCount(0);
+    await expect(page.locator(".left-nav")).toHaveCount(0);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
       "https://calchowmuch.com/finance-calculators/compound-interest-calculator/",
     );
 
-    const sectionTitles = await page
-      .locator("#ci-explanation .mtg-exp-section h3")
-      .allTextContents();
-    const resultsIndex = sectionTitles.findIndex(
-      (text) => text.trim() === "Results Table",
-    );
-    const projectionIndex = sectionTitles.findIndex(
-      (text) => text.trim() === "Growth Projection Table",
-    );
-    const explanationIndex = sectionTitles.findIndex(
-      (text) => text.trim() === "Explanation",
-    );
-    const visualizationIndex = sectionTitles.findIndex(
-      (text) => text.trim() === "Growth Visualization",
-    );
-
-    expect(resultsIndex).toBeGreaterThanOrEqual(0);
-    expect(projectionIndex).toBeGreaterThan(resultsIndex);
-    expect(explanationIndex).toBeGreaterThan(projectionIndex);
-    expect(visualizationIndex).toBeGreaterThan(explanationIndex);
+    await expect(
+      page.locator("#ci-explanation .mtg-exp-section h3", {
+        hasText: "How to Guide",
+      }),
+    ).toHaveCount(1);
+    await expect(
+      page.locator("#ci-explanation .mtg-exp-section h3", {
+        hasText: "Growth Projection Table",
+      }),
+    ).toHaveCount(1);
+    await expect(
+      page.locator("#ci-explanation .mtg-exp-section h3", {
+        hasText: "Growth Visualization",
+      }),
+    ).toHaveCount(1);
 
     await page.fill("#ci-principal", "10000");
     await page.fill("#ci-rate", "6");
