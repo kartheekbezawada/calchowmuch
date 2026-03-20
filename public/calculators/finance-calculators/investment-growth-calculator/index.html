@@ -97,12 +97,24 @@
       <aside class="mtg-preview-panel" aria-label="Investment growth result snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Estimated Future Value</p>
-          <div class="result mtg-result-card" id="ig-result" aria-live="polite"></div>
-          <div
-            class="result-detail mtg-summary-card"
-            id="ig-result-detail"
-            aria-live="polite"
-          ></div>
+          <div class="result mtg-result-card" id="ig-result" aria-live="polite">
+            <span class="mtg-result-value">106,639.02</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="ig-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Contributions</span>
+            <strong class="fi-metric-value" data-ig="metric-contributions">60,000.00</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Interest Earned</span>
+            <strong class="fi-metric-value" data-ig="metric-gains">36,639.02</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Inflation Adjusted</span>
+            <strong class="fi-metric-value" data-ig="metric-inflation-adjusted">106,639.02</strong>
+          </article>
         </div>
 
         <div class="fi-snapshot-list">

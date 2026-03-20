@@ -22,7 +22,9 @@ const inflationDisplay = document.querySelector('#ig-inflation-display');
 
 const calculateButton = document.querySelector('#ig-calc');
 const resultOutput = document.querySelector('#ig-result');
-const resultDetail = document.querySelector('#ig-result-detail');
+const metricContributions = document.querySelector('[data-ig="metric-contributions"]');
+const metricGains = document.querySelector('[data-ig="metric-gains"]');
+const metricInflationAdjusted = document.querySelector('[data-ig="metric-inflation-adjusted"]');
 
 const compoundingGroup = document.querySelector('[data-button-group="ig-compounding"]');
 
@@ -231,9 +233,9 @@ function showError(message) {
   if (resultOutput) {
     resultOutput.innerHTML = `<span style="color: #ef4444; font-size: 1.5rem;">${message}</span>`;
   }
-  if (resultDetail) {
-    resultDetail.textContent = '';
-  }
+  if (metricContributions) {metricContributions.textContent = '-';}
+  if (metricGains) {metricGains.textContent = '-';}
+  if (metricInflationAdjusted) {metricInflationAdjusted.textContent = '-';}
 }
 
 function calculate() {
@@ -274,19 +276,15 @@ function calculate() {
   }
 
   if (resultOutput) {
-    resultOutput.textContent = formatMoney(result.futureValue);
+    resultOutput.innerHTML = `<span class="mtg-result-value is-updated">${formatMoney(result.futureValue)}</span>`;
+    const valueEl = resultOutput.querySelector('.mtg-result-value');
+    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
   }
-
-  let detailHtml =
-    `<p><strong>Total Contributions:</strong> ${formatMoney(result.totalContributions)}</p>` +
-    `<p><strong>Total Interest Earned:</strong> ${formatMoney(result.totalGains)}</p>`;
-
-  if (result.inflationAdjustedFV !== null) {
-    detailHtml += `<p class="mt-2 text-sm text-blue-200">Inflation Adjusted: ${formatMoney(result.inflationAdjustedFV)}</p>`;
-  }
-
-  if (resultDetail) {
-    resultDetail.innerHTML = detailHtml;
+  if (metricContributions) {metricContributions.textContent = formatMoney(result.totalContributions);}
+  if (metricGains) {metricGains.textContent = formatMoney(result.totalGains);}
+  if (metricInflationAdjusted) {
+    metricInflationAdjusted.textContent =
+      result.inflationAdjustedFV !== null ? formatMoney(result.inflationAdjustedFV) : 'Not applied';
   }
 
   const timeLabel = months > 0 ? `${years} yr ${months} mo` : `${years} years`;

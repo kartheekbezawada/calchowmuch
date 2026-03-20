@@ -13,8 +13,13 @@ const crashYearInput = document.querySelector('#ir-crash-year');
 const crashDropInput = document.querySelector('#ir-crash-drop');
 
 const resultOutput = document.querySelector('#ir-result');
-const resultDetail = document.querySelector('#ir-result-detail');
 const calculateButton = document.querySelector('#ir-calc');
+const metricNodes = {
+  contributions: document.querySelector('[data-ir-metric="contributions"]'),
+  profit: document.querySelector('[data-ir-metric="profit"]'),
+  cagr: document.querySelector('[data-ir-metric="cagr"]'),
+  'real-cagr': document.querySelector('[data-ir-metric="real-cagr"]'),
+};
 
 const advancedToggleButton = document.querySelector('#ir-advanced-toggle');
 const advancedSection = document.querySelector('#ir-advanced-section');
@@ -692,13 +697,15 @@ function renderGraph(output) {
 }
 
 function renderSummary(output, input) {
-  setText(resultOutput, formatMoney(output.summary.finalValue));
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Total Contributions:</strong> ${formatMoney(output.summary.totalContributions)}</p>` +
-      `<p><strong>Total Profit:</strong> ${formatMoney(output.summary.totalGain)}</p>` +
-      `<p><strong>Nominal CAGR:</strong> ${formatPercent(output.summary.nominalCAGR)}</p>`;
+  if (resultOutput) {
+    resultOutput.innerHTML = `<span class="mtg-result-value is-updated">${formatMoney(output.summary.finalValue)}</span>`;
+    const valueEl = resultOutput.querySelector('.mtg-result-value');
+    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
   }
+  setText(metricNodes.contributions, formatMoney(output.summary.totalContributions));
+  setText(metricNodes.profit, formatMoney(output.summary.totalGain));
+  setText(metricNodes.cagr, formatPercent(output.summary.nominalCAGR));
+  setText(metricNodes['real-cagr'], formatPercent(output.summary.realCAGR));
 
   setText(snapNodes.contributions, formatMoney(output.summary.totalContributions));
   setText(snapNodes.profit, formatMoney(output.summary.totalGain));
@@ -730,9 +737,10 @@ function renderSummary(output, input) {
 
 function renderValidationErrors(errors) {
   setText(resultOutput, errors[0] ?? 'Invalid input');
-  if (resultDetail) {
-    resultDetail.innerHTML = '';
-  }
+  setText(metricNodes.contributions, '-');
+  setText(metricNodes.profit, '-');
+  setText(metricNodes.cagr, '-');
+  setText(metricNodes['real-cagr'], '-');
 }
 
 function calculateAndRender() {

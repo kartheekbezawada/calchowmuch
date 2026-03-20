@@ -1849,12 +1849,24 @@
       <aside class="mtg-preview-panel" aria-label="Monthly savings needed result snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Required Monthly Savings</p>
-          <div class="result mtg-result-card" id="msn-result" aria-live="polite"></div>
-          <div
-            class="result-detail mtg-summary-card"
-            id="msn-result-detail"
-            aria-live="polite"
-          ></div>
+          <div class="result mtg-result-card" id="msn-result" aria-live="polite">
+            <span class="mtg-result-value">519.13 per month</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="msn-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Contributions</span>
+            <strong class="fi-metric-value" data-msn="metric-contributions">18,688.68</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Interest Earned</span>
+            <strong class="fi-metric-value" data-msn="metric-interest">1,311.54</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Final Balance</span>
+            <strong class="fi-metric-value" data-msn="metric-balance">25,000.22</strong>
+          </article>
         </div>
 
         <div class="fi-snapshot-list">

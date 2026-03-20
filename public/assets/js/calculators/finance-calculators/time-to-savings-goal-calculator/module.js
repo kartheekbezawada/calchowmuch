@@ -10,6 +10,9 @@ const rateInput = document.querySelector('#tsg-rate');
 const calculateButton = document.querySelector('#tsg-calc');
 const resultDiv = document.querySelector('#tsg-result');
 const summaryDiv = document.querySelector('#tsg-result-detail');
+const metricContributions = document.querySelector('[data-tsg="metric-contributions"]');
+const metricInterest = document.querySelector('[data-tsg="metric-interest"]');
+const metricBalance = document.querySelector('[data-tsg="metric-balance"]');
 
 /* ── DOM refs: slider value displays ── */
 const goalDisplay = document.querySelector('#tsg-goal-display');
@@ -261,7 +264,9 @@ function updateTargets(targets, value) {
 
 function setError(message) {
   if (resultDiv) {resultDiv.textContent = message;}
-  if (summaryDiv) {summaryDiv.textContent = '';}
+  if (metricContributions) {metricContributions.textContent = '-';}
+  if (metricInterest) {metricInterest.textContent = '-';}
+  if (metricBalance) {metricBalance.textContent = '-';}
 }
 
 function timingLabel(value) {
@@ -301,7 +306,9 @@ function calculate() {
       resultDiv.innerHTML = '<span class="mtg-result-value is-updated">Already reached!</span>';
       const el = resultDiv.querySelector('.mtg-result-value');
       if (el) {setTimeout(() => el.classList.remove('is-updated'), 420);}
-      summaryDiv.innerHTML = '<p>Your current savings already meet or exceed the goal.</p>';
+      if (metricContributions) {metricContributions.textContent = '0.00';}
+      if (metricInterest) {metricInterest.textContent = '0.00';}
+      if (metricBalance) {metricBalance.textContent = fmt(currentSavings);}
       return;
     }
 
@@ -349,10 +356,9 @@ function calculate() {
     const valueEl = resultDiv.querySelector('.mtg-result-value');
     if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
 
-    summaryDiv.innerHTML =
-      `<p><strong>Total contributions:</strong> ${totalContribStr}</p>` +
-      `<p><strong>Interest earned:</strong> ${totalInterestStr}</p>` +
-      `<p><strong>Final balance:</strong> ${finalBalanceStr}</p>`;
+    if (metricContributions) {metricContributions.textContent = totalContribStr;}
+    if (metricInterest) {metricInterest.textContent = totalInterestStr;}
+    if (metricBalance) {metricBalance.textContent = finalBalanceStr;}
 
     /* Snapshot rows */
     if (snapGoal) {snapGoal.textContent = goalStr;}

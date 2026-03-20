@@ -387,3 +387,58 @@ Notes:
 
 - no code changes were made
 - no calculator redesign work was started as part of this entry
+
+---
+
+## 2026-03-20 — Finance Result Card Regression Fix
+
+Status:
+
+- completed
+
+Scope:
+
+- released Finance preview-card regression fix for `investment-growth`, `time-to-savings-goal`, `monthly-savings-needed`, and `investment-return`
+
+Changes:
+
+- moved secondary result metrics out of the blue answer panel and into the standard `fi-metric-grid` layout on the four affected routes
+- normalized the main answer value to the shared `mtg-result-value` pattern so the primary number renders at the intended large size
+- updated route modules so preview metrics write into dedicated metric targets instead of rendering white text inside a light summary surface
+- regenerated the four affected Finance routes after the source updates
+
+Files touched:
+
+- `public/calculators/finance-calculators/investment-growth-calculator/index.html`
+- `public/calculators/finance-calculators/time-to-savings-goal-calculator/index.html`
+- `public/calculators/finance-calculators/monthly-savings-needed-calculator/index.html`
+- `public/calculators/finance-calculators/investment-return-calculator/index.html`
+- `public/assets/js/calculators/finance-calculators/investment-growth-calculator/module.js`
+- `public/assets/js/calculators/finance-calculators/time-to-savings-goal-calculator/module.js`
+- `public/assets/js/calculators/finance-calculators/monthly-savings-needed-calculator/module.js`
+- `public/assets/js/calculators/finance-calculators/investment-return-calculator/module.js`
+- `public/finance-calculators/investment-growth-calculator/index.html`
+- `public/finance-calculators/time-to-savings-goal-calculator/index.html`
+- `public/finance-calculators/monthly-savings-needed-calculator/index.html`
+- `public/finance-calculators/investment-return-calculator/index.html`
+
+Validation:
+
+- `TARGET_CALC_ID=investment-growth node scripts/generate-mpa-pages.js`
+- `TARGET_CALC_ID=time-to-savings-goal node scripts/generate-mpa-pages.js`
+- `TARGET_CALC_ID=monthly-savings-needed node scripts/generate-mpa-pages.js`
+- `TARGET_CALC_ID=investment-return node scripts/generate-mpa-pages.js`
+- `CLUSTER=finance CALC=investment-growth npm run test:calc:unit`
+- `CLUSTER=finance CALC=investment-growth npm run test:calc:e2e`
+- `CLUSTER=finance CALC=time-to-savings-goal npm run test:calc:unit`
+- `CLUSTER=finance CALC=time-to-savings-goal npm run test:calc:e2e`
+- `CLUSTER=finance CALC=monthly-savings-needed npm run test:calc:unit`
+- `CLUSTER=finance CALC=monthly-savings-needed npm run test:calc:e2e`
+- `CLUSTER=finance CALC=investment-return npm run test:calc:unit`
+- `CLUSTER=finance CALC=investment-return npm run test:calc:e2e`
+
+Notes:
+
+- no shared Finance CSS changes were required
+- no generator logic changes were required
+- the fix was applied locally to the four approved routes only

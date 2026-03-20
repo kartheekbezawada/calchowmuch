@@ -120,8 +120,28 @@
       <aside class="mtg-preview-panel" aria-label="Investment return summary">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Final Portfolio Value</p>
-          <div class="result mtg-result-card" id="ir-result" aria-live="polite">-</div>
-          <div class="result-detail mtg-summary-card" id="ir-result-detail" aria-live="polite"></div>
+          <div class="result mtg-result-card" id="ir-result" aria-live="polite">
+            <span class="mtg-result-value">-</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="ir-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Contributions</span>
+            <strong class="fi-metric-value" data-ir-metric="contributions">-</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Profit</span>
+            <strong class="fi-metric-value" data-ir-metric="profit">-</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Nominal CAGR</span>
+            <strong class="fi-metric-value" data-ir-metric="cagr">-</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Real CAGR</span>
+            <strong class="fi-metric-value" data-ir-metric="real-cagr">-</strong>
+          </article>
         </div>
 
         <div class="fi-snapshot-list">
