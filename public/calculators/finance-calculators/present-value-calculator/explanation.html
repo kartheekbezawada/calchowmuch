@@ -1,181 +1,216 @@
 <div id="pv-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>What Is That Future Amount Worth Today?</h2>
-      <p>
-        Discount a future lump sum into today’s money so a later payout can be compared on equal
-        terms with cash available now.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Present value today</p>
-      <p class="fi-exp-kpi-value"><strong><span data-pv="present-value"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Based on a future amount of <span data-pv="future-value"></span> discounted at
-        <span data-pv="discount-rate"></span>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        With <span data-pv="compounding-frequency"></span> compounding across
-        <span data-pv="time-period"></span>, the discount rate shows what waiting costs in today’s
-        money.
-      </p>
-      <p>Use this page when the future payment is fixed and the real decision is what it is worth now.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Common for deferred bonuses, settlement offers, bond proceeds, and future lump-sum
-          payments you want to compare against cash today.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
-          <a href="/finance-calculators/present-value-of-annuity-calculator/">Present Value of Annuity</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">Current value</th>
-            <th scope="col">Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Future Value</td>
-            <td><span data-pv="future-value"></span></td>
-            <td>The cash amount you expect to receive in the future.</td>
-          </tr>
-          <tr>
-            <td>Discount Rate</td>
-            <td><span data-pv="discount-rate"></span></td>
-            <td>The annual return or opportunity-cost rate used to discount the future amount.</td>
-          </tr>
-          <tr>
-            <td>Time Period</td>
-            <td><span data-pv="time-period"></span></td>
-            <td>The length of time the cash is unavailable to you.</td>
-          </tr>
-          <tr>
-            <td>Effective Periods</td>
-            <td><span data-pv="effective-periods"></span></td>
-            <td>
-              The total number of discounting periods created by the timing and compounding choice.
-            </td>
-          </tr>
-          <tr>
-            <td>Rate Per Period</td>
-            <td><span data-pv="applied-rate"></span>%</td>
-            <td>The rate actually applied inside each compounding period.</td>
-          </tr>
-          <tr>
-            <td>Discount Lost</td>
-            <td><span data-pv="formula-discount-lost"></span></td>
-            <td>The value given up by waiting instead of holding the cash today.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Set the future amount, the discount rate, and the timing before you judge the present-day value.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Choose the future amount</h4>
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>What Is That Future Amount Worth Today?</h2>
           <p>
-            Enter the single future cash amount you want to compare against present-day money. This
-            is usually a payment, payout, bonus, or future balance that arrives on a known date.
+            Present value exists for one reason: a dollar received later is not economically equal
+            to a dollar available now. This calculator translates a future lump sum into today’s
+            money so that comparison becomes explicit.
+          </p>
+          <p>
+            A future amount of <span data-pv="future-value"></span>, discounted at
+            <span data-pv="discount-rate"></span> across <span data-pv="time-period"></span>,
+            produces a current value of <strong><span data-pv="present-value"></span></strong>.
+            The gap between the future amount and the present value is the economic cost of waiting.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Set the discount rate</h4>
-          <p>
-            Use the rate that best represents your opportunity cost. A defensible rate matters more
-            than a convenient one because it drives the entire discount.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Present value today</p>
+          <p class="fi-exp-kpi-value"><strong><span data-pv="present-value"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Based on a future amount of <span data-pv="future-value"></span> discounted at
+            <span data-pv="discount-rate"></span>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Match the timing correctly</h4>
-          <p>
-            If the payout is a few months away, switch the period type to months. If the comparison
-            is several years out, keep it in years for a clearer interpretation.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Present value tells you what a future payment is worth before time passes. That makes
+              it useful when you are comparing a delayed payout against cash available now. The
+              lower the present value sits relative to the future amount, the more expensive the
+              delay becomes in economic terms.
+            </p>
+            <p>
+              This result is especially useful when the future amount is fixed but the decision is
+              about fairness today. Settlements, bonuses, bonds, and other deferred lump sums often
+              sound attractive until the discount rate and waiting period are made visible.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Future value</strong> is the amount promised later.</li>
+              <li><strong>Discount rate</strong> reflects opportunity cost or required return.</li>
+              <li><strong>Time</strong> determines how long the cash stays out of your hands.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Review the formula logic</h4>
-          <p>The calculator uses the standard present value formula:</p>
-          <p class="pv-formula-block">PV = FV &divide; (1 + r)<sup>n</sup></p>
-          <ol class="pv-formula-steps">
-        <li>
-          Convert the annual rate into the per-period rate:
-          <span data-pv="discount-rate"></span> divided by
-          <span data-pv="effective-periods-per-year"></span> = <span data-pv="applied-rate"></span>%
-          per period.
-        </li>
-        <li>
-          Convert the time horizon into total effective periods:
-          <span data-pv="effective-periods"></span>.
-        </li>
-        <li>
-          Build the denominator:
-          <span data-pv="formula-denominator"></span>.
-        </li>
-        <li>
-          Divide the future amount by that denominator to reach the present value of
-          <span data-pv="present-value"></span>.
-        </li>
-          </ol>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Start with the future amount, then review the discount rate, the effective periods,
+              and the discount lost. That reading order makes it easier to see whether the present
+              value is moving mainly because the rate is high, the wait is long, or both.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="pv-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Future Value</td>
+                    <td><span data-pv="future-value"></span></td>
+                    <td>The cash amount you expect to receive in the future.</td>
+                  </tr>
+                  <tr>
+                    <td>Discount Rate</td>
+                    <td><span data-pv="discount-rate"></span></td>
+                    <td>The annual return or opportunity-cost rate used to discount the future amount.</td>
+                  </tr>
+                  <tr>
+                    <td>Time Period</td>
+                    <td><span data-pv="time-period"></span></td>
+                    <td>The length of time the cash is unavailable to you.</td>
+                  </tr>
+                  <tr>
+                    <td>Effective Periods</td>
+                    <td><span data-pv="effective-periods"></span></td>
+                    <td>
+                      The total number of discounting periods created by the timing and compounding choice.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Rate Per Period</td>
+                    <td><span data-pv="applied-rate"></span>%</td>
+                    <td>The rate actually applied inside each compounding period.</td>
+                  </tr>
+                  <tr>
+                    <td>Discount Lost</td>
+                    <td><span data-pv="formula-discount-lost"></span></td>
+                    <td>The value given up by waiting instead of holding the cash today.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">05</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Read the answer in order</h4>
-          <p>
-            Start with the present value, then the discount lost, then the effective period count.
-            That sequence gives you both the headline answer and the main reason it moved.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes Present Value Most</h3>
+            <p>
+              Present value falls when either the discount rate rises or the waiting period lengthens.
+              Those two levers work together. A modest delay can still matter if the opportunity-cost
+              rate is high. A modest rate can still matter if the cash does not arrive for a long time.
+            </p>
+            <p>
+              The compounding choice also matters because it determines how the annual rate is
+              translated into effective periods. That is why the current setting of
+              <span data-pv="compounding-frequency"></span> should be treated as part of the model,
+              not as a cosmetic preference.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Behind Present Value</h3>
+            <p>
+              The core present-value equation discounts the future amount by the compound factor that
+              represents waiting through the selected number of periods.
+            </p>
+            <p class="fi-exp-formula-block">PV = FV ÷ (1 + r)<sup>n</sup></p>
+            <ol class="fi-exp-formula-steps">
+              <li>
+                Convert the annual discount rate of <span data-pv="discount-rate"></span> into the
+                applied per-period rate using <span data-pv="effective-periods-per-year"></span>
+                periods per year, which yields <span data-pv="applied-rate"></span>%.
+              </li>
+              <li>
+                Convert the waiting horizon into <span data-pv="effective-periods"></span> total
+                effective periods.
+              </li>
+              <li>
+                Build the discount denominator of <span data-pv="formula-denominator"></span>.
+              </li>
+              <li>
+                Divide the future amount by that factor to reach a present value of
+                <span data-pv="present-value"></span>.
+              </li>
+            </ol>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              Present value is most useful when you need to make one choice feel comparable to
+              another. If someone offers cash later instead of cash now, this calculation gives you a
+              more defensible way to ask whether the delay is worth accepting.
+            </p>
+            <p>
+              The key discipline is choosing a discount rate you can justify. A convenient rate can
+              manufacture a convenient answer. A realistic rate makes the comparison more honest,
+              even when it produces a result you do not like.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When Present Value Is The Right Tool</h3>
+            <p>
+              Use this calculator when the future cash flow is a single amount. If the unknown is
+              instead the ending amount from money you hold today, switch to the
+              <a href="/finance-calculators/future-value-calculator/">future value calculator</a>.
+              If the cash flow repeats over time, the
+              <a href="/finance-calculators/present-value-of-annuity-calculator/">present value of
+              annuity calculator</a> is the better match.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Present value turns “money later” into “money now.” That is what makes it powerful.
+              It forces the timing cost into the open so you can compare delayed cash with immediate
+              cash on a more rational basis.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Present value: <strong><span data-pv="present-value"></span></strong></li>
+              <li>Future amount: <span data-pv="future-value"></span></li>
+              <li>Discount rate: <span data-pv="discount-rate"></span></li>
+              <li>Periods: <span data-pv="effective-periods"></span></li>
+              <li>Discount lost: <span data-pv="formula-discount-lost"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for settlement offers, deferred compensation, bond proceeds, and any future lump
+              sum you want to evaluate in today’s money.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+              <a href="/finance-calculators/present-value-of-annuity-calculator/">Present Value of Annuity</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      Pair this result with the <a href="/finance-calculators/future-value-calculator/">future value calculator</a>
-      when the unknown is the ending amount, or switch to the
-      <a href="/finance-calculators/present-value-of-annuity-calculator/">present value of annuity calculator</a>
-      when the cash flow repeats over time.
-    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq" id="pv-faq">

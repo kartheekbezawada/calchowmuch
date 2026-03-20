@@ -2011,6 +2011,136 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-simple-interest .fi-exp-article,
+      #calc-simple-interest .fi-exp-article-shell,
+      #calc-simple-interest .fi-exp-article-main,
+      #calc-simple-interest .fi-exp-story-block,
+      #calc-simple-interest .fi-exp-article-intro,
+      #calc-simple-interest .fi-exp-article-rail,
+      #calc-simple-interest .fi-exp-rail-card {
+        display: grid;
+      }
+
+      #calc-simple-interest .fi-exp-article {
+        gap: 22px;
+      }
+
+      #calc-simple-interest .fi-exp-article-shell {
+        gap: 20px;
+      }
+
+      #calc-simple-interest .fi-exp-article-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      #calc-simple-interest .fi-exp-article-intro {
+        gap: 12px;
+      }
+
+      #calc-simple-interest .fi-exp-article-intro h2,
+      #calc-simple-interest .fi-exp-story-block h3,
+      #calc-simple-interest .fi-exp-rail-card h3 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-simple-interest .fi-exp-article-intro p,
+      #calc-simple-interest .fi-exp-story-block p,
+      #calc-simple-interest .fi-exp-story-block li,
+      #calc-simple-interest .fi-exp-rail-card p,
+      #calc-simple-interest .fi-exp-rail-card li {
+        margin: 0;
+        color: #44515c;
+        line-height: 1.68;
+      }
+
+      #calc-simple-interest .fi-exp-article-intro p,
+      #calc-simple-interest .fi-exp-story-block p {
+        max-width: 74ch;
+      }
+
+      #calc-simple-interest .fi-exp-article-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+        gap: 18px;
+        align-items: start;
+      }
+
+      #calc-simple-interest .fi-exp-article-main {
+        gap: 20px;
+        min-width: 0;
+      }
+
+      #calc-simple-interest .fi-exp-story-block {
+        gap: 12px;
+        padding: 22px 24px;
+        border-radius: 24px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-simple-interest .fi-exp-story-block--table {
+        margin-bottom: 8px;
+      }
+
+      #calc-simple-interest .fi-exp-story-block--table .table-scroll {
+        margin-top: 4px;
+        margin-bottom: 12px;
+      }
+
+      #calc-simple-interest .fi-exp-bullet-list,
+      #calc-simple-interest .fi-exp-rail-list,
+      #calc-simple-interest .fi-exp-formula-steps {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+
+      #calc-simple-interest .fi-exp-formula-block {
+        width: fit-content;
+        margin: 0;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(31, 95, 135, 0.16);
+        background: rgba(232, 241, 247, 0.78);
+        color: #163e59;
+        font-size: 1.02rem;
+        font-weight: 700;
+      }
+
+      #calc-simple-interest .fi-exp-article-rail {
+        gap: 14px;
+        min-width: 0;
+      }
+
+      #calc-simple-interest .fi-exp-rail-card {
+        gap: 10px;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-simple-interest .fi-exp-rail-list strong {
+        color: #13293d;
+      }
+
+      @media (max-width: 720px) {
+        #calc-simple-interest .fi-exp-article-head,
+        #calc-simple-interest .fi-exp-article-layout {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-simple-interest .fi-exp-story-block,
+        #calc-simple-interest .fi-exp-rail-card {
+          padding: 18px;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/#webpage","name":"Simple Interest Calculator | Interest & Final Amount","url":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/","description":"Estimate simple interest, total interest, and ending amount using principal, rate, and time period.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/#softwareapplication","name":"Simple Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/","description":"Calculate simple interest to find total interest and ending amount using principal, rate, and time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Total interest calculation","Ending amount estimate","Time unit toggle","Interest basis toggle"],"keywords":"simple interest calculator, interest calculator, loan interest, ending balance","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is simple interest?","acceptedAnswer":{"@type":"Answer","text":"Simple interest is interest calculated only on the original principal amount. It does not compound on previously earned interest."}},{"@type":"Question","name":"What is the simple interest formula?","acceptedAnswer":{"@type":"Answer","text":"I = P x r x t, where P is principal, r is the rate as a decimal, and t is time in years or months depending on the basis you choose."}},{"@type":"Question","name":"What is the difference between simple and compound interest?","acceptedAnswer":{"@type":"Answer","text":"Simple interest applies only to the principal and grows linearly. Compound interest earns interest on both principal and accumulated interest."}},{"@type":"Question","name":"Can I use this for loans?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many short-term loans, auto loans, and personal loans use simple interest, and this calculator estimates the total interest owed."}},{"@type":"Question","name":"Does simple interest grow linearly?","acceptedAnswer":{"@type":"Answer","text":"Yes. With a fixed rate, the interest earned each period stays constant, creating a straight-line pattern."}},{"@type":"Question","name":"How do I calculate interest for months?","acceptedAnswer":{"@type":"Answer","text":"Set the time unit to months. The calculator converts the time appropriately and applies the selected yearly or monthly basis."}},{"@type":"Question","name":"What happens if the rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"Total interest is zero and the ending amount equals the principal because there is no growth or borrowing cost."}},{"@type":"Question","name":"What is Interest Basis?","acceptedAnswer":{"@type":"Answer","text":"Per Year treats the rate as annual. Per Month treats the rate as monthly, which can materially increase the result over longer schedules."}},{"@type":"Question","name":"Is simple interest used for savings?","acceptedAnswer":{"@type":"Answer","text":"It is less common for long-term savings because most savings accounts compound, but it is still useful for short-term estimates and comparisons."}},{"@type":"Question","name":"When should I use simple interest?","acceptedAnswer":{"@type":"Answer","text":"Use it for short-term loans, quick estimates, certificates of deposit with simple interest, and educational comparisons."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Simple Interest","item":"https://calchowmuch.com/finance-calculators/simple-interest-calculator/"}]}]}</script>
@@ -2396,180 +2526,250 @@
 </div>
 
     <div id="si-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>How Much Interest Builds Without Compounding?</h2>
-      <p>
-        Estimate linear interest when growth stays tied to the original principal instead of
-        building on prior interest.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Current ending amount</p>
-      <p class="fi-exp-kpi-value"><strong><span data-si="ending-amount"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Built from principal of <span data-si="principal"></span> and total interest of
-        <strong><span data-si="total-interest"></span></strong>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        With a rate of <span data-si="rate"></span> across <span data-si="time"></span>
-        <span data-si="time-unit"></span>, the increase stays linear because the earning base does
-        not change.
-      </p>
-      <p>Use this page when you want a clean cost or growth estimate without compounding.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Best for short-term loans, trade credit, classroom examples, and products where interest
-          stays tied to the original balance.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
-          <a href="/finance-calculators/effective-annual-rate-calculator/">Effective Annual Rate</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="si-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">Current value</th>
-            <th scope="col">Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Principal</td>
-            <td><span data-si="principal"></span></td>
-            <td>The original amount the simple-interest rate is applied to.</td>
-          </tr>
-          <tr>
-            <td>Interest Rate</td>
-            <td><span data-si="rate"></span></td>
-            <td>The fixed rate used in the linear interest calculation.</td>
-          </tr>
-          <tr>
-            <td>Time Period</td>
-            <td><span data-si="time"></span> <span data-si="time-unit"></span></td>
-            <td>The duration the principal is exposed to the rate.</td>
-          </tr>
-          <tr>
-            <td>Interest Basis</td>
-            <td><span data-si="basis"></span></td>
-            <td>Whether the rate should be treated as annual or monthly.</td>
-          </tr>
-          <tr>
-            <td>Time In Years</td>
-            <td><span data-si="years"></span></td>
-            <td>The normalized time value used for comparison and formula context.</td>
-          </tr>
-          <tr>
-            <td>Rate As Decimal</td>
-            <td><span data-si="rate-decimal"></span></td>
-            <td>The percentage rate converted to decimal form for the formula.</td>
-          </tr>
-          <tr>
-            <td>Total Interest</td>
-            <td><span data-si="total-interest"></span></td>
-            <td>The interest earned or owed over the full schedule.</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Ending Amount</td>
-            <td><span data-si="ending-amount"></span></td>
-            <td>The principal plus total simple interest.</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Set the balance, time basis, and rate correctly before you interpret the final amount.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Enter the original balance</h4>
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Much Interest Builds Without Compounding?</h2>
           <p>
-            Start with the principal amount that is actually subject to the quoted rate. Under
-            simple interest, that same base stays in place throughout the calculation.
+            This calculator answers a very specific question: if interest stays tied to the
+            original balance instead of earning interest on prior interest, how much does the total
+            amount grow over the selected term?
+          </p>
+          <p>
+            With a principal of <span data-si="principal"></span>, a rate of
+            <span data-si="rate"></span>, and a timeline of <span data-si="time"></span>
+            <span data-si="time-unit"></span>, the current estimate reaches
+            <strong><span data-si="ending-amount"></span></strong>. That includes total simple
+            interest of <strong><span data-si="total-interest"></span></strong>, calculated on the
+            same original base for the full schedule.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Set the rate and time horizon</h4>
-          <p>
-            Add the quoted rate and the full time the money is borrowed or invested. Use years or
-            months to match the real agreement rather than approximating the schedule.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Current ending amount</p>
+          <p class="fi-exp-kpi-value"><strong><span data-si="ending-amount"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Built from principal of <span data-si="principal"></span> and total interest of
+            <strong><span data-si="total-interest"></span></strong>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Choose the correct basis</h4>
-          <p>
-            Use `Per Year` when the quoted rate is annual and `Per Month` only when the quoted rate
-            itself is monthly. Mixing those bases changes the result materially.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Simple interest is deliberately plain. The calculation does not allow growth to build
+              on itself. Instead, the rate is applied only to the original principal for the full
+              time period. That makes the result easier to explain, easier to audit, and often more
+              appropriate for short-term loans, trade credit, or classroom-style finance examples.
+            </p>
+            <p>
+              The ending amount matters, but the more useful insight usually comes from the split
+              between principal and interest. If total interest remains modest relative to the
+              starting balance, the schedule is being driven mostly by the original amount. If the
+              interest share becomes large, the term or rate is doing most of the work even without
+              compounding.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Principal</strong> sets the only earning base used in the model.</li>
+              <li><strong>Rate</strong> controls how fast linear interest accumulates.</li>
+              <li><strong>Time</strong> determines how long that fixed base is exposed.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Review the formula steps</h4>
-          <p>The simple-interest formula is:</p>
-          <p class="si-formula-block">I = P x r x t</p>
-          <p>The ending amount is `A = P + I`.</p>
-          <ol class="si-formula-steps">
-        <li>
-          Convert the interest rate to decimal:
-          <span data-si="rate"></span> = <span data-si="rate-decimal"></span>.
-        </li>
-        <li>
-          Normalize the time period for the selected basis:
-          <span data-si="normalized-time"></span> <span data-si="normalized-time-label"></span>.
-        </li>
-        <li>
-          Multiply principal, rate, and time to reach
-          <span data-si="total-interest"></span>.
-        </li>
-        <li>
-          Add the interest back to the principal to reach
-          <span data-si="ending-amount"></span>.
-        </li>
-          </ol>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Read the table in order. Start with principal, then rate and time, then total
+              interest, and finally ending amount. That sequence makes it clear whether the answer
+              is changing because the original balance is large, the term is long, or the quoted
+              rate itself is expensive.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="si-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Principal</td>
+                    <td><span data-si="principal"></span></td>
+                    <td>The original amount the simple-interest rate is applied to.</td>
+                  </tr>
+                  <tr>
+                    <td>Interest Rate</td>
+                    <td><span data-si="rate"></span></td>
+                    <td>The fixed rate used in the linear interest calculation.</td>
+                  </tr>
+                  <tr>
+                    <td>Time Period</td>
+                    <td><span data-si="time"></span> <span data-si="time-unit"></span></td>
+                    <td>The duration the principal is exposed to the rate.</td>
+                  </tr>
+                  <tr>
+                    <td>Interest Basis</td>
+                    <td><span data-si="basis"></span></td>
+                    <td>Whether the rate should be treated as annual or monthly.</td>
+                  </tr>
+                  <tr>
+                    <td>Time In Years</td>
+                    <td><span data-si="years"></span></td>
+                    <td>The normalized time value used for comparison and formula context.</td>
+                  </tr>
+                  <tr>
+                    <td>Rate As Decimal</td>
+                    <td><span data-si="rate-decimal"></span></td>
+                    <td>The percentage rate converted to decimal form for the formula.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Interest</td>
+                    <td><span data-si="total-interest"></span></td>
+                    <td>The interest earned or owed over the full schedule.</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Ending Amount</td>
+                    <td><span data-si="ending-amount"></span></td>
+                    <td>The principal plus total simple interest.</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Answer Most</h3>
+            <p>
+              In simple interest, there is no hidden acceleration effect. That means the three main
+              levers stay easy to read. Double the time and the interest roughly doubles. Raise the
+              rate and the interest rises proportionally. Increase the principal and the whole
+              schedule scales upward from the start.
+            </p>
+            <p>
+              The one place people make avoidable errors is the basis. If the quote is annual but
+              the calculator is set to monthly, or vice versa, the result can move materially even
+              though the visible percentage looks unchanged. The current basis of
+              <span data-si="basis"></span> therefore matters as much as the headline rate itself.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Behind Simple Interest</h3>
+            <p>
+              Simple interest uses one of the cleanest formulas in finance because it assumes the
+              earning base never changes. Interest is calculated first, then added back to the
+              original principal only at the end.
+            </p>
+            <p class="fi-exp-formula-block">I = P × r × t</p>
+            <p class="fi-exp-formula-block">A = P + I</p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>P</strong> is the original principal balance.</li>
+              <li><strong>r</strong> is the rate expressed in decimal form.</li>
+              <li><strong>t</strong> is the normalized time for the selected basis.</li>
+              <li><strong>A</strong> is the final amount after interest is added.</li>
+            </ul>
+            <ol class="fi-exp-formula-steps">
+              <li>
+                Convert the quoted rate of <span data-si="rate"></span> into decimal form:
+                <span data-si="rate-decimal"></span>.
+              </li>
+              <li>
+                Normalize the time period to <span data-si="normalized-time"></span>
+                <span data-si="normalized-time-label"></span>.
+              </li>
+              <li>
+                Multiply principal, rate, and time to produce total interest of
+                <span data-si="total-interest"></span>.
+              </li>
+              <li>
+                Add that interest to the principal to reach the ending amount of
+                <span data-si="ending-amount"></span>.
+              </li>
+            </ol>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              The best use of this calculator is not to admire the final number, but to judge
+              whether the quoted rate and time period make sense for the agreement you are reviewing.
+              If the interest total looks surprisingly high, test the basis first, then the term,
+              then the rate. Those checks usually explain the result faster than anything else.
+            </p>
+            <p>
+              This model is strongest when the contract or scenario is genuinely linear. If the real
+              product compounds, capitalizes unpaid interest, or changes rates over time, simple
+              interest becomes a simplification rather than a full representation.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When Simple Interest Is The Right Tool</h3>
+            <p>
+              Use simple interest when the core question is how much cost or growth accumulates on a
+              fixed base. That is common with short-term borrowing, trade credit, some personal or
+              auto-loan disclosures, and education examples where transparency matters more than
+              compounding realism.
+            </p>
+            <p>
+              If the product compounds or the timing extends far enough that reinvestment matters,
+              the <a href="/finance-calculators/compound-interest-calculator/">compound interest
+              calculator</a> is usually the better comparison. If the question is about quoted rates
+              versus true annual rates, the
+              <a href="/finance-calculators/effective-annual-rate-calculator/">effective annual rate
+              calculator</a> is the better next step.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Simple interest is useful precisely because it is not trying to do too much. It gives
+              you a clean linear answer. When you combine that with the principal, rate, basis, and
+              time assumptions shown above, you can usually identify the main driver of the result
+              in seconds.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Ending amount: <strong><span data-si="ending-amount"></span></strong></li>
+              <li>Total interest: <span data-si="total-interest"></span></li>
+              <li>Principal: <span data-si="principal"></span></li>
+              <li>Rate: <span data-si="rate"></span></li>
+              <li>Basis: <span data-si="basis"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for short-term borrowing, classroom finance, and any agreement where interest is
+              calculated only on the original balance.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+              <a href="/finance-calculators/effective-annual-rate-calculator/">Effective Annual Rate</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      Read the result in order: principal first, total interest second, ending amount last. For
-      longer savings and investment decisions, simple interest is usually too limited because most
-      real products compound.
-    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq" id="si-faq">

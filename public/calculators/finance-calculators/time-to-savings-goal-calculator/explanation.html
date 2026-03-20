@@ -1,142 +1,198 @@
 <div id="tsg-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>When Could You Reach Your Savings Goal?</h2>
-      <p>
-        Estimate the timeline to a fixed target using your current balance, recurring deposits, and
-        rate assumptions.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Estimated time to goal</p>
-      <p class="fi-exp-kpi-value"><strong><span data-tsg="time-result"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Based on a goal of <span data-tsg="goal"></span>, current savings of
-        <span data-tsg="current"></span>, and contributions of <span data-tsg="contribution"></span>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        Read the timeline first, then compare total contributions and total interest to see whether
-        the plan depends mostly on deposits or on growth.
-      </p>
-      <p>Use this route when the target amount is fixed and the missing answer is the timeline.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Useful for emergency funds, house deposits, travel budgets, car purchases, and other
-          fixed savings targets.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
-          <a href="/finance-calculators/future-value-of-annuity-calculator/">Future Value of Annuity</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="tsg-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">Value</th>
-            <th scope="col">How it helps</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Time to Goal</td>
-            <td><span data-tsg="time-result"></span></td>
-            <td>The headline estimate for your savings timeline.</td>
-          </tr>
-          <tr>
-            <td>Total Months</td>
-            <td><span data-tsg="months-required"></span></td>
-            <td>Useful when comparing alternate monthly contribution plans.</td>
-          </tr>
-          <tr>
-            <td>Total Contributions</td>
-            <td><span data-tsg="total-contributions"></span></td>
-            <td>Shows how much of the goal comes from your own deposits.</td>
-          </tr>
-          <tr>
-            <td>Total Interest</td>
-            <td><span data-tsg="total-interest"></span></td>
-            <td>Shows how much the growth assumption contributes.</td>
-          </tr>
-          <tr>
-            <td>Final Balance</td>
-            <td><span data-tsg="final-balance"></span></td>
-            <td>The balance at the point the goal is reached.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Use the guide to separate the savings gap, the monthly effort, and the role of interest.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Enter the target and current balance</h4>
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>When Could You Reach Your Savings Goal?</h2>
           <p>
-            Start with the amount you want to reach and what is already saved today. That gap
-            defines the real savings problem the calculator is solving.
+            This calculator answers the timing version of a savings question. The target amount is
+            fixed, the contribution plan is entered up front, and the unknown is how long the journey
+            may take.
+          </p>
+          <p>
+            With a goal of <span data-tsg="goal"></span>, current savings of
+            <span data-tsg="current"></span>, and recurring contributions of
+            <span data-tsg="contribution"></span>, the current plan reaches the target in
+            <strong><span data-tsg="time-result"></span></strong>. That makes the timeline the main
+            decision variable, not just the final balance.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Set a contribution you can sustain</h4>
-          <p>
-            Consistency matters more than a one-off stretch target. Use a monthly amount you can
-            actually maintain.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Estimated time to goal</p>
+          <p class="fi-exp-kpi-value"><strong><span data-tsg="time-result"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Based on a goal of <span data-tsg="goal"></span>, current savings of
+            <span data-tsg="current"></span>, and contributions of <span data-tsg="contribution"></span>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Add the rate and compounding only if they are realistic</h4>
-          <p>
-            Interest can shorten the timeline, but aggressive assumptions can make the plan look
-            easier than it really is. Match the settings to the account you expect to use.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Time to goal is useful because it turns a savings target into a schedule. It tells you
+              whether the current plan is fast enough, or whether the goal date is being pushed too far
+              into the future by low contributions, a wide savings gap, or conservative growth.
+            </p>
+            <p>
+              The most practical reading is not just the calendar estimate. It is the combination of
+              time to goal, total contributions, and total interest. That trio shows whether the plan
+              depends mostly on your own deposits or whether growth is meaningfully helping shorten the
+              journey.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Goal gap</strong> determines how much ground must still be covered.</li>
+              <li><strong>Contribution level</strong> decides how quickly the balance can advance.</li>
+              <li><strong>Growth</strong> can shorten the timeline, but only if assumptions are realistic.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Read the result in order</h4>
-          <p>
-            Start with time to goal, then total contributions, then total interest. That shows
-            whether the plan depends mostly on deposits or on growth.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Start with time to goal, then total months, then total contributions and total interest.
+              That order makes it easier to see whether the plan is slow because the contribution rate
+              is too low or because the savings horizon is simply long by nature.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="tsg-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">How it helps</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Time to Goal</td>
+                    <td><span data-tsg="time-result"></span></td>
+                    <td>The headline estimate for your savings timeline.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Months</td>
+                    <td><span data-tsg="months-required"></span></td>
+                    <td>Useful when comparing alternate monthly contribution plans.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Contributions</td>
+                    <td><span data-tsg="total-contributions"></span></td>
+                    <td>Shows how much of the goal comes from your own deposits.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Interest</td>
+                    <td><span data-tsg="total-interest"></span></td>
+                    <td>Shows how much the growth assumption contributes.</td>
+                  </tr>
+                  <tr>
+                    <td>Final Balance</td>
+                    <td><span data-tsg="final-balance"></span></td>
+                    <td>The balance at the point the goal is reached.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Timeline Most</h3>
+            <p>
+              Contributions are often the biggest immediate lever. Increasing the recurring amount can
+              shorten the timeline materially because every extra deposit works in every remaining
+              period. Current savings matter too because they reduce the gap on day one.
+            </p>
+            <p>
+              Growth assumptions help, but they should not be used as the primary rescue plan. The
+              strongest timelines are usually built by combining a realistic deposit habit with a goal
+              amount and deadline that fit the real budget.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Logic Behind The Timeline</h3>
+            <p>
+              This calculator uses the same accumulation relationship as a savings-growth model, but
+              solves it for time rather than for the ending balance.
+            </p>
+            <p class="fi-exp-formula-block">Goal ≈ Current Growth + Contribution Growth</p>
+            <p class="fi-exp-formula-block">The calculator solves that relationship for time</p>
+            <ul class="fi-exp-bullet-list">
+              <li>The target amount is fixed in advance.</li>
+              <li>Current savings reduce the distance to the goal immediately.</li>
+              <li>The required timeline is whatever length lets deposits and growth close the gap.</li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              The best way to use this page is to compare realistic contribution levels. If the
+              timeline is too long, test one lever at a time: a higher monthly amount, a smaller goal,
+              or a more flexible deadline. That produces more useful planning decisions than making one
+              aggressive change to the rate assumption.
+            </p>
+            <p>
+              This result also helps when the goal already has a rough date attached to it. You can
+              compare the estimated timeline against that target date and quickly see whether the plan
+              is ahead, behind, or broadly on track.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When This Calculator Is The Right Tool</h3>
+            <p>
+              Use this route when the target amount is fixed and the missing answer is the timeline. If
+              the desired deadline is fixed and you need to know the monthly contribution instead, use
+              the <a href="/finance-calculators/monthly-savings-needed-calculator/">monthly savings
+              needed calculator</a>. If the question is about recurring deposits growing into a future
+              balance, the <a href="/finance-calculators/future-value-of-annuity-calculator/">future
+              value of annuity calculator</a> is the better fit.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Time to goal turns a savings ambition into a practical schedule. That makes it one of
+              the most useful planning views in the cluster because it tells you not just whether the
+              goal is possible, but whether it is possible soon enough.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Time to goal: <strong><span data-tsg="time-result"></span></strong></li>
+              <li>Goal: <span data-tsg="goal"></span></li>
+              <li>Current savings: <span data-tsg="current"></span></li>
+              <li>Contribution: <span data-tsg="contribution"></span></li>
+              <li>Total months: <span data-tsg="months-required"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for emergency funds, deposits, travel budgets, car purchases, and any goal where
+              the timeline is the main unknown.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
+              <a href="/finance-calculators/future-value-of-annuity-calculator/">Future Value of Annuity</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      If the timeline looks too long, test one lever at a time: higher monthly deposits, a lower
-      goal, or a longer deadline.
-    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">

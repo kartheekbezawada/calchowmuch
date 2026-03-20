@@ -2795,6 +2795,8 @@
       id="lease-table-monthly-wrap"
       data-glow="monthly"
       tabindex="0"
+      role="region"
+      aria-label="Monthly lease schedule"
     >
       <table class="calculator-table" id="lease-table-monthly">
         <thead>
@@ -2810,7 +2812,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="lease-table-yearly-wrap" data-glow="yearly" tabindex="0">
+    <div class="table-scroll" id="lease-table-yearly-wrap" data-glow="yearly" tabindex="0" role="region" aria-label="Yearly lease schedule">
       <table class="calculator-table" id="lease-table-yearly">
         <thead>
           <tr>
@@ -2825,7 +2827,7 @@
       </table>
     </div>
 
-    <div class="table-scroll is-hidden" id="lease-table-cost-wrap" data-glow="cost" tabindex="0">
+    <div class="table-scroll is-hidden" id="lease-table-cost-wrap" data-glow="cost" tabindex="0" role="region" aria-label="Lease cost breakdown">
       <table class="calculator-table lease-cost-table al-table-stack-mobile" id="lease-table-cost">
         <thead>
           <tr>
@@ -2917,7 +2919,7 @@
 
     <div>
       <h4>How Input Changes Affect the Result</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Input changes effect reference">
         <table class="calculator-table">
           <thead>
             <tr>

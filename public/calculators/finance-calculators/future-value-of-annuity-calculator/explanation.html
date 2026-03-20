@@ -1,205 +1,243 @@
 <div id="fva-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>How Much Could Regular Payments Grow Into?</h2>
-      <p>
-        Project what a steady savings habit could accumulate into when equal payments compound over
-        time.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Future value of the payment stream</p>
-      <p class="fi-exp-kpi-value"><strong><span data-fva="future-value"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Built from total payments of <span data-fva="total-payments"></span> and growth of
-        <strong><span data-fva="total-interest"></span></strong>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        With payments of <span data-fva="payment-amount"></span> across
-        <span data-fva="period-count"></span>, both timing and compounding determine how much each
-        contribution can grow.
-      </p>
-      <p>Use this page when the deposit pattern is regular and the main question is the ending value.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Useful for retirement contributions, sinking funds, college savings, and other plans built
-          on equal recurring deposits.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
-          <a href="/finance-calculators/time-to-savings-goal-calculator/">Time to Savings Goal</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="fva-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">Current value</th>
-            <th scope="col">Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Payment Amount</td>
-            <td><span data-fva="payment-amount"></span></td>
-            <td>The recurring amount being added in each period.</td>
-          </tr>
-          <tr>
-            <td>Interest Rate</td>
-            <td><span data-fva="interest-rate"></span></td>
-            <td>The annual growth assumption that compounds over the schedule.</td>
-          </tr>
-          <tr>
-            <td>Periods</td>
-            <td><span data-fva="period-count"></span></td>
-            <td>The full contribution timeline you want to project.</td>
-          </tr>
-          <tr>
-            <td>Annuity Type</td>
-            <td><span data-fva="annuity-type"></span></td>
-            <td>Payment timing determines how long each contribution can compound.</td>
-          </tr>
-          <tr>
-            <td>Compounding</td>
-            <td><span data-fva="compounding-frequency"></span></td>
-            <td>The annual rate is split into this many effective growth periods.</td>
-          </tr>
-          <tr>
-            <td>Effective Periods</td>
-            <td><span data-fva="effective-periods"></span></td>
-            <td>The total number of periods used in the compounding math.</td>
-          </tr>
-          <tr>
-            <td>Rate Per Period</td>
-            <td><span data-fva="applied-rate"></span>%</td>
-            <td>The rate applied during each effective compounding period.</td>
-          </tr>
-          <tr>
-            <td>Total Payments</td>
-            <td><span data-fva="total-payments"></span></td>
-            <td>The total amount you contribute before any growth is added.</td>
-          </tr>
-          <tr>
-            <td>Total Interest Earned</td>
-            <td><span data-fva="total-interest"></span></td>
-            <td>The extra value created by compounding over time.</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Future Value</td>
-            <td><span data-fva="future-value"></span></td>
-            <td>The accumulated value of all contributions at the end of the term.</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Set the payment pattern first, then review timing, compounding, and the final accumulation separately.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Set the recurring contribution</h4>
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Much Could Regular Payments Grow Into?</h2>
           <p>
-            Enter the equal amount you plan to add each period. This route is strongest when the
-            contribution amount stays stable from one period to the next.
+            This calculator turns a steady contribution habit into an ending balance estimate. It is
+            designed for cases where the payment size stays consistent and the real question is how
+            large the accumulated value may become by the end of the term.
+          </p>
+          <p>
+            With recurring payments of <span data-fva="payment-amount"></span> across
+            <span data-fva="period-count"></span>, the current setup grows to
+            <strong><span data-fva="future-value"></span></strong>. Total payments of
+            <span data-fva="total-payments"></span> and interest of
+            <strong><span data-fva="total-interest"></span></strong> show how much of the final
+            answer comes from saving discipline versus compounding.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Choose a growth assumption</h4>
-          <p>
-            Use the savings rate or expected investment return that best fits the plan. Small rate
-            changes become meaningful over longer horizons.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Future value of the payment stream</p>
+          <p class="fi-exp-kpi-value"><strong><span data-fva="future-value"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Built from total payments of <span data-fva="total-payments"></span> and growth of
+            <strong><span data-fva="total-interest"></span></strong>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Match the timing correctly</h4>
-          <p>
-            Switch between years and months so the period count matches the real schedule, then
-            choose the compounding rhythm that fits the quoted rate.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Future value of an annuity is useful when the contribution pattern is regular. Instead
+              of tracking every payment as a separate decision, the calculator shows what the full
+              stream can become when those payments compound over time.
+            </p>
+            <p>
+              The most important split in the result is between total payments and total interest.
+              That is where the accumulation story becomes clear. If interest makes up a large share
+              of the final balance, time and compounding are doing more of the heavy lifting. If not,
+              the result is being driven mostly by the payment stream itself.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Payment size</strong> determines how much new money enters the plan.</li>
+              <li><strong>Timing</strong> changes how long each payment can compound.</li>
+              <li><strong>Rate and periods</strong> define how much growth is available overall.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Compare ordinary and due timing</h4>
-          <p>
-            Ordinary annuity assumes each payment lands at the end of the period. Annuity due
-            assumes it arrives at the beginning, which usually produces more growth.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Read payment amount and period count first, then compare annuity type, total payments,
+              total interest, and future value. That order shows whether the outcome is being moved
+              mainly by how much you save, how early you save, or how long the plan compounds.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="fva-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Payment Amount</td>
+                    <td><span data-fva="payment-amount"></span></td>
+                    <td>The recurring amount being added in each period.</td>
+                  </tr>
+                  <tr>
+                    <td>Interest Rate</td>
+                    <td><span data-fva="interest-rate"></span></td>
+                    <td>The annual growth assumption that compounds over the schedule.</td>
+                  </tr>
+                  <tr>
+                    <td>Periods</td>
+                    <td><span data-fva="period-count"></span></td>
+                    <td>The full contribution timeline you want to project.</td>
+                  </tr>
+                  <tr>
+                    <td>Annuity Type</td>
+                    <td><span data-fva="annuity-type"></span></td>
+                    <td>Payment timing determines how long each contribution can compound.</td>
+                  </tr>
+                  <tr>
+                    <td>Compounding</td>
+                    <td><span data-fva="compounding-frequency"></span></td>
+                    <td>The annual rate is split into this many effective growth periods.</td>
+                  </tr>
+                  <tr>
+                    <td>Effective Periods</td>
+                    <td><span data-fva="effective-periods"></span></td>
+                    <td>The total number of periods used in the compounding math.</td>
+                  </tr>
+                  <tr>
+                    <td>Rate Per Period</td>
+                    <td><span data-fva="applied-rate"></span>%</td>
+                    <td>The rate applied during each effective compounding period.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Payments</td>
+                    <td><span data-fva="total-payments"></span></td>
+                    <td>The total amount you contribute before any growth is added.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Interest Earned</td>
+                    <td><span data-fva="total-interest"></span></td>
+                    <td>The extra value created by compounding over time.</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Future Value</td>
+                    <td><span data-fva="future-value"></span></td>
+                    <td>The accumulated value of all contributions at the end of the term.</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">05</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Review the formula steps</h4>
-          <p>The ordinary annuity formula is:</p>
-          <p class="fva-formula-block">FVA = PMT x [((1 + r)<sup>n</sup> - 1) / r]</p>
-          <ol class="fva-formula-steps">
-        <li>
-          Convert the annual rate into the per-period rate:
-          <span data-fva="interest-rate"></span> divided by
-          <span data-fva="periods-per-year"></span> = <span data-fva="applied-rate"></span>% per
-          period.
-        </li>
-        <li>
-          Convert the schedule into total effective periods:
-          <span data-fva="effective-periods"></span>.
-        </li>
-        <li>
-          Build the annuity factor:
-          <span data-fva="formula-annuity-factor"></span>.
-        </li>
-        <li>
-          Multiply the payment amount by that factor to reach
-          <span data-fva="future-value"></span>.
-        </li>
-        <li>
-          If you choose annuity due, the ordinary result is multiplied by (1 +
-          <span data-fva="applied-rate-decimal"></span>) because each contribution compounds for one
-          extra period.
-        </li>
-          </ol>
-        </div>
-      </article>
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Answer Most</h3>
+            <p>
+              Payment size has the most direct effect, but annuity timing is often the most
+              underappreciated lever. Beginning-of-period contributions generally finish higher than
+              end-of-period contributions because every deposit gets one extra compounding period.
+            </p>
+            <p>
+              Compounding frequency matters too, but over long horizons the bigger drivers are often
+              the size of the recurring deposit and the number of total periods you can maintain it.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Behind Future Value Of An Annuity</h3>
+            <p>
+              The ordinary-annuity formula accumulates a stream of equal payments through repeated
+              compounding. If payments are made at the beginning of each period, the answer is then
+              adjusted upward to reflect the extra growth time.
+            </p>
+            <p class="fi-exp-formula-block">FVA = PMT × [((1 + r)<sup>n</sup> - 1) / r]</p>
+            <ol class="fi-exp-formula-steps">
+              <li>
+                Convert the annual rate of <span data-fva="interest-rate"></span> using
+                <span data-fva="periods-per-year"></span> periods per year to reach
+                <span data-fva="applied-rate"></span>% per period.
+              </li>
+              <li>
+                Convert the full schedule into <span data-fva="effective-periods"></span> effective
+                periods.
+              </li>
+              <li>
+                Build the annuity factor of <span data-fva="formula-annuity-factor"></span>.
+              </li>
+              <li>
+                Multiply the factor by the payment amount to reach
+                <span data-fva="future-value"></span>.
+              </li>
+              <li>
+                For annuity due, multiply the ordinary result by
+                <span data-fva="applied-rate-decimal"></span> + 1 because each payment compounds for
+                one additional period.
+              </li>
+            </ol>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              The practical way to use this calculator is to treat the payment amount as a habit, not
+              as an isolated input. If the deposit is unrealistic, the future value becomes an
+              optimistic projection. If the deposit is sustainable, the result becomes a much more
+              useful planning target.
+            </p>
+            <p>
+              Read future value first, then total payments, then total interest. That order keeps the
+              answer grounded in what you contributed yourself before you attribute too much of the
+              outcome to growth assumptions.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When This Calculator Is The Right Tool</h3>
+            <p>
+              Use this route when deposits are equal and recurring. If the question is instead how
+              much monthly saving is required to hit a fixed goal, use the
+              <a href="/finance-calculators/monthly-savings-needed-calculator/">monthly savings
+              needed calculator</a>. If the question is how long a plan takes, the
+              <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal
+              calculator</a> is the stronger companion.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Future value of an annuity shows what a consistent savings rhythm may become over time.
+              It works best when the deposit pattern is realistic, the timing is set correctly, and
+              the result is read alongside total payments and total interest rather than in isolation.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Future value: <strong><span data-fva="future-value"></span></strong></li>
+              <li>Payment amount: <span data-fva="payment-amount"></span></li>
+              <li>Total payments: <span data-fva="total-payments"></span></li>
+              <li>Total interest: <span data-fva="total-interest"></span></li>
+              <li>Annuity type: <span data-fva="annuity-type"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for retirement deposits, sinking funds, college savings, and any plan built on
+              equal recurring contributions.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
+              <a href="/finance-calculators/time-to-savings-goal-calculator/">Time to Savings Goal</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      Read the result in order: future value first, total payments second, total interest third. If
-      deposits vary materially, compare the answer with the
-      <a href="/finance-calculators/investment-return-calculator/">investment return calculator</a>.
-    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq" id="fva-faq">

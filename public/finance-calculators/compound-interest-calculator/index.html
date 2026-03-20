@@ -1995,6 +1995,136 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-compound-interest .fi-exp-article,
+      #calc-compound-interest .fi-exp-article-shell,
+      #calc-compound-interest .fi-exp-article-main,
+      #calc-compound-interest .fi-exp-story-block,
+      #calc-compound-interest .fi-exp-article-intro,
+      #calc-compound-interest .fi-exp-article-rail,
+      #calc-compound-interest .fi-exp-rail-card {
+        display: grid;
+      }
+
+      #calc-compound-interest .fi-exp-article {
+        gap: 22px;
+      }
+
+      #calc-compound-interest .fi-exp-article-shell {
+        gap: 20px;
+      }
+
+      #calc-compound-interest .fi-exp-article-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.82fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      #calc-compound-interest .fi-exp-article-intro {
+        gap: 12px;
+      }
+
+      #calc-compound-interest .fi-exp-article-intro h2,
+      #calc-compound-interest .fi-exp-story-block h3,
+      #calc-compound-interest .fi-exp-rail-card h3 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-compound-interest .fi-exp-article-intro p,
+      #calc-compound-interest .fi-exp-story-block p,
+      #calc-compound-interest .fi-exp-story-block li,
+      #calc-compound-interest .fi-exp-rail-card p,
+      #calc-compound-interest .fi-exp-rail-card li {
+        margin: 0;
+        color: #44515c;
+        line-height: 1.68;
+      }
+
+      #calc-compound-interest .fi-exp-article-intro p,
+      #calc-compound-interest .fi-exp-story-block p {
+        max-width: 76ch;
+      }
+
+      #calc-compound-interest .fi-exp-article-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+        gap: 18px;
+        align-items: start;
+      }
+
+      #calc-compound-interest .fi-exp-article-main {
+        gap: 20px;
+        min-width: 0;
+      }
+
+      #calc-compound-interest .fi-exp-story-block {
+        gap: 12px;
+        padding: 22px 24px;
+        border-radius: 24px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-compound-interest .fi-exp-story-block--table {
+        margin-bottom: 8px;
+      }
+
+      #calc-compound-interest .fi-exp-story-block--table .table-scroll {
+        margin-top: 4px;
+        margin-bottom: 12px;
+      }
+
+      #calc-compound-interest .fi-exp-bullet-list,
+      #calc-compound-interest .fi-exp-rail-list,
+      #calc-compound-interest .fi-exp-formula-steps {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+
+      #calc-compound-interest .fi-exp-formula-block {
+        width: fit-content;
+        margin: 0;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(31, 95, 135, 0.16);
+        background: rgba(232, 241, 247, 0.78);
+        color: #163e59;
+        font-size: 1.02rem;
+        font-weight: 700;
+      }
+
+      #calc-compound-interest .fi-exp-article-rail {
+        gap: 14px;
+        min-width: 0;
+      }
+
+      #calc-compound-interest .fi-exp-rail-card {
+        gap: 10px;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-compound-interest .fi-exp-rail-list strong {
+        color: #13293d;
+      }
+
+      @media (max-width: 720px) {
+        #calc-compound-interest .fi-exp-article-head,
+        #calc-compound-interest .fi-exp-article-layout {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-compound-interest .fi-exp-story-block,
+        #calc-compound-interest .fi-exp-rail-card {
+          padding: 18px;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#webpage","name":"Compound Interest Calculator | Ending Balance & Growth","url":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/","description":"Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#softwareapplication","name":"Compound Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/","description":"Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Ending balance estimate","Total interest earned","Compounding frequency toggle","Yearly contribution slider"],"keywords":"compound interest calculator, interest calculator, investment growth, savings calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is compound interest?","acceptedAnswer":{"@type":"Answer","text":"Compound interest means interest is earned on both the principal and prior accumulated interest."}},{"@type":"Question","name":"What changes the ending balance most?","acceptedAnswer":{"@type":"Answer","text":"Time, rate, and consistent contributions usually have the biggest long-term effect."}},{"@type":"Question","name":"Do recurring contributions matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. They can become a major share of the final balance, especially over longer periods."}},{"@type":"Question","name":"Does compounding frequency matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. More frequent compounding usually produces a slightly higher ending balance under the same nominal rate."}},{"@type":"Question","name":"What if the rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The ending balance becomes principal plus total contributions because no growth is applied."}},{"@type":"Question","name":"Why can small rate changes matter so much?","acceptedAnswer":{"@type":"Answer","text":"Because even small differences compound over every period and become larger over time."}},{"@type":"Question","name":"Can I use this for savings planning?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for deterministic savings and investment scenarios with a fixed rate assumption."}},{"@type":"Question","name":"Is the chart the main answer?","acceptedAnswer":{"@type":"Answer","text":"No. Use the chart for inspection, but make the decision from ending balance, contributions, and interest."}},{"@type":"Question","name":"Why can spreadsheet results differ slightly?","acceptedAnswer":{"@type":"Answer","text":"Display rounding can differ even when the formula logic is effectively the same."}},{"@type":"Question","name":"Is this a guaranteed forecast?","acceptedAnswer":{"@type":"Answer","text":"No. It is a fixed-assumption estimate for planning and comparison."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Compound Interest","item":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/"}]}]}</script>
@@ -2262,168 +2392,214 @@
 </div>
 
     <div id="ci-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>How Fast Could This Balance Compound?</h2>
-      <p>
-        Estimate how an opening balance and steady deposits may grow when returns compound over
-        time.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Projected ending balance</p>
-      <p class="fi-exp-kpi-value"><strong><span data-ci="ending-balance"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Built from total contributions of <span data-ci="total-contributions"></span> and compound
-        growth of <strong><span data-ci="total-interest"></span></strong>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        Read the ending balance first, then compare total contributions and total interest to see
-        how much came from your deposits versus compounding.
-      </p>
-      <p>Use this route when time, reinvestment, and contribution discipline drive the decision.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Strongest for long-horizon savings, investing, and wealth-building questions where time in
-          the market drives the answer.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
-          <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="ci-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">Current value</th>
-            <th scope="col">Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Initial Principal</td>
-            <td><span data-ci="principal"></span></td>
-            <td>The balance already invested at the beginning.</td>
-          </tr>
-          <tr>
-            <td>Annual Interest Rate</td>
-            <td><span data-ci="rate"></span></td>
-            <td>The headline annual growth assumption.</td>
-          </tr>
-          <tr>
-            <td>Time Period</td>
-            <td><span data-ci="time"></span></td>
-            <td>The full compounding horizon.</td>
-          </tr>
-          <tr>
-            <td>Contribution Per Period</td>
-            <td><span data-ci="contribution-per-period"></span></td>
-            <td>The recurring amount added at each period.</td>
-          </tr>
-          <tr>
-            <td>Total Contributions</td>
-            <td><span data-ci="total-contributions"></span></td>
-            <td>Your additional deposits over the full term.</td>
-          </tr>
-          <tr>
-            <td>Total Interest Earned</td>
-            <td><span data-ci="total-interest"></span></td>
-            <td>The growth created by compounding.</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Ending Balance</td>
-            <td><span data-ci="ending-balance"></span></td>
-            <td>Principal plus contributions plus compound growth.</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Set the base, review the growth inputs, then judge the answer against contribution burden and time horizon.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Start with the opening balance</h4>
+  <section class="mtg-exp-section fi-exp-article fi-exp-article--dense">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Fast Could This Balance Compound?</h2>
           <p>
-            Enter the amount already invested or saved. This balance starts compounding immediately,
-            so it often has the strongest influence on the final result.
+            Compound interest becomes powerful when time, reinvestment, and recurring contributions
+            reinforce each other. This page is designed to show that interaction rather than just
+            produce one ending balance.
+          </p>
+          <p>
+            With principal of <span data-ci="principal"></span>, contributions of
+            <span data-ci="contribution-per-period"></span>, a rate of <span data-ci="rate"></span>,
+            and a horizon of <span data-ci="time"></span>, the plan currently grows to
+            <strong><span data-ci="ending-balance"></span></strong>. Total contributions of
+            <span data-ci="total-contributions"></span> and total interest of
+            <strong><span data-ci="total-interest"></span></strong> show where that balance comes from.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Add the rate and time horizon</h4>
-          <p>
-            The annual rate and the total years determine how long the balance has to compound. A
-            realistic time horizon is usually more useful than an aggressive rate assumption.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Projected ending balance</p>
+          <p class="fi-exp-kpi-value"><strong><span data-ci="ending-balance"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Built from total contributions of <span data-ci="total-contributions"></span> and compound
+            growth of <strong><span data-ci="total-interest"></span></strong>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Add recurring contributions only if they are consistent</h4>
-          <p>
-            Recurring contributions can materially change the ending balance because each deposit
-            also compounds for the remainder of the plan.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Compound interest is not just interest added once at the end. It is growth earning
+              growth over many periods. That means the ending balance becomes more informative when you
+              read it alongside contributions and total interest rather than as a standalone number.
+            </p>
+            <p>
+              The most useful question is usually not “how big is the balance?” but “how much of the
+              balance came from deposits, and how much came from compounding?” That distinction tells
+              you whether the plan is being driven mainly by cash effort or by time in the market.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Principal</strong> gives compounding a head start.</li>
+              <li><strong>Recurring deposits</strong> keep adding new capital to the engine.</li>
+              <li><strong>Time and rate</strong> determine how powerful reinvestment becomes.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Compare contribution growth and interest growth</h4>
-          <p>
-            Read ending balance first, then total contributions, then total interest. That sequence
-            shows whether progress is being driven mostly by deposits or by time in the market.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Read ending balance first, then total contributions, then total interest. That order is
+              the quickest way to judge whether progress is coming mostly from what you put in or from
+              what the compounding process created on top.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="ci-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Initial Principal</td>
+                    <td><span data-ci="principal"></span></td>
+                    <td>The balance already invested at the beginning.</td>
+                  </tr>
+                  <tr>
+                    <td>Annual Interest Rate</td>
+                    <td><span data-ci="rate"></span></td>
+                    <td>The headline annual growth assumption.</td>
+                  </tr>
+                  <tr>
+                    <td>Time Period</td>
+                    <td><span data-ci="time"></span></td>
+                    <td>The full compounding horizon.</td>
+                  </tr>
+                  <tr>
+                    <td>Contribution Per Period</td>
+                    <td><span data-ci="contribution-per-period"></span></td>
+                    <td>The recurring amount added at each period.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Contributions</td>
+                    <td><span data-ci="total-contributions"></span></td>
+                    <td>Your additional deposits over the full term.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Interest Earned</td>
+                    <td><span data-ci="total-interest"></span></td>
+                    <td>The growth created by compounding.</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Ending Balance</td>
+                    <td><span data-ci="ending-balance"></span></td>
+                    <td>Principal plus contributions plus compound growth.</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">05</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Use the projection table and chart as secondary tools</h4>
-          <p>
-            The table and chart help you inspect the path, but the main decision still rests on the
-            ending balance, the contribution burden, and the realism of the assumptions behind them.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Outcome Most</h3>
+            <p>
+              Over longer horizons, time is often the quiet multiplier. A realistic contribution plan
+              held for more years can outperform a shorter plan built on more optimistic rate
+              assumptions. That is why compound-interest decisions improve when horizon, contribution
+              burden, and rate are read together.
+            </p>
+            <p>
+              Contributions matter because each new deposit also gets a chance to compound. That is
+              why the same annual rate can produce very different outcomes depending on whether new
+              money is added consistently or not at all.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Logic Behind Compound Growth</h3>
+            <p>
+              Compound growth combines two effects: the original balance compounds over the full term,
+              and each recurring contribution compounds over whatever portion of the term remains after
+              it is added.
+            </p>
+            <p class="fi-exp-formula-block">A ≈ Principal Growth + Contribution Growth</p>
+            <p class="fi-exp-formula-block">Compounding works because growth is reinvested each period</p>
+            <ul class="fi-exp-bullet-list">
+              <li>The opening balance gets the longest compounding runway.</li>
+              <li>Each contribution joins later, so timing changes its growth power.</li>
+              <li>The longer the horizon, the larger the share created by interest can become.</li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              The best way to use this page is to compare the ending balance with the contribution
+              burden. If the result looks attractive only because contributions are extremely high, the
+              plan may be less robust than it appears. If the interest share becomes large, the model
+              is showing the real benefit of time and reinvestment.
+            </p>
+            <p>
+              The projection table and chart below are secondary tools. They help you inspect the
+              path, but the main decision still rests on whether the assumptions behind the path are
+              realistic and sustainable.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When This Calculator Is The Right Tool</h3>
+            <p>
+              Use this route when compounding is the center of the decision. If you want a simpler
+              ending-balance estimate without the heavier projection tools, use the
+              <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If
+              you want a portfolio framing with inflation context, the
+              <a href="/finance-calculators/investment-growth-calculator/">investment growth
+              calculator</a> is the better companion.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Compound interest matters because it makes time more valuable. The most reliable way to
+              read the answer is to pair the ending balance with total contributions and total interest,
+              then judge whether that mix fits the plan you can actually follow.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Ending balance: <strong><span data-ci="ending-balance"></span></strong></li>
+              <li>Principal: <span data-ci="principal"></span></li>
+              <li>Contribution: <span data-ci="contribution-per-period"></span></li>
+              <li>Total contributions: <span data-ci="total-contributions"></span></li>
+              <li>Total interest: <span data-ci="total-interest"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for long-horizon savings, wealth-building, and any scenario where reinvestment and
+              contribution discipline drive the answer.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+              <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      In practice, most compound-interest decisions improve when you compare the answer with the
-      contribution burden and the time horizon together rather than chasing the highest possible
-      rate assumption.
-    </p>
   </section>
 
   <section class="mtg-exp-section">

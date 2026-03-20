@@ -1,292 +1,278 @@
 <div id="ir-explanation" class="explanation-pane">
   <div id="ir-explanation-content">
-    <section class="mtg-exp-section fi-exp-hero">
-      <div class="fi-exp-intro">
-        <h2>How Is Your Portfolio Performing Over Time?</h2>
-        <p>
-          Judge whether the current plan is being driven more by deposits, compounding, or drag from
-          inflation and tax.
-        </p>
-      </div>
-
-      <div class="fi-exp-kpi">
-        <p class="fi-exp-kpi-label">Projected final portfolio value</p>
-        <p class="fi-exp-kpi-value"><strong data-ir="exp-final-value">-</strong></p>
-        <p class="fi-exp-kpi-note">
-          Built from total contributions of <strong data-ir="exp-total-contributions">-</strong>,
-          profit of <strong data-ir="exp-total-profit">-</strong>, and a nominal CAGR of
-          <strong data-ir="exp-cagr">-</strong>.
-        </p>
-      </div>
-
-      <div class="fi-exp-support">
-        <p>
-          This route is built for longer-horizon decisions where the headline ending balance matters
-          less than understanding what created it.
-        </p>
-        <p>
-          Use it when you want CAGR, inflation-adjusted returns, and tax-aware portfolio analysis in
-          one place.
-        </p>
-      </div>
-
-      <div class="fi-exp-context-grid">
-        <section class="fi-exp-card">
-          <h3>When This Helps</h3>
-          <p>
-            Best for comparing long-horizon portfolio scenarios where deposits, inflation, tax, and
-            timing all change the interpretation of the result.
-          </p>
-        </section>
-        <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-          <h3>Related Tools</h3>
-          <div class="fi-exp-link-list">
-            <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
-            <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
-          </div>
-        </nav>
-      </div>
-    </section>
-
-    <section class="mtg-exp-section">
-      <h3>Scenario Summary</h3>
-      <div class="table-scroll" tabindex="0">
-        <table class="ir-results-table">
-          <thead>
-            <tr>
-              <th scope="col">Input</th>
-              <th scope="col">Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Initial Investment</td>
-              <td data-ir="exp-initial">-</td>
-            </tr>
-            <tr>
-              <td>Expected Annual Return</td>
-              <td data-ir="exp-rate">-</td>
-            </tr>
-            <tr>
-              <td>Duration</td>
-              <td data-ir="exp-years">-</td>
-            </tr>
-            <tr>
-              <td>Compounding Frequency</td>
-              <td data-ir="exp-compounding">-</td>
-            </tr>
-            <tr>
-              <td>Regular Contribution</td>
-              <td data-ir="exp-contribution">-</td>
-            </tr>
-            <tr>
-              <td>Contribution Frequency</td>
-              <td data-ir="exp-contrib-frequency">-</td>
-            </tr>
-            <tr>
-              <td>Contribution Timing</td>
-              <td data-ir="exp-contrib-timing">-</td>
-            </tr>
-            <tr>
-              <td>Inflation Rate</td>
-              <td data-ir="exp-inflation">-</td>
-            </tr>
-            <tr>
-              <td>Tax Rate</td>
-              <td data-ir="exp-tax-rate">-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="mtg-exp-section">
-      <h3>Results Table</h3>
-      <div class="table-scroll" tabindex="0">
-        <table class="ir-results-table">
-          <thead>
-            <tr>
-              <th scope="col">Metric</th>
-              <th scope="col">Value</th>
-              <th scope="col">Interpretation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Final Portfolio Value</td>
-              <td data-ir="exp-final-value">-</td>
-              <td>Projected ending balance after contributions, growth, and tax.</td>
-            </tr>
-            <tr>
-              <td>Total Contributions</td>
-              <td data-ir="exp-total-contributions">-</td>
-              <td>Initial investment plus net additional deposits and withdrawals.</td>
-            </tr>
-            <tr>
-              <td>Total Profit</td>
-              <td data-ir="exp-total-profit">-</td>
-              <td>Growth above total contributions.</td>
-            </tr>
-            <tr>
-              <td>Total Tax Paid</td>
-              <td data-ir="exp-total-tax">-</td>
-              <td>Year-end tax on positive gains after modeled offsets.</td>
-            </tr>
-            <tr>
-              <td>Nominal CAGR</td>
-              <td data-ir="exp-cagr">-</td>
-              <td>Annualized growth rate before inflation adjustment.</td>
-            </tr>
-            <tr>
-              <td>Real CAGR</td>
-              <td data-ir="exp-real-cagr">-</td>
-              <td>Annualized growth rate after inflation adjustment.</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>Real Final Value</td>
-              <td data-ir="exp-real-final">-</td>
-              <td>Estimated purchasing-power-adjusted ending value.</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </section>
-
-    <section class="mtg-exp-section ir-guide-readable fi-exp-guide">
-      <div class="fi-exp-section-head">
-        <h3>How to Guide</h3>
-        <p>Use the guide to separate the baseline inputs, the return story, and the drag from inflation and tax.</p>
-      </div>
-
-      <div class="fi-exp-guide-list">
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">01</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>What this calculator helps you decide</h4>
+    <section class="mtg-exp-section fi-exp-article fi-exp-article--dense">
+      <div class="fi-exp-article-shell">
+        <header class="fi-exp-article-head">
+          <div class="fi-exp-article-intro">
+            <h2>How Is Your Portfolio Performing Over Time?</h2>
             <p>
-              This tool is best used as a planning model rather than a market prediction engine. It
-              combines starting capital, recurring contributions, compounding assumptions, inflation,
-              and tax drag so you can compare realistic long-horizon scenarios before acting.
+              This calculator is designed for decisions where the ending balance is only part of the
+              story. It brings contributions, profit, CAGR, inflation, and tax into one view so you
+              can judge the quality of the result rather than only its size.
             </p>
             <p>
-              The most useful output is not only the final portfolio value. You also need to compare
-              how much capital came from deposits, how much came from growth, how much tax reduced
-              the result, and how purchasing power changed after inflation.
+              The current scenario points to a final portfolio value of
+              <strong data-ir="exp-final-value">-</strong>, built from total contributions of
+              <strong data-ir="exp-total-contributions">-</strong>, total profit of
+              <strong data-ir="exp-total-profit">-</strong>, and a nominal CAGR of
+              <strong data-ir="exp-cagr">-</strong>. The real question is whether that outcome still
+              looks strong after tax drag, inflation, and contribution effort are taken into account.
             </p>
           </div>
-        </article>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">02</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>Start with a clean baseline</h4>
-            <p>
-              Enter an initial investment, an annual return assumption you can defend, a realistic
-              time horizon, and a recurring contribution you can actually sustain.
-            </p>
-            <p>
-              In many cases the baseline tells you more than a heavily optimized scenario because it
-              reflects the plan you are most likely to follow in real life.
+          <div class="fi-exp-kpi">
+            <p class="fi-exp-kpi-label">Projected final portfolio value</p>
+            <p class="fi-exp-kpi-value"><strong data-ir="exp-final-value">-</strong></p>
+            <p class="fi-exp-kpi-note">
+              Built from total contributions of <strong data-ir="exp-total-contributions">-</strong>,
+              profit of <strong data-ir="exp-total-profit">-</strong>, and a nominal CAGR of
+              <strong data-ir="exp-cagr">-</strong>.
             </p>
           </div>
-        </article>
+        </header>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">03</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>Understand the core inputs before trusting the output</h4>
-            <ul>
-        <li><strong>Initial Investment:</strong> the base that starts compounding immediately.</li>
-        <li>
-          <strong>Expected Annual Return:</strong> the long-run growth assumption before inflation
-          and tax effects.
-        </li>
-        <li>
-          <strong>Investment Duration:</strong> the total time the capital remains exposed to
-          growth.
-        </li>
-        <li>
-          <strong>Regular Contribution:</strong> new money added over time that can also compound.
-        </li>
-        <li><strong>Inflation Rate:</strong> the drag on purchasing power.</li>
-        <li><strong>Tax Rate:</strong> the friction that can materially reduce realized growth.</li>
-            </ul>
-            <p>
-              Duration is often the most underappreciated driver. Extending the plan by a few years
-              can change the outcome more than a modest increase in the return assumption.
-            </p>
-          </div>
-        </article>
+        <div class="fi-exp-article-layout">
+          <article class="fi-exp-article-main">
+            <section class="fi-exp-story-block">
+              <h3>What This Result Means</h3>
+              <p>
+                Investment return becomes more useful when you stop treating the final balance as the
+                only answer. A stronger portfolio result is not necessarily a better result if it
+                requires outsized contributions, unrealistic return assumptions, or hides most of its
+                apparent strength behind inflation.
+              </p>
+              <p>
+                That is why this page surfaces both nominal and real views. A nominal CAGR can look
+                attractive while the real CAGR remains modest. A healthy ending balance can still be
+                less impressive once tax drag and contribution burden are brought into the picture.
+              </p>
+              <ul class="fi-exp-bullet-list">
+                <li><strong>Contributions</strong> show how much new capital you supplied.</li>
+                <li><strong>Profit</strong> shows what the portfolio generated above contributions.</li>
+                <li><strong>Real metrics</strong> show what the result may still be worth after inflation.</li>
+              </ul>
+            </section>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">04</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>Read nominal and real outputs together</h4>
-            <p>
-              Nominal outputs tell you what the account balance may become. Real outputs tell you
-              what that balance may be worth in today’s purchasing power.
-            </p>
-            <p>
-              When nominal CAGR looks healthy but real CAGR is modest, the plan may be more fragile
-              than the headline number suggests.
-            </p>
-          </div>
-        </article>
+            <section class="fi-exp-story-block fi-exp-story-block--table">
+              <h3>Scenario Summary</h3>
+              <p>
+                Read the baseline inputs before judging the output. They define the scenario the model
+                is actually evaluating and reveal whether the assumptions are realistic enough to trust.
+              </p>
+              <div class="table-scroll" tabindex="0">
+                <table class="ir-results-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Input</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Initial Investment</td>
+                      <td data-ir="exp-initial">-</td>
+                    </tr>
+                    <tr>
+                      <td>Expected Annual Return</td>
+                      <td data-ir="exp-rate">-</td>
+                    </tr>
+                    <tr>
+                      <td>Duration</td>
+                      <td data-ir="exp-years">-</td>
+                    </tr>
+                    <tr>
+                      <td>Compounding Frequency</td>
+                      <td data-ir="exp-compounding">-</td>
+                    </tr>
+                    <tr>
+                      <td>Regular Contribution</td>
+                      <td data-ir="exp-contribution">-</td>
+                    </tr>
+                    <tr>
+                      <td>Contribution Frequency</td>
+                      <td data-ir="exp-contrib-frequency">-</td>
+                    </tr>
+                    <tr>
+                      <td>Contribution Timing</td>
+                      <td data-ir="exp-contrib-timing">-</td>
+                    </tr>
+                    <tr>
+                      <td>Inflation Rate</td>
+                      <td data-ir="exp-inflation">-</td>
+                    </tr>
+                    <tr>
+                      <td>Tax Rate</td>
+                      <td data-ir="exp-tax-rate">-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">05</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>Use advanced mode for better scenarios, not more noise</h4>
-            <p>
-              Variable annual returns let you replace a flat assumption with a more realistic uneven
-              path. One-time events let you model deposits or withdrawals at known points in time.
-            </p>
-            <p>
-              The best use of advanced mode is to compare a baseline case with a conservative stress
-              case and a more optimistic case, rather than turning on every extra assumption at once.
-            </p>
-          </div>
-        </article>
+            <section class="fi-exp-story-block fi-exp-story-block--table">
+              <h3>Performance Results</h3>
+              <p>
+                Read final value, total contributions, total profit, tax paid, and then both CAGR
+                measures together. That order gives you the clearest picture of whether the result is
+                being created by disciplined investing, favorable assumptions, or both.
+              </p>
+              <div class="table-scroll" tabindex="0">
+                <table class="ir-results-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Metric</th>
+                      <th scope="col">Value</th>
+                      <th scope="col">Interpretation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Final Portfolio Value</td>
+                      <td data-ir="exp-final-value">-</td>
+                      <td>Projected ending balance after contributions, growth, and tax.</td>
+                    </tr>
+                    <tr>
+                      <td>Total Contributions</td>
+                      <td data-ir="exp-total-contributions">-</td>
+                      <td>Initial investment plus net additional deposits and withdrawals.</td>
+                    </tr>
+                    <tr>
+                      <td>Total Profit</td>
+                      <td data-ir="exp-total-profit">-</td>
+                      <td>Growth above total contributions.</td>
+                    </tr>
+                    <tr>
+                      <td>Total Tax Paid</td>
+                      <td data-ir="exp-total-tax">-</td>
+                      <td>Year-end tax on positive gains after modeled offsets.</td>
+                    </tr>
+                    <tr>
+                      <td>Nominal CAGR</td>
+                      <td data-ir="exp-cagr">-</td>
+                      <td>Annualized growth rate before inflation adjustment.</td>
+                    </tr>
+                    <tr>
+                      <td>Real CAGR</td>
+                      <td data-ir="exp-real-cagr">-</td>
+                      <td>Annualized growth rate after inflation adjustment.</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Real Final Value</td>
+                      <td data-ir="exp-real-final">-</td>
+                      <td>Estimated purchasing-power-adjusted ending value.</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </section>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">06</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>How contribution frequency, tax, and inflation change interpretation</h4>
-            <p>
-              Monthly contributions usually align best with budgeting behavior, and beginning-of-period
-              contributions often finish with a slightly higher ending value.
-            </p>
-            <p>
-              Tax drag reduces the portion of annual growth you keep, while inflation changes what
-              the ending balance can actually buy. Current effective annual rate:
-              <strong data-ir="exp-ear">-</strong>. Current carryforward loss balance:
-              <strong data-ir="exp-carryforward">-</strong>.
-            </p>
-          </div>
-        </article>
+            <section class="fi-exp-story-block">
+              <h3>What Usually Changes The Interpretation Most</h3>
+              <p>
+                Duration is often the most underestimated lever because it gives both contributions
+                and returns more time to work. Contribution timing matters too. Beginning-of-period
+                deposits usually finish slightly ahead of end-of-period deposits because they start
+                compounding earlier.
+              </p>
+              <p>
+                Inflation and tax are interpretation levers rather than growth levers. They may not
+                change the nominal market path, but they can change what the outcome is worth in
+                real-world terms. Current effective annual rate: <strong data-ir="exp-ear">-</strong>.
+                Current carryforward loss balance: <strong data-ir="exp-carryforward">-</strong>.
+              </p>
+            </section>
 
-        <article class="fi-exp-guide-step">
-          <span class="fi-exp-step-no">07</span>
-          <div class="fi-exp-guide-step-body">
-            <h4>Practical decision checklist</h4>
-            <ul class="ir-checklist">
-        <li>Use assumptions you can defend, not assumptions that simply maximize the answer.</li>
-        <li>Review final value, contributions, profit, tax, and both CAGR metrics together.</li>
-        <li>Compare annual and monthly breakdowns before acting on the plan.</li>
-        <li>Run at least one adverse scenario, not only a baseline case.</li>
-        <li>Revisit the model when income, goals, tax context, or risk tolerance changes.</li>
-            </ul>
-          </div>
-        </article>
+            <section class="fi-exp-story-block fi-exp-story-block--formula">
+              <h3>The Core Return Metrics Behind The Model</h3>
+              <p>
+                This calculator is more advanced than a simple future-value tool because it layers in
+                portfolio performance measures, inflation adjustment, and tax drag. The two most
+                useful summary metrics are nominal CAGR and real CAGR.
+              </p>
+              <p class="fi-exp-formula-block">CAGR = (Ending Value ÷ Starting Capital)<sup>1 / n</sup> - 1</p>
+              <p class="fi-exp-formula-block">Real CAGR ≈ (1 + Nominal CAGR) ÷ (1 + Inflation) - 1</p>
+              <ul class="fi-exp-bullet-list">
+                <li>Nominal CAGR shows the annualized growth rate before inflation.</li>
+                <li>Real CAGR shows the annualized growth rate after inflation drag.</li>
+                <li>Tax drag reduces how much of the nominal gain you actually keep.</li>
+              </ul>
+              <p>
+                In the current scenario, nominal CAGR is <strong data-ir="exp-cagr">-</strong> and
+                real CAGR is <strong data-ir="exp-real-cagr">-</strong>. Total tax paid is
+                <strong data-ir="exp-total-tax">-</strong>, which is why the real final value of
+                <strong data-ir="exp-real-final">-</strong> is often more revealing than the nominal
+                ending balance alone.
+              </p>
+            </section>
+
+            <section class="fi-exp-story-block">
+              <h3>How To Use The Advanced Inputs Well</h3>
+              <p>
+                Advanced settings are best used for comparison, not decoration. Variable annual
+                returns, tax assumptions, contribution timing, and one-off events become valuable when
+                they help you compare a baseline case against a conservative case and a stronger case.
+              </p>
+              <p>
+                The weakest use of advanced mode is turning on every option at once without a clear
+                decision question. The strongest use is stress-testing a believable plan and seeing
+                which assumptions actually change the interpretation in a meaningful way.
+              </p>
+            </section>
+
+            <section class="fi-exp-story-block">
+              <h3>When This Calculator Is The Right Tool</h3>
+              <p>
+                Use this route when you need more than an ending balance. If the question is simple
+                accumulation, the <a href="/finance-calculators/investment-growth-calculator/">investment
+                growth calculator</a> may be enough. If the focus is purely on compounding mechanics,
+                the <a href="/finance-calculators/compound-interest-calculator/">compound interest
+                calculator</a> is simpler. This route is for portfolio planning where tax, inflation,
+                and return quality all matter.
+              </p>
+            </section>
+
+            <section class="fi-exp-story-block">
+              <h3>Bottom Line</h3>
+              <p>
+                A portfolio can finish with a large balance and still tell a weak planning story.
+                This calculator is valuable because it forces the supporting metrics into view:
+                contributions, profit, tax, nominal CAGR, and real purchasing power.
+              </p>
+            </section>
+          </article>
+
+          <aside class="fi-exp-article-rail">
+            <section class="fi-exp-rail-card">
+              <h3>Quick Read</h3>
+              <ul class="fi-exp-rail-list">
+                <li>Final value: <strong data-ir="exp-final-value">-</strong></li>
+                <li>Nominal CAGR: <strong data-ir="exp-cagr">-</strong></li>
+                <li>Real CAGR: <strong data-ir="exp-real-cagr">-</strong></li>
+                <li>Tax paid: <strong data-ir="exp-total-tax">-</strong></li>
+                <li>Real final value: <strong data-ir="exp-real-final">-</strong></li>
+              </ul>
+            </section>
+
+            <section class="fi-exp-rail-card">
+              <h3>Best Use Cases</h3>
+              <p>
+                Best for long-horizon portfolio comparisons where deposits, inflation, tax, and return
+                quality all shape the decision.
+              </p>
+            </section>
+
+            <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+              <h3>Related Tools</h3>
+              <div class="fi-exp-link-list">
+                <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+                <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+              </div>
+            </nav>
+          </aside>
+        </div>
       </div>
-
-      <p class="fi-exp-guide-summary">
-        The most reliable way to use this calculator is as a comparison framework. If the first
-        result looks too good or too discouraging, review the return assumption, contribution level,
-        inflation setting, and tax treatment before treating the answer as decision-ready.
-      </p>
     </section>
 
     <section class="mtg-exp-section mtg-exp-section--faq">

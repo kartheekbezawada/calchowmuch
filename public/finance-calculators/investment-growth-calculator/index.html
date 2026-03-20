@@ -1842,6 +1842,136 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-investment-growth .fi-exp-article,
+      #calc-investment-growth .fi-exp-article-shell,
+      #calc-investment-growth .fi-exp-article-main,
+      #calc-investment-growth .fi-exp-story-block,
+      #calc-investment-growth .fi-exp-article-intro,
+      #calc-investment-growth .fi-exp-article-rail,
+      #calc-investment-growth .fi-exp-rail-card {
+        display: grid;
+      }
+
+      #calc-investment-growth .fi-exp-article {
+        gap: 22px;
+      }
+
+      #calc-investment-growth .fi-exp-article-shell {
+        gap: 20px;
+      }
+
+      #calc-investment-growth .fi-exp-article-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      #calc-investment-growth .fi-exp-article-intro {
+        gap: 12px;
+      }
+
+      #calc-investment-growth .fi-exp-article-intro h2,
+      #calc-investment-growth .fi-exp-story-block h3,
+      #calc-investment-growth .fi-exp-rail-card h3 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-investment-growth .fi-exp-article-intro p,
+      #calc-investment-growth .fi-exp-story-block p,
+      #calc-investment-growth .fi-exp-story-block li,
+      #calc-investment-growth .fi-exp-rail-card p,
+      #calc-investment-growth .fi-exp-rail-card li {
+        margin: 0;
+        color: #44515c;
+        line-height: 1.68;
+      }
+
+      #calc-investment-growth .fi-exp-article-intro p,
+      #calc-investment-growth .fi-exp-story-block p {
+        max-width: 74ch;
+      }
+
+      #calc-investment-growth .fi-exp-article-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+        gap: 18px;
+        align-items: start;
+      }
+
+      #calc-investment-growth .fi-exp-article-main {
+        gap: 20px;
+        min-width: 0;
+      }
+
+      #calc-investment-growth .fi-exp-story-block {
+        gap: 12px;
+        padding: 22px 24px;
+        border-radius: 24px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-investment-growth .fi-exp-story-block--table {
+        margin-bottom: 8px;
+      }
+
+      #calc-investment-growth .fi-exp-story-block--table .table-scroll {
+        margin-top: 4px;
+        margin-bottom: 12px;
+      }
+
+      #calc-investment-growth .fi-exp-bullet-list,
+      #calc-investment-growth .fi-exp-rail-list,
+      #calc-investment-growth .fi-exp-formula-steps {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+
+      #calc-investment-growth .fi-exp-formula-block {
+        width: fit-content;
+        margin: 0;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(31, 95, 135, 0.16);
+        background: rgba(232, 241, 247, 0.78);
+        color: #163e59;
+        font-size: 1.02rem;
+        font-weight: 700;
+      }
+
+      #calc-investment-growth .fi-exp-article-rail {
+        gap: 14px;
+        min-width: 0;
+      }
+
+      #calc-investment-growth .fi-exp-rail-card {
+        gap: 10px;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-investment-growth .fi-exp-rail-list strong {
+        color: #13293d;
+      }
+
+      @media (max-width: 720px) {
+        #calc-investment-growth .fi-exp-article-head,
+        #calc-investment-growth .fi-exp-article-layout {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-investment-growth .fi-exp-story-block,
+        #calc-investment-growth .fi-exp-rail-card {
+          padding: 18px;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#webpage","name":"Investment Growth Calculator | Future Value Projection","url":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/","description":"Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#softwareapplication","name":"Investment Growth Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/","description":"Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Investment growth projection","Inflation adjustment","Monthly contribution","Total gains breakdown"],"keywords":"investment calculator, growth calculator, compound interest, inflation adjusted return","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is an investment growth calculator?","acceptedAnswer":{"@type":"Answer","text":"It projects how an investment may grow using a return assumption, time horizon, and optional recurring deposits."}},{"@type":"Question","name":"What matters most?","acceptedAnswer":{"@type":"Answer","text":"Time horizon, return assumption, and contribution consistency are usually the biggest drivers."}},{"@type":"Question","name":"Why do contributions matter so much?","acceptedAnswer":{"@type":"Answer","text":"Each recurring deposit adds more capital and can also earn returns for the rest of the plan."}},{"@type":"Question","name":"Does compounding frequency matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. More frequent compounding generally produces a slightly higher ending balance under the same nominal return."}},{"@type":"Question","name":"What if the return rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The future value becomes the starting amount plus total contributions."}},{"@type":"Question","name":"Why include inflation?","acceptedAnswer":{"@type":"Answer","text":"It shows what the ending balance may be worth in today’s purchasing power, not just nominal dollars."}},{"@type":"Question","name":"Is this result guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. It is a deterministic estimate based on fixed assumptions."}},{"@type":"Question","name":"Can I use this for savings goals?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for simple long-term savings and investment planning."}},{"@type":"Question","name":"Why can small return changes create big differences?","acceptedAnswer":{"@type":"Answer","text":"Because they apply over every period and compound over time."}},{"@type":"Question","name":"Should I trust the inflation-adjusted result more?","acceptedAnswer":{"@type":"Answer","text":"Use nominal and inflation-adjusted views together depending on whether you care about account value or real buying power."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Investment Growth","item":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/"}]}]}</script>
@@ -2136,139 +2266,193 @@
 </div>
 
     <div id="ig-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-hero">
-    <div class="fi-exp-intro">
-      <h2>How Much Could This Portfolio Grow?</h2>
-      <p>
-        Project long-term portfolio growth with a clear view of nominal value and inflation-adjusted
-        purchasing power.
-      </p>
-    </div>
-
-    <div class="fi-exp-kpi">
-      <p class="fi-exp-kpi-label">Projected future value</p>
-      <p class="fi-exp-kpi-value"><strong><span data-ig="future-value"></span></strong></p>
-      <p class="fi-exp-kpi-note">
-        Compare it with total contributions of <span data-ig="total-contributions"></span> and total
-        gains of <strong><span data-ig="total-gains"></span></strong>.
-      </p>
-    </div>
-
-    <div class="fi-exp-support">
-      <p>
-        Start with future value, then compare contributions and gains to see how much of the ending
-        balance came from saving discipline versus portfolio growth.
-      </p>
-      <p>Use this route when inflation-adjusted value matters as much as the nominal balance.</p>
-    </div>
-
-    <div class="fi-exp-context-grid">
-      <section class="fi-exp-card">
-        <h3>When This Helps</h3>
-        <p>
-          Useful for retirement planning, college funds, and long-term portfolio scenarios where
-          inflation-adjusted value matters.
-        </p>
-      </section>
-      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
-        <h3>Related Tools</h3>
-        <div class="fi-exp-link-list">
-          <a href="/finance-calculators/investment-return-calculator/">Investment Return</a>
-          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
-        </div>
-      </nav>
-    </div>
-    <div class="table-scroll" tabindex="0">
-      <table class="ig-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Metric</th>
-            <th scope="col">What it shows</th>
-            <th scope="col">Why it matters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Future Value</td>
-            <td>The projected ending balance.</td>
-            <td>The main answer for long-horizon planning.</td>
-          </tr>
-          <tr>
-            <td>Total Contributions</td>
-            <td>Your starting amount plus recurring additions.</td>
-            <td>Shows how much capital you supplied directly.</td>
-          </tr>
-          <tr>
-            <td>Total Gains</td>
-            <td>The share created by return assumptions.</td>
-            <td>Helps separate saving discipline from growth.</td>
-          </tr>
-          <tr>
-            <td>Inflation-Adjusted Value</td>
-            <td>The ending balance in today’s purchasing power.</td>
-            <td>Useful when planning real-world future spending power.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section fi-exp-guide">
-    <div class="fi-exp-section-head">
-      <h3>How to Guide</h3>
-      <p>Use the guide to separate what comes from your deposits, what comes from returns, and what inflation takes back.</p>
-    </div>
-
-    <div class="fi-exp-guide-list">
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">01</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Start with the balance you have today</h4>
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Much Could This Portfolio Grow?</h2>
           <p>
-            Enter the amount already invested or saved before any new contributions are added. This
-            opening balance begins compounding immediately.
+            This page is for long-horizon portfolio planning. It helps answer a broader question than
+            a simple balance projection: how much of the ending portfolio may come from deposits,
+            how much from investment gains, and how much inflation may take back in real terms.
+          </p>
+          <p>
+            The current projection points to <strong><span data-ig="future-value"></span></strong>.
+            Against total contributions of <span data-ig="total-contributions"></span>, that leaves
+            total gains of <strong><span data-ig="total-gains"></span></strong>. That split is what
+            turns a headline balance into a more useful planning signal.
           </p>
         </div>
-      </article>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">02</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Use a realistic expected return</h4>
-          <p>
-            This is a planning assumption, not a promise. Conservative assumptions are usually more
-            useful than optimistic ones because they compare better with real saving behavior.
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Projected future value</p>
+          <p class="fi-exp-kpi-value"><strong><span data-ig="future-value"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Compare it with total contributions of <span data-ig="total-contributions"></span> and total
+            gains of <strong><span data-ig="total-gains"></span></strong>.
           </p>
-        </div>
-      </article>
+        </aside>
+      </header>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">03</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Add contributions only if they are repeatable</h4>
-          <p>
-            Recurring deposits can materially raise the future value because each contribution also
-            has time to compound. Use an amount that fits your expected cash flow.
-          </p>
-        </div>
-      </article>
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              A portfolio growth estimate is most useful when it separates behavior from market
+              assumptions. The ending balance matters, but the underlying story matters more. A plan
+              built mostly on contributions tells a different story from one built mostly on gains,
+              even when the headline future value is similar.
+            </p>
+            <p>
+              That is why investment-growth planning works best when you read nominal and real views
+              together. Nominal growth shows what the account may report. Inflation-aware thinking
+              shows what that balance may actually be worth when you eventually spend it.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Contributions</strong> reflect saving discipline and capital added.</li>
+              <li><strong>Gains</strong> reflect the return assumption over time.</li>
+              <li><strong>Inflation context</strong> helps judge real buying power, not just nominal size.</li>
+            </ul>
+          </section>
 
-      <article class="fi-exp-guide-step">
-        <span class="fi-exp-step-no">04</span>
-        <div class="fi-exp-guide-step-body">
-          <h4>Use inflation when you care about purchasing power</h4>
-          <p>
-            Inflation-adjusted output is often the better view when planning for future spending
-            needs, because nominal growth alone can overstate what the portfolio may actually buy.
-          </p>
-        </div>
-      </article>
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Start with future value, then compare total contributions and total gains. That order
+              quickly tells you whether the plan is being carried more by the savings habit or by the
+              assumed return profile.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="ig-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">What it shows</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Future Value</td>
+                    <td>The projected ending balance.</td>
+                    <td>The main answer for long-horizon planning.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Contributions</td>
+                    <td>Your starting amount plus recurring additions.</td>
+                    <td>Shows how much capital you supplied directly.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Gains</td>
+                    <td>The share created by return assumptions.</td>
+                    <td>Helps separate saving discipline from growth.</td>
+                  </tr>
+                  <tr>
+                    <td>Inflation-Adjusted Value</td>
+                    <td>The ending balance in today’s purchasing power.</td>
+                    <td>Useful when planning real-world future spending power.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Answer Most</h3>
+            <p>
+              Over long horizons, three levers dominate: the starting balance, the contribution
+              habit, and the realism of the expected return. Small changes to return assumptions can
+              have large effects over time, but consistent contributions can matter just as much,
+              especially when the starting portfolio is modest.
+            </p>
+            <p>
+              Inflation is not a growth lever, but it is an interpretation lever. It can make a very
+              strong nominal result look much more ordinary in real purchasing-power terms.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Logic Behind Portfolio Growth</h3>
+            <p>
+              At a high level, portfolio growth blends two engines: a current balance that compounds,
+              and a contribution stream that keeps adding fresh capital. The nominal result can then
+              be viewed through an inflation-adjusted lens to judge real spending power.
+            </p>
+            <p class="fi-exp-formula-block">Future Value ≈ Existing Balance Growth + Contribution Growth</p>
+            <p class="fi-exp-formula-block">Real Value ≈ Nominal Value adjusted for inflation</p>
+            <ul class="fi-exp-bullet-list">
+              <li>Existing capital gets the longest runway and often drives the early result.</li>
+              <li>Recurring deposits increase the base that can compound later.</li>
+              <li>Inflation does not change the account statement, but it changes what that statement can buy.</li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              Start by checking whether the contribution level is sustainable. Then ask whether the
+              expected return is realistic for the portfolio you actually intend to hold. Only after
+              those two inputs feel honest should the future value be treated as a serious planning
+              estimate.
+            </p>
+            <p>
+              The strongest use of this page is comparison. Try a more conservative return, a more
+              aggressive contribution plan, or a longer horizon and compare how the balance changes.
+              That is usually more informative than focusing on one single projection.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When This Calculator Is The Right Tool</h3>
+            <p>
+              Use this route when you want a portfolio-style growth estimate with inflation context.
+              If you need a simpler balance-growth answer without the portfolio framing, use the
+              <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If
+              you need a deeper return-analysis view with CAGR, tax, and richer scenario framing, use
+              the <a href="/finance-calculators/investment-return-calculator/">investment return
+              calculator</a>.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              A portfolio-growth estimate becomes most useful when it shows more than the future
+              balance. It should also show whether the outcome is being driven by saving behavior,
+              market assumptions, or the erosion of inflation over time.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Future value: <strong><span data-ig="future-value"></span></strong></li>
+              <li>Total contributions: <span data-ig="total-contributions"></span></li>
+              <li>Total gains: <span data-ig="total-gains"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for retirement planning, college funds, and other long-range portfolio scenarios
+              where nominal value and real purchasing power both matter.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/investment-return-calculator/">Investment Return</a>
+              <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
     </div>
-
-    <p class="fi-exp-guide-summary">
-      The most useful comparison is usually nominal value versus inflation-adjusted value. That pair
-      tells you both what the account balance may show and what the money may actually buy.
-    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">

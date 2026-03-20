@@ -160,3 +160,133 @@
     grid-template-columns: 1fr;
   }
 }
+
+#calc-monthly-savings-needed .fi-exp-article,
+#calc-monthly-savings-needed .fi-exp-article-shell,
+#calc-monthly-savings-needed .fi-exp-article-main,
+#calc-monthly-savings-needed .fi-exp-story-block,
+#calc-monthly-savings-needed .fi-exp-article-intro,
+#calc-monthly-savings-needed .fi-exp-article-rail,
+#calc-monthly-savings-needed .fi-exp-rail-card {
+  display: grid;
+}
+
+#calc-monthly-savings-needed .fi-exp-article {
+  gap: 22px;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-shell {
+  gap: 20px;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+  gap: 20px;
+  align-items: start;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-intro {
+  gap: 12px;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-intro h2,
+#calc-monthly-savings-needed .fi-exp-story-block h3,
+#calc-monthly-savings-needed .fi-exp-rail-card h3 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-intro p,
+#calc-monthly-savings-needed .fi-exp-story-block p,
+#calc-monthly-savings-needed .fi-exp-story-block li,
+#calc-monthly-savings-needed .fi-exp-rail-card p,
+#calc-monthly-savings-needed .fi-exp-rail-card li {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.68;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-intro p,
+#calc-monthly-savings-needed .fi-exp-story-block p {
+  max-width: 74ch;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-main {
+  gap: 20px;
+  min-width: 0;
+}
+
+#calc-monthly-savings-needed .fi-exp-story-block {
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-monthly-savings-needed .fi-exp-story-block--table {
+  margin-bottom: 8px;
+}
+
+#calc-monthly-savings-needed .fi-exp-story-block--table .table-scroll {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+#calc-monthly-savings-needed .fi-exp-bullet-list,
+#calc-monthly-savings-needed .fi-exp-rail-list,
+#calc-monthly-savings-needed .fi-exp-formula-steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+#calc-monthly-savings-needed .fi-exp-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-monthly-savings-needed .fi-exp-article-rail {
+  gap: 14px;
+  min-width: 0;
+}
+
+#calc-monthly-savings-needed .fi-exp-rail-card {
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-monthly-savings-needed .fi-exp-rail-list strong {
+  color: #13293d;
+}
+
+@media (max-width: 720px) {
+  #calc-monthly-savings-needed .fi-exp-article-head,
+  #calc-monthly-savings-needed .fi-exp-article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-monthly-savings-needed .fi-exp-story-block,
+  #calc-monthly-savings-needed .fi-exp-rail-card {
+    padding: 18px;
+  }
+}
