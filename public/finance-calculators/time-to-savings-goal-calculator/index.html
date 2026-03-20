@@ -1997,9 +1997,17 @@
       current balance, recurring deposits, interest rate, and compounding settings.
     </p>
     <p>
-      With a goal of <span data-tsg="goal"></span>, current savings of <span data-tsg="current"></span>,
-      and contributions of <span data-tsg="contribution"></span>, the current plan reaches the
-      target in <strong><span data-tsg="time-result"></span></strong>.
+      With a goal of <span data-tsg="goal"></span>, current savings of
+      <span data-tsg="current"></span>, and contributions of <span data-tsg="contribution"></span>,
+      the current plan reaches the target in <strong><span data-tsg="time-result"></span></strong>.
+    </p>
+    <p>
+      This page fits emergency funds, house deposits, travel budgets, car purchases, and other fixed
+      savings targets where the unknown is the timeline. If the unknown is the monthly amount
+      instead, use the
+      <a href="/finance-calculators/monthly-savings-needed-calculator/"
+        >monthly savings needed calculator</a
+      >.
     </p>
     <div class="table-scroll" tabindex="0">
       <table class="tsg-results-table">
@@ -2011,11 +2019,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Time to Goal</td><td><span data-tsg="time-result"></span></td><td>The headline estimate for your savings timeline.</td></tr>
-          <tr><td>Total Months</td><td><span data-tsg="months-required"></span></td><td>Useful when comparing alternate monthly contribution plans.</td></tr>
-          <tr><td>Total Contributions</td><td><span data-tsg="total-contributions"></span></td><td>Shows how much of the goal comes from your own deposits.</td></tr>
-          <tr><td>Total Interest</td><td><span data-tsg="total-interest"></span></td><td>Shows how much the growth assumption contributes.</td></tr>
-          <tr><td>Final Balance</td><td><span data-tsg="final-balance"></span></td><td>The balance at the point the goal is reached.</td></tr>
+          <tr>
+            <td>Time to Goal</td>
+            <td><span data-tsg="time-result"></span></td>
+            <td>The headline estimate for your savings timeline.</td>
+          </tr>
+          <tr>
+            <td>Total Months</td>
+            <td><span data-tsg="months-required"></span></td>
+            <td>Useful when comparing alternate monthly contribution plans.</td>
+          </tr>
+          <tr>
+            <td>Total Contributions</td>
+            <td><span data-tsg="total-contributions"></span></td>
+            <td>Shows how much of the goal comes from your own deposits.</td>
+          </tr>
+          <tr>
+            <td>Total Interest</td>
+            <td><span data-tsg="total-interest"></span></td>
+            <td>Shows how much the growth assumption contributes.</td>
+          </tr>
+          <tr>
+            <td>Final Balance</td>
+            <td><span data-tsg="final-balance"></span></td>
+            <td>The balance at the point the goal is reached.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -2048,21 +2076,82 @@
         the plan depends mostly on deposits or on growth.
       </p>
     </div>
+    <p>
+      If the timeline looks too long, test one lever at a time: higher monthly deposits, a lower
+      goal, or a longer deadline. That makes it easier to see which change genuinely improves the
+      plan.
+    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card"><span class="bor-faq-number">01</span><h4>What does this calculator show?</h4><p>It estimates how long it may take to reach a savings target using your balance, deposits, and optional interest.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">02</span><h4>Does interest help?</h4><p>Yes. Interest can reduce the time to goal because your balance earns growth along the way.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">03</span><h4>What if I already reached the goal?</h4><p>The result becomes immediate because the current balance already meets or exceeds the target.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">04</span><h4>What if contributions are zero?</h4><p>You may never reach the goal unless the current balance and interest alone are enough.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">05</span><h4>Does contribution timing matter?</h4><p>Yes. Beginning-of-period deposits usually shorten the timeline slightly because they compound earlier.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">06</span><h4>Should I use monthly or annual compounding?</h4><p>Use the setting that best matches the account or product you are modeling.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">07</span><h4>Can I use this for a house deposit?</h4><p>Yes. It works well for any fixed savings target such as a deposit, emergency fund, or travel budget.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">08</span><h4>Why can small rate changes matter?</h4><p>Because they apply over every period and compound over the full savings horizon.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">09</span><h4>Is this a guarantee?</h4><p>No. It is a planning estimate based on fixed assumptions.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">10</span><h4>What should I do if the timeline is too long?</h4><p>Try increasing contributions, extending the horizon, or lowering the goal.</p></div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What does this calculator show?</h4>
+        <p>
+          It estimates how long it may take to reach a savings target using your balance, deposits,
+          and optional interest.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Does interest help?</h4>
+        <p>
+          Yes. Interest can reduce the time to goal because your balance earns growth along the way.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What if I already reached the goal?</h4>
+        <p>
+          The result becomes immediate because the current balance already meets or exceeds the
+          target.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What if contributions are zero?</h4>
+        <p>
+          You may never reach the goal unless the current balance and interest alone are enough.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does contribution timing matter?</h4>
+        <p>
+          Yes. Beginning-of-period deposits usually shorten the timeline slightly because they
+          compound earlier.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Should I use monthly or annual compounding?</h4>
+        <p>Use the setting that best matches the account or product you are modeling.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can I use this for a house deposit?</h4>
+        <p>
+          Yes. It works well for any fixed savings target such as a deposit, emergency fund, or
+          travel budget.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Why can small rate changes matter?</h4>
+        <p>Because they apply over every period and compound over the full savings horizon.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this a guarantee?</h4>
+        <p>No. It is a planning estimate based on fixed assumptions.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>What should I do if the timeline is too long?</h4>
+        <p>Try increasing contributions, extending the horizon, or lowering the goal.</p>
+      </div>
     </div>
   </section>
 
@@ -2070,10 +2159,22 @@
     <h3>Important Notes</h3>
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
-      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
-      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
-      <li><strong>Assumptions:</strong> The model assumes a fixed contribution amount, fixed rate, and the selected compounding and timing pattern for the full plan.</li>
-      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+      <li>
+        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
+        and assumptions shown.
+      </li>
+      <li>
+        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
+        financial, legal, tax, or investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> The model assumes a fixed contribution amount, fixed rate, and
+        the selected compounding and timing pattern for the full plan.
+      </li>
+      <li>
+        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
+        stored by us. We do not save the values you enter into calculator fields.
+      </li>
     </ul>
   </section>
 </div>

@@ -568,3 +568,74 @@ Notes:
 - Cluster SEO emitted thin-content artifact `test-results/content-quality/cluster/finance/2026-03-20T14-34-31-991Z.json` with `warn=11`, `fail=0`.
 - Root report artifacts emitted by scoped SEO/schema runs were treated as transient evidence only and restored or ignored outside the approved Finance file set.
 - The earlier out-of-scope `credit-card-consolidation` Playwright failure no longer blocks this Finance cluster release because the governance docs now define cluster redesigns as scoped releases by default.
+
+## 2026-03-20 — Finance SEO/SERP Wave 1
+
+Status:
+
+- completed
+
+Scope:
+
+- all 11 Finance calculators
+
+Changes:
+
+- logged a calculator-by-calculator finance SEO/SERP improvement wave in the master improvement plan
+- strengthened answer-first explanation copy for each Finance calculator around clearer user intent and real-world use cases
+- added finance-cluster internal links between closely related calculators to improve crawl paths and intent clustering
+- kept calculator logic, schema structure, route URLs, FAQ counts, and section-order contracts unchanged
+- regenerated all 11 Finance routes so the public pages reflect the new explanation content
+
+Files touched:
+
+- `requirements/universal-rules/finance-calculators-cluster-redesign/FINANCE_CALCULATORS_MASTER_IMPROVEMENT_PLAN.md`
+- `public/calculators/finance-calculators/present-value-calculator/explanation.html`
+- `public/calculators/finance-calculators/future-value-calculator/explanation.html`
+- `public/calculators/finance-calculators/present-value-of-annuity-calculator/explanation.html`
+- `public/calculators/finance-calculators/future-value-of-annuity-calculator/explanation.html`
+- `public/calculators/finance-calculators/effective-annual-rate-calculator/explanation.html`
+- `public/calculators/finance-calculators/simple-interest-calculator/explanation.html`
+- `public/calculators/finance-calculators/compound-interest-calculator/explanation.html`
+- `public/calculators/finance-calculators/investment-growth-calculator/explanation.html`
+- `public/calculators/finance-calculators/time-to-savings-goal-calculator/explanation.html`
+- `public/calculators/finance-calculators/monthly-savings-needed-calculator/explanation.html`
+- `public/calculators/finance-calculators/investment-return-calculator/explanation.html`
+- `public/finance-calculators/present-value-calculator/index.html`
+- `public/finance-calculators/future-value-calculator/index.html`
+- `public/finance-calculators/present-value-of-annuity-calculator/index.html`
+- `public/finance-calculators/future-value-of-annuity-calculator/index.html`
+- `public/finance-calculators/effective-annual-rate-calculator/index.html`
+- `public/finance-calculators/simple-interest-calculator/index.html`
+- `public/finance-calculators/compound-interest-calculator/index.html`
+- `public/finance-calculators/investment-growth-calculator/index.html`
+- `public/finance-calculators/time-to-savings-goal-calculator/index.html`
+- `public/finance-calculators/monthly-savings-needed-calculator/index.html`
+- `public/finance-calculators/investment-return-calculator/index.html`
+
+Validation:
+
+- `TARGET_CALC_ID=present-value node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=future-value node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=present-value-of-annuity node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=future-value-of-annuity node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=effective-annual-rate node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=simple-interest node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=compound-interest node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=investment-growth node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=time-to-savings-goal node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=monthly-savings-needed node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=investment-return node scripts/generate-mpa-pages.js` -> pass
+- `npm run lint` -> pass
+- `CLUSTER=finance npm run test:cluster:unit` -> pass
+- `CLUSTER=finance npm run test:cluster:e2e` -> pass
+- `CLUSTER=finance npm run test:cluster:seo` -> pass
+- `CLUSTER=finance npm run test:cluster:cwv` -> pass
+- `CLUSTER=finance npm run test:schema:dedupe -- --scope=cluster` -> pass
+- `npm run test:cluster:contracts` -> pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` -> pass
+
+Notes:
+
+- Cluster SEO emitted thin-content artifact `test-results/content-quality/cluster/finance/2026-03-20T15-03-54-921Z.json` with `warn=11`, `fail=0`.
+- This wave intentionally focused on intent alignment, use-case copy, and internal linking rather than title/schema churn.

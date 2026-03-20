@@ -2,8 +2,8 @@
   <section class="mtg-exp-section">
     <h2>What Is This Payment Stream Worth Today?</h2>
     <p>
-      This calculator discounts a series of equal future payments into a single present-day value
-      so you can compare recurring cash flow with a lump sum available now.
+      This calculator discounts a series of equal future payments into a single present-day value so
+      you can compare recurring cash flow with a lump sum available now.
     </p>
     <p>
       With payments of <span data-pva="payment-amount"></span>, a discount rate of
@@ -11,6 +11,16 @@
       <span data-pva="annuity-type"></span> timing, and
       <span data-pva="compounding-frequency"></span> compounding, the present value is
       <strong><span data-pva="present-value"></span></strong>.
+    </p>
+    <p>
+      This is the route to use for pensions, lease payments, structured settlements, and any level
+      income stream you want to convert into today&apos;s money. If you only need to discount one
+      future lump sum, use the
+      <a href="/finance-calculators/present-value-calculator/">present value calculator</a>. If you
+      want to see what recurring deposits could grow into instead, use the
+      <a href="/finance-calculators/future-value-of-annuity-calculator/"
+        >future value of annuity calculator</a
+      >.
     </p>
     <div class="table-scroll" tabindex="0">
       <table class="pva-results-table">
@@ -91,8 +101,8 @@
     <div>
       <h4>2. Choose a realistic discount rate</h4>
       <p>
-        Use the return, hurdle rate, borrowing cost, or planning assumption that best represents
-        the value of money over the period you are evaluating.
+        Use the return, hurdle rate, borrowing cost, or planning assumption that best represents the
+        value of money over the period you are evaluating.
       </p>
     </div>
     <div>
@@ -105,8 +115,8 @@
     <div>
       <h4>4. Compare ordinary and due timing</h4>
       <p>
-        Ordinary annuity assumes payments happen at the end of each period. Annuity due assumes
-        they arrive at the beginning, which usually increases present value.
+        Ordinary annuity assumes payments happen at the end of each period. Annuity due assumes they
+        arrive at the beginning, which usually increases present value.
       </p>
     </div>
     <div>
@@ -117,8 +127,8 @@
         <li>
           Convert the annual rate into the per-period rate:
           <span data-pva="discount-rate"></span> divided by
-          <span data-pva="periods-per-year"></span> =
-          <span data-pva="applied-rate"></span>% per period.
+          <span data-pva="periods-per-year"></span> = <span data-pva="applied-rate"></span>% per
+          period.
         </li>
         <li>
           Convert the timeline into total effective periods:
@@ -133,12 +143,17 @@
           <span data-pva="present-value"></span>.
         </li>
         <li>
-          If you choose annuity due, the ordinary result is multiplied by
-          (1 + <span data-pva="applied-rate-decimal"></span>) because each payment arrives one
-          period earlier.
+          If you choose annuity due, the ordinary result is multiplied by (1 +
+          <span data-pva="applied-rate-decimal"></span>) because each payment arrives one period
+          earlier.
         </li>
       </ol>
     </div>
+    <p>
+      In practice, this calculator is strongest when cash flows are level and predictable. If the
+      timing is irregular or the payment amount changes, use this result as a simplifying benchmark
+      rather than an exact valuation.
+    </p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq" id="pva-faq">
@@ -195,9 +210,7 @@
       <div class="bor-faq-card">
         <span class="bor-faq-number">07</span>
         <h4>Can I switch between years and months?</h4>
-        <p>
-          Yes, use the period toggle to model either annual or monthly cash-flow timelines.
-        </p>
+        <p>Yes, use the period toggle to model either annual or monthly cash-flow timelines.</p>
       </div>
       <div class="bor-faq-card">
         <span class="bor-faq-number">08</span>
@@ -230,10 +243,22 @@
     <h3>Important Notes</h3>
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
-      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
-      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
-      <li><strong>Assumptions:</strong> The calculation assumes level payments, a fixed discount rate, consistent timing, and the selected compounding pattern for the full schedule.</li>
-      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+      <li>
+        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
+        and assumptions shown.
+      </li>
+      <li>
+        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
+        financial, legal, tax, or investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> The calculation assumes level payments, a fixed discount rate,
+        consistent timing, and the selected compounding pattern for the full schedule.
+      </li>
+      <li>
+        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
+        stored by us. We do not save the values you enter into calculator fields.
+      </li>
     </ul>
   </section>
 </div>

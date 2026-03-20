@@ -2145,6 +2145,13 @@
       Use the ending balance first, then compare total contributions and total interest to see how
       much of the result came from your deposits versus compounding.
     </p>
+    <p>
+      This route is strongest for long-horizon savings, investing, and wealth-building questions
+      where time and reinvestment drive the answer. If you want a lighter accumulation model, use
+      the <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If
+      you want a portfolio view with inflation context, use the
+      <a href="/finance-calculators/investment-growth-calculator/">investment growth calculator</a>.
+    </p>
     <div class="table-scroll" tabindex="0">
       <table class="ci-results-table">
         <thead>
@@ -2201,9 +2208,7 @@
     <h3>How to Guide</h3>
     <div>
       <h4>1. Start with the opening balance</h4>
-      <p>
-        Enter the amount already invested or saved. This base begins compounding immediately.
-      </p>
+      <p>Enter the amount already invested or saved. This base begins compounding immediately.</p>
     </div>
     <div>
       <h4>2. Add the rate and time horizon</h4>
@@ -2232,6 +2237,11 @@
         but the primary decision is still the ending balance and contribution burden.
       </p>
     </div>
+    <p>
+      In practice, most compound-interest decisions improve when you compare the answer with the
+      contribution burden and the time horizon together rather than chasing the highest possible
+      rate assumption.
+    </p>
   </section>
 
   <section class="mtg-exp-section">
@@ -2292,7 +2302,12 @@
   <section class="mtg-exp-section ci-growth-section" id="ci-growth-chart-section">
     <div class="ci-growth-header">
       <h3>Growth Visualization</h3>
-      <div class="ci-chart-scale-toggle" role="group" aria-label="Growth chart scale" data-button-group="ci-chart-scale">
+      <div
+        class="ci-chart-scale-toggle"
+        role="group"
+        aria-label="Growth chart scale"
+        data-button-group="ci-chart-scale"
+      >
         <button
           class="calculator-button secondary is-active"
           type="button"
@@ -2301,7 +2316,12 @@
         >
           Linear
         </button>
-        <button class="calculator-button secondary" type="button" data-value="log" aria-pressed="false">
+        <button
+          class="calculator-button secondary"
+          type="button"
+          data-value="log"
+          aria-pressed="false"
+        >
           Log
         </button>
       </div>
@@ -2332,16 +2352,75 @@
   <section class="mtg-exp-section mtg-exp-section--faq" id="ci-faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card"><span class="bor-faq-number">01</span><h4>What is compound interest?</h4><p>Compound interest means interest is earned on both the principal and prior accumulated interest.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">02</span><h4>What changes the ending balance most?</h4><p>Time, rate, and consistent contributions usually have the biggest long-term effect.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">03</span><h4>Do recurring contributions matter?</h4><p>Yes. They can become a major share of the final balance, especially over longer periods.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">04</span><h4>Does compounding frequency matter?</h4><p>Yes. More frequent compounding usually produces a slightly higher ending balance under the same nominal rate.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">05</span><h4>What if the rate is 0%?</h4><p>The ending balance becomes principal plus total contributions because no growth is applied.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">06</span><h4>Why can small rate changes matter so much?</h4><p>Because even small differences compound over every period and become larger over time.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">07</span><h4>Can I use this for savings planning?</h4><p>Yes. It works well for deterministic savings and investment scenarios with a fixed rate assumption.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">08</span><h4>Is the chart the main answer?</h4><p>No. Use the chart for inspection, but make the decision from ending balance, contributions, and interest.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">09</span><h4>Why can spreadsheet results differ slightly?</h4><p>Display rounding can differ even when the formula logic is effectively the same.</p></div>
-      <div class="bor-faq-card"><span class="bor-faq-number">10</span><h4>Is this a guaranteed forecast?</h4><p>No. It is a fixed-assumption estimate for planning and comparison.</p></div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is compound interest?</h4>
+        <p>
+          Compound interest means interest is earned on both the principal and prior accumulated
+          interest.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What changes the ending balance most?</h4>
+        <p>Time, rate, and consistent contributions usually have the biggest long-term effect.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Do recurring contributions matter?</h4>
+        <p>
+          Yes. They can become a major share of the final balance, especially over longer periods.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Does compounding frequency matter?</h4>
+        <p>
+          Yes. More frequent compounding usually produces a slightly higher ending balance under the
+          same nominal rate.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What if the rate is 0%?</h4>
+        <p>
+          The ending balance becomes principal plus total contributions because no growth is
+          applied.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Why can small rate changes matter so much?</h4>
+        <p>
+          Because even small differences compound over every period and become larger over time.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can I use this for savings planning?</h4>
+        <p>
+          Yes. It works well for deterministic savings and investment scenarios with a fixed rate
+          assumption.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Is the chart the main answer?</h4>
+        <p>
+          No. Use the chart for inspection, but make the decision from ending balance,
+          contributions, and interest.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Why can spreadsheet results differ slightly?</h4>
+        <p>Display rounding can differ even when the formula logic is effectively the same.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Is this a guaranteed forecast?</h4>
+        <p>No. It is a fixed-assumption estimate for planning and comparison.</p>
+      </div>
     </div>
   </section>
 
@@ -2349,10 +2428,22 @@
     <h3>Important Notes</h3>
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
-      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
-      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
-      <li><strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution amount, and the selected compounding schedule for the full time horizon.</li>
-      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+      <li>
+        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
+        and assumptions shown.
+      </li>
+      <li>
+        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
+        financial, legal, tax, or investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution amount, and
+        the selected compounding schedule for the full time horizon.
+      </li>
+      <li>
+        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
+        stored by us. We do not save the values you enter into calculator fields.
+      </li>
     </ul>
   </section>
 </div>
