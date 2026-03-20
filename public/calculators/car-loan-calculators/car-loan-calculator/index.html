@@ -3,158 +3,186 @@
     <section class="mtg-hero" aria-label="Car loan calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate monthly payment, financed amount, and lifetime borrowing cost before you compare
-          dealer or lender offers.
+          Estimate the real purchase cost before you compare dealer or lender offers.
         </p>
 
-        <div class="input-row slider-row">
-          <div class="slider-header">
-            <label for="car-price">Vehicle Price</label>
-            <span class="slider-value" id="car-price-display">28,000</span>
+        <section class="al-form-section" aria-labelledby="car-section-vehicle">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="car-section-vehicle">Vehicle</h2>
+              <p class="al-form-section-copy">
+                Start with the car price and the cash or trade value reducing what you need to
+                borrow.
+              </p>
+            </div>
           </div>
-          <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
-          <div class="slider-precision-row">
-            <label class="slider-precision-label" for="car-price-field">Exact vehicle price</label>
-            <input
-              class="slider-precision-input"
-              id="car-price-field"
-              type="text"
-              inputmode="numeric"
-              maxlength="12"
-              value="28000"
-            />
-          </div>
-        </div>
 
-        <div class="input-grid-2-col">
           <div class="input-row slider-row">
             <div class="slider-header">
-              <label id="car-down-value-label" for="car-down-value">Down Payment</label>
-              <span class="slider-value" id="car-down-display">3,000</span>
+              <label for="car-price">Vehicle Price</label>
+              <span class="slider-value" id="car-price-display">28,000</span>
             </div>
-            <input
-              id="car-down-value"
-              type="range"
-              value="3000"
-              min="0"
-              max="150000"
-              step="100"
-            />
+            <input id="car-price" type="range" value="28000" min="5000" max="150000" step="500" />
             <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-down-value-field"
-                >Exact down payment</label
-              >
+              <label class="slider-precision-label" for="car-price-field">Enter price</label>
               <input
                 class="slider-precision-input"
-                id="car-down-value-field"
+                id="car-price-field"
                 type="text"
                 inputmode="numeric"
                 maxlength="12"
+                value="28000"
+              />
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="car-down-value-label" for="car-down-value">Down Payment</label>
+                <span class="slider-value" id="car-down-display">3,000</span>
+              </div>
+              <input
+                id="car-down-value"
+                type="range"
                 value="3000"
+                min="0"
+                max="150000"
+                step="100"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-down-value-field">Enter deposit</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-down-value-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3000"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-trade">Trade-in Value</label>
+                <span class="slider-value" id="car-trade-display">1,500</span>
+              </div>
+              <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-trade-field">Enter trade-in</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-trade-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="1500"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="al-form-section" aria-labelledby="car-section-financing">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="car-section-financing">Financing</h2>
+              <p class="al-form-section-copy">
+                Add fees, tax, term, and APR to see the monthly payment in full context.
+              </p>
             </div>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-trade">Trade-in Value</label>
-              <span class="slider-value" id="car-trade-display">1,500</span>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-fees">Dealer Fees</label>
+                <span class="slider-value" id="car-fees-display">600</span>
+              </div>
+              <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-fees-field">Enter fees</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-fees-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="600"
+                />
+              </div>
             </div>
-            <input id="car-trade" type="range" value="1500" min="0" max="100000" step="100" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-trade-field">Exact trade-in value</label>
-              <input
-                class="slider-precision-input"
-                id="car-trade-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="1500"
-              />
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-tax">Sales Tax (%)</label>
+                <span class="slider-value" id="car-tax-display">7%</span>
+              </div>
+              <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-tax-field">Enter tax</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-tax-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="7"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-term">Loan Term (years)</label>
+                <span class="slider-value" id="car-term-display">5 yrs</span>
+              </div>
+              <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-term-field">Enter term</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-term-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="car-apr">Interest Rate (APR %)</label>
+                <span class="slider-value" id="car-apr-display">6.5%</span>
+              </div>
+              <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="car-apr-field">Enter APR</label>
+                <input
+                  class="slider-precision-input"
+                  id="car-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="6.5"
+                />
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-fees">Dealer Fees</label>
-              <span class="slider-value" id="car-fees-display">600</span>
-            </div>
-            <input id="car-fees" type="range" value="600" min="0" max="10000" step="50" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-fees-field">Exact dealer fees</label>
-              <input
-                class="slider-precision-input"
-                id="car-fees-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="600"
-              />
-            </div>
+        <div class="al-action-rail">
+          <div class="al-action-buttons">
+            <button class="calculator-button full-width" type="button" id="car-calculate">
+              Calculate Car Loan
+            </button>
+            <button class="calculator-button secondary" type="button" id="car-use-defaults">
+              Use defaults
+            </button>
           </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-tax">Sales Tax (%)</label>
-              <span class="slider-value" id="car-tax-display">7%</span>
-            </div>
-            <input id="car-tax" type="range" value="7" min="0" max="20" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-tax-field">Exact sales tax percent</label>
-              <input
-                class="slider-precision-input"
-                id="car-tax-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="7"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-term">Loan Term (years)</label>
-              <span class="slider-value" id="car-term-display">5 yrs</span>
-            </div>
-            <input id="car-term" type="range" value="5" min="1" max="8" step="1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-term-field">Exact loan term in years</label>
-              <input
-                class="slider-precision-input"
-                id="car-term-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="5"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="car-apr">Interest Rate (APR %)</label>
-              <span class="slider-value" id="car-apr-display">6.5%</span>
-            </div>
-            <input id="car-apr" type="range" value="6.5" min="0" max="25" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="car-apr-field">Exact APR percent</label>
-              <input
-                class="slider-precision-input"
-                id="car-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="6.5"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="car-calculate">
-            Calculate Car Loan
-          </button>
+          <p class="al-action-note">Results update after Calculate.</p>
         </div>
       </div>
 
@@ -167,48 +195,87 @@
           </div>
         </div>
 
-        <div class="result-detail mtg-summary-card" id="car-summary" aria-live="polite">
-          <p><strong>Amount Financed:</strong> <span>25,955</span></p>
-          <p><strong>Total Interest:</strong> <span>4,515.36</span></p>
-          <p><strong>Total Payment:</strong> <span>30,470.36</span></p>
+        <div class="result-detail mtg-summary-card al-secondary-metrics" id="car-summary" aria-live="polite">
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Amount Financed</span>
+            <strong class="al-metric-card-value">25,955</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Interest</span>
+            <strong class="al-metric-card-value">4,515.36</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Payment</span>
+            <strong class="al-metric-card-value">30,470.36</strong>
+          </article>
+        </div>
+
+        <div class="al-assumption-strip" aria-label="What this answer assumes">
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Price</span>
+            <strong class="al-assumption-value" id="car-assumption-price">28,000</strong>
+          </div>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Deposit</span>
+            <strong class="al-assumption-value" id="car-assumption-down">3,000</strong>
+          </div>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">APR</span>
+            <strong class="al-assumption-value" id="car-assumption-apr">6.5%</strong>
+          </div>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Term</span>
+            <strong class="al-assumption-value" id="car-assumption-term">5 years</strong>
+          </div>
+        </div>
+
+        <p class="al-preview-stale" id="car-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh results.
+        </p>
+
+        <div class="al-breakdown-list" aria-label="Amount financed breakdown">
+          <div class="al-breakdown-row">
+            <span>Vehicle price</span>
+            <strong id="car-breakdown-price">28,000</strong>
+          </div>
+          <div class="al-breakdown-row">
+            <span>Minus down payment</span>
+            <strong id="car-breakdown-down">3,000</strong>
+          </div>
+          <div class="al-breakdown-row">
+            <span>Minus trade-in</span>
+            <strong id="car-breakdown-trade">1,500</strong>
+          </div>
+          <div class="al-breakdown-row">
+            <span>Plus fees</span>
+            <strong id="car-breakdown-fees">600</strong>
+          </div>
+          <div class="al-breakdown-row">
+            <span>Plus tax</span>
+            <strong id="car-breakdown-tax">1,855</strong>
+          </div>
+          <div class="al-breakdown-row">
+            <span>Amount financed</span>
+            <strong id="car-breakdown-financed">25,955</strong>
+          </div>
         </div>
 
         <div class="mtg-snapshot-list">
           <div class="mtg-snapshot-row">
-            <span>Vehicle Price</span>
-            <strong data-car="price">28,000</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Down Payment</span>
-            <strong
-              ><span data-car="down-payment">3,000</span> (<span data-car="down-percent"
-                >10.71%</span
-              >)</strong
-            >
+            <span>Down Payment Share</span>
+            <strong><span id="car-preview-down-percent">10.71%</span> of price</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Trade-in Value</span>
-            <strong data-car="trade-in">1,500</strong>
+            <strong id="car-preview-trade">1,500</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Dealer Fees</span>
-            <strong data-car="fees">600</strong>
+            <strong id="car-preview-fees">600</strong>
           </div>
           <div class="mtg-snapshot-row">
             <span>Sales Tax</span>
-            <strong data-car="tax">1,855</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Amount Financed</span>
-            <strong data-car="amount-financed">25,955</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Interest Rate</span>
-            <strong data-car="apr">6.5%</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Loan Term</span>
-            <strong data-car="term">5 years</strong>
+            <strong id="car-preview-tax">1,855</strong>
           </div>
         </div>
       </aside>

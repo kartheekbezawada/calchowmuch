@@ -2197,6 +2197,14 @@ function buildAutoLoanClusterFooterHtml() {
 </footer>`;
 }
 
+const AUTO_LOAN_RELATED_CARD_COPY = {
+  'car-loan-calculator': 'See the financed amount, monthly payment, and full borrowing cost.',
+  'auto-loan-calculator': 'Compare two offers side by side before you choose the cheaper path.',
+  'hire-purchase-calculator': 'Balance monthly affordability against the balloon due later.',
+  'pcp-calculator': 'Weigh the lower monthly cost against the final payment obligation.',
+  'car-lease-calculator': 'Review due-at-signing, residual value, and full lease spend together.',
+};
+
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
   const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
 
@@ -2231,9 +2239,16 @@ function buildAutoLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
   const linksHtml = calculators
     .map((calculator) => {
       const isActive = calculator.id === activeCalculatorId;
-      return `<a class="al-cluster-related-link${isActive ? ' is-active' : ''}" href="${
-        calculator.url
-      }"${isActive ? ' aria-current="page"' : ''}>${calculator.name}</a>`;
+      const description =
+        AUTO_LOAN_RELATED_CARD_COPY[calculator.id] ||
+        'Explore this Auto Loan calculator with the shared redesign system.';
+
+      return `<a class="al-cluster-related-link al-cluster-related-card${
+        isActive ? ' is-active' : ''
+      }" href="${calculator.url}"${isActive ? ' aria-current="page"' : ''}>
+        <span class="al-cluster-related-card-title">${calculator.name}</span>
+        <span class="al-cluster-related-card-copy">${description}</span>
+      </a>`;
     })
     .join('');
 

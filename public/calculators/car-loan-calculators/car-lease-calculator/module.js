@@ -2,6 +2,7 @@ import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLease } from '/assets/js/core/auto-loan-utils.js';
 import {
+  createStaleResultController,
   revealResultPanel,
   updateRangeFill,
   wireRangeWithField,
@@ -18,9 +19,21 @@ const termField = document.querySelector('#lease-term-field');
 const factorField = document.querySelector('#lease-factor-field');
 const upfrontField = document.querySelector('#lease-upfront-field');
 const calculateButton = document.querySelector('#lease-calc');
+const defaultsButton = document.querySelector('#lease-use-defaults');
 const resultDiv = document.querySelector('#lease-result');
 const summaryDiv = document.querySelector('#lease-summary');
 const previewPanel = document.querySelector('#lease-preview');
+const staleNote = document.querySelector('#lease-stale-note');
+
+const assumptionPrice = document.querySelector('#lease-assumption-price');
+const assumptionResidual = document.querySelector('#lease-assumption-residual');
+const assumptionFactor = document.querySelector('#lease-assumption-factor');
+const assumptionTerm = document.querySelector('#lease-assumption-term');
+
+const previewDepreciation = document.querySelector('#lease-preview-depreciation');
+const previewDepreciationCopy = document.querySelector('#lease-preview-depreciation-copy');
+const previewFinance = document.querySelector('#lease-preview-finance');
+const previewFinanceCopy = document.querySelector('#lease-preview-finance-copy');
 
 const residualLabel = document.querySelector('#lease-residual-value-label');
 const termLabel = document.querySelector('#lease-term-label');
@@ -60,6 +73,16 @@ let lastTermUnit = 'years';
 let residualBinding;
 let termBinding;
 let upfrontBinding;
+
+const defaultValues = {
+  price: priceInput?.value ?? '30000',
+  residual: residualInput?.value ?? '15000',
+  term: termInput?.value ?? '3',
+  factor: factorInput?.value ?? '0.0022',
+  upfront: upfrontInput?.value ?? '1500',
+  residualType: 'amount',
+  termUnit: 'years',
+};
 
 const FAQ_ITEMS = [
   {
@@ -233,6 +256,24 @@ function formatFieldValue(value, fractionDigits = 0) {
 function formatMoneyFactor(value) {
   return Number(value).toFixed(4);
 }
+
+function buildStateSignature() {
+  return JSON.stringify({
+    price: priceInput?.value ?? '',
+    residual: residualInput?.value ?? '',
+    term: termInput?.value ?? '',
+    factor: factorInput?.value ?? '',
+    upfront: upfrontInput?.value ?? '',
+    residualType: getCurrentResidualType(),
+    termUnit: getCurrentTermUnit(),
+  });
+}
+
+const staleController = createStaleResultController({
+  resultPanel: previewPanel,
+  staleTargets: [staleNote],
+  getSignature: buildStateSignature,
+});
 
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
@@ -539,9 +580,9 @@ function renderCostTable(data) {
       .map(
         (row) => `
           <tr>
-            <th scope="row">${row.metric}</th>
-            <td>${row.value}</td>
-            <td>${row.note}</td>
+            <th scope="row" data-label="Metric">${row.metric}</th>
+            <td data-label="Value">${row.value}</td>
+            <td data-label="Explanation">${row.note}</td>
           </tr>
         `
       )
@@ -562,7 +603,9 @@ function buildTermText(termMonths) {
 
 function updatePreview(data) {
   if (resultDiv) {
-    resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${formatValue(data.monthlyPayment)}</span>`;
+    resultDiv.innerHTML = `<strong>Monthly payment</strong><span class="mtg-result-value is-updated">${formatValue(
+      data.monthlyPayment
+    )}</span>`;
 
     const valueEl = resultDiv.querySelector('.mtg-result-value');
     if (valueEl) {
@@ -571,13 +614,51 @@ function updatePreview(data) {
   }
 
   if (summaryDiv) {
-    summaryDiv.innerHTML =
-      `<p><strong>Cap Cost:</strong> ${formatValue(data.capCost)}</p>` +
-      `<p><strong>Finance Charge:</strong> ${formatValue(data.financeTotal)}</p>` +
-      `<p><strong>Total Lease Cost:</strong> ${formatValue(data.totalLeaseCost)}</p>`;
+    summaryDiv.innerHTML = `
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Due at Signing</span>
+        <strong class="al-metric-card-value">${formatValue(data.upfrontPayment)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Total Over Term</span>
+        <strong class="al-metric-card-value">${formatValue(data.totalLeaseCost)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Cap Cost</span>
+        <strong class="al-metric-card-value">${formatValue(data.capCost)}</strong>
+      </article>
+    `;
+  }
+
+  if (assumptionPrice) {
+    assumptionPrice.textContent = formatValue(data.price);
+  }
+  if (assumptionResidual) {
+    assumptionResidual.textContent = formatValue(data.residual);
+  }
+  if (assumptionFactor) {
+    assumptionFactor.textContent = formatMoneyFactor(data.moneyFactor);
+  }
+  if (assumptionTerm) {
+    assumptionTerm.textContent = buildTermText(data.termMonths);
   }
 
   const residualPercent = data.price > 0 ? (data.residual / data.price) * 100 : 0;
+  if (previewDepreciation) {
+    previewDepreciation.textContent = formatValue(data.depreciationTotal);
+  }
+  if (previewDepreciationCopy) {
+    previewDepreciationCopy.textContent = `Residual equals ${formatPercent(
+      residualPercent
+    )} of the vehicle price.`;
+  }
+  if (previewFinance) {
+    previewFinance.textContent = formatValue(data.financeTotal);
+  }
+  if (previewFinanceCopy) {
+    previewFinanceCopy.textContent =
+      'Money factor and cap cost create the finance portion.';
+  }
 
   setSpan('price', formatValue(data.price));
   setSpan('residual', formatValue(data.residual));
@@ -749,13 +830,14 @@ function calculate() {
   renderYearlyTable(enriched);
   renderCostTable(enriched);
   applyView(scheduleView);
+  staleController.markFresh();
   revealResultPanel({
     resultPanel: previewPanel,
     focusTarget: resultDiv,
   });
 }
 
-wireRangeWithField({
+const priceBinding = wireRangeWithField({
   rangeInput: priceInput,
   textInput: priceField,
   formatFieldValue: (value) => formatFieldValue(value),
@@ -781,7 +863,7 @@ termBinding = wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const factorBinding = wireRangeWithField({
   rangeInput: factorInput,
   textInput: factorField,
   formatFieldValue: (value) => formatFieldValue(value, 4),
@@ -803,10 +885,59 @@ priceInput?.addEventListener('input', () => {
   upfrontBinding?.syncFromRange();
 });
 
+function applyDefaults() {
+  residualTypeButtons?.setValue(defaultValues.residualType);
+  termUnitButtons?.setValue(defaultValues.termUnit);
+  handleResidualTypeChange(defaultValues.residualType);
+  handleTermUnitChange(defaultValues.termUnit);
+
+  if (priceInput) {
+    priceInput.value = defaultValues.price;
+  }
+  if (residualInput) {
+    residualInput.value = defaultValues.residual;
+  }
+  if (termInput) {
+    termInput.value = defaultValues.term;
+  }
+  if (factorInput) {
+    factorInput.value = defaultValues.factor;
+  }
+  if (upfrontInput) {
+    upfrontInput.value = defaultValues.upfront;
+  }
+
+  syncDependentRanges();
+  priceBinding.syncFromRange();
+  residualBinding?.syncFromRange();
+  termBinding?.syncFromRange();
+  factorBinding.syncFromRange();
+  upfrontBinding?.syncFromRange();
+  staleController.sync();
+}
+
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));
 viewYearlyButton?.addEventListener('click', () => applyView('yearly'));
 viewCostButton?.addEventListener('click', () => applyView('cost'));
 calculateButton?.addEventListener('click', calculate);
+defaultsButton?.addEventListener('click', applyDefaults);
+
+staleController.watchElements(
+  [
+    priceInput,
+    residualInput,
+    termInput,
+    factorInput,
+    upfrontInput,
+    priceField,
+    residualField,
+    termField,
+    factorField,
+    upfrontField,
+  ],
+  ['input', 'change']
+);
+staleController.watchElements([residualTypeGroup, termUnitGroup], ['click']);
 
 lastResidualType = getCurrentResidualType();
 lastTermUnit = getCurrentTermUnit();

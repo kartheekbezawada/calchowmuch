@@ -33,7 +33,10 @@ test.describe('Hire Purchase Calculator', () => {
 
     await expect(page.locator('#calc-hire-purchase .slider-row')).toHaveCount(5);
     await expect(page.locator('#calc-hire-purchase .slider-precision-input')).toHaveCount(5);
+    await expect(page.locator('#calc-hire-purchase .al-form-section')).toHaveCount(3);
     await expect(page.locator('#calc-hire-purchase .mtg-preview-panel')).toHaveCount(1);
+    await expect(page.locator('#hp-preview .al-obligation-card')).toHaveCount(1);
+    await expect(page.locator('#hp-stale-note')).toBeHidden();
 
     const termToggleButtons = page.locator('[data-button-group="hp-term-unit"] button');
     await expect(termToggleButtons).toHaveCount(2);
@@ -58,6 +61,7 @@ test.describe('Hire Purchase Calculator', () => {
 
     expect(afterInputResult).toBe(baselineResult);
     expect(afterInputExplanation).toBe(baselineExplanation);
+    await expect(page.locator('#hp-stale-note')).toBeVisible();
 
     await page.locator('#hp-calc').click();
 
@@ -76,6 +80,7 @@ test.describe('Hire Purchase Calculator', () => {
         }
       )
       .toBe(true);
+    await expect(page.locator('#hp-stale-note')).toBeHidden();
 
     const yearlyWrap = page.locator('#hp-table-yearly-wrap');
     const monthlyWrap = page.locator('#hp-table-monthly-wrap');
@@ -94,5 +99,6 @@ test.describe('Hire Purchase Calculator', () => {
     expect(await page.locator('#hp-table-yearly-body tr').count()).toBeGreaterThan(0);
 
     await expect(page.locator('#hp-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#hp-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

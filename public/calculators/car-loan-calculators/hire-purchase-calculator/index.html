@@ -3,113 +3,143 @@
     <section class="mtg-hero" aria-label="Hire purchase calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate monthly installments, the final balloon payment, and the total amount payable so
-          you can compare headline affordability with full-contract cost.
+          Judge the monthly instalment and the end-of-term commitment together, not in isolation.
         </p>
 
-        <div class="input-row slider-row">
-          <div class="slider-header">
-            <label for="hp-price">Vehicle Price</label>
-            <span class="slider-value" id="hp-price-display">24,000</span>
-          </div>
-          <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
-          <div class="slider-precision-row">
-            <label class="slider-precision-label" for="hp-price-field">Exact vehicle price</label>
-            <input
-              class="slider-precision-input"
-              id="hp-price-field"
-              type="text"
-              inputmode="numeric"
-              maxlength="12"
-              value="24000"
-            />
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="hp-deposit">Deposit</label>
-              <span class="slider-value" id="hp-deposit-display">2,000</span>
-            </div>
-            <input id="hp-deposit" type="range" value="2000" min="0" max="150000" step="100" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-deposit-field">Exact deposit</label>
-              <input
-                class="slider-precision-input"
-                id="hp-deposit-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="2000"
-              />
+        <section class="al-form-section" aria-labelledby="hp-section-vehicle">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-vehicle">Vehicle</h2>
+              <p class="al-form-section-copy">
+                Start with the price and the upfront deposit reducing the amount that needs finance.
+              </p>
             </div>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="hp-apr">APR (%)</label>
-              <span class="slider-value" id="hp-apr-display">6.2%</span>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-price">Vehicle Price</label>
+                <span class="slider-value" id="hp-price-display">24,000</span>
+              </div>
+              <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-price-field">Enter price</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-price-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="24000"
+                />
+              </div>
             </div>
-            <input id="hp-apr" type="range" value="6.2" min="0" max="25" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-apr-field">Exact APR percent</label>
-              <input
-                class="slider-precision-input"
-                id="hp-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="6.2"
-              />
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-deposit">Deposit</label>
+                <span class="slider-value" id="hp-deposit-display">2,000</span>
+              </div>
+              <input id="hp-deposit" type="range" value="2000" min="0" max="150000" step="100" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-deposit-field">Enter deposit</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-deposit-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="2000"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-row down-combined-left">
-          <label id="hp-term-unit-label">Term Unit</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="hp-term-unit-label"
-            data-button-group="hp-term-unit"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="years"
-              aria-pressed="true"
-            >
-              Years
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="months"
-              aria-pressed="false"
-            >
-              Months
-            </button>
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label id="hp-term-label" for="hp-term">Term (years)</label>
-              <span class="slider-value" id="hp-term-display">4 yrs</span>
+        <section class="al-form-section" aria-labelledby="hp-section-financing">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-financing">Financing</h2>
+              <p class="al-form-section-copy">
+                Use APR and term to shape the instalment before the final balloon is added.
+              </p>
             </div>
-            <input id="hp-term" type="range" value="4" min="1" max="8" step="0.5" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-term-field">Exact term value</label>
-              <input
-                class="slider-precision-input"
-                id="hp-term-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="4"
-              />
+            <div class="al-form-section-controls">
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Term unit"
+                data-button-group="hp-term-unit"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-apr">APR (%)</label>
+                <span class="slider-value" id="hp-apr-display">6.2%</span>
+              </div>
+              <input id="hp-apr" type="range" value="6.2" min="0" max="25" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-apr-field">Enter APR</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="6.2"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="hp-term-label" for="hp-term">Term (years)</label>
+                <span class="slider-value" id="hp-term-display">4 yrs</span>
+              </div>
+              <input id="hp-term" type="range" value="4" min="1" max="8" step="0.5" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-term-field">Enter term</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-term-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="4"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="al-form-section" aria-labelledby="hp-section-end-term">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-end-term">End-of-term</h2>
+              <p class="al-form-section-copy">
+                Set the balloon amount that remains due when the regular instalments finish.
+              </p>
             </div>
           </div>
 
@@ -120,7 +150,7 @@
             </div>
             <input id="hp-balloon" type="range" value="0" min="0" max="150000" step="100" />
             <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-balloon-field">Exact final balloon</label>
+              <label class="slider-precision-label" for="hp-balloon-field">Enter balloon</label>
               <input
                 class="slider-precision-input"
                 id="hp-balloon-field"
@@ -131,12 +161,18 @@
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="hp-calc">
-            Calculate Hire Purchase
-          </button>
+        <div class="al-action-rail">
+          <div class="al-action-buttons">
+            <button class="calculator-button full-width" type="button" id="hp-calc">
+              Calculate Hire Purchase
+            </button>
+            <button class="calculator-button secondary" type="button" id="hp-use-defaults">
+              Use defaults
+            </button>
+          </div>
+          <p class="al-action-note">Results update after Calculate.</p>
         </div>
       </div>
 
@@ -149,48 +185,55 @@
           </div>
         </div>
 
-        <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite">
-          <p><strong>Amount Financed:</strong> <span>22,000</span></p>
-          <p><strong>Total Interest:</strong> <span>2,897.14</span></p>
-          <p><strong>Total Payable:</strong> <span>26,897.14</span></p>
+        <div class="result-detail mtg-summary-card al-secondary-metrics" id="hp-summary" aria-live="polite">
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Amount Financed</span>
+            <strong class="al-metric-card-value">22,000</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Interest</span>
+            <strong class="al-metric-card-value">2,897.14</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Payable</span>
+            <strong class="al-metric-card-value">26,897.14</strong>
+          </article>
         </div>
 
-        <div class="mtg-snapshot-list">
-          <div class="mtg-snapshot-row">
-            <span>Vehicle Price</span>
-            <strong data-hp="price">24,000</strong>
+        <div class="al-assumption-strip" aria-label="What this answer assumes">
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Vehicle Price</span>
+            <strong class="al-assumption-value" id="hp-assumption-price">24,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Deposit</span>
-            <strong
-              ><span data-hp="deposit">2,000</span> (<span data-hp="deposit-percent">8.33%</span
-              >)</strong
-            >
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Deposit</span>
+            <strong class="al-assumption-value" id="hp-assumption-deposit">2,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Amount Financed</span>
-            <strong data-hp="financed">22,000</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">APR</span>
+            <strong class="al-assumption-value" id="hp-assumption-apr">6.2%</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>APR</span>
-            <strong data-hp="apr">6.2%</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Term</span>
+            <strong class="al-assumption-value" id="hp-assumption-term">4 years</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Term</span>
-            <strong data-hp="term">4 years (48 months)</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Final Balloon</span>
-            <strong data-hp="balloon">0</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Interest</span>
-            <strong data-hp="total-interest">2,897.14</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Payable</span>
-            <strong data-hp="total-payable">26,897.14</strong>
-          </div>
+        </div>
+
+        <p class="al-preview-stale" id="hp-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh results.
+        </p>
+
+        <div class="al-end-term-grid">
+          <article class="al-obligation-card">
+            <h3>Final balloon due later</h3>
+            <strong id="hp-preview-balloon">0</strong>
+            <p id="hp-preview-balloon-copy">No remaining end-of-term payment is due.</p>
+          </article>
+          <article class="al-spotlight-card">
+            <h3>Amount financed now</h3>
+            <strong id="hp-preview-financed">22,000</strong>
+            <p id="hp-preview-financed-copy">Deposit covers 8.33% of the vehicle price.</p>
+          </article>
         </div>
       </aside>
     </section>

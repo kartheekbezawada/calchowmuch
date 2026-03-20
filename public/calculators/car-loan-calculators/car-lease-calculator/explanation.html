@@ -20,6 +20,18 @@
     <li>Upfront payment: <span data-lease="upfront">-</span></li>
   </ul>
 
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      Leasing becomes easier to judge when you separate the price of depreciation from the price of
+      finance.
+    </p>
+    <ul>
+      <li>Use residual value to understand how much vehicle value you are expected to consume.</li>
+      <li>Use total lease cost to compare this structure against owning the car instead.</li>
+    </ul>
+  </div>
+
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
       <h3>Lifetime Totals</h3>
@@ -140,7 +152,7 @@
     </div>
 
     <div class="table-scroll is-hidden" id="lease-table-cost-wrap" data-glow="cost" tabindex="0">
-      <table class="calculator-table lease-cost-table" id="lease-table-cost">
+      <table class="calculator-table lease-cost-table al-table-stack-mobile" id="lease-table-cost">
         <thead>
           <tr>
             <th scope="col">Metric</th>
@@ -151,8 +163,8 @@
         <tbody id="lease-table-cost-body"></tbody>
         <tfoot>
           <tr>
-            <th scope="row" colspan="2">Total Lease Cost</th>
-            <td id="lease-cost-total">-</td>
+            <th scope="row" colspan="2" data-label="Total">Total Lease Cost</th>
+            <td id="lease-cost-total" data-label="Value">-</td>
           </tr>
         </tfoot>
       </table>

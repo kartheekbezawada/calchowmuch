@@ -3,156 +3,186 @@
     <section class="mtg-hero" aria-label="Multiple car loan calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Compare two auto loans side by side so you can judge combined monthly pressure, lifetime
-          interest, and the longer payoff horizon before you commit.
+          Compare both loans in one place before the combined monthly pressure becomes a surprise.
         </p>
 
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-a-amount">Loan A Amount</label>
-              <span class="slider-value" id="multi-loan-a-amount-display">18,000</span>
+        <section class="al-form-section" aria-labelledby="multi-section-loan-a">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="multi-section-loan-a">Loan A</h2>
+              <p class="al-form-section-copy">
+                Use this block for your first lender, first term option, or your existing loan.
+              </p>
             </div>
-            <input
-              id="multi-loan-a-amount"
-              type="range"
-              value="18000"
-              min="1000"
-              max="200000"
-              step="500"
-            />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-a-amount-field"
-                >Exact Loan A amount</label
-              >
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-a-amount">Loan A Amount</label>
+                <span class="slider-value" id="multi-loan-a-amount-display">18,000</span>
+              </div>
               <input
-                class="slider-precision-input"
-                id="multi-loan-a-amount-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
+                id="multi-loan-a-amount"
+                type="range"
                 value="18000"
+                min="1000"
+                max="200000"
+                step="500"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-a-amount-field"
+                  >Enter amount</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-a-amount-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="18000"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-a-apr">Loan A APR (%)</label>
+                <span class="slider-value" id="multi-loan-a-apr-display">5.8%</span>
+              </div>
+              <input id="multi-loan-a-apr" type="range" value="5.8" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-a-apr-field"
+                  >Enter APR</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-a-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5.8"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-a-term">Loan A Term (years)</label>
+                <span class="slider-value" id="multi-loan-a-term-display">4 yrs</span>
+              </div>
+              <input id="multi-loan-a-term" type="range" value="4" min="1" max="8" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-a-term-field"
+                  >Enter term</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-a-term-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="4"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="al-form-section" aria-labelledby="multi-section-loan-b">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="multi-section-loan-b">Loan B</h2>
+              <p class="al-form-section-copy">
+                Mirror the second offer so the payment, interest, and payoff tradeoff are easy to
+                compare.
+              </p>
             </div>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-b-amount">Loan B Amount</label>
-              <span class="slider-value" id="multi-loan-b-amount-display">12,000</span>
-            </div>
-            <input
-              id="multi-loan-b-amount"
-              type="range"
-              value="12000"
-              min="1000"
-              max="200000"
-              step="500"
-            />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-b-amount-field"
-                >Exact Loan B amount</label
-              >
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-b-amount">Loan B Amount</label>
+                <span class="slider-value" id="multi-loan-b-amount-display">12,000</span>
+              </div>
               <input
-                class="slider-precision-input"
-                id="multi-loan-b-amount-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
+                id="multi-loan-b-amount"
+                type="range"
                 value="12000"
+                min="1000"
+                max="200000"
+                step="500"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-b-amount-field"
+                  >Enter amount</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-b-amount-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="12000"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-b-apr">Loan B APR (%)</label>
+                <span class="slider-value" id="multi-loan-b-apr-display">7.1%</span>
+              </div>
+              <input id="multi-loan-b-apr" type="range" value="7.1" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-b-apr-field"
+                  >Enter APR</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-b-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="7.1"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="multi-loan-b-term">Loan B Term (years)</label>
+                <span class="slider-value" id="multi-loan-b-term-display">5 yrs</span>
+              </div>
+              <input id="multi-loan-b-term" type="range" value="5" min="1" max="8" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="multi-loan-b-term-field"
+                  >Enter term</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="multi-loan-b-term-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-a-apr">Loan A APR (%)</label>
-              <span class="slider-value" id="multi-loan-a-apr-display">5.8%</span>
-            </div>
-            <input id="multi-loan-a-apr" type="range" value="5.8" min="0" max="30" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-a-apr-field"
-                >Exact Loan A APR</label
-              >
-              <input
-                class="slider-precision-input"
-                id="multi-loan-a-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="5.8"
-              />
-            </div>
+        <div class="al-action-rail">
+          <div class="al-action-buttons">
+            <button class="calculator-button full-width" type="button" id="multi-loan-calc">
+              Calculate Multiple Car Loan
+            </button>
+            <button class="calculator-button secondary" type="button" id="multi-loan-use-defaults">
+              Use defaults
+            </button>
           </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-b-apr">Loan B APR (%)</label>
-              <span class="slider-value" id="multi-loan-b-apr-display">7.1%</span>
-            </div>
-            <input id="multi-loan-b-apr" type="range" value="7.1" min="0" max="30" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-b-apr-field"
-                >Exact Loan B APR</label
-              >
-              <input
-                class="slider-precision-input"
-                id="multi-loan-b-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="7.1"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-a-term">Loan A Term (years)</label>
-              <span class="slider-value" id="multi-loan-a-term-display">4 yrs</span>
-            </div>
-            <input id="multi-loan-a-term" type="range" value="4" min="1" max="8" step="1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-a-term-field"
-                >Exact Loan A term in years</label
-              >
-              <input
-                class="slider-precision-input"
-                id="multi-loan-a-term-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="4"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="multi-loan-b-term">Loan B Term (years)</label>
-              <span class="slider-value" id="multi-loan-b-term-display">5 yrs</span>
-            </div>
-            <input id="multi-loan-b-term" type="range" value="5" min="1" max="8" step="1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="multi-loan-b-term-field"
-                >Exact Loan B term in years</label
-              >
-              <input
-                class="slider-precision-input"
-                id="multi-loan-b-term-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="5"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="multi-loan-calc">
-            Calculate Multiple Car Loan
-          </button>
+          <p class="al-action-note">Results update after Calculate.</p>
         </div>
       </div>
 
@@ -165,44 +195,69 @@
           </div>
         </div>
 
-        <div class="result-detail mtg-summary-card" id="multi-loan-summary" aria-live="polite">
-          <p><strong>Total Interest:</strong> <span>4,502.79</span></p>
-          <p><strong>Total Payment:</strong> <span>34,502.79</span></p>
-          <p><strong>Payoff Horizon:</strong> <span>60 months</span></p>
+        <div class="result-detail mtg-summary-card al-secondary-metrics" id="multi-loan-summary" aria-live="polite">
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Combined Interest</span>
+            <strong class="al-metric-card-value">4,502.79</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Combined Total Paid</span>
+            <strong class="al-metric-card-value">34,502.79</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Payoff Horizon</span>
+            <strong class="al-metric-card-value">60 months</strong>
+          </article>
         </div>
 
-        <div class="mtg-snapshot-list">
-          <div class="mtg-snapshot-row">
-            <span>Loan A Payment</span>
-            <strong data-multi="loan-a-payment">421.08</strong>
+        <div class="al-assumption-strip" aria-label="What this answer assumes">
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Loan A</span>
+            <strong class="al-assumption-value" id="multi-assumption-loan-a">18,000 at 5.8%</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Loan B Payment</span>
-            <strong data-multi="loan-b-payment">238.18</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Loan A Term</span>
+            <strong class="al-assumption-value" id="multi-assumption-term-a">4 years</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Combined Payment</span>
-            <strong data-multi="combined-payment">659.26</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Loan B</span>
+            <strong class="al-assumption-value" id="multi-assumption-loan-b">12,000 at 7.1%</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Loan A Interest</span>
-            <strong data-multi="loan-a-interest">2,211.93</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Loan B Term</span>
+            <strong class="al-assumption-value" id="multi-assumption-term-b">5 years</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Loan B Interest</span>
-            <strong data-multi="loan-b-interest">2,290.86</strong>
+        </div>
+
+        <p class="al-preview-stale" id="multi-loan-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh results.
+        </p>
+
+        <div class="al-mini-summary-grid" aria-label="Individual loan summaries">
+          <article class="al-mini-summary">
+            <h3>Loan A monthly payment</h3>
+            <strong id="multi-preview-loan-a-payment">421.08</strong>
+            <p id="multi-preview-loan-a-copy">4 years with 2,211.93 total interest.</p>
+          </article>
+          <article class="al-mini-summary">
+            <h3>Loan B monthly payment</h3>
+            <strong id="multi-preview-loan-b-payment">238.18</strong>
+            <p id="multi-preview-loan-b-copy">5 years with 2,290.86 total interest.</p>
+          </article>
+        </div>
+
+        <div class="al-verdict-strip" aria-label="Combined loan verdict">
+          <div class="al-verdict-item">
+            <span>Combined Monthly</span>
+            <strong id="multi-preview-combined-payment">659.26</strong>
           </div>
-          <div class="mtg-snapshot-row">
+          <div class="al-verdict-item">
             <span>Combined Interest</span>
-            <strong data-multi="combined-interest">4,502.79</strong>
+            <strong id="multi-preview-combined-interest">4,502.79</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Combined Total Paid</span>
-            <strong data-multi="combined-total">34,502.79</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Payoff Horizon</span>
-            <strong data-multi="payoff-horizon">60 months</strong>
+          <div class="al-verdict-item">
+            <span>Longer Payoff</span>
+            <strong id="multi-preview-payoff-horizon">60 months</strong>
           </div>
         </div>
       </aside>

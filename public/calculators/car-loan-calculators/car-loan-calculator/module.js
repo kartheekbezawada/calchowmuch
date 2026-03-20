@@ -2,6 +2,7 @@ import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
 import { calculateCarLoan } from '/assets/js/core/auto-loan-utils.js';
 import {
+  createStaleResultController,
   revealResultPanel,
   updateRangeFill,
   wireRangeWithField,
@@ -24,9 +25,28 @@ const aprField = document.querySelector('#car-apr-field');
 const termField = document.querySelector('#car-term-field');
 
 const calculateButton = document.querySelector('#car-calculate');
+const defaultsButton = document.querySelector('#car-use-defaults');
 const resultDiv = document.querySelector('#car-result');
 const summaryDiv = document.querySelector('#car-summary');
 const previewPanel = document.querySelector('#car-preview');
+const staleNote = document.querySelector('#car-stale-note');
+
+const assumptionPrice = document.querySelector('#car-assumption-price');
+const assumptionDown = document.querySelector('#car-assumption-down');
+const assumptionApr = document.querySelector('#car-assumption-apr');
+const assumptionTerm = document.querySelector('#car-assumption-term');
+
+const breakdownPrice = document.querySelector('#car-breakdown-price');
+const breakdownDown = document.querySelector('#car-breakdown-down');
+const breakdownTrade = document.querySelector('#car-breakdown-trade');
+const breakdownFees = document.querySelector('#car-breakdown-fees');
+const breakdownTax = document.querySelector('#car-breakdown-tax');
+const breakdownFinanced = document.querySelector('#car-breakdown-financed');
+
+const previewDownPercent = document.querySelector('#car-preview-down-percent');
+const previewTrade = document.querySelector('#car-preview-trade');
+const previewFees = document.querySelector('#car-preview-fees');
+const previewTax = document.querySelector('#car-preview-tax');
 
 const priceDisplay = document.querySelector('#car-price-display');
 const downDisplay = document.querySelector('#car-down-display');
@@ -62,6 +82,16 @@ const totalPaymentValue = document.querySelector('[data-car="total-payment"]');
 const lifetimeSummary = document.querySelector('[data-car="lifetime-summary"]');
 
 let scheduleView = 'yearly';
+
+const defaultValues = {
+  price: priceInput?.value ?? '28000',
+  downPayment: downValueInput?.value ?? '3000',
+  tradeIn: tradeInput?.value ?? '1500',
+  fees: feesInput?.value ?? '600',
+  tax: taxInput?.value ?? '7',
+  apr: aprInput?.value ?? '6.5',
+  termYears: termInput?.value ?? '5',
+};
 
 const CALCULATOR_FAQ_SCHEMA = {
   '@type': 'FAQPage',
@@ -188,6 +218,24 @@ function formatFieldValue(value, fractionDigits = 0) {
   });
 }
 
+function buildStateSignature() {
+  return JSON.stringify({
+    price: priceInput?.value ?? '',
+    downPayment: downValueInput?.value ?? '',
+    tradeIn: tradeInput?.value ?? '',
+    fees: feesInput?.value ?? '',
+    tax: taxInput?.value ?? '',
+    apr: aprInput?.value ?? '',
+    termYears: termInput?.value ?? '',
+  });
+}
+
+const staleController = createStaleResultController({
+  resultPanel: previewPanel,
+  staleTargets: [staleNote],
+  getSignature: buildStateSignature,
+});
+
 function syncDependentRanges() {
   const price = Number(priceInput?.value);
   const nextPrice = Number.isFinite(price) ? Math.max(0, price) : 0;
@@ -302,6 +350,10 @@ function renderYearlyTable(yearly) {
     .join('');
 }
 
+function buildTermText(termYears) {
+  return `${formatValue(termYears, { maximumFractionDigits: 0 })} years`;
+}
+
 function updatePreview(data) {
   if (resultDiv) {
     resultDiv.innerHTML = `<strong>Monthly payment</strong><span class="mtg-result-value is-updated">${formatValue(
@@ -315,10 +367,52 @@ function updatePreview(data) {
   }
 
   if (summaryDiv) {
-    summaryDiv.innerHTML =
-      `<p><strong>Amount Financed:</strong> <span>${formatValue(data.amountFinanced)}</span></p>` +
-      `<p><strong>Total Interest:</strong> <span>${formatValue(data.totalInterest)}</span></p>` +
-      `<p><strong>Total Payment:</strong> <span>${formatValue(data.totalPayment)}</span></p>`;
+    summaryDiv.innerHTML = `
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Amount Financed</span>
+        <strong class="al-metric-card-value">${formatValue(data.amountFinanced)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Total Interest</span>
+        <strong class="al-metric-card-value">${formatValue(data.totalInterest)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Total Payment</span>
+        <strong class="al-metric-card-value">${formatValue(data.totalPayment)}</strong>
+      </article>
+    `;
+  }
+
+  if (assumptionPrice) {
+    assumptionPrice.textContent = formatValue(data.price);
+  }
+  if (assumptionDown) {
+    assumptionDown.textContent = formatValue(data.downPayment);
+  }
+  if (assumptionApr) {
+    assumptionApr.textContent = formatPercent(data.apr);
+  }
+  if (assumptionTerm) {
+    assumptionTerm.textContent = buildTermText(data.termYears);
+  }
+
+  if (breakdownPrice) {
+    breakdownPrice.textContent = formatValue(data.price);
+  }
+  if (breakdownDown) {
+    breakdownDown.textContent = formatValue(data.downPayment);
+  }
+  if (breakdownTrade) {
+    breakdownTrade.textContent = formatValue(data.tradeIn);
+  }
+  if (breakdownFees) {
+    breakdownFees.textContent = formatValue(data.fees);
+  }
+  if (breakdownTax) {
+    breakdownTax.textContent = formatValue(data.taxAmount);
+  }
+  if (breakdownFinanced) {
+    breakdownFinanced.textContent = formatValue(data.amountFinanced);
   }
 
   if (snapshotPrice) {
@@ -346,7 +440,19 @@ function updatePreview(data) {
     snapshotApr.textContent = formatPercent(data.apr);
   }
   if (snapshotTerm) {
-    snapshotTerm.textContent = `${formatValue(data.termYears, { maximumFractionDigits: 0 })} years`;
+    snapshotTerm.textContent = buildTermText(data.termYears);
+  }
+  if (previewDownPercent) {
+    previewDownPercent.textContent = formatPercent(data.downPaymentPercent);
+  }
+  if (previewTrade) {
+    previewTrade.textContent = formatValue(data.tradeIn);
+  }
+  if (previewFees) {
+    previewFees.textContent = formatValue(data.fees);
+  }
+  if (previewTax) {
+    previewTax.textContent = formatValue(data.taxAmount);
   }
 }
 
@@ -450,11 +556,20 @@ function calculate() {
   renderMonthlyTable(data.schedule);
   renderYearlyTable(data.yearly);
   applyView(scheduleView);
+  staleController.markFresh();
   revealResultPanel({
     resultPanel: previewPanel,
     focusTarget: resultDiv,
   });
 }
+
+const priceBinding = wireRangeWithField({
+  rangeInput: priceInput,
+  textInput: priceField,
+  formatFieldValue: (value) => formatFieldValue(value),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
 
 const downBinding = wireRangeWithField({
   rangeInput: downValueInput,
@@ -464,15 +579,7 @@ const downBinding = wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
-  rangeInput: priceInput,
-  textInput: priceField,
-  formatFieldValue: (value) => formatFieldValue(value),
-  parseFieldValue: parseLooseNumber,
-  onVisualUpdate: updateSliderDisplays,
-});
-
-wireRangeWithField({
+const tradeBinding = wireRangeWithField({
   rangeInput: tradeInput,
   textInput: tradeField,
   formatFieldValue: (value) => formatFieldValue(value),
@@ -480,7 +587,7 @@ wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const feesBinding = wireRangeWithField({
   rangeInput: feesInput,
   textInput: feesField,
   formatFieldValue: (value) => formatFieldValue(value),
@@ -488,7 +595,7 @@ wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const taxBinding = wireRangeWithField({
   rangeInput: taxInput,
   textInput: taxField,
   formatFieldValue: (value) => formatFieldValue(value, 1),
@@ -496,7 +603,7 @@ wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const aprBinding = wireRangeWithField({
   rangeInput: aprInput,
   textInput: aprField,
   formatFieldValue: (value) => formatFieldValue(value, 1),
@@ -504,13 +611,47 @@ wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const termBinding = wireRangeWithField({
   rangeInput: termInput,
   textInput: termField,
   formatFieldValue: (value) => formatFieldValue(value),
   parseFieldValue: parseLooseNumber,
   onVisualUpdate: updateSliderDisplays,
 });
+
+function applyDefaults() {
+  if (priceInput) {
+    priceInput.value = defaultValues.price;
+  }
+  if (downValueInput) {
+    downValueInput.value = defaultValues.downPayment;
+  }
+  if (tradeInput) {
+    tradeInput.value = defaultValues.tradeIn;
+  }
+  if (feesInput) {
+    feesInput.value = defaultValues.fees;
+  }
+  if (taxInput) {
+    taxInput.value = defaultValues.tax;
+  }
+  if (aprInput) {
+    aprInput.value = defaultValues.apr;
+  }
+  if (termInput) {
+    termInput.value = defaultValues.termYears;
+  }
+
+  syncDependentRanges();
+  priceBinding.syncFromRange();
+  downBinding.syncFromRange();
+  tradeBinding.syncFromRange();
+  feesBinding.syncFromRange();
+  taxBinding.syncFromRange();
+  aprBinding.syncFromRange();
+  termBinding.syncFromRange();
+  staleController.sync();
+}
 
 priceInput?.addEventListener('input', () => {
   syncDependentRanges();
@@ -520,6 +661,27 @@ priceInput?.addEventListener('input', () => {
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));
 viewYearlyButton?.addEventListener('click', () => applyView('yearly'));
 calculateButton?.addEventListener('click', calculate);
+defaultsButton?.addEventListener('click', applyDefaults);
+
+staleController.watchElements(
+  [
+    priceInput,
+    downValueInput,
+    tradeInput,
+    feesInput,
+    taxInput,
+    aprInput,
+    termInput,
+    priceField,
+    downValueField,
+    tradeField,
+    feesField,
+    taxField,
+    aprField,
+    termField,
+  ],
+  ['input', 'change']
+);
 
 updateSliderDisplays();
 applyView('yearly');

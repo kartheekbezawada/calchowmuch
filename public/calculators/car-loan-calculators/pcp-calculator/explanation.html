@@ -19,6 +19,18 @@
     <li>Final payment: <span data-pcp="final-payment">-</span></li>
   </ul>
 
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      PCP looks easiest when you only read the monthly figure. It becomes clearer when you read the
+      later final payment at the same time.
+    </p>
+    <ul>
+      <li>Use GFV and option fee together because that is the real end-of-term purchase obligation.</li>
+      <li>Use total payable to compare PCP against a normal loan with the same vehicle price.</li>
+    </ul>
+  </div>
+
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
       <h3>Lifetime Totals</h3>
@@ -139,7 +151,7 @@
     </div>
 
     <div class="table-scroll is-hidden" id="pcp-table-cost-wrap" data-glow="cost" tabindex="0">
-      <table class="calculator-table pcp-cost-table" id="pcp-table-cost">
+      <table class="calculator-table pcp-cost-table al-table-stack-mobile" id="pcp-table-cost">
         <thead>
           <tr>
             <th scope="col">Metric</th>
@@ -150,8 +162,8 @@
         <tbody id="pcp-table-cost-body"></tbody>
         <tfoot>
           <tr>
-            <th scope="row" colspan="2">Total Payable</th>
-            <td id="pcp-cost-total-payable">-</td>
+            <th scope="row" colspan="2" data-label="Total">Total Payable</th>
+            <td id="pcp-cost-total-payable" data-label="Value">-</td>
           </tr>
         </tfoot>
       </table>

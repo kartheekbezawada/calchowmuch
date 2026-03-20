@@ -36,7 +36,11 @@ test.describe('Car Loan Calculator', () => {
 
     await expect(page.locator('#calc-car-loan .slider-row')).toHaveCount(7);
     await expect(page.locator('#calc-car-loan .slider-precision-input')).toHaveCount(7);
+    await expect(page.locator('#calc-car-loan .al-form-section')).toHaveCount(2);
     await expect(page.locator('#calc-car-loan .mtg-preview-panel')).toHaveCount(1);
+    await expect(page.locator('#car-preview .al-assumption-strip')).toHaveCount(1);
+    await expect(page.locator('#car-preview .al-breakdown-list')).toHaveCount(1);
+    await expect(page.locator('#car-stale-note')).toBeHidden();
 
     const result = page.locator('#car-result');
     const explanation = page.locator('#car-auto-loan-explanation');
@@ -56,6 +60,7 @@ test.describe('Car Loan Calculator', () => {
 
     expect(afterInputResult).toBe(baselineResult);
     expect(afterInputExplanation).toBe(baselineExplanation);
+    await expect(page.locator('#car-stale-note')).toBeVisible();
 
     await page.locator('#car-calculate').click();
 
@@ -72,6 +77,7 @@ test.describe('Car Loan Calculator', () => {
         }
       )
       .toBe(true);
+    await expect(page.locator('#car-stale-note')).toBeHidden();
 
     const yearlyWrap = page.locator('#car-table-yearly-wrap');
     const monthlyWrap = page.locator('#car-table-monthly-wrap');
@@ -90,5 +96,6 @@ test.describe('Car Loan Calculator', () => {
     expect(await page.locator('#car-table-yearly-body tr').count()).toBeGreaterThan(0);
 
     await expect(page.locator('#car-auto-loan-explanation .bor-faq-card')).toHaveCount(6);
+    await expect(page.locator('#car-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

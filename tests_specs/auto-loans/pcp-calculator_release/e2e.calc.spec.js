@@ -33,7 +33,10 @@ test.describe('PCP Calculator', () => {
 
     await expect(page.locator('#calc-pcp .slider-row')).toHaveCount(6);
     await expect(page.locator('#calc-pcp .slider-precision-input')).toHaveCount(6);
+    await expect(page.locator('#calc-pcp .al-form-section')).toHaveCount(3);
     await expect(page.locator('#calc-pcp .mtg-preview-panel')).toHaveCount(1);
+    await expect(page.locator('#pcp-preview .al-end-term-grid')).toHaveCount(1);
+    await expect(page.locator('#pcp-stale-note')).toBeHidden();
 
     const depositToggleButtons = page.locator('[data-button-group="pcp-deposit-type"] button');
     const termToggleButtons = page.locator('[data-button-group="pcp-term-unit"] button');
@@ -59,6 +62,7 @@ test.describe('PCP Calculator', () => {
 
     expect(afterInputResult).toBe(baselineResult);
     expect(afterInputExplanation).toBe(baselineExplanation);
+    await expect(page.locator('#pcp-stale-note')).toBeVisible();
 
     await page.locator('#pcp-calc').click();
 
@@ -75,6 +79,7 @@ test.describe('PCP Calculator', () => {
         }
       )
       .toBe(true);
+    await expect(page.locator('#pcp-stale-note')).toBeHidden();
 
     const yearlyWrap = page.locator('#pcp-table-yearly-wrap');
     const monthlyWrap = page.locator('#pcp-table-monthly-wrap');
@@ -104,6 +109,11 @@ test.describe('PCP Calculator', () => {
     await expect(page.locator('#pcp-table-cost-body tr')).toHaveCount(5);
     await expect(page.locator('#pcp-table-cost tfoot tr')).toHaveCount(1);
 
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.locator('#pcp-view-cost').click();
+    await expect(page.locator('#pcp-table-cost thead')).toBeHidden();
+
     await expect(page.locator('#pcp-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#pcp-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

@@ -227,3 +227,21 @@ Impact:
 
 - Auto Loan route and cluster evidence can be logged as complete.
 - Final release sign-off must record the blocked state and cite the unrelated failing suites and artifact paths.
+
+---
+
+## D-015
+
+Decision:
+
+- Auto Loan Polish Wave 2 will prioritize decision clarity over feature expansion and will preserve the existing button-only post-load calculation contract.
+
+Reason:
+
+- The redesign foundation is already shipped. The next quality gain comes from making each page easier to scan and easier to decide from without changing formulas, metadata, FAQ meaning, or route contracts.
+
+Impact:
+
+- Shared Auto Loan UI can add stale-result messaging, assumptions strips, calmer action rails, and route-specific obligation/summary cards.
+- Route HTML and modules may be moderately restructured as long as calculator IDs, table IDs, metadata, schema meaning, and public URLs stay unchanged.
+- Release evidence for this wave must prove the stale-state behavior and the calmer mobile table presentation on the affected Auto Loan routes.

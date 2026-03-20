@@ -33,7 +33,11 @@ test.describe('Multiple Car Loan Calculator', () => {
 
     await expect(page.locator('#calc-multi-car-loan .slider-row')).toHaveCount(6);
     await expect(page.locator('#calc-multi-car-loan .slider-precision-input')).toHaveCount(6);
+    await expect(page.locator('#calc-multi-car-loan .al-form-section')).toHaveCount(2);
     await expect(page.locator('#calc-multi-car-loan .mtg-preview-panel')).toHaveCount(1);
+    await expect(page.locator('#multi-loan-preview .al-mini-summary')).toHaveCount(2);
+    await expect(page.locator('#multi-loan-preview .al-verdict-item')).toHaveCount(3);
+    await expect(page.locator('#multi-loan-stale-note')).toBeHidden();
 
     const result = page.locator('#multi-loan-result');
     const explanation = page.locator('#multi-auto-loan-explanation');
@@ -52,6 +56,7 @@ test.describe('Multiple Car Loan Calculator', () => {
 
     expect(afterInputResult).toBe(baselineResult);
     expect(afterInputExplanation).toBe(baselineExplanation);
+    await expect(page.locator('#multi-loan-stale-note')).toBeVisible();
 
     await page.locator('#multi-loan-calc').click();
 
@@ -70,6 +75,7 @@ test.describe('Multiple Car Loan Calculator', () => {
         }
       )
       .toBe(true);
+    await expect(page.locator('#multi-loan-stale-note')).toBeHidden();
 
     const yearlyWrap = page.locator('#multi-table-yearly-wrap');
     const monthlyWrap = page.locator('#multi-table-monthly-wrap');
@@ -90,6 +96,10 @@ test.describe('Multiple Car Loan Calculator', () => {
     expect(await page.locator('#multi-table-monthly-body tr').count()).toBeGreaterThan(1);
     expect(await page.locator('#multi-table-yearly-body tr').count()).toBeGreaterThan(0);
 
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(page.locator('#multi-loan-table thead')).toBeHidden();
+
     await expect(page.locator('#multi-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#multi-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

@@ -3,259 +3,285 @@
     <section class="mtg-hero" aria-label="PCP calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate PCP installments, deferred GFV, and the final amount due so you can judge the
-          monthly convenience against the real end-of-term obligation.
+          Judge whether the low monthly PCP figure still feels right once the later obligation is in
+          view.
         </p>
 
-        <div class="input-row slider-row">
-          <div class="slider-header">
-            <label for="pcp-price">Vehicle Price</label>
-            <span class="slider-value" id="pcp-price-display">32,000</span>
+        <section class="al-form-section" aria-labelledby="pcp-section-vehicle">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="pcp-section-vehicle">Vehicle</h2>
+              <p class="al-form-section-copy">
+                Start with the purchase price before deposit, GFV, and option fee change the shape
+                of the deal.
+              </p>
+            </div>
           </div>
-          <input id="pcp-price" type="range" value="32000" min="5000" max="150000" step="500" />
-          <div class="slider-precision-row">
-            <label class="slider-precision-label" for="pcp-price-field">Exact vehicle price</label>
-            <input
-              class="slider-precision-input"
-              id="pcp-price-field"
-              type="text"
-              inputmode="numeric"
-              maxlength="12"
-              value="32000"
-            />
-          </div>
-        </div>
 
-        <div class="input-row down-combined-left">
-          <label id="pcp-deposit-type-label">Down Payment Type</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="pcp-deposit-type-label"
-            data-button-group="pcp-deposit-type"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="amount"
-              aria-pressed="true"
-            >
-              Amount
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="percent"
-              aria-pressed="false"
-            >
-              Percent
-            </button>
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
           <div class="input-row slider-row">
             <div class="slider-header">
-              <label id="pcp-deposit-value-label" for="pcp-deposit-value">Deposit Amount</label>
-              <span class="slider-value" id="pcp-deposit-display">3,000</span>
+              <label for="pcp-price">Vehicle Price</label>
+              <span class="slider-value" id="pcp-price-display">32,000</span>
             </div>
-            <input
-              id="pcp-deposit-value"
-              type="range"
-              value="3000"
-              min="0"
-              max="150000"
-              step="100"
-            />
+            <input id="pcp-price" type="range" value="32000" min="5000" max="150000" step="500" />
             <div class="slider-precision-row">
-              <label class="slider-precision-label" for="pcp-deposit-value-field"
-                >Exact deposit value</label
-              >
+              <label class="slider-precision-label" for="pcp-price-field">Enter price</label>
               <input
                 class="slider-precision-input"
-                id="pcp-deposit-value-field"
+                id="pcp-price-field"
                 type="text"
-                inputmode="decimal"
+                inputmode="numeric"
                 maxlength="12"
+                value="32000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="al-form-section" aria-labelledby="pcp-section-financing">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="pcp-section-financing">Financing</h2>
+              <p class="al-form-section-copy">
+                Set the deposit style, APR, and term to see the monthly payment during the contract.
+              </p>
+            </div>
+            <div class="al-form-section-controls">
+              <div class="button-group" role="group" aria-label="Down payment type" data-button-group="pcp-deposit-type">
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="amount"
+                  aria-pressed="true"
+                >
+                  Amount
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="percent"
+                  aria-pressed="false"
+                >
+                  Percent
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="pcp-deposit-value-label" for="pcp-deposit-value">Deposit Amount</label>
+                <span class="slider-value" id="pcp-deposit-display">3,000</span>
+              </div>
+              <input
+                id="pcp-deposit-value"
+                type="range"
                 value="3000"
+                min="0"
+                max="150000"
+                step="100"
               />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pcp-deposit-value-field"
+                  >Enter deposit</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="pcp-deposit-value-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="3000"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pcp-apr">APR (%)</label>
+                <span class="slider-value" id="pcp-apr-display">5.9%</span>
+              </div>
+              <input id="pcp-apr" type="range" value="5.9" min="0" max="25" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pcp-apr-field">Enter APR</label>
+                <input
+                  class="slider-precision-input"
+                  id="pcp-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5.9"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="pcp-term-label" for="pcp-term">Term (years)</label>
+                <span class="slider-value" id="pcp-term-display">4 yrs</span>
+              </div>
+              <input id="pcp-term" type="range" value="4" min="1" max="8" step="0.5" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pcp-term-field">Enter term</label>
+                <input
+                  class="slider-precision-input"
+                  id="pcp-term-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="4"
+                />
+              </div>
             </div>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="pcp-apr">APR (%)</label>
-              <span class="slider-value" id="pcp-apr-display">5.9%</span>
-            </div>
-            <input id="pcp-apr" type="range" value="5.9" min="0" max="25" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="pcp-apr-field">Exact APR percent</label>
-              <input
-                class="slider-precision-input"
-                id="pcp-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="5.9"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="input-row down-combined-left">
-          <label id="pcp-term-unit-label">Term Unit</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="pcp-term-unit-label"
-            data-button-group="pcp-term-unit"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="years"
-              aria-pressed="true"
-            >
-              Years
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="months"
-              aria-pressed="false"
-            >
-              Months
-            </button>
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label id="pcp-term-label" for="pcp-term">Term (years)</label>
-              <span class="slider-value" id="pcp-term-display">4 yrs</span>
-            </div>
-            <input id="pcp-term" type="range" value="4" min="1" max="8" step="0.5" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="pcp-term-field">Exact term value</label>
-              <input
-                class="slider-precision-input"
-                id="pcp-term-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="4"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="pcp-gfv">GFV / Balloon</label>
-              <span class="slider-value" id="pcp-gfv-display">15,000</span>
-            </div>
-            <input id="pcp-gfv" type="range" value="15000" min="0" max="150000" step="100" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="pcp-gfv-field">Exact GFV value</label>
-              <input
-                class="slider-precision-input"
-                id="pcp-gfv-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="15000"
-              />
-            </div>
-          </div>
-
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="pcp-option-fee">Option Fee</label>
-              <span class="slider-value" id="pcp-option-fee-display">100</span>
-            </div>
-            <input id="pcp-option-fee" type="range" value="100" min="0" max="5000" step="10" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="pcp-option-fee-field"
-                >Exact option fee</label
+          <div class="al-form-section-controls">
+            <div class="button-group" role="group" aria-label="Term unit" data-button-group="pcp-term-unit">
+              <button
+                class="calculator-button secondary is-active"
+                type="button"
+                data-value="years"
+                aria-pressed="true"
               >
-              <input
-                class="slider-precision-input"
-                id="pcp-option-fee-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="100"
-              />
+                Years
+              </button>
+              <button
+                class="calculator-button secondary"
+                type="button"
+                data-value="months"
+                aria-pressed="false"
+              >
+                Months
+              </button>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="pcp-calc">
-            Calculate PCP
-          </button>
+        <section class="al-form-section" aria-labelledby="pcp-section-end-term">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="pcp-section-end-term">End-of-term</h2>
+              <p class="al-form-section-copy">
+                GFV and option fee determine what is still due if you choose to buy the car later.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pcp-gfv">GFV / Balloon</label>
+                <span class="slider-value" id="pcp-gfv-display">15,000</span>
+              </div>
+              <input id="pcp-gfv" type="range" value="15000" min="0" max="150000" step="100" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pcp-gfv-field">Enter GFV</label>
+                <input
+                  class="slider-precision-input"
+                  id="pcp-gfv-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="15000"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pcp-option-fee">Option Fee</label>
+                <span class="slider-value" id="pcp-option-fee-display">100</span>
+              </div>
+              <input id="pcp-option-fee" type="range" value="100" min="0" max="5000" step="10" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pcp-option-fee-field"
+                  >Enter option fee</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="pcp-option-fee-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="100"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="al-action-rail">
+          <div class="al-action-buttons">
+            <button class="calculator-button full-width" type="button" id="pcp-calc">
+              Calculate PCP
+            </button>
+            <button class="calculator-button secondary" type="button" id="pcp-use-defaults">
+              Use defaults
+            </button>
+          </div>
+          <p class="al-action-note">Results update after Calculate.</p>
         </div>
       </div>
 
       <aside class="mtg-preview-panel" id="pcp-preview" aria-label="PCP scenario snapshot">
         <div class="mtg-preview-main">
-          <p class="mtg-preview-label">Estimated Monthly PCP Payment</p>
+          <p class="mtg-preview-label">Monthly Cost Now</p>
           <div class="result mtg-result-card" id="pcp-result" aria-live="polite">
             <strong>Monthly payment</strong>
             <span class="mtg-result-value">400.05</span>
           </div>
         </div>
 
-        <div class="result-detail mtg-summary-card" id="pcp-summary" aria-live="polite">
-          <p><strong>Amount Financed:</strong> <span>29,000</span></p>
-          <p><strong>Total Interest:</strong> <span>5,302.24</span></p>
-          <p><strong>Total Payable:</strong> <span>37,302.24</span></p>
+        <div class="result-detail mtg-summary-card al-secondary-metrics" id="pcp-summary" aria-live="polite">
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Amount Financed</span>
+            <strong class="al-metric-card-value">29,000</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Interest</span>
+            <strong class="al-metric-card-value">5,302.24</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Payable</span>
+            <strong class="al-metric-card-value">37,302.24</strong>
+          </article>
         </div>
 
-        <div class="mtg-snapshot-list">
-          <div class="mtg-snapshot-row">
-            <span>Vehicle Price</span>
-            <strong data-pcp="price">32,000</strong>
+        <div class="al-assumption-strip" aria-label="What this answer assumes">
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Vehicle Price</span>
+            <strong class="al-assumption-value" id="pcp-assumption-price">32,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Deposit</span>
-            <strong
-              ><span data-pcp="deposit">3,000</span> (<span data-pcp="deposit-percent">9.38%</span
-              >)</strong
-            >
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Deposit</span>
+            <strong class="al-assumption-value" id="pcp-assumption-deposit">3,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Amount Financed</span>
-            <strong data-pcp="financed">29,000</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">APR</span>
+            <strong class="al-assumption-value" id="pcp-assumption-apr">5.9%</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>APR</span>
-            <strong data-pcp="apr">5.9%</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Term</span>
+            <strong class="al-assumption-value" id="pcp-assumption-term">4 years</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Term</span>
-            <strong data-pcp="term">4 years (48 months)</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>GFV</span>
-            <strong data-pcp="gfv">15,000</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Option Fee</span>
-            <strong data-pcp="option-fee">100</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Final Payment</span>
-            <strong data-pcp="final-payment">15,100</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Interest</span>
-            <strong data-pcp="total-interest">5,302.24</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Payable</span>
-            <strong data-pcp="total-payable">37,302.24</strong>
-          </div>
+        </div>
+
+        <p class="al-preview-stale" id="pcp-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh results.
+        </p>
+
+        <div class="al-end-term-grid">
+          <article class="al-obligation-card">
+            <h3>End-of-term obligation later</h3>
+            <strong id="pcp-preview-final-payment">15,100</strong>
+            <p id="pcp-preview-final-copy">GFV of 15,000 plus option fee of 100.</p>
+          </article>
+          <article class="al-spotlight-card">
+            <h3>Deferred value still outstanding</h3>
+            <strong id="pcp-preview-gfv">15,000</strong>
+            <p id="pcp-preview-gfv-copy">Deposit covers 9.38% before the PCP term starts.</p>
+          </article>
         </div>
       </aside>
     </section>

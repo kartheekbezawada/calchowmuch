@@ -33,7 +33,10 @@ test.describe('Leasing Calculator', () => {
 
     await expect(page.locator('#calc-lease .slider-row')).toHaveCount(5);
     await expect(page.locator('#calc-lease .slider-precision-input')).toHaveCount(5);
+    await expect(page.locator('#calc-lease .al-form-section')).toHaveCount(3);
     await expect(page.locator('#calc-lease .mtg-preview-panel')).toHaveCount(1);
+    await expect(page.locator('#lease-preview .al-assumption-strip')).toHaveCount(1);
+    await expect(page.locator('#lease-stale-note')).toBeHidden();
 
     const residualToggleButtons = page.locator('[data-button-group="lease-residual-type"] button');
     const termToggleButtons = page.locator('[data-button-group="lease-term-unit"] button');
@@ -59,6 +62,7 @@ test.describe('Leasing Calculator', () => {
 
     expect(afterInputResult).toBe(baselineResult);
     expect(afterInputExplanation).toBe(baselineExplanation);
+    await expect(page.locator('#lease-stale-note')).toBeVisible();
 
     await page.locator('#lease-calc').click();
 
@@ -75,6 +79,7 @@ test.describe('Leasing Calculator', () => {
         }
       )
       .toBe(true);
+    await expect(page.locator('#lease-stale-note')).toBeHidden();
 
     const yearlyWrap = page.locator('#lease-table-yearly-wrap');
     const monthlyWrap = page.locator('#lease-table-monthly-wrap');
@@ -104,6 +109,11 @@ test.describe('Leasing Calculator', () => {
     await expect(page.locator('#lease-table-cost-body tr')).toHaveCount(6);
     await expect(page.locator('#lease-table-cost tfoot tr')).toHaveCount(1);
 
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.locator('#lease-view-cost').click();
+    await expect(page.locator('#lease-table-cost thead')).toBeHidden();
+
     await expect(page.locator('#lease-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#lease-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

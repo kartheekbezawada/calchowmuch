@@ -2,6 +2,7 @@ import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateHirePurchase } from '/assets/js/core/auto-loan-utils.js';
 import {
+  createStaleResultController,
   revealResultPanel,
   updateRangeFill,
   wireRangeWithField,
@@ -18,9 +19,21 @@ const aprField = document.querySelector('#hp-apr-field');
 const termField = document.querySelector('#hp-term-field');
 const balloonField = document.querySelector('#hp-balloon-field');
 const calculateButton = document.querySelector('#hp-calc');
+const defaultsButton = document.querySelector('#hp-use-defaults');
 const resultDiv = document.querySelector('#hp-result');
 const summaryDiv = document.querySelector('#hp-summary');
 const previewPanel = document.querySelector('#hp-preview');
+const staleNote = document.querySelector('#hp-stale-note');
+
+const assumptionPrice = document.querySelector('#hp-assumption-price');
+const assumptionDeposit = document.querySelector('#hp-assumption-deposit');
+const assumptionApr = document.querySelector('#hp-assumption-apr');
+const assumptionTerm = document.querySelector('#hp-assumption-term');
+
+const previewBalloon = document.querySelector('#hp-preview-balloon');
+const previewBalloonCopy = document.querySelector('#hp-preview-balloon-copy');
+const previewFinanced = document.querySelector('#hp-preview-financed');
+const previewFinancedCopy = document.querySelector('#hp-preview-financed-copy');
 
 const termLabel = document.querySelector('#hp-term-label');
 const termUnitGroup = document.querySelector('[data-button-group="hp-term-unit"]');
@@ -52,6 +65,15 @@ let lastTermUnit = 'years';
 let termBinding;
 let depositBinding;
 let balloonBinding;
+
+const defaultValues = {
+  price: priceInput?.value ?? '24000',
+  deposit: depositInput?.value ?? '2000',
+  apr: aprInput?.value ?? '6.2',
+  term: termInput?.value ?? '4',
+  balloon: balloonInput?.value ?? '0',
+  termUnit: 'years',
+};
 
 const FAQ_ITEMS = [
   {
@@ -212,6 +234,23 @@ function formatFieldValue(value, fractionDigits = 0) {
     useGrouping: false,
   });
 }
+
+function buildStateSignature() {
+  return JSON.stringify({
+    price: priceInput?.value ?? '',
+    deposit: depositInput?.value ?? '',
+    apr: aprInput?.value ?? '',
+    term: termInput?.value ?? '',
+    balloon: balloonInput?.value ?? '',
+    termUnit: getCurrentTermUnit(),
+  });
+}
+
+const staleController = createStaleResultController({
+  resultPanel: previewPanel,
+  staleTargets: [staleNote],
+  getSignature: buildStateSignature,
+});
 
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
@@ -405,7 +444,9 @@ function buildTermText(termMonths) {
 
 function updatePreview(data, termMonths) {
   if (resultDiv) {
-    resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${formatValue(data.monthlyPayment)}</span>`;
+    resultDiv.innerHTML = `<strong>Monthly payment</strong><span class="mtg-result-value is-updated">${formatValue(
+      data.monthlyPayment
+    )}</span>`;
 
     const valueEl = resultDiv.querySelector('.mtg-result-value');
     if (valueEl) {
@@ -414,13 +455,54 @@ function updatePreview(data, termMonths) {
   }
 
   if (summaryDiv) {
-    summaryDiv.innerHTML =
-      `<p><strong>Amount Financed:</strong> ${formatValue(data.financed)}</p>` +
-      `<p><strong>Total Interest:</strong> ${formatValue(data.totalInterest)}</p>` +
-      `<p><strong>Total Payable:</strong> ${formatValue(data.totalPayable)}</p>`;
+    summaryDiv.innerHTML = `
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Amount Financed</span>
+        <strong class="al-metric-card-value">${formatValue(data.financed)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Total Interest</span>
+        <strong class="al-metric-card-value">${formatValue(data.totalInterest)}</strong>
+      </article>
+      <article class="al-metric-card">
+        <span class="al-metric-card-label">Total Payable</span>
+        <strong class="al-metric-card-value">${formatValue(data.totalPayable)}</strong>
+      </article>
+    `;
+  }
+
+  if (assumptionPrice) {
+    assumptionPrice.textContent = formatValue(data.price);
+  }
+  if (assumptionDeposit) {
+    assumptionDeposit.textContent = formatValue(data.deposit);
+  }
+  if (assumptionApr) {
+    assumptionApr.textContent = formatPercent(data.apr);
+  }
+  if (assumptionTerm) {
+    assumptionTerm.textContent = buildTermText(termMonths);
+  }
+
+  if (previewBalloon) {
+    previewBalloon.textContent = formatValue(data.balloon);
+  }
+  if (previewBalloonCopy) {
+    previewBalloonCopy.textContent =
+      data.balloon > 0
+        ? `This amount remains due after ${buildTermText(termMonths)} of instalments.`
+        : 'No remaining end-of-term payment is due.';
+  }
+  if (previewFinanced) {
+    previewFinanced.textContent = formatValue(data.financed);
   }
 
   const depositPercent = data.price > 0 ? (data.deposit / data.price) * 100 : 0;
+  if (previewFinancedCopy) {
+    previewFinancedCopy.textContent = `Deposit covers ${formatPercent(
+      depositPercent
+    )} of the vehicle price.`;
+  }
 
   setSpan('price', formatValue(data.price));
   setSpan('deposit', formatValue(data.deposit));
@@ -537,13 +619,14 @@ function calculate() {
   renderMonthlyTable(data.schedule);
   renderYearlyTable(data.yearly);
   applyView(scheduleView);
+  staleController.markFresh();
   revealResultPanel({
     resultPanel: previewPanel,
     focusTarget: resultDiv,
   });
 }
 
-wireRangeWithField({
+const priceBinding = wireRangeWithField({
   rangeInput: priceInput,
   textInput: priceField,
   formatFieldValue: (value) => formatFieldValue(value),
@@ -559,7 +642,7 @@ depositBinding = wireRangeWithField({
   onVisualUpdate: updateSliderDisplays,
 });
 
-wireRangeWithField({
+const aprBinding = wireRangeWithField({
   rangeInput: aprInput,
   textInput: aprField,
   formatFieldValue: (value) => formatFieldValue(value, 1),
@@ -595,9 +678,56 @@ depositInput?.addEventListener('input', () => {
   balloonBinding?.syncFromRange();
 });
 
+function applyDefaults() {
+  termUnitButtons?.setValue(defaultValues.termUnit);
+  handleTermUnitChange(defaultValues.termUnit);
+
+  if (priceInput) {
+    priceInput.value = defaultValues.price;
+  }
+  if (depositInput) {
+    depositInput.value = defaultValues.deposit;
+  }
+  if (aprInput) {
+    aprInput.value = defaultValues.apr;
+  }
+  if (termInput) {
+    termInput.value = defaultValues.term;
+  }
+  if (balloonInput) {
+    balloonInput.value = defaultValues.balloon;
+  }
+
+  syncDependentRanges();
+  priceBinding.syncFromRange();
+  depositBinding?.syncFromRange();
+  aprBinding.syncFromRange();
+  termBinding?.syncFromRange();
+  balloonBinding?.syncFromRange();
+  staleController.sync();
+}
+
 viewMonthlyButton?.addEventListener('click', () => applyView('monthly'));
 viewYearlyButton?.addEventListener('click', () => applyView('yearly'));
 calculateButton?.addEventListener('click', calculate);
+defaultsButton?.addEventListener('click', applyDefaults);
+
+staleController.watchElements(
+  [
+    priceInput,
+    depositInput,
+    aprInput,
+    termInput,
+    balloonInput,
+    priceField,
+    depositField,
+    aprField,
+    termField,
+    balloonField,
+  ],
+  ['input', 'change']
+);
+staleController.watchElements([termUnitGroup], ['click']);
 
 lastTermUnit = getCurrentTermUnit();
 handleTermUnitChange(lastTermUnit);

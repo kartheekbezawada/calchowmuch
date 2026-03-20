@@ -75,6 +75,55 @@ export function wireRangeWithField({
   };
 }
 
+export function createStaleResultController({
+  resultPanel,
+  staleTargets = [],
+  getSignature = () => '',
+}) {
+  let lastFreshSignature = '';
+
+  const setStaleState = (isStale) => {
+    if (resultPanel) {
+      resultPanel.dataset.resultStale = isStale ? 'true' : 'false';
+    }
+
+    staleTargets.forEach((target) => {
+      if (!target) {
+        return;
+      }
+
+      target.hidden = !isStale;
+      target.setAttribute('aria-hidden', isStale ? 'false' : 'true');
+    });
+  };
+
+  const sync = () => {
+    const nextSignature = getSignature();
+    setStaleState(Boolean(lastFreshSignature) && nextSignature !== lastFreshSignature);
+  };
+
+  const markFresh = () => {
+    lastFreshSignature = getSignature();
+    setStaleState(false);
+  };
+
+  const watchElements = (elements = [], eventNames = ['input', 'change']) => {
+    elements.filter(Boolean).forEach((element) => {
+      eventNames.forEach((eventName) => {
+        element.addEventListener(eventName, () => {
+          window.requestAnimationFrame(sync);
+        });
+      });
+    });
+  };
+
+  return {
+    markFresh,
+    sync,
+    watchElements,
+  };
+}
+
 export function revealResultPanel({
   resultPanel,
   focusTarget,

@@ -929,13 +929,13 @@
         position: sticky;
         top: 0;
         z-index: 20;
-        backdrop-filter: blur(18px);
-        background: rgba(250, 251, 253, 0.82);
+        backdrop-filter: blur(14px);
+        background: rgba(250, 251, 253, 0.74);
         border-bottom: 1px solid rgba(221, 228, 236, 0.94);
       }
 
       body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
-        min-height: 74px;
+        min-height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -977,7 +977,7 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-layout-main {
-        padding: 54px 0 68px;
+        padding: 34px 0 64px;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-panel {
@@ -986,7 +986,7 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-header {
-        max-width: 780px;
+        max-width: 720px;
         margin: 0 auto;
         text-align: center;
       }
@@ -1015,11 +1015,11 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-intro {
-        max-width: 720px;
-        margin: 16px auto 0;
+        max-width: 620px;
+        margin: 12px auto 0;
         color: var(--al-muted);
-        font-size: 17px;
-        line-height: 1.65;
+        font-size: 16px;
+        line-height: 1.55;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-flow {
@@ -1042,16 +1042,20 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-related-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-related-link {
         display: inline-flex;
-        align-items: center;
-        padding: 11px 16px;
-        border-radius: 999px;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 132px;
+        padding: 18px;
+        border-radius: 20px;
         border: 1px solid var(--al-line);
         background: #ffffff;
         color: var(--al-text);
@@ -1076,6 +1080,27 @@
         background: var(--al-accent-soft);
         border-color: rgba(47, 93, 131, 0.18);
         color: var(--al-accent);
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-card-title {
+        display: block;
+        color: inherit;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-card-copy {
+        display: block;
+        color: var(--al-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='auto-loans'] .al-cluster-related-link.is-active .al-cluster-related-card-copy,
+      body[data-design-family='auto-loans'] .al-cluster-related-link[aria-current='page']
+        .al-cluster-related-card-copy {
+        color: rgba(30, 67, 100, 0.84);
       }
 
       body[data-design-family='auto-loans'] .al-cluster-site-footer {
@@ -1116,8 +1141,8 @@
       body[data-design-family='auto-loans'] .auto-loan-ui .helper {
         margin: 0;
         color: var(--al-muted);
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 13px;
+        line-height: 1.55;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-hero {
@@ -1130,7 +1155,7 @@
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel {
         display: grid;
-        gap: 20px;
+        gap: 18px;
         align-content: start;
         padding: 28px;
         border: 1px solid var(--al-line);
@@ -1149,6 +1174,47 @@
       body[data-design-family='auto-loans'] .auto-loan-ui .input-row {
         display: grid;
         gap: 8px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section {
+        display: grid;
+        gap: 14px;
+        padding: 18px;
+        border: 1px solid rgba(183, 195, 208, 0.6);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 252, 0.92));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-heading {
+        display: grid;
+        gap: 4px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-title {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-copy {
+        margin: 0;
+        color: var(--al-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-controls {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col {
@@ -1201,7 +1267,7 @@
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .slider-row {
-        padding: 14px 16px;
+        padding: 12px 14px;
         border-radius: var(--al-radius-md);
         border: 1px solid rgba(203, 214, 224, 0.92);
         background: linear-gradient(180deg, #ffffff, #f7fafc);
@@ -1218,9 +1284,9 @@
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .slider-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
         gap: 12px;
       }
 
@@ -1228,13 +1294,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 82px;
-        padding: 6px 10px;
+        min-width: 72px;
+        padding: 5px 9px;
         border-radius: 999px;
         background: var(--al-accent-soft);
         border: 1px solid rgba(47, 93, 131, 0.14);
         color: var(--al-accent);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         font-variant-numeric: tabular-nums;
         white-space: nowrap;
@@ -1244,7 +1310,7 @@
         -webkit-appearance: none;
         appearance: none;
         width: 100%;
-        height: 6px;
+        height: 5px;
         border: 0;
         border-radius: 999px;
         background: linear-gradient(
@@ -1264,9 +1330,9 @@
       body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 20px;
-        height: 20px;
-        margin-top: -7px;
+        width: 18px;
+        height: 18px;
+        margin-top: -6px;
         border-radius: 50%;
         border: 2px solid #ffffff;
         background: var(--al-accent);
@@ -1277,8 +1343,8 @@
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui input[type='range']::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         border: 2px solid #ffffff;
         border-radius: 50%;
         background: var(--al-accent);
@@ -1292,20 +1358,22 @@
 
       body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
         display: grid;
-        grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+        grid-template-columns: minmax(0, auto) minmax(0, 120px);
         align-items: center;
-        gap: 12px;
+        gap: 10px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-label {
         margin: 0;
         color: var(--al-muted);
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-input {
-        min-height: 42px;
+        min-height: 38px;
+        padding: 10px 12px;
+        font-size: 14px;
         font-variant-numeric: tabular-nums;
       }
 
@@ -1355,13 +1423,35 @@
         color: var(--al-accent);
       }
 
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-action-rail {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid rgba(183, 195, 208, 0.6);
+        background: linear-gradient(180deg, rgba(246, 249, 252, 0.98), rgba(255, 255, 255, 0.96));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-action-buttons {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-action-note {
+        margin: 0;
+        color: var(--al-muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
       body[data-design-family='auto-loans'] .auto-loan-ui .full-width {
         width: 100%;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-main {
         display: grid;
-        gap: 12px;
+        gap: 14px;
         padding: 20px;
         border-radius: var(--al-radius-lg);
         background: linear-gradient(160deg, rgba(16, 32, 51, 0.96), rgba(48, 64, 79, 0.92));
@@ -1376,6 +1466,7 @@
         text-transform: uppercase;
         color: rgba(230, 236, 241, 0.84);
         font-weight: 700;
+        text-align: center;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card {
@@ -1384,15 +1475,13 @@
         border: 0;
         background: transparent;
         color: #f8fafc;
+        text-align: center;
+        box-shadow: none;
+        outline: 0;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card strong {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(230, 236, 241, 0.72);
+        display: none;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value {
@@ -1403,9 +1492,22 @@
         color: #ffffff;
         letter-spacing: -0.03em;
         font-variant-numeric: tabular-nums;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        outline: 0;
+        padding: 0;
         transition:
           opacity 0.3s ease,
           transform 0.3s ease;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card:focus,
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card:focus-visible,
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value:focus,
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-result-card .mtg-result-value:focus-visible {
+        outline: 0;
+        box-shadow: none;
       }
 
       @keyframes auto-loan-result-pop {
@@ -1429,11 +1531,10 @@
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card {
         display: grid;
-        gap: 10px;
-        padding: 18px 20px;
-        border-radius: var(--al-radius-lg);
-        border: 1px solid rgba(176, 189, 201, 0.42);
-        background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
+        gap: 12px;
+        padding: 0;
+        border: 0;
+        background: transparent;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-summary-card p {
@@ -1453,6 +1554,10 @@
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-list {
         display: grid;
         gap: 0;
+        padding: 16px 18px;
+        border-radius: var(--al-radius-lg);
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 251, 0.98));
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row {
@@ -1466,6 +1571,193 @@
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row:last-child {
         border-bottom: 0;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-secondary-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-metric-card {
+        display: grid;
+        gap: 6px;
+        padding: 15px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 251, 0.98));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-metric-card-label {
+        color: var(--al-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-metric-card-value {
+        color: var(--al-text);
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-assumption-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(245, 249, 252, 0.88);
+        border: 1px solid rgba(176, 189, 201, 0.42);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-assumption-item {
+        display: grid;
+        gap: 4px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-assumption-label {
+        color: var(--al-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-assumption-value {
+        color: var(--al-text);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.35;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-preview-stale {
+        margin: 0;
+        padding: 11px 13px;
+        border-radius: 16px;
+        border: 1px solid rgba(197, 140, 69, 0.24);
+        background: rgba(255, 248, 239, 0.92);
+        color: #80561f;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .mtg-preview-panel[data-result-stale='true'] .mtg-result-value {
+        opacity: 0.72;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-breakdown-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px 18px;
+        border-radius: var(--al-radius-lg);
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 251, 0.98));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-breakdown-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-breakdown-row span {
+        color: var(--al-muted);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-breakdown-row strong {
+        color: var(--al-text);
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary-grid,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-obligation-card,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-card,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-spotlight-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px 18px;
+        border-radius: var(--al-radius-lg);
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 251, 0.98));
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary h3,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-obligation-card h3,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-card h3,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-spotlight-card h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary p,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-obligation-card p,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-card p,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-spotlight-card p {
+        margin: 0;
+        color: var(--al-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary strong,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-obligation-card strong,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-card strong,
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-spotlight-card strong {
+        font-size: 22px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-obligation-card {
+        background: linear-gradient(180deg, rgba(255, 248, 239, 0.98), rgba(255, 255, 255, 0.98));
+        border-color: rgba(197, 140, 69, 0.28);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-verdict-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(176, 189, 201, 0.42);
+        background: rgba(246, 249, 252, 0.92);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-verdict-item {
+        display: grid;
+        gap: 4px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-verdict-item span {
+        color: var(--al-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-ui .al-verdict-item strong {
+        font-size: 16px;
+        line-height: 1.2;
+        font-variant-numeric: tabular-nums;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-ui .mtg-snapshot-row span {
@@ -1560,6 +1852,25 @@
       body[data-design-family='auto-loans'] .auto-loan-explanation ol {
         margin: 0;
         padding-left: 20px;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-decision-summary {
+        display: grid;
+        gap: 8px;
+        padding: 18px 20px;
+        border: 1px solid rgba(183, 195, 208, 0.6);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 251, 0.96));
+        box-shadow: var(--al-shadow-soft);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-decision-summary h3 {
+        margin: 0;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-decision-summary p,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-decision-summary ul {
+        margin: 0;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-exp-section {
@@ -1811,16 +2122,21 @@
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+        column-gap: 14px;
+        row-gap: 6px;
         border: 1px solid var(--al-line);
         border-radius: var(--al-radius-lg);
         background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
-        box-shadow: var(--al-shadow-soft);
-        padding: 20px;
+        box-shadow: none;
+        padding: 18px 20px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
@@ -1836,6 +2152,7 @@
         font-size: 12px;
         font-weight: 800;
         letter-spacing: 0.08em;
+        grid-row: span 2;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
@@ -1858,10 +2175,15 @@
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-formula-block {
         margin: 14px 0;
-        padding: 14px 16px;
+        padding: 12px 14px;
         border: 1px solid var(--al-line);
         border-radius: 16px;
         background: linear-gradient(180deg, var(--al-surface-soft), #ffffff);
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile th[data-stack-hidden='true'],
+      body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile td[data-stack-hidden='true'] {
+        display: none;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
@@ -1894,6 +2216,10 @@
           font-size: 15px;
         }
 
+        body[data-design-family='auto-loans'] .al-cluster-related-links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
         body[data-design-family='auto-loans'] .al-cluster-related,
         body[data-design-family='auto-loans'] .al-cluster-site-footer-inner,
         body[data-design-family='auto-loans'] .auto-loan-ui .mtg-form-panel,
@@ -1906,16 +2232,30 @@
         body[data-design-family='auto-loans'] .auto-loan-ui .input-grid-2-col,
         body[data-design-family='auto-loans'] .auto-loan-ui .inline-grid,
         body[data-design-family='auto-loans'] .auto-loan-ui .advanced-pair,
-        body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid,
         body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.multi-lifetime-grid,
         body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.hp-lifetime-grid,
         body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.pcp-lifetime-grid,
-        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid {
+        body[data-design-family='auto-loans'] .auto-loan-explanation .mtg-lifetime-grid.lease-lifetime-grid,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-secondary-metrics,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-assumption-strip,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-mini-summary-grid,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-end-term-grid,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-verdict-strip,
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-action-buttons {
           grid-template-columns: 1fr;
         }
 
         body[data-design-family='auto-loans'] .auto-loan-ui .slider-precision-row {
           grid-template-columns: 1fr;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-ui .al-form-section-controls {
+          justify-content: flex-start;
         }
 
         body[data-design-family='auto-loans'] .auto-loan-explanation > h2 {
@@ -1947,6 +2287,53 @@
         body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table th,
         body[data-design-family='auto-loans'] .auto-loan-explanation .calculator-table td {
           padding: 14px;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile thead {
+          display: none;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tbody,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tr,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile td,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile th,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tfoot {
+          display: block;
+          width: 100%;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tr {
+          padding: 12px;
+          border-bottom: 1px solid var(--al-line);
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tbody tr:last-child {
+          border-bottom: 0;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile td,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile th {
+          padding: 6px 0;
+          border: 0;
+          background: transparent;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile td::before,
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile th::before {
+          content: attr(data-label);
+          display: block;
+          margin-bottom: 2px;
+          color: var(--al-muted);
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+        }
+
+        body[data-design-family='auto-loans'] .auto-loan-explanation .al-table-stack-mobile tfoot tr {
+          padding: 12px;
+          border-top: 1px solid var(--al-line);
+          background: rgba(243, 247, 251, 0.98);
         }
       }
 
@@ -1998,113 +2385,143 @@
     <section class="mtg-hero" aria-label="Hire purchase calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate monthly installments, the final balloon payment, and the total amount payable so
-          you can compare headline affordability with full-contract cost.
+          Judge the monthly instalment and the end-of-term commitment together, not in isolation.
         </p>
 
-        <div class="input-row slider-row">
-          <div class="slider-header">
-            <label for="hp-price">Vehicle Price</label>
-            <span class="slider-value" id="hp-price-display">24,000</span>
-          </div>
-          <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
-          <div class="slider-precision-row">
-            <label class="slider-precision-label" for="hp-price-field">Exact vehicle price</label>
-            <input
-              class="slider-precision-input"
-              id="hp-price-field"
-              type="text"
-              inputmode="numeric"
-              maxlength="12"
-              value="24000"
-            />
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="hp-deposit">Deposit</label>
-              <span class="slider-value" id="hp-deposit-display">2,000</span>
-            </div>
-            <input id="hp-deposit" type="range" value="2000" min="0" max="150000" step="100" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-deposit-field">Exact deposit</label>
-              <input
-                class="slider-precision-input"
-                id="hp-deposit-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="2000"
-              />
+        <section class="al-form-section" aria-labelledby="hp-section-vehicle">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-vehicle">Vehicle</h2>
+              <p class="al-form-section-copy">
+                Start with the price and the upfront deposit reducing the amount that needs finance.
+              </p>
             </div>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="hp-apr">APR (%)</label>
-              <span class="slider-value" id="hp-apr-display">6.2%</span>
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-price">Vehicle Price</label>
+                <span class="slider-value" id="hp-price-display">24,000</span>
+              </div>
+              <input id="hp-price" type="range" value="24000" min="5000" max="150000" step="500" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-price-field">Enter price</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-price-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="24000"
+                />
+              </div>
             </div>
-            <input id="hp-apr" type="range" value="6.2" min="0" max="25" step="0.1" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-apr-field">Exact APR percent</label>
-              <input
-                class="slider-precision-input"
-                id="hp-apr-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="6.2"
-              />
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-deposit">Deposit</label>
+                <span class="slider-value" id="hp-deposit-display">2,000</span>
+              </div>
+              <input id="hp-deposit" type="range" value="2000" min="0" max="150000" step="100" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-deposit-field">Enter deposit</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-deposit-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="2000"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-row down-combined-left">
-          <label id="hp-term-unit-label">Term Unit</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="hp-term-unit-label"
-            data-button-group="hp-term-unit"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="years"
-              aria-pressed="true"
-            >
-              Years
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="months"
-              aria-pressed="false"
-            >
-              Months
-            </button>
-          </div>
-        </div>
-
-        <div class="input-grid-2-col">
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label id="hp-term-label" for="hp-term">Term (years)</label>
-              <span class="slider-value" id="hp-term-display">4 yrs</span>
+        <section class="al-form-section" aria-labelledby="hp-section-financing">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-financing">Financing</h2>
+              <p class="al-form-section-copy">
+                Use APR and term to shape the instalment before the final balloon is added.
+              </p>
             </div>
-            <input id="hp-term" type="range" value="4" min="1" max="8" step="0.5" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-term-field">Exact term value</label>
-              <input
-                class="slider-precision-input"
-                id="hp-term-field"
-                type="text"
-                inputmode="decimal"
-                maxlength="12"
-                value="4"
-              />
+            <div class="al-form-section-controls">
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Term unit"
+                data-button-group="hp-term-unit"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="hp-apr">APR (%)</label>
+                <span class="slider-value" id="hp-apr-display">6.2%</span>
+              </div>
+              <input id="hp-apr" type="range" value="6.2" min="0" max="25" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-apr-field">Enter APR</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-apr-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="6.2"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label id="hp-term-label" for="hp-term">Term (years)</label>
+                <span class="slider-value" id="hp-term-display">4 yrs</span>
+              </div>
+              <input id="hp-term" type="range" value="4" min="1" max="8" step="0.5" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="hp-term-field">Enter term</label>
+                <input
+                  class="slider-precision-input"
+                  id="hp-term-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="4"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="al-form-section" aria-labelledby="hp-section-end-term">
+          <div class="al-form-section-header">
+            <div class="al-form-section-heading">
+              <h2 class="al-form-section-title" id="hp-section-end-term">End-of-term</h2>
+              <p class="al-form-section-copy">
+                Set the balloon amount that remains due when the regular instalments finish.
+              </p>
             </div>
           </div>
 
@@ -2115,7 +2532,7 @@
             </div>
             <input id="hp-balloon" type="range" value="0" min="0" max="150000" step="100" />
             <div class="slider-precision-row">
-              <label class="slider-precision-label" for="hp-balloon-field">Exact final balloon</label>
+              <label class="slider-precision-label" for="hp-balloon-field">Enter balloon</label>
               <input
                 class="slider-precision-input"
                 id="hp-balloon-field"
@@ -2126,12 +2543,18 @@
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="input-row action-row mtg-action-row">
-          <button class="calculator-button full-width" type="button" id="hp-calc">
-            Calculate Hire Purchase
-          </button>
+        <div class="al-action-rail">
+          <div class="al-action-buttons">
+            <button class="calculator-button full-width" type="button" id="hp-calc">
+              Calculate Hire Purchase
+            </button>
+            <button class="calculator-button secondary" type="button" id="hp-use-defaults">
+              Use defaults
+            </button>
+          </div>
+          <p class="al-action-note">Results update after Calculate.</p>
         </div>
       </div>
 
@@ -2144,48 +2567,55 @@
           </div>
         </div>
 
-        <div class="result-detail mtg-summary-card" id="hp-summary" aria-live="polite">
-          <p><strong>Amount Financed:</strong> <span>22,000</span></p>
-          <p><strong>Total Interest:</strong> <span>2,897.14</span></p>
-          <p><strong>Total Payable:</strong> <span>26,897.14</span></p>
+        <div class="result-detail mtg-summary-card al-secondary-metrics" id="hp-summary" aria-live="polite">
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Amount Financed</span>
+            <strong class="al-metric-card-value">22,000</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Interest</span>
+            <strong class="al-metric-card-value">2,897.14</strong>
+          </article>
+          <article class="al-metric-card">
+            <span class="al-metric-card-label">Total Payable</span>
+            <strong class="al-metric-card-value">26,897.14</strong>
+          </article>
         </div>
 
-        <div class="mtg-snapshot-list">
-          <div class="mtg-snapshot-row">
-            <span>Vehicle Price</span>
-            <strong data-hp="price">24,000</strong>
+        <div class="al-assumption-strip" aria-label="What this answer assumes">
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Vehicle Price</span>
+            <strong class="al-assumption-value" id="hp-assumption-price">24,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Deposit</span>
-            <strong
-              ><span data-hp="deposit">2,000</span> (<span data-hp="deposit-percent">8.33%</span
-              >)</strong
-            >
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Deposit</span>
+            <strong class="al-assumption-value" id="hp-assumption-deposit">2,000</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Amount Financed</span>
-            <strong data-hp="financed">22,000</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">APR</span>
+            <strong class="al-assumption-value" id="hp-assumption-apr">6.2%</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>APR</span>
-            <strong data-hp="apr">6.2%</strong>
+          <div class="al-assumption-item">
+            <span class="al-assumption-label">Term</span>
+            <strong class="al-assumption-value" id="hp-assumption-term">4 years</strong>
           </div>
-          <div class="mtg-snapshot-row">
-            <span>Term</span>
-            <strong data-hp="term">4 years (48 months)</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Final Balloon</span>
-            <strong data-hp="balloon">0</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Interest</span>
-            <strong data-hp="total-interest">2,897.14</strong>
-          </div>
-          <div class="mtg-snapshot-row">
-            <span>Total Payable</span>
-            <strong data-hp="total-payable">26,897.14</strong>
-          </div>
+        </div>
+
+        <p class="al-preview-stale" id="hp-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh results.
+        </p>
+
+        <div class="al-end-term-grid">
+          <article class="al-obligation-card">
+            <h3>Final balloon due later</h3>
+            <strong id="hp-preview-balloon">0</strong>
+            <p id="hp-preview-balloon-copy">No remaining end-of-term payment is due.</p>
+          </article>
+          <article class="al-spotlight-card">
+            <h3>Amount financed now</h3>
+            <strong id="hp-preview-financed">22,000</strong>
+            <p id="hp-preview-financed-copy">Deposit covers 8.33% of the vehicle price.</p>
+          </article>
         </div>
       </aside>
     </section>
@@ -2211,6 +2641,18 @@
     <li>Term: <span data-hp="term">-</span></li>
     <li>Balloon payment: <span data-hp="balloon">-</span></li>
   </ul>
+
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      The monthly instalment tells you what the agreement feels like now. The balloon tells you
+      what it still asks from you later.
+    </p>
+    <ul>
+      <li>Use the balloon payment to judge whether the lower instalment is genuinely comfortable.</li>
+      <li>Use total payable to compare hire purchase against a standard loan or larger deposit.</li>
+    </ul>
+  </div>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -2519,7 +2961,22 @@
     <section class="al-cluster-related" aria-labelledby="al-cluster-related-title">
   <h2 id="al-cluster-related-title">Related Auto Loan Calculators</h2>
   <div class="al-cluster-related-links">
-    <a class="al-cluster-related-link" href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/auto-loan-calculator/">Multiple Car Loan Calculator</a><a class="al-cluster-related-link is-active" href="/car-loan-calculators/hire-purchase-calculator/" aria-current="page">Hire Purchase Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a><a class="al-cluster-related-link" href="/car-loan-calculators/car-lease-calculator/">Leasing Calculator</a>
+    <a class="al-cluster-related-link al-cluster-related-card" href="/car-loan-calculators/car-loan-calculator/">
+        <span class="al-cluster-related-card-title">Car Loan Calculator</span>
+        <span class="al-cluster-related-card-copy">Explore this Auto Loan calculator with the shared redesign system.</span>
+      </a><a class="al-cluster-related-link al-cluster-related-card" href="/car-loan-calculators/auto-loan-calculator/">
+        <span class="al-cluster-related-card-title">Multiple Car Loan Calculator</span>
+        <span class="al-cluster-related-card-copy">Explore this Auto Loan calculator with the shared redesign system.</span>
+      </a><a class="al-cluster-related-link al-cluster-related-card is-active" href="/car-loan-calculators/hire-purchase-calculator/" aria-current="page">
+        <span class="al-cluster-related-card-title">Hire Purchase Calculator</span>
+        <span class="al-cluster-related-card-copy">Explore this Auto Loan calculator with the shared redesign system.</span>
+      </a><a class="al-cluster-related-link al-cluster-related-card" href="/car-loan-calculators/pcp-calculator/">
+        <span class="al-cluster-related-card-title">PCP Calculator</span>
+        <span class="al-cluster-related-card-copy">Weigh the lower monthly cost against the final payment obligation.</span>
+      </a><a class="al-cluster-related-link al-cluster-related-card" href="/car-loan-calculators/car-lease-calculator/">
+        <span class="al-cluster-related-card-title">Leasing Calculator</span>
+        <span class="al-cluster-related-card-copy">Explore this Auto Loan calculator with the shared redesign system.</span>
+      </a>
   </div>
 </section>
   </div>
