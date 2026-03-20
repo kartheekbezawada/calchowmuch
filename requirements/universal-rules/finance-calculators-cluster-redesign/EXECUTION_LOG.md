@@ -442,3 +442,129 @@ Notes:
 - no shared Finance CSS changes were required
 - no generator logic changes were required
 - the fix was applied locally to the four approved routes only
+
+## 2026-03-20 — Governance Clarification: Cluster Redesign Release Gates
+
+Status:
+
+- completed
+
+Changes:
+
+- clarified the release-governance ambiguity so cluster redesigns run scoped cluster/calculator gates by default
+- preserved global full-site gates for explicit full-site releases only
+- aligned the operating contract and universal requirements with the scoped cluster release matrix in the release checklist
+
+Files touched:
+
+- `AGENTS.md`
+- `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
+- `requirements/universal-rules/RELEASE_CHECKLIST.md`
+
+Validation:
+
+- reviewed `UR-FLOW-011`, `UR-TEST-016`, `UR-TEST-048`, and the release checklist scope matrix for consistency
+
+Notes:
+
+- this clarification unblocked Finance cluster closeout without widening scope into unrelated non-Finance route failures
+
+## 2026-03-20 — Finance Cluster Closeout
+
+Status:
+
+- completed
+
+Scope:
+
+- `compound-interest`
+- `investment-growth`
+- `time-to-savings-goal`
+- `monthly-savings-needed`
+- `investment-return`
+
+Changes:
+
+- finalized the five remaining Finance routes under the shared light-cluster shell
+- completed route-level precise-entry and stale-result behavior on the remaining slider-heavy calculators
+- removed remaining calculator-route `@import` wrapper debt for the unfinished Finance routes
+- aligned `investment-return` explanation selectors and SEO assertions with the Finance explanation contract
+- closed the cluster using scoped Finance release gates after the release-governance clarification
+
+Files touched:
+
+- `public/calculators/finance-calculators/compound-interest-calculator/index.html`
+- `public/calculators/finance-calculators/compound-interest-calculator/calculator.css`
+- `public/assets/js/calculators/finance-calculators/compound-interest-calculator/module.js`
+- `public/assets/js/calculators/finance-calculators/compound-interest-calculator/ci-growth-chart.js`
+- `public/finance-calculators/compound-interest-calculator/index.html`
+- `tests_specs/finance/compound-interest_release/e2e.calc.spec.js`
+- `public/calculators/finance-calculators/investment-growth-calculator/index.html`
+- `public/calculators/finance-calculators/investment-growth-calculator/calculator.css`
+- `public/assets/js/calculators/finance-calculators/investment-growth-calculator/module.js`
+- `public/finance-calculators/investment-growth-calculator/index.html`
+- `tests_specs/finance/investment-growth_release/e2e.calc.spec.js`
+- `public/calculators/finance-calculators/time-to-savings-goal-calculator/index.html`
+- `public/calculators/finance-calculators/time-to-savings-goal-calculator/calculator.css`
+- `public/assets/js/calculators/finance-calculators/time-to-savings-goal-calculator/module.js`
+- `public/finance-calculators/time-to-savings-goal-calculator/index.html`
+- `tests_specs/finance/time-to-savings-goal_release/e2e.calc.spec.js`
+- `public/calculators/finance-calculators/monthly-savings-needed-calculator/index.html`
+- `public/calculators/finance-calculators/monthly-savings-needed-calculator/calculator.css`
+- `public/assets/js/calculators/finance-calculators/monthly-savings-needed-calculator/module.js`
+- `public/finance-calculators/monthly-savings-needed-calculator/index.html`
+- `tests_specs/finance/monthly-savings-needed_release/e2e.calc.spec.js`
+- `public/calculators/finance-calculators/investment-return-calculator/calculator.css`
+- `public/calculators/finance-calculators/investment-return-calculator/explanation.html`
+- `public/finance-calculators/investment-return-calculator/index.html`
+- `tests_specs/finance/investment-return_release/seo.calc.spec.js`
+- `requirements/universal-rules/finance-calculators-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/finance-calculators-cluster-redesign/EXECUTION_LOG.md`
+
+Validation:
+
+- `TARGET_CALC_ID=compound-interest node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=investment-growth node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=time-to-savings-goal node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=monthly-savings-needed node scripts/generate-mpa-pages.js` -> pass
+- `TARGET_CALC_ID=investment-return node scripts/generate-mpa-pages.js` -> pass
+- `CLUSTER=finance CALC=compound-interest npm run test:calc:unit` -> pass
+- `npx playwright test tests_specs/finance/compound-interest_release/e2e.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/compound-interest_release/seo.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/compound-interest_release/cwv.calc.spec.js --reporter=line` -> pass
+- `CLUSTER=finance CALC=compound-interest npm run test:schema:dedupe -- --scope=calc` -> pass
+- `CLUSTER=finance CALC=investment-growth npm run test:calc:unit` -> pass
+- `npx playwright test tests_specs/finance/investment-growth_release/e2e.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/investment-growth_release/seo.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/investment-growth_release/cwv.calc.spec.js --reporter=line` -> pass
+- `CLUSTER=finance CALC=investment-growth npm run test:schema:dedupe -- --scope=calc` -> pass
+- `CLUSTER=finance CALC=time-to-savings-goal npm run test:calc:unit` -> pass
+- `npx playwright test tests_specs/finance/time-to-savings-goal_release/e2e.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/time-to-savings-goal_release/seo.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/time-to-savings-goal_release/cwv.calc.spec.js --reporter=line` -> pass
+- `CLUSTER=finance CALC=time-to-savings-goal npm run test:schema:dedupe -- --scope=calc` -> pass
+- `CLUSTER=finance CALC=monthly-savings-needed npm run test:calc:unit` -> pass
+- `npx playwright test tests_specs/finance/monthly-savings-needed_release/e2e.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/monthly-savings-needed_release/seo.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/monthly-savings-needed_release/cwv.calc.spec.js --reporter=line` -> pass
+- `CLUSTER=finance CALC=monthly-savings-needed npm run test:schema:dedupe -- --scope=calc` -> pass
+- `CLUSTER=finance CALC=investment-return npm run test:calc:unit` -> pass
+- `npx playwright test tests_specs/finance/investment-return_release/e2e.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/investment-return_release/seo.calc.spec.js --reporter=line` -> pass
+- `npx playwright test tests_specs/finance/investment-return_release/cwv.calc.spec.js --reporter=line` -> pass
+- `CLUSTER=finance CALC=investment-return npm run test:schema:dedupe -- --scope=calc` -> pass
+- `npm run lint` -> pass
+- `npm run lint:css-import` -> pass
+- `CLUSTER=finance npm run test:cluster:unit` -> pass
+- `CLUSTER=finance npm run test:cluster:e2e` -> pass
+- `CLUSTER=finance npm run test:cluster:seo` -> pass
+- `CLUSTER=finance npm run test:cluster:cwv` -> pass
+- `CLUSTER=finance npm run test:schema:dedupe -- --scope=cluster` -> pass
+- `npm run test:cluster:contracts` -> pass
+- `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` -> pass
+
+Notes:
+
+- Cluster SEO emitted thin-content artifact `test-results/content-quality/cluster/finance/2026-03-20T14-34-31-991Z.json` with `warn=11`, `fail=0`.
+- Root report artifacts emitted by scoped SEO/schema runs were treated as transient evidence only and restored or ignored outside the approved Finance file set.
+- The earlier out-of-scope `credit-card-consolidation` Playwright failure no longer blocks this Finance cluster release because the governance docs now define cluster redesigns as scoped releases by default.

@@ -182,11 +182,11 @@ Out-of-scope violation rule:
 4. [x] `future-value-of-annuity`
 5. [x] `effective-annual-rate`
 6. [x] `simple-interest`
-7. [ ] `compound-interest`
-8. [ ] `investment-growth`
-9. [ ] `time-to-savings-goal`
-10. [ ] `monthly-savings-needed`
-11. [ ] `investment-return`
+7. [x] `compound-interest`
+8. [x] `investment-growth`
+9. [x] `time-to-savings-goal`
+10. [x] `monthly-savings-needed`
+11. [x] `investment-return`
 
 ---
 
@@ -234,25 +234,25 @@ Out-of-scope violation rule:
 | `future-value-of-annuity` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 | `effective-annual-rate` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 | `simple-interest` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
-| `compound-interest` | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `investment-growth` | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `time-to-savings-goal` | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `monthly-savings-needed` | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `investment-return` | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
+| `compound-interest` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `investment-growth` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `time-to-savings-goal` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `monthly-savings-needed` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `investment-return` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 
 ---
 
 ## Cluster Final Checklist
 
-- [ ] All 11 routes completed in order.
-- [ ] All redesign logs updated with final route status.
-- [ ] Shared Finance shell is active for every target route.
-- [ ] Placeholder tests replaced for `time-to-savings-goal` and `monthly-savings-needed`.
+- [x] All 11 routes completed in order.
+- [x] All redesign logs updated with final route status.
+- [x] Shared Finance shell is active for every target route.
+- [x] Placeholder tests replaced for `time-to-savings-goal` and `monthly-savings-needed`.
 - [x] Finance ownership and stale URL contracts are corrected.
 - [ ] Legacy finance sources removed after cutover.
-- [ ] Final cluster verification completed.
-- [ ] Release sign-off created.
-- [ ] Cluster is ready to merge.
+- [x] Final cluster verification completed.
+- [x] Release sign-off created.
+- [x] Cluster is ready to merge.
 
 ---
 
@@ -268,15 +268,8 @@ Out-of-scope violation rule:
 
 ## Current Progress
 
-- Shared Finance shell, generator routing, and ownership/nav contract fixes are active.
-- `present-value`, `future-value`, `present-value-of-annuity`, `future-value-of-annuity`, `effective-annual-rate`, and `simple-interest` are fully migrated and passing scoped build, unit, E2E, SEO, CWV, schema, and required shared-contract gates.
-- SEO content-quality remains a non-blocking `warn=1` on the six completed routes with no functional failures.
-- Next route in sequence: `compound-interest`.
-- Finance Master Improvement Audit is logged as a pending cluster-wide review to be drafted before additional Finance migration work continues.
-
-- Shared Finance foundation is active for the migrated reference pair.
-- `present-value` and `future-value` now render from `public/calculators/finance-calculators/**`.
-- Finance discoverability contracts now point to live `/finance-calculators/**` routes.
-- Scoped route gates passed for the first two routes, including unit, E2E, SEO, CWV, schema dedupe, cluster contracts, and isolation scope.
-- Scoped SEO content-quality artifacts still report `warn=1` for both completed routes and remain tracked as non-blocking follow-up review items.
-- Next route in sequence: `present-value-of-annuity`.
+- Shared Finance shell, generator routing, and ownership/nav contract fixes are active across all 11 target routes.
+- `compound-interest`, `investment-growth`, `time-to-savings-goal`, `monthly-savings-needed`, and `investment-return` are now complete alongside the first six Finance routes.
+- Scoped finance release gates passed under the clarified cluster-redesign policy: `lint`, `test:cluster:unit`, `test:cluster:e2e`, `test:cluster:seo`, `test:cluster:cwv`, scoped schema dedupe, cluster contracts, and isolation scope.
+- Finance cluster sign-off has been created and the rollout is ready to merge for the approved scope.
+- Legacy finance-source cleanup remains deferred follow-up work outside this release closeout.
