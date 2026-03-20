@@ -2319,7 +2319,7 @@
 
       body[data-design-family='home-loan'] #loan-rate-change-explanation .mtg-lifetime-visual {
         display: grid;
-        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        grid-template-columns: minmax(min(220px, 100%), 280px) minmax(0, 1fr);
         gap: 24px;
         align-items: center;
         margin-bottom: 20px;
@@ -2471,13 +2471,12 @@
       }
 
       body[data-design-family='home-loan'] #rate-table-monthly,
-      body[data-design-family='home-loan'] #rate-table-yearly,
       body[data-design-family='home-loan'] #loan-rate-change-explanation .rate-guide-table {
-        min-width: 720px;
+        min-width: 420px;
       }
 
       body[data-design-family='home-loan'] #rate-table-yearly {
-        min-width: 980px;
+        min-width: 620px;
       }
 
       body[data-design-family='home-loan'] #loan-rate-change-explanation .mtg-exp-section--guide {
@@ -2553,7 +2552,7 @@
         }
 
         body[data-design-family='home-loan'] #loan-rate-change-explanation .mtg-lifetime-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
         }
       }
 
@@ -2916,7 +2915,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="rate-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="rate-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly rate change comparison table">
       <table class="calculator-table" id="rate-table-monthly">
         <thead>
           <tr>
@@ -2930,7 +2929,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="rate-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="rate-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly rate change comparison table">
       <table class="calculator-table" id="rate-table-yearly">
         <thead>
           <tr>

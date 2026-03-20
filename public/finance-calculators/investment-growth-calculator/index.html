@@ -1715,6 +1715,133 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-investment-growth .fi-exp-hero,
+      #calc-investment-growth .fi-exp-guide {
+        display: grid;
+        gap: 18px;
+      }
+
+      #calc-investment-growth .fi-exp-intro,
+      #calc-investment-growth .fi-exp-support,
+      #calc-investment-growth .fi-exp-section-head,
+      #calc-investment-growth .fi-exp-guide-step-body {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-investment-growth .fi-exp-intro h2,
+      #calc-investment-growth .fi-exp-section-head h3,
+      #calc-investment-growth .fi-exp-card h3,
+      #calc-investment-growth .fi-exp-guide-step h4 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-investment-growth .fi-exp-intro p,
+      #calc-investment-growth .fi-exp-support p,
+      #calc-investment-growth .fi-exp-card p,
+      #calc-investment-growth .fi-exp-section-head p,
+      #calc-investment-growth .fi-exp-guide-step p,
+      #calc-investment-growth .fi-exp-guide-summary {
+        margin: 0;
+        max-width: 72ch;
+        color: #44515c;
+        line-height: 1.7;
+      }
+
+      #calc-investment-growth .fi-exp-kpi,
+      #calc-investment-growth .fi-exp-card,
+      #calc-investment-growth .fi-exp-guide-step {
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-investment-growth .fi-exp-kpi {
+        gap: 6px;
+        background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+      }
+
+      #calc-investment-growth .fi-exp-kpi-label,
+      #calc-investment-growth .fi-exp-step-no {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #557089;
+      }
+
+      #calc-investment-growth .fi-exp-kpi-value {
+        margin: 0;
+        font-size: clamp(1.6rem, 2vw, 2.15rem);
+        line-height: 1.1;
+        color: #13293d;
+      }
+
+      #calc-investment-growth .fi-exp-context-grid,
+      #calc-investment-growth .fi-exp-guide-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      #calc-investment-growth .fi-exp-context-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-investment-growth .fi-exp-link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-investment-growth .fi-exp-link-list a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(31, 95, 135, 0.08);
+        color: #163e59;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      #calc-investment-growth .fi-exp-guide-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-investment-growth .fi-exp-step-no {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(31, 95, 135, 0.1);
+      }
+
+      #calc-investment-growth .fi-exp-guide-step ol,
+      #calc-investment-growth .fi-exp-guide-step ul,
+      #calc-investment-growth .mtg-exp-section--notes ul {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-investment-growth .fi-exp-guide-summary {
+        padding-top: 10px;
+        border-top: 1px solid rgba(31, 95, 135, 0.12);
+      }
+
+      @media (max-width: 720px) {
+        #calc-investment-growth .fi-exp-context-grid,
+        #calc-investment-growth .fi-exp-guide-step {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#webpage","name":"Investment Growth Calculator | Future Value Projection","url":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/","description":"Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#softwareapplication","name":"Investment Growth Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/","description":"Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Investment growth projection","Inflation adjustment","Monthly contribution","Total gains breakdown"],"keywords":"investment calculator, growth calculator, compound interest, inflation adjusted return","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is an investment growth calculator?","acceptedAnswer":{"@type":"Answer","text":"It projects how an investment may grow using a return assumption, time horizon, and optional recurring deposits."}},{"@type":"Question","name":"What matters most?","acceptedAnswer":{"@type":"Answer","text":"Time horizon, return assumption, and contribution consistency are usually the biggest drivers."}},{"@type":"Question","name":"Why do contributions matter so much?","acceptedAnswer":{"@type":"Answer","text":"Each recurring deposit adds more capital and can also earn returns for the rest of the plan."}},{"@type":"Question","name":"Does compounding frequency matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. More frequent compounding generally produces a slightly higher ending balance under the same nominal return."}},{"@type":"Question","name":"What if the return rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The future value becomes the starting amount plus total contributions."}},{"@type":"Question","name":"Why include inflation?","acceptedAnswer":{"@type":"Answer","text":"It shows what the ending balance may be worth in today’s purchasing power, not just nominal dollars."}},{"@type":"Question","name":"Is this result guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. It is a deterministic estimate based on fixed assumptions."}},{"@type":"Question","name":"Can I use this for savings goals?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for simple long-term savings and investment planning."}},{"@type":"Question","name":"Why can small return changes create big differences?","acceptedAnswer":{"@type":"Answer","text":"Because they apply over every period and compound over time."}},{"@type":"Question","name":"Should I trust the inflation-adjusted result more?","acceptedAnswer":{"@type":"Answer","text":"Use nominal and inflation-adjusted views together depending on whether you care about account value or real buying power."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Investment Growth","item":"https://calchowmuch.com/finance-calculators/investment-growth-calculator/"}]}]}</script>
@@ -2009,23 +2136,48 @@
 </div>
 
     <div id="ig-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>How Much Could This Portfolio Grow?</h2>
-    <p>
-      This calculator projects how a starting balance and recurring contributions may grow over time
-      under a fixed return assumption.
-    </p>
-    <p>
-      Use the future value first, then compare total contributions and total gains to see how much
-      of the ending balance comes from your deposits versus growth.
-    </p>
-    <p>
-      This route is useful for retirement planning, college funds, and long-term portfolio scenarios
-      where inflation-adjusted value matters. If you need richer CAGR and tax detail, use the
-      <a href="/finance-calculators/investment-return-calculator/">investment return calculator</a>.
-      If you only need basic accumulation math, use the
-      <a href="/finance-calculators/future-value-calculator/">future value calculator</a>.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>How Much Could This Portfolio Grow?</h2>
+      <p>
+        Project long-term portfolio growth with a clear view of nominal value and inflation-adjusted
+        purchasing power.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Projected future value</p>
+      <p class="fi-exp-kpi-value"><strong><span data-ig="future-value"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Compare it with total contributions of <span data-ig="total-contributions"></span> and total
+        gains of <strong><span data-ig="total-gains"></span></strong>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        Start with future value, then compare contributions and gains to see how much of the ending
+        balance came from saving discipline versus portfolio growth.
+      </p>
+      <p>Use this route when inflation-adjusted value matters as much as the nominal balance.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Useful for retirement planning, college funds, and long-term portfolio scenarios where
+          inflation-adjusted value matters.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/investment-return-calculator/">Investment Return</a>
+          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="ig-results-table">
         <thead>
@@ -2061,33 +2213,59 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Start with the balance you have today</h4>
-      <p>Enter the amount already invested or saved before any new contributions are added.</p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Use the guide to separate what comes from your deposits, what comes from returns, and what inflation takes back.</p>
     </div>
-    <div>
-      <h4>2. Use a realistic expected return</h4>
-      <p>
-        This is a planning assumption, not a promise. Conservative assumptions are usually more
-        useful than optimistic ones.
-      </p>
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Start with the balance you have today</h4>
+          <p>
+            Enter the amount already invested or saved before any new contributions are added. This
+            opening balance begins compounding immediately.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Use a realistic expected return</h4>
+          <p>
+            This is a planning assumption, not a promise. Conservative assumptions are usually more
+            useful than optimistic ones because they compare better with real saving behavior.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add contributions only if they are repeatable</h4>
+          <p>
+            Recurring deposits can materially raise the future value because each contribution also
+            has time to compound. Use an amount that fits your expected cash flow.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Use inflation when you care about purchasing power</h4>
+          <p>
+            Inflation-adjusted output is often the better view when planning for future spending
+            needs, because nominal growth alone can overstate what the portfolio may actually buy.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>3. Add contributions only if they are repeatable</h4>
-      <p>
-        Recurring deposits can materially raise the future value because each contribution also has
-        time to compound.
-      </p>
-    </div>
-    <div>
-      <h4>4. Use inflation when you care about purchasing power</h4>
-      <p>
-        Inflation-adjusted output is often the better view when planning for future spending needs.
-      </p>
-    </div>
-    <p>
+
+    <p class="fi-exp-guide-summary">
       The most useful comparison is usually nominal value versus inflation-adjusted value. That pair
       tells you both what the account balance may show and what the money may actually buy.
     </p>
@@ -2172,8 +2350,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the inputs shown
+        on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -2181,7 +2359,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The model assumes a fixed return, fixed contribution amount,
-        and the selected compounding schedule for the full horizon.
+        and the selected compounding schedule for the full horizon, with no taxes, fees, or return
+        variability included.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

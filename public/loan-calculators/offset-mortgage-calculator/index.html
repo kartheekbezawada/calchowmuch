@@ -2295,7 +2295,7 @@
 
       body[data-design-family='home-loan'] #loan-offset-explanation .mtg-lifetime-visual {
         display: grid;
-        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        grid-template-columns: minmax(min(220px, 100%), 280px) minmax(0, 1fr);
         gap: 24px;
         align-items: center;
         margin-bottom: 20px;
@@ -2800,7 +2800,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="off-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="off-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly offset amortisation table">
       <table class="calculator-table" id="off-table-monthly">
         <thead>
           <tr>
@@ -2816,7 +2816,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="off-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="off-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly offset amortisation table">
       <table class="calculator-table" id="off-table-yearly">
         <thead>
           <tr>
@@ -3026,7 +3026,7 @@
 
     <h4>Example: how much can I save with a 20,000 offset balance?</h4>
     <p>Using typical defaults:</p>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Offset example inputs">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>
@@ -3044,7 +3044,7 @@
         </tbody>
       </table>
     </div>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Offset example results">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>
@@ -3070,7 +3070,7 @@
     </p>
 
     <h4>Full Offset vs Partial / Average - comparison</h4>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Full offset vs partial comparison">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>

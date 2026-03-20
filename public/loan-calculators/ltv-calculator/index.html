@@ -2393,7 +2393,7 @@
 
       body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-visual {
         display: grid;
-        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        grid-template-columns: minmax(min(220px, 100%), 280px) minmax(0, 1fr);
         gap: 24px;
         align-items: center;
         margin-bottom: 20px;
@@ -2536,13 +2536,12 @@
       }
 
       body[data-design-family='home-loan'] #ltv-table-bands,
-      body[data-design-family='home-loan'] #ltv-table-targets,
       body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-guide-table {
-        min-width: 720px;
+        min-width: 420px;
       }
 
       body[data-design-family='home-loan'] #ltv-table-targets {
-        min-width: 860px;
+        min-width: 540px;
       }
 
       body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-band-row.is-active td {
@@ -2648,13 +2647,16 @@
           position: static;
         }
 
-        body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-related-grid,
-        body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-grid {
+        body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-related-grid {
           grid-template-columns: 1fr;
         }
 
         body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-visual {
           grid-template-columns: 1fr;
+        }
+
+        body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-grid {
+          grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
         }
       }
 
@@ -3053,7 +3055,7 @@
       </div>
     </div>
 
-    <div class="table-scroll" id="ltv-table-bands-wrap" tabindex="0">
+    <div class="table-scroll" id="ltv-table-bands-wrap" tabindex="0" role="region" aria-label="LTV market bands table">
       <table class="calculator-table" id="ltv-table-bands">
         <thead>
           <tr>
@@ -3102,7 +3104,7 @@
       </table>
     </div>
 
-    <div class="table-scroll is-hidden" id="ltv-table-targets-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="ltv-table-targets-wrap" tabindex="0" role="region" aria-label="Deposit targets table">
       <table class="calculator-table" id="ltv-table-targets">
         <thead>
           <tr>

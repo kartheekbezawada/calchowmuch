@@ -1715,6 +1715,10 @@
         gap: 16px;
       }
 
+      #calc-investment-return #ir-advanced-section.is-hidden {
+        display: none;
+      }
+
       #calc-investment-return .ir-advanced-card {
         display: grid;
         gap: 14px;
@@ -1764,9 +1768,109 @@
         gap: 18px;
       }
 
+      #calc-investment-return .ir-results-shell {
+        display: grid;
+        gap: 16px;
+        padding: 22px;
+        border: 1px solid rgba(143, 158, 167, 0.22);
+        border-radius: 26px;
+        background: linear-gradient(180deg, rgba(248, 250, 248, 0.98), rgba(255, 255, 255, 0.98));
+      }
+
+      #calc-investment-return .ir-results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 18px;
+      }
+
+      #calc-investment-return .ir-results-copy-block {
+        display: grid;
+        gap: 8px;
+        max-width: 72ch;
+      }
+
+      #calc-investment-return .ir-results-eyebrow {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2f6e53;
+      }
+
+      #calc-investment-return .ir-results-title {
+        margin: 0;
+        font-size: clamp(1.25rem, 1.6vw, 1.7rem);
+        line-height: 1.2;
+        color: #15202b;
+      }
+
+      #calc-investment-return .ir-results-copy,
+      #calc-investment-return .ir-table-note,
+      #ir-explanation .ir-intro-copy p {
+        margin: 0;
+        color: #44515c;
+        line-height: 1.65;
+      }
+
       #calc-investment-return .ir-results-controls {
         display: flex;
         justify-content: flex-end;
+      }
+
+      #calc-investment-return .ir-table-frame {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-investment-return .ir-table-scroll {
+        border: 1px solid rgba(143, 158, 167, 0.18);
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      #calc-investment-return .ir-breakdown-table {
+        width: 100%;
+        min-width: 720px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      #calc-investment-return .ir-breakdown-table th,
+      #calc-investment-return .ir-breakdown-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(143, 158, 167, 0.16);
+      }
+
+      #calc-investment-return .ir-breakdown-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #f4f7f4;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: #44515c;
+      }
+
+      #calc-investment-return .ir-breakdown-table tbody th {
+        background: rgba(248, 250, 248, 0.72);
+        font-weight: 700;
+        color: #15202b;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      #calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) td,
+      #calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) th {
+        background: rgba(244, 247, 244, 0.72);
+      }
+
+      #calc-investment-return .ir-breakdown-table tbody tr:hover td,
+      #calc-investment-return .ir-breakdown-table tbody tr:hover th {
+        background: rgba(228, 238, 232, 0.9);
       }
 
       #calc-investment-return .ir-breakdown-table td,
@@ -1779,6 +1883,16 @@
       #calc-investment-return .ir-breakdown-table th:nth-child(n + 2),
       #calc-investment-return .ir-breakdown-table td:nth-child(n + 2) {
         text-align: right;
+      }
+
+      #ir-explanation-content > h2 {
+        margin: 0;
+      }
+
+      #ir-explanation .ir-intro-copy {
+        display: grid;
+        gap: 12px;
+        max-width: 74ch;
       }
 
       #ir-explanation-content {
@@ -1804,6 +1918,15 @@
         #calc-investment-return .ir-event-row {
           grid-template-columns: 1fr 1fr;
         }
+
+        #calc-investment-return .ir-results-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        #calc-investment-return .ir-results-controls {
+          justify-content: flex-start;
+        }
       }
 
       @media (max-width: 640px) {
@@ -1816,6 +1939,142 @@
 
         #calc-investment-return .ir-results-controls {
           justify-content: stretch;
+        }
+
+        #calc-investment-return .ir-results-shell {
+          padding: 18px 16px;
+          border-radius: 20px;
+        }
+
+        #calc-investment-return .ir-breakdown-table {
+          min-width: 620px;
+        }
+      }
+
+      #calc-investment-return .fi-exp-hero,
+      #calc-investment-return .fi-exp-guide {
+        display: grid;
+        gap: 18px;
+      }
+
+      #calc-investment-return .fi-exp-intro,
+      #calc-investment-return .fi-exp-support,
+      #calc-investment-return .fi-exp-section-head,
+      #calc-investment-return .fi-exp-guide-step-body {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-investment-return .fi-exp-intro h2,
+      #calc-investment-return .fi-exp-section-head h3,
+      #calc-investment-return .fi-exp-card h3,
+      #calc-investment-return .fi-exp-guide-step h4 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-investment-return .fi-exp-intro p,
+      #calc-investment-return .fi-exp-support p,
+      #calc-investment-return .fi-exp-card p,
+      #calc-investment-return .fi-exp-section-head p,
+      #calc-investment-return .fi-exp-guide-step p,
+      #calc-investment-return .fi-exp-guide-summary {
+        margin: 0;
+        max-width: 72ch;
+        color: #44515c;
+        line-height: 1.7;
+      }
+
+      #calc-investment-return .fi-exp-kpi,
+      #calc-investment-return .fi-exp-card,
+      #calc-investment-return .fi-exp-guide-step {
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-investment-return .fi-exp-kpi {
+        gap: 6px;
+        background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+      }
+
+      #calc-investment-return .fi-exp-kpi-label,
+      #calc-investment-return .fi-exp-step-no {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #557089;
+      }
+
+      #calc-investment-return .fi-exp-kpi-value {
+        margin: 0;
+        font-size: clamp(1.6rem, 2vw, 2.15rem);
+        line-height: 1.1;
+        color: #13293d;
+      }
+
+      #calc-investment-return .fi-exp-context-grid,
+      #calc-investment-return .fi-exp-guide-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      #calc-investment-return .fi-exp-context-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-investment-return .fi-exp-link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-investment-return .fi-exp-link-list a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(31, 95, 135, 0.08);
+        color: #163e59;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      #calc-investment-return .fi-exp-guide-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-investment-return .fi-exp-step-no {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(31, 95, 135, 0.1);
+      }
+
+      #calc-investment-return .fi-exp-guide-step ol,
+      #calc-investment-return .fi-exp-guide-step ul,
+      #calc-investment-return .mtg-exp-section--notes ul {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-investment-return .fi-exp-guide-summary {
+        padding-top: 10px;
+        border-top: 1px solid rgba(31, 95, 135, 0.12);
+      }
+
+      @media (max-width: 720px) {
+        #calc-investment-return .fi-exp-context-grid,
+        #calc-investment-return .fi-exp-guide-step {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -1936,7 +2195,7 @@
           <button class="calculator-button secondary full-width" type="button" id="ir-advanced-toggle" aria-expanded="false">Show Advanced Mode</button>
         </div>
 
-        <div id="ir-advanced-section" class="is-hidden" aria-live="polite">
+        <div id="ir-advanced-section" class="is-hidden" aria-live="polite" aria-hidden="true">
           <section class="ir-advanced-card" aria-label="Variable annual returns">
             <p class="fi-toggle-label">Variable Annual Returns by Year (%)</p>
             <div id="ir-variable-returns" class="ir-variable-rows"></div>
@@ -2009,23 +2268,44 @@
     </section>
 
     <section class="ir-results" aria-label="Investment return breakdown and graph">
-      <div class="ir-results-controls">
-        <div class="fi-toggle-group">
-          <span class="fi-toggle-label">Data Granularity</span>
-          <div class="button-group" role="group" data-button-group="ir-breakdown-mode" aria-label="Breakdown mode">
-            <button class="calculator-button secondary is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
-            <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
+      <div class="ir-results-shell">
+        <div class="ir-results-header">
+          <div class="ir-results-copy-block">
+            <p class="ir-results-eyebrow">Portfolio path</p>
+            <h2 class="ir-results-title">Track Contributions, Growth, and Tax Drag Over Time</h2>
+            <p class="ir-results-copy">
+              Use the breakdown view to see whether progress is coming from fresh deposits, market
+              growth, or simply a longer time horizon. Switch views when you want either a concise
+              annual summary or a more detailed month-by-month path.
+            </p>
+          </div>
+
+          <div class="ir-results-controls">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Data Granularity</span>
+              <div class="button-group" role="group" data-button-group="ir-breakdown-mode" aria-label="Breakdown mode">
+                <button class="calculator-button secondary is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="table-scroll" tabindex="0">
-        <table class="ir-breakdown-table" id="ir-breakdown-table">
-          <thead>
-            <tr id="ir-breakdown-head"></tr>
-          </thead>
-          <tbody id="ir-breakdown-body"></tbody>
-        </table>
+        <div class="ir-table-frame">
+          <p class="ir-table-note" id="ir-breakdown-note" aria-live="polite">
+            Annual view keeps longer plans readable. Monthly view exposes timing, compounding, and
+            tax effects in more detail.
+          </p>
+
+          <div class="table-scroll ir-table-scroll" tabindex="0" aria-describedby="ir-breakdown-note">
+            <table class="ir-breakdown-table" id="ir-breakdown-table">
+              <thead>
+                <tr id="ir-breakdown-head"></tr>
+              </thead>
+              <tbody id="ir-breakdown-body"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -2033,26 +2313,53 @@
 
     <div id="ir-explanation" class="explanation-pane">
   <div id="ir-explanation-content">
-    <h2>How Is Your Portfolio Performing Over Time?</h2>
-    <p>
-      Use this investment return calculator to estimate portfolio growth from a lump sum, recurring
-      contributions, compounding assumptions, inflation, and tax settings.
-    </p>
-    <p>
-      In the current scenario, total contributions of
-      <strong data-ir="exp-total-contributions">-</strong> grow to
-      <strong data-ir="exp-final-value">-</strong>, producing
-      <strong data-ir="exp-total-profit">-</strong> in profit and a nominal CAGR of
-      <strong data-ir="exp-cagr">-</strong>.
-    </p>
-    <p>
-      This route is strongest when you need CAGR, real-return, and tax-aware portfolio analysis in
-      one place. If you want a lighter projection without tax detail, compare the
-      <a href="/finance-calculators/investment-growth-calculator/">investment growth calculator</a>
-      or the
-      <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>
-      first, then return here for deeper scenario work.
-    </p>
+    <section class="mtg-exp-section fi-exp-hero">
+      <div class="fi-exp-intro">
+        <h2>How Is Your Portfolio Performing Over Time?</h2>
+        <p>
+          Judge whether the current plan is being driven more by deposits, compounding, or drag from
+          inflation and tax.
+        </p>
+      </div>
+
+      <div class="fi-exp-kpi">
+        <p class="fi-exp-kpi-label">Projected final portfolio value</p>
+        <p class="fi-exp-kpi-value"><strong data-ir="exp-final-value">-</strong></p>
+        <p class="fi-exp-kpi-note">
+          Built from total contributions of <strong data-ir="exp-total-contributions">-</strong>,
+          profit of <strong data-ir="exp-total-profit">-</strong>, and a nominal CAGR of
+          <strong data-ir="exp-cagr">-</strong>.
+        </p>
+      </div>
+
+      <div class="fi-exp-support">
+        <p>
+          This route is built for longer-horizon decisions where the headline ending balance matters
+          less than understanding what created it.
+        </p>
+        <p>
+          Use it when you want CAGR, inflation-adjusted returns, and tax-aware portfolio analysis in
+          one place.
+        </p>
+      </div>
+
+      <div class="fi-exp-context-grid">
+        <section class="fi-exp-card">
+          <h3>When This Helps</h3>
+          <p>
+            Best for comparing long-horizon portfolio scenarios where deposits, inflation, tax, and
+            timing all change the interpretation of the result.
+          </p>
+        </section>
+        <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+          <h3>Related Tools</h3>
+          <div class="fi-exp-link-list">
+            <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+            <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+          </div>
+        </nav>
+      </div>
+    </section>
 
     <section class="mtg-exp-section">
       <h3>Scenario Summary</h3>
@@ -2160,37 +2467,50 @@
       </div>
     </section>
 
-    <section class="mtg-exp-section ir-guide-readable">
-      <h3>How to Guide</h3>
-      <h4>What this calculator helps you decide</h4>
-      <p>
-        This tool is best used as a planning model rather than a market prediction engine. It
-        combines starting capital, recurring contributions, compounding assumptions, inflation, and
-        tax drag so you can compare realistic long-horizon scenarios before acting.
-      </p>
-      <p>
-        The most useful output is not only the final portfolio value. You also need to compare how
-        much capital came from your own deposits, how much came from growth, how much tax reduced
-        the result, and how different the real purchasing-power outcome looks once inflation is
-        accounted for. That broader view is what turns a simple projection into a decision tool.
-      </p>
+    <section class="mtg-exp-section ir-guide-readable fi-exp-guide">
+      <div class="fi-exp-section-head">
+        <h3>How to Guide</h3>
+        <p>Use the guide to separate the baseline inputs, the return story, and the drag from inflation and tax.</p>
+      </div>
 
-      <h4>Start with a clean baseline</h4>
-      <p>
-        Enter an initial investment, an annual return assumption you can defend, a realistic time
-        horizon, and a recurring contribution you can actually sustain. In many cases the baseline
-        tells you more than a heavily optimized scenario because it reflects the plan you are most
-        likely to follow in real life.
-      </p>
-      <p>
-        A disciplined baseline also gives you a reference point for later stress tests. Once you
-        know the starting case, you can change one variable at a time and understand what the change
-        actually did. That is far more useful than adjusting five inputs at once and trying to guess
-        which assumption drove the difference.
-      </p>
+      <div class="fi-exp-guide-list">
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">01</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>What this calculator helps you decide</h4>
+            <p>
+              This tool is best used as a planning model rather than a market prediction engine. It
+              combines starting capital, recurring contributions, compounding assumptions, inflation,
+              and tax drag so you can compare realistic long-horizon scenarios before acting.
+            </p>
+            <p>
+              The most useful output is not only the final portfolio value. You also need to compare
+              how much capital came from deposits, how much came from growth, how much tax reduced
+              the result, and how purchasing power changed after inflation.
+            </p>
+          </div>
+        </article>
 
-      <h4>Understand the core inputs before trusting the output</h4>
-      <ul>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">02</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Start with a clean baseline</h4>
+            <p>
+              Enter an initial investment, an annual return assumption you can defend, a realistic
+              time horizon, and a recurring contribution you can actually sustain.
+            </p>
+            <p>
+              In many cases the baseline tells you more than a heavily optimized scenario because it
+              reflects the plan you are most likely to follow in real life.
+            </p>
+          </div>
+        </article>
+
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">03</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Understand the core inputs before trusting the output</h4>
+            <ul>
         <li><strong>Initial Investment:</strong> the base that starts compounding immediately.</li>
         <li>
           <strong>Expected Annual Return:</strong> the long-run growth assumption before inflation
@@ -2205,85 +2525,80 @@
         </li>
         <li><strong>Inflation Rate:</strong> the drag on purchasing power.</li>
         <li><strong>Tax Rate:</strong> the friction that can materially reduce realized growth.</li>
-      </ul>
-      <p>
-        Duration is often the most underappreciated driver. Extending the plan by a few years can
-        change the outcome more than modestly increasing the return assumption, especially when
-        contributions continue consistently. That is why time horizon deserves as much attention as
-        the return percentage itself.
-      </p>
+            </ul>
+            <p>
+              Duration is often the most underappreciated driver. Extending the plan by a few years
+              can change the outcome more than a modest increase in the return assumption.
+            </p>
+          </div>
+        </article>
 
-      <h4>Read nominal and real outputs together</h4>
-      <p>
-        Nominal outputs tell you what the account balance may become. Real outputs tell you what
-        that balance may be worth in today’s purchasing power. If you are planning a future spending
-        goal, retirement target, or tuition need, the real figures are often more useful than the
-        nominal ones on their own.
-      </p>
-      <p>
-        When nominal CAGR looks healthy but real CAGR is modest, the plan may be more fragile than
-        the headline number suggests. That usually means you should test a longer duration, a larger
-        recurring contribution, or a more conservative expected return.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">04</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Read nominal and real outputs together</h4>
+            <p>
+              Nominal outputs tell you what the account balance may become. Real outputs tell you
+              what that balance may be worth in today’s purchasing power.
+            </p>
+            <p>
+              When nominal CAGR looks healthy but real CAGR is modest, the plan may be more fragile
+              than the headline number suggests.
+            </p>
+          </div>
+        </article>
 
-      <h4>Use advanced mode for better scenarios, not more noise</h4>
-      <p>
-        Advanced mode exists to improve scenario quality. Variable annual returns let you replace a
-        flat assumption with a more realistic uneven path. One-time events let you model deposits or
-        withdrawals at known points in time. Crash simulation helps you test how resilient the plan
-        is when a drawdown happens before the portfolio has fully matured.
-      </p>
-      <p>
-        The best use of advanced mode is to run a baseline case, then a conservative stress case,
-        then an optimistic case. The spread between those outcomes is often more decision-useful
-        than any single projection because it shows the range of possible planning realities.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">05</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Use advanced mode for better scenarios, not more noise</h4>
+            <p>
+              Variable annual returns let you replace a flat assumption with a more realistic uneven
+              path. One-time events let you model deposits or withdrawals at known points in time.
+            </p>
+            <p>
+              The best use of advanced mode is to compare a baseline case with a conservative stress
+              case and a more optimistic case, rather than turning on every extra assumption at once.
+            </p>
+          </div>
+        </article>
 
-      <h4>How contribution frequency and timing change outcomes</h4>
-      <p>
-        Monthly contributions usually align best with budgeting behavior and put money to work more
-        steadily than quarterly or annual deposits. Beginning-of-period contributions often finish
-        with a slightly higher ending value than end-of-period contributions because every deposit
-        has more time to compound.
-      </p>
-      <p>
-        These differences may look small on a single cycle, but over a decade or more they can
-        become meaningful. That is why contribution timing and frequency are worth treating as real
-        strategy choices rather than cosmetic toggles.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">06</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>How contribution frequency, tax, and inflation change interpretation</h4>
+            <p>
+              Monthly contributions usually align best with budgeting behavior, and beginning-of-period
+              contributions often finish with a slightly higher ending value.
+            </p>
+            <p>
+              Tax drag reduces the portion of annual growth you keep, while inflation changes what
+              the ending balance can actually buy. Current effective annual rate:
+              <strong data-ir="exp-ear">-</strong>. Current carryforward loss balance:
+              <strong data-ir="exp-carryforward">-</strong>.
+            </p>
+          </div>
+        </article>
 
-      <h4>How tax and inflation change interpretation</h4>
-      <p>
-        Tax drag matters because it reduces the portion of annual growth you actually keep. A plan
-        that looks strong before tax can feel much less compelling after a realistic tax setting is
-        applied. Inflation matters for a different reason: it changes what your ending balance can
-        actually buy. Together, tax and inflation turn optimistic nominal projections into more
-        grounded planning outputs.
-      </p>
-      <p>
-        Current effective annual rate: <strong data-ir="exp-ear">-</strong>. Current carryforward
-        loss balance: <strong data-ir="exp-carryforward">-</strong>.
-      </p>
-
-      <h4>Practical decision checklist</h4>
-      <ul class="ir-checklist">
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">07</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Practical decision checklist</h4>
+            <ul class="ir-checklist">
         <li>Use assumptions you can defend, not assumptions that simply maximize the answer.</li>
         <li>Review final value, contributions, profit, tax, and both CAGR metrics together.</li>
         <li>Compare annual and monthly breakdowns before acting on the plan.</li>
         <li>Run at least one adverse scenario, not only a baseline case.</li>
         <li>Revisit the model when income, goals, tax context, or risk tolerance changes.</li>
-      </ul>
-      <p>
-        The most reliable way to use this calculator is as a comparison framework. Better financial
-        decisions come from understanding the tradeoffs between time, contributions, inflation, and
-        taxes rather than from trusting a single headline number without context.
-      </p>
-      <p>
-        If the first result looks either too good or too discouraging, do not react to the headline
-        alone. Check whether the return assumption is realistic, whether the contribution amount is
-        sustainable, whether inflation is understated, and whether the tax setting matches the
-        account type you actually expect to use. That final review step is often what turns a rough
-        projection into a genuinely useful planning tool.
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="fi-exp-guide-summary">
+        The most reliable way to use this calculator is as a comparison framework. If the first
+        result looks too good or too discouraging, review the return assumption, contribution level,
+        inflation setting, and tax treatment before treating the answer as decision-ready.
       </p>
     </section>
 

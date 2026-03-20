@@ -33,8 +33,13 @@ test.describe('Investment Return Calculator', () => {
     await page.fill('#ir-return', '10');
     await expect(page.locator('#ir-return')).toHaveValue('10');
 
+    await expect(page.locator('#ir-advanced-section')).toBeHidden();
     await page.click('#ir-advanced-toggle');
-    await expect(page.locator('#ir-advanced-section')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#ir-advanced-section')).toBeVisible();
+    await page.click('#ir-advanced-toggle');
+    await expect(page.locator('#ir-advanced-section')).toBeHidden();
+    await page.click('#ir-advanced-toggle');
+    await expect(page.locator('#ir-advanced-section')).toBeVisible();
 
     await page.fill('#ir-var-rate-1', '4');
     await page.click('#ir-add-event');

@@ -415,7 +415,7 @@ body[data-design-family='home-loan'] #loan-btl-explanation .btl-exp-section--pro
 }
 
 body[data-design-family='home-loan'] #loan-btl-explanation .btl-projection-table {
-  min-width: 880px;
+  min-width: 620px;
 }
 
 body[data-design-family='home-loan'] #loan-btl-explanation .btl-negative {
@@ -457,7 +457,7 @@ body[data-design-family='home-loan'] #loan-btl-explanation .btl-formula code {
 }
 
 body[data-design-family='home-loan'] #loan-btl-explanation .btl-guide-table {
-  min-width: 720px;
+  min-width: 520px;
 }
 
 body[data-design-family='home-loan'] #loan-btl-explanation .btl-important-list {

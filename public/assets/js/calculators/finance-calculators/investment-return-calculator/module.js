@@ -29,6 +29,8 @@ const addEventButton = document.querySelector('#ir-add-event');
 
 const breakdownHead = document.querySelector('#ir-breakdown-head');
 const breakdownBody = document.querySelector('#ir-breakdown-body');
+const breakdownNote = document.querySelector('#ir-breakdown-note');
+const breakdownTable = document.querySelector('#ir-breakdown-table');
 
 const graphTitle = document.querySelector('#ir-graph-title');
 const graphMain = document.querySelector('#ir-graph-main');
@@ -463,6 +465,19 @@ function setText(node, value) {
   node.textContent = value;
 }
 
+function updateBreakdownNote(mode, rows) {
+  if (!breakdownNote) {
+    return;
+  }
+
+  if (mode === 'monthly') {
+    breakdownNote.textContent = `Monthly view shows ${rows} checkpoints so you can inspect contribution timing, compounding, and tax drag in much finer detail.`;
+    return;
+  }
+
+  breakdownNote.textContent = `Annual view shows ${rows} checkpoints so longer plans stay readable while still highlighting when growth, contributions, and taxes change the path.`;
+}
+
 function renderBreakdown(output) {
   if (!breakdownHead || !breakdownBody) {
     return;
@@ -470,11 +485,13 @@ function renderBreakdown(output) {
 
   const mode = breakdownButtons?.getValue() ?? 'annual';
   if (mode === 'monthly') {
-    breakdownHead.innerHTML = '<th>Month</th><th>Start</th><th>Contributions</th><th>Interest</th><th>Tax</th><th>End</th>';
+    breakdownTable?.setAttribute('data-mode', 'monthly');
+    breakdownHead.innerHTML =
+      '<th scope="col">Month</th><th scope="col">Start</th><th scope="col">Contributions</th><th scope="col">Interest</th><th scope="col">Tax</th><th scope="col">End</th>';
     breakdownBody.innerHTML = output.monthlyBreakdown
       .map(
         (row) => `<tr>
-          <td>${row.month}</td>
+          <th scope="row">Month ${row.month}</th>
           <td>${formatMoney(row.startingBalance)}</td>
           <td>${formatMoney(row.contributions)}</td>
           <td>${formatMoney(row.interestEarned)}</td>
@@ -483,14 +500,17 @@ function renderBreakdown(output) {
         </tr>`
       )
       .join('');
+    updateBreakdownNote('monthly', output.monthlyBreakdown.length);
     return;
   }
 
-  breakdownHead.innerHTML = '<th>Year</th><th>Start</th><th>Contributions</th><th>Interest</th><th>Tax</th><th>End</th>';
+  breakdownTable?.setAttribute('data-mode', 'annual');
+  breakdownHead.innerHTML =
+    '<th scope="col">Year</th><th scope="col">Start</th><th scope="col">Contributions</th><th scope="col">Interest</th><th scope="col">Tax</th><th scope="col">End</th>';
   breakdownBody.innerHTML = output.yearlyBreakdown
     .map(
       (row) => `<tr>
-        <td>${row.year}</td>
+        <th scope="row">Year ${row.year}</th>
         <td>${formatMoney(row.startingBalance)}</td>
         <td>${formatMoney(row.contributions)}</td>
         <td>${formatMoney(row.interestEarned)}</td>
@@ -499,6 +519,7 @@ function renderBreakdown(output) {
       </tr>`
     )
     .join('');
+  updateBreakdownNote('annual', output.yearlyBreakdown.length);
 }
 
 function buildPlotPoints(values, minValue, maxValue) {
@@ -764,9 +785,11 @@ function toggleAdvancedMode() {
     return;
   }
   advancedSection.classList.toggle('is-hidden', !advancedOpen);
+  advancedSection.setAttribute('aria-hidden', advancedOpen ? 'false' : 'true');
   advancedToggleButton?.setAttribute('aria-expanded', advancedOpen ? 'true' : 'false');
   if (advancedToggleButton) {
     advancedToggleButton.textContent = advancedOpen ? 'Hide Advanced Mode' : 'Show Advanced Mode';
+    advancedToggleButton.classList.toggle('is-active', advancedOpen);
   }
   if (advancedOpen) {
     buildVariableRows();
@@ -806,9 +829,11 @@ function applyDefaultFormState() {
   advancedOpen = false;
   variableRowsTouched = false;
   advancedSection?.classList.add('is-hidden');
+  advancedSection?.setAttribute('aria-hidden', 'true');
   advancedToggleButton?.setAttribute('aria-expanded', 'false');
   if (advancedToggleButton) {
     advancedToggleButton.textContent = 'Show Advanced Mode';
+    advancedToggleButton.classList.remove('is-active');
   }
   variableRowsRoot?.replaceChildren();
   eventsRowsRoot?.replaceChildren();

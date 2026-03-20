@@ -27,3 +27,148 @@
   display: grid;
   gap: 8px;
 }
+
+#calc-future-value-of-annuity .fi-exp-hero,
+#calc-future-value-of-annuity .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-future-value-of-annuity .fi-exp-intro,
+#calc-future-value-of-annuity .fi-exp-support,
+#calc-future-value-of-annuity .fi-exp-section-head,
+#calc-future-value-of-annuity .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-future-value-of-annuity .fi-exp-intro h2,
+#calc-future-value-of-annuity .fi-exp-section-head h3,
+#calc-future-value-of-annuity .fi-exp-card h3,
+#calc-future-value-of-annuity .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-future-value-of-annuity .fi-exp-intro p,
+#calc-future-value-of-annuity .fi-exp-support p,
+#calc-future-value-of-annuity .fi-exp-card p,
+#calc-future-value-of-annuity .fi-exp-section-head p,
+#calc-future-value-of-annuity .fi-exp-guide-step p,
+#calc-future-value-of-annuity .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-future-value-of-annuity .fi-exp-kpi {
+  display: grid;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.88), rgba(255, 255, 255, 0.96));
+}
+
+#calc-future-value-of-annuity .fi-exp-kpi-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-future-value-of-annuity .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-future-value-of-annuity .fi-exp-kpi-note {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-future-value-of-annuity .fi-exp-context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#calc-future-value-of-annuity .fi-exp-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+#calc-future-value-of-annuity .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-future-value-of-annuity .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-future-value-of-annuity .fi-exp-guide-list {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-future-value-of-annuity .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-future-value-of-annuity .fi-exp-step-no {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(31, 95, 135, 0.1);
+  color: #163e59;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+#calc-future-value-of-annuity .fi-exp-guide-step ol,
+#calc-future-value-of-annuity .fi-exp-guide-step ul,
+#calc-future-value-of-annuity .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-future-value-of-annuity .fi-exp-guide-summary {
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-future-value-of-annuity .fi-exp-context-grid,
+  #calc-future-value-of-annuity .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+}

@@ -300,7 +300,7 @@ body[data-design-family='home-loan'] #loan-ltv-explanation .bor-related-card p {
 
 body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-visual {
   display: grid;
-  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(min(220px, 100%), 280px) minmax(0, 1fr);
   gap: 24px;
   align-items: center;
   margin-bottom: 20px;
@@ -443,13 +443,12 @@ body[data-design-family='home-loan']
 }
 
 body[data-design-family='home-loan'] #ltv-table-bands,
-body[data-design-family='home-loan'] #ltv-table-targets,
 body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-guide-table {
-  min-width: 720px;
+  min-width: 420px;
 }
 
 body[data-design-family='home-loan'] #ltv-table-targets {
-  min-width: 860px;
+  min-width: 540px;
 }
 
 body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-band-row.is-active td {
@@ -555,13 +554,16 @@ body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-notes-list li::b
     position: static;
   }
 
-  body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-related-grid,
-  body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-grid {
+  body[data-design-family='home-loan'] #loan-ltv-explanation .ltv-related-grid {
     grid-template-columns: 1fr;
   }
 
   body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-visual {
     grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='home-loan'] #loan-ltv-explanation .mtg-lifetime-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   }
 }
 

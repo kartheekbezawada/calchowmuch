@@ -174,3 +174,130 @@
     grid-template-columns: 1fr;
   }
 }
+
+#calc-present-value .fi-exp-hero,
+#calc-present-value .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-present-value .fi-exp-intro,
+#calc-present-value .fi-exp-support,
+#calc-present-value .fi-exp-section-head,
+#calc-present-value .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-exp-intro h2,
+#calc-present-value .fi-exp-section-head h3,
+#calc-present-value .fi-exp-card h3,
+#calc-present-value .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-present-value .fi-exp-intro p,
+#calc-present-value .fi-exp-support p,
+#calc-present-value .fi-exp-card p,
+#calc-present-value .fi-exp-section-head p,
+#calc-present-value .fi-exp-guide-step p,
+#calc-present-value .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-present-value .fi-exp-kpi,
+#calc-present-value .fi-exp-card,
+#calc-present-value .fi-exp-guide-step {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-present-value .fi-exp-kpi {
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+}
+
+#calc-present-value .fi-exp-kpi-label,
+#calc-present-value .fi-exp-step-no {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-present-value .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-present-value .fi-exp-context-grid,
+#calc-present-value .fi-exp-guide-list {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-present-value .fi-exp-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-present-value .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-present-value .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-present-value .fi-exp-step-no {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(31, 95, 135, 0.1);
+}
+
+#calc-present-value .fi-exp-guide-step ol,
+#calc-present-value .fi-exp-guide-step ul,
+#calc-present-value .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-exp-guide-summary {
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-present-value .fi-exp-context-grid,
+  #calc-present-value .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+}

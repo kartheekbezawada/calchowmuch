@@ -1,29 +1,47 @@
 <div id="fva-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>How Much Could Regular Payments Grow Into?</h2>
-    <p>
-      This calculator projects a series of equal contributions into a single future value so you can
-      see what disciplined recurring payments may accumulate into over time.
-    </p>
-    <p>
-      With payments of <span data-fva="payment-amount"></span>, an interest rate of
-      <span data-fva="interest-rate"></span>, a schedule of <span data-fva="period-count"></span>,
-      <span data-fva="annuity-type"></span> timing, and
-      <span data-fva="compounding-frequency"></span> compounding, the future value is
-      <strong><span data-fva="future-value"></span></strong>, including
-      <span data-fva="total-interest"></span> of growth.
-    </p>
-    <p>
-      This page is useful for retirement contributions, sinking funds, college savings, and any plan
-      built on equal recurring deposits. If your real question is “how much do I need to save each
-      month?”, use the
-      <a href="/finance-calculators/monthly-savings-needed-calculator/"
-        >monthly savings needed calculator</a
-      >. If the unknown is the timeline instead, use the
-      <a href="/finance-calculators/time-to-savings-goal-calculator/"
-        >time to savings goal calculator</a
-      >.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>How Much Could Regular Payments Grow Into?</h2>
+      <p>
+        Project what a steady savings habit could accumulate into when equal payments compound over
+        time.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Future value of the payment stream</p>
+      <p class="fi-exp-kpi-value"><strong><span data-fva="future-value"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Built from total payments of <span data-fva="total-payments"></span> and growth of
+        <strong><span data-fva="total-interest"></span></strong>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        With payments of <span data-fva="payment-amount"></span> across
+        <span data-fva="period-count"></span>, both timing and compounding determine how much each
+        contribution can grow.
+      </p>
+      <p>Use this page when the deposit pattern is regular and the main question is the ending value.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Useful for retirement contributions, sinking funds, college savings, and other plans built
+          on equal recurring deposits.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
+          <a href="/finance-calculators/time-to-savings-goal-calculator/">Time to Savings Goal</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="fva-results-table">
         <thead>
@@ -91,41 +109,64 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Set the recurring contribution</h4>
-      <p>
-        Enter the equal amount you plan to add each period. This route is strongest when the
-        contribution amount stays consistent.
-      </p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Set the payment pattern first, then review timing, compounding, and the final accumulation separately.</p>
     </div>
-    <div>
-      <h4>2. Choose a growth assumption</h4>
-      <p>
-        Use the savings rate or expected investment return that best reflects the plan you are
-        modeling. Small rate changes can compound meaningfully over longer periods.
-      </p>
-    </div>
-    <div>
-      <h4>3. Match the timing correctly</h4>
-      <p>
-        Switch between years and months so the period count matches your real schedule, then choose
-        the compounding rhythm that fits the assumption behind the rate.
-      </p>
-    </div>
-    <div>
-      <h4>4. Compare ordinary and due timing</h4>
-      <p>
-        Ordinary annuity assumes each payment lands at the end of the period. Annuity due assumes it
-        arrives at the beginning, which typically produces more growth.
-      </p>
-    </div>
-    <div>
-      <h4>5. Review the formula steps</h4>
-      <p>The ordinary annuity formula is:</p>
-      <p class="fva-formula-block">FVA = PMT x [((1 + r)<sup>n</sup> - 1) / r]</p>
-      <ol class="fva-formula-steps">
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Set the recurring contribution</h4>
+          <p>
+            Enter the equal amount you plan to add each period. This route is strongest when the
+            contribution amount stays stable from one period to the next.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Choose a growth assumption</h4>
+          <p>
+            Use the savings rate or expected investment return that best fits the plan. Small rate
+            changes become meaningful over longer horizons.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Match the timing correctly</h4>
+          <p>
+            Switch between years and months so the period count matches the real schedule, then
+            choose the compounding rhythm that fits the quoted rate.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Compare ordinary and due timing</h4>
+          <p>
+            Ordinary annuity assumes each payment lands at the end of the period. Annuity due
+            assumes it arrives at the beginning, which usually produces more growth.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">05</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Review the formula steps</h4>
+          <p>The ordinary annuity formula is:</p>
+          <p class="fva-formula-block">FVA = PMT x [((1 + r)<sup>n</sup> - 1) / r]</p>
+          <ol class="fva-formula-steps">
         <li>
           Convert the annual rate into the per-period rate:
           <span data-fva="interest-rate"></span> divided by
@@ -149,12 +190,14 @@
           <span data-fva="applied-rate-decimal"></span>) because each contribution compounds for one
           extra period.
         </li>
-      </ol>
+          </ol>
+        </div>
+      </article>
     </div>
-    <p>
-      This route works best when contribution size stays stable. If your deposits vary materially,
-      treat the output as a planning anchor and compare it with a more flexible scenario page such
-      as the
+
+    <p class="fi-exp-guide-summary">
+      Read the result in order: future value first, total payments second, total interest third. If
+      deposits vary materially, compare the answer with the
       <a href="/finance-calculators/investment-return-calculator/">investment return calculator</a>.
     </p>
   </section>
@@ -250,8 +293,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the values and
+        timing choices entered on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -260,7 +303,7 @@
       <li>
         <strong>Assumptions:</strong> The calculation assumes level recurring payments, a fixed
         growth rate, consistent payment timing, and the selected compounding pattern for the full
-        schedule.
+        schedule, with no skipped contributions or changing rates built in.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

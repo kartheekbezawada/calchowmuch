@@ -1,25 +1,52 @@
 <div id="ir-explanation" class="explanation-pane">
   <div id="ir-explanation-content">
-    <h2>How Is Your Portfolio Performing Over Time?</h2>
-    <p>
-      Use this investment return calculator to estimate portfolio growth from a lump sum, recurring
-      contributions, compounding assumptions, inflation, and tax settings.
-    </p>
-    <p>
-      In the current scenario, total contributions of
-      <strong data-ir="exp-total-contributions">-</strong> grow to
-      <strong data-ir="exp-final-value">-</strong>, producing
-      <strong data-ir="exp-total-profit">-</strong> in profit and a nominal CAGR of
-      <strong data-ir="exp-cagr">-</strong>.
-    </p>
-    <p>
-      This route is strongest when you need CAGR, real-return, and tax-aware portfolio analysis in
-      one place. If you want a lighter projection without tax detail, compare the
-      <a href="/finance-calculators/investment-growth-calculator/">investment growth calculator</a>
-      or the
-      <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>
-      first, then return here for deeper scenario work.
-    </p>
+    <section class="mtg-exp-section fi-exp-hero">
+      <div class="fi-exp-intro">
+        <h2>How Is Your Portfolio Performing Over Time?</h2>
+        <p>
+          Judge whether the current plan is being driven more by deposits, compounding, or drag from
+          inflation and tax.
+        </p>
+      </div>
+
+      <div class="fi-exp-kpi">
+        <p class="fi-exp-kpi-label">Projected final portfolio value</p>
+        <p class="fi-exp-kpi-value"><strong data-ir="exp-final-value">-</strong></p>
+        <p class="fi-exp-kpi-note">
+          Built from total contributions of <strong data-ir="exp-total-contributions">-</strong>,
+          profit of <strong data-ir="exp-total-profit">-</strong>, and a nominal CAGR of
+          <strong data-ir="exp-cagr">-</strong>.
+        </p>
+      </div>
+
+      <div class="fi-exp-support">
+        <p>
+          This route is built for longer-horizon decisions where the headline ending balance matters
+          less than understanding what created it.
+        </p>
+        <p>
+          Use it when you want CAGR, inflation-adjusted returns, and tax-aware portfolio analysis in
+          one place.
+        </p>
+      </div>
+
+      <div class="fi-exp-context-grid">
+        <section class="fi-exp-card">
+          <h3>When This Helps</h3>
+          <p>
+            Best for comparing long-horizon portfolio scenarios where deposits, inflation, tax, and
+            timing all change the interpretation of the result.
+          </p>
+        </section>
+        <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+          <h3>Related Tools</h3>
+          <div class="fi-exp-link-list">
+            <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+            <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+          </div>
+        </nav>
+      </div>
+    </section>
 
     <section class="mtg-exp-section">
       <h3>Scenario Summary</h3>
@@ -127,37 +154,50 @@
       </div>
     </section>
 
-    <section class="mtg-exp-section ir-guide-readable">
-      <h3>How to Guide</h3>
-      <h4>What this calculator helps you decide</h4>
-      <p>
-        This tool is best used as a planning model rather than a market prediction engine. It
-        combines starting capital, recurring contributions, compounding assumptions, inflation, and
-        tax drag so you can compare realistic long-horizon scenarios before acting.
-      </p>
-      <p>
-        The most useful output is not only the final portfolio value. You also need to compare how
-        much capital came from your own deposits, how much came from growth, how much tax reduced
-        the result, and how different the real purchasing-power outcome looks once inflation is
-        accounted for. That broader view is what turns a simple projection into a decision tool.
-      </p>
+    <section class="mtg-exp-section ir-guide-readable fi-exp-guide">
+      <div class="fi-exp-section-head">
+        <h3>How to Guide</h3>
+        <p>Use the guide to separate the baseline inputs, the return story, and the drag from inflation and tax.</p>
+      </div>
 
-      <h4>Start with a clean baseline</h4>
-      <p>
-        Enter an initial investment, an annual return assumption you can defend, a realistic time
-        horizon, and a recurring contribution you can actually sustain. In many cases the baseline
-        tells you more than a heavily optimized scenario because it reflects the plan you are most
-        likely to follow in real life.
-      </p>
-      <p>
-        A disciplined baseline also gives you a reference point for later stress tests. Once you
-        know the starting case, you can change one variable at a time and understand what the change
-        actually did. That is far more useful than adjusting five inputs at once and trying to guess
-        which assumption drove the difference.
-      </p>
+      <div class="fi-exp-guide-list">
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">01</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>What this calculator helps you decide</h4>
+            <p>
+              This tool is best used as a planning model rather than a market prediction engine. It
+              combines starting capital, recurring contributions, compounding assumptions, inflation,
+              and tax drag so you can compare realistic long-horizon scenarios before acting.
+            </p>
+            <p>
+              The most useful output is not only the final portfolio value. You also need to compare
+              how much capital came from deposits, how much came from growth, how much tax reduced
+              the result, and how purchasing power changed after inflation.
+            </p>
+          </div>
+        </article>
 
-      <h4>Understand the core inputs before trusting the output</h4>
-      <ul>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">02</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Start with a clean baseline</h4>
+            <p>
+              Enter an initial investment, an annual return assumption you can defend, a realistic
+              time horizon, and a recurring contribution you can actually sustain.
+            </p>
+            <p>
+              In many cases the baseline tells you more than a heavily optimized scenario because it
+              reflects the plan you are most likely to follow in real life.
+            </p>
+          </div>
+        </article>
+
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">03</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Understand the core inputs before trusting the output</h4>
+            <ul>
         <li><strong>Initial Investment:</strong> the base that starts compounding immediately.</li>
         <li>
           <strong>Expected Annual Return:</strong> the long-run growth assumption before inflation
@@ -172,85 +212,80 @@
         </li>
         <li><strong>Inflation Rate:</strong> the drag on purchasing power.</li>
         <li><strong>Tax Rate:</strong> the friction that can materially reduce realized growth.</li>
-      </ul>
-      <p>
-        Duration is often the most underappreciated driver. Extending the plan by a few years can
-        change the outcome more than modestly increasing the return assumption, especially when
-        contributions continue consistently. That is why time horizon deserves as much attention as
-        the return percentage itself.
-      </p>
+            </ul>
+            <p>
+              Duration is often the most underappreciated driver. Extending the plan by a few years
+              can change the outcome more than a modest increase in the return assumption.
+            </p>
+          </div>
+        </article>
 
-      <h4>Read nominal and real outputs together</h4>
-      <p>
-        Nominal outputs tell you what the account balance may become. Real outputs tell you what
-        that balance may be worth in today’s purchasing power. If you are planning a future spending
-        goal, retirement target, or tuition need, the real figures are often more useful than the
-        nominal ones on their own.
-      </p>
-      <p>
-        When nominal CAGR looks healthy but real CAGR is modest, the plan may be more fragile than
-        the headline number suggests. That usually means you should test a longer duration, a larger
-        recurring contribution, or a more conservative expected return.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">04</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Read nominal and real outputs together</h4>
+            <p>
+              Nominal outputs tell you what the account balance may become. Real outputs tell you
+              what that balance may be worth in today’s purchasing power.
+            </p>
+            <p>
+              When nominal CAGR looks healthy but real CAGR is modest, the plan may be more fragile
+              than the headline number suggests.
+            </p>
+          </div>
+        </article>
 
-      <h4>Use advanced mode for better scenarios, not more noise</h4>
-      <p>
-        Advanced mode exists to improve scenario quality. Variable annual returns let you replace a
-        flat assumption with a more realistic uneven path. One-time events let you model deposits or
-        withdrawals at known points in time. Crash simulation helps you test how resilient the plan
-        is when a drawdown happens before the portfolio has fully matured.
-      </p>
-      <p>
-        The best use of advanced mode is to run a baseline case, then a conservative stress case,
-        then an optimistic case. The spread between those outcomes is often more decision-useful
-        than any single projection because it shows the range of possible planning realities.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">05</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Use advanced mode for better scenarios, not more noise</h4>
+            <p>
+              Variable annual returns let you replace a flat assumption with a more realistic uneven
+              path. One-time events let you model deposits or withdrawals at known points in time.
+            </p>
+            <p>
+              The best use of advanced mode is to compare a baseline case with a conservative stress
+              case and a more optimistic case, rather than turning on every extra assumption at once.
+            </p>
+          </div>
+        </article>
 
-      <h4>How contribution frequency and timing change outcomes</h4>
-      <p>
-        Monthly contributions usually align best with budgeting behavior and put money to work more
-        steadily than quarterly or annual deposits. Beginning-of-period contributions often finish
-        with a slightly higher ending value than end-of-period contributions because every deposit
-        has more time to compound.
-      </p>
-      <p>
-        These differences may look small on a single cycle, but over a decade or more they can
-        become meaningful. That is why contribution timing and frequency are worth treating as real
-        strategy choices rather than cosmetic toggles.
-      </p>
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">06</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>How contribution frequency, tax, and inflation change interpretation</h4>
+            <p>
+              Monthly contributions usually align best with budgeting behavior, and beginning-of-period
+              contributions often finish with a slightly higher ending value.
+            </p>
+            <p>
+              Tax drag reduces the portion of annual growth you keep, while inflation changes what
+              the ending balance can actually buy. Current effective annual rate:
+              <strong data-ir="exp-ear">-</strong>. Current carryforward loss balance:
+              <strong data-ir="exp-carryforward">-</strong>.
+            </p>
+          </div>
+        </article>
 
-      <h4>How tax and inflation change interpretation</h4>
-      <p>
-        Tax drag matters because it reduces the portion of annual growth you actually keep. A plan
-        that looks strong before tax can feel much less compelling after a realistic tax setting is
-        applied. Inflation matters for a different reason: it changes what your ending balance can
-        actually buy. Together, tax and inflation turn optimistic nominal projections into more
-        grounded planning outputs.
-      </p>
-      <p>
-        Current effective annual rate: <strong data-ir="exp-ear">-</strong>. Current carryforward
-        loss balance: <strong data-ir="exp-carryforward">-</strong>.
-      </p>
-
-      <h4>Practical decision checklist</h4>
-      <ul class="ir-checklist">
+        <article class="fi-exp-guide-step">
+          <span class="fi-exp-step-no">07</span>
+          <div class="fi-exp-guide-step-body">
+            <h4>Practical decision checklist</h4>
+            <ul class="ir-checklist">
         <li>Use assumptions you can defend, not assumptions that simply maximize the answer.</li>
         <li>Review final value, contributions, profit, tax, and both CAGR metrics together.</li>
         <li>Compare annual and monthly breakdowns before acting on the plan.</li>
         <li>Run at least one adverse scenario, not only a baseline case.</li>
         <li>Revisit the model when income, goals, tax context, or risk tolerance changes.</li>
-      </ul>
-      <p>
-        The most reliable way to use this calculator is as a comparison framework. Better financial
-        decisions come from understanding the tradeoffs between time, contributions, inflation, and
-        taxes rather than from trusting a single headline number without context.
-      </p>
-      <p>
-        If the first result looks either too good or too discouraging, do not react to the headline
-        alone. Check whether the return assumption is realistic, whether the contribution amount is
-        sustainable, whether inflation is understated, and whether the tax setting matches the
-        account type you actually expect to use. That final review step is often what turns a rough
-        projection into a genuinely useful planning tool.
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="fi-exp-guide-summary">
+        The most reliable way to use this calculator is as a comparison framework. If the first
+        result looks too good or too discouraging, review the return assumption, contribution level,
+        inflation setting, and tax treatment before treating the answer as decision-ready.
       </p>
     </section>
 

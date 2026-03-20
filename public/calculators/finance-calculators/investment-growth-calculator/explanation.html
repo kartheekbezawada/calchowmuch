@@ -1,21 +1,46 @@
 <div id="ig-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>How Much Could This Portfolio Grow?</h2>
-    <p>
-      This calculator projects how a starting balance and recurring contributions may grow over time
-      under a fixed return assumption.
-    </p>
-    <p>
-      Use the future value first, then compare total contributions and total gains to see how much
-      of the ending balance comes from your deposits versus growth.
-    </p>
-    <p>
-      This route is useful for retirement planning, college funds, and long-term portfolio scenarios
-      where inflation-adjusted value matters. If you need richer CAGR and tax detail, use the
-      <a href="/finance-calculators/investment-return-calculator/">investment return calculator</a>.
-      If you only need basic accumulation math, use the
-      <a href="/finance-calculators/future-value-calculator/">future value calculator</a>.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>How Much Could This Portfolio Grow?</h2>
+      <p>
+        Project long-term portfolio growth with a clear view of nominal value and inflation-adjusted
+        purchasing power.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Projected future value</p>
+      <p class="fi-exp-kpi-value"><strong><span data-ig="future-value"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Compare it with total contributions of <span data-ig="total-contributions"></span> and total
+        gains of <strong><span data-ig="total-gains"></span></strong>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        Start with future value, then compare contributions and gains to see how much of the ending
+        balance came from saving discipline versus portfolio growth.
+      </p>
+      <p>Use this route when inflation-adjusted value matters as much as the nominal balance.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Useful for retirement planning, college funds, and long-term portfolio scenarios where
+          inflation-adjusted value matters.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/investment-return-calculator/">Investment Return</a>
+          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="ig-results-table">
         <thead>
@@ -51,33 +76,59 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Start with the balance you have today</h4>
-      <p>Enter the amount already invested or saved before any new contributions are added.</p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Use the guide to separate what comes from your deposits, what comes from returns, and what inflation takes back.</p>
     </div>
-    <div>
-      <h4>2. Use a realistic expected return</h4>
-      <p>
-        This is a planning assumption, not a promise. Conservative assumptions are usually more
-        useful than optimistic ones.
-      </p>
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Start with the balance you have today</h4>
+          <p>
+            Enter the amount already invested or saved before any new contributions are added. This
+            opening balance begins compounding immediately.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Use a realistic expected return</h4>
+          <p>
+            This is a planning assumption, not a promise. Conservative assumptions are usually more
+            useful than optimistic ones because they compare better with real saving behavior.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add contributions only if they are repeatable</h4>
+          <p>
+            Recurring deposits can materially raise the future value because each contribution also
+            has time to compound. Use an amount that fits your expected cash flow.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Use inflation when you care about purchasing power</h4>
+          <p>
+            Inflation-adjusted output is often the better view when planning for future spending
+            needs, because nominal growth alone can overstate what the portfolio may actually buy.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>3. Add contributions only if they are repeatable</h4>
-      <p>
-        Recurring deposits can materially raise the future value because each contribution also has
-        time to compound.
-      </p>
-    </div>
-    <div>
-      <h4>4. Use inflation when you care about purchasing power</h4>
-      <p>
-        Inflation-adjusted output is often the better view when planning for future spending needs.
-      </p>
-    </div>
-    <p>
+
+    <p class="fi-exp-guide-summary">
       The most useful comparison is usually nominal value versus inflation-adjusted value. That pair
       tells you both what the account balance may show and what the money may actually buy.
     </p>
@@ -162,8 +213,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the inputs shown
+        on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -171,7 +222,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The model assumes a fixed return, fixed contribution amount,
-        and the selected compounding schedule for the full horizon.
+        and the selected compounding schedule for the full horizon, with no taxes, fees, or return
+        variability included.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

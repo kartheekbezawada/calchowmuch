@@ -1716,6 +1716,133 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-monthly-savings-needed .fi-exp-hero,
+      #calc-monthly-savings-needed .fi-exp-guide {
+        display: grid;
+        gap: 18px;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-intro,
+      #calc-monthly-savings-needed .fi-exp-support,
+      #calc-monthly-savings-needed .fi-exp-section-head,
+      #calc-monthly-savings-needed .fi-exp-guide-step-body {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-intro h2,
+      #calc-monthly-savings-needed .fi-exp-section-head h3,
+      #calc-monthly-savings-needed .fi-exp-card h3,
+      #calc-monthly-savings-needed .fi-exp-guide-step h4 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-intro p,
+      #calc-monthly-savings-needed .fi-exp-support p,
+      #calc-monthly-savings-needed .fi-exp-card p,
+      #calc-monthly-savings-needed .fi-exp-section-head p,
+      #calc-monthly-savings-needed .fi-exp-guide-step p,
+      #calc-monthly-savings-needed .fi-exp-guide-summary {
+        margin: 0;
+        max-width: 72ch;
+        color: #44515c;
+        line-height: 1.7;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-kpi,
+      #calc-monthly-savings-needed .fi-exp-card,
+      #calc-monthly-savings-needed .fi-exp-guide-step {
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-monthly-savings-needed .fi-exp-kpi {
+        gap: 6px;
+        background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+      }
+
+      #calc-monthly-savings-needed .fi-exp-kpi-label,
+      #calc-monthly-savings-needed .fi-exp-step-no {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #557089;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-kpi-value {
+        margin: 0;
+        font-size: clamp(1.6rem, 2vw, 2.15rem);
+        line-height: 1.1;
+        color: #13293d;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-context-grid,
+      #calc-monthly-savings-needed .fi-exp-guide-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-context-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-monthly-savings-needed .fi-exp-link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-link-list a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(31, 95, 135, 0.08);
+        color: #163e59;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-guide-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-monthly-savings-needed .fi-exp-step-no {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(31, 95, 135, 0.1);
+      }
+
+      #calc-monthly-savings-needed .fi-exp-guide-step ol,
+      #calc-monthly-savings-needed .fi-exp-guide-step ul,
+      #calc-monthly-savings-needed .mtg-exp-section--notes ul {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-monthly-savings-needed .fi-exp-guide-summary {
+        padding-top: 10px;
+        border-top: 1px solid rgba(31, 95, 135, 0.12);
+      }
+
+      @media (max-width: 720px) {
+        #calc-monthly-savings-needed .fi-exp-context-grid,
+        #calc-monthly-savings-needed .fi-exp-guide-step {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/#webpage","name":"Monthly Savings Needed Calculator | Reach Your Goal","url":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/","description":"Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/#softwareapplication","name":"Monthly Savings Needed Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/","description":"Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Required monthly savings calculation","Total contributions breakdown","Total interest earned","Compounding frequency options"],"keywords":"monthly savings calculator, savings goal calculator, how much to save, investment calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this calculator solve for?","acceptedAnswer":{"@type":"Answer","text":"It solves for the monthly contribution needed to reach a goal by a target date."}},{"@type":"Question","name":"Does interest reduce the monthly requirement?","acceptedAnswer":{"@type":"Answer","text":"Yes. Interest can lower the amount you need to save because your balance also grows on its own."}},{"@type":"Question","name":"What if I already have savings?","acceptedAnswer":{"@type":"Answer","text":"Existing savings reduce the gap to the target and therefore reduce the monthly amount required."}},{"@type":"Question","name":"Does contribution timing matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Beginning-of-period deposits usually lower the monthly requirement slightly because they compound earlier."}},{"@type":"Question","name":"What if the time period is too short?","acceptedAnswer":{"@type":"Answer","text":"The required monthly amount can become much larger because there is less time for deposits and growth to work."}},{"@type":"Question","name":"Can I use this for a house deposit?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for deposits, emergency funds, tuition goals, and other fixed savings targets."}},{"@type":"Question","name":"What if the rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The calculator falls back to a straight-line savings requirement based only on the gap and the number of months."}},{"@type":"Question","name":"Why can small rate changes matter?","acceptedAnswer":{"@type":"Answer","text":"Because they compound across the full savings window and reduce the amount you must contribute yourself."}},{"@type":"Question","name":"Is the output guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning estimate based on fixed assumptions."}},{"@type":"Question","name":"What should I change if the monthly amount is too high?","acceptedAnswer":{"@type":"Answer","text":"Try extending the time horizon, increasing current savings, or lowering the goal."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Monthly Savings Needed","item":"https://calchowmuch.com/finance-calculators/monthly-savings-needed-calculator/"}]}]}</script>
@@ -2025,28 +2152,48 @@
 </div>
 
     <div id="msn-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>How Much Do You Need to Save Each Month?</h2>
-    <p>
-      Use this calculator to estimate the monthly contribution required to hit a savings target
-      within your chosen time frame.
-    </p>
-    <p>
-      With a goal of <span data-msn="goal"></span>, current savings of
-      <span data-msn="current"></span>, and a time horizon of <span data-msn="time-period"></span>,
-      the current plan requires <strong><span data-msn="monthly-savings"></span></strong> per month.
-    </p>
-    <p>
-      This route is useful for house deposits, tuition targets, weddings, travel plans, and
-      emergency funds when the unknown is the monthly budget required. If the monthly amount is
-      already known and the unknown is the timeline, use the
-      <a href="/finance-calculators/time-to-savings-goal-calculator/"
-        >time to savings goal calculator</a
-      >. For recurring-deposit accumulation math, you can also compare with the
-      <a href="/finance-calculators/future-value-of-annuity-calculator/"
-        >future value of annuity calculator</a
-      >.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>How Much Do You Need to Save Each Month?</h2>
+      <p>
+        Estimate the monthly savings commitment required to reach a fixed goal by a chosen
+        deadline.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Required monthly savings</p>
+      <p class="fi-exp-kpi-value"><strong><span data-msn="monthly-savings"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Based on a goal of <span data-msn="goal"></span>, current savings of
+        <span data-msn="current"></span>, and a horizon of <span data-msn="time-period"></span>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        Read the monthly requirement first, then compare total contributions and total interest to
+        see how much the plan depends on your own deposits.
+      </p>
+      <p>Use this page when the deadline is fixed and the missing answer is the monthly budget.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Useful for house deposits, tuition targets, weddings, travel plans, and emergency funds
+          when the unknown is the monthly budget required.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/time-to-savings-goal-calculator/">Time to Savings Goal</a>
+          <a href="/finance-calculators/future-value-of-annuity-calculator/">Future Value of Annuity</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="msn-results-table">
         <thead>
@@ -2079,33 +2226,60 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Start with the target and current balance</h4>
-      <p>Enter the savings goal and the amount already saved today.</p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Use the guide to separate the savings gap, the deadline, and the rate assumption before you set the budget.</p>
     </div>
-    <div>
-      <h4>2. Set the deadline honestly</h4>
-      <p>
-        A shorter horizon raises the required monthly amount because the plan has less time to work.
-      </p>
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Start with the target and current balance</h4>
+          <p>
+            Enter the savings goal and the amount already saved today. The difference between those
+            numbers is the gap your monthly plan has to close.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Set the deadline honestly</h4>
+          <p>
+            A shorter horizon raises the required monthly amount because the plan has less time to
+            work. Use a deadline that matches the real decision rather than the ideal timetable.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add the rate only if it is realistic</h4>
+          <p>
+            Interest can reduce the monthly burden, but aggressive assumptions can make the number
+            look easier than the real plan. Match the rate to the account you expect to use.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Compare the monthly amount against your real budget</h4>
+          <p>
+            If the required number is too high, adjust the timeline, goal, or current balance
+            before relying on a more aggressive rate assumption.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>3. Add the rate only if it is realistic</h4>
-      <p>
-        Interest can reduce the monthly burden, but aggressive assumptions can make the number look
-        easier than the real plan.
-      </p>
-    </div>
-    <div>
-      <h4>4. Compare the monthly amount against your real budget</h4>
-      <p>
-        If the required number is too high, adjust the timeline, goal, or current contribution plan.
-      </p>
-    </div>
-    <p>
-      The best use of this page is to compare a required monthly number against the cash flow you
+
+    <p class="fi-exp-guide-summary">
+      The best use of this page is to compare the required monthly number against the cash flow you
       can actually sustain, then revise the timeline before over-optimizing the rate assumption.
     </p>
   </section>
@@ -2192,8 +2366,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the values,
+        deadline, and rate settings you enter.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -2201,7 +2375,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution timing, and
-        the selected compounding schedule for the full term.
+        the selected compounding schedule for the full term, with no skipped deposits or changing
+        returns built into the result.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

@@ -1715,6 +1715,133 @@
           grid-template-columns: 1fr;
         }
       }
+
+      #calc-time-to-savings-goal .fi-exp-hero,
+      #calc-time-to-savings-goal .fi-exp-guide {
+        display: grid;
+        gap: 18px;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-intro,
+      #calc-time-to-savings-goal .fi-exp-support,
+      #calc-time-to-savings-goal .fi-exp-section-head,
+      #calc-time-to-savings-goal .fi-exp-guide-step-body {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-intro h2,
+      #calc-time-to-savings-goal .fi-exp-section-head h3,
+      #calc-time-to-savings-goal .fi-exp-card h3,
+      #calc-time-to-savings-goal .fi-exp-guide-step h4 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-intro p,
+      #calc-time-to-savings-goal .fi-exp-support p,
+      #calc-time-to-savings-goal .fi-exp-card p,
+      #calc-time-to-savings-goal .fi-exp-section-head p,
+      #calc-time-to-savings-goal .fi-exp-guide-step p,
+      #calc-time-to-savings-goal .fi-exp-guide-summary {
+        margin: 0;
+        max-width: 72ch;
+        color: #44515c;
+        line-height: 1.7;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-kpi,
+      #calc-time-to-savings-goal .fi-exp-card,
+      #calc-time-to-savings-goal .fi-exp-guide-step {
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      #calc-time-to-savings-goal .fi-exp-kpi {
+        gap: 6px;
+        background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+      }
+
+      #calc-time-to-savings-goal .fi-exp-kpi-label,
+      #calc-time-to-savings-goal .fi-exp-step-no {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #557089;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-kpi-value {
+        margin: 0;
+        font-size: clamp(1.6rem, 2vw, 2.15rem);
+        line-height: 1.1;
+        color: #13293d;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-context-grid,
+      #calc-time-to-savings-goal .fi-exp-guide-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-context-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-time-to-savings-goal .fi-exp-link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-link-list a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(31, 95, 135, 0.08);
+        color: #163e59;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-guide-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        background: rgba(248, 250, 252, 0.94);
+      }
+
+      #calc-time-to-savings-goal .fi-exp-step-no {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(31, 95, 135, 0.1);
+      }
+
+      #calc-time-to-savings-goal .fi-exp-guide-step ol,
+      #calc-time-to-savings-goal .fi-exp-guide-step ul,
+      #calc-time-to-savings-goal .mtg-exp-section--notes ul {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-time-to-savings-goal .fi-exp-guide-summary {
+        padding-top: 10px;
+        border-top: 1px solid rgba(31, 95, 135, 0.12);
+      }
+
+      @media (max-width: 720px) {
+        #calc-time-to-savings-goal .fi-exp-context-grid,
+        #calc-time-to-savings-goal .fi-exp-guide-step {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/#webpage","name":"Time to Savings Goal Calculator | Reach Your Target","url":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/","description":"Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/#softwareapplication","name":"Time to Savings Goal Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/","description":"Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Time to goal estimate","Total interest earned","Total accumulated balance","Compounding frequency options"],"keywords":"time to savings goal, savings calculator, goal calculator, how long to save","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this calculator show?","acceptedAnswer":{"@type":"Answer","text":"It estimates how long it may take to reach a savings target using your balance, deposits, and optional interest."}},{"@type":"Question","name":"Does interest help?","acceptedAnswer":{"@type":"Answer","text":"Yes. Interest can reduce the time to goal because your balance earns growth along the way."}},{"@type":"Question","name":"What if I already reached the goal?","acceptedAnswer":{"@type":"Answer","text":"The result becomes immediate because the current balance already meets or exceeds the target."}},{"@type":"Question","name":"What if contributions are zero?","acceptedAnswer":{"@type":"Answer","text":"You may never reach the goal unless the current balance and interest alone are enough."}},{"@type":"Question","name":"Does contribution timing matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Beginning-of-period deposits usually shorten the timeline slightly because they compound earlier."}},{"@type":"Question","name":"Should I use monthly or annual compounding?","acceptedAnswer":{"@type":"Answer","text":"Use the setting that best matches the account or product you are modeling."}},{"@type":"Question","name":"Can I use this for a house deposit?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for any fixed savings target such as a deposit, emergency fund, or travel budget."}},{"@type":"Question","name":"Why can small rate changes matter?","acceptedAnswer":{"@type":"Answer","text":"Because they apply over every period and compound over the full savings horizon."}},{"@type":"Question","name":"Is this a guarantee?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning estimate based on fixed assumptions."}},{"@type":"Question","name":"What should I do if the timeline is too long?","acceptedAnswer":{"@type":"Answer","text":"Try increasing contributions, extending the horizon, or lowering the goal."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Time to Savings Goal","item":"https://calchowmuch.com/finance-calculators/time-to-savings-goal-calculator/"}]}]}</script>
@@ -1990,25 +2117,48 @@
 </div>
 
     <div id="tsg-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>When Could You Reach Your Savings Goal?</h2>
-    <p>
-      Use this calculator to estimate how long it may take to hit a savings target using your
-      current balance, recurring deposits, interest rate, and compounding settings.
-    </p>
-    <p>
-      With a goal of <span data-tsg="goal"></span>, current savings of
-      <span data-tsg="current"></span>, and contributions of <span data-tsg="contribution"></span>,
-      the current plan reaches the target in <strong><span data-tsg="time-result"></span></strong>.
-    </p>
-    <p>
-      This page fits emergency funds, house deposits, travel budgets, car purchases, and other fixed
-      savings targets where the unknown is the timeline. If the unknown is the monthly amount
-      instead, use the
-      <a href="/finance-calculators/monthly-savings-needed-calculator/"
-        >monthly savings needed calculator</a
-      >.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>When Could You Reach Your Savings Goal?</h2>
+      <p>
+        Estimate the timeline to a fixed target using your current balance, recurring deposits, and
+        rate assumptions.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Estimated time to goal</p>
+      <p class="fi-exp-kpi-value"><strong><span data-tsg="time-result"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Based on a goal of <span data-tsg="goal"></span>, current savings of
+        <span data-tsg="current"></span>, and contributions of <span data-tsg="contribution"></span>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        Read the timeline first, then compare total contributions and total interest to see whether
+        the plan depends mostly on deposits or on growth.
+      </p>
+      <p>Use this route when the target amount is fixed and the missing answer is the timeline.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Useful for emergency funds, house deposits, travel budgets, car purchases, and other
+          fixed savings targets.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed</a>
+          <a href="/finance-calculators/future-value-of-annuity-calculator/">Future Value of Annuity</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="tsg-results-table">
         <thead>
@@ -2049,37 +2199,61 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Enter the target and current balance</h4>
-      <p>Start with the amount you want to reach and what is already saved today.</p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Use the guide to separate the savings gap, the monthly effort, and the role of interest.</p>
     </div>
-    <div>
-      <h4>2. Set a contribution you can sustain</h4>
-      <p>
-        Consistency matters more than a one-off stretch target. Use a monthly amount you can
-        actually maintain.
-      </p>
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Enter the target and current balance</h4>
+          <p>
+            Start with the amount you want to reach and what is already saved today. That gap
+            defines the real savings problem the calculator is solving.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Set a contribution you can sustain</h4>
+          <p>
+            Consistency matters more than a one-off stretch target. Use a monthly amount you can
+            actually maintain.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add the rate and compounding only if they are realistic</h4>
+          <p>
+            Interest can shorten the timeline, but aggressive assumptions can make the plan look
+            easier than it really is. Match the settings to the account you expect to use.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Read the result in order</h4>
+          <p>
+            Start with time to goal, then total contributions, then total interest. That shows
+            whether the plan depends mostly on deposits or on growth.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>3. Add the rate and compounding only if they are realistic</h4>
-      <p>
-        Interest can shorten the timeline, but aggressive assumptions can make the plan look easier
-        than it really is.
-      </p>
-    </div>
-    <div>
-      <h4>4. Read the result in order</h4>
-      <p>
-        Start with time to goal, then total contributions, then total interest. That shows whether
-        the plan depends mostly on deposits or on growth.
-      </p>
-    </div>
-    <p>
+
+    <p class="fi-exp-guide-summary">
       If the timeline looks too long, test one lever at a time: higher monthly deposits, a lower
-      goal, or a longer deadline. That makes it easier to see which change genuinely improves the
-      plan.
+      goal, or a longer deadline.
     </p>
   </section>
 
@@ -2160,8 +2334,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the values,
+        timing, and rate settings entered on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -2169,7 +2343,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The model assumes a fixed contribution amount, fixed rate, and
-        the selected compounding and timing pattern for the full plan.
+        the selected compounding and timing pattern for the full plan, with no missed deposits or
+        rate changes included.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

@@ -581,7 +581,7 @@ body[data-design-family='home-loan'] #loan-personal-explanation .pl-table-wrap {
 }
 
 body[data-design-family='home-loan'] #loan-personal-explanation .calculator-table {
-  min-width: 720px;
+  min-width: 480px;
 }
 
 body[data-design-family='home-loan'] #loan-personal-explanation .pl-formula {

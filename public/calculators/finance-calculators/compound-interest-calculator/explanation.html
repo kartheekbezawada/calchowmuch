@@ -1,21 +1,46 @@
 <div id="ci-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>How Fast Could This Balance Compound?</h2>
-    <p>
-      This calculator estimates how a starting balance and recurring contributions can grow when
-      interest compounds over time.
-    </p>
-    <p>
-      Use the ending balance first, then compare total contributions and total interest to see how
-      much of the result came from your deposits versus compounding.
-    </p>
-    <p>
-      This route is strongest for long-horizon savings, investing, and wealth-building questions
-      where time and reinvestment drive the answer. If you want a lighter accumulation model, use
-      the <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If
-      you want a portfolio view with inflation context, use the
-      <a href="/finance-calculators/investment-growth-calculator/">investment growth calculator</a>.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>How Fast Could This Balance Compound?</h2>
+      <p>
+        Estimate how an opening balance and steady deposits may grow when returns compound over
+        time.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Projected ending balance</p>
+      <p class="fi-exp-kpi-value"><strong><span data-ci="ending-balance"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Built from total contributions of <span data-ci="total-contributions"></span> and compound
+        growth of <strong><span data-ci="total-interest"></span></strong>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        Read the ending balance first, then compare total contributions and total interest to see
+        how much came from your deposits versus compounding.
+      </p>
+      <p>Use this route when time, reinvestment, and contribution discipline drive the decision.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Strongest for long-horizon savings, investing, and wealth-building questions where time in
+          the market drives the answer.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+          <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="ci-results-table">
         <thead>
@@ -68,40 +93,70 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Start with the opening balance</h4>
-      <p>Enter the amount already invested or saved. This base begins compounding immediately.</p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Set the base, review the growth inputs, then judge the answer against contribution burden and time horizon.</p>
     </div>
-    <div>
-      <h4>2. Add the rate and time horizon</h4>
-      <p>
-        The annual rate and the total years determine how much time the balance has to compound.
-      </p>
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Start with the opening balance</h4>
+          <p>
+            Enter the amount already invested or saved. This balance starts compounding immediately,
+            so it often has the strongest influence on the final result.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add the rate and time horizon</h4>
+          <p>
+            The annual rate and the total years determine how long the balance has to compound. A
+            realistic time horizon is usually more useful than an aggressive rate assumption.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Add recurring contributions only if they are consistent</h4>
+          <p>
+            Recurring contributions can materially change the ending balance because each deposit
+            also compounds for the remainder of the plan.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Compare contribution growth and interest growth</h4>
+          <p>
+            Read ending balance first, then total contributions, then total interest. That sequence
+            shows whether progress is being driven mostly by deposits or by time in the market.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">05</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Use the projection table and chart as secondary tools</h4>
+          <p>
+            The table and chart help you inspect the path, but the main decision still rests on the
+            ending balance, the contribution burden, and the realism of the assumptions behind them.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>3. Add recurring contributions only if they are consistent</h4>
-      <p>
-        Recurring contributions can materially change the ending balance because each deposit also
-        compounds for the remainder of the plan.
-      </p>
-    </div>
-    <div>
-      <h4>4. Compare contribution growth and interest growth</h4>
-      <p>
-        Read ending balance first, then total contributions, then total interest. That sequence
-        shows whether progress is being driven mostly by deposits or by time in the market.
-      </p>
-    </div>
-    <div>
-      <h4>5. Use the projection table and chart as secondary tools</h4>
-      <p>
-        The table and chart help you inspect the path. They are useful for pacing and comparison,
-        but the primary decision is still the ending balance and contribution burden.
-      </p>
-    </div>
-    <p>
+
+    <p class="fi-exp-guide-summary">
       In practice, most compound-interest decisions improve when you compare the answer with the
       contribution burden and the time horizon together rather than chasing the highest possible
       rate assumption.
@@ -293,8 +348,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are fixed-assumption projections based on the values,
+        frequency, and timing choices entered on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -302,7 +357,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution amount, and
-        the selected compounding schedule for the full time horizon.
+        the selected compounding schedule for the full time horizon, with no taxes, fees, or
+        irregular cash flows included.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

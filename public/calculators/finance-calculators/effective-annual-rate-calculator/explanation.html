@@ -1,25 +1,46 @@
 <div id="ear-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>What Is the True Annual Rate After Compounding?</h2>
-    <p>
-      This calculator converts a quoted nominal rate into the real annual rate after compounding so
-      you can compare borrowing costs and investment returns on the same basis.
-    </p>
-    <p>
-      With a nominal rate of <span data-ear="nominal-rate"></span> compounded
-      <span data-ear="frequency"></span>, the effective annual rate is
-      <strong><span data-ear="ear-rate"></span></strong>, which is
-      <span data-ear="difference"></span> above the stated rate.
-    </p>
-    <p>
-      EAR is most useful when you need to compare savings accounts, CDs, quoted bank rates, or loan
-      offers that compound at different speeds. If you want to see how a rate affects a growing
-      balance, continue to the
-      <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>
-      or the
-      <a href="/finance-calculators/simple-interest-calculator/">simple interest calculator</a>
-      depending on whether the product compounds.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>What Is the True Annual Rate After Compounding?</h2>
+      <p>
+        Convert a quoted nominal rate into the real one-year rate so products can be compared on an
+        equal basis.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Effective annual rate</p>
+      <p class="fi-exp-kpi-value"><strong><span data-ear="ear-rate"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        That is <span data-ear="difference"></span> above the quoted rate of
+        <span data-ear="nominal-rate"></span>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        With <span data-ear="frequency"></span> compounding, the headline rate understates the true
+        annual cost or return.
+      </p>
+      <p>Use EAR when compounding frequency differs across savings offers, CDs, or loan quotes.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Best for comparing savings accounts, quoted bank rates, CDs, and loan offers that
+          compound at different speeds.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+          <a href="/finance-calculators/simple-interest-calculator/">Simple Interest</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="ear-results-table">
         <thead>
@@ -72,34 +93,53 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Enter the quoted annual rate</h4>
-      <p>
-        Start with the headline rate from the product, loan, or account disclosure. This is the
-        number most offers advertise first.
-      </p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Read the quoted rate, the compounding schedule, and the EAR difference as separate decisions.</p>
     </div>
-    <div>
-      <h4>2. Match the compounding schedule</h4>
-      <p>
-        Choose the same compounding rhythm used by the lender or provider. More frequent compounding
-        increases the true annual rate even when the nominal rate stays fixed.
-      </p>
-    </div>
-    <div>
-      <h4>3. Compare the difference, not just the headline</h4>
-      <p>
-        The EAR difference tells you how much compounding adds. That is the number that makes annual
-        comparisons fair across competing offers.
-      </p>
-    </div>
-    <div>
-      <h4>4. Review the formula steps</h4>
-      <p>The EAR formula is:</p>
-      <p class="ear-formula-block">EAR = (1 + r / n)<sup>n</sup> - 1</p>
-      <ol class="ear-formula-steps">
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Enter the quoted annual rate</h4>
+          <p>
+            Start with the headline rate from the product, loan, or account disclosure. This is the
+            advertised number, not yet the one-year comparison number.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Match the compounding schedule</h4>
+          <p>
+            Choose the same compounding rhythm used by the lender or provider. More frequent
+            compounding raises the true annual rate even when the nominal rate stays fixed.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Compare the difference, not just the headline</h4>
+          <p>
+            The EAR difference shows how much compounding adds beyond the quoted percentage. That is
+            the number that makes annual comparisons fair.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Review the formula steps</h4>
+          <p>The EAR formula is:</p>
+          <p class="ear-formula-block">EAR = (1 + r / n)<sup>n</sup> - 1</p>
+          <ol class="ear-formula-steps">
         <li>
           Convert the nominal rate to decimal:
           <span data-ear="nominal-rate"></span> = <span data-ear="nominal-decimal"></span>.
@@ -122,11 +162,14 @@
           Subtract 1 to reach the effective annual rate:
           <span data-ear="ear-decimal"></span> = <span data-ear="ear-rate"></span>.
         </li>
-      </ol>
+          </ol>
+        </div>
+      </article>
     </div>
-    <p>
-      The practical takeaway is simple: compare annual rates on an effective basis, not just on the
-      headline quoted percentage. That is what makes one-year comparisons fair across products.
+
+    <p class="fi-exp-guide-summary">
+      The practical takeaway is simple: compare rates on an effective basis, not on the headline
+      percentage alone. That is what turns a quoted rate into a fair annual comparison.
     </p>
   </section>
 
@@ -215,8 +258,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are deterministic outputs from the nominal rate and
+        compounding schedule you enter.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -224,8 +267,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The calculation assumes the quoted nominal rate applies for
-        one full year and compounds at the selected frequency with no fees or extra charges
-        included.
+        one full year and compounds at the selected frequency, with no fees, penalties, teaser
+        periods, or extra charges included in the EAR conversion.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

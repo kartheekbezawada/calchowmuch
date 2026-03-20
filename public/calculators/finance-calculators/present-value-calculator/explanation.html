@@ -1,26 +1,47 @@
 <div id="pv-explanation" class="explanation-pane">
-  <section class="mtg-exp-section">
-    <h2>What Is That Future Amount Worth Today?</h2>
-    <p>
-      This calculator discounts a future lump sum into present-day value so you can compare a later
-      payout with cash available now on a like-for-like basis.
-    </p>
-    <p>
-      With a future amount of <span data-pv="future-value"></span>, a discount rate of
-      <span data-pv="discount-rate"></span>, a time horizon of <span data-pv="time-period"></span>,
-      and <span data-pv="compounding-frequency"></span> compounding, the present value is
-      <strong><span data-pv="present-value"></span></strong>.
-    </p>
-    <p>
-      Present value is commonly used for deferred bonuses, settlement offers, bond proceeds, and any
-      future lump-sum payment you want to compare against cash today. If you need the opposite lens,
-      use the
-      <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If you
-      need to value a stream of recurring payments, use the
-      <a href="/finance-calculators/present-value-of-annuity-calculator/"
-        >present value of annuity calculator</a
-      >.
-    </p>
+  <section class="mtg-exp-section fi-exp-hero">
+    <div class="fi-exp-intro">
+      <h2>What Is That Future Amount Worth Today?</h2>
+      <p>
+        Discount a future lump sum into today’s money so a later payout can be compared on equal
+        terms with cash available now.
+      </p>
+    </div>
+
+    <div class="fi-exp-kpi">
+      <p class="fi-exp-kpi-label">Present value today</p>
+      <p class="fi-exp-kpi-value"><strong><span data-pv="present-value"></span></strong></p>
+      <p class="fi-exp-kpi-note">
+        Based on a future amount of <span data-pv="future-value"></span> discounted at
+        <span data-pv="discount-rate"></span>.
+      </p>
+    </div>
+
+    <div class="fi-exp-support">
+      <p>
+        With <span data-pv="compounding-frequency"></span> compounding across
+        <span data-pv="time-period"></span>, the discount rate shows what waiting costs in today’s
+        money.
+      </p>
+      <p>Use this page when the future payment is fixed and the real decision is what it is worth now.</p>
+    </div>
+
+    <div class="fi-exp-context-grid">
+      <section class="fi-exp-card">
+        <h3>When This Helps</h3>
+        <p>
+          Common for deferred bonuses, settlement offers, bond proceeds, and future lump-sum
+          payments you want to compare against cash today.
+        </p>
+      </section>
+      <nav class="fi-exp-card fi-exp-card--links" aria-label="Related finance calculators">
+        <h3>Related Tools</h3>
+        <div class="fi-exp-link-list">
+          <a href="/finance-calculators/future-value-calculator/">Future Value</a>
+          <a href="/finance-calculators/present-value-of-annuity-calculator/">Present Value of Annuity</a>
+        </div>
+      </nav>
+    </div>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
         <thead>
@@ -68,34 +89,53 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
-    <div>
-      <h4>1. Choose the future amount</h4>
-      <p>
-        Enter the single future cash amount you want to compare against present-day money. This is
-        usually a payment, payout, bonus, or future balance.
-      </p>
+  <section class="mtg-exp-section fi-exp-guide">
+    <div class="fi-exp-section-head">
+      <h3>How to Guide</h3>
+      <p>Set the future amount, the discount rate, and the timing before you judge the present-day value.</p>
     </div>
-    <div>
-      <h4>2. Set the discount rate</h4>
-      <p>
-        Use the rate that best represents your opportunity cost. That might be an expected
-        investment return, inflation-adjusted hurdle rate, or the return you could earn elsewhere.
-      </p>
-    </div>
-    <div>
-      <h4>3. Match the timing correctly</h4>
-      <p>
-        If the payout is a few months away, switch the period type to months. If the comparison is
-        several years out, keep it in years for a clearer interpretation.
-      </p>
-    </div>
-    <div>
-      <h4>4. Review the formula logic</h4>
-      <p>The calculator uses the standard present value formula:</p>
-      <p class="pv-formula-block">PV = FV &divide; (1 + r)<sup>n</sup></p>
-      <ol class="pv-formula-steps">
+
+    <div class="fi-exp-guide-list">
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">01</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Choose the future amount</h4>
+          <p>
+            Enter the single future cash amount you want to compare against present-day money. This
+            is usually a payment, payout, bonus, or future balance that arrives on a known date.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">02</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Set the discount rate</h4>
+          <p>
+            Use the rate that best represents your opportunity cost. A defensible rate matters more
+            than a convenient one because it drives the entire discount.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">03</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Match the timing correctly</h4>
+          <p>
+            If the payout is a few months away, switch the period type to months. If the comparison
+            is several years out, keep it in years for a clearer interpretation.
+          </p>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">04</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Review the formula logic</h4>
+          <p>The calculator uses the standard present value formula:</p>
+          <p class="pv-formula-block">PV = FV &divide; (1 + r)<sup>n</sup></p>
+          <ol class="pv-formula-steps">
         <li>
           Convert the annual rate into the per-period rate:
           <span data-pv="discount-rate"></span> divided by
@@ -114,22 +154,26 @@
           Divide the future amount by that denominator to reach the present value of
           <span data-pv="present-value"></span>.
         </li>
-      </ol>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fi-exp-guide-step">
+        <span class="fi-exp-step-no">05</span>
+        <div class="fi-exp-guide-step-body">
+          <h4>Read the answer in order</h4>
+          <p>
+            Start with the present value, then the discount lost, then the effective period count.
+            That sequence gives you both the headline answer and the main reason it moved.
+          </p>
+        </div>
+      </article>
     </div>
-    <div>
-      <h4>5. Read the answer in order</h4>
-      <p>
-        Start with the present value, then the discount lost, then the effective period count. That
-        sequence tells you both the headline answer and the reason the answer moved.
-      </p>
-    </div>
-    <p>
-      For faster planning comparisons, pair this result with the
-      <a href="/finance-calculators/future-value-calculator/">future value calculator</a> when the
-      unknown is the ending amount, or switch to the
-      <a href="/finance-calculators/present-value-of-annuity-calculator/"
-        >present value of annuity calculator</a
-      >
+
+    <p class="fi-exp-guide-summary">
+      Pair this result with the <a href="/finance-calculators/future-value-calculator/">future value calculator</a>
+      when the unknown is the ending amount, or switch to the
+      <a href="/finance-calculators/present-value-of-annuity-calculator/">present value of annuity calculator</a>
       when the cash flow repeats over time.
     </p>
   </section>
@@ -210,8 +254,8 @@
     <ul>
       <li><strong>Last updated:</strong> March 2026.</li>
       <li>
-        <strong>Accuracy:</strong> This calculator provides estimated results based on the inputs
-        and assumptions shown.
+        <strong>Accuracy:</strong> Results are deterministic estimates based on the future amount,
+        discount rate, and timing assumptions entered on the page.
       </li>
       <li>
         <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
@@ -219,7 +263,8 @@
       </li>
       <li>
         <strong>Assumptions:</strong> The calculation assumes one future lump sum, a fixed discount
-        rate, and the selected compounding pattern for the full period.
+        rate, and the selected compounding pattern for the full period, with no taxes, fees, or
+        interim cash flows included.
       </li>
       <li>
         <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not

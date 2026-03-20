@@ -2315,7 +2315,7 @@
 
       body[data-design-family='home-loan'] #loan-mtg-explanation .mtg-lifetime-visual {
         display: grid;
-        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        grid-template-columns: minmax(min(220px, 100%), 280px) minmax(0, 1fr);
         gap: 24px;
         align-items: center;
         margin-bottom: 20px;
@@ -2950,7 +2950,7 @@
       </div>
     </div>
 
-    <div class="table-scroll" id="mtg-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll" id="mtg-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly amortisation table">
       <table class="calculator-table" id="mtg-table-monthly">
         <thead>
           <tr>
@@ -2966,7 +2966,7 @@
       </table>
     </div>
 
-    <div class="table-scroll is-hidden" id="mtg-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="mtg-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly amortisation table">
       <table class="calculator-table" id="mtg-table-yearly">
         <thead>
           <tr>
