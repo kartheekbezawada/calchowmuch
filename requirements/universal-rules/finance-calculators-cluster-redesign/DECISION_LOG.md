@@ -228,3 +228,23 @@ Impact:
 
 - `scripts/generate-mpa-pages.js` prefers `public/calculators/finance-calculators/**` only for routes listed in the Finance redesign opt-in set.
 - Untouched Finance routes continue to render from the legacy split source until their turn in the sequence.
+
+---
+
+## D-015
+
+Decision:
+
+- The Finance cluster is paused for a master improvement audit before continuing the remaining route migrations.
+- The audit covers all 11 Finance calculators, including already migrated routes and routes still pending migration.
+- The audit posture is trust-first, premium, SEO-strong, and reusable across the full cluster.
+- No implementation decisions from the audit are being executed at this stage; this step is documentation logging only.
+
+Reason:
+
+- The current rollout has established the shared Finance shell and completed six route migrations, but the cluster still needs a system-level review of design quality, search performance, conversion clarity, and technical consistency before further execution.
+
+Impact:
+
+- Remaining calculator migrations should consume the audit before resuming implementation.
+- The finance redesign documentation pack now needs a master audit artifact to track this workstream separately from route migration.

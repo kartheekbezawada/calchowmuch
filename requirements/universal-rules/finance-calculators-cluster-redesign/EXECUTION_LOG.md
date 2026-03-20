@@ -347,3 +347,43 @@ Notes:
 - Initial SEO run failed because the route title used `and` instead of the required `&`; the metadata was corrected and the SEO gate was rerun to pass.
 - Thin-content quality artifact reported `warn=1` with no blocking SEO failures.
 - Root report artifacts emitted by scoped SEO/schema runs were restored to baseline immediately after verification.
+
+## 2026-03-20 — Finance Master Improvement Audit Logged
+
+Status:
+
+- completed
+
+Scope:
+
+- documentation logging only
+
+Changes:
+
+- logged a new Finance-wide master improvement audit initiative in the redesign documentation set
+- recorded that the audit covers both migrated and pending Finance calculators
+- created the canonical stub document at `requirements/universal-rules/finance-calculators-cluster-redesign/FINANCE_CALCULATORS_MASTER_IMPROVEMENT_PLAN.md`
+- did not start the audit body or execute any implementation decisions
+
+Files touched:
+
+- `requirements/universal-rules/finance-calculators-cluster-redesign/ACTION_PAGE.md`
+- `requirements/universal-rules/finance-calculators-cluster-redesign/DECISION_LOG.md`
+- `requirements/universal-rules/finance-calculators-cluster-redesign/EXECUTION_LOG.md`
+- `requirements/universal-rules/finance-calculators-cluster-redesign/FINANCE_CALCULATORS_MASTER_IMPROVEMENT_PLAN.md`
+
+Evidence base:
+
+- existing finance redesign planning and route briefs
+- migrated Finance route status and generated outputs already recorded in this log
+- pending Finance route sequence and open delivery items from the action page
+- existing Finance test coverage expectations and known gaps already tracked in the redesign program
+
+Validation:
+
+- no tests required for this documentation-only logging step
+
+Notes:
+
+- no code changes were made
+- no calculator redesign work was started as part of this entry

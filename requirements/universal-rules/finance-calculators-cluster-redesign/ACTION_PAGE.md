@@ -256,12 +256,23 @@ Out-of-scope violation rule:
 
 ---
 
+## Additional Workstream
+
+### Finance Master Improvement Audit
+
+- Status: `Logged / Pending Audit`
+- Dependency: Remaining Finance route migrations should consume this audit before further migration resumes.
+- Deliverable: `requirements/universal-rules/finance-calculators-cluster-redesign/FINANCE_CALCULATORS_MASTER_IMPROVEMENT_PLAN.md`
+
+---
+
 ## Current Progress
 
 - Shared Finance shell, generator routing, and ownership/nav contract fixes are active.
 - `present-value`, `future-value`, `present-value-of-annuity`, `future-value-of-annuity`, `effective-annual-rate`, and `simple-interest` are fully migrated and passing scoped build, unit, E2E, SEO, CWV, schema, and required shared-contract gates.
 - SEO content-quality remains a non-blocking `warn=1` on the six completed routes with no functional failures.
 - Next route in sequence: `compound-interest`.
+- Finance Master Improvement Audit is logged as a pending cluster-wide review to be drafted before additional Finance migration work continues.
 
 - Shared Finance foundation is active for the migrated reference pair.
 - `present-value` and `future-value` now render from `public/calculators/finance-calculators/**`.
