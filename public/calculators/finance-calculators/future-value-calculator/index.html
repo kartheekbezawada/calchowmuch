@@ -1,0 +1,273 @@
+<div id="calc-future-value">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Future value calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Project how a balance can grow with compound interest and optional recurring
+          contributions, then decide whether the target is realistic before you commit.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="fv-section-balance">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="fv-section-balance">Starting balance</h2>
+              <p class="fi-form-section-copy">
+                Begin with the amount you already have invested or saved today.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fv-present-value">Present Value (PV)</label>
+              <span class="slider-value" id="fv-pv-display">10,000</span>
+            </div>
+            <input
+              id="fv-present-value"
+              type="range"
+              value="10000"
+              min="100"
+              max="500000"
+              step="100"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="fv-present-value-field">
+                Enter present value
+              </label>
+              <input
+                class="slider-precision-input"
+                id="fv-present-value-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="10000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="fv-section-growth">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="fv-section-growth">Growth assumptions</h2>
+              <p class="fi-form-section-copy">
+                Add the expected rate, time horizon, and optional contribution amount you want to
+                repeat consistently.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fv-interest-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="fv-rate-display">5%</span>
+              </div>
+              <input id="fv-interest-rate" type="range" value="5" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="fv-interest-rate-field">
+                  Enter interest rate
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="fv-interest-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fv-time-period">Time Period</label>
+                <span class="slider-value" id="fv-time-display">3 yrs</span>
+              </div>
+              <input id="fv-time-period" type="range" value="3" min="1" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="fv-time-period-field">
+                  Enter time period
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="fv-time-period-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fv-regular-contribution">Regular Contribution</label>
+              <span class="slider-value" id="fv-contrib-display">0</span>
+            </div>
+            <input
+              id="fv-regular-contribution"
+              type="range"
+              value="0"
+              min="0"
+              max="10000"
+              step="50"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="fv-regular-contribution-field">
+                Enter recurring contribution
+              </label>
+              <input
+                class="slider-precision-input"
+                id="fv-regular-contribution-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Period type</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Period type"
+                data-button-group="fv-period-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="fv-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semiannual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="fv-calc">
+            Calculate Future Value
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="fv-preview" aria-label="Future value answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Future Value</p>
+          <div class="result mtg-result-card" id="fv-result" aria-live="polite">
+            <span class="mtg-result-value">11,576.25</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="fv-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Growth</span>
+            <strong class="fi-metric-value" data-fv="metric-growth">1,576.25</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Contributions</span>
+            <strong class="fi-metric-value" data-fv="metric-contributions">0</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Effective Periods</span>
+            <strong class="fi-metric-value" data-fv="metric-periods">3</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Rate Per Period</span>
+            <strong class="fi-metric-value" data-fv="metric-periodic-rate">5%</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Present value</span>
+            <strong data-fv="snap-pv">10,000</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest rate</span>
+            <strong data-fv="snap-rate">5%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time period</span>
+            <strong data-fv="snap-time">3 years</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Contribution / period</span>
+            <strong data-fv="snap-contribution">0</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-fv="snap-compounding">Annual</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Effective periods</span>
+            <strong data-fv="snap-periods">3</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="fv-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

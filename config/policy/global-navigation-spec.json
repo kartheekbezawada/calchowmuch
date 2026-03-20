@@ -24,7 +24,7 @@
     {
       "clusterId": "finance",
       "label": "Finance",
-      "href": "/finance/present-value/"
+      "href": "/finance-calculators/present-value-calculator/"
     },
     {
       "clusterId": "time-and-date",

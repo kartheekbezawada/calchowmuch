@@ -694,6 +694,9 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'early payoff calculator',
     ],
   },
+};
+
+const FINANCE_SCHEMA_CONFIG = {
   'monthly-savings-needed': {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
@@ -1461,6 +1464,102 @@ function buildHomeLoanStructuredData({
   };
 }
 
+function buildFinanceStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  softwareName,
+  softwareDescription,
+  featureList = [],
+  keywords = [],
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(featureList.length ? { featureList } : {}),
+        ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Finance',
+            item: `${SITE_URL}/finance-calculators/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
 function buildHomepageStructuredData({ title, description, canonical }) {
   const faqEntries = [
     {
@@ -1962,6 +2061,10 @@ function resolveCalculatorFragmentDir(relPath) {
   if (!isFinanceCalculatorRelPath(relPath)) {
     return path.join(CALC_DIR, relPath);
   }
+  const clusterDir = path.join(CALC_DIR, relPath);
+  if (pathExistsAsDirectory(clusterDir)) {
+    return clusterDir;
+  }
   const contentDir = path.join(CONTENT_CALC_DIR, relPath);
   if (pathExistsAsDirectory(contentDir)) {
     return contentDir;
@@ -1974,6 +2077,10 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
     return null;
   }
   if (isFinanceCalculatorRelPath(calculatorRelPath)) {
+    const clusterModuleAbsPath = path.join(CALC_DIR, calculatorRelPath, 'module.js');
+    if (fs.existsSync(clusterModuleAbsPath)) {
+      return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+    }
     const financeAssetRelPath = path
       .join('assets', 'js', 'calculators', calculatorRelPath, 'module.js')
       .replace(/\\/g, '/');
@@ -2044,6 +2151,36 @@ AUTO_LOAN_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   }
 });
 
+const FINANCE_CLUSTER_REDESIGN_ORDER = [
+  'present-value',
+  'future-value',
+  'present-value-of-annuity',
+  'future-value-of-annuity',
+  'effective-annual-rate',
+  'simple-interest',
+  'compound-interest',
+  'investment-growth',
+  'time-to-savings-goal',
+  'monthly-savings-needed',
+  'investment-return',
+];
+
+// Opt-in list so finance can migrate one calculator at a time without flipping untouched routes.
+const FINANCE_CLUSTER_REDESIGN_IDS = new Set([
+  'present-value',
+  'future-value',
+  'present-value-of-annuity',
+  'future-value-of-annuity',
+  'effective-annual-rate',
+  'simple-interest',
+]);
+
+FINANCE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!FINANCE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Finance redesign calculator id: ${calculatorId}`);
+  }
+});
+
 function buildCreditCardClusterInlineCss(calculatorRelPath) {
   const sources = [
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
@@ -2089,6 +2226,26 @@ function buildAutoLoanInlineCss(calculatorRelPath) {
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
     path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
     path.join(PUBLIC_DIR, 'calculators', 'car-loan-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildFinanceClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'finance-calculators', 'shared', 'cluster-light.css'),
   ];
 
   if (calculatorRelPath) {
@@ -2197,12 +2354,57 @@ function buildAutoLoanClusterFooterHtml() {
 </footer>`;
 }
 
+function buildFinanceClusterHeaderHtml() {
+  return `<header class="fi-cluster-site-header">
+  <div class="fi-cluster-wrap fi-cluster-site-header-inner">
+    <a class="fi-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="fi-cluster-brand-mark" aria-hidden="true">FI</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="fi-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildFinanceClusterFooterHtml() {
+  return `<footer class="fi-cluster-site-footer">
+  <div class="fi-cluster-wrap fi-cluster-site-footer-inner">
+    <nav class="fi-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="fi-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
 const AUTO_LOAN_RELATED_CARD_COPY = {
   'car-loan-calculator': 'See the financed amount, monthly payment, and full borrowing cost.',
   'auto-loan-calculator': 'Compare two offers side by side before you choose the cheaper path.',
   'hire-purchase-calculator': 'Balance monthly affordability against the balloon due later.',
   'pcp-calculator': 'Weigh the lower monthly cost against the final payment obligation.',
   'car-lease-calculator': 'Review due-at-signing, residual value, and full lease spend together.',
+};
+
+const FINANCE_RELATED_CARD_COPY = {
+  'present-value': "Discount a future amount into today's value before you compare options.",
+  'future-value': 'Project how a starting balance compounds with time and recurring additions.',
+  'present-value-of-annuity': "Value a stream of future payments in today's terms.",
+  'future-value-of-annuity': 'Estimate what recurring contributions could become over time.',
+  'effective-annual-rate': 'Translate a nominal rate into the real annual rate after compounding.',
+  'simple-interest': 'Check straight-line interest cost without compounding.',
+  'compound-interest': 'Model compounding growth with clear interest and balance context.',
+  'investment-growth': 'Forecast balances, contributions, and growth across longer horizons.',
+  'time-to-savings-goal': 'Estimate how long steady saving may take to reach a target.',
+  'monthly-savings-needed': 'Work backward from the goal to the monthly saving requirement.',
+  'investment-return': 'Stress test a portfolio path with contributions, events, and downturns.',
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
@@ -2255,6 +2457,46 @@ function buildAutoLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
   return `<section class="al-cluster-related" aria-labelledby="al-cluster-related-title">
   <h2 id="al-cluster-related-title">Related Auto Loan Calculators</h2>
   <div class="al-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
+function buildFinanceRelatedCalculatorsHtml(category, activeCalculatorId) {
+  const subcategories = Array.isArray(category?.subcategories) ? category.subcategories : [];
+  const calculators = subcategories.flatMap((subcategory) =>
+    Array.isArray(subcategory?.calculators)
+      ? subcategory.calculators.map((calculator) => ({
+          ...calculator,
+          sectionLabel: subcategory.name,
+        }))
+      : []
+  );
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      const description =
+        FINANCE_RELATED_CARD_COPY[calculator.id] ||
+        'Explore this Finance calculator in the shared redesign system.';
+
+      return `<a class="fi-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>
+        <span class="fi-cluster-related-card-title">${calculator.name}</span>
+        <span class="fi-cluster-related-card-copy">${description}</span>
+        <span class="fi-cluster-related-card-meta">${calculator.sectionLabel}</span>
+      </a>`;
+    })
+    .join('');
+
+  return `<section class="fi-cluster-related" aria-labelledby="fi-cluster-related-title">
+  <h2 id="fi-cluster-related-title">Related Finance Calculators</h2>
+  <div class="fi-cluster-related-links">
     ${linksHtml}
   </div>
 </section>`;
@@ -2692,6 +2934,8 @@ function buildPageHtml({
 }) {
   const isCreditCardClusterRoute =
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
+  const isMigratedFinanceClusterRoute =
+    canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedAutoLoanClusterRoute =
     designFamily === 'auto-loans' &&
     canonical.includes('/car-loan-calculators/') &&
@@ -2704,6 +2948,7 @@ function buildPageHtml({
   const sanitizedCalculatorHtml =
     (assetConfig ||
       isCreditCardClusterRoute ||
+      isMigratedFinanceClusterRoute ||
       isMigratedAutoLoanClusterRoute ||
       isMigratedHomeLoanClusterRoute) &&
     typeof versionedCalculatorHtml === 'string'
@@ -2769,6 +3014,19 @@ function buildPageHtml({
     ${relatedCalculatorsHtml}
   </div>
 </div>`
+        : isMigratedFinanceClusterRoute
+        ? `<div class="fi-cluster-panel${calculatorPanelClassSuffix}">
+  <div class="fi-cluster-page-header">
+    <span class="fi-cluster-page-kicker">Finance Calculators</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="fi-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single fi-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
+  </div>
+</div>`
         : isMigratedAutoLoanClusterRoute
         ? `<div class="al-cluster-panel${calculatorPanelClassSuffix}">
   <div class="al-cluster-page-header">
@@ -2811,7 +3069,9 @@ ${explanationTitleHtml}  ${explanationHtml}
 </div>`;
   } else if (routeArchetype === 'calc_only') {
     calcContent = `<div class="${
-      isMigratedAutoLoanClusterRoute
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
         ? 'hl-cluster-panel'
@@ -2820,24 +3080,28 @@ ${explanationTitleHtml}  ${explanationHtml}
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${sanitizedCalculatorHtml}
-    ${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
+    ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
   </div>
 </div>`;
   } else if (routeArchetype === 'exp_only') {
     calcContent = `<div class="${
-      isMigratedAutoLoanClusterRoute
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
         ? 'hl-cluster-panel'
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
-${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
     calcContent = `<div class="${
-      isMigratedAutoLoanClusterRoute
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
         ? 'hl-cluster-panel'
@@ -2854,13 +3118,21 @@ ${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCal
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const topNavStaticAttribute =
-    topNavStatic && !isMigratedAutoLoanClusterRoute && !isMigratedHomeLoanClusterRoute
+    topNavStatic &&
+    !isMigratedFinanceClusterRoute &&
+    !isMigratedAutoLoanClusterRoute &&
+    !isMigratedHomeLoanClusterRoute
       ? ' data-top-nav-static="true"'
       : '';
   const routeModuleScriptHref = resolveCalculatorModuleScriptHref(calculatorRelPath);
 
   let scriptTagsHtml = '';
-  if (isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute || isMigratedHomeLoanClusterRoute) {
+  if (
+    isCreditCardClusterRoute ||
+    isMigratedFinanceClusterRoute ||
+    isMigratedAutoLoanClusterRoute ||
+    isMigratedHomeLoanClusterRoute
+  ) {
     const defaultScripts = [];
     if (routeModuleScriptHref) {
       defaultScripts.push(routeModuleScriptHref);
@@ -2902,6 +3174,11 @@ ${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCal
   if (isCreditCardClusterRoute) {
     cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(
       buildCreditCardClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedFinanceClusterRoute) {
+    cssLinksHtml = `    <style data-finance-cluster="true">\n${indentBlock(
+      buildFinanceClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
   } else if (isMigratedAutoLoanClusterRoute) {
@@ -2948,6 +3225,7 @@ ${isCreditCardClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCal
   const adsColumnHtml =
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
+    isMigratedFinanceClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
     isMigratedHomeLoanClusterRoute
       ? ''
@@ -2965,6 +3243,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildCreditCardClusterFooterHtml()}
+    </div>`
+    : isMigratedFinanceClusterRoute
+    ? `    <div class="page fi-cluster-page-shell">
+      ${buildFinanceClusterHeaderHtml()}
+      <main class="fi-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="fi-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildFinanceClusterFooterHtml()}
     </div>`
     : isMigratedAutoLoanClusterRoute
     ? `    <div class="page al-cluster-page-shell">
@@ -3286,7 +3574,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
             <h3>Finance &amp; Savings Calculators</h3>
             <p>
               Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
-              plan targets using the <a href="/finance-calculators/savings-goal-calculator/">savings goal calculator</a>,
+              plan targets using the <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal calculator</a>,
               and compare scenarios with future value tools.
             </p>
           </section>
@@ -3596,6 +3884,9 @@ function main() {
     const { category, subcategory, calculator, governance, relPath, outputRelPath } = entry;
     const isCreditCardClusterRoute =
       subcategory.id === 'credit-cards' && calculator.url.startsWith('/credit-card-calculators/');
+    const isMigratedFinanceClusterRoute =
+      calculator.url.startsWith('/finance-calculators/') &&
+      FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedAutoLoanClusterRoute =
       calculator.designFamily === 'auto-loans' &&
       calculator.url.startsWith('/car-loan-calculators/') &&
@@ -3607,6 +3898,7 @@ function main() {
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (
       assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
       !isMigratedHomeLoanClusterRoute
     ) {
@@ -3641,15 +3933,22 @@ function main() {
     const routeBundleEntry =
       !assetConfig &&
       !isCreditCardClusterRoute &&
+      !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
         ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
         : null;
     let cssBundleConfig = null;
     const topNavStatic =
-      Boolean(assetConfig?.options?.topNavStatic) || ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
+      Boolean(assetConfig?.options?.topNavStatic) ||
+      (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !isMigratedFinanceClusterRoute);
 
-    if (!assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
+    if (
+      !assetConfig &&
+      ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedFinanceClusterRoute &&
+      !routeBundleEntry
+    ) {
       throw new Error(`Missing route CSS bundle entry for ${calculator.id} (${calculator.url})`);
     }
 
@@ -3695,6 +3994,18 @@ function main() {
       });
       injectStaticStructuredData = true;
     }
+    const financeSchemaConfig = FINANCE_SCHEMA_CONFIG[calculator.id];
+    if (financeSchemaConfig) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildFinanceStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        ...financeSchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
 
     const pageHtml = buildPageHtml({
       title: pageTitle,
@@ -3729,6 +4040,8 @@ function main() {
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
       relatedCalculatorsHtml: isCreditCardClusterRoute
         ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedFinanceClusterRoute
+        ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
         : '',

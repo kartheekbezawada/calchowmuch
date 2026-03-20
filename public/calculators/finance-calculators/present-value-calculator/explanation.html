@@ -1,0 +1,182 @@
+<div id="pv-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h2>What Is That Future Amount Worth Today?</h2>
+    <p>
+      This calculator discounts a future lump sum into present-day value so you can compare a later
+      payout with cash available now on a like-for-like basis.
+    </p>
+    <p>
+      With a future amount of <span data-pv="future-value"></span>, a discount rate of
+      <span data-pv="discount-rate"></span>, a time horizon of <span data-pv="time-period"></span>,
+      and <span data-pv="compounding-frequency"></span> compounding, the present value is
+      <strong><span data-pv="present-value"></span></strong>.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="pv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Future Value</td>
+            <td><span data-pv="future-value"></span></td>
+            <td>The cash amount you expect to receive in the future.</td>
+          </tr>
+          <tr>
+            <td>Discount Rate</td>
+            <td><span data-pv="discount-rate"></span></td>
+            <td>The annual return or opportunity-cost rate used to discount the future amount.</td>
+          </tr>
+          <tr>
+            <td>Time Period</td>
+            <td><span data-pv="time-period"></span></td>
+            <td>The length of time the cash is unavailable to you.</td>
+          </tr>
+          <tr>
+            <td>Effective Periods</td>
+            <td><span data-pv="effective-periods"></span></td>
+            <td>The total number of discounting periods created by the timing and compounding choice.</td>
+          </tr>
+          <tr>
+            <td>Rate Per Period</td>
+            <td><span data-pv="applied-rate"></span>%</td>
+            <td>The rate actually applied inside each compounding period.</td>
+          </tr>
+          <tr>
+            <td>Discount Lost</td>
+            <td><span data-pv="formula-discount-lost"></span></td>
+            <td>The value given up by waiting instead of holding the cash today.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>How to Guide</h3>
+    <div>
+      <h4>1. Choose the future amount</h4>
+      <p>
+        Enter the single future cash amount you want to compare against present-day money. This is
+        usually a payment, payout, bonus, or future balance.
+      </p>
+    </div>
+    <div>
+      <h4>2. Set the discount rate</h4>
+      <p>
+        Use the rate that best represents your opportunity cost. That might be an expected
+        investment return, inflation-adjusted hurdle rate, or the return you could earn elsewhere.
+      </p>
+    </div>
+    <div>
+      <h4>3. Match the timing correctly</h4>
+      <p>
+        If the payout is a few months away, switch the period type to months. If the comparison is
+        several years out, keep it in years for a clearer interpretation.
+      </p>
+    </div>
+    <div>
+      <h4>4. Review the formula logic</h4>
+      <p>The calculator uses the standard present value formula:</p>
+      <p class="pv-formula-block">PV = FV &divide; (1 + r)<sup>n</sup></p>
+      <ol class="pv-formula-steps">
+        <li>
+          Convert the annual rate into the per-period rate:
+          <span data-pv="discount-rate"></span> divided by
+          <span data-pv="effective-periods-per-year"></span> =
+          <span data-pv="applied-rate"></span>% per period.
+        </li>
+        <li>
+          Convert the time horizon into total effective periods:
+          <span data-pv="effective-periods"></span>.
+        </li>
+        <li>
+          Build the denominator:
+          <span data-pv="formula-denominator"></span>.
+        </li>
+        <li>
+          Divide the future amount by that denominator to reach the present value of
+          <span data-pv="present-value"></span>.
+        </li>
+      </ol>
+    </div>
+    <div>
+      <h4>5. Read the answer in order</h4>
+      <p>
+        Start with the present value, then the discount lost, then the effective period count. That
+        sequence tells you both the headline answer and the reason the answer moved.
+      </p>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="pv-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is present value?</h4>
+        <p>Present value is the amount a future cash sum is worth in today&apos;s money.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>Why is present value lower than future value?</h4>
+        <p>Because money available today can be invested, saved, or otherwise put to work immediately.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What discount rate should I use?</h4>
+        <p>Use a rate that reflects your real opportunity cost, required return, or planning assumption.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Does a longer time period always reduce present value?</h4>
+        <p>Yes, assuming the discount rate is positive and the future amount stays constant.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What does compounding change here?</h4>
+        <p>It changes the per-period rate and the number of periods used in the discounting process.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I use months instead of years?</h4>
+        <p>Yes. Use months when the timing is short and you want the answer to reflect that precision.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>What happens if the discount rate is 0%?</h4>
+        <p>The present value equals the future value because no discounting is applied.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Is this calculator for recurring payments?</h4>
+        <p>No. Use an annuity calculator when you need to value a series of recurring cash flows.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Why can spreadsheet results differ slightly?</h4>
+        <p>Display rounding can differ even when the underlying formula logic matches.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>When is present value most useful?</h4>
+        <p>It is useful when comparing future payouts, settlements, bonuses, or deferred cash offers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
+      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+      <li><strong>Assumptions:</strong> The calculation assumes one future lump sum, a fixed discount rate, and the selected compounding pattern for the full period.</li>
+      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+    </ul>
+  </section>
+</div>

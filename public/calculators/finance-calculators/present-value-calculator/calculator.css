@@ -1,0 +1,20 @@
+#calc-present-value .pv-results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#calc-present-value .pv-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-present-value .pv-formula-steps {
+  display: grid;
+  gap: 8px;
+}

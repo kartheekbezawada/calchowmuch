@@ -1,0 +1,216 @@
+<div id="si-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h2>How Much Interest Builds Without Compounding?</h2>
+    <p>
+      This calculator estimates total simple interest and ending amount when interest is applied
+      only to the original principal, not to previously earned interest.
+    </p>
+    <p>
+      With principal of <span data-si="principal"></span>, a rate of <span data-si="rate"></span>,
+      and a time period of <span data-si="time"></span> <span data-si="time-unit"></span>, the
+      total interest is <strong><span data-si="total-interest"></span></strong> and the ending
+      amount is <span data-si="ending-amount"></span>.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="si-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Principal</td>
+            <td><span data-si="principal"></span></td>
+            <td>The original amount the simple-interest rate is applied to.</td>
+          </tr>
+          <tr>
+            <td>Interest Rate</td>
+            <td><span data-si="rate"></span></td>
+            <td>The fixed rate used in the linear interest calculation.</td>
+          </tr>
+          <tr>
+            <td>Time Period</td>
+            <td><span data-si="time"></span> <span data-si="time-unit"></span></td>
+            <td>The duration the principal is exposed to the rate.</td>
+          </tr>
+          <tr>
+            <td>Interest Basis</td>
+            <td><span data-si="basis"></span></td>
+            <td>Whether the rate should be treated as annual or monthly.</td>
+          </tr>
+          <tr>
+            <td>Time In Years</td>
+            <td><span data-si="years"></span></td>
+            <td>The normalized time value used for comparison and formula context.</td>
+          </tr>
+          <tr>
+            <td>Rate As Decimal</td>
+            <td><span data-si="rate-decimal"></span></td>
+            <td>The percentage rate converted to decimal form for the formula.</td>
+          </tr>
+          <tr>
+            <td>Total Interest</td>
+            <td><span data-si="total-interest"></span></td>
+            <td>The interest earned or owed over the full schedule.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Ending Amount</td>
+            <td><span data-si="ending-amount"></span></td>
+            <td>The principal plus total simple interest.</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>How to Guide</h3>
+    <div>
+      <h4>1. Enter the original balance</h4>
+      <p>
+        Start with the principal amount. Under simple interest, that same base stays constant for
+        the whole calculation.
+      </p>
+    </div>
+    <div>
+      <h4>2. Set the rate and time horizon</h4>
+      <p>
+        Add the quoted rate and the full time period the balance is outstanding or invested. This
+        calculator lets you switch between years and months for the time input.
+      </p>
+    </div>
+    <div>
+      <h4>3. Choose the correct basis</h4>
+      <p>
+        Use Per Year when the rate is annual. Use Per Month only when the quoted rate itself is
+        monthly, because that materially changes the outcome.
+      </p>
+    </div>
+    <div>
+      <h4>4. Review the formula steps</h4>
+      <p>The simple-interest formula is:</p>
+      <p class="si-formula-block">I = P x r x t</p>
+      <p>The ending amount is A = P + I.</p>
+      <ol class="si-formula-steps">
+        <li>
+          Convert the interest rate to decimal:
+          <span data-si="rate"></span> = <span data-si="rate-decimal"></span>.
+        </li>
+        <li>
+          Normalize the time period for the selected basis:
+          <span data-si="normalized-time"></span> <span data-si="normalized-time-label"></span>.
+        </li>
+        <li>
+          Multiply principal, rate, and time to reach
+          <span data-si="total-interest"></span>.
+        </li>
+        <li>
+          Add the interest back to the principal to reach
+          <span data-si="ending-amount"></span>.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="si-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is simple interest?</h4>
+        <p>
+          Simple interest is interest calculated only on the original principal amount. It does not
+          compound on previously earned interest.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is the simple interest formula?</h4>
+        <p>
+          I = P x r x t, where P is principal, r is the rate as a decimal, and t is time in years
+          or months depending on the basis you choose.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What is the difference between simple and compound interest?</h4>
+        <p>
+          Simple interest applies only to the principal and grows linearly. Compound interest earns
+          interest on both principal and accumulated interest.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Can I use this for loans?</h4>
+        <p>
+          Yes. Many short-term loans, auto loans, and personal loans use simple interest, and this
+          calculator estimates the total interest owed.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Does simple interest grow linearly?</h4>
+        <p>
+          Yes. With a fixed rate, the interest earned each period stays constant, creating a
+          straight-line pattern.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>How do I calculate interest for months?</h4>
+        <p>
+          Set the time unit to months. The calculator converts the time appropriately and applies
+          the selected yearly or monthly basis.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>What happens if the rate is 0%?</h4>
+        <p>
+          Total interest is zero and the ending amount equals the principal because there is no
+          growth or borrowing cost.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>What is Interest Basis?</h4>
+        <p>
+          Per Year treats the rate as annual. Per Month treats the rate as monthly, which can
+          materially increase the result over longer schedules.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is simple interest used for savings?</h4>
+        <p>
+          It is less common for long-term savings because most savings accounts compound, but it is
+          still useful for short-term estimates and comparisons.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>When should I use simple interest?</h4>
+        <p>
+          Use it for short-term loans, quick estimates, certificates of deposit with simple
+          interest, and educational comparisons.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
+      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+      <li><strong>Assumptions:</strong> The calculation assumes interest is applied only to the original principal, with no compounding, fees, or extra payments included.</li>
+      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+    </ul>
+  </section>
+</div>

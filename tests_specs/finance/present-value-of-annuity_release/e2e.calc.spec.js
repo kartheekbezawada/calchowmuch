@@ -21,41 +21,41 @@ test.describe('Present Value of Annuity Calculator', () => {
   test('PVA-TEST-E2E-1: user journey and results', async ({ page }) => {
     await page.goto('/finance-calculators/present-value-of-annuity-calculator/');
 
-    const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
-    await expect(topNavActive).toHaveText('Finance');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Present Value of Annuity');
-
-    await setInputValue(page, '#pva-payment', 500);
-    await setInputValue(page, '#pva-discount-rate', 5);
-    await setInputValue(page, '#pva-periods', 10);
+    await expect(page.locator('.fi-cluster-site-header')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('h1')).toHaveText('Present Value of Annuity Calculator');
 
     await page.click('#pva-calc');
 
-    const resultText = await page.locator('#pva-result').textContent();
-    const resultValue = parseNumber(resultText);
     const ordinary = (500 * (1 - Math.pow(1 + 0.05, -10))) / 0.05;
+    const resultValue = parseNumber(await page.locator('#pva-result').textContent());
     expect(resultValue).toBeCloseTo(ordinary, 2);
+
+    await setInputValue(page, '#pva-payment', 650);
+    await expect(page.locator('#pva-stale-note')).toBeVisible();
+    expect(parseNumber(await page.locator('#pva-result').textContent())).toBeCloseTo(ordinary, 2);
 
     await page.click('[data-button-group="pva-annuity-type"] button[data-value="due"]');
     await page.click('#pva-calc');
 
-    const dueText = await page.locator('#pva-result').textContent();
-    const dueValue = parseNumber(dueText);
-    expect(dueValue).toBeCloseTo(ordinary * 1.05, 2);
+    const dueValue = parseNumber(await page.locator('#pva-result').textContent());
+    const dueExpected = ((650 * (1 - Math.pow(1 + 0.05, -10))) / 0.05) * 1.05;
+    expect(dueValue).toBeCloseTo(dueExpected, 2);
 
     await page.click('[data-button-group="pva-annuity-type"] button[data-value="ordinary"]');
     await page.click('[data-button-group="pva-compounding"] button[data-value="monthly"]');
     await page.click('[data-button-group="pva-period-type"] button[data-value="months"]');
     await setInputValue(page, '#pva-periods', 24);
+    expect(parseNumber(await page.locator('#pva-result').textContent())).toBeCloseTo(dueExpected, 2);
+
     await page.click('#pva-calc');
 
-    const updatedResultText = await page.locator('#pva-result').textContent();
-    const updatedValue = parseNumber(updatedResultText);
-    const expectedMonthly = (500 * (1 - Math.pow(1 + 0.05 / 12, -24))) / (0.05 / 12);
+    const updatedValue = parseNumber(await page.locator('#pva-result').textContent());
+    const expectedMonthly = (650 * (1 - Math.pow(1 + 0.05 / 12, -24))) / (0.05 / 12);
     expect(updatedValue).toBeCloseTo(expectedMonthly, 2);
 
-    await expect(page.locator('[data-pva="snap-payment"]').first()).not.toHaveText('N/A');
+    await expect(page.locator('[data-pva="snap-payment"]').first()).not.toHaveText('—');
   });
 });

@@ -4,32 +4,47 @@ function parseNumber(text) {
   return Number(String(text || '').replace(/[^0-9.-]+/g, ''));
 }
 
+async function setInputValue(page, selector, value) {
+  await page.$eval(
+    selector,
+    (element, nextValue) => {
+      const input = /** @type {HTMLInputElement} */ (element);
+      input.value = String(nextValue);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    value
+  );
+}
+
 test.describe('Effective Annual Rate Calculator', () => {
   test('EAR-TEST-E2E-1: user journey and results', async ({ page }) => {
     await page.goto('/finance-calculators/effective-annual-rate-calculator/');
 
-    const topNavActive = page.locator('.top-nav-link.is-active .nav-label');
-    await expect(topNavActive).toHaveText('Finance');
+    await expect(page.locator('.fi-cluster-site-header')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('h1')).toHaveText('Effective Annual Rate Calculator');
 
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Effective Annual Rate (EAR)');
-
-    await page.fill('#ear-nominal-rate', '12');
     await page.click('#ear-calc');
 
-    const resultText = await page.locator('#ear-result').textContent();
-    const resultValue = parseNumber(resultText);
     const expected = (Math.pow(1 + 0.12 / 1, 1) - 1) * 100;
+    const resultValue = parseNumber(await page.locator('#ear-result').textContent());
     expect(resultValue).toBeCloseTo(expected, 3);
 
+    await setInputValue(page, '#ear-nominal-rate', 18);
+    await expect(page.locator('#ear-stale-note')).toBeVisible();
+    expect(parseNumber(await page.locator('#ear-result').textContent())).toBeCloseTo(expected, 3);
+
     await page.click('[data-button-group="ear-frequency"] button[data-value="quarterly"]');
+    expect(parseNumber(await page.locator('#ear-result').textContent())).toBeCloseTo(expected, 3);
     await page.click('#ear-calc');
 
-    const quarterlyResultText = await page.locator('#ear-result').textContent();
-    const quarterlyValue = parseNumber(quarterlyResultText);
-    const quarterlyExpected = (Math.pow(1 + 0.12 / 4, 4) - 1) * 100;
+    const quarterlyValue = parseNumber(await page.locator('#ear-result').textContent());
+    const quarterlyExpected = (Math.pow(1 + 0.18 / 4, 4) - 1) * 100;
     expect(quarterlyValue).toBeCloseTo(quarterlyExpected, 3);
 
-    await expect(page.locator('[data-ear="ear-rate"]').first()).not.toHaveText('N/A');
+    await expect(page.locator('[data-ear="metric-compounding"]').first()).toHaveText('Quarterly');
   });
 });

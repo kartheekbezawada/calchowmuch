@@ -1,0 +1,241 @@
+<div id="fva-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h2>How Much Could Regular Payments Grow Into?</h2>
+    <p>
+      This calculator projects a series of equal contributions into a single future value so you
+      can see what disciplined recurring payments may accumulate into over time.
+    </p>
+    <p>
+      With payments of <span data-fva="payment-amount"></span>, an interest rate of
+      <span data-fva="interest-rate"></span>, a schedule of <span data-fva="period-count"></span>,
+      <span data-fva="annuity-type"></span> timing, and
+      <span data-fva="compounding-frequency"></span> compounding, the future value is
+      <strong><span data-fva="future-value"></span></strong>, including
+      <span data-fva="total-interest"></span> of growth.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="fva-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Payment Amount</td>
+            <td><span data-fva="payment-amount"></span></td>
+            <td>The recurring amount being added in each period.</td>
+          </tr>
+          <tr>
+            <td>Interest Rate</td>
+            <td><span data-fva="interest-rate"></span></td>
+            <td>The annual growth assumption that compounds over the schedule.</td>
+          </tr>
+          <tr>
+            <td>Periods</td>
+            <td><span data-fva="period-count"></span></td>
+            <td>The full contribution timeline you want to project.</td>
+          </tr>
+          <tr>
+            <td>Annuity Type</td>
+            <td><span data-fva="annuity-type"></span></td>
+            <td>Payment timing determines how long each contribution can compound.</td>
+          </tr>
+          <tr>
+            <td>Compounding</td>
+            <td><span data-fva="compounding-frequency"></span></td>
+            <td>The annual rate is split into this many effective growth periods.</td>
+          </tr>
+          <tr>
+            <td>Effective Periods</td>
+            <td><span data-fva="effective-periods"></span></td>
+            <td>The total number of periods used in the compounding math.</td>
+          </tr>
+          <tr>
+            <td>Rate Per Period</td>
+            <td><span data-fva="applied-rate"></span>%</td>
+            <td>The rate applied during each effective compounding period.</td>
+          </tr>
+          <tr>
+            <td>Total Payments</td>
+            <td><span data-fva="total-payments"></span></td>
+            <td>The total amount you contribute before any growth is added.</td>
+          </tr>
+          <tr>
+            <td>Total Interest Earned</td>
+            <td><span data-fva="total-interest"></span></td>
+            <td>The extra value created by compounding over time.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Future Value</td>
+            <td><span data-fva="future-value"></span></td>
+            <td>The accumulated value of all contributions at the end of the term.</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>How to Guide</h3>
+    <div>
+      <h4>1. Set the recurring contribution</h4>
+      <p>
+        Enter the equal amount you plan to add each period. This route is strongest when the
+        contribution amount stays consistent.
+      </p>
+    </div>
+    <div>
+      <h4>2. Choose a growth assumption</h4>
+      <p>
+        Use the savings rate or expected investment return that best reflects the plan you are
+        modeling. Small rate changes can compound meaningfully over longer periods.
+      </p>
+    </div>
+    <div>
+      <h4>3. Match the timing correctly</h4>
+      <p>
+        Switch between years and months so the period count matches your real schedule, then choose
+        the compounding rhythm that fits the assumption behind the rate.
+      </p>
+    </div>
+    <div>
+      <h4>4. Compare ordinary and due timing</h4>
+      <p>
+        Ordinary annuity assumes each payment lands at the end of the period. Annuity due assumes
+        it arrives at the beginning, which typically produces more growth.
+      </p>
+    </div>
+    <div>
+      <h4>5. Review the formula steps</h4>
+      <p>The ordinary annuity formula is:</p>
+      <p class="fva-formula-block">FVA = PMT x [((1 + r)<sup>n</sup> - 1) / r]</p>
+      <ol class="fva-formula-steps">
+        <li>
+          Convert the annual rate into the per-period rate:
+          <span data-fva="interest-rate"></span> divided by
+          <span data-fva="periods-per-year"></span> =
+          <span data-fva="applied-rate"></span>% per period.
+        </li>
+        <li>
+          Convert the schedule into total effective periods:
+          <span data-fva="effective-periods"></span>.
+        </li>
+        <li>
+          Build the annuity factor:
+          <span data-fva="formula-annuity-factor"></span>.
+        </li>
+        <li>
+          Multiply the payment amount by that factor to reach
+          <span data-fva="future-value"></span>.
+        </li>
+        <li>
+          If you choose annuity due, the ordinary result is multiplied by
+          (1 + <span data-fva="applied-rate-decimal"></span>) because each contribution compounds
+          for one extra period.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="fva-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is the future value of an annuity?</h4>
+        <p>
+          It is the total accumulated value of a series of regular payments at a future date after
+          earning compound interest over time.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is the difference between ordinary annuity and annuity due?</h4>
+        <p>
+          Ordinary annuities pay at the end of each period. Annuity due pays at the beginning,
+          resulting in a higher future value because payments compound longer.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Why is the FV of annuity due higher?</h4>
+        <p>
+          Because each payment is invested one period earlier, it earns compound interest for a
+          longer time than an ordinary annuity.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>What interest rate should I use?</h4>
+        <p>
+          Use a rate reflecting expected investment returns, savings rates, or long-term growth
+          assumptions relevant to your financial plan.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Is the future value of annuity useful for retirement planning?</h4>
+        <p>
+          Yes, it is commonly used to estimate how regular 401(k), IRA, or pension contributions
+          will grow over your working years.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Can I use this for monthly contributions?</h4>
+        <p>
+          Yes, the calculator supports monthly, quarterly, semi-annual, and annual payment and
+          compounding periods.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>What happens if the interest rate is zero?</h4>
+        <p>
+          If the rate is zero, the future value equals the total of all payments because no
+          interest is earned and the annuity factor equals the number of periods.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>How does compounding frequency affect results?</h4>
+        <p>
+          More frequent compounding, such as monthly instead of annual, increases the future value
+          because interest is reinvested more often within each year.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Is this the same as a simple savings calculator?</h4>
+        <p>
+          It is similar but specifically models equal periodic payments. A savings calculator may
+          include an initial lump sum as well.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Can I use FVA for investment planning?</h4>
+        <p>
+          Yes, it is widely used to evaluate savings plans, SIP investments, education funds, and
+          long-term financial goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
+      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+      <li><strong>Assumptions:</strong> The calculation assumes level recurring payments, a fixed growth rate, consistent payment timing, and the selected compounding pattern for the full schedule.</li>
+      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+    </ul>
+  </section>
+</div>

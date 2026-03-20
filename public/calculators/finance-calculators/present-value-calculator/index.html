@@ -1,0 +1,241 @@
+<div id="calc-present-value">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Present value calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Discount a future lump sum into today&apos;s money using a rate, time horizon, and
+          compounding assumption you can explain clearly.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="pv-section-future">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="pv-section-future">Future amount</h2>
+              <p class="fi-form-section-copy">
+                Start with the cash value you expect to receive later.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pv-future-value">Future Value (FV)</label>
+              <span class="slider-value" id="pv-fv-display">10,000</span>
+            </div>
+            <input
+              id="pv-future-value"
+              type="range"
+              value="10000"
+              min="100"
+              max="500000"
+              step="100"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="pv-future-value-field">
+                Enter future value
+              </label>
+              <input
+                class="slider-precision-input"
+                id="pv-future-value-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="10000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="pv-section-discount">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="pv-section-discount">Discount assumptions</h2>
+              <p class="fi-form-section-copy">
+                Set the return or opportunity-cost rate, then choose the timing and compounding
+                rhythm you want to compare against.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pv-rate-display">5%</span>
+              </div>
+              <input id="pv-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pv-discount-rate-field">
+                  Enter discount rate
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="pv-discount-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-time-period">Time Period</label>
+                <span class="slider-value" id="pv-time-display">3 yrs</span>
+              </div>
+              <input id="pv-time-period" type="range" value="3" min="1" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pv-time-period-field">
+                  Enter time period
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="pv-time-period-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Period type</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Period type"
+                data-button-group="pv-period-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="pv-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semiannual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="pv-calc">
+            Calculate Present Value
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="pv-preview" aria-label="Present value answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Present Value</p>
+          <div class="result mtg-result-card" id="pv-result" aria-live="polite">
+            <span class="mtg-result-value">8,638.38</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="pv-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Discount Lost</span>
+            <strong class="fi-metric-value" data-pv="metric-discount-lost">1,361.62</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compounding</span>
+            <strong class="fi-metric-value" data-pv="metric-compounding">Annual</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Effective Periods</span>
+            <strong class="fi-metric-value" data-pv="metric-periods">3</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Rate Per Period</span>
+            <strong class="fi-metric-value" data-pv="metric-periodic-rate">5%</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Future value</span>
+            <strong data-pv="snap-fv">10,000</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Discount rate</span>
+            <strong data-pv="snap-rate">5%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time period</span>
+            <strong data-pv="snap-time">3 years</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-pv="snap-compounding">Annual</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Effective periods</span>
+            <strong data-pv="snap-periods">3</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="pv-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

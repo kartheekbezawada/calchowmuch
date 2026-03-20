@@ -1,0 +1,180 @@
+<div id="fv-explanation" class="explanation-pane">
+  <section class="mtg-exp-section">
+    <h2>How Much Could This Balance Grow?</h2>
+    <p>
+      This calculator projects the future value of a current balance using compound growth and an
+      optional recurring contribution amount.
+    </p>
+    <p>
+      With <span data-fv="present-value"></span> invested today, a rate of
+      <span data-fv="interest-rate"></span>, a time horizon of <span data-fv="time-period"></span>,
+      and contributions of <span data-fv="regular-contribution"></span> per period, the projected
+      future value is <strong><span data-fv="future-value"></span></strong>.
+    </p>
+    <div class="table-scroll" tabindex="0">
+      <table class="fv-results-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Current value</th>
+            <th scope="col">Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Present Value</td>
+            <td><span data-fv="present-value"></span></td>
+            <td>The balance already invested or saved today.</td>
+          </tr>
+          <tr>
+            <td>Interest Rate</td>
+            <td><span data-fv="interest-rate"></span></td>
+            <td>The annual growth assumption used for the projection.</td>
+          </tr>
+          <tr>
+            <td>Contribution / Period</td>
+            <td><span data-fv="regular-contribution"></span></td>
+            <td>The recurring amount added alongside the original balance.</td>
+          </tr>
+          <tr>
+            <td>Total Contributions</td>
+            <td><span data-fv="total-contributions"></span></td>
+            <td>The sum of all recurring additions made over the full horizon.</td>
+          </tr>
+          <tr>
+            <td>Total Growth</td>
+            <td><span data-fv="total-growth"></span></td>
+            <td>The growth created by compounding on both the principal and contributions.</td>
+          </tr>
+          <tr>
+            <td>Effective Periods</td>
+            <td><span data-fv="total-periods"></span></td>
+            <td>The total count of compounding periods created by the time and frequency settings.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>How to Guide</h3>
+    <div>
+      <h4>1. Start with the balance you already have</h4>
+      <p>
+        Enter the current value of the account, portfolio, or savings balance you want to project
+        forward.
+      </p>
+    </div>
+    <div>
+      <h4>2. Add the expected growth rate</h4>
+      <p>
+        The interest rate is the annual return assumption. Use a realistic planning rate instead of
+        the best-case outcome you hope for.
+      </p>
+    </div>
+    <div>
+      <h4>3. Add recurring contributions only if they are consistent</h4>
+      <p>
+        Enter a recurring contribution when you expect to add the same amount each period. If your
+        contribution pattern varies a lot, this result becomes a simplified planning estimate.
+      </p>
+    </div>
+    <div>
+      <h4>4. Review the formula logic</h4>
+      <p>The core growth formula is:</p>
+      <p class="fv-formula-block">FV = PV &times; (1 + r)<sup>n</sup></p>
+      <ol class="fv-formula-steps">
+        <li>
+          Convert the annual rate into the per-period rate:
+          <span data-fv="applied-rate"></span>% per period.
+        </li>
+        <li>
+          Convert the time horizon into total periods:
+          <span data-fv="total-periods"></span>.
+        </li>
+        <li>
+          Build the compound growth factor:
+          <span data-fv="formula-growth-factor"></span>.
+        </li>
+        <li>
+          Apply that factor to the starting balance and add the contribution effect to reach
+          <span data-fv="future-value"></span>.
+        </li>
+      </ol>
+    </div>
+    <div>
+      <h4>5. Read the answer in order</h4>
+      <p>
+        Start with future value, then total contributions, then total growth. That tells you how
+        much of the ending balance came from your own deposits and how much came from compounding.
+      </p>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="fv-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is future value?</h4>
+        <p>Future value is the projected amount your money could become after growth over time.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How is future value different from present value?</h4>
+        <p>Present value states what money is worth today, while future value projects what it may become later.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Why does compounding matter?</h4>
+        <p>Compounding lets growth build on earlier growth, which can accelerate outcomes over longer periods.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Should I include recurring contributions?</h4>
+        <p>Yes, when you expect to add a similar amount regularly and want the projection to reflect that habit.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Can I use months instead of years?</h4>
+        <p>Yes. Use months when you want a shorter planning horizon or more precise timing.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>What happens if the rate is 0%?</h4>
+        <p>The ending balance is just the starting balance plus the total of all contributions.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why can small rate changes create big differences?</h4>
+        <p>Because the rate compounds over every period, even small changes can compound meaningfully over time.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Is this a guarantee of performance?</h4>
+        <p>No. It is a deterministic estimate based on the assumptions you enter.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Can I use this for savings goals?</h4>
+        <p>Yes. It is useful for quick savings and investment planning under a fixed-rate assumption.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Why can real-world balances differ?</h4>
+        <p>Real returns vary, contributions can change, and taxes, fees, or timing differences can alter results.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li><strong>Accuracy:</strong> This calculator provides estimated results based on the inputs and assumptions shown.</li>
+      <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+      <li><strong>Assumptions:</strong> The model assumes a fixed rate, the selected compounding pattern, and recurring contributions of the same size for the full period.</li>
+      <li><strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.</li>
+    </ul>
+  </section>
+</div>
