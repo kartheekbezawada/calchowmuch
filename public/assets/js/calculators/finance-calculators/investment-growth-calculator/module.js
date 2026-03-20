@@ -1,32 +1,46 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatPercent, formatNumber } from '/assets/js/core/format.js';
 import { calculateInvestmentGrowth } from '/assets/js/core/time-value-utils.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+  wireRangeWithField,
+} from '/calculators/finance-calculators/shared/cluster-ux.js';
 
 const initialInput = document.querySelector('#ig-initial');
+const initialField = document.querySelector('#ig-initial-field');
 const initialDisplay = document.querySelector('#ig-initial-display');
 
 const returnInput = document.querySelector('#ig-return');
+const returnField = document.querySelector('#ig-return-field');
 const returnDisplay = document.querySelector('#ig-return-display');
 
 const yearsInput = document.querySelector('#ig-years');
+const yearsField = document.querySelector('#ig-years-field');
 const yearsDisplay = document.querySelector('#ig-years-display');
 
 const monthsInput = document.querySelector('#ig-months');
+const monthsField = document.querySelector('#ig-months-field');
 const monthsDisplay = document.querySelector('#ig-months-display');
 
 const contributionInput = document.querySelector('#ig-contribution');
+const contributionField = document.querySelector('#ig-contribution-field');
 const contributionDisplay = document.querySelector('#ig-contribution-display');
 
 const inflationInput = document.querySelector('#ig-inflation');
+const inflationField = document.querySelector('#ig-inflation-field');
 const inflationDisplay = document.querySelector('#ig-inflation-display');
 
 const calculateButton = document.querySelector('#ig-calc');
 const resultOutput = document.querySelector('#ig-result');
+const previewPanel = document.querySelector('#ig-preview');
+const staleNote = document.querySelector('#ig-stale-note');
 const metricContributions = document.querySelector('[data-ig="metric-contributions"]');
 const metricGains = document.querySelector('[data-ig="metric-gains"]');
 const metricInflationAdjusted = document.querySelector('[data-ig="metric-inflation-adjusted"]');
 
 const compoundingGroup = document.querySelector('[data-button-group="ig-compounding"]');
+let staleResultController = null;
 
 // Snapshot elements
 const snapInitial = document.querySelector('[data-ig="snap-initial"]');
@@ -43,6 +57,13 @@ const snapInflationRow = document.querySelector('#ig-snap-inflation-row');
 const formatMoney = (val) =>
   formatNumber(val, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const formatInput = (val) => formatNumber(val, { maximumFractionDigits: 0 });
+const parseNumericFieldValue = (value) =>
+  Number(
+    String(value ?? '')
+      .replace(/,/g, '')
+      .trim()
+  );
+const formatDecimalFieldValue = (value) => (Number.isFinite(value) ? String(value) : '');
 
 export const pageSchema = {
   calculatorFAQ: true,
@@ -203,12 +224,26 @@ setPageMetadata(metadata);
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'monthly',
   onChange: () => {
-    calculate();
+    staleResultController?.sync();
   },
 });
 
+function getCalculationSignature() {
+  return [
+    initialInput?.value ?? '',
+    returnInput?.value ?? '',
+    yearsInput?.value ?? '',
+    monthsInput?.value ?? '',
+    contributionInput?.value ?? '',
+    inflationInput?.value ?? '',
+    compoundingButtons?.getValue() ?? '',
+  ].join('|');
+}
+
 function updateSnapshots(data) {
-  if (!snapInitial) {return;}
+  if (!snapInitial) {
+    return;
+  }
 
   snapInitial.textContent = formatInput(data.initialInvestment);
   snapReturn.textContent = formatPercent(data.expectedReturn);
@@ -233,9 +268,16 @@ function showError(message) {
   if (resultOutput) {
     resultOutput.innerHTML = `<span style="color: #ef4444; font-size: 1.5rem;">${message}</span>`;
   }
-  if (metricContributions) {metricContributions.textContent = '-';}
-  if (metricGains) {metricGains.textContent = '-';}
-  if (metricInflationAdjusted) {metricInflationAdjusted.textContent = '-';}
+  if (metricContributions) {
+    metricContributions.textContent = '-';
+  }
+  if (metricGains) {
+    metricGains.textContent = '-';
+  }
+  if (metricInflationAdjusted) {
+    metricInflationAdjusted.textContent = '-';
+  }
+  staleResultController?.markFresh();
 }
 
 function calculate() {
@@ -258,7 +300,9 @@ function calculate() {
   const totalYears = years + months / 12;
 
   // Only calculate if we have some time period, even if it's 0 (start value)
-  if (totalYears < 0) {return;}
+  if (totalYears < 0) {
+    return;
+  }
 
   const result = calculateInvestmentGrowth({
     initialInvestment,
@@ -278,10 +322,16 @@ function calculate() {
   if (resultOutput) {
     resultOutput.innerHTML = `<span class="mtg-result-value is-updated">${formatMoney(result.futureValue)}</span>`;
     const valueEl = resultOutput.querySelector('.mtg-result-value');
-    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
+    if (valueEl) {
+      setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+    }
   }
-  if (metricContributions) {metricContributions.textContent = formatMoney(result.totalContributions);}
-  if (metricGains) {metricGains.textContent = formatMoney(result.totalGains);}
+  if (metricContributions) {
+    metricContributions.textContent = formatMoney(result.totalContributions);
+  }
+  if (metricGains) {
+    metricGains.textContent = formatMoney(result.totalGains);
+  }
   if (metricInflationAdjusted) {
     metricInflationAdjusted.textContent =
       result.inflationAdjustedFV !== null ? formatMoney(result.inflationAdjustedFV) : 'Not applied';
@@ -299,19 +349,105 @@ function calculate() {
     totalGains: result.totalGains,
     inflationAdjustedFV: result.inflationAdjustedFV,
   });
+  staleResultController?.markFresh();
 }
 
-// Event Listeners for Sliders
-[initialInput, returnInput, yearsInput, monthsInput, contributionInput, inflationInput].forEach(
-  (input) => {
-    if (input) {
-      input.addEventListener('input', calculate);
-    }
-  }
+wireRangeWithField({
+  rangeInput: initialInput,
+  textInput: initialField,
+  formatFieldValue: formatInput,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    initialDisplay.textContent = formatInput(Number(initialInput?.value));
+  },
+});
+
+wireRangeWithField({
+  rangeInput: returnInput,
+  textInput: returnField,
+  formatFieldValue: formatDecimalFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    returnDisplay.textContent = formatPercent(Number(returnInput?.value));
+  },
+});
+
+wireRangeWithField({
+  rangeInput: yearsInput,
+  textInput: yearsField,
+  formatFieldValue: formatInput,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    yearsDisplay.textContent = formatInput(Number(yearsInput?.value));
+  },
+});
+
+wireRangeWithField({
+  rangeInput: monthsInput,
+  textInput: monthsField,
+  formatFieldValue: formatInput,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    monthsDisplay.textContent = formatInput(Number(monthsInput?.value));
+  },
+});
+
+wireRangeWithField({
+  rangeInput: contributionInput,
+  textInput: contributionField,
+  formatFieldValue: formatInput,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    contributionDisplay.textContent = formatInput(Number(contributionInput?.value));
+  },
+});
+
+wireRangeWithField({
+  rangeInput: inflationInput,
+  textInput: inflationField,
+  formatFieldValue: formatDecimalFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: () => {
+    inflationDisplay.textContent = formatPercent(Number(inflationInput?.value));
+  },
+});
+
+staleResultController = createStaleResultController({
+  resultPanel: previewPanel,
+  staleTargets: [staleNote],
+  getSignature: getCalculationSignature,
+});
+
+staleResultController.watchElements(
+  [
+    initialInput,
+    returnInput,
+    yearsInput,
+    monthsInput,
+    contributionInput,
+    inflationInput,
+    initialField,
+    returnField,
+    yearsField,
+    monthsField,
+    contributionField,
+    inflationField,
+  ],
+  ['input', 'change']
+);
+staleResultController.watchElements(
+  Array.from(compoundingGroup?.querySelectorAll('button') ?? []),
+  ['click']
 );
 
 if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
+  calculateButton.addEventListener('click', () => {
+    calculate();
+    revealResultPanel({
+      resultPanel: previewPanel,
+      focusTarget: resultOutput,
+    });
+  });
 }
 
 // Initial calculation

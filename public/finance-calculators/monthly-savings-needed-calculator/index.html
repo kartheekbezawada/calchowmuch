@@ -1681,34 +1681,40 @@
       }
 
       /* calculators/finance-calculators/monthly-savings-needed-calculator/calculator.css */
-      @import url("/assets/css/calculators/finance-calculators/monthly-savings-needed-calculator/calculator.css");
-
-      #msn-explanation .msn-results-table thead th {
-        background: #f7faf8;
-        color: #163e59;
+      #calc-monthly-savings-needed .fi-form-section:first-of-type {
+        background:
+          radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
+          rgba(246, 249, 247, 0.96);
       }
 
-      #msn-explanation .msn-results-table td {
-        color: #3f5665;
+      #calc-monthly-savings-needed .fi-action-rail {
+        gap: 10px;
       }
 
-      #msn-explanation .msn-formula-block {
-        width: fit-content;
-        margin: 0;
-        padding: 12px 16px;
-        border-radius: 16px;
-        border: 1px solid rgba(31, 95, 135, 0.16);
-        background: rgba(232, 241, 247, 0.78);
-        color: #163e59;
-        font-size: 1.02rem;
-        font-weight: 700;
+      #calc-monthly-savings-needed .fi-metric-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      #msn-explanation .msn-insight-box {
-        padding: 16px 18px;
-        border-radius: 18px;
-        border: 1px solid rgba(31, 95, 135, 0.16);
-        background: rgba(232, 241, 247, 0.62);
+      #calc-monthly-savings-needed .fi-metric-value,
+      #calc-monthly-savings-needed .fi-snapshot-row strong {
+        font-variant-numeric: tabular-nums;
+      }
+
+      #msn-explanation .msn-results-table td:nth-child(2),
+      #msn-explanation .msn-results-table tfoot td:nth-child(2) {
+        text-align: right;
+      }
+
+      @media (max-width: 980px) {
+        #calc-monthly-savings-needed .fi-metric-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        #calc-monthly-savings-needed .fi-metric-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
  
@@ -1768,6 +1774,17 @@
               <span class="slider-value" id="msn-goal-display">25,000</span>
             </div>
             <input id="msn-goal" type="range" value="25000" min="1000" max="1000000" step="500" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="msn-goal-field">Enter savings goal</label>
+              <input
+                class="slider-precision-input"
+                id="msn-goal-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="25000"
+              />
+            </div>
           </div>
 
           <div class="input-row slider-row">
@@ -1776,13 +1793,28 @@
               <span class="slider-value" id="msn-current-display">5,000</span>
             </div>
             <input id="msn-current" type="range" value="5000" min="0" max="1000000" step="500" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="msn-current-field"
+                >Enter current savings</label
+              >
+              <input
+                class="slider-precision-input"
+                id="msn-current-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="5000"
+              />
+            </div>
           </div>
         </section>
 
         <section class="fi-form-section" aria-labelledby="msn-section-timing">
           <div class="fi-form-section-header">
             <div>
-              <h2 class="fi-form-section-title" id="msn-section-timing">Time and rate assumptions</h2>
+              <h2 class="fi-form-section-title" id="msn-section-timing">
+                Time and rate assumptions
+              </h2>
               <p class="fi-form-section-copy">
                 Set the deadline, annual rate, and timing pattern you want the monthly target to
                 satisfy.
@@ -1797,6 +1829,17 @@
                 <span class="slider-value" id="msn-years-display">3</span>
               </div>
               <input id="msn-years" type="range" value="3" min="0" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="msn-years-field">Enter years</label>
+                <input
+                  class="slider-precision-input"
+                  id="msn-years-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -1805,6 +1848,17 @@
                 <span class="slider-value" id="msn-months-display">0</span>
               </div>
               <input id="msn-months" type="range" value="0" min="0" max="11" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="msn-months-field">Enter months</label>
+                <input
+                  class="slider-precision-input"
+                  id="msn-months-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="0"
+                />
+              </div>
             </div>
           </div>
 
@@ -1814,23 +1868,79 @@
               <span class="slider-value" id="msn-rate-display">3%</span>
             </div>
             <input id="msn-rate" type="range" value="3" min="0" max="20" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="msn-rate-field">Enter annual rate</label>
+              <input
+                class="slider-precision-input"
+                id="msn-rate-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="3"
+              />
+            </div>
           </div>
 
           <div class="fi-toggle-row">
             <div class="fi-toggle-group">
               <span class="fi-toggle-label">Compounding Frequency</span>
-              <div class="button-group" role="group" aria-label="Compounding frequency" data-button-group="msn-compounding">
-                <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
-                <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">Quarterly</button>
-                <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">Annually</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="msn-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="true"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="false"
+                >
+                  Annually
+                </button>
               </div>
             </div>
 
             <div class="fi-toggle-group">
               <span class="fi-toggle-label">Contribution Timing</span>
-              <div class="button-group" role="group" aria-label="Contribution timing" data-button-group="msn-timing">
-                <button class="calculator-button secondary is-active" type="button" data-value="end" aria-pressed="true">End of Month</button>
-                <button class="calculator-button secondary" type="button" data-value="beginning" aria-pressed="false">Beginning</button>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Contribution timing"
+                data-button-group="msn-timing"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="end"
+                  aria-pressed="true"
+                >
+                  End of Month
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="beginning"
+                  aria-pressed="false"
+                >
+                  Beginning
+                </button>
               </div>
             </div>
           </div>
@@ -1846,7 +1956,11 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Monthly savings needed result snapshot">
+      <aside
+        class="mtg-preview-panel"
+        id="msn-preview"
+        aria-label="Monthly savings needed result snapshot"
+      >
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Required Monthly Savings</p>
           <div class="result mtg-result-card" id="msn-result" aria-live="polite">
@@ -1870,17 +1984,41 @@
         </div>
 
         <div class="fi-snapshot-list">
-          <div class="fi-snapshot-row"><span>Savings Goal</span><strong data-msn="snap-goal"></strong></div>
-          <div class="fi-snapshot-row"><span>Current Savings</span><strong data-msn="snap-current"></strong></div>
-          <div class="fi-snapshot-row"><span>Time Period</span><strong data-msn="snap-time"></strong></div>
-          <div class="fi-snapshot-row"><span>Interest Rate</span><strong data-msn="snap-rate"></strong></div>
-          <div class="fi-snapshot-row"><span>Compounding</span><strong data-msn="snap-compounding"></strong></div>
-          <div class="fi-snapshot-row"><span>Contribution Timing</span><strong data-msn="snap-timing"></strong></div>
-          <div class="fi-snapshot-row"><span>Required Monthly Savings</span><strong data-msn="snap-monthly"></strong></div>
-          <div class="fi-snapshot-row"><span>Total Contributions</span><strong data-msn="snap-contributions"></strong></div>
-          <div class="fi-snapshot-row"><span>Total Interest Earned</span><strong data-msn="snap-interest"></strong></div>
-          <div class="fi-snapshot-row"><span>Final Balance</span><strong data-msn="snap-balance"></strong></div>
+          <div class="fi-snapshot-row">
+            <span>Savings Goal</span><strong data-msn="snap-goal"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Current Savings</span><strong data-msn="snap-current"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time Period</span><strong data-msn="snap-time"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest Rate</span><strong data-msn="snap-rate"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span><strong data-msn="snap-compounding"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Contribution Timing</span><strong data-msn="snap-timing"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Required Monthly Savings</span><strong data-msn="snap-monthly"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Contributions</span><strong data-msn="snap-contributions"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Interest Earned</span><strong data-msn="snap-interest"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Final Balance</span><strong data-msn="snap-balance"></strong>
+          </div>
         </div>
+
+        <p class="fi-preview-stale" id="msn-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
       </aside>
     </section>
   </div>

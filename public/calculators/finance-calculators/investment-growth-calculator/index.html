@@ -25,6 +25,19 @@
                 <span class="slider-value" id="ig-initial-display">10,000</span>
               </div>
               <input id="ig-initial" type="range" value="10000" min="0" max="500000" step="500" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-initial-field"
+                  >Enter initial investment</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="ig-initial-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="10000"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -33,6 +46,19 @@
                 <span class="slider-value" id="ig-return-display">7%</span>
               </div>
               <input id="ig-return" type="range" value="7" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-return-field"
+                  >Enter annual return</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="ig-return-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="7"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -41,6 +67,17 @@
                 <span class="slider-value" id="ig-years-display">10</span>
               </div>
               <input id="ig-years" type="range" value="10" min="0" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-years-field">Enter years</label>
+                <input
+                  class="slider-precision-input"
+                  id="ig-years-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="10"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -49,6 +86,17 @@
                 <span class="slider-value" id="ig-months-display">0</span>
               </div>
               <input id="ig-months" type="range" value="0" min="0" max="11" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-months-field">Enter months</label>
+                <input
+                  class="slider-precision-input"
+                  id="ig-months-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="0"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -57,6 +105,19 @@
                 <span class="slider-value" id="ig-contribution-display">500</span>
               </div>
               <input id="ig-contribution" type="range" value="500" min="0" max="20000" step="50" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-contribution-field"
+                  >Enter monthly contribution</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="ig-contribution-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="500"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -65,6 +126,19 @@
                 <span class="slider-value" id="ig-inflation-display">0%</span>
               </div>
               <input id="ig-inflation" type="range" value="0" min="0" max="15" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ig-inflation-field"
+                  >Enter inflation rate</label
+                >
+                <input
+                  class="slider-precision-input"
+                  id="ig-inflation-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="0"
+                />
+              </div>
             </div>
           </div>
 
@@ -77,10 +151,38 @@
                 aria-label="Compounding frequency"
                 data-button-group="ig-compounding"
               >
-                <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
-                <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">Quarterly</button>
-                <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">Semi-Annual</button>
-                <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">Annually</button>
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="true"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semi-Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="false"
+                >
+                  Annually
+                </button>
               </div>
             </div>
           </div>
@@ -94,7 +196,11 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Investment growth result snapshot">
+      <aside
+        class="mtg-preview-panel"
+        id="ig-preview"
+        aria-label="Investment growth result snapshot"
+      >
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Estimated Future Value</p>
           <div class="result mtg-result-card" id="ig-result" aria-live="polite">
@@ -118,15 +224,35 @@
         </div>
 
         <div class="fi-snapshot-list">
-          <div class="fi-snapshot-row"><span>Initial Investment</span><strong data-ig="snap-initial"></strong></div>
-          <div class="fi-snapshot-row"><span>Annual Return</span><strong data-ig="snap-return"></strong></div>
-          <div class="fi-snapshot-row"><span>Time Period</span><strong data-ig="snap-time"></strong></div>
-          <div class="fi-snapshot-row"><span>Monthly Contribution</span><strong data-ig="snap-contribution"></strong></div>
-          <div class="fi-snapshot-row"><span>Compounding</span><strong data-ig="snap-compounding"></strong></div>
-          <div class="fi-snapshot-row"><span>Total Contributions</span><strong data-ig="snap-total-contributions"></strong></div>
-          <div class="fi-snapshot-row"><span>Total Gains</span><strong data-ig="snap-total-gains"></strong></div>
-          <div class="fi-snapshot-row" id="ig-snap-inflation-row" hidden><span>Inflation-Adjusted</span><strong data-ig="snap-inflation"></strong></div>
+          <div class="fi-snapshot-row">
+            <span>Initial Investment</span><strong data-ig="snap-initial"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Annual Return</span><strong data-ig="snap-return"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time Period</span><strong data-ig="snap-time"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Monthly Contribution</span><strong data-ig="snap-contribution"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span><strong data-ig="snap-compounding"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Contributions</span><strong data-ig="snap-total-contributions"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Gains</span><strong data-ig="snap-total-gains"></strong>
+          </div>
+          <div class="fi-snapshot-row" id="ig-snap-inflation-row" hidden>
+            <span>Inflation-Adjusted</span><strong data-ig="snap-inflation"></strong>
+          </div>
         </div>
+
+        <p class="fi-preview-stale" id="ig-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
       </aside>
     </section>
   </div>

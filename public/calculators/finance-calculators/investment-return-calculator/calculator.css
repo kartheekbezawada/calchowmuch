@@ -1,28 +1,54 @@
-@import url("/assets/css/calculators/finance-calculators/investment-return-calculator/calculator.css");
-
-#calc-investment-return .ir-results {
+#calc-investment-return .ir-grid {
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
 }
 
-#calc-investment-return .ir-results-controls {
-  display: flex;
-  justify-content: flex-end;
+#calc-investment-return .ir-grid--inline {
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+}
+
+#calc-investment-return .input-row {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-investment-return .input-row span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #15202b;
+}
+
+#calc-investment-return .fi-toggle-row {
+  align-items: flex-start;
+}
+
+#calc-investment-return .ir-advanced-control {
+  margin-top: 4px;
+}
+
+#calc-investment-return #ir-advanced-section {
+  display: grid;
+  gap: 16px;
 }
 
 #calc-investment-return .ir-advanced-card {
   display: grid;
   gap: 14px;
   padding: 18px 20px;
-  border: 1px solid rgba(143, 158, 167, 0.18);
-  border-radius: 20px;
-  background: rgba(248, 250, 248, 0.96);
+  border: 1px solid rgba(143, 158, 167, 0.22);
+  border-radius: 22px;
+  background: rgba(248, 250, 248, 0.98);
 }
 
 #calc-investment-return .ir-variable-rows,
 #calc-investment-return .ir-events-rows {
   display: grid;
   gap: 12px;
+}
+
+#calc-investment-return .ir-variable-rows {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 #calc-investment-return .ir-var-row,
@@ -35,17 +61,77 @@
   background: #fff;
 }
 
-#calc-investment-return .ir-breakdown-table thead th,
-#ir-explanation .ir-results-table thead th {
-  background: #f7faf8;
-  color: #163e59;
+#calc-investment-return .ir-event-row {
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: center;
+}
+
+#calc-investment-return .ir-event-timing {
+  display: inline-flex;
+  gap: 6px;
+}
+
+#calc-investment-return .ir-event-timing button {
+  min-height: 36px;
+  padding: 0 14px;
+}
+
+#calc-investment-return .ir-results {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-investment-return .ir-results-controls {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #calc-investment-return .ir-breakdown-table td,
-#ir-explanation .ir-results-table td {
-  color: #3f5665;
+#calc-investment-return .ir-breakdown-table th:nth-child(n + 2),
+#calc-investment-return .ir-breakdown-table td:nth-child(n + 2),
+#ir-explanation .ir-results-table td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-investment-return .ir-breakdown-table th:nth-child(n + 2),
+#calc-investment-return .ir-breakdown-table td:nth-child(n + 2) {
+  text-align: right;
+}
+
+#ir-explanation-content {
+  display: grid;
+  gap: 18px;
+}
+
+#ir-explanation .ir-results-table td:last-child {
+  color: #5f6c78;
 }
 
 #calc-investment-return .is-hidden {
   display: none;
+}
+
+@media (max-width: 980px) {
+  #calc-investment-return .ir-variable-rows,
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-grid--inline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  #calc-investment-return .ir-variable-rows,
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-grid--inline,
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-return .ir-results-controls {
+    justify-content: stretch;
+  }
 }

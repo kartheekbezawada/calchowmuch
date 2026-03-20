@@ -3,8 +3,8 @@
     <section class="mtg-hero" aria-label="Compound interest calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate your ending balance, total interest earned, and contribution impact using a
-          fixed compound-growth scenario.
+          Estimate your ending balance, total interest earned, and contribution impact using a fixed
+          compound-growth scenario.
         </p>
 
         <section class="fi-form-section" aria-labelledby="ci-section-start">
@@ -30,6 +30,19 @@
               max="1000000"
               step="100"
             />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="ci-principal-field">
+                Enter starting amount
+              </label>
+              <input
+                class="slider-precision-input"
+                id="ci-principal-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="10000"
+              />
+            </div>
           </div>
         </section>
 
@@ -50,6 +63,17 @@
                 <span class="slider-value" id="ci-rate-display">5%</span>
               </div>
               <input id="ci-rate" type="range" value="5" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ci-rate-field">Enter annual rate</label>
+                <input
+                  class="slider-precision-input"
+                  id="ci-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
             </div>
 
             <div class="input-row slider-row">
@@ -58,15 +82,39 @@
                 <span class="slider-value" id="ci-time-display">10 yrs</span>
               </div>
               <input id="ci-time" type="range" value="10" min="1" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="ci-time-field">Enter years</label>
+                <input
+                  class="slider-precision-input"
+                  id="ci-time-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="10"
+                />
+              </div>
             </div>
           </div>
 
           <div class="input-row slider-row">
             <div class="slider-header">
-              <label for="ci-contribution">Regular Contribution - Yearly</label>
+              <label for="ci-contribution">Contribution Each Compounding Period</label>
               <span class="slider-value" id="ci-contrib-display">0</span>
             </div>
             <input id="ci-contribution" type="range" value="0" min="0" max="10000" step="50" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="ci-contribution-field">
+                Enter contribution
+              </label>
+              <input
+                class="slider-precision-input"
+                id="ci-contribution-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="0"
+              />
+            </div>
           </div>
 
           <div class="fi-toggle-row">
@@ -111,53 +159,73 @@
           <button class="calculator-button full-width" type="button" id="ci-calc">
             Calculate Compound Interest
           </button>
-          <p class="fi-action-note">
-            Projection rows and chart values update from the current inputs.
-          </p>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Compound interest result snapshot">
+      <aside
+        class="mtg-preview-panel"
+        id="ci-preview"
+        aria-label="Compound interest result snapshot"
+      >
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Estimated Ending Balance</p>
-          <div class="result mtg-result-card" id="ci-result" aria-live="polite"></div>
-          <div
-            class="result-detail mtg-summary-card"
-            id="ci-result-detail"
-            aria-live="polite"
-          ></div>
+          <div class="result mtg-result-card" id="ci-result" aria-live="polite">
+            <span class="mtg-result-value">16,288.95</span>
+          </div>
+        </div>
+
+        <div class="mtg-summary-card" aria-live="polite">
+          <div class="fi-metric-grid" id="ci-result-detail">
+            <article class="fi-metric-card">
+              <span class="fi-metric-label">Total interest</span>
+              <strong class="fi-metric-value">6,288.95</strong>
+            </article>
+            <article class="fi-metric-card">
+              <span class="fi-metric-label">Total contributions</span>
+              <strong class="fi-metric-value">0</strong>
+            </article>
+            <article class="fi-metric-card">
+              <span class="fi-metric-label">Compounding</span>
+              <strong class="fi-metric-value">Annual</strong>
+            </article>
+          </div>
         </div>
 
         <div class="fi-snapshot-list">
           <div class="fi-snapshot-row">
             <span>Principal (P)</span>
-            <strong data-ci="snap-principal"></strong>
+            <strong data-ci="snap-principal">10,000</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Interest Rate</span>
-            <strong data-ci="snap-rate"></strong>
+            <strong data-ci="snap-rate">5%</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Time Period</span>
-            <strong data-ci="snap-time"></strong>
+            <strong data-ci="snap-time">10 years</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Compounding</span>
-            <strong data-ci="snap-compounding"></strong>
+            <strong data-ci="snap-compounding">Annual</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Contribution / Period</span>
-            <strong data-ci="snap-contribution"></strong>
+            <strong data-ci="snap-contribution">0</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Rate Per Period</span>
-            <strong data-ci="snap-periodic-rate"></strong>
+            <strong data-ci="snap-periodic-rate">5%</strong>
           </div>
           <div class="fi-snapshot-row">
             <span>Total Periods</span>
-            <strong data-ci="snap-total-periods"></strong>
+            <strong data-ci="snap-total-periods">10</strong>
           </div>
         </div>
+
+        <p class="fi-preview-stale" id="ci-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
       </aside>
     </section>
   </div>
